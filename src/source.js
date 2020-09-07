@@ -32,25 +32,6 @@ export default class Source {
     return tree;
   }
 
-  isStaticFile(file) {
-  }
-
-  async copyStaticFiles(dest) {
-    return Promise.all(
-      Array.from(this.staticFiles.entries()).map(async (entry) => {
-        const [from, to] = entry;
-
-        const pathFrom = join(this.path, from);
-        const pathTo = join(dest, to);
-
-        if (await exists(pathFrom)) {
-          await ensureDir(dirname(pathTo));
-          return copy(pathFrom, pathTo, { overwrite: true });
-        }
-      }),
-    );
-  }
-
   async load() {
     await this.#loadDirectory(this.tree);
     this.tree.expand();
