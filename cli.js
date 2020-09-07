@@ -34,39 +34,37 @@ await site.build();
 console.log("");
 console.log(brightGreen("Site built"));
 
-let update;
-
 if (args.serve) {
   try {
-    update = await server(site.options.dest);
-    watch();
-  } catch (err) {
-    console.log(err);
-  }
-}
+    const update = await server(site.options.dest);
+    const watcher = Deno.watchFs(site.options.src);
+    const changes = new Set();
+    console.log("Watching for changes...");
 
-async function watch() {
-  const watcher = Deno.watchFs(site.options.src);
-  const changes = new Set();
-  console.log("Watching for changes...");
+    async function rebuild() {
+      if (!changes.size) {
+        return;
+      }
 
-  async function rebuild() {
-    console.log("Changes detected. Reloading...");
-    await site.update(changes);
-    await update();
-    changes.clear();
-    console.log("");
-  }
-
-  for await (const event of watcher) {
-    if (event.paths.every((path) => path.startsWith(site.options.dest))) {
-      continue;
+      console.log("Changes detected. Reloading...");
+      await site.update(changes);
+      await update();
+      changes.clear();
+      console.log("");
     }
 
-    event.paths.forEach((path) =>
-      changes.add(join("/", relative(site.options.src, path)))
-    );
+    setInterval(rebuild, 500);
 
-    await rebuild();
+    for await (const event of watcher) {
+      if (event.paths.every((path) => path.startsWith(site.options.dest))) {
+        continue;
+      }
+
+      event.paths.forEach((path) =>
+        changes.add(join("/", relative(site.options.src, path)))
+      );
+    }
+  } catch (err) {
+    console.log(err);
   }
 }

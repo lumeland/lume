@@ -1,7 +1,11 @@
 import { listenAndServe } from "../deps/server.js";
 import { acceptWebSocket } from "../deps/ws.js";
-import { extname, join, relative } from "../deps/path.js";
+import { extname, join, relative, dirname } from "../deps/path.js";
 import { brightGreen, red } from "../deps/colors.js";
+
+const script = await Deno.readTextFile(
+  join(dirname(new URL(import.meta.url).pathname), "./server.ws.js"),
+);
 
 const mimes = new Map([
   [".html", "text/html"],
@@ -54,7 +58,10 @@ export async function server(root) {
       console.log(`${brightGreen(req.method)} ${req.url}`);
       await req.respond({
         status: 200,
-        headers: new Headers({ "content-type": mimeType }),
+        headers: new Headers({
+          "content-type": mimeType,
+          "cache-control": "no-cache no-store must-revalidate",
+        }),
         body: await (mimeType === "text/html"
           ? getHtmlBody(path)
           : getBody(path)),
@@ -68,18 +75,16 @@ export async function server(root) {
   //Live reload server
   const watcher = Deno.watchFs(root);
   const changes = new Set();
-  let latestSocket;
+  let socket;
 
   listenAndServe({ port: 3001 }, async (req) => {
     const { conn, r: bufReader, w: bufWriter, headers } = req;
-    const socket = await acceptWebSocket({
+    socket = await acceptWebSocket({
       conn,
       bufReader,
       bufWriter,
       headers,
     });
-
-    latestSocket = socket;
 
     for await (const event of watcher) {
       if (event.kind === "modify") {
@@ -89,12 +94,12 @@ export async function server(root) {
   });
 
   return async () => {
-    if (changes.size && latestSocket) {
+    if (changes.size && socket) {
       const files = Array.from(changes).map((path) =>
         join("/", relative(root, path))
       );
-      await latestSocket.send(JSON.stringify(files));
       changes.clear();
+      return socket.send(JSON.stringify(files));
     }
   };
 }
@@ -102,70 +107,7 @@ export async function server(root) {
 async function getHtmlBody(path) {
   const content = await Deno.readTextFile(path);
 
-  return `${content}
-    <script>
-      let ws;
-
-      function socket() {
-        if (ws && ws.readyState !== 3) {
-          return;
-        }
-
-        ws = new WebSocket('ws://localhost:3001');
-        ws.onopen = () => console.log('Socket connection open. Listening for events.');
-        ws.onmessage = (e) => {
-          const files = JSON.parse(e.data);
-
-          if (!Array.isArray(files)) {
-            console.log(e.data);
-            return;
-          }
-
-          let path = document.location.pathname;
-          if (!path.endsWith(".html")) {
-            path += path.endsWith("/") ? "index.html" : "/index.html";
-          }
-
-          if (files.includes(path)) {
-            location.reload();
-            return;
-          }
-
-          files.forEach((file) => {
-            const format = file.split(".").pop().toLowerCase();
-
-            switch (format) {
-              case "css":
-                document.querySelectorAll('link[rel="stylesheet"]').forEach((el) => cache(el, 'href', file));
-                break;
-
-              case "jpeg":
-              case "jpg":
-              case "png":
-              case "svg":
-              case "gif":
-                document.querySelectorAll('img').forEach((el) => cache(el, 'src', file));
-                break;
-
-              case "js":
-                document.querySelectorAll('script').forEach((el) => cache(el, 'src', file));
-                break;
-            }
-          })
-        };
-      }
-
-      function cache(el, attr, file) {
-        const url = new URL(el[attr]);
-        if (url.pathname !== file) {
-          return;
-        }
-        url.searchParams.set('_cache', (new Date()).getTime());
-        el[attr] = url.toString();
-      }
-
-      setInterval(socket, 1000);
-    </script>`;
+  return `${content}<script>${script}</script>`;
 }
 
 async function getBody(path) {
