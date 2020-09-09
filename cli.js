@@ -44,6 +44,7 @@ if (args.serve) {
     let timer = 0;
 
     async function rebuild() {
+      console.log("");
       console.log("Changes detected. Building...");
       const files = new Set(changes);
       changes.clear();

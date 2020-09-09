@@ -48,7 +48,7 @@ function refresh(files) {
     switch (format) {
       case "css":
         document.querySelectorAll('link[rel="stylesheet"]').forEach((el) =>
-          cache(el, "href", file)
+          cache(el, "href", file, true)
         );
         break;
 
@@ -71,12 +71,23 @@ function refresh(files) {
   });
 }
 
-function cache(el, attr, file) {
+function cache(el, attr, file, clone = false) {
   const url = new URL(el[attr]);
+
   if (url.pathname !== file) {
     return;
   }
+
   url.searchParams.set("_cache", (new Date()).getTime());
+
+  if (clone) {
+    const newEl = el.cloneNode();
+    newEl[attr] = url.toString();
+    el.after(newEl);
+    setTimeout(() => el.remove(), 500);
+    return;
+  }
+
   el[attr] = url.toString();
 }
 
@@ -86,6 +97,7 @@ function save(key, data) {
 
 function read(key) {
   const data = localStorage.getItem(key);
+  localStorage.removeItem(key);
 
   if (data) {
     return JSON.parse(data);

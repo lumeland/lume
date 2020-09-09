@@ -38,18 +38,20 @@ export default class Source {
   }
 
   async update(files) {
-    files.forEach(async (file) => {
-      const directory = this.getDirectory(dirname(file));
+    await Promise.all(
+      Array.from(files).map((file) => {
+        const directory = this.getDirectory(dirname(file));
 
-      const entry = {
-        name: basename(file),
-        isFile: true,
-        isDirectory: false,
-        isSymlink: false,
-      };
+        const entry = {
+          name: basename(file),
+          isFile: true,
+          isDirectory: false,
+          isSymlink: false,
+        };
 
-      await this.#loadEntry(directory, entry);
-    });
+        return this.#loadEntry(directory, entry);
+      }),
+    );
 
     this.tree.expand();
   }
