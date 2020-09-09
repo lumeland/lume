@@ -41,19 +41,17 @@ if (args.serve) {
     const changes = new Set();
     console.log("Watching for changes...");
 
-    async function rebuild() {
-      if (!changes.size) {
-        return;
-      }
+    let timer = 0;
 
-      console.log("Changes detected. Reloading...");
-      await site.update(changes);
-      await update();
+    async function rebuild() {
+      console.log("Changes detected. Building...");
+      const files = new Set(changes);
       changes.clear();
+
+      await site.update(files);
+      await update();
       console.log("");
     }
-
-    setInterval(rebuild, 500);
 
     for await (const event of watcher) {
       if (event.paths.every((path) => path.startsWith(site.options.dest))) {
@@ -63,6 +61,10 @@ if (args.serve) {
       event.paths.forEach((path) =>
         changes.add(join("/", relative(site.options.src, path)))
       );
+
+      //Debounce
+      clearTimeout(timer);
+      timer = setTimeout(rebuild, 500);
     }
   } catch (err) {
     console.log(err);
