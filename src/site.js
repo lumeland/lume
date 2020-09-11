@@ -16,8 +16,8 @@ import Explorer from "./explorer.js";
 export default class Site {
   explorer = new Explorer(this);
   engines = new Map();
-  before = new Set();
-  after = new Set();
+  before = new Map();
+  after = new Map();
   filters = new Map();
 
   constructor(options) {
@@ -28,29 +28,42 @@ export default class Site {
     this.source = new Source(options.src);
   }
 
-  loadData(extension, loader) {
-    this.source.data.set(extension, loader);
+  use(plugin) {
+    plugin(this);
     return this;
   }
 
-  loadPages(extension, loader) {
-    this.source.pages.set(extension, loader);
+  data(extensions, loader) {
+    extensions.forEach((extension) => this.source.data.set(extension, loader));
     return this;
   }
 
-  loadAssets(extension, loader) {
-    this.source.assets.set(extension, loader);
+  load(extensions, loader) {
+    extensions.forEach((extension) => this.source.pages.set(extension, loader));
     return this;
   }
 
-  copy(from, to = from) {
-    this.source.staticFiles.set(join("/", from), join("/", to));
+  beforeRender(extensions, transformer) {
+    extensions.forEach((extension) => {
+      const transformers = this.before.get(extension) || [];
+      transformers.push(transformer);
+      this.before.set(extension, transformers);
+    });
     return this;
   }
 
-  addEngine(extension, engine) {
-    this.engines.set(extension, engine);
-    this.loadPages(extension, engine.load.bind(engine));
+  afterRender(extensions, transformer) {
+    extensions.forEach((extension) => {
+      const transformers = this.after.get(extension) || [];
+      transformers.push(transformer);
+      this.after.set(extension, transformers);
+    });
+    return this;
+  }
+
+  engine(extensions, engine) {
+    extensions.forEach((extension) => this.engines.set(extension, engine));
+    this.load(extensions, engine.load.bind(engine));
 
     for (const [name, filter] of this.filters) {
       engine.addFilter(name, filter);
@@ -59,7 +72,7 @@ export default class Site {
     return this;
   }
 
-  addFilter(name, filter) {
+  filter(name, filter) {
     this.filters.set(name, filter);
 
     for (const engine of this.engines.values()) {
@@ -69,19 +82,9 @@ export default class Site {
     return this;
   }
 
-  addTransformer(position, transformer) {
-    switch (position) {
-      case "before":
-        this.before.add(transformer);
-        break;
-      case "after":
-        this.after.add(transformer);
-        break;
-      default:
-        throw new Error(
-          "Invalid transformer position. Must be 'after' or 'before'",
-        );
-    }
+  copy(from, to = from) {
+    this.source.staticFiles.set(join("/", from), join("/", to));
+    return this;
   }
 
   async build() {
@@ -129,10 +132,9 @@ export default class Site {
   }
 
   async #copyStaticFiles() {
-    return Promise.all(
-      Array.from(this.source.staticFiles.entries()).map((entry) =>
-        this.#copyEntry(entry)
-      ),
+    return parallel(
+      this.source.staticFiles.entries(),
+      (entry) => this.#copyEntry(entry),
     );
   }
   async #copyEntry(entry) {
@@ -148,39 +150,41 @@ export default class Site {
   }
 
   async #buildPages(filter) {
-    await Promise.all(
-      Array.from(this.getPages(filter)).map(async (entry) => {
+    await parallel(
+      this.getPages(filter),
+      async (entry) => {
         const [page, dir] = entry;
+        const transformers = this.before.get(page.src.ext);
 
-        for (const transform of this.before) {
-          await transform(page, dir);
+        if (transformers) {
+          for (const transform of transformers) {
+            await transform(page, dir);
+          }
         }
-      }),
+      },
     );
 
-    return Promise.all(
-      Array.from(this.getPages(filter)).map(async (entry) => {
+    return parallel(
+      this.getPages(filter),
+      async (entry) => {
         const [page, dir] = entry;
 
-        try {
-          if (page.isPage) {
-            await this.#renderPage(page, dir);
-          }
+        await this.#renderPage(page, dir);
 
-          if (!page.content || !page.dest.path) {
-            return;
-          }
-
-          for (const transform of this.after) {
-            await transform(page, dir, this);
-          }
-
-          return this.#savePage(page);
-        } catch (err) {
-          console.error(`Error in: ${page.src.path}:`);
-          console.error(err);
+        if (!page.content) {
+          return;
         }
-      }),
+
+        const transformers = this.after.get(page.dest.ext);
+
+        if (transformers) {
+          for (const transform of transformers) {
+            await transform(page, dir);
+          }
+        }
+
+        return this.#savePage(page);
+      },
     );
   }
 
@@ -230,4 +234,17 @@ export default class Site {
       }
     }
   }
+}
+
+function parallel(iterator, callback) {
+  return Promise.all(
+    Array.from(iterator).map((entry) => {
+      try {
+        return callback(entry);
+      } catch (err) {
+        console.error(`Error in: ${entry}:`);
+        console.error(err);
+      }
+    }),
+  );
 }

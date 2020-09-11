@@ -23,5 +23,5 @@ export default class Explorer {
 }
 
 function isHtml(page) {
-  return page.isPage && page.dest && page.dest.path.endsWith(".html");
+  return page.dest.path && page.dest.path.endsWith(".html");
 }

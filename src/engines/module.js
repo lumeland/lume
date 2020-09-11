@@ -1,4 +1,4 @@
-import loadModule from "../formats/module.js";
+import loader from "../loaders/module.js";
 import TemplateEngine from "./templateEngine.js";
 
 export default class Module extends TemplateEngine {
@@ -19,6 +19,6 @@ export default class Module extends TemplateEngine {
   }
 
   async load(path) {
-    return loadModule(path);
+    return loader(path);
   }
 }

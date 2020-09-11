@@ -9,7 +9,6 @@ import { Directory, Page } from "./tree.js";
 export default class Source {
   tree = new Directory({ path: "/" });
 
-  assets = new Map();
   data = new Map();
   pages = new Map();
   staticFiles = new Map();
@@ -108,27 +107,28 @@ export default class Source {
   }
 
   async #loadData(path) {
-    const loader = search(this.data, path);
-
-    if (loader) {
-      return loader(join(this.path, path));
+    for (const [ext, loader] of this.data) {
+      if (path.endsWith(ext)) {
+        return loader(join(this.path, path));
+      }
     }
   }
 
   async #loadPage(path) {
-    let loader = search(this.pages, path, true);
-    let isPage = true;
+    let ext, load;
 
-    if (!loader) {
-      loader = search(this.assets, path, true);
-      isPage = false;
-
-      if (!loader) {
-        return;
+    for (const [key, value] of this.pages) {
+      if (path.endsWith(key)) {
+        ext = key;
+        load = value;
+        break;
       }
     }
 
-    const [ext, load] = loader;
+    if (!load) {
+      return;
+    }
+
     const fullPath = join(this.path, path);
     const info = await Deno.stat(fullPath);
     const src = {
@@ -140,7 +140,6 @@ export default class Source {
 
     const page = new Page(src);
     page.addData(await load(fullPath));
-    page.isPage = isPage;
 
     if (!page.data.date) {
       page.data.date = info.birthtime || info.mtime;
@@ -181,13 +180,5 @@ export default class Source {
     );
 
     return data;
-  }
-}
-
-function search(map, path, returnEntry = false) {
-  for (const [key, value] of map) {
-    if (path.endsWith(key)) {
-      return returnEntry ? [key, value] : value;
-    }
   }
 }

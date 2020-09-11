@@ -3,14 +3,11 @@ import { join, extname, basename, normalize } from "../../deps/path.js";
 export default function transformPermalink(page) {
   const path = getDest(page);
   page.dest.path = path;
+  page.dest.ext = extname(path);
   page.url = getUrl(path);
 }
 
 function getDest(page) {
-  if (!page.isPage) {
-    return page.data.permalink || page.src.path;
-  }
-
   const permalink = page.data.permalink ||
     page.src.path.slice(0, -page.src.ext.length);
 

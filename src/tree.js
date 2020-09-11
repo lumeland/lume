@@ -25,6 +25,12 @@ export class Page extends Base {
   content = undefined;
   dest = {};
 
+  constructor(src) {
+    super(src);
+    this.dest.path = this.src.path;
+    this.dest.ext = this.src.ext;
+  }
+
   addData(data) {
     if (!data) {
       return;

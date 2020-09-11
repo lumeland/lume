@@ -1,4 +1,4 @@
-import { parseFrontmatter } from "../formats/yaml.js";
+import { parseFrontmatter } from "../loaders/yaml.js";
 import { join } from "../../deps/path.js";
 
 export default class TemplateEngine {
