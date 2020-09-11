@@ -1,4 +1,4 @@
-import { join, normalize } from "../../deps/path.js";
+import { join, normalize } from "../deps/path.js";
 
 export default function (site) {
   return function (url, absolute) {

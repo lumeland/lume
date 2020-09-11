@@ -1,4 +1,4 @@
-import { format, locales } from "../../deps/date.js";
+import { format, locales } from "../deps/date.js";
 
 const formats = new Map([
   ["ATOM", "yyyy-MM-dd'T'HH:mm:ssxxx"],

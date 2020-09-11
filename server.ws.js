@@ -5,7 +5,7 @@ function socket() {
     return;
   }
 
-  ws = new WebSocket("ws://localhost:3001");
+  ws = new WebSocket(`ws://${document.location.host}`);
   ws.onopen = () => {
     console.log("Socket connection open. Listening for events.");
     const files = read("refresh");

@@ -1,4 +1,4 @@
-import nunjucks from "../../deps/nunjuks.js";
+import nunjucks from "../deps/nunjuks.js";
 import TemplateEngine from "./templateEngine.js";
 
 export default class Denjuks extends TemplateEngine {

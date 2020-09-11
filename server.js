@@ -1,7 +1,7 @@
-import { listenAndServe } from "../deps/server.js";
-import { acceptWebSocket } from "../deps/ws.js";
-import { extname, join, relative, dirname } from "../deps/path.js";
-import { brightGreen, red } from "../deps/colors.js";
+import { listenAndServe } from "./deps/server.js";
+import { acceptWebSocket } from "./deps/ws.js";
+import { extname, join, relative, dirname } from "./deps/path.js";
+import { brightGreen, red } from "./deps/colors.js";
 
 const script = await Deno.readTextFile(
   join(dirname(new URL(import.meta.url).pathname), "./server.ws.js"),
@@ -28,14 +28,28 @@ const mimes = new Map([
   [".zip", "application/zip"],
 ]);
 
-export async function server(root) {
+export async function server(root, port) {
   console.log("");
   console.log("  Server started at:");
   console.log(brightGreen("  http://localhost:3000/"));
   console.log("");
 
+  //Live reload server
+  const watcher = Deno.watchFs(root);
+  const changes = new Set();
+  let socket;
+
   //Static files server
-  listenAndServe({ port: 3000 }, async (req) => {
+  listenAndServe({ port }, async (req) => {
+    //Is websocket
+    if (req.headers.get("upgrade") === "websocket") {
+      handleSocket(req);
+    } else {
+      handleFile(req);
+    }
+  });
+
+  async function handleFile(req) {
     let path = join(root, req.url.split("?", 2).shift());
 
     try {
@@ -70,14 +84,9 @@ export async function server(root) {
       console.log(`${red(req.method)} ${req.url}`);
       console.error(red(err.message));
     }
-  });
+  }
 
-  //Live reload server
-  const watcher = Deno.watchFs(root);
-  const changes = new Set();
-  let socket;
-
-  listenAndServe({ port: 3001 }, async (req) => {
+  async function handleSocket(req) {
     const { conn, r: bufReader, w: bufWriter, headers } = req;
     socket = await acceptWebSocket({
       conn,
@@ -91,7 +100,7 @@ export async function server(root) {
         event.paths.forEach((path) => changes.add(path));
       }
     }
-  });
+  }
 
   return async () => {
     if (changes.size && socket) {

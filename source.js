@@ -3,37 +3,38 @@ import {
   dirname,
   basename,
   extname,
-} from "../deps/path.js";
+} from "./deps/path.js";
 import { Directory, Page } from "./tree.js";
 
 export default class Source {
-  tree = new Directory({ path: "/" });
+  root = new Directory({ path: "/" });
 
   data = new Map();
   pages = new Map();
   staticFiles = new Map();
+  assets = new Set();
 
   constructor(path) {
     this.path = path;
   }
 
   getDirectory(path) {
-    let tree = this.tree;
+    let dir = this.root;
 
     path.split("/").forEach((name) => {
       if (!name) {
         return;
       }
 
-      tree = tree.dirs.get(name);
+      dir = dir.dirs.get(name);
     });
 
-    return tree;
+    return dir;
   }
 
   async load() {
-    await this.#loadDirectory(this.tree);
-    this.tree.expand();
+    await this.#loadDirectory(this.root);
+    this.root.expand();
   }
 
   async update(files) {
@@ -52,7 +53,7 @@ export default class Source {
       }),
     );
 
-    this.tree.expand();
+    this.root.expand();
   }
 
   async #loadDirectory(directory) {
@@ -132,7 +133,7 @@ export default class Source {
     const fullPath = join(this.path, path);
     const info = await Deno.stat(fullPath);
     const src = {
-      path: path,
+      path: path.slice(0, -ext.length),
       lastModified: info.mtime,
       created: info.birthtime,
       ext,
@@ -140,6 +141,9 @@ export default class Source {
 
     const page = new Page(src);
     page.addData(await load(fullPath));
+
+    page.dest.path = page.src.path;
+    page.dest.ext = this.assets.has(ext) ? ext : ".html";
 
     if (!page.data.date) {
       page.data.date = info.birthtime || info.mtime;

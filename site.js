@@ -2,14 +2,17 @@ import {
   join,
   dirname,
   resolve,
-} from "../deps/path.js";
+  extname,
+  normalize,
+  basename,
+} from "./deps/path.js";
 import {
   ensureDir,
   emptyDir,
   exists,
   copy,
-} from "../deps/fs.js";
-import { gray } from "../deps/colors.js";
+} from "./deps/fs.js";
+import { gray } from "./deps/colors.js";
 import Source from "./source.js";
 import Explorer from "./explorer.js";
 
@@ -38,8 +41,12 @@ export default class Site {
     return this;
   }
 
-  load(extensions, loader) {
+  load(extensions, loader, asset = false) {
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
+
+    if (asset) {
+      extensions.forEach((extension) => this.source.assets.add(extension));
+    }
     return this;
   }
 
@@ -82,6 +89,11 @@ export default class Site {
     return this;
   }
 
+  extension(from, to) {
+    this.extensions.set(from, to);
+    return this;
+  }
+
   copy(from, to = from) {
     this.source.staticFiles.set(join("/", from), join("/", to));
     return this;
@@ -113,7 +125,8 @@ export default class Site {
     }
 
     await this.source.update(files);
-    const filter = (page) => files.has(page.src.path) || !page.dest.saved;
+    const filter = (page) =>
+      files.has(page.src.path + page.src.ext) || !page.dest.saved;
     return this.#buildPages(filter);
   }
 
@@ -161,6 +174,8 @@ export default class Site {
             await transform(page, dir);
           }
         }
+
+        this.#urlPage(page);
       },
     );
 
@@ -188,8 +203,28 @@ export default class Site {
     );
   }
 
+  #urlPage(page) {
+    const { dest } = page;
+
+    if (page.data.permalink) {
+      const ext = extname(page.data.permalink);
+      dest.ext = ext || ".html";
+      dest.path = ext
+        ? page.data.permalink.slice(0, -ext.length)
+        : page.data.permalink;
+    }
+
+    if (dest.ext === ".html" && basename(dest.path) !== "index") {
+      dest.path = join(dest.path, "index");
+    }
+
+    page.url = (dest.ext === ".html" && dest.path.endsWith("/index"))
+      ? dest.path.slice(0, -5)
+      : dest.path + dest.ext;
+  }
+
   async #renderPage(page) {
-    const engine = this.#getEngine(page.src.path);
+    const engine = this.#getEngine(page.src.ext);
 
     let content = page.content;
     let pageData = page.data;
@@ -219,10 +254,12 @@ export default class Site {
 
   async #savePage(page) {
     page.dest.saved = true;
+    const dest = page.dest.path + page.dest.ext;
+    const src = page.src.path + page.src.ext;
 
-    console.log(`🔥 ${page.dest.path} ${gray(page.src.path)}`);
+    console.log(`🔥 ${dest} ${gray(src)}`);
 
-    const filename = join(this.options.dest, page.dest.path);
+    const filename = join(this.options.dest, dest);
     await ensureDir(dirname(filename));
     return Deno.writeTextFile(filename, page.content);
   }

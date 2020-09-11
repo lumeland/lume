@@ -1,5 +1,4 @@
 import lume from "./mod.js";
-import { server } from "./src/server.js";
 import { existsSync } from "./deps/fs.js";
 import { parse } from "./deps/flags.js";
 import { brightGreen } from "./deps/colors.js";
@@ -35,8 +34,10 @@ console.log("");
 console.log(brightGreen("Site built"));
 
 if (args.serve) {
+  const { server } = await import("./server.js");
+
   try {
-    const update = await server(site.options.dest);
+    const update = await server(site.options.dest, args.port);
     const watcher = Deno.watchFs(site.options.src);
     const changes = new Set();
     console.log("Watching for changes...");

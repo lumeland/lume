@@ -1,9 +1,9 @@
-import postcss from "../../deps/postcss.js";
+import postcss from "../deps/postcss.js";
 import textLoader from "../loaders/text.js";
 
 export default function () {
   return (site) => {
-    site.load([".css"], textLoader);
+    site.load([".css"], textLoader, true);
 
     site.afterRender([".css"], transform);
   };

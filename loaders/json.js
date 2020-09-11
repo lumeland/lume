@@ -1,3 +1,3 @@
-import { readJson } from "../../deps/fs.js";
+import { readJson } from "../deps/fs.js";
 
 export default readJson;

@@ -1,4 +1,4 @@
-export default async function loadModule(path) {
+export default async function (path) {
   const fileData = await import(path);
   const data = {};
 
