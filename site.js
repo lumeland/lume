@@ -89,11 +89,6 @@ export default class Site {
     return this;
   }
 
-  extension(from, to) {
-    this.extensions.set(from, to);
-    return this;
-  }
-
   copy(from, to = from) {
     this.source.staticFiles.set(join("/", from), join("/", to));
     return this;
