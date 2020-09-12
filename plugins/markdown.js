@@ -1,7 +1,21 @@
 import loader from "../loaders/text.js";
-import markdown from "../deps/markdown.js";
+import { markdownIt, markdownItAttrs } from "../deps/markdown-it.js";
+import hljs from "../deps/highlight.js";
 
 export default function () {
+  const markdown = markdownIt({
+    html: true,
+    highlight(str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return hljs.highlight(lang, str).value;
+        } catch (__) {}
+      }
+
+      return "";
+    },
+  }).use(markdownItAttrs);
+
   return (site) => {
     site.load([".md", ".markdown"], loader);
     site.beforeRender([".md", ".markdown"], transform);

@@ -1,7 +1,16 @@
-import postcss from "../deps/postcss.js";
 import textLoader from "../loaders/text.js";
+import { postcss, postcssPresetEnv } from "../deps/postcss.js";
 
 export default function () {
+  const processor = postcss([
+    postcssPresetEnv({
+      stage: 1,
+      features: {
+        "custom-properties": false,
+      },
+    }),
+  ]);
+
   return (site) => {
     site.load([".css"], textLoader, true);
 
@@ -11,7 +20,7 @@ export default function () {
   async function transform(page) {
     const from = page.src.path + page.src.ext;
     const to = page.dest.path + page.dest.ext;
-    const result = await postcss.process(
+    const result = await processor.process(
       page.content,
       { from, to },
     );

@@ -1,6 +1,12 @@
 import textLoader from "../loaders/text.js";
-import { Tasks, Coder, parse, ImportPlugin, NestedRulesPlugin } from "../deps/stylecow.js";
 import { join } from "../deps/path.js";
+import {
+  parse,
+  Tasks,
+  Coder,
+  ImportPlugin,
+  NestedRulesPlugin,
+} from "../deps/stylecow.js";
 
 export default function () {
   const coder = new Coder("normal");
@@ -17,9 +23,8 @@ export default function () {
       const from = join(site.options.src, page.src.path + page.src.ext);
       const css = parse(page.content, "Root", null, from);
       tasks.run(css);
-      const result = coder.run(css);
-  
-      page.content = result.css;
+
+      page.content = coder.run(css).css;
     }
-  }
+  };
 }
