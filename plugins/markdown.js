@@ -5,7 +5,7 @@ export default function () {
   return (site) => {
     site.load([".md", ".markdown"], loader);
     site.beforeRender([".md", ".markdown"], transform);
-    site.filter(["md"], filter);
+    site.filter("md", filter);
   };
 
   function transform(page) {

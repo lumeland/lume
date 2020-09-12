@@ -9,8 +9,8 @@ export default function () {
   };
 
   async function transform(page) {
-    const from = page.src.path;
-    const to = page.data.permalink;
+    const from = page.src.path + page.src.ext;
+    const to = page.dest.path + page.dest.ext;
     const result = await postcss.process(
       page.content,
       { from, to },
