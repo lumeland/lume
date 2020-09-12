@@ -13,7 +13,7 @@ It's inspired in other general purpose static site generators such [Jekyll](http
 - Make sure you have [Deno installed](https://deno.land/#installation).
 - Install **lume** as a Deno executable:
   ```
-  deno install --unstable --allow-read --allow-write --allow-net https://raw.githubusercontent.com/oscarotero/lume/master/cli.js
+  deno install --unstable --allow-read --allow-write --allow-net https://deno.land/x/lume/cli.js
   ```
 - Create your first page, for example using a nunjucks template:
   ```html
