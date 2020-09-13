@@ -17,7 +17,7 @@ if (args.init) {
   console.log(configFile);
   Deno.writeTextFileSync(
     configFile,
-    `import lume from "https://deno.land/x/lume/mod.js";
+    `import lume from "https://deno.land/x/lume@v0.2.1/mod.js";
 
 const site = lume({
   src: ".",
