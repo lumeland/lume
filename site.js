@@ -3,7 +3,6 @@ import {
   dirname,
   resolve,
   extname,
-  normalize,
   basename,
 } from "./deps/path.js";
 import {

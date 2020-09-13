@@ -44,7 +44,7 @@ if (args.serve) {
 
     let timer = 0;
 
-    async function rebuild() {
+    const rebuild = async () => {
       console.log("");
       console.log("Changes detected. Building...");
       const files = new Set(changes);
@@ -53,7 +53,7 @@ if (args.serve) {
       await site.update(files);
       await update();
       console.log("");
-    }
+    };
 
     for await (const event of watcher) {
       if (event.paths.every((path) => path.startsWith(site.options.dest))) {
