@@ -1,5 +1,5 @@
 export default async function (path) {
-  const fileData = await import(path);
+  const fileData = await import(`file://${path}`);
   const data = {};
 
   for (let [name, value] of Object.entries(fileData)) {
