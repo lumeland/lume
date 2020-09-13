@@ -3,58 +3,75 @@ import { parse } from "./deps/flags.js";
 import { brightGreen } from "./deps/colors.js";
 import { join, relative } from "./deps/path.js";
 
-const args = parse(Deno.args, {
-  boolean: ["serve", "init"],
-  default: {
-    serve: false,
-    port: 3000,
-  },
-});
-
-const configFile = join(Deno.cwd(), "_config.js");
-
-if (args.init) {
-  console.log(configFile);
-  Deno.writeTextFileSync(
-    configFile,
-    `import lume from "https://deno.land/x/lume@v0.2.1/mod.js";
-
-const site = lume({
-  src: ".",
-  dest: "_site",
-});
-
-export default site;
-`,
-  );
-  Deno.exit(0);
+if (import.meta.main) {
+  cli(Deno.args);
 }
 
-let site;
-
-if (existsSync(configFile)) {
-  const mod = await import(configFile);
-  site = mod.default;
-} else {
-  const { default: lume } = await import("./mod.js");
-
-  site = lume({
-    src: Deno.cwd(),
-    dest: join(Deno.cwd(), "_site"),
+export default async function cli(args) {
+  const version = "v0.2.1";
+  const options = parse(args, {
+    boolean: ["serve", "init", "version"],
+    default: {
+      serve: false,
+      port: 3000,
+    },
   });
-}
 
-console.log("");
-await site.build();
+  const configFile = join(Deno.cwd(), "_config.js");
 
-console.log("");
-console.log(brightGreen("Site built"));
+  // lume --version
+  if (options.version) {
+    console.log(`🔥lume ${version}`);
+    return;
+  }
 
-if (args.serve) {
+  // lume --init
+  if (options.init) {
+    Deno.writeTextFileSync(
+      configFile,
+      `import lume from "https://deno.land/x/lume@${version}/mod.js";
+  
+  const site = lume({
+    src: ".",
+    dest: "_site",
+  });
+  
+  export default site;
+  `,
+    );
+    console.log(brightGreen("Created config file"), configFile);
+    return;
+  }
+
+  let site;
+
+  if (existsSync(configFile)) {
+    const mod = await import(`file://${configFile}`);
+    site = mod.default;
+  } else {
+    const { default: lume } = await import("./mod.js");
+
+    site = lume({
+      src: Deno.cwd(),
+      dest: join(Deno.cwd(), "_site"),
+    });
+  }
+
+  console.log("");
+  await site.build();
+
+  console.log("");
+  console.log(brightGreen("Site built"));
+
+  if (!options.serve) {
+    return;
+  }
+
+  // lume --serve
   const { server } = await import("./server.js");
 
   try {
-    const update = await server(site.options.dest, args.port);
+    const update = await server(site.options.dest, options.port);
     const watcher = Deno.watchFs(site.options.src);
     const changes = new Set();
     console.log("Watching for changes...");
