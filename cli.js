@@ -1,30 +1,47 @@
-import lume from "./mod.js";
 import { existsSync } from "./deps/fs.js";
 import { parse } from "./deps/flags.js";
 import { brightGreen } from "./deps/colors.js";
 import { join, relative } from "./deps/path.js";
 
 const args = parse(Deno.args, {
-  boolean: ["serve"],
+  boolean: ["serve", "init"],
   default: {
     serve: false,
     port: 3000,
   },
 });
 
-let site;
 const configFile = join(Deno.cwd(), "_config.js");
+
+if (args.init) {
+  console.log(configFile);
+  Deno.writeTextFileSync(
+    configFile,
+    `import lume from "https://deno.land/x/lume/mod.js";
+
+const site = lume({
+  src: ".",
+  dest: "_site",
+});
+
+export default site;
+`,
+  );
+  Deno.exit(0);
+}
+
+let site;
 
 if (existsSync(configFile)) {
   const mod = await import(configFile);
   site = mod.default;
 } else {
+  const { default: lume } = await import("./mod.js");
+
   site = lume({
     src: Deno.cwd(),
     dest: join(Deno.cwd(), "_site"),
   });
-
-  site.copy("/_static", "/");
 }
 
 console.log("");
