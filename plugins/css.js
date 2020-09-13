@@ -5,14 +5,20 @@ import {
   Tasks,
   Coder,
   ImportPlugin,
-  NestedRulesPlugin,
 } from "../deps/stylecow.js";
+import { postcss, postcssPresetEnv } from "../deps/postcss.js";
 
 export default function () {
   const coder = new Coder("normal");
-  const tasks = new Tasks()
-    .use(ImportPlugin)
-    .use(NestedRulesPlugin);
+  const tasks = new Tasks().use(ImportPlugin);
+  const processor = postcss([
+    postcssPresetEnv({
+      stage: 1,
+      features: {
+        "custom-properties": false,
+      },
+    }),
+  ]);
 
   return (site) => {
     site.load([".css"], textLoader, true);
@@ -21,10 +27,19 @@ export default function () {
 
     async function transform(page) {
       const from = join(site.options.src, page.src.path + page.src.ext);
+      const to = join(site.options.dest, page.dest.path + page.dest.ext);
+
+      //Resolve @import with stylecow
       const css = parse(page.content, "Root", null, from);
       tasks.run(css);
 
-      page.content = coder.run(css).css;
+      //Fix the code with postcss
+      const result = await processor.process(
+        coder.run(css).css,
+        { from, to },
+      );
+
+      page.content = result.css;
     }
   };
 }

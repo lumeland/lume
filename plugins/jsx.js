@@ -4,6 +4,6 @@ export default function () {
   return (site) => {
     const jsxEngine = new JsxEngine(site);
 
-    site.addEngine([".jsx", ".tsx"], jsxEngine);
+    site.engine([".jsx", ".tsx"], jsxEngine);
   };
 }
