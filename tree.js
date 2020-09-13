@@ -40,7 +40,7 @@ export class Page extends Base {
       delete data.content;
     }
 
-    this.data = Object.assign({}, data, this.data);
+    this.data = { ...data, ...this.data };
   }
 }
 
@@ -58,7 +58,7 @@ export class Directory extends Base {
       delete data.tags;
     }
 
-    this.data = Object.assign({}, data, this.data);
+    this.data = { ...data, ...this.data };
   }
 
   *getPages(recursive = true) {

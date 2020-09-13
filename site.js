@@ -226,6 +226,7 @@ export default class Site {
     let layout = page.data.layout;
 
     if (engine) {
+      pageData.explorer = this.explorer;
       content = await engine.render(content, pageData);
     }
 
@@ -233,12 +234,12 @@ export default class Site {
       const engine = this.#getEngine(layout);
       const path = join(engine.includes, layout);
       const layoutData = await engine.load(path);
-      pageData = Object.assign(
-        {},
-        layoutData,
-        pageData,
-        { content },
-      );
+      pageData = {
+        ...layoutData,
+        ...pageData,
+        content,
+        explorer: this.explorer,
+      };
 
       content = await engine.render(layoutData.content, pageData);
       layout = layoutData.layout;

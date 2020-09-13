@@ -10,7 +10,6 @@ export default class Denjuks extends TemplateEngine {
   }
 
   render(content, data) {
-    data.explorer = this.site.explorer;
     return this.engine.renderString(content, data);
   }
 

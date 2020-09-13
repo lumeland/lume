@@ -16,7 +16,7 @@ const defaultOptions = {
 };
 
 export default function (options = {}) {
-  options = Object.assign({}, defaultOptions, options);
+  options = { ...defaultOptions, ...options };
 
   //Default configuration
   const site = new Site(options);

@@ -5,8 +5,6 @@ export default class Module extends TemplateEngine {
   filters = {};
 
   render(content, data) {
-    data.explorer = this.site.explorer;
-
     if (typeof content === "function") {
       return content(data, this.filters);
     }
