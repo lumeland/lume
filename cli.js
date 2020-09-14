@@ -8,7 +8,7 @@ if (import.meta.main) {
 }
 
 export default async function cli(args) {
-  const version = "v0.2.1";
+  const version = "v0.2.3";
   const options = parse(args, {
     boolean: ["serve", "init", "version"],
     default: {
