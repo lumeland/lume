@@ -18,10 +18,10 @@ export default class Explorer {
 
     return Array.from(this.site.getPages(filter, path, recursive))
       .map((entry) => entry[0])
-      .sort((a, b) => b.data.date - a.data.date);
+      .sort((a, b) => a.data.date - b.data.date);
   }
 }
 
 function isHtml(page) {
-  return page.dest.path && page.dest.path.endsWith(".html");
+  return page.dest.ext === ".html";
 }
