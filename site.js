@@ -103,6 +103,7 @@ export default class Site {
   }
 
   async update(files) {
+    //Static files
     for (const entry of this.source.staticFiles) {
       const [from, to] = entry;
 
@@ -118,6 +119,23 @@ export default class Site {
       return;
     }
 
+    //Data files
+    for (const file of files) {
+      let dir;
+
+      if (file.match(/\/_data\//)) {
+        dir = file.split("/_data/").shift();
+      } else if (file.match(/\/_data.\w+$/)) {
+        dir = dirname(file);
+      } else {
+        continue;
+      }
+
+      this.source.load().then(() => this.#buildPages());
+      return;
+    }
+
+    //Pages
     await this.source.update(files);
     const filter = (page) =>
       files.has(page.src.path + page.src.ext) || !page.dest.saved;
