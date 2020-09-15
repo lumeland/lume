@@ -97,48 +97,32 @@ export default class Site {
     await emptyDir(this.options.dest);
 
     return Promise.all([
-      this.#copyStaticFiles(this.options.dest),
+      this.#copyStaticFiles(),
       this.source.load().then(() => this.#buildPages()),
     ]);
   }
 
   async update(files) {
+    const [staticFiles, directories, pages] = this.source.getUpdates(files);
+
     //Static files
-    for (const entry of this.source.staticFiles) {
-      const [from, to] = entry;
+    await this.#copyStaticFiles(staticFiles);
 
-      for (const file of files) {
-        if (file.startsWith(from)) {
-          await this.#copyEntry([file, join(to, file.slice(from.length))]);
-          files.delete(file);
-        }
-      }
-    }
-
-    if (!files.size) {
-      return;
-    }
-
-    //Data files
-    for (const file of files) {
-      let dir;
-
-      if (file.match(/\/_data\//)) {
-        dir = file.split("/_data/").shift();
-      } else if (file.match(/\/_data.\w+$/)) {
-        dir = dirname(file);
-      } else {
-        continue;
-      }
-
-      this.source.load().then(() => this.#buildPages());
-      return;
-    }
+    //Directories
+    directories.forEach(async (path) => {
+      const dir = this.source.getDirectory(path);
+      await this.source.load(dir);
+    });
 
     //Pages
-    await this.source.update(files);
+    await this.source.update(pages);
+
+    const dirs = Array.from(directories);
     const filter = (page) =>
-      files.has(page.src.path + page.src.ext) || !page.dest.saved;
+      files.has(page.src.path + page.src.ext) ||
+      !page.dest.saved ||
+      dirs.some((path) => page.src.path.startsWith(path));
+
     return this.#buildPages(filter);
   }
 
@@ -156,9 +140,9 @@ export default class Site {
     }
   }
 
-  async #copyStaticFiles() {
+  async #copyStaticFiles(files = this.source.staticFiles) {
     return parallel(
-      this.source.staticFiles.entries(),
+      files.entries(),
       (entry) => this.#copyEntry(entry),
     );
   }

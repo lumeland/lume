@@ -32,9 +32,9 @@ export default class Source {
     return dir;
   }
 
-  async load() {
-    await this.#loadDirectory(this.root);
-    this.root.expand();
+  async load(dir = this.root) {
+    await this.#loadDirectory(dir);
+    dir.expand();
   }
 
   async update(files) {
@@ -54,6 +54,56 @@ export default class Source {
     );
 
     this.root.expand();
+  }
+
+  getUpdates(files) {
+    const staticFiles = new Map();
+    const directories = new Set();
+    const pages = new Set();
+
+    files:
+    for (const file of files) {
+      //_data or _includes
+      if (file.match(/\/_data\//)) {
+        directories.add(join("/", file.split("/_data/").shift()));
+        continue;
+      }
+
+      if (file.match(/\/_includes\//)) {
+        directories.add(join("/", file.split("/_includes/").shift()));
+        continue;
+      }
+
+      if (file.match(/\/_data.\w+$/)) {
+        directories.add(dirname(file));
+        continue;
+      }
+
+      //Static files
+      for (const entry of this.staticFiles) {
+        const [from, to] = entry;
+
+        if (file.startsWith(from)) {
+          staticFiles.set(file, join(to, file.slice(from.length)));
+          continue files;
+        }
+      }
+
+      //Pages
+      pages.add(file);
+    }
+
+    //Remove pages inside directories
+    for (const page of pages) {
+      for (const dir of directories) {
+        if (page.startsWith(dir)) {
+          pages.remove(page);
+          break;
+        }
+      }
+    }
+
+    return [staticFiles, directories, pages];
   }
 
   async #loadDirectory(directory) {

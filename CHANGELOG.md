@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Fixed
-- Rebuild and reload on change `_data` files
+- Reload on change files in `_data` or `_includes` directories
 - Explorer returns wrong results
 
 ## [0.2.3] - 2020-09-14
