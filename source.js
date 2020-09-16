@@ -4,7 +4,8 @@ import {
   basename,
   extname,
 } from "./deps/path.js";
-import { Directory, Page } from "./tree.js";
+import { Directory, Page } from "./filesystem.js";
+import { parallel } from "./utils.js";
 
 export default class Source {
   root = new Directory({ path: "/" });
@@ -18,6 +19,9 @@ export default class Source {
     this.path = path;
   }
 
+  /**
+   * Returns the Directory instance of a path
+   */
   getDirectory(path) {
     let dir = this.root;
 
@@ -30,30 +34,6 @@ export default class Source {
     });
 
     return dir;
-  }
-
-  async load(dir = this.root) {
-    await this.#loadDirectory(dir);
-    dir.expand();
-  }
-
-  async update(files) {
-    await Promise.all(
-      Array.from(files).map((file) => {
-        const directory = this.getDirectory(dirname(file));
-
-        const entry = {
-          name: basename(file),
-          isFile: true,
-          isDirectory: false,
-          isSymlink: false,
-        };
-
-        return this.#loadEntry(directory, entry);
-      }),
-    );
-
-    this.root.expand();
   }
 
   getUpdates(files) {
@@ -106,16 +86,42 @@ export default class Source {
     return [staticFiles, directories, pages];
   }
 
-  async #loadDirectory(directory) {
+  /**
+   * Load a directory recursively
+   */
+  async load(directory = this.root) {
     const path = join(this.path, directory.src.path);
 
-    return Promise.all(
-      Array.from(Deno.readDirSync(path)).map((entry) =>
-        this.#loadEntry(directory, entry)
-      ),
+    return parallel(
+      Deno.readDirSync(path),
+      (entry) => this.#loadEntry(directory, entry),
     );
   }
 
+  /**
+   * Reload some files
+   */
+  async loadFiles(files) {
+    return parallel(
+      files,
+      (file) => {
+        const directory = this.getDirectory(dirname(file));
+
+        const entry = {
+          name: basename(file),
+          isFile: true,
+          isDirectory: false,
+          isSymlink: false,
+        };
+
+        return this.#loadEntry(directory, entry);
+      },
+    );
+  }
+
+  /**
+   * Load an entry from a directory
+   */
   async #loadEntry(directory, entry) {
     if (entry.isSymlink || entry.name.startsWith(".")) {
       return;
@@ -128,12 +134,12 @@ export default class Source {
     }
 
     if (entry.isDirectory && entry.name === "_data") {
-      directory.addData(await this.#loadDataFolder(path));
+      directory.data = await this.#loadDataFolder(path);
       return;
     }
 
     if (entry.isFile && entry.name.match(/^_data\.\w+$/)) {
-      directory.addData(await this.#loadData(path));
+      directory.data = await this.#loadData(path);
       return;
     }
 
@@ -145,26 +151,21 @@ export default class Source {
       const page = await this.#loadPage(path);
 
       if (page) {
-        directory.pages.set(entry.name, page);
+        directory.setPage(entry.name, page);
       }
       return;
     }
 
     if (entry.isDirectory) {
-      const subDirectory = new Directory({ path });
-      directory.dirs.set(entry.name, subDirectory);
-      return this.#loadDirectory(subDirectory);
+      const subDirectory = directory.createDirectory(entry.name);
+      await this.load(subDirectory);
+      return;
     }
   }
 
-  async #loadData(path) {
-    for (const [ext, loader] of this.data) {
-      if (path.endsWith(ext)) {
-        return loader(join(this.path, path));
-      }
-    }
-  }
-
+  /**
+   * Create and returns a Page
+   */
   async #loadPage(path) {
     let ext, load;
 
@@ -190,7 +191,7 @@ export default class Source {
     };
 
     const page = new Page(src);
-    page.addData(await load(fullPath));
+    page.data = await load(fullPath);
 
     page.dest.path = page.src.path;
     page.dest.ext = this.assets.has(ext) ? ext : ".html";
@@ -206,11 +207,26 @@ export default class Source {
     return page;
   }
 
+  /**
+   * Load a _data.* file and return the content
+   */
+  async #loadData(path) {
+    for (const [ext, loader] of this.data) {
+      if (path.endsWith(ext)) {
+        return loader(join(this.path, path));
+      }
+    }
+  }
+
+  /**
+   * Load a _data folder and return the content of all files
+   */
   async #loadDataFolder(path) {
     const data = {};
 
-    await Promise.all(
-      Array.from(Deno.readDirSync(join(this.path, path))).map(async (entry) => {
+    await parallel(
+      Deno.readDirSync(join(this.path, path)),
+      async (entry) => {
         if (
           entry.isSymlink || entry.name.startsWith(".") ||
           entry.name.startsWith("_")
@@ -230,7 +246,7 @@ export default class Source {
         if (entry.isDirectory) {
           data[entry.name] = await this.#loadDataFolder(join(path, entry.name));
         }
-      }),
+      },
     );
 
     return data;

@@ -13,10 +13,11 @@ import {
 } from "./deps/fs.js";
 import { gray } from "./deps/colors.js";
 import Source from "./source.js";
-import Explorer from "./explorer.js";
+import Searcher from "./searcher.js";
+import { parallel } from "./utils.js";
 
 export default class Site {
-  explorer = new Explorer(this);
+  searcher = new Searcher(this);
   engines = new Map();
   before = new Map();
   after = new Map();
@@ -115,12 +116,11 @@ export default class Site {
     });
 
     //Pages
-    await this.source.update(pages);
+    await this.source.loadFiles(pages);
 
     const dirs = Array.from(directories);
     const filter = (page) =>
       files.has(page.src.path + page.src.ext) ||
-      !page.dest.saved ||
       dirs.some((path) => page.src.path.startsWith(path));
 
     return this.#buildPages(filter);
@@ -223,8 +223,8 @@ export default class Site {
     const engine = this.#getEngine(page.src.ext);
 
     let content = page.content;
-    let pageData = page.data;
-    let layout = page.data.layout;
+    let pageData = page.fullData;
+    let layout = pageData.layout;
 
     if (engine) {
       pageData.explorer = this.explorer;
@@ -239,7 +239,7 @@ export default class Site {
         ...layoutData,
         ...pageData,
         content,
-        explorer: this.explorer,
+        search: this.searcher,
       };
 
       content = await engine.render(layoutData.content, pageData);
@@ -268,17 +268,4 @@ export default class Site {
       }
     }
   }
-}
-
-function parallel(iterator, callback) {
-  return Promise.all(
-    Array.from(iterator).map((entry) => {
-      try {
-        return callback(entry);
-      } catch (err) {
-        console.error(`Error in: ${entry}:`);
-        console.error(err);
-      }
-    }),
-  );
 }

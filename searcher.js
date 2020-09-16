@@ -1,4 +1,4 @@
-export default class Explorer {
+export default class Searcher {
   constructor(site) {
     this.site = site;
   }
