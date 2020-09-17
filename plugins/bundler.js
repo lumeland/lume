@@ -11,10 +11,10 @@ export default function () {
     const from = page.src.path + page.src.ext;
 
     const [diagnostics, emit] = await Deno.bundle(from, {
-      [from]: page.content,
+      [from]: page.rendered,
     });
 
-    page.content = emit;
+    page.rendered = emit;
     page.dest.ext = ".js";
   }
 }
