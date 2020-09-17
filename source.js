@@ -5,7 +5,6 @@ import {
   extname,
 } from "./deps/path.js";
 import { Directory, Page } from "./filesystem.js";
-import { parallel } from "./utils.js";
 
 export default class Source {
   root = new Directory({ path: "/" });
@@ -36,87 +35,88 @@ export default class Source {
     return dir;
   }
 
-  getUpdates(files) {
+  getUpdates(entries) {
     const staticFiles = new Map();
     const directories = new Set();
-    const pages = new Set();
+    const files = new Set();
 
-    files:
-    for (const file of files) {
-      //_data or _includes
+    entries:
+    for (const file of entries) {
+      // file inside a _data folder
       if (file.match(/\/_data\//)) {
         directories.add(join("/", file.split("/_data/").shift()));
+        files.add(file);
         continue;
       }
 
+      // file inside a _includes folder
       if (file.match(/\/_includes\//)) {
         directories.add(join("/", file.split("/_includes/").shift()));
         continue;
       }
 
+      // _data.* file
       if (file.match(/\/_data.\w+$/)) {
         directories.add(dirname(file));
+        files.add(file);
         continue;
       }
 
-      //Static files
+      //Static file
       for (const entry of this.staticFiles) {
         const [from, to] = entry;
 
         if (file.startsWith(from)) {
           staticFiles.set(file, join(to, file.slice(from.length)));
-          continue files;
+          continue entries;
         }
       }
 
-      //Pages
-      pages.add(file);
+      //Default
+      files.add(file);
     }
 
-    //Remove pages inside directories
-    for (const page of pages) {
-      for (const dir of directories) {
-        if (page.startsWith(dir)) {
-          pages.remove(page);
-          break;
-        }
-      }
-    }
-
-    return [staticFiles, directories, pages];
+    return [staticFiles, directories, files];
   }
 
   /**
    * Load a directory recursively
    */
-  async load(directory = this.root) {
+  async loadDirectory(directory = this.root) {
     const path = join(this.path, directory.src.path);
 
-    return parallel(
-      Deno.readDirSync(path),
-      (entry) => this.#loadEntry(directory, entry),
-    );
+    for (const entry of Deno.readDirSync(path)) {
+      await this.#loadEntry(directory, entry);
+    }
   }
 
   /**
    * Reload some files
    */
   async loadFiles(files) {
-    return parallel(
-      files,
-      (file) => {
-        const directory = this.getDirectory(dirname(file));
+    for (const file of files) {
+      const entry = {
+        name: basename(file),
+        isFile: true,
+        isDirectory: false,
+        isSymlink: false,
+      };
 
-        const entry = {
-          name: basename(file),
-          isFile: true,
-          isDirectory: false,
-          isSymlink: false,
-        };
+      //Is a file inside _data folder
+      if (file.match(/\/_data\//)) {
+        const dir = file.split("/_data/", 2).shift();
+        const directory = this.getDirectory(dir);
+        await this.#loadDataFolderEntry(
+          join(directory.src.path, "_data"),
+          entry,
+          directory.data,
+        );
+        continue;
+      }
 
-        return this.#loadEntry(directory, entry);
-      },
-    );
+      const directory = this.getDirectory(dirname(file));
+      await this.#loadEntry(directory, entry);
+    }
   }
 
   /**
@@ -158,7 +158,7 @@ export default class Source {
 
     if (entry.isDirectory) {
       const subDirectory = directory.createDirectory(entry.name);
-      await this.load(subDirectory);
+      await this.loadDirectory(subDirectory);
       return;
     }
   }
@@ -224,31 +224,35 @@ export default class Source {
   async #loadDataFolder(path) {
     const data = {};
 
-    await parallel(
-      Deno.readDirSync(join(this.path, path)),
-      async (entry) => {
-        if (
-          entry.isSymlink || entry.name.startsWith(".") ||
-          entry.name.startsWith("_")
-        ) {
-          return;
-        }
-
-        if (entry.isFile) {
-          const name = basename(entry.name, extname(entry.name));
-          data[name] = Object.assign(
-            data[name] || {},
-            await this.#loadData(join(path, entry.name)),
-          );
-          return;
-        }
-
-        if (entry.isDirectory) {
-          data[entry.name] = await this.#loadDataFolder(join(path, entry.name));
-        }
-      },
-    );
+    for (const entry of Deno.readDirSync(join(this.path, path))) {
+      await this.#loadDataFolderEntry(path, entry, data);
+    }
 
     return data;
+  }
+
+  /**
+   * Load a data file inside a _data folder
+   */
+  async #loadDataFolderEntry(path, entry, data) {
+    if (
+      entry.isSymlink || entry.name.startsWith(".") ||
+      entry.name.startsWith("_")
+    ) {
+      return;
+    }
+
+    if (entry.isFile) {
+      const name = basename(entry.name, extname(entry.name));
+      data[name] = Object.assign(
+        data[name] || {},
+        await this.#loadData(join(path, entry.name)),
+      );
+      return;
+    }
+
+    if (entry.isDirectory) {
+      data[entry.name] = await this.#loadDataFolder(join(path, entry.name));
+    }
   }
 }

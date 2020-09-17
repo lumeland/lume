@@ -14,7 +14,6 @@ import {
 import { gray } from "./deps/colors.js";
 import Source from "./source.js";
 import Searcher from "./searcher.js";
-import { parallel } from "./utils.js";
 
 export default class Site {
   searcher = new Searcher(this);
@@ -97,26 +96,16 @@ export default class Site {
   async build() {
     await emptyDir(this.options.dest);
 
-    return Promise.all([
-      this.#copyStaticFiles(),
-      this.source.load().then(() => this.#buildPages()),
-    ]);
+    await this.#copyStaticFiles();
+    await this.source.loadDirectory();
+    await this.#buildPages();
   }
 
-  async update(files) {
-    const [staticFiles, directories, pages] = this.source.getUpdates(files);
+  async update(entries) {
+    const [staticFiles, directories, files] = this.source.getUpdates(entries);
 
-    //Static files
     await this.#copyStaticFiles(staticFiles);
-
-    //Directories
-    directories.forEach(async (path) => {
-      const dir = this.source.getDirectory(path);
-      await this.source.load(dir);
-    });
-
-    //Pages
-    await this.source.loadFiles(pages);
+    await this.source.loadFiles(files);
 
     const dirs = Array.from(directories);
     const filter = (page) =>
@@ -141,11 +130,11 @@ export default class Site {
   }
 
   async #copyStaticFiles(files = this.source.staticFiles) {
-    return parallel(
-      files.entries(),
-      (entry) => this.#copyEntry(entry),
-    );
+    for (const entry of files.entries()) {
+      await this.#copyEntry(entry);
+    }
   }
+
   async #copyEntry(entry) {
     const [from, to] = entry;
     const pathFrom = join(this.options.src, from);
@@ -159,44 +148,38 @@ export default class Site {
   }
 
   async #buildPages(filter) {
-    await parallel(
-      this.getPages(filter),
-      async (entry) => {
-        const [page, dir] = entry;
-        const transformers = this.before.get(page.src.ext);
+    for (const entry of this.getPages(filter)) {
+      const [page, dir] = entry;
+      const transformers = this.before.get(page.src.ext);
 
-        if (transformers) {
-          for (const transform of transformers) {
-            await transform(page, dir);
-          }
+      if (transformers) {
+        for (const transform of transformers) {
+          await transform(page, dir);
         }
+      }
 
-        this.#urlPage(page);
-      },
-    );
+      this.#urlPage(page);
+    }
 
-    return parallel(
-      this.getPages(filter),
-      async (entry) => {
-        const [page, dir] = entry;
+    for (const entry of this.getPages(filter)) {
+      const [page, dir] = entry;
 
-        await this.#renderPage(page, dir);
+      await this.#renderPage(page, dir);
 
-        if (!page.content) {
-          return;
+      if (!page.rendered) {
+        continue;
+      }
+
+      const transformers = this.after.get(page.dest.ext);
+
+      if (transformers) {
+        for (const transform of transformers) {
+          await transform(page, dir);
         }
+      }
 
-        const transformers = this.after.get(page.dest.ext);
-
-        if (transformers) {
-          for (const transform of transformers) {
-            await transform(page, dir);
-          }
-        }
-
-        return this.#savePage(page);
-      },
-    );
+      await this.#savePage(page);
+    }
   }
 
   #urlPage(page) {
@@ -222,7 +205,7 @@ export default class Site {
   async #renderPage(page) {
     const engine = this.#getEngine(page.src.ext);
 
-    let content = page.content;
+    let content = page.data.content;
     let pageData = page.fullData;
     let layout = pageData.layout;
 
@@ -246,7 +229,7 @@ export default class Site {
       layout = layoutData.layout;
     }
 
-    page.content = content;
+    page.rendered = content;
   }
 
   async #savePage(page) {
@@ -258,7 +241,7 @@ export default class Site {
 
     const filename = join(this.options.dest, dest);
     await ensureDir(dirname(filename));
-    return Deno.writeTextFile(filename, page.content);
+    return Deno.writeTextFile(filename, page.rendered);
   }
 
   #getEngine(path) {

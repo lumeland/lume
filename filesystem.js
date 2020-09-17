@@ -65,6 +65,7 @@ class Base {
 export class Page extends Base {
   dest = {};
   url = null;
+  rendered = null;
 
   get content() {
     return this.data.content;
