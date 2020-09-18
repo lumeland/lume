@@ -30,13 +30,13 @@ export default async function cli(args) {
     Deno.writeTextFileSync(
       configFile,
       `import lume from "https://deno.land/x/lume@${version}/mod.js";
-  
-  const site = lume({
-    src: ".",
-    dest: "_site",
-  });
-  
-  export default site;
+
+const site = lume({
+  src: ".",
+  dest: "_site",
+});
+
+export default site;
   `,
     );
     console.log(brightGreen("Created config file"), configFile);
