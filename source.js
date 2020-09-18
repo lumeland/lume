@@ -35,48 +35,19 @@ export default class Source {
     return dir;
   }
 
-  getUpdates(entries) {
-    const staticFiles = new Map();
-    const directories = new Set();
-    const files = new Set();
+  /**
+   * Check whether a file is included in the static files
+   */
+  isStatic(file) {
+    for (const entry of this.staticFiles) {
+      const [from] = entry;
 
-    entries:
-    for (const file of entries) {
-      // file inside a _data folder
-      if (file.match(/\/_data\//)) {
-        directories.add(join("/", file.split("/_data/").shift()));
-        files.add(file);
-        continue;
+      if (file.startsWith(from)) {
+        return entry;
       }
-
-      // file inside a _includes folder
-      if (file.match(/\/_includes\//)) {
-        directories.add(join("/", file.split("/_includes/").shift()));
-        continue;
-      }
-
-      // _data.* file
-      if (file.match(/\/_data.\w+$/)) {
-        directories.add(dirname(file));
-        files.add(file);
-        continue;
-      }
-
-      //Static file
-      for (const entry of this.staticFiles) {
-        const [from, to] = entry;
-
-        if (file.startsWith(from)) {
-          staticFiles.set(file, join(to, file.slice(from.length)));
-          continue entries;
-        }
-      }
-
-      //Default
-      files.add(file);
     }
 
-    return [staticFiles, directories, files];
+    return false;
   }
 
   /**
@@ -93,30 +64,27 @@ export default class Source {
   /**
    * Reload some files
    */
-  async loadFiles(files) {
-    for (const file of files) {
-      const entry = {
-        name: basename(file),
-        isFile: true,
-        isDirectory: false,
-        isSymlink: false,
-      };
+  async loadFile(file) {
+    const entry = {
+      name: basename(file),
+      isFile: true,
+      isDirectory: false,
+      isSymlink: false,
+    };
 
-      //Is a file inside _data folder
-      if (file.match(/\/_data\//)) {
-        const dir = file.split("/_data/", 2).shift();
-        const directory = this.getDirectory(dir);
-        await this.#loadDataFolderEntry(
-          join(directory.src.path, "_data"),
-          entry,
-          directory.data,
-        );
-        continue;
-      }
-
-      const directory = this.getDirectory(dirname(file));
-      await this.#loadEntry(directory, entry);
+    //Is a file inside _data folder
+    if (file.match(/\/_data\//)) {
+      const dir = file.split("/_data/", 2).shift();
+      const directory = this.getDirectory(dir);
+      return this.#loadDataFolderEntry(
+        join(directory.src.path, "_data"),
+        entry,
+        directory.data,
+      );
     }
+
+    const directory = this.getDirectory(dirname(file));
+    await this.#loadEntry(directory, entry);
   }
 
   /**

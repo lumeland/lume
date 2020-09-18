@@ -30,16 +30,25 @@ export default class Site {
     this.source = new Source(options.src);
   }
 
+  /**
+   * Use a plugin
+   */
   use(plugin) {
     plugin(this);
     return this;
   }
 
+  /**
+   * Register a data loader for some extensions
+   */
   data(extensions, loader) {
     extensions.forEach((extension) => this.source.data.set(extension, loader));
     return this;
   }
 
+  /**
+   * Register a page/assets loader for some extensions
+   */
   load(extensions, loader, asset = false) {
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
 
@@ -49,6 +58,9 @@ export default class Site {
     return this;
   }
 
+  /**
+   * Register a transformer executed before render some extensions
+   */
   beforeRender(extensions, transformer) {
     extensions.forEach((extension) => {
       const transformers = this.before.get(extension) || [];
@@ -58,6 +70,9 @@ export default class Site {
     return this;
   }
 
+  /**
+   * Register a transformer executed after render some extensions
+   */
   afterRender(extensions, transformer) {
     extensions.forEach((extension) => {
       const transformers = this.after.get(extension) || [];
@@ -67,6 +82,9 @@ export default class Site {
     return this;
   }
 
+  /**
+   * Register template engine used for some extensions
+   */
   engine(extensions, engine) {
     extensions.forEach((extension) => this.engines.set(extension, engine));
     this.load(extensions, engine.load.bind(engine));
@@ -78,6 +96,9 @@ export default class Site {
     return this;
   }
 
+  /**
+   * Register a template filter
+   */
   filter(name, filter) {
     this.filters.set(name, filter);
 
@@ -88,33 +109,78 @@ export default class Site {
     return this;
   }
 
+  /**
+   * Copy static files/folders without processing
+   */
   copy(from, to = from) {
     this.source.staticFiles.set(join("/", from), join("/", to));
     return this;
   }
 
+  /**
+   * Build the entire site
+   */
   async build() {
     await emptyDir(this.options.dest);
 
-    await this.#copyStaticFiles();
+    for (const [from, to] of this.source.staticFiles) {
+      await this.#copyStatic(from, to);
+    }
+
     await this.source.loadDirectory();
     await this.#buildPages();
   }
 
-  async update(entries) {
-    const [staticFiles, directories, files] = this.source.getUpdates(entries);
+  /**
+   * Rebuild some files that might be changed
+   */
+  async update(files) {
+    const directories = [];
 
-    await this.#copyStaticFiles(staticFiles);
-    await this.source.loadFiles(files);
+    for (const file of files) {
+      // file inside a _data folder
+      if (file.match(/\/_data\//)) {
+        directories.push(join("/", file.split("/_data/").shift()));
+        await this.source.loadFile(file);
+        continue;
+      }
 
-    const dirs = Array.from(directories);
+      // file inside a _includes folder
+      if (file.match(/\/_includes\//)) {
+        directories.push(join("/", file.split("/_includes/").shift()));
+        continue;
+      }
+
+      // _data.* file
+      if (file.match(/\/_data.\w+$/)) {
+        directories.push(dirname(file));
+        await this.source.loadFile(file);
+        continue;
+      }
+
+      //Static file
+      const entry = this.source.isStatic(file);
+      if (entry) {
+        const [from, to] = entry;
+
+        await this.#copyStatic(file, join(to, file.slice(from.length)));
+        continue;
+      }
+
+      //Default
+      await this.source.loadFile(file);
+    }
+
     const filter = (page) =>
       files.has(page.src.path + page.src.ext) ||
-      dirs.some((path) => page.src.path.startsWith(path));
+      directories.some((path) => page.src.path.startsWith(path));
 
     return this.#buildPages(filter);
   }
 
+  /**
+   * Return the site pages
+   */
   *getPages(filter = null, directory = "/", recursive = true) {
     const from = this.source.getDirectory(directory);
 
@@ -129,14 +195,10 @@ export default class Site {
     }
   }
 
-  async #copyStaticFiles(files = this.source.staticFiles) {
-    for (const entry of files.entries()) {
-      await this.#copyEntry(entry);
-    }
-  }
-
-  async #copyEntry(entry) {
-    const [from, to] = entry;
+  /**
+   * Copy a static file
+   */
+  async #copyStatic(from, to) {
     const pathFrom = join(this.options.src, from);
     const pathTo = join(this.options.dest, to);
 
@@ -147,6 +209,9 @@ export default class Site {
     }
   }
 
+  /**
+   * Build the pages
+   */
   async #buildPages(filter) {
     for (const entry of this.getPages(filter)) {
       const [page, dir] = entry;
@@ -182,6 +247,9 @@ export default class Site {
     }
   }
 
+  /**
+   * Generate the url and dest info of a page
+   */
   #urlPage(page) {
     const { dest } = page;
 
@@ -202,6 +270,9 @@ export default class Site {
       : dest.path + dest.ext;
   }
 
+  /**
+   * Render a page
+   */
   async #renderPage(page) {
     const engine = this.#getEngine(page.src.ext);
 
@@ -232,6 +303,9 @@ export default class Site {
     page.rendered = content;
   }
 
+  /**
+   * Save a page
+   */
   async #savePage(page) {
     page.dest.saved = true;
     const dest = page.dest.path + page.dest.ext;
@@ -244,6 +318,9 @@ export default class Site {
     return Deno.writeTextFile(filename, page.rendered);
   }
 
+  /**
+   * Get the engine used by a path or extension
+   */
   #getEngine(path) {
     for (const [ext, engine] of this.engines) {
       if (path.endsWith(ext)) {
