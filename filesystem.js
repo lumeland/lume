@@ -2,25 +2,25 @@ import { join } from "./deps/path.js";
 
 class Base {
   src = {};
-  #_parent = null;
-  #_data = {};
-  #_tags = null;
+  #parent = null;
+  #data = {};
+  #tags = null;
 
   constructor(src) {
     this.src = src;
   }
 
   get parent() {
-    return this.#_parent;
+    return this.#parent;
   }
 
   set parent(parent) {
-    this.#_parent = parent;
+    this.#parent = parent;
   }
 
   get tags() {
-    if (this.#_tags) {
-      return this.#_tags;
+    if (this.#tags) {
+      return this.#tags;
     }
 
     const tags = new Set();
@@ -35,27 +35,27 @@ class Base {
       }
     }
 
-    this.#_tags = tags;
-    return this.#_tags;
+    this.#tags = tags;
+    return this.#tags;
   }
 
   get fullData() {
     if (!this.parent) {
-      return this.#_data;
+      return this.#data;
     }
 
     const parentData = this.parent.fullData;
 
-    return { ...parentData, ...this.#_data };
+    return { ...parentData, ...this.#data };
   }
 
   set data(data = {}) {
-    this.#_data = data;
-    this.#_tags = null;
+    this.#data = data;
+    this.#tags = null;
   }
 
   get data() {
-    return this.#_data;
+    return this.#data;
   }
 }
 
