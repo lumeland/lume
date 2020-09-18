@@ -71,7 +71,7 @@ export default async function cli(args) {
   const { server } = await import("./server.js");
 
   try {
-    const update = await server(site.options.dest, options.port);
+    await server(site.options.dest, options.port);
     const watcher = Deno.watchFs(site.options.src);
     const changes = new Set();
     console.log("Watching for changes...");
@@ -85,7 +85,6 @@ export default async function cli(args) {
       changes.clear();
 
       await site.update(files);
-      await update();
       console.log("");
     };
 

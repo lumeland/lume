@@ -140,7 +140,6 @@ export async function server(root, port) {
 
   //Live reload server
   const watcher = Deno.watchFs(root);
-  const changes = new Set();
   let socket;
 
   //Static files server
@@ -191,6 +190,8 @@ export async function server(root, port) {
   }
 
   async function handleSocket(req) {
+    let timer = 0;
+    const changes = new Set();
     const { conn, r: bufReader, w: bufWriter, headers } = req;
     socket = await acceptWebSocket({
       conn,
@@ -199,22 +200,25 @@ export async function server(root, port) {
       headers,
     });
 
-    for await (const event of watcher) {
-      if (event.kind === "modify") {
-        event.paths.forEach((path) => changes.add(path));
-      }
-    }
-  }
-
-  return async () => {
-    if (changes.size && socket) {
+    function sendChanges() {
       const files = Array.from(changes).map((path) =>
         join("/", relative(root, path))
       );
       changes.clear();
-      return socket.send(JSON.stringify(files));
+      socket.send(JSON.stringify(files));
+      console.log("Changes sent to browser");
     }
-  };
+
+    for await (const event of watcher) {
+      if (event.kind === "modify") {
+        event.paths.forEach((path) => changes.add(path));
+      }
+
+      //Debounce
+      clearTimeout(timer);
+      timer = setTimeout(sendChanges, 500);
+    }
+  }
 }
 
 async function getHtmlBody(path) {
