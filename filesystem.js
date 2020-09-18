@@ -10,10 +10,6 @@ class Base {
     this.src = src;
   }
 
-  get parent() {
-    return this.#parent;
-  }
-
   set parent(parent) {
     this.#parent = parent;
   }
@@ -24,7 +20,7 @@ class Base {
     }
 
     const tags = new Set();
-    this.parent.tags.forEach((tag) => tags.add(tag));
+    this.#parent.tags.forEach((tag) => tags.add(tag));
 
     const dataTags = this.data.tags;
     if (dataTags) {
@@ -40,11 +36,11 @@ class Base {
   }
 
   get fullData() {
-    if (!this.parent) {
+    if (!this.#parent) {
       return this.#data;
     }
 
-    const parentData = this.parent.fullData;
+    const parentData = this.#parent.fullData;
 
     return { ...parentData, ...this.#data };
   }
