@@ -1,4 +1,3 @@
-// @deno-types="https://deno.land/x/denjucks/mod.d.ts"
-import denjucks from "https://deno.land/x/denjucks/mod.js";
+import denjucks from "https://raw.githubusercontent.com/thegamingninja/denjucks/master/mod.js";
 
 export default denjucks;
