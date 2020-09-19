@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Fixed
 - Front matter detection
+- Site rebuild after creating new directories
 
 ## [0.3.1] - 2020-09-19
 ### Fixed

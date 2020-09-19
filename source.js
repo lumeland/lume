@@ -21,12 +21,16 @@ export default class Source {
   /**
    * Returns the Directory instance of a path
    */
-  getDirectory(path) {
+  getDirectory(path, create = false) {
     let dir = this.root;
 
     path.split("/").forEach((name) => {
-      if (!name) {
+      if (!name || !dir) {
         return;
+      }
+
+      if (create && !dir.dirs.has(name)) {
+        dir.createDirectory(name);
       }
 
       dir = dir.dirs.get(name);
@@ -75,7 +79,7 @@ export default class Source {
     //Is a file inside _data folder
     if (file.match(/\/_data\//)) {
       const dir = file.split("/_data/", 2).shift();
-      const directory = this.getDirectory(dir);
+      const directory = this.getDirectory(dir, true);
       return this.#loadDataFolderEntry(
         join(directory.src.path, "_data"),
         entry,
@@ -83,7 +87,7 @@ export default class Source {
       );
     }
 
-    const directory = this.getDirectory(dirname(file));
+    const directory = this.getDirectory(dirname(file), true);
     await this.#loadEntry(directory, entry);
   }
 
