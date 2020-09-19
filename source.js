@@ -4,6 +4,7 @@ import {
   basename,
   extname,
 } from "./deps/path.js";
+import { existsSync } from "./deps/fs.js";
 import { Directory, Page } from "./filesystem.js";
 
 export default class Source {
@@ -154,6 +155,11 @@ export default class Source {
     }
 
     const fullPath = join(this.path, path);
+
+    if (!existsSync(fullPath)) {
+      return;
+    }
+
     const info = await Deno.stat(fullPath);
     const src = {
       path: path.slice(0, -ext.length),
@@ -169,7 +175,7 @@ export default class Source {
     page.dest.ext = this.assets.has(ext) ? ext : ".html";
 
     if (!page.data.date) {
-      page.data.date = info.birthtime || info.mtime;
+      page.data.date = page.src.created || page.src.lastModified;
     } else if (!(page.data.date instanceof Date)) {
       throw new Error(
         'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
