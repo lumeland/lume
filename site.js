@@ -198,8 +198,8 @@ export default class Site {
   /**
    * Build the pages
    */
-  async #buildPages(filter) {
-    for (const entry of this.getPages(filter)) {
+  async #buildPages() {
+    for (const entry of this.getPages((page) => !page.rendered)) {
       const [page, dir] = entry;
       const transformers = this.before.get(page.src.ext);
 
@@ -212,7 +212,7 @@ export default class Site {
       this.#urlPage(page);
     }
 
-    for (const entry of this.getPages(filter)) {
+    for (const entry of this.getPages()) {
       const [page, dir] = entry;
 
       await this.#renderPage(page, dir);

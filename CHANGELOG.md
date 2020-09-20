@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Site rebuild after creating or removing directories and files
 - Improved url filter
 - Use content hash to detect real file changes
+- Tags propagation
+- Ensure beforeRender transformers are executed only once.
 
 ## [0.3.1] - 2020-09-19
 ### Fixed

@@ -8,13 +8,16 @@ export default function () {
     highlight(str, lang) {
       if (lang && hljs.getLanguage(lang)) {
         try {
-          return hljs.highlight(lang, str).value;
+          const code = hljs.highlight(lang, str, true).value;
+          return `<pre class="hljs"><code>${code}</code></pre>`;
         } catch (__) {
           //Ignore error
         }
       }
 
-      return "";
+      return `<pre class="hljs"><code>${
+        markdown.utils.escapeHtml(str)
+      }</code></pre>`;
     },
   }).use(markdownItAttrs);
 
