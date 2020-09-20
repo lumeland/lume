@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Ability to include the date in the filename
+- New function `search.folder()`
 
 ### Fixed
 - Front matter detection
