@@ -177,7 +177,7 @@ export default class Source {
     page.dest.ext = this.assets.has(ext) ? ext : ".html";
 
     if (!page.data.date) {
-      page.data.date = page.src.created || page.src.lastModified;
+      page.data.date = getDate(page.src, page.dest);
     } else if (!(page.data.date instanceof Date)) {
       throw new Error(
         'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
@@ -235,4 +235,42 @@ export default class Source {
       data[entry.name] = await this.#loadDataFolder(join(path, entry.name));
     }
   }
+}
+
+function getDate(src, dest) {
+  const fileName = basename(src.path);
+  const dayInPath = fileName.match(/^(\d{4})-(\d{2})-(\d{2})_/);
+
+  if (dayInPath) {
+    const [found, year, month, day] = dayInPath;
+    dest.path = dest.path.replace(found, "");
+    return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+  }
+
+  const timeInPath = fileName.match(
+    /^(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})_/,
+  );
+
+  if (timeinPath) {
+    const [found, year, month, day, hour, minute, second] = timeInPath;
+    dest.path = dest.path.replace(found, "");
+    return new Date(
+      parseInt(year),
+      parseInt(month) - 1,
+      parseInt(day),
+      parseInt(hour),
+      parseInt(minute),
+      parseInt(second),
+    );
+  }
+
+  const orderInPath = fileName.match(/^(\d+)_/);
+
+  if (orderInPath) {
+    const [found, timestamp] = orderInPath;
+    dest.path = dest.path.replace(found, "");
+    return new Date(parseInt(timestamp));
+  }
+
+  return src.created || src.lastModified;
 }

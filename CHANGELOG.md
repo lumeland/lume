@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Ability to include the date in the filename
+
 ### Fixed
 - Front matter detection
 - Site rebuild after creating or removing directories and files
