@@ -125,6 +125,8 @@ export default class Source {
 
       if (page) {
         directory.setPage(entry.name, page);
+      } else {
+        directory.unsetPage(entry.name);
       }
       return;
     }

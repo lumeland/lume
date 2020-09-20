@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Fixed
 - Front matter detection
-- Site rebuild after creating new directories
+- Site rebuild after creating or removing directories and files
 - Improved url filter
 - Use content hash to detect real file changes
 

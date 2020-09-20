@@ -92,6 +92,10 @@ export class Directory extends Base {
     this.pages.set(name, page);
   }
 
+  unsetPage(name) {
+    this.pages.delete(name);
+  }
+
   *getPages(recursive = true) {
     for (const page of this.pages.values()) {
       yield [page, this];
