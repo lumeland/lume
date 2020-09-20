@@ -112,10 +112,11 @@ function read(key) {
 `;
 
 const mimes = new Map([
-  [".html", "text/html"],
-  [".js", "text/javascript"],
-  [".css", "text/css"],
-  [".json", "application/json"],
+  [".html", "text/html; charset=utf-8"],
+  [".txt", "text/plain; charset=utf-8"],
+  [".js", "text/javascript; charset=utf-8"],
+  [".css", "text/css; charset=utf-8"],
+  [".json", "application/json; charset=utf-8"],
   [".ico", "image/x-icon"],
   [".png", "image/png"],
   [".jpg", "image/jpg"],
@@ -161,31 +162,31 @@ export async function server(root, port) {
       if (info.isDirectory) {
         path = join(path, "index.html");
       }
-    } catch (err) {
-      console.log(`${red(req.method)} ${req.url}`);
-      console.error(red(err.message));
-      await req.respond({ status: 404 });
-      return;
-    }
 
-    const mimeType = mimes.get(extname(path).toLowerCase()) ||
-      "application/octet-stream";
+      const mimeType = mimes.get(extname(path).toLowerCase()) ||
+        "application/octet-stream";
 
-    try {
-      console.log(`${brightGreen(req.method)} ${req.url}`);
       await req.respond({
         status: 200,
         headers: new Headers({
           "content-type": mimeType,
           "cache-control": "no-cache no-store must-revalidate",
         }),
-        body: await (mimeType === "text/html"
+        body: await (mimeType === "text/html; charset=utf-8"
           ? getHtmlBody(path)
           : getBody(path)),
       });
+
+      console.log(`${brightGreen("200")} ${req.url}`);
     } catch (err) {
-      console.log(`${red(req.method)} ${req.url}`);
-      console.error(red(err.message));
+      console.log(`${red("404")} ${req.url}`);
+      await req.respond({
+        status: 404,
+        headers: new Headers({
+          "content-type": mimes.get(".txt"),
+        }),
+        body: "404 - Not found",
+      });
     }
   }
 
@@ -208,6 +209,8 @@ export async function server(root, port) {
       socket.send(JSON.stringify(files));
       console.log("Changes sent to browser");
     }
+
+    console.log("Connected to browser");
 
     for await (const event of watcher) {
       if (event.kind === "modify") {
