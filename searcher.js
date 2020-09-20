@@ -3,16 +3,18 @@ export default class Searcher {
     this.site = site;
   }
 
+  folder(path = "/") {
+    return this.site.source.getDirectory(path);
+  }
+
   pages(tags, path, recursive) {
     return this.#searchPages(tags, path, recursive);
   }
 
   #searchPages(tags = [], path = "/", recursive = true) {
-    if (typeof tags === "string") {
-      tags = tags.split(/\s+/).filter((tag) => tag);
-    }
+    tags = getTags(tags);
 
-    const filter = tags && tags.length
+    const filter = tags
       ? (page) => isHtml(page) && tags.every((tag) => page.tags.has(tag))
       : isHtml;
 
@@ -24,4 +26,12 @@ export default class Searcher {
 
 function isHtml(page) {
   return page.dest.ext === ".html";
+}
+
+function getTags(tags) {
+  if (typeof tags === "string") {
+    tags = tags.split(/\s+/).filter((tag) => tag);
+  }
+
+  return tags.length ? tags : null;
 }

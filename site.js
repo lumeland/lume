@@ -251,7 +251,7 @@ export default class Site {
       dest.path = join(dest.path, "index");
     }
 
-    page.url = (dest.ext === ".html" && dest.path.endsWith("/index"))
+    page.data.url = (dest.ext === ".html" && dest.path.endsWith("/index"))
       ? dest.path.slice(0, -5)
       : dest.path + dest.ext;
   }
