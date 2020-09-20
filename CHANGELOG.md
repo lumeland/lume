@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Front matter detection
 - Site rebuild after creating new directories
 - Improved url filter
+- Use content hash to detect real file changes
 
 ## [0.3.1] - 2020-09-19
 ### Fixed

@@ -12,6 +12,7 @@ import {
   copy,
 } from "./deps/fs.js";
 import { gray } from "./deps/colors.js";
+import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
 import Searcher from "./searcher.js";
 
@@ -135,26 +136,15 @@ export default class Site {
    * Rebuild some files that might be changed
    */
   async update(files) {
-    const directories = [];
-
     for (const file of files) {
-      // file inside a _data folder
-      if (file.match(/\/_data\//)) {
-        directories.push(join("/", file.split("/_data/").shift()));
+      // file inside a _data file or folder
+      if (file.includes("/_data/") || file.match(/\/_data.\w+$/)) {
         await this.source.loadFile(file);
         continue;
       }
 
-      // file inside a _includes folder
-      if (file.match(/\/_includes\//)) {
-        directories.push(join("/", file.split("/_includes/").shift()));
-        continue;
-      }
-
-      // _data.* file
-      if (file.match(/\/_data.\w+$/)) {
-        directories.push(dirname(file));
-        await this.source.loadFile(file);
+      // file path contains /_ or /.
+      if (file.includes("/_") || file.includes("/.")) {
         continue;
       }
 
@@ -171,11 +161,7 @@ export default class Site {
       await this.source.loadFile(file);
     }
 
-    const filter = (page) =>
-      files.has(page.src.path + page.src.ext) ||
-      directories.some((path) => page.src.path.startsWith(path));
-
-    return this.#buildPages(filter);
+    return this.#buildPages();
   }
 
   /**
@@ -307,7 +293,15 @@ export default class Site {
    * Save a page
    */
   async #savePage(page) {
-    page.dest.saved = true;
+    const sha1 = createHash("sha1");
+    sha1.update(page.rendered);
+    const hash = sha1.toString();
+
+    //The page content didn't change
+    if (page.dest.hash === hash) {
+      return;
+    }
+    page.dest.hash = hash;
     const dest = page.dest.path + page.dest.ext;
     const src = page.src.path + page.src.ext;
 
