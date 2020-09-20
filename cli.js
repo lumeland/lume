@@ -85,6 +85,7 @@ export default site;
       changes.clear();
 
       await site.update(files);
+      console.log("Done");
       console.log("");
     };
 
