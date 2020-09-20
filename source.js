@@ -251,7 +251,7 @@ function getDate(src, dest) {
     /^(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})_/,
   );
 
-  if (timeinPath) {
+  if (timeInPath) {
     const [found, year, month, day, hour, minute, second] = timeInPath;
     dest.path = dest.path.replace(found, "");
     return new Date(

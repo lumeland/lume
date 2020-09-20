@@ -20,7 +20,10 @@ class Base {
     }
 
     const tags = new Set();
-    this.#parent.tags.forEach((tag) => tags.add(tag));
+
+    if (this.#parent) {
+      this.#parent.tags.forEach((tag) => tags.add(tag));
+    }
 
     const dataTags = this.data.tags;
     if (dataTags) {
