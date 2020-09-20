@@ -1,13 +1,20 @@
 import { join, normalize } from "../deps/path.js";
 
-export default function (site) {
+const defaultOptions = {
+  pathPrefix: "/",
+  url: "",
+};
+
+export default function (options) {
+  options = { ...defaultOptions, ...options };
+
   return function (url, absolute) {
     try {
-      return URL(url).toString();
+      return new URL(url).toString();
     } catch (err) {
-      url = normalize(join(site.options.pathPrefix, url));
+      url = normalize(join(options.pathPrefix, url));
 
-      return absolute ? site.options.url + url : url;
+      return absolute ? options.url + url : url;
     }
   };
 }

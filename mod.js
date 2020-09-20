@@ -22,7 +22,7 @@ export default function (options = {}) {
   const site = new Site(options);
 
   return site
-    .filter("url", url(site))
+    .filter("url", url(options))
     .filter("date", date())
     .use(json())
     .use(markdown())
