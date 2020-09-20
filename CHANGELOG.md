@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Front matter detection
 - Site rebuild after creating new directories
+- Improved url filter
 
 ## [0.3.1] - 2020-09-19
 ### Fixed
