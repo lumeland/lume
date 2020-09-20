@@ -88,8 +88,13 @@ export class Directory extends Base {
   }
 
   setPage(name, page) {
+    const oldPage = this.pages.get(name);
     page.parent = this;
     this.pages.set(name, page);
+
+    if (oldPage) {
+      page.dest.hash = oldPage.dest.hash;
+    }
   }
 
   unsetPage(name) {
