@@ -1,0 +1,63 @@
+---
+menu:
+  - getting-started
+  - creating-pages
+  - page-formats
+  - plugins
+---
+<!doctype html>
+
+<html lang="{{ lang }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link href="{{ site.rootUrl }}/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
+    <link href="{{ site.rootUrl }}/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
+
+    <meta property="og:title" content="{{ title }}" />
+    <meta name="author" content="{{ site.author }}" />
+    <meta property="og:locale" content="{{ lang }}" />
+    <meta name="description" content="{{ site.description }}" />
+    <meta property="og:description" content="{{ site.description }}" />
+    <link rel="canonical" href="{{ site.rootUrl }}{{ url }}" />
+
+    <meta property="og:url" content="{{ site.rootUrl }}{{ url }}" />
+    <meta property="og:site_name" content="{{ site.title }}" />
+  </head>
+
+  <body>
+    <nav class="menu">
+      <ul>
+        {% for section in menu %}
+        <li>
+          <strong>{{ search.folder(section).data.section }}</strong>
+          <ul>
+          {% for page in search.pages(section) %}
+            <li>
+              {% if page.data.url == url %}
+              <a href="{{ page.data.url }}" aria-current="page">{{ page.data.title }}</a>
+              {% else %}
+              <a href="{{ page.data.url }}">{{ page.data.title }}</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+          </ul>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <main class="main">
+      {% if section %}
+      <header>
+        <p>{{ section }}</p>
+        <h1>{{ title }}</h1>
+      </header>
+      {% endif %}
+
+      {{ content | safe }}
+    </main>
+  </body>
+</html>

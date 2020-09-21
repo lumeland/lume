@@ -10,10 +10,11 @@ if (import.meta.main) {
 export default async function cli(args) {
   const version = "v0.3.1";
   const options = parse(args, {
-    boolean: ["serve", "init", "version"],
+    boolean: ["serve", "init", "version", "dev"],
     default: {
       serve: false,
       port: 3000,
+      dev: false,
     },
   });
 
@@ -55,6 +56,10 @@ export default site;
       src: Deno.cwd(),
       dest: join(Deno.cwd(), "_site"),
     });
+  }
+
+  if (options.dev) {
+    site.options.dev = options.dev;
   }
 
   console.log("");

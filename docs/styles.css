@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Mono&display=swap');
+@import url('https://dev.jspm.io/npm:highlight.js@10.1.2/styles/monokai-sublime.css');
+
+:root {
+  --color-brand: #c45402;
+  --color-black: #23241f;
+  --color-gray: #555;
+  --color-gray-light: #eee;
+
+  --font-small: 1rem;
+  --font-normal: 1.4rem;
+  --font-big: 2rem;
+  --font-xbig: 3rem;
+}
+
+body {
+  font-family: 'PT Serif', serif;
+  line-height: 1.4;
+  margin: auto;
+  padding: 5vh 5vw;
+  font-size: var(--font-normal);
+  display: grid;
+  grid-template-areas: "menu main";
+  grid-template-columns: max-content minmax(0, 1fr);
+  grid-column-gap: 5vw;
+  max-width: 2000px;
+  align-items: start;
+  color: var(--color-black);
+}
+
+.menu {
+  grid-area: menu;
+  position: sticky;
+  top: 5vh;
+}
+.menu a[aria-current="page"] {
+  color: var(--color-black);
+  text-decoration: none;
+}
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu ul ul {
+  padding-left: 1em;
+} 
+
+.main {
+  grid-area: main;
+}
+.main > * {
+  max-width: 35em
+}
+.main > pre {
+  max-width: none;
+}
+
+a {
+  color: var(--color-brand);
+}
+
+code {
+  font-family: 'PT Mono', monospace;
+  background-color: var(--color-gray-light);
+  padding: 0 2px;
+  border-radius: 2px;
+  font-size: 0.75em;
+  color: var(--color-gray);
+}
+pre {
+  overflow-x: auto;
+  background-color: var(--color-black);
+  padding: 1em;
+  border-radius: 5px;
+  line-height: 1.2;
+}
+pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  color: var(--color-gray-light);
+  font-size: var(--font-small);
+}
+li {
+  margin: .5em 0;
+}
+header p:first-child {
+  margin-bottom: 0;
+}
+
+header h1 {
+  margin-top: 0;
+  font-size: var(--font-xbig);
+}
+header p {
+  margin-top: 0;
+}
+h2 {
+  font-size: var(--font-big);
+  margin-top: 2em;
+  margin-bottom: .5em;
+}
+
+table {
+  background-color: var(--color-gray-light);
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th {
+  padding: .3em;
+  text-align: left;
+}
+th {
+  border-bottom: solid 1px;
+}
