@@ -7,5 +7,6 @@ const site = lume({
 
 site.copy("styles.css");
 site.copy("logo.svg");
+site.copy("favicon.ico");
 
 export default site;

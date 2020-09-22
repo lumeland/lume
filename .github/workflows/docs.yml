@@ -26,6 +26,6 @@ jobs:
       - name: Deploy
         uses: crazy-max/ghaction-github-pages@v2.0.1
         with:
-          build_dir: _site
+          build_dir: docs/_site
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

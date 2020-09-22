@@ -29,6 +29,7 @@ Name   | Required | Description
 -------|----------|------------
 `src`  | Yes      | The source directory where lume read your files
 `dest` | Yes      | The destination to output the site
+`pathPrefix` | No | The path prefix to apply to urls. Useful if your site is published in a subfolder 
 `dev`  | No       | Build the site in development mode or not. It's `false` by default and you can use `--dev` flag to set to true
 
 ## Installing plugins

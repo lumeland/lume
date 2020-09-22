@@ -3,32 +3,25 @@ menu:
   - getting-started
   - creating-pages
   - page-formats
+  - filters
   - plugins
 ---
 <!doctype html>
 
-<html lang="{{ lang }}">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="/styles.css">
-    <link href="{{ site.rootUrl }}/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
-    <link href="{{ site.rootUrl }}/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
-
-    <meta property="og:title" content="{{ title }}" />
-    <meta name="author" content="{{ site.author }}" />
-    <meta property="og:locale" content="{{ lang }}" />
-    <meta name="description" content="{{ site.description }}" />
-    <meta property="og:description" content="{{ site.description }}" />
-    <link rel="canonical" href="{{ site.rootUrl }}{{ url }}" />
-
-    <meta property="og:url" content="{{ site.rootUrl }}{{ url }}" />
-    <meta property="og:site_name" content="{{ site.title }}" />
+    <link rel="stylesheet" href="{{ 'styles.css' | url }}">
   </head>
 
   <body>
     <nav class="menu">
+      <a href="{{ '/' | url }}">
+        <img src="{{ 'logo.svg' | url }}" alt="Lume logo">
+      </a>
+
       <ul>
         {% for section in menu %}
         <li>

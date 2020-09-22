@@ -2,7 +2,7 @@
 title: JSX / TSX
 ---
 
-[JSX](https://facebook.github.io/jsx/) (or the equivalent TSX for typescript) is a template language to create and render HTML code and used in many front end frameworks like React.
+[JSX](https://facebook.github.io/jsx/) (or the equivalent TSX for typescript) is a template language to create and render HTML code, very popular in some frameworks like React.
 
 You can use this format to create layouts and pages in lume, but this format **is disabled by default** so you have to enable it by using the jsx plugin in the `_config.js` file:
 

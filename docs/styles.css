@@ -18,37 +18,54 @@ body {
   font-family: 'PT Serif', serif;
   line-height: 1.4;
   margin: auto;
-  padding: 5vh 5vw;
+  padding: 2vh 5vw 5vh 2vw;
   font-size: var(--font-normal);
   display: grid;
   grid-template-areas: "menu main";
   grid-template-columns: max-content minmax(0, 1fr);
   grid-column-gap: 5vw;
-  max-width: 2000px;
+  max-width: 1400px;
   align-items: start;
   color: var(--color-black);
 }
 
 .menu {
   grid-area: menu;
-  position: sticky;
-  top: 5vh;
+  font-size: var(--font-small);
+}
+.menu img {
+  display: block;
+  margin-bottom: 2rem;
+}
+.menu a {
+  display: block;
+  padding: .3em .75em;
+  border-radius: 5px;
+}
+.menu a:hover {
+  color: var(--color-black);
+  text-decoration: none;
 }
 .menu a[aria-current="page"] {
   color: var(--color-black);
   text-decoration: none;
+  background-color: var(--color-gray-light);
 }
 .menu ul {
   list-style: none;
-  margin: 0;
+  margin: 0 0 1em 0;
   padding: 0;
 }
-.menu ul ul {
-  padding-left: 1em;
-} 
-
+.menu strong {
+  display: block;
+  margin: .3em 0;
+}
+.menu > ul {
+  margin-left: 80px;
+}
 .main {
   grid-area: main;
+  margin-top: 3.5em;
 }
 .main > * {
   max-width: 35em
@@ -82,9 +99,6 @@ pre code {
   border-radius: 0;
   color: var(--color-gray-light);
   font-size: var(--font-small);
-}
-li {
-  margin: .5em 0;
 }
 header p:first-child {
   margin-bottom: 0;
