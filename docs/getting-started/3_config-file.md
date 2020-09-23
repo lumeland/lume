@@ -31,6 +31,7 @@ Name   | Required | Description
 `dest` | Yes      | The destination to output the site
 `pathPrefix` | No | The path prefix to apply to urls. Useful if your site is published in a subfolder 
 `dev`  | No       | Build the site in development mode or not. It's `false` by default and you can use `--dev` flag to set to true
+`url`  | No       | The base url to apply to absolute urls, for example `http://example.com`.
 
 ## Installing plugins
 
