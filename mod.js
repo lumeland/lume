@@ -12,6 +12,7 @@ const defaultOptions = {
   src: ".",
   dest: "_site",
   pathPrefix: "/",
+  url: "",
   dev: false,
 };
 
@@ -22,7 +23,7 @@ export default function (options = {}) {
   const site = new Site(options);
 
   return site
-    .filter("url", url(options))
+    .filter("url", url(site))
     .filter("date", date())
     .use(json())
     .use(markdown())
