@@ -12,7 +12,7 @@ const defaultOptions = {
   src: ".",
   dest: "_site",
   pathPrefix: "/",
-  dev: true,
+  dev: false,
 };
 
 export default function (options = {}) {
