@@ -34,3 +34,9 @@ It's inspired in other general purpose static site generators such [Jekyll](http
 - Run it: `lume`
 - This command will compile your documents to HTML and saved into the output folder (defaults to `_site`)
 - You can run `lume --serve` to start up a webserver. Then open `http://localhost:3000` in your web browser to see your website.
+
+---
+
+## Docs
+
+[Access to the Docs to learn more](https://oscarotero.github.io/lume/)
