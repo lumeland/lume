@@ -21,7 +21,7 @@ jobs:
       - name: Run lume
         run: |
           cd docs
-          deno eval --unstable "import site from './_config.js'; site.options.pathPrefix = '/lume'; site.build();"
+          deno eval --unstable "import site from './_config.js'; site.options.location = new URL('https://oscarotero.github.io/lume/'); site.build();"
 
       - name: Deploy
         uses: crazy-max/ghaction-github-pages@v2.0.1
