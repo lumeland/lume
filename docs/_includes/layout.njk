@@ -30,9 +30,9 @@ menu:
           {% for page in search.pages(section) %}
             <li>
               {% if page.data.url == url %}
-              <a href="{{ page.data.url }}" aria-current="page">{{ page.data.title }}</a>
+              <a href="{{ page.data.url | url }}" aria-current="page">{{ page.data.title }}</a>
               {% else %}
-              <a href="{{ page.data.url }}">{{ page.data.title }}</a>
+              <a href="{{ page.data.url | url }}">{{ page.data.title }}</a>
               {% endif %}
             </li>
           {% endfor %}
