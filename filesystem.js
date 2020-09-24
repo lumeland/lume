@@ -63,15 +63,15 @@ class Base {
  */
 export class Page extends Base {
   dest = {};
-  url = null;
-  rendered = null;
+  type = "page";
+  content = null;
 
-  get content() {
-    return this.data.content;
-  }
+  duplicate(data = {}) {
+    const page = new Page(this.src);
+    page.dest = { ...this.dest };
+    page.data = { ...this.data, ...data };
 
-  set content(content) {
-    this.data.content = content;
+    return page;
   }
 }
 

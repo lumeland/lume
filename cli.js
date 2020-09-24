@@ -62,6 +62,10 @@ export default site;
     site.options.dev = options.dev;
   }
 
+  if (options.location) {
+    site.options.location = new URL(options.location);
+  }
+
   console.log("");
   await site.build();
 

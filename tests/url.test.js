@@ -2,7 +2,7 @@ import { assertEquals } from "../deps/asserts.js";
 import url from "../filters/url.js";
 
 Deno.test("attributes filter (without options)", () => {
-  const urlFilter = url();
+  const urlFilter = url({ options: {} });
 
   assertEquals("http://example.com/", urlFilter("http://example.com"));
   assertEquals("/bar", urlFilter("/bar"));
@@ -11,12 +11,11 @@ Deno.test("attributes filter (without options)", () => {
 });
 
 Deno.test("attributes filter (with options)", () => {
-  const urlFilter = url({
-    pathPrefix: "/bar",
-    url: "https://example.com",
-  });
+  const urlFilter = url(
+    { options: { location: new URL("https://example.com/bar") } },
+  );
 
-  assertEquals("http://example.com/", urlFilter("http://example.com"));
+  assertEquals("http://example2.com/", urlFilter("http://example2.com"));
   assertEquals("/bar/bar", urlFilter("/bar"));
   assertEquals("/bar/foo", urlFilter("foo"));
   assertEquals("https://example.com/bar/foo", urlFilter("foo", true));

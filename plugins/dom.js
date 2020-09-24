@@ -7,9 +7,9 @@ export default function (callback) {
     site.afterRender([".html"], transform);
 
     async function transform(page) {
-      const document = parser.parseFromString(page.rendered, "text/html");
+      const document = parser.parseFromString(page.content, "text/html");
       callback(document, page);
-      page.rendered = document.documentElement.outerHTML;
+      page.content = document.documentElement.outerHTML;
     }
   };
 }

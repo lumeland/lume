@@ -24,11 +24,16 @@ export default class Site {
   filters = new Map();
 
   constructor(options) {
-    options.src = resolve(options.src);
-    options.dest = resolve(options.dest);
-    this.options = options;
+    this.options = {
+      src: resolve(options.src),
+      dest: resolve(options.dest),
+      dev: !!options.dev,
+      location: (typeof options.location === "string")
+        ? new URL(options.location)
+        : options.location,
+    };
 
-    this.source = new Source(options.src);
+    this.source = new Source(this.options.src);
   }
 
   /**
@@ -199,32 +204,39 @@ export default class Site {
    * Build the pages
    */
   async #buildPages() {
-    for (const entry of this.getPages((page) => !page.rendered)) {
+    for (const entry of this.getPages()) {
       const [page, dir] = entry;
-      const transformers = this.before.get(page.src.ext);
 
-      if (transformers) {
-        for (const transform of transformers) {
-          await transform(page, dir);
-        }
+      page.content = page.data.content;
+
+      if (this.#expandPage(page, dir)) {
+        page.type = "generator";
+        continue;
       }
 
       this.#urlPage(page);
     }
 
-    for (const entry of this.getPages()) {
+    for (const entry of this.getPages((page) => page.type !== "generator")) {
       const [page, dir] = entry;
+      const before = this.before.get(page.src.ext);
+
+      if (before) {
+        for (const transform of before) {
+          await transform(page, dir);
+        }
+      }
 
       await this.#renderPage(page, dir);
 
-      if (!page.rendered) {
+      if (!page.content) {
         continue;
       }
 
-      const transformers = this.after.get(page.dest.ext);
+      const after = this.after.get(page.dest.ext);
 
-      if (transformers) {
-        for (const transform of transformers) {
+      if (after) {
+        for (const transform of after) {
           await transform(page, dir);
         }
       }
@@ -257,12 +269,39 @@ export default class Site {
   }
 
   /**
+   * Generate subpages (for pagination)
+   */
+  #expandPage(page, dir) {
+    const content = page.content;
+
+    if (typeof content === "function") {
+      let data = page.fullData;
+      data.explorer = this.explorer;
+
+      const result = content(data, this.filters);
+
+      if (String(result) === "[object Generator]") {
+        let num = 1;
+
+        for (const pageData of result) {
+          dir.setPage(num, page.duplicate(pageData));
+          num++;
+        }
+
+        return num;
+      }
+
+      page.content = result;
+    }
+  }
+
+  /**
    * Render a page
    */
   async #renderPage(page) {
     const engine = this.#getEngine(page.src.ext);
 
-    let content = page.data.content;
+    let content = page.content;
     let pageData = page.fullData;
     let layout = pageData.layout;
 
@@ -286,7 +325,7 @@ export default class Site {
       layout = layoutData.layout;
     }
 
-    page.rendered = content;
+    page.content = content;
   }
 
   /**
@@ -294,7 +333,7 @@ export default class Site {
    */
   async #savePage(page) {
     const sha1 = createHash("sha1");
-    sha1.update(page.rendered);
+    sha1.update(page.content);
     const hash = sha1.toString();
 
     //The page content didn't change
@@ -309,7 +348,7 @@ export default class Site {
 
     const filename = join(this.options.dest, dest);
     await ensureDir(dirname(filename));
-    return Deno.writeTextFile(filename, page.rendered);
+    return Deno.writeTextFile(filename, page.content);
   }
 
   /**

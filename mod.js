@@ -8,18 +8,7 @@ import modules from "./plugins/modules.js";
 import nunjucks from "./plugins/nunjucks.js";
 import yaml from "./plugins/yaml.js";
 
-const defaultOptions = {
-  src: ".",
-  dest: "_site",
-  pathPrefix: "/",
-  url: "",
-  dev: false,
-};
-
 export default function (options = {}) {
-  options = { ...defaultOptions, ...options };
-
-  //Default configuration
   const site = new Site(options);
 
   return site

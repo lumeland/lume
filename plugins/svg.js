@@ -86,8 +86,8 @@ export default function () {
     site.afterRender([".svg"], transform);
 
     async function transform(page) {
-      const result = await svgo.optimize(page.rendered);
-      page.rendered = result.data;
+      const result = await svgo.optimize(page.content);
+      page.content = result.data;
     }
   };
 }

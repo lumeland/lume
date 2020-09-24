@@ -30,7 +30,7 @@ export default function () {
       const to = join(site.options.dest, page.dest.path + page.dest.ext);
 
       //Resolve @import with stylecow
-      const css = parse(page.rendered, "Root", null, from);
+      const css = parse(page.content, "Root", null, from);
       tasks.run(css);
 
       //Fix the code with postcss
@@ -39,7 +39,7 @@ export default function () {
         { from, to },
       );
 
-      page.rendered = result.css;
+      page.content = result.css;
     }
   };
 }

@@ -48,7 +48,7 @@ Note that this page uses the `layouts/main.njk` layout to wrap the content (you 
 The equivalent layout in `.jsx` format would be:
 
 ```jsx
-export default (data) =>
+export default ({ children }) =>
   <html>
     <head>
       <title>{ title }</title>
