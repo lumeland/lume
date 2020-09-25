@@ -4,6 +4,7 @@ import {
   resolve,
   extname,
   basename,
+  normalize,
 } from "./deps/path.js";
 import {
   ensureDir,
@@ -23,10 +24,10 @@ export default class Site {
   after = new Map();
   filters = new Map();
 
-  constructor(options) {
+  constructor(options = {}) {
     this.options = {
-      src: resolve(options.src),
-      dest: resolve(options.dest),
+      src: resolve(options.src || "./"),
+      dest: resolve(options.dest || "./_site"),
       dev: !!options.dev,
       location: (typeof options.location === "string")
         ? new URL(options.location)
@@ -167,6 +168,27 @@ export default class Site {
     }
 
     return this.#buildPages();
+  }
+
+  /**
+   * Returns the url of a page
+   */
+  url(path, absolute) {
+    if (path.startsWith("./") || path.startsWith("../")) {
+      return path;
+    }
+
+    try {
+      return new URL(path).toString();
+    } catch (err) {
+      if (!this.options.location) {
+        return normalize(join("/", path));
+      }
+
+      path = normalize(join(this.options.location.pathname, path));
+
+      return absolute ? this.options.location.origin + path : path;
+    }
   }
 
   /**
