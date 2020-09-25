@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Fixed
+- `url` filter with relative urls
+
 ## [0.5.1] - 2020-09-25
 ### Fixed
 - `version` variable

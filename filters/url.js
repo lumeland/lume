@@ -2,6 +2,10 @@ import { join, normalize } from "../deps/path.js";
 
 export default function (site) {
   return function (path, absolute) {
+    if (path.startsWith("./") || path.startsWith("../")) {
+      return path;
+    }
+
     try {
       return new URL(path).toString();
     } catch (err) {
