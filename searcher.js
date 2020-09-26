@@ -7,11 +7,11 @@ export default class Searcher {
     return this.site.source.getDirectory(path);
   }
 
-  pages(tags, path, recursive) {
-    return this.#searchPages(tags, path, recursive);
+  pages(tags, path, recursive, sort) {
+    return this.#searchPages(tags, path, recursive, sort);
   }
 
-  #searchPages(tags = [], path = "/", recursive = true) {
+  #searchPages(tags = [], path = "/", recursive = true, sort = "date") {
     tags = getTags(tags);
 
     const filter = tags
@@ -20,7 +20,7 @@ export default class Searcher {
 
     return Array.from(this.site.getPages(filter, path, recursive))
       .map((entry) => entry[0])
-      .sort((a, b) => a.data.date - b.data.date);
+      .sort(sort === "alpha" ? sortByFile : sortByDate);
   }
 }
 
@@ -34,4 +34,11 @@ function getTags(tags) {
   }
 
   return tags.length ? tags : null;
+}
+
+function sortByDate(a, b) {
+  return a.data.date - b.data.date;
+}
+function sortByFile(a, b) {
+  return (a.src.path < b.src.path) ? -1 : 1;
 }

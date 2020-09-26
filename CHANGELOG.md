@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+### Added
+- New argument to `search` to sort pages alphabetically
+
 ### Fixed
 - `url` filter with relative urls
 

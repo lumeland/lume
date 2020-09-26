@@ -2,11 +2,11 @@
 title: Layouts
 ---
 
-Layouts are templates that wrap around your content. They allow you to have the source code for your template in one place so you don’t have to repeat things like your navigation and footer on every page.
+Layouts are templates that wrap around your content. They allow you to have the source code for your template in one place so you don’t have to repeat things like the navigation and footer on every page.
 
-The template files are saved in a special folder named `_includes`. This folder can contain not only layouts but other files, so a good practice is to save your layouts in a subfolder, for example `_includes/layouts`.
+Layout files are loaded from a special folder named `_includes`. This folder can contain not only layouts but other files, so a good practice is to save them in a subfolder like `_includes/layouts`.
 
-Let's say we have this page, with the variable `layout` in the page front matter:
+In the following page, we have defined the variable `layout` with the name of the template that we want to use:
 
 ```yml
 ---
@@ -19,7 +19,7 @@ Here you can write markdown content
 
 ```
 
-**lume** has support for many template engines. This example uses [Nunjucks](https://mozilla.github.io/nunjucks/) and a layout named `main.njk`:
+**Lume** has support for many template engines. In this example, the layout file has the extension `njk`, used by the [Nunjucks](https://mozilla.github.io/nunjucks/) template engine:
 
 ```html
 <!doctype html>
@@ -40,44 +40,22 @@ Here you can write markdown content
 
 **Lume** will search the file `_includes/layouts/main.njk` (note that all layouts are relative to `_includes` folder).
 
-The template has access to the page variables: the variable `title` is used to render the title in the template, and the content of the page is stored in the variable `content`.
+The template can use any variable from the page, for example `title` to render the title, and `content` with the rendered markdown content of the page.
 
 ## Layout front matter
 
-Layouts can contain front matters with more data that will be merged with the page data. Let's see this example:
-
-```html
----
-title: Default title
-language: en
----
-
-<!doctype html>
-
-<html lang="{{ language }}">
-  <head>
-    <meta charset="utf-8">
-    <title>{{ title }}</title>
-  </head>
-
-  <body>
-    <main>
-      {{ content | safe }}
-    </main>
-  </body>
-</html>
-```
-
-In this example, the layout has a front matter with two variables that are used in the html code. Note that variables defined in the pages have precedence over the variables in the layouts. This means that you can set default values in the layouts and override them within the pages.
+Layouts can have also front matters with variables that will be merged with the variables from the page. Note that variables defined in the pages have precedence over the variables in the layouts. This means that you can set default values in the layouts and override them within the pages.
 
 A layout can be wrapped around another layout. Just set a `layout` variable in front matter. In this example, the following layout uses the `layouts/main.njk` layout as a wrapper.
 
 ```html
 ---
+title: Default title
+language: en
 layout: layouts/main.njk
 ---
 
-<article>
+<article lang="{{ language }}">
   <header>
     <h1>{{ title }}</h1>
   </header>

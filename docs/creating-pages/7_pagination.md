@@ -2,10 +2,12 @@
 title: Pagination
 ---
 
-One source page can generate many output pages, very useful to paginate elements, for example. To do that, create a javascript page exporting [a generator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators).
+The same source file can generate many output pages. This is useful to paginate elements, for example. To do that, create a javascript page exporting a [generator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators) as default.
 
 ```js
 //posts.tmpl.js
+
+export const layout = "layouts/page-list.njk";
 
 export default function *(data, filters) {
   const pages = [1, 2, 3];
@@ -13,11 +15,10 @@ export default function *(data, filters) {
   for (const page of pages) {
     yield {
       permalink: `page-${page}`,
-      layout: "layouts/page-list.njk",
       content: `This is the page ${page}`
     }
   }
 }
 ```
 
-In this example, this page returns a generator that create three pages. Every `yield` must return an unique `permalink` (to generate different pages without override each other), and can include a layout and other data needed to render the final html. This is a very flexible way to generate multiple pages, not only for pagination but also for any other need.
+In this example, the page returns a generator that create three pages. Every `yield` must return an unique `permalink` (to generate different pages without override each other), and can include other data needed to render the final html. Note also that you can use named exports for those variables that are common to all pages.

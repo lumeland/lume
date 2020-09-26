@@ -2,7 +2,6 @@
 menu:
   - getting-started
   - creating-pages
-  - page-formats
   - filters
   - plugins
 ---
@@ -27,7 +26,7 @@ menu:
         <li>
           <strong>{{ search.folder(section).data.section }}</strong>
           <ul>
-          {% for page in search.pages(section) %}
+          {% for page in search.pages(section, "/", true, "alpha") %}
             <li>
               {% if page.data.url == url %}
               <a href="{{ page.data.url | url }}" aria-current="page">{{ page.data.title }}</a>

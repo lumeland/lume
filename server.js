@@ -141,7 +141,6 @@ export async function server(root, port) {
 
   //Live reload server
   const watcher = Deno.watchFs(root);
-  let socket;
 
   //Static files server
   listenAndServe({ port }, async (req) => {
@@ -194,7 +193,7 @@ export async function server(root, port) {
     let timer = 0;
     const changes = new Set();
     const { conn, r: bufReader, w: bufWriter, headers } = req;
-    socket = await acceptWebSocket({
+    const socket = await acceptWebSocket({
       conn,
       bufReader,
       bufWriter,

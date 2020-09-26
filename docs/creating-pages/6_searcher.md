@@ -6,9 +6,9 @@ In the layouts, there's a special object named `search` that allows to search ot
 
 ## Searching pages
 
-The function `pages` returns an array of pages. You can filter the pages by tags and directories.
+The function `search.pages()` returns an array of pages. You can filter the pages by tags and directories.
 
-To search by `tags`, just include the tag names as first argument, separated by space. For example, to search all pages containing the tags `post` and `html`, you have to execute `search.pages("post html")`:
+To search by tags, just include the tag names as first argument, separated by space. For example, to search all pages containing the tags `post` and `html`, you have to execute `search.pages("post html")`:
 
 ```html
 <ul>
@@ -28,7 +28,7 @@ The second argument is the folder. This allows to return only pages inside a spe
 </ul>
 ```
 
-There's a third argument to configure whether all subdirectories must be included or not. By default is `true` but you can disabled, to return only pages inside a directory but not in subdirectories.
+There's a third argument search pages recursively in all subdirectories. By default is `true` but you can disabled it to return only pages inside a directory but not in subdirectories.
 
 ```html
 <ul>

@@ -15,16 +15,16 @@ Here you can write markdown content
 
 ```
 
-In this example, the frontmatter contains two variables: `title`, that can be used as the page title, and `permalink`, a variable to customize the output URL of the page. Next to the front matter you can write the markdown with the page content.
+In this example, the frontmatter contains two variables: `title`, that can be used as the page title, and `permalink`, a variable to customize the output file name of the page. Below the front matter you can write the markdown with the page content.
 
 ## Standard variables
 
 There are some special variables that **lume** can understand:
 
 - `permalink`: To change the output path of the page
-- `date`: By default it's the file creation date but you can override it using this variable (or prepending it to the filename). This value is used to sort the pages.
+- `date`: By default it's the file creation date but you can override with this variable (or prepending it to the filename). This value is used to sort the pages in a list.
 - `layout`: To define the layout that is used to render the page
-- `draft`: To ignore pages in production environment. It allows you to create and view pages during development.
+- `draft`: To ignore pages in production environment, but the page is visible during development.
 - `tags`: Tags are used to group pages.
 
 ```yaml

@@ -7,6 +7,6 @@ layout: layout.njk
 
 It's inspired in other static site generators such [Jekyll](https://jekyllrb.com/) or [Eleventy](https://www.11ty.dev/) but it's faster, simpler and easier to use and configure, besides being super flexible.
 
-- Support for **multiple file formats** like `markdown`, `yaml`, `javascript`, `typescript`, `jsx`, `nunjucks` and it's easy to extend.
-- You can hook **any processor** to transform assets, like `css` or `js`.
+- Support for **multiple file formats** like `markdown`, `yaml`, `javascript`, `typescript`, `jsx`, `nunjucks` and it's easy to extend with more.
+- You can hook **transformers** to manipulate `html` and assets, like `css` or `js`.
 - It's Deno: forget about manage thousand of packages in `node_modules` or complex bundlers. **Lume** only install that you need. Clean, fast and secure.

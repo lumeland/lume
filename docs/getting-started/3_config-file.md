@@ -2,7 +2,7 @@
 title: Configuration
 ---
 
-**Lume** uses the `_config.js` file that gives you a lot of flexibility to customize how it build your site. This file must be placed in the site's root directory, and you can create it by your own or with the following command:
+**Lume** uses the `_config.js` file that gives you a lot of flexibility to customize how to build your site. This file must be placed in the site's root directory, and you can create it by your own or with the following command:
 
 ```sh
 lume --init
@@ -13,38 +13,51 @@ The `_config.js` file is a javascript module that exports the lume instance. The
 ```js
 import lume from "https://deno.land/x/lume/mod.js";
   
-const site = lume({
-  src: ".",
-  dest: "_site",
-});
-
-// Add other stuff here
+const site = lume();
 
 export default site;
 ```
 
 The available options are the following:
 
-Name   | Required | Description
+Name   | Default  | Description
 -------|----------|------------
-`src`  | Yes      | The source directory where lume read your files
-`dest` | Yes      | The destination to output the site
-`location` | No | The base location where the site will be published. Useful to generate absolute urls or if your site is published in a subfolder like `https://oscarotero.github.io/lume/`
-`dev`  | No       | Build the site in development mode or not. It's `false` by default and you can use `--dev` flag to set to true
+`src`  | `.`      | The source directory where lume read your files
+`dest` | `_site`  | The destination to output the site
+`location` | `""` | The base location where the site will be published. Useful to generate absolute urls or if your site is published in a subfolder like `https://oscarotero.github.io/lume/`
+`dev`  | `false`  | Build the site in development mode or not. You can also override this value with the `--dev` flag from CLI
+
+```js
+import lume from "https://deno.land/x/lume/mod.js";
+
+const site = lume({
+  src: "./src",
+  dest: "./dest",
+  location: new URL("https://example.com")
+});
+
+export default site;
+```
 
 ## Installing plugins
 
-Plugins add extra functionality or support for new formats. There are some basic plugins installed by default (like support for `markdown`, `yaml` or `json` formats), but there are other plugins that you have to enable. For example, to enable the svg plugin (that optimize svg files), you have to import and load in the config file:
+Plugins add extra functionality or support for new formats. There are some basic plugins installed by default (like support for `markdown`, `yaml` or `json` formats), but there are other plugins that you can enable. For example, to add the `svg` plugin (that optimize svg files), you have to import and load in the config file:
 
 ```js
+import lume from "https://deno.land/x/lume/mod.js";
 import svg from "https://deno.land/x/lume/plugins/svg.js";
+  
+const site = lume();
 
+//Add svg plugin
 site.use(svg());
+
+export default site;
 ```
 
 ## Copy static files
 
-Static files are files that don't have to be processed, like images, pdfs, video or audio. So it's better (and faster) to copy directly these files to dest folder with the `copy` function:
+Static files are files that don't have to be processed, like images, pdfs, videos or audios. So it's better (and faster) to copy directly these files to dest folder with the `copy` function:
 
 ```js
 // Copy the "img" folder to _site/img
@@ -54,7 +67,7 @@ site.copy("img");
 site.copy("favicon.ico");
 ```
 
-The path is relative to the root's of the src directory and the files and folders are copies as is, maintaining the same folder structure. If you want to change the output directory, use the second argument. For example:
+The path is relative to the root's of the src directory and the files and folders are copies as is, maintaining the same folder structure. If you want to change the output directory, use the second argument:
 
 ```js
 // Copy the "img" folder to _site/images

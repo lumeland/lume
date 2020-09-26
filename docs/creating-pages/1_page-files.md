@@ -3,7 +3,7 @@ title: Page files
 slug: pages
 ---
 
-Pages are the files that are loaded, rendered and saved as html files in your site. You can create pages using different formats but the simplest way is by adding a markdown file in the root directory with a suitable filename and `.md` as extension. Lume will load these files and generate html pages with them:
+Pages are the files that are loaded, processed and saved in your site. You can create pages using different formats but the simplest way is by adding a markdown file in the root directory with a suitable filename and `.md` as extension. Lume will load these files and generate html pages with them:
 
 ```
 .
@@ -24,7 +24,7 @@ You can organize the pages into subfolders, and this structure will be used also
 
 ## Page order
 
-Pages are ordered by date. There are different ways to assing a date to a page, using the file creation date as default. If you want to have full control over this, you can assign the data by prepending it to the filename using the `yyyy-mm-dd` syntax following by an underscore `_` (or `yyyy-mm-dd-hh-ii-ss` if you need also the time). Note that this part is removed to generate the final name:
+Pages are ordered by date, using the file creation date as default. If you want to have full control over this, you can assign the data by prepending it to the filename using the `yyyy-mm-dd` syntax following by an underscore `_` (or `yyyy-mm-dd-hh-ii-ss` if you need also the time). Note that this part is removed to generate the final name:
 
 ```
 .
@@ -47,4 +47,4 @@ If you don't mind the exact date, only want to keep an order, you can use just n
 
 ## Changing the output URL
 
-You might want to have a particular folder structure for your source files that changes for the built site. With the `permalink` variable you have full control of the output URL (see [Page variables](/creating-pages/page-variables))
+You might want to have a particular folder structure for your source files that is different for the built site. With the `permalink` variable you change the output filename of any page (see [Page variables](/creating-pages/page-variables))

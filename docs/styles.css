@@ -16,7 +16,7 @@
 
 body {
   font-family: 'PT Serif', serif;
-  line-height: 1.4;
+  line-height: 1.5;
   margin: auto;
   padding: 2vh 5vw 5vh 2vw;
   font-size: var(--font-normal);
@@ -55,6 +55,9 @@ body {
   list-style: none;
   margin: 0 0 1em 0;
   padding: 0;
+}
+.menu li {
+  margin: 0;
 }
 .menu strong {
   display: block;
@@ -107,6 +110,7 @@ header p:first-child {
 header h1 {
   margin-top: 0;
   font-size: var(--font-xbig);
+  line-height: 1;
 }
 header p {
   margin-top: 0;
@@ -128,4 +132,7 @@ td, th {
 }
 th {
   border-bottom: solid 1px;
+}
+li {
+  margin: 1em 0;
 }

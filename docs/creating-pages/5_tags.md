@@ -2,7 +2,7 @@
 title: Tags
 ---
 
-You can assign one or multiple tags to pages using the `tags` variable. This allows to group content in interesting ways.
+You can assign one or multiple tags to pages using the `tags` variable. Tags allows to group content in interesting ways.
 
 For example, in a blog site you may want to group post of different categories:
 
@@ -11,11 +11,11 @@ For example, in a blog site you may want to group post of different categories:
 title: The history of the static site generators
 tags:
   - post
-  - static-site-generators
+  - ssg
 ---
 ```
 
-This post have two tags, one to identify the type of page (post) and other with the topic (static-site-generators). To collect all pages tagged as `post` in the layouts, use the `search` object:
+This post have two tags, one to identify the type of page (post) and other with the topic (ssg). To collect all pages tagged as `post` in the layouts, use the `search` object:
 
 ```html
 <ul>
@@ -25,11 +25,11 @@ This post have two tags, one to identify the type of page (post) and other with 
 </ul>
 ```
 
-And to get all pages tagged as `post` and `static-site-generators`:
+And to get all pages tagged as `post` and `ssg` add the two tags names separated with a space:
 
 ```html
 <ul>
-  {% for post in search.pages("post static-site-generators") %}
+  {% for post in search.pages("post ssg") %}
   <li>{{ post.data.title }}</li>
   {% endfor %}
 </ul>
