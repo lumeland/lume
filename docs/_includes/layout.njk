@@ -12,6 +12,7 @@ menu:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ 'styles.css' | url }}">
+    <link href="{{ 'favicon-32x32.png' | url }}" rel="icon" type="image/png" sizes="32x32">
   </head>
 
   <body>
@@ -25,7 +26,7 @@ menu:
         <li>
           <strong>{{ search.folder(section).data.section }}</strong>
           <ul>
-          {% for page in search.pages(section, "/", true, "alpha") %}
+          {% for page in search.pages(section, "alpha") %}
             <li>
               {% if page.data.url == url %}
               <a href="{{ page.data.url | url }}" aria-current="page">{{ page.data.title }}</a>

@@ -1,5 +1,5 @@
 ---
-title: Page variables
+title: Page data
 ---
 
 Pages can contain arbitrary data. In markdown files, the data is defined in the **front matter** block, a block delimited by two triple-dashed lines containing [YAML](https://yaml.org/) code. Let's see an example:

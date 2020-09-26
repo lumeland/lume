@@ -45,6 +45,12 @@ If you don't mind the exact date, only want to keep an order, you can use just n
     └── 3_downloads.md         => /docs/downloads/index.html
 ```
 
+## Ignored pages
+
+All files or directories starting with `_` are ignored by **lume** to generate pages. This convention allows to place stuff that you don't want to include in your site output. This is the reason why the config file is `_config.js`, the output folder is `_site`, the includes folder is `_includes`, or shared data is named `_data`, all these things starts with an underscore so they are ignored on loading page files.
+
+Dot files and folders (such `.git`, `.gitignore`, etc) are also ignored.
+
 ## Changing the output URL
 
 You might want to have a particular folder structure for your source files that is different for the built site. With the `permalink` variable you change the output filename of any page (see [Page variables](/creating-pages/page-variables))

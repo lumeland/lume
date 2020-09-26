@@ -194,7 +194,7 @@ export default class Site {
   /**
    * Return the site pages
    */
-  *getPages(filter = null, directory = "/", recursive = true) {
+  *getPages(directory = "/", recursive = true) {
     const from = this.source.getDirectory(directory);
 
     for (const [page, dir] of from.getPages(recursive)) {
@@ -202,9 +202,7 @@ export default class Site {
         continue;
       }
 
-      if (!filter || filter(page)) {
-        yield [page, dir];
-      }
+      yield [page, dir];
     }
   }
 
@@ -239,8 +237,13 @@ export default class Site {
       this.#urlPage(page);
     }
 
-    for (const entry of this.getPages((page) => page.type !== "generator")) {
+    for (const entry of this.getPages()) {
       const [page, dir] = entry;
+
+      if (page.type === "generator") {
+        continue;
+      }
+
       const before = this.before.get(page.src.ext);
 
       if (before) {
@@ -298,15 +301,17 @@ export default class Site {
 
     if (typeof content === "function") {
       let data = page.fullData;
-      data.explorer = this.explorer;
+      data.search = this.searcher;
 
       const result = content(data, this.filters);
 
       if (String(result) === "[object Generator]") {
+        const name = basename(page.src.path);
         let num = 1;
 
         for (const pageData of result) {
-          dir.setPage(num, page.duplicate(pageData));
+          const key = `${name}-${num}${page.src.ext}`;
+          dir.setPage(key, page.duplicate(pageData));
           num++;
         }
 
@@ -328,7 +333,7 @@ export default class Site {
     let layout = pageData.layout;
 
     if (engine) {
-      pageData.explorer = this.explorer;
+      pageData.search = this.searcher;
       content = await engine.render(content, pageData);
     }
 

@@ -1,12 +1,12 @@
 ---
-title: Search object
+title: Search and collecting
 ---
 
 In the layouts, there's a special object named `search` that allows to search other pages and directories. It's useful to build menus or other navigation stuff.
 
 ## Searching pages
 
-The function `search.pages()` returns an array of pages. You can filter the pages by tags and directories.
+The function `search.pages()` returns an array of pages that you can filter by tags and sort.
 
 To search by tags, just include the tag names as first argument, separated by space. For example, to search all pages containing the tags `post` and `html`, you have to execute `search.pages("post html")`:
 
@@ -18,27 +18,18 @@ To search by tags, just include the tag names as first argument, separated by sp
 </ul>
 ```
 
-The second argument is the folder. This allows to return only pages inside a specific directory. By default is "/", but let's say you want to return all pages inside the directory "/docs":
+The second argument is the sort. The available options are:
+
+- `date`: The default value. Sort the pages by date
+- `file`: Sort the pages by filename
 
 ```html
 <ul>
-  {% for post in search.pages(null, "/docs") %}
+  {% for post in search.pages("post html", "file") %}
   <li>{{ post.data.title }}</li>
   {% endfor %}
 </ul>
 ```
-
-There's a third argument search pages recursively in all subdirectories. By default is `true` but you can disabled it to return only pages inside a directory but not in subdirectories.
-
-```html
-<ul>
-  {% for post in search.pages(null, "/docs", false) %}
-  <li>{{ post.data.title }}</li>
-  {% endfor %}
-</ul>
-```
-
-Note that the pages are sorted by date.
 
 ## Searching folders
 
