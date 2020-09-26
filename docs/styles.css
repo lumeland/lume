@@ -111,6 +111,7 @@ header h1 {
   margin-top: 0;
   font-size: var(--font-xbig);
   line-height: 1;
+  letter-spacing: -0.015em;
 }
 header p {
   margin-top: 0;
@@ -119,6 +120,15 @@ h2 {
   font-size: var(--font-big);
   margin-top: 2em;
   margin-bottom: .5em;
+  letter-spacing: -0.01em;
+}
+h3 {
+  font-size: var(--font-normal);
+  margin-top: 2em;
+  margin-bottom: 0;
+}
+h3 + p {
+  margin-top: .5em;
 }
 
 table {
