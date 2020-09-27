@@ -10,7 +10,7 @@ export default class Jsx extends Module {
   render(content, data) {
     if (!data.children && data.content) {
       data.children = React.createElement("div", {
-        dangerouslySetInnerHTML: { __html: data.content }
+        dangerouslySetInnerHTML: { __html: data.content },
       });
     }
 

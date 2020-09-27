@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - New argument to `search.pages()` to sort pages alphabetically
 - Added new argument `--help` and aliases `-h` and `-V` to cli
+- Added `eta` plugin, to support `Eta` template engine
 
 ### Removed
 - Arguments `path` and `recursive` in `search.pages()`
