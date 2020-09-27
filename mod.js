@@ -6,6 +6,7 @@ import json from "./plugins/json.js";
 import markdown from "./plugins/markdown.js";
 import modules from "./plugins/modules.js";
 import nunjucks from "./plugins/nunjucks.js";
+import search from "./plugins/search.js";
 import yaml from "./plugins/yaml.js";
 
 export default function (options = {}) {
@@ -18,5 +19,6 @@ export default function (options = {}) {
     .use(markdown())
     .use(modules())
     .use(nunjucks())
+    .use(search())
     .use(yaml());
 }

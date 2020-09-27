@@ -33,13 +33,13 @@ The second argument is the sort. The available options are:
 
 ## Searching folders
 
-The function `folder` returns an object representing a folder. This is useful to get the data associated to a that folder (stored in `_data`). For example:
+The function `folder` returns an object representing a folder. This is useful to get the data associated to that folder (stored in `_data`). For example:
 
 ```html
-<strong>{{ search.folder("/about").data.sectionTitle }}</strong>
+<strong>{{ search.folder("about").data.sectionTitle }}</strong>
 
 <ul>
-  {% for post in search.pages(null, "/about", false) %}
+  {% for post in search.pages("about") %}
   <li>{{ post.data.title }}</li>
   {% endfor %}
 </ul>

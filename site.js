@@ -15,14 +15,13 @@ import {
 import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
-import Searcher from "./searcher.js";
 
 export default class Site {
-  searcher = new Searcher(this);
   engines = new Map();
   before = new Map();
   after = new Map();
   filters = new Map();
+  helpers = {};
 
   constructor(options = {}) {
     this.options = {
@@ -113,6 +112,14 @@ export default class Site {
       engine.addFilter(name, filter);
     }
 
+    return this;
+  }
+
+  /**
+   * Register a helper that will be merged to page content
+   */
+  helper(name, helper) {
+    this.helpers[name] = helper;
     return this;
   }
 
@@ -300,9 +307,7 @@ export default class Site {
     const content = page.content;
 
     if (typeof content === "function") {
-      let data = page.fullData;
-      data.search = this.searcher;
-
+      const data = { ...page.fullData, ...this.helpers };
       const result = content(data, this.filters);
 
       if (String(result) === "[object Generator]") {
@@ -329,11 +334,10 @@ export default class Site {
     const engine = this.#getEngine(page.src.ext);
 
     let content = page.content;
-    let pageData = page.fullData;
+    let pageData = { ...page.fullData, ...this.helpers };
     let layout = pageData.layout;
 
     if (engine) {
-      pageData.search = this.searcher;
       content = await engine.render(content, pageData);
     }
 
@@ -345,7 +349,7 @@ export default class Site {
         ...layoutData,
         ...pageData,
         content,
-        search: this.searcher,
+        ...this.helpers,
       };
 
       content = await engine.render(layoutData.content, pageData);
