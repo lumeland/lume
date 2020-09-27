@@ -8,6 +8,9 @@ These examples assume that you have installed lume as the `lume` executable:
 # Show the version
 lume --version
 
+# Show help information
+lume --help
+
 # Create a _config.js file
 lume --init
 

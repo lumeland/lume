@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - New argument to `search.pages()` to sort pages alphabetically
+- Added new argument `--help` and aliases `-h` and `-V` to cli
 
 ### Removed
 - Arguments `path` and `recursive` in `search.pages()`

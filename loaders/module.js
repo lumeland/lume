@@ -1,5 +1,4 @@
 export default async function (path) {
-  console.log(`file://${path}`);
   const fileData = await import(`file://${path}`);
   const data = {};
 
