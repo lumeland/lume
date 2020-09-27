@@ -1,1 +1,1 @@
-export * from "https://raw.githubusercontent.com/b-fuze/deno-dom/master/deno-dom-wasm.ts";
+export * from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
