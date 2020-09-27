@@ -1,4 +1,4 @@
-import * as eta from "https://deno.land/x/eta@v1.10.0";
+import * as eta from "../deps/eta.js";
 
 import TemplateEngine from "./templateEngine.js";
 
