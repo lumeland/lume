@@ -8,18 +8,13 @@ export default async function (path) {
 
 export function parseFrontmatter(content) {
   if (content.startsWith("---")) {
-    const frontMatter = [];
-    const lines = content.split(/\r?\n/);
-    lines.shift();
+    const end = content.indexOf("---", 3);
 
-    while (lines[0] && !lines[0].startsWith("---")) {
-      frontMatter.push(lines.shift());
+    if (end !== -1) {
+      const data = parse(content.slice(3, end));
+      data.content = content.slice(end + 3);
+      return data;
     }
-    lines.shift();
-
-    const data = parse(frontMatter.join("\n"));
-    data.content = lines.join("\n");
-    return data;
   }
 
   return { content };
