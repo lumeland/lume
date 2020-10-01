@@ -22,6 +22,7 @@ export default class Site {
   after = new Map();
   filters = new Map();
   helpers = {};
+  listeners = new Map();
 
   constructor(options = {}) {
     this.options = {
@@ -34,6 +35,34 @@ export default class Site {
     };
 
     this.source = new Source(this.options.src);
+  }
+
+  /**
+   * Adds an event
+   */
+  addEventListener(type, listener) {
+    const listeners = this.listeners.get(type) || new Set();
+    listeners.add(listener);
+    this.listeners.set(type, listeners);
+    return this;
+  }
+
+  /**
+   * Dispatch an event
+   */
+  dispatchEvent(event) {
+    const type = event.type;
+    const listeners = this.listeners.get(type);
+
+    if (!listeners) {
+      return;
+    }
+
+    for (const listener of listeners) {
+      if (listener(event) === false) {
+        return false;
+      }
+    }
   }
 
   /**
@@ -131,11 +160,20 @@ export default class Site {
     return this;
   }
 
+  /** 
+   * Clear the dest folder
+   */
+  async clear() {
+    await emptyDir(this.options.dest);
+  }
+
   /**
    * Build the entire site
    */
   async build() {
-    await emptyDir(this.options.dest);
+    this.dispatchEvent({ type: "beforeBuild" });
+
+    await this.clear();
 
     for (const [from, to] of this.source.staticFiles) {
       await this.#copyStatic(from, to);
@@ -143,12 +181,16 @@ export default class Site {
 
     await this.source.loadDirectory();
     await this.#buildPages();
+
+    this.dispatchEvent({ type: "afterBuild" });
   }
 
   /**
    * Rebuild some files that might be changed
    */
   async update(files) {
+    this.dispatchEvent({ type: "beforeBuild" });
+
     for (const file of files) {
       // file inside a _data file or folder
       if (file.includes("/_data/") || file.match(/\/_data.\w+$/)) {
@@ -174,7 +216,9 @@ export default class Site {
       await this.source.loadFile(file);
     }
 
-    return this.#buildPages();
+    await this.#buildPages();
+
+    this.dispatchEvent({ type: "afterBuild" });
   }
 
   /**
