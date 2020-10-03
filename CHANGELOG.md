@@ -9,11 +9,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Added events: `beforeBuild` and `afterBuild`
 - Added helper `paginate()`
+- `site.process()` function
 
 ### Fixed
 - Improved performance executing some operations in parallel
 - Fixed page duplications
 - Fixed url filter with non-string values
+
+### Removed
+- `site.beforeRender()` and `site.afterRender()` transformers. Use `site.process()` instead, that is the equivalent to `afterRender`.
 
 ## [0.6.0] - 2020-09-28
 ### Added

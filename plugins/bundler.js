@@ -4,10 +4,10 @@ export default function () {
   return (site) => {
     site.load([".ts", ".js"], textLoader, true);
 
-    site.afterRender([".ts", ".js"], transform);
+    site.process([".ts", ".js"], processor);
   };
 
-  async function transform(page) {
+  async function processor(page) {
     const from = page.src.path + page.src.ext;
 
     const [diagnostics, emit] = await Deno.bundle(from, {

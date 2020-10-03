@@ -1,40 +1,40 @@
 import textLoader from "../loaders/text.js";
 import {
-  SVGO,
   cleanupAttrs,
-  inlineStyles,
-  removeDoctype,
-  removeXMLProcInst,
-  removeComments,
-  removeMetadata,
-  removeTitle,
-  removeDesc,
-  removeUselessDefs,
-  removeEditorsNSData,
-  removeEmptyAttrs,
-  removeHiddenElems,
-  removeEmptyText,
-  removeEmptyContainers,
-  removeViewBox,
   cleanupEnableBackground,
-  minifyStyles,
-  convertStyleToAttrs,
-  convertColors,
-  convertPathData,
-  convertTransform,
-  removeUnknownsAndDefaults,
-  removeNonInheritableGroupAttrs,
-  removeUselessStrokeAndFill,
-  removeUnusedNS,
   cleanupIDs,
   cleanupNumericValues,
+  collapseGroups,
+  convertColors,
+  convertEllipseToCircle,
+  convertPathData,
+  convertShapeToPath,
+  convertStyleToAttrs,
+  convertTransform,
+  inlineStyles,
+  mergePaths,
+  minifyStyles,
   moveElemsAttrsToGroup,
   moveGroupAttrsToElems,
-  collapseGroups,
-  mergePaths,
-  convertShapeToPath,
-  convertEllipseToCircle,
+  removeComments,
+  removeDesc,
+  removeDoctype,
+  removeEditorsNSData,
+  removeEmptyAttrs,
+  removeEmptyContainers,
+  removeEmptyText,
+  removeHiddenElems,
+  removeMetadata,
+  removeNonInheritableGroupAttrs,
+  removeTitle,
+  removeUnknownsAndDefaults,
+  removeUnusedNS,
+  removeUselessDefs,
+  removeUselessStrokeAndFill,
+  removeViewBox,
+  removeXMLProcInst,
   sortDefsChildren,
+  SVGO,
 } from "../deps/svgo.js";
 
 const config = {
@@ -83,9 +83,9 @@ export default function () {
   return (site) => {
     site.load([".svg"], textLoader, true);
 
-    site.afterRender([".svg"], transform);
+    site.process([".svg"], processor);
 
-    async function transform(page) {
+    async function processor(page) {
       const result = await svgo.optimize(page.content);
       page.content = result.data;
     }

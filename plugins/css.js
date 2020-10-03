@@ -1,17 +1,12 @@
 import textLoader from "../loaders/text.js";
 import { join } from "../deps/path.js";
-import {
-  parse,
-  Tasks,
-  Coder,
-  ImportPlugin,
-} from "../deps/stylecow.js";
+import { Coder, ImportPlugin, parse, Tasks } from "../deps/stylecow.js";
 import { postcss, postcssPresetEnv } from "../deps/postcss.js";
 
 export default function () {
   const coder = new Coder("normal");
   const tasks = new Tasks().use(ImportPlugin);
-  const processor = postcss([
+  const runner = postcss([
     postcssPresetEnv({
       stage: 1,
       features: {
@@ -23,9 +18,9 @@ export default function () {
   return (site) => {
     site.load([".css"], textLoader, true);
 
-    site.afterRender([".css"], transform);
+    site.process([".css"], processor);
 
-    async function transform(page) {
+    async function processor(page) {
       const from = join(site.options.src, page.src.path + page.src.ext);
       const to = join(site.options.dest, page.dest.path + page.dest.ext);
 
@@ -34,7 +29,7 @@ export default function () {
       tasks.run(css);
 
       //Fix the code with postcss
-      const result = await processor.process(
+      const result = await runner.process(
         coder.run(css).css,
         { from, to },
       );

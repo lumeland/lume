@@ -1,4 +1,4 @@
-import loader from "../loaders/text.js";
+import textLoader from "../loaders/text.js";
 import {
   markdownIt,
   markdownItAttrs,
@@ -32,19 +32,22 @@ export default function () {
       .use(markdownItReplaceLinks);
 
     site.load([".md", ".markdown"], loader);
-    site.beforeRender([".md", ".markdown"], transform);
     site.filter("md", filter);
-
-    function transform(page) {
-      if (page.content) {
-        page.content = markdown.render(page.content);
-      }
-    }
 
     function filter(string, inline = false) {
       return inline
         ? markdown.renderInline(string || "").trim()
         : markdown.render(string || "").trim();
+    }
+
+    async function loader(path) {
+      const data = await textLoader(path);
+
+      if (data.content) {
+        data.content = markdown.render(data.content);
+      }
+
+      return data;
     }
   };
 }

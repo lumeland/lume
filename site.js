@@ -1,17 +1,12 @@
 import {
-  join,
-  dirname,
-  resolve,
-  extname,
   basename,
+  dirname,
+  extname,
+  join,
   normalize,
+  resolve,
 } from "./deps/path.js";
-import {
-  ensureDir,
-  emptyDir,
-  exists,
-  copy,
-} from "./deps/fs.js";
+import { copy, emptyDir, ensureDir, exists } from "./deps/fs.js";
 import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
@@ -19,11 +14,10 @@ import { concurrent } from "./utils.js";
 
 export default class Site {
   engines = new Map();
-  before = new Map();
-  after = new Map();
   filters = new Map();
   helpers = {};
   listeners = new Map();
+  processors = new Map();
 
   constructor(options = {}) {
     this.options = {
@@ -95,25 +89,13 @@ export default class Site {
   }
 
   /**
-   * Register a transformer executed before render some extensions
+   * Register a processor for some extensions
    */
-  beforeRender(extensions, transformer) {
+  process(extensions, processor) {
     extensions.forEach((extension) => {
-      const transformers = this.before.get(extension) || [];
-      transformers.push(transformer);
-      this.before.set(extension, transformers);
-    });
-    return this;
-  }
-
-  /**
-   * Register a transformer executed after render some extensions
-   */
-  afterRender(extensions, transformer) {
-    extensions.forEach((extension) => {
-      const transformers = this.after.get(extension) || [];
-      transformers.push(transformer);
-      this.after.set(extension, transformers);
+      const processors = this.processors.get(extension) || [];
+      processors.push(processor);
+      this.processors.set(extension, processors);
     });
     return this;
   }
@@ -298,25 +280,17 @@ export default class Site {
           return;
         }
 
-        const before = this.before.get(page.src.ext);
-
-        if (before) {
-          for (const transform of before) {
-            await transform(page, dir);
-          }
-        }
-
         await this.#renderPage(page, dir);
 
         if (!page.content) {
           return;
         }
 
-        const after = this.after.get(page.dest.ext);
+        const processors = this.processors.get(page.dest.ext);
 
-        if (after) {
-          for (const transform of after) {
-            await transform(page, dir);
+        if (processors) {
+          for (const process of processors) {
+            await process(page, dir);
           }
         }
 

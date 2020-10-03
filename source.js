@@ -1,9 +1,4 @@
-import {
-  join,
-  dirname,
-  basename,
-  extname,
-} from "./deps/path.js";
+import { basename, dirname, extname, join } from "./deps/path.js";
 import { existsSync } from "./deps/fs.js";
 import { Directory, Page } from "./filesystem.js";
 import { concurrent } from "./utils.js";
