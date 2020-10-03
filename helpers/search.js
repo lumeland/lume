@@ -1,10 +1,14 @@
-export default class Searcher {
+export default class Search {
+  #site = null;
+  #cache = null;
+
   constructor(site) {
-    this.site = site;
+    this.#site = site;
+    this.#cache = null;
   }
 
   folder(path = "/") {
-    return this.site.source.getDirectory(path);
+    return this.#site.source.getDirectory(path);
   }
 
   pages(tags, sort) {
@@ -26,10 +30,17 @@ export default class Searcher {
       return true;
     };
 
-    return Array.from(this.site.getPages())
-      .map((entry) => entry[0])
+    if (!this.#cache) {
+      this.#cache = Array.from(this.#site.getPages()).map((entry) => entry[0]);
+    }
+
+    return this.#cache
       .filter(filter)
       .sort(sort === "file" ? sortByFilename : sortByDate);
+  }
+
+  refresh() {
+    this.#cache = null;
   }
 }
 

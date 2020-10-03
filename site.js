@@ -359,12 +359,17 @@ export default class Site {
       const result = content(data, this.filters);
 
       if (String(result) === "[object Generator]") {
-        const name = basename(page.src.path);
         let num = 1;
 
         for (const pageData of result) {
-          const key = `${name}-${num}${page.src.ext}`;
-          dir.setPage(key, page.duplicate(pageData));
+          const key = `${page.src.path}-${num}${page.src.ext}`;
+          const value = page.duplicate(pageData);
+
+          if (value.data.content === content) {
+            value.data.content = null;
+          }
+
+          dir.setPage(key, value);
           num++;
         }
 

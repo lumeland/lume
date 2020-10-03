@@ -2,7 +2,7 @@
 title: Search and collecting
 ---
 
-In the layouts, there's a special object named `search` that allows to search other pages and directories. It's useful to build menus or other navigation stuff.
+In the layouts, you have the `search` helper that allows to search other pages and directories. It's useful to build menus or other navigation stuff.
 
 ## Searching pages
 

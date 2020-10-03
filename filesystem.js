@@ -64,7 +64,7 @@ class Base {
 export class Page extends Base {
   dest = {};
   type = "page";
-  content = null;
+  #content = null;
 
   duplicate(data = {}) {
     const page = new Page(this.src);
@@ -72,6 +72,14 @@ export class Page extends Base {
     page.data = { ...this.data, ...data };
 
     return page;
+  }
+
+  set content(content) {
+    this.#content = content;
+  }
+
+  get content() {
+    return this.#content;
   }
 }
 

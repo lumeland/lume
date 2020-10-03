@@ -8,9 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.7.0] - Unreleased
 ### Added
 - Added events: `beforeBuild` and `afterBuild`
+- Added helper `paginate()`
 
 ### Fixed
 - Improved performance executing some operations in parallel
+- Fixed page duplications
+- Fixed url filter with non-string values
 
 ## [0.6.0] - 2020-09-28
 ### Added
