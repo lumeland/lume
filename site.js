@@ -15,6 +15,7 @@ import {
 import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
+import { concurrent } from "./utils.js";
 
 export default class Site {
   engines = new Map();
@@ -288,37 +289,40 @@ export default class Site {
       this.#urlPage(page);
     }
 
-    for (const entry of this.getPages()) {
-      const [page, dir] = entry;
+    return concurrent(
+      this.getPages(),
+      async (entry) => {
+        const [page, dir] = entry;
 
-      if (page.type === "generator") {
-        continue;
-      }
-
-      const before = this.before.get(page.src.ext);
-
-      if (before) {
-        for (const transform of before) {
-          await transform(page, dir);
+        if (page.type === "generator") {
+          return;
         }
-      }
 
-      await this.#renderPage(page, dir);
+        const before = this.before.get(page.src.ext);
 
-      if (!page.content) {
-        continue;
-      }
-
-      const after = this.after.get(page.dest.ext);
-
-      if (after) {
-        for (const transform of after) {
-          await transform(page, dir);
+        if (before) {
+          for (const transform of before) {
+            await transform(page, dir);
+          }
         }
-      }
 
-      await this.#savePage(page);
-    }
+        await this.#renderPage(page, dir);
+
+        if (!page.content) {
+          return;
+        }
+
+        const after = this.after.get(page.dest.ext);
+
+        if (after) {
+          for (const transform of after) {
+            await transform(page, dir);
+          }
+        }
+
+        await this.#savePage(page);
+      },
+    );
   }
 
   /**

@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Added events: `beforeBuild` and `afterBuild`
 
+### Fixed
+- Improved performance executing some operations in parallel
+
 ## [0.6.0] - 2020-09-28
 ### Added
 - New argument to `search.pages()` to sort pages alphabetically

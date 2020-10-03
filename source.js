@@ -6,6 +6,7 @@ import {
 } from "./deps/path.js";
 import { existsSync } from "./deps/fs.js";
 import { Directory, Page } from "./filesystem.js";
+import { concurrent } from "./utils.js";
 
 export default class Source {
   root = new Directory({ path: "/" });
@@ -61,9 +62,10 @@ export default class Source {
   async loadDirectory(directory = this.root) {
     const path = join(this.path, directory.src.path);
 
-    for (const entry of Deno.readDirSync(path)) {
-      await this.#loadEntry(directory, entry);
-    }
+    return concurrent(
+      Deno.readDir(path),
+      (entry) => this.#loadEntry(directory, entry),
+    );
   }
 
   /**
