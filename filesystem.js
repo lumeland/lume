@@ -63,7 +63,6 @@ class Base {
  */
 export class Page extends Base {
   dest = {};
-  type = "page";
   #content = null;
 
   duplicate(data = {}) {
@@ -114,7 +113,7 @@ export class Directory extends Base {
 
   *getPages(recursive = true) {
     for (const page of this.pages.values()) {
-      yield [page, this];
+      yield page;
     }
 
     if (recursive) {

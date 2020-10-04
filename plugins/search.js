@@ -7,6 +7,5 @@ export default function () {
 
     const search = new Search(site);
     site.helper("search", search);
-    site.addEventListener("beforeBuild", () => search.refresh());
   };
 }

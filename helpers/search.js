@@ -1,10 +1,8 @@
 export default class Search {
   #site = null;
-  #cache = null;
 
   constructor(site) {
     this.#site = site;
-    this.#cache = null;
   }
 
   folder(path = "/") {
@@ -30,17 +28,9 @@ export default class Search {
       return true;
     };
 
-    if (!this.#cache) {
-      this.#cache = Array.from(this.#site.getPages()).map((entry) => entry[0]);
-    }
-
-    return this.#cache
+    return this.#site.pages
       .filter(filter)
       .sort(sort === "file" ? sortByFilename : sortByDate);
-  }
-
-  refresh() {
-    this.#cache = null;
   }
 }
 

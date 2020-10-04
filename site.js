@@ -18,6 +18,7 @@ export default class Site {
   helpers = {};
   listeners = new Map();
   processors = new Map();
+  pages = [];
 
   constructor(options = {}) {
     this.options = {
@@ -169,7 +170,7 @@ export default class Site {
   }
 
   /**
-   * Rebuild some files that might be changed
+   * Reload some files that might be changed
    */
   async update(files) {
     this.dispatchEvent({ type: "beforeBuild" });
@@ -226,21 +227,6 @@ export default class Site {
   }
 
   /**
-   * Return the site pages
-   */
-  *getPages(directory = "/", recursive = true) {
-    const from = this.source.getDirectory(directory);
-
-    for (const [page, dir] of from.getPages(recursive)) {
-      if (page.data.draft && !this.options.dev) {
-        continue;
-      }
-
-      yield [page, dir];
-    }
-  }
-
-  /**
    * Copy a static file
    */
   async #copyStatic(from, to) {
@@ -258,29 +244,28 @@ export default class Site {
    * Build the pages
    */
   async #buildPages() {
-    for (const entry of this.getPages()) {
-      const [page, dir] = entry;
+    this.pages = [];
+
+    for (const page of this.source.root.getPages()) {
+      if (page.data.draft && !this.options.dev) {
+        continue;
+      }
 
       page.content = page.data.content;
 
-      if (this.#expandPage(page, dir)) {
-        page.type = "generator";
+      if (this.#expandPage(page)) {
         continue;
       }
 
       this.#urlPage(page);
+
+      this.pages.push(page);
     }
 
     return concurrent(
-      this.getPages(),
-      async (entry) => {
-        const [page, dir] = entry;
-
-        if (page.type === "generator") {
-          return;
-        }
-
-        await this.#renderPage(page, dir);
+      this.pages,
+      async (page) => {
+        await this.#renderPage(page);
 
         if (!page.content) {
           return;
@@ -290,7 +275,7 @@ export default class Site {
 
         if (processors) {
           for (const process of processors) {
-            await process(page, dir);
+            await process(page);
           }
         }
 
