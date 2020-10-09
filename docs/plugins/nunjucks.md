@@ -1,5 +1,5 @@
 ---
-title: Nunkucks
+title: Nunjucks
 ---
 
 [Nunjucks](https://mozilla.github.io/nunjucks/) is powerful template language created by Mozilla and inspired by **ninja2**. This format is **enabled by default** and you can use it not only for page layouts, but also to create pages.
