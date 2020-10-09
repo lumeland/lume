@@ -20,12 +20,13 @@ export default site;
 
 The available options are the following:
 
-Name   | Default  | Description
--------|----------|------------
-`src`  | `.`      | The source directory where lume read your files
-`dest` | `_site`  | The destination to output the site
-`location` | `""` | The base location where the site will be published. Useful to generate absolute urls or if your site is published in a subfolder like `https://oscarotero.github.io/lume/`
-`dev`  | `false`  | Build the site in development mode or not. You can also override this value with the `--dev` flag from CLI
+Name         | Default  | Description
+-------------|----------|------------
+`src`        | `.`      | The source directory where lume read your files
+`dest`       | `_site`  | The destination to output the site
+`location`   | `""`     | The base location where the site will be published. Useful to generate absolute urls or if your site is published in a subfolder like `https://oscarotero.github.io/lume/`
+`dev`        | `false`  | Build the site in development mode or not. You can also override this value with the `--dev` flag from CLI
+`prettyUrls` | `true`   | To generate pretty urls, for example `/about-us/` instead `/about-us.html`. Set `false` to disable it.
 
 ```js
 import lume from "https://deno.land/x/lume/mod.js";

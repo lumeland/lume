@@ -12,6 +12,13 @@ import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
 import { concurrent } from "./utils.js";
 
+const defaults = {
+  src: "./",
+  dest: "./_site",
+  dev: false,
+  prettyUrls: true,
+};
+
 export default class Site {
   engines = new Map();
   filters = new Map();
@@ -21,10 +28,13 @@ export default class Site {
   pages = [];
 
   constructor(options = {}) {
+    options = { ...defaults, ...options };
+
     this.options = {
-      src: resolve(options.src || "./"),
-      dest: resolve(options.dest || "./_site"),
-      dev: !!options.dev,
+      src: resolve(options.src),
+      dest: resolve(options.dest),
+      dev: options.dev,
+      prettyUrls: options.prettyUrls,
       location: (typeof options.location === "string")
         ? new URL(options.location)
         : options.location,
@@ -129,7 +139,7 @@ export default class Site {
   }
 
   /**
-   * Register a helper that will be merged to page content
+   * Register a helper accesible by layouts
    */
   helper(name, helper) {
     this.helpers[name] = helper;
@@ -298,11 +308,14 @@ export default class Site {
         : page.data.permalink;
     }
 
-    if (dest.ext === ".html" && basename(dest.path) !== "index") {
+    if (
+      this.options.prettyUrls && dest.ext === ".html" &&
+      basename(dest.path) !== "index"
+    ) {
       dest.path = join(dest.path, "index");
     }
 
-    page.data.url = (dest.ext === ".html" && dest.path.endsWith("/index"))
+    page.data.url = (dest.ext === ".html" && basename(dest.path) === "index")
       ? dest.path.slice(0, -5)
       : dest.path + dest.ext;
   }
