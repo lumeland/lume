@@ -53,4 +53,4 @@ Dot files and folders (such `.git`, `.gitignore`, etc) are also ignored.
 
 ## Changing the output URL
 
-You might want to have a particular folder structure for your source files that is different for the built site. With the `permalink` variable you change the output filename of any page (see [Page variables](/creating-pages/page-variables))
+You might want to have a particular folder structure for your source files that is different for the built site. With the `permalink` variable you change the output filename of any page (see [Page data](/creating-pages/page-data))
