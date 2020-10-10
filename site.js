@@ -306,9 +306,11 @@ export default class Site {
       dest.path = ext
         ? page.data.permalink.slice(0, -ext.length)
         : page.data.permalink;
-    }
 
-    if (
+      if (!ext && this.options.prettyUrls) {
+        dest.path = join(dest.path, "index");
+      }
+    } else if (
       this.options.prettyUrls && dest.ext === ".html" &&
       basename(dest.path) !== "index"
     ) {

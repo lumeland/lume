@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.7.1] - 2020-10-10
+### Fixed
+- Permalinks does not respect the `prettyUrls` configuration  [#1]
+- Improved docs to update version
+
 ## [0.7.0] - 2020-10-09
 ### Added
 - Added events: `beforeBuild` and `afterBuild`
@@ -111,6 +116,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## 0.1.0 - 2020-09-13
 First version
 
+[#1]: https://github.com/oscarotero/lume/issues/1
+
+[0.7.1]: https://github.com/oscarotero/lume/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/oscarotero/lume/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/oscarotero/lume/compare/v0.5.1...v0.6.0
 [0.5.1]: https://github.com/oscarotero/lume/compare/v0.5.0...v0.5.1
