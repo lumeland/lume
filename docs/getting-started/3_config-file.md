@@ -80,14 +80,14 @@ site.copy("static-files/favicons/favicon.ico", "favicon.ico");
 
 ## Template filters
 
-Template filters are functions that you can use in your layouts to modify content. Some template engines like Nunkucks [have several builtin filters](https://mozilla.github.io/nunjucks/templating.html#builtin-filters), but you can add your owns:
+Template filters are functions that you can use in your layouts to modify content. Some template engines like Nunjucks [have several builtin filters](https://mozilla.github.io/nunjucks/templating.html#builtin-filters), but you can add your owns:
 
 ```js
 // Filter to convert a string to uppercase
 site.filter("uppercase", (value) => value.toUpperCase());
 ```
 
-Now, use it in your Nunkucks templates:
+Now, use it in your Nunjucks templates:
 
 ```html
 <h1>{{ title | uppercase }}</h1>
