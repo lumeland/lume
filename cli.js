@@ -8,7 +8,7 @@ if (import.meta.main) {
 }
 
 export default async function cli(args) {
-  const version = "v0.7.2";
+  const version = "v0.7.3";
   let stop = false;
   const options = parse(args, {
     boolean: ["serve", "init", "version", "dev", "help"],
@@ -71,7 +71,7 @@ OPTIONS:
   if (options.init) {
     Deno.writeTextFileSync(
       configFile,
-      `import lume from "https://deno.land/x/lume@${version}/mod.js";
+      `import lume from "https://deno.land/x/lume/mod.js";
 
 const site = lume({
   src: ".",
@@ -134,9 +134,13 @@ export default site;
       const files = new Set(changes);
       changes.clear();
 
-      await site.update(files);
-      console.log("Done");
-      console.log("");
+      try {
+        await site.update(files);
+        console.log("Done");
+        console.log("");
+      } catch (err) {
+        console.error(err);
+      }
     };
 
     for await (const event of watcher) {

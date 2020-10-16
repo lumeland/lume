@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.7.3] - 2020-10-17
+### Changed
+- Removed the version of the import in the `_config.js` file generated with `--init`
+
+### Fixed
+- Support for special characters in the url to the HTTP server
+- Rebuild inside a try/catch to prevent die on error.
+
 ## [0.7.2] - 2020-10-10
 ### Fixed
 - Updated version in cli
@@ -122,6 +130,7 @@ First version
 
 [#1]: https://github.com/oscarotero/lume/issues/1
 
+[0.7.3]: https://github.com/oscarotero/lume/compare/v0.7.2...v0.7.3
 [0.7.2]: https://github.com/oscarotero/lume/compare/v0.7.1...v0.7.2
 [0.7.1]: https://github.com/oscarotero/lume/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/oscarotero/lume/compare/v0.6.0...v0.7.0

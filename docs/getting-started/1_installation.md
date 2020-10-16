@@ -26,8 +26,8 @@ More info about [how to install scripts in Deno](https://deno.land/manual/tools/
 
 ## Update
 
-Updating **lume** is like install it, but you need to add `-f` (to override the previous installation) and `--reload` to remove cache and reload all dependencies:
+Updating **lume** is like install it, but you need to add `-f` (to override the previous installation) and `-r` to remove cache and reload all dependencies:
 
 ```sh
-deno run -f --reload --unstable --allow-read --allow-write --allow-net https://deno.land/x/lume/cli.js
+deno run -f -r --unstable --allow-read --allow-write --allow-net https://deno.land/x/lume/cli.js
 ```

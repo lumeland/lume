@@ -153,7 +153,7 @@ export async function server(root, port) {
   });
 
   async function handleFile(req) {
-    let path = join(root, req.url.split("?", 2).shift());
+    let path = join(root, decodeURIComponent(req.url.split("?", 2).shift()));
 
     try {
       const info = await Deno.stat(path);
