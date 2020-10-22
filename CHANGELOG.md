@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.8.0] - Unreleased
+### Changed
+- Renamed `helper()` to `data()`
+
 ## [0.7.3] - 2020-10-17
 ### Changed
 - Removed the version of the import in the `_config.js` file generated with `--init`

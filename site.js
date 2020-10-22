@@ -22,7 +22,7 @@ const defaults = {
 export default class Site {
   engines = new Map();
   filters = new Map();
-  helpers = {};
+  extraData = {};
   listeners = new Map();
   processors = new Map();
   pages = [];
@@ -139,10 +139,10 @@ export default class Site {
   }
 
   /**
-   * Register a helper accesible by layouts
+   * Register extra data accesible by layouts
    */
-  helper(name, helper) {
-    this.helpers[name] = helper;
+  data(name, data) {
+    this.extraData[name] = data;
     return this;
   }
 
@@ -329,7 +329,7 @@ export default class Site {
     const content = page.content;
 
     if (typeof content === "function") {
-      const data = { ...page.fullData, ...this.helpers };
+      const data = { ...page.fullData, ...this.extraData };
       const result = content(data, this.filters);
 
       if (String(result) === "[object Generator]") {
@@ -361,7 +361,7 @@ export default class Site {
     const engine = this.#getEngine(page.src.ext);
 
     let content = page.content;
-    let pageData = { ...page.fullData, ...this.helpers };
+    let pageData = { ...page.fullData, ...this.extraData };
     let layout = pageData.layout;
 
     if (engine) {
@@ -376,7 +376,7 @@ export default class Site {
         ...layoutData,
         ...pageData,
         content,
-        ...this.helpers,
+        ...this.extraData,
       };
 
       content = await engine.render(layoutData.content, pageData);
