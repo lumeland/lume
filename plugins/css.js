@@ -16,8 +16,7 @@ export default function () {
   ]);
 
   return (site) => {
-    site.load([".css"], textLoader, true);
-
+    site.loadAssets([".css"], textLoader);
     site.process([".css"], processor);
 
     async function processor(page) {

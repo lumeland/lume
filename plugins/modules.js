@@ -4,6 +4,6 @@ import loader from "../loaders/module.js";
 export default function () {
   return (site) => {
     site.engine([".tmpl.js", ".tmpl.ts"], new Module(site));
-    site.data([".js", ".ts"], loader);
+    site.loadData([".js", ".ts"], loader);
   };
 }

@@ -81,8 +81,7 @@ export default function () {
   const svgo = new SVGO(config);
 
   return (site) => {
-    site.load([".svg"], textLoader, true);
-
+    site.loadAssets([".svg"], textLoader);
     site.process([".svg"], processor);
 
     async function processor(page) {

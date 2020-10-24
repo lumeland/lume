@@ -82,20 +82,25 @@ export default class Site {
   /**
    * Register a data loader for some extensions
    */
-  data(extensions, loader) {
+  loadData(extensions, loader) {
     extensions.forEach((extension) => this.source.data.set(extension, loader));
     return this;
   }
 
   /**
-   * Register a page/assets loader for some extensions
+   * Register a page loader for some extensions
    */
-  load(extensions, loader, asset = false) {
+  loadPages(extensions, loader) {
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
+    return this;
+  }
 
-    if (asset) {
-      extensions.forEach((extension) => this.source.assets.add(extension));
-    }
+  /**
+   * Register an assets loader for some extensions
+   */
+  loadAssets(extensions, loader) {
+    extensions.forEach((extension) => this.source.pages.set(extension, loader));
+    extensions.forEach((extension) => this.source.assets.add(extension));
     return this;
   }
 
@@ -116,7 +121,7 @@ export default class Site {
    */
   engine(extensions, engine) {
     extensions.forEach((extension) => this.engines.set(extension, engine));
-    this.load(extensions, engine.load.bind(engine));
+    this.loadPages(extensions, engine.load.bind(engine));
 
     for (const [name, filter] of this.filters) {
       engine.addFilter(name, filter);

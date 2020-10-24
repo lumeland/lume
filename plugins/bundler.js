@@ -2,8 +2,7 @@ import textLoader from "../loaders/text.js";
 
 export default function () {
   return (site) => {
-    site.load([".ts", ".js"], textLoader, true);
-
+    site.loadAssets([".ts", ".js"], textLoader);
     site.process([".ts", ".js"], processor);
   };
 

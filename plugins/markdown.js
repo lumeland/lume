@@ -31,7 +31,7 @@ export default function () {
       .use(markdownItAttrs)
       .use(markdownItReplaceLinks);
 
-    site.load([".md", ".markdown"], loader);
+    site.loadPages([".md", ".markdown"], loader);
     site.filter("md", filter);
 
     function filter(string, inline = false) {

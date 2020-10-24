@@ -29,6 +29,16 @@ body {
   color: var(--color-black);
 }
 
+@media (max-width: 900px) {
+  body {
+    grid-template-areas: "menu" "main";
+    grid-template-columns: 100%;
+  }
+  .menu > ul {
+    column-width: 10em;
+  }
+}
+
 .menu {
   grid-area: menu;
   font-size: var(--font-small);
