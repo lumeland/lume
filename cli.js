@@ -1,7 +1,7 @@
 import { existsSync } from "./deps/fs.js";
 import { parse } from "./deps/flags.js";
 import { brightGreen } from "./deps/colors.js";
-import { join, relative } from "./deps/path.js";
+import { join, relative, resolve } from "./deps/path.js";
 
 if (import.meta.main) {
   cli(Deno.args);
@@ -22,13 +22,23 @@ export default async function cli(args) {
       dev: false,
     },
     unknown(option) {
-      console.log(`Unknown option: ${option}`);
-      console.log(`Run ${brightGreen("lume --help")} for usage information`);
-      stop = true;
+      if (option.startsWith("-")) {
+        console.log(`Unknown option: ${option}`);
+        stop = true;
+      }
     },
   });
 
   if (stop) {
+    console.log(`Run ${brightGreen("lume --help")} for usage information`);
+    console.log("");
+    return;
+  }
+
+  if (options._.length > 1) {
+    console.log(`Too much arguments: ${options._.join(", ")}`);
+    console.log(`Run ${brightGreen("lume --help")} for usage information`);
+    console.log("");
     return;
   }
 
@@ -46,7 +56,7 @@ To serve the site in localhost
     lume --serve
 
 USAGE:
-    lume [OPTIONS]
+    lume [OPTIONS] [<path>]
 
 OPTIONS:
         --dev      Run lume in development mode
@@ -65,7 +75,22 @@ OPTIONS:
     return;
   }
 
-  const configFile = join(Deno.cwd(), "_config.js");
+  let cwd, configFile;
+
+  if (options._[0]) {
+    const path = options._[0];
+
+    if (path.endsWith(".js") || path.endsWith(".ts")) {
+      configFile = resolve(path);
+      cwd = dirname(configFile);
+    } else {
+      cwd = resolve(path);
+      configFile = join(cwd, "_config.js");
+    }
+  } else {
+    cwd = Deno.cwd();
+    configFile = join(cwd, "_config.js");
+  }
 
   // lume --init
   if (options.init) {
@@ -90,13 +115,10 @@ export default site;
   if (existsSync(configFile)) {
     const mod = await import(`file://${configFile}`);
     site = mod.default;
+    site.options.cwd = cwd;
   } else {
     const { default: lume } = await import("./mod.js");
-
-    site = lume({
-      src: Deno.cwd(),
-      dest: join(Deno.cwd(), "_site"),
-    });
+    site = lume({ cwd });
   }
 
   if (options.dev) {
@@ -121,8 +143,8 @@ export default site;
   const { server } = await import("./server.js");
 
   try {
-    await server(site.options.dest, options.port);
-    const watcher = Deno.watchFs(site.options.src);
+    await server(site.dest(), options.port);
+    const watcher = Deno.watchFs(site.src());
     const changes = new Set();
     console.log("Watching for changes...");
 
@@ -144,12 +166,12 @@ export default site;
     };
 
     for await (const event of watcher) {
-      if (event.paths.every((path) => path.startsWith(site.options.dest))) {
+      if (event.paths.every((path) => path.startsWith(site.dest()))) {
         continue;
       }
 
       event.paths.forEach((path) =>
-        changes.add(join("/", relative(site.options.src, path)))
+        changes.add(join("/", relative(site.src(), path)))
       );
 
       //Debounce

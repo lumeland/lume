@@ -1,10 +1,9 @@
 import { parseFrontmatter } from "../loaders/yaml.js";
-import { join } from "../deps/path.js";
 
 export default class TemplateEngine {
   constructor(site, options = {}) {
     this.site = site;
-    this.includes = join(site.options.src, "_includes");
+    this.includes = "_includes";
     this.options = options;
   }
 

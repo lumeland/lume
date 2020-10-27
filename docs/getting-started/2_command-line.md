@@ -17,6 +17,9 @@ lume --init
 # Build the site in the current directory
 lume
 
+# Build the site in a different directory
+lume ./my-site
+
 # Build the site and boot up a web server
 # that refresh automatically for every change
 lume --serve

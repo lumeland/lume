@@ -1,11 +1,4 @@
-import {
-  basename,
-  dirname,
-  extname,
-  join,
-  normalize,
-  resolve,
-} from "./deps/path.js";
+import { basename, dirname, extname, join, normalize } from "./deps/path.js";
 import { copy, emptyDir, ensureDir, exists } from "./deps/fs.js";
 import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
@@ -13,6 +6,7 @@ import Source from "./source.js";
 import { concurrent } from "./utils.js";
 
 const defaults = {
+  cwd: Deno.cwd(),
   src: "./",
   dest: "./_site",
   dev: false,
@@ -28,19 +22,27 @@ export default class Site {
   pages = [];
 
   constructor(options = {}) {
-    options = { ...defaults, ...options };
+    this.options = { ...defaults, ...options };
 
-    this.options = {
-      src: resolve(options.src),
-      dest: resolve(options.dest),
-      dev: options.dev,
-      prettyUrls: options.prettyUrls,
-      location: (typeof options.location === "string")
-        ? new URL(options.location)
-        : options.location,
-    };
+    this.options.location = (typeof options.location === "string")
+      ? new URL(this.options.location)
+      : this.options.location;
 
-    this.source = new Source(this.options.src);
+    this.source = new Source(this);
+  }
+
+  /**
+   * Returns the src path
+   */
+  src(...path) {
+    return join(this.options.cwd, this.options.src, ...path);
+  }
+
+  /**
+   * Returns the dest path
+   */
+  dest(...path) {
+    return join(this.options.cwd, this.options.dest, ...path);
   }
 
   /**
@@ -163,7 +165,7 @@ export default class Site {
    * Clear the dest folder
    */
   async clear() {
-    await emptyDir(this.options.dest);
+    await emptyDir(this.dest());
   }
 
   /**
@@ -188,7 +190,7 @@ export default class Site {
    * Reload some files that might be changed
    */
   async update(files) {
-    this.dispatchEvent({ type: "beforeBuild" });
+    this.dispatchEvent({ type: "beforeUpdate" });
 
     for (const file of files) {
       // file inside a _data file or folder
@@ -217,7 +219,7 @@ export default class Site {
 
     await this.#buildPages();
 
-    this.dispatchEvent({ type: "afterBuild" });
+    this.dispatchEvent({ type: "afterUpdate" });
   }
 
   /**
@@ -245,8 +247,8 @@ export default class Site {
    * Copy a static file
    */
   async #copyStatic(from, to) {
-    const pathFrom = join(this.options.src, from);
-    const pathTo = join(this.options.dest, to);
+    const pathFrom = this.src(from);
+    const pathTo = this.dest(to);
 
     if (await exists(pathFrom)) {
       await ensureDir(dirname(pathTo));
@@ -375,7 +377,7 @@ export default class Site {
 
     while (layout) {
       const engine = this.#getEngine(layout);
-      const path = join(engine.includes, layout);
+      const path = this.src(engine.includes, layout);
       const layoutData = await engine.load(path);
       pageData = {
         ...layoutData,
@@ -409,7 +411,7 @@ export default class Site {
 
     console.log(`🔥 ${dest} ${gray(src)}`);
 
-    const filename = join(this.options.dest, dest);
+    const filename = this.dest(dest);
     await ensureDir(dirname(filename));
     return Deno.writeTextFile(filename, page.content);
   }

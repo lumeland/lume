@@ -11,8 +11,8 @@ export default class Source {
   staticFiles = new Map();
   assets = new Set();
 
-  constructor(path) {
-    this.path = path;
+  constructor(site) {
+    this.site = site;
   }
 
   /**
@@ -55,7 +55,7 @@ export default class Source {
    * Load a directory recursively
    */
   async loadDirectory(directory = this.root) {
-    const path = join(this.path, directory.src.path);
+    const path = this.site.src(directory.src.path);
 
     return concurrent(
       Deno.readDir(path),
@@ -153,7 +153,7 @@ export default class Source {
       return;
     }
 
-    const fullPath = join(this.path, path);
+    const fullPath = this.site.src(path);
 
     if (!existsSync(fullPath)) {
       return;
@@ -190,7 +190,7 @@ export default class Source {
   async #loadData(path) {
     for (const [ext, loader] of this.data) {
       if (path.endsWith(ext)) {
-        return loader(join(this.path, path));
+        return loader(this.site.src(path));
       }
     }
   }
@@ -201,7 +201,7 @@ export default class Source {
   async #loadDataFolder(path) {
     const data = {};
 
-    for (const entry of Deno.readDirSync(join(this.path, path))) {
+    for (const entry of Deno.readDirSync(this.site.src(path))) {
       await this.#loadDataFolderEntry(path, entry, data);
     }
 
