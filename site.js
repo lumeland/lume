@@ -161,6 +161,14 @@ export default class Site {
     return this;
   }
 
+  /**
+   * Ignore one or several files or folders
+   */
+  ignore(...paths) {
+    paths.forEach((path) => this.source.ignored.add(join("/", path)));
+    return this;
+  }
+
   /** 
    * Clear the dest folder
    */
@@ -206,6 +214,7 @@ export default class Site {
 
       //Static file
       const entry = this.source.isStatic(file);
+
       if (entry) {
         const [from, to] = entry;
 

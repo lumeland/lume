@@ -22,6 +22,7 @@ The available options are the following:
 
 Name         | Default  | Description
 -------------|----------|------------
+`cwd`        | `Deno.cwd()` | The current working directory. `src` and `dest` folders are relative to this.
 `src`        | `.`      | The source directory where lume read your files
 `dest`       | `_site`  | The destination to output the site
 `location`   | `""`     | The base location where the site will be published. Useful to generate absolute urls or if your site is published in a subfolder like `https://oscarotero.github.io/lume/`
@@ -76,6 +77,14 @@ site.copy("img", "images");
 
 // Copy the "static-files/favicons/favicon.ico" to _site/favicon.ico
 site.copy("static-files/favicons/favicon.ico", "favicon.ico");
+```
+
+## Ignore files and directories
+
+By default all files and folders starting with `.` or `_` are ignored. But you can add other files or folders using the `ignore()` function:
+
+```js
+site.ignore("README.md", "CHANGELOG.md", "node_modules");
 ```
 
 ## Template filters

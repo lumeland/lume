@@ -10,6 +10,7 @@ export default class Source {
   pages = new Map();
   staticFiles = new Map();
   assets = new Set();
+  ignored = new Set();
 
   constructor(site) {
     this.site = site;
@@ -99,7 +100,7 @@ export default class Source {
 
     const path = join(directory.src.path, entry.name);
 
-    if (this.staticFiles.has(path)) {
+    if (this.staticFiles.has(path) || this.ignored.has(path)) {
       return;
     }
 
