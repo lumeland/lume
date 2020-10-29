@@ -86,6 +86,12 @@ OPTIONS:
     } else {
       cwd = resolve(path);
       configFile = join(cwd, "_config.js");
+
+      if (!existsSync(cwd)) {
+        console.log(`The folder ${cwd} does not exists`);
+        console.log("");
+        return;
+      }
     }
   } else {
     cwd = Deno.cwd();

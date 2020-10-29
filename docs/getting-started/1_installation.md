@@ -4,11 +4,15 @@ title: Installation
 
 **lume** requires Deno installed on your computer. Read [Deno installation](https://deno.land/#installation) instructions if you don't have it yet.
 
+## Execute without install
+
 You can execute **lume** remotely by executing the following command:
 
 ```sh
 deno run --unstable --allow-read --allow-write --allow-net https://deno.land/x/lume/cli.js
 ```
+
+## Install as executable
 
 But it's easier if you install the script as an executable, by running:
 
@@ -16,13 +20,7 @@ But it's easier if you install the script as an executable, by running:
 deno install --unstable --allow-read --allow-write --allow-net https://deno.land/x/lume/cli.js
 ```
 
-Now you have the `lume` command that can be invoked at any point. If you want to change the command name, just use the `-n / --name` argument. For example, to change the name to `fire`:
-
-```sh
-deno install --unstable --allow-read --allow-write --allow-net -n fire https://deno.land/x/lume/cli.js
-```
-
-More info about [how to install scripts in Deno](https://deno.land/manual/tools/script_installer).
+Now you have the `lume` command. If you want to change the command name, just use the `-n / --name` argument. More info about [how to install scripts in Deno](https://deno.land/manual/tools/script_installer).
 
 ## Update
 

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.8.2] - Unreleased
 ### Fixed
 - Ignore `node_modules` folder by default
+- Show an error if the cwd is not a folder
 
 ## [0.8.1] - 2020-10-28
 ### Added
