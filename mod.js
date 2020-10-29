@@ -15,6 +15,7 @@ export default function (options = {}) {
   return site
     .filter("url", url(site))
     .filter("date", date())
+    .ignore("node_modules")
     .use(json())
     .use(markdown())
     .use(modules())

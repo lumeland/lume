@@ -87,6 +87,8 @@ By default all files and folders starting with `.` or `_` are ignored. But you c
 site.ignore("README.md", "CHANGELOG.md", "node_modules");
 ```
 
+Note: `node_modules` folder is ignored by default too.
+
 ## Template filters
 
 Template filters are functions that you can use in your layouts to modify content. Some template engines like Nunjucks [have several builtin filters](https://mozilla.github.io/nunjucks/templating.html#builtin-filters), but you can add your owns:
