@@ -2,6 +2,7 @@ import { existsSync } from "./deps/fs.js";
 import { parse } from "./deps/flags.js";
 import { brightGreen } from "./deps/colors.js";
 import { join, relative, resolve } from "./deps/path.js";
+import { runScript } from "./utils.js";
 
 if (import.meta.main) {
   cli(Deno.args);
@@ -12,6 +13,7 @@ export default async function cli(args) {
   let stop = false;
   const options = parse(args, {
     boolean: ["serve", "init", "version", "dev", "help"],
+    string: ["run"],
     alias: {
       help: "h",
       version: "V",
@@ -133,6 +135,19 @@ export default site;
 
   if (options.location) {
     site.options.location = new URL(options.location);
+  }
+
+  // lume --run
+  if (options.run) {
+    const command = site.scripts.get(options.run);
+
+    if (!command) {
+      console.log(`Unknown script ${options.run}`);
+      return;
+    }
+
+    const result = await runScript(command);
+    Deno.exit(result.code);
   }
 
   console.log("");

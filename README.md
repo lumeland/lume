@@ -40,3 +40,8 @@ It's inspired in other general purpose static site generators such [Jekyll](http
 ## Docs
 
 [Access to the Docs to learn more](https://oscarotero.github.io/lume/)
+
+## To-do
+
+- [ ] Script runner
+- [ ] Handle 404.html pages

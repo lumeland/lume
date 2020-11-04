@@ -19,6 +19,7 @@ export default class Site {
   extraData = {};
   listeners = new Map();
   processors = new Map();
+  scripts = new Map();
   pages = [];
 
   constructor(options = {}) {
@@ -78,6 +79,18 @@ export default class Site {
    */
   use(plugin) {
     plugin(this);
+    return this;
+  }
+
+  /**
+   * Register a script
+   */
+  script(name, cmd, options = {}) {
+    this.scripts.set(name, {
+      cmd,
+      cwd: this.options.cwd,
+      ...options,
+    });
     return this;
   }
 
