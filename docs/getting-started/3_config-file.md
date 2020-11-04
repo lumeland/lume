@@ -125,7 +125,7 @@ site.script("uncompress", "gzip -d images.gz", "gzip -d videos.gz");
 site.script("run-all", "compress", "uncompress", "deploy");
 ```
 
-To a script from cli:
+To run a script from cli, use the `--run` command:
 
 ```sh
 lume --run deploy

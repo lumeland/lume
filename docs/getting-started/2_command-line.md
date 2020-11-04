@@ -17,7 +17,7 @@ lume --init
 # Build the site in the current directory
 lume
 
-# Build the site in a different directory
+# Build the site located in a different directory
 lume ./my-site
 
 # Build the site and boot up a web server
