@@ -7,12 +7,14 @@ const escapeChars = {
   "'": "&#39;",
 };
 
-export default function attributes(values, ...validNames) {
-  const attributes = new Map();
+export default function () {
+  return function (values, ...validNames) {
+    const attributes = new Map();
 
-  handle(attributes, values, validNames);
+    handle(attributes, values, validNames);
 
-  return join(attributes);
+    return join(attributes);
+  };
 }
 
 function handle(attributes, name, validNames) {

@@ -1,9 +1,11 @@
-export default function className(...names) {
-  const classes = new Set();
+export default function () {
+  return function (...names) {
+    const classes = new Set();
 
-  names.forEach((name) => handle(classes, name));
+    names.forEach((name) => handle(classes, name));
 
-  return Array.from(classes).join(" ");
+    return Array.from(classes).join(" ");
+  };
 }
 
 function handle(classes, name) {

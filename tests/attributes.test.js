@@ -1,7 +1,9 @@
 import { assertEquals } from "../deps/asserts.js";
-import attributes from "../filters/attributes.js";
+import filter from "../filters/attributes.js";
 
 Deno.test("attributes filter", () => {
+  const attributes = filter();
+
   assertEquals("one two", attributes(["one", "two"]));
   assertEquals('one="two"', attributes({ one: "two" }));
   assertEquals("one", attributes({ one: true }));

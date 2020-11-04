@@ -1,7 +1,9 @@
 import { assertEquals } from "../deps/asserts.js";
-import className from "../filters/classname.js";
+import filter from "../filters/classname.js";
 
 Deno.test("classname filter", () => {
+  const className = filter();
+
   assertEquals("one two", className("one", "two"));
   assertEquals("one", className("one", null));
   assertEquals("one", className("one", undefined));

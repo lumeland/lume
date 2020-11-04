@@ -1,5 +1,6 @@
 import Site from "./site.js";
 
+import attr from "./filters/attributes.js";
 import url from "./filters/url.js";
 import date from "./filters/date.js";
 import json from "./plugins/json.js";
@@ -13,6 +14,7 @@ export default function (options = {}) {
   const site = new Site(options);
 
   return site
+    .filter("attr", attr())
     .filter("url", url(site))
     .filter("date", date())
     .ignore("node_modules")
