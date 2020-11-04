@@ -2,6 +2,7 @@ import { listenAndServe } from "./deps/server.js";
 import { acceptWebSocket } from "./deps/ws.js";
 import { extname, join, relative } from "./deps/path.js";
 import { brightGreen, red } from "./deps/colors.js";
+import { exists } from "./deps/fs.js";
 
 const script = `
 let ws;
@@ -182,9 +183,9 @@ export async function server(root, port) {
       await req.respond({
         status: 404,
         headers: new Headers({
-          "content-type": mimes.get(".txt"),
+          "content-type": mimes.get(".html"),
         }),
-        body: "404 - Not found",
+        body: await getNotFoundBody(root),
       });
     }
   }
@@ -227,6 +228,16 @@ async function getHtmlBody(path) {
   const content = await Deno.readTextFile(path);
 
   return `${content}<script>${script}</script>`;
+}
+
+async function getNotFoundBody(root) {
+  const filepath = join(root, "404.html");
+
+  if (await exists(filepath)) {
+    return getHtmlBody(filepath);
+  }
+
+  return "404 - Not found";
 }
 
 async function getBody(path) {

@@ -3,6 +3,7 @@ import { copy, emptyDir, ensureDir, exists } from "./deps/fs.js";
 import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
+import Scripts from "./scripts.js";
 import { concurrent } from "./utils.js";
 
 const defaults = {
@@ -19,7 +20,6 @@ export default class Site {
   extraData = {};
   listeners = new Map();
   processors = new Map();
-  scripts = new Map();
   pages = [];
 
   constructor(options = {}) {
@@ -30,6 +30,7 @@ export default class Site {
       : this.options.location;
 
     this.source = new Source(this);
+    this.scripts = new Scripts(this);
   }
 
   /**
@@ -59,7 +60,7 @@ export default class Site {
   /**
    * Dispatch an event
    */
-  dispatchEvent(event) {
+  async dispatchEvent(event) {
     const type = event.type;
     const listeners = this.listeners.get(type);
 
@@ -67,8 +68,22 @@ export default class Site {
       return;
     }
 
-    for (const listener of listeners) {
-      if (listener(event) === false) {
+    for (let listener of listeners) {
+      if (typeof listener === "string") {
+        listener = [listener];
+      }
+
+      if (Array.isArray(listener)) {
+        const status = await this.scripts.run(listener);
+
+        if (status) {
+          return false;
+        }
+
+        continue;
+      }
+
+      if (await listener(event) === false) {
         return false;
       }
     }
@@ -85,12 +100,8 @@ export default class Site {
   /**
    * Register a script
    */
-  script(name, cmd, options = {}) {
-    this.scripts.set(name, {
-      cmd,
-      cwd: this.options.cwd,
-      ...options,
-    });
+  script(name, ...scripts) {
+    this.scripts.set(name, ...scripts);
     return this;
   }
 
@@ -193,7 +204,7 @@ export default class Site {
    * Build the entire site
    */
   async build() {
-    this.dispatchEvent({ type: "beforeBuild" });
+    await this.dispatchEvent({ type: "beforeBuild" });
 
     await this.clear();
 
@@ -204,14 +215,14 @@ export default class Site {
     await this.source.loadDirectory();
     await this.#buildPages();
 
-    this.dispatchEvent({ type: "afterBuild" });
+    await this.dispatchEvent({ type: "afterBuild" });
   }
 
   /**
    * Reload some files that might be changed
    */
   async update(files) {
-    this.dispatchEvent({ type: "beforeUpdate" });
+    await this.dispatchEvent({ type: "beforeUpdate" });
 
     for (const file of files) {
       // file inside a _data file or folder
@@ -241,7 +252,7 @@ export default class Site {
 
     await this.#buildPages();
 
-    this.dispatchEvent({ type: "afterUpdate" });
+    await this.dispatchEvent({ type: "afterUpdate" });
   }
 
   /**

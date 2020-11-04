@@ -103,3 +103,55 @@ Now, use it in your Nunjucks templates:
 ```html
 <h1>{{ title | uppercase }}</h1>
 ```
+
+## Custom scripts
+
+Lume includes a basic script runner. Use the `script()` function to register new scripts:
+
+```js
+//Run one script
+site.script("deploy", "rsync -r _site/** user@server.com:/var/www/");
+
+//Use an array to run several scripts in parallel
+site.script("compress", [
+  "gzip -r _site/images images.gz",
+  "gzip -r _site/videos videos.gz"
+]);
+
+//Use multiple arguments to run several script secuencially
+site.script("uncompress", "gzip -d images.gz", "gzip -d videos.gz");
+
+//Create a new script that run the previous scripts secuencially
+site.script("run-all", "compress", "uncompress", "deploy");
+```
+
+To a script from cli:
+
+```sh
+lume --run deploy
+```
+
+## Events
+
+Lume has the following events:
+
+- `beforeBuild`: To perform any action before build the site
+- `afterBuild`: To perform any action when the build is complete
+- `beforeUpdate`: To perform any action before update files (used on watch files under `--serve`)
+- `afterUpdate`: To perform any action when the site is updated (used on watch files under `--serve`)
+
+Use `_config.js` to create event listeners:
+
+```js
+site.addEventListener("beforeBuild", () => console.log("Preparing to update the site"));
+```
+
+You can also assign scripts to events:
+
+```js
+//Create a script
+site.script("deploy", "rsync -r _site/** user@server.com:/var/www/");
+
+//Run the script after build the site
+site.addEventListener("afterBuild", "deploy");
+```

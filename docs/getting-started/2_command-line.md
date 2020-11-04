@@ -29,4 +29,7 @@ lume --serve --port=8000
 
 # Run in development mode
 lume --dev
+
+# Run a custom script
+lume --run gzip
 ```

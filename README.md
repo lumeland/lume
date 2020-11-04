@@ -10,38 +10,36 @@ It's inspired in other general purpose static site generators such [Jekyll](http
 
 ## Quick start
 
-- Make sure you have [Deno installed](https://deno.land/#installation).
-- Install **lume** as a Deno executable:
-  ```
-  deno install --unstable --allow-read --allow-write --allow-net https://deno.land/x/lume/cli.js
-  ```
-- Create your first page, for example using a nunjucks template:
-  ```html
-  ---
-  title: Welcome to my page
-  ---
+Make sure you have [Deno installed](https://deno.land/#installation) and install **lume** as a Deno executable:
 
-  <html>
-    <head>
-      <title>{{ title }}</title>
-    </head>
+```
+deno install --unstable -A https://deno.land/x/lume/cli.js
+```
 
-    <body>
-      <h1>{{ title }}</h1>
-    </body>
-  </html>
-  ```
-- Run it: `lume`
-- This command will compile your documents to HTML and saved into the output folder (defaults to `_site`)
-- You can run `lume --serve` to start up a webserver. Then open `http://localhost:3000` in your web browser to see your website.
+Create your first page, for example using a nunjucks template:
+
+```html
+---
+title: Welcome to my page
+---
+
+<html>
+  <head>
+    <title>{{ title }}</title>
+  </head>
+
+  <body>
+    <h1>{{ title }}</h1>
+  </body>
+</html>
+```
+
+Run it: `lume`
+
+This command will compile your documents to HTML and saved into the output folder (defaults to `_site`). You can run `lume --serve` to start up a webserver. Then open `http://localhost:3000` in your web browser to see your website.
 
 ---
 
 ## Docs
 
 [Access to the Docs to learn more](https://oscarotero.github.io/lume/)
-
-## To-do
-
-- [ ] Script runner
-- [ ] Handle 404.html pages

@@ -15,15 +15,3 @@ export async function concurrent(iterable, iteratorFn, limit = 200) {
 
   await Promise.all(executing);
 }
-
-export async function runScript(options = {}) {
-  const cmd = Array.from(options.cmd.matchAll(/('([^']*)'|"([^"]*)"|[\S]+)/g))
-    .map((piece) => piece[2] || piece[1]);
-  const process = Deno.run({
-    ...options,
-    cmd,
-  });
-  const result = await process.status();
-  process.close();
-  return result;
-}

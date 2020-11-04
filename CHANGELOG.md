@@ -6,9 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.8.2] - Unreleased
+### Added
+- New method `script()` to execute scripts like a task manager
+- Allow to run scripts in events
+- Autodiscover `404.html` file in the built-in server for 404 responses
+
 ### Fixed
 - Ignore `node_modules` folder by default
 - Show an error if the cwd is not a folder
+- Enable `attr` filter by default
 
 ## [0.8.1] - 2020-10-28
 ### Added

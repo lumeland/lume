@@ -2,7 +2,6 @@ import { existsSync } from "./deps/fs.js";
 import { parse } from "./deps/flags.js";
 import { brightGreen } from "./deps/colors.js";
 import { join, relative, resolve } from "./deps/path.js";
-import { runScript } from "./utils.js";
 
 if (import.meta.main) {
   cli(Deno.args);
@@ -139,22 +138,15 @@ export default site;
 
   // lume --run
   if (options.run) {
-    const command = site.scripts.get(options.run);
-
-    if (!command) {
-      console.log(`Unknown script ${options.run}`);
-      return;
-    }
-
-    const result = await runScript(command);
-    Deno.exit(result.code);
+    const success = await site.scripts.run(options.run);
+    Deno.exit(success ? 0 : 1);
   }
 
   console.log("");
   await site.build();
 
   console.log("");
-  console.log(brightGreen("Site built"));
+  console.log(`🍾 ${brightGreen("Site built")}`);
 
   if (!options.serve) {
     return;
