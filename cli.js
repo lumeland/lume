@@ -11,7 +11,7 @@ export default async function cli(args) {
   const version = "v0.9.1";
   let stop = false;
   const options = parse(args, {
-    boolean: ["serve", "init", "version", "dev", "help"],
+    boolean: ["serve", "init", "version", "dev", "help", "upgrade"],
     string: ["run"],
     alias: {
       help: "h",
@@ -73,6 +73,32 @@ OPTIONS:
   // lume --version
   if (options.version) {
     console.log(`🔥lume ${version}`);
+    return;
+  }
+
+  // lume --upgrade
+  if (options.upgrade) {
+    const files = [
+      "mod.js",
+      "cli.js",
+      "plugins/bundler.js",
+      "plugins/css.js",
+      "plugins/dom.js",
+      "plugins/eta.js",
+      "plugins/jsx.js",
+      "plugins/svg.js",
+    ];
+    for (const file of files) {
+      await Deno.run({
+        cmd: [
+          "deno",
+          "cache",
+          "--unstable",
+          "--reload",
+          `https://deno.land/x/lume/${file}`,
+        ],
+      }).output();
+    }
     return;
   }
 
