@@ -5,7 +5,7 @@ export default function () {
   return (site) => {
     const runner = postcss([
       postcssImport({
-        path: site.src("_includes")
+        path: site.src("_includes"),
       }),
       postcssPresetEnv({
         stage: 1,
