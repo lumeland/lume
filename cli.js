@@ -15,7 +15,7 @@ export default async function cli(args) {
     string: ["run"],
     alias: {
       help: "h",
-      version: "V",
+      version: "v",
     },
     default: {
       serve: false,
