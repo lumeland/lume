@@ -2,17 +2,19 @@ import textLoader from "../loaders/text.js";
 import { postcss, postcssImport, postcssPresetEnv } from "../deps/postcss.js";
 
 export default function () {
-  const runner = postcss([
-    postcssImport,
-    postcssPresetEnv({
-      stage: 1,
-      features: {
-        "custom-properties": false,
-      },
-    }),
-  ]);
-
   return (site) => {
+    const runner = postcss([
+      postcssImport({
+        path: site.src("_includes")
+      }),
+      postcssPresetEnv({
+        stage: 1,
+        features: {
+          "custom-properties": false,
+        },
+      }),
+    ]);
+
     site.loadAssets([".css"], textLoader);
     site.process([".css"], processor);
 
