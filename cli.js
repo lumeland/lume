@@ -65,7 +65,7 @@ OPTIONS:
         --init     Creates a _config.js file
         --port     Change the default port of the webserver (from 3000)
         --serve    Starts the webserver
-    -V, --version  Prints version information
+    -v, --version  Prints version information
 `);
     return;
   }

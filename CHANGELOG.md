@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+### Changed
+- Renamed the shortcut for `--version`, `-V` to `-v`.
+
 ## [0.9.1] - 2020-11-06
 ### Fixed
 - `@import` css of the `css()` plugin, using `_includes` as fallback
@@ -163,6 +167,7 @@ First version
 
 [#1]: https://github.com/oscarotero/lume/issues/1
 
+[Unreleased]: https://github.com/oscarotero/lume/compare/v0.9.1...HEAD
 [0.9.1]: https://github.com/oscarotero/lume/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/oscarotero/lume/compare/v0.8.1...v0.9.0
 [0.8.1]: https://github.com/oscarotero/lume/compare/v0.8.0...v0.8.1
