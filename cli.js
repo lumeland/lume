@@ -2,6 +2,7 @@ import { existsSync } from "./deps/fs.js";
 import { parse } from "./deps/flags.js";
 import { brightGreen } from "./deps/colors.js";
 import { join, relative, resolve } from "./deps/path.js";
+import lume from "./mod.js";
 
 if (import.meta.main) {
   cli(Deno.args);
@@ -79,7 +80,6 @@ OPTIONS:
   // lume --upgrade
   if (options.upgrade) {
     const files = [
-      "mod.js",
       "cli.js",
       "plugins/bundler.js",
       "plugins/css.js",
@@ -97,7 +97,7 @@ OPTIONS:
           "--reload",
           `https://deno.land/x/lume/${file}`,
         ],
-      }).output();
+      }).status();
     }
     return;
   }
@@ -150,7 +150,6 @@ export default site;
     site = mod.default;
     site.options.cwd = cwd;
   } else {
-    const { default: lume } = await import("./mod.js");
     site = lume({ cwd });
   }
 
