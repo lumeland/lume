@@ -1,3 +1,4 @@
 // Using a fork of https://github.com/denjucks/denjucks
 
-export { default } from "https://raw.githubusercontent.com/thegamingninja/denjucks/master/mod.js";
+// @deno-types="https://raw.githubusercontent.com/oscarotero/denjucks/master/mod.d.ts"
+export { default } from "https://raw.githubusercontent.com/oscarotero/denjucks/master/mod.js";
