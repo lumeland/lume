@@ -166,16 +166,20 @@ export async function server(root, port) {
       const mimeType = mimes.get(extname(path).toLowerCase()) ||
         "application/octet-stream";
 
-      await req.respond({
-        status: 200,
-        headers: new Headers({
-          "content-type": mimeType,
-          "cache-control": "no-cache no-store must-revalidate",
-        }),
-        body: await (mimeType === "text/html; charset=utf-8"
-          ? getHtmlBody(path)
-          : getBody(path)),
-      });
+      try {
+        await req.respond({
+          status: 200,
+          headers: new Headers({
+            "content-type": mimeType,
+            "cache-control": "no-cache no-store must-revalidate",
+          }),
+          body: await (mimeType === "text/html; charset=utf-8"
+            ? getHtmlBody(path)
+            : getBody(path)),
+        });
+      } catch (err) {
+        return;
+      }
 
       console.log(`${brightGreen("200")} ${req.url}`);
     } catch (err) {

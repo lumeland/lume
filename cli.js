@@ -87,18 +87,17 @@ OPTIONS:
       "plugins/eta.js",
       "plugins/jsx.js",
       "plugins/svg.js",
-    ];
-    for (const file of files) {
-      await Deno.run({
-        cmd: [
-          "deno",
-          "cache",
-          "--unstable",
-          "--reload",
-          `https://deno.land/x/lume/${file}`,
-        ],
-      }).status();
-    }
+    ].map((file) => `https://deno.land/x/lume/${file}`);
+
+    await Deno.run({
+      cmd: [
+        "deno",
+        "cache",
+        "--unstable",
+        "--reload",
+        ...files,
+      ],
+    }).status();
     return;
   }
 
