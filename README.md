@@ -41,4 +41,4 @@ This command will compile your documents to HTML and saved into the output folde
 
 ## Docs
 
-[Access to the Docs to learn more](https://oscarotero.github.io/lume/)
+[See the Docs to learn more](https://lumeland.github.io/)
