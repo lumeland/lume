@@ -59,3 +59,15 @@ Deno.test("attributes filter", () => {
     ),
   );
 });
+
+Deno.test("attributes filter with predefined valid names", () => {
+  const attributes = filter();
+
+  assertEquals(
+    'href="/" class="foo" title="bar"',
+    attributes(
+      [{ href: "/" }, "required", { class: "foo" }, { title: "bar" }],
+      "A",
+    ),
+  );
+});

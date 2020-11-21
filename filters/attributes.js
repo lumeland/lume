@@ -7,9 +7,74 @@ const escapeChars = {
   "'": "&#39;",
 };
 
+const GLOBAL = [
+  "class",
+  "hidden",
+  "id",
+  "lang",
+  "style",
+  "tabindex",
+  "title",
+  "translate",
+];
+
+const names = {
+  GLOBAL,
+  A: [
+    "download",
+    "href",
+    "hreflang",
+    "rel",
+    "target",
+    ...GLOBAL,
+  ],
+  AUDIO: [
+    "autoplay",
+    "controls",
+    "loop",
+    "muted",
+    "preload",
+    "src",
+    ...GLOBAL,
+  ],
+  BUTTON: [
+    "autofocus",
+    "disabled",
+    "name",
+    "type",
+    "value",
+    ...GLOBAL,
+  ],
+  IMG: [
+    "alt",
+    "width",
+    "height",
+    "loading",
+    "src",
+    "srcset",
+    ...GLOBAL,
+  ],
+  VIDEO: [
+    "autoplay",
+    "width",
+    "height",
+    "controls",
+    "loop",
+    "muted",
+    "poster",
+    "preload",
+    "src",
+    ...GLOBAL,
+  ],
+};
+
 export default function () {
   return function (values, ...validNames) {
     const attributes = new Map();
+
+    if (validNames.length === 1 && names[validNames[0]]) {
+      validNames = names[validNames[0]];
+    }
 
     handle(attributes, values, validNames);
 

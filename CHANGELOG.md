@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.9.5] - Unreleased
+### Added
+- Predefined values to `attr` filter.
+
 ### Changed
 - Removed documentation from the main repository
 
