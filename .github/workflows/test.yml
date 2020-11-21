@@ -1,0 +1,20 @@
+name: Docs
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Deno environment
+        uses: denolib/setup-deno@v2.3.0
+        with:
+          deno-version: v1.x
+
+      - name: Run tests
+        run: |
+          deno test --unstable -A

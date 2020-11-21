@@ -12,10 +12,6 @@ It's inspired in other general purpose static site generators such [Jekyll](http
 
 Make sure you have [Deno installed](https://deno.land/#installation) and install **lume** as a Deno executable:
 
-```
-deno install --unstable -A https://deno.land/x/lume/cli.js
-```
-
 Create your first page, for example using a nunjucks template:
 
 ```html
@@ -34,9 +30,12 @@ title: Welcome to my page
 </html>
 ```
 
-Run it: `lume`
+Run it:
+```
+deno run --unstable -A https://deno.land/x/lume/cli.js
+```
 
-This command will compile your documents to HTML and saved into the output folder (defaults to `_site`). You can run `lume --serve` to start up a webserver. Then open `http://localhost:3000` in your web browser to see your website.
+This command will compile your documents to HTML and saved into the output folder (defaults to `_site`).
 
 ---
 
