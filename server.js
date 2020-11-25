@@ -134,10 +134,14 @@ const mimes = new Map([
   [".zip", "application/zip"],
 ]);
 
-export async function server(root, port) {
+export async function server(site, options) {
+  const root = site.dest();
+  const port = parseInt(options.port) || site.options.server.port || 3000;
+  const page404 = site.options.server.page404 || "/404.html";
+
   console.log("");
   console.log("  Server started at:");
-  console.log(brightGreen("  http://localhost:3000/"));
+  console.log(brightGreen(`  http://localhost:${port}/`));
   console.log("");
 
   //Live reload server
@@ -189,7 +193,7 @@ export async function server(root, port) {
         headers: new Headers({
           "content-type": mimes.get(".html"),
         }),
-        body: await getNotFoundBody(root),
+        body: await getNotFoundBody(root, page404),
       });
     }
   }
@@ -234,8 +238,8 @@ async function getHtmlBody(path) {
   return `${content}<script>${script}</script>`;
 }
 
-async function getNotFoundBody(root) {
-  const filepath = join(root, "404.html");
+async function getNotFoundBody(root, page404) {
+  const filepath = join(root, page404);
 
   if (await exists(filepath)) {
     return getHtmlBody(filepath);

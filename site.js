@@ -12,6 +12,10 @@ const defaults = {
   dest: "./_site",
   dev: false,
   prettyUrls: true,
+  server: {
+    port: 3000,
+    page404: "/404.html",
+  },
 };
 
 export default class Site {
@@ -25,9 +29,9 @@ export default class Site {
   constructor(options = {}) {
     this.options = { ...defaults, ...options };
 
-    this.options.location = (typeof options.location === "string")
-      ? new URL(this.options.location)
-      : this.options.location;
+    this.options.location = (options.location instanceof URL)
+      ? this.options.location
+      : new URL(this.options.location || "http://localhost");
 
     this.source = new Source(this);
     this.scripts = new Scripts(this);

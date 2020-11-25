@@ -5,9 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.9.5] - Unreleased
+## [0.9.5] - 2020-11-25
 ### Added
 - Predefined values to `attr` filter.
+- New option `server` to configure the local server: `port` and `page404`.
 
 ### Changed
 - Removed documentation from the main repository
@@ -191,7 +192,7 @@ First version
 
 [#1]: https://github.com/oscarotero/lume/issues/1
 
-[0.9.5]: https://github.com/oscarotero/lume/compare/v0.9.4...HEAD
+[0.9.5]: https://github.com/oscarotero/lume/compare/v0.9.4...v0.9.5
 [0.9.4]: https://github.com/oscarotero/lume/compare/v0.9.3...v0.9.4
 [0.9.3]: https://github.com/oscarotero/lume/compare/v0.9.2...v0.9.3
 [0.9.2]: https://github.com/oscarotero/lume/compare/v0.9.1...v0.9.2

@@ -13,14 +13,13 @@ export default async function cli(args) {
   let stop = false;
   const options = parse(args, {
     boolean: ["serve", "init", "version", "dev", "help", "upgrade"],
-    string: ["run"],
+    string: ["run", "port"],
     alias: {
       help: "h",
       version: "v",
     },
     default: {
       serve: false,
-      port: 3000,
       dev: false,
     },
     unknown(option) {
@@ -66,6 +65,7 @@ OPTIONS:
         --init     Creates a _config.js file
         --port     Change the default port of the webserver (from 3000)
         --serve    Starts the webserver
+        --upgrade  Upgrade lume to the latest version
     -v, --version  Prints version information
 `);
     return;
@@ -180,7 +180,7 @@ export default site;
   const { server } = await import("./server.js");
 
   try {
-    await server(site.dest(), options.port);
+    await server(site, options);
     const watcher = Deno.watchFs(site.src());
     const changes = new Set();
     console.log("Watching for changes...");
