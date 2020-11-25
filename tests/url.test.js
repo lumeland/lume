@@ -9,7 +9,7 @@ Deno.test("url filter (without options)", () => {
   assertEquals("/foo", site.url("foo"));
   assertEquals("./foo", site.url("./foo"));
   assertEquals("../foo", site.url("../foo"));
-  assertEquals("/foo", site.url("foo", true));
+  assertEquals("http://localhost/foo", site.url("foo", true));
 });
 
 Deno.test("url filter (with options)", () => {
