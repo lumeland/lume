@@ -2,16 +2,12 @@ import { join } from "./deps/path.js";
 
 class Base {
   src = {};
-  #parent = null;
+  parent = null;
   #data = {};
   #tags = null;
 
   constructor(src) {
     this.src = src;
-  }
-
-  set parent(parent) {
-    this.#parent = parent;
   }
 
   get tags() {
@@ -21,8 +17,8 @@ class Base {
 
     const tags = new Set();
 
-    if (this.#parent) {
-      this.#parent.tags.forEach((tag) => tags.add(tag));
+    if (this.parent) {
+      this.parent.tags.forEach((tag) => tags.add(tag));
     }
 
     const dataTags = this.data.tags;
@@ -39,11 +35,11 @@ class Base {
   }
 
   get fullData() {
-    if (!this.#parent) {
+    if (!this.parent) {
       return this.#data;
     }
 
-    const parentData = this.#parent.fullData;
+    const parentData = this.parent.fullData;
 
     return { ...parentData, ...this.#data };
   }

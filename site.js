@@ -307,7 +307,7 @@ export default class Site {
 
       page.content = page.data.content;
 
-      if (this.#expandPage(page)) {
+      if (await this.#expandPage(page)) {
         continue;
       }
 
@@ -369,29 +369,32 @@ export default class Site {
   /**
    * Generate subpages (for pagination)
    */
-  #expandPage(page, dir) {
+  async #expandPage(page) {
     const content = page.content;
 
     if (typeof content === "function") {
       const data = { ...page.fullData, ...this.extraData };
       const result = content(data, this.filters);
 
-      if (String(result) === "[object Generator]") {
-        let num = 1;
+      switch (String(result)) {
+        case "[object Generator]":
+        case "[object AsyncGenerator]":
+          let num = 1;
 
-        for (const pageData of result) {
-          const key = `${page.src.path}-${num}${page.src.ext}`;
-          const value = page.duplicate(pageData);
+          for await (const pageData of result) {
+            const key = `${page.src.path}-${num}${page.src.ext}`;
+            const value = page.duplicate(pageData);
 
-          if (value.data.content === content) {
-            value.data.content = null;
+            if (value.data.content === content) {
+              value.data.content = null;
+            }
+
+            page.parent.setPage(key, value);
+
+            num++;
           }
 
-          dir.setPage(key, value);
-          num++;
-        }
-
-        return num;
+          return true;
       }
 
       page.content = result;
