@@ -1,4 +1,4 @@
-import React from "https://dev.jspm.io/react";
-import ReactDOMServer from "https://dev.jspm.io/react-dom/server";
+import React from "https://jspm.dev/react";
+import ReactDOMServer from "https://jspm.dev/react-dom/server";
 
 export { React, ReactDOMServer };

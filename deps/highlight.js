@@ -1,1 +1,1 @@
-export { default } from "https://dev.jspm.io/highlight.js";
+export { default } from "https://jspm.dev/highlight.js";

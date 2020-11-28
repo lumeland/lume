@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.9.7] - Unreleased
+### Fixed
+- Replaced `dev.jspm.io` dependencies with `jspm.dev`.
+
 ## [0.9.6] - 2020-11-28
 ### Fixed
 - Fixed multipage with generators and add support for async generators
