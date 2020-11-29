@@ -179,7 +179,7 @@ export default site;
   await site.build();
 
   console.log("");
-  console.log(`🍾 ${brightGreen("Site built")} ${gray(site.options.dest)}`);
+  console.log(`🍾 ${brightGreen("Site built into")} ${gray(site.options.dest)}`);
 
   if (!options.serve) {
     return;
