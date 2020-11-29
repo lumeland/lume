@@ -6,8 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.9.7] - Unreleased
+### Added
+- Support for executing javascript functions in `deno.script()` instead only cli command
+- New cli arguments `--src`, `--dest` to change dinamically the src and dest options.
+
 ### Fixed
 - Replaced `dev.jspm.io` dependencies with `jspm.dev`.
+- Updated `highlight.js` to 10.x
 
 ## [0.9.6] - 2020-11-28
 ### Fixed

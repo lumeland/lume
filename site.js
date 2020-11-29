@@ -255,8 +255,14 @@ export default class Site {
     }
 
     await this.#buildPages();
-
     await this.dispatchEvent({ type: "afterUpdate" });
+  }
+
+  /**
+   * Run a script
+   */
+  async run(name, options = {}) {
+    return await this.scripts.run(options, name);
   }
 
   /**

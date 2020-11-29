@@ -13,7 +13,7 @@ export default async function cli(args) {
   let stop = false;
   const options = parse(args, {
     boolean: ["serve", "init", "version", "dev", "help", "upgrade"],
-    string: ["run", "port"],
+    string: ["run", "port", "src", "dest"],
     alias: {
       help: "h",
       version: "v",
@@ -60,11 +60,15 @@ USAGE:
     lume [OPTIONS] [<path>]
 
 OPTIONS:
+        --dest     Set/override the dest option
         --dev      Run lume in development mode
     -h, --help     Prints help information
         --init     Creates a _config.js file
+        --location Set/override the location option
         --port     Change the default port of the webserver (from 3000)
+        --run      Run a script
         --serve    Starts the webserver
+        --src      Set/override the src option
         --upgrade  Upgrade lume to the latest version
     -v, --version  Prints version information
 `);
@@ -157,9 +161,17 @@ export default site;
     site.options.location = new URL(options.location);
   }
 
+  if (options.src) {
+    site.options.src = options.src;
+  }
+
+  if (options.dest) {
+    site.options.dest = options.dest;
+  }
+
   // lume --run
   if (options.run) {
-    const success = await site.scripts.run(options.run);
+    const success = await site.run(options.run);
     Deno.exit(success ? 0 : 1);
   }
 

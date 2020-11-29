@@ -12,13 +12,12 @@ export default class Scripts {
     this.scripts.set(name, parseCommands(commands));
   }
 
-  async run(...names) {
-    const options = {
-      cwd: this.site.options.cwd,
-    };
+  async run(options = {}, ...names) {
+    options = { cwd: this.site.options.cwd, ...options };
 
     for (const name of names) {
-      const success = await this.#runScript(name, options);
+      const found = this.scripts.get(name);
+      const success = await this.#runScript(options, name);
 
       if (!success) {
         return false;
@@ -28,24 +27,36 @@ export default class Scripts {
     return true;
   }
 
-  async #runScript(name, options) {
+  async #runScript(options, name) {
     if (this.scripts.has(name)) {
       name = this.scripts.get(name);
-      return this.run(...name);
+      return this.run(options, ...name);
     }
 
     if (Array.isArray(name)) {
       const results = await Promise.all(
-        name.map((n) => this.#runScript(n, options)),
+        name.map((n) => this.#runScript(options, n)),
       );
       return (results.every((success) => success)) ? 0 : 1;
     }
 
-    return this.#runCommand(name, options);
+    if (typeof name === "function") {
+      return this.#runFunction(name);
+    }
+
+    return this.#runCommand(options, name);
   }
 
-  async #runCommand(command, options) {
+  async #runFunction(fn) {
+    const name = fn.name || "[Function]";
+    console.log(`⚡️ ${brightGreen(name + "()")}`);
+    await fn(this.site);
+    return 0;
+  }
+
+  async #runCommand(options, command) {
     console.log(`⚡️ ${brightGreen(command)}`);
+
     const cmd = Array.from(command.matchAll(/('([^']*)'|"([^"]*)"|[\S]+)/g))
       .map((piece) => piece[2] || piece[1]);
 
@@ -69,8 +80,10 @@ function parseCommands(commands, result = []) {
         .map((s) => s.includes(" & ") ? s.split(/\s+&\s+/) : s);
 
       result.push(...subcommands);
-    } else {
+    } else if (Array.isArray(command)) {
       result.push(parseCommands(command));
+    } else {
+      result.push(command);
     }
   });
 
