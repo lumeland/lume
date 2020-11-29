@@ -16,7 +16,6 @@ export default class Scripts {
     options = { cwd: this.site.options.cwd, ...options };
 
     for (const name of names) {
-      const found = this.scripts.get(name);
       const success = await this.#runScript(options, name);
 
       if (!success) {
