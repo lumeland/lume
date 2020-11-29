@@ -59,13 +59,15 @@ export default class Scripts {
     const cmd = Array.from(command.matchAll(/('([^']*)'|"([^"]*)"|[\S]+)/g))
       .map((piece) => piece[2] || piece[1]);
 
+    if (cmd[0] === "cd") {
+      options.cwd = join(options.cwd, cmd[1]);
+      await Deno.stat(options.cwd);
+      return true;
+    }
+
     const process = Deno.run({ cmd, ...options });
     const status = await process.status();
     process.close();
-
-    if (cmd[0] === "cd") {
-      options.cwd = join(options.cwd, cmd[1]);
-    }
 
     return status.success;
   }
