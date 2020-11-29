@@ -1,6 +1,6 @@
 import { existsSync } from "./deps/fs.js";
 import { parse } from "./deps/flags.js";
-import { brightGreen } from "./deps/colors.js";
+import { brightGreen, gray } from "./deps/colors.js";
 import { join, relative, resolve } from "./deps/path.js";
 import lume from "./mod.js";
 
@@ -179,7 +179,7 @@ export default site;
   await site.build();
 
   console.log("");
-  console.log(`🍾 ${brightGreen("Site built")}`);
+  console.log(`🍾 ${brightGreen("Site built")} ${gray(site.options.dest)}`);
 
   if (!options.serve) {
     return;
