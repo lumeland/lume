@@ -12,6 +12,7 @@ const defaults = {
   dest: "./_site",
   dev: false,
   prettyUrls: true,
+  flags: [],
   server: {
     port: 3000,
     page404: "/404.html",
@@ -263,6 +264,13 @@ export default class Site {
    */
   async run(name, options = {}) {
     return await this.scripts.run(options, name);
+  }
+
+  /**
+   * Return the site flags
+   */
+  get flags() {
+    return this.options.flags || [];
   }
 
   /**

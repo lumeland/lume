@@ -18,10 +18,7 @@ export default async function cli(args) {
       help: "h",
       version: "v",
     },
-    default: {
-      serve: false,
-      dev: false,
-    },
+    ["--"]: true,
     unknown(option) {
       if (option.startsWith("-")) {
         console.log(`Unknown option: ${option}`);
@@ -167,6 +164,10 @@ export default site;
 
   if (options.dest) {
     site.options.dest = options.dest;
+  }
+
+  if (options["--"]) {
+    site.options.flags = options["--"];
   }
 
   // lume --run
