@@ -9,9 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Support for executing javascript functions in `deno.script()` instead only cli command
 - New cli arguments `--src`, `--dest` to change dinamically the src and dest options.
+- New property `site.flags` that save all arguments after `--`. For example: `lume --serve -- flag1 flag2`.
 
 ### Fixed
+- Fixed multi-commands scripts in linux [#7]
 - Replaced `dev.jspm.io` dependencies with `jspm.dev`.
+- Replaced `denopkg.com` dependencies with `cdn.jsdelivr.net` [#8].
 - Updated `highlight.js` to 10.x
 
 ## [0.9.6] - 2020-11-28
@@ -209,7 +212,9 @@ First version
 [#1]: https://github.com/oscarotero/lume/issues/1
 [#6]: https://github.com/oscarotero/lume/issues/6
 [#7]: https://github.com/oscarotero/lume/issues/7
+[#8]: https://github.com/oscarotero/lume/issues/8
 
+[0.9.7]: https://github.com/oscarotero/lume/compare/v0.9.6...HEAD
 [0.9.6]: https://github.com/oscarotero/lume/compare/v0.9.5...v0.9.6
 [0.9.5]: https://github.com/oscarotero/lume/compare/v0.9.4...v0.9.5
 [0.9.4]: https://github.com/oscarotero/lume/compare/v0.9.3...v0.9.4
