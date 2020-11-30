@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.9.8] - 2020-12-01
+### Fixed
+- Removed failing dependency
+
 ## [0.9.7] - 2020-12-01
 ### Added
 - Support for executing javascript functions in `deno.script()` instead only cli command
@@ -214,6 +218,7 @@ First version
 [#7]: https://github.com/oscarotero/lume/issues/7
 [#8]: https://github.com/oscarotero/lume/issues/8
 
+[0.9.8]: https://github.com/oscarotero/lume/compare/v0.9.7...v0.9.8
 [0.9.7]: https://github.com/oscarotero/lume/compare/v0.9.6...v0.9.7
 [0.9.6]: https://github.com/oscarotero/lume/compare/v0.9.5...v0.9.6
 [0.9.5]: https://github.com/oscarotero/lume/compare/v0.9.4...v0.9.5
