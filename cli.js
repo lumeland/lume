@@ -9,7 +9,7 @@ if (import.meta.main) {
 }
 
 export default async function cli(args) {
-  const version = "v0.9.8";
+  const version = "v0.9.9";
   let stop = false;
   const options = parse(args, {
     boolean: ["serve", "init", "version", "dev", "help", "upgrade"],
@@ -80,25 +80,37 @@ OPTIONS:
 
   // lume --upgrade
   if (options.upgrade) {
-    const files = [
-      "cli.js",
-      "plugins/bundler.js",
-      "plugins/css.js",
-      "plugins/dom.js",
-      "plugins/eta.js",
-      "plugins/jsx.js",
-      "plugins/svg.js",
-    ].map((file) => `https://deno.land/x/lume/${file}`);
+    const versions = await fetch(
+      "https://cdn.deno.land/lume/meta/versions.json",
+    ).then((res) => res.json());
+
+    if (versions.latest === version) {
+      console.log(
+        `You're using the latest version of lume: ${versions.latest}!`,
+      );
+      console.log("");
+      return;
+    }
+
+    console.log(`New version available. Updating lume to ${version}...`);
 
     await Deno.run({
       cmd: [
         "deno",
-        "cache",
+        "install",
         "--unstable",
-        "--reload",
-        ...files,
+        "-Afr",
+        `https://deno.land/x/lume@${versions.latest}/cli.js`,
       ],
     }).status();
+
+    console.log("");
+    console.log(
+      `Update successful! You're using the latest version of lume: ${
+        brightGreen(version.latest)
+      }!`,
+    );
+    console.log("");
     return;
   }
 
@@ -173,7 +185,8 @@ export default site;
   // lume --run
   if (options.run) {
     const success = await site.run(options.run);
-    Deno.exit(success ? 0 : 1);
+    window.addEventListener("unload", () => Deno.exit(success ? 0 : 1));
+    return;
   }
 
   console.log("");
