@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.9.10] - Unreleased
+### Fixed
+- Updated dependencies
+
 ## [0.9.9] - 2020-12-01
 ### Fixed
 - Asyncronous scripts runner: Don't exit before all promises are resolved [#7].
