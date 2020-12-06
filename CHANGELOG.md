@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.9.10] - Unreleased
+## [0.9.10] - 2020-12-06
 ### Fixed
 - Updated dependencies
 
@@ -227,6 +227,7 @@ First version
 [#7]: https://github.com/oscarotero/lume/issues/7
 [#8]: https://github.com/oscarotero/lume/issues/8
 
+[0.9.10]: https://github.com/oscarotero/lume/compare/v0.9.9...v0.9.10
 [0.9.9]: https://github.com/oscarotero/lume/compare/v0.9.8...v0.9.9
 [0.9.8]: https://github.com/oscarotero/lume/compare/v0.9.7...v0.9.8
 [0.9.7]: https://github.com/oscarotero/lume/compare/v0.9.6...v0.9.7
