@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.9.11] - 2020-12-06
+### Fixed
+- Fixed `lume --upgrade` error
+
 ## [0.9.10] - 2020-12-06
 ### Fixed
 - Updated dependencies

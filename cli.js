@@ -9,7 +9,7 @@ if (import.meta.main) {
 }
 
 export default async function cli(args) {
-  const version = "v0.9.10";
+  const version = "v0.9.11";
   let stop = false;
   const options = parse(args, {
     boolean: ["serve", "init", "version", "dev", "help", "upgrade"],
@@ -107,7 +107,7 @@ OPTIONS:
     console.log("");
     console.log(
       `Update successful! You're using the latest version of lume: ${
-        brightGreen(version.latest)
+        brightGreen(versions.latest)
       }!`,
     );
     console.log("");
