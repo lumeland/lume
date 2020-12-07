@@ -1,5 +1,5 @@
 import textLoader from "../loaders/text.js";
-import { postcss, postcssImport, postcssPresetEnv } from "../deps/postcss.js";
+import { postcss, postcssImport, postcssNesting } from "../deps/postcss.js";
 
 export default function () {
   return (site) => {
@@ -7,12 +7,7 @@ export default function () {
       postcssImport({
         path: site.src("_includes"),
       }),
-      postcssPresetEnv({
-        stage: 1,
-        features: {
-          "custom-properties": false,
-        },
-      }),
+      postcssNesting(),
     ]);
 
     site.loadAssets([".css"], textLoader);

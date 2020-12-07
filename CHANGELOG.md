@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.9.12] - 2020-12-07
+### Fixed
+- css plugin use only import and nesting plugins because the other plugins fails in Deno.
+
 ## [0.9.11] - 2020-12-06
 ### Fixed
 - Fixed `lume --upgrade` error
@@ -231,6 +235,7 @@ First version
 [#7]: https://github.com/oscarotero/lume/issues/7
 [#8]: https://github.com/oscarotero/lume/issues/8
 
+[0.9.12]: https://github.com/oscarotero/lume/compare/v0.9.11...v0.9.12
 [0.9.11]: https://github.com/oscarotero/lume/compare/v0.9.10...v0.9.11
 [0.9.10]: https://github.com/oscarotero/lume/compare/v0.9.9...v0.9.10
 [0.9.9]: https://github.com/oscarotero/lume/compare/v0.9.8...v0.9.9
