@@ -13,6 +13,20 @@ export default class Search {
     return this.#searchPages(tags, sort);
   }
 
+  nextPage(url, tags, sort) {
+    const pages = this.pages(tags, sort);
+    const index = pages.findIndex((page) => page.data.url === url);
+
+    return (index === -1) ? undefined : pages[index + 1];
+  }
+
+  previousPage(url, tags, sort) {
+    const pages = this.pages(tags, sort);
+    const index = pages.findIndex((page) => page.data.url === url);
+
+    return (index <= 0) ? undefined : pages[index - 1];
+  }
+
   #searchPages(tags = [], sort = "date") {
     tags = getTags(tags);
 

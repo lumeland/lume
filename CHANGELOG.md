@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.9.13] - Unreleased
+### Added
+- New functions `search.previousPage()` and `search.nextPage()`
+
 ## [0.9.12] - 2020-12-07
 ### Fixed
 - css plugin use only import and nesting plugins because the other plugins fails in Deno.
@@ -235,6 +239,7 @@ First version
 [#7]: https://github.com/oscarotero/lume/issues/7
 [#8]: https://github.com/oscarotero/lume/issues/8
 
+[0.9.13]: https://github.com/oscarotero/lume/compare/v0.9.12...HEAD
 [0.9.12]: https://github.com/oscarotero/lume/compare/v0.9.11...v0.9.12
 [0.9.11]: https://github.com/oscarotero/lume/compare/v0.9.10...v0.9.11
 [0.9.10]: https://github.com/oscarotero/lume/compare/v0.9.9...v0.9.10
