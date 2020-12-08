@@ -30,18 +30,6 @@ function socket() {
       return;
     }
 
-    let path = document.location.pathname;
-
-    if (!path.endsWith(".html")) {
-      path += path.endsWith("/") ? "index.html" : "/index.html";
-    }
-
-    if (files.includes(path)) {
-      save("refresh", files);
-      location.reload();
-      return;
-    }
-
     refresh(files);
   };
 }
@@ -49,6 +37,21 @@ function socket() {
 setInterval(socket, 1000);
 
 function refresh(files) {
+  let path = document.location.pathname;
+
+  if (!path.endsWith(".html")) {
+    path += path.endsWith("/") ? "index.html" : "/index.html";
+  }
+
+  const index = files.indexOf(path);
+
+  if (index !== -1) {
+    files.splice(index, 1);
+    save("refresh", files);
+    location.reload();
+    return;
+  }
+
   files.forEach((file) => {
     const format = file.split(".").pop().toLowerCase();
 

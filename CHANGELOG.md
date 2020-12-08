@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - New functions `search.previousPage()` and `search.nextPage()`
 
+### Fixed
+- Live reload didn't work always with html
+
 ## [0.9.12] - 2020-12-07
 ### Fixed
 - css plugin use only import and nesting plugins because the other plugins fails in Deno.
