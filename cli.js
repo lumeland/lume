@@ -92,7 +92,7 @@ OPTIONS:
       return;
     }
 
-    console.log(`New version available. Updating lume to ${version}...`);
+    console.log(`New version available. Updating lume to ${versions.latest}...`);
 
     await Deno.run({
       cmd: [
