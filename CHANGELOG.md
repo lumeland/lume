@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Live reload didn't work always with html
 - Nunjucks cache doesn't detect changes in included templates
+- Fixed version display on upgrade [#9]
 
 ## [0.9.12] - 2020-12-07
 ### Fixed
@@ -242,6 +243,7 @@ First version
 [#6]: https://github.com/oscarotero/lume/issues/6
 [#7]: https://github.com/oscarotero/lume/issues/7
 [#8]: https://github.com/oscarotero/lume/issues/8
+[#9]: https://github.com/oscarotero/lume/issues/9
 
 [0.9.13]: https://github.com/oscarotero/lume/compare/v0.9.12...HEAD
 [0.9.12]: https://github.com/oscarotero/lume/compare/v0.9.11...v0.9.12
