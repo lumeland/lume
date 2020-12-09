@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Live reload didn't work always with html
+- Nunjucks cache doesn't detect changes in included templates
 
 ## [0.9.12] - 2020-12-07
 ### Fixed

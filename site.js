@@ -330,6 +330,9 @@ export default class Site {
       this.pages.push(page);
     }
 
+    //Prepare the engines
+    new Set(this.engines.values()).forEach((engine) => engine.beforeRender());
+
     return concurrent(
       this.pages,
       async (page) => {
