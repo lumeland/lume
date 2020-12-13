@@ -2,6 +2,7 @@ import textLoader from "../loaders/text.js";
 import {
   markdownIt,
   markdownItAttrs,
+  markdownItDeflist,
   markdownItReplaceLinks,
 } from "../deps/markdown-it.js";
 import hljs from "../deps/highlight.js";
@@ -29,7 +30,8 @@ export default function () {
       },
     })
       .use(markdownItAttrs)
-      .use(markdownItReplaceLinks);
+      .use(markdownItReplaceLinks)
+      .use(markdownItDeflist);
 
     site.loadPages([".md", ".markdown"], loader);
     site.filter("md", filter);

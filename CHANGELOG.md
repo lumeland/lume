@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.9.13] - Unreleased
 ### Added
 - New functions `search.previousPage()` and `search.nextPage()`
+- Support for definition lists (`<dl>`) in markdown
 
 ### Fixed
 - Live reload didn't work always with html
