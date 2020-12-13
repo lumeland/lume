@@ -1,6 +1,6 @@
 import { listenAndServe } from "./deps/server.js";
 import { acceptWebSocket } from "./deps/ws.js";
-import { extname, join, relative } from "./deps/path.js";
+import { dirname, extname, join, relative } from "./deps/path.js";
 import { brightGreen, red } from "./deps/colors.js";
 import { exists } from "./deps/fs.js";
 
@@ -168,6 +168,7 @@ export async function server(site, options) {
 
       if (info.isDirectory) {
         path = join(path, "index.html");
+        await Deno.stat(path);
       }
 
       const mimeType = mimes.get(extname(path).toLowerCase()) ||
@@ -196,7 +197,7 @@ export async function server(site, options) {
         headers: new Headers({
           "content-type": mimes.get(".html"),
         }),
-        body: await getNotFoundBody(root, page404),
+        body: await getNotFoundBody(root, page404, path),
       });
     }
   }
@@ -241,14 +242,40 @@ async function getHtmlBody(path) {
   return `${content}<script>${script}</script>`;
 }
 
-async function getNotFoundBody(root, page404) {
+async function getNotFoundBody(root, page404, file) {
   const filepath = join(root, page404);
 
   if (await exists(filepath)) {
     return getHtmlBody(filepath);
   }
 
-  return "404 - Not found";
+  const content = await listDirectory(dirname(file));
+
+  return `
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Not found</title>
+    <style> body { font-family: sans-serif; max-width: 40em; margin: auto; padding: 2em; line-height: 1.5; }</style>
+  </head>
+  <body>
+    <h1>404 - Not found</h1>
+    <p>The url <code>${relative(root, file)}</code> does not exist</p>
+    <ul>
+      ${
+    content.map((item) =>
+      `<li>
+            <a href="${relative(root, item[1])}">
+              ${item[0]}
+            </a>
+          </li>`
+    ).join("\n")
+  }
+    </ul>
+  </body>
+</html>`;
 }
 
 async function getBody(path) {
@@ -257,4 +284,21 @@ async function getBody(path) {
   Deno.close(file.rid);
 
   return content;
+}
+
+async function listDirectory(directory) {
+  const files = [];
+
+  if (!await exists(directory)) {
+    return files;
+  }
+
+  for await (const info of Deno.readDir(directory)) {
+    const name = info.name;
+    const href = join(directory, name);
+
+    files.push([name, href]);
+  }
+
+  return files;
 }

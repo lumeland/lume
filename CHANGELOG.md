@@ -9,9 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - New functions `search.previousPage()` and `search.nextPage()`
 - Support for definition lists (`<dl>`) in markdown
+- Improved default `404` error page. Now it displays a list of files and subfolders
 
 ### Fixed
 - Live reload didn't work always with html
+- HTTP server timeout on missing `/index.html`
 - Nunjucks cache doesn't detect changes in included templates
 - Fixed version display on upgrade [#9]
 
