@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.9.13] - Unreleased
 ### Added
+- New plugin to use `Pug` as a template engine
 - New functions `search.previousPage()` and `search.nextPage()`
 - Support for definition lists (`<dl>`) in markdown
 - Improved default `404` error page. Now it displays a list of files and subfolders
