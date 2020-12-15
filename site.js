@@ -429,7 +429,11 @@ export default class Site {
     let layout = pageData.layout;
 
     if (engine) {
-      content = await engine.render(content, pageData);
+      content = await engine.render(
+        content,
+        pageData,
+        page.src.path + page.src.ext,
+      );
     }
 
     while (layout) {
@@ -443,7 +447,7 @@ export default class Site {
         ...this.extraData,
       };
 
-      content = await engine.render(layoutData.content, pageData);
+      content = await engine.render(layoutData.content, pageData, path);
       layout = layoutData.layout;
     }
 
