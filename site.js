@@ -433,7 +433,7 @@ export default class Site {
         content = await eng.render(content, pageData, path);
       }
     } else if (engine) {
-      await engine.render(content, pageData, path);
+      content = await engine.render(content, pageData, path);
     }
 
     while (layout) {
