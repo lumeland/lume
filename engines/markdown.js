@@ -19,7 +19,7 @@ export default class Markdown extends TemplateEngine {
 }
 
 function createMarkdown(site) {
-  return markdownIt({
+  const markdown = markdownIt({
     html: true,
     replaceLink(link) {
       return site.url(link);
@@ -42,4 +42,6 @@ function createMarkdown(site) {
     .use(markdownItAttrs)
     .use(markdownItReplaceLinks)
     .use(markdownItDeflist);
+
+  return markdown;
 }
