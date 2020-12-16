@@ -217,7 +217,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.2.3] - 2020-09-14
 ### Fixed
-- Moved websocket script to server.js to avoid read problems
+- Moved websocket script to server.js to avoid reading problems
 
 ## [0.2.2] - 2020-09-13
 ### Added
@@ -228,7 +228,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.2.1] - 2020-09-13
 ### Fixed
-- Module loader execute from remote (http://deno.land/x/lume)
+- Module loader executed from remote (http://deno.land/x/lume)
 - Use fixed versions for dependencies
 
 ## [0.2.0] - 2020-09-13

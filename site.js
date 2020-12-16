@@ -378,6 +378,10 @@ export default class Site {
       dest.path = join(dest.path, "index");
     }
 
+    if (!dest.path.startsWith("/")) {
+      dest.path = `/${dest.path}`;
+    }
+
     page.data.url = (dest.ext === ".html" && basename(dest.path) === "index")
       ? dest.path.slice(0, -5)
       : dest.path + dest.ext;
