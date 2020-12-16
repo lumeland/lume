@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.10.0] - Unreleased
+## [0.10.0] - 2020-12-16
 ### Added
 - New plugin to use `Pug` as a template engine [#10]
 - New functions `search.previousPage()` and `search.nextPage()`
@@ -254,7 +254,7 @@ First version
 [#10]: https://github.com/oscarotero/lume/issues/10
 [#11]: https://github.com/oscarotero/lume/issues/11
 
-[0.10.0]: https://github.com/oscarotero/lume/compare/v0.9.12...HEAD
+[0.10.0]: https://github.com/oscarotero/lume/compare/v0.9.12...v0.10.0
 [0.9.12]: https://github.com/oscarotero/lume/compare/v0.9.11...v0.9.12
 [0.9.11]: https://github.com/oscarotero/lume/compare/v0.9.10...v0.9.11
 [0.9.10]: https://github.com/oscarotero/lume/compare/v0.9.9...v0.9.10
