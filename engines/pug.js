@@ -4,10 +4,6 @@ import TemplateEngine from "./templateEngine.js";
 export default class Pug extends TemplateEngine {
   filters = {};
 
-  constructor(site, options = {}) {
-    super(site, options);
-  }
-
   render(content, data, filename) {
     const fn = pug.compile(content, {
       filename,
