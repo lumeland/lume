@@ -277,7 +277,10 @@ export default class Site {
    * Returns the url of a page
    */
   url(path, absolute) {
-    if (path.startsWith("./") || path.startsWith("../")) {
+    if (
+      path.startsWith("./") || path.startsWith("../") || path.startsWith("#") ||
+      path.startsWith("?")
+    ) {
       return path;
     }
 

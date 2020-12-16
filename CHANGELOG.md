@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - HTTP server timeout on missing `/index.html`
 - Nunjucks cache doesn't detect changes in included templates
 - Fixed version display on upgrade [#9]
+- `url` filter in markdown
+- `url` filter handling hashes and queries (for example `#hashid` and `?query=value`)
 
 ## [0.9.12] - 2020-12-07
 ### Fixed

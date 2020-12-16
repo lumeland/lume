@@ -10,7 +10,7 @@ import TemplateEngine from "./templateEngine.js";
 export default class Markdown extends TemplateEngine {
   constructor(site, options = {}) {
     super(site, options);
-    this.engine = createMarkdown();
+    this.engine = createMarkdown(site);
   }
 
   render(content) {
@@ -18,7 +18,7 @@ export default class Markdown extends TemplateEngine {
   }
 }
 
-function createMarkdown() {
+function createMarkdown(site) {
   return markdownIt({
     html: true,
     replaceLink(link) {
