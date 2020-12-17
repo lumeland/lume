@@ -81,8 +81,14 @@ function refresh(files) {
   });
 }
 
-function cache(el, attr, file, clone = false) {
-  const url = new URL(el[attr]);
+function cache(el, prop, file, clone = false) {
+  const value = el[prop];
+
+  if (!value) {
+    return;
+  }
+
+  const url = new URL(value);
 
   if (url.pathname !== file) {
     return;
@@ -92,13 +98,13 @@ function cache(el, attr, file, clone = false) {
 
   if (clone) {
     const newEl = el.cloneNode();
-    newEl[attr] = url.toString();
+    newEl[prop] = url.toString();
     el.after(newEl);
     setTimeout(() => el.remove(), 500);
     return;
   }
 
-  el[attr] = url.toString();
+  el[prop] = url.toString();
 }
 
 function save(key, data) {
