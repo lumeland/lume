@@ -171,8 +171,15 @@ export default class Source {
     const page = new Page(src);
     page.data = await load(fullPath);
 
-    page.dest.path = page.src.path;
-    page.dest.ext = this.assets.has(ext) ? ext : ".html";
+    const subext = extname(page.src.path);
+
+    if (subext && !this.assets.has(ext)) {
+      page.dest.path = page.src.path.slice(0, -subext.length);
+      page.dest.ext = subext;
+    } else {
+      page.dest.path = page.src.path;
+      page.dest.ext = this.assets.has(ext) ? ext : ".html";
+    }
 
     if (!page.data.date) {
       page.data.date = getDate(page.src, page.dest);
