@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.10.3] - Unreleased
+### Fixed
+- TypeError in the server reload script
+
 ## [0.10.2] - 2020-12-17
 ### Fixed
 - Do not add `.html` extension to files with a subextension. For example `scripts.js.njk` should be saved to `scripts.js` instead `scripts.js.html` [#13].
@@ -264,6 +268,7 @@ First version
 [#11]: https://github.com/oscarotero/lume/issues/11
 [#13]: https://github.com/oscarotero/lume/issues/13
 
+[0.10.3]: https://github.com/oscarotero/lume/compare/v0.10.2...HEAD
 [0.10.2]: https://github.com/oscarotero/lume/compare/v0.10.1...v0.10.2
 [0.10.1]: https://github.com/oscarotero/lume/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/oscarotero/lume/compare/v0.9.12...v0.10.0
