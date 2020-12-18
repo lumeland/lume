@@ -9,7 +9,7 @@ if (import.meta.main) {
 }
 
 export default async function cli(args) {
-  const version = "v0.9.13";
+  const version = "v0.10.2";
   let stop = false;
   const options = parse(args, {
     boolean: ["serve", "init", "version", "dev", "help", "upgrade"],
@@ -103,6 +103,16 @@ OPTIONS:
         "--unstable",
         "-Afr",
         `https://deno.land/x/lume@${versions.latest}/cli.js`,
+      ],
+    }).status();
+
+    await Deno.run({
+      cmd: [
+        "deno",
+        "cache",
+        "--unstable",
+        "-r",
+        `https://deno.land/x/lume/mod.js`,
       ],
     }).status();
 

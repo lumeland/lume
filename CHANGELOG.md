@@ -5,17 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.9.13] - Unreleased
+## [0.10.3] - Unreleased
+### Fixed
+- TypeError in the server reload script
+
+## [0.10.2] - 2020-12-17
+### Fixed
+- Do not add `.html` extension to files with a subextension. For example `scripts.js.njk` should be saved to `scripts.js` instead `scripts.js.html` [#13].
+- Refresh Deno cache with `lume --upgrade`
+
+## [0.10.1] - 2020-12-16
+### Fixed
+- Markdown error handling `<pre>` elements
+
+## [0.10.0] - 2020-12-16
 ### Added
+- New plugin to use `Pug` as a template engine [#10]
 - New functions `search.previousPage()` and `search.nextPage()`
 - Support for definition lists (`<dl>`) in markdown
 - Improved default `404` error page. Now it displays a list of files and subfolders
+- New option `templateEngine` to configure the template engine used for every page [#11]
 
 ### Fixed
 - Live reload didn't work always with html
 - HTTP server timeout on missing `/index.html`
 - Nunjucks cache doesn't detect changes in included templates
 - Fixed version display on upgrade [#9]
+- `url` filter in markdown
+- `url` filter handling hashes and queries (for example `#hashid` and `?query=value`)
 
 ## [0.9.12] - 2020-12-07
 ### Fixed
@@ -215,7 +232,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.2.3] - 2020-09-14
 ### Fixed
-- Moved websocket script to server.js to avoid read problems
+- Moved websocket script to server.js to avoid reading problems
 
 ## [0.2.2] - 2020-09-13
 ### Added
@@ -226,7 +243,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.2.1] - 2020-09-13
 ### Fixed
-- Module loader execute from remote (http://deno.land/x/lume)
+- Module loader executed from remote (http://deno.land/x/lume)
 - Use fixed versions for dependencies
 
 ## [0.2.0] - 2020-09-13
@@ -247,8 +264,14 @@ First version
 [#7]: https://github.com/oscarotero/lume/issues/7
 [#8]: https://github.com/oscarotero/lume/issues/8
 [#9]: https://github.com/oscarotero/lume/issues/9
+[#10]: https://github.com/oscarotero/lume/issues/10
+[#11]: https://github.com/oscarotero/lume/issues/11
+[#13]: https://github.com/oscarotero/lume/issues/13
 
-[0.9.13]: https://github.com/oscarotero/lume/compare/v0.9.12...HEAD
+[0.10.3]: https://github.com/oscarotero/lume/compare/v0.10.2...HEAD
+[0.10.2]: https://github.com/oscarotero/lume/compare/v0.10.1...v0.10.2
+[0.10.1]: https://github.com/oscarotero/lume/compare/v0.10.0...v0.10.1
+[0.10.0]: https://github.com/oscarotero/lume/compare/v0.9.12...v0.10.0
 [0.9.12]: https://github.com/oscarotero/lume/compare/v0.9.11...v0.9.12
 [0.9.11]: https://github.com/oscarotero/lume/compare/v0.9.10...v0.9.11
 [0.9.10]: https://github.com/oscarotero/lume/compare/v0.9.9...v0.9.10

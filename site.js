@@ -279,7 +279,10 @@ export default class Site {
    * Returns the url of a page
    */
   url(path, absolute) {
-    if (path.startsWith("./") || path.startsWith("../")) {
+    if (
+      path.startsWith("./") || path.startsWith("../") || path.startsWith("#") ||
+      path.startsWith("?")
+    ) {
       return path;
     }
 
@@ -380,6 +383,10 @@ export default class Site {
       dest.path = join(dest.path, "index");
     }
 
+    if (!dest.path.startsWith("/")) {
+      dest.path = `/${dest.path}`;
+    }
+
     page.data.url = (dest.ext === ".html" && basename(dest.path) === "index")
       ? dest.path.slice(0, -5)
       : dest.path + dest.ext;
@@ -424,14 +431,18 @@ export default class Site {
    * Render a page
    */
   async #renderPage(page) {
-    const engine = this.#getEngine(page.src.ext);
-
     let content = page.content;
     let pageData = { ...page.fullData, ...this.extraData };
     let layout = pageData.layout;
+    let path = page.src.path + page.src.ext;
+    const engine = this.#getEngine(page.src.ext, pageData.templateEngine);
 
-    if (engine) {
-      content = await engine.render(content, pageData);
+    if (Array.isArray(engine)) {
+      for (const eng of engine) {
+        content = await eng.render(content, pageData, path);
+      }
+    } else if (engine) {
+      content = await engine.render(content, pageData, path);
     }
 
     while (layout) {
@@ -488,7 +499,21 @@ export default class Site {
   /**
    * Get the engine used by a path or extension
    */
-  #getEngine(path) {
+  #getEngine(path, custom) {
+    if (custom) {
+      custom = Array.isArray(custom) ? custom : custom.split(",");
+
+      return custom.map((name) => {
+        const engine = this.engines.get(`.${name.trim()}`);
+
+        if (engine) {
+          return engine;
+        }
+
+        throw new Error(`Invalid template engine: "${name}"`);
+      });
+    }
+
     for (const [ext, engine] of this.engines) {
       if (path.endsWith(ext)) {
         return engine;
