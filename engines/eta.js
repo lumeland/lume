@@ -14,9 +14,12 @@ export default class Eta extends TemplateEngine {
     });
   }
 
-  render(content, data) {
+  render(content, data, file) {
+    if (!eta.templates.get(file)) {
+      eta.templates.define(file, Eta.compile(content));
+    }
     data.filters = this.filters;
-    return eta.render(content, data);
+    return eta.templates.get(file)(data);
   }
 
   addFilter(name, fn) {
