@@ -5,6 +5,7 @@ import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
 import Scripts from "./scripts.js";
 import { concurrent } from "./utils.js";
+import { Cache } from "./storage.js";
 
 const defaults = {
   cwd: Deno.cwd(),
@@ -26,6 +27,7 @@ export default class Site {
   listeners = new Map();
   processors = new Map();
   pages = [];
+  cache = new Cache();
 
   constructor(options = {}) {
     this.options = { ...defaults, ...options };
@@ -443,7 +445,17 @@ export default class Site {
         ...this.extraData,
       };
 
-      content = await engine.render(layoutData.content, pageData);
+      if (engine.compile) {
+        if (!this.cache.get(page.src.path + page.src.ext)) {
+          this.cache.set(page.src.path + page.src.ext, engine.compile(layoutData.content));
+          content = await this.cache.get(page.src.path + page.src.ext)(pageData);
+        } else {
+          content = await this.cache.get(page.src.path + page.src.ext)(pageData);
+        }
+      } else {
+        content = await engine.render(layoutData.content, pageData);
+      }
+
       layout = layoutData.layout;
     }
 
