@@ -26,7 +26,6 @@ export default class Site {
   listeners = new Map();
   processors = new Map();
   pages = [];
-  cache = new Cache();
 
   constructor(options = {}) {
     this.options = { ...defaults, ...options };
