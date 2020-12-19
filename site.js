@@ -455,6 +455,7 @@ export default class Site {
       };
 
       content = await engine.render(layoutData.content, pageData, path);
+
       layout = layoutData.layout;
     }
 
