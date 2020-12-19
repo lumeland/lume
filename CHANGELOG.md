@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.10.3] - Unreleased
 ### Fixed
 - TypeError in the server reload script
+- Removed extra space on parse the frontmatter
 
 ## [0.10.2] - 2020-12-17
 ### Fixed
