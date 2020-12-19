@@ -229,7 +229,11 @@ export default class Site {
   async update(files) {
     await this.dispatchEvent({ type: "beforeUpdate" });
 
+    const fullPaths = [];
+
     for (const file of files) {
+      fullPaths.push(this.src(file));
+
       // file inside a _data file or folder
       if (file.includes("/_data/") || file.match(/\/_data.\w+$/)) {
         await this.source.loadFile(file);
@@ -254,6 +258,11 @@ export default class Site {
       //Default
       await this.source.loadFile(file);
     }
+
+    //Update engines cache
+    new Set(this.engines.values()).forEach((engine) =>
+      engine.update(fullPaths)
+    );
 
     await this.#buildPages();
     await this.dispatchEvent({ type: "afterUpdate" });
@@ -332,9 +341,6 @@ export default class Site {
 
       this.pages.push(page);
     }
-
-    //Prepare the engines
-    new Set(this.engines.values()).forEach((engine) => engine.beforeRender());
 
     return concurrent(
       this.pages,
