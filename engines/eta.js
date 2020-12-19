@@ -14,6 +14,13 @@ export default class Eta extends TemplateEngine {
     });
   }
 
+  //Update cache
+  update(filenames) {
+    for (const filename of filenames) {
+      eta.templates.remove(filename);
+    }
+  }
+
   render(content, data, filename) {
     if (!eta.templates.get(filename)) {
       eta.templates.define(filename, Eta.compile(content));
