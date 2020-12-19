@@ -21,12 +21,13 @@ export default class Eta extends TemplateEngine {
     }
   }
 
-  render(content, data, filename) {
+  async render(content, data, filename) {
     if (!eta.templates.get(filename)) {
-      eta.templates.define(filename, Eta.compile(content));
+      eta.templates.define(filename, eta.compile(content));
     }
     data.filters = this.filters;
-    return eta.templates.get(filename)(data);
+    const fn = eta.templates.get(filename);
+    return await fn(data, eta.config);
   }
 
   addFilter(name, fn) {
