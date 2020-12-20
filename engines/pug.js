@@ -2,17 +2,29 @@ import * as pug from "../deps/pug.js";
 import TemplateEngine from "./templateEngine.js";
 
 export default class Pug extends TemplateEngine {
+  cache = new Map();
   filters = {};
 
-  render(content, data, filename) {
-    const fn = pug.compile(content, {
-      filename,
-      basedir: this.site.src("_includes"),
-      filters: this.filters,
-      cache: true,
-    });
+  //Update cache
+  update(filenames) {
+    for (const filename of filenames) {
+      this.cache.delete(filename);
+    }
+  }
 
-    return fn(data);
+  render(content, data, filename) {
+    if (!this.cache.has(filename)) {
+      this.cache.set(
+        filename,
+        pug.compile(content, {
+          filename,
+          basedir: this.site.src("_includes"),
+          filters: this.filters,
+        }),
+      );
+    }
+
+    return this.cache.get(filename)(data);
   }
 
   addFilter(name, fn) {
