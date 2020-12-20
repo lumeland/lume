@@ -28,6 +28,10 @@ export default class Pug extends TemplateEngine {
   }
 
   addFilter(name, fn) {
-    this.filters[name] = fn;
+    this.filters[name] = (text, options) => {
+      delete options.filename;
+      const args = Object.values(options);
+      return fn(text, ...args);
+    };
   }
 }

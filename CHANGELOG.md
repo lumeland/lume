@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - TypeError in the server reload script
 - Removed extra space on parse the frontmatter
-- Improved `Pug` plugin. Fixed Typescript errors due conflicts with Eta [#18] and added cache
+- Improved `Pug` plugin. Fixed Typescript errors due conflicts with Eta [#18], added cache for the compiled templates and improved filters.
 
 ## [0.10.2] - 2020-12-17
 ### Fixed
