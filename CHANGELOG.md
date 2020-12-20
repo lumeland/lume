@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - TypeError in the server reload script
 - Removed extra space on parse the frontmatter
+- Improved `Pug` plugin. Fixed Typescript errors due conflicts with Eta [#18] and added cache
 
 ## [0.10.2] - 2020-12-17
 ### Fixed
@@ -268,6 +269,7 @@ First version
 [#10]: https://github.com/oscarotero/lume/issues/10
 [#11]: https://github.com/oscarotero/lume/issues/11
 [#13]: https://github.com/oscarotero/lume/issues/13
+[#18]: https://github.com/oscarotero/lume/issues/18
 
 [0.10.3]: https://github.com/oscarotero/lume/compare/v0.10.2...HEAD
 [0.10.2]: https://github.com/oscarotero/lume/compare/v0.10.1...v0.10.2
