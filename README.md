@@ -34,7 +34,7 @@ Run it:
 deno run --unstable -A https://deno.land/x/lume/cli.js
 ```
 
-This command will compile your documents to HTML and save them into folder `_site`.
+This command will compile your documents to HTML and save them into the folder `_site`.
 
 ---
 
