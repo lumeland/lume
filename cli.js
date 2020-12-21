@@ -9,7 +9,7 @@ if (import.meta.main) {
 }
 
 export default async function cli(args) {
-  const version = "v0.10.2";
+  const version = "v0.10.3";
   let stop = false;
   const options = parse(args, {
     boolean: ["serve", "init", "version", "dev", "help", "upgrade"],

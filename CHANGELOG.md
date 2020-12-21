@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.10.3] - Unreleased
+## [0.10.3] - 2020-12-21
 ### Fixed
 - TypeError in the server reload script
 - Removed extra space on parse the frontmatter
@@ -272,7 +272,7 @@ First version
 [#13]: https://github.com/oscarotero/lume/issues/13
 [#18]: https://github.com/oscarotero/lume/issues/18
 
-[0.10.3]: https://github.com/oscarotero/lume/compare/v0.10.2...HEAD
+[0.10.3]: https://github.com/oscarotero/lume/compare/v0.10.2...v0.10.3
 [0.10.2]: https://github.com/oscarotero/lume/compare/v0.10.1...v0.10.2
 [0.10.1]: https://github.com/oscarotero/lume/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/oscarotero/lume/compare/v0.9.12...v0.10.0
