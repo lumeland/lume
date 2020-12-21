@@ -1,8 +1,15 @@
-import loader from "../loaders/module.js";
+import { default as loader, removeCache } from "../loaders/module.js";
 import TemplateEngine from "./templateEngine.js";
 
 export default class Module extends TemplateEngine {
   filters = {};
+
+  //Update cache
+  update(filenames) {
+    for (const filename of filenames) {
+      removeCache(filename);
+    }
+  }
 
   render(content, data) {
     if (typeof content === "function") {

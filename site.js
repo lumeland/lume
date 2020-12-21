@@ -229,11 +229,12 @@ export default class Site {
   async update(files) {
     await this.dispatchEvent({ type: "beforeUpdate" });
 
-    const fullPaths = [];
+    //Update engines cache
+    new Set(this.engines.values()).forEach((engine) =>
+      engine.update(Array.from(files).map((file) => this.src(file)))
+    );
 
     for (const file of files) {
-      fullPaths.push(this.src(file));
-
       // file inside a _data file or folder
       if (file.includes("/_data/") || file.match(/\/_data.\w+$/)) {
         await this.source.loadFile(file);
@@ -258,11 +259,6 @@ export default class Site {
       //Default
       await this.source.loadFile(file);
     }
-
-    //Update engines cache
-    new Set(this.engines.values()).forEach((engine) =>
-      engine.update(fullPaths)
-    );
 
     await this.#buildPages();
     await this.dispatchEvent({ type: "afterUpdate" });
@@ -404,7 +400,7 @@ export default class Site {
 
     if (typeof content === "function") {
       const data = { ...page.fullData, ...this.extraData };
-      const result = content(data, this.filters);
+      const result = content(data, Object.fromEntries(this.filters));
 
       switch (String(result)) {
         case "[object Generator]":
