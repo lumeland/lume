@@ -2,7 +2,6 @@ import Site from "./site.js";
 
 import attr from "./filters/attributes.js";
 import url from "./filters/url.js";
-import date from "./filters/date.js";
 import json from "./plugins/json.js";
 import markdown from "./plugins/markdown.js";
 import modules from "./plugins/modules.js";
@@ -16,7 +15,6 @@ export default function (options = {}) {
   return site
     .filter("attr", attr())
     .filter("url", url(site))
-    .filter("date", date())
     .ignore("node_modules")
     .use(json())
     .use(markdown())

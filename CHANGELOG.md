@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Removed extra space on parse the frontmatter
 - Improved `Pug` plugin. Fixed Typescript errors due conflicts with Eta [#18], added cache for the compiled templates and improved filters.
 - Added hot reloading for modules (ts, js) and fixed some issues.
+- Undocumented `data` filter is disabled by default.
 
 ## [0.10.2] - 2020-12-17
 ### Fixed
