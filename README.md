@@ -18,7 +18,6 @@ Create your first page, for example using a nunjucks template:
 ---
 title: Welcome to my page
 ---
-
 <html>
   <head>
     <title>{{ title }}</title>
@@ -35,7 +34,7 @@ Run it:
 deno run --unstable -A https://deno.land/x/lume/cli.js
 ```
 
-This command will compile your documents to HTML and saved into the output folder (defaults to `_site`).
+This command will compile your documents to HTML and save them into folder `_site`.
 
 ---
 
