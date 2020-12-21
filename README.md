@@ -1,4 +1,4 @@
-# 🔥Lume (Work in progress)
+# 🔥Lume
 
 **lume** is the galician word for *fire*, but also a (yet another) static site generator for [Deno](https://deno.land/).
 
@@ -10,7 +10,7 @@ It's inspired in other general purpose static site generators such [Jekyll](http
 
 ## Quick start
 
-Make sure you have [Deno installed](https://deno.land/#installation) and install **lume** as a Deno executable:
+Make sure you have [Deno installed](https://deno.land/#installation).
 
 Create your first page, for example using a nunjucks template:
 
