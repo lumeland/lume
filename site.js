@@ -434,7 +434,7 @@ export default class Site {
     let content = page.content;
     let pageData = { ...page.fullData, ...this.extraData };
     let layout = pageData.layout;
-    let path = page.src.path + page.src.ext;
+    let path = this.src(page.src.path + page.src.ext);
     const engine = this.#getEngine(page.src.ext, pageData.templateEngine);
 
     if (Array.isArray(engine)) {

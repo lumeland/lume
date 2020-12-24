@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.10.4] - Unreleased
+### Fixed
+- Ensure page tags are always converted to strings
+- The template cache is not updated sometimes
+
 ## [0.10.3] - 2020-12-21
 ### Fixed
 - TypeError in the server reload script

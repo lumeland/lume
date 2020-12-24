@@ -24,9 +24,9 @@ class Base {
     const dataTags = this.data.tags;
     if (dataTags) {
       if (Array.isArray(dataTags)) {
-        dataTags.forEach((tag) => tags.add(tag));
+        dataTags.forEach((tag) => tags.add(String(tag)));
       } else {
-        tags.add(dataTags);
+        tags.add(String(dataTags));
       }
     }
 
