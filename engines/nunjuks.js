@@ -20,20 +20,17 @@ export default class Denjuks extends TemplateEngine {
         delete this.loader.cache[name];
         continue;
       }
-      console.log(filename);
+
       this.cache.delete(filename);
     }
   }
 
   render(content, data, filename) {
     if (!this.cache.has(filename)) {
-      console.log("generate " + filename);
       this.cache.set(
         filename,
         nunjucks.compile(content, this.engine, filename),
       );
-    } else {
-      console.log("reuse " + filename);
     }
 
     return this.cache.get(filename).render(data);
