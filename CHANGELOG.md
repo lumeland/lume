@@ -5,10 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.10.4] - Unreleased
+## [0.10.4] - 2020-12-24
 ### Fixed
 - Ensure page tags are always converted to strings
-- The template cache is not updated sometimes
+- The template cache is not always updated
 
 ## [0.10.3] - 2020-12-21
 ### Fixed
@@ -278,6 +278,7 @@ First version
 [#13]: https://github.com/oscarotero/lume/issues/13
 [#18]: https://github.com/oscarotero/lume/issues/18
 
+[0.10.4]: https://github.com/oscarotero/lume/compare/v0.10.3...v0.10.4
 [0.10.3]: https://github.com/oscarotero/lume/compare/v0.10.2...v0.10.3
 [0.10.2]: https://github.com/oscarotero/lume/compare/v0.10.1...v0.10.2
 [0.10.1]: https://github.com/oscarotero/lume/compare/v0.10.0...v0.10.1
