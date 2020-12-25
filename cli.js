@@ -13,7 +13,7 @@ export default async function cli(args) {
   let stop = false;
   const options = parse(args, {
     boolean: ["serve", "init", "version", "dev", "help", "upgrade"],
-    string: ["run", "port", "src", "dest"],
+    string: ["run", "port", "src", "dest", "location"],
     alias: {
       help: "h",
       version: "v",
