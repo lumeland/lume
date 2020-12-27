@@ -321,6 +321,7 @@ export default class Site {
    */
   async #buildPages() {
     this.pages = [];
+    const fnPages = [];
 
     for (const page of this.source.root.getPages()) {
       if (page.data.draft && !this.options.dev) {
@@ -329,13 +330,17 @@ export default class Site {
 
       page.content = page.data.content;
 
-      if (await this.#expandPage(page)) {
+      if (typeof page.content === "function") {
+        fnPages.push(page);
         continue;
       }
 
       this.#urlPage(page);
-
       this.pages.push(page);
+    }
+
+    for (const page of fnPages) {
+      await this.#expandPage(page);
     }
 
     return concurrent(
@@ -344,6 +349,7 @@ export default class Site {
         await this.#renderPage(page);
 
         if (!page.content) {
+          console.log(page.dest);
           return;
         }
 
@@ -397,33 +403,34 @@ export default class Site {
    */
   async #expandPage(page) {
     const content = page.content;
+    const data = { ...page.fullData, ...this.extraData };
+    const result = content(data, Object.fromEntries(this.filters));
+    const type = (typeof result === "object")
+      ? String(result)
+      : (typeof result);
 
-    if (typeof content === "function") {
-      const data = { ...page.fullData, ...this.extraData };
-      const result = content(data, Object.fromEntries(this.filters));
+    switch (type) {
+      case "[object Generator]":
+      case "[object AsyncGenerator]":
+        let num = 1;
 
-      switch (String(result)) {
-        case "[object Generator]":
-        case "[object AsyncGenerator]":
-          let num = 1;
+        for await (const pageData of result) {
+          const key = `${page.src.path}${page.src.ext}.${num}`;
+          const newPage = page.duplicate(pageData);
 
-          for await (const pageData of result) {
-            const key = `${page.src.path}-${num}${page.src.ext}`;
-            const value = page.duplicate(pageData);
+          newPage.content = newPage.data.content;
 
-            if (value.data.content === content) {
-              value.data.content = null;
-            }
+          page.parent.setPage(key, newPage);
+          this.pages.push(newPage);
+          this.#urlPage(newPage);
+          num++;
+        }
+        break;
 
-            page.parent.setPage(key, value);
-
-            num++;
-          }
-
-          return true;
-      }
-
-      page.content = result;
+      default:
+        page.content = result;
+        this.pages.push(page);
+        this.#urlPage(page);
     }
   }
 
