@@ -219,25 +219,39 @@ export async function server(site, options) {
       headers,
     });
 
-    function sendChanges() {
+    async function sendChanges() {
+      if (!changes.size) {
+        return;
+      }
+
       const files = Array.from(changes).map((path) =>
         join("/", relative(root, path))
       );
+
       changes.clear();
-      socket.send(JSON.stringify(files));
-      console.log("Changes sent to browser");
+
+      try {
+        await socket.send(JSON.stringify(files));
+        console.log("Changes sent to browser");
+      } catch (err) {
+        console.log(
+          `Changes couldn't be sent to browser due "${err.message.trim()}"`,
+        );
+      }
     }
 
     console.log("Connected to browser");
 
     for await (const event of watcher) {
-      if (event.kind === "modify") {
-        event.paths.forEach((path) => changes.add(path));
+      if (event.kind !== "modify") {
+        continue;
       }
+
+      event.paths.forEach((path) => changes.add(path));
 
       //Debounce
       clearTimeout(timer);
-      timer = setTimeout(sendChanges, 500);
+      timer = setTimeout(sendChanges, 100);
     }
   }
 }

@@ -5,9 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.10.6] - Unreleased
+## [0.10.6] - 2020-12-27
 ### Fixed
 - Multipage generation workflow
+- Websocket random errors on reload changes
 
 ## [0.10.5] - 2020-12-25
 ### Fixed
@@ -286,7 +287,7 @@ First version
 [#13]: https://github.com/oscarotero/lume/issues/13
 [#18]: https://github.com/oscarotero/lume/issues/18
 
-[0.10.6]: https://github.com/oscarotero/lume/compare/v0.10.5...HEAD
+[0.10.6]: https://github.com/oscarotero/lume/compare/v0.10.5...v0.10.6
 [0.10.5]: https://github.com/oscarotero/lume/compare/v0.10.4...v0.10.5
 [0.10.4]: https://github.com/oscarotero/lume/compare/v0.10.3...v0.10.4
 [0.10.3]: https://github.com/oscarotero/lume/compare/v0.10.2...v0.10.3
