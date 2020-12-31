@@ -15,7 +15,7 @@ export default class TemplateEngine {
     //To extend
   }
 
-  addFilter(name, fn) {
+  addFilter(name, fn, async) {
     //To extend
   }
 

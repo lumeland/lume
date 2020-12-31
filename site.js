@@ -155,7 +155,7 @@ export default class Site {
     this.loadPages(extensions, engine.load.bind(engine));
 
     for (const [name, filter] of this.filters) {
-      engine.addFilter(name, filter);
+      engine.addFilter(name, ...filter);
     }
 
     return this;
@@ -164,11 +164,11 @@ export default class Site {
   /**
    * Register a template filter
    */
-  filter(name, filter) {
-    this.filters.set(name, filter);
+  filter(name, filter, async) {
+    this.filters.set(name, [filter, async]);
 
     for (const engine of this.engines.values()) {
-      engine.addFilter(name, filter);
+      engine.addFilter(name, filter, async);
     }
 
     return this;
@@ -402,9 +402,15 @@ export default class Site {
    * Generate subpages (for pagination)
    */
   async #expandPage(page) {
+    const filters = {};
+
+    for (const [name, [fn]] of this.filters) {
+      filters[name] = fn;
+    }
+
     const content = page.content;
     const data = { ...page.fullData, ...this.extraData };
-    const result = content(data, Object.fromEntries(this.filters));
+    const result = content(data, filters);
     const type = (typeof result === "object")
       ? String(result)
       : (typeof result);

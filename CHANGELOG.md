@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.10.7] - Unreleased
+### Added
+- Support for async filters [#22]
+
 ## [0.10.6] - 2020-12-27
 ### Fixed
 - Multipage generation workflow
@@ -286,7 +290,9 @@ First version
 [#11]: https://github.com/oscarotero/lume/issues/11
 [#13]: https://github.com/oscarotero/lume/issues/13
 [#18]: https://github.com/oscarotero/lume/issues/18
+[#22]: https://github.com/oscarotero/lume/issues/22
 
+[0.10.7]: https://github.com/oscarotero/lume/compare/v0.10.6...HEAD
 [0.10.6]: https://github.com/oscarotero/lume/compare/v0.10.5...v0.10.6
 [0.10.5]: https://github.com/oscarotero/lume/compare/v0.10.4...v0.10.5
 [0.10.4]: https://github.com/oscarotero/lume/compare/v0.10.3...v0.10.4

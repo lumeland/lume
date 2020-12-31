@@ -25,7 +25,7 @@ export default class Denjuks extends TemplateEngine {
     }
   }
 
-  render(content, data, filename) {
+  async render(content, data, filename) {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
@@ -33,10 +33,31 @@ export default class Denjuks extends TemplateEngine {
       );
     }
 
-    return this.cache.get(filename).render(data);
+    return new Promise((resolve, reject) => {
+      this.cache.get(filename).render(data, (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      });
+    });
   }
 
-  addFilter(name, fn) {
+  addFilter(name, fn, async) {
+    if (async) {
+      this.engine.addFilter(name, async (...args) => {
+        const cb = args.pop();
+        try {
+          const result = await fn(...args);
+          cb(null, result);
+        } catch (err) {
+          cb(err);
+        }
+      }, true);
+      return;
+    }
+
     this.engine.addFilter(name, fn);
   }
 }
