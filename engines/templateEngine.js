@@ -7,10 +7,6 @@ export default class TemplateEngine {
     this.options = options;
   }
 
-  update(filenames) {
-    //To extend
-  }
-
   render(content, data, filename) {
     //To extend
   }

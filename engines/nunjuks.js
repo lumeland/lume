@@ -7,22 +7,23 @@ export default class Denjuks extends TemplateEngine {
   constructor(site, options = {}) {
     super(site, options);
 
-    this.loader = new nunjucks.FileSystemLoader(this.includes);
-    this.engine = new nunjucks.Environment(this.loader);
-  }
+    const loader = new nunjucks.FileSystemLoader(this.includes);
+    this.engine = new nunjucks.Environment(loader);
 
-  //Update cache
-  update(filenames) {
-    for (const filename of filenames) {
-      const name = this.loader.pathsToNames[filename];
+    //Update cache
+    site.addEventListener("beforeUpdate", (ev) => {
+      for (const file of ev.files) {
+        const filename = site.src(file);
+        const name = loader.pathsToNames[filename];
 
-      if (name) {
-        delete this.loader.cache[name];
-        continue;
+        if (name) {
+          delete loader.cache[name];
+          continue;
+        }
+
+        this.cache.delete(filename);
       }
-
-      this.cache.delete(filename);
-    }
+    });
   }
 
   async render(content, data, filename) {

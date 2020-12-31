@@ -5,11 +5,15 @@ export default class Pug extends TemplateEngine {
   cache = new Map();
   filters = {};
 
-  //Update cache
-  update(filenames) {
-    for (const filename of filenames) {
-      this.cache.delete(filename);
-    }
+  constructor(site, options = {}) {
+    super(site, options);
+
+    //Update cache
+    site.addEventListener("beforeUpdate", (ev) => {
+      for (const filename of filenames) {
+        this.cache.delete(site.src(filename));
+      }
+    });
   }
 
   render(content, data, filename) {

@@ -12,13 +12,13 @@ export default class Eta extends TemplateEngine {
       views: this.includes,
       useWith: true,
     });
-  }
 
-  //Update cache
-  update(filenames) {
-    for (const filename of filenames) {
-      eta.templates.remove(filename);
-    }
+    //Update cache
+    site.addEventListener("beforeUpdate", (ev) => {
+      for (const filename of ev.files) {
+        eta.templates.remove(site.src(filename));
+      }
+    });
   }
 
   async render(content, data, filename) {

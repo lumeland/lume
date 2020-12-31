@@ -229,11 +229,6 @@ export default class Site {
   async update(files) {
     await this.dispatchEvent({ type: "beforeUpdate", files });
 
-    //Update engines cache
-    new Set(this.engines.values()).forEach((engine) =>
-      engine.update(Array.from(files).map((file) => this.src(file)))
-    );
-
     for (const file of files) {
       // file inside a _data file or folder
       if (file.includes("/_data/") || file.match(/\/_data.\w+$/)) {
