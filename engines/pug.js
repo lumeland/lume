@@ -10,7 +10,7 @@ export default class Pug extends TemplateEngine {
 
     //Update cache
     site.addEventListener("beforeUpdate", (ev) => {
-      for (const filename of filenames) {
+      for (const filename of ev.files) {
         this.cache.delete(site.src(filename));
       }
     });
