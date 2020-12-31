@@ -227,7 +227,7 @@ export default class Site {
    * Reload some files that might be changed
    */
   async update(files) {
-    await this.dispatchEvent({ type: "beforeUpdate" });
+    await this.dispatchEvent({ type: "beforeUpdate", files });
 
     //Update engines cache
     new Set(this.engines.values()).forEach((engine) =>
@@ -261,7 +261,7 @@ export default class Site {
     }
 
     await this.#buildPages();
-    await this.dispatchEvent({ type: "afterUpdate" });
+    await this.dispatchEvent({ type: "afterUpdate", files });
   }
 
   /**

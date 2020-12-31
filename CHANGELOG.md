@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.10.7] - Unreleased
 ### Added
 - Support for async filters [#22]
+- The events `beforeUpdate` and `afterUpdate` have the property `files` with the names of all changed files.
 
 ## [0.10.6] - 2020-12-27
 ### Fixed
