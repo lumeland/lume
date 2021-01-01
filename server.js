@@ -32,6 +32,9 @@ function socket() {
 
     refresh(files);
   };
+  ws.onerror = (e) => {
+    console.error("WebSocket error observed:", event);
+  }
 }
 
 setInterval(socket, 1000);
@@ -208,9 +211,10 @@ export async function server(site, options) {
     }
   }
 
+  let timer = 0;
+  const changes = new Set();
+
   async function handleSocket(req) {
-    let timer = 0;
-    const changes = new Set();
     const { conn, r: bufReader, w: bufWriter, headers } = req;
     const socket = await acceptWebSocket({
       conn,
