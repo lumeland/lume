@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Support for async filters [#22]
 - The events `beforeUpdate` and `afterUpdate` have the property `files` with the names of all changed files.
+- Allow to configure the PostCSS plugins in the CSS plugin [#26]
 
 ### Fixed
 - Websocket sends message events twice
@@ -296,6 +297,7 @@ First version
 [#13]: https://github.com/oscarotero/lume/issues/13
 [#18]: https://github.com/oscarotero/lume/issues/18
 [#22]: https://github.com/oscarotero/lume/issues/22
+[#26]: https://github.com/oscarotero/lume/issues/26
 
 [0.10.7]: https://github.com/oscarotero/lume/compare/v0.10.6...HEAD
 [0.10.6]: https://github.com/oscarotero/lume/compare/v0.10.5...v0.10.6
