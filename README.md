@@ -8,6 +8,13 @@ It's inspired in other general purpose static site generators such [Jekyll](http
 - You can hook **any processor** to transform assets, like `sass` or `postcss` for CSS.
 - It's Deno: forget about manage thousand of packages in `node_modules` or complex bundlers. Lume only install that you need. Clean, fast and secure.
 
+---
+
+- [See the Docs to learn more](https://lumeland.github.io/)
+- [Propose new ideas and get help at Discord](https://discord.gg/YbTmpACHWB)
+
+---
+
 ## Quick start
 
 Make sure you have [Deno installed](https://deno.land/#installation).
@@ -38,7 +45,6 @@ This command will compile your documents to HTML and save them into the folder `
 
 ---
 
-## Docs
+Please see [CHANGELOG](CHANGELOG.md) for more information about recent changes.
 
-- [See the Docs to learn more](https://lumeland.github.io/)
-- [Propose new ideas and get help at Discuss](https://discord.gg/YbTmpACHWB)
+The MIT License (MIT). Please see [LICENSE](LICENSE) for more information.
