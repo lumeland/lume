@@ -1,13 +1,14 @@
 import textLoader from "../loaders/text.js";
 import { postcss, postcssImport, postcssNesting } from "../deps/postcss.js";
 
-export default function () {
+export default function (options = {}) {
+  const { postcssPlugins = [postcssNesting()] } = options;
   return (site) => {
     const runner = postcss([
       postcssImport({
         path: site.src("_includes"),
       }),
-      postcssNesting(),
+      ...postcssPlugins,
     ]);
 
     site.loadAssets([".css"], textLoader);
