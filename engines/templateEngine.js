@@ -16,7 +16,12 @@ export default class TemplateEngine {
   }
 
   async load(path) {
-    const content = await Deno.readTextFile(path);
-    return parseFrontmatter(content);
+    try {
+      const content = await Deno.readTextFile(path);
+      return parseFrontmatter(content);
+    } catch (err) {
+      console.error(`Error loading the template ${path}`);
+      console.error(err);
+    }
   }
 }
