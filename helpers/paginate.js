@@ -23,6 +23,10 @@ export default function* paginate(results, options = {}) {
     }
   }
 
+  if (data.results.length) {
+    yield data;
+  }
+
   function createPageData(page) {
     return {
       permalink: sprintf(options.permalink, page),

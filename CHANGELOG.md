@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Websocket sends message events twice
+- `paginate` helper doesn't return always the latest page
 
 ## [0.10.6] - 2020-12-27
 ### Fixed
