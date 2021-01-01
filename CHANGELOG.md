@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Support for async filters [#22]
 - The events `beforeUpdate` and `afterUpdate` have the property `files` with the names of all changed files.
 
+### Fixed
+- Websocket sends message events twice
+
 ## [0.10.6] - 2020-12-27
 ### Fixed
 - Multipage generation workflow
