@@ -40,5 +40,5 @@ This command will compile your documents to HTML and save them into the folder `
 
 ## Docs
 
-[See the Docs to learn more](https://lumeland.github.io/)
-[Propose new ideas and get help at Discuss](https://discord.gg/YbTmpACHWB)
+- [See the Docs to learn more](https://lumeland.github.io/)
+- [Propose new ideas and get help at Discuss](https://discord.gg/YbTmpACHWB)
