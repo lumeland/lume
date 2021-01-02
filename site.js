@@ -338,13 +338,12 @@ export default class Site {
       await this.#expandPage(page);
     }
 
-    return concurrent(
+    await concurrent(
       this.pages,
       async (page) => {
         await this.#renderPage(page);
 
         if (!page.content) {
-          console.log(page.dest);
           return;
         }
 
@@ -352,12 +351,15 @@ export default class Site {
 
         if (processors) {
           for (const process of processors) {
-            await process(page);
+            await process(page, this);
           }
         }
-
-        await this.#savePage(page);
       },
+    );
+
+    return concurrent(
+      this.pages,
+      (page) => this.#savePage(page)
     );
   }
 
