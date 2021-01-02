@@ -79,9 +79,9 @@ export default class Site {
       }
 
       if (Array.isArray(listener)) {
-        const status = await this.run(...listener);
+        const success = await this.run(...listener);
 
-        if (status) {
+        if (!success) {
           return false;
         }
 
