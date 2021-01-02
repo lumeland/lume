@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Support for async filters [#22]
 - The events `beforeUpdate` and `afterUpdate` have the property `files` with the names of all changed files.
 - Allow to configure the PostCSS plugins in the CSS plugin [#26]
+- New option `map: (bool)` to css plugin to generate source map
 - Ability to add/remove dynamically pages from processors
 
 ### Fixed
