@@ -5,16 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.10.7] - Unreleased
+## [0.10.7] - 2021-01-02
 ### Added
 - Support for async filters [#22]
 - The events `beforeUpdate` and `afterUpdate` have the property `files` with the names of all changed files.
-- Allow to configure the PostCSS plugins in the CSS plugin [#26]
-- New option `map: (bool)` to css plugin to generate source map
+- Allow to configure the css plugins with the following options
+  - `postcssPlugins`: array with the PostCSS plugins [#26]
+  - `map`: set `true` to generate source map
 - Ability to add/remove dynamically pages from processors
 
 ### Fixed
-- Websocket sends message events twice
+- Websocket sends update messages twice
 - `paginate` helper doesn't return always the latest page
 - Dispatch events that contains scripts should return false if the script fails
 
@@ -302,7 +303,7 @@ First version
 [#22]: https://github.com/oscarotero/lume/issues/22
 [#26]: https://github.com/oscarotero/lume/issues/26
 
-[0.10.7]: https://github.com/oscarotero/lume/compare/v0.10.6...HEAD
+[0.10.7]: https://github.com/oscarotero/lume/compare/v0.10.6...v0.10.7
 [0.10.6]: https://github.com/oscarotero/lume/compare/v0.10.5...v0.10.6
 [0.10.5]: https://github.com/oscarotero/lume/compare/v0.10.4...v0.10.5
 [0.10.4]: https://github.com/oscarotero/lume/compare/v0.10.3...v0.10.4
