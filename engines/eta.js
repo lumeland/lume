@@ -9,7 +9,7 @@ export default class Eta extends TemplateEngine {
     super(site, options);
 
     eta.configure({
-      views: this.includes,
+      views: site.src(this.includes),
       useWith: true,
     });
 
@@ -30,7 +30,11 @@ export default class Eta extends TemplateEngine {
     return await fn(data, eta.config);
   }
 
-  addFilter(name, fn) {
+  addFilter(name, fn, async) {
     this.filters[name] = fn;
+
+    if (async) {
+      eta.configure({ async: true });
+    }
   }
 }
