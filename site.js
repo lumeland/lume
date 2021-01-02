@@ -340,9 +340,12 @@ export default class Site {
 
     await concurrent(
       this.pages,
-      async (page) => {
-        await this.#renderPage(page);
+      (page) => this.#renderPage(page),
+    );
 
+    return concurrent(
+      this.pages,
+      async (page) => {
         if (!page.content) {
           return;
         }
@@ -354,12 +357,9 @@ export default class Site {
             await process(page, this);
           }
         }
-      },
-    );
 
-    return concurrent(
-      this.pages,
-      (page) => this.#savePage(page)
+        await this.#savePage(page);
+      },
     );
   }
 
@@ -478,6 +478,11 @@ export default class Site {
    * Save a page
    */
   async #savePage(page) {
+    //Ignore empty files
+    if (!page.content) {
+      return;
+    }
+
     const sha1 = createHash("sha1");
     sha1.update(page.content);
     const hash = sha1.toString();
