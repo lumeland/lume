@@ -212,11 +212,12 @@ export async function server(site, options) {
   }
 
   let timer = 0;
+  let socket;
   const changes = new Set();
 
   async function handleSocket(req) {
     const { conn, r: bufReader, w: bufWriter, headers } = req;
-    const socket = await acceptWebSocket({
+    socket = await acceptWebSocket({
       conn,
       bufReader,
       bufWriter,
