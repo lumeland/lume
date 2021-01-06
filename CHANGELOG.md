@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.10.9] - Unreleased
+### Added
+- New plugin `inline`
+
 ## [0.10.8] - 2021-01-03
 ### Fixed
 - Sometimes, live reload doesn't reload the page, even if the changes are sent to the browser. [#20]
@@ -308,6 +312,7 @@ First version
 [#22]: https://github.com/oscarotero/lume/issues/22
 [#26]: https://github.com/oscarotero/lume/issues/26
 
+[0.10.9]: https://github.com/oscarotero/lume/compare/v0.10.8...HEAD
 [0.10.8]: https://github.com/oscarotero/lume/compare/v0.10.7...v0.10.8
 [0.10.7]: https://github.com/oscarotero/lume/compare/v0.10.6...v0.10.7
 [0.10.6]: https://github.com/oscarotero/lume/compare/v0.10.5...v0.10.6

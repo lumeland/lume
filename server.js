@@ -3,6 +3,7 @@ import { acceptWebSocket } from "./deps/ws.js";
 import { dirname, extname, join, relative } from "./deps/path.js";
 import { brightGreen, red } from "./deps/colors.js";
 import { exists } from "./deps/fs.js";
+import { mimes } from "./utils.js";
 
 const script = `
 let ws;
@@ -123,28 +124,6 @@ function read(key) {
   }
 }
 `;
-
-const mimes = new Map([
-  [".html", "text/html; charset=utf-8"],
-  [".txt", "text/plain; charset=utf-8"],
-  [".js", "text/javascript; charset=utf-8"],
-  [".css", "text/css; charset=utf-8"],
-  [".json", "application/json; charset=utf-8"],
-  [".ico", "image/x-icon"],
-  [".png", "image/png"],
-  [".jpg", "image/jpg"],
-  [".gif", "image/gif"],
-  [".svg", "image/svg+xml"],
-  [".mp3", "audio/mpeg"],
-  [".mp4", "video/mpeg"],
-  [".xml", "text/xml"],
-  [".woff", "font/woff"],
-  [".woff2", "font/woff2"],
-  [".wasm", "application/wasm"],
-  [".webp", "image/webp"],
-  [".webm", "video/webm"],
-  [".zip", "application/zip"],
-]);
 
 export async function server(site, options) {
   const root = site.dest();
