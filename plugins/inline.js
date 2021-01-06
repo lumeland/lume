@@ -11,40 +11,44 @@ export default function () {
   return (site) => {
     site.process([".html"], processor);
 
+    //Update cache
+    site.addEventListener("beforeUpdate", (ev) => {
+      for (const filename of ev.files) {
+        cache.delete(filename);
+      }
+    });
+
     async function processor(page) {
       if (page.content.includes(" inline")) {
         const document = parser.parseFromString(page.content, "text/html");
 
         for (const element of document.querySelectorAll("[inline]")) {
-          await inliner(page.data.url, element);
+          await inline(page.data.url, element);
         }
 
         page.content = document.documentElement.outerHTML;
       }
     }
 
-    async function inliner(url, element) {
-      if (
-        element.nodeName === "LINK" &&
-        element.getAttribute("rel") === "stylesheet"
-      ) {
-        return inlineStyles(url, element);
+    async function inline(url, element) {
+      if (element.hasAttribute("href")) {
+        if (element.getAttribute("rel") === "stylesheet") {
+          return inlineStyles(url, element);
+        }
+
+        return inlineHref(url, element);
       }
 
-      if (element.nodeName === "SCRIPT" && element.hasAttribute("src")) {
-        return inlineScript(url, element);
-      }
+      if (element.hasAttribute("src")) {
+        if (element.nodeName === "SCRIPT") {
+          return inlineScript(url, element);
+        }
 
-      if (element.nodeName === "IMG" && element.hasAttribute("src")) {
-        return inlineImage(url, element);
+        return inlineSrc(url, element);
       }
     }
 
-    function getPath(pageUrl, url) {
-      return resolve(pageUrl, url);
-    }
-
-    async function getContent(path, text = true) {
+    async function getContent(path, asData = false) {
       //Ensure the path starts with "/"
       path = join("/", path);
 
@@ -52,12 +56,12 @@ export default function () {
         return cache.get(path);
       }
 
-      const content = await readContent(path, text);
+      const content = await readContent(path, asData);
       cache.set(path, content);
       return content;
     }
 
-    async function readContent(path, text) {
+    async function readContent(path, asData) {
       //Is a page/asset ?
       const page = site.pages.find((page) => page.data.url === path);
 
@@ -66,7 +70,7 @@ export default function () {
       }
 
       //Is a file in dest
-      if (text) {
+      if (!asData) {
         return Deno.readTextFile(site.dest(path));
       }
 
@@ -81,37 +85,38 @@ export default function () {
     }
 
     async function inlineStyles(url, element) {
-      const path = getPath(url, element.getAttribute("href"));
-      const content = await getContent(path);
-
+      const path = resolve(url, element.getAttribute("href"));
       const style = element.ownerDocument.createElement("style");
-      style.innerHTML = content;
+
+      style.innerHTML = await getContent(path);
       element.replaceWith(style);
     }
 
     async function inlineScript(url, element) {
-      const path = getPath(url, element.getAttribute("src"));
-      const content = await getContent(path);
+      const path = resolve(url, element.getAttribute("src"));
 
-      element.innerHTML = content;
+      element.innerHTML = await getContent(path);
       element.removeAttribute("src");
     }
 
-    async function inlineImage(url, element) {
-      const path = getPath(url, element.getAttribute("src"));
+    async function inlineSrc(url, element) {
+      const path = resolve(url, element.getAttribute("src"));
       const ext = extname(path);
 
       if (ext === ".svg") {
         const content = await getContent(path);
-        const span = element.ownerDocument.createElement("span");
-        span.innerHTML = content;
-        element.replaceWith(...span.children);
+        const div = element.ownerDocument.createElement("div");
+        div.innerHTML = content;
+        element.replaceWith(...div.children);
         return;
       }
 
-      const content = await getContent(path, false);
+      element.setAttribute("src", await getContent(path, true));
+    }
 
-      element.setAttribute("src", content);
+    async function inlineHref(url, element) {
+      const path = resolve(url, element.getAttribute("href"));
+      element.setAttribute("href", await getContent(path, true));
     }
   };
 }
