@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.10.9] - Unreleased
 ### Added
 - New plugin `inline`
+- New plugin `terser` [#29], [#30]
 
 ## [0.10.8] - 2021-01-03
 ### Fixed
@@ -311,6 +312,8 @@ First version
 [#20]: https://github.com/oscarotero/lume/issues/20
 [#22]: https://github.com/oscarotero/lume/issues/22
 [#26]: https://github.com/oscarotero/lume/issues/26
+[#29]: https://github.com/oscarotero/lume/issues/29
+[#30]: https://github.com/oscarotero/lume/issues/30
 
 [0.10.9]: https://github.com/oscarotero/lume/compare/v0.10.8...HEAD
 [0.10.8]: https://github.com/oscarotero/lume/compare/v0.10.7...v0.10.8
