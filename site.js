@@ -338,10 +338,9 @@ export default class Site {
       await this.#expandPage(page);
     }
 
-    await concurrent(
-      this.pages,
-      (page) => this.#renderPage(page),
-    );
+    for (const page of this.pages) {
+      await this.#renderPage(page);
+    }
 
     return concurrent(
       this.pages,

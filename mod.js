@@ -1,4 +1,5 @@
 import Site from "./site.js";
+import { cache } from "./utils.js";
 
 import attr from "./filters/attributes.js";
 import url from "./filters/url.js";
@@ -11,6 +12,13 @@ import yaml from "./plugins/yaml.js";
 
 export default function (options = {}) {
   const site = new Site(options);
+
+  //Update cache on update
+  site.addEventListener("beforeUpdate", (ev) => {
+    for (const filename of ev.files) {
+      cache.delete(site.src(filename));
+    }
+  });
 
   return site
     .filter("attr", attr())

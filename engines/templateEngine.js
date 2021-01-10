@@ -1,4 +1,4 @@
-import { parseFrontmatter } from "../loaders/yaml.js";
+import loader from "../loaders/text.js";
 
 export default class TemplateEngine {
   constructor(site, options = {}) {
@@ -16,12 +16,6 @@ export default class TemplateEngine {
   }
 
   async load(path) {
-    try {
-      const content = await Deno.readTextFile(path);
-      return parseFrontmatter(content);
-    } catch (err) {
-      console.error(`Error loading the template ${path}`);
-      console.error(err);
-    }
+    return loader(path);
   }
 }

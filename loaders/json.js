@@ -1,4 +1,5 @@
+import { readFile } from "../utils.js";
+
 export default async function (path) {
-  const content = await Deno.readTextFile(path);
-  return JSON.parse(content);
+  return readFile(path, (content) => JSON.parse(content));
 }

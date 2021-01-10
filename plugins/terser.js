@@ -4,7 +4,6 @@ import { basename } from "../deps/path.js";
 
 export default function (options = {}) {
   return (site) => {
-
     site.loadAssets([".js"], textLoader);
     site.process([".js"], processor);
 
@@ -16,18 +15,18 @@ export default function (options = {}) {
       const defaults = {
         module: true,
         compress: true,
-        mangle: true
+        mangle: true,
       };
 
       // merge user-defined options
-      options = {...defaults, ...options};
+      options = { ...defaults, ...options };
 
       if (options.sourceMap) {
         options.sourceMap = {
           filename: filename,
           // filename is path, so just need basename
-          url: basename(filename) + '.map'
-        }
+          url: basename(filename) + ".map",
+        };
       }
 
       const output = await minify(content, options);

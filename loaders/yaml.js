@@ -1,9 +1,8 @@
 import { parse } from "../deps/yaml.js";
+import { readFile } from "../utils.js";
 
 export default async function (path) {
-  const content = await Deno.readTextFile(path);
-
-  return parse(content);
+  return readFile(path, (content) => parse(content));
 }
 
 export function parseFrontmatter(content) {

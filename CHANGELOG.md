@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - New plugin `inline`
 - New plugin `terser` [#29], [#30]
 
+### Fixed
+- Some files (like layouts) were loaded multiple times. Implemented a cache system to ensure that every file is read only once.
+
 ## [0.10.8] - 2021-01-03
 ### Fixed
 - Sometimes, live reload doesn't reload the page, even if the changes are sent to the browser. [#20]
