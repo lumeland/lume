@@ -5,10 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.10.9] - Unreleased
+## [0.11.0] - Unreleased
 ### Added
 - New plugin `inline`
 - New plugin `terser` [#29], [#30]
+
+### Changed
+- Renamed plugin `css` to `postcss`
 
 ### Fixed
 - Some files (like layouts) were loaded multiple times. Implemented a cache system to ensure that every file is read only once.
