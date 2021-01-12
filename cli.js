@@ -3,6 +3,7 @@ import { parse } from "./deps/flags.js";
 import { brightGreen, gray } from "./deps/colors.js";
 import { join, relative, resolve } from "./deps/path.js";
 import lume from "./mod.js";
+import { error } from "./utils.js";
 
 if (import.meta.main) {
   cli(Deno.args);
@@ -233,7 +234,7 @@ export default site;
         console.log("Done");
         console.log("");
       } catch (err) {
-        console.error(err);
+        error("rebuild", "Error on build the site", err);
       }
     };
 

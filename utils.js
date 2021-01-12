@@ -1,3 +1,5 @@
+import { bold, brightCyan, red } from "./deps/colors.js";
+
 export async function concurrent(iterable, iteratorFn, limit = 200) {
   const executing = [];
 
@@ -65,4 +67,10 @@ export async function loadModule(path, fn = (content) => content) {
   const content = fn(await import(`file://${path}#${hash}`));
   cache.set(path, content);
   return content;
+}
+
+export function error(context, message, exception) {
+  console.error(bold(red(`${context}:`)), brightCyan(message));
+  console.error(exception);
+  console.error("");
 }

@@ -1,6 +1,7 @@
 import textLoader from "../loaders/text.js";
 import minify from "../deps/terser.js";
 import { basename } from "../deps/path.js";
+import { error } from "../utils.js";
 
 // default options
 const defaults = {
@@ -29,15 +30,18 @@ export default function (options = {}) {
         };
       }
 
-      const output = await minify(content, terserOptions);
+      try {
+        const output = await minify(content, terserOptions);
+        file.content = output.code;
 
-      file.content = output.code;
-
-      if (output.map) {
-        let mapFile = file.duplicate();
-        mapFile.content = output.map;
-        mapFile.dest.ext = ".js.map";
-        site.pages.push(mapFile);
+        if (output.map) {
+          let mapFile = file.duplicate();
+          mapFile.content = output.map;
+          mapFile.dest.ext = ".js.map";
+          site.pages.push(mapFile);
+        }
+      } catch (err) {
+        error("terser", `Error in file ${filename}`, err);
       }
     }
   };
