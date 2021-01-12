@@ -10,7 +10,7 @@ if (import.meta.main) {
 }
 
 export default async function cli(args) {
-  const version = "v0.10.9";
+  const version = "v0.11.0";
   let stop = false;
   const options = parse(args, {
     boolean: ["serve", "init", "version", "dev", "help", "upgrade"],
@@ -123,6 +123,7 @@ OPTIONS:
         brightGreen(versions.latest)
       }!`,
     );
+    console.log(`See the changes in https://github.com/lumeland/lume/blob/${versions.latest}/CHANGELOG.md`);
     console.log("");
     return;
   }

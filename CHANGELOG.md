@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.11.0] - Unreleased
+## [0.11.0] - 2021-01-12
 ### Added
 - New plugin `inline`
 - New plugin `terser` [#29], [#30]
@@ -323,7 +323,7 @@ First version
 [#29]: https://github.com/oscarotero/lume/issues/29
 [#30]: https://github.com/oscarotero/lume/issues/30
 
-[0.10.9]: https://github.com/oscarotero/lume/compare/v0.10.8...HEAD
+[0.11.0]: https://github.com/oscarotero/lume/compare/v0.10.8...v0.11.0
 [0.10.8]: https://github.com/oscarotero/lume/compare/v0.10.7...v0.10.8
 [0.10.7]: https://github.com/oscarotero/lume/compare/v0.10.6...v0.10.7
 [0.10.6]: https://github.com/oscarotero/lume/compare/v0.10.5...v0.10.6
