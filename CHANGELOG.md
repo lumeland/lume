@@ -11,7 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - New plugin `terser` [#29], [#30]
 
 ### Changed
-- Renamed plugin `css` to `postcss`
+- Renamed the plugin `css` to `postcss` and some of its options:
+  - `map` was renamed to `sourceMap`
+  - `postcssPlugins` was renamed to `plugins`
 
 ### Fixed
 - Some files (like layouts) were loaded multiple times. Implemented a cache system to ensure that every file is read only once.

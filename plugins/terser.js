@@ -22,7 +22,7 @@ export default function (options = {}) {
       // options passed to terser
       const terserOptions = { ...defaults, ...options.options };
 
-      if (options.map) {
+      if (options.sourceMap) {
         terserOptions.sourceMap = {
           filename: filename,
           // filename is path, so just need basename

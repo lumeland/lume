@@ -18,7 +18,7 @@ export default function (options = {}) {
     async function processor(page) {
       const from = site.src(page.src.path + page.src.ext);
       const to = site.dest(page.dest.path + page.dest.ext);
-      const map = options.map ? { inline: false } : undefined;
+      const map = options.sourceMap ? { inline: false } : undefined;
 
       //Fix the code with postcss
       const result = await runner.process(
