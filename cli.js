@@ -123,7 +123,9 @@ OPTIONS:
         brightGreen(versions.latest)
       }!`,
     );
-    console.log(`See the changes in https://github.com/lumeland/lume/blob/${versions.latest}/CHANGELOG.md`);
+    console.log(
+      `See the changes in https://github.com/lumeland/lume/blob/${versions.latest}/CHANGELOG.md`,
+    );
     console.log("");
     return;
   }
