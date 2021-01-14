@@ -1,8 +1,12 @@
 export default class Search {
   #site = null;
+  #cache = null;
 
   constructor(site) {
     this.#site = site;
+    this.#cache = new Map();
+
+    site.addEventListener("beforeUpdate", () => this.#cache.clear());
   }
 
   folder(path = "/") {
@@ -44,6 +48,11 @@ export default class Search {
 
   #searchPages(tags = [], sort = "date") {
     tags = getTags(tags);
+    const id = JSON.stringify([tags, sort]);
+
+    if (this.#cache.has(id)) {
+      return this.#cache.get(id);
+    }
 
     const filter = (page) => {
       if (page.dest.ext !== ".html") {
@@ -57,7 +66,7 @@ export default class Search {
       return true;
     };
 
-    return this.#site.pages
+    const result = this.#site.pages
       .filter(filter)
       .sort((a, b) => {
         if (sort === "file") {
@@ -66,6 +75,9 @@ export default class Search {
 
         return (a.data[sort] < b.data[sort]) ? -1 : 1;
       });
+
+    this.#cache.set(id, result);
+    return result;
   }
 }
 
