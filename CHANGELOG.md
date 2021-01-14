@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.11.1] - Unreleased
+### Added
+- New filter `njk` registered by the `nunjucks` plugin
+
 ### Fixed
 - Url filter with `null` values
 
