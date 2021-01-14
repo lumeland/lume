@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - New filter `njk` registered by the `nunjucks` plugin
 - Moved `url` filter to a plugin that also created an additional filter `htmlUrl` to search and fix urls in html code
+- New plugin `date` to manage date and time values using the library [date-fns](https://date-fns.org)
 
 ### Fixed
 - Url filter with `null` values
