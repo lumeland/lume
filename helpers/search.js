@@ -13,6 +13,21 @@ export default class Search {
     return this.#searchPages(tags, sort);
   }
 
+  tags(exclude) {
+    exclude = getTags(exclude);
+    const tags = new Set();
+
+    this.#site.pages.forEach((page) => {
+      page.tags.forEach((tag) => {
+        if (!exclude || !exclude.includes(tag)) {
+          tags.add(tag);
+        }
+      });
+    });
+
+    return Array.from(tags);
+  }
+
   nextPage(url, tags, sort) {
     const pages = this.pages(tags, sort);
     const index = pages.findIndex((page) => page.data.url === url);
@@ -49,6 +64,10 @@ export default class Search {
 }
 
 function getTags(tags) {
+  if (!tags) {
+    return null;
+  }
+
   if (typeof tags === "string") {
     tags = tags.split(/\s+/).filter((tag) => tag);
   }
