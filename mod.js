@@ -2,7 +2,7 @@ import Site from "./site.js";
 import { cache } from "./utils.js";
 
 import attr from "./filters/attributes.js";
-import url from "./filters/url.js";
+import url from "./plugins/url.js";
 import json from "./plugins/json.js";
 import markdown from "./plugins/markdown.js";
 import modules from "./plugins/modules.js";
@@ -22,8 +22,8 @@ export default function (options = {}) {
 
   return site
     .filter("attr", attr())
-    .filter("url", url(site))
     .ignore("node_modules")
+    .use(url())
     .use(json())
     .use(markdown())
     .use(modules())

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.11.1] - Unreleased
 ### Added
 - New filter `njk` registered by the `nunjucks` plugin
+- Moved `url` filter to a plugin that also created an additional filter `htmlUrl` to search and fix urls in html code
 
 ### Fixed
 - Url filter with `null` values
