@@ -21,13 +21,8 @@ class Base {
       this.parent.tags.forEach((tag) => tags.add(tag));
     }
 
-    const dataTags = this.data.tags;
-    if (dataTags) {
-      if (Array.isArray(dataTags)) {
-        dataTags.forEach((tag) => tags.add(String(tag)));
-      } else {
-        tags.add(String(dataTags));
-      }
+    if (this.data.tags) {
+      this.data.tags.forEach((tag) => tags.add(String(tag)));
     }
 
     this.#tags = tags;
@@ -45,6 +40,11 @@ class Base {
   }
 
   set data(data = {}) {
+    //Ensure tags is always an array
+    if (data.tags && !Array.isArray(data.tags)) {
+      data.tags = data.tags ? [data.tags] : [];
+    }
+
     this.#data = data;
     this.#tags = null;
   }
