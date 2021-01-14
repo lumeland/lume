@@ -1,9 +1,9 @@
 export default function () {
- return (site) => {
+  return (site) => {
     site.filter("url", url);
     site.filter("htmlUrl", htmlUrl);
 
-    function url (path = "/", absolute = false) {
+    function url(path = "/", absolute = false) {
       if (typeof path !== "string") {
         return path;
       }
@@ -11,11 +11,11 @@ export default function () {
       return site.url(path, absolute);
     }
 
-    function htmlUrl (html = "", absolute = false) {
+    function htmlUrl(html = "", absolute = false) {
       return html.replaceAll(
         /\s(href|src)="([^"]+)"/g,
-        (match, attr, value) => ` ${attr}="${url(value, absolute)}"`
+        (match, attr, value) => ` ${attr}="${url(value, absolute)}"`,
       );
     }
-  }
+  };
 }
