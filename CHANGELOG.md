@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - New filter `njk` registered by the `nunjucks` plugin
 - Moved `url` filter to a plugin that also created an additional filter `htmlUrl` to search and fix urls in html code
 - New plugin `date` to manage date and time values using the library [date-fns](https://date-fns.org)
+- The order option of `search.pages()` accepts any value key to sort (in addition to `date` and `file`)
 
 ### Fixed
 - Url filter with `null` values

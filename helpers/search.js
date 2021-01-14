@@ -59,7 +59,13 @@ export default class Search {
 
     return this.#site.pages
       .filter(filter)
-      .sort(sort === "file" ? sortByFilename : sortByDate);
+      .sort((a, b) => {
+        if (sort === "file") {
+          return (a.src.path < b.src.path) ? -1 : 1;
+        }
+
+        return (a.data[sort] < b.data[sort]) ? -1 : 1;
+      });
   }
 }
 
@@ -73,12 +79,4 @@ function getTags(tags) {
   }
 
   return tags.length ? tags : null;
-}
-
-function sortByDate(a, b) {
-  return a.data.date - b.data.date;
-}
-
-function sortByFilename(a, b) {
-  return (a.src.path < b.src.path) ? -1 : 1;
 }
