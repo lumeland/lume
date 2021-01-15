@@ -17,6 +17,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Improved performance of `search.pages()` by implementing a cache system.
 - Improved performance of data and tags merging by implementing a cache system.
 
+### Changed
+- Moved `attributes` and `classname` to the new `attributes` plugin and enable it by default.
+
 ## [0.11.0] - 2021-01-12
 ### Added
 - New plugin `inline`
