@@ -5,20 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.11.1] - Unreleased
+## [0.12.0] - 2021-01-15
 ### Added
 - New filter `njk` registered by the `nunjucks` plugin
 - Moved `url` filter to a plugin that also created an additional filter `htmlUrl` to search and fix urls in html code
 - New plugin `date` to manage date and time values using the library [date-fns](https://date-fns.org)
-- The order option of `search.pages()` accepts any value key to sort (in addition to `date` and `file`)
+- The order option of `search.pages()` accepts any value key (in addition to `date` and `file`)
+
+### Changed
+- Moved `attributes` and `classname` to the new `attributes` plugin and enable it by default.
 
 ### Fixed
 - Url filter with `null` values
 - Improved performance of `search.pages()` by implementing a cache system.
 - Improved performance of data and tags merging by implementing a cache system.
-
-### Changed
-- Moved `attributes` and `classname` to the new `attributes` plugin and enable it by default.
 
 ## [0.11.0] - 2021-01-12
 ### Added
@@ -338,7 +338,7 @@ First version
 [#29]: https://github.com/oscarotero/lume/issues/29
 [#30]: https://github.com/oscarotero/lume/issues/30
 
-[0.11.1]: https://github.com/oscarotero/lume/compare/v0.11.0...HEAD
+[0.12.0]: https://github.com/oscarotero/lume/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/oscarotero/lume/compare/v0.10.8...v0.11.0
 [0.10.8]: https://github.com/oscarotero/lume/compare/v0.10.7...v0.10.8
 [0.10.7]: https://github.com/oscarotero/lume/compare/v0.10.6...v0.10.7
