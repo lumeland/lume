@@ -14,6 +14,11 @@ export default class Source {
 
   constructor(site) {
     this.site = site;
+
+    //Update cache on update
+    site.addEventListener("beforeUpdate", () => {
+      this.root.refreshCache();
+    });
   }
 
   /**

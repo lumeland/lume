@@ -417,12 +417,10 @@ export default class Site {
         let num = 1;
 
         for await (const pageData of result) {
-          const key = `${page.src.path}${page.src.ext}.${num}`;
           const newPage = page.duplicate(pageData);
 
           newPage.content = newPage.data.content;
 
-          page.parent.setPage(key, newPage);
           this.pages.push(newPage);
           this.#urlPage(newPage);
           num++;

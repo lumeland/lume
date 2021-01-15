@@ -4,15 +4,15 @@ class Base {
   src = {};
   parent = null;
   #data = {};
-  #tags = null;
+  #cache = {};
 
   constructor(src) {
     this.src = src;
   }
 
   get tags() {
-    if (this.#tags) {
-      return this.#tags;
+    if (this.#cache.tags) {
+      return this.#cache.tags;
     }
 
     const tags = new Set();
@@ -25,18 +25,20 @@ class Base {
       this.data.tags.forEach((tag) => tags.add(String(tag)));
     }
 
-    this.#tags = tags;
-    return this.#tags;
+    this.#cache.tags = tags;
+    return this.#cache.tags;
   }
 
   get fullData() {
-    if (!this.parent) {
-      return this.#data;
+    if (!this.#cache.fullData) {
+      if (!this.parent) {
+        this.#cache.fullData = this.#data;
+      } else {
+        this.#cache.fullData = { ...this.parent.fullData, ...this.#data };
+      }
     }
 
-    const parentData = this.parent.fullData;
-
-    return { ...parentData, ...this.#data };
+    return this.#cache.fullData;
   }
 
   set data(data = {}) {
@@ -46,11 +48,14 @@ class Base {
     }
 
     this.#data = data;
-    this.#tags = null;
   }
 
   get data() {
     return this.#data;
+  }
+
+  refreshCache() {
+    this.#cache = {};
   }
 }
 
@@ -65,6 +70,7 @@ export class Page extends Base {
     const page = new Page(this.src);
     page.dest = { ...this.dest };
     page.data = { ...this.data, ...data };
+    page.parent = this.parent;
 
     return page;
   }
@@ -117,5 +123,11 @@ export class Directory extends Base {
         yield* dir.getPages();
       }
     }
+  }
+
+  refreshCache() {
+    this.pages.forEach((page) => page.refreshCache());
+    this.dirs.forEach((dir) => dir.refreshCache());
+    super.refreshCache();
   }
 }
