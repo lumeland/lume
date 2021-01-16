@@ -1,4 +1,4 @@
-import { bold, brightCyan, red } from "./deps/colors.js";
+import { bold, red } from "./deps/colors.js";
 
 export async function concurrent(iterable, iteratorFn, limit = 200) {
   const executing = [];
@@ -70,7 +70,9 @@ export async function loadModule(path, fn = (content) => content) {
 }
 
 export function error(context, message, exception) {
-  console.error(bold(red(`${context}:`)), brightCyan(message));
-  console.error(exception);
+  console.error(bold(red(`${context}:`)), message);
+  if (exception) {
+    console.error(exception);
+  }
   console.error("");
 }

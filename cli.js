@@ -10,10 +10,10 @@ if (import.meta.main) {
 }
 
 export default async function cli(args) {
-  const version = "v0.12.0";
+  const version = "v0.12.1";
   let stop = false;
   const options = parse(args, {
-    boolean: ["serve", "init", "version", "dev", "help", "upgrade"],
+    boolean: ["serve", "init", "version", "dev", "help", "upgrade", "update"],
     string: ["run", "port", "src", "dest", "location"],
     alias: {
       help: "h",
@@ -67,7 +67,8 @@ OPTIONS:
         --run      Run a script
         --serve    Starts the webserver
         --src      Set/override the src option
-        --upgrade  Upgrade lume to the latest version
+        --update   Update the lume version imported in the _config.js file
+        --upgrade  Upgrade 🔥lume to the latest version
     -v, --version  Prints version information
 `);
     return;
@@ -124,7 +125,41 @@ OPTIONS:
       }!`,
     );
     console.log(
-      `See the changes in https://github.com/lumeland/lume/blob/${versions.latest}/CHANGELOG.md`,
+      "See the changes in",
+      gray(
+        `https://github.com/lumeland/lume/blob/${versions.latest}/CHANGELOG.md}`,
+      ),
+    );
+    console.log("");
+    return;
+  }
+
+  // lume --update
+  if (options.update) {
+    const file = options._[0] || "_config.js";
+
+    if (!existsSync(file)) {
+      error("error", `The file ${file} does not exists`);
+      return;
+    }
+
+    const content = await Deno.readTextFile(file);
+    const updated = content.replaceAll(
+      /https:\/\/deno\.land\/x\/lume(@v[\d\.]+)?\/(.*)/g,
+      (m, v, file) => `https://deno.land/x/lume@${version}/${file}`,
+    );
+
+    if (content === updated) {
+      console.log("No changes required in", gray(file));
+      console.log("");
+      return;
+    }
+
+    Deno.writeTextFile(file, updated);
+
+    console.log(
+      `Updated lume modules to ${brightGreen(version)} in`,
+      gray(file),
     );
     console.log("");
     return;
@@ -136,15 +171,14 @@ OPTIONS:
     const path = options._[0];
 
     if (path.endsWith(".js") || path.endsWith(".ts")) {
-      configFile = resolve(path);
+      configFile = resolve(Deno.cwd(), path);
       cwd = dirname(configFile);
     } else {
-      cwd = resolve(path);
+      cwd = resolve(Deno.cwd(), path);
       configFile = join(cwd, "_config.js");
 
       if (!existsSync(cwd)) {
-        console.log(`The folder ${cwd} does not exists`);
-        console.log("");
+        error("error", `The folder ${cwd} does not exists`);
         return;
       }
     }

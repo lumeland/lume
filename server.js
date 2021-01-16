@@ -180,13 +180,18 @@ export async function server(site, options) {
       console.log(`${brightGreen("200")} ${req.url}`);
     } catch (err) {
       console.log(`${red("404")} ${req.url}`);
-      await req.respond({
-        status: 404,
-        headers: new Headers({
-          "content-type": mimes.get(".html"),
-        }),
-        body: await getNotFoundBody(root, page404, path),
-      });
+
+      try {
+        await req.respond({
+          status: 404,
+          headers: new Headers({
+            "content-type": mimes.get(".html"),
+          }),
+          body: await getNotFoundBody(root, page404, path),
+        });
+      } catch (err) {
+        return;
+      }
     }
   }
 

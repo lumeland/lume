@@ -51,7 +51,7 @@ export default class Search {
     const id = JSON.stringify([tags, sort]);
 
     if (this.#cache.has(id)) {
-      return this.#cache.get(id);
+      return [...this.#cache.get(id)];
     }
 
     const filter = (page) => {
@@ -77,7 +77,7 @@ export default class Search {
       });
 
     this.#cache.set(id, result);
-    return result;
+    return [...result];
   }
 }
 
