@@ -414,8 +414,6 @@ export default class Site {
     switch (type) {
       case "[object Generator]":
       case "[object AsyncGenerator]":
-        let num = 1;
-
         for await (const pageData of result) {
           const newPage = page.duplicate(pageData);
 
@@ -423,7 +421,6 @@ export default class Site {
 
           this.pages.push(newPage);
           this.#urlPage(newPage);
-          num++;
         }
         break;
 
