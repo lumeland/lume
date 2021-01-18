@@ -46,9 +46,30 @@ export default class Search {
     return (index <= 0) ? undefined : pages[index - 1];
   }
 
+  parents(url) {
+    const parents = [];
+    let page = this.#site.pages.find((page) => page.data.url === url);
+
+    while (page && page.data.parent) {
+      page = this.#site.pages.find((p) => p.data.url === page.data.parent);
+
+      if (page) {
+        parents.unshift(page);
+      }
+    }
+
+    return parents;
+  }
+
+  children(url, sort) {
+    return this.#site.pages
+      .filter((page) => page.data.parent === url)
+      .sort(getSort(sort));
+  }
+
   #searchPages(tags = [], sort = "date") {
     tags = getTags(tags);
-    const id = JSON.stringify([tags, sort]);
+    const id = JSON.stringify(["pages", tags, sort]);
 
     if (this.#cache.has(id)) {
       return [...this.#cache.get(id)];
@@ -68,13 +89,7 @@ export default class Search {
 
     const result = this.#site.pages
       .filter(filter)
-      .sort((a, b) => {
-        if (sort === "file") {
-          return (a.src.path < b.src.path) ? -1 : 1;
-        }
-
-        return (a.data[sort] < b.data[sort]) ? -1 : 1;
-      });
+      .sort(getSort(sort));
 
     this.#cache.set(id, result);
     return [...result];
@@ -91,4 +106,14 @@ function getTags(tags) {
   }
 
   return tags.length ? tags : null;
+}
+
+function getSort(type) {
+  return function (a, b) {
+    if (type === "file") {
+      return (a.src.path < b.src.path) ? -1 : 1;
+    }
+
+    return (a.data[type] < b.data[type]) ? -1 : 1;
+  };
 }
