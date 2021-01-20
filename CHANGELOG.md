@@ -2,26 +2,37 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to [Semantic Versioning](http://semver.org/).
+The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
+project adheres to [Semantic Versioning](http://semver.org/).
+
+## [0.13.0] - Unreleased
+### Changed
+- Minimum required Deno version is `1.7.0`
+- `lume --run` doesn't return the proper exit code due a bug in Deno
 
 ## [0.12.1] - 2021-01-16
 ### Added
-- New command `lume --update` to update the lume version used by any `_config.js` file to the same installed globally in cli.
+- New command `lume --update` to update the lume version used by any
+  `_config.js` file to the same installed globally in cli.
 
 ### Fixed
-- Cache in `search` helper that returns the original array instead a clone, so it can be modified outside.
+- Cache in `search` helper that returns the original array instead a clone, so
+  it can be modified outside.
 - Uncaught exception in the built-in server due a Broken Pipe
 
 ## [0.12.0] - 2021-01-15
 ### Added
 - New filter `njk` registered by the `nunjucks` plugin
-- Moved `url` filter to a plugin that also created an additional filter `htmlUrl` to search and fix urls in html code
-- New plugin `date` to manage date and time values using the library [date-fns](https://date-fns.org)
-- The order option of `search.pages()` accepts any value key (in addition to `date` and `file`)
+- Moved `url` filter to a plugin that also created an additional filter
+  `htmlUrl` to search and fix urls in html code
+- New plugin `date` to manage date and time values using the library
+  [date-fns](https://date-fns.org)
+- The order option of `search.pages()` accepts any value key (in addition to
+  `date` and `file`)
 
 ### Changed
-- Moved `attributes` and `classname` to the new `attributes` plugin and enable it by default.
+- Moved `attributes` and `classname` to the new `attributes` plugin and enable
+  it by default.
 
 ### Fixed
 - Url filter with `null` values
@@ -39,16 +50,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - `postcssPlugins` was renamed to `plugins`
 
 ### Fixed
-- Some files (like layouts) were loaded multiple times. Implemented a cache system to ensure that every file is read only once.
+- Some files (like layouts) were loaded multiple times. Implemented a cache
+  system to ensure that every file is read only once.
 
 ## [0.10.8] - 2021-01-03
 ### Fixed
-- Sometimes, live reload doesn't reload the page, even if the changes are sent to the browser. [#20]
+- Sometimes, live reload doesn't reload the page, even if the changes are sent
+  to the browser. [#20]
 
 ## [0.10.7] - 2021-01-02
 ### Added
 - Support for async filters [#22]
-- The events `beforeUpdate` and `afterUpdate` have the property `files` with the names of all changed files.
+- The events `beforeUpdate` and `afterUpdate` have the property `files` with the
+  names of all changed files.
 - Allow to configure the css plugins with the following options
   - `postcssPlugins`: array with the PostCSS plugins [#26]
   - `map`: set `true` to generate source map
@@ -77,13 +91,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - TypeError in the server reload script
 - Removed extra space on parse the frontmatter
-- Improved `Pug` plugin. Fixed Typescript errors due conflicts with Eta [#18], added cache for the compiled templates and improved filters.
+- Improved `Pug` plugin. Fixed Typescript errors due conflicts with Eta [#18],
+  added cache for the compiled templates and improved filters.
 - Added hot reloading for modules (ts, js) and fixed some issues.
 - Undocumented `data` filter is disabled by default.
 
 ## [0.10.2] - 2020-12-17
 ### Fixed
-- Do not add `.html` extension to files with a subextension. For example `scripts.js.njk` should be saved to `scripts.js` instead `scripts.js.html` [#13].
+- Do not add `.html` extension to files with a subextension. For example
+  `scripts.js.njk` should be saved to `scripts.js` instead `scripts.js.html`
+  [#13].
 - Refresh Deno cache with `lume --upgrade`
 
 ## [0.10.1] - 2020-12-16
@@ -95,8 +112,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - New plugin to use `Pug` as a template engine [#10]
 - New functions `search.previousPage()` and `search.nextPage()`
 - Support for definition lists (`<dl>`) in markdown
-- Improved default `404` error page. Now it displays a list of files and subfolders
-- New option `templateEngine` to configure the template engine used for every page [#11]
+- Improved default `404` error page. Now it displays a list of files and
+  subfolders
+- New option `templateEngine` to configure the template engine used for every
+  page [#11]
 
 ### Fixed
 - Live reload didn't work always with html
@@ -104,11 +123,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Nunjucks cache doesn't detect changes in included templates
 - Fixed version display on upgrade [#9]
 - `url` filter in markdown
-- `url` filter handling hashes and queries (for example `#hashid` and `?query=value`)
+- `url` filter handling hashes and queries (for example `#hashid` and
+  `?query=value`)
 
 ## [0.9.12] - 2020-12-07
 ### Fixed
-- css plugin use only import and nesting plugins because the other plugins fails in Deno.
+- css plugin use only import and nesting plugins because the other plugins fails
+  in Deno.
 
 ## [0.9.11] - 2020-12-06
 ### Fixed
@@ -129,9 +150,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.9.7] - 2020-12-01
 ### Added
-- Support for executing javascript functions in `deno.script()` instead only cli command
-- New cli arguments `--src`, `--dest` to change dinamically the src and dest options.
-- New property `site.flags` that save all arguments after `--`. For example: `lume --serve -- flag1 flag2`.
+- Support for executing javascript functions in `deno.script()` instead only cli
+  command
+- New cli arguments `--src`, `--dest` to change dinamically the src and dest
+  options.
+- New property `site.flags` that save all arguments after `--`. For example:
+  `lume --serve -- flag1 flag2`.
 
 ### Fixed
 - Fixed multi-commands scripts in linux [#7]
@@ -144,7 +168,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed multipage with generators and add support for async generators
 - Updated dependencies
 - Simplify the code generated by `lume --init`
-- Fixed multi-commands with ` && ` and ` & ` [#7]
+- Fixed multi-commands with `&&` and `&` [#7]
 
 ## [0.9.5] - 2020-11-25
 ### Added
@@ -200,17 +224,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.8.0] - 2020-10-27
 ### Added
 - New `loadAssets()` to register assets loaders
-- New argument in CLI to build the site in a different directory and even choose a different _config.js file.
+- New argument in CLI to build the site in a different directory and even choose
+  a different _config.js file.
 
 ### Changed
 - Renamed `load()` to `loadPages()` and removed the `asset` argument.
 - Renamed `data()` to `loadData()`
 - Renamed `helper()` to `data()`
-- Updating files (in a watch process) dispatches the events `beforeUpdate` and `afterUpdate` (instead `beforeBuild` and `afterBuild`)
+- Updating files (in a watch process) dispatches the events `beforeUpdate` and
+  `afterUpdate` (instead `beforeBuild` and `afterBuild`)
 
 ## [0.7.3] - 2020-10-17
 ### Changed
-- Removed the version of the import in the `_config.js` file generated with `--init`
+- Removed the version of the import in the `_config.js` file generated with
+  `--init`
 
 ### Fixed
 - Support for special characters in the url to the HTTP server
@@ -222,7 +249,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.7.1] - 2020-10-10
 ### Fixed
-- Permalinks does not respect the `prettyUrls` configuration  [#1]
+- Permalinks does not respect the `prettyUrls` configuration [#1]
 - Improved docs to update version
 
 ## [0.7.0] - 2020-10-09
@@ -233,7 +260,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - New option `prettyUrls`. By default is `true`.
 
 ### Removed
-- `site.beforeRender()` and `site.afterRender()` transformers. Use `site.process()` instead, that is the equivalent to `afterRender`.
+- `site.beforeRender()` and `site.afterRender()` transformers. Use
+  `site.process()` instead, that is the equivalent to `afterRender`.
 
 ### Fixed
 - Improved performance executing some operations in parallel
@@ -245,7 +273,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - New argument to `search.pages()` to sort pages alphabetically
 - Added new argument `--help` and aliases `-h` and `-V` to cli
 - Added `eta` plugin, to support `Eta` template engine
-- New function `helper` to assign global helpers that can be used in the templates
+- New function `helper` to assign global helpers that can be used in the
+  templates
 
 ### Removed
 - Arguments `path` and `recursive` in `search.pages()`
@@ -346,6 +375,7 @@ First version
 [#29]: https://github.com/oscarotero/lume/issues/29
 [#30]: https://github.com/oscarotero/lume/issues/30
 
+[0.13.0]: https://github.com/oscarotero/lume/compare/v0.12.1...HEAD
 [0.12.1]: https://github.com/oscarotero/lume/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/oscarotero/lume/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/oscarotero/lume/compare/v0.10.8...v0.11.0

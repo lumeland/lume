@@ -234,8 +234,7 @@ export default site;
 
   // lume --run
   if (options.run) {
-    const success = await site.run(options.run);
-    window.addEventListener("unload", () => Deno.exit(success ? 0 : 1));
+    await site.run(options.run);
     return;
   }
 
