@@ -81,7 +81,7 @@ export function merge(defaults, user) {
   const merged = { ...defaults };
 
   for (const [key, value] of Object.entries(user)) {
-    if (typeof merged[key] === "object" && value === "object") {
+    if (typeof merged[key] === "object" && typeof value === "object") {
       merged[key] = merge(merged[key], value);
       continue;
     }
