@@ -1,8 +1,16 @@
 import yaml from "../loaders/yaml.js";
+import { merge } from "../utils.js";
 
-export default function () {
+// default options
+const defaults = {
+  extensions: [".pug"],
+};
+
+export default function (userOptions) {
+  const options = merge(defaults, userOptions);
+
   return (site) => {
-    site.loadData([".yml", ".yaml"], yaml);
-    site.loadPages([".yml", ".yaml"], yaml);
+    site.loadData(options.extensions, yaml);
+    site.loadPages(options.extensions, yaml);
   };
 }

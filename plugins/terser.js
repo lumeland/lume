@@ -1,26 +1,32 @@
 import textLoader from "../loaders/text.js";
 import minify from "../deps/terser.js";
 import { basename } from "../deps/path.js";
-import { error } from "../utils.js";
+import { error, merge } from "../utils.js";
 
 // default options
 const defaults = {
-  module: true,
-  compress: true,
-  mangle: true,
+  extensions: [".js"],
+  sourceMap: false,
+  options: {
+    module: true,
+    compress: true,
+    mangle: true,
+  },
 };
 
-export default function (options = {}) {
-  return (site) => {
-    site.loadAssets([".js"], textLoader);
-    site.process([".js"], processor);
+export default function (userOptions = {}) {
+  const options = merge(defaults, userOptions);
 
-    async function processor(file, site) {
+  return (site) => {
+    site.loadAssets(options.extensions, textLoader);
+    site.process(options.extensions, processor);
+
+    async function processor(file) {
       const content = file.content;
       const filename = file.dest.path + file.dest.ext;
 
       // options passed to terser
-      const terserOptions = { ...defaults, ...options.options };
+      const terserOptions = { ...options.options };
 
       if (options.sourceMap) {
         terserOptions.sourceMap = {

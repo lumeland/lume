@@ -1,19 +1,29 @@
 import textLoader from "../loaders/text.js";
 import { postcss, postcssImport, postcssNesting } from "../deps/postcss.js";
+import { merge } from "../utils.js";
 
-export default function (options = {}) {
-  const { plugins = [postcssNesting()] } = options;
+// default options
+const defaults = {
+  extensions: [".css"],
+  sourceMap: false,
+  plugins: [
+    postcssNesting(),
+  ],
+};
+
+export default function (userOptions = {}) {
+  const options = merge(defaults, userOptions);
 
   return (site) => {
     const runner = postcss([
       postcssImport({
         path: site.src("_includes"),
       }),
-      ...plugins,
+      ...options.plugins,
     ]);
 
-    site.loadAssets([".css"], textLoader);
-    site.process([".css"], processor);
+    site.loadAssets(options.extensions, textLoader);
+    site.process([options.extensions], processor);
 
     async function processor(page) {
       const from = site.src(page.src.path + page.src.ext);

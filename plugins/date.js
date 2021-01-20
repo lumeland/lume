@@ -1,4 +1,5 @@
 import { format } from "../deps/date.js";
+import { merge } from "../utils.js";
 
 const formats = new Map([
   ["ATOM", "yyyy-MM-dd'T'HH:mm:ssxxx"],
@@ -9,14 +10,15 @@ const formats = new Map([
   ["HUMAN_DATETIME", "PPPppp"],
 ]);
 
+// default options
 const defaults = {
   locales: {},
   formats: {},
 };
 
-export default function (options = {}) {
-  const userOptions = { ...defaults, ...options };
-  const defaultLocale = Object.keys(userOptions.locales).shift();
+export default function (userOptions = {}) {
+  const options = merge(defaults, userOptions);
+  const defaultLocale = Object.keys(options.locales).shift();
 
   return (site) => {
     site.filter("date", filter);
@@ -26,9 +28,9 @@ export default function (options = {}) {
         return;
       }
 
-      const patt = userOptions.formats[pattern] || formats.get(pattern) ||
+      const patt = options.formats[pattern] || formats.get(pattern) ||
         pattern;
-      const locale = userOptions.locales[lang];
+      const locale = options.locales[lang];
 
       return format(date, patt, { locale });
     }

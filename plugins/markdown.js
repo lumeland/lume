@@ -1,10 +1,18 @@
 import Markdown from "../engines/markdown.js";
+import { merge } from "../utils.js";
 
-export default function () {
+// default options
+const defaults = {
+  extensions: [".md", ".markdown"],
+};
+
+export default function (userOptions) {
+  const options = merge(defaults, userOptions);
+
   return function (site) {
     const markdown = new Markdown(site);
 
-    site.engine([".md", ".markdown"], markdown);
+    site.engine(options.extensions, markdown);
     site.filter("md", filter);
 
     function filter(string, inline = false) {

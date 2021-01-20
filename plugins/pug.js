@@ -1,9 +1,17 @@
 import Pug from "../engines/pug.js";
+import { merge } from "../utils.js";
 
-export default function () {
+// default options
+const defaults = {
+  extensions: [".pug"],
+};
+
+export default function (userOptions) {
+  const options = merge(defaults, userOptions);
+
   return (site) => {
     const pug = new Pug(site);
 
-    site.engine([".pug"], pug);
+    site.engine(options.extensions, pug);
   };
 }

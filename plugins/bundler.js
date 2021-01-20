@@ -1,30 +1,44 @@
 import textLoader from "../loaders/text.js";
+import { merge } from "../utils.js";
 
+// default options
 const defaults = {
   extensions: [".ts", ".js"],
+  sourceMap: false,
   options: {},
 };
 
-export default function (options = {}) {
-  const userOptions = { ...defaults, ...options };
-  const emitOptions = { ...defaults.options, ...options.options };
+export default function (userOptions = {}) {
+  const options = merge(defaults, userOptions);
 
   return (site) => {
-    site.loadAssets(userOptions.extensions, textLoader);
-    site.process(userOptions.extensions, processor);
+    site.loadAssets(options.extensions, textLoader);
+    site.process(options.extensions, processor);
 
-    async function processor(page) {
-      const from = site.src(page.src.path + page.src.ext);
+    async function processor(file) {
+      const from = site.src(file.src.path + file.src.ext);
       const { files } = await Deno.emit(from, {
-        ...emitOptions,
+        ...options,
         sources: {
-          [from]: page.content,
+          [from]: file.content,
         },
       });
 
-      console.log(files);
-      // page.content = emit;
-      page.dest.ext = ".js";
+      for (const [path, content] of Object.entries(files)) {
+        if (path.endsWith(".js")) {
+          file.content = content;
+          file.dest.ext = ".js";
+          continue;
+        }
+
+        if (options.sourceMap && path.endsWith(".map")) {
+          let mapFile = file.duplicate();
+          mapFile.content = content;
+          mapFile.dest.ext = ".js.map";
+          site.pages.push(mapFile);
+          continue;
+        }
+      }
     }
   };
 }

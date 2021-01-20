@@ -1,9 +1,17 @@
 import Eta from "../engines/eta.js";
+import { merge } from "../utils.js";
 
-export default function () {
+// default options
+const defaults = {
+  extensions: [".eta"],
+};
+
+export default function (userOptions) {
+  const options = merge(defaults, userOptions);
+
   return (site) => {
     const eta = new Eta(site);
 
-    site.engine([".eta"], eta);
+    site.engine(options.extensions, eta);
   };
 }

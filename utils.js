@@ -80,6 +80,10 @@ export function error(context, message, exception) {
 export function merge(defaults, user) {
   const merged = { ...defaults };
 
+  if (!user) {
+    return merged;
+  }
+
   for (const [key, value] of Object.entries(user)) {
     if (typeof merged[key] === "object" && typeof value === "object") {
       merged[key] = merge(merged[key], value);
