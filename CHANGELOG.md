@@ -5,10 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.13.0] - Unreleased
+## [0.13.0] - 2021-01-20
+### Added
+- Normalize options across some plugins
+
 ### Changed
 - Minimum required Deno version is `1.7.0`
-- `lume --run` doesn't return the proper exit code due a bug in Deno
+- Temporary, `lume --run` doesn't return the proper exit code until [this bug in Deno](https://github.com/denoland/deno/issues/9201) is resolved
 
 ## [0.12.1] - 2021-01-16
 ### Added
@@ -375,7 +378,7 @@ First version
 [#29]: https://github.com/oscarotero/lume/issues/29
 [#30]: https://github.com/oscarotero/lume/issues/30
 
-[0.13.0]: https://github.com/oscarotero/lume/compare/v0.12.1...HEAD
+[0.13.0]: https://github.com/oscarotero/lume/compare/v0.12.1...v0.13.0
 [0.12.1]: https://github.com/oscarotero/lume/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/oscarotero/lume/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/oscarotero/lume/compare/v0.10.8...v0.11.0
