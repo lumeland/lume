@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.13.2] - 2021-01-23
+### Fixed
+- Wrong default configuration in yaml plugin
+
 ## [0.13.1] - 2021-01-23
 ### Fixed
 - Bug makes that postcss plugin doesn't process the css files
@@ -382,6 +386,7 @@ First version
 [#29]: https://github.com/oscarotero/lume/issues/29
 [#30]: https://github.com/oscarotero/lume/issues/30
 
+[0.13.2]: https://github.com/oscarotero/lume/compare/v0.13.1...v0.13.2
 [0.13.1]: https://github.com/oscarotero/lume/compare/v0.13.0...v0.13.1
 [0.13.0]: https://github.com/oscarotero/lume/compare/v0.12.1...v0.13.0
 [0.12.1]: https://github.com/oscarotero/lume/compare/v0.12.0...v0.12.1

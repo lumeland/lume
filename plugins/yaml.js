@@ -3,7 +3,7 @@ import { merge } from "../utils.js";
 
 // default options
 const defaults = {
-  extensions: [".pug"],
+  extensions: [".yaml", ".yml"],
 };
 
 export default function (userOptions) {
