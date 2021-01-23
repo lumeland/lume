@@ -405,7 +405,7 @@ export default class Site {
     }
 
     const content = page.content;
-    const data = { ...page.fullData, ...this.extraData };
+    const data = { ...page.data, ...this.extraData };
     const result = content(data, filters);
     const type = (typeof result === "object")
       ? String(result)
@@ -436,7 +436,7 @@ export default class Site {
    */
   async #renderPage(page) {
     let content = page.content;
-    let pageData = { ...page.fullData, ...this.extraData };
+    let pageData = { ...page.data, ...this.extraData };
     let layout = pageData.layout;
     let path = this.src(page.src.path + page.src.ext);
     const engine = this.#getEngine(page.src.ext, pageData.templateEngine);

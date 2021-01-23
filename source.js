@@ -173,26 +173,33 @@ export default class Source {
       ext,
     };
 
-    const page = new Page(src);
-    page.data = await load(fullPath);
+    const dest = {
+      path: src.path,
+      ext,
+    };
 
-    const subext = extname(page.src.path);
+    const subext = extname(src.path);
 
     if (subext && !this.assets.has(ext)) {
-      page.dest.path = page.src.path.slice(0, -subext.length);
-      page.dest.ext = subext;
-    } else {
-      page.dest.path = page.src.path;
-      page.dest.ext = this.assets.has(ext) ? ext : ".html";
+      dest.path = dest.path.slice(0, -subext.length);
+      dest.ext = subext;
+    } else if (!this.assets.has(ext)) {
+      dest.ext = ".html";
     }
 
-    if (!page.data.date) {
-      page.data.date = getDate(page.src, page.dest);
-    } else if (!(page.data.date instanceof Date)) {
+    const data = await load(fullPath);
+
+    if (!data.date) {
+      data.date = getDate(src, dest);
+    } else if (!(data.date instanceof Date)) {
       throw new Error(
         'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
       );
     }
+
+    const page = new Page(src);
+    page.data = data;
+    page.dest = dest;
 
     return page;
   }

@@ -4,58 +4,45 @@ class Base {
   src = {};
   parent = null;
   #data = {};
-  #cache = {};
+  #cache = null;
 
   constructor(src) {
     this.src = src;
   }
 
-  get tags() {
-    if (this.#cache.tags) {
-      return this.#cache.tags;
+  get data() {
+    if (!this.#cache) {
+      this.#cache = this.getMergedData();
     }
 
-    const tags = new Set();
-
-    if (this.parent) {
-      this.parent.tags.forEach((tag) => tags.add(tag));
-    }
-
-    if (this.data.tags) {
-      this.data.tags.forEach((tag) => tags.add(String(tag)));
-    }
-
-    this.#cache.tags = tags;
-    return this.#cache.tags;
-  }
-
-  get fullData() {
-    if (!this.#cache.fullData) {
-      if (!this.parent) {
-        this.#cache.fullData = this.#data;
-      } else {
-        this.#cache.fullData = { ...this.parent.fullData, ...this.#data };
-      }
-    }
-
-    return this.#cache.fullData;
+    return this.#cache;
   }
 
   set data(data = {}) {
-    //Ensure tags is always an array
-    if (data.tags && !Array.isArray(data.tags)) {
-      data.tags = data.tags ? [data.tags] : [];
-    }
-
     this.#data = data;
   }
 
-  get data() {
-    return this.#data;
+  getMergedData() {
+    let data = { ...this.#data }, tags = [];
+
+    if (data.tags) {
+      tags = Array.isArray(data.tags)
+        ? data.tags.map((tag) => String(tag))
+        : [String(data.tags)];
+    }
+
+    if (this.parent) {
+      data = { ...this.parent.data, ...data };
+      tags = [...this.parent.data.tags, ...tags];
+    }
+
+    data.tags = [...new Set(tags)];
+
+    return data;
   }
 
   refreshCache() {
-    this.#cache = {};
+    this.#cache = null;
   }
 }
 

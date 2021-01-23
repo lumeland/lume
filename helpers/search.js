@@ -22,7 +22,7 @@ export default class Search {
     const tags = new Set();
 
     this.#site.pages.forEach((page) => {
-      page.tags.forEach((tag) => {
+      page.data.tags.forEach((tag) => {
         if (!exclude || !exclude.includes(tag)) {
           tags.add(tag);
         }
@@ -59,7 +59,7 @@ export default class Search {
         return false;
       }
 
-      if (tags && !tags.every((tag) => page.tags.has(tag))) {
+      if (tags && !tags.every((tag) => page.data.tags.includes(tag))) {
         return false;
       }
 

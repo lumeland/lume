@@ -19,7 +19,8 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Minimum required Deno version is `1.7.0`
-- Temporary, `lume --run` doesn't return the proper exit code until [this bug in Deno](https://github.com/denoland/deno/issues/9201) is resolved
+- Temporary, `lume --run` doesn't return the proper exit code until
+  [this bug in Deno](https://github.com/denoland/deno/issues/9201) is resolved
 
 ## [0.12.1] - 2021-01-16
 ### Added
