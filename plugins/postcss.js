@@ -23,7 +23,7 @@ export default function (userOptions = {}) {
     ]);
 
     site.loadAssets(options.extensions, textLoader);
-    site.process([options.extensions], processor);
+    site.process(options.extensions, processor);
 
     async function processor(page) {
       const from = site.src(page.src.path + page.src.ext);
