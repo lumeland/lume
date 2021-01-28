@@ -86,7 +86,7 @@ export default async function build(args) {
   }
 
   try {
-    await server(site);
+    await server(site, options);
     const watcher = Deno.watchFs(site.src());
     const changes = new Set();
     console.log("Watching for changes...");

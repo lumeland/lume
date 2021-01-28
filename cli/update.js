@@ -1,3 +1,4 @@
+import {parse} from "../deps/flags.js";
 import {exists} from "../deps/fs.js";
 import {error} from "../utils.js";
 import {brightGreen, gray} from "../deps/colors.js";

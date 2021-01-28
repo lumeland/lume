@@ -1,13 +1,9 @@
 import {parse} from "./deps/flags.js";
-import {brightGreen} from "./deps/colors.js";
+import {bold, brightGreen, red} from "./deps/colors.js";
 import upgrade from "./cli/upgrade.js";
 import update from "./cli/update.js";
 import init from "./cli/init.js";
 import build from "./cli/build.js";
-
-if (import.meta.main) {
-  cli(Deno.args);
-}
 
 export const version = "v0.14.0";
 
@@ -39,17 +35,25 @@ const USAGE = `
         upgrade    Upgrade 🔥lume to the latest version
         update     Update the version of the lume modules imported in a _config.js file
 
+
     OPTIONS:
-        -h, --help     Prints help information
+        -h, --help              print usage information
         -v, --version  Prints version information
-            --root     Set a different root path (by default is cwd)
-            --src      Set/override the src option
-            --dest     Set/override the dest option
-            --dev      Run lume in development mode
-            --location Set/override the location option
-            --serve    Starts the webserver
-            --port     Change the default port of the webserver (from 3000)
+            --root <dir>        the root that lume should work in   Default: ./
+            --src  <dir>        the source directory for your site  Default: ./
+            --dest  <dir>       the build destination.              Default: _site
+            --config <file>     specify the lume config file.       Default: _config.js
+            --location <domain> set the domain for your site.       Default: http://localhost
+            --dev               enable dev mode (view draft pages)
+            
+            --serve             start a live-reloading web server
+            --port <port>       the port the server is on           Default: 3000
 `;
+
+
+if (import.meta.main) {
+  await cli(Deno.args);
+}
 
 export default async function cli(args) {
   // the rest of the option parsing is handled within each command
@@ -76,13 +80,19 @@ export default async function cli(args) {
 
   // lume [COMMAND] --help
   if (options.help) {
-    if (!command) {
-      help(version, USAGE);
+    let usage;
+    if (command) {
+      const commandModule = await import(`./cli/${command}.js`).catch(_ => {
+      }) //ignore import errors here
+      usage = commandModule?.USAGE
     } else {
-      const {USAGE} = await import(`./cli/${command}.js`)
-      help(version, USAGE)
+      usage = USAGE;
     }
-    return;
+
+    if (usage) {
+      help(usage)
+      return;
+    }
   }
 
   // The Build command
@@ -110,9 +120,11 @@ export default async function cli(args) {
   }
 
   // Down here means the command was not recognized
-  console.log(`lume does now understand the command ${command}`)
-  console.log(`Run ${brightGreen("lume --help")} for usage information`);
-  console.log("");
+  console.log(`
+    ${bold(red("error:"))} lume does not understand the command '${command}'
+    
+    Run ${brightGreen("lume --help")} for usage information
+  `);
   Deno.exit(1); // exit with a positive number to indicate failure
 }
 
