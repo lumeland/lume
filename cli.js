@@ -4,6 +4,7 @@ import upgrade from "./cli/upgrade.js";
 import update from "./cli/update.js";
 import init from "./cli/init.js";
 import build from "./cli/build.js";
+import run from "./cli/run.js";
 
 export const version = "v0.14.0";
 
@@ -31,7 +32,7 @@ const USAGE = `
     COMMANDS:
         build      Build the site. It's the default command
         init       Creates a _config.js file
-        run        Run an user script
+        run        Run an site script
         upgrade    Upgrade 🔥lume to the latest version
         update     Update the version of the lume modules imported in a _config.js file
 
@@ -116,6 +117,11 @@ export default async function cli(args) {
   // The Upgrade command
   if (command === "upgrade") {
     await upgrade(args);
+    return;
+  }
+
+  if (command === "run") {
+    await run(args);
     return;
   }
 
