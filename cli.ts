@@ -13,8 +13,69 @@ if (import.meta.main) {
   cli(Deno.args);
 }
 
+export const validCommands = [
+    "build"
+] as const;
+export type ValidCommands = typeof validCommands[number]
+
+export interface CliOption {
+  name: string;
+  short?: string;
+  description: string;
+}
+export interface CliCommand {
+  name: string;
+  description: string;
+  options?: CliOption[];
+}
+
+export const globalOptions: CliOption[] = [
+  {
+    name: "help",
+    short: "h",
+    description: "Print usage information"
+  }
+]
+
 export default async function cli(args) {
   const version = "v0.14.0";
+
+  // handle --help and --version fast
+  let options = parse(args, {
+    boolean: ["help", "version"],
+    alias: {help: "h", version: "v"},
+  });
+
+  // lume --help
+  if (options.help) {
+    return help(version);
+  }
+
+  // lume --version
+  if (options.version) {
+    console.log(`🔥lume ${version}`);
+    return;
+  }
+
+
+  if (options._.length > 1) {
+    console.log(`Too many arguments: ${options._.join(", ")}`);
+    console.log(`Run ${brightGreen("lume --help")} for usage information`);
+    console.log("");
+    Deno.exit(1);
+  }
+
+  // handle the various commands
+  const command = options._[0]?.toLowerCase() || "build";
+
+  // The Build command
+  if (command === "build") {
+    await build(args);
+    return;
+  }
+
+}
+function old_cli(args) {
   let stop = false;
   const options = parse(args, {
     boolean: ["serve", "init", "version", "dev", "help", "upgrade", "update"],
@@ -36,29 +97,10 @@ export default async function cli(args) {
     },
   });
 
-  const command = options._[0] || "build";
 
   if (stop) {
     console.log(`Run ${brightGreen("lume --help")} for usage information`);
     console.log("");
-    return;
-  }
-
-  if (options._.length > 1) {
-    console.log(`Too much arguments: ${options._.join(", ")}`);
-    console.log(`Run ${brightGreen("lume --help")} for usage information`);
-    console.log("");
-    return;
-  }
-
-  // lume --help
-  if (options.help) {
-    return help(version);
-  }
-
-  // lume --version
-  if (options.version) {
-    console.log(`🔥lume ${version}`);
     return;
   }
 
