@@ -1,30 +1,50 @@
-import { exists } from "../deps/fs.js";
-import { error } from "../utils.js";
-import { brightGreen, gray } from "../deps/colors.js";
+import {exists} from "../deps/fs.js";
+import {error} from "../utils.js";
+import {brightGreen, gray} from "../deps/colors.js";
+import {version} from "../cli.js";
 
-/**
- * Command to update the lume modules used in a _config.js file to the currently installed version
- */
-export default async function update(file, version) {
-  if (!await exists(file)) {
-    error("error", `The file ${file} does not exists`);
+export const USAGE = `
+    ${brightGreen("lume update")}: update your site's config file to use the latest verson of lume from deno.land
+    
+    USAGE:
+        lume update [OPTIONS]
+    
+    OPTIONS:
+        --config <file>     specify the lume config file.   Default: _config.js
+`
+
+export default async function update(args) {
+  const options = parse(args, {
+    string: ["config"],
+    unknown(option) {
+      if (option.startsWith("-")) {
+        throw new Error(`Unknown option: ${option}`);
+      }
+    },
+    default: {
+      config: "_config.js",
+    },
+  })
+
+  if (!await exists(options.config)) {
+    error("error", `The file ${options.config} does not exists`);
     return;
   }
 
-  const content = await Deno.readTextFile(file);
+  const content = await Deno.readTextFile(options.config);
   const updated = content.replaceAll(
-    /https:\/\/deno\.land\/x\/lume(@v[\d\.]+)?\/(.*)/g,
-    (m, v, path) => `https://deno.land/x/lume@${version}/${path}`,
+      /https:\/\/deno\.land\/x\/lume(@v[\d\.]+)?\/(.*)/g,
+      (m, v, path) => `https://deno.land/x/lume@${version}/${path}`,
   );
 
   if (content === updated) {
-    console.log("No changes required in", gray(file));
+    console.log("No changes required in", gray(options.config));
     console.log("");
     return;
   }
 
-  Deno.writeTextFile(file, updated);
+  await Deno.writeTextFile(options.config, updated);
 
-  console.log(`Updated lume modules to ${brightGreen(version)} in`, gray(file));
+  console.log(`Updated lume modules to ${brightGreen(version)} in`, gray(options.config));
   console.log("");
 }
