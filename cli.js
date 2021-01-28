@@ -46,7 +46,7 @@ export default async function cli(args) {
     console.log(`🔥lume ${version}
 A static site generator for Deno
 
-Docs: https://oscarotero.github.io/lume/
+Docs: https://lumeland.github.io
 
 To build the site:
     lume
