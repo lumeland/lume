@@ -1,18 +1,18 @@
-import {parse} from "../deps/flags.js";
-import {brightGreen} from "../deps/colors.js";
-import {version} from "../cli.js";
+import { parse } from "../deps/flags.js";
+import { brightGreen } from "../deps/colors.js";
+import { version } from "../cli.js";
 
-export const USAGE = `
-    ${brightGreen("lume init")}: create a _config.js file for a new site
+export const HELP = `
+    ${brightGreen("lume init")}: create a config file for a new site
     
     USAGE:
         lume init [OPTIONS]
     
     OPTIONS:
-        --config <file>     specify the lume config file.   Default: _config.js
+        --config <file> specify the lume config file.   Default: _config.js
     
-`
-export default async function init(args) {
+`;
+export async function run(args) {
   const options = parse(args, {
     string: ["config"],
     unknown(option) {
@@ -23,10 +23,10 @@ export default async function init(args) {
     default: {
       config: "_config.js",
     },
-  })
+  });
   Deno.writeTextFileSync(
-      options.config,
-      `import lume from "https://deno.land/x/lume@${version}/mod.js";
+    options.config,
+    `import lume from "https://deno.land/x/lume@${version}/mod.js";
 
 const site = lume();
 

@@ -1,35 +1,34 @@
-import {parse} from "../deps/flags.js";
-import {server} from "../server.js";
-import {brightGreen, gray} from "../deps/colors.js";
-import {error} from "../utils.js";
-import {join, relative} from "../deps/path.js";
-import {existsSync} from "../deps/fs.js";
+import { parse } from "../deps/flags.js";
+import { server } from "../server.js";
+import { brightGreen, gray } from "../deps/colors.js";
+import { error } from "../utils.js";
+import { join, relative } from "../deps/path.js";
+import { existsSync } from "../deps/fs.js";
 import lume from "../mod.js";
 
-
-export const USAGE = `
+export const HELP = `
     ${brightGreen("lume build")}: Build the site and optionally serve it
 
     USAGE: 
         lume build [OPTIONS]
 
     OPTIONS:
-        --root <dir>        the root that lume should work in   Default: ./
-        --src  <dir>        the source directory for your site  Default: ./
-        --dest  <dir>       the build destination.              Default: _site
-        --config <file>     specify the lume config file.       Default: _config.js
+        --root     <dir>    the root that lume should work in   Default: ./
+        --src      <dir>    the source directory for your site  Default: ./
+        --dest     <dir>    the build destination.              Default: _site
+        --config   <file>   specify the lume config file.       Default: _config.js
         --location <domain> set the domain for your site.       Default: http://localhost
         --dev               enable dev mode (view draft pages)
 
         --serve             start a live-reloading web server
-        --port <port>       the port the server is on           Default: 3000
+        --port     <port>   the port the server is on           Default: 3000
         
-`
-export default async function build(args) {
+`;
+export async function run(args) {
   const options = parse(args, {
     boolean: ["serve", "dev"],
     string: ["port", "src", "dest", "location", "root", "config"],
-    alias: {help: "h"},
+    alias: { help: "h" },
     ["--"]: true,
     unknown(option) {
       if (option.startsWith("-")) {
@@ -42,6 +41,13 @@ export default async function build(args) {
     },
   });
 
+  if (options._.length > 1) {
+    console.log(`Too many arguments: ${options._.join(", ")}`);
+    console.log(`Run ${brightGreen("lume --help")} for usage information`);
+    console.log("");
+    Deno.exit(1);
+  }
+
   const configFile = join(options.root, options.config);
 
   let site;
@@ -49,7 +55,7 @@ export default async function build(args) {
     const mod = await import(`file://${configFile}`);
     site = mod.default;
   } else {
-    site = lume({cwd: options.root});
+    site = lume({ cwd: options.root });
   }
 
   site.options.cwd = options.root;
@@ -113,7 +119,7 @@ export default async function build(args) {
       }
 
       event.paths.forEach((path) =>
-          changes.add(join("/", relative(site.src(), path)))
+        changes.add(join("/", relative(site.src(), path)))
       );
 
       //Debounce

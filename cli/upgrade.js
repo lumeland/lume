@@ -1,19 +1,21 @@
-import {brightGreen, gray} from "../deps/colors.js";
-import {version} from "../cli.js";
+import { brightGreen, gray } from "../deps/colors.js";
+import { version } from "../cli.js";
 
-export const USAGE = `
-    ${brightGreen("lume upgrade")}: upgrade your local lume install to the latest
+export const HELP = `
+    ${
+  brightGreen("lume upgrade")
+}: upgrade your local lume install to the latest
     
     USAGE:
         lume upgrade
-`
+`;
 /**
  * Command to upgrade lume to the latest version
  */
-export default async function upgrade() {
+export async function run() {
   const response = await fetch("https://cdn.deno.land/lume/meta/versions.json");
   const versions = await response.json();
-  const {latest} = versions;
+  const { latest } = versions;
 
   if (latest === version) {
     console.log(`You're using the latest version of lume: ${latest}!`);
@@ -45,13 +47,13 @@ export default async function upgrade() {
 
   console.log("");
   console.log(
-      `Update successful! You're using the latest version of lume: ${
-          brightGreen(latest)
-      }!`,
+    `Update successful! You're using the latest version of lume: ${
+      brightGreen(latest)
+    }!`,
   );
   console.log(
-      "See the changes in",
-      gray(`https://github.com/lumeland/lume/blob/${latest}/CHANGELOG.md`),
+    "See the changes in",
+    gray(`https://github.com/lumeland/lume/blob/${latest}/CHANGELOG.md`),
   );
   console.log("");
 }

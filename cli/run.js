@@ -1,12 +1,12 @@
 import { unimplemented } from "../deps/asserts.js";
-import {brightGreen} from "../deps/colors.js";
+import { brightGreen } from "../deps/colors.js";
 
-export const USAGE = `
+export const HELP = `
     ${brightGreen("lume run")}: run a script in your site
     
     USAGE:
         lume run 
-`
-export default async function init(args) {
-  unimplemented()
+`;
+export async function run(args) {
+  unimplemented();
 }

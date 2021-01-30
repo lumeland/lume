@@ -1,14 +1,15 @@
-import {parse} from "./deps/flags.js";
-import {bold, brightGreen, red} from "./deps/colors.js";
-import upgrade from "./cli/upgrade.js";
-import update from "./cli/update.js";
-import init from "./cli/init.js";
-import build from "./cli/build.js";
-import run from "./cli/run.js";
+import { parse } from "./deps/flags.js";
+import { bold, brightGreen, red } from "./deps/colors.js";
+import * as upgrade from "./cli/upgrade.js";
+import * as update from "./cli/update.js";
+import * as init from "./cli/init.js";
+import * as build from "./cli/build.js";
+import * as run from "./cli/run.js";
+import { error as printError } from "./utils.js";
 
 export const version = "v0.14.0";
 
-const USAGE = `
+const HELP = `
     Docs: https://lumeland.github.io/
 
         To build the site:
@@ -39,28 +40,31 @@ const USAGE = `
 
     OPTIONS:
         -h, --help              print usage information
-        -v, --version  Prints version information
-            --root <dir>        the root that lume should work in   Default: ./
-            --src  <dir>        the source directory for your site  Default: ./
-            --dest  <dir>       the build destination.              Default: _site
-            --config <file>     specify the lume config file.       Default: _config.js
+        -v, --version           prints version information
+            --root     <dir>    the root that lume should work in   Default: ./
+            --src      <dir>    the source directory for your site  Default: ./
+            --dest     <dir>    the build destination.              Default: _site
+            --config   <file>   specify the lume config file.       Default: _config.js
             --location <domain> set the domain for your site.       Default: http://localhost
             --dev               enable dev mode (view draft pages)
             
             --serve             start a live-reloading web server
-            --port <port>       the port the server is on           Default: 3000
+            --port     <port>   the port the server is on           Default: 3000
 `;
 
-
 if (import.meta.main) {
-  await cli(Deno.args);
+  try {
+    await cli(Deno.args);
+  } catch (error) {
+    printError("lume", error.message, error);
+  }
 }
 
 export default async function cli(args) {
   // the rest of the option parsing is handled within each command
   let options = parse(args, {
     boolean: ["help", "version"],
-    alias: {help: "h", version: "v"},
+    alias: { help: "h", version: "v" },
   });
 
   // lume --version
@@ -69,78 +73,63 @@ export default async function cli(args) {
     return;
   }
 
-  if (options._.length > 1) {
-    console.log(`Too many arguments: ${options._.join(", ")}`);
-    console.log(`Run ${brightGreen("lume --help")} for usage information`);
-    console.log("");
-    Deno.exit(1);
+  // lume --help (with no command)
+  if (options._.length === 0 && help(options, HELP)) {
+    return;
   }
 
   // _ contains the non-option arguments
   const command = options._[0]?.toLowerCase();
 
-  // lume [COMMAND] --help
-  if (options.help) {
-    let usage;
-    if (command) {
-      const commandModule = await import(`./cli/${command}.js`).catch(_ => {
-      }) //ignore import errors here
-      usage = commandModule?.USAGE
-    } else {
-      usage = USAGE;
+  /**
+   * run the given command if it was the one requested
+   *
+   * @param name command name to compare to the cli argument
+   * @param runner command code to run if this is the requested command
+   */
+  async function maybeRun(name, runner) {
+    if (command === name) {
+      help(options, runner.HELP) || await runner.run(args);
+      return true;
     }
-
-    if (usage) {
-      help(usage)
-      return;
-    }
+    return false;
   }
 
-  // The Build command
-  if (!command || command === "build") {
-    await build(args);
-    return;
-  }
 
-  // The Init command
-  if (command === "init") {
-    await init(args);
-    return;
-  }
-
-  // The Update command
-  if (command === "update") {
-    await update(args);
-    return;
-  }
-
-  // The Upgrade command
-  if (command === "upgrade") {
-    await upgrade(args);
-    return;
-  }
-
-  if (command === "run") {
-    await run(args);
+  // Check each command. If any of them ran, then return
+  if (
+    await maybeRun("build", build) ||
+    await maybeRun("init", init) ||
+    await maybeRun("update", update) ||
+    await maybeRun("upgrade", upgrade) ||
+    await maybeRun("run", run)
+  ) {
+    console.log(`✔ ${command} done.`);
     return;
   }
 
   // Down here means the command was not recognized
-  console.log(`
+  throw new Error(`
     ${bold(red("error:"))} lume does not understand the command '${command}'
     
     Run ${brightGreen("lume --help")} for usage information
   `);
-  Deno.exit(1); // exit with a positive number to indicate failure
 }
 
 /**
- * Print a shared help header and then the given usage info
+ * print the given help message if the options asked for help
+ *
+ * @return true if help was printed, false otherwise
  */
-function help(usageInfo) {
-  console.log(`
+function help({ help: showHelp }, help) {
+  if (showHelp) {
+    console.log(`
     🔥lume ${version}
     
     A static site generator for Deno`);
-  console.log(usageInfo)
+    console.log(help);
+    return true;
+  } else {
+    return false;
+  }
 }
