@@ -1,9 +1,20 @@
 import { brightGreen, gray } from "../deps/colors.js";
+import { version } from "../cli.js";
+import { validateArgsCount } from "./cliUtils.js";
 
+export const HELP = `
+    ${
+  brightGreen("lume upgrade")
+}: upgrade your local lume install to the latest
+    
+    USAGE:
+        lume upgrade
+`;
 /**
  * Command to upgrade lume to the latest version
  */
-export default async function upgrade(version) {
+export async function run(args) {
+  validateArgsCount("upgrade", args, 1);
   const response = await fetch("https://cdn.deno.land/lume/meta/versions.json");
   const versions = await response.json();
   const { latest } = versions;
@@ -44,7 +55,7 @@ export default async function upgrade(version) {
   );
   console.log(
     "See the changes in",
-    gray(`https://github.com/lumeland/lume/blob/${latest}/CHANGELOG.md}`),
+    gray(`https://github.com/lumeland/lume/blob/${latest}/CHANGELOG.md`),
   );
   console.log("");
 }
