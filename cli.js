@@ -10,46 +10,45 @@ import { error as printError } from "./utils.js";
 export const version = "v0.14.0";
 
 const HELP = `
-    Docs: https://lumeland.github.io/
+Docs: https://lumeland.github.io/
 
-        To build the site:
-            lume
+    To build the site:
+        lume
 
-        To serve the site in localhost
-            lume --serve
+    To serve the site in localhost
+        lume --serve
 
-        To update lume to the latest version
-            lume update
+    To update lume to the latest version
+        lume upgrade
 
-        To run a custom script
-            lume run script-name
+    To run a custom script
+        lume run <name>
 
-        To get help with a command
-            lume COMMAND --help
+    To get help with a command
+        lume COMMAND --help
 
-    USAGE:
-        lume [COMMAND] [OPTIONS]
+USAGE:
+    lume [COMMAND] [OPTIONS]
 
-    COMMANDS:
-        build      Build the site. It's the default command
-        init       Creates a _config.js file
-        run        Run an site script
-        upgrade    Upgrade 🔥lume to the latest version
-        update     Update the version of the lume modules imported in a _config.js file
+COMMANDS:
+    build      Build the site. It's the default command
+    init       Creates a _config.js file
+    run        Run an site script
+    upgrade    Upgrade 🔥lume to the latest version
+    update     Update the version of the lume modules imported in a _config.js file
 
+OPTIONS:
+    -h, --help              print usage information
+    -v, --version           prints version information
+        --root     <dir>    the root that lume should work in   Default: ./
+        --src      <dir>    the source directory for your site  Default: ./
+        --dest     <dir>    the build destination.              Default: _site
+        --config   <file>   specify the lume config file.       Default: _config.js
+        --location <domain> set the domain for your site.       Default: http://localhost
+        --dev               enable dev mode (view draft pages)
 
-    OPTIONS:
-        -h, --help              print usage information
-        -v, --version           prints version information
-            --root     <dir>    the root that lume should work in   Default: ./
-            --src      <dir>    the source directory for your site  Default: ./
-            --dest     <dir>    the build destination.              Default: _site
-            --config   <file>   specify the lume config file.       Default: _config.js
-            --location <domain> set the domain for your site.       Default: http://localhost
-            --dev               enable dev mode (view draft pages)
-            
-            --serve             start a live-reloading web server
-            --port     <port>   the port the server is on           Default: 3000
+        --serve             start a live-reloading web server
+        --port     <port>   the port the server is on           Default: 3000
 `;
 
 if (import.meta.main) {
@@ -89,9 +88,8 @@ export default async function cli(args) {
   function help(message) {
     if (options.help) {
       console.log(`
-    🔥lume ${version}
-    
-    A static site generator for Deno`);
+🔥lume ${version}
+A static site generator for Deno`);
       console.log(message);
       return true;
     } else {

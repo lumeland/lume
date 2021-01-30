@@ -6,21 +6,21 @@ import { join, relative } from "../deps/path.js";
 import { buildSite, validateArgsCount } from "./cliUtils.js";
 
 export const HELP = `
-    ${brightGreen("lume build")}: Build the site and optionally serve it
+${brightGreen("lume build")}: Build the site and optionally serve it
 
-    USAGE: 
-        lume build [OPTIONS]
+USAGE: 
+    lume build [OPTIONS]
 
-    OPTIONS:
-        --root     <dir>    the root that lume should work in   Default: ./
-        --src      <dir>    the source directory for your site  Default: ./
-        --dest     <dir>    the build destination.              Default: _site
-        --config   <file>   specify the lume config file.       Default: _config.js
-        --location <domain> set the domain for your site.       Default: http://localhost
-        --dev               enable dev mode (view draft pages)
+OPTIONS:
+    --root     <dir>    the root that lume should work in   Default: ./
+    --src      <dir>    the source directory for your site  Default: ./
+    --dest     <dir>    the build destination.              Default: _site
+    --config   <file>   specify the lume config file.       Default: _config.js
+    --location <domain> set the domain for your site.       Default: http://localhost
+    --dev               enable dev mode (view draft pages)
 
-        --serve             start a live-reloading web server
-        --port     <port>   the port the server is on           Default: 3000
+    --serve             start a live-reloading web server
+    --port     <port>   the port the server is on           Default: 3000
         
 `;
 export async function run(args) {

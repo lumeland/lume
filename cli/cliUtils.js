@@ -14,7 +14,7 @@ export async function buildSite(options) {
     const mod = await import(`file://${configFile}`);
     site = mod.default;
   } else {
-    site = lume({ cwd: options.root });
+    site = lume();
   }
 
   site.options.cwd = options.root;

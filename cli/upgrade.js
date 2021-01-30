@@ -3,12 +3,10 @@ import { version } from "../cli.js";
 import { validateArgsCount } from "./cliUtils.js";
 
 export const HELP = `
-    ${
-  brightGreen("lume upgrade")
-}: upgrade your local lume install to the latest
-    
-    USAGE:
-        lume upgrade
+${brightGreen("lume upgrade")}: upgrade your local lume install to the latest
+
+USAGE:
+    lume upgrade
 `;
 /**
  * Command to upgrade lume to the latest version

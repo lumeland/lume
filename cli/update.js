@@ -6,15 +6,15 @@ import { version } from "../cli.js";
 import { validateArgsCount } from "./cliUtils.js";
 
 export const HELP = `
-    ${
+${
   brightGreen("lume update")
 }: update your site's config file to use the latest version of lume from deno.land
-    
-    USAGE:
-        lume update [OPTIONS]
-    
-    OPTIONS:
-        --config <file> specify the lume config file.   Default: _config.js
+
+USAGE:
+    lume update [OPTIONS]
+
+OPTIONS:
+    --config <file> specify the lume config file.   Default: _config.js
 `;
 
 export async function run(args) {
