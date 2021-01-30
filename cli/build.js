@@ -3,8 +3,7 @@ import { server } from "../server.js";
 import { brightGreen, gray } from "../deps/colors.js";
 import { error } from "../utils.js";
 import { join, relative } from "../deps/path.js";
-import { existsSync } from "../deps/fs.js";
-import lume from "../mod.js";
+import { buildSite, validateArgsCount } from "./cliUtils.js";
 
 export const HELP = `
     ${brightGreen("lume build")}: Build the site and optionally serve it
@@ -28,7 +27,6 @@ export async function run(args) {
   const options = parse(args, {
     boolean: ["serve", "dev"],
     string: ["port", "src", "dest", "location", "root", "config"],
-    alias: { help: "h" },
     ["--"]: true,
     unknown(option) {
       if (option.startsWith("-")) {
@@ -41,46 +39,9 @@ export async function run(args) {
     },
   });
 
-  if (options._.length > 1) {
-    console.log(`Too many arguments: ${options._.join(", ")}`);
-    console.log(`Run ${brightGreen("lume --help")} for usage information`);
-    console.log("");
-    Deno.exit(1);
-  }
+  validateArgsCount("build", options._, 1);
 
-  const configFile = join(options.root, options.config);
-
-  let site;
-  if (existsSync(configFile)) {
-    const mod = await import(`file://${configFile}`);
-    site = mod.default;
-  } else {
-    site = lume({ cwd: options.root });
-  }
-
-  site.options.cwd = options.root;
-
-  if (options.dev) {
-    site.options.dev = options.dev;
-  }
-
-  if (options.location) {
-    site.options.location = new URL(options.location);
-  }
-
-  if (options.src) {
-    site.options.src = options.src;
-  }
-
-  if (options.dest) {
-    site.options.dest = options.dest;
-  }
-
-  if (options["--"]) {
-    site.options.flags = options["--"];
-  }
-
-  // validate the options for this argument
+  const site = await buildSite(options);
   console.log("");
   await site.build();
   console.log("");

@@ -56,7 +56,7 @@ if (import.meta.main) {
   try {
     await cli(Deno.args);
   } catch (error) {
-    printError("lume", error.message, error);
+    printError("lume", error.message);
   }
 }
 
@@ -113,7 +113,6 @@ export default async function cli(args) {
     return false;
   }
 
-
   // Check each command. If any of them ran, then return
   if (
     await maybeRun("build", build) ||
@@ -132,4 +131,3 @@ export default async function cli(args) {
     Run ${brightGreen("lume --help")} for usage information
   `);
 }
-

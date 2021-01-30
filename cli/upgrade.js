@@ -1,5 +1,6 @@
 import { brightGreen, gray } from "../deps/colors.js";
 import { version } from "../cli.js";
+import { validateArgsCount } from "./cliUtils.js";
 
 export const HELP = `
     ${
@@ -12,7 +13,8 @@ export const HELP = `
 /**
  * Command to upgrade lume to the latest version
  */
-export async function run() {
+export async function run(args) {
+  validateArgsCount("upgrade", args, 1);
   const response = await fetch("https://cdn.deno.land/lume/meta/versions.json");
   const versions = await response.json();
   const { latest } = versions;

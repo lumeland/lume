@@ -3,6 +3,7 @@ import { exists } from "../deps/fs.js";
 import { error } from "../utils.js";
 import { brightGreen, gray } from "../deps/colors.js";
 import { version } from "../cli.js";
+import { validateArgsCount } from "./cliUtils.js";
 
 export const HELP = `
     ${
@@ -28,6 +29,8 @@ export async function run(args) {
       config: "_config.js",
     },
   });
+
+  validateArgsCount("update", options._, 1);
 
   if (!await exists(options.config)) {
     error("error", `The file ${options.config} does not exists`);

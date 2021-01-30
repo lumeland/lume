@@ -1,6 +1,7 @@
 import { parse } from "../deps/flags.js";
 import { brightGreen } from "../deps/colors.js";
 import { version } from "../cli.js";
+import { validateArgsCount } from "./cliUtils.js";
 
 export const HELP = `
     ${brightGreen("lume init")}: create a config file for a new site
@@ -24,6 +25,8 @@ export async function run(args) {
       config: "_config.js",
     },
   });
+  validateArgsCount("init", options._, 1);
+
   Deno.writeTextFileSync(
     options.config,
     `import lume from "https://deno.land/x/lume@${version}/mod.js";
