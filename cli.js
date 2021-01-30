@@ -22,7 +22,7 @@ Docs: https://lumeland.github.io/
         lume upgrade
 
     To run a custom script
-        lume run <name>
+        lume run <script>
 
     To get help with a command
         lume COMMAND --help
