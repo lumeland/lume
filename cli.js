@@ -79,7 +79,7 @@ export default async function cli(args) {
   }
 
   // _ contains the non-option arguments
-  const command = options._[0]?.toLowerCase();
+  const command = options._[0]?.toLowerCase() || "build";
 
   /**
    * print the given help message if the options asked for help
