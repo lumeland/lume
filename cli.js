@@ -74,7 +74,7 @@ export default async function cli(args) {
   }
 
   // lume --help (with no command)
-  if (options._.length === 0 && help(options, HELP)) {
+  if (options._.length === 0 && help(HELP)) {
     return;
   }
 
@@ -82,14 +82,32 @@ export default async function cli(args) {
   const command = options._[0]?.toLowerCase();
 
   /**
-   * run the given command if it was the one requested
+   * print the given help message if the options asked for help
+   *
+   * @return true if help was printed, false otherwise
+   */
+  function help(message) {
+    if (options.help) {
+      console.log(`
+    🔥lume ${version}
+    
+    A static site generator for Deno`);
+      console.log(message);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * run the given command, or print it's help message, if it was the one requested
    *
    * @param name command name to compare to the cli argument
    * @param runner command code to run if this is the requested command
    */
   async function maybeRun(name, runner) {
     if (command === name) {
-      help(options, runner.HELP) || await runner.run(args);
+      help(runner.HELP) || await runner.run(args);
       return true;
     }
     return false;
@@ -104,7 +122,6 @@ export default async function cli(args) {
     await maybeRun("upgrade", upgrade) ||
     await maybeRun("run", run)
   ) {
-    console.log(`✔ ${command} done.`);
     return;
   }
 
@@ -116,20 +133,3 @@ export default async function cli(args) {
   `);
 }
 
-/**
- * print the given help message if the options asked for help
- *
- * @return true if help was printed, false otherwise
- */
-function help({ help: showHelp }, help) {
-  if (showHelp) {
-    console.log(`
-    🔥lume ${version}
-    
-    A static site generator for Deno`);
-    console.log(help);
-    return true;
-  } else {
-    return false;
-  }
-}
