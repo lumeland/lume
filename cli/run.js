@@ -32,5 +32,10 @@ export async function run(args) {
 
   const site = await buildSite(options);
   console.log("");
-  site.run(script);
+
+  const success = await site.run(script);
+
+  if (!success) {
+    window.addEventListener("unload", () => Deno.exit(1));
+  }
 }
