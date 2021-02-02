@@ -5,17 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.14.0] - Unreleased
+## [0.14.0] - 2021-02-02
 ### Changed
 - API changes in the `Page` class:
-  - Tags are stored as `Array` instead `Set` in `page.data.tags`
+  - Tags are stored as `Array` in `page.data.tags` (previously they are a `Set` in `page.tags`).
   - Removed `page.fullData` property, `page.data` contains the merged data.
 - CLI changes [#33], [#34]:
   - Moved some options (arguments starting with `--`) to commands:
     - `lume --upgrade` to `lume upgrade`
     - `lume --update` to `lume update`
     - `lume --init` to `lume init`
-    - `lume --run` to `lume run`
+    - `lume --run=<script>` to `lume run <script>`
   - Added command specific help info. For example: `lume run --help`
   - Changed the way to specify a different cwd. Instead `lume path/to/site`, use `lume --root=path/to/site`
 
@@ -407,7 +407,7 @@ First version
 [#33]: https://github.com/oscarotero/lume/issues/33
 [#34]: https://github.com/oscarotero/lume/issues/34
 
-[0.14.0]: https://github.com/oscarotero/lume/compare/v0.13.2...HEAD
+[0.14.0]: https://github.com/oscarotero/lume/compare/v0.13.2...v0.14.0
 [0.13.2]: https://github.com/oscarotero/lume/compare/v0.13.1...v0.13.2
 [0.13.1]: https://github.com/oscarotero/lume/compare/v0.13.0...v0.13.1
 [0.13.0]: https://github.com/oscarotero/lume/compare/v0.12.1...v0.13.0
