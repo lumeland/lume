@@ -64,6 +64,7 @@ export default async function cli(args) {
   let options = parse(args, {
     boolean: ["help", "version"],
     alias: { help: "h", version: "v" },
+    "--": true,
   });
 
   // lume --version

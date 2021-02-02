@@ -318,6 +318,7 @@ export default class Site {
     this.pages = [];
     const fnPages = [];
 
+    //Build the this.pages array
     for (const page of this.source.root.getPages()) {
       if (page.data.draft && !this.options.dev) {
         continue;
@@ -334,21 +335,23 @@ export default class Site {
       this.pages.push(page);
     }
 
+    //Generate pages (pagination, etc)
     for (const page of fnPages) {
       await this.#expandPage(page);
     }
 
+    //Render the pages
     for (const page of this.pages) {
       await this.#renderPage(page);
     }
 
-    return concurrent(
+    //Process the pages
+    await concurrent(
       this.pages,
       async (page) => {
         if (!page.content) {
           return;
         }
-
         const processors = this.processors.get(page.dest.ext);
 
         if (processors) {
@@ -356,9 +359,13 @@ export default class Site {
             await process(page, this);
           }
         }
-
-        await this.#savePage(page);
       },
+    );
+
+    //Save the pages
+    await concurrent(
+      this.pages,
+      (page) => this.#savePage(page),
     );
   }
 

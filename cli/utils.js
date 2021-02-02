@@ -45,12 +45,20 @@ export async function buildSite(options) {
 /**
  * @param command name of the command you're validating
  * @param args array of cli arguments (i.e. options._)
- * @param expected the expected number of args
+ * @param max the max number of args
+ * @param min the min number of args
  */
-export function validateArgsCount(command, args, expected) {
-  if (args.length !== expected) {
-    throw new Error(`Unexpected arguments: ${args.join(", ")}
+export function validateArgsCount(command, args, max, min = 0) {
+  if (args.length > max) {
+    throw new Error(`Unexpected arguments: ${args.slice(max).join(", ")}
     
+    Run ${brightGreen(`lume ${command} --help`)} for usage information
+    `);
+  }
+
+  if (args.length < min) {
+    throw new Error(`Missing arguments
+
     Run ${brightGreen(`lume ${command} --help`)} for usage information
     `);
   }
