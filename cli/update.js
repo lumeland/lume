@@ -3,7 +3,7 @@ import { exists } from "../deps/fs.js";
 import { error } from "../utils.js";
 import { brightGreen, gray } from "../deps/colors.js";
 import { version } from "../cli.js";
-import { validateArgsCount } from "./cliUtils.js";
+import { validateArgsCount } from "./utils.js";
 
 export const HELP = `
 ${

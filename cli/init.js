@@ -1,7 +1,7 @@
 import { parse } from "../deps/flags.js";
 import { brightGreen } from "../deps/colors.js";
 import { version } from "../cli.js";
-import { validateArgsCount } from "./cliUtils.js";
+import { validateArgsCount } from "./utils.js";
 
 export const HELP = `
 ${brightGreen("lume init")}: create a config file for a new site

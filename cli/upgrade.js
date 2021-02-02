@@ -1,6 +1,6 @@
 import { brightGreen, gray } from "../deps/colors.js";
 import { version } from "../cli.js";
-import { validateArgsCount } from "./cliUtils.js";
+import { validateArgsCount } from "./utils.js";
 
 export const HELP = `
 ${brightGreen("lume upgrade")}: upgrade your local lume install to the latest

@@ -3,7 +3,7 @@ import { server } from "../server.js";
 import { brightGreen, gray } from "../deps/colors.js";
 import { error } from "../utils.js";
 import { join, relative } from "../deps/path.js";
-import { buildSite, validateArgsCount } from "./cliUtils.js";
+import { buildSite, validateArgsCount } from "./utils.js";
 
 export const HELP = `
 ${brightGreen("lume build")}: Build the site and optionally serve it
