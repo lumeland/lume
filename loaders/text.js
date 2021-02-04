@@ -1,6 +1,5 @@
 import { parseFrontmatter } from "./yaml.js";
-import { readFile } from "../utils.js";
 
-export default async function (path) {
-  return readFile(path, (content) => parseFrontmatter(content));
+export default async function (path, source) {
+  return source.readFile(path, (content) => parseFrontmatter(content));
 }

@@ -1,5 +1,4 @@
 import Site from "./site.js";
-import { cache } from "./utils.js";
 
 import attr from "./plugins/attributes.js";
 import url from "./plugins/url.js";
@@ -12,13 +11,6 @@ import yaml from "./plugins/yaml.js";
 
 export default function (options = {}) {
   const site = new Site(options);
-
-  //Update cache on update
-  site.addEventListener("beforeUpdate", (ev) => {
-    for (const filename of ev.files) {
-      cache.delete(site.src(filename));
-    }
-  });
 
   return site
     .ignore("node_modules")

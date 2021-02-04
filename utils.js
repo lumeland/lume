@@ -41,34 +41,6 @@ export const mimes = new Map([
   [".zip", "application/zip"],
 ]);
 
-export const cache = new Map();
-
-export async function readFile(path, fn = (content) => content) {
-  if (cache.has(path)) {
-    return cache.get(path);
-  }
-
-  try {
-    const content = await fn(await Deno.readTextFile(path));
-    cache.set(path, content);
-    return content;
-  } catch (err) {
-    console.error(`Error loading the template ${path}`);
-    console.error(err);
-  }
-}
-
-export async function loadModule(path, fn = (content) => content) {
-  if (cache.has(path)) {
-    return cache.get(path);
-  }
-
-  const hash = new Date().getTime();
-  const content = fn(await import(`file://${path}#${hash}`));
-  cache.set(path, content);
-  return content;
-}
-
 export function error(context, message, exception) {
   console.error(bold(red(`${context}:`)), message);
   if (exception) {

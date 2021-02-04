@@ -11,20 +11,25 @@ export default class Source {
   staticFiles = new Map();
   assets = new Set();
   ignored = new Set();
+  #cache = new Map();
 
   constructor(site) {
     this.site = site;
 
     //Update cache on update
-    site.addEventListener("beforeUpdate", () => {
+    site.addEventListener("beforeUpdate", (ev) => {
       this.root.refreshCache();
+
+      for (const filename of ev.files) {
+        this.#cache.delete(site.src(filename));
+      }
     });
   }
 
   /**
    * Returns the Directory instance of a path
    */
-  getDirectory(path, create = false) {
+  getOrCreateDirectory(path) {
     let dir = this.root;
 
     path.split("/").forEach((name) => {
@@ -32,7 +37,7 @@ export default class Source {
         return;
       }
 
-      if (create && !dir.dirs.has(name)) {
+      if (!dir.dirs.has(name)) {
         dir.createDirectory(name);
       }
 
@@ -40,6 +45,27 @@ export default class Source {
     });
 
     return dir;
+  }
+
+  /**
+   * Returns the File or Directory of a path
+   */
+  getFileOrDirectory(path) {
+    let result = this.root;
+
+    path.split("/").forEach((name) => {
+      if (!name || !result) {
+        return;
+      }
+
+      if (result instanceof Directory) {
+        result = result.dirs.get(name) || result.pages.get(name);
+      } else {
+        return null;
+      }
+    });
+
+    return result;
   }
 
   /**
@@ -83,7 +109,7 @@ export default class Source {
     //Is a file inside _data folder
     if (file.match(/\/_data\//)) {
       const dir = file.split("/_data/", 2).shift();
-      const directory = this.getDirectory(dir, true);
+      const directory = this.getOrCreateDirectory(dir);
       return this.#loadDataFolderEntry(
         join(directory.src.path, "_data"),
         entry,
@@ -91,7 +117,7 @@ export default class Source {
       );
     }
 
-    const directory = this.getDirectory(dirname(file), true);
+    const directory = this.getOrCreateDirectory(dirname(file));
     await this.#loadEntry(directory, entry);
   }
 
@@ -187,7 +213,7 @@ export default class Source {
       dest.ext = ".html";
     }
 
-    const data = await load(fullPath);
+    const data = await load(fullPath, this);
 
     if (!data.date) {
       data.date = getDate(src, dest);
@@ -210,7 +236,7 @@ export default class Source {
   async #loadData(path) {
     for (const [ext, loader] of this.data) {
       if (path.endsWith(ext)) {
-        return loader(this.site.src(path));
+        return loader(this.site.src(path), this);
       }
     }
   }
@@ -251,6 +277,32 @@ export default class Source {
     if (entry.isDirectory) {
       data[entry.name] = await this.#loadDataFolder(join(path, entry.name));
     }
+  }
+
+  async readFile(path, fn = (content) => content) {
+    if (this.#cache.has(path)) {
+      return this.#cache.get(path);
+    }
+
+    try {
+      const content = await fn(await Deno.readTextFile(path));
+      this.#cache.set(path, content);
+      return content;
+    } catch (err) {
+      console.error(`Error loading the file ${path}`);
+      console.error(err);
+    }
+  }
+
+  async loadModule(path, fn = (content) => content) {
+    if (this.#cache.has(path)) {
+      return this.#cache.get(path);
+    }
+
+    const hash = new Date().getTime();
+    const content = fn(await import(`file://${path}#${hash}`));
+    this.#cache.set(path, content);
+    return content;
   }
 }
 

@@ -11,47 +11,50 @@ export default class Search {
     site.addEventListener("beforeUpdate", () => this.#cache.clear());
   }
 
-  folder(path = "/") {
-    return this.#site.source.getDirectory(path);
+  data(path = "/") {
+    const file = this.#site.source.getFileOrDirectory(path);
+
+    if (file) {
+      return file.data;
+    }
   }
 
-  pages(tags, sort) {
-    return this.#searchPages(tags, sort);
+  pages(query, sort) {
+    return this.#searchPages(query, sort);
   }
 
-  tags() {
+  tags(query) {
     const tags = new Set();
 
-    this.#site.pages.forEach((page) => {
-      page.data.tags.forEach((tag) => tags.add(tag));
-    });
+    this.pages(query).forEach((page) =>
+      page.data.tags.forEach((tag) => tags.add(tag))
+    );
 
     return Array.from(tags);
   }
 
-  nextPage(url, tags, sort) {
-    const pages = this.pages(tags, sort);
+  nextPage(url, query, sort) {
+    const pages = this.pages(query, sort);
     const index = pages.findIndex((page) => page.data.url === url);
 
     return (index === -1) ? undefined : pages[index + 1];
   }
 
-  previousPage(url, tags, sort) {
-    const pages = this.pages(tags, sort);
+  previousPage(url, query, sort) {
+    const pages = this.pages(query, sort);
     const index = pages.findIndex((page) => page.data.url === url);
 
     return (index <= 0) ? undefined : pages[index - 1];
   }
 
-  #searchPages(tags = [], sort = "date") {
-    const id = JSON.stringify([tags, sort]);
+  #searchPages(query = [], sort = "date") {
+    const id = JSON.stringify([query, sort]);
 
     if (this.#cache.has(id)) {
       return [...this.#cache.get(id)];
     }
 
-    const filter = buildFilter(tags);
-
+    const filter = buildFilter(query);
     const result = filter ? this.#site.pages.filter(filter) : this.#site.pages;
 
     result.sort(compileSort(`data.${sort}`));
@@ -61,28 +64,28 @@ export default class Search {
   }
 }
 
-function buildFilter(args) {
-  if (!args) {
+function buildFilter(query) {
+  if (!query) {
     return null;
   }
 
-  if (typeof args === "string") {
-    args = args.split(/\s+/).filter((arg) => arg);
+  if (typeof query === "string") {
+    query = query.split(/\s+/).filter((arg) => arg);
   }
 
-  if (!args.length) {
+  if (!query.length) {
     return null;
   }
 
-  const query = {};
+  const filter = {};
 
-  args.forEach((arg) => {
+  query.forEach((arg) => {
     if (!arg.includes(":")) {
-      if (!query["data.tags ALL"]) {
-        query["data.tags ALL"] = [];
+      if (!filter["data.tags ALL"]) {
+        filter["data.tags ALL"] = [];
       }
 
-      return query["data.tags ALL"].push(arg);
+      return filter["data.tags ALL"].push(arg);
     }
 
     let [key, value] = arg.split(":", 2);
@@ -93,8 +96,8 @@ function buildFilter(args) {
       value = false;
     }
 
-    query[`data.${key}`] = value;
+    filter[`data.${key}`] = value;
   });
 
-  return compileFilter(query);
+  return compileFilter(filter);
 }

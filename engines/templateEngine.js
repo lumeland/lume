@@ -16,6 +16,6 @@ export default class TemplateEngine {
   }
 
   async load(path) {
-    return loader(path);
+    return loader(path, this.site.source);
   }
 }

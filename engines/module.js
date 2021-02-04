@@ -17,6 +17,6 @@ export default class Module extends TemplateEngine {
   }
 
   async load(path) {
-    return loader(path);
+    return loader(path, this.site.source);
   }
 }
