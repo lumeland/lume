@@ -1,3 +1,5 @@
+import { compileFilter, compileSort } from "./search-compiler.js";
+
 export default class Search {
   #site = null;
   #cache = null;
@@ -17,16 +19,11 @@ export default class Search {
     return this.#searchPages(tags, sort);
   }
 
-  tags(exclude) {
-    exclude = getTags(exclude);
+  tags() {
     const tags = new Set();
 
     this.#site.pages.forEach((page) => {
-      page.data.tags.forEach((tag) => {
-        if (!exclude || !exclude.includes(tag)) {
-          tags.add(tag);
-        }
-      });
+      page.data.tags.forEach((tag) => tags.add(tag));
     });
 
     return Array.from(tags);
@@ -47,48 +44,57 @@ export default class Search {
   }
 
   #searchPages(tags = [], sort = "date") {
-    tags = getTags(tags);
     const id = JSON.stringify([tags, sort]);
 
     if (this.#cache.has(id)) {
       return [...this.#cache.get(id)];
     }
 
-    const filter = (page) => {
-      if (page.dest.ext !== ".html") {
-        return false;
-      }
+    const filter = buildFilter(tags);
 
-      if (tags && !tags.every((tag) => page.data.tags.includes(tag))) {
-        return false;
-      }
+    const result = filter ? this.#site.pages.filter(filter) : this.#site.pages;
 
-      return true;
-    };
-
-    const result = this.#site.pages
-      .filter(filter)
-      .sort((a, b) => {
-        if (sort === "file") {
-          return (a.src.path < b.src.path) ? -1 : 1;
-        }
-
-        return (a.data[sort] < b.data[sort]) ? -1 : 1;
-      });
+    result.sort(compileSort(`data.${sort}`));
 
     this.#cache.set(id, result);
     return [...result];
   }
 }
 
-function getTags(tags) {
-  if (!tags) {
+function buildFilter(args) {
+  if (!args) {
     return null;
   }
 
-  if (typeof tags === "string") {
-    tags = tags.split(/\s+/).filter((tag) => tag);
+  if (typeof args === "string") {
+    args = args.split(/\s+/).filter((arg) => arg);
   }
 
-  return tags.length ? tags : null;
+  if (!args.length) {
+    return null;
+  }
+
+  const query = {};
+
+  args.forEach((arg) => {
+    if (!arg.includes(":")) {
+      if (!query["data.tags ALL"]) {
+        query["data.tags ALL"] = [];
+      }
+
+      return query["data.tags ALL"].push(arg);
+    }
+
+    let [key, value] = arg.split(":", 2);
+
+    if (value.toLowerCase() === "true") {
+      value = true;
+    } else if (value.toLowerCase() === "false") {
+      value = false;
+    }
+
+    query[`data.${key}`] = value;
+  });
+
+  return compileFilter(query);
 }

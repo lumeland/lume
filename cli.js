@@ -55,7 +55,7 @@ if (import.meta.main) {
   try {
     await cli(Deno.args);
   } catch (error) {
-    printError("lume", error.message);
+    printError("lume", error.message, error);
   }
 }
 
