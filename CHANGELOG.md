@@ -23,6 +23,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 - The argument to ignore tags in `search.tags()`.
 - The method `search.directory()` to return a directory instance. Use
   `search.data()`.
+- The option `file` to sort results in `search.pages()`. Use `url` instead.
 
 ### Fixed
 - Cache is not correctly refreshed when using different versions of plugins
