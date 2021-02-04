@@ -16,6 +16,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 - The argument to ignore tags in `search.tags()`.
+- The option `file` to sort results in `search.pages()`. Use `url` instead.
 
 ## [0.14.0] - 2021-02-02
 ### Changed
