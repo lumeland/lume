@@ -28,6 +28,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Cache is not correctly refreshed when using different versions of plugins
   [#35]
+- Updated dependencies
 
 ## [0.14.0] - 2021-02-02
 ### Changed
