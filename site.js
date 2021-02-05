@@ -346,21 +346,18 @@ export default class Site {
     }
 
     //Process the pages
-    await concurrent(
-      this.pages,
-      async (page) => {
-        if (!page.content) {
-          return;
-        }
-        const processors = this.processors.get(page.dest.ext);
-
-        if (processors) {
-          for (const process of processors) {
-            await process(page, this);
+    for (const [ext, processors] of this.processors) {
+      await concurrent(
+        this.pages,
+        async (page) => {
+          if (ext === page.dest.ext && page.content) {
+            for (const process of processors) {
+              await process(page, this);
+            }
           }
-        }
-      },
-    );
+        },
+      );
+    }
 
     //Save the pages
     await concurrent(

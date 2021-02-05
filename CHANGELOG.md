@@ -29,6 +29,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 - Cache is not correctly refreshed when using different versions of plugins
   [#35]
 - Updated dependencies
+- Ensure the processors are executed in the same order they where declared
 
 ## [0.14.0] - 2021-02-02
 ### Changed
