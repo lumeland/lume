@@ -101,7 +101,9 @@ export default function () {
       const path = resolve(url, element.getAttribute("src"));
 
       element.innerHTML = await getContent(path);
-      element.removeAttribute("src");
+      // bug: https://github.com/b-fuze/deno-dom/issues/30
+      // element.removeAttribute("src");
+      delete element.attributes["src"];
     }
 
     async function inlineSrc(url, element) {
