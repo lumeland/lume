@@ -89,7 +89,7 @@ function buildFilter(query) {
     }
 
     const match = arg.match(/([\w\.-]+)([!\^\$~]?=)(.*)/);
-    const [, key, operator, value] = match;
+    let [, key, operator, value] = match;
 
     if (value.toLowerCase() === "true") {
       value = true;
