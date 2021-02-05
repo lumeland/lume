@@ -1,4 +1,4 @@
-import { extname, join, resolve } from "../deps/path.js";
+import { extname, join, relative, resolve } from "../deps/path.js";
 import { DOMParser } from "../deps/dom.js";
 import { encode } from "../deps/base64.js";
 import { mimes } from "../utils.js";
@@ -65,8 +65,10 @@ export default function () {
     }
 
     async function readContent(path, asData) {
+      const url = join("/", relative(site.options.location.pathname, path));
+
       //Is a page/asset ?
-      const page = site.pages.find((page) => page.data.url === path);
+      const page = site.pages.find((page) => page.data.url === url);
 
       if (page) {
         return page.content;
@@ -74,10 +76,10 @@ export default function () {
 
       //Is a file in dest
       if (!asData) {
-        return Deno.readTextFile(site.dest(path));
+        return Deno.readTextFile(site.dest(url));
       }
 
-      const content = await Deno.readFile(site.dest(path));
+      const content = await Deno.readFile(site.dest(url));
       const ext = extname(path);
 
       if (!mimes.has(ext)) {

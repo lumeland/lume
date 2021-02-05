@@ -30,6 +30,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
   [#35]
 - Updated dependencies
 - Ensure the processors are executed in the same order they where declared
+- `inline` plugin when the site location is in a subdirectory.
 
 ## [0.14.0] - 2021-02-02
 ### Changed
