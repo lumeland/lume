@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.15.0] - Unreleased
+## [0.15.0] - 2021-02-05
 ### Added
 - New advanced search features:
   - You can filter by any field at any level. For example
@@ -437,7 +437,7 @@ First version
 [#34]: https://github.com/oscarotero/lume/issues/34
 [#35]: https://github.com/oscarotero/lume/issues/35
 
-[0.15.0]: https://github.com/oscarotero/lume/compare/v0.14.0...HEAD
+[0.15.0]: https://github.com/oscarotero/lume/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/oscarotero/lume/compare/v0.13.2...v0.14.0
 [0.13.2]: https://github.com/oscarotero/lume/compare/v0.13.1...v0.13.2
 [0.13.1]: https://github.com/oscarotero/lume/compare/v0.13.0...v0.13.1

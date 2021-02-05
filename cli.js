@@ -7,7 +7,7 @@ import * as build from "./cli/build.js";
 import * as run from "./cli/run.js";
 import { error as printError } from "./utils.js";
 
-export const version = "v0.14.0";
+export const version = "v0.15.0";
 
 const HELP = `
 Docs: https://lumeland.github.io/
