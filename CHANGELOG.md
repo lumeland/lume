@@ -9,18 +9,18 @@ project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - New advanced search features:
   - You can filter by any field at any level. For example
-    `search.pages("header.categories:my-category")`
+    `search.pages("header.categories=my-category")`
   - You can sort by any field at any level. For example
-    `search.pages("header.categories:my-category", "my.custom.order.field")`
+    `search.pages("header.categories=my-category", "my.custom.order.field")`
   - New method `search.data()` to return the data assigned to any page or
     directory.
 
 ### Changed
 - Restore the ability to return the proper exit code on `lume --run`.
 - Show more info on error.
+- Removed the argument to ignore tags in `search.tags()`. Replaced by a filter like in `search.pages()`
 
 ### Removed
-- The argument to ignore tags in `search.tags()`.
 - The method `search.directory()` to return a directory instance. Use
   `search.data()`.
 - The option `file` to sort results in `search.pages()`. Use `url` instead.

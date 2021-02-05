@@ -80,7 +80,7 @@ function buildFilter(query) {
   const filter = {};
 
   query.forEach((arg) => {
-    if (!arg.includes(":")) {
+    if (!arg.includes("=")) {
       if (!filter["data.tags ALL"]) {
         filter["data.tags ALL"] = [];
       }
@@ -88,7 +88,8 @@ function buildFilter(query) {
       return filter["data.tags ALL"].push(arg);
     }
 
-    let [key, value] = arg.split(":", 2);
+    const match = arg.match(/([\w\.-]+)([!\^\$~]?=)(.*)/);
+    const [, key, operator, value] = match;
 
     if (value.toLowerCase() === "true") {
       value = true;
@@ -96,7 +97,7 @@ function buildFilter(query) {
       value = false;
     }
 
-    filter[`data.${key}`] = value;
+    filter[`data.${key} ${operator}`] = value;
   });
 
   return compileFilter(filter);
