@@ -396,6 +396,7 @@ export default class Site {
     page.data.url = (dest.ext === ".html" && basename(dest.path) === "index")
       ? dest.path.slice(0, -5)
       : dest.path + dest.ext;
+    page.data.slug = basename(dest.path) === "index" ? basename(dest.path.slice(0, -5)) : basename(dest.path)
   }
 
   /**
