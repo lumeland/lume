@@ -32,7 +32,7 @@ export default function (userOptions = {}) {
         }
 
         if (options.sourceMap && path.endsWith(".map")) {
-          let mapFile = file.duplicate();
+          const mapFile = file.duplicate();
           mapFile.content = content;
           mapFile.dest.ext = ".js.map";
           site.pages.push(mapFile);

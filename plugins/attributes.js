@@ -42,7 +42,7 @@ function handleClass(classes, name) {
     return name.forEach((value) => handleClass(classes, value));
   }
 
-  for (let [key, value] of Object.entries(name)) {
+  for (const [key, value] of Object.entries(name)) {
     if (value) {
       classes.add(key);
     }
@@ -67,7 +67,7 @@ function handleAttributes(attributes, name, validNames) {
     );
   }
 
-  for (let [key, value] of Object.entries(name)) {
+  for (const [key, value] of Object.entries(name)) {
     if (!isValid(key, validNames)) {
       continue;
     }
@@ -86,7 +86,7 @@ function handleAttributes(attributes, name, validNames) {
 function joinAttributes(attributes) {
   const values = [];
 
-  for (let [name, value] of attributes) {
+  for (const [name, value] of attributes) {
     if (value === undefined || value === null || value === false) {
       continue;
     }

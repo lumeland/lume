@@ -26,7 +26,7 @@ export async function run(args) {
   });
   validateArgsCount("init", options._, 1);
 
-  Deno.writeTextFileSync(
+  await Deno.writeTextFile(
     options.config,
     `import lume from "https://deno.land/x/lume@${version}/mod.js";
 

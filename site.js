@@ -442,7 +442,7 @@ export default class Site {
     let content = page.content;
     let pageData = { ...page.data, ...this.extraData };
     let layout = pageData.layout;
-    let path = this.src(page.src.path + page.src.ext);
+    const path = this.src(page.src.path + page.src.ext);
     const engine = this.#getEngine(page.src.ext, pageData.templateEngine);
 
     if (Array.isArray(engine)) {
@@ -455,8 +455,8 @@ export default class Site {
 
     while (layout) {
       const engine = this.#getEngine(layout);
-      const path = this.src(engine.includes, layout);
-      const layoutData = await engine.load(path);
+      const layoutPath = this.src(engine.includes, layout);
+      const layoutData = await engine.load(layoutPath);
       pageData = {
         ...layoutData,
         ...pageData,
@@ -464,7 +464,7 @@ export default class Site {
         ...this.extraData,
       };
 
-      content = await engine.render(layoutData.content, pageData, path);
+      content = await engine.render(layoutData.content, pageData, layoutPath);
 
       layout = layoutData.layout;
     }

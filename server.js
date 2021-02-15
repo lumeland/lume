@@ -125,7 +125,7 @@ function read(key) {
 }
 `;
 
-export async function server(site, options) {
+export function server(site, options) {
   const root = site.dest();
   const port = parseInt(options.port) || site.options.server.port || 3000;
   const page404 = site.options.server.page404 || "/404.html";
@@ -139,7 +139,7 @@ export async function server(site, options) {
   const watcher = Deno.watchFs(root);
 
   //Static files server
-  listenAndServe({ port }, async (req) => {
+  listenAndServe({ port }, (req) => {
     //Is websocket
     if (req.headers.get("upgrade") === "websocket") {
       handleSocket(req);

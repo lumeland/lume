@@ -16,7 +16,7 @@ export default class Module extends TemplateEngine {
     this.filters[name] = fn;
   }
 
-  async load(path) {
+  load(path) {
     return loader(path, this.site.source);
   }
 }

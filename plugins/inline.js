@@ -33,7 +33,7 @@ export default function () {
       }
     }
 
-    async function inline(url, element) {
+    function inline(url, element) {
       if (element.hasAttribute("href")) {
         if (element.getAttribute("rel") === "stylesheet") {
           return inlineStyles(url, element);

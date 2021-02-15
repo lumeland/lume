@@ -61,7 +61,7 @@ if (import.meta.main) {
 
 export default async function cli(args) {
   // the rest of the option parsing is handled within each command
-  let options = parse(args, {
+  const options = parse(args, {
     boolean: ["help", "version"],
     alias: { help: "h", version: "v" },
     "--": true,

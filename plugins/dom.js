@@ -14,7 +14,7 @@ export default function (userOptions) {
   return (site) => {
     site.process(options.extensions, processor);
 
-    async function processor(page) {
+    function processor(page) {
       const document = parser.parseFromString(page.content, "text/html");
       options.fn(document, page);
       page.content = document.documentElement.outerHTML;

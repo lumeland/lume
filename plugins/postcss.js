@@ -39,10 +39,10 @@ export default function (userOptions = {}) {
       page.content = result.css;
 
       if (result.map) {
-        const mapPage = page.duplicate();
-        mapPage.content = result.map.toString();
-        mapPage.dest.ext = ".css.map";
-        site.pages.push(mapPage);
+        const mapFile = page.duplicate();
+        mapFile.content = result.map.toString();
+        mapFile.dest.ext = ".css.map";
+        site.pages.push(mapFile);
       }
     }
   };

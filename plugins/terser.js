@@ -41,7 +41,7 @@ export default function (userOptions = {}) {
         file.content = output.code;
 
         if (output.map) {
-          let mapFile = file.duplicate();
+          const mapFile = file.duplicate();
           mapFile.content = output.map;
           mapFile.dest.ext = ".js.map";
           site.pages.push(mapFile);

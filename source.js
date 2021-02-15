@@ -86,7 +86,7 @@ export default class Source {
   /**
    * Load a directory recursively
    */
-  async loadDirectory(directory = this.root) {
+  loadDirectory(directory = this.root) {
     const path = this.site.src(directory.src.path);
 
     return concurrent(
@@ -233,7 +233,7 @@ export default class Source {
   /**
    * Load a _data.* file and return the content
    */
-  async #loadData(path) {
+  #loadData(path) {
     for (const [ext, loader] of this.data) {
       if (path.endsWith(ext)) {
         return loader(this.site.src(path), this);

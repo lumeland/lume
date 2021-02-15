@@ -26,7 +26,7 @@ export default class Denjuks extends TemplateEngine {
     });
   }
 
-  async render(content, data, filename) {
+  render(content, data, filename) {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
