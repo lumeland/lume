@@ -24,9 +24,7 @@ export default function () {
 
         for (const element of document.querySelectorAll("[inline]")) {
           await inline(page.data.url, element);
-          // bug: https://github.com/b-fuze/deno-dom/issues/30
-          // element.removeAttribute("inline");
-          delete element.attributes["inline"];
+          element.removeAttribute("inline");
         }
 
         page.content = document.documentElement.outerHTML;
@@ -101,9 +99,7 @@ export default function () {
       const path = resolve(url, element.getAttribute("src"));
 
       element.innerHTML = await getContent(path);
-      // bug: https://github.com/b-fuze/deno-dom/issues/30
-      // element.removeAttribute("src");
-      delete element.attributes["src"];
+      element.removeAttribute("src");
     }
 
     async function inlineSrc(url, element) {
