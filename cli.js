@@ -59,7 +59,7 @@ if (import.meta.main) {
   }
 }
 
-export default async function cli(args) {
+export default async function cli(args, site) {
   // the rest of the option parsing is handled within each command
   const options = parse(args, {
     boolean: ["help", "version"],
@@ -106,7 +106,7 @@ A static site generator for Deno`);
    */
   async function maybeRun(name, runner) {
     if (command === name) {
-      help(runner.HELP) || await runner.run(args);
+      help(runner.HELP) || await runner.run(args, site);
       return true;
     }
     return false;

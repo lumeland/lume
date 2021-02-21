@@ -1,20 +1,22 @@
 import { existsSync } from "../deps/fs.js";
 import lume from "../mod.js";
-import { join } from "../deps/path.js";
+import { join, resolve } from "../deps/path.js";
 import { brightGreen } from "../deps/colors.js";
 
 /**
  * @return {Promise<*>} a lume instance - ready to build, run, etc.
  */
-export async function buildSite(options) {
+export async function buildSite(options, site) {
+  options.root = resolve(Deno.cwd(), options.root);
   const configFile = join(options.root, options.config);
 
-  let site;
-  if (existsSync(configFile)) {
-    const mod = await import(`file://${configFile}`);
-    site = mod.default;
-  } else {
-    site = lume();
+  if (!site) {
+    if (existsSync(configFile)) {
+      const mod = await import(`file://${configFile}`);
+      site = mod.default;
+    } else {
+      site = lume();
+    }
   }
 
   site.options.cwd = options.root;

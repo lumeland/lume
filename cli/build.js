@@ -23,7 +23,7 @@ OPTIONS:
     --port     <port>   the port the server is on           Default: 3000
         
 `;
-export async function run(args) {
+export async function run(args, userSite) {
   const options = parse(args, {
     boolean: ["serve", "dev"],
     string: ["port", "src", "dest", "location", "root", "config"],
@@ -41,7 +41,7 @@ export async function run(args) {
 
   validateArgsCount("build", options._, 1);
 
-  const site = await buildSite(options);
+  const site = await buildSite(options, userSite);
   console.log("");
   await site.build();
   console.log("");

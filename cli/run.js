@@ -8,7 +8,7 @@ ${brightGreen("lume run")}: run a script in your site
 USAGE:
     lume run <script>
 `;
-export async function run(args) {
+export async function run(args, userSite) {
   const options = parse(args, {
     boolean: ["dev"],
     string: ["src", "dest", "location", "root", "config"],
@@ -30,7 +30,7 @@ export async function run(args) {
   // script name is the second argument ("run" is the first)
   const script = options._[1];
 
-  const site = await buildSite(options);
+  const site = await buildSite(options, userSite);
   console.log("");
 
   const success = await site.run(script);

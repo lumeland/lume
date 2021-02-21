@@ -6,8 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.15.1] - Unreleased
+### Added
+- Added a second argument to the default exported function of `cli.js` to set a site directly.
+
 ### Fixed
 - Pug templates loaded with `extends` were cached indefinitely [#39].
+- Allow relative paths in `--root` option.
 
 ## [0.15.0] - 2021-02-05
 ### Added
