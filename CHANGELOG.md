@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.15.2] - 2021-02-22
+### Fixed
+- Version number
+
 ## [0.15.1] - 2021-02-21
 ### Added
 - Added a second argument to the default exported function of `cli.js` to set a site directly.
@@ -446,6 +450,7 @@ First version
 [#35]: https://github.com/oscarotero/lume/issues/35
 [#39]: https://github.com/oscarotero/lume/issues/39
 
+[0.15.2]: https://github.com/oscarotero/lume/compare/v0.15.1...v0.15.2
 [0.15.1]: https://github.com/oscarotero/lume/compare/v0.15.0...v0.15.1
 [0.15.0]: https://github.com/oscarotero/lume/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/oscarotero/lume/compare/v0.13.2...v0.14.0
