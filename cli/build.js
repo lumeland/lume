@@ -94,6 +94,6 @@ export async function run(args, userSite) {
 
 function normalizePaths(paths) {
   const newPaths = new Set();
-  paths.forEach(path => newPaths.add(normalizePath(path)));
+  paths.forEach((path) => newPaths.add(normalizePath(path)));
   return newPaths;
 }

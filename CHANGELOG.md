@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.15.3] - 2021-03-06
+### Fixed
+- Some issues related with paths in Windows [#41]
+
 ## [0.15.2] - 2021-02-22
 ### Fixed
 - Version number
@@ -449,7 +453,9 @@ First version
 [#34]: https://github.com/oscarotero/lume/issues/34
 [#35]: https://github.com/oscarotero/lume/issues/35
 [#39]: https://github.com/oscarotero/lume/issues/39
+[#41]: https://github.com/oscarotero/lume/issues/41
 
+[0.15.3]: https://github.com/oscarotero/lume/compare/v0.15.2...v0.15.3
 [0.15.2]: https://github.com/oscarotero/lume/compare/v0.15.1...v0.15.2
 [0.15.1]: https://github.com/oscarotero/lume/compare/v0.15.0...v0.15.1
 [0.15.0]: https://github.com/oscarotero/lume/compare/v0.14.0...v0.15.0
