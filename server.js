@@ -3,7 +3,7 @@ import { acceptWebSocket } from "./deps/ws.js";
 import { dirname, extname, join, relative } from "./deps/path.js";
 import { brightGreen, red } from "./deps/colors.js";
 import { exists } from "./deps/fs.js";
-import { mimes } from "./utils.js";
+import { mimes, normalizePath } from "./utils.js";
 
 const script = `
 let ws;
@@ -214,7 +214,7 @@ export function server(site, options) {
       }
 
       const files = Array.from(changes).map((path) =>
-        join("/", relative(root, path))
+        normalizePath(join("/", normalizePath(relative(root, path))))
       );
 
       changes.clear();

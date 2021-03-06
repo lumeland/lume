@@ -1,4 +1,5 @@
 import { bold, red } from "./deps/colors.js";
+import { SEP } from "./deps/path.js";
 
 export async function concurrent(iterable, iteratorFn, limit = 200) {
   const executing = [];
@@ -66,4 +67,12 @@ export function merge(defaults, user) {
   }
 
   return merged;
+}
+
+export function normalizePath(path) {
+  if (SEP !== "/") {
+    return path.replaceAll(SEP, "/");
+  }
+  
+  return path;
 }

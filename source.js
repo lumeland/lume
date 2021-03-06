@@ -1,7 +1,7 @@
 import { basename, dirname, extname, join } from "./deps/path.js";
 import { existsSync } from "./deps/fs.js";
 import { Directory, Page } from "./filesystem.js";
-import { concurrent } from "./utils.js";
+import { concurrent, normalizePath } from "./utils.js";
 
 export default class Source {
   root = new Directory({ path: "/" });
@@ -193,7 +193,7 @@ export default class Source {
 
     const info = await Deno.stat(fullPath);
     const src = {
-      path: path.slice(0, -ext.length),
+      path: normalizePath(path.slice(0, -ext.length)),
       lastModified: info.mtime,
       created: info.birthtime,
       ext,
