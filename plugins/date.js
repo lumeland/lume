@@ -28,6 +28,10 @@ export default function (userOptions = {}) {
         return;
       }
 
+      if (!(date instanceof Date)) {
+        date = new Date(date);
+      }
+
       const patt = options.formats[pattern] || formats.get(pattern) ||
         pattern;
       const locale = options.locales[lang];
