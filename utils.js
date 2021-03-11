@@ -73,6 +73,43 @@ export function normalizePath(path) {
   if (SEP !== "/") {
     return path.replaceAll(SEP, "/");
   }
-  
+
   return path;
+}
+
+export const slugChars = new Map([
+  ["á", "a"],
+  ["à", "a"],
+  ["â", "a"],
+  ["ã", "a"],
+  ["ä", "a"],
+  ["å", "a"],
+  ["é", "e"],
+  ["è", "e"],
+  ["ê", "e"],
+  ["ë", "e"],
+  ["ì", "i"],
+  ["í", "i"],
+  ["î", "i"],
+  ["ï", "i"],
+  ["ò", "o"],
+  ["ó", "o"],
+  ["ô", "o"],
+  ["õ", "o"],
+  ["ö", "o"],
+  ["ð", "d"],
+  ["ù", "u"],
+  ["ú", "u"],
+  ["ü", "u"],
+  ["û", "u"],
+  ["ñ", "n"],
+  ["ª", "a"],
+  ["º", "o"],
+  ["ç", "c"],
+]);
+
+export function slugify(string) {
+  return string.toLowerCase()
+    .replaceAll(/[\s-_]+/g, () => "-")
+    .replaceAll(/[^\w-\/]/g, (char) => slugChars.get(char) || "");
 }

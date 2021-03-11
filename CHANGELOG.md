@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+### Added
+- New variable `renderOrder` that you can set to any page to control the rendering order.
+
+### Changed
+- Apply a slugifier to the path of all generated pages, to replace tildes and other conflictive characters and convert them to lowercase.
+- Changed the way to generate multiple pages for more flexibility
+
 ## [0.15.4] - 2021-03-08
 ### Added
 - The `date` plugin accepts strings or integer arguments (they will be converted to `Date` with `new Date(value)` constructor).
@@ -462,6 +470,7 @@ First version
 [#39]: https://github.com/oscarotero/lume/issues/39
 [#41]: https://github.com/oscarotero/lume/issues/41
 
+[Unreleased]: https://github.com/oscarotero/lume/compare/v0.15.4...HEAD
 [0.15.4]: https://github.com/oscarotero/lume/compare/v0.15.3...v0.15.4
 [0.15.3]: https://github.com/oscarotero/lume/compare/v0.15.2...v0.15.3
 [0.15.2]: https://github.com/oscarotero/lume/compare/v0.15.1...v0.15.2

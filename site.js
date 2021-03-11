@@ -4,7 +4,7 @@ import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
 import Scripts from "./scripts.js";
-import { concurrent } from "./utils.js";
+import { concurrent, slugify } from "./utils.js";
 
 const defaults = {
   cwd: Deno.cwd(),
@@ -316,33 +316,50 @@ export default class Site {
    */
   async #buildPages() {
     this.pages = [];
-    const fnPages = [];
 
-    //Build the this.pages array
+    const renderOrder = {};
+
     for (const page of this.source.root.getPages()) {
       if (page.data.draft && !this.options.dev) {
         continue;
       }
 
-      page.content = page.data.content;
+      const order = page.data.renderOrder || 0;
+      renderOrder[order] = renderOrder[order] || [];
+      renderOrder[order].push(page);
+    }
 
-      if (typeof page.content === "function") {
-        fnPages.push(page);
-        continue;
+    const orderKeys = Object.keys(renderOrder).sort();
+
+    for (const order of orderKeys) {
+      const pages = renderOrder[order];
+
+      //Prepare the pages
+      for (const page of pages) {
+        this.#urlPage(page);
       }
 
-      this.#urlPage(page);
-      this.pages.push(page);
-    }
+      //Render the pages
+      for (const page of pages) {
+        const content = await this.#renderPage(page);
 
-    //Generate pages (pagination, etc)
-    for (const page of fnPages) {
-      await this.#expandPage(page);
-    }
+        if (isMultipage(content)) {
+          for await (const pageData of content) {
+            if (!pageData.content) {
+              pageData.content = null;
+            }
+            const newPage = page.duplicate(pageData);
+            this.#urlPage(newPage);
+            newPage.content = await this.#renderPage(newPage);
+            this.pages.push(newPage);
+          }
 
-    //Render the pages
-    for (const page of this.pages) {
-      await this.#renderPage(page);
+          continue;
+        }
+
+        page.content = content;
+        this.pages.push(page);
+      }
     }
 
     //Process the pages
@@ -393,53 +410,18 @@ export default class Site {
       dest.path = `/${dest.path}`;
     }
 
+    dest.path = slugify(dest.path);
+
     page.data.url = (dest.ext === ".html" && basename(dest.path) === "index")
       ? dest.path.slice(0, -5)
       : dest.path + dest.ext;
   }
 
   /**
-   * Generate subpages (for pagination)
-   */
-  async #expandPage(page) {
-    const filters = {};
-
-    for (const [name, [fn]] of this.filters) {
-      filters[name] = fn;
-    }
-
-    const content = page.content;
-    const data = { ...page.data, ...this.extraData };
-    const result = content(data, filters);
-    const type = (typeof result === "object")
-      ? String(result)
-      : (typeof result);
-
-    switch (type) {
-      case "[object Generator]":
-      case "[object AsyncGenerator]":
-        for await (const pageData of result) {
-          const newPage = page.duplicate(pageData);
-
-          newPage.content = newPage.data.content;
-
-          this.pages.push(newPage);
-          this.#urlPage(newPage);
-        }
-        break;
-
-      default:
-        page.content = result;
-        this.pages.push(page);
-        this.#urlPage(page);
-    }
-  }
-
-  /**
    * Render a page
    */
   async #renderPage(page) {
-    let content = page.content;
+    let content = page.data.content;
     let pageData = { ...page.data, ...this.extraData };
     let layout = pageData.layout;
     const path = this.src(page.src.path + page.src.ext);
@@ -451,6 +433,10 @@ export default class Site {
       }
     } else if (engine) {
       content = await engine.render(content, pageData, path);
+    }
+
+    if (isMultipage(content)) {
+      return content;
     }
 
     while (layout) {
@@ -469,7 +455,7 @@ export default class Site {
       layout = layoutData.layout;
     }
 
-    page.content = content;
+    return content;
   }
 
   /**
@@ -524,4 +510,13 @@ export default class Site {
       }
     }
   }
+}
+
+function isMultipage(content) {
+  if (typeof content !== "object") {
+    return false;
+  }
+
+  const type = String(content);
+  return type === "[object Generator]" || type === "[object AsyncGenerator]";
 }
