@@ -332,33 +332,47 @@ export default class Site {
     const orderKeys = Object.keys(renderOrder).sort();
 
     for (const order of orderKeys) {
-      const pages = renderOrder[order];
+      const pages = [];
+      const generators = [];
 
       //Prepare the pages
-      for (const page of pages) {
-        this.#urlPage(page);
-      }
-
-      //Render the pages
-      for (const page of pages) {
-        const content = await this.#renderPage(page);
-
-        if (isMultipage(content)) {
-          for await (const pageData of content) {
-            if (!pageData.content) {
-              pageData.content = null;
-            }
-            const newPage = page.duplicate(pageData);
-            this.#urlPage(newPage);
-            newPage.content = await this.#renderPage(newPage);
-            this.pages.push(newPage);
-          }
-
+      for (const page of renderOrder[order]) {
+        if (isGenerator(page.data.content)) {
+          generators.push(page);
           continue;
         }
 
-        page.content = content;
+        this.#urlPage(page);
+        pages.push(page);
         this.pages.push(page);
+      }
+
+      //Auto-generate pages
+      for (const page of generators) {
+        const generator = await this.engines.get(".tmpl.js")
+          .render(
+            page.data.content,
+            {
+              ...page.data,
+              ...this.extraData,
+            },
+            this.src(page.src.path + page.src.ext),
+          );
+
+        for await (const data of generator) {
+          if (!data.content) {
+            data.content = null;
+          }
+          const newPage = page.duplicate(data);
+          this.#urlPage(newPage);
+          pages.push(newPage);
+          this.pages.push(newPage);
+        }
+      }
+
+      //Render all pages
+      for (const page of pages) {
+        page.content = await this.#renderPage(page);
       }
     }
 
@@ -435,10 +449,6 @@ export default class Site {
       content = await engine.render(content, pageData, path);
     }
 
-    if (isMultipage(content)) {
-      return content;
-    }
-
     while (layout) {
       const engine = this.#getEngine(layout);
       const layoutPath = this.src(engine.includes, layout);
@@ -512,11 +522,11 @@ export default class Site {
   }
 }
 
-function isMultipage(content) {
-  if (typeof content !== "object") {
+function isGenerator(content) {
+  if (typeof content !== "function") {
     return false;
   }
 
-  const type = String(content);
-  return type === "[object Generator]" || type === "[object AsyncGenerator]";
+  const name = content.constructor.name;
+  return (name === "GeneratorFunction" || name === "AsyncGeneratorFunction");
 }
