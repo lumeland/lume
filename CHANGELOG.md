@@ -7,7 +7,8 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- New variable `renderOrder` that you can set to any page to control the rendering order.
+- New variable `renderOrder` to control the rendering order of the pages.
+- New cli alias `-s` for `--serve`.
 
 ### Changed
 - Apply a slugifier to the path of all generated pages, to replace tildes and other conflictive characters and convert them to lowercase.

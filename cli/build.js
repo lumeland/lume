@@ -12,21 +12,21 @@ USAGE:
     lume build [OPTIONS]
 
 OPTIONS:
-    --root     <dir>    the root that lume should work in   Default: ./
-    --src      <dir>    the source directory for your site  Default: ./
-    --dest     <dir>    the build destination.              Default: _site
-    --config   <file>   specify the lume config file.       Default: _config.js
-    --location <domain> set the domain for your site.       Default: http://localhost
-    --dev               enable dev mode (view draft pages)
+        --root     <dir>    the root that lume should work in   Default: ./
+        --src      <dir>    the source directory for your site  Default: ./
+        --dest     <dir>    the build destination.              Default: _site
+        --config   <file>   specify the lume config file.       Default: _config.js
+        --location <url>    set the domain for your site.       Default: http://localhost
+        --dev               enable dev mode (view draft pages)
 
-    --serve             start a live-reloading web server
-    --port     <port>   the port the server is on           Default: 3000
-        
+    -s, --serve             start a live-reloading web server
+        --port     <port>   the port the server is on           Default: 3000
 `;
 export async function run(args, userSite) {
   const options = parse(args, {
     boolean: ["serve", "dev"],
     string: ["port", "src", "dest", "location", "root", "config"],
+    alias: { serve: "s" },
     ["--"]: true,
     unknown(option) {
       if (option.startsWith("-")) {
