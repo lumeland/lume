@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.16.1] - 2021-03-14
+### Fixed
+- Version number
+
 ## [0.16.0] - 2021-03-14
 ### Added
 - New variable `renderOrder` to control the rendering order of the pages.
@@ -474,6 +478,7 @@ First version
 [#39]: https://github.com/oscarotero/lume/issues/39
 [#41]: https://github.com/oscarotero/lume/issues/41
 
+[0.16.1]: https://github.com/oscarotero/lume/compare/v0.16.0...v0.16.1
 [0.16.0]: https://github.com/oscarotero/lume/compare/v0.15.4...v0.16.0
 [0.15.4]: https://github.com/oscarotero/lume/compare/v0.15.3...v0.15.4
 [0.15.3]: https://github.com/oscarotero/lume/compare/v0.15.2...v0.15.3
