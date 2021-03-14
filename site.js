@@ -27,6 +27,8 @@ export default class Site {
   processors = new Map();
   pages = [];
 
+  #hashes = new Map();
+
   constructor(options = {}) {
     this.options = { ...defaults, ...options };
 
@@ -317,6 +319,7 @@ export default class Site {
   async #buildPages() {
     this.pages = [];
 
+    //Group pages by renderOrder
     const renderOrder = {};
 
     for (const page of this.source.root.getPages()) {
@@ -481,15 +484,17 @@ export default class Site {
     sha1.update(page.content);
     const hash = sha1.toString();
 
+    const dest = page.dest.path + page.dest.ext;
+    const previousHash = this.#hashes.get(dest);
+
     //The page content didn't change
-    if (page.dest.hash === hash) {
+    if (previousHash === hash) {
       return;
     }
-    page.dest.hash = hash;
-    const dest = page.dest.path + page.dest.ext;
-    const src = page.src.path + page.src.ext;
 
-    console.log(`🔥 ${dest} ${gray(src)}`);
+    this.#hashes.set(dest, hash);
+
+    console.log(`🔥 ${dest} ${gray(page.src.path + page.src.ext)}`);
 
     const filename = this.dest(dest);
     await ensureDir(dirname(filename));
