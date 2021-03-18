@@ -498,6 +498,11 @@ export default class Site {
 
     const filename = this.dest(dest);
     await ensureDir(dirname(filename));
+
+    if (page.content instanceof Uint8Array) {
+      return Deno.writeFile(filename, page.content);
+    }
+
     return Deno.writeTextFile(filename, page.content);
   }
 

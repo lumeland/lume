@@ -294,6 +294,10 @@ export default class Source {
     }
   }
 
+  async readBinaryFile(path) {
+    return await Deno.readFile(path);
+  }
+
   async loadModule(path, fn = (content) => content) {
     if (this.#cache.has(path)) {
       return this.#cache.get(path);
