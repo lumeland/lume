@@ -5,9 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [0.16.2] - 2021-03-20
 ### Added
-- New plugin `image` to resize images automatically.
+- New (experimental and unstable) plugin `image` to resize images automatically.
+
+### Fixed
+- On merge options, arrays are converted to objects.
 
 ## [0.16.1] - 2021-03-14
 ### Fixed
