@@ -407,11 +407,16 @@ export default class Site {
     const { dest } = page;
 
     if (page.data.permalink) {
-      const permalink = typeof page.data.permalink === "function"
+      let permalink = typeof page.data.permalink === "function"
         ? page.data.permalink(page)
         : page.data.permalink;
       const ext = extname(permalink);
       dest.ext = ext || ".html";
+
+      //Relative permalink
+      if (permalink.startsWith(".")) {
+        permalink = join(dirname(dest.path), permalink);
+      }
       dest.path = ext ? permalink.slice(0, -ext.length) : permalink;
 
       if (!ext && this.options.prettyUrls) {

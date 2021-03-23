@@ -7,7 +7,8 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- The `permalink` value can be a function to generate it dynamically
+- The `permalink` value can be a function to generate it dynamically.
+- The `permalink` value can be a relative path (starting with `./` or `../`), that will be resolved to the directory name.
 
 ## [0.16.3] - 2021-03-21
 ### Fixed
