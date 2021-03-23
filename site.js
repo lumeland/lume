@@ -407,11 +407,12 @@ export default class Site {
     const { dest } = page;
 
     if (page.data.permalink) {
-      const ext = extname(page.data.permalink);
-      dest.ext = ext || ".html";
-      dest.path = ext
-        ? page.data.permalink.slice(0, -ext.length)
+      const permalink = typeof page.data.permalink === "function"
+        ? page.data.permalink(page)
         : page.data.permalink;
+      const ext = extname(permalink);
+      dest.ext = ext || ".html";
+      dest.path = ext ? permalink.slice(0, -ext.length) : permalink;
 
       if (!ext && this.options.prettyUrls) {
         dest.path = join(dest.path, "index");

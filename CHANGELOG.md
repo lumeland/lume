@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+### Added
+- The `permalink` value can be a function to generate it dynamically
+
 ## [0.16.3] - 2021-03-21
 ### Fixed
 - SVGO dependency fails SVG plugin [#43]
@@ -490,6 +494,7 @@ First version
 [#41]: https://github.com/oscarotero/lume/issues/41
 [#43]: https://github.com/oscarotero/lume/issues/43
 
+[Unreleased]: https://github.com/oscarotero/lume/compare/v0.16.3...HEAD
 [0.16.3]: https://github.com/oscarotero/lume/compare/v0.16.2...v0.16.3
 [0.16.2]: https://github.com/oscarotero/lume/compare/v0.16.1...v0.16.2
 [0.16.1]: https://github.com/oscarotero/lume/compare/v0.16.0...v0.16.1
