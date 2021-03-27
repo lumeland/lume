@@ -142,7 +142,7 @@ export default class Source {
       return;
     }
 
-    const path = join(directory.src.path, entry.name);
+    const path = normalizePath(join(directory.src.path, entry.name));
     console.log({path, ignored: this.ignored.has(path)});
     if (this.staticFiles.has(path) || this.ignored.has(path)) {
       return;
