@@ -72,6 +72,7 @@ export default class Source {
    * Check whether a file is included in the static files
    */
   isStatic(file) {
+    console.log({file, staticFiles: this.staticFiles});
     for (const entry of this.staticFiles) {
       const [from] = entry;
 
