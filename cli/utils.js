@@ -2,12 +2,13 @@ import { existsSync } from "../deps/fs.js";
 import lume from "../mod.js";
 import { join, resolve } from "../deps/path.js";
 import { brightGreen } from "../deps/colors.js";
+import { normalizePath } from "../utils.js";
 
 /**
  * @return {Promise<*>} a lume instance - ready to build, run, etc.
  */
 export async function buildSite(options, site) {
-  options.root = resolve(Deno.cwd(), options.root);
+  options.root = resolve(normalizePath(Deno.cwd()), options.root);
   const configFile = join(options.root, options.config);
   console.log({configFile});
   if (!site) {
