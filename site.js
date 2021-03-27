@@ -231,19 +231,27 @@ export default class Site {
   async update(files) {
     await this.dispatchEvent({ type: "beforeUpdate", files });
 
+    let rebuildIsNeeded = false;
+
     for (const file of files) {
-      // file inside a _data file or folder
-      if (file.includes("/_data/") || file.match(/\/_data.\w+$/)) {
-        await this.source.loadFile(file);
+      // It's an ignored file
+      if (this.source.isIgnored(file)) {
         continue;
       }
 
-      // file path contains /_ or /.
+      // It's inside a _data file or folder
+      if (file.includes("/_data/") || file.match(/\/_data.\w+$/)) {
+        await this.source.loadFile(file);
+        rebuildIsNeeded = true;
+        continue;
+      }
+
+      // The path contains /_ or /.
       if (file.includes("/_") || file.includes("/.")) {
         continue;
       }
 
-      //Static file
+      // It's a static file
       const entry = this.source.isStatic(file);
 
       if (entry) {
@@ -253,11 +261,15 @@ export default class Site {
         continue;
       }
 
-      //Default
+      // Default
       await this.source.loadFile(file);
+      rebuildIsNeeded = true;
     }
 
-    await this.#buildPages();
+    if (rebuildIsNeeded) {
+      await this.#buildPages();
+    }
+
     await this.dispatchEvent({ type: "afterUpdate", files });
   }
 

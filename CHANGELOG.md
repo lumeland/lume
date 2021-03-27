@@ -11,6 +11,10 @@ project adheres to [Semantic Versioning](http://semver.org/).
 - The `permalink` value can be a relative path (must starts with `./` or `../`), that will be resolved to the directory name.
 - The `url` filter allows urls starting with `~` to reference to source files that will be automatically resolved to the final url.
 
+### Fixed
+- On reload files in `lume --serve`, some ignored files were not correctly filtered.
+- Improved `lume --serve`: only rebuild the site if it's needed.
+
 ## [0.16.3] - 2021-03-21
 ### Fixed
 - SVGO dependency fails SVG plugin [#43]

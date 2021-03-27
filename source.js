@@ -84,6 +84,19 @@ export default class Source {
   }
 
   /**
+   * Check whether a path is ignored or not
+   */
+  isIgnored(path) {
+    for (const pattern of this.ignored) {
+      if (path.startsWith(pattern)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  /**
    * Load a directory recursively
    */
   loadDirectory(directory = this.root) {
