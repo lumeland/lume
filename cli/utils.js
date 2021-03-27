@@ -9,7 +9,7 @@ import { brightGreen } from "../deps/colors.js";
 export async function buildSite(options, site) {
   options.root = resolve(Deno.cwd(), options.root);
   const configFile = join(options.root, options.config);
-
+  console.log({configFile});
   if (!site) {
     if (existsSync(configFile)) {
       const mod = await import(`file://${configFile}`);
