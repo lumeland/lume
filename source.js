@@ -1,7 +1,7 @@
 import { basename, dirname, extname, join } from "./deps/path.js";
 import { existsSync } from "./deps/fs.js";
 import { Directory, Page } from "./filesystem.js";
-import { concurrent, normalizePath, searchByExtension } from "./utils.js";
+import { concurrent, searchByExtension } from "./utils.js";
 
 export default class Source {
   root = new Directory({ path: "/" });
@@ -142,7 +142,7 @@ export default class Source {
       return;
     }
 
-    const path = normalizePath(join(directory.src.path, entry.name));
+    const path = join(directory.src.path, entry.name);
     console.log({path, ignored: this.ignored, isIgnored: this.ignored.has(path)});
     if (this.staticFiles.has(path) || this.ignored.has(path)) {
       return;
@@ -199,7 +199,7 @@ export default class Source {
 
     const info = await Deno.stat(fullPath);
     const src = {
-      path: normalizePath(path.slice(0, -ext.length)),
+      path: path.slice(0, -ext.length),
       lastModified: info.mtime,
       created: info.birthtime,
       ext,

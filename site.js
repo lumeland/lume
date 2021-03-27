@@ -4,7 +4,7 @@ import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
 import Scripts from "./scripts.js";
-import { concurrent, searchByExtension, slugify, normalizePath } from "./utils.js";
+import { concurrent, searchByExtension, slugify } from "./utils.js";
 
 const defaults = {
   cwd: Deno.cwd(),
@@ -188,7 +188,7 @@ export default class Site {
    * Copy static files/folders without processing
    */
   copy(from, to = from) {
-    this.source.staticFiles.set(normalizePath(from), normalizePath(to));
+    this.source.staticFiles.set(join("/", from), join("/", to));
     return this;
   }
 
@@ -196,7 +196,7 @@ export default class Site {
    * Ignore one or several files or folders
    */
   ignore(...paths) {
-    paths.forEach((path) => this.source.ignored.add(normalizePath(path)));
+    paths.forEach((path) => this.source.ignored.add(join("/", path)));
     return this;
   }
 
@@ -328,10 +328,10 @@ export default class Site {
     }
 
     if (!this.options.location) {
-      return normalizePath(path);
+      return join("/", path);
     }
 
-    path = normalizePath(join(this.options.location.pathname, path));
+    path = join(this.options.location.pathname, path);
 
     return absolute ? this.options.location.origin + path : path;
   }

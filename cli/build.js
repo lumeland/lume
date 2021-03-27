@@ -62,7 +62,7 @@ export async function run(args, userSite) {
     const rebuild = async () => {
       console.log("");
       console.log("Changes detected. Building...");
-      const files = normalizePaths(changes);
+      const files = new Set(changes);
       changes.clear();
 
       try {
@@ -80,7 +80,7 @@ export async function run(args, userSite) {
       }
 
       event.paths.forEach((path) =>
-        changes.add(join("/", relative(site.src(), path)))
+        changes.add(join("/", relative(site.src(), normalizePath(path))))
       );
 
       //Debounce
@@ -90,10 +90,4 @@ export async function run(args, userSite) {
   } catch (err) {
     console.log(err);
   }
-}
-
-function normalizePaths(paths) {
-  const newPaths = new Set();
-  paths.forEach((path) => newPaths.add(normalizePath(path)));
-  return newPaths;
 }

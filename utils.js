@@ -73,20 +73,9 @@ export function merge(defaults, user) {
 }
 
 export function normalizePath(path) {
+  //Is Windows path
   if (SEP !== "/") {
-    path = path.replaceAll(SEP, "/");
-  }
-
-  if (path === ".") {
-    return "/";
-  }
-
-  if (path.startsWith("./")) {
-    return path.slice(1);
-  }
-
-  if (path[0] !== "/") {
-    return `/${path}`;
+    return path.replaceAll(SEP, "/").replace(/^\w:/, "");
   }
 
   return path;

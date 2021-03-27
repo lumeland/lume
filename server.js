@@ -214,7 +214,7 @@ export function server(site, options) {
       }
 
       const files = Array.from(changes).map((path) =>
-        normalizePath(relative(root, path))
+        join("/", relative(root, path))
       );
 
       changes.clear();
@@ -236,7 +236,7 @@ export function server(site, options) {
         continue;
       }
 
-      event.paths.forEach((path) => changes.add(path));
+      event.paths.forEach((path) => changes.add(normalizePath(path)));
 
       //Debounce
       clearTimeout(timer);
