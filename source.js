@@ -72,7 +72,6 @@ export default class Source {
    * Check whether a file is included in the static files
    */
   isStatic(file) {
-    console.log({file, staticFiles: this.staticFiles});
     for (const entry of this.staticFiles) {
       const [from] = entry;
 
@@ -144,7 +143,7 @@ export default class Source {
     }
 
     const path = join(directory.src.path, entry.name);
-
+    console.log({path, ignored: this.ignored.has(path)});
     if (this.staticFiles.has(path) || this.ignored.has(path)) {
       return;
     }
