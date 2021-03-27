@@ -74,7 +74,7 @@ export function merge(defaults, user) {
 
 export function normalizePath(path) {
   if (SEP !== "/") {
-    return path.replaceAll(SEP, "/");
+    path = path.replaceAll(SEP, "/");
   }
 
   if (path === ".") {
