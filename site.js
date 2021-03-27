@@ -4,7 +4,7 @@ import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
 import Scripts from "./scripts.js";
-import { concurrent, slugify } from "./utils.js";
+import { concurrent, searchByExtension, slugify } from "./utils.js";
 
 const defaults = {
   cwd: Deno.cwd(),
@@ -286,17 +286,42 @@ export default class Site {
       return path;
     }
 
-    try {
-      return new URL(path).toString();
-    } catch (err) {
-      if (!this.options.location) {
-        return normalize(join("/", path));
+    //It's source file
+    if (path.startsWith("~/")) {
+      path = path.slice(1);
+
+      //It's a page
+      const page = this.pages.find((page) =>
+        page.src.path + page.src.ext === path
+      );
+
+      if (page) {
+        path = page.data.url;
+      } else {
+        //It's a static file
+        const entry = this.source.isStatic(path);
+
+        if (entry) {
+          const [from, to] = entry;
+          path = join(to, path.slice(from.length));
+        } else {
+          throw new Error(`Source file "${path}" not found`);
+        }
       }
-
-      path = normalize(join(this.options.location.pathname, path));
-
-      return absolute ? this.options.location.origin + path : path;
+    } else {
+      //Absolute urls are returned as is
+      try {
+        return new URL(path).toString();
+      } catch {}
     }
+
+    if (!this.options.location) {
+      return normalize(join("/", path));
+    }
+
+    path = normalize(join(this.options.location.pathname, path));
+
+    return absolute ? this.options.location.origin + path : path;
   }
 
   /**
@@ -530,10 +555,10 @@ export default class Site {
       });
     }
 
-    for (const [ext, engine] of this.engines) {
-      if (path.endsWith(ext)) {
-        return engine;
-      }
+    const result = searchByExtension(path, this.engines);
+
+    if (result) {
+      return result[1];
     }
   }
 }

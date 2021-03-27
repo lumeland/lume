@@ -77,6 +77,10 @@ export function normalizePath(path) {
     return path.replaceAll(SEP, "/");
   }
 
+  if (path[0] !== "/") {
+    return `/${path}`;
+  }
+
   return path;
 }
 
@@ -115,4 +119,12 @@ export function slugify(string) {
   return string.toLowerCase()
     .replaceAll(/[\s-_]+/g, () => "-")
     .replaceAll(/[^\w-\/]/g, (char) => slugChars.get(char) || "");
+}
+
+export function searchByExtension(path, extensions) {
+  for (const [key, value] of extensions) {
+    if (path.endsWith(key)) {
+      return [key, value];
+    }
+  }
 }

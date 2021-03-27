@@ -1,7 +1,7 @@
 import { basename, dirname, extname, join } from "./deps/path.js";
 import { existsSync } from "./deps/fs.js";
 import { Directory, Page } from "./filesystem.js";
-import { concurrent, normalizePath } from "./utils.js";
+import { concurrent, normalizePath, searchByExtension } from "./utils.js";
 
 export default class Source {
   root = new Directory({ path: "/" });
@@ -171,20 +171,13 @@ export default class Source {
    * Create and returns a Page
    */
   async #loadPage(path) {
-    let ext, load;
+    const result = searchByExtension(path, this.pages);
 
-    for (const [key, value] of this.pages) {
-      if (path.endsWith(key)) {
-        ext = key;
-        load = value;
-        break;
-      }
-    }
-
-    if (!load) {
+    if (!result) {
       return;
     }
 
+    const [ext, load] = result;
     const fullPath = this.site.src(path);
 
     if (!existsSync(fullPath)) {
@@ -234,10 +227,11 @@ export default class Source {
    * Load a _data.* file and return the content
    */
   #loadData(path) {
-    for (const [ext, loader] of this.data) {
-      if (path.endsWith(ext)) {
-        return loader(this.site.src(path), this);
-      }
+    const result = searchByExtension(path, this.data);
+
+    if (result) {
+      const [, loader] = result;
+      return loader(this.site.src(path), this);
     }
   }
 
