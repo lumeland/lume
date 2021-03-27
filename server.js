@@ -214,7 +214,7 @@ export function server(site, options) {
       }
 
       const files = Array.from(changes).map((path) =>
-        normalizePath(join("/", normalizePath(relative(root, path))))
+        normalizePath(relative(root, path))
       );
 
       changes.clear();

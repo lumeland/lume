@@ -77,6 +77,14 @@ export function normalizePath(path) {
     return path.replaceAll(SEP, "/");
   }
 
+  if (path === ".") {
+    return "/";
+  }
+
+  if (path.startsWith("./")) {
+    return path.slice(1);
+  }
+
   if (path[0] !== "/") {
     return `/${path}`;
   }
