@@ -1,10 +1,10 @@
-import { basename, dirname, extname, join, posix } from "./deps/path.js";
+import { basename, dirname, extname, join, SEP, posix } from "./deps/path.js";
 import { copy, emptyDir, ensureDir, exists } from "./deps/fs.js";
 import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
 import Scripts from "./scripts.js";
-import { concurrent, searchByExtension, slugify } from "./utils.js";
+import { concurrent, normalizePath, searchByExtension, slugify } from "./utils.js";
 
 const defaults = {
   cwd: Deno.cwd(),
@@ -300,7 +300,7 @@ export default class Site {
 
     //It's source file
     if (path.startsWith("~/")) {
-      path = path.slice(1);
+      path = path.slice(1).replaceAll("/", SEP);
 
       //It's a page
       const page = this.pages.find((page) =>
@@ -315,7 +315,7 @@ export default class Site {
 
         if (entry) {
           const [from, to] = entry;
-          path = join(to, path.slice(from.length));
+          path = normalizePath(join(to, path.slice(from.length)));
         } else {
           throw new Error(`Source file "${path}" not found`);
         }
@@ -328,10 +328,10 @@ export default class Site {
     }
 
     if (!this.options.location) {
-      return join("/", path);
+      return posix.join("/", path);
     }
 
-    path = join(this.options.location.pathname, path);
+    path = posix.join(this.options.location.pathname, path);
 
     return absolute ? this.options.location.origin + path : path;
   }
