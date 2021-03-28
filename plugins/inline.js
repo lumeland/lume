@@ -1,4 +1,4 @@
-import { extname, join, relative, resolve } from "../deps/path.js";
+import { extname, join, relative, resolve, posix } from "../deps/path.js";
 import { DOMParser } from "../deps/dom.js";
 import { encode } from "../deps/base64.js";
 import { mimes } from "../utils.js";
@@ -51,7 +51,7 @@ export default function () {
 
     async function getContent(path, asData = false) {
       //Ensure the path starts with "/"
-      path = join("/", path);
+      path = posix.join("/", path);
 
       if (cache.has(path)) {
         return cache.get(path);
@@ -63,7 +63,7 @@ export default function () {
     }
 
     async function readContent(path, asData) {
-      const url = join("/", relative(site.options.location.pathname, path));
+      const url = posix.join("/", posix.relative(site.options.location.pathname, path));
 
       //Is a page/asset ?
       const page = site.pages.find((page) => page.data.url === url);
@@ -88,7 +88,7 @@ export default function () {
     }
 
     async function inlineStyles(url, element) {
-      const path = resolve(url, element.getAttribute("href"));
+      const path = posix.resolve(url, element.getAttribute("href"));
       const style = element.ownerDocument.createElement("style");
 
       style.innerHTML = await getContent(path);
@@ -96,7 +96,7 @@ export default function () {
     }
 
     async function inlineScript(url, element) {
-      const path = resolve(url, element.getAttribute("src"));
+      const path = posix.resolve(url, element.getAttribute("src"));
 
       element.innerHTML = await getContent(path);
       element.removeAttribute("src");

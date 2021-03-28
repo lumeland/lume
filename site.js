@@ -345,7 +345,7 @@ export default class Site {
 
     if (await exists(pathFrom)) {
       await ensureDir(dirname(pathTo));
-      console.log(`🔥 ${from}`);
+      console.log(`🔥 ${normalizePath(to)} ${gray(from)}`);
       return copy(pathFrom, pathTo, { overwrite: true });
     }
   }
@@ -452,18 +452,18 @@ export default class Site {
 
       //Relative permalink
       if (permalink.startsWith(".")) {
-        permalink = join(dirname(dest.path), permalink);
+        permalink = posix.join(dirname(dest.path), permalink);
       }
       dest.path = ext ? permalink.slice(0, -ext.length) : permalink;
 
       if (!ext && this.options.prettyUrls) {
-        dest.path = join(dest.path, "index");
+        dest.path = posix.join(dest.path, "index");
       }
     } else if (
       this.options.prettyUrls && dest.ext === ".html" &&
-      basename(dest.path) !== "index"
+      posix.basename(dest.path) !== "index"
     ) {
-      dest.path = join(dest.path, "index");
+      dest.path = posix.join(dest.path, "index");
     }
 
     if (!dest.path.startsWith("/")) {
@@ -471,10 +471,11 @@ export default class Site {
     }
 
     dest.path = slugify(dest.path);
-
-    page.data.url = (dest.ext === ".html" && basename(dest.path) === "index")
+    
+    page.data.url = (dest.ext === ".html" && posix.basename(dest.path) === "index")
       ? dest.path.slice(0, -5)
       : dest.path + dest.ext;
+      
   }
 
   /**
