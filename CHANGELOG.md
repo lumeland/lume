@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [0.16.4] - 2021-03-28
 ### Added
 - Allow to define a function as a `permalink` to generate it dynamically.
 - The `permalink` value can be a relative path (must starts with `./` or `../`), that will be resolved to the directory name.
@@ -501,7 +501,7 @@ First version
 [#41]: https://github.com/oscarotero/lume/issues/41
 [#43]: https://github.com/oscarotero/lume/issues/43
 
-[Unreleased]: https://github.com/oscarotero/lume/compare/v0.16.3...HEAD
+[0.16.4]: https://github.com/oscarotero/lume/compare/v0.16.3...v0.16.4
 [0.16.3]: https://github.com/oscarotero/lume/compare/v0.16.2...v0.16.3
 [0.16.2]: https://github.com/oscarotero/lume/compare/v0.16.1...v0.16.2
 [0.16.1]: https://github.com/oscarotero/lume/compare/v0.16.0...v0.16.1
