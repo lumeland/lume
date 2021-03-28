@@ -119,6 +119,8 @@ export default class Source {
       isSymlink: false,
     };
 
+    file = normalizePath(file);
+
     //Is a file inside _data folder
     if (file.match(/\/_data\//)) {
       const dir = file.split("/_data/", 2).shift();

@@ -239,15 +239,17 @@ export default class Site {
         continue;
       }
 
+      const normalized = normalizePath(file);
+
       // It's inside a _data file or folder
-      if (file.includes("/_data/") || file.match(/\/_data.\w+$/)) {
+      if (normalized.includes("/_data/") || normalized.match(/\/_data.\w+$/)) {
         await this.source.loadFile(file);
         rebuildIsNeeded = true;
         continue;
       }
 
       // The path contains /_ or /.
-      if (file.includes("/_") || file.includes("/.")) {
+      if (normalized.includes("/_") || normalized.includes("/.")) {
         continue;
       }
 
