@@ -1,6 +1,6 @@
 import { listenAndServe } from "./deps/server.js";
 import { acceptWebSocket } from "./deps/ws.js";
-import { dirname, extname, join, relative } from "./deps/path.js";
+import { dirname, extname, join, relative, posix } from "./deps/path.js";
 import { brightGreen, red } from "./deps/colors.js";
 import { exists } from "./deps/fs.js";
 import { mimes, normalizePath } from "./utils.js";
@@ -214,7 +214,7 @@ export function server(site, options) {
       }
 
       const files = Array.from(changes).map((path) =>
-        join("/", relative(root, path))
+        posix.join("/", normalizePath(relative(root, path)))
       );
 
       changes.clear();
@@ -236,7 +236,7 @@ export function server(site, options) {
         continue;
       }
 
-      event.paths.forEach((path) => changes.add(normalizePath(path)));
+      event.paths.forEach((path) => changes.add(path));
 
       //Debounce
       clearTimeout(timer);
@@ -304,7 +304,7 @@ async function listDirectory(directory) {
 
   for await (const info of Deno.readDir(directory)) {
     const name = info.name;
-    const href = join(directory, name);
+    const href = normalizePath(join(directory, name));
 
     files.push([name, href]);
   }

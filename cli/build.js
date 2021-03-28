@@ -1,7 +1,7 @@
 import { parse } from "../deps/flags.js";
 import { server } from "../server.js";
 import { brightGreen, gray } from "../deps/colors.js";
-import { error, normalizePath } from "../utils.js";
+import { error } from "../utils.js";
 import { join, relative } from "../deps/path.js";
 import { buildSite, validateArgsCount } from "./utils.js";
 
@@ -80,7 +80,7 @@ export async function run(args, userSite) {
       }
 
       event.paths.forEach((path) =>
-        changes.add(join("/", relative(site.src(), normalizePath(path))))
+        changes.add(join("/", relative(site.src(), path)))
       );
 
       //Debounce

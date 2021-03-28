@@ -1,4 +1,4 @@
-import { basename, dirname, extname, join } from "./deps/path.js";
+import { basename, dirname, extname, join, posix } from "./deps/path.js";
 import { copy, emptyDir, ensureDir, exists } from "./deps/fs.js";
 import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
