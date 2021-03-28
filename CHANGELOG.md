@@ -14,6 +14,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - On reload files in `lume --serve`, some ignored files were not correctly filtered.
 - Improved `lume --serve`: only rebuild the site if it's needed.
+- Several changes for windows compatibility
 
 ## [0.16.3] - 2021-03-21
 ### Fixed
