@@ -8,9 +8,9 @@ import { normalizePath } from "../utils.js";
  * @return {Promise<*>} a lume instance - ready to build, run, etc.
  */
 export async function buildSite(options, site) {
-  options.root = resolve(normalizePath(Deno.cwd()), options.root);
+  options.root = resolve(normalizePath(Deno.cwd()), normalizePath(options.root));
   const configFile = join(options.root, options.config);
-  console.log({configFile});
+  console.log({configFile, options});
   if (!site) {
     if (existsSync(configFile)) {
       const mod = await import(`file://${configFile}`);
