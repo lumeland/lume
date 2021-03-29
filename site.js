@@ -231,8 +231,6 @@ export default class Site {
   async update(files) {
     await this.dispatchEvent({ type: "beforeUpdate", files });
 
-    let rebuildIsNeeded = false;
-
     for (const file of files) {
       // It's an ignored file
       if (this.source.isIgnored(file)) {
@@ -244,7 +242,6 @@ export default class Site {
       // It's inside a _data file or folder
       if (normalized.includes("/_data/") || normalized.match(/\/_data.\w+$/)) {
         await this.source.loadFile(file);
-        rebuildIsNeeded = true;
         continue;
       }
 
@@ -265,13 +262,9 @@ export default class Site {
 
       // Default
       await this.source.loadFile(file);
-      rebuildIsNeeded = true;
     }
 
-    if (rebuildIsNeeded) {
-      await this.#buildPages();
-    }
-
+    await this.#buildPages();
     await this.dispatchEvent({ type: "afterUpdate", files });
   }
 

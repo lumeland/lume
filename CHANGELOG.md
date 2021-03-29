@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.16.5] - 2021-03-29
+### Fixed
+- Undo the change "only rebuild the site if it's needed" due regression issues.
+
 ## [0.16.4] - 2021-03-28
 ### Added
 - Allow to define a function as a `permalink` to generate it dynamically.
@@ -501,6 +505,7 @@ First version
 [#41]: https://github.com/oscarotero/lume/issues/41
 [#43]: https://github.com/oscarotero/lume/issues/43
 
+[0.16.5]: https://github.com/oscarotero/lume/compare/v0.16.4...v0.16.5
 [0.16.4]: https://github.com/oscarotero/lume/compare/v0.16.3...v0.16.4
 [0.16.3]: https://github.com/oscarotero/lume/compare/v0.16.2...v0.16.3
 [0.16.2]: https://github.com/oscarotero/lume/compare/v0.16.1...v0.16.2
