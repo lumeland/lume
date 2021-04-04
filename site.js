@@ -1,4 +1,4 @@
-import { basename, dirname, extname, join, SEP, posix } from "./deps/path.js";
+import { dirname, extname, join, SEP, posix } from "./deps/path.js";
 import { copy, emptyDir, ensureDir, exists } from "./deps/fs.js";
 import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
@@ -12,6 +12,7 @@ const defaults = {
   dest: "./_site",
   dev: false,
   prettyUrls: true,
+  slugifyUrls: true,
   flags: [],
   server: {
     port: 3000,
@@ -465,12 +466,13 @@ export default class Site {
       dest.path = `/${dest.path}`;
     }
 
-    dest.path = slugify(dest.path);
-    
+    if (this.options.slugifyUrls) {
+      dest.path = slugify(dest.path);
+    }
+
     page.data.url = (dest.ext === ".html" && posix.basename(dest.path) === "index")
       ? dest.path.slice(0, -5)
       : dest.path + dest.ext;
-      
   }
 
   /**
