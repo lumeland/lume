@@ -1,6 +1,6 @@
 import { listenAndServe } from "./deps/server.js";
 import { acceptWebSocket } from "./deps/ws.js";
-import { dirname, extname, join, relative, posix } from "./deps/path.js";
+import { dirname, extname, join, posix, relative } from "./deps/path.js";
 import { brightGreen, red } from "./deps/colors.js";
 import { exists } from "./deps/fs.js";
 import { mimes, normalizePath } from "./utils.js";

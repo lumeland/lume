@@ -1,7 +1,7 @@
 import { basename, dirname, extname, join } from "./deps/path.js";
 import { existsSync } from "./deps/fs.js";
 import { Directory, Page } from "./filesystem.js";
-import { concurrent, searchByExtension, normalizePath } from "./utils.js";
+import { concurrent, normalizePath, searchByExtension } from "./utils.js";
 
 export default class Source {
   root = new Directory({ path: "/" });

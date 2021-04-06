@@ -1,4 +1,4 @@
-import { extname, join, relative, resolve, posix } from "../deps/path.js";
+import { extname, join, posix, relative, resolve } from "../deps/path.js";
 import { DOMParser } from "../deps/dom.js";
 import { encode } from "../deps/base64.js";
 import { mimes } from "../utils.js";
@@ -63,7 +63,10 @@ export default function () {
     }
 
     async function readContent(path, asData) {
-      const url = posix.join("/", posix.relative(site.options.location.pathname, path));
+      const url = posix.join(
+        "/",
+        posix.relative(site.options.location.pathname, path),
+      );
 
       //Is a page/asset ?
       const page = site.pages.find((page) => page.data.url === url);
