@@ -50,7 +50,7 @@ export default class Scripts {
     const name = fn.name || "[Function]";
     console.log(`⚡️ ${brightGreen(name + "()")}`);
     await fn(this.site);
-    return 0;
+    return true;
   }
 
   async #runCommand(options, command) {
