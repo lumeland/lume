@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.17.0] - Unreleased
+### Changed
+- Deprecated `permalink` variable. Use `url` instead [#46]
+- Removed `permalink` variable in `paginate` helper that use sprintf. Now it accepts only the `url` option that must be a function.
+
 ## [0.16.6] - 2021-04-04
 ### Added
 - New option `slugifyUrls` to disable slugifier introduced in 0.16.0 [#44].
@@ -509,7 +514,9 @@ First version
 [#41]: https://github.com/oscarotero/lume/issues/41
 [#43]: https://github.com/oscarotero/lume/issues/43
 [#44]: https://github.com/oscarotero/lume/issues/44
+[#46]: https://github.com/oscarotero/lume/issues/46
 
+[0.17.0]: https://github.com/oscarotero/lume/compare/v0.16.6...HEAD
 [0.16.6]: https://github.com/oscarotero/lume/compare/v0.16.5...v0.16.6
 [0.16.5]: https://github.com/oscarotero/lume/compare/v0.16.4...v0.16.5
 [0.16.4]: https://github.com/oscarotero/lume/compare/v0.16.3...v0.16.4

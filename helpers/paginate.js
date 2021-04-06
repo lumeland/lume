@@ -1,8 +1,6 @@
-import { sprintf } from "../deps/fmt.js";
-
 const defaults = {
   size: 10,
-  permalink: "page-%d",
+  url: (page) => `page-${page}`,
 };
 
 export default function* paginate(results, options = {}) {
@@ -29,14 +27,14 @@ export default function* paginate(results, options = {}) {
 
   function createPageData(page) {
     return {
-      permalink: sprintf(options.permalink, page),
+      url: options.url(page),
       results: [],
       pagination: {
         page,
         totalPages,
         totalResults,
-        previous: page > 1 ? sprintf(options.permalink, page - 1) : null,
-        next: totalPages > page ? sprintf(options.permalink, page + 1) : null,
+        previous: page > 1 ? options.url(page - 1) : null,
+        next: totalPages > page ? options.url(page + 1) : null,
       },
     };
   }
