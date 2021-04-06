@@ -1,10 +1,15 @@
-import { dirname, extname, join, SEP, posix } from "./deps/path.js";
+import { dirname, extname, join, posix, SEP } from "./deps/path.js";
 import { copy, emptyDir, ensureDir, exists } from "./deps/fs.js";
 import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
 import Scripts from "./scripts.js";
-import { concurrent, normalizePath, searchByExtension, slugify } from "./utils.js";
+import {
+  concurrent,
+  normalizePath,
+  searchByExtension,
+  slugify,
+} from "./utils.js";
 
 const defaults = {
   cwd: Deno.cwd(),
@@ -438,19 +443,28 @@ export default class Site {
    */
   #urlPage(page) {
     const { dest } = page;
+    let url = page.data.url || page.data.permalink;
 
     if (page.data.permalink) {
-      let permalink = typeof page.data.permalink === "function"
-        ? page.data.permalink(page)
-        : page.data.permalink;
-      const ext = extname(permalink);
+      console.log(
+        `Deprecated 'permalink' value in ${page.src.path +
+          page.src.ext}. Use 'url' instead.`,
+      );
+    }
+
+    if (url) {
+      if (typeof url === "function") {
+        url = url(page);
+      }
+
+      const ext = extname(url);
       dest.ext = ext || ".html";
 
-      //Relative permalink
-      if (permalink.startsWith(".")) {
-        permalink = posix.join(dirname(dest.path), permalink);
+      //Relative url
+      if (url.startsWith(".")) {
+        url = posix.join(dirname(dest.path), url);
       }
-      dest.path = ext ? permalink.slice(0, -ext.length) : permalink;
+      dest.path = ext ? url.slice(0, -ext.length) : url;
 
       if (!ext && this.options.prettyUrls) {
         dest.path = posix.join(dest.path, "index");
@@ -470,9 +484,10 @@ export default class Site {
       dest.path = slugify(dest.path);
     }
 
-    page.data.url = (dest.ext === ".html" && posix.basename(dest.path) === "index")
-      ? dest.path.slice(0, -5)
-      : dest.path + dest.ext;
+    page.data.url =
+      (dest.ext === ".html" && posix.basename(dest.path) === "index")
+        ? dest.path.slice(0, -5)
+        : dest.path + dest.ext;
   }
 
   /**
