@@ -8,7 +8,7 @@ import { buildSite, validateArgsCount } from "./utils.js";
 export const HELP = `
 ${brightGreen("lume build")}: Build the site and optionally serve it
 
-USAGE: 
+USAGE:
     lume build [OPTIONS]
 
 OPTIONS:
@@ -83,7 +83,7 @@ export async function run(args, userSite) {
         changes.add(join("/", relative(site.src(), path)))
       );
 
-      //Debounce
+      // Debounce
       clearTimeout(timer);
       timer = setTimeout(rebuild, 500);
     }

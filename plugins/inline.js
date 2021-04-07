@@ -11,7 +11,7 @@ export default function () {
   return (site) => {
     site.process([".html"], processor);
 
-    //Update cache
+    // Update cache
     site.addEventListener("beforeUpdate", (ev) => {
       for (const filename of ev.files) {
         cache.delete(filename);
@@ -50,7 +50,7 @@ export default function () {
     }
 
     async function getContent(path, asData = false) {
-      //Ensure the path starts with "/"
+      // Ensure the path starts with "/"
       path = posix.join("/", path);
 
       if (cache.has(path)) {
@@ -68,14 +68,14 @@ export default function () {
         posix.relative(site.options.location.pathname, path),
       );
 
-      //Is a page/asset ?
+      // Is a page/asset ?
       const page = site.pages.find((page) => page.data.url === url);
 
       if (page) {
         return page.content;
       }
 
-      //Is a file in dest
+      // Is a file in dest
       if (!asData) {
         return Deno.readTextFile(site.dest(url));
       }

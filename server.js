@@ -135,12 +135,12 @@ export function server(site, options) {
   console.log(brightGreen(`  http://localhost:${port}/`));
   console.log("");
 
-  //Live reload server
+  // Live reload server
   const watcher = Deno.watchFs(root);
 
-  //Static files server
+  // Static files server
   listenAndServe({ port }, (req) => {
-    //Is websocket
+    // Is websocket
     if (req.headers.get("upgrade") === "websocket") {
       handleSocket(req);
     } else {
@@ -238,7 +238,7 @@ export function server(site, options) {
 
       event.paths.forEach((path) => changes.add(path));
 
-      //Debounce
+      // Debounce
       clearTimeout(timer);
       timer = setTimeout(sendChanges, 100);
     }

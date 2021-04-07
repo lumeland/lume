@@ -126,7 +126,7 @@ A static site generator for Deno`);
   // Down here means the command was not recognized
   throw new Error(`
     ${bold(red("error:"))} lume does not understand the command '${command}'
-    
+
     Run ${brightGreen("lume --help")} for usage information
   `);
 }
