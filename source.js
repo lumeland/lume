@@ -16,7 +16,7 @@ export default class Source {
   constructor(site) {
     this.site = site;
 
-    //Update cache on update
+    // Update cache on update
     site.addEventListener("beforeUpdate", (ev) => {
       this.root.refreshCache();
 
@@ -121,7 +121,7 @@ export default class Source {
 
     file = normalizePath(file);
 
-    //Is a file inside _data folder
+    // Is a file inside _data folder
     if (file.match(/\/_data\//)) {
       const dir = file.split("/_data/", 2).shift();
       const directory = this.getOrCreateDirectory(dir);

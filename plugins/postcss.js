@@ -30,7 +30,7 @@ export default function (userOptions = {}) {
       const to = site.dest(page.dest.path + page.dest.ext);
       const map = options.sourceMap ? { inline: false } : undefined;
 
-      //Fix the code with postcss
+      // Fix the code with postcss
       const result = await runner.process(
         page.content,
         { from, to, map },

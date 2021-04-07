@@ -13,7 +13,7 @@ export default class Eta extends TemplateEngine {
       useWith: true,
     });
 
-    //Update cache
+    // Update cache
     site.addEventListener("beforeUpdate", (ev) => {
       for (const filename of ev.files) {
         eta.templates.remove(site.src(filename));

@@ -30,7 +30,7 @@ function createMarkdown(site) {
           const code = hljs.highlight(lang, str, true).value;
           return `<pre class="hljs"><code>${code}</code></pre>`;
         } catch (__) {
-          //Ignore error
+          // Ignore error
         }
       }
 

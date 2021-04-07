@@ -10,7 +10,7 @@ export default class Denjucks extends TemplateEngine {
     const loader = new nunjucks.FileSystemLoader(this.includes);
     this.engine = new nunjucks.Environment(loader);
 
-    //Update cache
+    // Update cache
     site.addEventListener("beforeUpdate", (ev) => {
       for (const file of ev.files) {
         const filename = site.src(file);

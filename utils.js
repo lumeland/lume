@@ -78,7 +78,7 @@ export function merge(defaults, user) {
 }
 
 export function normalizePath(path) {
-  //Is Windows path
+  // Is Windows path
   if (SEP !== "/") {
     return path.replaceAll(SEP, "/");
   }

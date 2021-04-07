@@ -8,11 +8,11 @@ export default class TemplateEngine {
   }
 
   render(content, data, filename) {
-    //To extend
+    // To extend
   }
 
   addFilter(name, fn, async) {
-    //To extend
+    // To extend
   }
 
   load(path) {

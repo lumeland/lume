@@ -76,7 +76,7 @@ export default class Scripts {
 function parseCommands(commands, result = []) {
   commands.forEach((command) => {
     if (typeof command === "string") {
-      //Split the commands joined by " && " and " & "
+      // Split the commands joined by " && " and " & "
       const subcommands = command.split(/\s+&&\s+/)
         .map((s) => s.includes(" & ") ? s.split(/\s+&\s+/) : s);
 

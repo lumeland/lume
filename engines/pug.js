@@ -8,7 +8,7 @@ export default class Pug extends TemplateEngine {
   constructor(site, options = {}) {
     super(site, options);
 
-    //Update cache
+    // Update cache
     site.addEventListener("beforeUpdate", () => this.cache.clear());
   }
 

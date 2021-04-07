@@ -53,7 +53,7 @@ export async function buildSite(options, site) {
 export function validateArgsCount(command, args, max, min = 0) {
   if (args.length > max) {
     throw new Error(`Unexpected arguments: ${args.slice(max).join(", ")}
-    
+
     Run ${brightGreen(`lume ${command} --help`)} for usage information
     `);
   }

@@ -206,7 +206,7 @@ export default class Site {
     return this;
   }
 
-  /** 
+  /**
    * Clear the dest folder
    */
   async clear() {
@@ -299,11 +299,11 @@ export default class Site {
       return path;
     }
 
-    //It's source file
+    // It's source file
     if (path.startsWith("~/")) {
       path = path.slice(1).replaceAll("/", SEP);
 
-      //It's a page
+      // It's a page
       const page = this.pages.find((page) =>
         page.src.path + page.src.ext === path
       );
@@ -311,7 +311,7 @@ export default class Site {
       if (page) {
         path = page.data.url;
       } else {
-        //It's a static file
+        // It's a static file
         const entry = this.source.isStatic(path);
 
         if (entry) {
@@ -322,7 +322,7 @@ export default class Site {
         }
       }
     } else {
-      //Absolute urls are returned as is
+      // Absolute urls are returned as is
       try {
         return new URL(path).toString();
       } catch {}
@@ -357,7 +357,7 @@ export default class Site {
   async #buildPages() {
     this.pages = [];
 
-    //Group pages by renderOrder
+    // Group pages by renderOrder
     const renderOrder = {};
 
     for (const page of this.source.root.getPages()) {
@@ -376,7 +376,7 @@ export default class Site {
       const pages = [];
       const generators = [];
 
-      //Prepare the pages
+      // Prepare the pages
       for (const page of renderOrder[order]) {
         if (isGenerator(page.data.content)) {
           generators.push(page);
@@ -388,7 +388,7 @@ export default class Site {
         this.pages.push(page);
       }
 
-      //Auto-generate pages
+      // Auto-generate pages
       for (const page of generators) {
         const generator = await this.engines.get(".tmpl.js")
           .render(
@@ -411,13 +411,13 @@ export default class Site {
         }
       }
 
-      //Render all pages
+      // Render all pages
       for (const page of pages) {
         page.content = await this.#renderPage(page);
       }
     }
 
-    //Process the pages
+    // Process the pages
     for (const [ext, processors] of this.processors) {
       await concurrent(
         this.pages,
@@ -431,7 +431,7 @@ export default class Site {
       );
     }
 
-    //Save the pages
+    // Save the pages
     await concurrent(
       this.pages,
       (page) => this.#savePage(page),
@@ -460,7 +460,7 @@ export default class Site {
       const ext = extname(url);
       dest.ext = ext || ".html";
 
-      //Relative url
+      // Relative url
       if (url.startsWith(".")) {
         url = posix.join(dirname(dest.path), url);
       }
@@ -531,7 +531,7 @@ export default class Site {
    * Save a page
    */
   async #savePage(page) {
-    //Ignore empty files
+    // Ignore empty files
     if (!page.content) {
       return;
     }
@@ -543,7 +543,7 @@ export default class Site {
     const dest = page.dest.path + page.dest.ext;
     const previousHash = this.#hashes.get(dest);
 
-    //The page content didn't change
+    // The page content didn't change
     if (previousHash === hash) {
       return;
     }
