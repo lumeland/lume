@@ -9,7 +9,13 @@ export function parseFrontmatter(content) {
     const end = content.indexOf("---", 3);
 
     if (end !== -1) {
-      const data = parse(content.slice(3, end));
+      let data = parse(content.slice(3, end));
+
+      // Allow empty front matter
+      if (typeof data === "undefined") {
+        data = {};
+      }
+
       data.content = content.slice(end + 3);
 
       if (data.content[0] === "\r") {
