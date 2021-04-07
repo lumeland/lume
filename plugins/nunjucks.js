@@ -1,4 +1,4 @@
-import NunjuksEngine from "../engines/nunjuks.js";
+import NunjucksEngine from "../engines/nunjucks.js";
 import { merge } from "../utils.js";
 
 // default options
@@ -10,13 +10,13 @@ export default function (userOptions) {
   const options = merge(defaults, userOptions);
 
   return (site) => {
-    const nunjuksEngine = new NunjuksEngine(site);
+    const nunjucksEngine = new NunjucksEngine(site);
 
-    site.engine(options.extensions, nunjuksEngine);
+    site.engine(options.extensions, nunjucksEngine);
     site.filter("njk", filter);
 
     function filter(string, data = {}) {
-      return nunjuksEngine.engine.renderString(string, data);
+      return nunjucksEngine.engine.renderString(string, data);
     }
   };
 }

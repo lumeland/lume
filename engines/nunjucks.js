@@ -1,7 +1,7 @@
-import nunjucks from "../deps/nunjuks.js";
+import nunjucks from "../deps/nunjucks.js";
 import TemplateEngine from "./templateEngine.js";
 
-export default class Denjuks extends TemplateEngine {
+export default class Denjucks extends TemplateEngine {
   cache = new Map();
 
   constructor(site, options = {}) {
