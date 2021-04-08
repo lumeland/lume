@@ -86,16 +86,16 @@ export function normalizePath(path) {
   return path;
 }
 
-export function slugify(string) {
-  const chars = new Map([
-    ["ð", "d"],
-    ["ß", "ss"],
-  ]);
+export const slugChars = new Map([
+  ["ð", "d"],
+  ["ß", "ss"],
+]);
 
+export function slugify(string) {
   return string.toLowerCase()
     .normalize("NFKD")
     .replaceAll(/[\s_-]+/g, "-")
-    .replaceAll(/[^\w\/-]/g, (char) => chars.get(char) || "");
+    .replaceAll(/[^\w\/-]/g, (char) => slugChars.get(char) || "");
 }
 
 export function searchByExtension(path, extensions) {
