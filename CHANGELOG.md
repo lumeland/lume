@@ -6,9 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.17.0] - Unreleased
+### Added
+- Show the local IP address on serve [#55]
+- Allow empty front matter [#54]
+
 ### Changed
 - Deprecated `permalink` variable. Use `url` instead [#46]
 - Removed `permalink` variable in `paginate` helper that use sprintf. Now it accepts only the `url` option that must be a function.
+
+### Fixed
+- Improved slugifier including a better support for unicode [#50], [#56]
+- Update mime types used in the server [#51]
 
 ## [0.16.6] - 2021-04-04
 ### Added
@@ -515,6 +523,11 @@ First version
 [#43]: https://github.com/oscarotero/lume/issues/43
 [#44]: https://github.com/oscarotero/lume/issues/44
 [#46]: https://github.com/oscarotero/lume/issues/46
+[#50]: https://github.com/oscarotero/lume/issues/50
+[#51]: https://github.com/oscarotero/lume/issues/51
+[#54]: https://github.com/oscarotero/lume/issues/54
+[#55]: https://github.com/oscarotero/lume/issues/55
+[#56]: https://github.com/oscarotero/lume/issues/56
 
 [0.17.0]: https://github.com/oscarotero/lume/compare/v0.16.6...HEAD
 [0.16.6]: https://github.com/oscarotero/lume/compare/v0.16.5...v0.16.6
