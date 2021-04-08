@@ -3,6 +3,7 @@ import { acceptWebSocket } from "./deps/ws.js";
 import { dirname, extname, join, posix, relative } from "./deps/path.js";
 import { brightGreen, red } from "./deps/colors.js";
 import { exists } from "./deps/fs.js";
+import localIp from "./deps/local-ip.js";
 import { mimes, normalizePath } from "./utils.js";
 
 const script = `
@@ -125,14 +126,16 @@ function read(key) {
 }
 `;
 
-export function server(site, options) {
+export async function server(site, options) {
   const root = site.dest();
   const port = parseInt(options.port) || site.options.server.port || 3000;
+  const ipAddr = await localIp();
   const page404 = site.options.server.page404 || "/404.html";
 
   console.log("");
   console.log("  Server started at:");
-  console.log(brightGreen(`  http://localhost:${port}/`));
+  console.log(brightGreen(`  http://localhost:${port}/`), "(local)");
+  console.log(brightGreen(`  http://${ipAddr}:${port}/`), "(network)");
   console.log("");
 
   // Live reload server
