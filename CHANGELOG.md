@@ -17,6 +17,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Improved slugifier including a better support for unicode [#50], [#56]
 - Update mime types used in the server [#51]
+- Updated some dependencies
 
 ## [0.16.6] - 2021-04-04
 ### Added
