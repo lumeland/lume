@@ -1,24 +1,66 @@
+import {
+  markdownIt,
+  markdownItAttrs,
+  markdownItDeflist,
+  markdownItReplaceLinks,
+} from "../deps/markdown-it.js";
+import hljs from "../deps/highlight.js";
 import Markdown from "../engines/markdown.js";
 import { merge } from "../utils.js";
 
 // default options
 const defaults = {
   extensions: [".md", ".markdown"],
+  options: {
+    html: true,
+  },
+  plugins: [
+    markdownItAttrs,
+    markdownItReplaceLinks,
+    markdownItDeflist,
+  ],
 };
 
 export default function (userOptions) {
   const options = merge(defaults, userOptions);
 
   return function (site) {
-    const markdown = new Markdown(site);
+    const engine = createMarkdown(site, options);
 
-    site.engine(options.extensions, markdown);
+    site.engine(options.extensions, new Markdown(site, engine));
     site.filter("md", filter);
 
     function filter(string, inline = false) {
       return inline
-        ? markdown.engine.renderInline(string || "").trim()
-        : markdown.engine.render(string || "").trim();
+        ? engine.renderInline(string || "").trim()
+        : engine.render(string || "").trim();
     }
   };
+}
+
+function createMarkdown(site, options) {
+  const markdown = markdownIt({
+    ...options.options,
+    replaceLink(link) {
+      return site.url(link);
+    },
+    highlight(code, language) {
+      if (language && hljs.getLanguage(language)) {
+        try {
+          const html = hljs.highlight(code, { language, ignoreIllegals: true });
+          return `<pre class="hljs"><code>${html.value}</code></pre>`;
+        } catch (__) {
+          // Ignore error
+        }
+      }
+
+      return `<pre class="hljs"><code>${
+        markdown.utils.escapeHtml(code)
+      }</code></pre>`;
+    },
+  });
+
+  options.plugins.forEach((plugin) => markdown.use(plugin));
+
+  return markdown;
 }
