@@ -27,7 +27,8 @@ function createMarkdown(site) {
     highlight(str, lang) {
       if (lang && hljs.getLanguage(lang)) {
         try {
-          const code = hljs.highlight(lang, str, true).value;
+          const options = { language: lang, ignoreIllegals: true };
+          const code = hljs.highlight(str, options).value;
           return `<pre class="hljs"><code>${code}</code></pre>`;
         } catch (__) {
           // Ignore error
