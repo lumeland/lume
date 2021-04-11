@@ -9,6 +9,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Show the local IP address on serve [#55]
 - Allow empty front matter [#54]
+- The extensions `.html.js` and `.html.ts` are processed as pages (in order to replace to `.tmpl.js` and `.tmpl.ts` that will be removed in the future).
 
 ### Changed
 - Deprecated `permalink` variable. Use `url` instead [#46]
@@ -18,7 +19,6 @@ project adheres to [Semantic Versioning](http://semver.org/).
 - Improved slugifier including a better support for unicode [#50], [#56]
 - Update mime types used in the server [#51]
 - Updated some dependencies [#59]
-- Fixed `Date` timezone offset [#58]
 
 ## [0.16.6] - 2021-04-04
 ### Added
@@ -530,7 +530,6 @@ First version
 [#54]: https://github.com/oscarotero/lume/issues/54
 [#55]: https://github.com/oscarotero/lume/issues/55
 [#56]: https://github.com/oscarotero/lume/issues/56
-[#58]: https://github.com/oscarotero/lume/issues/58
 [#59]: https://github.com/oscarotero/lume/issues/59
 
 [0.17.0]: https://github.com/oscarotero/lume/compare/v0.16.6...HEAD
