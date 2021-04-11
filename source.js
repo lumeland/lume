@@ -231,10 +231,6 @@ export default class Source {
       );
     }
 
-    data.date.setTime(
-      data.date.getTime() + data.date.getTimezoneOffset() * 60 * 1000,
-    );
-
     const page = new Page(src);
     page.data = data;
     page.dest = dest;
