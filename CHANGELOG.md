@@ -10,6 +10,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 - Show the local IP address on serve [#55]
 - Allow empty front matter [#54]
 - The extensions `.html.js` and `.html.ts` are processed as pages (in order to replace to `.tmpl.js` and `.tmpl.ts` that will be removed in the future).
+- Added ability to change sort direction in `search` [#57]
 
 ### Changed
 - Deprecated `permalink` variable. Use `url` instead [#46]
@@ -530,6 +531,7 @@ First version
 [#54]: https://github.com/oscarotero/lume/issues/54
 [#55]: https://github.com/oscarotero/lume/issues/55
 [#56]: https://github.com/oscarotero/lume/issues/56
+[#57]: https://github.com/oscarotero/lume/issues/57
 [#59]: https://github.com/oscarotero/lume/issues/59
 
 [0.17.0]: https://github.com/oscarotero/lume/compare/v0.16.6...HEAD

@@ -118,10 +118,14 @@ function compileFilter(query) {
   return factory(...Object.values(query));
 }
 
-function compileSort(path) {
-  path = path.replaceAll(".", "?.");
+function compileSort(arg) {
+  const match = arg.match(/([\w\.-]+)(=(asc|desc))?/);
+  let [, key, , direction] = match;
 
-  return new Function("a", "b", `return (a.${path} < b.${path}) ? -1 : 1`);
+  key = key.replaceAll(".", "?.");
+  const operator = direction === "desc" ? ">" : "<";
+
+  return new Function("a", "b", `return a.${key} == b.${key} ? 0 : (a.${key} ${operator} b.${key} ? -1 : 1)`);
 }
 
 function compileCondition(key, value) {
