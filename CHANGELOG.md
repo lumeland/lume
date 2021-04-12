@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.17.0] - Unreleased
+## [0.17.0] - 2021-04-11
 ### Added
 - Show the local IP address on serve [#55]
 - Allow empty front matter [#54]
@@ -534,7 +534,7 @@ First version
 [#57]: https://github.com/oscarotero/lume/issues/57
 [#59]: https://github.com/oscarotero/lume/issues/59
 
-[0.17.0]: https://github.com/oscarotero/lume/compare/v0.16.6...HEAD
+[0.17.0]: https://github.com/oscarotero/lume/compare/v0.16.6...v0.17.0
 [0.16.6]: https://github.com/oscarotero/lume/compare/v0.16.5...v0.16.6
 [0.16.5]: https://github.com/oscarotero/lume/compare/v0.16.4...v0.16.5
 [0.16.4]: https://github.com/oscarotero/lume/compare/v0.16.3...v0.16.4

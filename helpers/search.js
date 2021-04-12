@@ -125,7 +125,11 @@ function compileSort(arg) {
   key = key.replaceAll(".", "?.");
   const operator = direction === "desc" ? ">" : "<";
 
-  return new Function("a", "b", `return a.${key} == b.${key} ? 0 : (a.${key} ${operator} b.${key} ? -1 : 1)`);
+  return new Function(
+    "a",
+    "b",
+    `return a.${key} == b.${key} ? 0 : (a.${key} ${operator} b.${key} ? -1 : 1)`,
+  );
 }
 
 function compileCondition(key, value) {
