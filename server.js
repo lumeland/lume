@@ -138,6 +138,16 @@ export async function server(site, options) {
   console.log(brightGreen(`  http://${ipAddr}:${port}/`), "(network)");
   console.log("");
 
+  if (options.open || site.options.server.open) {
+    const commands = {
+      darwin: "open",
+      linux: "xdg-open",
+      windows: "explorer",
+    };
+
+    Deno.run({ cmd: [commands[Deno.build.os], `http://localhost:${port}/`] });
+  }
+
   // Live reload server
   const watcher = Deno.watchFs(root);
 

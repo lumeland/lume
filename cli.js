@@ -49,6 +49,7 @@ OPTIONS:
 
     -s, --serve             start a live-reloading web server
     -p, --port     <port>   the port the server is on           Default: 3000
+    -o, --open              open the website in the browser
 `;
 
 if (import.meta.main) {

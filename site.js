@@ -21,6 +21,7 @@ const defaults = {
   flags: [],
   server: {
     port: 3000,
+    open: false,
     page404: "/404.html",
   },
 };
