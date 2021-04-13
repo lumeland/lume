@@ -45,10 +45,10 @@ OPTIONS:
         --dest     <dir>    the build destination.              Default: _site
         --config   <file>   specify the lume config file.       Default: _config.js
         --location <url>    set the domain for your site.       Default: http://localhost
-        --dev               enable dev mode (view draft pages)
+    -d, --dev               enable dev mode (view draft pages)
 
     -s, --serve             start a live-reloading web server
-        --port     <port>   the port the server is on           Default: 3000
+    -p, --port     <port>   the port the server is on           Default: 3000
 `;
 
 if (import.meta.main) {
