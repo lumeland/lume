@@ -21,12 +21,14 @@ OPTIONS:
 
     -s, --serve             start a live-reloading web server
     -p, --port     <port>   the port the server is on           Default: 3000
+    -o, --open              open the website in the browser
 `;
+
 export async function run(args, userSite) {
   const options = parse(args, {
-    boolean: ["serve", "dev"],
+    boolean: ["serve", "dev", "open"],
     string: ["port", "src", "dest", "location", "root", "config"],
-    alias: { dev: "d", serve: "s", port: "p" },
+    alias: { dev: "d", serve: "s", port: "p", open: "o" },
     ["--"]: true,
     unknown(option) {
       if (option.startsWith("-")) {
