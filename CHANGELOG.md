@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.17.1] - Unreleased
+## [0.17.1] - 2021-04-14
 ### Added
 - New option `-o | --open` to open a browser automatically on serve [#62].
 
@@ -13,7 +13,8 @@ project adheres to [Semantic Versioning](http://semver.org/).
 - The extensions `.html.js` and `.html.ts` introduced in 0.17.0. The reason is it can be confused due not all files must generate html pages, so `.tmpl.js` / `.tmpl.ts` is more agnostic and fit all cases.
 
 ### Fixed
-- Updated postcss version to fix a bug related with source maps.
+- Updated `postcss` version to fix a bug related with source maps.
+- Updated `postcss_import` version to fix a bug related with `@charset` at-rule.
 
 ## [0.17.0] - 2021-04-11
 ### Added
@@ -545,7 +546,7 @@ First version
 [#59]: https://github.com/oscarotero/lume/issues/59
 [#62]: https://github.com/oscarotero/lume/issues/62
 
-[0.17.1]: https://github.com/oscarotero/lume/compare/v0.17.0...HEAD
+[0.17.1]: https://github.com/oscarotero/lume/compare/v0.17.0...v0.17.1
 [0.17.0]: https://github.com/oscarotero/lume/compare/v0.16.6...v0.17.0
 [0.16.6]: https://github.com/oscarotero/lume/compare/v0.16.5...v0.16.6
 [0.16.5]: https://github.com/oscarotero/lume/compare/v0.16.4...v0.16.5
