@@ -1,7 +1,7 @@
 import yaml from "../loaders/yaml.js";
 import { merge } from "../utils.js";
 
-// default options
+// Default options
 const defaults = {
   extensions: [".yaml", ".yml"],
 };

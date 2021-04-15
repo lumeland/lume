@@ -24,10 +24,10 @@ export async function run(args, userSite) {
     },
   });
 
-  // should be 2 arguments "run" and the thing to run
+  // Should be 2 arguments "run" and the thing to run
   validateArgsCount("run", options._, 2);
 
-  // script name is the second argument ("run" is the first)
+  // Script name is the second argument ("run" is the first)
   const script = options._[1];
 
   const site = await buildSite(options, userSite);

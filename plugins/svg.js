@@ -2,7 +2,7 @@ import textLoader from "../loaders/text.js";
 import { optimize } from "../deps/svgo.js";
 import { merge } from "../utils.js";
 
-// default options
+// Default options
 const defaults = {
   extensions: [".svg"],
   options: {},

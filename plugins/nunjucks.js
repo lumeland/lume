@@ -1,7 +1,7 @@
 import NunjucksEngine from "../engines/nunjucks.js";
 import { merge } from "../utils.js";
 
-// default options
+// Default options
 const defaults = {
   extensions: [".njk", ".html"],
 };

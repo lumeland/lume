@@ -8,7 +8,7 @@ import hljs from "../deps/highlight.js";
 import Markdown from "../engines/markdown.js";
 import { merge } from "../utils.js";
 
-// default options
+// Default options
 const defaults = {
   extensions: [".md", ".markdown"],
   options: {

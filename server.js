@@ -100,17 +100,17 @@ function cache(el, prop, file, clone = false) {
     return;
   }
 
-  url.searchParams.set("_cache", (new Date()).getTime());
+  url.searchParams.set("_cache", Date.now());
 
   if (clone) {
     const newEl = el.cloneNode();
-    newEl[prop] = url.toString();
+    newEl[prop] = url.href;
     el.after(newEl);
     setTimeout(() => el.remove(), 500);
     return;
   }
 
-  el[prop] = url.toString();
+  el[prop] = url.href;
 }
 
 function save(key, data) {

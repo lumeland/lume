@@ -10,7 +10,7 @@ const formats = new Map([
   ["HUMAN_DATETIME", "PPPppp"],
 ]);
 
-// default options
+// Default options
 const defaults = {
   locales: {},
   formats: {},

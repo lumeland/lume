@@ -3,7 +3,7 @@ import { globToRegExp, isGlob } from "../deps/glob.js";
 import { resize } from "../deps/image.js";
 import { merge } from "../utils.js";
 
-// default options
+// Default options
 const defaults = {
   extensions: [".png", ".jpg", ".jpeg"],
   resize: {},

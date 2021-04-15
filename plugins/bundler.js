@@ -1,7 +1,7 @@
 import textLoader from "../loaders/text.js";
 import { merge } from "../utils.js";
 
-// default options
+// Default options
 const defaults = {
   extensions: [".ts", ".js"],
   sourceMap: false,

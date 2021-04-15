@@ -325,7 +325,7 @@ export default class Site {
     } else {
       // Absolute urls are returned as is
       try {
-        return new URL(path).toString();
+        return new URL(path).href;
       } catch {
         // Ignore error
       }

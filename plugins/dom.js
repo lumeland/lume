@@ -1,7 +1,7 @@
 import { DOMParser } from "../deps/dom.js";
 import { merge } from "../utils.js";
 
-// default options
+// Default options
 const defaults = {
   extensions: [".html"],
   fn() {},
