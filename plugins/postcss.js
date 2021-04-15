@@ -2,7 +2,7 @@ import textLoader from "../loaders/text.js";
 import { postcss, postcssImport, postcssNesting } from "../deps/postcss.js";
 import { merge } from "../utils.js";
 
-// default options
+// Default options
 const defaults = {
   extensions: [".css"],
   sourceMap: false,

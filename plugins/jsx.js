@@ -1,7 +1,7 @@
 import JsxEngine from "../engines/jsx.js";
 import { merge } from "../utils.js";
 
-// default options
+// Default options
 const defaults = {
   extensions: [".jsx", ".tsx"],
 };

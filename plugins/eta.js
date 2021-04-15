@@ -1,7 +1,7 @@
 import Eta from "../engines/eta.js";
 import { merge } from "../utils.js";
 
-// default options
+// Default options
 const defaults = {
   extensions: [".eta"],
 };

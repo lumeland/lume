@@ -3,7 +3,7 @@ import minify from "../deps/terser.js";
 import { basename } from "../deps/path.js";
 import { error, merge } from "../utils.js";
 
-// default options
+// Default options
 const defaults = {
   extensions: [".js"],
   sourceMap: false,
@@ -25,13 +25,13 @@ export default function (userOptions = {}) {
       const content = file.content;
       const filename = file.dest.path + file.dest.ext;
 
-      // options passed to terser
+      // Options passed to terser
       const terserOptions = { ...options.options };
 
       if (options.sourceMap) {
         terserOptions.sourceMap = {
           filename: filename,
-          // filename is path, so just need basename
+          // Filename is path, so just need basename
           url: basename(filename) + ".map",
         };
       }

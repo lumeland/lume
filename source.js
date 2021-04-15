@@ -312,7 +312,7 @@ export default class Source {
       return this.#cache.get(path);
     }
 
-    const hash = new Date().getTime();
+    const hash = Date.now();
     const content = fn(await import(`file://${path}#${hash}`));
     this.#cache.set(path, content);
     return content;

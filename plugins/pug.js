@@ -1,7 +1,7 @@
 import Pug from "../engines/pug.js";
 import { merge } from "../utils.js";
 
-// default options
+// Default options
 const defaults = {
   extensions: [".pug"],
 };
