@@ -7,11 +7,11 @@ export default class TemplateEngine {
     this.options = options;
   }
 
-  render(content, data, filename) {
+  render(_content, _data, _filename) {
     // To extend
   }
 
-  addFilter(name, fn, async) {
+  addFilter(_name, _fn, _async) {
     // To extend
   }
 

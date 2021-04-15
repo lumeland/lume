@@ -14,7 +14,7 @@ export default function () {
     function htmlUrl(html = "", absolute = false) {
       return html.replaceAll(
         /\s(href|src)="([^"]+)"/g,
-        (match, attr, value) => ` ${attr}="${url(value, absolute)}"`,
+        (_match, attr, value) => ` ${attr}="${url(value, absolute)}"`,
       );
     }
   };

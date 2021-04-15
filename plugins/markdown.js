@@ -49,7 +49,7 @@ function createMarkdown(site, options) {
         try {
           const html = hljs.highlight(code, { language, ignoreIllegals: true });
           return `<pre class="hljs"><code>${html.value}</code></pre>`;
-        } catch (__) {
+        } catch {
           // Ignore error
         }
       }
