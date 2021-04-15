@@ -39,8 +39,8 @@ export async function run(args) {
 
   const content = await Deno.readTextFile(options.config);
   const updated = content.replaceAll(
-    /https:\/\/deno\.land\/x\/lume(@v[\d\.]+)?\/(.*)/g,
-    (m, v, path) => `https://deno.land/x/lume@${version}/${path}`,
+    /https:\/\/deno\.land\/x\/lume(?:@v[\d\.]+)?\/(.*)/g,
+    (_m, path) => `https://deno.land/x/lume@${version}/${path}`,
   );
 
   if (content === updated) {

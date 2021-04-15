@@ -326,7 +326,9 @@ export default class Site {
       // Absolute urls are returned as is
       try {
         return new URL(path).href;
-      } catch {}
+      } catch {
+        // Ignore error
+      }
     }
 
     if (!this.options.location) {

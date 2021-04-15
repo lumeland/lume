@@ -1,4 +1,4 @@
-import { extname, join, posix, relative, resolve } from "../deps/path.js";
+import { extname, posix, resolve } from "../deps/path.js";
 import { DOMParser } from "../deps/dom.js";
 import { encode } from "../deps/base64.js";
 import { mimes } from "../utils.js";

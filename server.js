@@ -5,6 +5,7 @@ import { brightGreen, red } from "./deps/colors.js";
 import { exists } from "./deps/fs.js";
 import localIp from "./deps/local-ip.js";
 import { mimes, normalizePath } from "./utils.js";
+import { readAll } from "./deps/util.js";
 
 const script = `
 let ws;
@@ -186,12 +187,12 @@ export async function server(site, options) {
             ? getHtmlBody(path)
             : getBody(path)),
         });
-      } catch (err) {
+      } catch {
         return;
       }
 
       console.log(`${brightGreen("200")} ${req.url}`);
-    } catch (err) {
+    } catch {
       console.log(`${red("404")} ${req.url}`);
 
       try {
@@ -202,7 +203,7 @@ export async function server(site, options) {
           }),
           body: await getNotFoundBody(root, page404, path),
         });
-      } catch (err) {
+      } catch {
         return;
       }
     }
@@ -302,7 +303,7 @@ async function getNotFoundBody(root, page404, file) {
 
 async function getBody(path) {
   const file = await Deno.open(path);
-  const content = await Deno.readAll(file);
+  const content = await readAll(file);
   Deno.close(file.rid);
 
   return content;
