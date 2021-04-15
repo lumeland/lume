@@ -2,7 +2,7 @@ import { format } from "../deps/date.js";
 import { merge } from "../utils.js";
 
 const formats = new Map([
-  ["ATOM", "yyyy-MM-dd'T'HH:mm:ssxxx"],
+  ["ATOM", "yyyy-MM-dd'T'HH:mm:ssXXX"],
   ["DATE", "yyyy-MM-dd"],
   ["DATETIME", "yyyy-MM-dd HH:mm:ss"],
   ["TIME", "HH:mm:ss"],
