@@ -71,6 +71,9 @@ function refresh(files) {
       case "jpeg":
       case "jpg":
       case "png":
+      case "apng":
+      case "webp":
+      case "avif":
       case "svg":
       case "gif":
         document.querySelectorAll("img").forEach((el) =>
