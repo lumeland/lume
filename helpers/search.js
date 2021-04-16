@@ -153,15 +153,15 @@ function compileCondition(key, value) {
     return `page.${path}?.endsWith(${value})`;
   }
 
-  if (operator === "~=") {
+  if (operator === "*=") {
     return `page.${path}?.includes(${value})`;
   }
 
-  if (operator === "ALL") {
+  if (operator === "&=") {
     return `${value}.every((i) => page.${path}?.includes(i))`;
   }
 
-  if (operator === "SOME") {
+  if (operator === "|=") {
     return `${value}.some((i) => page.${path}?.includes(i))`;
   }
 
