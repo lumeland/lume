@@ -79,14 +79,14 @@ function buildFilter(query) {
 
   query.forEach((arg) => {
     if (!arg.includes("=")) {
-      if (!filter["data.tags ALL"]) {
-        filter["data.tags ALL"] = [];
+      if (!filter["data.tags &="]) {
+        filter["data.tags &="] = [];
       }
 
-      return filter["data.tags ALL"].push(arg);
+      return filter["data.tags &="].push(arg);
     }
 
-    const match = arg.match(/([\w\.-]+)([!\^\$~]?=)(.*)/);
+    const match = arg.match(/([\w.-]+)([!^$*&|]?=)(.*)/);
     let [, key, operator, value] = match;
 
     if (value.toLowerCase() === "true") {
@@ -153,15 +153,15 @@ function compileCondition(key, value) {
     return `page.${path}?.endsWith(${value})`;
   }
 
-  if (operator === "~=") {
+  if (operator === "*=") {
     return `page.${path}?.includes(${value})`;
   }
 
-  if (operator === "ALL") {
+  if (operator === "&=") {
     return `${value}.every((i) => page.${path}?.includes(i))`;
   }
 
-  if (operator === "SOME") {
+  if (operator === "|=") {
     return `${value}.some((i) => page.${path}?.includes(i))`;
   }
 
