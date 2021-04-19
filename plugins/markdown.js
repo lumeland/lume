@@ -54,9 +54,7 @@ function createMarkdown(site, options) {
         }
       }
 
-      return `<pre class="hljs"><code>${
-        markdown.utils.escapeHtml(code)
-      }</code></pre>`;
+      return `<pre><code>${markdown.utils.escapeHtml(code)}</code></pre>`;
     },
   });
 
