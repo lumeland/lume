@@ -9,17 +9,17 @@ import nunjucks from "./plugins/nunjucks.js";
 import search from "./plugins/search.js";
 import yaml from "./plugins/yaml.js";
 
-export default function (options = {}) {
+export default function (options = {}, pluginOptions = {}) {
   const site = new Site(options);
 
   return site
     .ignore("node_modules")
-    .use(attr())
-    .use(url())
-    .use(json())
-    .use(markdown())
-    .use(modules())
-    .use(nunjucks())
-    .use(search())
-    .use(yaml());
+    .use(attr(pluginOptions.attr))
+    .use(url(pluginOptions.url))
+    .use(json(pluginOptions.json))
+    .use(markdown(pluginOptions.markdown))
+    .use(modules(pluginOptions.modules))
+    .use(nunjucks(pluginOptions.nunjucks))
+    .use(search(pluginOptions.search))
+    .use(yaml(pluginOptions.yaml));
 }

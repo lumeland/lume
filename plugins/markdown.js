@@ -40,7 +40,6 @@ export default function (userOptions) {
 
 function createMarkdown(site, options) {
   const markdown = markdownIt({
-    ...options.options,
     replaceLink(link) {
       return site.url(link);
     },
@@ -56,6 +55,7 @@ function createMarkdown(site, options) {
 
       return `<pre><code>${markdown.utils.escapeHtml(code)}</code></pre>`;
     },
+    ...options.options,
   });
 
   options.plugins.forEach((plugin) => markdown.use(plugin));

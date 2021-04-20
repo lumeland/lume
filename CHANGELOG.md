@@ -8,6 +8,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.17.1] - 2021-04-14
 ### Added
 - New option `-o | --open` to open a browser automatically on serve [#62].
+- A second argument to `lume()` function to configure the default plugins.
 
 ### Removed
 - The extensions `.html.js` and `.html.ts` introduced in 0.17.0. The reason is it can be confused due not all files must generate html pages, so `.tmpl.js` / `.tmpl.ts` is more agnostic and fit all cases.
@@ -15,6 +16,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Updated `postcss` version to fix a bug related with source maps.
 - Updated `postcss_import` version to fix a bug related with `@charset` at-rule.
+- User options are overrided by default options in markdown plugin.
 
 ## [0.17.0] - 2021-04-11
 ### Added
