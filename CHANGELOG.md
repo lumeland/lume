@@ -5,10 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.18.0] - Unreleased
+### Added
+- A second argument to `lume()` function to configure the default plugins [#45].
+- Support for more image formats in server live reload [#67]
+
+### Changed
+- Changed some operators in `search` helper [#69]:
+  - `~=` renamed to `*=`
+  - `ALL` renamed to `&=`
+  - `SOME` renamed to `|=`
+- Use `Z` instead of `+00:00` in `date("ATOM")` filter [#64]
+- Removed `hljs` class from blocks of unhighlighted code [#71]
+
+### Fixed
+- User options are overrided by default options in markdown plugin.
+- Changed some file names to align with Deno style guide [#73]
+- Updated deps [#63], [#70], [#72]
+
 ## [0.17.1] - 2021-04-14
 ### Added
 - New option `-o | --open` to open a browser automatically on serve [#62].
-- A second argument to `lume()` function to configure the default plugins.
 
 ### Removed
 - The extensions `.html.js` and `.html.ts` introduced in 0.17.0. The reason is it can be confused due not all files must generate html pages, so `.tmpl.js` / `.tmpl.ts` is more agnostic and fit all cases.
@@ -16,7 +33,6 @@ project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Updated `postcss` version to fix a bug related with source maps.
 - Updated `postcss_import` version to fix a bug related with `@charset` at-rule.
-- User options are overrided by default options in markdown plugin.
 
 ## [0.17.0] - 2021-04-11
 ### Added
@@ -538,6 +554,7 @@ First version
 [#41]: https://github.com/oscarotero/lume/issues/41
 [#43]: https://github.com/oscarotero/lume/issues/43
 [#44]: https://github.com/oscarotero/lume/issues/44
+[#45]: https://github.com/oscarotero/lume/issues/45
 [#46]: https://github.com/oscarotero/lume/issues/46
 [#50]: https://github.com/oscarotero/lume/issues/50
 [#51]: https://github.com/oscarotero/lume/issues/51
@@ -547,7 +564,16 @@ First version
 [#57]: https://github.com/oscarotero/lume/issues/57
 [#59]: https://github.com/oscarotero/lume/issues/59
 [#62]: https://github.com/oscarotero/lume/issues/62
+[#63]: https://github.com/oscarotero/lume/issues/63
+[#64]: https://github.com/oscarotero/lume/issues/64
+[#67]: https://github.com/oscarotero/lume/issues/67
+[#69]: https://github.com/oscarotero/lume/issues/69
+[#70]: https://github.com/oscarotero/lume/issues/70
+[#71]: https://github.com/oscarotero/lume/issues/71
+[#72]: https://github.com/oscarotero/lume/issues/72
+[#73]: https://github.com/oscarotero/lume/issues/73
 
+[0.18.0]: https://github.com/oscarotero/lume/compare/v0.17.1...HEAD
 [0.17.1]: https://github.com/oscarotero/lume/compare/v0.17.0...v0.17.1
 [0.17.0]: https://github.com/oscarotero/lume/compare/v0.16.6...v0.17.0
 [0.16.6]: https://github.com/oscarotero/lume/compare/v0.16.5...v0.16.6
