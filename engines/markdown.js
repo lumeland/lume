@@ -1,4 +1,4 @@
-import TemplateEngine from "./templateEngine.js";
+import TemplateEngine from "./template_engine.js";
 
 export default class Markdown extends TemplateEngine {
   constructor(site, engine, options = {}) {
