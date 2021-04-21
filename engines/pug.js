@@ -1,5 +1,5 @@
 import * as pug from "../deps/pug.js";
-import TemplateEngine from "./templateEngine.js";
+import TemplateEngine from "./template_engine.js";
 
 export default class Pug extends TemplateEngine {
   cache = new Map();

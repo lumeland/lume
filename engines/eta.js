@@ -1,6 +1,6 @@
 import * as eta from "../deps/eta.js";
 
-import TemplateEngine from "./templateEngine.js";
+import TemplateEngine from "./template_engine.js";
 
 export default class Eta extends TemplateEngine {
   filters = {};

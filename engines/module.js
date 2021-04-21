@@ -1,5 +1,5 @@
 import loader from "../loaders/module.js";
-import TemplateEngine from "./templateEngine.js";
+import TemplateEngine from "./template_engine.js";
 
 export default class Module extends TemplateEngine {
   filters = {};

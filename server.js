@@ -3,7 +3,7 @@ import { acceptWebSocket } from "./deps/ws.js";
 import { dirname, extname, join, posix, relative } from "./deps/path.js";
 import { brightGreen, red } from "./deps/colors.js";
 import { exists } from "./deps/fs.js";
-import localIp from "./deps/local-ip.js";
+import localIp from "./deps/local_ip.js";
 import { mimes, normalizePath } from "./utils.js";
 import { readAll } from "./deps/util.js";
 
