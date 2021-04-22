@@ -62,7 +62,7 @@ export default class Search {
   }
 }
 
-function buildFilter(query) {
+export function buildFilter(query) {
   if (!query) {
     return null;
   }
@@ -85,7 +85,7 @@ function buildFilter(query) {
     const match = arg.match(/([\w.-]+)([!^$*&|]?=)(.*)/);
     let [, key, operator, value] = match;
 
-    conditions.push([key, operator, compileValue(value)]);
+    conditions.push([`data.${key}`, operator, compileValue(value)]);
   });
 
   return compileFilter(conditions);
@@ -118,10 +118,10 @@ function compileCondition(key, operator, name, value) {
   if (Array.isArray(value)) {
     switch (operator) {
       case "=":
-        return `${name}.some((i) => page.${key} === i`;
+        return `${name}.some((i) => page.${key} === i)`;
 
       case "!=":
-        return `${name}.some((i) => page.${key} !== i`;
+        return `${name}.some((i) => page.${key} !== i)`;
 
       case "^=":
         return `${name}.some((i) => page.${key}?.startsWith(i))`;
