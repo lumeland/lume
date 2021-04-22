@@ -75,49 +75,99 @@ function buildFilter(query) {
     return null;
   }
 
-  const filter = {};
+  const conditions = [];
 
   query.forEach((arg) => {
     if (!arg.includes("=")) {
-      if (!filter["data.tags &="]) {
-        filter["data.tags &="] = [];
-      }
-
-      return filter["data.tags &="].push(arg);
+      return conditions.push(["data.tags", "*=", compileValue(arg)]);
     }
 
     const match = arg.match(/([\w.-]+)([!^$*&|]?=)(.*)/);
     let [, key, operator, value] = match;
 
-    if (operator === "&=" || operator === "|=") {
-      value = value.split(",");
-    } else if (value.toLowerCase() === "true") {
-      value = true;
-    } else if (value.toLowerCase() === "false") {
-      value = false;
-    }
-
-    filter[`data.${key} ${operator}`] = value;
+    conditions.push([key, operator, compileValue(value)]);
   });
 
-  return compileFilter(filter);
+  return compileFilter(conditions);
 }
 
-function compileFilter(query) {
+function compileFilter(conditions) {
   const filters = [];
   const args = [];
+  const values = [];
 
-  Object.keys(query).forEach((key, index) => {
-    const value = `value${index}`;
-    filters.push(compileCondition(key, value));
-    args.push(value);
+  conditions.forEach((condition, index) => {
+    const [key, operator, value] = condition;
+    const varname = `value${index}`;
+
+    filters.push(compileCondition(key, operator, varname, value));
+    args.push(varname);
+    values.push(value);
   });
 
   args.push(`return (page) => ${filters.join(" && ")};`);
 
   const factory = new Function(...args);
 
-  return factory(...Object.values(query));
+  return factory(...values);
+}
+
+function compileCondition(key, operator, name, value) {
+  key = key.replaceAll(".", "?.");
+
+  if (Array.isArray(value)) {
+    switch (operator) {
+      case "=":
+        return `${name}.some((i) => page.${key} === i`;
+
+      case "!=":
+        return `${name}.some((i) => page.${key} !== i`;
+
+      case "^=":
+        return `${name}.some((i) => page.${key}?.startsWith(i))`;
+
+      case "$=":
+        return `${name}.some((i) => page.${key}?.endsWith(i))`;
+
+      case "*=":
+        return `${name}.some((i) => page.${key}?.includes(i))`;
+
+      default:
+        throw new Error(`Invalid conditional operator ${operator}`);
+    }
+  }
+
+  switch (operator) {
+    case "=":
+      return `page.${key} === ${name}`;
+
+    case "!=":
+      return `page.${key} !== ${name}`;
+
+    case "^=":
+      return `page.${key}?.startsWith(${name})`;
+
+    case "$=":
+      return `page.${key}?.endsWith(${name})`;
+
+    case "*=":
+      return `page.${key}?.includes(${name})`;
+
+    default:
+      throw new Error(`Invalid conditional operator ${operator}`);
+  }
+}
+
+function compileValue(value) {
+  if (value.includes("|")) {
+    return value.split("|").map((val) => compileValue(val));
+  }
+  if (value.toLowerCase() === "true") {
+    return true;
+  }
+  if (value.toLowerCase() === "false") {
+    value = false;
+  }
 }
 
 function compileSort(arg) {
@@ -132,40 +182,4 @@ function compileSort(arg) {
     "b",
     `return a.${key} == b.${key} ? 0 : (a.${key} ${operator} b.${key} ? -1 : 1)`,
   );
-}
-
-function compileCondition(key, value) {
-  let [path, operator] = key.trim().split(" ");
-
-  path = path.replaceAll(".", "?.");
-
-  if (!operator || operator === "=") {
-    return `page.${path} === ${value}`;
-  }
-
-  if (operator === "!=") {
-    return `page.${path} !== ${value}`;
-  }
-
-  if (operator === "^=") {
-    return `page.${path}?.startsWith(${value})`;
-  }
-
-  if (operator === "$=") {
-    return `page.${path}?.endsWith(${value})`;
-  }
-
-  if (operator === "*=") {
-    return `page.${path}?.includes(${value})`;
-  }
-
-  if (operator === "&=") {
-    return `${value}.every((i) => page.${path}?.includes(i))`;
-  }
-
-  if (operator === "|=") {
-    return `${value}.some((i) => page.${path}?.includes(i))`;
-  }
-
-  throw new Error(`Invalid conditional operator ${operator}`);
 }
