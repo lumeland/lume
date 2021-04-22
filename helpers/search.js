@@ -166,8 +166,10 @@ function compileValue(value) {
     return true;
   }
   if (value.toLowerCase() === "false") {
-    value = false;
+    return false;
   }
+
+  return value;
 }
 
 function compileSort(arg) {
