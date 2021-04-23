@@ -78,11 +78,12 @@ export function buildFilter(query) {
   const conditions = [];
 
   query.forEach((arg) => {
-    if (!arg.includes("=")) {
+    const match = arg.match(/([\w.-]+)([!^$*]?=|[<>]=?)(.*)/);
+
+    if (!match) {
       return conditions.push(["data.tags", "*=", compileValue(arg)]);
     }
 
-    const match = arg.match(/([\w.-]+)([!^$*]?=)(.*)/);
     const [, key, operator, value] = match;
 
     conditions.push([`data.${key}`, operator, compileValue(value)]);
@@ -132,8 +133,8 @@ function compileCondition(key, operator, name, value) {
       case "*=":
         return `${name}.some((i) => page.${key}?.includes(i))`;
 
-      default:
-        throw new Error(`Invalid conditional operator ${operator}`);
+      default: // < > <= =>
+        return `${name}.some((i) => page.${key} ${operator} i)`;
     }
   }
 
@@ -153,8 +154,8 @@ function compileCondition(key, operator, name, value) {
     case "*=":
       return `page.${key}?.includes(${name})`;
 
-    default:
-      throw new Error(`Invalid conditional operator ${operator}`);
+    default: // < > <= =>
+      return `page.${key} ${operator} ${name}`;
   }
 }
 
@@ -167,6 +168,9 @@ function compileValue(value) {
   }
   if (value.toLowerCase() === "false") {
     return false;
+  }
+  if (value && isFinite(value)) {
+    return Number(value);
   }
 
   return value;
