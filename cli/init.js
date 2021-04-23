@@ -10,7 +10,7 @@ USAGE:
     lume init [OPTIONS]
 
 OPTIONS:
-    --config <file> specify the lume config file.   Default: _config.js
+    --config <file>  specify the lume config file  Default: _config.js
 `;
 export async function run(args) {
   const options = parse(args, {

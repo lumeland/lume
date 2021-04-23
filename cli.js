@@ -15,36 +15,36 @@ Docs: https://lumeland.github.io/
     To build the site:
         lume
 
-    To serve the site in localhost
+    To serve the site in localhost:
         lume --serve
 
-    To update lume to the latest version
+    To update lume to the latest version:
         lume upgrade
 
-    To run a custom script
+    To run a custom script:
         lume run <script>
 
-    To get help with a command
+    To get help with a command:
         lume COMMAND --help
 
 USAGE:
     lume [COMMAND] [OPTIONS]
 
 COMMANDS:
-    build      Build the site. It's the default command
-    init       Creates a _config.js file
-    run        Run an site script
+    build      Build the site. This is the default command
+    init       Create a _config.js file
+    run        Run a custom script
     upgrade    Upgrade 🔥lume to the latest version
-    update     Update the version of the lume modules imported in a _config.js file
+    update     Update the version of the lume modules imported in the _config.js file
 
 OPTIONS:
     -h, --help              print usage information
-    -v, --version           prints version information
+    -v, --version           print version information
         --root     <dir>    the root that lume should work in   Default: ./
         --src      <dir>    the source directory for your site  Default: ./
-        --dest     <dir>    the build destination.              Default: _site
-        --config   <file>   specify the lume config file.       Default: _config.js
-        --location <url>    set the domain for your site.       Default: http://localhost
+        --dest     <dir>    the build destination               Default: _site
+        --config   <file>   specify the lume config file        Default: _config.js
+        --location <url>    set the domain for your site        Default: http://localhost
     -d, --dev               enable dev mode (view draft pages)
 
     -s, --serve             start a live-reloading web server

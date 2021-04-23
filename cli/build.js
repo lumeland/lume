@@ -14,9 +14,9 @@ USAGE:
 OPTIONS:
         --root     <dir>    the root that lume should work in   Default: ./
         --src      <dir>    the source directory for your site  Default: ./
-        --dest     <dir>    the build destination.              Default: _site
-        --config   <file>   specify the lume config file.       Default: _config.js
-        --location <url>    set the domain for your site.       Default: http://localhost
+        --dest     <dir>    the build destination               Default: _site
+        --config   <file>   specify the lume config file        Default: _config.js
+        --location <url>    set the domain for your site        Default: http://localhost
     -d, --dev               enable dev mode (view draft pages)
 
     -s, --serve             start a live-reloading web server
