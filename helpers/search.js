@@ -82,8 +82,8 @@ export function buildFilter(query) {
       return conditions.push(["data.tags", "*=", compileValue(arg)]);
     }
 
-    const match = arg.match(/([\w.-]+)([!^$*&|]?=)(.*)/);
-    let [, key, operator, value] = match;
+    const match = arg.match(/([\w.-]+)([!^$*]?=)(.*)/);
+    const [, key, operator, value] = match;
 
     conditions.push([`data.${key}`, operator, compileValue(value)]);
   });
@@ -173,8 +173,8 @@ function compileValue(value) {
 }
 
 function compileSort(arg) {
-  const match = arg.match(/([\w\.-]+)(=(asc|desc))?/);
-  let [, key, , direction] = match;
+  const match = arg.match(/([\w.-]+)(?:=(asc|desc))?/);
+  let [, key, direction] = match;
 
   key = key.replaceAll(".", "?.");
   const operator = direction === "desc" ? ">" : "<";
