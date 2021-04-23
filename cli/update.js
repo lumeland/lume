@@ -14,7 +14,7 @@ USAGE:
     lume update [OPTIONS]
 
 OPTIONS:
-    --config <file> specify the lume config file.   Default: _config.js
+    --config <file>  specify the lume config file  Default: _config.js
 `;
 
 export async function run(args) {
