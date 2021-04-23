@@ -133,7 +133,7 @@ function compileCondition(key, operator, name, value) {
       case "*=":
         return `${name}.some((i) => page.${key}?.includes(i))`;
 
-      default: // < > <= =>
+      default: // < > <= >=
         return `${name}.some((i) => page.${key} ${operator} i)`;
     }
   }
@@ -154,7 +154,7 @@ function compileCondition(key, operator, name, value) {
     case "*=":
       return `page.${key}?.includes(${name})`;
 
-    default: // < > <= =>
+    default: // < > <= >=
       return `page.${key} ${operator} ${name}`;
   }
 }
