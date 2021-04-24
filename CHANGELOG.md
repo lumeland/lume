@@ -11,17 +11,21 @@ project adheres to [Semantic Versioning](http://semver.org/).
 - Support for more image formats in server live reload [#67]
 
 ### Changed
-- Changed some operators in `search` helper [#69]:
-  - `~=` renamed to `*=`
-  - `ALL` renamed to `&=`
-  - `SOME` renamed to `|=`
+- API changes in `search` helper [#69]:
+  - `~=` renamed to `*=`.
+  - Added `<`, `>`, `<=` and `>=` operators.
+  - Allows to use `OR` operator with pipes. For example: `tag1|tag2` or `title=value1|value2`.
+  - Added support for numeric values.
+  - Added support for date and datetime values.
 - Use `Z` instead of `+00:00` in `date("ATOM")` filter [#64]
 - Removed `hljs` class from blocks of unhighlighted code [#71]
+- Datetime values in filenames can omit the seconds. For example `2021-04-24-18:00_post.md`.
 
 ### Fixed
 - User options are overrided by default options in markdown plugin.
 - Changed some file names to align with Deno style guide [#73]
-- Updated deps [#63], [#70], [#72]
+- Updated deps [#63], [#70], [#72], [#76], [#79]
+- Improved CLI help output [#77]
 
 ## [0.17.1] - 2021-04-14
 ### Added
@@ -572,6 +576,9 @@ First version
 [#71]: https://github.com/oscarotero/lume/issues/71
 [#72]: https://github.com/oscarotero/lume/issues/72
 [#73]: https://github.com/oscarotero/lume/issues/73
+[#76]: https://github.com/oscarotero/lume/issues/76
+[#77]: https://github.com/oscarotero/lume/issues/77
+[#79]: https://github.com/oscarotero/lume/issues/79
 
 [0.18.0]: https://github.com/oscarotero/lume/compare/v0.17.1...HEAD
 [0.17.1]: https://github.com/oscarotero/lume/compare/v0.17.0...v0.17.1
