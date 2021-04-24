@@ -19,7 +19,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
   - Added support for date and datetime values.
 - Use `Z` instead of `+00:00` in `date("ATOM")` filter [#64]
 - Removed `hljs` class from blocks of unhighlighted code [#71]
-- Datetime values in filenames can omit the seconds. For example `2021-04-24-18:00_post.md`.
+- Datetime values in filenames can omit the seconds. For example `2021-04-24-18-00_post.md`.
 
 ### Fixed
 - User options are overrided by default options in markdown plugin.
