@@ -116,6 +116,25 @@ function compileFilter(conditions) {
 function compileCondition(key, operator, name, value) {
   key = key.replaceAll(".", "?.");
 
+  if (value instanceof Date) {
+    switch (operator) {
+      case "=":
+        return `page.${key}?.getTime() === ${name}.getTime()`;
+
+      case "!=":
+        return `page.${key}?.getTime() !== ${name}.getTime()`;
+
+      case "<":
+      case "<=":
+      case ">":
+      case ">=":
+        return `page.${key}?.getTime() ${operator} ${name}.getTime()`;
+
+      default:
+        throw new Error(`Operator ${operator} not valid for Date values`);
+    }
+  }
+
   if (Array.isArray(value)) {
     switch (operator) {
       case "=":
@@ -160,6 +179,9 @@ function compileCondition(key, operator, name, value) {
 }
 
 function compileValue(value) {
+  if (!value) {
+    return value;
+  }
   if (value.includes("|")) {
     return value.split("|").map((val) => compileValue(val));
   }
@@ -169,8 +191,30 @@ function compileValue(value) {
   if (value.toLowerCase() === "false") {
     return false;
   }
-  if (value && isFinite(value)) {
+  if (isFinite(value)) {
     return Number(value);
+  }
+  // Date or datetime values:
+  // yyyy-mm
+  // yyyy-mm-dd
+  // yyyy-mm-ddThh
+  // yyyy-mm-ddThh:ii
+  // yyyy-mm-ddThh:ii:ss
+  const match = value.match(
+    /^(\d{4})-(\d{2})(?:-(\d{2}))?(?:T(\d{2})(?::(\d{2}))?(?::(\d{2}))?)?$/,
+  );
+
+  if (match) {
+    const [, year, month, day, hour, minute, second] = match;
+
+    return new Date(
+      parseInt(year),
+      parseInt(month) - 1,
+      day && parseInt(day),
+      hour && parseInt(hour),
+      minute && parseInt(minute),
+      second && parseInt(second),
+    );
   }
 
   return value;
