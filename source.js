@@ -321,28 +321,22 @@ export default class Source {
 
 function getDate(src, dest) {
   const fileName = basename(src.path);
-  const dayInPath = fileName.match(/^(\d{4})-(\d{2})-(\d{2})_/);
 
-  if (dayInPath) {
-    const [found, year, month, day] = dayInPath;
-    dest.path = dest.path.replace(found, "");
-    return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
-  }
-
-  const timeInPath = fileName.match(
-    /^(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})_/,
+  const dateInPath = fileName.match(
+    /^(\d{4})-(\d{2})-(\d{2})(?:-(\d{2})-(\d{2})(?:-(\d{2}))?)?_/,
   );
 
-  if (timeInPath) {
-    const [found, year, month, day, hour, minute, second] = timeInPath;
+  if (dateInPath) {
+    const [found, year, month, day, hour, minute, second] = dateInPath;
     dest.path = dest.path.replace(found, "");
+
     return new Date(
       parseInt(year),
       parseInt(month) - 1,
       parseInt(day),
-      parseInt(hour),
-      parseInt(minute),
-      parseInt(second),
+      hour && parseInt(hour),
+      minute && parseInt(minute),
+      second && parseInt(second),
     );
   }
 
