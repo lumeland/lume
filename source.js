@@ -323,7 +323,7 @@ function getDate(src, dest) {
   const fileName = basename(src.path);
 
   const dateInPath = fileName.match(
-    /^(\d{4})-(\d{2})-(\d{2})(?:-(\d{2})-(\d{2})(?:-(\d{2}))?)?_/,
+    /^(\d{4})-(\d\d)-(\d\d)(?:-(\d\d)-(\d\d)(?:-(\d\d))?)?_/,
   );
 
   if (dateInPath) {
@@ -334,9 +334,9 @@ function getDate(src, dest) {
       parseInt(year),
       parseInt(month) - 1,
       parseInt(day),
-      hour && parseInt(hour),
-      minute && parseInt(minute),
-      second && parseInt(second),
+      hour ? parseInt(hour) : 0,
+      minute ? parseInt(minute) : 0,
+      second ? parseInt(second) : 0,
     );
   }
 
