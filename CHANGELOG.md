@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.18.1] - 2021-04-26
+### Fixed
+- `Date` creation [#82]
+- Updated postcss and terser dependencies [#81]
+
 ## [0.18.0] - 2021-04-24
 ### Added
 - A second argument to `lume()` function to configure the default plugins [#45].
@@ -579,7 +584,10 @@ First version
 [#76]: https://github.com/oscarotero/lume/issues/76
 [#77]: https://github.com/oscarotero/lume/issues/77
 [#79]: https://github.com/oscarotero/lume/issues/79
+[#81]: https://github.com/oscarotero/lume/issues/81
+[#82]: https://github.com/oscarotero/lume/issues/82
 
+[0.18.1]: https://github.com/oscarotero/lume/compare/v0.18.0...v0.18.1
 [0.18.0]: https://github.com/oscarotero/lume/compare/v0.17.1...v0.18.0
 [0.17.1]: https://github.com/oscarotero/lume/compare/v0.17.0...v0.17.1
 [0.17.0]: https://github.com/oscarotero/lume/compare/v0.16.6...v0.17.0
