@@ -152,7 +152,7 @@ function compileCondition(key, operator, name, value) {
       case "*=":
         return `${name}.some((i) => page.${key}?.includes(i))`;
 
-      default: // < > <= >=
+      default: // < <= > >=
         return `${name}.some((i) => page.${key} ${operator} i)`;
     }
   }
@@ -173,7 +173,7 @@ function compileCondition(key, operator, name, value) {
     case "*=":
       return `page.${key}?.includes(${name})`;
 
-    default: // < > <= >=
+    default: // < <= > >=
       return `page.${key} ${operator} ${name}`;
   }
 }
@@ -201,7 +201,7 @@ function compileValue(value) {
   // yyyy-mm-ddThh:ii
   // yyyy-mm-ddThh:ii:ss
   const match = value.match(
-    /^(\d{4})-(\d{2})(?:-(\d{2}))?(?:T(\d{2})(?::(\d{2}))?(?::(\d{2}))?)?$/,
+    /^(\d{4})-(\d\d)(?:-(\d\d))?(?:T(\d\d)(?::(\d\d))?(?::(\d\d))?)?$/i,
   );
 
   if (match) {
@@ -210,10 +210,10 @@ function compileValue(value) {
     return new Date(
       parseInt(year),
       parseInt(month) - 1,
-      day && parseInt(day),
-      hour && parseInt(hour),
-      minute && parseInt(minute),
-      second && parseInt(second),
+      day ? parseInt(day) : 1,
+      hour ? parseInt(hour) : 0,
+      minute ? parseInt(minute) : 0,
+      second ? parseInt(second) : 0,
     );
   }
 
