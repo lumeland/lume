@@ -446,20 +446,18 @@ export default class Site {
    */
   #urlPage(page) {
     const { dest } = page;
-    let url = page.data.url || page.data.permalink;
+    let url = page.data.url;
+    let transform = true;
 
-    if (page.data.permalink) {
-      console.log(
-        `Deprecated 'permalink' value in ${page.src.path +
-          page.src.ext}. Use 'url' instead.`,
-      );
+    if (typeof url === "function") {
+      url = url(page);
     }
 
-    if (url) {
-      if (typeof url === "function") {
-        url = url(page);
-      }
-
+    if (typeof url === "object") {
+      dest.path = url.path || dest.path;
+      dest.ext = url.ext || "";
+      transform = false;
+    } else if (typeof url === "string") {
       const ext = extname(url);
       dest.ext = ext || ".html";
 
@@ -467,24 +465,25 @@ export default class Site {
       if (url.startsWith(".")) {
         url = posix.join(dirname(dest.path), url);
       }
-      dest.path = ext ? url.slice(0, -ext.length) : url;
 
-      if (!ext && this.options.prettyUrls) {
+      dest.path = ext ? url.slice(0, -ext.length) : url;
+    }
+
+    if (transform) {
+      if (this.options.slugifyUrls) {
+        dest.path = slugify(dest.path);
+      }
+
+      if (
+        this.options.prettyUrls && dest.ext === ".html" &&
+        posix.basename(dest.path) !== "index"
+      ) {
         dest.path = posix.join(dest.path, "index");
       }
-    } else if (
-      this.options.prettyUrls && dest.ext === ".html" &&
-      posix.basename(dest.path) !== "index"
-    ) {
-      dest.path = posix.join(dest.path, "index");
     }
 
     if (!dest.path.startsWith("/")) {
       dest.path = `/${dest.path}`;
-    }
-
-    if (this.options.slugifyUrls) {
-      dest.path = slugify(dest.path);
     }
 
     page.data.url =
