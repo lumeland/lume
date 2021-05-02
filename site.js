@@ -428,14 +428,17 @@ export default class Site {
       }
 
       // Preprocess the pages
-      for (const page of pages) {
-        for (const [ext, preprocessors] of this.preprocessors) {
-          if (ext === page.dest.ext) {
-            for (const preprocess of preprocessors) {
-              await preprocess(page, this);
+      for (const [ext, preprocessors] of this.preprocessors) {
+        await concurrent(
+          this.pages,
+          async (page) => {
+            if (ext === page.dest.ext) {
+              for (const preprocess of preprocessors) {
+                await preprocess(page, this);
+              }
             }
           }
-        }
+        );
       }
 
       // Render all pages
