@@ -14,7 +14,7 @@ export default class Jsx extends Module {
       });
     }
 
-    const element = await Promise.resolve(super.render(content, data));
+    const element = await super.render(content, data);
     data.children = element;
 
     return ReactDOMServer.renderToStaticMarkup(element);
