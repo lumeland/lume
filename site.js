@@ -586,6 +586,8 @@ export default class Site {
     if (result) {
       return result[1];
     }
+
+    throw new Error(`Couldn't find template engine for "${path}"`);
   }
 }
 
