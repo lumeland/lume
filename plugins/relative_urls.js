@@ -7,7 +7,7 @@ export default function () {
   return (site) => {
     site.process([".html"], processor);
 
-    async function processor(page) {
+    function processor(page) {
       const document = parser.parseFromString(page.content, "text/html");
       const from = posix.dirname(site.url(page.dest.path));
 
