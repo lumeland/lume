@@ -31,6 +31,7 @@ export default class Site {
   filters = new Map();
   extraData = {};
   listeners = new Map();
+  preprocessors = new Map();
   processors = new Map();
   pages = [];
 
@@ -141,6 +142,18 @@ export default class Site {
   loadAssets(extensions, loader) {
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
     extensions.forEach((extension) => this.source.assets.add(extension));
+    return this;
+  }
+
+  /**
+   * Register a processor for some extensions
+   */
+   preprocess(extensions, preprocessor) {
+    extensions.forEach((extension) => {
+      const preprocessors = this.preprocessors.get(extension) || [];
+      preprocessors.push(preprocessor);
+      this.preprocessors.set(extension, preprocessors);
+    });
     return this;
   }
 
@@ -411,6 +424,17 @@ export default class Site {
           this.#urlPage(newPage);
           pages.push(newPage);
           this.pages.push(newPage);
+        }
+      }
+
+      // Preprocess the pages
+      for (const page of pages) {
+        for (const [ext, preprocessors] of this.preprocessors) {
+          if (ext === page.dest.ext) {
+            for (const preprocess of preprocessors) {
+              await preprocess(page, this);
+            }
+          }
         }
       }
 
