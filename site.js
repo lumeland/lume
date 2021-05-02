@@ -460,13 +460,16 @@ export default class Site {
     } else if (typeof url === "string") {
       const ext = extname(url);
       dest.ext = ext || ".html";
-
-      // Relative url
-      if (url.startsWith(".")) {
-        url = posix.join(dirname(dest.path), url);
-      }
-
       dest.path = ext ? url.slice(0, -ext.length) : url;
+    }
+
+    // Relative url
+    if (!dest.path.startsWith("/")) {
+      if (dest.path.startsWith(".")) {
+        dest.path = posix.join(dirname(page.src.path), dest.path);
+      } else {
+        dest.path = `/${dest.path}`;
+      }
     }
 
     if (transform) {
@@ -480,10 +483,6 @@ export default class Site {
       ) {
         dest.path = posix.join(dest.path, "index");
       }
-    }
-
-    if (!dest.path.startsWith("/")) {
-      dest.path = `/${dest.path}`;
     }
 
     page.data.url =

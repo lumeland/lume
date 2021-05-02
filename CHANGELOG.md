@@ -12,6 +12,9 @@ project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 - `permalink` value in pages. Use `url`.
 
+### Fixed
+- Ignored files on update were not detected properly #88
+
 ## [0.18.1] - 2021-04-26
 ### Fixed
 - `Date` creation [#82]
