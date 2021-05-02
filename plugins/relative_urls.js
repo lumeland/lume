@@ -9,12 +9,10 @@ export default function () {
 
     async function processor(page) {
       const document = parser.parseFromString(page.content, "text/html");
-      const from = site.url(page.url);
+      const from = posix.dirname(site.url(page.dest.path));
 
       document
-        .querySelectorAll(
-          "audio,embed,iframe,img,input,script,source,track,video",
-        )
+        .querySelectorAll("[src]")
         .forEach((element) => {
           if (element.hasAttribute("src")) {
             element.setAttribute(
@@ -25,7 +23,7 @@ export default function () {
         });
 
       document
-        .querySelectorAll("a,area,link")
+        .querySelectorAll("[href]")
         .forEach((element) => {
           if (element.hasAttribute("href")) {
             element.setAttribute(
@@ -55,7 +53,8 @@ function relativeUrl(from, to) {
 }
 
 function ignore(url) {
-  return url.startsWith("./") ||
+  return !url ||
+    url.startsWith("./") ||
     url.startsWith("../") ||
     url.startsWith("#") ||
     url.startsWith("?") ||
