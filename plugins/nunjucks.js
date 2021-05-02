@@ -10,7 +10,7 @@ export default function (userOptions) {
   const options = merge(defaults, userOptions);
 
   return (site) => {
-    const nunjucksEngine = new NunjucksEngine(site);
+    const nunjucksEngine = new NunjucksEngine(site, userOptions);
 
     site.engine(options.extensions, nunjucksEngine);
     site.filter("njk", filter, true);
