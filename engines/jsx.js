@@ -7,14 +7,14 @@ if (!globalThis.React) {
 import Module from "./module.js";
 
 export default class Jsx extends Module {
-  render(content, data) {
+  async render(content, data) {
     if (!data.children && data.content) {
       data.children = React.createElement("div", {
         dangerouslySetInnerHTML: { __html: data.content },
       });
     }
 
-    const element = super.render(content, data);
+    const element = await super.render(content, data);
     data.children = element;
 
     return ReactDOMServer.renderToStaticMarkup(element);
