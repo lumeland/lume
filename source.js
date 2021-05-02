@@ -88,7 +88,7 @@ export default class Source {
    */
   isIgnored(path) {
     for (const pattern of this.ignored) {
-      if (path.startsWith(pattern)) {
+      if (pattern === path || path.startsWith(`${pattern}/`)) {
         return true;
       }
     }
