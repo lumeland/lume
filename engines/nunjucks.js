@@ -4,11 +4,11 @@ import TemplateEngine from "./template_engine.js";
 export default class Denjucks extends TemplateEngine {
   cache = new Map();
 
-  constructor(site, options = {}) {
+  constructor(site, options) {
     super(site, options);
 
     const loader = new nunjucks.FileSystemLoader(this.includes);
-    this.engine = new nunjucks.Environment(loader);
+    this.engine = new nunjucks.Environment(loader, options);
 
     // Update cache
     site.addEventListener("beforeUpdate", (ev) => {
