@@ -1,7 +1,7 @@
 import { extname, posix, resolve } from "../deps/path.js";
 import { DOMParser } from "../deps/dom.js";
 import { encode } from "../deps/base64.js";
-import { mimes } from "../utils.js";
+import { documentToString, mimes } from "../utils.js";
 
 const cache = new Map();
 
@@ -27,7 +27,7 @@ export default function () {
           element.removeAttribute("inline");
         }
 
-        page.content = document.documentElement.outerHTML;
+        page.content = documentToString(document);
       }
     }
 

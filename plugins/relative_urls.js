@@ -1,5 +1,6 @@
 import { posix } from "../deps/path.js";
 import { DOMParser } from "../deps/dom.js";
+import { documentToString } from "../utils.js";
 
 export default function () {
   const parser = new DOMParser();
@@ -35,7 +36,7 @@ export default function () {
           }
         });
 
-      page.content = document.documentElement.outerHTML;
+      page.content = documentToString(document);
     }
   };
 }

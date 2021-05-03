@@ -105,3 +105,13 @@ export function searchByExtension(path, extensions) {
     }
   }
 }
+
+export function documentToString(document) {
+  const doctype = document.childNodes[0];
+
+  return `<!DOCTYPE ${doctype.name}` +
+    (doctype.publicId ? ` PUBLIC "${doctype.publicId}"` : "") +
+    (!doctype.publicId && doctype.systemId ? " SYSTEM" : "") +
+    (doctype.systemId ? ` "${doctype.systemId}"` : "") +
+    `>\n${document.documentElement.outerHTML}`;
+}
