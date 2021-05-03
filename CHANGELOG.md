@@ -10,6 +10,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 - Support objects for `url` to customize the output filename [#83]
 - New plugin `relative_urls` to convert all urls to relative [#85]
 - Implemented preprocessors (like processors, but before render) [#91]
+- Allow to set options to Nunjucks template engine plugin [#90]
 
 ### Removed
 - `permalink` value in pages. Use `url`.
@@ -18,6 +19,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 - Ignored files on update were not detected properly [#88].
 - Throw error when it can't find a proper template engine [#87].
 - Missing doctype after DOM manipulation.
+- `njk` filter doesn't work with async filters [#93].
 
 ## [0.18.1] - 2021-04-26
 ### Fixed
@@ -604,7 +606,9 @@ First version
 [#85]: https://github.com/oscarotero/lume/issues/85
 [#87]: https://github.com/oscarotero/lume/issues/87
 [#88]: https://github.com/oscarotero/lume/issues/88
+[#90]: https://github.com/oscarotero/lume/issues/90
 [#91]: https://github.com/oscarotero/lume/issues/91
+[#93]: https://github.com/oscarotero/lume/issues/93
 
 [0.19.0]: https://github.com/oscarotero/lume/compare/v0.18.1...HEAD
 [0.18.1]: https://github.com/oscarotero/lume/compare/v0.18.0...v0.18.1
