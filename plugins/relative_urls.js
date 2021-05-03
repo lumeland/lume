@@ -7,6 +7,8 @@ export default function () {
   return (site) => {
     site.process([".html"], processor);
 
+    const basePath = site.config.location.pathname;
+
     function processor(page) {
       const document = parser.parseFromString(page.content, "text/html");
       const from = posix.dirname(site.url(page.dest.path));
@@ -17,7 +19,7 @@ export default function () {
           if (element.hasAttribute("src")) {
             element.setAttribute(
               "src",
-              relativeUrl(from, element.getAttribute("src")),
+              relativeUrl(basePath, from, element.getAttribute("src")),
             );
           }
         });
@@ -28,7 +30,7 @@ export default function () {
           if (element.hasAttribute("href")) {
             element.setAttribute(
               "href",
-              relativeUrl(from, element.getAttribute("href")),
+              relativeUrl(basePath, from, element.getAttribute("href")),
             );
           }
         });
@@ -38,9 +40,13 @@ export default function () {
   };
 }
 
-function relativeUrl(from, to) {
+function relativeUrl(basePath, from, to) {
   if (ignore(to)) {
     return to;
+  }
+
+  if (!to.startsWith(basePath)) {
+    to = posix.join(basePath, to);
   }
 
   const relative = posix.relative(from, to);
