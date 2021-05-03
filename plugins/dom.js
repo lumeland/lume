@@ -1,5 +1,5 @@
 import { DOMParser } from "../deps/dom.js";
-import { merge } from "../utils.js";
+import { documentToString, merge } from "../utils.js";
 
 // Default options
 const defaults = {
@@ -17,7 +17,7 @@ export default function (userOptions) {
     function processor(page) {
       const document = parser.parseFromString(page.content, "text/html");
       options.fn(document, page);
-      page.content = document.documentElement.outerHTML;
+      page.content = documentToString(document);
     }
   };
 }
