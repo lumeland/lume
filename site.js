@@ -146,9 +146,9 @@ export default class Site {
   }
 
   /**
-   * Register a processor for some extensions
+   * Register a preprocessor for some extensions
    */
-   preprocess(extensions, preprocessor) {
+  preprocess(extensions, preprocessor) {
     extensions.forEach((extension) => {
       const preprocessors = this.preprocessors.get(extension) || [];
       preprocessors.push(preprocessor);
@@ -437,7 +437,7 @@ export default class Site {
                 await preprocess(page, this);
               }
             }
-          }
+          },
         );
       }
 

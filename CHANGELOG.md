@@ -8,12 +8,14 @@ project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.19.0] - Unreleased
 ### Added
 - Support objects for `url` to customize the output filename [#83]
+- New plugin `relative_urls` to convert all urls to relative [#85]
+- Implemented preprocessors (like processors, but before render) [#91]
 
 ### Removed
 - `permalink` value in pages. Use `url`.
 
 ### Fixed
-- Ignored files on update were not detected properly #88
+- Ignored files on update were not detected properly [#88]
 
 ## [0.18.1] - 2021-04-26
 ### Fixed
@@ -597,6 +599,9 @@ First version
 [#81]: https://github.com/oscarotero/lume/issues/81
 [#82]: https://github.com/oscarotero/lume/issues/82
 [#83]: https://github.com/oscarotero/lume/issues/83
+[#85]: https://github.com/oscarotero/lume/issues/85
+[#88]: https://github.com/oscarotero/lume/issues/88
+[#91]: https://github.com/oscarotero/lume/issues/91
 
 [0.19.0]: https://github.com/oscarotero/lume/compare/v0.18.1...HEAD
 [0.18.1]: https://github.com/oscarotero/lume/compare/v0.18.0...v0.18.1
