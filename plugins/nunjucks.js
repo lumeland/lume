@@ -13,10 +13,18 @@ export default function (userOptions) {
     const nunjucksEngine = new NunjucksEngine(site);
 
     site.engine(options.extensions, nunjucksEngine);
-    site.filter("njk", filter);
+    site.filter("njk", filter, true);
 
     function filter(string, data = {}) {
-      return nunjucksEngine.engine.renderString(string, data);
+      return new Promise((resolve, reject) => {
+        nunjucksEngine.engine.renderString(string, data, (err, result) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(result);
+          }
+        });
+      });
     }
   };
 }
