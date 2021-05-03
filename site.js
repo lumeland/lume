@@ -485,9 +485,8 @@ export default class Site {
       dest.ext = url.ext || "";
       transform = false;
     } else if (typeof url === "string") {
-      const ext = extname(url);
-      dest.ext = ext || ".html";
-      dest.path = ext ? url.slice(0, -ext.length) : url;
+      dest.ext = extname(url);
+      dest.path = dest.ext ? url.slice(0, -dest.ext.length) : url;
     }
 
     // Relative url
@@ -499,16 +498,17 @@ export default class Site {
       }
     }
 
+    // Transform (prettyUrls, slugifyUrls)
     if (transform) {
       if (this.options.slugifyUrls) {
         dest.path = slugify(dest.path);
       }
 
-      if (
-        this.options.prettyUrls && dest.ext === ".html" &&
-        posix.basename(dest.path) !== "index"
-      ) {
-        dest.path = posix.join(dest.path, "index");
+      if (!dest.ext) {
+        if (this.options.prettyUrls && posix.basename(dest.path) !== "index") {
+          dest.path = posix.join(dest.path, "index");
+        }
+        dest.ext = ".html";
       }
     }
 

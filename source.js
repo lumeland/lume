@@ -209,16 +209,15 @@ export default class Source {
 
     const dest = {
       path: normalizePath(src.path),
-      ext,
     };
 
     const subext = extname(src.path);
 
-    if (subext && !this.assets.has(ext)) {
+    if (this.assets.has(ext)) {
+      dest.ext = ext;
+    } else if (subext) {
       dest.path = dest.path.slice(0, -subext.length);
       dest.ext = subext;
-    } else if (!this.assets.has(ext)) {
-      dest.ext = ".html";
     }
 
     const data = await load(fullPath, this);

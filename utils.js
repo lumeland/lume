@@ -98,7 +98,7 @@ export function slugify(string) {
   return string.toLowerCase()
     .normalize("NFKD")
     .replaceAll(/[\s_-]+/g, "-")
-    .replaceAll(/[^\w\/-]/g, (char) => slugChars.get(char) || "");
+    .replaceAll(/[^\w\/\.-]/g, (char) => slugChars.get(char) || "");
 }
 
 export function searchByExtension(path, extensions) {

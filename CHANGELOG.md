@@ -20,6 +20,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 - Throw error when it can't find a proper template engine [#87].
 - Missing doctype after DOM manipulation.
 - `njk` filter doesn't work with async filters [#93].
+- Fixed support for subextensions (like `page.html.md`) [#83].
 
 ## [0.18.1] - 2021-04-26
 ### Fixed
