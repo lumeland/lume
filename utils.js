@@ -88,7 +88,10 @@ export function normalizePath(path) {
 
 export const slugChars = new Map([
   ["ð", "d"],
+  ["ø", "o"],
   ["ß", "ss"],
+  ["æ", "ae"],
+  ["œ", "oe"],
 ]);
 
 export function slugify(string) {
