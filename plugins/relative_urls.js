@@ -7,7 +7,7 @@ export default function () {
   return (site) => {
     site.process([".html"], processor);
 
-    const basePath = site.config.location.pathname;
+    const basePath = site.options.location.pathname;
 
     function processor(page) {
       const document = parser.parseFromString(page.content, "text/html");
