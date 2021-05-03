@@ -4,13 +4,14 @@ import { merge } from "../utils.js";
 // Default options
 const defaults = {
   extensions: [".njk", ".html"],
+  options: {},
 };
 
 export default function (userOptions) {
   const options = merge(defaults, userOptions);
 
   return (site) => {
-    const nunjucksEngine = new NunjucksEngine(site, userOptions);
+    const nunjucksEngine = new NunjucksEngine(site, options.options);
 
     site.engine(options.extensions, nunjucksEngine);
     site.filter("njk", filter, true);
