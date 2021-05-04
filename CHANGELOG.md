@@ -2,561 +2,584 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
-project adheres to [Semantic Versioning](http://semver.org/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/),
+and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.19.0] - Unreleased
 ### Added
-- Support objects for `url` to customize the output filename [#83]
-- New plugin `relative_urls` to convert all urls to relative [#85]
-- Implemented preprocessors (like processors, but before render) [#91]
-- Allow to set options to Nunjucks template engine plugin [#90]
+- The `url` page variable supports an object with a `path` property
+  to fully customize the output filename. [#83]
+- New plugin `relative_urls` to convert all URLs to relative. [#85]
+- Preprocessors (like processors, but are executed before rendering). [#91]
+- Allowed setting options for the Nunjucks plugin. [#90]
 
 ### Removed
-- `permalink` value in pages. Use `url`.
+- The `permalink` variable in pages. Use `url` instead.
 
 ### Fixed
-- Ignored files on update were not detected properly [#88].
-- Throw error when it can't find a proper template engine [#87].
+- Ignored files on server update weren’t detected properly. [#88]
+- Throw an error when a proper template engine can’t be found. [#87]
 - Missing doctype after DOM manipulation.
-- `njk` filter doesn't work with async filters [#93].
-- Fixed support for subextensions (like `page.html.md`) [#83].
+- The `njk` filter didn’t work with async filters. [#93]
+- Fixed support for subextensions (like `page.html.md`). [#83]
 
 ## [0.18.1] - 2021-04-26
 ### Fixed
-- `Date` creation [#82]
-- Updated postcss and terser dependencies [#81]
+- Creation of `Date` values. [#82]
+- Updated the `postcss` and `terser` dependencies. [#81]
 
 ## [0.18.0] - 2021-04-24
 ### Added
-- A second argument to `lume()` function to configure the default plugins [#45].
-- Support for more image formats in server live reload [#67]
+- A second argument for the `lume()` function
+  to configure the default plugins [#45].
+- Support for more file formats on local server. [#67]
 
 ### Changed
-- API changes in `search` helper [#69]:
-  - `~=` renamed to `*=`.
-  - Added `<`, `>`, `<=` and `>=` operators.
-  - Allows to use `OR` operator with pipes. For example: `tag1|tag2` or `title=value1|value2`.
+- API for the `search` helper: [#69]
+  - Replaced the operator `~=` with `*=`.
+  - Added the `<`, `<=`, `>` and `>=` operators.
+  - Allowed using the `OR` operator with pipes,
+    like `tag1|tag2` or `title=value1|value2`.
   - Added support for numeric values.
   - Added support for date and datetime values.
-- Use `Z` instead of `+00:00` in `date("ATOM")` filter [#64]
-- Removed `hljs` class from blocks of unhighlighted code [#71]
-- Datetime values in filenames can omit the seconds. For example `2021-04-24-18-00_post.md`.
+- The `date("ATOM")` filter uses `Z` instead of `+00:00`. [#64]
+- Removed the `hljs` class from the blocks of unhighlighted code. [#71]
+- Datetime values in filenames can omit the seconds,
+  like in `2021-04-24-18-00_post.md`.
 
 ### Fixed
-- User options are overrided by default options in markdown plugin.
-- Changed some file names to align with Deno style guide [#73]
-- Updated deps [#63], [#70], [#72], [#76], [#79]
-- Improved CLI help output [#77]
+- User options are overridden by default options in the Markdown plugin.
+- Changed some filenames to align with the Deno style guide. [#73]
+- Updated dependencies. [#63], [#70], [#72], [#76], [#79]
+- Improved the CLI help output. [#77]
 
 ## [0.17.1] - 2021-04-14
 ### Added
-- New option `-o | --open` to open a browser automatically on serve [#62].
+- New option `-o`/`--open` to open the browser automatically
+  when running `lume --serve`. [#62]
 
 ### Removed
-- The extensions `.html.js` and `.html.ts` introduced in 0.17.0. The reason is it can be confused due not all files must generate html pages, so `.tmpl.js` / `.tmpl.ts` is more agnostic and fit all cases.
+- The extensions `.html.js` and `.html.ts` introduced in 0.17.0.
+  They can be confusing because not all templates must generate HTML pages,
+  so `.tmpl.js`/`.tmpl.ts` are more agnostic and fit all cases.
 
 ### Fixed
-- Updated `postcss` version to fix a bug related with source maps.
-- Updated `postcss_import` version to fix a bug related with `@charset` at-rule.
+- Updated the `postcss` version to fix source maps.
+- Updated the `postcss_import` version to fix the `@charset` at-rule.
 
 ## [0.17.0] - 2021-04-11
 ### Added
-- Show the local IP address on serve [#55]
-- Allow empty front matter [#54]
-- The extensions `.html.js` and `.html.ts` are processed as pages (in order to replace to `.tmpl.js` and `.tmpl.ts` that will be removed in the future).
-- Added ability to change sort direction in `search` [#57]
+- The local IP address is shown on `lume --serve`. [#55]
+- Allowed an empty front matter. [#54]
+- The extensions `.html.js` and `.html.ts` are processed as pages
+  (in order to replace to `.tmpl.js` and `.tmpl.ts`
+  that will be removed in the future).
+- Added ability to change the sort direction in `search`. [#57]
 
 ### Changed
-- Deprecated `permalink` variable. Use `url` instead [#46]
-- Removed `permalink` variable in `paginate` helper that use sprintf. Now it accepts only the `url` option that must be a function.
+- Deprecated the `permalink` page variable. Use `url` instead. [#46]
+- Removed the `permalink` variable in the `paginate` helper that uses `sprintf`.
+  Now it accepts only the `url` option that must be a function.
 
 ### Fixed
-- Improved slugifier including a better support for unicode [#50], [#56]
-- Update mime types used in the server [#51]
-- Updated some dependencies [#59]
+- Improved the slugifier, including a better support for Unicode. [#50], [#56]
+- Update the MIME types used by the server. [#51]
+- Updated some dependencies. [#59]
 
 ## [0.16.6] - 2021-04-04
 ### Added
-- New option `slugifyUrls` to disable slugifier introduced in 0.16.0 [#44].
+- New option `slugifyUrls` to disable the slugifier introduced in 0.16.0. [#44]
 
 ## [0.16.5] - 2021-03-29
 ### Fixed
-- Undo the change "only rebuild the site if it's needed" due regression issues.
+- Undo the change `only rebuild the site if it's needed`
+  due to regression issues.
 
 ## [0.16.4] - 2021-03-28
 ### Added
 - Allow to define a function as a `permalink` to generate it dynamically.
-- The `permalink` value can be a relative path (must starts with `./` or `../`), that will be resolved to the directory name.
-- The `url` filter allows urls starting with `~` to reference to source files that will be automatically resolved to the final url.
+- The `permalink` value can have a relative path
+  (must start with `./` or `../`) that will be resolved to the directory name.
+- The `url` filter allows URLs starting with `~` to reference to source files
+  that will be automatically resolved to the final URL.
 
 ### Fixed
-- On reload files in `lume --serve`, some ignored files were not correctly filtered.
-- Improved `lume --serve`: only rebuild the site if it's needed.
-- Several changes for windows compatibility
+- When reloading files on `lume --serve`,
+  some ignored files weren’t correctly filtered.
+- Improved `lume --serve` to only rebuild the site if it’s needed.
+- Several changes for Windows compatibility.
 
 ## [0.16.3] - 2021-03-21
 ### Fixed
-- SVGO dependency fails SVG plugin [#43]
+- The SVG plugin was failed by the SVGO dependency. [#43]
 
 ## [0.16.2] - 2021-03-20
 ### Added
-- New (experimental and unstable) plugin `image` to resize images automatically.
+- New, experimental plugin `image` to resize images automatically.
 
 ### Fixed
-- On merge options, arrays are converted to objects.
+- On merge options, arrays were converted to objects.
 
 ## [0.16.1] - 2021-03-14
 ### Fixed
-- Version number
+- The version number.
 
 ## [0.16.0] - 2021-03-14
 ### Added
-- New variable `renderOrder` to control the rendering order of the pages.
-- New cli alias `-s` for `--serve`.
+- New page variable `renderOrder` to control the rendering order of the pages.
+- New CLI alias `-s` for `--serve`.
 
 ### Changed
-- Apply a slugifier to the path of all generated pages, to replace tildes and other conflictive characters and convert them to lowercase.
-- Changed the way to generate multiple pages for more flexibility
+- Slugify the paths of all generated pages
+  to replace tildes and other conflictive characters
+  and to convert them to lowercase.
+- Changed the way to generate multiple pages for more flexibility.
 
 ### Fixed
-- Ensure autogenerated pages aren't saved if they don't change (in `--serve`).
+- Ensure autogenerated pages aren’t saved if they don’t change (on `--serve`).
 
 ## [0.15.4] - 2021-03-08
 ### Added
-- The `date` plugin accepts strings or integer arguments (they will be converted to `Date` with `new Date(value)` constructor).
+- The `date` plugin accepts strings or integer arguments
+  (they will be converted to a `Date` with the `new Date(value)` constructor).
 
 ### Fixed
-- Updated dependencies
+- Updated dependencies.
 
 ## [0.15.3] - 2021-03-06
 ### Fixed
-- Some issues related with paths in Windows [#41]
+- Some issues with paths on Windows. [#41]
 
 ## [0.15.2] - 2021-02-22
 ### Fixed
-- Version number
+- The version number.
 
 ## [0.15.1] - 2021-02-21
 ### Added
-- Added a second argument to the default exported function of `cli.js` to set a site directly.
+- Added a second argument for the default exported function of `cli.js`
+  to set a site directly.
 
 ### Fixed
-- Pug templates loaded with `extends` were cached indefinitely [#39].
-- Allow relative paths in `--root` option.
+- Pug templates loaded with `extends` were cached indefinitely. [#39]
+- Allow relative paths in the `--root` CLI argument.
 
 ## [0.15.0] - 2021-02-05
 ### Added
 - New advanced search features:
-  - You can filter by any field at any level. For example
-    `search.pages("header.categories=my-category")`
-  - You can sort by any field at any level. For example
-    `search.pages("header.categories=my-category", "my.custom.order.field")`
-  - New method `search.data()` to return the data assigned to any page or
-    directory.
+  - You can filter by any field at any level, for example
+    `search.pages("header.categories=my-category")`.
+  - You can sort by any field at any level, for example
+    `search.pages("header.categories=my-category", "my.custom.order.field")`.
+  - New method `search.data()`
+    to return the data assigned to any page or directory.
 
 ### Changed
 - Restore the ability to return the proper exit code on `lume --run`.
 - Show more info on error.
-- Removed the argument to ignore tags in `search.tags()`. Replaced by a filter like in `search.pages()`
+- Removed the parameter to ignore tags in `search.tags()`.
+  Replaced with a filter like the one in `search.pages()`.
 
 ### Removed
-- The method `search.directory()` to return a directory instance. Use
-  `search.data()`.
-- The option `file` to sort results in `search.pages()`. Use `url` instead.
+- The method `search.directory()` to return a directory instance.
+  Use `search.data()`.
+- The option `file` to sort the results of `search.pages()`. Use `url` instead.
 
 ### Fixed
-- Cache is not correctly refreshed when using different versions of plugins
-  [#35]
-- Updated dependencies
-- Ensure the processors are executed in the same order they where declared
-- `inline` plugin when the site location is in a subdirectory.
+- Cache wasn’t correctly refreshed
+  when using different versions of plugins. [#35]
+- Updated dependencies.
+- Ensure the processors are executed in the same order they where defined.
+- The `inline` plugin when the site is located in a subdirectory.
 
 ## [0.14.0] - 2021-02-02
 ### Changed
-- API changes in the `Page` class:
-  - Tags are stored as `Array` in `page.data.tags` (previously they are a `Set`
-    in `page.tags`).
-  - Removed `page.fullData` property, `page.data` contains the merged data.
-- CLI changes [#33], [#34]:
-  - Moved some options (arguments starting with `--`) to commands:
+- API for the `Page` class:
+  - Tags are stored as an array in `page.data.tags`
+    (they were previously contained by a `Set` in `page.tags`).
+  - Removed the `page.fullData` property. `page.data` contains the merged data.
+- CLI: [#33], [#34]
+  - Switched some options (arguments starting with `--`) to commands:
     - `lume --upgrade` to `lume upgrade`
     - `lume --update` to `lume update`
     - `lume --init` to `lume init`
-    - `lume --run=<script>` to `lume run <script>`
-  - Added command specific help info. For example: `lume run --help`
-  - Changed the way to specify a different cwd. Instead `lume path/to/site`, use
-    `lume --root=path/to/site`
+    - `lume --run=<script>` to `lume run <script>`.
+  - Added command-specific help output. For example, `lume run --help`.
+  - Changed the way to specify a different `cwd`:
+    instead of `lume path/to/site`, use `lume --root=path/to/site`.
 
 ### Fixed
-- Link to docs in `--help` [#32]
+- Link to the docs in `--help`. [#32]
 
 ## [0.13.2] - 2021-01-23
 ### Fixed
-- Wrong default configuration in yaml plugin
+- The incorrect default configuration for YAML plugin.
 
 ## [0.13.1] - 2021-01-23
 ### Fixed
-- Bug makes that postcss plugin doesn't process the css files
+- PostCSS plugins didn’t process CSS files.
 
 ## [0.13.0] - 2021-01-20
 ### Added
-- Normalize options across some plugins
+- Normalize options across some plugins.
 
 ### Changed
-- Minimum required Deno version is `1.7.0`
-- Temporary, `lume --run` doesn't return the proper exit code until
-  [this bug in Deno](https://github.com/denoland/deno/issues/9201) is resolved
+- The minimum required Deno version to `1.7.0`.
+- Temporarily, `lume --run` doesn’t return the proper exit code until
+  [a bug in Deno](https://github.com/denoland/deno/issues/9201) is resolved.
 
 ## [0.12.1] - 2021-01-16
 ### Added
-- New command `lume --update` to update the lume version used by any
-  `_config.js` file to the same installed globally in cli.
+- New command `lume --update` to update the Lume version
+  used by any `_config.js` file to the same installed globally in CLI.
 
 ### Fixed
-- Cache in `search` helper that returns the original array instead a clone, so
-  it can be modified outside.
-- Uncaught exception in the built-in server due a Broken Pipe
+- The cache in the `search` helper to return the original array instead a clone,
+  so it can be modified outside.
+- The uncaught exception in the built-in server due to a broken pipe.
 
 ## [0.12.0] - 2021-01-15
 ### Added
-- New filter `njk` registered by the `nunjucks` plugin
-- Moved `url` filter to a plugin that also created an additional filter
-  `htmlUrl` to search and fix urls in html code
-- New plugin `date` to manage date and time values using the library
-  [date-fns](https://date-fns.org)
-- The order option of `search.pages()` accepts any value key (in addition to
-  `date` and `file`)
+- New filter `njk` registered by the `nunjucks` plugin.
+- Moved the `url` filter to a plugin that also creates
+  an additional filter `htmlUrl` to search and fix URLs in HTML code.
+- New plugin `date` to format date and time values using the library
+  [date-fns](https://date-fns.org).
+- The sorting parameter of `search.pages()` accepts any key
+  (in addition to `date` and `file`).
 
 ### Changed
-- Moved `attributes` and `classname` to the new `attributes` plugin and enable
-  it by default.
+- Moved `attributes` and `classname` to the new `attributes` plugin
+  that’s enabled by default.
 
 ### Fixed
-- Url filter with `null` values
+- The `url` filter with `null` values.
 - Improved performance of `search.pages()` by implementing a cache system.
-- Improved performance of data and tags merging by implementing a cache system.
+- Improved performance of merging data and tags by implementing a cache system.
 
 ## [0.11.0] - 2021-01-12
 ### Added
-- New plugin `inline`
-- New plugin `terser` [#29], [#30]
+- New plugin `inline`.
+- New plugin `terser`. [#29], [#30]
 
 ### Changed
-- Renamed the plugin `css` to `postcss` and some of its options:
-  - `map` was renamed to `sourceMap`
-  - `postcssPlugins` was renamed to `plugins`
+- Renamed the plugin `css` to `postcss` and renamed some of its options:
+  - `map` to `sourceMap`
+  - `postcssPlugins` to `plugins`.
 
 ### Fixed
-- Some files (like layouts) were loaded multiple times. Implemented a cache
-  system to ensure that every file is read only once.
+- Some files (like layouts) were loaded multiple times.
+  Implemented a cache system to ensure that every file is read only once.
 
 ## [0.10.8] - 2021-01-03
 ### Fixed
-- Sometimes, live reload doesn't reload the page, even if the changes are sent
-  to the browser. [#20]
+- Sometimes, the live reload didn’t reload the page,
+  even if the changes were sent to the browser. [#20]
 
 ## [0.10.7] - 2021-01-02
 ### Added
-- Support for async filters [#22]
-- The events `beforeUpdate` and `afterUpdate` have the property `files` with the
-  names of all changed files.
-- Allow to configure the css plugins with the following options
-  - `postcssPlugins`: array with the PostCSS plugins [#26]
-  - `map`: set `true` to generate source map
-- Ability to add/remove dynamically pages from processors
+- Support for async filters. [#22]
+- The events `beforeUpdate` and `afterUpdate` got a property `files`
+  with the names of all changed files.
+- Allow configuring the CSS plugin with the following options:
+  - `postcssPlugins`: an array of the PostCSS plugins [#26]
+  - `map`: set `true` to generate source maps.
+- Ability to dynamically add or remove pages from processors.
 
 ### Fixed
-- Websocket sends update messages twice
-- `paginate` helper doesn't return always the latest page
-- Dispatch events that contains scripts should return false if the script fails
+- WebSocket sent update messages twice.
+- The `paginate` helper didn’t always return the latest page.
+- Dispatching events that contain scripts
+  should return `false` if the script fails.
 
 ## [0.10.6] - 2020-12-27
 ### Fixed
-- Multipage generation workflow
-- Websocket random errors on reload changes
+- The multipage generation workflow.
+- The random WebSocket errors on reloading changes.
 
 ## [0.10.5] - 2020-12-25
 ### Fixed
-- Unknown option `--location`
+- The `--location` option being unknown.
 
 ## [0.10.4] - 2020-12-24
 ### Fixed
-- Ensure page tags are always converted to strings
-- The template cache is not always updated
+- Ensure that page tags are always converted to strings.
+- The template cache wasn’t always updated.
 
 ## [0.10.3] - 2020-12-21
 ### Fixed
-- TypeError in the server reload script
-- Removed extra space on parse the frontmatter
-- Improved `Pug` plugin. Fixed Typescript errors due conflicts with Eta [#18],
-  added cache for the compiled templates and improved filters.
-- Added hot reloading for modules (ts, js) and fixed some issues.
-- Undocumented `data` filter is disabled by default.
+- The `TypeError` on reloading the server.
+- Removed extra whitespace when parsing the front matter.
+- Improved the Pug plugin.
+- The TypeScript errors due to conflicts with Eta. [#18]
+- Added cache for the compiled templates.
+- Improved filters.
+- Added hot reloading for modules (`.ts`, `.js`) and fixed some issues.
+- The undocumented `data` filter is disabled by default.
 
 ## [0.10.2] - 2020-12-17
 ### Fixed
-- Do not add `.html` extension to files with a subextension. For example
-  `scripts.js.njk` should be saved to `scripts.js` instead `scripts.js.html`
-  [#13].
-- Refresh Deno cache with `lume --upgrade`
+- Don’t add the `.html` extension to files with a subextension.
+  For example `scripts.js.njk` should be saved as `scripts.js`
+  instead of `scripts.js.html`. [#13]
+- Refresh the Deno cache with `lume --upgrade`.
 
 ## [0.10.1] - 2020-12-16
 ### Fixed
-- Markdown error handling `<pre>` elements
+- The error on handling `<pre>` elements in Markdown.
 
 ## [0.10.0] - 2020-12-16
 ### Added
-- New plugin to use `Pug` as a template engine [#10]
-- New functions `search.previousPage()` and `search.nextPage()`
-- Support for definition lists (`<dl>`) in markdown
-- Improved default `404` error page. Now it displays a list of files and
-  subfolders
-- New option `templateEngine` to configure the template engine used for every
-  page [#11]
+- New plugin to use Pug as a template engine. [#10]
+- New functions `search.previousPage()` and `search.nextPage()`.
+- Support for definition lists (`<dl>`) in Markdown.
+- Improved the default `404` error page.
+  Now it displays a list of files and subdirectories.
+- New option `templateEngine` to configure the template engine
+  used for every page. [#11]
 
 ### Fixed
-- Live reload didn't work always with html
-- HTTP server timeout on missing `/index.html`
-- Nunjucks cache doesn't detect changes in included templates
-- Fixed version display on upgrade [#9]
-- `url` filter in markdown
-- `url` filter handling hashes and queries (for example `#hashid` and
-  `?query=value`)
+- Live reload didn’t always work with HTML.
+- HTTP server timeout on missing `/index.html`.
+- Nunjucks cache didn’t detect the changes to included templates.
+- Showing the version on upgrade. [#9]
+- `url` filter in Markdown.
+- `url` filter to handle hashes and queries
+  (such as `#hashid` and `?query=value`)
 
 ## [0.9.12] - 2020-12-07
 ### Fixed
-- css plugin use only import and nesting plugins because the other plugins fails
-  in Deno.
+- The `css` plugin uses only the `postcss-import` and `postcss-nesting` plugins
+  because the others fail on Deno.
 
 ## [0.9.11] - 2020-12-06
 ### Fixed
-- Fixed `lume --upgrade` error
+- The `lume --upgrade` error.
 
 ## [0.9.10] - 2020-12-06
 ### Fixed
-- Updated dependencies
+- Updated dependencies.
 
 ## [0.9.9] - 2020-12-01
 ### Fixed
-- Asyncronous scripts runner: Don't exit before all promises are resolved [#7].
-- Improved `--upgrade` command.
+- Async script runner no longer exits before all promises are resolved. [#7]
+- Improved the `--upgrade` command.
 
 ## [0.9.8] - 2020-12-01
 ### Fixed
-- Removed failing dependency
+- Removed a failing dependency.
 
 ## [0.9.7] - 2020-12-01
 ### Added
-- Support for executing javascript functions in `deno.script()` instead only cli
-  command
-- New cli arguments `--src`, `--dest` to change dinamically the src and dest
-  options.
-- New property `site.flags` that save all arguments after `--`. For example:
-  `lume --serve -- flag1 flag2`.
+- Support for executing JavaScript functions with `lume.script()`
+  along with CLI commands.
+- New CLI arguments `--src` and `--dest` to override the corresponding options.
+- New property `site.flags` that saves all arguments after double dash,
+  like the ones in `lume --serve -- flag1 flag2`.
 
 ### Fixed
-- Fixed multi-commands scripts in linux [#7]
-- Replaced `dev.jspm.io` dependencies with `jspm.dev`.
-- Replaced `denopkg.com` dependencies with `cdn.jsdelivr.net` [#8].
-- Updated `highlight.js` to 10.x
+- Fixed multi-command scripts in Linux. [#7]
+- Replaced `dev.jspm.io` with `jspm.dev` for dependencies.
+- Replaced `denopkg.com` with `cdn.jsdelivr.net` for dependencies. [#8]
+- Updated `highlight.js` to `10.x`.
 
 ## [0.9.6] - 2020-11-28
 ### Fixed
-- Fixed multipage with generators and add support for async generators
-- Updated dependencies
-- Simplify the code generated by `lume --init`
-- Fixed multi-commands with `&&` and `&` [#7]
+- Creating multiple pages with generators.
+- Updated dependencies.
+- Simplify the code generated by `lume --init`.
+- Multiple commands joined with `&&` and `&`. [#7]
 
 ## [0.9.5] - 2020-11-25
 ### Added
-- Predefined values to `attr` filter.
-- New option `server` to configure the local server: `port` and `page404`.
+- Support for async generators to create pages.
+- Predefined values for `attr` filter.
+- New option `server` to configure the local server,
+  having properties `port` and `page404`.
 
 ### Changed
-- Removed documentation from the main repository
+- Removed the documentation from the main repository.
 
 ### Fixed
-- Version number returned by `lume -v`.
+- The version number returned by `lume -v`.
 
 ## [0.9.4] - 2020-11-20
 ### Fixed
-- BrokenPipe errors in the server
+- Broken pipe errors on the server.
 
 ## [0.9.3] - 2020-11-13
 ### Fixed
-- Version number returned by `lume -v`.
+- The version number returned by `lume -v`.
 
 ## [0.9.2] - 2020-11-13
 ### Added
-- `--upgrade` command.
+- CLI command `--upgrade`.
 
 ### Changed
-- Renamed the shortcut for `--version`, `-V` to `-v`.
+- Renamed the `--version` shortcut `-V` to `-v`.
 
 ### Fixed
-- `denjunks` installation bug [#6]
+- The `denjucks` installation. [#6]
 
 ## [0.9.1] - 2020-11-06
 ### Fixed
-- `@import` css of the `css()` plugin, using `_includes` as fallback
+- `@import` CSS of the `css()` plugin, using `_includes` as fallback.
 
 ## [0.9.0] - 2020-11-04
 ### Added
-- New method `script()` to execute scripts like a task manager
-- Allow to run scripts in events
-- Autodiscover `404.html` file in the built-in server for 404 responses
+- New method `script()` to execute scripts like a task runner.
+- Allow running scripts in events.
+- Autodiscover `404.html` in the built-in server to handle the 404 responses.
 
 ### Fixed
-- Ignore `node_modules` folder by default
-- Show an error if the cwd is not a folder
-- Enable `attr` filter by default
+- Ignore the `node_modules` directory by default.
+- Show an error if the `cwd` is not a directory.
+- Enable the `attr` filter by default.
 
 ## [0.8.1] - 2020-10-28
 ### Added
-- New method `ignore()` to ignore files and folders
+- New method `ignore()` to ignore files and directories.
 
 ### Fixed
-- Version number on `lume --version`
+- The version number on `lume --version`.
 
 ## [0.8.0] - 2020-10-27
 ### Added
-- New `loadAssets()` to register assets loaders
-- New argument in CLI to build the site in a different directory and even choose
-  a different _config.js file.
+- New function `loadAssets()` to register asset loaders.
+- New CLI argument to build the site in a different directory
+  and even to choose a different `_config.js` file.
 
 ### Changed
-- Renamed `load()` to `loadPages()` and removed the `asset` argument.
-- Renamed `data()` to `loadData()`
-- Renamed `helper()` to `data()`
-- Updating files (in a watch process) dispatches the events `beforeUpdate` and
-  `afterUpdate` (instead `beforeBuild` and `afterBuild`)
+- Renamed `load()` to `loadPages()` and removed the `asset` parameter.
+- Renamed `data()` to `loadData()`.
+- Renamed `helper()` to `data()`.
+- Updating files, when watching, dispatches the events
+  `beforeUpdate` and `afterUpdate` (instead of `beforeBuild` and `afterBuild`).
 
 ## [0.7.3] - 2020-10-17
 ### Changed
-- Removed the version of the import in the `_config.js` file generated with
-  `--init`
+- Removed the version from the `import` URL in the `_config.js` file
+  generated with `--init`.
 
 ### Fixed
-- Support for special characters in the url to the HTTP server
-- Rebuild inside a try/catch to prevent die on error.
+- Support special characters in the URL on the local server.
+- Rebuild inside a `try`…`catch` to prevent death on error.
 
 ## [0.7.2] - 2020-10-10
 ### Fixed
-- Updated version in cli
+- Updated the version in the CLI.
 
 ## [0.7.1] - 2020-10-10
 ### Fixed
-- Permalinks does not respect the `prettyUrls` configuration [#1]
-- Improved docs to update version
+- Permalinks not respecting the `prettyUrls` option. [#1]
+- Improved the docs about updating the Lume version.
 
 ## [0.7.0] - 2020-10-09
 ### Added
-- Added events: `beforeBuild` and `afterBuild`
-- Added helper `paginate()`
-- `site.process()` function
-- New option `prettyUrls`. By default is `true`.
+- Events `beforeBuild` and `afterBuild`.
+- Helper `paginate()`.
+- Function `site.process()`.
+- Option `prettyUrls`, which is `true` by default.
 
 ### Removed
-- `site.beforeRender()` and `site.afterRender()` transformers. Use
-  `site.process()` instead, that is the equivalent to `afterRender`.
+- The transformers `site.beforeRender()` and `site.afterRender()`.
+  Use `site.process()` instead, which is an equivalent to `afterRender`.
 
 ### Fixed
-- Improved performance executing some operations in parallel
-- Fixed page duplications
-- Fixed url filter with non-string values
+- Improved performance by executing some operations in parallel.
+- Page duplications.
+- The `url` filter with non-string values.
 
 ## [0.6.0] - 2020-09-28
 ### Added
-- New argument to `search.pages()` to sort pages alphabetically
-- Added new argument `--help` and aliases `-h` and `-V` to cli
-- Added `eta` plugin, to support `Eta` template engine
-- New function `helper` to assign global helpers that can be used in the
-  templates
+- New parameter for `search.pages()` to sort pages alphabetically.
+- New argument `--help` and aliases `-h` and `-V` for CLI.
+- New plugin `eta` to support the `Eta` template engine.
+- New function `helper` to assign global helpers
+  that can be used in templates.
 
 ### Removed
-- Arguments `path` and `recursive` in `search.pages()`
+- The parameters `path` and `recursive` in `search.pages()`.
 
 ### Fixed
-- `url` filter with relative urls
-- postcss incompatibility with deno
+- The `url` filter with relative paths.
+- PostCSS incompatibility with Deno.
 
 ## [0.5.1] - 2020-09-25
 ### Fixed
-- `version` variable
+- The `version` variable.
 
 ## [0.5.0] - 2020-09-24
 ### Added
-- Ability to generate multiple pages using generators
+- Ability to generate multiple pages using generators.
 
 ### Changed
-- Replaced `pathPrefix` and `url` with `location`
+- Replaced `pathPrefix` and `url` with `location`.
 
 ### Fixed
-- `url` filter bugs
+- `url` filter bugs.
 
 ## [0.4.0] - 2020-09-22
 ### Added
-- Ability to include the date in the filename
-- New function `search.folder()`
-- New option `--dev` to run in development mode
+- Ability to include the date in the filename.
+- New function `search.folder()`.
+- New option `--dev` to build in development mode.
 
 ### Fixed
-- Front matter detection
-- Site rebuild after creating or removing directories and files
-- Improved url filter
-- Use content hash to detect real file changes
-- Tags propagation
-- Ensure beforeRender transformers are executed only once.
+- Front matter detection.
+- Site rebuild after creating or removing directories and files.
+- Improved the `url` filter.
+- Use a content hash to detect real file changes.
+- Tags propagation.
+- Ensure the `beforeRender` transformers are executed only once.
 
 ## [0.3.1] - 2020-09-19
 ### Fixed
-- Use temporarily a fork of denjunks because loading bugs
+- Use a temporaly fork of Denjucks to avoid loading bugs.
 
 ## [0.3.0] - 2020-09-19
 ### Added
-- New plugin `svg` to optimize svg files
-- New plugin `dom` to manipulate html using the DOM api
-- New filter `classname` to manipulate css classes
-- New filter `attributes` to manipulate html attributes
-- First tests
+- New plugin `svg` to optimize SVG files.
+- New plugin `dom` to manipulate HTML using the DOM API.
+- New filter `classname` to manipulate CSS classes.
+- New filter `attributes` to manipulate HTML attributes.
+- First tests.
 
 ### Changed
-- `explorer` was renamed to `search`
+- Renamed `explorer` to `search`.
 
 ### Fixed
-- Refactored source load and reload
-- Explorer returns wrong results
-- Live-reload bugs
+- Refactored source load and reload.
+- Explorer returning wrong results.
+- Live reload.
 
 ## [0.2.3] - 2020-09-14
 ### Fixed
-- Moved websocket script to server.js to avoid reading problems
+- Moved the WebSocket script to `server.js` to avoid reading problems.
 
 ## [0.2.2] - 2020-09-13
 ### Added
-- New command `lumen --version`
+- New command `lume --version`.
 
 ### Fixed
-- CLI installation
+- CLI installation.
 
 ## [0.2.1] - 2020-09-13
 ### Fixed
-- Module loader executed from remote (http://deno.land/x/lume)
-- Use fixed versions for dependencies
+- Execute the module loader from remote (https://deno.land/x/lume).
+- Use fixed versions for dependencies.
 
 ## [0.2.0] - 2020-09-13
 ### Added
 - New command `lume --init` to create a `_config.js` file.
 
 ### Changed
-- Merged `postcss` and `stylecow` plugins in the new `css` plugin.
+- Merged the `postcss` and `stylecow` plugins in the new `css` plugin.
 
 ### Fixed
-- JSX engine
+- The JSX engine.
 
 ## 0.1.0 - 2020-09-13
-First version
+The first version.
 
 [#1]: https://github.com/oscarotero/lume/issues/1
 [#6]: https://github.com/oscarotero/lume/issues/6
