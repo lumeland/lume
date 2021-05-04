@@ -88,7 +88,7 @@ export function normalizePath(path) {
 
 export function slugify(
   string,
-  { lowercase, separator, replacements, onlyAlfanumeric },
+  { lowercase, separator, replace, alfanumeric },
 ) {
   if (lowercase) {
     string = string.toLowerCase();
@@ -96,13 +96,13 @@ export function slugify(
 
   string = string.replaceAll(/[\s_-]+/g, separator);
 
-  if (!onlyAlfanumeric) {
+  if (!alfanumeric) {
     return string;
   }
 
   return string.replaceAll(/[^\w\/\.-]/g, (char) => {
-    if (char in replacements) {
-      return replacements[char];
+    if (char in replace) {
+      return replace[char];
     }
     char = char.normalize("NFKD");
     return char.match(/^\w+$/) ? char : "";
