@@ -12,9 +12,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `relative_urls` to convert all URLs to relative. [#85]
 - Preprocessors (like processors, but are executed before rendering). [#91]
 - Allowed setting options for the Nunjucks plugin. [#90]
+- Options to customize the `slugifyUrls` setting [#94]:
+  - `lowercase`: to enable/disable lowercase conversion (`true` by default)
+  - `separator`: to customize the separator (`-` by default)
+  - `alfanumeric`: to convert all characters to alphanumeric (`true` by default)
+  - `replace`: an object to replace some special characters
+
+### Changed
+- The default url of `paginate` helper is now relative: `./page-${page}`
 
 ### Removed
-- The `permalink` variable in pages. Use `url` instead.
+- The deprecated `permalink` variable in pages. Use `url` instead.
 
 ### Fixed
 - Ignored files on server update weren’t detected properly. [#88]
@@ -22,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Missing doctype after DOM manipulation.
 - The `njk` filter didn’t work with async filters. [#93]
 - Fixed support for subextensions (like `page.html.md`). [#83]
+- Improved the errors of `inline` plugin
 
 ## [0.18.1] - 2021-04-26
 ### Fixed
@@ -633,6 +642,7 @@ The first version.
 [#90]: https://github.com/oscarotero/lume/issues/90
 [#91]: https://github.com/oscarotero/lume/issues/91
 [#93]: https://github.com/oscarotero/lume/issues/93
+[#94]: https://github.com/oscarotero/lume/issues/94
 
 [0.19.0]: https://github.com/oscarotero/lume/compare/v0.18.1...HEAD
 [0.18.1]: https://github.com/oscarotero/lume/compare/v0.18.0...v0.18.1
