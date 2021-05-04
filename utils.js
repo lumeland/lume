@@ -112,8 +112,8 @@ function _slugify(
   }
 
   return string.replaceAll(/[^\w\/\.-]/g, (char) => {
-    if (replacements.has(char)) {
-      return replacements.get(char);
+    if (char in replacements) {
+      return replacements[char];
     }
     char = char.normalize("NFKD");
     return char.match(/^\w+$/) ? char : "";

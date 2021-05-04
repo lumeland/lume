@@ -23,13 +23,13 @@ const defaults = {
     separator: "-",
     onlyFilenames: false,
     onlyAlfanumeric: true,
-    replacements: new Map([
-      ["ð", "d"],
-      ["ø", "o"],
-      ["ß", "ss"],
-      ["æ", "ae"],
-      ["œ", "oe"],
-    ]),
+    replacements: {
+      "ð": "d",
+      "ø": "o",
+      "ß": "ss",
+      "æ": "ae",
+      "œ": "oe",
+    },
   },
   flags: [],
   server: {
