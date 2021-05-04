@@ -21,4 +21,4 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
           body: |
-            See [CHANGELOG](CHANGELOG.md)
+            See the [changelog](CHANGELOG.md).
