@@ -94,35 +94,60 @@ export default function () {
       const path = posix.resolve(url, element.getAttribute("href"));
       const style = element.ownerDocument.createElement("style");
 
-      style.innerHTML = await getContent(path);
-      element.replaceWith(style);
+      try {
+        style.innerHTML = await getContent(path);
+        element.replaceWith(style);
+      } catch {
+        throw new Error(
+          `Unable to inline the file ${path} from the page ${url}`,
+        );
+      }
     }
 
     async function inlineScript(url, element) {
       const path = posix.resolve(url, element.getAttribute("src"));
 
-      element.innerHTML = await getContent(path);
-      element.removeAttribute("src");
+      try {
+        element.innerHTML = await getContent(path);
+        element.removeAttribute("src");
+      } catch {
+        throw new Error(
+          `Unable to inline the file ${path} from the page ${url}`,
+        );
+      }
     }
 
     async function inlineSrc(url, element) {
       const path = resolve(url, element.getAttribute("src"));
       const ext = extname(path);
 
-      if (ext === ".svg") {
-        const content = await getContent(path);
-        const div = element.ownerDocument.createElement("div");
-        div.innerHTML = content;
-        element.replaceWith(...div.children);
-        return;
-      }
+      try {
+        if (ext === ".svg") {
+          const content = await getContent(path);
+          const div = element.ownerDocument.createElement("div");
+          div.innerHTML = content;
+          element.replaceWith(...div.children);
+          return;
+        }
 
-      element.setAttribute("src", await getContent(path, true));
+        element.setAttribute("src", await getContent(path, true));
+      } catch {
+        throw new Error(
+          `Unable to inline the file ${path} from the page ${url}`,
+        );
+      }
     }
 
     async function inlineHref(url, element) {
       const path = resolve(url, element.getAttribute("href"));
-      element.setAttribute("href", await getContent(path, true));
+
+      try {
+        element.setAttribute("href", await getContent(path, true));
+      } catch {
+        throw new Error(
+          `Unable to inline the file ${path} from the page ${url}`,
+        );
+      }
     }
   };
 }
