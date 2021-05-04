@@ -1,5 +1,5 @@
 import { bold, red } from "./deps/colors.js";
-import { basename, dirname, join, SEP } from "./deps/path.js";
+import { SEP } from "./deps/path.js";
 
 export async function concurrent(iterable, iteratorFn, limit = 200) {
   const executing = [];
@@ -86,18 +86,7 @@ export function normalizePath(path) {
   return path;
 }
 
-export function slugify(string, options) {
-  if (options.onlyFilenames) {
-    const filename = basename(string);
-    const directory = dirname(string);
-
-    return join(directory, _slugify(filename, options));
-  }
-
-  return _slugify(string, options);
-}
-
-function _slugify(
+export function slugify(
   string,
   { lowercase, separator, replacements, onlyAlfanumeric },
 ) {

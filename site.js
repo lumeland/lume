@@ -21,7 +21,6 @@ const defaults = {
   slugifyUrls: {
     lowercase: true,
     separator: "-",
-    onlyFilenames: false,
     onlyAlfanumeric: true,
     replacements: {
       "ð": "d",
