@@ -31,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [0.18.0] - 2021-04-24
 ### Added
 - A second argument for the `lume()` function
-  to configure the default plugins [#45].
+  to configure the default plugins. [#45]
 - Support for more file formats on local server. [#67]
 
 ### Changed
