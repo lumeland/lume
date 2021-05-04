@@ -4,6 +4,7 @@ import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
 import Scripts from "./scripts.js";
+import { merge } from "./utils.js";
 import {
   concurrent,
   normalizePath,
@@ -17,7 +18,19 @@ const defaults = {
   dest: "./_site",
   dev: false,
   prettyUrls: true,
-  slugifyUrls: true,
+  slugifyUrls: {
+    lowercase: true,
+    separator: "-",
+    onlyFilenames: false,
+    onlyAlfanumeric: true,
+    replacements: new Map([
+      ["ð", "d"],
+      ["ø", "o"],
+      ["ß", "ss"],
+      ["æ", "ae"],
+      ["œ", "oe"],
+    ]),
+  },
   flags: [],
   server: {
     port: 3000,
@@ -38,7 +51,7 @@ export default class Site {
   #hashes = new Map();
 
   constructor(options = {}) {
-    this.options = { ...defaults, ...options };
+    this.options = merge(defaults, options);
 
     this.options.location = (options.location instanceof URL)
       ? this.options.location
@@ -501,7 +514,7 @@ export default class Site {
     // Transform (prettyUrls, slugifyUrls)
     if (transform) {
       if (this.options.slugifyUrls) {
-        dest.path = slugify(dest.path);
+        dest.path = slugify(dest.path, this.options.slugifyUrls);
       }
 
       if (!dest.ext) {

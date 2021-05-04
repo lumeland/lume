@@ -1,5 +1,5 @@
 import { bold, red } from "./deps/colors.js";
-import { SEP } from "./deps/path.js";
+import { basename, dirname, join, SEP } from "./deps/path.js";
 
 export async function concurrent(iterable, iteratorFn, limit = 200) {
   const executing = [];
@@ -86,19 +86,38 @@ export function normalizePath(path) {
   return path;
 }
 
-export const slugChars = new Map([
-  ["ð", "d"],
-  ["ø", "o"],
-  ["ß", "ss"],
-  ["æ", "ae"],
-  ["œ", "oe"],
-]);
+export function slugify(string, options) {
+  if (options.onlyFilenames) {
+    const filename = basename(string);
+    const directory = dirname(string);
 
-export function slugify(string) {
-  return string.toLowerCase()
-    .normalize("NFKD")
-    .replaceAll(/[\s_-]+/g, "-")
-    .replaceAll(/[^\w\/\.-]/g, (char) => slugChars.get(char) || "");
+    return join(directory, _slugify(filename, options));
+  }
+
+  return _slugify(string, options);
+}
+
+function _slugify(
+  string,
+  { lowercase, separator, replacements, onlyAlfanumeric },
+) {
+  if (lowercase) {
+    string = string.toLowerCase();
+  }
+
+  string = string.replaceAll(/[\s_-]+/g, separator);
+
+  if (!onlyAlfanumeric) {
+    return string;
+  }
+
+  return string.replaceAll(/[^\w\/\.-]/g, (char) => {
+    if (replacements.has(char)) {
+      return replacements.get(char);
+    }
+    char = char.normalize("NFKD");
+    return char.match(/^\w+$/) ? char : "";
+  });
 }
 
 export function searchByExtension(path, extensions) {
