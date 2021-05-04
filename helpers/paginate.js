@@ -1,6 +1,6 @@
 const defaults = {
   size: 10,
-  url: (page) => `page-${page}`,
+  url: (page) => `./page-${page}`,
 };
 
 export default function* paginate(results, options = {}) {
