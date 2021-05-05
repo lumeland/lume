@@ -217,7 +217,7 @@ export default class Site {
   }
 
   /**
-   * Copy static files/folders without processing
+   * Copy static files or directories without processing
    */
   copy(from, to = from) {
     this.source.staticFiles.set(join("/", from), join("/", to));
@@ -225,7 +225,7 @@ export default class Site {
   }
 
   /**
-   * Ignore one or several files or folders
+   * Ignore one or several files or directories
    */
   ignore(...paths) {
     paths.forEach((path) => this.source.ignored.add(join("/", path)));
@@ -233,7 +233,7 @@ export default class Site {
   }
 
   /**
-   * Clear the dest folder
+   * Clear the dest directory
    */
   async clear() {
     await emptyDir(this.dest());
@@ -271,7 +271,7 @@ export default class Site {
 
       const normalized = normalizePath(file);
 
-      // It's inside a _data file or folder
+      // It's inside a _data file or directory
       if (normalized.includes("/_data/") || normalized.match(/\/_data.\w+$/)) {
         await this.source.loadFile(file);
         continue;

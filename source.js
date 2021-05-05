@@ -121,11 +121,11 @@ export default class Source {
 
     file = normalizePath(file);
 
-    // Is a file inside _data folder
+    // Is a file inside _data directory
     if (file.match(/\/_data\//)) {
       const dir = file.split("/_data/", 2).shift();
       const directory = this.getOrCreateDirectory(dir);
-      return this.#loadDataFolderEntry(
+      return this.#loadDataDirectoryEntry(
         join(directory.src.path, "_data"),
         entry,
         directory.data,
@@ -151,7 +151,7 @@ export default class Source {
     }
 
     if (entry.isDirectory && entry.name === "_data") {
-      directory.data = await this.#loadDataFolder(path);
+      directory.data = await this.#loadDataDirectory(path);
       return;
     }
 
@@ -250,22 +250,22 @@ export default class Source {
   }
 
   /**
-   * Load a _data folder and return the content of all files
+   * Load a _data directory and return the content of all files
    */
-  async #loadDataFolder(path) {
+  async #loadDataDirectory(path) {
     const data = {};
 
     for (const entry of Deno.readDirSync(this.site.src(path))) {
-      await this.#loadDataFolderEntry(path, entry, data);
+      await this.#loadDataDirectoryEntry(path, entry, data);
     }
 
     return data;
   }
 
   /**
-   * Load a data file inside a _data folder
+   * Load a data file inside a _data directory
    */
-  async #loadDataFolderEntry(path, entry, data) {
+  async #loadDataDirectoryEntry(path, entry, data) {
     if (
       entry.isSymlink || entry.name.startsWith(".") ||
       entry.name.startsWith("_")
@@ -283,7 +283,7 @@ export default class Source {
     }
 
     if (entry.isDirectory) {
-      data[entry.name] = await this.#loadDataFolder(join(path, entry.name));
+      data[entry.name] = await this.#loadDataDirectory(join(path, entry.name));
     }
   }
 
