@@ -100,12 +100,12 @@ export function slugify(
     return string;
   }
 
-  return string.replaceAll(/[^\w\/\.-]/g, (char) => {
+  return string.replaceAll(/[^\w\/.-]/gu, (char) => {
     if (char in replace) {
       return replace[char];
     }
     char = char.normalize("NFKD");
-    return char.match(/^\w+$/) ? char : "";
+    return /^\w+$/.test(char) ? char : "";
   });
 }
 

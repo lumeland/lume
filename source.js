@@ -122,7 +122,7 @@ export default class Source {
     file = normalizePath(file);
 
     // Is a file inside _data directory
-    if (file.match(/\/_data\//)) {
+    if (file.includes("/_data/")) {
       const dir = file.split("/_data/", 2).shift();
       const directory = this.getOrCreateDirectory(dir);
       return this.#loadDataDirectoryEntry(
@@ -155,7 +155,7 @@ export default class Source {
       return;
     }
 
-    if (entry.isFile && entry.name.match(/^_data\.\w+$/)) {
+    if (entry.isFile && /^_data\.\w+$/.test(entry.name)) {
       directory.data = await this.#loadData(path);
       return;
     }

@@ -272,7 +272,7 @@ export default class Site {
       const normalized = normalizePath(file);
 
       // It's inside a _data file or directory
-      if (normalized.includes("/_data/") || normalized.match(/\/_data.\w+$/)) {
+      if (/\/_data(?:\.\w+$|\/)/.test(normalized)) {
         await this.source.loadFile(file);
         continue;
       }

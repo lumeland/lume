@@ -56,7 +56,7 @@ export default class Scripts {
   async #runCommand(options, command) {
     console.log(`⚡️ ${brightGreen(command)}`);
 
-    const cmd = Array.from(command.matchAll(/('([^']*)'|"([^"]*)"|[\S]+)/g))
+    const cmd = Array.from(command.matchAll(/('([^']*)'|"([^"]*)"|\S+)/g))
       .map((piece) => piece[2] || piece[1]);
 
     if (cmd[0] === "cd") {
