@@ -12,15 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `relative_urls` to convert all URLs to relative. [#85]
 - Preprocessors (like processors, but are executed before rendering). [#91]
 - Allowed setting options for the Nunjucks plugin. [#90]
-- Options to customize the `slugifyUrls` setting [#94]:
+- Options to customize the `slugifyUrls` setting: [#94]
   - `lowercase`: to enable/disable lowercase conversion (`true` by default)
   - `separator`: to customize the separator (`-` by default)
   - `alphanumeric`: to convert all characters to ASCII alphanumeric
     (`true` by default)
-  - `replace`: an object to replace some special characters
+  - `replace`: an object to replace some special characters.
 
 ### Changed
-- The default url of `paginate` helper is now relative: `./page-${page}`
+- The default URL of the `paginate` helper to relative: `./page-${page}`.
 
 ### Removed
 - The deprecated `permalink` variable in pages. Use `url` instead.
@@ -31,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Missing doctype after DOM manipulation.
 - The `njk` filter didn’t work with async filters. [#93]
 - Fixed support for subextensions (like `page.html.md`). [#83]
-- Improved the errors of `inline` plugin
+- Improved the errors of the `inline` plugin.
 
 ## [0.18.1] - 2021-04-26
 ### Fixed
