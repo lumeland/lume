@@ -21,7 +21,7 @@ const defaults = {
   slugifyUrls: {
     lowercase: true,
     separator: "-",
-    alfanumeric: true,
+    alphanumeric: true,
     replace: {
       "ð": "d",
       "ø": "o",

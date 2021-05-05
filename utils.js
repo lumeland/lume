@@ -88,7 +88,7 @@ export function normalizePath(path) {
 
 export function slugify(
   string,
-  { lowercase, separator, replace, alfanumeric },
+  { lowercase, separator, replace, alphanumeric },
 ) {
   if (lowercase) {
     string = string.toLowerCase();
@@ -96,7 +96,7 @@ export function slugify(
 
   string = string.replaceAll(/[\s_-]+/g, separator);
 
-  if (!alfanumeric) {
+  if (!alphanumeric) {
     return string;
   }
 

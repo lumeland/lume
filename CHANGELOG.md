@@ -15,7 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Options to customize the `slugifyUrls` setting [#94]:
   - `lowercase`: to enable/disable lowercase conversion (`true` by default)
   - `separator`: to customize the separator (`-` by default)
-  - `alfanumeric`: to convert all characters to alphanumeric (`true` by default)
+  - `alphanumeric`: to convert all characters to ASCII alphanumeric
+    (`true` by default)
   - `replace`: an object to replace some special characters
 
 ### Changed
