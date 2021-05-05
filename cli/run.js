@@ -31,7 +31,7 @@ export async function run(args, userSite) {
   const script = options._[1];
 
   const site = await buildSite(options, userSite);
-  console.log("");
+  console.log();
 
   const success = await site.run(script);
 

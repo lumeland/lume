@@ -45,7 +45,7 @@ export async function run(args) {
 
   if (content === updated) {
     console.log("No changes required in", gray(options.config));
-    console.log("");
+    console.log();
     return;
   }
 
@@ -55,5 +55,5 @@ export async function run(args) {
     `Updated lume modules to ${brightGreen(version)} in`,
     gray(options.config),
   );
-  console.log("");
+  console.log();
 }

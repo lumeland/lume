@@ -44,9 +44,9 @@ export async function run(args, userSite) {
   validateArgsCount("build", options._, 1);
 
   const site = await buildSite(options, userSite);
-  console.log("");
+  console.log();
   await site.build();
-  console.log("");
+  console.log();
   console.log(`🍾 ${brightGreen("Site built into")} ${gray(site.options.dest)}`);
 
   if (!options.serve) {
@@ -62,7 +62,7 @@ export async function run(args, userSite) {
     let timer = 0;
 
     const rebuild = async () => {
-      console.log("");
+      console.log();
       console.log("Changes detected. Building...");
       const files = new Set(changes);
       changes.clear();
@@ -70,7 +70,7 @@ export async function run(args, userSite) {
       try {
         await site.update(files);
         console.log("Done");
-        console.log("");
+        console.log();
       } catch (err) {
         error("rebuild", "Error on build the site", err);
       }

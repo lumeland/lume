@@ -19,7 +19,7 @@ export async function run(args) {
 
   if (latest === version) {
     console.log(`You're using the latest version of lume: ${latest}!`);
-    console.log("");
+    console.log();
     return;
   }
 
@@ -45,7 +45,7 @@ export async function run(args) {
     ],
   }).status();
 
-  console.log("");
+  console.log();
   console.log(
     `Update successful! You're using the latest version of lume: ${
       brightGreen(latest)
@@ -55,5 +55,5 @@ export async function run(args) {
     "See the changes in",
     gray(`https://github.com/lumeland/lume/blob/${latest}/CHANGELOG.md`),
   );
-  console.log("");
+  console.log();
 }

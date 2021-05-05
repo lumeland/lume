@@ -136,11 +136,11 @@ export async function server(site, options) {
   const ipAddr = await localIp();
   const page404 = site.options.server.page404 || "/404.html";
 
-  console.log("");
+  console.log();
   console.log("  Server started at:");
   console.log(brightGreen(`  http://localhost:${port}/`), "(local)");
   console.log(brightGreen(`  http://${ipAddr}:${port}/`), "(network)");
-  console.log("");
+  console.log();
 
   if (options.open || site.options.server.open) {
     const commands = {
