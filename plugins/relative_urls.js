@@ -13,28 +13,41 @@ export default function () {
     function processor(page) {
       const document = parser.parseFromString(page.content, "text/html");
       const from = posix.dirname(site.url(page.dest.path));
+      const srcsetRe = /(?<=^\s*|,\s+|\s,+|\s[^\s,]+,+)[^\s,](?:\S*[^\s,])?/g;
 
-      document
-        .querySelectorAll("[src]")
-        .forEach((element) => {
-          if (element.hasAttribute("src")) {
-            element.setAttribute(
-              "src",
-              relativeUrl(basePath, from, element.getAttribute("src")),
-            );
-          }
-        });
+      document.querySelectorAll("[href]").forEach((element) => {
+        element.setAttribute(
+          "href",
+          relativeUrl(basePath, from, element.getAttribute("href")),
+        );
+      });
 
-      document
-        .querySelectorAll("[href]")
-        .forEach((element) => {
-          if (element.hasAttribute("href")) {
-            element.setAttribute(
-              "href",
-              relativeUrl(basePath, from, element.getAttribute("href")),
-            );
-          }
-        });
+      document.querySelectorAll("[src]").forEach((element) => {
+        element.setAttribute(
+          "src",
+          relativeUrl(basePath, from, element.getAttribute("src")),
+        );
+      });
+
+      document.querySelectorAll("[srcset]").forEach((element) => {
+        element.setAttribute(
+          "srcset",
+          element.getAttribute("srcset").replace(
+            srcsetRe,
+            (url) => relativeUrl(basePath, from, url),
+          ),
+        );
+      });
+
+      document.querySelectorAll("[imagesrcset]").forEach((element) => {
+        element.setAttribute(
+          "imagesrcset",
+          element.getAttribute("imagesrcset").replace(
+            srcsetRe,
+            (url) => relativeUrl(basePath, from, url),
+          ),
+        );
+      });
 
       page.content = documentToString(document);
     }
