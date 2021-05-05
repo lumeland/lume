@@ -13,7 +13,6 @@ export default function () {
     function processor(page) {
       const document = parser.parseFromString(page.content, "text/html");
       const from = posix.dirname(site.url(page.dest.path));
-      const srcsetRe = /(?<=^\s*|,\s+|\s,+|\s[^\s,]+,+)[^\s,](?:\S*[^\s,])?/g;
 
       document.querySelectorAll("[href]").forEach((element) => {
         element.setAttribute(
@@ -29,11 +28,14 @@ export default function () {
         );
       });
 
+      const srcsetUrlRegex =
+        /(?<=^\s*|,\s+|\s,+|\s[^\s,]+,+)[^\s,](?:\S*[^\s,])?/g;
+
       document.querySelectorAll("[srcset]").forEach((element) => {
         element.setAttribute(
           "srcset",
           element.getAttribute("srcset").replace(
-            srcsetRe,
+            srcsetUrlRegex,
             (url) => relativeUrl(basePath, from, url),
           ),
         );
@@ -43,7 +45,7 @@ export default function () {
         element.setAttribute(
           "imagesrcset",
           element.getAttribute("imagesrcset").replace(
-            srcsetRe,
+            srcsetUrlRegex,
             (url) => relativeUrl(basePath, from, url),
           ),
         );
