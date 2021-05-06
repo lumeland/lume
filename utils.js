@@ -94,7 +94,7 @@ export function slugify(
     string = string.toLowerCase();
   }
 
-  string = string.replaceAll(/[^a-z\d\/.-]/giu, (char) => {
+  string = string.replaceAll(/[^a-z\d/.-]/giu, (char) => {
     if (char in replace) {
       return replace[char];
     }
@@ -109,7 +109,7 @@ export function slugify(
   });
 
   return string
-    .replaceAll(/(?<=^|\/)-+|-+(?=$|\/)/g, "")
+    .replaceAll(/(?<=^|[/.])-+|-+(?=$|[/.])/g, "")
     .replaceAll(/-+/g, separator);
 }
 
