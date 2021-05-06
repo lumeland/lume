@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The `njk` filter didn’t work with async filters. [#93]
 - Fixed support for subextensions (like `page.html.md`). [#83]
 - Improved the errors of the `inline` plugin.
+- Updated the `postcss` dependency.
 
 ## [0.18.1] - 2021-04-26
 ### Fixed
