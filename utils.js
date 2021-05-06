@@ -94,22 +94,22 @@ export function slugify(
     string = string.toLowerCase();
   }
 
-  if (alphanumeric) {
-    string = string.normalize("NFKD");
-  }
-
   string = string.replaceAll(/[^a-z\d\/.-]/giu, (char) => {
     if (char in replace) {
       return replace[char];
     }
 
+    if (alphanumeric) {
+      char = char.normalize("NFKD").replaceAll(/[\u0300-\u036F]/g, "");
+    }
+
     char = /[\p{L}\u0300-\u036F]/u.test(char) ? char : "-";
 
-    return alphanumeric && char !== "-" ? "" : char;
+    return alphanumeric && /[^\w-]/.test(char) ? "" : char;
   });
 
   return string
-    .replaceAll(/(?<=^|\/)-|-(?=\/|$)/g, "")
+    .replaceAll(/(?<=^|\/)-+|-+(?=$|\/)/g, "")
     .replaceAll(/-+/g, separator);
 }
 
