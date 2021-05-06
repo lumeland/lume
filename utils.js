@@ -98,7 +98,7 @@ export function slugify(
     string = string.normalize("NFKD");
   }
 
-  string = string.replaceAll(/[^a-z\d\/.-]/gu, (char) => {
+  string = string.replaceAll(/[^a-z\d\/.-]/giu, (char) => {
     if (char in replace) {
       return replace[char];
     }
