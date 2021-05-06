@@ -6,21 +6,28 @@ import { merge } from "../utils.js";
 const defaults = {
   extensions: [".css"],
   sourceMap: false,
+  includes: false,
   plugins: [
     postcssNesting(),
   ],
 };
 
 export default function (userOptions = {}) {
-  const options = merge(defaults, userOptions);
-
   return (site) => {
-    const runner = postcss([
-      postcssImport({
-        path: site.src("_includes"),
-      }),
-      ...options.plugins,
-    ]);
+    const options = merge({
+      includes: site.src("_includes"),
+      ...defaults,
+    }, userOptions);
+
+    const plugins = [...options.plugins];
+
+    if (options.includes) {
+      plugins.unshift(postcssImport({
+        path: options.includes,
+      }));
+    }
+
+    const runner = postcss(plugins);
 
     site.loadAssets(options.extensions, textLoader);
     site.process(options.extensions, processor);

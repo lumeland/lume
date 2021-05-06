@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
     (`true` by default)
   - `separator`: to customize the separator (`-` by default)
   - `replace`: an object to replace some special characters.
+- Option `includes` to customize the path (or paths) used
+  to resolve `@import` files in the `postcss` plugin.
+  Use `includes: false` to disable it.
 
 ### Changed
 - The default URL of the `paginate` helper to relative: `./page-${page}`.
