@@ -108,7 +108,9 @@ export function slugify(
     return alphanumeric && char !== "-" ? "" : char;
   });
 
-  return string.replaceAll(/-+/g, separator);
+  return string
+    .replaceAll(/(?<=^|\/)-|-(?=\/|$)/g, "")
+    .replaceAll(/-+/g, separator);
 }
 
 export function searchByExtension(path, extensions) {
