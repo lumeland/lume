@@ -14,9 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Allowed setting options for the Nunjucks plugin. [#90]
 - Options to customize the `slugifyUrls` setting: [#94]
   - `lowercase`: to enable/disable lowercase conversion (`true` by default)
-  - `separator`: to customize the separator (`-` by default)
   - `alphanumeric`: to convert all characters to ASCII alphanumeric
     (`true` by default)
+  - `separator`: to customize the separator (`-` by default)
   - `replace`: an object to replace some special characters.
 
 ### Changed

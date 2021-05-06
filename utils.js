@@ -88,25 +88,27 @@ export function normalizePath(path) {
 
 export function slugify(
   string,
-  { lowercase, separator, replace, alphanumeric },
+  { lowercase, alphanumeric, separator, replace },
 ) {
   if (lowercase) {
     string = string.toLowerCase();
   }
 
-  string = string.replaceAll(/[\s_-]+/g, separator);
-
-  if (!alphanumeric) {
-    return string;
+  if (alphanumeric) {
+    string = string.normalize("NFKD");
   }
 
-  return string.replaceAll(/[^\w\/.-]/gu, (char) => {
+  string = string.replaceAll(/[^a-z\d\/.-]/gu, (char) => {
     if (char in replace) {
       return replace[char];
     }
-    char = char.normalize("NFKD");
-    return /^\w+$/.test(char) ? char : "";
+
+    char = /[\p{L}\u0300-\u036F]/u.test(char) ? char : "-";
+
+    return alphanumeric && char !== "-" ? "" : char;
   });
+
+  return string.replaceAll(/-+/g, separator);
 }
 
 export function searchByExtension(path, extensions) {

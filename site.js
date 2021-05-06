@@ -20,8 +20,8 @@ const defaults = {
   prettyUrls: true,
   slugifyUrls: {
     lowercase: true,
-    separator: "-",
     alphanumeric: true,
+    separator: "-",
     replace: {
       "ð": "d",
       "ø": "o",
