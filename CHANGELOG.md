@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Option `includes` to customize the path (or paths)
   used to resolve `@import` files in the `postcss` plugin.
   Use `includes: false` to disable it.
+- `autoprefixer` is included by default in the `postcss` plugin.
 
 ### Changed
 - The default URL of the `paginate` helper to relative: `./page-${page}`.
