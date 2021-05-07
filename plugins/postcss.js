@@ -1,5 +1,5 @@
 import textLoader from "../loaders/text.js";
-import { postcss, postcssImport, postcssNesting } from "../deps/postcss.js";
+import { postcss, postcssImport, postcssNesting, autoprefixer } from "../deps/postcss.js";
 import { merge } from "../utils.js";
 
 // Default options
@@ -9,6 +9,7 @@ const defaults = {
   includes: false,
   plugins: [
     postcssNesting(),
+    autoprefixer(),
   ],
 };
 
