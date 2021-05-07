@@ -14,12 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Allowed setting options for the Nunjucks plugin. [#90]
 - Options to customize the `slugifyUrls` setting: [#94]
   - `lowercase`: to enable/disable lowercase conversion (`true` by default)
-  - `alphanumeric`: to convert all characters to ASCII alphanumeric
-    (`true` by default)
+  - `alphanumeric`: to convert all characters to ASCII (`true` by default)
   - `separator`: to customize the separator (`-` by default)
   - `replace`: an object to replace some special characters.
-- Option `includes` to customize the path (or paths) used
-  to resolve `@import` files in the `postcss` plugin.
+- Improved the slugifier to handle the separator better, for example:
+  - `200,000*7` slugifies to `200-000-7` and not `2000007`
+  - `%2 / 3?` slugifies to `2/3` and not `-2-/-3-`
+  - `Who is?.txt` slugifies to `who-is.txt` and not `who-is-.txt`.
+- Option `includes` to customize the path (or paths)
+  used to resolve `@import` files in the `postcss` plugin.
   Use `includes: false` to disable it.
 
 ### Changed
