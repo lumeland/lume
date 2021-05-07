@@ -15,8 +15,8 @@ const defaults = {
 export default function (userOptions = {}) {
   return (site) => {
     const options = merge({
-      includes: site.src("_includes"),
       ...defaults,
+      includes: site.src("_includes"),
     }, userOptions);
 
     const plugins = [...options.plugins];
@@ -38,10 +38,7 @@ export default function (userOptions = {}) {
       const map = options.sourceMap ? { inline: false } : undefined;
 
       // Fix the code with postcss
-      const result = await runner.process(
-        page.content,
-        { from, to, map },
-      );
+      const result = await runner.process(page.content, { from, to, map });
 
       page.content = result.css;
 
