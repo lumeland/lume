@@ -17,16 +17,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - `alphanumeric`: to convert all characters to ASCII (`true` by default)
   - `separator`: to customize the separator (`-` by default)
   - `replace`: an object to replace some special characters.
-- Improved the slugifier to handle the separator better, for example:
-  - `200,000*7` becomes `200-000-7` and not `2000007`
-  - `!2 / 3%` becomes `2/3` and not `-2-/-3-`
-  - `Who is?.txt` becomes `who-is.txt` and not `who-is-.txt`.
 - Option `includes` to customize the path (or paths)
   used to resolve `@import` files in the `postcss` plugin.
   Use `includes: false` to disable it.
 
 ### Changed
 - The default URL of the `paginate` helper to relative: `./page-${page}`.
+- Improved the slugifier to handle the separator better, for example:
+  - `200,000*7` becomes `200-000-7` and not `2000007`
+  - `!2 / 3%` becomes `2/3` and not `-2-/-3-`
+  - `Who is?.txt` becomes `who-is.txt` and not `who-is-.txt`.
 
 ### Removed
 - The deprecated `permalink` variable in pages. Use `url` instead.
