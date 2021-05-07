@@ -18,9 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - `separator`: to customize the separator (`-` by default)
   - `replace`: an object to replace some special characters.
 - Improved the slugifier to handle the separator better, for example:
-  - `200,000*7` slugifies to `200-000-7` and not `2000007`
-  - `%2 / 3?` slugifies to `2/3` and not `-2-/-3-`
-  - `Who is?.txt` slugifies to `who-is.txt` and not `who-is-.txt`.
+  - `200,000*7` becomes `200-000-7` and not `2000007`
+  - `!2 / 3%` becomes `2/3` and not `-2-/-3-`
+  - `Who is?.txt` becomes `who-is.txt` and not `who-is-.txt`.
 - Option `includes` to customize the path (or paths)
   used to resolve `@import` files in the `postcss` plugin.
   Use `includes: false` to disable it.
