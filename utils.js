@@ -108,6 +108,10 @@ export function slugify(
     return alphanumeric && /[^\w-]/.test(char) ? "" : char;
   });
 
+  if (lowercase) {
+    string = string.toLowerCase();
+  }
+
   return string
     .replaceAll(/(?<=^|[/.])-+|-+(?=$|[/.])/g, "")
     .replaceAll(/-+/g, separator);
