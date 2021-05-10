@@ -1,5 +1,10 @@
 import textLoader from "../loaders/text.js";
-import { postcss, postcssImport, postcssNesting, autoprefixer } from "../deps/postcss.js";
+import {
+  autoprefixer,
+  postcss,
+  postcssImport,
+  postcssNesting,
+} from "../deps/postcss.js";
 import { merge } from "../utils.js";
 
 // Default options

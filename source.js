@@ -267,8 +267,8 @@ export default class Source {
    */
   async #loadDataDirectoryEntry(path, entry, data) {
     if (
-      entry.isSymlink || entry.name.startsWith(".") ||
-      entry.name.startsWith("_")
+      entry.isSymlink ||
+      entry.name.startsWith(".") || entry.name.startsWith("_")
     ) {
       return;
     }
