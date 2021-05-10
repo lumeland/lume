@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - `separator`: to customize the separator (`-` by default)
   - `replace`: an object to replace some special characters.
 - Option `includes` to customize the path (or paths)
-  used to resolve `@import` files in the `postcss` plugin.
+  used to resolve the `@import`ed files in the `postcss` plugin.
   Use `includes: false` to disable it.
 - `autoprefixer` is included by default in the `postcss` plugin.
 
@@ -41,6 +41,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Improved the errors of the `inline` plugin.
 - Made sure that all characters are lowercased when slugifying
   (so “№” becomes `no` and not `No`).
+- Relative URL syntax to require the prefix `./` or `../`,
+  so URLs like `.foo`, `..foo` or `.../foo` are interpreted correctly.
 - Updated the `postcss` and `postcss_import` dependencies.
 
 ## [0.18.1] - 2021-04-26
