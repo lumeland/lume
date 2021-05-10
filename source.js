@@ -123,12 +123,25 @@ export default class Source {
 
     // Is a file inside _data directory
     if (file.includes("/_data/")) {
-      const dir = file.split("/_data/", 2).shift();
+      const [dir, remain] = file.split("/_data/", 2);
       const directory = this.getOrCreateDirectory(dir);
-      return this.#loadDataDirectoryEntry(
-        join(directory.src.path, "_data"),
+      const path = dirname(remain).split("/").filter((name) =>
+        name && name !== "."
+      );
+      let data = directory.data;
+
+      for (let name of path) {
+        if (!(name in data)) {
+          data[name] = {};
+        }
+
+        data = data[name];
+      }
+
+      return await this.#loadDataDirectoryEntry(
+        join(dirname(file)),
         entry,
-        directory.data,
+        data,
       );
     }
 
@@ -275,10 +288,12 @@ export default class Source {
 
     if (entry.isFile) {
       const name = basename(entry.name, extname(entry.name));
+
       data[name] = Object.assign(
         data[name] || {},
         await this.#loadData(join(path, entry.name)),
       );
+
       return;
     }
 

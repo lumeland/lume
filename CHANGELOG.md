@@ -44,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Relative URL syntax to require the prefix `./` or `../`,
   so URLs like `.foo`, `..foo` or `.../foo` are interpreted correctly.
 - Updated the `postcss` and `postcss_import` dependencies.
+- Changes in `_data/*` files weren't updated correctly on `--serve`.
 
 ## [0.18.1] - 2021-04-26
 ### Fixed
