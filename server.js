@@ -288,7 +288,7 @@ async function getNotFoundBody(root, page404, file) {
   </head>
   <body>
     <h1>404 - Not found</h1>
-    <p>The url <code>${relative(root, file)}</code> does not exist</p>
+    <p>The URL <code>${relative(root, file)}</code> does not exist</p>
     <ul>
       ${
     content.map((item) =>

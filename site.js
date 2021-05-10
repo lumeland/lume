@@ -315,7 +315,7 @@ export default class Site {
   }
 
   /**
-   * Returns the url of a page
+   * Returns the URL of a page
    */
   url(path, absolute) {
     if (
@@ -348,7 +348,7 @@ export default class Site {
         }
       }
     } else {
-      // Absolute urls are returned as is
+      // Absolute URLs are returned as is
       try {
         return new URL(path).href;
       } catch {
@@ -481,7 +481,7 @@ export default class Site {
   }
 
   /**
-   * Generate the url and dest info of a page
+   * Generate the URL and dest info of a page
    */
   #urlPage(page) {
     const { dest } = page;
@@ -501,13 +501,11 @@ export default class Site {
       dest.path = dest.ext ? url.slice(0, -dest.ext.length) : url;
     }
 
-    // Relative url
-    if (!dest.path.startsWith("/")) {
-      if (dest.path.startsWith(".")) {
-        dest.path = posix.join(dirname(page.src.path), dest.path);
-      } else {
-        dest.path = `/${dest.path}`;
-      }
+    // Relative URL
+    if (dest.path.startsWith("./") || dest.path.startsWith("../")) {
+      dest.path = posix.join(dirname(page.src.path), dest.path);
+    } else if (!dest.path.startsWith("/")) {
+      dest.path = `/${dest.path}`;
     }
 
     // Transform (prettyUrls, slugifyUrls)
