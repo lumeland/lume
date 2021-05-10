@@ -130,7 +130,7 @@ export default class Source {
       );
       let data = directory.data;
 
-      for (let name of path) {
+      for (const name of path) {
         if (!(name in data)) {
           data[name] = {};
         }
