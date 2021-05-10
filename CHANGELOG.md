@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [0.19.0] - Unreleased
+## [0.19.0] - 2021-05-10
 ### Added
 - The `url` page variable supports an object with a `path` property
   to fully customize the output filename. [#83]
@@ -43,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   (so “№” becomes `no` and not `No`).
 - Relative URL syntax to require the prefix `./` or `../`,
   so URLs like `.foo`, `..foo` or `.../foo` are interpreted correctly.
-- Changes in `_data/*` files weren’t updated correctly on `--serve`.
+- Changes in `_data/*/*` files weren’t updated correctly on `--serve`.
 - Updated the `postcss` and `postcss_import` dependencies.
 
 ## [0.18.1] - 2021-04-26
@@ -658,7 +658,7 @@ The first version.
 [#93]: https://github.com/oscarotero/lume/issues/93
 [#94]: https://github.com/oscarotero/lume/issues/94
 
-[0.19.0]: https://github.com/oscarotero/lume/compare/v0.18.1...HEAD
+[0.19.0]: https://github.com/oscarotero/lume/compare/v0.18.1...v0.19.0
 [0.18.1]: https://github.com/oscarotero/lume/compare/v0.18.0...v0.18.1
 [0.18.0]: https://github.com/oscarotero/lume/compare/v0.17.1...v0.18.0
 [0.17.1]: https://github.com/oscarotero/lume/compare/v0.17.0...v0.17.1
