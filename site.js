@@ -494,15 +494,15 @@ export default class Site {
     let { prettyUrls, slugifyUrls } = this.options;
 
     if (typeof url === "object") {
-      if (url.hasOwnProperty("pretty")) {
+      if ("pretty" in url) {
         prettyUrls = url.pretty;
       }
 
-      if (url.hasOwnProperty("slugify")) {
+      if ("slugify" in url) {
         slugifyUrls = url.slugify;
       }
 
-      if (url.hasOwnProperty("path")) {
+      if ("path" in url) {
         url = url.path;
       }
     }
