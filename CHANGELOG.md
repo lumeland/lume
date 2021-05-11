@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.20.0] - Unreleased
+### Changed
+- BREAKING: `prettyUrls` is used only to generate the url from the source filename.
+  It won't be used with the `url` variable in the page. [#95]
+  To generate pretty urls with a custom url, you have two ways:
+    - Add a trailing slash (ex: `/about-me/`)
+    - Set the full urls (ex: `/about-me/index.html`)
+- BREAKING: `url` values won't assume that the page is html. [#95]
+  This means the `.html` extension won't be added by default.
+
 ## [0.19.0] - 2021-05-10
 ### Added
 - The `url` page variable supports an object with a `path` property
@@ -657,7 +667,9 @@ The first version.
 [#91]: https://github.com/oscarotero/lume/issues/91
 [#93]: https://github.com/oscarotero/lume/issues/93
 [#94]: https://github.com/oscarotero/lume/issues/94
+[#95]: https://github.com/oscarotero/lume/issues/95
 
+[0.20.0]: https://github.com/oscarotero/lume/compare/v0.19.0...HEAD
 [0.19.0]: https://github.com/oscarotero/lume/compare/v0.18.1...v0.19.0
 [0.18.1]: https://github.com/oscarotero/lume/compare/v0.18.0...v0.18.1
 [0.18.0]: https://github.com/oscarotero/lume/compare/v0.17.1...v0.18.0
