@@ -491,6 +491,22 @@ export default class Site {
       url = url(page);
     }
 
+    let { prettyUrls, slugifyUrls } = this.options;
+
+    if (typeof url === "object") {
+      if (url.hasOwnProperty("pretty")) {
+        prettyUrls = url.pretty;
+      }
+
+      if (url.hasOwnProperty("slugify")) {
+        slugifyUrls = url.slugify;
+      }
+
+      if (url.hasOwnProperty("path")) {
+        url = url.path;
+      }
+    }
+
     if (typeof url === "string") {
       if (url.endsWith("/")) {
         dest.path = posix.join(url, "index");
@@ -500,7 +516,7 @@ export default class Site {
         dest.path = dest.ext ? url.slice(0, -dest.ext.length) : url;
       }
     } else if (!dest.ext) {
-      if (this.options.prettyUrls && posix.basename(dest.path) !== "index") {
+      if (prettyUrls && posix.basename(dest.path) !== "index") {
         dest.path = posix.join(dest.path, "index");
       }
       dest.ext = ".html";
@@ -513,8 +529,8 @@ export default class Site {
       dest.path = `/${dest.path}`;
     }
 
-    if (this.options.slugifyUrls) {
-      dest.path = slugify(dest.path, this.options.slugifyUrls);
+    if (slugifyUrls) {
+      dest.path = slugify(dest.path, slugifyUrls);
     }
 
     page.data.url =
