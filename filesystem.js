@@ -52,6 +52,7 @@ class Base {
 export class Page extends Base {
   dest = {};
   #content = null;
+  #parsedContent = null;
 
   duplicate(data = {}) {
     const page = new Page(this.src);
@@ -63,11 +64,20 @@ export class Page extends Base {
   }
 
   set content(content) {
+    this.#parsedContent = null;
     this.#content = content;
   }
 
   get content() {
     return this.#content;
+  }
+
+  set parsedContent(parsedContent) {
+    this.#parsedContent = parsedContent;
+  }
+
+  get parsedContent() {
+    return this.#parsedContent;
   }
 }
 

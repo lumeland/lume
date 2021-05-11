@@ -11,7 +11,8 @@ export default function () {
     const basePath = site.options.location.pathname;
 
     function processor(page) {
-      const document = parser.parseFromString(page.content, "text/html");
+      const document = page.parsedContent ||
+        parser.parseFromString(page.content, "text/html");
       const from = posix.dirname(site.url(page.dest.path));
 
       document.querySelectorAll("[href]").forEach((element) => {
@@ -52,6 +53,7 @@ export default function () {
       });
 
       page.content = documentToString(document);
+      page.parsedContent = document;
     }
   };
 }

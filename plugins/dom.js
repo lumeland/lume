@@ -15,9 +15,11 @@ export default function (userOptions) {
     site.process(options.extensions, processor);
 
     function processor(page) {
-      const document = parser.parseFromString(page.content, "text/html");
+      const document = page.parsedContent ||
+        parser.parseFromString(page.content, "text/html");
       options.fn(document, page);
       page.content = documentToString(document);
+      page.parsedContent = document;
     }
   };
 }

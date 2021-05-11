@@ -20,7 +20,8 @@ export default function () {
 
     async function processor(page) {
       if (page.content.includes(" inline")) {
-        const document = parser.parseFromString(page.content, "text/html");
+        const document = page.parsedContent ||
+          parser.parseFromString(page.content, "text/html");
 
         for (const element of document.querySelectorAll("[inline]")) {
           await inline(page.data.url, element);
@@ -28,6 +29,7 @@ export default function () {
         }
 
         page.content = documentToString(document);
+        page.parsedContent = document;
       }
     }
 
