@@ -486,19 +486,40 @@ export default class Site {
   #urlPage(page) {
     const { dest } = page;
     let url = page.data.url;
-    let transform = true;
 
     if (typeof url === "function") {
       url = url(page);
     }
 
+    let { prettyUrls, slugifyUrls } = this.options;
+
     if (typeof url === "object") {
-      dest.path = url.path || dest.path;
-      dest.ext = url.ext || "";
-      transform = false;
-    } else if (typeof url === "string") {
-      dest.ext = extname(url);
-      dest.path = dest.ext ? url.slice(0, -dest.ext.length) : url;
+      if (url.hasOwnProperty("pretty")) {
+        prettyUrls = url.pretty;
+      }
+
+      if (url.hasOwnProperty("slugify")) {
+        slugifyUrls = url.slugify;
+      }
+
+      if (url.hasOwnProperty("path")) {
+        url = url.path;
+      }
+    }
+
+    if (typeof url === "string") {
+      if (url.endsWith("/")) {
+        dest.path = posix.join(url, "index");
+        dest.ext = ".html";
+      } else {
+        dest.ext = extname(url);
+        dest.path = dest.ext ? url.slice(0, -dest.ext.length) : url;
+      }
+    } else if (!dest.ext) {
+      if (prettyUrls && posix.basename(dest.path) !== "index") {
+        dest.path = posix.join(dest.path, "index");
+      }
+      dest.ext = ".html";
     }
 
     // Relative URL
@@ -508,18 +529,8 @@ export default class Site {
       dest.path = `/${dest.path}`;
     }
 
-    // Transform (prettyUrls, slugifyUrls)
-    if (transform) {
-      if (this.options.slugifyUrls) {
-        dest.path = slugify(dest.path, this.options.slugifyUrls);
-      }
-
-      if (!dest.ext) {
-        if (this.options.prettyUrls && posix.basename(dest.path) !== "index") {
-          dest.path = posix.join(dest.path, "index");
-        }
-        dest.ext = ".html";
-      }
+    if (slugifyUrls) {
+      dest.path = slugify(dest.path, slugifyUrls);
     }
 
     page.data.url =
