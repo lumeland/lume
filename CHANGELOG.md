@@ -7,13 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.20.0] - Unreleased
 ### Changed
-- BREAKING: `prettyUrls` is used only to generate the url from the source filename.
-  It won't be used with the `url` variable in the page. [#95]
-  To generate pretty urls with a custom url, you have two ways:
-    - Add a trailing slash (ex: `/about-me/`)
-    - Set the full urls (ex: `/about-me/index.html`)
-- BREAKING: `url` values won't assume that the page is html. [#95]
-  This means the `.html` extension won't be added by default.
+- BREAKING:
+  `prettyUrls` is used only to generate the URL from the source filename.
+  It won’t be used with the `url` variable in the page. [#95]
+  To generate pretty URLs with a custom URL, you have two ways:
+    - add a trailing slash (e.g., `/about-me/`)
+    - use full URLs (e.g., `/about-me/index.html`).
+- BREAKING: `url` values won’t assume that the page is HTML. [#95]
+  This means the `.html` extension won’t be added by default.
+
+### Fixed
+* Updated the `std` dependency.
 
 ## [0.19.0] - 2021-05-10
 ### Added
