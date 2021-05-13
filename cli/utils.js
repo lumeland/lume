@@ -65,3 +65,27 @@ export function validateArgsCount(command, args, max, min = 0) {
     `);
   }
 }
+
+export async function getLastVersion() {
+  const response = await fetch("https://cdn.deno.land/lume/meta/versions.json");
+  const versions = await response.json();
+  return versions.latest;
+}
+
+export async function install(version) {
+  const process = Deno.run({
+    cmd: [
+      "deno",
+      "install",
+      "--unstable",
+      "-Afr",
+      `--import-map=https://deno.land/x/lume@${version}/import_map.json`,
+      `https://deno.land/x/lume@${version}/cli.js`,
+    ],
+  });
+
+  const status = await process.status();
+  process.close();
+
+  return status.success;
+}

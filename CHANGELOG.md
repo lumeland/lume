@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - `import_map.json` to the installation process. This allows to import lume
   in the `_config.js` file with `import lume from "lume/mod.js";`.
+- New command `lume install` to install lume easily using the import_map.
 
 ### Changed
 - The minimum Deno version supported is `1.10.0`.

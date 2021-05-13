@@ -3,6 +3,7 @@ import { bold, brightGreen, red } from "./deps/colors.js";
 import * as upgrade from "./cli/upgrade.js";
 import * as update from "./cli/update.js";
 import * as init from "./cli/init.js";
+import * as install from "./cli/install.js";
 import * as build from "./cli/build.js";
 import * as run from "./cli/run.js";
 import { error as printError } from "./utils.js";
@@ -117,6 +118,7 @@ A static site generator for Deno`);
   if (
     await maybeRun("build", build) ||
     await maybeRun("init", init) ||
+    await maybeRun("install", install) ||
     await maybeRun("update", update) ||
     await maybeRun("upgrade", upgrade) ||
     await maybeRun("run", run)
