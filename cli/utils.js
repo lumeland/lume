@@ -75,7 +75,7 @@ export async function getLastVersion() {
 export async function install(version) {
   const process = Deno.run({
     cmd: [
-      "deno",
+      Deno.execPath(),
       "install",
       "--unstable",
       "-Afr",
