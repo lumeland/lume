@@ -1,20 +1,18 @@
 # 🔥Lume
 
-**Lume** is the Galician word for *fire*
-but also a (yet another) static site generator for [Deno](https://deno.land/).
+**Lume** is the Galician word for _fire_ but also a (yet another) static site
+generator for [Deno](https://deno.land/).
 
-It’s inspired by other general-purpose static site generators,
-such as [Jekyll](https://jekyllrb.com/) and [Eleventy](https://www.11ty.dev/),
-but it’s faster, simpler and easier to use and configure,
-besides being super flexible.
+It’s inspired by other general-purpose static site generators, such as
+[Jekyll](https://jekyllrb.com/) and [Eleventy](https://www.11ty.dev/), but it’s
+faster, simpler and easier to use and configure, besides being super flexible.
 
-- Supports **multiple file formats**,
-  like Markdown, YAML, JavaScript, TypeScript, JSX and Nunjucks,
-  and it’s easy to extend.
-- You can hook **any processor** to transform assets,
-  like Sass or PostCSS for CSS.
-- It’s Deno: Forget about managing thousands of packages in `node_modules`
-  or complex bundlers. Lume only installs what you need. Clean, fast and secure.
+- Supports **multiple file formats**, like Markdown, YAML, JavaScript,
+  TypeScript, JSX and Nunjucks, and it’s easy to extend.
+- You can hook **any processor** to transform assets, like Sass or PostCSS for
+  CSS.
+- It’s Deno: Forget about managing thousands of packages in `node_modules` or
+  complex bundlers. Lume only installs what you need. Clean, fast and secure.
 
 ---
 
@@ -49,8 +47,8 @@ Build it:
 deno run --unstable -A https://deno.land/x/lume/cli.js
 ```
 
-This command will compile your documents to HTML
-and save them into the directory `_site`.
+This command will compile your documents to HTML and save them into the
+directory `_site`.
 
 ---
 
