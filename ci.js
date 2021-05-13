@@ -1,5 +1,5 @@
 const cli = new URL("./cli.js", import.meta.url);
-const import_map = new URL("./import_map.json", import.meta.url);
+const importMap = new URL("./import_map.json", import.meta.url);
 
 const process = Deno.run({
   cmd: [
@@ -7,7 +7,7 @@ const process = Deno.run({
     "run",
     "--unstable",
     "-A",
-    `--import-map=${import_map}`,
+    `--import-map=${importMap}`,
     cli,
     ...Deno.args,
   ],
