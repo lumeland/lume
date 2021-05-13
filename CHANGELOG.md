@@ -22,6 +22,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - BREAKING: `url` values won’t assume that the page is HTML. [#95]
   This means the `.html` extension won’t be added by default.
 
+### Removed
+- The command `lume update`. It's not needed thanks to import maps.
+
 ### Fixed
 - Updated the `std` dependency.
 
