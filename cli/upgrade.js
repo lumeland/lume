@@ -31,17 +31,8 @@ export async function run(args) {
       "install",
       "--unstable",
       "-Afr",
+      `--import-map=https://deno.land/x/lume@${latest}/import_map.json`,
       `https://deno.land/x/lume@${latest}/cli.js`,
-    ],
-  }).status();
-
-  await Deno.run({
-    cmd: [
-      "deno",
-      "cache",
-      "--unstable",
-      "-r",
-      `https://deno.land/x/lume/mod.js`,
     ],
   }).status();
 
