@@ -6,7 +6,10 @@ export const HELP = `
 ${brightGreen("lume run")}: run a script from the lume config
 
 USAGE:
-    lume run <script>
+    lume run [OPTIONS] <script>
+
+OPTIONS:
+    --config <file>  specify the lume config file  Default: _config.js
 `;
 
 export async function run(args, userSite) {
