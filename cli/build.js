@@ -6,22 +6,22 @@ import { join, relative } from "../deps/path.js";
 import { buildSite, validateArgsCount } from "./utils.js";
 
 export const HELP = `
-${brightGreen("lume build")}: Build the site and optionally serve it
+${brightGreen("lume build")}: build the site and optionally serve it
 
 USAGE:
     lume build [OPTIONS]
 
 OPTIONS:
-        --root     <dir>    the root that lume should work in   Default: ./
+        --root     <dir>    the root where lume should work     Default: ./
         --src      <dir>    the source directory for your site  Default: ./
         --dest     <dir>    the build destination               Default: _site
         --config   <file>   specify the lume config file        Default: _config.js
-        --location <url>    set the domain for your site        Default: http://localhost
+        --location <url>    the domain for your site            Default: http://localhost
     -d, --dev               enable dev mode (view draft pages)
 
     -s, --serve             start a live-reloading web server
-    -p, --port     <port>   the port the server is on           Default: 3000
-    -o, --open              open the website in the browser
+    -p, --port     <port>   the port where the server runs      Default: 3000
+    -o, --open              open the site in the browser
 `;
 
 export async function run(args, userSite) {
@@ -72,7 +72,7 @@ export async function run(args, userSite) {
         console.log("Done");
         console.log();
       } catch (err) {
-        error("rebuild", "Error on build the site", err);
+        error("rebuild", "Error on building the site", err);
       }
     };
 

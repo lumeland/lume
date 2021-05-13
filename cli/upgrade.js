@@ -3,11 +3,12 @@ import { version } from "../cli.js";
 import { getLastVersion, install, validateArgsCount } from "./utils.js";
 
 export const HELP = `
-${brightGreen("lume upgrade")}: upgrade your local lume install to the latest
+${brightGreen("lume upgrade")}: upgrade your lume install to the latest version
 
 USAGE:
     lume upgrade
 `;
+
 /**
  * Command to upgrade lume to the latest version
  */
@@ -16,7 +17,7 @@ export async function run(args) {
   const latest = await getLastVersion();
 
   if (latest === version) {
-    console.log(`You're using the latest version of lume: ${latest}!`);
+    console.log(`You’re using the latest version of lume: ${latest}!`);
     console.log();
     return;
   }
@@ -27,7 +28,7 @@ export async function run(args) {
 
   console.log();
   console.log(
-    `Update successful! You're using the latest version of lume: ${
+    `Update successful! You’re using the latest version of lume: ${
       brightGreen(latest)
     }!`,
   );

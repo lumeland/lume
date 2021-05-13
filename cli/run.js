@@ -3,11 +3,12 @@ import { parse } from "../deps/flags.js";
 import { buildSite, validateArgsCount } from "./utils.js";
 
 export const HELP = `
-${brightGreen("lume run")}: run a script in your site
+${brightGreen("lume run")}: run a script from the lume config
 
 USAGE:
     lume run <script>
 `;
+
 export async function run(args, userSite) {
   const options = parse(args, {
     boolean: ["dev"],

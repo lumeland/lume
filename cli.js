@@ -31,24 +31,24 @@ USAGE:
     lume [COMMAND] [OPTIONS]
 
 COMMANDS:
-    build      Build the site. This is the default command
-    init       Create a _config.js file
+    build      Build the site (Default command)
+    init       Create a config file
     run        Run a custom script
     upgrade    Upgrade 🔥lume to the latest version
 
 OPTIONS:
     -h, --help              print usage information
     -v, --version           print version information
-        --root     <dir>    the root that lume should work in   Default: ./
+        --root     <dir>    the root where lume should work     Default: ./
         --src      <dir>    the source directory for your site  Default: ./
         --dest     <dir>    the build destination               Default: _site
         --config   <file>   specify the lume config file        Default: _config.js
-        --location <url>    set the domain for your site        Default: http://localhost
+        --location <url>    the domain for your site            Default: http://localhost
     -d, --dev               enable dev mode (view draft pages)
 
     -s, --serve             start a live-reloading web server
-    -p, --port     <port>   the port the server is on           Default: 3000
-    -o, --open              open the website in the browser
+    -p, --port     <port>   the port where the server runs      Default: 3000
+    -o, --open              open the site in the browser
 `;
 
 if (import.meta.main) {

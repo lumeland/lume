@@ -2,11 +2,12 @@ import { brightGreen, gray } from "../deps/colors.js";
 import { getLastVersion, install, validateArgsCount } from "./utils.js";
 
 export const HELP = `
-${brightGreen("lume install")}: install the last version of lume
+${brightGreen("lume install")}: install the latest version of lume
 
 USAGE:
     lume install
 `;
+
 /**
  * Command to upgrade lume to the latest version
  */
@@ -21,7 +22,7 @@ export async function run(args) {
   console.log();
   console.log("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥");
   console.log();
-  console.log(brightGreen(" lume installed successfully!!"));
+  console.log(brightGreen(" lume installed successfully!"));
   console.log();
   console.log("    BENVIDO - WELCOME! 🎉🎉");
   console.log();
@@ -29,7 +30,7 @@ export async function run(args) {
   console.log();
   console.log(`Run ${brightGreen("lume --help")} for usage information`);
   console.log(
-    `Go to ${gray("https://lumeland.github.io/")} for online documentation`,
+    `See ${gray("https://lumeland.github.io/")} for online documentation`,
   );
   console.log();
 }
