@@ -17,8 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New command `lume install` to install Lume easily using the import map.
 - New script `ci.js` to execute the CLI in a CI environment
   (without installing it or defining the import map).
-- New argument `--import-map` to `lume init` command
-  to enable or disable the import map in `_config.js` file. By default it's enabled.
+- New argument `--import-map` for the `lume init` command
+  to enable or disable the import map in the `_config.js` file.
+  By default, it’s enabled.
 
 ### Changed
 - The minimum Deno version supported to `1.10.0`.
@@ -29,8 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - use a full URL (e.g., `/about-me/index.html`).
 - BREAKING: `url` values to not assume that the page is HTML.
   This means the `.html` extension won’t be added by default. [#95]
-- `lume init` generates a `_config.js` file using the import map.
-  Use `lume init --import-map=false` to use the old urls.
+- `lume init` to generate a `_config.js` file using the import map.
+  Use `lume init --import-map=false` to use the old URLs.
 
 ### Removed
 - The property `ext` from the `url` page variable,
