@@ -1,7 +1,6 @@
 import { parse } from "./deps/flags.js";
 import { bold, brightGreen, red } from "./deps/colors.js";
 import * as upgrade from "./cli/upgrade.js";
-import * as update from "./cli/update.js";
 import * as init from "./cli/init.js";
 import * as install from "./cli/install.js";
 import * as build from "./cli/build.js";
@@ -19,7 +18,7 @@ Docs: https://lumeland.github.io/
     To serve the site in localhost:
         lume --serve
 
-    To update lume to the latest version:
+    To upgrade lume to the latest version:
         lume upgrade
 
     To run a custom script:
@@ -36,7 +35,6 @@ COMMANDS:
     init       Create a _config.js file
     run        Run a custom script
     upgrade    Upgrade 🔥lume to the latest version
-    update     Update the version of the lume modules imported in the _config.js file
 
 OPTIONS:
     -h, --help              print usage information
@@ -119,7 +117,6 @@ A static site generator for Deno`);
     await maybeRun("build", build) ||
     await maybeRun("init", init) ||
     await maybeRun("install", install) ||
-    await maybeRun("update", update) ||
     await maybeRun("upgrade", upgrade) ||
     await maybeRun("run", run)
   ) {
