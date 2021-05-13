@@ -7,32 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.20.0] - Unreleased
 ### Added
-- `import_map.json` to the installation process. This allows to import lume
+- New properties `pretty` and `slugify` for the `url` page variable
+  to override the corresponding `prettyUrls` and `slugifyUrls` site options
+  in particular pages. [#95]
+- `import_map.json` to the installation process. This allows to import Lume
   in the `_config.js` file with `import lume from "lume/mod.js";`.
-- New command `lume install` to install lume easily using the import_map.
-- New script `ci.js` to execute cli in a CI environment
-  (without install it and define the import_map).
+- New command `lume install` to install Lume easily using the import map.
+- New script `ci.js` to execute the CLI in a CI environment
+  (without installing it or defining the import map).
 
 ### Changed
-- The minimum Deno version supported is `1.10.0`.
-- BREAKING:
-  `prettyUrls` is used only to generate the URL from the source filename.
-  It won’t be used with the `url` variable in the page. [#95]
-  To generate pretty URLs with a custom URL, you have two ways:
-    - add a trailing slash (e.g., `/about-me/`)
-    - use full URLs (e.g., `/about-me/index.html`).
-- BREAKING: `url` values won’t assume that the page is HTML. [#95]
-  This means the `.html` extension won’t be added by default.
+- The minimum Deno version supported to `1.10.0`.
+- BREAKING: `prettyUrls` to not apply to the `url` page variable
+  if it’s a string. To generate a custom pretty URL: [#95]
+  - use an object (e.g., `{ path: /about-me }`)
+  - add a trailing slash (e.g., `/about-me/`)
+  - use a full URL (e.g., `/about-me/index.html`).
+- BREAKING: `url` values to not assume that the page is HTML.
+  This means the `.html` extension won’t be added by default. [#95]
 
 ### Removed
-- The command `lume update`. It's not needed thanks to import maps.
+- The property `ext` from the `url` page variable,
+  because `path` now includes it. [#95]
+- The command `lume update`. It’s not needed thanks to import maps.
 
 ### Fixed
 - Updated the `std` dependency.
 
 ## [0.19.0] - 2021-05-10
 ### Added
-- The `url` page variable supports an object with a `path` property
+- The `url` page variable supports an object with `path` and `ext` properties
   to fully customize the output filename. [#83]
 - New plugin `relative_urls` to convert all URLs to relative. [#85]
 - Preprocessors (like processors, but are executed before rendering). [#91]
