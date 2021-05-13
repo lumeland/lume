@@ -6,7 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.20.0] - Unreleased
+### Added
+- `import_map.json` to the installation process. This allows to import lume
+  in the `_config.js` file with `import lume from "lume/mod.js";`.
+
 ### Changed
+- The minimum Deno version supported is `1.10.0`.
 - BREAKING:
   `prettyUrls` is used only to generate the URL from the source filename.
   It won’t be used with the `url` variable in the page. [#95]
@@ -17,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   This means the `.html` extension won’t be added by default.
 
 ### Fixed
-* Updated the `std` dependency.
+- Updated the `std` dependency.
 
 ## [0.19.0] - 2021-05-10
 ### Added
