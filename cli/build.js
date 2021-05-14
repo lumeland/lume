@@ -26,8 +26,8 @@ OPTIONS:
 
 export async function run(args, userSite) {
   const options = parse(args, {
-    boolean: ["serve", "dev", "open"],
-    string: ["port", "src", "dest", "location", "root", "config"],
+    string: ["root", "src", "dest", "config", "location", "port"],
+    boolean: ["dev", "serve", "open"],
     alias: { dev: "d", serve: "s", port: "p", open: "o" },
     ["--"]: true,
     unknown(option) {

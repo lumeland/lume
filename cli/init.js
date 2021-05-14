@@ -16,16 +16,16 @@ OPTIONS:
 
 export async function run(args) {
   const options = parse(args, {
-    boolean: ["import-map"],
     string: ["config"],
+    boolean: ["import-map"],
     unknown(option) {
       if (option.startsWith("-")) {
         throw new Error(`Unknown option: ${option}`);
       }
     },
     default: {
-      "import-map": true,
       config: "_config.js",
+      "import-map": true,
     },
   });
 

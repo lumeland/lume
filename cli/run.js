@@ -14,8 +14,9 @@ OPTIONS:
 
 export async function run(args, userSite) {
   const options = parse(args, {
+    string: ["root", "src", "dest", "config", "location"],
     boolean: ["dev"],
-    string: ["src", "dest", "location", "root", "config"],
+    alias: { dev: "d" },
     ["--"]: true,
     unknown(option) {
       if (option.startsWith("-")) {
