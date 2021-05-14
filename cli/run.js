@@ -9,7 +9,12 @@ USAGE:
     lume run [OPTIONS] <script>
 
 OPTIONS:
-    --config <file>  specify the lume config file  Default: _config.js
+        --root     <dir>    the root where lume should work     Default: ./
+        --src      <dir>    the source directory for your site  Default: ./
+        --dest     <dir>    the build destination               Default: _site
+        --config   <file>   specify the lume config file        Default: _config.js
+        --location <url>    the domain for your site            Default: http://localhost
+    -d, --dev               enable dev mode (view draft pages)
 `;
 
 export async function run(args, userSite) {
