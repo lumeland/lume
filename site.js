@@ -316,6 +316,9 @@ export default class Site {
 
   /**
    * Returns the URL of a page
+   *
+   * @param {string} path
+   * @param {bool} absolute
    */
   url(path, absolute) {
     if (
