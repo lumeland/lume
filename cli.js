@@ -34,7 +34,8 @@ COMMANDS:
     build      Build the site (Default command)
     init       Create a config file
     run        Run a custom script
-    upgrade    Upgrade 🔥lume to the latest version
+    upgrade    Upgrade lume to the latest version
+    install    Install the latest lume version
 
 OPTIONS:
     -h, --help              print usage information
@@ -116,9 +117,9 @@ A static site generator for Deno`);
   if (
     await maybeRun("build", build) ||
     await maybeRun("init", init) ||
-    await maybeRun("install", install) ||
+    await maybeRun("run", run) ||
     await maybeRun("upgrade", upgrade) ||
-    await maybeRun("run", run)
+    await maybeRun("install", install)
   ) {
     return;
   }
