@@ -2,12 +2,11 @@ import { parse } from "./deps/flags.js";
 import { bold, brightGreen, red } from "./deps/colors.js";
 import * as upgrade from "./cli/upgrade.js";
 import * as init from "./cli/init.js";
-import * as install from "./cli/install.js";
 import * as build from "./cli/build.js";
 import * as run from "./cli/run.js";
 import { error as printError } from "./utils.js";
 
-export const version = "v0.19.0";
+export const version = "v0.20.1";
 
 const HELP = `
 Docs: https://lumeland.github.io/
@@ -117,8 +116,7 @@ A static site generator for Deno`);
     await maybeRun("build", build) ||
     await maybeRun("init", init) ||
     await maybeRun("run", run) ||
-    await maybeRun("upgrade", upgrade) ||
-    await maybeRun("install", install)
+    await maybeRun("upgrade", upgrade)
   ) {
     return;
   }

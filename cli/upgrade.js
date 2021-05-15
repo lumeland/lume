@@ -1,6 +1,6 @@
 import { brightGreen, gray } from "../deps/colors.js";
 import { version } from "../cli.js";
-import { getLastVersion, install, validateArgsCount } from "./utils.js";
+import { validateArgsCount } from "./utils.js";
 
 export const HELP = `
 ${brightGreen("lume upgrade")}: upgrade your lume install to the latest version
@@ -37,4 +37,28 @@ export async function run(args) {
     gray(`https://github.com/lumeland/lume/blob/${latest}/CHANGELOG.md`),
   );
   console.log();
+}
+
+async function getLastVersion() {
+  const response = await fetch("https://cdn.deno.land/lume/meta/versions.json");
+  const versions = await response.json();
+  return versions.latest;
+}
+
+async function install(version) {
+  const process = Deno.run({
+    cmd: [
+      Deno.execPath(),
+      "install",
+      "--unstable",
+      "-Afr",
+      `--import-map=https://deno.land/x/lume@${version}/import_map.json`,
+      `https://deno.land/x/lume@${version}/cli.js`,
+    ],
+  });
+
+  const status = await process.status();
+  process.close();
+
+  return status.success;
 }

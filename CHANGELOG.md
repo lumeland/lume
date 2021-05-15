@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.20.1] - 2021-05-15
+### Added
+- The file `install.js` for easy installation.
+
+### Removed
+- The command `install` from CLI.
+
+### Fixed
+- Lume version.
+
 ## [0.20.0] - 2021-05-14
 ### Added
 - New properties `pretty` and `slugify` for the `url` page variable
@@ -695,6 +705,7 @@ The first version.
 [#94]: https://github.com/lumeland/lume/issues/94
 [#95]: https://github.com/lumeland/lume/issues/95
 
+[0.20.1]: https://github.com/lumeland/lume/compare/v0.20.0...v0.20.1
 [0.20.0]: https://github.com/lumeland/lume/compare/v0.19.0...v0.20.0
 [0.19.0]: https://github.com/lumeland/lume/compare/v0.18.1...v0.19.0
 [0.18.1]: https://github.com/lumeland/lume/compare/v0.18.0...v0.18.1
