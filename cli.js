@@ -35,7 +35,6 @@ COMMANDS:
     init       Create a config file
     run        Run a custom script
     upgrade    Upgrade lume to the latest version
-    install    Install the latest lume version
 
 OPTIONS:
     -h, --help              print usage information
