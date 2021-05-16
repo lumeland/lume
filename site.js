@@ -23,7 +23,10 @@ const defaults = {
     alphanumeric: true,
     separator: "-",
     replace: {
+      "Ð": "D", // eth
       "ð": "d",
+      "Đ": "D", // crossed D
+      "đ": "d",
       "ø": "o",
       "ß": "ss",
       "æ": "ae",
