@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   by using the `/bin/bash` or `PowerShell.exe` executable.
   This adds support for more features, like pipes, etc.
 
+### Fixed
+- Updated `pug`.
+
 ## [0.20.1] - 2021-05-15
 ### Added
 - File `install.js` for easy installation.
