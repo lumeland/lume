@@ -9,18 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Changed
-- Simplified the script runner using `/bin/bash` or `PowerShell.exe` executables.
-  This adds support for more features like pipes, etc.
+- Simplified the script runner
+  by using the `/bin/bash` or `PowerShell.exe` executable.
+  This adds support for more features, like pipes, etc.
 
 ## [0.20.1] - 2021-05-15
 ### Added
-- The file `install.js` for easy installation.
+- File `install.js` for easy installation.
+- More default character replacements to slugifier.
 
 ### Removed
-- The command `install` from CLI.
+- The command `install` from the CLI.
 
 ### Fixed
-- Lume version.
+- The Lume version.
 
 ## [0.20.0] - 2021-05-14
 ### Added
