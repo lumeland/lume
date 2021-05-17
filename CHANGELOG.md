@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Added
+- More default character replacements to slugifier.
+
 ### Changed
 - Simplified the script runner
   by using the `/bin/bash` or `PowerShell.exe` executable.
@@ -16,7 +19,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [0.20.1] - 2021-05-15
 ### Added
 - File `install.js` for easy installation.
-- More default character replacements to slugifier.
 
 ### Removed
 - The command `install` from the CLI.
