@@ -9,7 +9,7 @@ export default class Eta extends TemplateEngine {
     super(site, options);
 
     eta.configure({
-      views: site.src(this.includes),
+      views: this.includes,
       useWith: true,
     });
 

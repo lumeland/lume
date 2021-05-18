@@ -18,7 +18,7 @@ export default class Pug extends TemplateEngine {
         filename,
         pug.compile(content, {
           filename,
-          basedir: this.site.src("_includes"),
+          basedir: this.includes,
           filters: this.filters,
         }),
       );

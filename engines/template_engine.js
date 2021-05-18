@@ -3,7 +3,7 @@ import loader from "../loaders/text.js";
 export default class TemplateEngine {
   constructor(site, options = {}) {
     this.site = site;
-    this.includes = "_includes";
+    this.includes = site.src("_includes");
     this.options = options;
   }
 

@@ -568,7 +568,7 @@ export default class Site {
       if (!engine) {
         throw new Error(`Couldn't find template engine for "${layout}"`);
       }
-      const layoutPath = this.src(engine.includes, layout);
+      const layoutPath = join(engine.includes, layout);
       const layoutData = await engine.load(layoutPath);
       pageData = {
         ...layoutData,
