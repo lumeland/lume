@@ -66,7 +66,7 @@ export default class Scripts {
 
 function shArgs(command) {
   if (Deno.build.os == "windows") {
-    return ["PowerShell.exe", "-Command", command];
+    return ["cmd.exe", "-Command", command];
   }
 
   return ["/bin/bash", "-c", command];
