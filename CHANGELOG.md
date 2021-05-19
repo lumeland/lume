@@ -17,8 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   This adds support for more features, like pipes, etc.
 
 ### Fixed
-- Updated `pug`.
-- Resolve the imported files from template engines like `nunjucks`
+- Updated `pug` and `std`.
+- Resolve the imported files from template engines, like `nunjucks`,
   when the `src` is in a subdirectory.
 
 ## [0.20.1] - 2021-05-15
