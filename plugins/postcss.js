@@ -37,6 +37,7 @@ export default function (userOptions = {}) {
 
     site.loadAssets(options.extensions, textLoader);
     site.process(options.extensions, processor);
+    site.filter("postcss", filter, true);
 
     async function processor(page) {
       const from = site.src(page.src.path + page.src.ext);
@@ -54,6 +55,11 @@ export default function (userOptions = {}) {
         mapFile.dest.ext = ".css.map";
         site.pages.push(mapFile);
       }
+    }
+
+    async function filter(code) {
+      const result = await runner.process(code, { from: undefined });
+      return result.css;
     }
   };
 }
