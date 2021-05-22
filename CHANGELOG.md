@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The `postcss` and `terser` filters.
 
 ### Fixed
-- Updated `std`.
+- Updated `std` and `postcss`.
 
 ## [0.20.2] - 2021-05-18
 ### Added
