@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - The `postcss` and `terser` filters.
+- Added `--plugins` argument to `lume init` so you can load and use plugins.
+  Example: `lume init --plugins=postcss,terser,pug`
 
 ### Fixed
 - Updated `std` and `postcss`.

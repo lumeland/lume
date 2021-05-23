@@ -12,11 +12,12 @@ USAGE:
 OPTIONS:
     --config      <file>      specify the lume config file               Default: _config.js
     --import-map  true|false  whether to use the import map or full URL  Default: true
+    --plugins     <plugins>   comma-separated list of plugins to use
 `;
 
 export async function run(args) {
   const options = parse(args, {
-    string: ["config"],
+    string: ["config", "plugins"],
     boolean: ["import-map"],
     unknown(option) {
       if (option.startsWith("-")) {
@@ -32,17 +33,27 @@ export async function run(args) {
   validateArgsCount("init", options._, 1);
 
   const lumeUrl = options["import-map"]
-    ? `lume/mod.js`
-    : `https://deno.land/x/lume@${version}/mod.js`;
+    ? "lume"
+    : `https://deno.land/x/lume@${version}`;
 
-  await Deno.writeTextFile(
-    options.config,
-    `import lume from "${lumeUrl}";
+  const plugins = options.plugins ? options.plugins.split(",").sort() : [];
+  const code = [`import lume from "${lumeUrl}/mod.js";`];
 
-const site = lume();
-
-export default site;
-`,
+  plugins.forEach((name) =>
+    code.push(`import ${name} from "${lumeUrl}/plugins/${name}.js";`)
   );
+  code.push("");
+  code.push("const site = lume();");
+
+  if (plugins.length) {
+    code.push("");
+    plugins.forEach((name) => code.push(`site.use(${name}());`));
+  }
+
+  code.push("");
+  code.push("export default site;");
+  code.push("");
+
+  await Deno.writeTextFile(options.config, code.join("\n"));
   console.log(brightGreen("Created a config file"), options.config);
 }
