@@ -1,4 +1,3 @@
-import textLoader from "../loaders/text.js";
 import {
   autoprefixer,
   postcss,
@@ -35,7 +34,7 @@ export default function (userOptions = {}) {
 
     const runner = postcss(plugins);
 
-    site.loadAssets(options.extensions, textLoader);
+    site.loadAssets(options.extensions);
     site.process(options.extensions, processor);
     site.filter("postcss", filter, true);
 

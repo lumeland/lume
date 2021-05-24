@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - Nunjucks no longer load `.html` files by default.
+- The loader argument in `loadPages` and `loaddAssets` is now optional,
+  and text loader is used by default.
 
 ### Fixed
 - Updated `std` and `postcss`.

@@ -11,6 +11,7 @@ import {
   searchByExtension,
   slugify,
 } from "./utils.js";
+import textLoader from "./loaders/text.js";
 
 const defaults = {
   cwd: Deno.cwd(),
@@ -147,6 +148,7 @@ export default class Site {
    * Register a page loader for some extensions
    */
   loadPages(extensions, loader) {
+    loader = loader || textLoader;
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
     return this;
   }
@@ -155,6 +157,7 @@ export default class Site {
    * Register an assets loader for some extensions
    */
   loadAssets(extensions, loader) {
+    loader = loader || textLoader;
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
     extensions.forEach((extension) => this.source.assets.add(extension));
     return this;

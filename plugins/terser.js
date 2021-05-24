@@ -1,4 +1,3 @@
-import textLoader from "../loaders/text.js";
 import minify from "../deps/terser.js";
 import { basename } from "../deps/path.js";
 import { error, merge } from "../utils.js";
@@ -18,7 +17,7 @@ export default function (userOptions = {}) {
   const options = merge(defaults, userOptions);
 
   return (site) => {
-    site.loadAssets(options.extensions, textLoader);
+    site.loadAssets(options.extensions);
     site.process(options.extensions, processor);
     site.filter("terser", filter, true);
 
