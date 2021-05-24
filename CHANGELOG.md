@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Added `--plugins` argument to `lume init` so you can load and use plugins.
   Example: `lume init --plugins=postcss,terser,pug`
 
+### Changed
+- Nunjucks no longer load `.html` files by default.
+
 ### Fixed
 - Updated `std` and `postcss`.
 

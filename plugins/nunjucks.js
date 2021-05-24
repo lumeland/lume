@@ -3,7 +3,7 @@ import { merge } from "../utils.js";
 
 // Default options
 const defaults = {
-  extensions: [".njk", ".html"],
+  extensions: [".njk"],
   options: {},
 };
 
