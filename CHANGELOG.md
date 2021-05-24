@@ -11,12 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - The `postcss` and `terser` filters.
 - Added `--plugins` argument to `lume init` so you can load and use plugins.
-  Example: `lume init --plugins=postcss,terser,pug`
+  Example: `lume init --plugins=postcss,terser,pug`.
 
 ### Changed
 - Nunjucks no longer load `.html` files by default.
 - The loader argument in `loadPages` and `loaddAssets` is now optional,
   and text loader is used by default.
+
+### Removed
+- `.markdown` extension. Use `.md` or configure the markdown plugin to enable it.
 
 ### Fixed
 - Updated `std` and `postcss`.

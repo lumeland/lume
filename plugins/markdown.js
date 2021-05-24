@@ -10,7 +10,7 @@ import { merge } from "../utils.js";
 
 // Default options
 const defaults = {
-  extensions: [".md", ".markdown"],
+  extensions: [".md"],
   options: {
     html: true,
   },
