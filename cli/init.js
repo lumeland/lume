@@ -12,7 +12,7 @@ USAGE:
 OPTIONS:
     --config      <file>      specify the lume config file               Default: _config.js
     --import-map  true|false  whether to use the import map or full URL  Default: true
-    --plugins     <plugins>   comma-separated list of plugins to use
+    --plugins     <plugins>   a comma-separated list of plugins to use
 `;
 
 export async function run(args) {

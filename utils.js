@@ -52,7 +52,7 @@ export function error(context, message, exception) {
   if (exception) {
     console.error(exception);
   }
-  console.error("");
+  console.log();
 }
 
 export function merge(defaults, user) {

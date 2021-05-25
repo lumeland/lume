@@ -328,8 +328,8 @@ export default class Site {
    */
   url(path, absolute) {
     if (
-      path.startsWith("./") || path.startsWith("../") || path.startsWith("#") ||
-      path.startsWith("?")
+      path.startsWith("./") || path.startsWith("../") ||
+      path.startsWith("?") || path.startsWith("#")
     ) {
       return path;
     }
@@ -569,7 +569,7 @@ export default class Site {
     while (layout) {
       const engine = this.#getEngine(layout);
       if (!engine) {
-        throw new Error(`Couldn't find template engine for "${layout}"`);
+        throw new Error(`Couldn't find a template engine for "${layout}"`);
       }
       const layoutPath = join(engine.includes, layout);
       const layoutData = await engine.load(layoutPath);
