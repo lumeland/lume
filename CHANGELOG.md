@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `.markdown` extension. Use `.md` or configure the markdown plugin to enable it.
 
 ### Fixed
-- Updated `std` and `postcss`.
+- Updated `std`, `postcss` and `deno_dom`.
 
 ## [0.20.2] - 2021-05-18
 ### Added
