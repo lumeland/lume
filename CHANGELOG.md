@@ -17,10 +17,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Nunjucks no longer loads `.html` files by default.
 - The loader argument in `loadPages` and `loaddAssets` is now optional,
   and the text loader is used by default.
+- The loaders and template engines are now fully decoupled.
+  This allows to use the variable `templateEngine` in a layout.
 
 ### Removed
 - The `.markdown` extension.
   Use `.md` or configure the Markdown plugin to enable it.
+- The function `site.engine()`. Use the third argument of `site.loadPages()`.
+  For example: `site.loadPages([".html"], textLoader, nunjucksEngine)`.
 
 ### Fixed
 - Updated `std`, `postcss` and `deno_dom`.

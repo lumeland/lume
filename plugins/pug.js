@@ -1,4 +1,5 @@
 import Pug from "../engines/pug.js";
+import loader from "../loaders/text.js";
 import { merge } from "../utils.js";
 
 // Default options
@@ -12,6 +13,6 @@ export default function (userOptions) {
   return (site) => {
     const pug = new Pug(site);
 
-    site.engine(options.extensions, pug);
+    site.loadPages(options.extensions, loader, pug);
   };
 }

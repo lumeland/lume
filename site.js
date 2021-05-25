@@ -147,9 +147,20 @@ export default class Site {
   /**
    * Register a page loader for some extensions
    */
-  loadPages(extensions, loader) {
+  loadPages(extensions, loader, engine) {
     loader ||= textLoader;
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
+
+    if (!engine) {
+      return this;
+    }
+
+    extensions.forEach((extension) => this.engines.set(extension, engine));
+
+    for (const [name, filter] of this.filters) {
+      engine.addFilter(name, ...filter);
+    }
+
     return this;
   }
 
@@ -184,20 +195,6 @@ export default class Site {
       processors.push(processor);
       this.processors.set(extension, processors);
     });
-    return this;
-  }
-
-  /**
-   * Register template engine used for some extensions
-   */
-  engine(extensions, engine) {
-    extensions.forEach((extension) => this.engines.set(extension, engine));
-    this.loadPages(extensions, engine.load.bind(engine));
-
-    for (const [name, filter] of this.filters) {
-      engine.addFilter(name, ...filter);
-    }
-
     return this;
   }
 
@@ -567,12 +564,20 @@ export default class Site {
     }
 
     while (layout) {
-      const engine = this.#getEngine(layout);
+      const result = searchByExtension(layout, this.source.pages);
+
+      if (!result) {
+        throw new Error(`Couldn't find a loader for "${layout}"`);
+      }
+
+      const layoutPath = this.src("_includes", layout);
+      const layoutData = await result[1](layoutPath, this.source);
+      const engine = this.#getEngine(layout, layoutData.templateEngine);
+
       if (!engine) {
         throw new Error(`Couldn't find a template engine for "${layout}"`);
       }
-      const layoutPath = join(engine.includes, layout);
-      const layoutData = await engine.load(layoutPath);
+
       pageData = {
         ...layoutData,
         ...pageData,

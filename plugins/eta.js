@@ -1,4 +1,5 @@
 import Eta from "../engines/eta.js";
+import loader from "../loaders/text.js";
 import { merge } from "../utils.js";
 
 // Default options
@@ -12,6 +13,6 @@ export default function (userOptions) {
   return (site) => {
     const eta = new Eta(site);
 
-    site.engine(options.extensions, eta);
+    site.loadPages(options.extensions, loader, eta);
   };
 }
