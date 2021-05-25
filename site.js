@@ -4,9 +4,9 @@ import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
 import Scripts from "./scripts.js";
-import { merge } from "./utils.js";
 import {
   concurrent,
+  merge,
   normalizePath,
   searchByExtension,
   slugify,
@@ -148,7 +148,7 @@ export default class Site {
    * Register a page loader for some extensions
    */
   loadPages(extensions, loader) {
-    loader = loader || textLoader;
+    loader ||= textLoader;
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
     return this;
   }
@@ -157,7 +157,7 @@ export default class Site {
    * Register an assets loader for some extensions
    */
   loadAssets(extensions, loader) {
-    loader = loader || textLoader;
+    loader ||= textLoader;
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
     extensions.forEach((extension) => this.source.assets.add(extension));
     return this;
