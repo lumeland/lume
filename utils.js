@@ -1,3 +1,4 @@
+import { DOMParser } from "./deps/dom.js";
 import { bold, red } from "./deps/colors.js";
 import { SEP } from "./deps/path.js";
 
@@ -133,4 +134,10 @@ export function documentToString(document) {
     (!doctype.publicId && doctype.systemId ? " SYSTEM" : "") +
     (doctype.systemId ? ` "${doctype.systemId}"` : "") +
     `>\n${document.documentElement.outerHTML}`;
+}
+
+const parser = new DOMParser();
+
+export function stringToDocument(string) {
+  return parser.parseFromString(string, "text/html");
 }

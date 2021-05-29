@@ -1,4 +1,5 @@
 import { join } from "./deps/path.js";
+import { documentToString, stringToDocument } from "./utils.js";
 
 class Base {
   src = {};
@@ -52,7 +53,7 @@ class Base {
 export class Page extends Base {
   dest = {};
   #content = null;
-  #parsedContent = null;
+  #document = null;
 
   duplicate(data = {}) {
     const page = new Page(this.src);
@@ -64,20 +65,29 @@ export class Page extends Base {
   }
 
   set content(content) {
-    this.#parsedContent = null;
+    this.#document = null;
     this.#content = content;
   }
 
   get content() {
+    if (!this.#content && this.#document) {
+      this.#content = documentToString(this.#document);
+    }
+
     return this.#content;
   }
 
-  set parsedContent(parsedContent) {
-    this.#parsedContent = parsedContent;
+  set document(document) {
+    this.#content = null;
+    this.#document = document;
   }
 
-  get parsedContent() {
-    return this.#parsedContent;
+  get document() {
+    if (!this.#document && this.#content) {
+      this.#document = stringToDocument(this.#content);
+    }
+
+    return this.#document;
   }
 }
 
