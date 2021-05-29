@@ -4,6 +4,10 @@ import { join, resolve, toFileUrl } from "../deps/path.js";
 import { brightGreen } from "../deps/colors.js";
 
 /**
+ * Create and configure a site instance
+ *
+ * @param {Object} options user options to override
+ * @param {Site} [site] user options to override
  * @return {Promise<*>} a lume instance - ready to build, run, etc.
  */
 export async function buildSite(options, site) {
@@ -45,10 +49,12 @@ export async function buildSite(options, site) {
 }
 
 /**
- * @param command name of the command you're validating
- * @param args array of cli arguments (i.e. options._)
- * @param max the max number of args
- * @param min the min number of args
+ * Validate the number of arguments passed to a command
+ *
+ * @param {string} command name of the command you're validating
+ * @param {[]} args array of cli arguments (i.e. options._)
+ * @param {number} max the max number of args
+ * @param {number} min the min number of args
  */
 export function validateArgsCount(command, args, max, min = 0) {
   if (args.length > max) {

@@ -1,3 +1,5 @@
+<!-- deno-fmt-ignore-file -->
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -5,19 +7,89 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [0.20.0] - Unreleased
+## [Unreleased]
+### Added
+- The `postcss` and `terser` filters.
+- The `--plugins` argument to `lume init`, so you can load and use plugins.
+  Example: `lume init --plugins=postcss,terser,pug`.
+
 ### Changed
-- BREAKING: `prettyUrls` is used only to generate the url from the source filename.
-  It won't be used with the `url` variable in the page. [#95]
-  To generate pretty urls with a custom url, you have two ways:
-    - Add a trailing slash (ex: `/about-me/`)
-    - Set the full urls (ex: `/about-me/index.html`)
-- BREAKING: `url` values won't assume that the page is html. [#95]
-  This means the `.html` extension won't be added by default.
+- Nunjucks no longer loads `.html` files by default.
+- The loader argument in `loadPages` and `loaddAssets` is now optional,
+  and the text loader is used by default.
+- The loaders and template engines are now fully decoupled.
+  This allows to use the variable `templateEngine` in a layout.
+
+### Removed
+- The `.markdown` extension.
+  Use `.md` or configure the Markdown plugin to enable it.
+- The function `site.engine()`. Use the third argument of `site.loadPages()`.
+  For example: `site.loadPages([".html"], textLoader, nunjucksEngine)`.
+
+### Fixed
+- Updated `std`, `postcss` and `deno_dom`.
+
+## [0.20.2] - 2021-05-18
+### Added
+- More default character replacements to slugifier.
+
+### Changed
+- Simplified the script runner
+  by using the `/bin/bash` or `PowerShell.exe` executable.
+  This adds support for more features, like pipes, etc.
+
+### Fixed
+- Updated `pug`.
+- Resolve the imported files from template engines, like `nunjucks`,
+  when the `src` is in a subdirectory.
+
+## [0.20.1] - 2021-05-15
+### Added
+- File `install.js` for easy installation.
+
+### Removed
+- The command `install` from the CLI.
+
+### Fixed
+- The Lume version.
+
+## [0.20.0] - 2021-05-14
+### Added
+- New properties `pretty` and `slugify` for the `url` page variable
+  to override the corresponding `prettyUrls` and `slugifyUrls` site options
+  in particular pages. [#95]
+- `import_map.json` to the installation process. This allows to import Lume
+  in the `_config.js` file with `import lume from "lume/mod.js";`.
+- New command `lume install` to install Lume easily using the import map.
+- New script `ci.js` to execute the CLI in a CI environment
+  (without installing it or defining the import map).
+- New argument `--import-map` for the `lume init` command
+  to enable or disable the import map in the `_config.js` file.
+  By default, it’s enabled.
+
+### Changed
+- The minimum Deno version supported to `1.10.0`.
+- BREAKING: `prettyUrls` to not apply to the `url` page variable
+  if it’s a string. To generate a custom pretty URL: [#95]
+  - use an object (e.g., `{ path: /about-me }`)
+  - add a trailing slash (e.g., `/about-me/`)
+  - use a full URL (e.g., `/about-me/index.html`).
+- BREAKING: `url` values to not assume that the page is HTML.
+  This means the `.html` extension won’t be added by default. [#95]
+- `lume init` to generate a `_config.js` file using the import map.
+  Use `lume init --import-map=false` to use the old URLs.
+
+### Removed
+- The property `ext` from the `url` page variable,
+  because `path` now includes it. [#95]
+- The command `lume update`. It’s not needed thanks to import maps.
+
+### Fixed
+- Updated the `std` dependency.
 
 ## [0.19.0] - 2021-05-10
 ### Added
-- The `url` page variable supports an object with a `path` property
+- The `url` page variable supports an object with `path` and `ext` properties
   to fully customize the output filename. [#83]
 - New plugin `relative_urls` to convert all URLs to relative. [#85]
 - Preprocessors (like processors, but are executed before rendering). [#91]
@@ -614,121 +686,124 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## 0.1.0 - 2020-09-13
 The first version.
 
-[#1]: https://github.com/oscarotero/lume/issues/1
-[#6]: https://github.com/oscarotero/lume/issues/6
-[#7]: https://github.com/oscarotero/lume/issues/7
-[#8]: https://github.com/oscarotero/lume/issues/8
-[#9]: https://github.com/oscarotero/lume/issues/9
-[#10]: https://github.com/oscarotero/lume/issues/10
-[#11]: https://github.com/oscarotero/lume/issues/11
-[#13]: https://github.com/oscarotero/lume/issues/13
-[#18]: https://github.com/oscarotero/lume/issues/18
-[#20]: https://github.com/oscarotero/lume/issues/20
-[#22]: https://github.com/oscarotero/lume/issues/22
-[#26]: https://github.com/oscarotero/lume/issues/26
-[#29]: https://github.com/oscarotero/lume/issues/29
-[#30]: https://github.com/oscarotero/lume/issues/30
-[#32]: https://github.com/oscarotero/lume/issues/32
-[#33]: https://github.com/oscarotero/lume/issues/33
-[#34]: https://github.com/oscarotero/lume/issues/34
-[#35]: https://github.com/oscarotero/lume/issues/35
-[#39]: https://github.com/oscarotero/lume/issues/39
-[#41]: https://github.com/oscarotero/lume/issues/41
-[#43]: https://github.com/oscarotero/lume/issues/43
-[#44]: https://github.com/oscarotero/lume/issues/44
-[#45]: https://github.com/oscarotero/lume/issues/45
-[#46]: https://github.com/oscarotero/lume/issues/46
-[#50]: https://github.com/oscarotero/lume/issues/50
-[#51]: https://github.com/oscarotero/lume/issues/51
-[#54]: https://github.com/oscarotero/lume/issues/54
-[#55]: https://github.com/oscarotero/lume/issues/55
-[#56]: https://github.com/oscarotero/lume/issues/56
-[#57]: https://github.com/oscarotero/lume/issues/57
-[#59]: https://github.com/oscarotero/lume/issues/59
-[#62]: https://github.com/oscarotero/lume/issues/62
-[#63]: https://github.com/oscarotero/lume/issues/63
-[#64]: https://github.com/oscarotero/lume/issues/64
-[#67]: https://github.com/oscarotero/lume/issues/67
-[#69]: https://github.com/oscarotero/lume/issues/69
-[#70]: https://github.com/oscarotero/lume/issues/70
-[#71]: https://github.com/oscarotero/lume/issues/71
-[#72]: https://github.com/oscarotero/lume/issues/72
-[#73]: https://github.com/oscarotero/lume/issues/73
-[#76]: https://github.com/oscarotero/lume/issues/76
-[#77]: https://github.com/oscarotero/lume/issues/77
-[#79]: https://github.com/oscarotero/lume/issues/79
-[#81]: https://github.com/oscarotero/lume/issues/81
-[#82]: https://github.com/oscarotero/lume/issues/82
-[#83]: https://github.com/oscarotero/lume/issues/83
-[#85]: https://github.com/oscarotero/lume/issues/85
-[#87]: https://github.com/oscarotero/lume/issues/87
-[#88]: https://github.com/oscarotero/lume/issues/88
-[#90]: https://github.com/oscarotero/lume/issues/90
-[#91]: https://github.com/oscarotero/lume/issues/91
-[#93]: https://github.com/oscarotero/lume/issues/93
-[#94]: https://github.com/oscarotero/lume/issues/94
-[#95]: https://github.com/oscarotero/lume/issues/95
+[#1]: https://github.com/lumeland/lume/issues/1
+[#6]: https://github.com/lumeland/lume/issues/6
+[#7]: https://github.com/lumeland/lume/issues/7
+[#8]: https://github.com/lumeland/lume/issues/8
+[#9]: https://github.com/lumeland/lume/issues/9
+[#10]: https://github.com/lumeland/lume/issues/10
+[#11]: https://github.com/lumeland/lume/issues/11
+[#13]: https://github.com/lumeland/lume/issues/13
+[#18]: https://github.com/lumeland/lume/issues/18
+[#20]: https://github.com/lumeland/lume/issues/20
+[#22]: https://github.com/lumeland/lume/issues/22
+[#26]: https://github.com/lumeland/lume/issues/26
+[#29]: https://github.com/lumeland/lume/issues/29
+[#30]: https://github.com/lumeland/lume/issues/30
+[#32]: https://github.com/lumeland/lume/issues/32
+[#33]: https://github.com/lumeland/lume/issues/33
+[#34]: https://github.com/lumeland/lume/issues/34
+[#35]: https://github.com/lumeland/lume/issues/35
+[#39]: https://github.com/lumeland/lume/issues/39
+[#41]: https://github.com/lumeland/lume/issues/41
+[#43]: https://github.com/lumeland/lume/issues/43
+[#44]: https://github.com/lumeland/lume/issues/44
+[#45]: https://github.com/lumeland/lume/issues/45
+[#46]: https://github.com/lumeland/lume/issues/46
+[#50]: https://github.com/lumeland/lume/issues/50
+[#51]: https://github.com/lumeland/lume/issues/51
+[#54]: https://github.com/lumeland/lume/issues/54
+[#55]: https://github.com/lumeland/lume/issues/55
+[#56]: https://github.com/lumeland/lume/issues/56
+[#57]: https://github.com/lumeland/lume/issues/57
+[#59]: https://github.com/lumeland/lume/issues/59
+[#62]: https://github.com/lumeland/lume/issues/62
+[#63]: https://github.com/lumeland/lume/issues/63
+[#64]: https://github.com/lumeland/lume/issues/64
+[#67]: https://github.com/lumeland/lume/issues/67
+[#69]: https://github.com/lumeland/lume/issues/69
+[#70]: https://github.com/lumeland/lume/issues/70
+[#71]: https://github.com/lumeland/lume/issues/71
+[#72]: https://github.com/lumeland/lume/issues/72
+[#73]: https://github.com/lumeland/lume/issues/73
+[#76]: https://github.com/lumeland/lume/issues/76
+[#77]: https://github.com/lumeland/lume/issues/77
+[#79]: https://github.com/lumeland/lume/issues/79
+[#81]: https://github.com/lumeland/lume/issues/81
+[#82]: https://github.com/lumeland/lume/issues/82
+[#83]: https://github.com/lumeland/lume/issues/83
+[#85]: https://github.com/lumeland/lume/issues/85
+[#87]: https://github.com/lumeland/lume/issues/87
+[#88]: https://github.com/lumeland/lume/issues/88
+[#90]: https://github.com/lumeland/lume/issues/90
+[#91]: https://github.com/lumeland/lume/issues/91
+[#93]: https://github.com/lumeland/lume/issues/93
+[#94]: https://github.com/lumeland/lume/issues/94
+[#95]: https://github.com/lumeland/lume/issues/95
 
-[0.20.0]: https://github.com/oscarotero/lume/compare/v0.19.0...HEAD
-[0.19.0]: https://github.com/oscarotero/lume/compare/v0.18.1...v0.19.0
-[0.18.1]: https://github.com/oscarotero/lume/compare/v0.18.0...v0.18.1
-[0.18.0]: https://github.com/oscarotero/lume/compare/v0.17.1...v0.18.0
-[0.17.1]: https://github.com/oscarotero/lume/compare/v0.17.0...v0.17.1
-[0.17.0]: https://github.com/oscarotero/lume/compare/v0.16.6...v0.17.0
-[0.16.6]: https://github.com/oscarotero/lume/compare/v0.16.5...v0.16.6
-[0.16.5]: https://github.com/oscarotero/lume/compare/v0.16.4...v0.16.5
-[0.16.4]: https://github.com/oscarotero/lume/compare/v0.16.3...v0.16.4
-[0.16.3]: https://github.com/oscarotero/lume/compare/v0.16.2...v0.16.3
-[0.16.2]: https://github.com/oscarotero/lume/compare/v0.16.1...v0.16.2
-[0.16.1]: https://github.com/oscarotero/lume/compare/v0.16.0...v0.16.1
-[0.16.0]: https://github.com/oscarotero/lume/compare/v0.15.4...v0.16.0
-[0.15.4]: https://github.com/oscarotero/lume/compare/v0.15.3...v0.15.4
-[0.15.3]: https://github.com/oscarotero/lume/compare/v0.15.2...v0.15.3
-[0.15.2]: https://github.com/oscarotero/lume/compare/v0.15.1...v0.15.2
-[0.15.1]: https://github.com/oscarotero/lume/compare/v0.15.0...v0.15.1
-[0.15.0]: https://github.com/oscarotero/lume/compare/v0.14.0...v0.15.0
-[0.14.0]: https://github.com/oscarotero/lume/compare/v0.13.2...v0.14.0
-[0.13.2]: https://github.com/oscarotero/lume/compare/v0.13.1...v0.13.2
-[0.13.1]: https://github.com/oscarotero/lume/compare/v0.13.0...v0.13.1
-[0.13.0]: https://github.com/oscarotero/lume/compare/v0.12.1...v0.13.0
-[0.12.1]: https://github.com/oscarotero/lume/compare/v0.12.0...v0.12.1
-[0.12.0]: https://github.com/oscarotero/lume/compare/v0.11.0...v0.12.0
-[0.11.0]: https://github.com/oscarotero/lume/compare/v0.10.8...v0.11.0
-[0.10.8]: https://github.com/oscarotero/lume/compare/v0.10.7...v0.10.8
-[0.10.7]: https://github.com/oscarotero/lume/compare/v0.10.6...v0.10.7
-[0.10.6]: https://github.com/oscarotero/lume/compare/v0.10.5...v0.10.6
-[0.10.5]: https://github.com/oscarotero/lume/compare/v0.10.4...v0.10.5
-[0.10.4]: https://github.com/oscarotero/lume/compare/v0.10.3...v0.10.4
-[0.10.3]: https://github.com/oscarotero/lume/compare/v0.10.2...v0.10.3
-[0.10.2]: https://github.com/oscarotero/lume/compare/v0.10.1...v0.10.2
-[0.10.1]: https://github.com/oscarotero/lume/compare/v0.10.0...v0.10.1
-[0.10.0]: https://github.com/oscarotero/lume/compare/v0.9.12...v0.10.0
-[0.9.12]: https://github.com/oscarotero/lume/compare/v0.9.11...v0.9.12
-[0.9.11]: https://github.com/oscarotero/lume/compare/v0.9.10...v0.9.11
-[0.9.10]: https://github.com/oscarotero/lume/compare/v0.9.9...v0.9.10
-[0.9.9]: https://github.com/oscarotero/lume/compare/v0.9.8...v0.9.9
-[0.9.8]: https://github.com/oscarotero/lume/compare/v0.9.7...v0.9.8
-[0.9.7]: https://github.com/oscarotero/lume/compare/v0.9.6...v0.9.7
-[0.9.6]: https://github.com/oscarotero/lume/compare/v0.9.5...v0.9.6
-[0.9.5]: https://github.com/oscarotero/lume/compare/v0.9.4...v0.9.5
-[0.9.4]: https://github.com/oscarotero/lume/compare/v0.9.3...v0.9.4
-[0.9.3]: https://github.com/oscarotero/lume/compare/v0.9.2...v0.9.3
-[0.9.2]: https://github.com/oscarotero/lume/compare/v0.9.1...v0.9.2
-[0.9.1]: https://github.com/oscarotero/lume/compare/v0.9.0...v0.9.1
-[0.9.0]: https://github.com/oscarotero/lume/compare/v0.8.1...v0.9.0
-[0.8.1]: https://github.com/oscarotero/lume/compare/v0.8.0...v0.8.1
-[0.8.0]: https://github.com/oscarotero/lume/compare/v0.7.3...v0.8.0
-[0.7.3]: https://github.com/oscarotero/lume/compare/v0.7.2...v0.7.3
-[0.7.2]: https://github.com/oscarotero/lume/compare/v0.7.1...v0.7.2
-[0.7.1]: https://github.com/oscarotero/lume/compare/v0.7.0...v0.7.1
-[0.7.0]: https://github.com/oscarotero/lume/compare/v0.6.0...v0.7.0
-[0.6.0]: https://github.com/oscarotero/lume/compare/v0.5.1...v0.6.0
-[0.5.1]: https://github.com/oscarotero/lume/compare/v0.5.0...v0.5.1
-[0.5.0]: https://github.com/oscarotero/lume/compare/v0.4.0...v0.5.0
-[0.4.0]: https://github.com/oscarotero/lume/compare/v0.3.1...v0.4.0
-[0.3.1]: https://github.com/oscarotero/lume/compare/v0.3.0...v0.3.1
-[0.3.0]: https://github.com/oscarotero/lume/compare/v0.2.3...v0.3.0
-[0.2.3]: https://github.com/oscarotero/lume/compare/v0.2.2...v0.2.3
-[0.2.2]: https://github.com/oscarotero/lume/compare/v0.2.1...v0.2.2
-[0.2.1]: https://github.com/oscarotero/lume/compare/v0.2.0...v0.2.1
-[0.2.0]: https://github.com/oscarotero/lume/compare/v0.1.0...v0.2.0
+[Unreleased]: https://github.com/lumeland/lume/compare/v0.20.2...HEAD
+[0.20.2]: https://github.com/lumeland/lume/compare/v0.20.1...v0.20.2
+[0.20.1]: https://github.com/lumeland/lume/compare/v0.20.0...v0.20.1
+[0.20.0]: https://github.com/lumeland/lume/compare/v0.19.0...v0.20.0
+[0.19.0]: https://github.com/lumeland/lume/compare/v0.18.1...v0.19.0
+[0.18.1]: https://github.com/lumeland/lume/compare/v0.18.0...v0.18.1
+[0.18.0]: https://github.com/lumeland/lume/compare/v0.17.1...v0.18.0
+[0.17.1]: https://github.com/lumeland/lume/compare/v0.17.0...v0.17.1
+[0.17.0]: https://github.com/lumeland/lume/compare/v0.16.6...v0.17.0
+[0.16.6]: https://github.com/lumeland/lume/compare/v0.16.5...v0.16.6
+[0.16.5]: https://github.com/lumeland/lume/compare/v0.16.4...v0.16.5
+[0.16.4]: https://github.com/lumeland/lume/compare/v0.16.3...v0.16.4
+[0.16.3]: https://github.com/lumeland/lume/compare/v0.16.2...v0.16.3
+[0.16.2]: https://github.com/lumeland/lume/compare/v0.16.1...v0.16.2
+[0.16.1]: https://github.com/lumeland/lume/compare/v0.16.0...v0.16.1
+[0.16.0]: https://github.com/lumeland/lume/compare/v0.15.4...v0.16.0
+[0.15.4]: https://github.com/lumeland/lume/compare/v0.15.3...v0.15.4
+[0.15.3]: https://github.com/lumeland/lume/compare/v0.15.2...v0.15.3
+[0.15.2]: https://github.com/lumeland/lume/compare/v0.15.1...v0.15.2
+[0.15.1]: https://github.com/lumeland/lume/compare/v0.15.0...v0.15.1
+[0.15.0]: https://github.com/lumeland/lume/compare/v0.14.0...v0.15.0
+[0.14.0]: https://github.com/lumeland/lume/compare/v0.13.2...v0.14.0
+[0.13.2]: https://github.com/lumeland/lume/compare/v0.13.1...v0.13.2
+[0.13.1]: https://github.com/lumeland/lume/compare/v0.13.0...v0.13.1
+[0.13.0]: https://github.com/lumeland/lume/compare/v0.12.1...v0.13.0
+[0.12.1]: https://github.com/lumeland/lume/compare/v0.12.0...v0.12.1
+[0.12.0]: https://github.com/lumeland/lume/compare/v0.11.0...v0.12.0
+[0.11.0]: https://github.com/lumeland/lume/compare/v0.10.8...v0.11.0
+[0.10.8]: https://github.com/lumeland/lume/compare/v0.10.7...v0.10.8
+[0.10.7]: https://github.com/lumeland/lume/compare/v0.10.6...v0.10.7
+[0.10.6]: https://github.com/lumeland/lume/compare/v0.10.5...v0.10.6
+[0.10.5]: https://github.com/lumeland/lume/compare/v0.10.4...v0.10.5
+[0.10.4]: https://github.com/lumeland/lume/compare/v0.10.3...v0.10.4
+[0.10.3]: https://github.com/lumeland/lume/compare/v0.10.2...v0.10.3
+[0.10.2]: https://github.com/lumeland/lume/compare/v0.10.1...v0.10.2
+[0.10.1]: https://github.com/lumeland/lume/compare/v0.10.0...v0.10.1
+[0.10.0]: https://github.com/lumeland/lume/compare/v0.9.12...v0.10.0
+[0.9.12]: https://github.com/lumeland/lume/compare/v0.9.11...v0.9.12
+[0.9.11]: https://github.com/lumeland/lume/compare/v0.9.10...v0.9.11
+[0.9.10]: https://github.com/lumeland/lume/compare/v0.9.9...v0.9.10
+[0.9.9]: https://github.com/lumeland/lume/compare/v0.9.8...v0.9.9
+[0.9.8]: https://github.com/lumeland/lume/compare/v0.9.7...v0.9.8
+[0.9.7]: https://github.com/lumeland/lume/compare/v0.9.6...v0.9.7
+[0.9.6]: https://github.com/lumeland/lume/compare/v0.9.5...v0.9.6
+[0.9.5]: https://github.com/lumeland/lume/compare/v0.9.4...v0.9.5
+[0.9.4]: https://github.com/lumeland/lume/compare/v0.9.3...v0.9.4
+[0.9.3]: https://github.com/lumeland/lume/compare/v0.9.2...v0.9.3
+[0.9.2]: https://github.com/lumeland/lume/compare/v0.9.1...v0.9.2
+[0.9.1]: https://github.com/lumeland/lume/compare/v0.9.0...v0.9.1
+[0.9.0]: https://github.com/lumeland/lume/compare/v0.8.1...v0.9.0
+[0.8.1]: https://github.com/lumeland/lume/compare/v0.8.0...v0.8.1
+[0.8.0]: https://github.com/lumeland/lume/compare/v0.7.3...v0.8.0
+[0.7.3]: https://github.com/lumeland/lume/compare/v0.7.2...v0.7.3
+[0.7.2]: https://github.com/lumeland/lume/compare/v0.7.1...v0.7.2
+[0.7.1]: https://github.com/lumeland/lume/compare/v0.7.0...v0.7.1
+[0.7.0]: https://github.com/lumeland/lume/compare/v0.6.0...v0.7.0
+[0.6.0]: https://github.com/lumeland/lume/compare/v0.5.1...v0.6.0
+[0.5.1]: https://github.com/lumeland/lume/compare/v0.5.0...v0.5.1
+[0.5.0]: https://github.com/lumeland/lume/compare/v0.4.0...v0.5.0
+[0.4.0]: https://github.com/lumeland/lume/compare/v0.3.1...v0.4.0
+[0.3.1]: https://github.com/lumeland/lume/compare/v0.3.0...v0.3.1
+[0.3.0]: https://github.com/lumeland/lume/compare/v0.2.3...v0.3.0
+[0.2.3]: https://github.com/lumeland/lume/compare/v0.2.2...v0.2.3
+[0.2.2]: https://github.com/lumeland/lume/compare/v0.2.1...v0.2.2
+[0.2.1]: https://github.com/lumeland/lume/compare/v0.2.0...v0.2.1
+[0.2.0]: https://github.com/lumeland/lume/compare/v0.1.0...v0.2.0

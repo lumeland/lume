@@ -3,15 +3,25 @@ import { parse } from "../deps/flags.js";
 import { buildSite, validateArgsCount } from "./utils.js";
 
 export const HELP = `
-${brightGreen("lume run")}: run a script in your site
+${brightGreen("lume run")}: run a script from the lume config
 
 USAGE:
-    lume run <script>
+    lume run [OPTIONS] <script>
+
+OPTIONS:
+        --root     <dir>    the root where lume should work     Default: ./
+        --src      <dir>    the source directory for your site  Default: ./
+        --dest     <dir>    the build destination               Default: _site
+        --config   <file>   specify the lume config file        Default: _config.js
+        --location <url>    the domain for your site            Default: http://localhost
+    -d, --dev               enable dev mode (view draft pages)
 `;
+
 export async function run(args, userSite) {
   const options = parse(args, {
+    string: ["root", "src", "dest", "config", "location"],
     boolean: ["dev"],
-    string: ["src", "dest", "location", "root", "config"],
+    alias: { dev: "d" },
     ["--"]: true,
     unknown(option) {
       if (option.startsWith("-")) {

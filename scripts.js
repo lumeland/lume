@@ -1,5 +1,4 @@
 import { brightGreen } from "./deps/colors.js";
-import { join } from "./deps/path.js";
 
 export default class Scripts {
   scripts = new Map();
@@ -9,7 +8,7 @@ export default class Scripts {
   }
 
   set(name, ...commands) {
-    this.scripts.set(name, parseCommands(commands));
+    this.scripts.set(name, commands);
   }
 
   async run(options = {}, ...names) {
@@ -36,7 +35,7 @@ export default class Scripts {
       const results = await Promise.all(
         name.map((n) => this.#runScript(options, n)),
       );
-      return (results.every((success) => success)) ? 0 : 1;
+      return results.every((success) => success);
     }
 
     if (typeof name === "function") {
@@ -49,22 +48,14 @@ export default class Scripts {
   async #runFunction(fn) {
     const name = fn.name || "[Function]";
     console.log(`⚡️ ${brightGreen(name + "()")}`);
-    await fn(this.site);
-    return true;
+    const result = await fn(this.site);
+    return result !== false;
   }
 
   async #runCommand(options, command) {
     console.log(`⚡️ ${brightGreen(command)}`);
 
-    const cmd = Array.from(command.matchAll(/('([^']*)'|"([^"]*)"|\S+)/g))
-      .map((piece) => piece[2] || piece[1]);
-
-    if (cmd[0] === "cd") {
-      options.cwd = join(options.cwd, cmd[1]);
-      await Deno.stat(options.cwd);
-      return true;
-    }
-
+    const cmd = shArgs(command);
     const process = Deno.run({ cmd, ...options });
     const status = await process.status();
     process.close();
@@ -73,20 +64,10 @@ export default class Scripts {
   }
 }
 
-function parseCommands(commands, result = []) {
-  commands.forEach((command) => {
-    if (typeof command === "string") {
-      // Split the commands joined by " && " and " & "
-      const subcommands = command.split(/\s+&&\s+/)
-        .map((s) => s.includes(" & ") ? s.split(/\s+&\s+/) : s);
+function shArgs(command) {
+  if (Deno.build.os == "windows") {
+    return ["PowerShell.exe", "-Command", command];
+  }
 
-      result.push(...subcommands);
-    } else if (Array.isArray(command)) {
-      result.push(parseCommands(command));
-    } else {
-      result.push(command);
-    }
-  });
-
-  return result;
+  return ["/bin/bash", "-c", command];
 }

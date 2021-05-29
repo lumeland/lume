@@ -7,6 +7,7 @@ export default class Pug extends TemplateEngine {
 
   constructor(site, options = {}) {
     super(site, options);
+    this.includes = site.src("_includes");
 
     // Update cache
     site.addEventListener("beforeUpdate", () => this.cache.clear());
@@ -18,7 +19,7 @@ export default class Pug extends TemplateEngine {
         filename,
         pug.compile(content, {
           filename,
-          basedir: this.site.src("_includes"),
+          basedir: this.includes,
           filters: this.filters,
         }),
       );

@@ -1,4 +1,3 @@
-import textLoader from "../loaders/text.js";
 import minify from "../deps/terser.js";
 import { basename } from "../deps/path.js";
 import { error, merge } from "../utils.js";
@@ -18,15 +17,16 @@ export default function (userOptions = {}) {
   const options = merge(defaults, userOptions);
 
   return (site) => {
-    site.loadAssets(options.extensions, textLoader);
+    site.loadAssets(options.extensions);
     site.process(options.extensions, processor);
+    site.filter("terser", filter, true);
+
+    // Options passed to terser
+    const terserOptions = { ...options.options };
 
     async function processor(file) {
       const content = file.content;
       const filename = file.dest.path + file.dest.ext;
-
-      // Options passed to terser
-      const terserOptions = { ...options.options };
 
       if (options.sourceMap) {
         terserOptions.sourceMap = {
@@ -49,6 +49,11 @@ export default function (userOptions = {}) {
       } catch (err) {
         error("terser", `Error in file ${filename}`, err);
       }
+    }
+
+    async function filter(code) {
+      const output = await minify(code, terserOptions);
+      return output.code;
     }
   };
 }

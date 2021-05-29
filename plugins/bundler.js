@@ -1,4 +1,3 @@
-import textLoader from "../loaders/text.js";
 import { merge } from "../utils.js";
 
 // Default options
@@ -12,7 +11,7 @@ export default function (userOptions = {}) {
   const options = merge(defaults, userOptions);
 
   return (site) => {
-    site.loadAssets(options.extensions, textLoader);
+    site.loadAssets(options.extensions);
     site.process(options.extensions, processor);
 
     async function processor(file) {

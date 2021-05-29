@@ -1,4 +1,5 @@
 import JsxEngine from "../engines/jsx.js";
+import loader from "../loaders/module.js";
 import { merge } from "../utils.js";
 
 // Default options
@@ -12,6 +13,6 @@ export default function (userOptions) {
   return (site) => {
     const jsxEngine = new JsxEngine(site);
 
-    site.engine(options.extensions, jsxEngine);
+    site.loadPages(options.extensions, loader, jsxEngine);
   };
 }

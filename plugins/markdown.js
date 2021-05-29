@@ -4,13 +4,14 @@ import {
   markdownItDeflist,
   markdownItReplaceLinks,
 } from "../deps/markdown_it.js";
+import loader from "../loaders/text.js";
 import hljs from "../deps/highlight.js";
 import Markdown from "../engines/markdown.js";
 import { merge } from "../utils.js";
 
 // Default options
 const defaults = {
-  extensions: [".md", ".markdown"],
+  extensions: [".md"],
   options: {
     html: true,
   },
@@ -27,7 +28,7 @@ export default function (userOptions) {
   return function (site) {
     const engine = createMarkdown(site, options);
 
-    site.engine(options.extensions, new Markdown(site, engine));
+    site.loadPages(options.extensions, loader, new Markdown(site, engine));
     site.filter("md", filter);
 
     function filter(string, inline = false) {

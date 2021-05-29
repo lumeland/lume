@@ -1,9 +1,10 @@
 import NunjucksEngine from "../engines/nunjucks.js";
+import loader from "../loaders/text.js";
 import { merge } from "../utils.js";
 
 // Default options
 const defaults = {
-  extensions: [".njk", ".html"],
+  extensions: [".njk"],
   options: {},
 };
 
@@ -13,7 +14,7 @@ export default function (userOptions) {
   return (site) => {
     const nunjucksEngine = new NunjucksEngine(site, options.options);
 
-    site.engine(options.extensions, nunjucksEngine);
+    site.loadPages(options.extensions, loader, nunjucksEngine);
     site.filter("njk", filter, true);
 
     function filter(string, data = {}) {

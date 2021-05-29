@@ -4,13 +4,14 @@ import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
 import Scripts from "./scripts.js";
-import { merge } from "./utils.js";
 import {
   concurrent,
+  merge,
   normalizePath,
   searchByExtension,
   slugify,
 } from "./utils.js";
+import textLoader from "./loaders/text.js";
 
 const defaults = {
   cwd: Deno.cwd(),
@@ -23,7 +24,10 @@ const defaults = {
     alphanumeric: true,
     separator: "-",
     replace: {
+      "Ð": "D", // eth
       "ð": "d",
+      "Đ": "D", // crossed D
+      "đ": "d",
       "ø": "o",
       "ß": "ss",
       "æ": "ae",
@@ -143,8 +147,20 @@ export default class Site {
   /**
    * Register a page loader for some extensions
    */
-  loadPages(extensions, loader) {
+  loadPages(extensions, loader, engine) {
+    loader ||= textLoader;
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
+
+    if (!engine) {
+      return this;
+    }
+
+    extensions.forEach((extension) => this.engines.set(extension, engine));
+
+    for (const [name, filter] of this.filters) {
+      engine.addFilter(name, ...filter);
+    }
+
     return this;
   }
 
@@ -152,6 +168,7 @@ export default class Site {
    * Register an assets loader for some extensions
    */
   loadAssets(extensions, loader) {
+    loader ||= textLoader;
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
     extensions.forEach((extension) => this.source.assets.add(extension));
     return this;
@@ -178,20 +195,6 @@ export default class Site {
       processors.push(processor);
       this.processors.set(extension, processors);
     });
-    return this;
-  }
-
-  /**
-   * Register template engine used for some extensions
-   */
-  engine(extensions, engine) {
-    extensions.forEach((extension) => this.engines.set(extension, engine));
-    this.loadPages(extensions, engine.load.bind(engine));
-
-    for (const [name, filter] of this.filters) {
-      engine.addFilter(name, ...filter);
-    }
-
     return this;
   }
 
@@ -316,11 +319,14 @@ export default class Site {
 
   /**
    * Returns the URL of a page
+   *
+   * @param {string} path
+   * @param {bool} absolute
    */
   url(path, absolute) {
     if (
-      path.startsWith("./") || path.startsWith("../") || path.startsWith("#") ||
-      path.startsWith("?")
+      path.startsWith("./") || path.startsWith("../") ||
+      path.startsWith("?") || path.startsWith("#")
     ) {
       return path;
     }
@@ -494,15 +500,15 @@ export default class Site {
     let { prettyUrls, slugifyUrls } = this.options;
 
     if (typeof url === "object") {
-      if (url.hasOwnProperty("pretty")) {
+      if ("pretty" in url) {
         prettyUrls = url.pretty;
       }
 
-      if (url.hasOwnProperty("slugify")) {
+      if ("slugify" in url) {
         slugifyUrls = url.slugify;
       }
 
-      if (url.hasOwnProperty("path")) {
+      if ("path" in url) {
         url = url.path;
       }
     }
@@ -558,12 +564,20 @@ export default class Site {
     }
 
     while (layout) {
-      const engine = this.#getEngine(layout);
-      if (!engine) {
-        throw new Error(`Couldn't find template engine for "${layout}"`);
+      const result = searchByExtension(layout, this.source.pages);
+
+      if (!result) {
+        throw new Error(`Couldn't find a loader for "${layout}"`);
       }
-      const layoutPath = this.src(engine.includes, layout);
-      const layoutData = await engine.load(layoutPath);
+
+      const layoutPath = this.src("_includes", layout);
+      const layoutData = await result[1](layoutPath, this.source);
+      const engine = this.#getEngine(layout, layoutData.templateEngine);
+
+      if (!engine) {
+        throw new Error(`Couldn't find a template engine for "${layout}"`);
+      }
+
       pageData = {
         ...layoutData,
         ...pageData,
