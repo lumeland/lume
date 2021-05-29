@@ -70,8 +70,9 @@ export class Page extends Base {
   }
 
   get content() {
-    if (!this.#content && this.#document) {
+    if (this.#document) {
       this.#content = documentToString(this.#document);
+      this.#document = null;
     }
 
     return this.#content;

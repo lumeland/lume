@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   Use `.md` or configure the Markdown plugin to enable it.
 - The function `site.engine()`. Use the third argument of `site.loadPages()`.
   For example: `site.loadPages([".html"], textLoader, nunjucksEngine)`.
+- The plugin `dom`. It's not longer necessary because pages can return the parsed Html easily.
+  For example: `site.process([".html"], (page) => modify(page.document))`
 
 ### Fixed
 - Updated `std`, `postcss` and `deno_dom`.

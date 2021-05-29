@@ -1,18 +1,13 @@
 import { posix } from "../deps/path.js";
-import { DOMParser } from "../deps/dom.js";
-import { documentToString } from "../utils.js";
 
 export default function () {
-  const parser = new DOMParser();
-
   return (site) => {
     site.process([".html"], processor);
 
     const basePath = site.options.location.pathname;
 
     function processor(page) {
-      const document = page.parsedContent ||
-        parser.parseFromString(page.content, "text/html");
+      const document = page.document;
       const from = posix.dirname(site.url(page.dest.path));
 
       document.querySelectorAll("[href]").forEach((element) => {
@@ -51,9 +46,6 @@ export default function () {
           ),
         );
       });
-
-      page.content = documentToString(document);
-      page.parsedContent = document;
     }
   };
 }

@@ -1,13 +1,10 @@
 import { extname, posix, resolve } from "../deps/path.js";
-import { DOMParser } from "../deps/dom.js";
 import { encode } from "../deps/base64.js";
-import { documentToString, mimes } from "../utils.js";
+import { mimes } from "../utils.js";
 
 const cache = new Map();
 
 export default function () {
-  const parser = new DOMParser();
-
   return (site) => {
     site.process([".html"], processor);
 
@@ -19,17 +16,13 @@ export default function () {
     });
 
     async function processor(page) {
-      if (page.content.includes(" inline")) {
-        const document = page.parsedContent ||
-          parser.parseFromString(page.content, "text/html");
+      if (!page.content.includes(" inline")) {
+        return;
+      }
 
-        for (const element of document.querySelectorAll("[inline]")) {
-          await inline(page.data.url, element);
-          element.removeAttribute("inline");
-        }
-
-        page.content = documentToString(document);
-        page.parsedContent = document;
+      for (const element of page.document.querySelectorAll("[inline]")) {
+        await inline(page.data.url, element);
+        element.removeAttribute("inline");
       }
     }
 
