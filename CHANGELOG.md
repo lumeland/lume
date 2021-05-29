@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The `postcss` and `terser` filters.
 - The `--plugins` argument to `lume init`, so you can load and use plugins.
   Example: `lume init --plugins=postcss,terser,pug`.
+- Added the property `document` to `Page`, that returns the parsed Html.
 
 ### Changed
 - Nunjucks no longer loads `.html` files by default.
