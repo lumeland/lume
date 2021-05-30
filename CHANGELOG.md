@@ -12,10 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The `postcss` and `terser` filters.
 - The `--plugins` argument to `lume init`, so you can load and use plugins.
   Example: `lume init --plugins=postcss,terser,pug`.
-- Added the property `document` to `Page`, that returns the parsed Html.
-- New plugins `code_highlight` to highlight automatically all code inside a `pre code`.
-  Previously, it was part of Markdown plugin, now it was uncoupled
-  so it can be used by any template engine.
+- The property `document` to `Page` that returns the parsed HTML.
+- New plugins `code_highlight` to automatically highlight all code
+  inside `pre code`. Previously, it was part of the Markdown plugin.
+  Now it’s uncoupled, so it can be used by any template engine.
 
 ### Changed
 - Nunjucks no longer loads `.html` files by default.
@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   and the text loader is used by default.
 - The loaders and template engines are now fully decoupled.
   This allows to use the variable `templateEngine` in a layout.
-- BREAKING: Removed automatic code highlighting in Markdown plugin.
+- BREAKING: Removed automatic code highlighting from the Markdown plugin.
   Use the new `code_highlight` plugin.
 
 ### Removed
@@ -31,8 +31,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   Use `.md` or configure the Markdown plugin to enable it.
 - The function `site.engine()`. Use the third argument of `site.loadPages()`.
   For example: `site.loadPages([".html"], textLoader, nunjucksEngine)`.
-- The plugin `dom`. It's not longer necessary because pages can return the parsed Html easily.
-  For example: `site.process([".html"], (page) => modify(page.document))`
+- The plugin `dom`.
+  It’s no longer needed because pages can easily return the parsed HTML.
+  For example: `site.process([".html"], (page) => modify(page.document))`.
 
 ### Fixed
 - Updated `std`, `postcss` and `deno_dom`.
