@@ -5,7 +5,6 @@ import {
   markdownItReplaceLinks,
 } from "../deps/markdown_it.js";
 import loader from "../loaders/text.js";
-import hljs from "../deps/highlight.js";
 import Markdown from "../engines/markdown.js";
 import { merge } from "../utils.js";
 
@@ -43,18 +42,6 @@ function createMarkdown(site, options) {
   const markdown = markdownIt({
     replaceLink(link) {
       return site.url(link);
-    },
-    highlight(code, language) {
-      if (language && hljs.getLanguage(language)) {
-        try {
-          const html = hljs.highlight(code, { language, ignoreIllegals: true });
-          return `<pre class="hljs"><code>${html.value}</code></pre>`;
-        } catch {
-          // Ignore error
-        }
-      }
-
-      return `<pre><code>${markdown.utils.escapeHtml(code)}</code></pre>`;
     },
     ...options.options,
   });

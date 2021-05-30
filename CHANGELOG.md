@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The `--plugins` argument to `lume init`, so you can load and use plugins.
   Example: `lume init --plugins=postcss,terser,pug`.
 - Added the property `document` to `Page`, that returns the parsed Html.
+- New plugins `code_highlight` to highlight automatically all code inside a `pre code`.
+  Previously, it was part of Markdown plugin, now it was uncoupled
+  so it can be used by any template engine.
 
 ### Changed
 - Nunjucks no longer loads `.html` files by default.
@@ -20,6 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   and the text loader is used by default.
 - The loaders and template engines are now fully decoupled.
   This allows to use the variable `templateEngine` in a layout.
+- BREAKING: Removed automatic code highlighting in Markdown plugin.
+  Use the new `code_highlight` plugin.
 
 ### Removed
 - The `.markdown` extension.

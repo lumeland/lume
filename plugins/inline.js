@@ -16,10 +16,6 @@ export default function () {
     });
 
     async function processor(page) {
-      if (!page.content.includes(" inline")) {
-        return;
-      }
-
       for (const element of page.document.querySelectorAll("[inline]")) {
         await inline(page.data.url, element);
         element.removeAttribute("inline");
