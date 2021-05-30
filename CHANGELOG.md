@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The `--plugins` argument to `lume init`, so you can load and use plugins.
   Example: `lume init --plugins=postcss,terser,pug`.
 - The property `document` to `Page` that returns the parsed HTML.
-- New plugins `code_highlight` to automatically highlight all code
+- New plugin `code_highlight` to automatically highlight all code
   inside `pre code`. Previously, it was part of the Markdown plugin.
   Now it’s uncoupled, so it can be used by any template engine.
 
@@ -36,7 +36,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   For example: `site.process([".html"], (page) => modify(page.document))`.
 
 ### Fixed
-- Updated `std`, `postcss` and `deno_dom`.
+- Updated `std`, `postcss`, `deno_dom`, `date_fns`
+  and `highlight.js` (to `11.x`).
 
 ## [0.20.2] - 2021-05-18
 ### Added
