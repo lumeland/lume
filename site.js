@@ -4,6 +4,7 @@ import { gray } from "./deps/colors.js";
 import { createHash } from "./deps/hash.js";
 import Source from "./source.js";
 import Scripts from "./scripts.js";
+import textLoader from "./loaders/text.js";
 import {
   concurrent,
   merge,
@@ -11,7 +12,6 @@ import {
   searchByExtension,
   slugify,
 } from "./utils.js";
-import textLoader from "./loaders/text.js";
 
 const defaults = {
   cwd: Deno.cwd(),

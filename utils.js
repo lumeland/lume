@@ -127,7 +127,7 @@ export function searchByExtension(path, extensions) {
 }
 
 export function documentToString(document) {
-  const doctype = document.doctype;
+  const { doctype } = document;
 
   return `<!DOCTYPE ${doctype.name}` +
     (doctype.publicId ? ` PUBLIC "${doctype.publicId}"` : "") +
