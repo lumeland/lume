@@ -1,12 +1,20 @@
 import { extname, posix, resolve } from "../deps/path.js";
 import { encode } from "../deps/base64.js";
-import { mimes } from "../utils.js";
+import { merge, mimes } from "../utils.js";
+
+// Default options
+const defaults = {
+  extensions: [".html"],
+  attribute: "inline",
+};
 
 const cache = new Map();
 
-export default function () {
+export default function (userOptions = {}) {
+  const options = merge(defaults, userOptions);
+
   return (site) => {
-    site.process([".html"], processor);
+    site.process(options.extensions, processor);
 
     // Update cache
     site.addEventListener("beforeUpdate", (ev) => {
@@ -15,10 +23,12 @@ export default function () {
       }
     });
 
+    const selector = `[${options.attribute}]`;
+
     async function processor(page) {
-      for (const element of page.document.querySelectorAll("[inline]")) {
+      for (const element of page.document.querySelectorAll(selector)) {
         await inline(page.data.url, element);
-        element.removeAttribute("inline");
+        element.removeAttribute(options.attribute);
       }
     }
 
