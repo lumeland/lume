@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `code_highlight` to automatically highlight all code
   inside `pre code`. Previously, it was part of the Markdown plugin.
   Now it’s uncoupled, so it can be used by any template engine.
-- `extensions` and `attribute` options to `inline` plugin.
+- The `extensions` and `attribute` options to the `inline` plugin.
 
 ### Changed
 - Nunjucks no longer loads `.html` files by default.

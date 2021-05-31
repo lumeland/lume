@@ -7,7 +7,7 @@ export default function () {
     const basePath = site.options.location.pathname;
 
     function processor(page) {
-      const document = page.document;
+      const { document } = page;
       const from = posix.dirname(site.url(page.dest.path));
 
       document.querySelectorAll("[href]").forEach((element) => {
