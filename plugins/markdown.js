@@ -2,7 +2,7 @@ import {
   markdownIt,
   markdownItAttrs,
   markdownItDeflist,
-  markdownItReplaceLinks,
+  markdownItReplaceLink,
 } from "../deps/markdown_it.js";
 import loader from "../loaders/text.js";
 import Markdown from "../engines/markdown.js";
@@ -16,8 +16,8 @@ const defaults = {
   },
   plugins: [
     markdownItAttrs,
-    markdownItReplaceLinks,
     markdownItDeflist,
+    markdownItReplaceLink,
   ],
 };
 
