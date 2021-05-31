@@ -6,7 +6,13 @@ import * as build from "./cli/build.js";
 import * as run from "./cli/run.js";
 import { error as printError } from "./utils.js";
 
-export const version = "v0.20.2";
+let version = "v0.20.2";
+
+try {
+  version = localStorage.getItem("lume_version");
+} catch {}
+
+export { version };
 
 const HELP = `
 Docs: https://lumeland.github.io/

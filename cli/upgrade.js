@@ -80,7 +80,7 @@ async function install(version, dev = false) {
     ? `https://cdn.jsdelivr.net/gh/lumeland/lume@${version}`
     : `https://deno.land/x/lume@${version}`;
 
-  const import_map = `data:aplication/json;base64,${
+  const importMap = `data:aplication/json;base64,${
     encode(`{"imports":{"lume/":"${url}/"}}`)
   }`;
 
@@ -90,9 +90,9 @@ async function install(version, dev = false) {
       "install",
       "--unstable",
       "-Afr",
-      `--location=https://deno.land/x/lume`,
-      `--import-map=${import_map}`,
-      `--name=lume`,
+      "--location=https://deno.land/x/lume",
+      `--import-map=${importMap}`,
+      "--name=lume",
       `${url}/cli.js`,
     ],
   });
@@ -101,7 +101,6 @@ async function install(version, dev = false) {
   process.close();
 
   localStorage.setItem("lume_version", version);
-  localStorage.setItem("lume_version_dev", dev);
 
   return status.success;
 }
