@@ -1,3 +1,5 @@
+import { parse } from "../deps/flags.js";
+import { encode } from "../deps/base64.js";
 import { brightGreen, gray } from "../deps/colors.js";
 import { version } from "../cli.js";
 import { validateArgsCount } from "./utils.js";
@@ -7,14 +9,31 @@ ${brightGreen("lume upgrade")}: upgrade your lume install to the latest version
 
 USAGE:
     lume upgrade
+
+OPTIONS:
+    -d, --dev  install the latest development version (lastest commit)
 `;
 
 /**
  * Command to upgrade lume to the latest version
  */
 export async function run(args) {
-  validateArgsCount("upgrade", args, 1);
-  const latest = await getLastVersion();
+  const options = parse(args, {
+    boolean: ["dev"],
+    alias: { dev: "d" },
+    unknown(option) {
+      if (option.startsWith("-")) {
+        throw new Error(`Unknown option: ${option}`);
+      }
+    },
+  });
+
+  validateArgsCount("upgrade", options._, 1);
+
+  const dev = options.dev;
+  const latest = dev
+    ? await getLastDevelopmentVersion()
+    : await getLastVersion();
 
   if (latest === version) {
     console.log(`You’re using the latest version of lume: ${latest}!`);
@@ -24,7 +43,7 @@ export async function run(args) {
 
   console.log(`New version available. Updating lume to ${latest}...`);
 
-  await install(latest);
+  await install(latest, dev);
 
   console.log();
   console.log(
@@ -32,10 +51,13 @@ export async function run(args) {
       brightGreen(latest)
     }!`,
   );
-  console.log(
-    "See the changes in",
-    gray(`https://github.com/lumeland/lume/blob/${latest}/CHANGELOG.md`),
-  );
+
+  if (!dev) {
+    console.log(
+      "See the changes in",
+      gray(`https://github.com/lumeland/lume/blob/${latest}/CHANGELOG.md`),
+    );
+  }
   console.log();
 }
 
@@ -45,20 +67,41 @@ async function getLastVersion() {
   return versions.latest;
 }
 
-async function install(version) {
+async function getLastDevelopmentVersion() {
+  const response = await fetch(
+    "https://api.github.com/repos/lumeland/lume/commits",
+  );
+  const commits = await response.json();
+  return commits[0].sha;
+}
+
+async function install(version, dev = false) {
+  const url = dev
+    ? `https://cdn.jsdelivr.net/gh/lumeland/lume@${version}`
+    : `https://deno.land/x/lume@${version}`;
+
+  const import_map = `data:aplication/json;base64,${
+    encode(`{"imports":{"lume/":"${url}/"}}`)
+  }`;
+
   const process = Deno.run({
     cmd: [
       Deno.execPath(),
       "install",
       "--unstable",
       "-Afr",
-      `--import-map=https://deno.land/x/lume@${version}/import_map.json`,
-      `https://deno.land/x/lume@${version}/cli.js`,
+      `--location=https://deno.land/x/lume`,
+      `--import-map=${import_map}`,
+      `--name=lume`,
+      `${url}/cli.js`,
     ],
   });
 
   const status = await process.status();
   process.close();
+
+  localStorage.setItem("lume_version", version);
+  localStorage.setItem("lume_version_dev", dev);
 
   return status.success;
 }
