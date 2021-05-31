@@ -302,23 +302,22 @@ export default class Source {
     }
   }
 
-  async readFile(path, fn = (content) => content) {
+  async readFile(path, fn = (content) => content, isBinary = false) {
     if (this.#cache.has(path)) {
       return this.#cache.get(path);
     }
 
     try {
-      const content = await fn(await Deno.readTextFile(path));
+      const data = isBinary
+        ? await Deno.readFile(path)
+        : await Deno.readTextFile(path);
+      const content = await fn(data);
       this.#cache.set(path, content);
       return content;
     } catch (err) {
       console.error(`Error loading the file ${path}`);
       console.error(err);
     }
-  }
-
-  async readBinaryFile(path) {
-    return await Deno.readFile(path);
   }
 
   async loadModule(path, fn = (content) => content) {

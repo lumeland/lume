@@ -1,3 +1,3 @@
 export default async function (path, source) {
-  return { content: await source.readBinaryFile(path) };
+  return source.readFile(path, (content) => ({ content }), true);
 }
