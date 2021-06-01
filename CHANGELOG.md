@@ -17,7 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   inside `pre code`. Previously, it was part of the Markdown plugin.
   Now it’s uncoupled, so it can be used by any template engine.
 - The `extensions` and `attribute` options to the `inline` plugin.
-- New argument `--dev` (or `-d`) to `lume upgrade` to upgrade to the latest development version.
+- New argument `--dev` (or `-d`) for `lume upgrade`
+  to upgrade to the latest development version.
 
 ### Changed
 - Nunjucks no longer loads `.html` files by default.
@@ -27,8 +28,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   This allows to use the variable `templateEngine` in a layout.
 - BREAKING: Removed automatic code highlighting from the Markdown plugin.
   Use the new `code_highlight` plugin.
-- Moved the client code of live reload to the external file `ws.js`.
-- Live server reloads the entire html page after javascript changes.
+- Moved the client code of live reload to a external file `ws.js`.
+- Live server reloads the entire HTML page after JavaScript changes.
 
 ### Removed
 - The `.markdown` extension.
