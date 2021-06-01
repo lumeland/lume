@@ -1,6 +1,6 @@
+import { join } from "../deps/path.js";
 import { parse } from "../deps/flags.js";
 import { brightGreen } from "../deps/colors.js";
-import { version } from "../cli.js";
 import { validateArgsCount } from "./utils.js";
 
 export const HELP = `
@@ -34,13 +34,13 @@ export async function run(args) {
 
   const lumeUrl = options["import-map"]
     ? "lume"
-    : `https://deno.land/x/lume@${version}`;
+    : new URL("..", import.meta.url).href;
 
   const plugins = options.plugins ? options.plugins.split(",").sort() : [];
-  const code = [`import lume from "${lumeUrl}/mod.js";`];
+  const code = [`import lume from "${join(lumeUrl, "mod.js")}";`];
 
   plugins.forEach((name) =>
-    code.push(`import ${name} from "${lumeUrl}/plugins/${name}.js";`)
+    code.push(`import ${name} from "${join(lumeUrl, `plugins/${name}.js`)}";`)
   );
   code.push("");
   code.push("const site = lume();");

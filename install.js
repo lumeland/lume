@@ -1,9 +1,11 @@
 import { encode } from "./deps/base64.js";
+import { join } from "./deps/path.js";
 import { brightGreen, gray, red } from "./deps/colors.js";
 
-const cli = new URL("./cli.js", import.meta.url);
+const baseUrl = new URL(".", import.meta.url).href;
+const cli = join(baseUrl, "./cli.js");
 const importMap = `data:aplication/json;base64,${
-  encode(`{"imports":{"lume/":"${new URL(".", import.meta.url).href}/"}}`)
+  encode(`{"imports":{"lume/":"${join(baseUrl, "/")}"}}`)
 }`;
 
 const process = Deno.run({

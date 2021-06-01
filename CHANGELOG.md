@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   inside `pre code`. Previously, it was part of the Markdown plugin.
   Now it’s uncoupled, so it can be used by any template engine.
 - The `extensions` and `attribute` options to the `inline` plugin.
+- New argument `--dev` to `lume upgrade` to upgrade to the latest development version.
 
 ### Changed
 - Nunjucks no longer loads `.html` files by default.
