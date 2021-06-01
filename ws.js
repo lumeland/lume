@@ -1,0 +1,121 @@
+let ws;
+
+function socket() {
+  if (ws && ws.readyState !== 3) {
+    return;
+  }
+
+  ws = new WebSocket("ws://" + document.location.host);
+  ws.onopen = () => {
+    console.log("Socket connection open. Listening for events.");
+    const files = read("refresh");
+
+    if (files) {
+      refresh(files);
+    }
+  };
+  ws.onmessage = (e) => {
+    const files = JSON.parse(e.data);
+    console.log(files);
+
+    if (!Array.isArray(files)) {
+      console.log(e.data);
+      return;
+    }
+
+    refresh(files);
+  };
+  ws.onerror = (e) => {
+    console.error("WebSocket error observed:", event);
+  };
+}
+
+setInterval(socket, 1000);
+
+function refresh(files) {
+  let path = document.location.pathname;
+
+  if (!path.endsWith(".html")) {
+    path += path.endsWith("/") ? "index.html" : "/index.html";
+  }
+
+  const index = files.indexOf(path);
+
+  //Reload the entire page if the html changes
+  if (index !== -1) {
+    files.splice(index, 1);
+    save("refresh", files);
+    location.reload();
+    return;
+  }
+
+  files.forEach((file) => {
+    const format = file.split(".").pop().toLowerCase();
+
+    switch (format) {
+      case "css":
+        document.querySelectorAll('link[rel="stylesheet"]').forEach((el) =>
+          cache(el, "href", file, true)
+        );
+        break;
+
+      case "jpeg":
+      case "jpg":
+      case "png":
+      case "apng":
+      case "webp":
+      case "avif":
+      case "svg":
+      case "gif":
+        document.querySelectorAll("img").forEach((el) =>
+          cache(el, "src", file)
+        );
+        break;
+
+      //Reload the entire page for javascript changes
+
+      case "js":
+        location.reload();
+        break;
+    }
+  });
+}
+
+function cache(el, prop, file, clone = false) {
+  const value = el[prop];
+
+  if (!value) {
+    return;
+  }
+
+  const url = new URL(value);
+
+  if (url.pathname !== file) {
+    return;
+  }
+
+  url.searchParams.set("_cache", Date.now());
+
+  if (clone) {
+    const newEl = el.cloneNode();
+    newEl[prop] = url.href;
+    el.after(newEl);
+    setTimeout(() => el.remove(), 500);
+    return;
+  }
+
+  el[prop] = url.href;
+}
+
+function save(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+function read(key) {
+  const data = localStorage.getItem(key);
+  localStorage.removeItem(key);
+
+  if (data) {
+    return JSON.parse(data);
+  }
+}

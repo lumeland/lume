@@ -7,129 +7,6 @@ import localIp from "./deps/local_ip.js";
 import { mimes, normalizePath } from "./utils.js";
 import { readAll } from "./deps/util.js";
 
-const script = `
-let ws;
-
-function socket() {
-  if (ws && ws.readyState !== 3) {
-    return;
-  }
-
-  ws = new WebSocket("ws://" + document.location.host);
-  ws.onopen = () => {
-    console.log("Socket connection open. Listening for events.");
-    const files = read("refresh");
-
-    if (files) {
-      refresh(files);
-    }
-  };
-  ws.onmessage = (e) => {
-    const files = JSON.parse(e.data);
-    console.log(files);
-
-    if (!Array.isArray(files)) {
-      console.log(e.data);
-      return;
-    }
-
-    refresh(files);
-  };
-  ws.onerror = (e) => {
-    console.error("WebSocket error observed:", event);
-  }
-}
-
-setInterval(socket, 1000);
-
-function refresh(files) {
-  let path = document.location.pathname;
-
-  if (!path.endsWith(".html")) {
-    path += path.endsWith("/") ? "index.html" : "/index.html";
-  }
-
-  const index = files.indexOf(path);
-
-  if (index !== -1) {
-    files.splice(index, 1);
-    save("refresh", files);
-    location.reload();
-    return;
-  }
-
-  files.forEach((file) => {
-    const format = file.split(".").pop().toLowerCase();
-
-    switch (format) {
-      case "css":
-        document.querySelectorAll('link[rel="stylesheet"]').forEach((el) =>
-          cache(el, "href", file, true)
-        );
-        break;
-
-      case "jpeg":
-      case "jpg":
-      case "png":
-      case "apng":
-      case "webp":
-      case "avif":
-      case "svg":
-      case "gif":
-        document.querySelectorAll("img").forEach((el) =>
-          cache(el, "src", file)
-        );
-        break;
-
-      case "js":
-        document.querySelectorAll("script").forEach((el) =>
-          cache(el, "src", file)
-        );
-        break;
-    }
-  });
-}
-
-function cache(el, prop, file, clone = false) {
-  const value = el[prop];
-
-  if (!value) {
-    return;
-  }
-
-  const url = new URL(value);
-
-  if (url.pathname !== file) {
-    return;
-  }
-
-  url.searchParams.set("_cache", Date.now());
-
-  if (clone) {
-    const newEl = el.cloneNode();
-    newEl[prop] = url.href;
-    el.after(newEl);
-    setTimeout(() => el.remove(), 500);
-    return;
-  }
-
-  el[prop] = url.href;
-}
-
-function save(key, data) {
-  localStorage.setItem(key, JSON.stringify(data));
-}
-
-function read(key) {
-  const data = localStorage.getItem(key);
-  localStorage.removeItem(key);
-
-  if (data) {
-    return JSON.parse(data);
-  }
-}
-`;
-
 export async function server(site, options) {
   const root = site.dest();
   const port = parseInt(options.port) || site.options.server.port || 3000;
@@ -262,10 +139,20 @@ export async function server(site, options) {
   }
 }
 
+let wsFile = new URL("./ws.js", import.meta.url);
+
+if (wsFile.protocol === "file:") {
+  wsFile = await Deno.readTextFile(wsFile);
+}
+
 async function getHtmlBody(path) {
   const content = await Deno.readTextFile(path);
 
-  return `${content}<script>${script}</script>`;
+  if (typeof wsFile === "string") {
+    return `${content}<script id="lume-live-reload">${wsFile}</script>`;
+  }
+
+  return `${content}<script type="module" src="${wsFile}" id="lume-live-reload"></script>`;
 }
 
 async function getNotFoundBody(root, page404, file) {
