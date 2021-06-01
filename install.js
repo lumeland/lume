@@ -11,7 +11,7 @@ const process = Deno.run({
     Deno.execPath(),
     "install",
     "--unstable",
-    "-Afr",
+    "-Af",
     "--location=https://deno.land/x/lume",
     `--import-map=${importMap}`,
     "--name=lume",
