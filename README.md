@@ -9,7 +9,7 @@ faster, simpler and easier to use and configure, besides being super flexible.
 
 - Supports **multiple file formats**, like Markdown, YAML, JavaScript,
   TypeScript, JSX and Nunjucks, and it’s easy to extend.
-- You can hook **any processor** to transform assets, like Sass or PostCSS for
+- You can hook **any processor** to transform assets, like Terser for Javascript or PostCSS for
   CSS.
 - It’s Deno: Forget about managing thousands of packages in `node_modules` or
   complex bundlers. Lume only installs what you need. Clean, fast and secure.
