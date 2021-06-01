@@ -36,20 +36,23 @@ export async function run(args) {
     : await getLastVersion();
 
   if (latest === version) {
-    console.log(`You’re using the latest version of lume: ${latest}!`);
+    console.log(
+      `You’re using the latest version of lume: ${brightGreen(latest)}!`,
+    );
     console.log();
     return;
   }
 
-  console.log(`New version available. Updating lume to ${latest}...`);
+  console.log(
+    `New version available. Updating lume to ${brightGreen(latest)}...`,
+  );
 
   await install(latest, dev);
 
   console.log();
+  console.log("Update successful!");
   console.log(
-    `Update successful! You’re using the latest version of lume: ${
-      brightGreen(latest)
-    }!`,
+    `You’re using the latest version of lume: ${brightGreen(latest)}!`,
   );
 
   if (!dev) {
