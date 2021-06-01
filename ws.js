@@ -16,7 +16,6 @@ function socket() {
   };
   ws.onmessage = (e) => {
     const files = JSON.parse(e.data);
-    console.log(files);
 
     if (!Array.isArray(files)) {
       console.log(e.data);
