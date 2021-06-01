@@ -13,7 +13,6 @@ const process = Deno.run({
     "run",
     "--unstable",
     "-A",
-    "--location=https://deno.land/x/lume",
     `--import-map=${importMap}`,
     cli,
     ...Deno.args,

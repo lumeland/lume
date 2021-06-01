@@ -5,14 +5,7 @@ import * as init from "./cli/init.js";
 import * as build from "./cli/build.js";
 import * as run from "./cli/run.js";
 import { error as printError } from "./utils.js";
-
-let version = "v0.20.2";
-
-try {
-  version = localStorage.getItem("lume_version");
-} catch {}
-
-export { version };
+import { getCurrentVersion } from "./cli/utils.js";
 
 const HELP = `
 Docs: https://lumeland.github.io/
@@ -74,7 +67,7 @@ export default async function cli(args, site) {
 
   // lume --version
   if (options.version) {
-    console.log(`🔥lume ${version}`);
+    console.log(`🔥lume ${getCurrentVersion()}`);
     return;
   }
 
@@ -94,7 +87,7 @@ export default async function cli(args, site) {
   function help(message) {
     if (options.help) {
       console.log(`
-🔥lume ${version}
+🔥lume ${getCurrentVersion()}
 A static site generator for Deno`);
       console.log(message);
       return true;

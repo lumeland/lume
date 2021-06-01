@@ -71,3 +71,14 @@ export function validateArgsCount(command, args, max, min = 0) {
     `);
   }
 }
+
+export function getCurrentVersion() {
+  const url = new URL("../", import.meta.url).pathname;
+  const matches = url.match(/@([^\/]+)/);
+
+  if (!matches) {
+    return `local (${url})`;
+  }
+
+  return matches[1];
+}

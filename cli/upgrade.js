@@ -1,8 +1,7 @@
 import { parse } from "../deps/flags.js";
 import { encode } from "../deps/base64.js";
 import { brightGreen, gray } from "../deps/colors.js";
-import { version } from "../cli.js";
-import { validateArgsCount } from "./utils.js";
+import { getCurrentVersion, validateArgsCount } from "./utils.js";
 
 export const HELP = `
 ${brightGreen("lume upgrade")}: upgrade your lume install to the latest version
@@ -35,7 +34,7 @@ export async function run(args) {
     ? await getLastDevelopmentVersion()
     : await getLastVersion();
 
-  if (latest === version) {
+  if (latest === getCurrentVersion()) {
     console.log(
       `You’re using the latest version of lume: ${brightGreen(latest)}!`,
     );
@@ -93,7 +92,6 @@ async function install(version, dev = false) {
       "install",
       "--unstable",
       "-Af",
-      "--location=https://deno.land/x/lume",
       `--import-map=${importMap}`,
       "--name=lume",
       `${url}/cli.js`,
@@ -102,8 +100,6 @@ async function install(version, dev = false) {
 
   const status = await process.status();
   process.close();
-
-  localStorage.setItem("lume_version", version);
 
   return status.success;
 }
