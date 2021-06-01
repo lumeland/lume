@@ -40,7 +40,7 @@ function refresh(files) {
 
   const index = files.indexOf(path);
 
-  //Reload the entire page if the html changes
+  // Reload the entire page if the html changes
   if (index !== -1) {
     files.splice(index, 1);
     save("refresh", files);
@@ -71,7 +71,7 @@ function refresh(files) {
         );
         break;
 
-      //Reload the entire page for javascript changes
+      // Reload the entire page for javascript changes
 
       case "js":
         location.reload();
