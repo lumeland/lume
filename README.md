@@ -44,7 +44,7 @@ title: Welcome to my page
 Build it:
 
 ```
-deno run --unstable -A https://deno.land/x/lume/cli.js
+deno run -A https://deno.land/x/lume/ci.js
 ```
 
 This command will compile your documents to HTML and save them into the
