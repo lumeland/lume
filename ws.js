@@ -24,7 +24,7 @@ function socket() {
 
     refresh(files);
   };
-  ws.onerror = (e) => {
+  ws.onerror = () => {
     console.error("WebSocket error observed:", event);
   };
 }
