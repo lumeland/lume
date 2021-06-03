@@ -71,7 +71,7 @@ async function getLastVersion() {
 
 async function getLastDevelopmentVersion() {
   const response = await fetch(
-    "https://api.github.com/repos/lumeland/lume/commits",
+    "https://api.github.com/repos/lumeland/lume/commits?per_page=1",
   );
   const commits = await response.json();
   return commits[0].sha;
