@@ -149,7 +149,7 @@ async function getHtmlBody(path) {
   const content = await Deno.readTextFile(path);
 
   if (typeof wsFile === "string") {
-    return `${content}<script id="lume-live-reload">${wsFile}</script>`;
+    return `${content}<script type="module" id="lume-live-reload">${wsFile}</script>`;
   }
 
   return `${content}<script type="module" src="${wsFile}" id="lume-live-reload"></script>`;
