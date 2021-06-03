@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.21.1] - 2021-06-03
+### Fixed
+- Restore `import_map.json` to don't break upgrades from older versions.
+
 ## [0.21.0] - 2021-06-01
 ### Added
 - The `postcss` and `terser` filters. [#97]
@@ -757,6 +761,7 @@ The first version.
 [#95]: https://github.com/lumeland/lume/issues/95
 [#97]: https://github.com/lumeland/lume/issues/97
 
+[0.21.1]: https://github.com/lumeland/lume/compare/v0.21.0...v0.21.1
 [0.21.0]: https://github.com/lumeland/lume/compare/v0.20.2...v0.21.0
 [0.20.2]: https://github.com/lumeland/lume/compare/v0.20.1...v0.20.2
 [0.20.1]: https://github.com/lumeland/lume/compare/v0.20.0...v0.20.1
