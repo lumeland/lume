@@ -362,7 +362,9 @@ export default class Site {
       }
     }
 
-    path = posix.join(this.options.location.pathname, path);
+    if (!path.startsWith(this.options.location.pathname)) {
+      path = posix.join(this.options.location.pathname, path);
+    }
 
     return absolute ? this.options.location.origin + path : path;
   }
