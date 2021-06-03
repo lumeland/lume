@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.21.1] - 2021-06-03
 ### Fixed
-- Restore `import_map.json` to don't break upgrades from older versions.
+- Restored `import_map.json` to not break upgrades from older versions.
 
 ## [0.21.0] - 2021-06-01
 ### Added
