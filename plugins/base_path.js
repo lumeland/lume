@@ -2,10 +2,12 @@ export default function () {
   return (site) => {
     site.process([".html"], processor);
 
-    const { pathname } = site.options.location;
+    function basePath(path) {
+      return path.startsWith("/") ? site.url(path) : path;
+    }
 
     function processor(page) {
-      if (pathname === "/") {
+      if (site.options.location.pathname === "/") {
         return;
       }
 
@@ -49,8 +51,4 @@ export default function () {
       });
     }
   };
-
-  function basePath(path) {
-    return site.url(path);
-  }
 }
