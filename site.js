@@ -362,10 +362,6 @@ export default class Site {
       }
     }
 
-    if (!this.options.location) {
-      return posix.join("/", path);
-    }
-
     path = posix.join(this.options.location.pathname, path);
 
     return absolute ? this.options.location.origin + path : path;
