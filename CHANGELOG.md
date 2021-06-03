@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Changed
+- The url variable of the pages must start with `/`, `./` or `../`.
+
 ### Fixed
 - The url filter shouldn't add the path prefix if it's already added.
 

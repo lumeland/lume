@@ -530,7 +530,9 @@ export default class Site {
     if (dest.path.startsWith("./") || dest.path.startsWith("../")) {
       dest.path = posix.join(dirname(page.src.path), dest.path);
     } else if (!dest.path.startsWith("/")) {
-      dest.path = `/${dest.path}`;
+      throw new Error(
+        `The url variable for ${dest.path} should start with "/", "./" or "../"`,
+      );
     }
 
     if (slugifyUrls) {
