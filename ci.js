@@ -3,7 +3,7 @@ import { join } from "./deps/path.js";
 
 const baseUrl = new URL(".", import.meta.url).href;
 const cli = join(baseUrl, "./cli.js");
-const importMap = `data:aplication/json;base64,${
+const importMap = `data:application/json;base64,${
   encode(`{"imports":{"lume/":"${join(baseUrl, "/")}"}}`)
 }`;
 

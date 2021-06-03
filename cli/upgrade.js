@@ -10,7 +10,7 @@ USAGE:
     lume upgrade
 
 OPTIONS:
-    -d, --dev  install the latest development version (lastest commit)
+    -d, --dev  install the latest development version (latest commit)
 `;
 
 /**
@@ -82,7 +82,7 @@ async function install(version, dev = false) {
     ? `https://cdn.jsdelivr.net/gh/lumeland/lume@${version}`
     : `https://deno.land/x/lume@${version}`;
 
-  const importMap = `data:aplication/json;base64,${
+  const importMap = `data:application/json;base64,${
     encode(`{"imports":{"lume/":"${url}/"}}`)
   }`;
 
