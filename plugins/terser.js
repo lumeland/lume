@@ -1,6 +1,6 @@
 import minify from "../deps/terser.js";
 import { basename } from "../deps/path.js";
-import { error, merge } from "../utils.js";
+import { error, Exception, merge } from "../utils.js";
 
 // Default options
 const defaults = {
@@ -47,7 +47,9 @@ export default function (userOptions = {}) {
           site.pages.push(mapFile);
         }
       } catch (err) {
-        error("terser", `Error in file ${filename}`, err);
+        throw new Exception("Plugin terser: Error processing the file", {
+          page: file,
+        }, err);
       }
     }
 

@@ -7,6 +7,7 @@ import Scripts from "./scripts.js";
 import textLoader from "./loaders/text.js";
 import {
   concurrent,
+  Exception,
   merge,
   normalizePath,
   searchByExtension,
@@ -350,7 +351,7 @@ export default class Site {
           const [from, to] = entry;
           path = normalizePath(join(to, path.slice(from.length)));
         } else {
-          throw new Error(`Source file "${path}" not found`);
+          throw new Exception("Source file not found", { path });
         }
       }
     } else {
@@ -459,7 +460,11 @@ export default class Site {
 
       // Render all pages
       for (const page of pages) {
-        page.content = await this.#renderPage(page);
+        try {
+          page.content = await this.#renderPage(page);
+        } catch (err) {
+          throw new Exception("Error rendering this page", { page }, err);
+        }
       }
     }
 
@@ -530,8 +535,9 @@ export default class Site {
     if (dest.path.startsWith("./") || dest.path.startsWith("../")) {
       dest.path = posix.join(dirname(page.src.path), dest.path);
     } else if (!dest.path.startsWith("/")) {
-      throw new Error(
-        `The url variable for ${dest.path} should start with "/", "./" or "../"`,
+      throw new Exception(
+        `The url variable must start with "/", "./" or "../"`,
+        { page, url },
       );
     }
 
@@ -553,7 +559,7 @@ export default class Site {
     let pageData = { ...page.data, ...this.extraData };
     let layout = pageData.layout;
     const path = this.src(page.src.path + page.src.ext);
-    const engine = this.#getEngine(page.src.ext, pageData.templateEngine);
+    const engine = this.#getEngine(path, pageData.templateEngine);
 
     if (Array.isArray(engine)) {
       for (const eng of engine) {
@@ -567,7 +573,9 @@ export default class Site {
       const result = searchByExtension(layout, this.source.pages);
 
       if (!result) {
-        throw new Error(`Couldn't find a loader for "${layout}"`);
+        throw new Exception("Couldn't find a loader for this layout", {
+          layout,
+        });
       }
 
       const layoutPath = this.src("_includes", layout);
@@ -575,7 +583,9 @@ export default class Site {
       const engine = this.#getEngine(layout, layoutData.templateEngine);
 
       if (!engine) {
-        throw new Error(`Couldn't find a template engine for "${layout}"`);
+        throw new Exception("Couldn't find a template engine for this layout", {
+          layout,
+        });
       }
 
       pageData = {
@@ -631,18 +641,23 @@ export default class Site {
   /**
    * Get the engine used by a path or extension
    */
-  #getEngine(path, custom) {
-    if (custom) {
-      custom = Array.isArray(custom) ? custom : custom.split(",");
+  #getEngine(path, templateEngine) {
+    if (templateEngine) {
+      templateEngine = Array.isArray(templateEngine)
+        ? templateEngine
+        : templateEngine.split(",");
 
-      return custom.map((name) => {
+      return templateEngine.map((name) => {
         const engine = this.engines.get(`.${name.trim()}`);
 
         if (engine) {
           return engine;
         }
 
-        throw new Error(`Invalid template engine: "${name}"`);
+        throw new Exception("Invalid value for templateEngine", {
+          path,
+          templateEngine,
+        });
       });
     }
 

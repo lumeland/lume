@@ -1,7 +1,7 @@
 import { existsSync } from "../deps/fs.js";
 import lume from "../mod.js";
 import { join, resolve, toFileUrl } from "../deps/path.js";
-import { brightGreen } from "../deps/colors.js";
+import { bold, brightGreen, dim, red } from "../deps/colors.js";
 
 /**
  * Create and configure a site instance
@@ -81,4 +81,41 @@ export function getCurrentVersion() {
   }
 
   return matches[1];
+}
+
+export function printError(exception) {
+  console.log();
+  console.error(bold(red(`Error:`)), exception.message);
+
+  printDataError(exception);
+
+  if (exception.error) {
+    console.log();
+    let { error } = exception;
+
+    while (error) {
+      console.log();
+      console.log(red(`  ${error.message}`));
+
+      printDataError(error, "    ");
+
+      error = error.error;
+    }
+  }
+
+  console.log();
+}
+
+function printDataError(error, indent = "    ") {
+  if (!error.data) {
+    return;
+  }
+
+  for (let [key, value] of Object.entries(error.data)) {
+    if (key === "page") {
+      value = value.src.path + value.src.ext;
+    }
+
+    console.log(dim(`${indent}${key}:`), value);
+  }
 }

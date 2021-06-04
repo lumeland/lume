@@ -1,5 +1,4 @@
 import { DOMParser } from "./deps/dom.js";
-import { bold, red } from "./deps/colors.js";
 import { SEP } from "./deps/path.js";
 
 export async function concurrent(iterable, iteratorFn, limit = 200) {
@@ -47,14 +46,6 @@ export const mimes = new Map([
   [".webm", "video/webm"],
   [".zip", "application/zip"],
 ]);
-
-export function error(context, message, exception) {
-  console.error(bold(red(`${context}:`)), message);
-  if (exception) {
-    console.error(exception);
-  }
-  console.log();
-}
 
 export function merge(defaults, user) {
   const merged = { ...defaults };
@@ -140,4 +131,12 @@ const parser = new DOMParser();
 
 export function stringToDocument(string) {
   return parser.parseFromString(string, "text/html");
+}
+
+export class Exception extends Error {
+  constructor(message, data, error) {
+    super(message);
+    this.data = data;
+    this.error = error;
+  }
 }

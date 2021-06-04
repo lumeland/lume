@@ -1,7 +1,12 @@
 import { basename, dirname, extname, join } from "./deps/path.js";
 import { existsSync } from "./deps/fs.js";
 import { Directory, Page } from "./filesystem.js";
-import { concurrent, normalizePath, searchByExtension } from "./utils.js";
+import {
+  concurrent,
+  Exception,
+  normalizePath,
+  searchByExtension,
+} from "./utils.js";
 
 export default class Source {
   root = new Directory({ path: "/" });
@@ -238,8 +243,9 @@ export default class Source {
     if (!data.date) {
       data.date = getDate(src, dest);
     } else if (!(data.date instanceof Date)) {
-      throw new Error(
+      throw new Exception(
         'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
+        { path },
       );
     }
 

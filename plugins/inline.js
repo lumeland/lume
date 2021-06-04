@@ -1,6 +1,6 @@
 import { extname, posix, resolve } from "../deps/path.js";
 import { encode } from "../deps/base64.js";
-import { merge, mimes } from "../utils.js";
+import { Exception, merge, mimes } from "../utils.js";
 
 // Default options
 const defaults = {
@@ -85,7 +85,10 @@ export default function (userOptions = {}) {
       const ext = extname(path);
 
       if (!mimes.has(ext)) {
-        throw new Error(`Unknown mime type for ${path}`);
+        throw new Exception("Plugin inline: Unknown file format", {
+          path,
+          available: mimes,
+        });
       }
 
       return `data:${mimes.get(ext)};base64,${encode(content)}`;
@@ -99,9 +102,10 @@ export default function (userOptions = {}) {
         style.innerHTML = await getContent(path);
         element.replaceWith(style);
       } catch {
-        throw new Error(
-          `Unable to inline the file ${path} from the page ${url}`,
-        );
+        throw new Exception("Plugin inline: Unable to inline the file", {
+          path,
+          url,
+        });
       }
     }
 
@@ -112,9 +116,10 @@ export default function (userOptions = {}) {
         element.innerHTML = await getContent(path);
         element.removeAttribute("src");
       } catch {
-        throw new Error(
-          `Unable to inline the file ${path} from the page ${url}`,
-        );
+        throw new Exception("Plugin inline: Unable to inline the file", {
+          path,
+          url,
+        });
       }
     }
 
@@ -133,9 +138,10 @@ export default function (userOptions = {}) {
 
         element.setAttribute("src", await getContent(path, true));
       } catch {
-        throw new Error(
-          `Unable to inline the file ${path} from the page ${url}`,
-        );
+        throw new Exception("Plugin inline: Unable to inline the file", {
+          path,
+          url,
+        });
       }
     }
 
@@ -145,9 +151,10 @@ export default function (userOptions = {}) {
       try {
         element.setAttribute("href", await getContent(path, true));
       } catch {
-        throw new Error(
-          `Unable to inline the file ${path} from the page ${url}`,
-        );
+        throw new Exception("Plugin inline: Unable to inline the file", {
+          path,
+          url,
+        });
       }
     }
   };

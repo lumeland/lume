@@ -4,8 +4,7 @@ import * as upgrade from "./cli/upgrade.js";
 import * as init from "./cli/init.js";
 import * as build from "./cli/build.js";
 import * as run from "./cli/run.js";
-import { error as printError } from "./utils.js";
-import { getCurrentVersion } from "./cli/utils.js";
+import { getCurrentVersion, printError } from "./cli/utils.js";
 
 const HELP = `
 Docs: https://lumeland.github.io/
@@ -53,7 +52,7 @@ if (import.meta.main) {
   try {
     await cli(Deno.args);
   } catch (error) {
-    printError("lume", error.message, error);
+    printError(error);
   }
 }
 
