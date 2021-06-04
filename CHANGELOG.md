@@ -7,9 +7,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.22.0] - 2021-06-04
 ### Added
-- New plugin `base_path` to search and fix automatically all urls in the html
+- New plugin `base_path` to search and fix automatically all urls in the HTML
   by adding the path prefix of the `location` setting.
   This reduce the need to use the `url` filter everywhere.
 - The `search.pages()` helper allows multiple values to sort.
@@ -778,7 +778,7 @@ The first version.
 [#95]: https://github.com/lumeland/lume/issues/95
 [#97]: https://github.com/lumeland/lume/issues/97
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v0.21.1...HEAD
+[0.22.0]: https://github.com/lumeland/lume/compare/v0.21.1...v0.22.0
 [0.21.1]: https://github.com/lumeland/lume/compare/v0.21.0...v0.21.1
 [0.21.0]: https://github.com/lumeland/lume/compare/v0.20.2...v0.21.0
 [0.20.2]: https://github.com/lumeland/lume/compare/v0.20.1...v0.20.2
