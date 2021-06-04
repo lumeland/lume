@@ -126,7 +126,7 @@ export async function server(site, options) {
     console.log("Connected to browser");
 
     for await (const event of watcher) {
-      if (event.kind !== "modify") {
+      if (event.kind !== "modify" && event.kind !== "create") {
         continue;
       }
 
