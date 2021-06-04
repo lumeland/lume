@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - The url variable of the pages must start with `/`, `./` or `../`.
+- Uncoupled the loaders. Now they only need the path argument.
 
 ### Fixed
 - The url filter shouldn't add the path prefix if it's already added.

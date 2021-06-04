@@ -205,7 +205,7 @@ export default class Source {
       return;
     }
 
-    const [ext, load] = result;
+    const [ext, loader] = result;
     const fullPath = this.site.src(path);
 
     if (!existsSync(fullPath)) {
@@ -233,7 +233,7 @@ export default class Source {
       dest.ext = subext;
     }
 
-    const data = await load(fullPath, this);
+    const data = await this.#load(fullPath, loader);
 
     if (!data.date) {
       data.date = getDate(src, dest);
@@ -258,7 +258,7 @@ export default class Source {
 
     if (result) {
       const [, loader] = result;
-      return loader(this.site.src(path), this);
+      return this.#load(this.site.src(path), loader);
     }
   }
 
@@ -302,32 +302,17 @@ export default class Source {
     }
   }
 
-  async readFile(path, fn = (content) => content, isBinary = false) {
+  /**
+   * Load a file and save the content in the cache
+   */
+  async #load(path, loader) {
     if (this.#cache.has(path)) {
       return this.#cache.get(path);
     }
 
-    try {
-      const data = isBinary
-        ? await Deno.readFile(path)
-        : await Deno.readTextFile(path);
-      const content = await fn(data);
-      this.#cache.set(path, content);
-      return content;
-    } catch (err) {
-      console.error(`Error loading the file ${path}`);
-      console.error(err);
-    }
-  }
-
-  async loadModule(path, fn = (content) => content) {
-    if (this.#cache.has(path)) {
-      return this.#cache.get(path);
-    }
-
-    const hash = Date.now();
-    const content = fn(await import(`file://${path}#${hash}`));
+    const content = await loader(path);
     this.#cache.set(path, content);
+
     return content;
   }
 }

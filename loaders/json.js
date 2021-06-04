@@ -1,3 +1,4 @@
-export default function (path, source) {
-  return source.readFile(path, (content) => JSON.parse(content));
+export default async function (path) {
+  const content = await Deno.readTextFile(path);
+  return JSON.parse(content);
 }

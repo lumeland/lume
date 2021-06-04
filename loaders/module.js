@@ -1,24 +1,24 @@
-export default function (path, source) {
-  return source.loadModule(path, (fileData) => {
-    const data = {};
+export default async function (path) {
+  const hash = Date.now();
+  const mod = fn(await import(`file://${path}#${hash}`));
+  const data = {};
 
-    for (const [name, value] of Object.entries(fileData)) {
-      if (name === "default") {
-        switch (typeof value) {
-          case "string":
-          case "function":
-            data.content = value;
-            break;
-          default:
-            Object.assign(data, value);
-        }
-
-        continue;
+  for (const [name, value] of Object.entries(mod)) {
+    if (name === "default") {
+      switch (typeof value) {
+        case "string":
+        case "function":
+          data.content = value;
+          break;
+        default:
+          Object.assign(data, value);
       }
 
-      data[name] = value;
+      continue;
     }
 
-    return data;
-  });
+    data[name] = value;
+  }
+
+  return data;
 }
