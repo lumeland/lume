@@ -55,7 +55,7 @@ export default class Search {
     const filter = buildFilter(query);
     const result = filter ? this.#site.pages.filter(filter) : this.#site.pages;
 
-    result.sort(compileSort(`data.${sort}`));
+    result.sort(buildSort(sort));
 
     this.#cache.set(id, result);
     return [...result];
@@ -220,23 +220,26 @@ function compileValue(value) {
   return value;
 }
 
-function compileSort(arg) {
+export function buildSort(sort) {
   let fn = "0";
-  const sorts = arg.split(",");
 
-  while (sorts.length) {
-    const match = sorts.pop().match(/([\w.-]+)(?:=(asc|desc))?/);
+  if (typeof sort === "string") {
+    sort = sort.split(/\s+/).filter((arg) => arg);
+  }
+
+  sort.reverse().forEach((arg) => {
+    const match = arg.match(/([\w.-]+)(?:=(asc|desc))?/);
 
     if (!match) {
-      continue;
+      return;
     }
 
     let [, key, direction] = match;
     key = key.replaceAll(".", "?.");
     const operator = direction === "desc" ? ">" : "<";
     fn =
-      `(a.${key} == b.${key} ? ${fn} : (a.${key} ${operator} b.${key} ? -1 : 1))`;
-  }
+      `(a.data?.${key} == b.data?.${key} ? ${fn} : (a.data?.${key} ${operator} b.data?.${key} ? -1 : 1))`;
+  });
 
   return new Function("a", "b", `return ${fn}`);
 }
