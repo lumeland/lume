@@ -1,6 +1,6 @@
 export default async function (path) {
   const hash = Date.now();
-  const mod = fn(await import(`file://${path}#${hash}`));
+  const mod = await import(`file://${path}#${hash}`);
   const data = {};
 
   for (const [name, value] of Object.entries(mod)) {
