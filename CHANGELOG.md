@@ -15,8 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The `search.pages()` helper allows multiple values to sort.
 
 ### Changed
-- The url variable of the pages must start with `/`, `./` or `../`.
+- BREAKING: The url variable of the pages must start with `/`, `./` or `../`.
 - Uncoupled the loaders. Now they only need the path argument.
+- The preprocessors check the extension of the input and output file
+  (previously only output extension was used).
 
 ### Fixed
 - The url filter shouldn't add the path prefix if it's already added.
