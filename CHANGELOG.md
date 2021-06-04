@@ -9,20 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.22.0] - 2021-06-04
 ### Added
-- New plugin `base_path` to search and fix automatically all urls in the HTML
-  by adding the path prefix of the `location` setting.
-  This reduce the need to use the `url` filter everywhere.
-- The `search.pages()` helper allows multiple values to sort.
+- New plugin `base_path` to automatically search and fix all URLs in the HTML
+  by adding the path prefix of the `location` option.
+  This reduces the need to use the `url` filter everywhere.
+- The `search.pages()` helper allows multiple values to sort by.
 
 ### Changed
-- BREAKING: The url variable of the pages must start with `/`, `./` or `../`.
+- BREAKING: The `url` variable of the pages must start with `/`, `./` or `../`.
 - Uncoupled the loaders. Now they only need the path argument.
-- The preprocessors check the extension of the input and output file
-  (previously only output extension was used).
+- Preprocessors check the extension of the input and output file.
+  (Previously only the output extension was used.)
 
 ### Fixed
-- The url filter shouldn't add the path prefix if it's already added.
-- `search.pages()` must return only HTML pages (previously it also returned assets).
+- The `url` filter shouldn’t add the path prefix if it’s already added.
+- `search.pages()` must return only HTML pages.
+  (Previously, it also returned assets.)
 - Windows installation. [#98]
 
 ## [0.21.1] - 2021-06-03
