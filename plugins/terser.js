@@ -1,6 +1,6 @@
 import minify from "../deps/terser.js";
 import { basename } from "../deps/path.js";
-import { error, Exception, merge } from "../utils.js";
+import { Exception, merge } from "../utils.js";
 
 // Default options
 const defaults = {
