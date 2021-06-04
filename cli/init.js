@@ -1,4 +1,4 @@
-import { join } from "../deps/path.js";
+import { posix } from "../deps/path.js";
 import { parse } from "../deps/flags.js";
 import { brightGreen } from "../deps/colors.js";
 import { validateArgsCount } from "./utils.js";
@@ -37,10 +37,12 @@ export async function run(args) {
     : new URL("..", import.meta.url).href;
 
   const plugins = options.plugins ? options.plugins.split(",").sort() : [];
-  const code = [`import lume from "${join(lumeUrl, "mod.js")}";`];
+  const code = [`import lume from "${posix.join(lumeUrl, "mod.js")}";`];
 
   plugins.forEach((name) =>
-    code.push(`import ${name} from "${join(lumeUrl, `plugins/${name}.js`)}";`)
+    code.push(
+      `import ${name} from "${posix.join(lumeUrl, `plugins/${name}.js`)}";`,
+    )
   );
   code.push("");
   code.push("const site = lume();");
