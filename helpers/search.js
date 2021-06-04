@@ -221,15 +221,22 @@ function compileValue(value) {
 }
 
 function compileSort(arg) {
-  const match = arg.match(/([\w.-]+)(?:=(asc|desc))?/);
-  let [, key, direction] = match;
+  let fn = "0";
+  const sorts = arg.split(",");
 
-  key = key.replaceAll(".", "?.");
-  const operator = direction === "desc" ? ">" : "<";
+  while (sorts.length) {
+    const match = sorts.pop().match(/([\w.-]+)(?:=(asc|desc))?/);
 
-  return new Function(
-    "a",
-    "b",
-    `return a.${key} == b.${key} ? 0 : (a.${key} ${operator} b.${key} ? -1 : 1)`,
-  );
+    if (!match) {
+      continue;
+    }
+
+    let [, key, direction] = match;
+    key = key.replaceAll(".", "?.");
+    const operator = direction === "desc" ? ">" : "<";
+    fn =
+      `(a.${key} == b.${key} ? ${fn} : (a.${key} ${operator} b.${key} ? -1 : 1))`;
+  }
+
+  return new Function("a", "b", `return ${fn}`);
 }
