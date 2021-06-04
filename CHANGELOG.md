@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - The url filter shouldn't add the path prefix if it's already added.
+- `search.pages()` must return only HTML pages (previously it also returned assets).
 
 ## [0.21.1] - 2021-06-03
 ### Fixed

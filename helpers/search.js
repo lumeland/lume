@@ -75,7 +75,7 @@ export function buildFilter(query) {
     return null;
   }
 
-  const conditions = [];
+  const conditions = [["dest.ext", "=", ".html"]];
 
   query.forEach((arg) => {
     const match = arg.match(/([\w.-]+)([!^$*]?=|[<>]=?)(.*)/);
