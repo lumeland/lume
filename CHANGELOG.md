@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - The url filter shouldn't add the path prefix if it's already added.
 - `search.pages()` must return only HTML pages (previously it also returned assets).
-- Windows installation.
+- Windows installation. [#98]
 
 ## [0.21.1] - 2021-06-03
 ### Fixed
@@ -778,6 +778,7 @@ The first version.
 [#94]: https://github.com/lumeland/lume/issues/94
 [#95]: https://github.com/lumeland/lume/issues/95
 [#97]: https://github.com/lumeland/lume/issues/97
+[#98]: https://github.com/lumeland/lume/issues/98
 
 [0.22.0]: https://github.com/lumeland/lume/compare/v0.21.1...v0.22.0
 [0.21.1]: https://github.com/lumeland/lume/compare/v0.21.0...v0.21.1
