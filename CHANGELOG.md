@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Improved the performance loading page layouts, by using the `Source` cache.
 - Improved error reporting.
+- `search.pages()` with no arguments returns pages with other extensions than `.html`.
 
 ## [0.22.1] - 2021-06-05
 ### Fixed

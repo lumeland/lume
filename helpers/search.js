@@ -63,16 +63,10 @@ export default class Search {
 }
 
 export function buildFilter(query) {
-  if (!query) {
-    return null;
-  }
-
   if (typeof query === "string") {
     query = query.split(/\s+/).filter((arg) => arg);
-  }
-
-  if (!query.length) {
-    return null;
+  } else if (!Array.isArray(query)) {
+    query = [];
   }
 
   const conditions = [["dest.ext", "=", ".html"]];
