@@ -238,7 +238,7 @@ export default class Source {
       dest.ext = subext;
     }
 
-    const data = await this.#load(fullPath, loader);
+    const data = await this.load(fullPath, loader);
 
     if (!data.date) {
       data.date = getDate(src, dest);
@@ -264,7 +264,7 @@ export default class Source {
 
     if (result) {
       const [, loader] = result;
-      return this.#load(this.site.src(path), loader);
+      return this.load(this.site.src(path), loader);
     }
   }
 
@@ -311,15 +311,19 @@ export default class Source {
   /**
    * Load a file and save the content in the cache
    */
-  async #load(path, loader) {
+  async load(path, loader) {
     if (this.#cache.has(path)) {
       return this.#cache.get(path);
     }
 
-    const content = await loader(path);
-    this.#cache.set(path, content);
+    try {
+      const content = await loader(path);
+      this.#cache.set(path, content);
 
-    return content;
+      return content;
+    } catch (err) {
+      throw new Exception("Couldn't load this file", { path }, err);
+    }
   }
 }
 

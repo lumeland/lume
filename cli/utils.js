@@ -90,15 +90,13 @@ export function printError(exception) {
   printDataError(exception);
 
   if (exception.error) {
-    console.log();
     let { error } = exception;
-
+    let indent = "  ";
     while (error) {
       console.log();
-      console.log(red(`  ${error.message}`));
-
-      printDataError(error, "    ");
-
+      console.log(red(`${indent}${error.message}`));
+      printDataError(error, indent);
+      indent += "  ";
       error = error.error;
     }
   }
@@ -106,7 +104,7 @@ export function printError(exception) {
   console.log();
 }
 
-function printDataError(error, indent = "    ") {
+function printDataError(error, indent = "") {
   if (!error.data) {
     return;
   }

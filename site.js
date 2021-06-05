@@ -580,7 +580,7 @@ export default class Site {
       }
 
       const layoutPath = this.src("_includes", layout);
-      const layoutData = await result[1](layoutPath, this.source);
+      const layoutData = await this.source.load(layoutPath, result[1]);
       const engine = this.#getEngine(layout, layoutData.templateEngine);
 
       if (!engine) {
