@@ -47,9 +47,11 @@ export default function (userOptions = {}) {
           site.pages.push(mapFile);
         }
       } catch (err) {
-        throw new Exception("Plugin terser: Error processing the file", {
-          page: file,
-        }, err);
+        throw new Exception(
+          "Plugin terser: Error processing the file",
+          { page: file },
+          err,
+        );
       }
     }
 

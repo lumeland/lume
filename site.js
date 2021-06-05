@@ -573,9 +573,10 @@ export default class Site {
       const result = searchByExtension(layout, this.source.pages);
 
       if (!result) {
-        throw new Exception("Couldn't find a loader for this layout", {
-          layout,
-        });
+        throw new Exception(
+          "Couldn't find a loader for this layout",
+          { layout },
+        );
       }
 
       const layoutPath = this.src("_includes", layout);
@@ -583,9 +584,10 @@ export default class Site {
       const engine = this.#getEngine(layout, layoutData.templateEngine);
 
       if (!engine) {
-        throw new Exception("Couldn't find a template engine for this layout", {
-          layout,
-        });
+        throw new Exception(
+          "Couldn't find a template engine for this layout",
+          { layout },
+        );
       }
 
       pageData = {
@@ -654,10 +656,10 @@ export default class Site {
           return engine;
         }
 
-        throw new Exception("Invalid value for templateEngine", {
-          path,
-          templateEngine,
-        });
+        throw new Exception(
+          "Invalid value for templateEngine",
+          { path, templateEngine },
+        );
       });
     }
 
