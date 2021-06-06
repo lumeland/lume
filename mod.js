@@ -8,8 +8,13 @@ import modules from "./plugins/modules.js";
 import nunjucks from "./plugins/nunjucks.js";
 import search from "./plugins/search.js";
 import yaml from "./plugins/yaml.js";
+import { merge } from "./utils.js";
+
+export const overrides = {};
 
 export default function (options = {}, pluginOptions = {}) {
+  options = merge(options, overrides);
+
   const site = new Site(options);
 
   return site

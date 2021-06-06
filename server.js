@@ -7,9 +7,9 @@ import localIp from "./deps/local_ip.js";
 import { mimes, normalizePath } from "./utils.js";
 import { readAll } from "./deps/util.js";
 
-export async function server(site, options) {
+export async function server(site) {
   const root = site.dest();
-  const port = parseInt(options.port) || site.options.server.port || 3000;
+  const port = site.options.server.port || 3000;
   const ipAddr = await localIp();
   const page404 = site.options.server.page404 || "/404.html";
 
@@ -19,7 +19,7 @@ export async function server(site, options) {
   console.log(brightGreen(`  http://${ipAddr}:${port}/`), "(network)");
   console.log();
 
-  if (options.open || site.options.server.open) {
+  if (site.options.server.open) {
     const commands = {
       darwin: "open",
       linux: "xdg-open",

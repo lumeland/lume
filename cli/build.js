@@ -23,7 +23,7 @@ OPTIONS:
     -o, --open              open the site in the browser
 `;
 
-export async function run(args, userSite) {
+export async function run(args) {
   const options = parse(args, {
     string: ["root", "src", "dest", "config", "location", "port"],
     boolean: ["dev", "serve", "open"],
@@ -42,7 +42,7 @@ export async function run(args, userSite) {
 
   validateArgsCount("build", options._, 1);
 
-  const site = await buildSite(options, userSite);
+  const site = await buildSite(options);
   console.log();
   await site.build();
   console.log();
@@ -53,7 +53,7 @@ export async function run(args, userSite) {
   }
 
   try {
-    await server(site, options);
+    await server(site);
     const watcher = Deno.watchFs(site.src());
     const changes = new Set();
     console.log("Watching for changes...");

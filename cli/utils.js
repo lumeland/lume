@@ -1,5 +1,5 @@
 import { existsSync } from "../deps/fs.js";
-import lume from "../mod.js";
+import { default as lume, overrides } from "../mod.js";
 import { join, resolve, toFileUrl } from "../deps/path.js";
 import { bold, brightGreen, dim, red } from "../deps/colors.js";
 
@@ -7,45 +7,50 @@ import { bold, brightGreen, dim, red } from "../deps/colors.js";
  * Create and configure a site instance
  *
  * @param {Object} options user options to override
- * @param {Site} [site] user options to override
  * @return {Promise<*>} a lume instance - ready to build, run, etc.
  */
-export async function buildSite(options, site) {
+export async function buildSite(options) {
   options.root = resolve(Deno.cwd(), options.root);
   const configFile = join(options.root, options.config);
 
-  if (!site) {
-    if (existsSync(configFile)) {
-      const mod = await import(toFileUrl(configFile));
-      site = mod.default;
-    } else {
-      site = lume();
-    }
-  }
-
-  site.options.cwd = options.root;
+  overrides.cwd = options.root;
 
   if (options.dev) {
-    site.options.dev = options.dev;
+    overrides.dev = options.dev;
   }
 
   if (options.location) {
-    site.options.location = new URL(options.location);
+    overrides.location = new URL(options.location);
   }
 
   if (options.src) {
-    site.options.src = options.src;
+    overrides.src = options.src;
   }
 
   if (options.dest) {
-    site.options.dest = options.dest;
+    overrides.dest = options.dest;
+  }
+
+  if (options.port) {
+    overrides.server ||= {};
+    overrides.server.port = parseInt(options.port);
+  }
+
+  if (options.open) {
+    overrides.server ||= {};
+    overrides.server.open = options.open;
   }
 
   if (options["--"]) {
-    site.options.flags = options["--"];
+    overrides.flags = options["--"];
   }
 
-  return site;
+  if (existsSync(configFile)) {
+    const mod = await import(toFileUrl(configFile));
+    return mod.default;
+  }
+
+  return lume();
 }
 
 /**

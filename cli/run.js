@@ -17,7 +17,7 @@ OPTIONS:
     -d, --dev               enable dev mode (view draft pages)
 `;
 
-export async function run(args, userSite) {
+export async function run(args) {
   const options = parse(args, {
     string: ["root", "src", "dest", "config", "location"],
     boolean: ["dev"],
@@ -40,7 +40,7 @@ export async function run(args, userSite) {
   // Script name is the second argument ("run" is the first)
   const scripts = options._.slice(1);
 
-  const site = await buildSite(options, userSite);
+  const site = await buildSite(options);
   console.log();
 
   for (const script of scripts) {

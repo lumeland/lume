@@ -11,6 +11,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - `deno run <script>` accepts several scripts at the same time.
 
+### Changed
+- The CLI options are applied before `lume()` returns the site instance.
+  This allows to access to these options in `_config.js`.
+  For example, after running `lume --dev`, you can include conditions
+  in the `_config.js` file like:
+  
+  ```js
+  const site = lume();
+  
+  if (site.options.dev) {
+    // development stuff
+  }
+  ```
+  
+  Previously, these overrides were applied after `_config.js` export the site instance.
+
 ### Fixed
 - Improved the performance of loading page layouts by using the `Source` cache.
 - Improved error reporting.
