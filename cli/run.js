@@ -35,17 +35,20 @@ export async function run(args, userSite) {
   });
 
   // Should be 2 arguments "run" and the thing to run
-  validateArgsCount("run", options._, 2);
+  validateArgsCount("run", options._, 10, 2);
 
   // Script name is the second argument ("run" is the first)
-  const script = options._[1];
+  const scripts = options._.slice(1);
 
   const site = await buildSite(options, userSite);
   console.log();
 
-  const success = await site.run(script);
+  for (const script of scripts) {
+    const success = await site.run(script);
 
-  if (!success) {
-    window.addEventListener("unload", () => Deno.exit(1));
+    if (!success) {
+      window.addEventListener("unload", () => Deno.exit(1));
+      break;
+    }
   }
 }

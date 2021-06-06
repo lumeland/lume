@@ -241,6 +241,7 @@ export default class Site {
    */
   async clear() {
     await emptyDir(this.dest());
+    this.#hashes.clear();
   }
 
   /**
