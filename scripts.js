@@ -1,4 +1,4 @@
-import { brightGreen } from "./deps/colors.js";
+import { brightGreen, gray } from "./deps/colors.js";
 
 export default class Scripts {
   scripts = new Map();
@@ -27,6 +27,7 @@ export default class Scripts {
 
   async #runScript(options, name) {
     if (this.scripts.has(name)) {
+      console.log(`⚡️ ${brightGreen(name)}`);
       name = this.scripts.get(name);
       return this.run(options, ...name);
     }
@@ -46,14 +47,15 @@ export default class Scripts {
   }
 
   async #runFunction(fn) {
-    const name = fn.name || "[Function]";
-    console.log(`⚡️ ${brightGreen(name + "()")}`);
+    if (fn.name) {
+      console.log(gray(`⚡️ ${fn.name}()`));
+    }
     const result = await fn(this.site);
     return result !== false;
   }
 
   async #runCommand(options, command) {
-    console.log(`⚡️ ${brightGreen(command)}`);
+    console.log(gray(`⚡️ ${command}`));
 
     const cmd = shArgs(command);
     const process = Deno.run({ cmd, ...options });

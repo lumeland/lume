@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - `deno run <script>` accepts several scripts at the same time.
+- Display the script name executed by `deno run <script>`.
 
 ### Changed
 - The CLI options are applied before `lume()` returns the site instance.
