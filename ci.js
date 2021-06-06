@@ -4,7 +4,7 @@ import { posix } from "./deps/path.js";
 const baseUrl = new URL(".", import.meta.url).href;
 const cli = posix.join(baseUrl, "./cli.js");
 const importMap = `data:application/json;base64,${
-  encode(`{"imports":{"lume/":"${posix.join(baseUrl, "/")}"}}`)
+  encode(`{ "imports": { "lume/": "${posix.join(baseUrl, "/")}" } }`)
 }`;
 
 const process = Deno.run({
