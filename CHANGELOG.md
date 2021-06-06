@@ -9,9 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Fixed
-- Improved the performance loading page layouts, by using the `Source` cache.
+- Improved the performance of loading page layouts by using the `Source` cache.
 - Improved error reporting.
-- `search.pages()` with no arguments returns pages with other extensions than `.html`.
+- `search.pages()` with no arguments
+  returns pages with other extensions than `.html`.
+- Updated `nunjucks`.
 
 ## [0.22.1] - 2021-06-05
 ### Fixed

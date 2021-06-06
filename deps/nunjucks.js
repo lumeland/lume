@@ -1,2 +1,1 @@
-// Using a fork of https://github.com/denjucks/denjucks
-export { default } from "https://cdn.jsdelivr.net/gh/lumeland/denjucks@v2.0.0/mod.js";
+export { default } from "https://deno.land/x/nunjucks@3.2.3/mod.js";
