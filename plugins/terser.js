@@ -30,7 +30,7 @@ export default function (userOptions = {}) {
 
       if (options.sourceMap) {
         terserOptions.sourceMap = {
-          filename: filename,
+          filename,
           // Filename is path, so just need basename
           url: basename(filename) + ".map",
         };
