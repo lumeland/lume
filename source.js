@@ -22,7 +22,7 @@ export default class Source {
     this.site = site;
 
     // Update cache
-    site.addEventListener("beforeBuild", (ev) => {
+    site.addEventListener("beforeBuild", () => {
       this.root.refreshCache();
       this.#cache.clear();
     });

@@ -13,19 +13,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - The CLI options are applied before `lume()` returns the site instance.
-  This allows to access to these options in `_config.js`.
-  For example, after running `lume --dev`, you can include conditions
-  in the `_config.js` file like:
-  
+  This allows to access these options in `_config.js`.
+  For example, after running `lume --dev`,
+  you can include conditions in the `_config.js` file like this:
+
   ```js
   const site = lume();
-  
+
   if (site.options.dev) {
-    // development stuff
+    // Development stuff
   }
   ```
-  
-  Previously, these overrides were applied after `_config.js` export the site instance.
+
+  Previously,
+  these overrides were applied after `_config.js` exports the site instance.
 
 ### Fixed
 - Improved the performance of loading page layouts by using the `Source` cache.
@@ -33,7 +34,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `search.pages()` with no arguments
   returns pages with other extensions than `.html`.
 - Updated `nunjucks`.
-- Clear the cache before build. This allows to run several builds in the same script.
+- Clear the cache before building.
+  This allows to run several builds in the same script.
 
 ## [0.22.1] - 2021-06-05
 ### Fixed

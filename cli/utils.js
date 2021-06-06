@@ -1,5 +1,5 @@
 import { existsSync } from "../deps/fs.js";
-import { default as lume, overrides } from "../mod.js";
+import lume, { overrides } from "../mod.js";
 import { join, resolve, toFileUrl } from "../deps/path.js";
 import { bold, brightGreen, dim, red } from "../deps/colors.js";
 
@@ -32,13 +32,11 @@ export async function buildSite(options) {
   }
 
   if (options.port) {
-    overrides.server ||= {};
-    overrides.server.port = parseInt(options.port);
+    (overrides.server ||= {}).port = parseInt(options.port);
   }
 
   if (options.open) {
-    overrides.server ||= {};
-    overrides.server.open = options.open;
+    (overrides.server ||= {}).open = options.open;
   }
 
   if (options["--"]) {

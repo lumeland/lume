@@ -34,7 +34,7 @@ export async function run(args) {
     },
   });
 
-  // Should be 2 arguments "run" and the thing to run
+  // Should have 2 arguments: "run" and the thing to run
   validateArgsCount("run", options._, 10, 2);
 
   // Script name is the second argument ("run" is the first)
