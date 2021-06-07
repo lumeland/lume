@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - `deno run <script>` accepts several scripts at the same time.
-- Display the script name executed by `deno run <script>`.
+- Display the name of a script executed by `deno run <script>`.
 
 ### Changed
 - The CLI options are applied before `lume()` returns the site instance.
@@ -34,9 +34,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Improved error reporting.
 - `search.pages()` with no arguments
   returns pages with other extensions than `.html`.
-- Updated `nunjucks`.
 - Clear the cache before building.
   This allows to run several builds in the same script.
+- Updated `nunjucks` (a new fork) and `highlight.js`.
 
 ## [0.22.1] - 2021-06-05
 ### Fixed
