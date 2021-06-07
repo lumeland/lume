@@ -83,7 +83,7 @@ async function install(version, dev = false) {
     : `https://deno.land/x/lume@${version}`;
 
   const importMap = `data:application/json;base64,${
-    encode(`{ "imports": {" lume/": "${url}/" } }`)
+    encode(`{ "imports": { "lume/": "${url}/" } }`)
   }`;
 
   const process = Deno.run({
