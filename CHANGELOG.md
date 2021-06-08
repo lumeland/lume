@@ -12,7 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Display a warning on install Lume with an old Deno version.
 
 ### Fixed
-- Updated dependencies, specially `postcss` that breaks on Deno 1.11.0.
+- Updated `std`.
+- Updated `postcss` to support Deno 1.11.0.
 
 ## [0.22.3] - 2021-06-07
 ### Fixed
@@ -91,7 +92,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - Nunjucks no longer loads `.html` files by default.
-- The loader argument in `loadPages` and `loaddAssets` is now optional,
+- The loader argument in `loadPages` and `loadAssets` is now optional,
   and the text loader is used by default.
 - The loaders and template engines are now fully decoupled.
   This allows to use the variable `templateEngine` in a layout.
@@ -723,7 +724,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.3.1] - 2020-09-19
 ### Fixed
-- Use a temporaly fork of Denjucks to avoid loading bugs.
+- Use a temporary fork of Denjucks to avoid loading bugs.
 
 ## [0.3.0] - 2020-09-19
 ### Added
