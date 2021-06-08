@@ -213,7 +213,7 @@ export default class Site {
   }
 
   /**
-   * Register extra data accesible by layouts
+   * Register extra data accessible by layouts
    */
   data(name, data) {
     this.extraData[name] = data;

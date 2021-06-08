@@ -93,10 +93,10 @@ function compileFilter(conditions) {
 
   conditions.forEach((condition, index) => {
     const [key, operator, value] = condition;
-    const varname = `value${index}`;
+    const varName = `value${index}`;
 
-    filters.push(compileCondition(key, operator, varname, value));
-    args.push(varname);
+    filters.push(compileCondition(key, operator, varName, value));
+    args.push(varName);
     values.push(value);
   });
 
