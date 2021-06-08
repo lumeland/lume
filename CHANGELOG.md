@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.22.4] - 2021-06-09
+### Fixed
+- Updated dependencies, specially `postcss` that breaks on Deno 1.11.0.
+
 ## [0.22.3] - 2021-06-07
 ### Fixed
 - Bug in the import map after upgrading to 0.22.2.
