@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Fixed
+- Updated `std`.
+
 ## [0.22.3] - 2021-06-07
 ### Fixed
 - Bug in the import map after upgrading to 0.22.2.
@@ -820,6 +824,7 @@ The first version.
 [#97]: https://github.com/lumeland/lume/issues/97
 [#98]: https://github.com/lumeland/lume/issues/98
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v0.22.3...HEAD
 [0.22.3]: https://github.com/lumeland/lume/compare/v0.22.2...v0.22.3
 [0.22.2]: https://github.com/lumeland/lume/compare/v0.22.1...v0.22.2
 [0.22.1]: https://github.com/lumeland/lume/compare/v0.22.0...v0.22.1
