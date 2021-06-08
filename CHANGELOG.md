@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.22.4] - 2021-06-09
+### Added
+- Display a warning on install Lume with an old Deno version.
+
 ### Fixed
 - Updated dependencies, specially `postcss` that breaks on Deno 1.11.0.
 
@@ -28,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
   ```js
   const site = lume();
-  
+
   if (site.options.dev) {
     // Development stuff
   }
@@ -824,6 +827,7 @@ The first version.
 [#97]: https://github.com/lumeland/lume/issues/97
 [#98]: https://github.com/lumeland/lume/issues/98
 
+[0.22.4]: https://github.com/lumeland/lume/compare/v0.22.3...v0.22.4
 [0.22.3]: https://github.com/lumeland/lume/compare/v0.22.2...v0.22.3
 [0.22.2]: https://github.com/lumeland/lume/compare/v0.22.1...v0.22.2
 [0.22.1]: https://github.com/lumeland/lume/compare/v0.22.0...v0.22.1
