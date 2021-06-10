@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Updated `postcss`.
+- Bug in the function to merge default and user options.
+
+### Removed
+- The experimental plugin `image`. Moved to other repository
 
 ## [0.22.5] - 2021-06-10
 ### Added
