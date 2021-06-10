@@ -55,9 +55,7 @@ export function merge(defaults, user) {
   }
 
   for (const [key, value] of Object.entries(user)) {
-    if (
-      typeof isPlainObject(merged[key]) && isPlainObject(value)
-    ) {
+    if (isPlainObject(merged[key]) && isPlainObject(value)) {
       merged[key] = merge(merged[key], value);
       continue;
     }
