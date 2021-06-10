@@ -69,11 +69,7 @@ export function merge(defaults, user) {
 }
 
 function isPlainObject(obj) {
-  if (typeof obj !== "object") {
-    return false;
-  }
-
-  return obj.toString() === "[object Object]";
+  return typeof obj === "object" && obj.toString() === "[object Object]";
 }
 
 export function normalizePath(path) {
