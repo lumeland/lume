@@ -17,8 +17,14 @@ export default class Search {
     }
   }
 
-  pages(query, sort) {
-    return this.#searchPages(query, sort);
+  pages(query, sort, limit) {
+    const result = this.#searchPages(query, sort);
+
+    if (!limit) {
+      return result;
+    }
+
+    return (limit < 0) ? result.slice(limit) : result.slice(0, limit);
   }
 
   tags(query) {
