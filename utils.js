@@ -56,8 +56,7 @@ export function merge(defaults, user) {
 
   for (const [key, value] of Object.entries(user)) {
     if (
-      typeof merged[key] === "object" && typeof value === "object" &&
-      !Array.isArray(merged[key])
+      typeof isPlainObject(merged[key]) && isPlainObject(value)
     ) {
       merged[key] = merge(merged[key], value);
       continue;
@@ -67,6 +66,14 @@ export function merge(defaults, user) {
   }
 
   return merged;
+}
+
+function isPlainObject(obj) {
+  if (typeof obj !== "object") {
+    return false;
+  }
+
+  return obj.toString() === "[object Object]";
 }
 
 export function normalizePath(path) {

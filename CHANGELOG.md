@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Fixed
+- Bug on override the url with `--location`.
+
 ## [0.22.4] - 2021-06-09
 ### Added
 - Display a warning on install Lume with an old Deno version.
@@ -828,6 +832,7 @@ The first version.
 [#97]: https://github.com/lumeland/lume/issues/97
 [#98]: https://github.com/lumeland/lume/issues/98
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v0.22.4...HEAD
 [0.22.4]: https://github.com/lumeland/lume/compare/v0.22.3...v0.22.4
 [0.22.3]: https://github.com/lumeland/lume/compare/v0.22.2...v0.22.3
 [0.22.2]: https://github.com/lumeland/lume/compare/v0.22.1...v0.22.2
