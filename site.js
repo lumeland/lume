@@ -483,6 +483,8 @@ export default class Site {
       );
     }
 
+    await this.dispatchEvent({ type: "beforeSave" });
+
     // Save the pages
     await concurrent(
       this.pages,
