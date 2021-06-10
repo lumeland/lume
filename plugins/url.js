@@ -4,11 +4,7 @@ export default function () {
     site.filter("htmlUrl", htmlUrl);
 
     function url(path = "/", absolute = false) {
-      if (typeof path !== "string") {
-        return path;
-      }
-
-      return site.url(path, absolute);
+      return typeof path === "string" ? site.url(path, absolute) : path;
     }
 
     function htmlUrl(html = "", absolute = false) {

@@ -34,19 +34,15 @@ export default function (userOptions = {}) {
 
     function inline(url, element) {
       if (element.hasAttribute("href")) {
-        if (element.getAttribute("rel") === "stylesheet") {
-          return inlineStyles(url, element);
-        }
-
-        return inlineHref(url, element);
+        return element.getAttribute("rel") === "stylesheet"
+          ? inlineStyles(url, element)
+          : inlineHref(url, element);
       }
 
       if (element.hasAttribute("src")) {
-        if (element.nodeName === "SCRIPT") {
-          return inlineScript(url, element);
-        }
-
-        return inlineSrc(url, element);
+        return element.nodeName === "SCRIPT"
+          ? inlineScript(url, element)
+          : inlineSrc(url, element);
       }
     }
 

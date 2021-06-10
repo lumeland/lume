@@ -73,12 +73,7 @@ function isPlainObject(obj) {
 }
 
 export function normalizePath(path) {
-  // Is Windows path
-  if (SEP !== "/") {
-    return path.replaceAll(SEP, "/");
-  }
-
-  return path;
+  return SEP === "/" ? path : path.replaceAll(SEP, "/");
 }
 
 export function slugify(

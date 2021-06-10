@@ -60,12 +60,7 @@ function relativeUrl(basePath, from, to) {
   }
 
   const relative = posix.relative(from, to);
-
-  if (!relative || relative.startsWith("/")) {
-    return `.${relative}`;
-  }
-
-  return relative;
+  return !relative || relative.startsWith("/") ? `.${relative}` : relative;
 }
 
 function ignore(url) {

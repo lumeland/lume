@@ -4,11 +4,9 @@ export default class Module extends TemplateEngine {
   filters = {};
 
   render(content, data) {
-    if (typeof content === "function") {
-      return content(data, this.filters);
-    }
-
-    return content;
+    return typeof content === "function"
+      ? content(data, this.filters)
+      : content;
   }
 
   addFilter(name, fn) {

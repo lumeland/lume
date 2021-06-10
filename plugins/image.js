@@ -47,9 +47,7 @@ export default function (userOptions = {}) {
 }
 
 function matches(path, pattern) {
-  if (typeof pattern === "string") {
-    return path.startsWith(pattern);
-  }
-
-  return pattern.test(path);
+  return typeof pattern === "string"
+    ? path.startsWith(pattern)
+    : pattern.test(path);
 }
