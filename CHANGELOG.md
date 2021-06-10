@@ -12,11 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Argument `limit` to `search.pages()`.
 
 ### Fixed
-- Bug on override the url with `--location`.
+- Bug on overriding the URL with `--location`.
 
 ## [0.22.4] - 2021-06-09
 ### Added
-- Display a warning on install Lume with an old Deno version.
+- Display a warning when installing Lume with an old Deno version.
 
 ### Fixed
 - Updated `std`.
