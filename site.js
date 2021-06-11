@@ -469,6 +469,8 @@ export default class Site {
       }
     }
 
+    await this.dispatchEvent({ type: "afterRender" });
+
     // Process the pages
     for (const [ext, processors] of this.processors) {
       await concurrent(

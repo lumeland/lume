@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Event `beforeSave`.
+- Events `afterRender` and `beforeSave`.
 
 ### Fixed
 - Updated `postcss`.
