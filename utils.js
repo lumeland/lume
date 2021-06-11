@@ -37,7 +37,7 @@ export const mimes = new Map([
   [".jpeg", "image/jpg"],
   [".gif", "image/gif"],
   [".mp3", "audio/mpeg"],
-  [".mp4", "video/mpeg"],
+  [".mp4", "video/mp4"],
   [".xml", "text/xml"],
   [".woff", "font/woff"],
   [".woff2", "font/woff2"],
