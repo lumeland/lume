@@ -58,14 +58,14 @@ function refresh(files) {
         );
         break;
 
+      case "apng":
+      case "avif":
+      case "gif":
       case "jpeg":
       case "jpg":
       case "png":
-      case "apng":
-      case "webp":
-      case "avif":
       case "svg":
-      case "gif":
+      case "webp":
         document.querySelectorAll("img").forEach((el) =>
           cache(el, "src", file)
         );
