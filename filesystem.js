@@ -7,7 +7,7 @@ class Base {
   #data = {};
   #cache = null;
 
-  constructor(src) {
+  constructor(src = {}) {
     this.src = src;
   }
 
