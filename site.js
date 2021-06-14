@@ -633,7 +633,8 @@ export default class Site {
 
     this.#hashes.set(dest, hash);
 
-    console.log(`🔥 ${dest} ${gray(page.src.path + page.src.ext)}`);
+    const src = page.src.path ? page.src.path + page.src.ext : "(generated)";
+    console.log(`🔥 ${dest} ${gray(src)}`);
 
     const filename = this.dest(dest);
     await ensureDir(dirname(filename));
