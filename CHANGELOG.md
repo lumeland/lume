@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.22.6] - 2021-06-15
 ### Added
 - Events `afterRender` and `beforeSave`.
 - New method `site.addHelper()` to register different types of helpers.
@@ -854,7 +854,7 @@ The first version.
 [#97]: https://github.com/lumeland/lume/issues/97
 [#98]: https://github.com/lumeland/lume/issues/98
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v0.22.5...HEAD
+[0.22.6]: https://github.com/lumeland/lume/compare/v0.22.5...v0.22.6
 [0.22.5]: https://github.com/lumeland/lume/compare/v0.22.4...v0.22.5
 [0.22.4]: https://github.com/lumeland/lume/compare/v0.22.3...v0.22.4
 [0.22.3]: https://github.com/lumeland/lume/compare/v0.22.2...v0.22.3
