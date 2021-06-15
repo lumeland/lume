@@ -83,7 +83,7 @@ function createAsyncFilter(fn) {
 function createCustomTag(name, fn, options) {
   const tagExtension = {
     tags: [name],
-    parse(parser, nodes, lexer) {
+    parse(parser, nodes) {
       const token = parser.nextToken();
       const args = parser.parseSignature(null, true);
       parser.advanceAfterBlockEnd(token.value);
@@ -91,15 +91,8 @@ function createCustomTag(name, fn, options) {
       const extraArgs = [];
 
       if (options.body) {
-        const body = parser.parseUntilBlocks("error", "endremote");
-        const errorBody = null;
-
-        if (parser.skipSymbol("error")) {
-          parser.skip(lexer.TOKEN_BLOCK_END);
-          errorBody = parser.parseUntilBlocks("endremote");
-        }
-
-        extraArgs.push(body, errorBody);
+        const body = parser.parseUntilBlocks(`end${name}`);
+        extraArgs.push(body);
         parser.advanceAfterBlockEnd();
       }
 
@@ -114,12 +107,21 @@ function createCustomTag(name, fn, options) {
 
       return new nodes.CallExtension(tagExtension, "run", args, extraArgs);
     },
-    run(context, ...args) {
+    run(_context, ...args) {
+      if (options.body) {
+        const [body] = args.splice(
+          options.async ? args.length - 2 : args.length - 1,
+          1,
+        );
+        args.unshift(body());
+      }
+
       if (!options.async) {
         return fn(...args);
       }
 
       const callback = args.pop();
+
       fn(...args).then((string) => {
         const result = new nunjucks.runtime.SafeString(string);
         callback(null, result);
