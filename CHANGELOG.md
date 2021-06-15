@@ -7,16 +7,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Fixed
+- Updated `std`.
+
 ## [0.22.6] - 2021-06-15
 ### Added
 - Events `afterRender` and `beforeSave`.
 - New method `site.addHelper()` to register different types of helpers.
 
 ### Changed
-- Class signature of template engines: removed `addFilter` method
-  and replaced by a more generical `addHelper` that allows to register
-  not only filters but also custom tags and other features
-  supported by some engines like Nunjucks.
+- The class signature of template engines:
+  replaced the `addFilter` method with more generic `addHelper`
+  that allows to register not only filters but also custom tags
+  and other features supported by some engines, like Nunjucks.
 
 ### Removed
 - The experimental plugin `image`. Moved to another repository.
@@ -24,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Bug in the function to merge default and user options.
 - Updated `postcss` and `eta`.
-- Ensure `Page` and `Directory` classes always have a src object.
+- Ensure the `Page` and `Directory` classes always have the `src` object.
 
 ## [0.22.5] - 2021-06-10
 ### Added
@@ -854,6 +858,7 @@ The first version.
 [#97]: https://github.com/lumeland/lume/issues/97
 [#98]: https://github.com/lumeland/lume/issues/98
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v0.22.6...HEAD
 [0.22.6]: https://github.com/lumeland/lume/compare/v0.22.5...v0.22.6
 [0.22.5]: https://github.com/lumeland/lume/compare/v0.22.4...v0.22.5
 [0.22.4]: https://github.com/lumeland/lume/compare/v0.22.3...v0.22.4
