@@ -30,11 +30,15 @@ export default class Eta extends TemplateEngine {
     return await fn(data, eta.config);
   }
 
-  addFilter(name, fn, async) {
-    this.filters[name] = fn;
+  addHelper(name, fn, options) {
+    switch (options.type) {
+      case "filter":
+        this.filters[name] = fn;
 
-    if (async) {
-      eta.configure({ async: true });
+        if (options.async) {
+          eta.configure({ async: true });
+        }
+        return;
     }
   }
 }

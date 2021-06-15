@@ -45,7 +45,7 @@ const defaults = {
 
 export default class Site {
   engines = new Map();
-  filters = new Map();
+  helpers = new Map();
   extraData = {};
   listeners = new Map();
   preprocessors = new Map();
@@ -158,8 +158,8 @@ export default class Site {
 
     extensions.forEach((extension) => this.engines.set(extension, engine));
 
-    for (const [name, filter] of this.filters) {
-      engine.addFilter(name, ...filter);
+    for (const [name, helper] of this.helpers) {
+      engine.addHelper(name, ...helper);
     }
 
     return this;
@@ -203,10 +203,17 @@ export default class Site {
    * Register a template filter
    */
   filter(name, filter, async) {
-    this.filters.set(name, [filter, async]);
+    return this.helper(name, filter, { type: "filter", async });
+  }
+
+  /**
+   * Register a template helper
+   */
+  helper(name, fn, options) {
+    this.helpers.set(name, [fn, options]);
 
     for (const engine of this.engines.values()) {
-      engine.addFilter(name, filter, async);
+      engine.addHelper(name, fn, options);
     }
 
     return this;

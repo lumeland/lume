@@ -45,20 +45,87 @@ export default class Nunjucks extends TemplateEngine {
     });
   }
 
-  addFilter(name, fn, async) {
-    if (async) {
-      this.engine.addFilter(name, async (...args) => {
-        const cb = args.pop();
-        try {
-          const result = await fn(...args);
-          cb(null, result);
-        } catch (err) {
-          cb(err);
-        }
-      }, true);
-      return;
-    }
+  addHelper(name, fn, options) {
+    switch (options.type) {
+      case "tag":
+        const tag = createCustomTag(name, fn, options);
+        this.engine.addExtension(name, tag);
+        return;
 
-    this.engine.addFilter(name, fn);
+      case "filter":
+        if (options.async) {
+          const filter = createAsyncFilter(fn);
+          this.engine.addFilter(name, filter, true);
+          return;
+        }
+
+        this.engine.addFilter(name, fn);
+    }
   }
+}
+
+// Function to create an asynchronous filter
+// https://mozilla.github.io/nunjucks/api.html#custom-filters
+function createAsyncFilter(fn) {
+  return async function (...args) {
+    const cb = args.pop();
+    try {
+      const result = await fn(...args);
+      cb(null, result);
+    } catch (err) {
+      cb(err);
+    }
+  };
+}
+
+// Function to create a tag extension
+// https://mozilla.github.io/nunjucks/api.html#custom-tags
+function createCustomTag(name, fn, options) {
+  const tagExtension = {
+    tags: [name],
+    parse(parser, nodes, lexer) {
+      const token = parser.nextToken();
+      const args = parser.parseSignature(null, true);
+      parser.advanceAfterBlockEnd(token.value);
+
+      const extraArgs = [];
+
+      if (options.body) {
+        const body = parser.parseUntilBlocks("error", "endremote");
+        const errorBody = null;
+
+        if (parser.skipSymbol("error")) {
+          parser.skip(lexer.TOKEN_BLOCK_END);
+          errorBody = parser.parseUntilBlocks("endremote");
+        }
+
+        extraArgs.push(body, errorBody);
+        parser.advanceAfterBlockEnd();
+      }
+
+      if (options.async) {
+        return new nodes.CallExtensionAsync(
+          tagExtension,
+          "run",
+          args,
+          extraArgs,
+        );
+      }
+
+      return new nodes.CallExtension(tagExtension, "run", args, extraArgs);
+    },
+    run(context, ...args) {
+      if (!options.async) {
+        return fn(...args);
+      }
+
+      const callback = args.pop();
+      fn(...args).then((string) => {
+        const result = new nunjucks.runtime.SafeString(string);
+        callback(null, result);
+      });
+    },
+  };
+
+  return tagExtension;
 }

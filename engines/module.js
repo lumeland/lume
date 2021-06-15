@@ -1,15 +1,15 @@
 import TemplateEngine from "./template_engine.js";
 
 export default class Module extends TemplateEngine {
-  filters = {};
+  helpers = {};
 
   render(content, data) {
     return typeof content === "function"
-      ? content(data, this.filters)
+      ? content(data, this.helpers)
       : content;
   }
 
-  addFilter(name, fn) {
-    this.filters[name] = fn;
+  addHelper(name, fn) {
+    this.helpers[name] = fn;
   }
 }

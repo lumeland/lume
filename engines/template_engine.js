@@ -8,7 +8,7 @@ export default class TemplateEngine {
     // To extend
   }
 
-  addFilter(_name, _fn, _async) {
+  addHelper(_name, _fn, _options) {
     // To extend
   }
 }

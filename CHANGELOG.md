@@ -10,14 +10,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - Events `afterRender` and `beforeSave`.
+- New method `site.addHelper()` to register different types of helpers.
+
+### Changed
+- Class signature of template engines: removed `addFilter` method
+  and replaced by a more generical `addHelper` that allows to register
+  not only filters but also custom tags and other features
+  supported by some engines like Nunjucks.
+
+### Removed
+- The experimental plugin `image`. Moved to another repository.
 
 ### Fixed
 - Bug in the function to merge default and user options.
 - Updated `postcss` and `eta`.
 - Ensure `Page` and `Directory` classes always have a src object.
-
-### Removed
-- The experimental plugin `image`. Moved to another repository.
 
 ## [0.22.5] - 2021-06-10
 ### Added

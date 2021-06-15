@@ -28,11 +28,15 @@ export default class Pug extends TemplateEngine {
     return this.cache.get(filename)(data);
   }
 
-  addFilter(name, fn) {
-    this.filters[name] = (text, options) => {
-      delete options.filename;
-      const args = Object.values(options);
-      return fn(text, ...args);
-    };
+  addHelper(name, fn, options) {
+    switch (options.type) {
+      case "filter":
+        this.filters[name] = (text, opt) => {
+          delete opt.filename;
+          const args = Object.values(opt);
+          return fn(text, ...args);
+        };
+        return;
+    }
   }
 }
