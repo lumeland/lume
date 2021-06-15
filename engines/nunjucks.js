@@ -47,10 +47,11 @@ export default class Nunjucks extends TemplateEngine {
 
   addHelper(name, fn, options) {
     switch (options.type) {
-      case "tag":
+      case "tag": {
         const tag = createCustomTag(name, fn, options);
         this.engine.addExtension(name, tag);
         return;
+      }
 
       case "filter":
         if (options.async) {
