@@ -80,11 +80,15 @@ export function getCurrentVersion() {
   return url.match(/@([^/]+)/)?.[1] ?? `local (${url})`;
 }
 
-export function printError(exception) {
+export function printError(exception, debug = false) {
   console.log();
   console.error(bold(red(`Error:`)), exception.message);
 
   printDataError(exception);
+
+  if (debug) {
+    console.error(exception);
+  }
 
   if (exception.error) {
     let { error } = exception;
@@ -94,6 +98,11 @@ export function printError(exception) {
       console.log(red(`${indent}${error.message}`));
       printDataError(error, indent);
       indent += "  ";
+
+      if (debug) {
+        console.error(error);
+      }
+
       error = error.error;
     }
   }
