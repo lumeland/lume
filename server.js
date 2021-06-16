@@ -1,11 +1,11 @@
-import { listenAndServe } from "./deps/server.js";
-import { acceptWebSocket } from "./deps/ws.js";
-import { dirname, extname, join, posix, relative } from "./deps/path.js";
-import { brightGreen, red } from "./deps/colors.js";
-import { exists } from "./deps/fs.js";
-import localIp from "./deps/local_ip.js";
+import { listenAndServe } from "./deps/server.ts";
+import { acceptWebSocket } from "./deps/ws.ts";
+import { dirname, extname, join, posix, relative } from "./deps/path.ts";
+import { brightGreen, red } from "./deps/colors.ts";
+import { exists } from "./deps/fs.ts";
+import localIp from "./deps/local_ip.ts";
 import { mimes, normalizePath } from "./utils.js";
-import { readAll } from "./deps/util.js";
+import { readAll } from "./deps/util.ts";
 
 export async function server(site) {
   const root = site.dest();

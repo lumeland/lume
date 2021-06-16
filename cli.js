@@ -1,5 +1,5 @@
-import { parse } from "./deps/flags.js";
-import { bold, brightGreen, red } from "./deps/colors.js";
+import { parse } from "./deps/flags.ts";
+import { bold, brightGreen, red } from "./deps/colors.ts";
 import * as upgrade from "./cli/upgrade.js";
 import * as init from "./cli/init.js";
 import * as build from "./cli/build.js";

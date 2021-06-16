@@ -1,4 +1,4 @@
-import { posix } from "../deps/path.js";
+import { posix } from "../deps/path.ts";
 import { merge } from "../utils.js";
 
 // Default options

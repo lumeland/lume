@@ -1,5 +1,5 @@
-import { brightGreen } from "../deps/colors.js";
-import { parse } from "../deps/flags.js";
+import { brightGreen } from "../deps/colors.ts";
+import { parse } from "../deps/flags.ts";
 import { buildSite, validateArgsCount } from "./utils.js";
 
 export const HELP = `

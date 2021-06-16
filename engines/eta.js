@@ -1,4 +1,4 @@
-import * as eta from "../deps/eta.js";
+import * as eta from "../deps/eta.ts";
 
 import TemplateEngine from "./template_engine.js";
 

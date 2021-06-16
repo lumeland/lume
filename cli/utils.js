@@ -1,7 +1,7 @@
-import { existsSync } from "../deps/fs.js";
+import { existsSync } from "../deps/fs.ts";
 import lume, { overrides } from "../mod.js";
-import { join, resolve, toFileUrl } from "../deps/path.js";
-import { bold, brightGreen, dim, red } from "../deps/colors.js";
+import { join, resolve, toFileUrl } from "../deps/path.ts";
+import { bold, brightGreen, dim, red } from "../deps/colors.ts";
 
 /**
  * Create and configure a site instance

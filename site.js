@@ -1,7 +1,7 @@
-import { dirname, extname, join, posix, SEP } from "./deps/path.js";
-import { copy, emptyDir, ensureDir, exists } from "./deps/fs.js";
-import { gray } from "./deps/colors.js";
-import { createHash } from "./deps/hash.js";
+import { dirname, extname, join, posix, SEP } from "./deps/path.ts";
+import { copy, emptyDir, ensureDir, exists } from "./deps/fs.ts";
+import { gray } from "./deps/colors.ts";
+import { createHash } from "./deps/hash.ts";
 import Source from "./source.js";
 import Scripts from "./scripts.js";
 import textLoader from "./loaders/text.js";

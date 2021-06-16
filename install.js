@@ -1,6 +1,6 @@
-import { encode } from "./deps/base64.js";
-import { posix } from "./deps/path.js";
-import { brightGreen, gray, red } from "./deps/colors.js";
+import { encode } from "./deps/base64.ts";
+import { posix } from "./deps/path.ts";
+import { brightGreen, gray, red } from "./deps/colors.ts";
 
 const baseUrl = new URL(".", import.meta.url).href;
 const cli = posix.join(baseUrl, "./cli.js");

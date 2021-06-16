@@ -1,6 +1,6 @@
-import { posix } from "../deps/path.js";
-import { parse } from "../deps/flags.js";
-import { brightGreen } from "../deps/colors.js";
+import { posix } from "../deps/path.ts";
+import { parse } from "../deps/flags.ts";
+import { brightGreen } from "../deps/colors.ts";
 import { validateArgsCount } from "./utils.js";
 
 export const HELP = `

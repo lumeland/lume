@@ -1,7 +1,7 @@
-import { parse } from "../deps/flags.js";
+import { parse } from "../deps/flags.ts";
 import { server } from "../server.js";
-import { brightGreen, gray } from "../deps/colors.js";
-import { join, relative } from "../deps/path.js";
+import { brightGreen, gray } from "../deps/colors.ts";
+import { join, relative } from "../deps/path.ts";
 import { buildSite, printError, validateArgsCount } from "./utils.js";
 
 export const HELP = `

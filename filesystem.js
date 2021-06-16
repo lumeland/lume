@@ -1,4 +1,4 @@
-import { join } from "./deps/path.js";
+import { join } from "./deps/path.ts";
 import { documentToString, stringToDocument } from "./utils.js";
 
 class Base {

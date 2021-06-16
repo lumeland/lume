@@ -1,6 +1,6 @@
-import { parse } from "../deps/flags.js";
-import { encode } from "../deps/base64.js";
-import { brightGreen, gray } from "../deps/colors.js";
+import { parse } from "../deps/flags.ts";
+import { encode } from "../deps/base64.ts";
+import { brightGreen, gray } from "../deps/colors.ts";
 import { getCurrentVersion, validateArgsCount } from "./utils.js";
 
 export const HELP = `

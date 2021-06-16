@@ -1,5 +1,5 @@
-import { extname, posix, resolve } from "../deps/path.js";
-import { encode } from "../deps/base64.js";
+import { extname, posix, resolve } from "../deps/path.ts";
+import { encode } from "../deps/base64.ts";
 import { Exception, merge, mimes } from "../utils.js";
 
 // Default options
