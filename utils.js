@@ -79,37 +79,6 @@ export function normalizePath(path) {
   return SEP === "/" ? path : path.replaceAll(SEP, "/");
 }
 
-export function slugify(
-  string,
-  { lowercase, alphanumeric, separator, replace },
-) {
-  if (lowercase) {
-    string = string.toLowerCase();
-  }
-
-  string = string.replaceAll(/[^a-z\d/.-]/giu, (char) => {
-    if (char in replace) {
-      return replace[char];
-    }
-
-    if (alphanumeric) {
-      char = char.normalize("NFKD").replaceAll(/[\u0300-\u036F]/g, "");
-    }
-
-    char = /[\p{L}\u0300-\u036F]/u.test(char) ? char : "-";
-
-    return alphanumeric && /[^\w-]/.test(char) ? "" : char;
-  });
-
-  if (lowercase) {
-    string = string.toLowerCase();
-  }
-
-  return string
-    .replaceAll(/(?<=^|[/.])-+|-+(?=$|[/.])/g, "")
-    .replaceAll(/-+/g, separator);
-}
-
 export function searchByExtension(path, extensions) {
   for (const [key, value] of extensions) {
     if (path.endsWith(key)) {

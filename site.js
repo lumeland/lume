@@ -11,7 +11,6 @@ import {
   merge,
   normalizePath,
   searchByExtension,
-  slugify,
 } from "./utils.js";
 
 const defaults = {
@@ -20,21 +19,6 @@ const defaults = {
   dest: "./_site",
   dev: false,
   prettyUrls: true,
-  slugifyUrls: {
-    lowercase: true,
-    alphanumeric: true,
-    separator: "-",
-    replace: {
-      "Ð": "D", // eth
-      "ð": "d",
-      "Đ": "D", // crossed D
-      "đ": "d",
-      "ø": "o",
-      "ß": "ss",
-      "æ": "ae",
-      "œ": "oe",
-    },
-  },
   flags: [],
   server: {
     port: 3000,
@@ -512,22 +496,6 @@ export default class Site {
       url = url(page);
     }
 
-    let { prettyUrls, slugifyUrls } = this.options;
-
-    if (typeof url === "object") {
-      if ("pretty" in url) {
-        prettyUrls = url.pretty;
-      }
-
-      if ("slugify" in url) {
-        slugifyUrls = url.slugify;
-      }
-
-      if ("path" in url) {
-        url = url.path;
-      }
-    }
-
     if (typeof url === "string") {
       if (url.endsWith("/")) {
         dest.path = posix.join(url, "index");
@@ -537,7 +505,7 @@ export default class Site {
         dest.path = dest.ext ? url.slice(0, -dest.ext.length) : url;
       }
     } else if (!dest.ext) {
-      if (prettyUrls && posix.basename(dest.path) !== "index") {
+      if (this.options.prettyUrls && posix.basename(dest.path) !== "index") {
         dest.path = posix.join(dest.path, "index");
       }
       dest.ext = ".html";
@@ -551,10 +519,6 @@ export default class Site {
         `The url variable must start with "/", "./" or "../"`,
         { page, url },
       );
-    }
-
-    if (slugifyUrls) {
-      dest.path = slugify(dest.path, slugifyUrls);
     }
 
     page.data.url =
