@@ -1,6 +1,6 @@
 import JsxEngine from "../engines/jsx.js";
 import loader from "../loaders/module.js";
-import { merge } from "../utils.js";
+import { merge } from "../utils.ts";
 
 // Default options
 const defaults = {

@@ -1,6 +1,6 @@
 import NunjucksEngine from "../engines/nunjucks.js";
 import loader from "../loaders/text.js";
-import { merge } from "../utils.js";
+import { merge } from "../utils.ts";
 
 // Default options
 const defaults = {

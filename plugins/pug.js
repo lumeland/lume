@@ -1,6 +1,6 @@
 import Pug from "../engines/pug.js";
 import loader from "../loaders/text.js";
-import { merge } from "../utils.js";
+import { merge } from "../utils.ts";
 
 // Default options
 const defaults = {

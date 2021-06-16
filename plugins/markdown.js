@@ -6,7 +6,7 @@ import {
 } from "../deps/markdown_it.js";
 import loader from "../loaders/text.js";
 import Markdown from "../engines/markdown.js";
-import { merge } from "../utils.js";
+import { merge } from "../utils.ts";
 
 // Default options
 const defaults = {

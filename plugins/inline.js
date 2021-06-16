@@ -1,6 +1,6 @@
 import { extname, posix, resolve } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
-import { Exception, merge, mimes } from "../utils.js";
+import { Exception, merge, mimes } from "../utils.ts";
 
 // Default options
 const defaults = {

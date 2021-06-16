@@ -1,11 +1,15 @@
-import { DOMParser } from "./deps/dom.ts";
+import { DOMParser, HTMLDocument } from "./deps/dom.ts";
 import { SEP } from "./deps/path.ts";
 
-export async function concurrent(iterable, iteratorFn, limit = 200) {
-  const executing = [];
+export async function concurrent(
+  iterable: Iterable<unknown>,
+  iteratorFn: (a: unknown) => Promise<void>,
+  limit = 200,
+): Promise<void> {
+  const executing: unknown[] = [];
 
   for await (const item of iterable) {
-    const p = iteratorFn(item).then(() =>
+    const p: unknown = iteratorFn(item).then(() =>
       executing.splice(executing.indexOf(p), 1)
     );
 
@@ -52,7 +56,10 @@ export const mimes = new Map([
   [".zip", "application/zip"],
 ]);
 
-export function merge(defaults, user) {
+export function merge(
+  defaults: Record<string, undefined>,
+  user: Record<string, undefined>,
+): Record<string, undefined> {
   const merged = { ...defaults };
 
   if (!user) {
@@ -61,25 +68,31 @@ export function merge(defaults, user) {
 
   for (const [key, value] of Object.entries(user)) {
     if (isPlainObject(merged[key]) && isPlainObject(value)) {
+      // @ts-ignore: I don't know how to type this
       merged[key] = merge(merged[key], value);
       continue;
     }
-
+    
+    // @ts-ignore: I don't know how to type this
     merged[key] = value;
   }
 
   return merged;
 }
 
-function isPlainObject(obj) {
-  return typeof obj === "object" && obj.toString() === "[object Object]";
+function isPlainObject(obj: unknown): boolean {
+  return typeof obj === "object" && obj !== null &&
+    obj.toString() === "[object Object]";
 }
 
-export function normalizePath(path) {
+export function normalizePath(path: string): string {
   return SEP === "/" ? path : path.replaceAll(SEP, "/");
 }
 
-export function searchByExtension(path, extensions) {
+export function searchByExtension(
+  path: string,
+  extensions: Map<string, unknown>,
+): undefined | [string, unknown] {
   for (const [key, value] of extensions) {
     if (path.endsWith(key)) {
       return [key, value];
@@ -87,8 +100,16 @@ export function searchByExtension(path, extensions) {
   }
 }
 
-export function documentToString(document) {
+export function documentToString(document: HTMLDocument): string {
+  if (!document.documentElement) {
+    return "";
+  }
+
   const { doctype } = document;
+
+  if (!doctype) {
+    return document.documentElement.outerHTML;
+  }
 
   return `<!DOCTYPE ${doctype.name}` +
     (doctype.publicId ? ` PUBLIC "${doctype.publicId}"` : "") +
@@ -99,12 +120,15 @@ export function documentToString(document) {
 
 const parser = new DOMParser();
 
-export function stringToDocument(string) {
+export function stringToDocument(string: string): HTMLDocument | null {
   return parser.parseFromString(string, "text/html");
 }
 
 export class Exception extends Error {
-  constructor(message, data, error) {
+  data: unknown;
+  error: Error;
+
+  constructor(message: string, data: unknown, error: Error) {
     super(message);
     this.data = data;
     this.error = error;

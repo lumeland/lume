@@ -8,7 +8,7 @@ import modules from "./plugins/modules.js";
 import nunjucks from "./plugins/nunjucks.js";
 import search from "./plugins/search.js";
 import yaml from "./plugins/yaml.js";
-import { merge } from "./utils.js";
+import { merge } from "./utils.ts";
 
 export const overrides = {};
 

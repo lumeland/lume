@@ -1,5 +1,5 @@
 import { posix } from "../deps/path.ts";
-import { merge } from "../utils.js";
+import { merge } from "../utils.ts";
 
 // Default options
 const defaults = {
