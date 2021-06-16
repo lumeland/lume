@@ -10,10 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - New `slugify_urls` plugin.
+- Support for quotes to `page.search()`. This allows to insert spaces in the values.
+  For example: `page.search("'tag with spaces' title='Title with spaces'")`.
 
 ### Removed
 - The `slugifyUrls` option. Use the `slugify_urls` plugin for that.
-- Support of objects in the `url` variable.
+- Support for objects in the `url` variable.
 
 ### Fixed
 - Updated `std`.
