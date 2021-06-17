@@ -73,14 +73,14 @@ export default class Search {
 }
 
 export function buildFilter(query) {
-  // ((fieldName)(operator))?(value|"value"|'value')
+  // (?:(fieldName)(operator))?(value|"value"|'value')
   const matches = query.matchAll(
-    /(([\w.-]+)([!^$*]?=|[<>]=?))?([^'"\s][^\s=<>]+|"[^"]+"|'[^']+')/g,
+    /(?:([\w.-]+)([!^$*]?=|[<>]=?))?([^'"\s][^\s=<>]+|"[^"]+"|'[^']+')/g,
   );
   const conditions = [["dest.ext", "=", ".html"]];
 
   for (const match of matches) {
-    let [, , key, operator, value] = match;
+    let [, key, operator, value] = match;
 
     if (!key) {
       key = "tags";
