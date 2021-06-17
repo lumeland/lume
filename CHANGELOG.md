@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Updated `std`.
+- Replaced `terser` dependency with a Deno version.
 
 ## [0.22.6] - 2021-06-15
 ### Added
