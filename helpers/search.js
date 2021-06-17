@@ -74,9 +74,11 @@ export default class Search {
 
 export function buildFilter(query) {
   // (?:(fieldName)(operator))?(value|"value"|'value')
-  const matches = query.matchAll(
-    /(?:([\w.-]+)([!^$*]?=|[<>]=?))?([^'"\s][^\s=<>]+|"[^"]+"|'[^']+')/g,
-  );
+  const matches = query
+    ? query.matchAll(
+      /(?:([\w.-]+)([!^$*]?=|[<>]=?))?([^'"\s][^\s=<>]+|"[^"]+"|'[^']+')/g,
+    )
+    : [];
   const conditions = [["dest.ext", "=", ".html"]];
 
   for (const match of matches) {
