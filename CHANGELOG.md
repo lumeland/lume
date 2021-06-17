@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - New `slugify_urls` plugin.
-- Support for quotes to `page.search()`. This allows to insert spaces in the values.
+- Support for quotes to `page.search()`.
+  This allows to insert spaces in the values.
   For example: `page.search("'tag with spaces' title='Title with spaces'")`.
 
 ### Changed
@@ -21,8 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Support for objects in the `url` variable.
 
 ### Fixed
-- Updated `std`.
-- Replaced `terser` dependency with a Deno version.
+- Replaced the `terser` dependency with a Deno version.
+- Updated `std` and `postcss`.
 
 ## [0.22.6] - 2021-06-15
 ### Added
@@ -40,8 +41,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Bug in the function to merge default and user options.
-- Updated `postcss` and `eta`.
 - Ensure the `Page` and `Directory` classes always have the `src` object.
+- Updated `postcss` and `eta`.
 
 ## [0.22.5] - 2021-06-10
 ### Added
