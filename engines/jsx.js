@@ -1,8 +1,6 @@
 import { React, ReactDOMServer } from "../deps/react.js";
 
-if (!globalThis.React) {
-  globalThis.React = React;
-}
+window.React ||= React;
 
 import Module from "./module.js";
 

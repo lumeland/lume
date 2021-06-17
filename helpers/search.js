@@ -185,7 +185,7 @@ function compileValue(value) {
   }
 
   // Remove quotes
-  value = value.replace(/^(['"])(.*)\1$/, "$2");
+  value = value.replace(/^('|")(.*)\1$/, "$2");
 
   if (value.includes("|")) {
     return value.split("|").map((val) => compileValue(val));
