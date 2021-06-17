@@ -15,11 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   For example: `page.search("'tag with spaces' title='Title with spaces'")`.
 
 ### Changed
+- BREAKING: The URLs of the pages no longer will be slugified by default.
+  Use `slugify_urls` plugin.
 - The plugin `attributes` is disabled by default.
 
 ### Removed
-- BREAKING: The `slugifyUrls` option. Use the `slugify_urls` plugin for that.
-- BREAKING: Support for objects in the `url` variable.
+- The `slugifyUrls` option. Use the `slugify_urls` plugin for that.
+- Support for objects in the `url` variable.
 
 ### Fixed
 - Replaced the `terser` dependency with a Deno version.
