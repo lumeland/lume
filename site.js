@@ -497,28 +497,28 @@ export default class Site {
     }
 
     if (typeof url === "string") {
+      // Relative URL
+      if (url.startsWith("./") || url.startsWith("../")) {
+        url = posix.join(dirname(page.dest.path), url);
+      } else if (!url.startsWith("/")) {
+        throw new Exception(
+          `The url variable must start with "/", "./" or "../"`,
+          { page, url },
+        );
+      }
+
       if (url.endsWith("/")) {
-        dest.path = posix.join(url, "index");
+        dest.path = `${url}index`;
         dest.ext = ".html";
       } else {
         dest.ext = extname(url);
         dest.path = dest.ext ? url.slice(0, -dest.ext.length) : url;
-      }
+      }      
     } else if (!dest.ext) {
       if (this.options.prettyUrls && posix.basename(dest.path) !== "index") {
         dest.path = posix.join(dest.path, "index");
       }
       dest.ext = ".html";
-    }
-
-    // Relative URL
-    if (dest.path.startsWith("./") || dest.path.startsWith("../")) {
-      dest.path = posix.join(dirname(page.src.path), dest.path);
-    } else if (!dest.path.startsWith("/")) {
-      throw new Exception(
-        `The url variable must start with "/", "./" or "../"`,
-        { page, url },
-      );
     }
 
     page.data.url =
