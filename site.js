@@ -513,7 +513,7 @@ export default class Site {
       } else {
         dest.ext = extname(url);
         dest.path = dest.ext ? url.slice(0, -dest.ext.length) : url;
-      }      
+      }
     } else if (!dest.ext) {
       if (this.options.prettyUrls && posix.basename(dest.path) !== "index") {
         dest.path = posix.join(dest.path, "index");

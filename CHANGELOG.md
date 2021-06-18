@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.23.2] - 2021-06-19
+### Fixed
+- Relative url resolution [#105].
+
 ## [0.23.1] - 2021-06-17
 ### Fixed
 - Error using `search.pages()` without arguments.
@@ -877,7 +881,9 @@ The first version.
 [#95]: https://github.com/lumeland/lume/issues/95
 [#97]: https://github.com/lumeland/lume/issues/97
 [#98]: https://github.com/lumeland/lume/issues/98
+[#105]: https://github.com/lumeland/lume/issues/105
 
+[0.23.2]: https://github.com/lumeland/lume/compare/v0.23.1...v0.23.2
 [0.23.1]: https://github.com/lumeland/lume/compare/v0.23.0...v0.23.1
 [0.23.0]: https://github.com/lumeland/lume/compare/v0.22.6...v0.23.0
 [0.22.6]: https://github.com/lumeland/lume/compare/v0.22.5...v0.22.6
