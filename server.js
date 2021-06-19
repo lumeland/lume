@@ -16,7 +16,16 @@ export async function server(site) {
   console.log();
   console.log("  Server started at:");
   console.log(brightGreen(`  http://localhost:${port}/`), "(local)");
-  console.log(brightGreen(`  http://${ipAddr}:${port}/`), "(network)");
+
+  if (!ipAddr) {
+    console.log(red("Warning") + " Unable to detect your local IP");
+    console.log(
+      "If you're on an Ubuntu machine, try installing the net-tools with 'apt install net-tools'",
+    );
+  } else {
+    console.log(brightGreen(`  http://${ipAddr}:${port}/`), "(network)");
+  }
+
   console.log();
 
   if (site.options.server.open) {
