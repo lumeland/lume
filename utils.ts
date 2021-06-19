@@ -57,9 +57,9 @@ export const mimes = new Map([
 ]);
 
 export function merge(
-  defaults: Record<string, undefined>,
-  user: Record<string, undefined>,
-): Record<string, undefined> {
+  defaults: Record<string, unknown>,
+  user: Record<string, unknown>,
+): Record<string, unknown> {
   const merged = { ...defaults };
 
   if (!user) {
