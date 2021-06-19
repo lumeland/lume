@@ -51,7 +51,11 @@ export default class Search {
     return (index <= 0) ? undefined : pages[index - 1];
   }
 
-  #searchPages(query = [], sort = "date") {
+  #searchPages(query, sort = "date") {
+    if (Array.isArray(query)) {
+      query = query.join(" ");
+    }
+
     const id = JSON.stringify([query, sort]);
 
     if (this.#cache.has(id)) {
@@ -69,25 +73,24 @@ export default class Search {
 }
 
 export function buildFilter(query) {
-  if (typeof query === "string") {
-    query = query.split(/\s+/).filter((arg) => arg);
-  } else if (!Array.isArray(query)) {
-    query = [];
-  }
-
+  // (?:(fieldName)(operator))?(value|"value"|'value')
+  const matches = query
+    ? query.matchAll(
+      /(?:([\w.-]+)([!^$*]?=|[<>]=?))?([^'"\s][^\s=<>]+|"[^"]+"|'[^']+')/g,
+    )
+    : [];
   const conditions = [["dest.ext", "=", ".html"]];
 
-  query.forEach((arg) => {
-    const match = arg.match(/([\w.-]+)([!^$*]?=|[<>]=?)(.*)/);
+  for (const match of matches) {
+    let [, key, operator, value] = match;
 
-    if (!match) {
-      return conditions.push(["data.tags", "*=", compileValue(arg)]);
+    if (!key) {
+      key = "tags";
+      operator = "*=";
     }
 
-    const [, key, operator, value] = match;
-
     conditions.push([`data.${key}`, operator, compileValue(value)]);
-  });
+  }
 
   return compileFilter(conditions);
 }
@@ -182,6 +185,10 @@ function compileValue(value) {
   if (!value) {
     return value;
   }
+
+  // Remove quotes
+  value = value.replace(/^('|")(.*)\1$/, "$2");
+
   if (value.includes("|")) {
     return value.split("|").map((val) => compileValue(val));
   }

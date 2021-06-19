@@ -1,4 +1,4 @@
-import minify from "../deps/terser.js";
+import { minify } from "../deps/terser.js";
 import { basename } from "../deps/path.ts";
 import { Exception, merge } from "../utils.ts";
 

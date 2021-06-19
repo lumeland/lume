@@ -1,6 +1,5 @@
 import Site from "./site.js";
 
-import attr from "./plugins/attributes.js";
 import url from "./plugins/url.js";
 import json from "./plugins/json.js";
 import markdown from "./plugins/markdown.js";
@@ -19,7 +18,6 @@ export default function (options = {}, pluginOptions = {}) {
 
   return site
     .ignore("node_modules")
-    .use(attr(pluginOptions.attr))
     .use(url(pluginOptions.url))
     .use(json(pluginOptions.json))
     .use(markdown(pluginOptions.markdown))
