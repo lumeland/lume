@@ -12,9 +12,9 @@ export default function (userOptions) {
 
   return (site) => {
     site.loadAssets(options.extensions);
-    site.process(options.extensions, processor);
+    site.process(options.extensions, svg);
 
-    async function processor(page) {
+    async function svg(page) {
       const path = site.src(page.dest.path + page.dest.ext);
       const result = await optimize(page.content, {
         path,

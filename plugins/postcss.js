@@ -35,10 +35,10 @@ export default function (userOptions = {}) {
     const runner = postcss(plugins);
 
     site.loadAssets(options.extensions);
-    site.process(options.extensions, processor);
+    site.process(options.extensions, postCSS);
     site.filter("postcss", filter, true);
 
-    async function processor(page) {
+    async function postCSS(page) {
       const from = site.src(page.src.path + page.src.ext);
       const to = site.dest(page.dest.path + page.dest.ext);
       const map = options.sourceMap ? { inline: false } : undefined;

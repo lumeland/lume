@@ -1,12 +1,12 @@
 export default function () {
   return (site) => {
-    site.process([".html"], processor);
+    site.process([".html"], basePath);
 
-    function basePath(path) {
+    function fixPath(path) {
       return path.startsWith("/") ? site.url(path) : path;
     }
 
-    function processor(page) {
+    function basePath(page) {
       if (site.options.location.pathname === "/") {
         return;
       }
@@ -16,14 +16,14 @@ export default function () {
       document.querySelectorAll("[href]").forEach((element) => {
         element.setAttribute(
           "href",
-          basePath(element.getAttribute("href")),
+          fixPath(element.getAttribute("href")),
         );
       });
 
       document.querySelectorAll("[src]").forEach((element) => {
         element.setAttribute(
           "src",
-          basePath(element.getAttribute("src")),
+          fixPath(element.getAttribute("src")),
         );
       });
 
@@ -35,7 +35,7 @@ export default function () {
           "srcset",
           element.getAttribute("srcset").replace(
             srcsetUrlRegex,
-            (url) => basePath(url),
+            (url) => fixPath(url),
           ),
         );
       });
@@ -45,7 +45,7 @@ export default function () {
           "imagesrcset",
           element.getAttribute("imagesrcset").replace(
             srcsetUrlRegex,
-            (url) => basePath(url),
+            (url) => fixPath(url),
           ),
         );
       });

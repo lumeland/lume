@@ -18,13 +18,13 @@ export default function (userOptions = {}) {
 
   return (site) => {
     site.loadAssets(options.extensions);
-    site.process(options.extensions, processor);
+    site.process(options.extensions, terser);
     site.filter("terser", filter, true);
 
     // Options passed to terser
     const terserOptions = { ...options.options };
 
-    async function processor(file) {
+    async function terser(file) {
       const content = file.content;
       const filename = file.dest.path + file.dest.ext;
 
