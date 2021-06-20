@@ -18,9 +18,9 @@ export async function server(site) {
   console.log(brightGreen(`  http://localhost:${port}/`), "(local)");
 
   if (!ipAddr) {
-    console.log(red("Warning") + " Unable to detect your local IP");
+    console.log(red("Warning") + " Unable to detect your local IP address");
     console.log(
-      "If you're on an Ubuntu machine, try installing the net-tools with 'apt install net-tools'",
+      "If you're on an Ubuntu machine, try installing net-tools with 'apt install net-tools'",
     );
   } else {
     console.log(brightGreen(`  http://${ipAddr}:${port}/`), "(network)");

@@ -9,25 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
-- New metrics feature, that allows to measure the performance for big sites:
-  Use `lume --metrics` to show the metrics in the terminal
+- New metrics feature that allows measuring the performance of large sites:
+  Use `lume --metrics` to show the metrics in the CLI
   or `lume --metrics=filename.json` to save the data in a file.
-  You can also configure it in the `_config.js` file.
-- New `--verbose` option to configure the level of details in the console:
-  - `0`: To only show important things
-  - `1`: Normal details (the default option)
-  - `2`: High details (for debuging purposes)
+  You can also configure it in the config file.
+- New `--verbose` option to configure the level of details logged:
+  - `0`: only important things
+  - `1`: normal details (the default option)
+  - `2`: high details (for debugging purposes)
 
 ### Fixed
 - Improved the way CLI arguments are applied to the site instance.
 
 ## [0.23.2] - 2021-06-19
 ### Fixed
-- Relative url resolution [#105].
+- Relative URL resolution. [#105]
 
 ## [0.23.1] - 2021-06-17
 ### Fixed
-- Error using `search.pages()` without arguments.
+- Error when using `search.pages()` without arguments.
 
 ## [0.23.0] - 2021-06-17
 ### Added
@@ -37,8 +37,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   For example: `page.search("'tag with spaces' title='Title with spaces'")`.
 
 ### Changed
-- BREAKING: The URLs of the pages no longer will be slugified by default.
-  Use `slugify_urls` plugin.
+- BREAKING: The URLs of the pages will no longer be slugified by default.
+  Use the `slugify_urls` plugin.
 - The plugin `attributes` is disabled by default.
 
 ### Removed
