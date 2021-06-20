@@ -243,33 +243,33 @@ export default class Site {
    * Build the entire site
    */
   async build() {
-    this.metrics.start("Build (Entire site)");
+    this.metrics.start("Build (entire site)");
     await this.dispatchEvent({ type: "beforeBuild" });
 
     await this.clear();
 
-    this.metrics.start("Copy (All files)");
+    this.metrics.start("Copy (all files)");
     for (const [from, to] of this.source.staticFiles) {
       await this.#copyStatic(from, to);
     }
-    this.metrics.end("Copy (All files)");
+    this.metrics.end("Copy (all files)");
 
-    this.metrics.start("Load (All pages)");
+    this.metrics.start("Load (all pages)");
     await this.source.loadDirectory();
-    this.metrics.end("Load (All pages)");
+    this.metrics.end("Load (all pages)");
 
-    this.metrics.start("Preprocess + Render + Process (All pages)");
+    this.metrics.start("Preprocess + render + process (all pages)");
     await this.#buildPages();
-    this.metrics.end("Preprocess + Render + Process (All pages)");
+    this.metrics.end("Preprocess + render + process (all pages)");
 
     await this.dispatchEvent({ type: "beforeSave" });
 
     // Save the pages
-    this.metrics.start("Save (All pages)");
+    this.metrics.start("Save (all pages)");
     await this.#savePages();
-    this.metrics.end("Save (All pages)");
+    this.metrics.end("Save (all pages)");
 
-    this.metrics.end("Build (Entire site)");
+    this.metrics.end("Build (entire site)");
     await this.dispatchEvent({ type: "afterBuild" });
   }
 
@@ -411,7 +411,7 @@ export default class Site {
     // Group pages by renderOrder
     const renderOrder = {};
 
-    this.metrics.start("Preprocess + Render (All pages)");
+    this.metrics.start("Preprocess + render (all pages)");
 
     for (const page of this.source.root.getPages()) {
       if (page.data.draft && !this.options.dev) {
@@ -494,9 +494,9 @@ export default class Site {
 
     await this.dispatchEvent({ type: "afterRender" });
 
-    this.metrics.end("Preprocess + Render (All pages)");
+    this.metrics.end("Preprocess + render (all pages)");
 
-    this.metrics.start("Process (All pages)");
+    this.metrics.start("Process (all pages)");
     // Process the pages
     for (const [ext, processors] of this.processors) {
       await concurrent(
@@ -512,7 +512,7 @@ export default class Site {
         },
       );
     }
-    this.metrics.end("Process (All pages)");
+    this.metrics.end("Process (all pages)");
   }
 
   /**
