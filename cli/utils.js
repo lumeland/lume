@@ -1,5 +1,5 @@
 import { existsSync } from "../deps/fs.js";
-import lume, { overrides } from "../mod.js";
+import lume from "../mod.js";
 import { join, resolve, toFileUrl } from "../deps/path.js";
 import { bold, brightGreen, dim, red } from "../deps/colors.js";
 
@@ -12,44 +12,6 @@ import { bold, brightGreen, dim, red } from "../deps/colors.js";
 export async function buildSite(options) {
   options.root = resolve(Deno.cwd(), options.root);
   const configFile = join(options.root, options.config);
-
-  overrides.cwd = options.root;
-
-  if (options.dev) {
-    overrides.dev = options.dev;
-  }
-
-  if (options.location) {
-    overrides.location = new URL(options.location);
-  }
-
-  if (options.src) {
-    overrides.src = options.src;
-  }
-
-  if (options.dest) {
-    overrides.dest = options.dest;
-  }
-
-  if (options.port) {
-    (overrides.server ||= {}).port = parseInt(options.port);
-  }
-
-  if (options.open) {
-    (overrides.server ||= {}).open = options.open;
-  }
-
-  if ("metrics" in options) {
-    overrides.metrics = options.metrics !== "false";
-  }
-
-  if (options.verbose) {
-    overrides.verbose = parseInt(options.verbose);
-  }
-
-  if (options["--"]) {
-    overrides.flags = options["--"];
-  }
 
   if (existsSync(configFile)) {
     const mod = await import(toFileUrl(configFile));

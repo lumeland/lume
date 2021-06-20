@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - `1`: Normal details (the default option)
   - `2`: High details (for debuging purposes)
 
+### Fixed
+- Improved the way CLI arguments are applied to the site instance.
+
 ## [0.23.2] - 2021-06-19
 ### Fixed
 - Relative url resolution [#105].
