@@ -20,7 +20,7 @@ OPTIONS:
 
 export async function run(args) {
   const options = parse(args, {
-    string: ["root", "src", "dest", "config", "location"],
+    string: ["root", "src", "dest", "config", "location", "verbose"],
     boolean: ["dev"],
     alias: { dev: "d" },
     ["--"]: true,
