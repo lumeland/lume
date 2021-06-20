@@ -15,7 +15,7 @@ OPTIONS:
         --config   <file>   specify the lume config file        Default: _config.js
         --location <url>    the domain for your site            Default: http://localhost
     -d, --dev               enable dev mode (view draft pages)
-        --verbose  <level>  different level of details (0-1-2)    Default: 1
+        --verbose  <level>  different level of details (0-1-2)  Default: 1
 `;
 
 export async function run(args) {
