@@ -67,20 +67,20 @@ function getOptionsFromCli() {
     overrides.dev = options.dev;
   }
 
-  if (options.port) {
-    (overrides.server ||= {}).port = parseInt(options.port);
-  }
-
-  if (options.open) {
-    (overrides.server ||= {}).open = options.open;
-  }
-
   if ("metrics" in options) {
     overrides.metrics = options.metrics !== "false";
   }
 
   if (options.verbose) {
     overrides.verbose = parseInt(options.verbose);
+  }
+
+  if (options.port) {
+    (overrides.server ||= {}).port = parseInt(options.port);
+  }
+
+  if (options.open) {
+    (overrides.server ||= {}).open = options.open;
   }
 
   if (options["--"]) {
