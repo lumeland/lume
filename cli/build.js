@@ -58,7 +58,8 @@ export async function run(args) {
   await site.build();
   console.log();
   console.log(`🍾 ${brightGreen("Site built into")} ${gray(site.options.dest)}`);
-
+console.log(site.options);
+console.log(options);
   if (site.options.metrics) {
     const metrics = site.metrics.entries.sort((a, b) =>
       a.duration - b.duration
