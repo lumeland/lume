@@ -13,7 +13,7 @@ export const overrides = {};
 
 export default function (options = {}, pluginOptions = {}) {
   options = merge(options, overrides);
-console.log("mod.js", {overrides});
+
   const site = new Site(options);
 
   return site
