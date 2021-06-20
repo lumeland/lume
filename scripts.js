@@ -27,7 +27,9 @@ export default class Scripts {
 
   async #runScript(options, name) {
     if (this.scripts.has(name)) {
-      console.log(`⚡️ ${brightGreen(name)}`);
+      if (this.site.options.verbose > 0) {
+        console.log(`⚡️ ${brightGreen(name)}`);
+      }
       name = this.scripts.get(name);
       return this.run(options, ...name);
     }
@@ -47,7 +49,7 @@ export default class Scripts {
   }
 
   async #runFunction(fn) {
-    if (fn.name) {
+    if (fn.name && this.site.options.verbose > 0) {
       console.log(gray(`⚡️ ${fn.name}()`));
     }
     const result = await fn(this.site);
@@ -55,7 +57,9 @@ export default class Scripts {
   }
 
   async #runCommand(options, command) {
-    console.log(gray(`⚡️ ${command}`));
+    if (this.site.options.verbose > 0) {
+      console.log(gray(`⚡️ ${command}`));
+    }
 
     const cmd = shArgs(command);
     const process = Deno.run({ cmd, ...options });

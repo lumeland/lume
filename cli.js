@@ -42,27 +42,36 @@ OPTIONS:
         --config   <file>   specify the lume config file        Default: _config.js
         --location <url>    the domain for your site            Default: http://localhost
     -d, --dev               enable dev mode (view draft pages)
+        --metrics [<file>]  show or save the performance metrics in a file
+        --verbose  <level>  different level of details (0-1-2)  Default: 1
 
     -s, --serve             start a live-reloading web server
     -p, --port     <port>   the port where the server runs      Default: 3000
     -o, --open              open the site in the browser
 `;
 
+let debugErrors = false;
+
 if (import.meta.main) {
   try {
     await cli(Deno.args);
   } catch (error) {
-    printError(error);
+    printError(error, debugErrors);
   }
 }
 
-export default async function cli(args, site) {
+export default async function cli(args) {
   // The rest of the option parsing is handled within each command
   const options = parse(args, {
+    string: ["verbose"],
     boolean: ["help", "version"],
     alias: { help: "h", version: "v" },
     "--": true,
   });
+
+  if (parseInt(options.verbose) > 1) {
+    debugErrors = true;
+  }
 
   // lume --version
   if (options.version) {
@@ -103,7 +112,7 @@ A static site generator for Deno`);
    */
   async function maybeRun(name, runner) {
     if (command === name) {
-      help(runner.HELP) || await runner.run(args, site);
+      help(runner.HELP) || await runner.run(args);
       return true;
     }
     return false;

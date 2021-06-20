@@ -11,7 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New metrics feature, that allows to measure the performance for big sites:
   Use `lume --metrics` to show the metrics in the terminal
-  or `lume --metrics=filename.json` to save the data in a file
+  or `lume --metrics=filename.json` to save the data in a file.
+  You can also configure it in the `_config.js` file.
+- New `--verbose` option to configure the level of details in the console:
+  - `0`: To only show important things
+  - `1`: Normal details (the default option)
+  - `2`: High details (for debuging purposes)
 
 ## [0.23.2] - 2021-06-19
 ### Fixed

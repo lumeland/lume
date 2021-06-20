@@ -43,6 +43,10 @@ export async function buildSite(options) {
     overrides.metrics = options.metrics !== "false";
   }
 
+  if (options.verbose) {
+    overrides.verbose = parseInt(options.verbose);
+  }
+
   if (options["--"]) {
     overrides.flags = options["--"];
   }

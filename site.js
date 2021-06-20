@@ -22,6 +22,7 @@ const defaults = {
   metrics: false,
   prettyUrls: true,
   flags: [],
+  verbose: 1,
   server: {
     port: 3000,
     open: false,
@@ -393,7 +394,9 @@ export default class Site {
 
     if (await exists(pathFrom)) {
       await ensureDir(dirname(pathTo));
-      console.log(`🔥 ${normalizePath(to)} ${gray(from)}`);
+      if (this.options.verbose > 0) {
+        console.log(`🔥 ${normalizePath(to)} ${gray(from)}`);
+      }
       return copy(pathFrom, pathTo, { overwrite: true });
     }
     this.metrics.end("Copy", from);
@@ -641,8 +644,10 @@ export default class Site {
 
     this.#hashes.set(dest, hash);
 
-    const src = page.src.path ? page.src.path + page.src.ext : "(generated)";
-    console.log(`🔥 ${dest} ${gray(src)}`);
+    if (this.options.verbose > 0) {
+      const src = page.src.path ? page.src.path + page.src.ext : "(generated)";
+      console.log(`🔥 ${dest} ${gray(src)}`);
+    }
 
     const filename = this.dest(dest);
     await ensureDir(dirname(filename));

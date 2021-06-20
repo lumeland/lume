@@ -18,6 +18,7 @@ OPTIONS:
         --location <url>    the domain for your site            Default: http://localhost
     -d, --dev               enable dev mode (view draft pages)
         --metrics [<file>]  show or save the performance metrics in a file
+        --verbose  <level>  different level of details (0-1-2)  Default: 1
 
     -s, --serve             start a live-reloading web server
     -p, --port     <port>   the port where the server runs      Default: 3000
@@ -26,7 +27,16 @@ OPTIONS:
 
 export async function run(args) {
   const options = parse(args, {
-    string: ["root", "src", "dest", "config", "location", "port", "metrics"],
+    string: [
+      "root",
+      "src",
+      "dest",
+      "config",
+      "location",
+      "port",
+      "metrics",
+      "verbose",
+    ],
     boolean: ["dev", "serve", "open"],
     alias: { dev: "d", serve: "s", port: "p", open: "o" },
     ["--"]: true,
