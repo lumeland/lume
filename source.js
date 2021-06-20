@@ -168,18 +168,23 @@ export default class Source {
     }
 
     const path = join(directory.src.path, entry.name);
+    const metrics = this.site.metrics;
 
     if (this.staticFiles.has(path) || this.ignored.has(path)) {
       return;
     }
 
     if (entry.isDirectory && entry.name === "_data") {
+      metrics.start("Load", path);
       directory.data = await this.#loadDataDirectory(path);
+      metrics.end("Load", path);
       return;
     }
 
     if (entry.isFile && /^_data\.\w+$/.test(entry.name)) {
+      metrics.start("Load", path);
       directory.data = await this.#loadData(path);
+      metrics.end("Load", path);
       return;
     }
 
@@ -188,6 +193,7 @@ export default class Source {
     }
 
     if (entry.isFile) {
+      metrics.start("Load", path);
       const page = await this.#loadPage(path);
 
       if (page) {
@@ -195,12 +201,15 @@ export default class Source {
       } else {
         directory.unsetPage(entry.name);
       }
+      metrics.end("Load", path);
       return;
     }
 
     if (entry.isDirectory) {
+      metrics.start("Load", path);
       const subDirectory = directory.createDirectory(entry.name);
       await this.loadDirectory(subDirectory);
+      metrics.end("Load", path);
       return;
     }
   }

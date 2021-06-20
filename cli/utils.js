@@ -39,6 +39,10 @@ export async function buildSite(options) {
     (overrides.server ||= {}).open = options.open;
   }
 
+  if ("metrics" in options) {
+    overrides.metrics = options.metrics !== "false";
+  }
+
   if (options["--"]) {
     overrides.flags = options["--"];
   }

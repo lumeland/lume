@@ -17,6 +17,7 @@ OPTIONS:
         --config   <file>   specify the lume config file        Default: _config.js
         --location <url>    the domain for your site            Default: http://localhost
     -d, --dev               enable dev mode (view draft pages)
+        --metrics [<file>]  show or save the performance metrics in a file
 
     -s, --serve             start a live-reloading web server
     -p, --port     <port>   the port where the server runs      Default: 3000
@@ -25,7 +26,7 @@ OPTIONS:
 
 export async function run(args) {
   const options = parse(args, {
-    string: ["root", "src", "dest", "config", "location", "port"],
+    string: ["root", "src", "dest", "config", "location", "port", "metrics"],
     boolean: ["dev", "serve", "open"],
     alias: { dev: "d", serve: "s", port: "p", open: "o" },
     ["--"]: true,
@@ -48,11 +49,43 @@ export async function run(args) {
   console.log();
   console.log(`🍾 ${brightGreen("Site built into")} ${gray(site.options.dest)}`);
 
+  if (site.options.metrics) {
+    const metrics = site.metrics.entries.sort((a, b) =>
+      a.duration - b.duration
+    );
+
+    if (options.metrics) {
+      const file = join(Deno.cwd(), options.metrics);
+      await Deno.writeTextFile(file, JSON.stringify(metrics));
+      console.log();
+      console.log(
+        `⏲ ${brightGreen("Metrics data saved in the file")} ${gray(file)}`,
+      );
+      console.log();
+    } else {
+      console.log();
+      console.log(`⏲ Metrics data:`);
+      console.log();
+
+      for (const metric of metrics) {
+        const duration = Math.round(metric.duration) + "ms";
+        const [name, file] = metric.name.split(": ");
+
+        console.log(
+          `${brightGreen(duration.padStart(10))} ${name} ${gray(file || "")}`,
+        );
+      }
+    }
+  }
+
   if (!options.serve) {
     return;
   }
 
   try {
+    // Disable metrics for the watcher
+    site.options.metrics = false;
+
     await server(site);
     const watcher = Deno.watchFs(site.src());
     const changes = new Set();
