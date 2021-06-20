@@ -50,7 +50,7 @@ export async function buildSite(options) {
   if (options["--"]) {
     overrides.flags = options["--"];
   }
-
+console.log("utils.js", {overrides})
   if (existsSync(configFile)) {
     const mod = await import(toFileUrl(configFile));
     return mod.default;
