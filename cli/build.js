@@ -18,7 +18,7 @@ OPTIONS:
         --location <url>    the domain for your site            Default: http://localhost
     -d, --dev               enable dev mode (view draft pages)
         --metrics [<file>]  show the performance metrics or save them in a file
-        --verbose  <level>  different level of details (0-1-2)  Default: 1
+        --verbose  <level>  different level of details (0/1/2)  Default: 1
 
     -s, --serve             start a live-reloading web server
     -p, --port     <port>   the port where the server runs      Default: 3000
@@ -33,9 +33,9 @@ export async function run(args) {
       "dest",
       "config",
       "location",
-      "port",
       "metrics",
       "verbose",
+      "port",
     ],
     boolean: ["dev", "serve", "open"],
     alias: { dev: "d", serve: "s", port: "p", open: "o" },
@@ -60,9 +60,8 @@ export async function run(args) {
   console.log(`🍾 ${brightGreen("Site built into")} ${gray(site.options.dest)}`);
 
   if (site.options.metrics) {
-    const metrics = site.metrics.entries.sort((a, b) =>
-      a.duration - b.duration
-    );
+    const metrics = site.metrics.entries
+      .sort((a, b) => a.duration - b.duration);
 
     if (options.metrics) {
       const file = join(Deno.cwd(), options.metrics);

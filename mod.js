@@ -35,9 +35,9 @@ function getOptionsFromCli() {
       "dest",
       "config",
       "location",
-      "port",
       "metrics",
       "verbose",
+      "port",
     ],
     boolean: ["dev", "serve", "open"],
     alias: { dev: "d", serve: "s", port: "p", open: "o" },
@@ -50,8 +50,12 @@ function getOptionsFromCli() {
     overrides.cwd = resolve(Deno.cwd(), options.root);
   }
 
-  if (options.dev) {
-    overrides.dev = options.dev;
+  if (options.src) {
+    overrides.src = options.src;
+  }
+
+  if (options.dest) {
+    overrides.dest = options.dest;
   }
 
   if (options.location) {
@@ -60,12 +64,8 @@ function getOptionsFromCli() {
     overrides.location = new URL(`http://localhost:${options.port || 3000}/`);
   }
 
-  if (options.src) {
-    overrides.src = options.src;
-  }
-
-  if (options.dest) {
-    overrides.dest = options.dest;
+  if (options.dev) {
+    overrides.dev = options.dev;
   }
 
   if (options.port) {

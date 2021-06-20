@@ -24,11 +24,9 @@ export default class Metrics {
       name += ` ${processor.name}`;
     }
     if (subject) {
-      if (subject instanceof Page) {
-        name += `: ${subject.src.path + subject.src.ext}`;
-      } else {
-        name += `: ${subject}`;
-      }
+      name += `: ${
+        subject instanceof Page ? subject.src.path + subject.src.ext : subject
+      }`;
     }
     return name;
   }
