@@ -268,8 +268,8 @@ export default class Site {
     await this.#savePages();
     this.metrics.end("Save (All pages)");
 
-    await this.dispatchEvent({ type: "afterBuild" });
     this.metrics.end("Build (Entire site)");
+    await this.dispatchEvent({ type: "afterBuild" });
   }
 
   /**
