@@ -33,7 +33,6 @@ function getOptionsFromCli() {
       "root",
       "src",
       "dest",
-      "config",
       "location",
       "metrics",
       "verbose",
