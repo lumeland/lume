@@ -19,9 +19,9 @@ export default function (userOptions) {
   hljs.configure(options.options);
 
   return (site) => {
-    site.process([".html"], processor);
+    site.process([".html"], codeHighlight);
 
-    function processor(page) {
+    function codeHighlight(page) {
       page.document.querySelectorAll(options.options.cssSelector)
         .forEach((element) => hljs.highlightElement(element));
     }

@@ -14,7 +14,7 @@ export default function (userOptions = {}) {
   const options = merge(defaults, userOptions);
 
   return (site) => {
-    site.process(options.extensions, processor);
+    site.process(options.extensions, inline);
 
     // Update cache
     site.addEventListener("beforeUpdate", (ev) => {
@@ -25,14 +25,14 @@ export default function (userOptions = {}) {
 
     const selector = `[${options.attribute}]`;
 
-    async function processor(page) {
+    async function inline(page) {
       for (const element of page.document.querySelectorAll(selector)) {
-        await inline(page.data.url, element);
+        await runInline(page.data.url, element);
         element.removeAttribute(options.attribute);
       }
     }
 
-    function inline(url, element) {
+    function runInline(url, element) {
       if (element.hasAttribute("href")) {
         return element.getAttribute("rel") === "stylesheet"
           ? inlineStyles(url, element)

@@ -25,22 +25,24 @@ export default function (userOptions) {
 
   return (site) => {
     site.filter("slugify", slugify);
-    site.preprocess(options.extensions, (page) => {
-      const { dest } = page;
-      const path = slugify(dest.path);
-
-      if (path === dest.path) {
-        return;
-      }
-
-      dest.path = path;
-
-      page.data.url =
-        (dest.ext === ".html" && posix.basename(dest.path) === "index")
-          ? dest.path.slice(0, -5)
-          : dest.path + dest.ext;
-    });
+    site.preprocess(options.extensions, slugifyUrls);
   };
+
+  function slugifyUrls(page) {
+    const { dest } = page;
+    const path = slugify(dest.path);
+
+    if (path === dest.path) {
+      return;
+    }
+
+    dest.path = path;
+
+    page.data.url =
+      (dest.ext === ".html" && posix.basename(dest.path) === "index")
+        ? dest.path.slice(0, -5)
+        : dest.path + dest.ext;
+  }
 }
 
 export function createSlugifier(options) {

@@ -4,6 +4,7 @@ import { gray } from "./deps/colors.ts";
 import { createHash } from "./deps/hash.ts";
 import Source from "./source.js";
 import Scripts from "./scripts.js";
+import Metrics from "./metrics.js";
 import textLoader from "./loaders/text.js";
 import {
   concurrent,
@@ -18,8 +19,10 @@ const defaults = {
   src: "./",
   dest: "./_site",
   dev: false,
+  metrics: false,
   prettyUrls: true,
   flags: [],
+  verbose: 1,
   server: {
     port: 3000,
     open: false,
@@ -47,6 +50,7 @@ export default class Site {
 
     this.source = new Source(this);
     this.scripts = new Scripts(this);
+    this.metrics = new Metrics(this);
   }
 
   /**
@@ -238,18 +242,34 @@ export default class Site {
   /**
    * Build the entire site
    */
-  async build() {
+  async build(watchMode = false) {
+    this.metrics.start("Build (entire site)");
     await this.dispatchEvent({ type: "beforeBuild" });
 
     await this.clear();
 
+    this.metrics.start("Copy (all files)");
     for (const [from, to] of this.source.staticFiles) {
       await this.#copyStatic(from, to);
     }
+    this.metrics.end("Copy (all files)");
 
+    this.metrics.start("Load (all pages)");
     await this.source.loadDirectory();
-    await this.#buildPages();
+    this.metrics.end("Load (all pages)");
 
+    this.metrics.start("Preprocess + render + process (all pages)");
+    await this.#buildPages();
+    this.metrics.end("Preprocess + render + process (all pages)");
+
+    await this.dispatchEvent({ type: "beforeSave" });
+
+    // Save the pages
+    this.metrics.start("Save (all pages)");
+    await this.#savePages(watchMode);
+    this.metrics.end("Save (all pages)");
+
+    this.metrics.end("Build (entire site)");
     await this.dispatchEvent({ type: "afterBuild" });
   }
 
@@ -293,6 +313,8 @@ export default class Site {
     }
 
     await this.#buildPages();
+    await this.dispatchEvent({ type: "beforeSave" });
+    await this.#savePages(true);
     await this.dispatchEvent({ type: "afterUpdate", files });
   }
 
@@ -366,14 +388,18 @@ export default class Site {
    * Copy a static file
    */
   async #copyStatic(from, to) {
+    this.metrics.start("Copy", from);
     const pathFrom = this.src(from);
     const pathTo = this.dest(to);
 
     if (await exists(pathFrom)) {
       await ensureDir(dirname(pathTo));
-      console.log(`🔥 ${normalizePath(to)} ${gray(from)}`);
+      if (this.options.verbose > 0) {
+        console.log(`🔥 ${normalizePath(to)} ${gray(from)}`);
+      }
       return copy(pathFrom, pathTo, { overwrite: true });
     }
+    this.metrics.end("Copy", from);
   }
 
   /**
@@ -384,6 +410,8 @@ export default class Site {
 
     // Group pages by renderOrder
     const renderOrder = {};
+
+    this.metrics.start("Preprocess + render (all pages)");
 
     for (const page of this.source.root.getPages()) {
       if (page.data.draft && !this.options.dev) {
@@ -443,7 +471,9 @@ export default class Site {
           async (page) => {
             if (ext === page.src.ext || ext === page.dest.ext) {
               for (const preprocess of preprocessors) {
+                this.metrics.start("Preprocess", page, preprocess);
                 await preprocess(page, this);
+                this.metrics.end("Preprocess", page, preprocess);
               }
             }
           },
@@ -453,7 +483,9 @@ export default class Site {
       // Render all pages
       for (const page of pages) {
         try {
+          this.metrics.start("Render", page);
           page.content = await this.#renderPage(page);
+          this.metrics.end("Render", page);
         } catch (err) {
           throw new Exception("Error rendering this page", { page }, err);
         }
@@ -462,6 +494,9 @@ export default class Site {
 
     await this.dispatchEvent({ type: "afterRender" });
 
+    this.metrics.end("Preprocess + render (all pages)");
+
+    this.metrics.start("Process (all pages)");
     // Process the pages
     for (const [ext, processors] of this.processors) {
       await concurrent(
@@ -469,19 +504,24 @@ export default class Site {
         async (page) => {
           if (ext === page.dest.ext && page.content) {
             for (const process of processors) {
+              this.metrics.start("Process", page, process);
               await process(page, this);
+              this.metrics.end("Process", page, process);
             }
           }
         },
       );
     }
+    this.metrics.end("Process (all pages)");
+  }
 
-    await this.dispatchEvent({ type: "beforeSave" });
-
-    // Save the pages
+  /**
+   * Save all pages
+   */
+  async #savePages(watchMode) {
     await concurrent(
       this.pages,
-      (page) => this.#savePage(page),
+      (page) => this.#savePage(page, watchMode),
     );
   }
 
@@ -584,35 +624,43 @@ export default class Site {
   /**
    * Save a page
    */
-  async #savePage(page) {
+  async #savePage(page, watchMode) {
     // Ignore empty files
     if (!page.content) {
       return;
     }
 
-    const sha1 = createHash("sha1");
-    sha1.update(page.content);
-    const hash = sha1.toString();
+    this.metrics.start("Save", page);
 
     const dest = page.dest.path + page.dest.ext;
-    const previousHash = this.#hashes.get(dest);
 
-    // The page content didn't change
-    if (previousHash === hash) {
-      return;
+    if (watchMode) {
+      const sha1 = createHash("sha1");
+      sha1.update(page.content);
+      const hash = sha1.toString();
+      const previousHash = this.#hashes.get(dest);
+
+      // The page content didn't change
+      if (previousHash === hash) {
+        return;
+      }
+
+      this.#hashes.set(dest, hash);
     }
 
-    this.#hashes.set(dest, hash);
-
-    const src = page.src.path ? page.src.path + page.src.ext : "(generated)";
-    console.log(`🔥 ${dest} ${gray(src)}`);
+    if (this.options.verbose > 0) {
+      const src = page.src.path ? page.src.path + page.src.ext : "(generated)";
+      console.log(`🔥 ${dest} ${gray(src)}`);
+    }
 
     const filename = this.dest(dest);
     await ensureDir(dirname(filename));
 
-    return page.content instanceof Uint8Array
-      ? Deno.writeFile(filename, page.content)
-      : Deno.writeTextFile(filename, page.content);
+    page.content instanceof Uint8Array
+      ? await Deno.writeFile(filename, page.content)
+      : await Deno.writeTextFile(filename, page.content);
+
+    this.metrics.end("Save", page);
   }
 
   /**

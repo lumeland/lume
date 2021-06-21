@@ -7,13 +7,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.23.3] - 2021-06-21
+### Added
+- New metrics feature that allows measuring the performance of large sites:
+  Use `lume --metrics` to show the metrics in the CLI
+  or `lume --metrics=filename.json` to save the data in a file.
+  You can also configure it in the config file.
+- New `--verbose` option to configure the level of details logged:
+  - `0`: only important things
+  - `1`: normal details (the default option)
+  - `2`: high details (for debugging purposes)
+- Allow extensions on Nunjucks. [#108]
+
+### Fixed
+- Improved the way CLI arguments are applied to the site instance.
+- Ensure duplicated pages have an unique `src.path` value.
+- The `relative_urls` plugin should ignore data URLs. [#107]
+
 ## [0.23.2] - 2021-06-19
 ### Fixed
-- Relative url resolution [#105].
+- Relative URL resolution. [#105]
 
 ## [0.23.1] - 2021-06-17
 ### Fixed
-- Error using `search.pages()` without arguments.
+- Error when using `search.pages()` without arguments.
 
 ## [0.23.0] - 2021-06-17
 ### Added
@@ -23,8 +40,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   For example: `page.search("'tag with spaces' title='Title with spaces'")`.
 
 ### Changed
-- BREAKING: The URLs of the pages no longer will be slugified by default.
-  Use `slugify_urls` plugin.
+- BREAKING: The URLs of the pages will no longer be slugified by default.
+  Use the `slugify_urls` plugin.
 - The plugin `attributes` is disabled by default.
 
 ### Removed
@@ -882,7 +899,10 @@ The first version.
 [#97]: https://github.com/lumeland/lume/issues/97
 [#98]: https://github.com/lumeland/lume/issues/98
 [#105]: https://github.com/lumeland/lume/issues/105
+[#107]: https://github.com/lumeland/lume/issues/107
+[#108]: https://github.com/lumeland/lume/issues/108
 
+[0.23.3]: https://github.com/lumeland/lume/compare/v0.23.2...v0.23.3
 [0.23.2]: https://github.com/lumeland/lume/compare/v0.23.1...v0.23.2
 [0.23.1]: https://github.com/lumeland/lume/compare/v0.23.0...v0.23.1
 [0.23.0]: https://github.com/lumeland/lume/compare/v0.22.6...v0.23.0

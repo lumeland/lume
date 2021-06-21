@@ -12,9 +12,9 @@ export default function (userOptions = {}) {
 
   return (site) => {
     site.loadAssets(options.extensions);
-    site.process(options.extensions, processor);
+    site.process(options.extensions, bundler);
 
-    async function processor(file) {
+    async function bundler(file) {
       const from = site.src(file.src.path + file.src.ext);
       const { files } = await Deno.emit(from, {
         ...options,

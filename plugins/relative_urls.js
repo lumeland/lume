@@ -2,11 +2,11 @@ import { posix } from "../deps/path.ts";
 
 export default function () {
   return (site) => {
-    site.process([".html"], processor);
+    site.process([".html"], relativeUrls);
 
     const basePath = site.options.location.pathname;
 
-    function processor(page) {
+    function relativeUrls(page) {
       const { document } = page;
       const from = posix.dirname(site.url(page.dest.path));
 
@@ -67,7 +67,8 @@ function ignore(url) {
   return !url ||
     url.startsWith("./") ||
     url.startsWith("../") ||
-    url.startsWith("#") ||
     url.startsWith("?") ||
+    url.startsWith("#") ||
+    url.startsWith("data:") ||
     url.includes("//");
 }

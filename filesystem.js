@@ -54,12 +54,14 @@ export class Page extends Base {
   dest = {};
   #content = null;
   #document = null;
+  #copy = 0;
 
   duplicate(data = {}) {
-    const page = new Page(this.src);
+    const page = new Page({ ...this.src });
     page.dest = { ...this.dest };
     page.data = { ...this.data, ...data };
     page.parent = this.parent;
+    page.src.path += `[${this.#copy++}]`;
 
     return page;
   }

@@ -6,6 +6,7 @@ import { merge } from "../utils.ts";
 const defaults = {
   extensions: [".njk"],
   options: {},
+  plugins: {},
 };
 
 export default function (userOptions) {
@@ -13,6 +14,10 @@ export default function (userOptions) {
 
   return (site) => {
     const nunjucksEngine = new NunjucksEngine(site, options.options);
+
+    for (const [name, fn] of Object.entries(options.plugins)) {
+      nunjucksEngine.engine.addExtension(name, fn);
+    }
 
     site.loadPages(options.extensions, loader, nunjucksEngine);
     site.filter("njk", filter, true);
