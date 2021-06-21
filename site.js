@@ -242,7 +242,7 @@ export default class Site {
   /**
    * Build the entire site
    */
-  async build() {
+  async build(watchMode = false) {
     this.metrics.start("Build (entire site)");
     await this.dispatchEvent({ type: "beforeBuild" });
 
@@ -266,7 +266,7 @@ export default class Site {
 
     // Save the pages
     this.metrics.start("Save (all pages)");
-    await this.#savePages();
+    await this.#savePages(watchMode);
     this.metrics.end("Save (all pages)");
 
     this.metrics.end("Build (entire site)");
@@ -314,7 +314,7 @@ export default class Site {
 
     await this.#buildPages();
     await this.dispatchEvent({ type: "beforeSave" });
-    await this.#savePages();
+    await this.#savePages(true);
     await this.dispatchEvent({ type: "afterUpdate", files });
   }
 
@@ -518,10 +518,10 @@ export default class Site {
   /**
    * Save all pages
    */
-  async #savePages() {
+  async #savePages(watchMode) {
     await concurrent(
       this.pages,
-      (page) => this.#savePage(page),
+      (page) => this.#savePage(page, watchMode),
     );
   }
 
@@ -624,25 +624,29 @@ export default class Site {
   /**
    * Save a page
    */
-  async #savePage(page) {
+  async #savePage(page, watchMode) {
     // Ignore empty files
     if (!page.content) {
       return;
     }
+
     this.metrics.start("Save", page);
-    const sha1 = createHash("sha1");
-    sha1.update(page.content);
-    const hash = sha1.toString();
 
     const dest = page.dest.path + page.dest.ext;
-    const previousHash = this.#hashes.get(dest);
 
-    // The page content didn't change
-    if (previousHash === hash) {
-      return;
+    if (watchMode) {
+      const sha1 = createHash("sha1");
+      sha1.update(page.content);
+      const hash = sha1.toString();
+      const previousHash = this.#hashes.get(dest);
+
+      // The page content didn't change
+      if (previousHash === hash) {
+        return;
+      }
+
+      this.#hashes.set(dest, hash);
     }
-
-    this.#hashes.set(dest, hash);
 
     if (this.options.verbose > 0) {
       const src = page.src.path ? page.src.path + page.src.ext : "(generated)";

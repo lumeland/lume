@@ -55,7 +55,7 @@ export async function run(args) {
 
   const site = await buildSite(options);
   console.log();
-  await site.build();
+  await site.build(options.serve);
   console.log();
   console.log(`🍾 ${brightGreen("Site built into")} ${gray(site.options.dest)}`);
 
