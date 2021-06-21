@@ -17,10 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - `0`: only important things
   - `1`: normal details (the default option)
   - `2`: high details (for debugging purposes)
+- Allow extensions on Nunjucks [#108]
 
 ### Fixed
 - Improved the way CLI arguments are applied to the site instance.
 - Ensure duplicated pages have an unique `src.path` value.
+- `relative_urls` plugin should ignore data URLs [#107]
 
 ## [0.23.2] - 2021-06-19
 ### Fixed
@@ -897,6 +899,8 @@ The first version.
 [#97]: https://github.com/lumeland/lume/issues/97
 [#98]: https://github.com/lumeland/lume/issues/98
 [#105]: https://github.com/lumeland/lume/issues/105
+[#107]: https://github.com/lumeland/lume/issues/107
+[#108]: https://github.com/lumeland/lume/issues/108
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v0.23.2...HEAD
 [0.23.2]: https://github.com/lumeland/lume/compare/v0.23.1...v0.23.2
