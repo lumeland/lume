@@ -1,23 +1,7 @@
 import { join } from "./deps/path.ts";
 import { documentToString, normalizePath, stringToDocument } from "./utils.ts";
 import { HTMLDocument } from "./deps/dom.ts";
-
-interface Data {
-  tags?: string | string[];
-}
-
-interface Src {
-  path: string;
-  ext?: string;
-  lastModified?: Date;
-  created?: Date;
-}
-
-interface Dest {
-  path: string;
-  ext?: string;
-  hash?: string;
-}
+import { Data, Dest, Src } from "./types.ts";
 
 class Base {
   src: Src;
@@ -75,7 +59,7 @@ type Content = Uint8Array | string | null;
 type Document = HTMLDocument | null;
 
 /**
- * Class to represent a page file
+ * Class to represent a page of the site
  */
 export class Page extends Base {
   dest: Dest;

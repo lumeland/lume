@@ -1,9 +1,9 @@
 import { DOMParser, HTMLDocument } from "./deps/dom.ts";
 import { SEP } from "./deps/path.ts";
 
-export async function concurrent(
-  iterable: Iterable<unknown>,
-  iteratorFn: (a: unknown) => Promise<void>,
+export async function concurrent<Type>(
+  iterable: Iterable<Type>,
+  iteratorFn: (a: Type) => Promise<void>,
   limit = 200,
 ): Promise<void> {
   const executing: unknown[] = [];
@@ -56,10 +56,10 @@ export const mimes = new Map([
   [".zip", "application/zip"],
 ]);
 
-export function merge(
-  defaults: Record<string, unknown>,
+export function merge<Type>(
+  defaults: Type,
   user: Record<string, unknown>,
-): Record<string, unknown> {
+): Type {
   const merged = { ...defaults };
 
   if (!user) {
@@ -67,6 +67,7 @@ export function merge(
   }
 
   for (const [key, value] of Object.entries(user)) {
+    // @ts-ignore: I don't know how to type this
     if (isPlainObject(merged[key]) && isPlainObject(value)) {
       // @ts-ignore: I don't know how to type this
       merged[key] = merge(merged[key], value);
@@ -126,9 +127,9 @@ export function stringToDocument(string: string): HTMLDocument | null {
 
 export class Exception extends Error {
   data: unknown;
-  error: Error;
+  error?: Error;
 
-  constructor(message: string, data: unknown, error: Error) {
+  constructor(message: string, data: unknown, error?: Error) {
     super(message);
     this.data = data;
     this.error = error;

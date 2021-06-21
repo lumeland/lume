@@ -1,17 +1,20 @@
 import { brightGreen, gray } from "./deps/colors.ts";
+import Site from "./site.ts";
+import type { Command } from "./types.ts";
 
 export default class Scripts {
-  scripts = new Map();
+  site: Site;
+  scripts: Map<string, Command[]> = new Map();
 
-  constructor(site) {
+  constructor(site: Site) {
     this.site = site;
   }
 
-  set(name, ...commands) {
+  set(name: string, ...commands: Command[]) {
     this.scripts.set(name, commands);
   }
 
-  async run(options = {}, ...names) {
+  async run(options: Deno.RunOptions, ...names: Command[]): Promise<boolean> {
     options = { cwd: this.site.options.cwd, ...options };
 
     for (const name of names) {
@@ -25,13 +28,17 @@ export default class Scripts {
     return true;
   }
 
-  async #runScript(options, name) {
-    if (this.scripts.has(name)) {
+  async #runScript(options: Deno.RunOptions, name: Command): Promise<unknown> {
+    if (typeof name === "string" && this.scripts.has(name)) {
       if (this.site.options.verbose > 0) {
         console.log(`⚡️ ${brightGreen(name)}`);
       }
-      name = this.scripts.get(name);
-      return this.run(options, ...name);
+
+      const command = this.scripts.get(name);
+
+      if (command) {
+        return this.run(options, ...command);
+      }
     }
 
     if (Array.isArray(name)) {
@@ -48,7 +55,7 @@ export default class Scripts {
     return this.#runCommand(options, name);
   }
 
-  async #runFunction(fn) {
+  async #runFunction(fn: Function): Promise<boolean> {
     if (fn.name && this.site.options.verbose > 0) {
       console.log(gray(`⚡️ ${fn.name}()`));
     }
@@ -56,13 +63,16 @@ export default class Scripts {
     return result !== false;
   }
 
-  async #runCommand(options, command) {
+  async #runCommand(
+    options: Deno.RunOptions,
+    command: string,
+  ): Promise<boolean> {
     if (this.site.options.verbose > 0) {
       console.log(gray(`⚡️ ${command}`));
     }
 
     const cmd = shArgs(command);
-    const process = Deno.run({ cmd, ...options });
+    const process = Deno.run({ ...options, cmd });
     const status = await process.status();
     process.close();
 
@@ -70,7 +80,7 @@ export default class Scripts {
   }
 }
 
-function shArgs(command) {
+function shArgs(command: string): string[] {
   return Deno.build.os === "windows"
     ? ["PowerShell.exe", "-Command", command]
     : ["/bin/bash", "-c", command];

@@ -3,7 +3,8 @@ import { copy, emptyDir, ensureDir, exists } from "./deps/fs.ts";
 import { gray } from "./deps/colors.ts";
 import { createHash } from "./deps/hash.ts";
 import Source from "./source.js";
-import Scripts from "./scripts.js";
+import { Page } from "./filesystem.ts";
+import Scripts from "./scripts.ts";
 import Metrics from "./metrics.js";
 import textLoader from "./loaders/text.js";
 import {
@@ -14,11 +15,14 @@ import {
   searchByExtension,
 } from "./utils.ts";
 
-const defaults = {
+import { Command, Event, Loader, PluginSetup, SiteOptions } from "./types.ts";
+
+const defaults: SiteOptions = {
   cwd: Deno.cwd(),
   src: "./",
   dest: "./_site",
   dev: false,
+  location: "http://localhost",
   metrics: false,
   prettyUrls: true,
   flags: [],
@@ -31,22 +35,26 @@ const defaults = {
 };
 
 export default class Site {
+  options: SiteOptions;
+  source: Source;
+  scripts: Scripts;
+  metrics: Metrics;
   engines = new Map();
   helpers = new Map();
-  extraData = {};
-  listeners = new Map();
+  extraData: Record<string, unknown> = {};
+  listeners: Map<string, Set<Function | string>> = new Map();
   preprocessors = new Map();
   processors = new Map();
-  pages = [];
+  pages: Page[] = [];
 
   #hashes = new Map();
 
-  constructor(options = {}) {
+  constructor(options: Record<string, unknown> = {}) {
     this.options = merge(defaults, options);
 
     this.options.location = (options.location instanceof URL)
-      ? this.options.location
-      : new URL(this.options.location || "http://localhost");
+      ? options.location
+      : new URL(options.location || "http://localhost");
 
     this.source = new Source(this);
     this.scripts = new Scripts(this);
@@ -56,21 +64,21 @@ export default class Site {
   /**
    * Returns the src path
    */
-  src(...path) {
+  src(...path: string[]) {
     return join(this.options.cwd, this.options.src, ...path);
   }
 
   /**
    * Returns the dest path
    */
-  dest(...path) {
+  dest(...path: string[]) {
     return join(this.options.cwd, this.options.dest, ...path);
   }
 
   /**
    * Adds an event
    */
-  addEventListener(type, listener) {
+  addEventListener(type: string, listener: Function | string) {
     const listeners = this.listeners.get(type) || new Set();
     listeners.add(listener);
     this.listeners.set(type, listeners);
@@ -80,7 +88,7 @@ export default class Site {
   /**
    * Dispatch an event
    */
-  async dispatchEvent(event) {
+  async dispatchEvent(event: Event) {
     const type = event.type;
     const listeners = this.listeners.get(type);
 
@@ -89,12 +97,10 @@ export default class Site {
     }
 
     for (let listener of listeners) {
-      if (typeof listener === "string") {
-        listener = [listener];
-      }
+      const callback = typeof listener === "string" ? [listener] : listener;
 
-      if (Array.isArray(listener)) {
-        const success = await this.run(...listener);
+      if (Array.isArray(callback)) {
+        const success = await this.run(...callback);
 
         if (!success) {
           return false;
@@ -103,7 +109,7 @@ export default class Site {
         continue;
       }
 
-      if (await listener(event) === false) {
+      if (await callback(event) === false) {
         return false;
       }
     }
@@ -112,7 +118,7 @@ export default class Site {
   /**
    * Use a plugin
    */
-  use(plugin) {
+  use(plugin: PluginSetup) {
     plugin(this);
     return this;
   }
@@ -120,7 +126,7 @@ export default class Site {
   /**
    * Register a script
    */
-  script(name, ...scripts) {
+  script(name: string, ...scripts: Command[]) {
     this.scripts.set(name, ...scripts);
     return this;
   }
@@ -128,7 +134,7 @@ export default class Site {
   /**
    * Register a data loader for some extensions
    */
-  loadData(extensions, loader) {
+  loadData(extensions: string[], loader: Loader) {
     extensions.forEach((extension) => this.source.data.set(extension, loader));
     return this;
   }
@@ -136,7 +142,7 @@ export default class Site {
   /**
    * Register a page loader for some extensions
    */
-  loadPages(extensions, loader, engine) {
+  loadPages(extensions: string[], loader?: Loader, engine = null) {
     loader ||= textLoader;
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
 
@@ -156,7 +162,7 @@ export default class Site {
   /**
    * Register an assets loader for some extensions
    */
-  loadAssets(extensions, loader) {
+  loadAssets(extensions: string[], loader: Loader) {
     loader ||= textLoader;
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
     extensions.forEach((extension) => this.source.assets.add(extension));
@@ -166,7 +172,7 @@ export default class Site {
   /**
    * Register a preprocessor for some extensions
    */
-  preprocess(extensions, preprocessor) {
+  preprocess(extensions: string[], preprocessor) {
     extensions.forEach((extension) => {
       const preprocessors = this.preprocessors.get(extension) || [];
       preprocessors.push(preprocessor);
@@ -178,7 +184,7 @@ export default class Site {
   /**
    * Register a processor for some extensions
    */
-  process(extensions, processor) {
+  process(extensions: string[], processor) {
     extensions.forEach((extension) => {
       const processors = this.processors.get(extension) || [];
       processors.push(processor);
@@ -190,14 +196,14 @@ export default class Site {
   /**
    * Register a template filter
    */
-  filter(name, filter, async) {
+  filter(name: string, filter: Function, async = false) {
     return this.helper(name, filter, { type: "filter", async });
   }
 
   /**
    * Register a template helper
    */
-  helper(name, fn, options) {
+  helper(name: string, fn: Function, options = {}) {
     this.helpers.set(name, [fn, options]);
 
     for (const engine of this.engines.values()) {
@@ -210,7 +216,7 @@ export default class Site {
   /**
    * Register extra data accessible by layouts
    */
-  data(name, data) {
+  data(name: string, data: unknown) {
     this.extraData[name] = data;
     return this;
   }
@@ -218,7 +224,7 @@ export default class Site {
   /**
    * Copy static files or directories without processing
    */
-  copy(from, to = from) {
+  copy(from: string, to = from) {
     this.source.staticFiles.set(join("/", from), join("/", to));
     return this;
   }
@@ -226,7 +232,7 @@ export default class Site {
   /**
    * Ignore one or several files or directories
    */
-  ignore(...paths) {
+  ignore(...paths: string[]) {
     paths.forEach((path) => this.source.ignored.add(join("/", path)));
     return this;
   }
@@ -276,7 +282,7 @@ export default class Site {
   /**
    * Reload some files that might be changed
    */
-  async update(files) {
+  async update(files: string[]) {
     await this.dispatchEvent({ type: "beforeUpdate", files });
 
     for (const file of files) {
@@ -321,7 +327,7 @@ export default class Site {
   /**
    * Run a script
    */
-  async run(name, options = {}) {
+  async run(name: string, options = {}) {
     return await this.scripts.run(options, name);
   }
 
@@ -334,11 +340,8 @@ export default class Site {
 
   /**
    * Returns the URL of a page
-   *
-   * @param {string} path
-   * @param {bool} absolute
    */
-  url(path, absolute) {
+  url(path: string, absolute: boolean) {
     if (
       path.startsWith("./") || path.startsWith("../") ||
       path.startsWith("?") || path.startsWith("#")
@@ -387,7 +390,7 @@ export default class Site {
   /**
    * Copy a static file
    */
-  async #copyStatic(from, to) {
+  async #copyStatic(from: string, to: string) {
     this.metrics.start("Copy", from);
     const pathFrom = this.src(from);
     const pathTo = this.dest(to);
@@ -409,7 +412,7 @@ export default class Site {
     this.pages = [];
 
     // Group pages by renderOrder
-    const renderOrder = {};
+    const renderOrder: Record<number, Page[]> = {};
 
     this.metrics.start("Preprocess + render (all pages)");
 
@@ -518,7 +521,7 @@ export default class Site {
   /**
    * Save all pages
    */
-  async #savePages(watchMode) {
+  async #savePages(watchMode: boolean) {
     await concurrent(
       this.pages,
       (page) => this.#savePage(page, watchMode),
@@ -528,7 +531,7 @@ export default class Site {
   /**
    * Generate the URL and dest info of a page
    */
-  #urlPage(page) {
+  #urlPage(page: Page) {
     const { dest } = page;
     let url = page.data.url;
 
@@ -570,7 +573,7 @@ export default class Site {
   /**
    * Render a page
    */
-  async #renderPage(page) {
+  async #renderPage(page: Page) {
     let content = page.data.content;
     let pageData = { ...page.data, ...this.extraData };
     let layout = pageData.layout;
@@ -624,7 +627,7 @@ export default class Site {
   /**
    * Save a page
    */
-  async #savePage(page, watchMode) {
+  async #savePage(page: Page, watchMode: boolean) {
     // Ignore empty files
     if (!page.content) {
       return;
@@ -666,7 +669,7 @@ export default class Site {
   /**
    * Get the engine used by a path or extension
    */
-  #getEngine(path, templateEngine) {
+  #getEngine(path: string, templateEngine?: string | string[]) {
     if (templateEngine) {
       templateEngine = Array.isArray(templateEngine)
         ? templateEngine
@@ -694,7 +697,7 @@ export default class Site {
   }
 }
 
-function isGenerator(content) {
+function isGenerator(content: unknown) {
   if (typeof content !== "function") {
     return false;
   }

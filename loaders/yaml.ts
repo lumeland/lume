@@ -1,11 +1,11 @@
 import { parse } from "../deps/yaml.ts";
 
-export default async function (path) {
+export default async function (path: string): Record<string, unknown> {
   const content = await Deno.readTextFile(path);
   return parse(content);
 }
 
-export function parseFrontmatter(content) {
+export function parseFrontmatter(content: string): Record<string, unknown> {
   if (content.startsWith("---") && content.charAt(3) !== "-") {
     const end = content.indexOf("---", 3);
 
