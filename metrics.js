@@ -38,7 +38,7 @@ export default class Metrics {
 
   print() {
     // Sort by duration and get 100 with more duration
-    const metrics = this.metrics
+    const metrics = this.entries
       .sort((a, b) => a.duration - b.duration)
       .slice(-100);
 
@@ -53,6 +53,6 @@ export default class Metrics {
   }
 
   async save(file) {
-    await Deno.writeTextFile(file, JSON.stringify(this.metrics));
+    await Deno.writeTextFile(file, JSON.stringify(this.entries));
   }
 }
