@@ -15,8 +15,8 @@ export default function (userOptions) {
   return (site) => {
     const nunjucksEngine = new NunjucksEngine(site, options.options);
 
-    for (const name of Object.keys(options.plugins)) {
-      nunjucksEngine.engine.addExtension(name, options.plugins[name]);
+    for (const [name, fn] of Object.entries(options.plugins)) {
+      nunjucksEngine.engine.addExtension(name, fn);
     }
 
     site.loadPages(options.extensions, loader, nunjucksEngine);

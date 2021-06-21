@@ -67,8 +67,8 @@ function ignore(url) {
   return !url ||
     url.startsWith("./") ||
     url.startsWith("../") ||
-    url.startsWith("#") ||
     url.startsWith("?") ||
+    url.startsWith("#") ||
     url.startsWith("data:") ||
     url.includes("//");
 }
