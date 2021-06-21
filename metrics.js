@@ -40,7 +40,7 @@ export default class Metrics {
     // Sort by duration and get 100 with more duration
     const metrics = this.metrics
       .sort((a, b) => a.duration - b.duration)
-      .slice(0, 100);
+      .slice(-100);
 
     for (const metric of metrics) {
       const duration = Math.round(metric.duration) + "ms";
