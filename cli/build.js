@@ -60,30 +60,17 @@ export async function run(args) {
   console.log(`🍾 ${brightGreen("Site built into")} ${gray(site.options.dest)}`);
 
   if (site.options.metrics) {
-    const metrics = site.metrics.entries
-      .sort((a, b) => a.duration - b.duration);
-
     if (options.metrics) {
       const file = join(Deno.cwd(), options.metrics);
-      await Deno.writeTextFile(file, JSON.stringify(metrics));
+      await site.metrics.save(file);
       console.log();
-      console.log(
-        `⏲ ${brightGreen("Metrics data saved in the file")} ${gray(file)}`,
-      );
+      console.log(`⏲ ${brightGreen("Metrics data saved in")} ${gray(file)}`);
       console.log();
     } else {
       console.log();
       console.log(`⏲ Metrics data:`);
       console.log();
-
-      for (const metric of metrics) {
-        const duration = Math.round(metric.duration) + "ms";
-        const [name, file] = metric.name.split(": ");
-
-        console.log(
-          `${brightGreen(duration.padStart(10))} ${name} ${gray(file || "")}`,
-        );
-      }
+      site.metrics.print();
     }
   }
 

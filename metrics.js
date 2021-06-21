@@ -1,4 +1,5 @@
 import { Page } from "./filesystem.js";
+import { brightGreen, gray } from "./deps/colors.js";
 
 export default class Metrics {
   constructor(site) {
@@ -33,5 +34,25 @@ export default class Metrics {
 
   get entries() {
     return performance.getEntriesByType("measure");
+  }
+
+  print() {
+    // Sort by duration and get 100 with more duration
+    const metrics = this.metrics
+      .sort((a, b) => a.duration - b.duration)
+      .slice(0, 100);
+
+    for (const metric of metrics) {
+      const duration = Math.round(metric.duration) + "ms";
+      const [name, file] = metric.name.split(": ");
+
+      console.log(
+        `${brightGreen(duration.padStart(10))} ${name} ${gray(file || "")}`,
+      );
+    }
+  }
+
+  async save(file) {
+    await Deno.writeTextFile(file, JSON.stringify(this.metrics));
   }
 }
