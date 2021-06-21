@@ -471,7 +471,7 @@ export default class Site {
       // Preprocess the pages
       for (const [ext, preprocessors] of this.preprocessors) {
         await concurrent(
-          this.pages,
+          pages,
           async (page) => {
             if (ext === page.src.ext || ext === page.dest.ext) {
               for (const preprocess of preprocessors) {
