@@ -6,7 +6,8 @@ import Source from "./source.js";
 import { Page } from "./filesystem.ts";
 import Scripts from "./scripts.ts";
 import Metrics from "./metrics.js";
-import textLoader from "./loaders/text.js";
+import Engine from "./engines/template_engine.ts";
+import textLoader from "./loaders/text.ts";
 import {
   concurrent,
   Exception,
@@ -15,7 +16,7 @@ import {
   searchByExtension,
 } from "./utils.ts";
 
-import { Command, Event, Loader, PluginSetup, SiteOptions } from "./types.ts";
+import { Command, Event, Loader, PluginSetup, SiteOptions, HelperOptions } from "./types.ts";
 
 const defaults: SiteOptions = {
   cwd: Deno.cwd(),
@@ -39,7 +40,7 @@ export default class Site {
   source: Source;
   scripts: Scripts;
   metrics: Metrics;
-  engines = new Map();
+  engines: Map<string, Engine> = new Map();
   helpers = new Map();
   extraData: Record<string, unknown> = {};
   listeners: Map<string, Set<Function | string>> = new Map();
@@ -142,7 +143,7 @@ export default class Site {
   /**
    * Register a page loader for some extensions
    */
-  loadPages(extensions: string[], loader?: Loader, engine = null) {
+  loadPages(extensions: string[], loader?: Loader, engine?: Engine) {
     loader ||= textLoader;
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
 
@@ -203,7 +204,7 @@ export default class Site {
   /**
    * Register a template helper
    */
-  helper(name: string, fn: Function, options = {}) {
+  helper(name: string, fn: Function, options: HelperOptions) {
     this.helpers.set(name, [fn, options]);
 
     for (const engine of this.engines.values()) {

@@ -60,3 +60,10 @@ export interface Dest {
   ext?: string;
   hash?: string;
 }
+
+/** The available options for template helpers */
+export interface HelperOptions {
+  type: string,
+  async?: boolean
+  body?: boolean
+}
