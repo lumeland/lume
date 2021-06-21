@@ -37,7 +37,7 @@ export default class Metrics {
   }
 
   print() {
-    // Sort by duration and get 100 with more duration
+    // Sort by duration and get the 100 longest
     const metrics = this.entries
       .sort((a, b) => a.duration - b.duration)
       .slice(-100);

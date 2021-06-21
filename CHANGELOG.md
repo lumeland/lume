@@ -17,12 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - `0`: only important things
   - `1`: normal details (the default option)
   - `2`: high details (for debugging purposes)
-- Allow extensions on Nunjucks [#108]
+- Allow extensions on Nunjucks. [#108]
 
 ### Fixed
 - Improved the way CLI arguments are applied to the site instance.
 - Ensure duplicated pages have an unique `src.path` value.
-- `relative_urls` plugin should ignore data URLs [#107]
+- The `relative_urls` plugin should ignore data URLs. [#107]
 
 ## [0.23.2] - 2021-06-19
 ### Fixed
