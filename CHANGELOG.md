@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Improved the way CLI arguments are applied to the site instance.
+- Ensure duplicated pages have an unique `src.path` value.
 
 ## [0.23.2] - 2021-06-19
 ### Fixed
