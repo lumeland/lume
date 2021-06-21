@@ -14,6 +14,11 @@ export default function (userOptions) {
   return (site) => {
     const nunjucksEngine = new NunjucksEngine(site, options.options);
 
+    const nunjucksExtensions = options.options.extensions ?? {};
+    for (const name of Object.keys(nunjucksExtensions)) {
+      nunjucksEngine.engine.addExtension(name, nunjucksExtensions[name]);
+    }
+
     site.loadPages(options.extensions, loader, nunjucksEngine);
     site.filter("njk", filter, true);
 
