@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.23.3] - 2021-06-21
 ### Added
 - New metrics feature that allows measuring the performance of large sites:
   Use `lume --metrics` to show the metrics in the CLI
@@ -902,7 +902,7 @@ The first version.
 [#107]: https://github.com/lumeland/lume/issues/107
 [#108]: https://github.com/lumeland/lume/issues/108
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v0.23.2...HEAD
+[0.23.3]: https://github.com/lumeland/lume/compare/v0.23.2...v0.23.3
 [0.23.2]: https://github.com/lumeland/lume/compare/v0.23.1...v0.23.2
 [0.23.1]: https://github.com/lumeland/lume/compare/v0.23.0...v0.23.1
 [0.23.0]: https://github.com/lumeland/lume/compare/v0.22.6...v0.23.0
