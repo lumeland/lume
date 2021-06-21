@@ -72,7 +72,7 @@ export function merge(
       merged[key] = merge(merged[key], value);
       continue;
     }
-    
+
     // @ts-ignore: I don't know how to type this
     merged[key] = value;
   }

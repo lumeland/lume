@@ -1,17 +1,35 @@
 import { join } from "./deps/path.ts";
-import { documentToString, stringToDocument } from "./utils.ts";
+import { documentToString, normalizePath, stringToDocument } from "./utils.ts";
+import { HTMLDocument } from "./deps/dom.ts";
+
+interface Data {
+  tags?: string | string[];
+}
+
+interface Src {
+  path: string;
+  ext?: string;
+  lastModified?: Date;
+  created?: Date;
+}
+
+interface Dest {
+  path: string;
+  ext?: string;
+  hash?: string;
+}
 
 class Base {
-  src = {};
-  parent = null;
-  #data = {};
-  #cache = null;
+  src: Src;
+  parent: Directory | null = null;
+  #data: Data = {};
+  #cache: Data | null = null;
 
-  constructor(src = {}) {
+  constructor(src: Src) {
     this.src = src;
   }
 
-  get data() {
+  get data(): Data {
     if (!this.#cache) {
       this.#cache = this.getMergedData();
     }
@@ -19,12 +37,13 @@ class Base {
     return this.#cache;
   }
 
-  set data(data = {}) {
+  set data(data: Data) {
     this.#data = data;
   }
 
-  getMergedData() {
-    let data = { ...this.#data }, tags = [];
+  getMergedData(): Data {
+    let data = { ...this.#data };
+    let tags: string[] = [];
 
     if (data.tags) {
       tags = Array.isArray(data.tags)
@@ -33,8 +52,13 @@ class Base {
     }
 
     if (this.parent) {
-      data = { ...this.parent.data, ...data };
-      tags = [...this.parent.data.tags, ...tags];
+      const parentData = this.parent.data;
+
+      data = { ...parentData, ...data };
+
+      if (parentData.tags) {
+        tags = [...parentData.tags, ...tags];
+      }
     }
 
     data.tags = [...new Set(tags)];
@@ -47,16 +71,28 @@ class Base {
   }
 }
 
+type Content = Uint8Array | string | null;
+type Document = HTMLDocument | null;
+
 /**
  * Class to represent a page file
  */
 export class Page extends Base {
-  dest = {};
-  #content = null;
-  #document = null;
+  dest: Dest;
+  #content: Content = null;
+  #document: Document = null;
   #copy = 0;
 
-  duplicate(data = {}) {
+  constructor(src: Src) {
+    super(src);
+
+    this.dest = {
+      path: normalizePath(src.path),
+      ext: src.ext,
+    };
+  }
+
+  duplicate(data = {}): Page {
     const page = new Page({ ...this.src });
     page.dest = { ...this.dest };
     page.data = { ...this.data, ...data };
@@ -66,12 +102,12 @@ export class Page extends Base {
     return page;
   }
 
-  set content(content) {
+  set content(content: Content) {
     this.#document = null;
     this.#content = content;
   }
 
-  get content() {
+  get content(): Content {
     if (this.#document) {
       this.#content = documentToString(this.#document);
       this.#document = null;
@@ -80,13 +116,13 @@ export class Page extends Base {
     return this.#content;
   }
 
-  set document(document) {
+  set document(document: Document) {
     this.#content = null;
     this.#document = document;
   }
 
-  get document() {
-    if (!this.#document && this.#content) {
+  get document(): Document {
+    if (!this.#document && typeof this.#content === "string") {
       this.#document = stringToDocument(this.#content);
     }
 
@@ -98,10 +134,10 @@ export class Page extends Base {
  * Class to represent a directory
  */
 export class Directory extends Base {
-  pages = new Map();
-  dirs = new Map();
+  pages: Map<string, Page> = new Map();
+  dirs: Map<string, Directory> = new Map();
 
-  createDirectory(name) {
+  createDirectory(name: string): Directory {
     const path = join(this.src.path, name);
     const directory = new Directory({ path });
     directory.parent = this;
@@ -109,7 +145,7 @@ export class Directory extends Base {
     return directory;
   }
 
-  setPage(name, page) {
+  setPage(name: string, page: Page) {
     const oldPage = this.pages.get(name);
     page.parent = this;
     this.pages.set(name, page);
@@ -119,11 +155,11 @@ export class Directory extends Base {
     }
   }
 
-  unsetPage(name) {
+  unsetPage(name: string) {
     this.pages.delete(name);
   }
 
-  *getPages(recursive = true) {
+  *getPages(recursive = true): Iterable<Page> {
     for (const page of this.pages.values()) {
       yield page;
     }

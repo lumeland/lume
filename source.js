@@ -1,6 +1,6 @@
 import { basename, dirname, extname, join } from "./deps/path.ts";
 import { existsSync } from "./deps/fs.ts";
-import { Directory, Page } from "./filesystem.js";
+import { Directory, Page } from "./filesystem.ts";
 import {
   concurrent,
   Exception,
@@ -239,19 +239,6 @@ export default class Source {
       ext,
     };
 
-    const dest = {
-      path: normalizePath(src.path),
-    };
-
-    const subext = extname(src.path);
-
-    if (this.assets.has(ext)) {
-      dest.ext = ext;
-    } else if (subext) {
-      dest.path = dest.path.slice(0, -subext.length);
-      dest.ext = subext;
-    }
-
     const data = await this.load(fullPath, loader);
 
     if (!data.date) {
@@ -265,7 +252,16 @@ export default class Source {
 
     const page = new Page(src);
     page.data = data;
-    page.dest = dest;
+
+    if (this.assets.has(page.dest.ext)) {
+      page.dest.ext = "";
+    }
+
+    const subext = extname(page.dest.path);
+    if (subext) {
+      page.dest.path = page.dest.path.slice(0, -subext.length);
+      page.dest.ext = subext;
+    }
 
     return page;
   }
