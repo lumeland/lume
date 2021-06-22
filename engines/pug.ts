@@ -1,11 +1,14 @@
+import Site from "../site.ts";
 import * as pug from "../deps/pug.ts";
-import TemplateEngine from "./template_engine.ts";
+import Engine from "./engine.ts";
+import { Data, HelperOptions } from "../types.ts";
 
-export default class Pug extends TemplateEngine {
+export default class Pug extends Engine {
   cache = new Map();
-  filters = {};
+  filters: Record<string, unknown> = {};
+  includes: string;
 
-  constructor(site, options = {}) {
+  constructor(site: Site, options = {}) {
     super(site, options);
     this.includes = site.src("_includes");
 
@@ -13,7 +16,7 @@ export default class Pug extends TemplateEngine {
     site.addEventListener("beforeUpdate", () => this.cache.clear());
   }
 
-  render(content, data, filename) {
+  render(content: unknown, data: Data, filename: string) {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
@@ -28,10 +31,14 @@ export default class Pug extends TemplateEngine {
     return this.cache.get(filename)(data);
   }
 
-  addHelper(name, fn, options) {
+  addHelper(
+    name: string,
+    fn: (...args: unknown[]) => unknown,
+    options: HelperOptions,
+  ) {
     switch (options.type) {
       case "filter":
-        this.filters[name] = (text, opt) => {
+        this.filters[name] = (text: string, opt: Record<string, unknown>) => {
           delete opt.filename;
           const args = Object.values(opt);
           return fn(text, ...args);

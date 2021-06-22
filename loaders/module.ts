@@ -1,5 +1,9 @@
 import { Data } from "../types.ts";
 
+/**
+ * Load Javascript/Typescript files.
+ * It includes a random hash to prevent caching
+ */
 export default async function (path: string): Promise<Data> {
   const hash = Date.now();
   const mod: Record<string, unknown> = await import(`file://${path}#${hash}`);

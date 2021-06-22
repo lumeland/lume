@@ -1,10 +1,12 @@
-export default class Search {
-  #site = null;
-  #cache = null;
+import Site from "../site.ts";
+import { Page } from "../filesystem.ts";
 
-  constructor(site) {
+export default class Search {
+  #site: Site;
+  #cache: Map<string, Page[]> = new Map();
+
+  constructor(site: Site) {
     this.#site = site;
-    this.#cache = new Map();
 
     site.addEventListener("beforeUpdate", () => this.#cache.clear());
   }
@@ -17,7 +19,7 @@ export default class Search {
     }
   }
 
-  pages(query, sort, limit) {
+  pages(query: string | string[], sort?: string, limit?: number) {
     const result = this.#searchPages(query, sort);
 
     if (!limit) {
@@ -27,7 +29,7 @@ export default class Search {
     return (limit < 0) ? result.slice(limit) : result.slice(0, limit);
   }
 
-  tags(query) {
+  tags(query: string | string[]): string[] {
     const tags = new Set();
 
     this.pages(query).forEach((page) =>
@@ -37,21 +39,21 @@ export default class Search {
     return Array.from(tags);
   }
 
-  nextPage(url, query, sort) {
+  nextPage(url: string, query: string | string[], sort?: string) {
     const pages = this.pages(query, sort);
     const index = pages.findIndex((page) => page.data.url === url);
 
     return (index === -1) ? undefined : pages[index + 1];
   }
 
-  previousPage(url, query, sort) {
+  previousPage(url: string, query: string | string[], sort?: string) {
     const pages = this.pages(query, sort);
     const index = pages.findIndex((page) => page.data.url === url);
 
     return (index <= 0) ? undefined : pages[index - 1];
   }
 
-  #searchPages(query, sort = "date") {
+  #searchPages(query: string, sort = "date"): Page[] {
     if (Array.isArray(query)) {
       query = query.join(" ");
     }
@@ -72,7 +74,7 @@ export default class Search {
   }
 }
 
-export function buildFilter(query) {
+export function buildFilter(query: string): (page: Page) => boolean {
   // (?:(fieldName)(operator))?(value|"value"|'value')
   const matches = query
     ? query.matchAll(
@@ -95,10 +97,10 @@ export function buildFilter(query) {
   return compileFilter(conditions);
 }
 
-function compileFilter(conditions) {
-  const filters = [];
-  const args = [];
-  const values = [];
+function compileFilter(conditions: string[][]) {
+  const filters: string[] = [];
+  const args: string[] = [];
+  const values: unknown[] = [];
 
   conditions.forEach((condition, index) => {
     const [key, operator, value] = condition;
@@ -116,7 +118,12 @@ function compileFilter(conditions) {
   return factory(...values);
 }
 
-function compileCondition(key, operator, name, value) {
+function compileCondition(
+  key: string,
+  operator: string,
+  name: string,
+  value: unknown,
+): string {
   key = key.replaceAll(".", "?.");
 
   if (value instanceof Date) {
@@ -181,7 +188,7 @@ function compileCondition(key, operator, name, value) {
   }
 }
 
-function compileValue(value) {
+function compileValue(value: string): unknown {
   if (!value) {
     return value;
   }
@@ -227,7 +234,7 @@ function compileValue(value) {
   return value;
 }
 
-export function buildSort(sort) {
+export function buildSort(sort: string | string[]) {
   let fn = "0";
 
   if (typeof sort === "string") {

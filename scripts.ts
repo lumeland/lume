@@ -1,6 +1,6 @@
 import { brightGreen, gray } from "./deps/colors.ts";
 import Site from "./site.ts";
-import type { Command } from "./types.ts";
+import type { Command, CommandOptions } from "./types.ts";
 
 export default class Scripts {
   site: Site;
@@ -14,7 +14,7 @@ export default class Scripts {
     this.scripts.set(name, commands);
   }
 
-  async run(options: Deno.RunOptions, ...names: Command[]): Promise<boolean> {
+  async run(options: CommandOptions, ...names: Command[]): Promise<boolean> {
     options = { cwd: this.site.options.cwd, ...options };
 
     for (const name of names) {
@@ -28,7 +28,7 @@ export default class Scripts {
     return true;
   }
 
-  async #runScript(options: Deno.RunOptions, name: Command): Promise<unknown> {
+  async #runScript(options: CommandOptions, name: Command): Promise<unknown> {
     if (typeof name === "string" && this.scripts.has(name)) {
       if (this.site.options.verbose > 0) {
         console.log(`⚡️ ${brightGreen(name)}`);
@@ -64,7 +64,7 @@ export default class Scripts {
   }
 
   async #runCommand(
-    options: Deno.RunOptions,
+    options: CommandOptions,
     command: string,
   ): Promise<boolean> {
     if (this.site.options.verbose > 0) {

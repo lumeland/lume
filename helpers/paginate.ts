@@ -1,12 +1,15 @@
-export default function (site) {
+import Site from "../site.ts";
+import { PaginateOptions, PaginateResult } from "../types.ts";
+
+export default function (site: Site) {
   const ext = site.options.prettyUrls ? "/index.html" : ".html";
 
   const defaults = {
     size: 10,
-    url: (page) => `./page-${page}${ext}`,
+    url: (page: number) => `./page-${page}${ext}`,
   };
 
-  return function* paginate(results, options = {}) {
+  return function* paginate(results: unknown[], options?: PaginateOptions) {
     options = { ...defaults, ...options };
 
     const totalResults = results.length;
@@ -28,7 +31,7 @@ export default function (site) {
       yield data;
     }
 
-    function createPageData(page) {
+    function createPageData(page: number): PaginateResult {
       return {
         url: options.url(page),
         results: [],

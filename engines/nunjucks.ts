@@ -1,10 +1,12 @@
+import Site from "../site.ts";
 import nunjucks from "../deps/nunjucks.ts";
-import TemplateEngine from "./template_engine.ts";
+import Engine from "./engine.ts";
+import { Data, HelperOptions } from "../types.ts";
 
-export default class Nunjucks extends TemplateEngine {
+export default class Nunjucks extends Engine {
   cache = new Map();
 
-  constructor(site, options) {
+  constructor(site: Site, options: Record<string, unknown>) {
     super(site, options);
 
     const loader = new nunjucks.FileSystemLoader(site.src("_includes"));
@@ -26,7 +28,7 @@ export default class Nunjucks extends TemplateEngine {
     });
   }
 
-  render(content, data, filename) {
+  render(content: string, data: Data, filename: string): Promise<unknown> {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
@@ -45,7 +47,11 @@ export default class Nunjucks extends TemplateEngine {
     });
   }
 
-  addHelper(name, fn, options) {
+  addHelper(
+    name: string,
+    fn: (...args: unknown[]) => unknown,
+    options: HelperOptions,
+  ) {
     switch (options.type) {
       case "tag": {
         const tag = createCustomTag(name, fn, options);
@@ -67,8 +73,8 @@ export default class Nunjucks extends TemplateEngine {
 
 // Function to create an asynchronous filter
 // https://mozilla.github.io/nunjucks/api.html#custom-filters
-function createAsyncFilter(fn) {
-  return async function (...args) {
+function createAsyncFilter(fn: (...args: unknown[]) => unknown) {
+  return async function (...args: unknown[]) {
     const cb = args.pop();
     try {
       const result = await fn(...args);
@@ -81,7 +87,11 @@ function createAsyncFilter(fn) {
 
 // Function to create a tag extension
 // https://mozilla.github.io/nunjucks/api.html#custom-tags
-function createCustomTag(name, fn, options) {
+function createCustomTag(
+  name: string,
+  fn: (...args: unknown[]) => unknown,
+  options: HelperOptions,
+) {
   const tagExtension = {
     tags: [name],
     parse(parser, nodes) {
@@ -123,7 +133,7 @@ function createCustomTag(name, fn, options) {
 
       const callback = args.pop();
 
-      fn(...args).then((string) => {
+      fn(...args).then((string: string) => {
         const result = new nunjucks.runtime.SafeString(string);
         callback(null, result);
       });

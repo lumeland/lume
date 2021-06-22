@@ -1,8 +1,11 @@
 import { DOMParser, HTMLDocument } from "./deps/dom.ts";
 import { SEP } from "./deps/path.ts";
 
+/**
+ * Helper to run concurrently a function for all elements of a Iterable.
+ */
 export async function concurrent<Type>(
-  iterable: Iterable<Type>,
+  iterable: AsyncIterable<Type> | Iterable<Type>,
   iteratorFn: (a: Type) => Promise<void>,
   limit = 200,
 ): Promise<void> {
@@ -23,6 +26,10 @@ export async function concurrent<Type>(
   await Promise.all(executing);
 }
 
+/**
+ * The list of supported mime types.
+ * It's used by the server and some plugins.
+ */
 export const mimes = new Map([
   [".apng", "image/apng"],
   [".atom", "application/atom+xml; charset=utf-8"],
@@ -56,6 +63,10 @@ export const mimes = new Map([
   [".zip", "application/zip"],
 ]);
 
+/**
+ * Merge two objects recursively.
+ * It's used to merge user options with default options
+ */
 export function merge<Type>(
   defaults: Type,
   user: Record<string, unknown>,
@@ -81,15 +92,27 @@ export function merge<Type>(
   return merged;
 }
 
+/**
+ * Returns true if the argument passed is a plain object.
+ */
 function isPlainObject(obj: unknown): boolean {
   return typeof obj === "object" && obj !== null &&
     obj.toString() === "[object Object]";
 }
 
+/**
+ * Convert the Windows paths (that use the separator "\")
+ * to Posix paths (with the separator "/").
+ */
 export function normalizePath(path: string): string {
   return SEP === "/" ? path : path.replaceAll(SEP, "/");
 }
 
+/**
+ * Search an extension in a Map.
+ * It's useful for cases in which the extension is multiple.
+ * Example: page.tmpl.js
+ */
 export function searchByExtension<Type>(
   path: string,
   extensions: Map<string, Type>,
@@ -101,6 +124,9 @@ export function searchByExtension<Type>(
   }
 }
 
+/**
+ * Converts a HTMLDocument instance to string code.
+ */
 export function documentToString(document: HTMLDocument): string {
   if (!document.documentElement) {
     return "";
@@ -121,10 +147,17 @@ export function documentToString(document: HTMLDocument): string {
 
 const parser = new DOMParser();
 
+/**
+ * Parse a string with HTML code and return a HTMLDocument
+ */
 export function stringToDocument(string: string): HTMLDocument | null {
   return parser.parseFromString(string, "text/html");
 }
 
+/**
+ * Generic Exception to throw errors.
+ * It allows to include extra data and the previous exception.
+ */
 export class Exception extends Error {
   data: unknown;
   error?: Error;

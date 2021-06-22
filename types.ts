@@ -1,9 +1,19 @@
 import Site from "./site.ts";
-import {Page} from "./filesystem.ts";
+import { Page } from "./filesystem.ts";
 
 /** Command executed by scripts */
 export type Command = string | ((site: Site) => unknown) | Command[];
 
+/** Options available for the Command. */
+export interface CommandOptions {
+  cwd?: string;
+  env?: Record<string, string>;
+  stdout?: "inherit" | "piped" | "null" | number;
+  stderr?: "inherit" | "piped" | "null" | number;
+  stdin?: "inherit" | "piped" | "null" | number;
+}
+
+/** A (pre)processor */
 export type Processor = (page: Page, site: Site) => void;
 
 /** Available options for a site */
@@ -12,11 +22,11 @@ export interface SiteOptions {
   src: string;
   dest: string;
   dev: boolean;
-  location: string | URL;
+  location: URL;
   metrics: boolean;
   prettyUrls: boolean;
   flags: string[];
-  verbose: number;
+  verbose: 1 | 2 | 3;
   server: {
     port: number;
     open: boolean;
@@ -24,11 +34,14 @@ export interface SiteOptions {
   };
 }
 
-/** Build event */
+/** A generic event */
 export interface Event {
   type: string;
-  files?: Set<string>
+  files?: string[];
 }
+
+/** A listener for events */
+export type EventListener = (event: Event) => unknown;
 
 /** A generical Lume plugin */
 export type Plugin = ((options: unknown) => PluginSetup);
@@ -39,7 +52,7 @@ export type PluginSetup = (site: Site) => void;
 /** A loader */
 export type Loader = (path: string) => Promise<Record<string, unknown>>;
 
-/** The .data object of a Page */
+/** The data object of a Page */
 export interface Data {
   tags?: string | string[];
   url?: string | ((page: Page) => string);
@@ -48,7 +61,7 @@ export interface Data {
   content?: unknown;
   layout?: string;
   templateEngine?: string | string[];
-  [index: string]: unknown
+  [index: string]: unknown;
 }
 
 /** The .src object of a Page or Directory */
@@ -66,9 +79,31 @@ export interface Dest {
   hash?: string;
 }
 
+/** Generical helper to use in the template engines */
+export type Helper = (...args: unknown[]) => unknown;
+
 /** The available options for template helpers */
 export interface HelperOptions {
-  type: string,
-  async?: boolean
-  body?: boolean
+  type: string;
+  async?: boolean;
+  body?: boolean;
+}
+
+/** The available options for paginate */
+export interface PaginateOptions {
+  size: number;
+  url: (page: number) => string;
+}
+
+/** The paginate result */
+export interface PaginateResult {
+  url: string;
+  results: unknown[];
+  pagination: {
+    page: number;
+    totalPages: number;
+    totalResults: number;
+    previous: string | null;
+    next: string | null;
+  };
 }

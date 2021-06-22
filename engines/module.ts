@@ -1,15 +1,21 @@
-import TemplateEngine from "./template_engine.ts";
+import Engine from "./engine.ts";
+import { Data } from "../types.ts";
 
-export default class Module extends TemplateEngine {
-  helpers = {};
+export default class Module extends Engine {
+  helpers: Record<string, unknown> = {};
 
-  render(content, data) {
+  render(
+    content:
+      | string
+      | ((data: Data, filters: Record<string, unknown>) => unknown),
+    data: Data,
+  ): unknown {
     return typeof content === "function"
       ? content(data, this.helpers)
       : content;
   }
 
-  addHelper(name, fn) {
+  addHelper(name: string, fn: (...args: unknown[]) => unknown) {
     this.helpers[name] = fn;
   }
 }

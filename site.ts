@@ -6,7 +6,7 @@ import Source from "./source.ts";
 import { Page } from "./filesystem.ts";
 import Scripts from "./scripts.ts";
 import Metrics from "./metrics.ts";
-import Engine from "./engines/template_engine.ts";
+import Engine from "./engines/engine.ts";
 import textLoader from "./loaders/text.ts";
 import {
   concurrent,
@@ -16,14 +16,25 @@ import {
   searchByExtension,
 } from "./utils.ts";
 
-import { Command, Event, Loader, PluginSetup, SiteOptions, HelperOptions, Processor } from "./types.ts";
+import {
+  Command,
+  CommandOptions,
+  Event,
+  EventListener,
+  Helper,
+  HelperOptions,
+  Loader,
+  PluginSetup,
+  Processor,
+  SiteOptions,
+} from "./types.ts";
 
 const defaults: SiteOptions = {
   cwd: Deno.cwd(),
   src: "./",
   dest: "./_site",
   dev: false,
-  location: "http://localhost",
+  location: new URL("http://localhost"),
   metrics: false,
   prettyUrls: true,
   flags: [],
@@ -41,9 +52,9 @@ export default class Site {
   scripts: Scripts;
   metrics: Metrics;
   engines: Map<string, Engine> = new Map();
-  helpers = new Map();
+  helpers: Map<string, [Helper, HelperOptions]> = new Map();
   extraData: Record<string, unknown> = {};
-  listeners: Map<string, Set<Function | string>> = new Map();
+  listeners: Map<string, Set<EventListener | string>> = new Map();
   preprocessors: Map<string, Processor[]> = new Map();
   processors: Map<string, Processor[]> = new Map();
   pages: Page[] = [];
@@ -79,7 +90,10 @@ export default class Site {
   /**
    * Adds an event
    */
-  addEventListener(type: string, listener: ((event: Event) => unknown) | string) {
+  addEventListener(
+    type: string,
+    listener: ((event: Event) => unknown) | string,
+  ) {
     const listeners = this.listeners.get(type) || new Set();
     listeners.add(listener);
     this.listeners.set(type, listeners);
@@ -97,11 +111,9 @@ export default class Site {
       return;
     }
 
-    for (let listener of listeners) {
-      const callback = typeof listener === "string" ? [listener] : listener;
-
-      if (Array.isArray(callback)) {
-        const success = await this.run(...callback);
+    for (const listener of listeners) {
+      if (typeof listener === "string") {
+        const success = await this.run(listener);
 
         if (!success) {
           return false;
@@ -110,7 +122,7 @@ export default class Site {
         continue;
       }
 
-      if (await callback(event) === false) {
+      if (await listener(event) === false) {
         return false;
       }
     }
@@ -153,8 +165,8 @@ export default class Site {
 
     extensions.forEach((extension) => this.engines.set(extension, engine));
 
-    for (const [name, helper] of this.helpers) {
-      engine.addHelper(name, ...helper);
+    for (const [name, [helper, options]] of this.helpers) {
+      engine.addHelper(name, helper, options);
     }
 
     return this;
@@ -163,7 +175,7 @@ export default class Site {
   /**
    * Register an assets loader for some extensions
    */
-  loadAssets(extensions: string[], loader: Loader) {
+  loadAssets(extensions: string[], loader?: Loader) {
     loader ||= textLoader;
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
     extensions.forEach((extension) => this.source.assets.add(extension));
@@ -197,14 +209,18 @@ export default class Site {
   /**
    * Register a template filter
    */
-  filter(name: string, filter: (...args: unknown[]) => unknown, async = false) {
+  filter(name: string, filter: Helper, async = false) {
     return this.helper(name, filter, { type: "filter", async });
   }
 
   /**
    * Register a template helper
    */
-  helper(name: string, fn: (...args: unknown[]) => unknown, options: HelperOptions) {
+  helper(
+    name: string,
+    fn: Helper,
+    options: HelperOptions,
+  ) {
     this.helpers.set(name, [fn, options]);
 
     for (const engine of this.engines.values()) {
@@ -328,7 +344,7 @@ export default class Site {
   /**
    * Run a script
    */
-  async run(name: string, options = {}) {
+  async run(name: string, options: CommandOptions = {}) {
     return await this.scripts.run(options, name);
   }
 
@@ -336,7 +352,7 @@ export default class Site {
    * Return the site flags
    */
   get flags() {
-    return this.options.flags || [];
+    return this.options.flags;
   }
 
   /**
@@ -360,7 +376,7 @@ export default class Site {
       );
 
       if (page) {
-        path = page.data.url;
+        path = page.data.url as string;
       } else {
         // It's a static file
         const entry = this.source.isStatic(path);
@@ -393,6 +409,7 @@ export default class Site {
    */
   async #copyStatic(from: string, to: string) {
     this.metrics.start("Copy", from);
+
     const pathFrom = this.src(from);
     const pathTo = this.dest(to);
 
@@ -620,7 +637,13 @@ export default class Site {
         ...this.extraData,
       };
 
-      content = await engine.render(layoutData.content, pageData, layoutPath);
+      if (Array.isArray(engine)) {
+        for (const eng of engine) {
+          content = await eng.render(layoutData.content, pageData, layoutPath);
+        }
+      } else {
+        content = await engine.render(layoutData.content, pageData, layoutPath);
+      }
 
       layout = layoutData.layout;
     }
@@ -656,8 +679,7 @@ export default class Site {
     }
 
     if (this.options.verbose > 0) {
-      const src = page.src.path ? page.src.path + page.src.ext : "(generated)";
-      console.log(`🔥 ${dest} ${gray(src)}`);
+      console.log(`🔥 ${dest} ${gray(page.src.path + page.src.ext)}`);
     }
 
     const filename = this.dest(dest);

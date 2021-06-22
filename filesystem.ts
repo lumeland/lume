@@ -15,7 +15,7 @@ class Base {
 
   get data(): Data {
     if (!this.#cache) {
-      this.#cache = this.getMergedData();
+      this.#cache = this.#getMergedData();
     }
 
     return this.#cache;
@@ -25,7 +25,7 @@ class Base {
     this.#data = data;
   }
 
-  getMergedData(): Data {
+  #getMergedData(): Data {
     let data = { ...this.#data };
     let tags: string[] = [];
 

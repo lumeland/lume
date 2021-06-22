@@ -8,7 +8,7 @@ import {
   normalizePath,
   searchByExtension,
 } from "./utils.ts";
-import { Loader, Data } from "./types.ts";
+import { Data, Loader } from "./types.ts";
 
 export default class Source {
   site: Site;
@@ -50,11 +50,7 @@ export default class Source {
         return;
       }
 
-      if (!dir.dirs.has(name)) {
-        dir.createDirectory(name);
-      }
-
-      dir = dir.dirs.get(name);
+      dir = dir.dirs.get(name) || dir.createDirectory(name);
     });
 
     return dir;
@@ -63,8 +59,8 @@ export default class Source {
   /**
    * Returns the File or Directory of a path
    */
-  getFileOrDirectory(path: string) {
-    let result = this.root;
+  getFileOrDirectory(path: string): Directory | Page | undefined {
+    let result: Directory | Page | undefined = this.root;
 
     path.split("/").forEach((name) => {
       if (!name || !result) {
@@ -298,7 +294,11 @@ export default class Source {
   /**
    * Load a data file inside a _data directory
    */
-  async #loadDataDirectoryEntry(path: string, entry: Deno.DirEntry, data: Record<string, unknown>) {
+  async #loadDataDirectoryEntry(
+    path: string,
+    entry: Deno.DirEntry,
+    data: Record<string, unknown>,
+  ) {
     if (
       entry.isSymlink ||
       entry.name.startsWith(".") || entry.name.startsWith("_")
@@ -339,7 +339,7 @@ export default class Source {
 }
 
 function getDate(page: Page) {
-  const { src, dest} = page;
+  const { src, dest } = page;
   const fileName = basename(src.path);
 
   const dateInPath = fileName.match(

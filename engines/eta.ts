@@ -1,11 +1,12 @@
 import * as eta from "../deps/eta.ts";
+import Site from "../site.ts";
+import Engine from "./engine.ts";
+import { Data, HelperOptions } from "../types.ts";
 
-import TemplateEngine from "./template_engine.ts";
+export default class Eta extends Engine {
+  filters: Record<string, unknown> = {};
 
-export default class Eta extends TemplateEngine {
-  filters = {};
-
-  constructor(site, options = {}) {
+  constructor(site: Site, options = {}) {
     super(site, options);
 
     eta.configure({
@@ -21,7 +22,7 @@ export default class Eta extends TemplateEngine {
     });
   }
 
-  async render(content, data, filename) {
+  async render(content: string, data: Data, filename: string) {
     if (!eta.templates.get(filename)) {
       eta.templates.define(filename, eta.compile(content));
     }
@@ -30,7 +31,11 @@ export default class Eta extends TemplateEngine {
     return await fn(data, eta.config);
   }
 
-  addHelper(name, fn, options) {
+  addHelper(
+    name: string,
+    fn: (...args: unknown[]) => unknown,
+    options: HelperOptions,
+  ) {
     switch (options.type) {
       case "filter":
         this.filters[name] = fn;
