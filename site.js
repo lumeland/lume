@@ -220,7 +220,7 @@ export default class Site {
    * Copy static files or directories without processing
    */
   copy(from, to = from) {
-    this.source.staticFiles.set(join(from), join("/", to));
+    this.source.staticFiles.set(join("./", from), join("/", to));
     return this;
   }
 
