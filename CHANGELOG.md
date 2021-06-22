@@ -9,13 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
-- New `-w, --watch` option to watch changes without starting a web server. [#109]
+- New `-w`/`--watch` option to watch changes without starting a web server.
+  [#109]
 
 ### Changed
 - Render pages in parallel, reducing the build time for large sites.
 
 ### Fixed
-- The async cache for `inline` plugin.
+- The async cache for the `inline` plugin.
 - Some preprocessors were executed several times. [#110]
 
 ## [0.23.3] - 2021-06-21
