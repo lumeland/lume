@@ -325,16 +325,13 @@ export default class Source {
   /**
    * Load a file and save the content in the cache
    */
-  async load(path, loader) {
-    if (this.#cache.has(path)) {
-      return this.#cache.get(path);
-    }
-
+  load(path, loader) {
     try {
-      const content = await loader(path);
-      this.#cache.set(path, content);
+      if (!this.#cache.has(path)) {
+        this.#cache.set(path, loader(path));
+      }
 
-      return content;
+      return this.#cache.get(path);
     } catch (err) {
       throw new Exception("Couldn't load this file", { path }, err);
     }
