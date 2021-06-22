@@ -87,7 +87,8 @@ export async function run(args) {
       await server(site);
     }
 
-    const watcher = Deno.watchFs(site.src());
+    const sources = [...site.source.staticFiles].map(x => site.src(x[0]));
+    const watcher = Deno.watchFs([site.src(), ...sources]);
     const changes = new Set();
     console.log("Watching for changes...");
 
