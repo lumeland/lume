@@ -1,6 +1,7 @@
 import { basename, dirname, extname, join } from "./deps/path.ts";
 import { existsSync } from "./deps/fs.ts";
 import { Directory, Page } from "./filesystem.ts";
+import Site from "./site.ts";
 import {
   concurrent,
   Exception,
@@ -9,6 +10,7 @@ import {
 } from "./utils.ts";
 
 export default class Source {
+  site: Site;
   root = new Directory({ path: "/" });
 
   data = new Map();
@@ -18,7 +20,7 @@ export default class Source {
   ignored = new Set();
   #cache = new Map();
 
-  constructor(site) {
+  constructor(site: Site) {
     this.site = site;
 
     // Update cache
@@ -39,7 +41,7 @@ export default class Source {
   /**
    * Returns the Directory instance of a path
    */
-  getOrCreateDirectory(path) {
+  getOrCreateDirectory(path: string) {
     let dir = this.root;
 
     path.split("/").forEach((name) => {
@@ -60,7 +62,7 @@ export default class Source {
   /**
    * Returns the File or Directory of a path
    */
-  getFileOrDirectory(path) {
+  getFileOrDirectory(path: string) {
     let result = this.root;
 
     path.split("/").forEach((name) => {
@@ -81,7 +83,7 @@ export default class Source {
   /**
    * Check whether a file is included in the static files
    */
-  isStatic(file) {
+  isStatic(file: string) {
     for (const entry of this.staticFiles) {
       const [from] = entry;
 
@@ -96,7 +98,7 @@ export default class Source {
   /**
    * Check whether a path is ignored or not
    */
-  isIgnored(path) {
+  isIgnored(path: string) {
     for (const pattern of this.ignored) {
       if (pattern === path || path.startsWith(`${pattern}/`)) {
         return true;
@@ -121,7 +123,7 @@ export default class Source {
   /**
    * Reload some files
    */
-  async loadFile(file) {
+  async loadFile(file: string) {
     const entry = {
       name: basename(file),
       isFile: true,
@@ -162,7 +164,7 @@ export default class Source {
   /**
    * Load an entry from a directory
    */
-  async #loadEntry(directory, entry) {
+  async #loadEntry(directory: Directory, entry: Deno.DirEntry) {
     if (entry.isSymlink || entry.name.startsWith(".")) {
       return;
     }
@@ -217,7 +219,7 @@ export default class Source {
   /**
    * Create and returns a Page
    */
-  async #loadPage(path) {
+  async #loadPage(path: string) {
     const result = searchByExtension(path, this.pages);
 
     if (!result) {

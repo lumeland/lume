@@ -2,7 +2,7 @@ import { dirname, extname, join, posix, SEP } from "./deps/path.ts";
 import { copy, emptyDir, ensureDir, exists } from "./deps/fs.ts";
 import { gray } from "./deps/colors.ts";
 import { createHash } from "./deps/hash.ts";
-import Source from "./source.js";
+import Source from "./source.ts";
 import { Page } from "./filesystem.ts";
 import Scripts from "./scripts.ts";
 import Metrics from "./metrics.js";
@@ -16,7 +16,7 @@ import {
   searchByExtension,
 } from "./utils.ts";
 
-import { Command, Event, Loader, PluginSetup, SiteOptions, HelperOptions } from "./types.ts";
+import { Command, Event, Loader, PluginSetup, SiteOptions, HelperOptions, Processor } from "./types.ts";
 
 const defaults: SiteOptions = {
   cwd: Deno.cwd(),
@@ -44,8 +44,8 @@ export default class Site {
   helpers = new Map();
   extraData: Record<string, unknown> = {};
   listeners: Map<string, Set<Function | string>> = new Map();
-  preprocessors = new Map();
-  processors = new Map();
+  preprocessors: Map<string, Processor[]> = new Map();
+  processors: Map<string, Processor[]> = new Map();
   pages: Page[] = [];
 
   #hashes = new Map();
@@ -79,7 +79,7 @@ export default class Site {
   /**
    * Adds an event
    */
-  addEventListener(type: string, listener: Function | string) {
+  addEventListener(type: string, listener: ((event: Event) => unknown) | string) {
     const listeners = this.listeners.get(type) || new Set();
     listeners.add(listener);
     this.listeners.set(type, listeners);
@@ -173,7 +173,7 @@ export default class Site {
   /**
    * Register a preprocessor for some extensions
    */
-  preprocess(extensions: string[], preprocessor) {
+  preprocess(extensions: string[], preprocessor: Processor) {
     extensions.forEach((extension) => {
       const preprocessors = this.preprocessors.get(extension) || [];
       preprocessors.push(preprocessor);
@@ -185,7 +185,7 @@ export default class Site {
   /**
    * Register a processor for some extensions
    */
-  process(extensions: string[], processor) {
+  process(extensions: string[], processor: Processor) {
     extensions.forEach((extension) => {
       const processors = this.processors.get(extension) || [];
       processors.push(processor);
@@ -197,14 +197,14 @@ export default class Site {
   /**
    * Register a template filter
    */
-  filter(name: string, filter: Function, async = false) {
+  filter(name: string, filter: (...args: unknown[]) => unknown, async = false) {
     return this.helper(name, filter, { type: "filter", async });
   }
 
   /**
    * Register a template helper
    */
-  helper(name: string, fn: Function, options: HelperOptions) {
+  helper(name: string, fn: (...args: unknown[]) => unknown, options: HelperOptions) {
     this.helpers.set(name, [fn, options]);
 
     for (const engine of this.engines.values()) {

@@ -1,7 +1,10 @@
 import Site from "./site.ts";
+import {Page} from "./filesystem.ts";
 
 /** Command executed by scripts */
-export type Command = string | Function | Command[];
+export type Command = string | ((site: Site) => unknown) | Command[];
+
+export type Processor = (page: Page, site: Site) => void;
 
 /** Available options for a site */
 export interface SiteOptions {
@@ -38,7 +41,7 @@ export type Loader = (path: string) => Promise<Record<string, unknown>>;
 /** The .data object of a Page */
 export interface Data {
   tags?: string | string[];
-  url?: string | Function;
+  url?: string | ((page: Page) => string);
   draft?: boolean;
   renderOrder?: number;
   content?: unknown;

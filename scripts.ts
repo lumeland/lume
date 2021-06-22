@@ -55,7 +55,7 @@ export default class Scripts {
     return this.#runCommand(options, name);
   }
 
-  async #runFunction(fn: Function): Promise<boolean> {
+  async #runFunction(fn: (site: Site) => unknown): Promise<boolean> {
     if (fn.name && this.site.options.verbose > 0) {
       console.log(gray(`⚡️ ${fn.name}()`));
     }

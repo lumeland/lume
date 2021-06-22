@@ -90,10 +90,10 @@ export function normalizePath(path: string): string {
   return SEP === "/" ? path : path.replaceAll(SEP, "/");
 }
 
-export function searchByExtension(
+export function searchByExtension<Type>(
   path: string,
-  extensions: Map<string, unknown>,
-): undefined | [string, unknown] {
+  extensions: Map<string, Type>,
+): undefined | [string, Type] {
   for (const [key, value] of extensions) {
     if (path.endsWith(key)) {
       return [key, value];
