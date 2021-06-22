@@ -8,17 +8,18 @@ import {
   normalizePath,
   searchByExtension,
 } from "./utils.ts";
+import { Loader, Data } from "./types.ts";
 
 export default class Source {
   site: Site;
   root = new Directory({ path: "/" });
 
-  data = new Map();
-  pages = new Map();
-  staticFiles = new Map();
-  assets = new Set();
-  ignored = new Set();
-  #cache = new Map();
+  data: Map<string, Loader> = new Map();
+  pages: Map<string, Loader> = new Map();
+  staticFiles: Map<string, string> = new Map();
+  assets: Set<string> = new Set();
+  ignored: Set<string> = new Set();
+  #cache: Map<string, Data> = new Map();
 
   constructor(site: Site) {
     this.site = site;
@@ -116,7 +117,7 @@ export default class Source {
 
     return concurrent(
       Deno.readDir(path),
-      (entry) => this.#loadEntry(directory, entry),
+      (entry: Deno.DirEntry) => this.#loadEntry(directory, entry),
     );
   }
 
@@ -243,8 +244,10 @@ export default class Source {
 
     const data = await this.load(fullPath, loader);
 
+    const page = new Page(src);
+
     if (!data.date) {
-      data.date = getDate(src, dest);
+      data.date = getDate(page);
     } else if (!(data.date instanceof Date)) {
       throw new Exception(
         'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
@@ -252,7 +255,6 @@ export default class Source {
       );
     }
 
-    const page = new Page(src);
     page.data = data;
 
     if (this.assets.has(page.dest.ext)) {
@@ -271,7 +273,7 @@ export default class Source {
   /**
    * Load a _data.* file and return the content
    */
-  #loadData(path) {
+  #loadData(path: string) {
     const result = searchByExtension(path, this.data);
 
     if (result) {
@@ -283,7 +285,7 @@ export default class Source {
   /**
    * Load a _data directory and return the content of all files
    */
-  async #loadDataDirectory(path) {
+  async #loadDataDirectory(path: string) {
     const data = {};
 
     for (const entry of Deno.readDirSync(this.site.src(path))) {
@@ -296,7 +298,7 @@ export default class Source {
   /**
    * Load a data file inside a _data directory
    */
-  async #loadDataDirectoryEntry(path, entry, data) {
+  async #loadDataDirectoryEntry(path: string, entry: Deno.DirEntry, data: Record<string, unknown>) {
     if (
       entry.isSymlink ||
       entry.name.startsWith(".") || entry.name.startsWith("_")
@@ -323,7 +325,7 @@ export default class Source {
   /**
    * Load a file and save the content in the cache
    */
-  load(path, loader) {
+  load(path: string, loader: Loader): Data {
     try {
       if (!this.#cache.has(path)) {
         this.#cache.set(path, loader(path));
@@ -336,7 +338,8 @@ export default class Source {
   }
 }
 
-function getDate(src, dest) {
+function getDate(page: Page) {
+  const { src, dest} = page;
   const fileName = basename(src.path);
 
   const dateInPath = fileName.match(
