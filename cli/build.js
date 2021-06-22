@@ -115,7 +115,7 @@ export async function run(args) {
       }
 
       event.paths.forEach((path) =>
-        changes.add(join("/", relative(site.src(), path)))
+        changes.add(join("./", relative(site.src(), path)))
       );
 
       // Debounce
