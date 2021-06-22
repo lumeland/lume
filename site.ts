@@ -485,15 +485,18 @@ export default class Site {
       }
 
       // Render all pages
-      for (const page of pages) {
-        try {
-          this.metrics.start("Render", page);
-          page.content = await this.#renderPage(page);
-          this.metrics.end("Render", page);
-        } catch (err) {
-          throw new Exception("Error rendering this page", { page }, err);
-        }
-      }
+      await concurrent(
+        pages,
+        async (page) => {
+          try {
+            this.metrics.start("Render", page);
+            page.content = await this.#renderPage(page);
+            this.metrics.end("Render", page);
+          } catch (err) {
+            throw new Exception("Error rendering this page", { page }, err);
+          }
+        },
+      );
     }
 
     await this.dispatchEvent({ type: "afterRender" });

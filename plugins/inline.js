@@ -46,17 +46,15 @@ export default function (userOptions = {}) {
       }
     }
 
-    async function getContent(path, asData = false) {
+    function getContent(path, asData = false) {
       // Ensure the path starts with "/"
       path = posix.join("/", path);
 
-      if (cache.has(path)) {
-        return cache.get(path);
+      if (!cache.has(path)) {
+        cache.set(path, readContent(path, asData));
       }
 
-      const content = await readContent(path, asData);
-      cache.set(path, content);
-      return content;
+      return cache.get(path);
     }
 
     async function readContent(path, asData) {
