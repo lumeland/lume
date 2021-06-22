@@ -18,6 +18,7 @@ const defaults = {
   cwd: Deno.cwd(),
   src: "./",
   dest: "./_site",
+  includes: "_includes",
   dev: false,
   metrics: false,
   prettyUrls: true,
@@ -219,7 +220,7 @@ export default class Site {
    * Copy static files or directories without processing
    */
   copy(from, to = from) {
-    this.source.staticFiles.set(join("/", from), join("/", to));
+    this.source.staticFiles.set(join("./", from), join("/", to));
     return this;
   }
 
@@ -598,7 +599,7 @@ export default class Site {
         );
       }
 
-      const layoutPath = this.src("_includes", layout);
+      const layoutPath = this.src(this.options.includes, layout);
       const layoutData = await this.source.load(layoutPath, result[1]);
       const engine = this.#getEngine(layout, layoutData.templateEngine);
 
