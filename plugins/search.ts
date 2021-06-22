@@ -1,5 +1,5 @@
-import Search from "../helpers/search.js";
-import paginate from "../helpers/paginate.js";
+import Search from "../helpers/search.ts";
+import paginate from "../helpers/paginate.ts";
 
 export default function () {
   return (site) => {

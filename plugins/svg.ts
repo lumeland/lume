@@ -1,4 +1,4 @@
-import { optimize } from "../deps/svgo.js";
+import { optimize } from "../deps/svgo.ts";
 import { merge } from "../utils.ts";
 
 // Default options

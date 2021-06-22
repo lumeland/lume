@@ -1,8 +1,8 @@
 import { parse } from "../deps/flags.ts";
-import { server } from "../server.js";
+import { server } from "../server.ts";
 import { brightGreen, gray } from "../deps/colors.ts";
 import { join, relative } from "../deps/path.ts";
-import { buildSite, printError, validateArgsCount } from "./utils.js";
+import { buildSite, printError, validateArgsCount } from "./utils.ts";
 
 export const HELP = `
 ${brightGreen("lume build")}: build the site and optionally serve it

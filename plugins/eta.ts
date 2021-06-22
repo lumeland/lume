@@ -1,5 +1,5 @@
-import Eta from "../engines/eta.js";
-import loader from "../loaders/text.js";
+import Eta from "../engines/eta.ts";
+import loader from "../loaders/text.ts";
 import { merge } from "../utils.ts";
 
 // Default options

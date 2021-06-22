@@ -1,10 +1,10 @@
 import { parse } from "./deps/flags.ts";
 import { bold, brightGreen, red } from "./deps/colors.ts";
-import * as upgrade from "./cli/upgrade.js";
-import * as init from "./cli/init.js";
-import * as build from "./cli/build.js";
-import * as run from "./cli/run.js";
-import { getCurrentVersion, printError } from "./cli/utils.js";
+import * as upgrade from "./cli/upgrade.ts";
+import * as init from "./cli/init.ts";
+import * as build from "./cli/build.ts";
+import * as run from "./cli/run.ts";
+import { getCurrentVersion, printError } from "./cli/utils.ts";
 
 const HELP = `
 Docs: https://lumeland.github.io/

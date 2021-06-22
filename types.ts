@@ -27,6 +27,7 @@ export interface SiteOptions {
 /** Build event */
 export interface Event {
   type: string;
+  files?: Set<string>
 }
 
 /** A generical Lume plugin */
@@ -47,6 +48,7 @@ export interface Data {
   content?: unknown;
   layout?: string;
   templateEngine?: string | string[];
+  [index: string]: unknown
 }
 
 /** The .src object of a Page or Directory */

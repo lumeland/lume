@@ -1,4 +1,4 @@
-import yaml from "../loaders/yaml.js";
+import yaml from "../loaders/yaml.ts";
 import { merge } from "../utils.ts";
 
 // Default options

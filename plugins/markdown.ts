@@ -3,9 +3,9 @@ import {
   markdownItAttrs,
   markdownItDeflist,
   markdownItReplaceLink,
-} from "../deps/markdown_it.js";
-import loader from "../loaders/text.js";
-import Markdown from "../engines/markdown.js";
+} from "../deps/markdown_it.ts";
+import loader from "../loaders/text.ts";
+import Markdown from "../engines/markdown.ts";
 import { merge } from "../utils.ts";
 
 // Default options

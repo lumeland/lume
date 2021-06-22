@@ -1,4 +1,4 @@
-import json from "../loaders/json.js";
+import json from "../loaders/json.ts";
 
 export default function () {
   return (site) => {

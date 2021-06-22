@@ -26,7 +26,7 @@ export default function (userOptions = {}) {
       for (const [path, content] of Object.entries(files)) {
         if (path.endsWith(".js")) {
           file.content = content;
-          file.dest.ext = ".js";
+          file.dest.ext = ".ts";
           continue;
         }
 

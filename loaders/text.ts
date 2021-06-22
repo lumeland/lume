@@ -1,6 +1,7 @@
-import { parseFrontmatter } from "./yaml.js";
+import { Data } from "../types.ts";
+import { parseFrontmatter } from "./yaml.ts";
 
-export default async function (path: string): Promise<Record<string, unknown>> {
+export default async function (path: string): Promise<Data> {
   const content = await Deno.readTextFile(path);
   return parseFrontmatter(content);
 }

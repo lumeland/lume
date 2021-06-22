@@ -226,7 +226,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   to override the corresponding `prettyUrls` and `slugifyUrls` site options
   in particular pages. [#95]
 - `import_map.json` to the installation process. This allows to import Lume
-  in the `_config.js` file with `import lume from "lume/mod.js";`.
+  in the `_config.js` file with `import lume from "lume/mod.ts";`.
 - New command `lume install` to install Lume easily using the import map.
 - New script `ci.js` to execute the CLI in a CI environment
   (without installing it or defining the import map).

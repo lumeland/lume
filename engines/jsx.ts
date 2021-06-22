@@ -1,8 +1,8 @@
-import { React, ReactDOMServer } from "../deps/react.js";
+import { React, ReactDOMServer } from "../deps/react.ts";
 
 window.React ||= React;
 
-import Module from "./module.js";
+import Module from "./module.ts";
 
 export default class Jsx extends Module {
   async render(content, data) {

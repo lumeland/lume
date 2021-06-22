@@ -1,5 +1,5 @@
-import JsxEngine from "../engines/jsx.js";
-import loader from "../loaders/module.js";
+import JsxEngine from "../engines/jsx.ts";
+import loader from "../loaders/module.ts";
 import { merge } from "../utils.ts";
 
 // Default options

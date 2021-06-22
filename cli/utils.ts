@@ -1,5 +1,5 @@
 import { existsSync } from "../deps/fs.ts";
-import lume from "../mod.js";
+import lume from "../mod.ts";
 import { join, resolve, toFileUrl } from "../deps/path.ts";
 import { bold, brightGreen, dim, red } from "../deps/colors.ts";
 

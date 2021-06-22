@@ -1,6 +1,6 @@
 import { brightGreen } from "../deps/colors.ts";
 import { parse } from "../deps/flags.ts";
-import { buildSite, validateArgsCount } from "./utils.js";
+import { buildSite, validateArgsCount } from "./utils.ts";
 
 export const HELP = `
 ${brightGreen("lume run")}: run a script from the lume config

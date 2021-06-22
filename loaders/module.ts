@@ -1,7 +1,9 @@
-export default async function (path) {
+import { Data } from "../types.ts";
+
+export default async function (path: string): Promise<Data> {
   const hash = Date.now();
-  const mod = await import(`file://${path}#${hash}`);
-  const data = {};
+  const mod: Record<string, unknown> = await import(`file://${path}#${hash}`);
+  const data: Data = {};
 
   for (const [name, value] of Object.entries(mod)) {
     if (name === "default") {

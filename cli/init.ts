@@ -1,7 +1,7 @@
 import { posix } from "../deps/path.ts";
 import { parse } from "../deps/flags.ts";
 import { brightGreen } from "../deps/colors.ts";
-import { validateArgsCount } from "./utils.js";
+import { validateArgsCount } from "./utils.ts";
 
 export const HELP = `
 ${brightGreen("lume init")}: create a config file for a new site

@@ -1,7 +1,7 @@
 import { parse } from "../deps/flags.ts";
 import { encode } from "../deps/base64.ts";
 import { brightGreen, gray } from "../deps/colors.ts";
-import { getCurrentVersion, validateArgsCount } from "./utils.js";
+import { getCurrentVersion, validateArgsCount } from "./utils.ts";
 
 export const HELP = `
 ${brightGreen("lume upgrade")}: upgrade your lume install to the latest version

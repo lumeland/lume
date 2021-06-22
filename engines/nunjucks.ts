@@ -1,5 +1,5 @@
-import nunjucks from "../deps/nunjucks.js";
-import TemplateEngine from "./template_engine.js";
+import nunjucks from "../deps/nunjucks.ts";
+import TemplateEngine from "./template_engine.ts";
 
 export default class Nunjucks extends TemplateEngine {
   cache = new Map();
