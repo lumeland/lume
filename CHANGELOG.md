@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Added
+- New `-w, --watch` option to watch changes without starting a web server. [#109]
+
 ### Changed
 - Render pages in parallel, reducing the build time for large sites.
 
@@ -909,6 +912,7 @@ The first version.
 [#105]: https://github.com/lumeland/lume/issues/105
 [#107]: https://github.com/lumeland/lume/issues/107
 [#108]: https://github.com/lumeland/lume/issues/108
+[#109]: https://github.com/lumeland/lume/issues/109
 [#110]: https://github.com/lumeland/lume/issues/110
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v0.23.3...HEAD

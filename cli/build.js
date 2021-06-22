@@ -20,9 +20,10 @@ OPTIONS:
         --metrics [<file>]  show the performance metrics or save them in a file
         --verbose  <level>  different level of details (0/1/2)  Default: 1
 
-    -s, --serve             start a live-reloading web server
+    -s, --serve             start a live-reloading web server and watch changes
     -p, --port     <port>   the port where the server runs      Default: 3000
     -o, --open              open the site in the browser
+    -w, --watch             build and watch changes
 `;
 
 export async function run(args) {
@@ -37,8 +38,8 @@ export async function run(args) {
       "verbose",
       "port",
     ],
-    boolean: ["dev", "serve", "open"],
-    alias: { dev: "d", serve: "s", port: "p", open: "o" },
+    boolean: ["dev", "serve", "open", "watch"],
+    alias: { dev: "d", serve: "s", port: "p", open: "o", watch: "w" },
     ["--"]: true,
     unknown(option) {
       if (option.startsWith("-")) {
@@ -74,7 +75,7 @@ export async function run(args) {
     }
   }
 
-  if (!options.serve) {
+  if (!options.serve && !options.watch) {
     return;
   }
 
@@ -82,7 +83,10 @@ export async function run(args) {
     // Disable metrics for the watcher
     site.options.metrics = false;
 
-    await server(site);
+    if (options.serve) {
+      await server(site);
+    }
+
     const watcher = Deno.watchFs(site.src());
     const changes = new Set();
     console.log("Watching for changes...");
