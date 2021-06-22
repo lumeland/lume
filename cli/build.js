@@ -87,8 +87,7 @@ export async function run(args) {
       await server(site);
     }
 
-    const sources = [...site.source.staticFiles].map(x => site.src(x[0]));
-    const watcher = Deno.watchFs([site.src(), ...sources]);
+    const watcher = Deno.watchFs(site.src());
     const changes = new Set();
     console.log("Watching for changes...");
 
@@ -115,7 +114,7 @@ export async function run(args) {
       }
 
       event.paths.forEach((path) =>
-        changes.add(join("./", relative(site.src(), path)))
+        changes.add(join("/", relative(site.src(), path)))
       );
 
       // Debounce
