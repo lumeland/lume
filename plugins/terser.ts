@@ -56,7 +56,7 @@ export default function (userOptions = {}) {
     }
 
     async function filter(code) {
-      const output = await minify(code, terserOptions);
+      const output = await minify(code, { ...terserOptions, sourceMap: false });
       return output.code;
     }
   };

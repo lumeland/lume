@@ -45,9 +45,10 @@ OPTIONS:
         --metrics [<file>]  show the performance metrics or save them in a file
         --verbose  <level>  different level of details (0/1/2)  Default: 1
 
-    -s, --serve             start a live-reloading web server
+    -s, --serve             start a live-reloading web server and watch changes
     -p, --port     <port>   the port where the server runs      Default: 3000
     -o, --open              open the site in the browser
+    -w, --watch             build and watch changes
 `;
 
 let debugErrors = false;
