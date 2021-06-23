@@ -1,6 +1,11 @@
 import Site from "./site.ts";
 import { Page } from "./filesystem.ts";
 
+/** User options */
+export type UserOptions<Type> = {
+  [Property in keyof Type]+?: Type[Property]
+}
+
 /** Command executed by scripts */
 export type Command = string | ((site: Site) => unknown) | Command[];
 
