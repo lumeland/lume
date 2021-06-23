@@ -29,13 +29,12 @@ export default function (userOptions = {}) {
       if (options.sourceMap) {
         terserOptions.sourceMap = {
           filename,
-          // Filename is path, so just need basename
           url: basename(filename) + ".map",
         };
       }
 
       try {
-        const output = await minify(content, terserOptions);
+        const output = await minify({ [filename]: content }, terserOptions);
         file.content = output.code;
 
         if (output.map) {
