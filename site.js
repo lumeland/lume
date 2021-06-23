@@ -18,6 +18,7 @@ const defaults = {
   cwd: Deno.cwd(),
   src: "./",
   dest: "./_site",
+  includes: "_includes",
   dev: false,
   metrics: false,
   prettyUrls: true,
@@ -65,6 +66,13 @@ export default class Site {
    */
   dest(...path) {
     return join(this.options.cwd, this.options.dest, ...path);
+  }
+
+  /**
+   * Returns the includes path
+   */
+  includes(...path) {
+    return this.src(this.options.includes, ...path);
   }
 
   /**
@@ -598,7 +606,7 @@ export default class Site {
         );
       }
 
-      const layoutPath = this.src("_includes", layout);
+      const layoutPath = this.includes(layout);
       const layoutData = await this.source.load(layoutPath, result[1]);
       const engine = this.#getEngine(layout, layoutData.templateEngine);
 
