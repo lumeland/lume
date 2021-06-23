@@ -72,7 +72,7 @@ export function createSlugifier(options) {
     }
 
     return string
-      .replaceAll(/(?<=^|[/.])-+|-+(?=$|[/.])/g, "")
+      .replaceAll(/(?<=^|[/.])-+(?=[^/.-])|(?<=[^/.-])-+(?=$|[/.])/g, "")
       .replaceAll(/-+/g, separator);
   };
 }

@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - The async cache for the `inline` plugin.
 - Some preprocessors were executed several times. [#110]
+- The slugifier produced empty path segments
+  (for example, `x/@/y` now becomes `x/-/y` and not `x//y` as before).
 
 ## [0.23.3] - 2021-06-21
 ### Added
