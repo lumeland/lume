@@ -53,7 +53,7 @@ export default class Search {
     return (index <= 0) ? undefined : pages[index - 1];
   }
 
-  #searchPages(query: string, sort = "date"): Page[] {
+  #searchPages(query: string | string[], sort = "date"): Page[] {
     if (Array.isArray(query)) {
       query = query.join(" ");
     }
@@ -255,5 +255,5 @@ export function buildSort(sort: string | string[]) {
       `(a.data?.${key} == b.data?.${key} ? ${fn} : (a.data?.${key} ${operator} b.data?.${key} ? -1 : 1))`;
   });
 
-  return new Function("a", "b", `return ${fn}`);
+  return new Function("a", "b", `return ${fn}`) as (a: Page, b: Page) => number;
 }

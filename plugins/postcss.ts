@@ -5,6 +5,15 @@ import {
   postcssNesting,
 } from "../deps/postcss.ts";
 import { merge } from "../utils.ts";
+import Site from "../site.ts";
+import { Page } from "../filesystem.ts";
+
+interface Options {
+  extensions?: string[],
+  sourceMap?: boolean,
+  includes?: boolean | string,
+  plugins?: unknown[]
+}
 
 // Default options
 const defaults = {
@@ -17,8 +26,8 @@ const defaults = {
   ],
 };
 
-export default function (userOptions = {}) {
-  return (site) => {
+export default function (userOptions: Options = {}) {
+  return (site: Site) => {
     const options = merge({
       ...defaults,
       includes: site.src("_includes"),
@@ -38,7 +47,7 @@ export default function (userOptions = {}) {
     site.process(options.extensions, postCss);
     site.filter("postcss", filter, true);
 
-    async function postCss(page) {
+    async function postCss(page: Page) {
       const from = site.src(page.src.path + page.src.ext);
       const to = site.dest(page.dest.path + page.dest.ext);
       const map = options.sourceMap ? { inline: false } : undefined;
@@ -56,7 +65,7 @@ export default function (userOptions = {}) {
       }
     }
 
-    async function filter(code) {
+    async function filter(code: string) {
       const result = await runner.process(code, { from: undefined });
       return result.css;
     }

@@ -1,5 +1,5 @@
 import Site from "../site.ts";
-import { Data, HelperOptions } from "../types.ts";
+import { Data, Helper, HelperOptions } from "../types.ts";
 
 export default abstract class Engine {
   site: Site;
@@ -15,9 +15,10 @@ export default abstract class Engine {
     data: Data,
     filename: string,
   ): Promise<unknown>;
+
   abstract addHelper(
     name: string,
-    fn: (...args: unknown[]) => unknown,
+    fn: Helper,
     options: HelperOptions,
   ): void;
 }

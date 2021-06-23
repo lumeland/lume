@@ -16,7 +16,7 @@ export default class Pug extends Engine {
     site.addEventListener("beforeUpdate", () => this.cache.clear());
   }
 
-  render(content: unknown, data: Data, filename: string) {
+  render(content: string, data: Data, filename: string) {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,

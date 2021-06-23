@@ -99,7 +99,7 @@ export async function server(site) {
   }
 
   let timer = 0;
-  let socket;
+  let socket: WebSocket;
   const changes = new Set();
 
   async function handleSocket(req) {

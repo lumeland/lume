@@ -1,7 +1,7 @@
 import * as eta from "../deps/eta.ts";
 import Site from "../site.ts";
 import Engine from "./engine.ts";
-import { Data, HelperOptions } from "../types.ts";
+import { Data, Helper, HelperOptions } from "../types.ts";
 
 export default class Eta extends Engine {
   filters: Record<string, unknown> = {};
@@ -33,7 +33,7 @@ export default class Eta extends Engine {
 
   addHelper(
     name: string,
-    fn: (...args: unknown[]) => unknown,
+    fn: Helper,
     options: HelperOptions,
   ) {
     switch (options.type) {

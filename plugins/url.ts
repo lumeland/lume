@@ -1,7 +1,10 @@
+import Site from "../site.ts";
+import { Helper } from "../types.ts";
+
 export default function () {
-  return (site) => {
-    site.filter("url", url);
-    site.filter("htmlUrl", htmlUrl);
+  return (site: Site) => {
+    site.filter("url", url as Helper);
+    site.filter("htmlUrl", htmlUrl as Helper);
 
     function url(path = "/", absolute = false) {
       return typeof path === "string" ? site.url(path, absolute) : path;

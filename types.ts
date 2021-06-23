@@ -17,6 +17,24 @@ export interface CommandOptions {
 export type Processor = (page: Page, site: Site) => void;
 
 /** Available options for a site */
+export interface SiteUserOptions {
+  cwd?: string;
+  src?: string;
+  dest?: string;
+  dev?: boolean;
+  location?: URL | string;
+  metrics?: boolean;
+  prettyUrls?: boolean;
+  flags?: string[];
+  verbose?: 1 | 2 | 3;
+  server?: {
+    port?: number;
+    open?: boolean;
+    page404?: string;
+  };
+}
+
+/** Processed options for a site */
 export interface SiteOptions {
   cwd: string;
   src: string;
@@ -35,8 +53,9 @@ export interface SiteOptions {
 }
 
 /** A generic event */
+export type EventType = "beforeBuild" | "afterBuild" | "beforeUpdate" | "afterUpdate" | "afterRender" | "beforeSave";
 export interface Event {
-  type: string;
+  type: EventType;
   files?: string[];
 }
 

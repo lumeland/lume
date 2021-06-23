@@ -1,12 +1,14 @@
 import { posix } from "../deps/path.ts";
+import Site from "../site.ts";
+import { Page } from "../filesystem.ts";
 
 export default function () {
-  return (site) => {
+  return (site: Site) => {
     site.process([".html"], relativeUrls);
 
     const basePath = site.options.location.pathname;
 
-    function relativeUrls(page) {
+    function relativeUrls(page: Page) {
       const { document } = page;
       const from = posix.dirname(site.url(page.dest.path));
 
@@ -32,7 +34,7 @@ export default function () {
           "srcset",
           element.getAttribute("srcset").replace(
             srcsetUrlRegex,
-            (url) => relativeUrl(basePath, from, url),
+            (url: string) => relativeUrl(basePath, from, url),
           ),
         );
       });
@@ -42,7 +44,7 @@ export default function () {
           "imagesrcset",
           element.getAttribute("imagesrcset").replace(
             srcsetUrlRegex,
-            (url) => relativeUrl(basePath, from, url),
+            (url: string) => relativeUrl(basePath, from, url),
           ),
         );
       });
@@ -50,7 +52,7 @@ export default function () {
   };
 }
 
-function relativeUrl(basePath, from, to) {
+function relativeUrl(basePath: string, from: string, to: string) {
   if (ignore(to)) {
     return to;
   }
@@ -63,7 +65,7 @@ function relativeUrl(basePath, from, to) {
   return !relative || relative.startsWith("/") ? `.${relative}` : relative;
 }
 
-function ignore(url) {
+function ignore(url: string) {
   return !url ||
     url.startsWith("./") ||
     url.startsWith("../") ||

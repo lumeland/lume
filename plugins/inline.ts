@@ -1,6 +1,13 @@
 import { extname, posix, resolve } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
 import { Exception, merge, mimes } from "../utils.ts";
+import Site from "../site.ts";
+import { Page } from "../filesystem.ts";
+
+interface Options {
+  extensions?: string[],
+  attribute?: string,
+}
 
 // Default options
 const defaults = {
@@ -10,10 +17,10 @@ const defaults = {
 
 const cache = new Map();
 
-export default function (userOptions = {}) {
+export default function (userOptions: Options = {}) {
   const options = merge(defaults, userOptions);
 
-  return (site) => {
+  return (site: Site) => {
     site.process(options.extensions, inline);
 
     // Update cache
@@ -25,14 +32,14 @@ export default function (userOptions = {}) {
 
     const selector = `[${options.attribute}]`;
 
-    async function inline(page) {
+    async function inline(page: Page) {
       for (const element of page.document.querySelectorAll(selector)) {
         await runInline(page.data.url, element);
         element.removeAttribute(options.attribute);
       }
     }
 
-    function runInline(url, element) {
+    function runInline(url: string, element) {
       if (element.hasAttribute("href")) {
         return element.getAttribute("rel") === "stylesheet"
           ? inlineStyles(url, element)
@@ -46,7 +53,7 @@ export default function (userOptions = {}) {
       }
     }
 
-    function getContent(path, asData = false) {
+    function getContent(path: string, asData = false) {
       // Ensure the path starts with "/"
       path = posix.join("/", path);
 
@@ -57,7 +64,7 @@ export default function (userOptions = {}) {
       return cache.get(path);
     }
 
-    async function readContent(path, asData) {
+    async function readContent(path: string, asData: boolean) {
       const url = posix.join(
         "/",
         posix.relative(site.options.location.pathname, path),
@@ -88,7 +95,7 @@ export default function (userOptions = {}) {
       return `data:${mimes.get(ext)};base64,${encode(content)}`;
     }
 
-    async function inlineStyles(url, element) {
+    async function inlineStyles(url: string, element) {
       const path = posix.resolve(url, element.getAttribute("href"));
       const style = element.ownerDocument.createElement("style");
 
@@ -103,7 +110,7 @@ export default function (userOptions = {}) {
       }
     }
 
-    async function inlineScript(url, element) {
+    async function inlineScript(url: string, element) {
       const path = posix.resolve(url, element.getAttribute("src"));
 
       try {
@@ -117,7 +124,7 @@ export default function (userOptions = {}) {
       }
     }
 
-    async function inlineSrc(url, element) {
+    async function inlineSrc(url: string, element) {
       const path = resolve(url, element.getAttribute("src"));
       const ext = extname(path);
 
@@ -139,7 +146,7 @@ export default function (userOptions = {}) {
       }
     }
 
-    async function inlineHref(url, element) {
+    async function inlineHref(url: string, element) {
       const path = resolve(url, element.getAttribute("href"));
 
       try {

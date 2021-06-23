@@ -1,5 +1,15 @@
 import { posix } from "../deps/path.ts";
 import { merge } from "../utils.ts";
+import Site from "../site.ts";
+import { Page } from "../filesystem.ts";
+
+interface Options {
+  extensions?: string[],
+  lowercase?: boolean,
+  alphanumeric?: boolean,
+  separator?: string,
+  replace?: Record<string, string>,
+}
 
 // Default options
 const defaults = {
@@ -19,16 +29,16 @@ const defaults = {
   },
 };
 
-export default function (userOptions) {
+export default function (userOptions: Options) {
   const options = merge(defaults, userOptions);
   const slugify = createSlugifier(options);
 
-  return (site) => {
+  return (site: Site) => {
     site.filter("slugify", slugify);
     site.preprocess(options.extensions, slugifyUrls);
   };
 
-  function slugifyUrls(page) {
+  function slugifyUrls(page: Page) {
     const { dest } = page;
     const path = slugify(dest.path);
 
@@ -45,10 +55,10 @@ export default function (userOptions) {
   }
 }
 
-export function createSlugifier(options) {
+export function createSlugifier(options: Options) {
   const { lowercase, alphanumeric, separator, replace } = options;
 
-  return function (string) {
+  return function (string: string) {
     if (lowercase) {
       string = string.toLowerCase();
     }

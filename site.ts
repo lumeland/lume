@@ -21,12 +21,14 @@ import {
   CommandOptions,
   Event,
   EventListener,
+  EventType,
   Helper,
   HelperOptions,
   Loader,
   PluginSetup,
   Processor,
   SiteOptions,
+  SiteUserOptions,
 } from "./types.ts";
 
 const defaults: SiteOptions = {
@@ -61,7 +63,7 @@ export default class Site {
 
   #hashes = new Map();
 
-  constructor(options: Record<string, unknown> = {}) {
+  constructor(options: SiteUserOptions) {
     this.options = merge(defaults, options);
 
     this.options.location = (options.location instanceof URL)
@@ -91,8 +93,8 @@ export default class Site {
    * Adds an event
    */
   addEventListener(
-    type: string,
-    listener: ((event: Event) => unknown) | string,
+    type: EventType,
+    listener: EventListener | string,
   ) {
     const listeners = this.listeners.get(type) || new Set();
     listeners.add(listener);
@@ -358,7 +360,7 @@ export default class Site {
   /**
    * Returns the URL of a page
    */
-  url(path: string, absolute: boolean) {
+  url(path: string, absolute?: boolean) {
     if (
       path.startsWith("./") || path.startsWith("../") ||
       path.startsWith("?") || path.startsWith("#")

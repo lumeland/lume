@@ -1,17 +1,24 @@
+import Site from "../site.ts";
+import { Page } from "../filesystem.ts";
+
 export default function () {
-  return (site) => {
+  return (site: Site) => {
     site.process([".html"], basePath);
 
-    function fixPath(path) {
+    function fixPath(path: string) {
       return path.startsWith("/") ? site.url(path) : path;
     }
 
-    function basePath(page) {
+    function basePath(page: Page) {
       if (site.options.location.pathname === "/") {
         return;
       }
 
       const { document } = page;
+
+      if (!document) {
+        return;
+      }
 
       document.querySelectorAll("[href]").forEach((element) => {
         element.setAttribute(
@@ -35,7 +42,7 @@ export default function () {
           "srcset",
           element.getAttribute("srcset").replace(
             srcsetUrlRegex,
-            (url) => fixPath(url),
+            (url: string) => fixPath(url),
           ),
         );
       });
@@ -45,7 +52,7 @@ export default function () {
           "imagesrcset",
           element.getAttribute("imagesrcset").replace(
             srcsetUrlRegex,
-            (url) => fixPath(url),
+            (url: string) => fixPath(url),
           ),
         );
       });

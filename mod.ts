@@ -11,7 +11,7 @@ import search from "./plugins/search.ts";
 import yaml from "./plugins/yaml.ts";
 import { merge } from "./utils.ts";
 
-export default function (options = {}, pluginOptions = {}) {
+export default function (options = {}, pluginOptions = {}): Site {
   options = merge(options, getOptionsFromCli());
 
   const site = new Site(options);
