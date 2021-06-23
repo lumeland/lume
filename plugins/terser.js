@@ -21,12 +21,10 @@ export default function (userOptions = {}) {
     site.process(options.extensions, terser);
     site.filter("terser", filter, true);
 
-    // Options passed to terser
-    const terserOptions = { ...options.options };
-
     async function terser(file) {
-      const content = file.content;
       const filename = file.dest.path + file.dest.ext;
+      const content = file.content;
+      const terserOptions = { ...options.options };
 
       if (options.sourceMap) {
         terserOptions.sourceMap = {
@@ -56,7 +54,7 @@ export default function (userOptions = {}) {
     }
 
     async function filter(code) {
-      const output = await minify(code, { ...terserOptions, sourceMap: false });
+      const output = await minify(code, options.options);
       return output.code;
     }
   };
