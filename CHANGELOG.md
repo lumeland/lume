@@ -18,8 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - The async cache for the `inline` plugin.
 - Some preprocessors were executed several times. [#110]
-- The slugifier produced empty path segments
+- The `slugify_urls` plugin produced empty path segments
   (for example, `x/@/y` now becomes `x/-/y` and not `x//y` as before).
+- JavaScript source maps. [#114]
 
 ## [0.23.3] - 2021-06-21
 ### Added
@@ -917,6 +918,7 @@ The first version.
 [#108]: https://github.com/lumeland/lume/issues/108
 [#109]: https://github.com/lumeland/lume/issues/109
 [#110]: https://github.com/lumeland/lume/issues/110
+[#114]: https://github.com/lumeland/lume/issues/114
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v0.23.3...HEAD
 [0.23.3]: https://github.com/lumeland/lume/compare/v0.23.2...v0.23.3
