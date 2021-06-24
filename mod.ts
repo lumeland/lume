@@ -10,10 +10,10 @@ import nunjucks from "./plugins/nunjucks.ts";
 import search from "./plugins/search.ts";
 import yaml from "./plugins/yaml.ts";
 import { merge } from "./utils.ts";
-import { Optional, SiteOptions } from "./types.ts";
+import { SiteOptions } from "./types.ts";
 
 export default function (
-  options: Optional<SiteOptions> = {},
+  options: Partial<SiteOptions> = {},
   pluginOptions: Record<string, Record<string, unknown>> = {},
 ): Site {
   options = merge(options, getOptionsFromCli());
@@ -47,7 +47,7 @@ function getOptionsFromCli() {
     ["--"]: true,
   });
 
-  const overrides: Optional<SiteOptions> = {};
+  const overrides: Partial<SiteOptions> = {};
 
   if (options.root) {
     overrides.cwd = resolve(Deno.cwd(), options.root);

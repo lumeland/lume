@@ -8,7 +8,7 @@ import {
   normalizePath,
   searchByExtension,
 } from "./utils.ts";
-import { Data, Loader } from "./types.ts";
+import { Data, Loader, Src } from "./types.ts";
 
 export default class Source {
   site: Site;
@@ -19,7 +19,7 @@ export default class Source {
   staticFiles: Map<string, string> = new Map();
   assets: Set<string> = new Set();
   ignored: Set<string> = new Set();
-  #cache: Map<string, Data> = new Map();
+  #cache: Map<string, Promise<Data>> = new Map();
 
   constructor(site: Site) {
     this.site = site;
@@ -33,7 +33,7 @@ export default class Source {
     site.addEventListener("beforeUpdate", (ev) => {
       this.root.refreshCache();
 
-      for (const filename of ev.files) {
+      for (const filename of ev.files as string[]) {
         this.#cache.delete(site.src(filename));
       }
     });
@@ -137,14 +137,14 @@ export default class Source {
       const path = dirname(remain).split("/").filter((name) =>
         name && name !== "."
       );
-      let data = directory.data;
+      let data = directory.data as Data;
 
       for (const name of path) {
         if (!(name in data)) {
           data[name] = {};
         }
 
-        data = data[name];
+        data = data[name] as Data;
       }
 
       return await this.#loadDataDirectoryEntry(
@@ -231,7 +231,7 @@ export default class Source {
     }
 
     const info = await Deno.stat(fullPath);
-    const src = {
+    const src: Src = {
       path: path.slice(0, -ext.length),
       lastModified: info.mtime,
       created: info.birthtime,
@@ -276,6 +276,8 @@ export default class Source {
       const [, loader] = result;
       return this.load(this.site.src(path), loader);
     }
+
+    return {};
   }
 
   /**
@@ -325,13 +327,13 @@ export default class Source {
   /**
    * Load a file and save the content in the cache
    */
-  load(path: string, loader: Loader): Data {
+  load(path: string, loader: Loader): Promise<Data> {
     try {
       if (!this.#cache.has(path)) {
         this.#cache.set(path, loader(path));
       }
 
-      return this.#cache.get(path);
+      return this.#cache.get(path) as Promise<Data>;
     } catch (err) {
       throw new Exception("Couldn't load this file", { path }, err);
     }

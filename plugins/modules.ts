@@ -2,7 +2,6 @@ import Module from "../engines/module.ts";
 import loader from "../loaders/module.ts";
 import Site from "../site.ts";
 import { merge } from "../utils.ts";
-import { Optional } from "../types.ts";
 
 type Options = {
   extensions: {
@@ -19,7 +18,7 @@ const defaults: Options = {
   },
 };
 
-export default function (userOptions: Optional<Options>) {
+export default function (userOptions: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

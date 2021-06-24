@@ -72,7 +72,7 @@ export class Page extends Base {
 
     this.dest = {
       path: normalizePath(src.path),
-      ext: src.ext,
+      ext: src.ext || "",
     };
   }
 

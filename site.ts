@@ -19,6 +19,7 @@ import {
 import {
   Command,
   CommandOptions,
+  Data,
   Event,
   EventListener,
   EventType,
@@ -28,7 +29,6 @@ import {
   PluginSetup,
   Processor,
   SiteOptions,
-  SiteUserOptions,
 } from "./types.ts";
 
 const defaults: SiteOptions = {
@@ -63,12 +63,8 @@ export default class Site {
 
   #hashes = new Map();
 
-  constructor(options: SiteUserOptions) {
+  constructor(options: Partial<SiteOptions>) {
     this.options = merge(defaults, options);
-
-    this.options.location = (options.location instanceof URL)
-      ? options.location
-      : new URL(options.location || "http://localhost");
 
     this.source = new Source(this);
     this.scripts = new Scripts(this);
@@ -466,15 +462,15 @@ export default class Site {
 
       // Auto-generate pages
       for (const page of generators) {
-        const generator = await this.engines.get(".tmpl.js")
-          .render(
-            page.data.content,
-            {
-              ...page.data,
-              ...this.extraData,
-            },
-            this.src(page.src.path + page.src.ext),
-          );
+        const engine = this.engines.get(".tmpl.js") as Engine;
+        const generator = await engine.render(
+          page.data.content,
+          {
+            ...page.data,
+            ...this.extraData,
+          },
+          this.src(page.src.path + page.src.ext),
+        ) as Generator<Data, Data>;
 
         for await (const data of generator) {
           if (!data.content) {

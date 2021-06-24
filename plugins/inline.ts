@@ -3,7 +3,6 @@ import { encode } from "../deps/base64.ts";
 import { Exception, merge, mimes } from "../utils.ts";
 import Site from "../site.ts";
 import { Page } from "../filesystem.ts";
-import { Optional } from "../types.ts";
 
 interface Options {
   extensions: string[];
@@ -18,7 +17,7 @@ const defaults: Options = {
 
 const cache = new Map();
 
-export default function (userOptions: Optional<Options>) {
+export default function (userOptions: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

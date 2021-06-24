@@ -1,13 +1,6 @@
 import Site from "./site.ts";
 import { Page } from "./filesystem.ts";
 
-/** User options */
-export type Optional<Type> =
-  | {
-    [Property in keyof Type]+?: Type[Property];
-  }
-  | undefined;
-
 /** Command executed by scripts */
 export type Command = string | ((site: Site) => unknown) | Command[];
 
@@ -24,24 +17,6 @@ export interface CommandOptions {
 export type Processor = (page: Page, site: Site) => void;
 
 /** Available options for a site */
-export interface SiteUserOptions {
-  cwd?: string;
-  src?: string;
-  dest?: string;
-  dev?: boolean;
-  location?: URL | string;
-  metrics?: boolean;
-  prettyUrls?: boolean;
-  flags?: string[];
-  verbose?: 1 | 2 | 3;
-  server?: {
-    port?: number;
-    open?: boolean;
-    page404?: string;
-  };
-}
-
-/** Processed options for a site */
 export interface SiteOptions {
   cwd: string;
   src: string;
@@ -52,11 +27,13 @@ export interface SiteOptions {
   prettyUrls: boolean;
   flags: string[];
   verbose: 1 | 2 | 3;
-  server: {
-    port: number;
-    open: boolean;
-    page404: string;
-  };
+  server: ServerOptions;
+}
+
+export interface ServerOptions {
+  port: number;
+  open: boolean;
+  page404: string;
 }
 
 /** A generic event */
@@ -82,7 +59,7 @@ export type Plugin = ((options: unknown) => PluginSetup);
 export type PluginSetup = (site: Site) => void;
 
 /** A loader */
-export type Loader = (path: string) => Promise<Record<string, unknown>>;
+export type Loader = (path: string) => Promise<Data>;
 
 /** The data object of a page or _data file */
 export interface Data {
@@ -105,14 +82,14 @@ export interface MergedData extends Data {
 export interface Src {
   path: string;
   ext?: string;
-  lastModified?: Date;
-  created?: Date;
+  lastModified?: Date | null;
+  created?: Date | null;
 }
 
 /** The .dest object of a Page */
 export interface Dest {
   path: string;
-  ext?: string;
+  ext: string;
   hash?: string;
 }
 

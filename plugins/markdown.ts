@@ -8,7 +8,7 @@ import loader from "../loaders/text.ts";
 import Markdown from "../engines/markdown.ts";
 import { merge } from "../utils.ts";
 import Site from "../site.ts";
-import { Helper, Optional } from "../types.ts";
+import { Helper } from "../types.ts";
 
 interface Options {
   extensions: string[];
@@ -40,7 +40,7 @@ const defaults: Options = {
   ],
 };
 
-export default function (userOptions: Optional<Options>) {
+export default function (userOptions: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return function (site: Site) {

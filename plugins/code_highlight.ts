@@ -2,7 +2,6 @@ import hljs from "../deps/highlight.ts";
 import { merge } from "../utils.ts";
 import Site from "../site.ts";
 import { Page } from "../filesystem.ts";
-import { Optional } from "../types.ts";
 
 interface Options {
   extensions: string[];
@@ -31,7 +30,7 @@ const defaults: Options = {
   },
 };
 
-export default function (userOptions: Optional<Options>) {
+export default function (userOptions: Partial<Options>) {
   const options = merge(defaults, userOptions);
   hljs.configure(options.options);
 
@@ -39,6 +38,10 @@ export default function (userOptions: Optional<Options>) {
     site.process([".html"], codeHighlight);
 
     function codeHighlight(page: Page) {
+      if (!page.document) {
+        return;
+      }
+
       page.document.querySelectorAll(options.options.cssSelector)
         .forEach((element) => hljs.highlightElement(element));
     }

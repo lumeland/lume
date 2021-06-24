@@ -2,7 +2,6 @@ import { optimize } from "../deps/svgo.ts";
 import { merge } from "../utils.ts";
 import Site from "../site.ts";
 import { Page } from "../filesystem.ts";
-import { Optional } from "../types.ts";
 
 interface Options {
   extensions: string[];
@@ -17,7 +16,7 @@ const defaults: Options = {
   options: {},
 };
 
-export default function (userOptions: Optional<Options>) {
+export default function (userOptions: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

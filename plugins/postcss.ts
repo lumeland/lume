@@ -7,7 +7,7 @@ import {
 import { merge } from "../utils.ts";
 import Site from "../site.ts";
 import { Page } from "../filesystem.ts";
-import { Helper, Optional } from "../types.ts";
+import { Helper } from "../types.ts";
 
 interface Options {
   extensions: string[];
@@ -27,7 +27,7 @@ const defaults: Options = {
   ],
 };
 
-export default function (userOptions: Optional<Options>) {
+export default function (userOptions: Partial<Options>) {
   return (site: Site) => {
     const options = merge({
       ...defaults,
@@ -49,6 +49,10 @@ export default function (userOptions: Optional<Options>) {
     site.filter("postcss", filter as Helper, true);
 
     async function postCss(page: Page) {
+      if (typeof page.content !== "string") {
+        return;
+      }
+
       const from = site.src(page.src.path + page.src.ext);
       const to = site.dest(page.dest.path + page.dest.ext);
       const map = options.sourceMap ? { inline: false } : undefined;

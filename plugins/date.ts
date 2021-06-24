@@ -1,7 +1,7 @@
 import { format } from "../deps/date.ts";
 import { merge } from "../utils.ts";
 import Site from "../site.ts";
-import { Helper, Optional } from "../types.ts";
+import { Helper } from "../types.ts";
 
 const formats = new Map([
   ["ATOM", "yyyy-MM-dd'T'HH:mm:ssXXX"],
@@ -23,7 +23,7 @@ const defaults: Options = {
   formats: {},
 };
 
-export default function (userOptions: Optional<Options>) {
+export default function (userOptions: Partial<Options>) {
   const options = merge(defaults, userOptions);
   const defaultLocale = Object.keys(options.locales).shift();
 

@@ -1,6 +1,5 @@
 import { DOMParser, HTMLDocument } from "./deps/dom.ts";
 import { SEP } from "./deps/path.ts";
-import { Optional } from "./types.ts";
 
 /**
  * Helper to run concurrently a function for all elements of a Iterable.
@@ -70,7 +69,7 @@ export const mimes = new Map([
  */
 export function merge<Type>(
   defaults: Type,
-  user: Optional<Type>,
+  user: Partial<Type>,
 ): Type {
   const merged = { ...defaults };
 

@@ -59,9 +59,10 @@ export default class Search {
     }
 
     const id = JSON.stringify([query, sort]);
+    const cached = this.#cache.get(id);
 
-    if (this.#cache.has(id)) {
-      return [...this.#cache.get(id)];
+    if (cached) {
+      return [...cached];
     }
 
     const filter = buildFilter(query);
