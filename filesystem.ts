@@ -1,19 +1,19 @@
 import { join } from "./deps/path.ts";
 import { documentToString, normalizePath, stringToDocument } from "./utils.ts";
 import { HTMLDocument } from "./deps/dom.ts";
-import { Data, Dest, Src } from "./types.ts";
+import { Data, Dest, MergedData, Src } from "./types.ts";
 
 class Base {
   src: Src;
   parent: Directory | null = null;
   #data: Data = {};
-  #cache: Data | null = null;
+  #cache: MergedData | null = null;
 
   constructor(src: Src) {
     this.src = src;
   }
 
-  get data(): Data {
+  get data(): MergedData {
     if (!this.#cache) {
       this.#cache = this.#getMergedData();
     }
@@ -25,7 +25,7 @@ class Base {
     this.#data = data;
   }
 
-  #getMergedData(): Data {
+  #getMergedData(): MergedData {
     let data = { ...this.#data };
     let tags: string[] = [];
 
@@ -47,7 +47,7 @@ class Base {
 
     data.tags = [...new Set(tags)];
 
-    return data;
+    return data as MergedData;
   }
 
   refreshCache() {

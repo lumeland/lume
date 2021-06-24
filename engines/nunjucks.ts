@@ -4,6 +4,7 @@ import Engine from "./engine.ts";
 import { Data, HelperOptions } from "../types.ts";
 
 export default class Nunjucks extends Engine {
+  engine: unknown;
   cache = new Map();
 
   constructor(site: Site, options: Record<string, unknown>) {
@@ -37,7 +38,7 @@ export default class Nunjucks extends Engine {
     }
 
     return new Promise((resolve, reject) => {
-      this.cache.get(filename).render(data, (err, result) => {
+      this.cache.get(filename).render(data, (err: unknown, result: string) => {
         if (err) {
           reject(err);
         } else {

@@ -1,5 +1,6 @@
 import { DOMParser, HTMLDocument } from "./deps/dom.ts";
 import { SEP } from "./deps/path.ts";
+import { Optional } from "./types.ts";
 
 /**
  * Helper to run concurrently a function for all elements of a Iterable.
@@ -69,7 +70,7 @@ export const mimes = new Map([
  */
 export function merge<Type>(
   defaults: Type,
-  user: Record<string, unknown>,
+  user: Optional<Type>,
 ): Type {
   const merged = { ...defaults };
 
@@ -150,8 +151,14 @@ const parser = new DOMParser();
 /**
  * Parse a string with HTML code and return a HTMLDocument
  */
-export function stringToDocument(string: string): HTMLDocument | null {
-  return parser.parseFromString(string, "text/html");
+export function stringToDocument(string: string): HTMLDocument {
+  const document = parser.parseFromString(string, "text/html");
+
+  if (!document) {
+    throw new Error("Unable to parse the HTML code");
+  }
+
+  return document;
 }
 
 /**

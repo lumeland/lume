@@ -2,9 +2,11 @@ import Site from "./site.ts";
 import { Page } from "./filesystem.ts";
 
 /** User options */
-export type UserOptions<Type> = {
-  [Property in keyof Type]+?: Type[Property]
-}
+export type Optional<Type> =
+  | {
+    [Property in keyof Type]+?: Type[Property];
+  }
+  | undefined;
 
 /** Command executed by scripts */
 export type Command = string | ((site: Site) => unknown) | Command[];
@@ -58,7 +60,13 @@ export interface SiteOptions {
 }
 
 /** A generic event */
-export type EventType = "beforeBuild" | "afterBuild" | "beforeUpdate" | "afterUpdate" | "afterRender" | "beforeSave";
+export type EventType =
+  | "beforeBuild"
+  | "afterBuild"
+  | "beforeUpdate"
+  | "afterUpdate"
+  | "afterRender"
+  | "beforeSave";
 export interface Event {
   type: EventType;
   files?: string[];
@@ -76,7 +84,7 @@ export type PluginSetup = (site: Site) => void;
 /** A loader */
 export type Loader = (path: string) => Promise<Record<string, unknown>>;
 
-/** The data object of a Page */
+/** The data object of a page or _data file */
 export interface Data {
   tags?: string | string[];
   url?: string | ((page: Page) => string);
@@ -86,6 +94,11 @@ export interface Data {
   layout?: string;
   templateEngine?: string | string[];
   [index: string]: unknown;
+}
+
+/** The merged data object of a page or directory */
+export interface MergedData extends Data {
+  tags: string[];
 }
 
 /** The .src object of a Page or Directory */

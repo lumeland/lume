@@ -1,24 +1,24 @@
 import json from "../loaders/json.ts";
 import Site from "../site.ts";
 import { merge } from "../utils.ts";
-import { UserOptions } from "../types.ts";
+import { Optional } from "../types.ts";
 
 type Options = {
   extensions: {
-    data: string[],
-    pages: string[],
-  }
-}
+    data: string[];
+    pages: string[];
+  };
+};
 
 // Default options
 const defaults: Options = {
   extensions: {
     data: [".json"],
-    pages: [".tmpl.json"]
-  }
+    pages: [".tmpl.json"],
+  },
 };
 
-export default function (userOptions: UserOptions<Options>) {
+export default function (userOptions: Optional<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

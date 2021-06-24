@@ -3,21 +3,22 @@ import { encode } from "../deps/base64.ts";
 import { Exception, merge, mimes } from "../utils.ts";
 import Site from "../site.ts";
 import { Page } from "../filesystem.ts";
+import { Optional } from "../types.ts";
 
 interface Options {
-  extensions?: string[],
-  attribute?: string,
+  extensions: string[];
+  attribute: string;
 }
 
 // Default options
-const defaults = {
+const defaults: Options = {
   extensions: [".html"],
   attribute: "inline",
 };
 
 const cache = new Map();
 
-export default function (userOptions: Options = {}) {
+export default function (userOptions: Optional<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

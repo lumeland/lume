@@ -2,22 +2,26 @@ import NunjucksEngine from "../engines/nunjucks.ts";
 import loader from "../loaders/text.ts";
 import { merge } from "../utils.ts";
 import Site from "../site.ts";
-import { Helper } from "../types.ts";
+import { Helper, Optional } from "../types.ts";
 
 interface Options {
-  extensions?: string[],
-  options?: Record<string, unknown>,
-  plugins?: Record<string, unknown>,
+  extensions: string[];
+  options: {
+    [index: string]: string;
+  };
+  plugins: {
+    [index: string]: unknown;
+  };
 }
 
 // Default options
-const defaults = {
+const defaults: Options = {
   extensions: [".njk"],
   options: {},
   plugins: {},
 };
 
-export default function (userOptions: Options) {
+export default function (userOptions: Optional<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -32,13 +36,17 @@ export default function (userOptions: Options) {
 
     function filter(string: string, data = {}) {
       return new Promise((resolve, reject) => {
-        nunjucksEngine.engine.renderString(string, data, (err, result) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(result);
-          }
-        });
+        nunjucksEngine.engine.renderString(
+          string,
+          data,
+          (err: unknown, result: string) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(result);
+            }
+          },
+        );
       });
     }
   };

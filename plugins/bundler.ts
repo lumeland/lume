@@ -1,21 +1,22 @@
 import { merge } from "../utils.ts";
 import Site from "../site.ts";
 import { Page } from "../filesystem.ts";
+import { Optional } from "../types.ts";
 
 interface Options {
-  extensions?: string[],
-  sourceMap?: boolean,
-  options?: Deno.EmitOptions,
+  extensions: string[];
+  sourceMap: boolean;
+  options: Deno.EmitOptions;
 }
 
 // Default options
-const defaults = {
+const defaults: Options = {
   extensions: [".ts", ".js"],
   sourceMap: false,
   options: {},
 };
 
-export default function (userOptions: Options = {}) {
+export default function (userOptions: Optional<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

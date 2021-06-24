@@ -30,7 +30,7 @@ export default class Search {
   }
 
   tags(query: string | string[]): string[] {
-    const tags = new Set();
+    const tags: Set<string> = new Set();
 
     this.pages(query).forEach((page) =>
       page.data.tags.forEach((tag) => tags.add(tag))

@@ -2,17 +2,20 @@ import { posix } from "../deps/path.ts";
 import { merge } from "../utils.ts";
 import Site from "../site.ts";
 import { Page } from "../filesystem.ts";
+import { Helper, Optional } from "../types.ts";
 
 interface Options {
-  extensions?: string[],
-  lowercase?: boolean,
-  alphanumeric?: boolean,
-  separator?: string,
-  replace?: Record<string, string>,
+  extensions: string[];
+  lowercase: boolean;
+  alphanumeric: boolean;
+  separator: string;
+  replace: {
+    [index: string]: string;
+  };
 }
 
 // Default options
-const defaults = {
+const defaults: Options = {
   extensions: [".html"],
   lowercase: true,
   alphanumeric: true,
@@ -29,12 +32,12 @@ const defaults = {
   },
 };
 
-export default function (userOptions: Options) {
+export default function (userOptions: Optional<Options>) {
   const options = merge(defaults, userOptions);
   const slugify = createSlugifier(options);
 
   return (site: Site) => {
-    site.filter("slugify", slugify);
+    site.filter("slugify", slugify as Helper);
     site.preprocess(options.extensions, slugifyUrls);
   };
 
@@ -55,7 +58,7 @@ export default function (userOptions: Options) {
   }
 }
 
-export function createSlugifier(options: Options) {
+export function createSlugifier(options: Options): (string: string) => string {
   const { lowercase, alphanumeric, separator, replace } = options;
 
   return function (string: string) {

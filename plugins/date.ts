@@ -1,6 +1,7 @@
 import { format } from "../deps/date.ts";
 import { merge } from "../utils.ts";
 import Site from "../site.ts";
+import { Helper, Optional } from "../types.ts";
 
 const formats = new Map([
   ["ATOM", "yyyy-MM-dd'T'HH:mm:ssXXX"],
@@ -12,24 +13,28 @@ const formats = new Map([
 ]);
 
 interface Options {
-  locales?: Record<string, unknown>
-  formats?: Record<string, string>
+  locales: Record<string, unknown>;
+  formats: Record<string, string>;
 }
 
 // Default options
-const defaults = {
+const defaults: Options = {
   locales: {},
   formats: {},
 };
 
-export default function (userOptions: Options = {}) {
+export default function (userOptions: Optional<Options>) {
   const options = merge(defaults, userOptions);
   const defaultLocale = Object.keys(options.locales).shift();
 
   return (site: Site) => {
-    site.filter("date", filter);
+    site.filter("date", filter as Helper);
 
-    function filter(date: string | Date, pattern = "DATE", lang = defaultLocale) {
+    function filter(
+      date: string | Date,
+      pattern = "DATE",
+      lang = defaultLocale,
+    ) {
       if (!date) {
         return;
       }
@@ -40,7 +45,7 @@ export default function (userOptions: Options = {}) {
 
       const patt = options.formats[pattern] || formats.get(pattern) ||
         pattern;
-      const locale = options.locales[lang];
+      const locale = lang ? options.locales[lang] : undefined;
 
       return format(date, patt, { locale });
     }

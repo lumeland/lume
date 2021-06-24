@@ -5,7 +5,9 @@ export default class Module extends Engine {
   helpers: Record<string, Helper> = {};
 
   async render(
-    content: string | ((data: Data, helpers: Record<string, Helper>) => unknown),
+    content:
+      | string
+      | ((data: Data, helpers: Record<string, Helper>) => unknown),
     data: Data,
   ) {
     return typeof content === "function"

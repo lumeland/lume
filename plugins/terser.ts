@@ -1,9 +1,28 @@
 import { minify } from "../deps/terser.ts";
 import { basename } from "../deps/path.ts";
 import { Exception, merge } from "../utils.ts";
+import Site from "../site.ts";
+import { Page } from "../filesystem.ts";
+import { Helper, Optional } from "../types.ts";
+
+interface Options {
+  extensions: string[];
+  sourceMap: boolean;
+  options: TerserOptions;
+}
+
+interface TerserOptions {
+  module: boolean;
+  compress: boolean;
+  mangle: boolean;
+  sourceMap?: {
+    filename: string;
+    url: string;
+  };
+}
 
 // Default options
-const defaults = {
+const defaults: Options = {
   extensions: [".js"],
   sourceMap: false,
   options: {
@@ -13,15 +32,15 @@ const defaults = {
   },
 };
 
-export default function (userOptions = {}) {
+export default function (userOptions: Optional<Options>) {
   const options = merge(defaults, userOptions);
 
-  return (site) => {
+  return (site: Site) => {
     site.loadAssets(options.extensions);
     site.process(options.extensions, terser);
-    site.filter("terser", filter, true);
+    site.filter("terser", filter as Helper, true);
 
-    async function terser(file) {
+    async function terser(file: Page) {
       const filename = file.dest.path + file.dest.ext;
       const content = file.content;
       const terserOptions = { ...options.options };
@@ -52,7 +71,7 @@ export default function (userOptions = {}) {
       }
     }
 
-    async function filter(code) {
+    async function filter(code: string) {
       const output = await minify(code, options.options);
       return output.code;
     }

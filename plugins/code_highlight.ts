@@ -2,21 +2,24 @@ import hljs from "../deps/highlight.ts";
 import { merge } from "../utils.ts";
 import Site from "../site.ts";
 import { Page } from "../filesystem.ts";
+import { Optional } from "../types.ts";
 
 interface Options {
-  extensions: string[],
-  options: {
-    ignoreUnescapedHTML?: boolean,
-    noHighlightRe?: RegExp,
-    languageDetectRe?: RegExp,
-    classPrefix?: string,
-    cssSelector?: string,
-    languages?: unknown,
-  },
+  extensions: string[];
+  options: HighlightOptions;
+}
+
+interface HighlightOptions {
+  ignoreUnescapedHTML: boolean;
+  noHighlightRe: RegExp;
+  languageDetectRe: RegExp;
+  classPrefix: string;
+  cssSelector: string;
+  languages: unknown;
 }
 
 // Default options
-const defaults = {
+const defaults: Options = {
   extensions: [".html"],
   options: {
     ignoreUnescapedHTML: false,
@@ -28,7 +31,7 @@ const defaults = {
   },
 };
 
-export default function (userOptions: Options) {
+export default function (userOptions: Optional<Options>) {
   const options = merge(defaults, userOptions);
   hljs.configure(options.options);
 

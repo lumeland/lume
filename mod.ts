@@ -10,20 +10,24 @@ import nunjucks from "./plugins/nunjucks.ts";
 import search from "./plugins/search.ts";
 import yaml from "./plugins/yaml.ts";
 import { merge } from "./utils.ts";
+import { Optional, SiteOptions } from "./types.ts";
 
-export default function (options = {}, pluginOptions = {}): Site {
+export default function (
+  options: Optional<SiteOptions> = {},
+  pluginOptions: Record<string, Record<string, unknown>> = {},
+): Site {
   options = merge(options, getOptionsFromCli());
 
   const site = new Site(options);
 
   return site
     .ignore("node_modules")
-    .use(url(pluginOptions.url))
+    .use(url())
     .use(json(pluginOptions.json))
     .use(markdown(pluginOptions.markdown))
     .use(modules(pluginOptions.modules))
     .use(nunjucks(pluginOptions.nunjucks))
-    .use(search(pluginOptions.search))
+    .use(search())
     .use(yaml(pluginOptions.yaml));
 }
 
@@ -43,7 +47,7 @@ function getOptionsFromCli() {
     ["--"]: true,
   });
 
-  const overrides = {};
+  const overrides: Optional<SiteOptions> = {};
 
   if (options.root) {
     overrides.cwd = resolve(Deno.cwd(), options.root);

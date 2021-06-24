@@ -7,16 +7,17 @@ import {
 import { merge } from "../utils.ts";
 import Site from "../site.ts";
 import { Page } from "../filesystem.ts";
+import { Helper, Optional } from "../types.ts";
 
 interface Options {
-  extensions?: string[],
-  sourceMap?: boolean,
-  includes?: boolean | string,
-  plugins?: unknown[]
+  extensions: string[];
+  sourceMap: boolean;
+  includes: boolean | string;
+  plugins: unknown[];
 }
 
 // Default options
-const defaults = {
+const defaults: Options = {
   extensions: [".css"],
   sourceMap: false,
   includes: false,
@@ -26,7 +27,7 @@ const defaults = {
   ],
 };
 
-export default function (userOptions: Options = {}) {
+export default function (userOptions: Optional<Options>) {
   return (site: Site) => {
     const options = merge({
       ...defaults,
@@ -45,7 +46,7 @@ export default function (userOptions: Options = {}) {
 
     site.loadAssets(options.extensions);
     site.process(options.extensions, postCss);
-    site.filter("postcss", filter, true);
+    site.filter("postcss", filter as Helper, true);
 
     async function postCss(page: Page) {
       const from = site.src(page.src.path + page.src.ext);
