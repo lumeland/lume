@@ -50,32 +50,6 @@ export function getCurrentVersion() {
   return url.match(/@([^/]+)/)?.[1] ?? `local (${url})`;
 }
 
-export function printError(exception) {
-  console.log();
-  console.error(bold(red(`Error:`)), exception);
-
-  printDataError(exception);
-
-  if (exception.error) {
-    let { error } = exception;
-    let indent = "  ";
-    while (error) {
-      console.log();
-      console.log(red(`${indent}${error.message}`));
-      printDataError(error, indent);
-      indent += "  ";
-
-      if (debug) {
-        console.error(error);
-      }
-
-      error = error.error;
-    }
-  }
-
-  console.log();
-}
-
 function printDataError(error, indent = "") {
   if (!error.data) {
     return;
@@ -86,6 +60,20 @@ function printDataError(error, indent = "") {
       value = value.src.path + value.src.ext;
     }
 
-    console.log(dim(`${indent}${key}:`), value);
+    console.log(dim(`    ${indent}${key}:`), value);
   }
+}
+
+export function printError(exception, indent = 0) {
+  console.log();
+  const tab = "  ".repeat(indent);
+
+  console.error(`${tab}${bold(red(`Error:`))}`, exception);
+  printDataError(exception, tab);
+
+  if (exception.error) {
+    printError(exception.error, indent + 1);
+  }
+
+  console.log();
 }
