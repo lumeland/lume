@@ -50,13 +50,11 @@ OPTIONS:
     -o, --open              open the site in the browser
 `;
 
-let debugErrors = false;
-
 if (import.meta.main) {
   try {
     await cli(Deno.args);
   } catch (error) {
-    printError(error, debugErrors);
+    printError(error);
   }
 }
 
@@ -68,10 +66,6 @@ export default async function cli(args) {
     alias: { help: "h", version: "v" },
     "--": true,
   });
-
-  if (parseInt(options.verbose) > 1) {
-    debugErrors = true;
-  }
 
   // lume --version
   if (options.version) {

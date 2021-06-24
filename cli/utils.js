@@ -50,15 +50,11 @@ export function getCurrentVersion() {
   return url.match(/@([^/]+)/)?.[1] ?? `local (${url})`;
 }
 
-export function printError(exception, debug = false) {
+export function printError(exception) {
   console.log();
-  console.error(bold(red(`Error:`)), exception.message);
+  console.error(bold(red(`Error:`)), exception);
 
   printDataError(exception);
-
-  if (debug) {
-    console.error(exception);
-  }
 
   if (exception.error) {
     let { error } = exception;
