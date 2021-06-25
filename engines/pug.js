@@ -1,12 +1,12 @@
-import * as pug from "../deps/pug.js";
 import TemplateEngine from "./template_engine.js";
 
 export default class Pug extends TemplateEngine {
   cache = new Map();
   filters = {};
 
-  constructor(site, options = {}) {
-    super(site, options);
+  constructor(site, engine) {
+    super(site);
+    this.engine = engine;
     this.includes = site.includes();
 
     // Update cache
@@ -17,7 +17,7 @@ export default class Pug extends TemplateEngine {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
-        pug.compile(content, {
+        this.engine.compile(content, {
           filename,
           basedir: this.includes,
           filters: this.filters,
