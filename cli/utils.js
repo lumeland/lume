@@ -50,46 +50,32 @@ export function getCurrentVersion() {
   return url.match(/@([^/]+)/)?.[1] ?? `local (${url})`;
 }
 
-export function printError(exception, debug = false) {
+export function printError(exception, indent = 0, stackLines = 1) {
   console.log();
-  console.error(bold(red(`Error:`)), exception.message);
+  const tab = "  ".repeat(indent);
 
-  printDataError(exception);
+  console.error(`${tab}${bold(red(`Error:`))}`, exception.message);
 
-  if (debug) {
-    console.error(exception);
-  }
-
-  if (exception.error) {
-    let { error } = exception;
-    let indent = "  ";
-    while (error) {
-      console.log();
-      console.log(red(`${indent}${error.message}`));
-      printDataError(error, indent);
-      indent += "  ";
-
-      if (debug) {
-        console.error(error);
-      }
-
-      error = error.error;
-    }
-  }
-
-  console.log();
-}
-
-function printDataError(error, indent = "") {
-  if (!error.data) {
-    return;
-  }
-
-  for (let [key, value] of Object.entries(error.data)) {
+  for (let [key, value] of Object.entries(exception.data ?? {})) {
     if (key === "page") {
       value = value.src.path + value.src.ext;
     }
+    console.log(dim(`${tab}${key}:`), value);
+  }
 
-    console.log(dim(`${indent}${key}:`), value);
+  const stack = exception.stack.split('\n');
+
+  // we skip all the stack lines that have been presented already.
+  stack.slice(1, stack.length - stackLines).forEach(line => {
+    console.log(`${tab}${line.trim()}`);
+    stackLines++;
+  });
+
+  if (exception.error) {
+    printError(exception.error, indent + 1, stackLines);
+  }
+
+  if (indent == 0) {
+    console.log();
   }
 }

@@ -469,12 +469,16 @@ export default class Site {
         await concurrent(
           pages,
           async (page) => {
-            if (ext === page.src.ext || ext === page.dest.ext) {
-              for (const preprocess of preprocessors) {
-                this.metrics.start("Preprocess", page, preprocess);
-                await preprocess(page, this);
-                this.metrics.end("Preprocess", page, preprocess);
+            try {
+              if (ext === page.src.ext || ext === page.dest.ext) {
+                for (const preprocess of preprocessors) {
+                  this.metrics.start("Preprocess", page, preprocess);
+                  await preprocess(page, this);
+                  this.metrics.end("Preprocess", page, preprocess);
+                }
               }
+            } catch(err) {
+              throw new Exception("Error preprocessing page", { page }, err);
             }
           },
         );
