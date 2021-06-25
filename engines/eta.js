@@ -1,33 +1,20 @@
-import * as eta from "../deps/eta.js";
-
 import TemplateEngine from "./template_engine.js";
 
 export default class Eta extends TemplateEngine {
   filters = {};
 
-  constructor(site, options = {}) {
-    super(site, options);
-
-    eta.configure({
-      views: site.includes(),
-      useWith: true,
-    });
-
-    // Update cache
-    site.addEventListener("beforeUpdate", (ev) => {
-      for (const filename of ev.files) {
-        eta.templates.remove(site.src(filename));
-      }
-    });
+  constructor(site, engine) {
+    super(site);
+    this.engine = engine;
   }
 
   async render(content, data, filename) {
-    if (!eta.templates.get(filename)) {
-      eta.templates.define(filename, eta.compile(content));
+    if (!this.engine.templates.get(filename)) {
+      this.engine.templates.define(filename, this.engine.compile(content));
     }
     data.filters = this.filters;
-    const fn = eta.templates.get(filename);
-    return await fn(data, eta.config);
+    const fn = this.engine.templates.get(filename);
+    return await fn(data, this.engine.config);
   }
 
   addHelper(name, fn, options) {
@@ -36,7 +23,7 @@ export default class Eta extends TemplateEngine {
         this.filters[name] = fn;
 
         if (options.async) {
-          eta.configure({ async: true });
+          this.engine.configure({ async: true });
         }
         return;
     }

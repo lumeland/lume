@@ -1,3 +1,4 @@
+import * as eta from "../deps/eta.js";
 import Eta from "../engines/eta.js";
 import loader from "../loaders/text.js";
 import { merge } from "../utils.js";
@@ -11,8 +12,20 @@ export default function (userOptions) {
   const options = merge(defaults, userOptions);
 
   return (site) => {
-    const eta = new Eta(site);
+    // Configure eta
+    eta.configure({
+      views: site.includes(),
+      useWith: true,
+    });
 
-    site.loadPages(options.extensions, loader, eta);
+    // Update cache
+    site.addEventListener("beforeUpdate", (ev) => {
+      for (const filename of ev.files) {
+        eta.templates.remove(site.src(filename));
+      }
+    });
+
+    // Load pages
+    site.loadPages(options.extensions, loader, new Eta(site, eta));
   };
 }
