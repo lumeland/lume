@@ -6,16 +6,20 @@ import { merge } from "../utils.js";
 // Default options
 const defaults = {
   extensions: [".njk"],
+  includes: null,
   options: {},
   plugins: {},
 };
 
 export default function (userOptions) {
-  const options = merge(defaults, userOptions);
-
   return (site) => {
+    const options = merge(
+      { ...defaults, includes: site.includes() },
+      userOptions,
+    );
+
     // Create the nunjucks environment instance
-    const fsLoader = new nunjucks.FileSystemLoader(site.includes());
+    const fsLoader = new nunjucks.FileSystemLoader(options.includes);
     const engine = new nunjucks.Environment(fsLoader, options.options);
 
     for (const [name, fn] of Object.entries(options.plugins)) {

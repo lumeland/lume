@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 - Render pages in parallel, reducing the build time for large sites.
 - Made the `_includes` directory configurable: [#115]
-  - new site option `includes`
+  - new `includes` option for site and the `eta`, `nunjucks` and `pug` plugins.
   - new `site.includes()` method, similar to `site.src()`.
 
 ### Fixed

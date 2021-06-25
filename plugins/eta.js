@@ -6,15 +6,19 @@ import { merge } from "../utils.js";
 // Default options
 const defaults = {
   extensions: [".eta"],
+  includes: null,
 };
 
 export default function (userOptions) {
-  const options = merge(defaults, userOptions);
-
   return (site) => {
+    const options = merge(
+      { ...defaults, includes: site.includes() },
+      userOptions,
+    );
+
     // Configure eta
     eta.configure({
-      views: site.includes(),
+      views: options.includes,
       useWith: true,
     });
 
