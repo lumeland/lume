@@ -5,7 +5,7 @@ export default class Nunjucks extends TemplateEngine {
   cache = new Map();
 
   constructor(site, options) {
-    super(site, options);
+    super(site);
 
     const loader = new nunjucks.FileSystemLoader(site.includes());
     this.engine = new nunjucks.Environment(loader, options);
