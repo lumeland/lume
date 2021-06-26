@@ -29,6 +29,7 @@ const process = Deno.run({
     "--unstable",
     "-Af",
     `--import-map=${importMap}`,
+    `--no-check`,
     "--name=lume",
     cli,
   ],

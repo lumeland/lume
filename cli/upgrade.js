@@ -93,6 +93,7 @@ async function install(version, dev = false) {
       "--unstable",
       "-Af",
       `--import-map=${importMap}`,
+      `--no-check`,
       "--name=lume",
       `${url}/cli.js`,
     ],

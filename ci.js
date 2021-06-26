@@ -14,6 +14,7 @@ const process = Deno.run({
     "--unstable",
     "-A",
     `--import-map=${importMap}`,
+    `--no-check`,
     cli,
     ...Deno.args,
   ],
