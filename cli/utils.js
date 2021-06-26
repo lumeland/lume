@@ -63,10 +63,10 @@ export function printError(exception, indent = 0, stackLines = 1) {
     console.log(dim(`${tab}${key}:`), value);
   }
 
-  const stack = exception.stack.split('\n');
+  const stack = exception.stack.split("\n");
 
   // we skip all the stack lines that have been presented already.
-  stack.slice(1, stack.length - stackLines).forEach(line => {
+  stack.slice(1, stack.length - stackLines).forEach((line) => {
     console.log(`${tab}${line.trim()}`);
     stackLines++;
   });

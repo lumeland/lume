@@ -485,7 +485,7 @@ export default class Site {
                   this.metrics.end("Preprocess", page, preprocess);
                 }
               }
-            } catch(err) {
+            } catch (err) {
               throw new Exception("Error preprocessing page", { page }, err);
             }
           },
