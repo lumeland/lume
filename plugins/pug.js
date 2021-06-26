@@ -16,6 +16,10 @@ export default function (userOptions) {
       userOptions,
     );
 
-    site.loadPages(options.extensions, loader, new Pug(site, pug));
+    site.loadPages(
+      options.extensions,
+      loader,
+      new Pug(site, pug, options.includes),
+    );
   };
 }

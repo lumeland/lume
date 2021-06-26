@@ -4,10 +4,10 @@ export default class Pug extends TemplateEngine {
   cache = new Map();
   filters = {};
 
-  constructor(site, engine) {
+  constructor(site, engine, basedir) {
     super(site);
     this.engine = engine;
-    this.includes = site.includes();
+    this.basedir = basedir;
 
     // Update cache
     site.addEventListener("beforeUpdate", () => this.cache.clear());
@@ -19,7 +19,7 @@ export default class Pug extends TemplateEngine {
         filename,
         this.engine.compile(content, {
           filename,
-          basedir: this.includes,
+          basedir: this.basedir,
           filters: this.filters,
         }),
       );
