@@ -7,6 +7,7 @@ import { merge } from "../utils.js";
 const defaults = {
   extensions: [".pug"],
   includes: null,
+  options: {},
 };
 
 export default function (userOptions) {
@@ -16,10 +17,12 @@ export default function (userOptions) {
       userOptions,
     );
 
+    options.options.basedir = options.includes;
+
     site.loadPages(
       options.extensions,
       loader,
-      new Pug(site, pug, options.includes),
+      new Pug(site, pug, options),
     );
   };
 }

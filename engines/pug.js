@@ -2,12 +2,11 @@ import TemplateEngine from "./template_engine.js";
 
 export default class Pug extends TemplateEngine {
   cache = new Map();
-  filters = {};
 
-  constructor(site, engine, basedir) {
+  constructor(site, engine, options) {
     super(site);
     this.engine = engine;
-    this.basedir = basedir;
+    this.options = options;
 
     // Update cache
     site.addEventListener("beforeUpdate", () => this.cache.clear());
@@ -18,9 +17,8 @@ export default class Pug extends TemplateEngine {
       this.cache.set(
         filename,
         this.engine.compile(content, {
+          ...this.options,
           filename,
-          basedir: this.basedir,
-          filters: this.filters,
         }),
       );
     }
@@ -31,7 +29,8 @@ export default class Pug extends TemplateEngine {
   addHelper(name, fn, options) {
     switch (options.type) {
       case "filter":
-        this.filters[name] = (text, opt) => {
+        this.options.filters ||= {};
+        this.options.filters[name] = (text, opt) => {
           delete opt.filename;
           const args = Object.values(opt);
           return fn(text, ...args);
