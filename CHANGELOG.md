@@ -11,12 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New `-w`/`--watch` option to watch changes without starting a web server.
   [#109]
-
-### Changed
-- Render pages in parallel, reducing the build time for large sites.
 - Made the `_includes` directory configurable: [#115]
   - new `includes` option for site and the `eta`, `nunjucks` and `pug` plugins.
   - new `site.includes()` method, similar to `site.src()`.
+- `options` configuration value to `pug` plugin to set options to the `pug` compiler.
+
+### Changed
+- Render pages in parallel, reducing the build time for large sites.
 
 ### Fixed
 - The async cache for the `inline` plugin.
