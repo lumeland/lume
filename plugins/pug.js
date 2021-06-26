@@ -22,7 +22,7 @@ export default function (userOptions) {
     site.loadPages(
       options.extensions,
       loader,
-      new Pug(site, pug, options),
+      new Pug(site, pug, options.options),
     );
   };
 }
