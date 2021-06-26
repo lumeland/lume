@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - Render pages in parallel, reducing the build time for large sites.
+- Made the `_includes` directory configurable: [#115]
+  - new `includes` option for site and the `eta`, `nunjucks` and `pug` plugins.
+  - new `site.includes()` method, similar to `site.src()`.
 
 ### Fixed
 - The async cache for the `inline` plugin.
@@ -919,6 +922,7 @@ The first version.
 [#109]: https://github.com/lumeland/lume/issues/109
 [#110]: https://github.com/lumeland/lume/issues/110
 [#114]: https://github.com/lumeland/lume/issues/114
+[#115]: https://github.com/lumeland/lume/issues/115
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v0.23.3...HEAD
 [0.23.3]: https://github.com/lumeland/lume/compare/v0.23.2...v0.23.3

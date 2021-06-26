@@ -19,10 +19,10 @@ const defaults = {
 
 export default function (userOptions = {}) {
   return (site) => {
-    const options = merge({
-      ...defaults,
-      includes: site.src("_includes"),
-    }, userOptions);
+    const options = merge(
+      { ...defaults, includes: site.includes() },
+      userOptions,
+    );
 
     const plugins = [...options.plugins];
 

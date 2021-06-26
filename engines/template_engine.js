@@ -1,7 +1,6 @@
 export default class TemplateEngine {
-  constructor(site, options = {}) {
+  constructor(site) {
     this.site = site;
-    this.options = options;
   }
 
   render(_content, _data, _filename) {

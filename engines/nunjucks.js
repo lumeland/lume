@@ -4,24 +4,14 @@ import TemplateEngine from "./template_engine.js";
 export default class Nunjucks extends TemplateEngine {
   cache = new Map();
 
-  constructor(site, options) {
-    super(site, options);
+  constructor(site, engine) {
+    super(site);
+    this.engine = engine;
 
-    const loader = new nunjucks.FileSystemLoader(site.src("_includes"));
-    this.engine = new nunjucks.Environment(loader, options);
-
-    // Update cache
+    // Update internal cache
     site.addEventListener("beforeUpdate", (ev) => {
       for (const file of ev.files) {
-        const filename = site.src(file);
-        const name = loader.pathsToNames[filename];
-
-        if (name) {
-          delete loader.cache[name];
-          continue;
-        }
-
-        this.cache.delete(filename);
+        this.cache.delete(site.src(file));
       }
     });
   }
