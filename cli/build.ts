@@ -9,9 +9,7 @@ interface Options {
   root: string;
   config: string;
   serve: boolean;
-  open: boolean;
   watch: boolean;
-  port: number;
 }
 
 /**
