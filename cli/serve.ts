@@ -1,13 +1,18 @@
-import { listenAndServe } from "./deps/server.js";
-import { acceptWebSocket } from "./deps/ws.js";
-import { dirname, extname, join, posix, relative } from "./deps/path.js";
-import { brightGreen, red } from "./deps/colors.js";
-import { exists } from "./deps/fs.js";
-import localIp from "./deps/local_ip.js";
-import { mimes, normalizePath } from "./utils.js";
-import { readAll } from "./deps/util.js";
+import Site from "../site.js";
+import { listenAndServe, ServerRequest } from "../deps/server.js";
+import { acceptWebSocket, WebSocket } from "../deps/ws.js";
+import { dirname, extname, join, posix, relative } from "../deps/path.js";
+import { brightGreen, red } from "../deps/colors.js";
+import { exists } from "../deps/fs.js";
+import localIp from "../deps/local_ip.js";
+import { mimes, normalizePath } from "../utils.js";
+import { readAll } from "../deps/util.js";
 
-export async function server(site) {
+/**
+ * Start a local HTTP server and live-reload the changes
+ * @param site The Site instance
+ */
+export default async function server(site: Site) {
   const root = site.dest();
   const port = site.options.server.port || 3000;
   const ipAddr = await localIp();
@@ -42,7 +47,7 @@ export async function server(site) {
   const watcher = Deno.watchFs(root);
 
   // Static files server
-  listenAndServe({ port }, (req) => {
+  listenAndServe({ port }, (req: ServerRequest) => {
     // Is websocket
     if (req.headers.get("upgrade") === "websocket") {
       handleSocket(req);
@@ -51,8 +56,8 @@ export async function server(site) {
     }
   });
 
-  async function handleFile(req) {
-    let path = join(root, decodeURIComponent(req.url.split("?", 2).shift()));
+  async function handleFile(req: ServerRequest) {
+    let path = join(root, decodeURIComponent(req.url.split("?", 2).shift()!));
 
     try {
       const info = await Deno.stat(path);
@@ -88,7 +93,7 @@ export async function server(site) {
         await req.respond({
           status: 404,
           headers: new Headers({
-            "content-type": mimes.get(".html"),
+            "content-type": mimes.get(".html")!,
           }),
           body: await getNotFoundBody(root, page404, path),
         });
@@ -99,10 +104,10 @@ export async function server(site) {
   }
 
   let timer = 0;
-  let socket;
-  const changes = new Set();
+  let socket: WebSocket;
+  const changes: Set<string> = new Set();
 
-  async function handleSocket(req) {
+  async function handleSocket(req: ServerRequest) {
     const { conn, r: bufReader, w: bufWriter, headers } = req;
     socket = await acceptWebSocket({
       conn,
@@ -148,13 +153,13 @@ export async function server(site) {
   }
 }
 
-let wsFile = new URL("./ws.js", import.meta.url);
+let wsFile: URL | string = new URL("./ws.js", import.meta.url);
 
 if (wsFile.protocol === "file:") {
   wsFile = await Deno.readTextFile(wsFile);
 }
 
-async function getHtmlBody(path) {
+async function getHtmlBody(path: string) {
   const content = await Deno.readTextFile(path);
 
   return typeof wsFile === "string"
@@ -162,7 +167,7 @@ async function getHtmlBody(path) {
     : `${content}<script type="module" src="${wsFile}" id="lume-live-reload"></script>`;
 }
 
-async function getNotFoundBody(root, page404, file) {
+async function getNotFoundBody(root: string, page404: string, file: string) {
   const filepath = join(root, page404);
 
   if (await exists(filepath)) {
@@ -198,7 +203,7 @@ async function getNotFoundBody(root, page404, file) {
 </html>`;
 }
 
-async function getBody(path) {
+async function getBody(path: string) {
   const file = await Deno.open(path);
   const content = await readAll(file);
   Deno.close(file.rid);
@@ -206,8 +211,8 @@ async function getBody(path) {
   return content;
 }
 
-async function listDirectory(directory) {
-  const files = [];
+async function listDirectory(directory: string) {
+  const files: [string, string][] = [];
 
   if (!await exists(directory)) {
     return files;
