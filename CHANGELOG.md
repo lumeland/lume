@@ -32,6 +32,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Removed the `import_map.json` file because it’s not used.
   It was kept only for backward compatibility of `lume upgrade`
   from old versions.
+- Some internal code has been ported to typescript:
+  - The cli
+  - Dependencies files
+  - The template engines
 
 ### Removed
 - The `--verbose` option. Use `--quiet` for the same behavior as `--verbose=1`.
