@@ -135,11 +135,12 @@ const lume = new Command()
   .option(
     "-p, --port <port:number>",
     "The port where the server runs.",
-    { default: 3000 },
+    { default: 3000, depends: ["serve"] },
   )
   .option(
     "-o, --open [open:boolean]",
     "Open the site in a browser.",
+    { depends: ["serve"] },
   )
   .option(
     "-w, --watch [watch:boolean]",
