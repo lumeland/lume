@@ -20,6 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Render pages in parallel, reducing the build time for large sites.
 - Added `--no-check` option to `lume upgrade`, `install.js` and `ci.js` scripts
   to reduce the execution time.
+- Ported CLI to Typescript and use the external library cliffy for better code structure.
+  This brings the following changes: [#120]
+  - Removed the duplicated `build` command. Use simply `lume` instead `lume build`
+  - To see the lume version, use `lume -V` or `lume --version` instead `lume -v` (in lowercase).
 
 ### Fixed
 - The async cache for the `inline` plugin.
@@ -926,6 +930,7 @@ The first version.
 [#110]: https://github.com/lumeland/lume/issues/110
 [#114]: https://github.com/lumeland/lume/issues/114
 [#115]: https://github.com/lumeland/lume/issues/115
+[#120]: https://github.com/lumeland/lume/issues/120
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v0.23.3...HEAD
 [0.23.3]: https://github.com/lumeland/lume/compare/v0.23.2...v0.23.3
