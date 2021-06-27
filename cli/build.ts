@@ -29,7 +29,10 @@ export default async function build(
   console.log(`🍾 ${brightGreen("Site built into")} ${gray(site.options.dest)}`);
 
   if (site.options.metrics) {
-    printMetrics(site.metrics);
+    const file = typeof site.options.metrics === "string"
+      ? site.options.metrics
+      : undefined;
+    printMetrics(site.metrics, file);
   }
 
   if (serve) {

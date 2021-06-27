@@ -61,10 +61,17 @@ const run = new Command()
   )
   .action(runCommand);
 
-const build = new Command()
-  .description("Build the site and optionally serve it")
-  .example("lume build", "Build the site")
-  .example("lume build --serve", "Build and serve the site")
+const lume = new Command()
+  .name("🔥lume")
+  .version(getCurrentVersion)
+  .description(
+    "A static site generator for Deno. \nDocs: https://lumeland.github.io/",
+  )
+  .example("lume", "Build the site")
+  .example("lume --serve", "Serve the site in localhost")
+  .example("lume upgrade", "Upgrade lume to the latest version")
+  .example("lume run <script>", "Run a custom script")
+  .example("lume [COMMAND] --help", "Get help with a command")
   .option(
     "--root <root>",
     "The root where lume should work",
@@ -93,7 +100,6 @@ const build = new Command()
   .option(
     "--metrics [metrics]",
     "Show the performance metrics or save them in a file",
-    (value) => value ? value : true,
   )
   .option(
     "--quiet [quiet:boolean]",
@@ -120,28 +126,13 @@ const build = new Command()
     "-w, --watch [watch:boolean]",
     "Build and watch changes",
   )
-  .action(buildCommand);
-
-const lume = new Command()
-  .name("🔥lume")
-  .version(getCurrentVersion)
-  .description(
-    "A static site generator for Deno. \nDocs: https://lumeland.github.io/",
-  )
-  .example("lume", "Build the site")
-  .example("lume --serve", "Serve the site in localhost")
-  .example("lume upgrade", "Upgrade lume to the latest version")
-  .example("lume run <script>", "Run a custom script")
-  .example("lume [COMMAND] --help", "Get help with a command")
+  .action(buildCommand)
   .command("init", init)
   .command("upgrade", upgrade)
-  .command("run", run)
-  .command("build", build);
+  .command("run", run);
 
 try {
   await lume.parse(Deno.args);
-  // If empty command = build
-  await build.parse(Deno.args);
 } catch (error) {
   printError(error);
   Deno.exit(1);

@@ -68,7 +68,7 @@ function getOptionsFromCli() {
   }
 
   if ("metrics" in options) {
-    overrides.metrics = options.metrics !== "false";
+    overrides.metrics = options.metrics ? options.metrics : true;
   }
 
   if (options.verbose) {
