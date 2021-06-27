@@ -1,4 +1,3 @@
-import { encode } from "../deps/base64.js";
 import {
   getCurrentVersion,
   getLastDevelopmentVersion,
@@ -52,20 +51,12 @@ async function install(version: string, dev = false) {
     ? `https://cdn.jsdelivr.net/gh/lumeland/lume@${version}`
     : `https://deno.land/x/lume@${version}`;
 
-  const importMap = `data:application/json;base64,${
-    encode(`{ "imports": { "lume/": "${url}/" } }`)
-  }`;
-
   const process = Deno.run({
     cmd: [
       Deno.execPath(),
-      "install",
-      "--unstable",
-      "-Af",
-      `--import-map=${importMap}`,
-      `--no-check`,
-      "--name=lume",
-      `${url}/cli.ts`,
+      "run",
+      "-A",
+      `${url}/install.js`,
     ],
   });
 
