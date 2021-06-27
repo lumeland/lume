@@ -35,10 +35,9 @@ function getOptionsFromCli() {
       "dest",
       "location",
       "metrics",
-      "verbose",
       "port",
     ],
-    boolean: ["dev", "serve", "open"],
+    boolean: ["dev", "serve", "open", "quiet"],
     alias: { dev: "d", serve: "s", port: "p", open: "o" },
     ["--"]: true,
   });
@@ -71,8 +70,8 @@ function getOptionsFromCli() {
     overrides.metrics = options.metrics ? options.metrics : true;
   }
 
-  if (options.verbose) {
-    overrides.verbose = parseInt(options.verbose);
+  if (options.quiet) {
+    overrides.quiet = options.quiet;
   }
 
   if (options.port) {

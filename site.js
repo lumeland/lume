@@ -23,7 +23,7 @@ const defaults = {
   metrics: false,
   prettyUrls: true,
   flags: [],
-  verbose: 1,
+  quiet: false,
   server: {
     port: 3000,
     open: false,
@@ -402,7 +402,7 @@ export default class Site {
 
     if (await exists(pathFrom)) {
       await ensureDir(dirname(pathTo));
-      if (this.options.verbose > 0) {
+      if (!this.options.quiet) {
         console.log(`🔥 ${normalizePath(to)} ${gray(from)}`);
       }
       return copy(pathFrom, pathTo, { overwrite: true });
@@ -663,7 +663,7 @@ export default class Site {
       this.#hashes.set(dest, hash);
     }
 
-    if (this.options.verbose > 0) {
+    if (!this.options.quiet) {
       const src = page.src.path ? page.src.path + page.src.ext : "(generated)";
       console.log(`🔥 ${dest} ${gray(src)}`);
     }

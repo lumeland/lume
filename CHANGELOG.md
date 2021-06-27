@@ -24,6 +24,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   This brings the following changes: [#120]
   - Removed the duplicated `build` command. Use simply `lume` instead `lume build`
   - To see the lume version, use `lume -V` or `lume --version` instead `lume -v` (in lowercase).
+- Replaced `--verbose` option with `--quiet`.
+- Errors always include the stack. [#116], [#117].
+
+### Removed
+- `--verbose` option. Use `--quiet` for the same behavior as `--verbose=1`.
 
 ### Fixed
 - The async cache for the `inline` plugin.
@@ -930,6 +935,8 @@ The first version.
 [#110]: https://github.com/lumeland/lume/issues/110
 [#114]: https://github.com/lumeland/lume/issues/114
 [#115]: https://github.com/lumeland/lume/issues/115
+[#116]: https://github.com/lumeland/lume/issues/116
+[#117]: https://github.com/lumeland/lume/issues/117
 [#120]: https://github.com/lumeland/lume/issues/120
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v0.23.3...HEAD

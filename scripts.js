@@ -27,7 +27,7 @@ export default class Scripts {
 
   async #runScript(options, name) {
     if (this.scripts.has(name)) {
-      if (this.site.options.verbose > 0) {
+      if (!this.site.options.quiet) {
         console.log(`⚡️ ${brightGreen(name)}`);
       }
       name = this.scripts.get(name);
@@ -49,7 +49,7 @@ export default class Scripts {
   }
 
   async #runFunction(fn) {
-    if (fn.name && this.site.options.verbose > 0) {
+    if (fn.name && !this.site.options.quiet) {
       console.log(gray(`⚡️ ${fn.name}()`));
     }
     const result = await fn(this.site);
@@ -57,7 +57,7 @@ export default class Scripts {
   }
 
   async #runCommand(options, command) {
-    if (this.site.options.verbose > 0) {
+    if (!this.site.options.quiet) {
       console.log(gray(`⚡️ ${command}`));
     }
 
