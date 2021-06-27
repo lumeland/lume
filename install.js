@@ -12,12 +12,12 @@ const minDenoVersion = "1.10.3";
 
 if (Deno.version.deno < minDenoVersion) {
   console.log();
-  console.error(red("Error installing lume"));
+  console.error(red("Error installing Lume"));
   console.log("You have an old version of Deno");
   console.log(`Lume needs Deno ${brightGreen(minDenoVersion)} or greater`);
   console.log(`Your current version is ${red(Deno.version.deno)}`);
   console.log();
-  console.log(`Run ${brightGreen("deno upgrade")} before install Lume`);
+  console.log(`Run ${brightGreen("deno upgrade")} before install/upgrade Lume`);
   console.log();
   Deno.exit(1);
 }

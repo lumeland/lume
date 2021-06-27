@@ -1,9 +1,9 @@
-import { Command } from "./deps/cliffy.ts";
-import { getCurrentVersion, printError } from "./cli/utils.ts";
-import initCommand from "./cli/init.ts";
-import upgradeCommand from "./cli/upgrade.ts";
-import runCommand from "./cli/run.ts";
-import buildCommand from "./cli/build.ts";
+import { Command } from "../deps/cliffy.ts";
+import { getCurrentVersion, printError } from "./utils.ts";
+import initCommand from "./init.ts";
+import upgradeCommand from "./upgrade.ts";
+import runCommand from "./run.ts";
+import buildCommand from "./build.ts";
 
 const init = new Command()
   .description("Create a config file for a new site")

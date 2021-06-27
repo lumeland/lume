@@ -2,7 +2,7 @@ import { encode } from "./deps/base64.js";
 import { posix } from "./deps/path.js";
 
 const baseUrl = new URL(".", import.meta.url).href;
-const cli = posix.join(baseUrl, "./cli.ts");
+const cli = posix.join(baseUrl, "./cli/cli.ts");
 const importMap = `data:application/json;base64,${
   encode(`{ "imports": { "lume/": "${posix.join(baseUrl, "/")}" } }`)
 }`;
