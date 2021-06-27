@@ -37,7 +37,7 @@ function getOptionsFromCli() {
       "metrics",
       "port",
     ],
-    boolean: ["dev", "serve", "open", "quiet"],
+    boolean: ["quiet", "dev", "serve", "open"],
     alias: { dev: "d", serve: "s", port: "p", open: "o" },
     ["--"]: true,
   });
@@ -62,16 +62,16 @@ function getOptionsFromCli() {
     overrides.location = new URL(`http://localhost:${options.port || 3000}/`);
   }
 
-  if (options.dev) {
-    overrides.dev = options.dev;
-  }
-
   if ("metrics" in options) {
-    overrides.metrics = options.metrics ? options.metrics : true;
+    overrides.metrics = options.metrics || true;
   }
 
   if (options.quiet) {
     overrides.quiet = options.quiet;
+  }
+
+  if (options.dev) {
+    overrides.dev = options.dev;
   }
 
   if (options.port) {

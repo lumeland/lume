@@ -19,11 +19,11 @@ const defaults = {
   src: "./",
   dest: "./_site",
   includes: "_includes",
-  dev: false,
   metrics: false,
+  quiet: false,
+  dev: false,
   prettyUrls: true,
   flags: [],
-  quiet: false,
   server: {
     port: 3000,
     open: false,
