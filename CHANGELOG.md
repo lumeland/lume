@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - To see the lume version, use `lume -V` or `lume --version` instead `lume -v` (in lowercase).
 - Replaced `--verbose` option with `--quiet`.
 - Errors always include the stack. [#116], [#117].
+- Removed `import_map.json` file because it's not used.
+  It was keept only for backward compatiblity of `lume upgrade` from old versions.
 
 ### Removed
 - `--verbose` option. Use `--quiet` for the same behavior as `--verbose=1`.
