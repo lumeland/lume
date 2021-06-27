@@ -6,77 +6,77 @@ import runCommand from "./run.ts";
 import buildCommand from "./build.ts";
 
 const init = new Command()
-  .description("Create a config file for a new site")
-  .example("lume init", "Creates a _config.js file in the current directory")
-  .example("lume init --config=_config.ts", "To change the config file path")
+  .description("Create a config file for a new site.")
+  .example("lume init", "Creates a _config.js file in the current directory.")
+  .example("lume init --config=_config.ts", "Changes the config file path.")
   .option(
     "--config <file>",
-    "Specify the lume config file",
+    "The config file path.",
     { default: "_config.js" },
   )
   .option(
     "--no-import-map",
-    "Whether to use the import map or full URL",
+    "Use full URLs instead of a import map.",
   )
   .option(
     "--plugins <plugins:string[]",
-    "A comma-separated list of plugins to use",
+    "A comma-separated list of plugins to use.",
     { default: [] },
   )
   .action(initCommand);
 
 const upgrade = new Command()
-  .description("Upgrade your lume install to the latest version")
-  .example("lume upgrade", "Upgrade to the latest stable version")
-  .example("lume upgrade --dev", "Upgrade to the latest development version")
+  .description("Upgrade your Lume executable to the latest version.")
+  .example("lume upgrade", "Upgrades to the latest stable version.")
+  .example("lume upgrade --dev", "Upgrades to the latest development version.")
   .option(
     "-d, --dev [dev:boolean]",
-    "Install the latest development version (latest git commit)",
+    "Install the latest development version (last Git commit).",
   )
   .action(upgradeCommand);
 
 const run = new Command()
-  .description("Run one or more scripts from the lume config")
+  .description("Run one or more scripts from the config file.")
   .example(
     "lume run deploy",
-    "Run the `deploy` script",
+    "Runs the `deploy` script.",
   )
   .example(
     "lume run deploy --config=_config.ts",
-    "Run the `deploy` script from _config.ts file",
+    "Runs the `deploy` script from the _config.ts file.",
   )
   .example(
     "lume run build deploy",
-    "Run the `build` and `deploy` scripts",
+    "Runs the `build` and `deploy` scripts.",
   )
   .option(
     "--root <root>",
-    "The root where lume should work",
+    "The directory where Lume should work.",
     { default: "./" },
   )
   .option(
     "--config <config>",
-    "Specify the lume config file",
+    "The config file path.",
     { default: "_config.js" },
   )
   .option(
     "--src <src>",
-    "The source directory for your site",
+    "The source directory for your site.",
     { default: "./" },
   )
   .option(
     "--dest <dest>",
-    "The build destination",
+    "The build destination.",
     { default: "_site" },
   )
   .option(
     "--location <location>",
-    "The url location of the website",
+    "The URL location of the site.",
     { default: "http://localhost" },
   )
   .option(
     "--quiet [quiet:boolean]",
-    "Enable quiet mode (show less info)",
+    "Enable quiet mode (show less info).",
   )
   .action(runCommand);
 
@@ -86,64 +86,64 @@ const lume = new Command()
   .description(
     "A static site generator for Deno. \nDocs: https://lumeland.github.io/",
   )
-  .example("lume", "Build the site")
-  .example("lume --serve", "Serve the site in localhost")
-  .example("lume upgrade", "Upgrade lume to the latest version")
-  .example("lume run <script>", "Run a custom script")
-  .example("lume [COMMAND] --help", "Get help with a command")
+  .example("lume", "Builds the site.")
+  .example("lume --serve", "Serves the site in localhost.")
+  .example("lume upgrade", "Upgrades Lume to the latest version.")
+  .example("lume run <script>", "Runs a custom script.")
+  .example("lume [COMMAND] --help", "Shows the help for a command.")
   .option(
     "--root <root>",
-    "The root where lume should work",
+    "The directory where Lume should work.",
     { default: "./" },
   )
   .option(
     "--config <config>",
-    "Specify the lume config file",
+    "The config file path.",
     { default: "_config.js" },
   )
   .option(
     "--src <src>",
-    "The source directory for your site",
+    "The source directory for your site.",
     { default: "./" },
   )
   .option(
     "--dest <dest>",
-    "The build destination",
+    "The build destination.",
     { default: "_site" },
   )
   .option(
     "--location <location>",
-    "The url location of the website",
+    "The URL location of the site.",
     { default: "http://localhost" },
   )
   .option(
     "--metrics [metrics]",
-    "Show the performance metrics or save them in a file",
+    "Show performance metrics or save them in a file.",
   )
   .option(
     "--quiet [quiet:boolean]",
-    "Enable quiet mode (show less info)",
+    "Enable quiet mode (show less info).",
   )
   .option(
     "-d, --dev [dev:boolean]",
-    "Enable the dev mode (view draft pages)",
+    "Enable development mode (view draft pages).",
   )
   .option(
     "-s, --serve [serve:boolean]",
-    "Start a live-reloading web server and watch changes",
+    "Start a live-reloading web server and watch changes.",
   )
   .option(
     "-p, --port <port:number>",
-    "The port where the server runs",
+    "The port where the server runs.",
     { default: 3000 },
   )
   .option(
     "-o, --open [open:boolean]",
-    "Open the site in the browser",
+    "Open the site in a browser.",
   )
   .option(
     "-w, --watch [watch:boolean]",
-    "Build and watch changes",
+    "Build and watch changes.",
   )
   .action(buildCommand)
   .command("init", init)
