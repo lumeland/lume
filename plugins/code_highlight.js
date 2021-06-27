@@ -1,4 +1,4 @@
-import hljs from "../deps/highlight.js";
+import hljs from "../deps/highlight.ts";
 import { merge } from "../utils.js";
 
 // Default options

@@ -34,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   from old versions.
 
 ### Removed
-- `--verbose` option. Use `--quiet` for the same behavior as `--verbose=1`.
+- The `--verbose` option. Use `--quiet` for the same behavior as `--verbose=1`.
 
 ### Fixed
 - The async cache for the `inline` plugin.

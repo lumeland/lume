@@ -1,4 +1,4 @@
-import * as pug from "../deps/pug.js";
+import * as pug from "../deps/pug.ts";
 import Pug from "../engines/pug.js";
 import loader from "../loaders/text.js";
 import { merge } from "../utils.js";

@@ -1,4 +1,4 @@
-import { React, ReactDOMServer } from "../deps/react.js";
+import { React, ReactDOMServer } from "../deps/react.ts";
 
 window.React ||= React;
 

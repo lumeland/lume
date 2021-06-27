@@ -1,4 +1,4 @@
-import { DOMParser } from "./deps/dom.js";
+import { DOMParser } from "./deps/dom.ts";
 import { SEP } from "./deps/path.ts";
 
 export async function concurrent(iterable, iteratorFn, limit = 200) {

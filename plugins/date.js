@@ -1,4 +1,4 @@
-import { format } from "../deps/date.js";
+import { format } from "../deps/date.ts";
 import { merge } from "../utils.js";
 
 const formats = new Map([

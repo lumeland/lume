@@ -3,7 +3,7 @@ import {
   markdownItAttrs,
   markdownItDeflist,
   markdownItReplaceLink,
-} from "../deps/markdown_it.js";
+} from "../deps/markdown_it.ts";
 import loader from "../loaders/text.js";
 import Markdown from "../engines/markdown.js";
 import { merge } from "../utils.js";

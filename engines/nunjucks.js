@@ -1,4 +1,4 @@
-import nunjucks from "../deps/nunjucks.js";
+import nunjucks from "../deps/nunjucks.ts";
 import TemplateEngine from "./template_engine.js";
 
 export default class Nunjucks extends TemplateEngine {

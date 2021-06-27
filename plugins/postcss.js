@@ -3,7 +3,7 @@ import {
   postcss,
   postcssImport,
   postcssNesting,
-} from "../deps/postcss.js";
+} from "../deps/postcss.ts";
 import { merge } from "../utils.js";
 
 // Default options

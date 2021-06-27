@@ -1,4 +1,4 @@
-import { parse } from "./deps/flags.js";
+import { parse } from "./deps/flags.ts";
 import { resolve } from "./deps/path.ts";
 import Site from "./site.js";
 
