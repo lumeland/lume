@@ -1,4 +1,4 @@
-import JsxEngine from "../engines/jsx.js";
+import JsxEngine from "../engines/jsx.ts";
 import loader from "../loaders/module.js";
 import { merge } from "../utils.js";
 

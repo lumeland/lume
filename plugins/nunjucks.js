@@ -1,5 +1,5 @@
 import nunjucks from "../deps/nunjucks.ts";
-import NunjucksEngine from "../engines/nunjucks.js";
+import NunjucksEngine from "../engines/nunjucks.ts";
 import loader from "../loaders/text.js";
 import { merge } from "../utils.js";
 

@@ -1,4 +1,4 @@
-import Module from "../engines/module.js";
+import Module from "../engines/module.ts";
 import loader from "../loaders/module.js";
 
 export default function () {
