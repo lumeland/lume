@@ -12,22 +12,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New `-w`/`--watch` option to watch changes without starting a web server.
   [#109]
 - Made the `_includes` directory configurable: [#115]
-  - new `includes` option for site and the `eta`, `nunjucks` and `pug` plugins.
+  - new `includes` option for site and the `eta`, `nunjucks` and `pug` plugins
   - new `site.includes()` method, similar to `site.src()`.
-- `options` configuration value to `pug` plugin to set options to the `pug` compiler.
+- `options` configuration value to the `pug` plugin
+  to set options to the `pug` compiler.
 
 ### Changed
 - Render pages in parallel, reducing the build time for large sites.
-- Added `--no-check` option to `lume upgrade`, `install.js` and `ci.js` scripts
+- Added a `--no-check` option to `lume upgrade`, `install.js` and `ci.js`
   to reduce the execution time.
-- Ported CLI to Typescript and use the external library cliffy for better code structure.
+- Ported the CLI to TypeScript
+  and made use of the external library Cliffy for better code structure.
   This brings the following changes: [#120]
-  - Removed the duplicated `build` command. Use simply `lume` instead `lume build`
-  - To see the lume version, use `lume -V` or `lume --version` instead `lume -v` (in lowercase).
-- Replaced `--verbose` option with `--quiet`.
+  - Removed the duplicated `build` command. Use `lume` instead of `lume build`.
+  - To see the Lume version, use `lume -V` or `lume --version`
+    instead of `lume -v` (in lowercase).
+- Replaced the `--verbose` option with `--quiet`.
 - Errors always include the stack. [#116], [#117].
-- Removed `import_map.json` file because it's not used.
-  It was keept only for backward compatiblity of `lume upgrade` from old versions.
+- Removed the `import_map.json` file because it’s not used.
+  It was kept only for backward compatibility of `lume upgrade`
+  from old versions.
 
 ### Removed
 - `--verbose` option. Use `--quiet` for the same behavior as `--verbose=1`.
