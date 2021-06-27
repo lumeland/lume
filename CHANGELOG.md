@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Render pages in parallel, reducing the build time for large sites.
 - Added `--no-check` option to `lume upgrade`, `install.js` and `ci.js` scripts
   to reduce the execution time.
+- Ported CLI to Typescript and use the external library cliffy for better code structure.
 
 ### Fixed
 - The async cache for the `inline` plugin.

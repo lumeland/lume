@@ -65,7 +65,7 @@ async function install(version: string, dev = false) {
       `--import-map=${importMap}`,
       `--no-check`,
       "--name=lume",
-      `${url}/cli.js`,
+      `${url}/cli.ts`,
     ],
   });
 
