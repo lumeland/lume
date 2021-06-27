@@ -1,9 +1,9 @@
 import Metrics from "../metrics.js";
 import { createSite } from "./utils.ts";
-import { brightGreen, gray } from "../deps/colors.js";
+import { brightGreen, gray } from "../deps/colors.ts";
 import runWatch from "./watch.ts";
 import runServe from "./serve.ts";
-import { join } from "../deps/path.js";
+import { join } from "../deps/path.ts";
 
 interface Options {
   root: string;

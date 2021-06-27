@@ -3,7 +3,7 @@ import {
   getLastDevelopmentVersion,
   getLastVersion,
 } from "./utils.ts";
-import { brightGreen, gray } from "../deps/colors.js";
+import { brightGreen, gray } from "../deps/colors.ts";
 
 interface Options {
   dev: boolean;

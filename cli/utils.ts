@@ -1,8 +1,8 @@
 import Site from "../site.js";
 import lume from "../mod.js";
-import { exists } from "../deps/fs.js";
-import { join, resolve, toFileUrl } from "../deps/path.js";
-import { bold, dim, red } from "../deps/colors.js";
+import { exists } from "../deps/fs.ts";
+import { join, resolve, toFileUrl } from "../deps/path.ts";
+import { bold, dim, red } from "../deps/colors.ts";
 import { Exception } from "../utils.js";
 import { Page } from "../filesystem.js";
 

@@ -1,5 +1,5 @@
 import { Page } from "./filesystem.js";
-import { brightGreen, gray } from "./deps/colors.js";
+import { brightGreen, gray } from "./deps/colors.ts";
 
 export default class Metrics {
   constructor(site) {

@@ -1,4 +1,4 @@
-import { parse } from "../deps/yaml.js";
+import { parse } from "../deps/yaml.ts";
 
 export default async function (path) {
   const content = await Deno.readTextFile(path);

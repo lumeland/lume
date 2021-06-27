@@ -1,5 +1,5 @@
 import { DOMParser } from "./deps/dom.js";
-import { SEP } from "./deps/path.js";
+import { SEP } from "./deps/path.ts";
 
 export async function concurrent(iterable, iteratorFn, limit = 200) {
   const executing = [];

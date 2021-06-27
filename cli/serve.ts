@@ -1,12 +1,12 @@
 import Site from "../site.js";
-import { listenAndServe, ServerRequest } from "../deps/server.js";
-import { acceptWebSocket, WebSocket } from "../deps/ws.js";
-import { dirname, extname, join, posix, relative } from "../deps/path.js";
-import { brightGreen, red } from "../deps/colors.js";
-import { exists } from "../deps/fs.js";
+import { listenAndServe, ServerRequest } from "../deps/server.ts";
+import { acceptWebSocket, WebSocket } from "../deps/ws.ts";
+import { dirname, extname, join, posix, relative } from "../deps/path.ts";
+import { brightGreen, red } from "../deps/colors.ts";
+import { exists } from "../deps/fs.ts";
 import localIp from "../deps/local_ip.js";
 import { mimes, normalizePath } from "../utils.js";
-import { readAll } from "../deps/util.js";
+import { readAll } from "../deps/util.ts";
 
 /**
  * Start a local HTTP server and live-reload the changes

@@ -1,5 +1,5 @@
-import { posix } from "../deps/path.js";
-import { brightGreen } from "../deps/colors.js";
+import { posix } from "../deps/path.ts";
+import { brightGreen } from "../deps/colors.ts";
 
 interface Options {
   config: string;

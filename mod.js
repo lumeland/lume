@@ -1,5 +1,5 @@
 import { parse } from "./deps/flags.js";
-import { resolve } from "./deps/path.js";
+import { resolve } from "./deps/path.ts";
 import Site from "./site.js";
 
 import url from "./plugins/url.js";

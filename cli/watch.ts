@@ -1,6 +1,6 @@
 import Site from "../site.js";
 import { printError } from "./utils.ts";
-import { join, relative } from "../deps/path.js";
+import { join, relative } from "../deps/path.ts";
 
 /**
  * Watch and rebuild the site on changes
