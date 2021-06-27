@@ -10,8 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - New `-w`/`--watch` option to watch changes without starting a web server.
-  [#109]
-- Made the `_includes` directory configurable: [#115]
+  [#109].
+- Made the `_includes` directory configurable: [#115].
   - new `includes` option for site and the `eta`, `nunjucks` and `pug` plugins
   - new `site.includes()` method, similar to `site.src()`.
 - `options` configuration value to the `pug` plugin
@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   to reduce the execution time.
 - Ported the CLI to TypeScript
   and made use of the external library Cliffy for better code structure.
-  This brings the following changes: [#120]
+  This brings the following changes: [#120].
   - Removed the duplicated `build` command. Use `lume` instead of `lume build`.
   - To see the Lume version, use `lume -V` or `lume --version`
     instead of `lume -v` (in lowercase).
@@ -38,10 +38,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - The async cache for the `inline` plugin.
-- Some preprocessors were executed several times. [#110]
+- Some preprocessors were executed several times. [#110].
 - The `slugify_urls` plugin produced empty path segments
   (for example, `x/@/y` now becomes `x/-/y` and not `x//y` as before).
-- JavaScript source maps. [#114]
+- JavaScript source maps. [#114].
 
 ## [0.23.3] - 2021-06-21
 ### Added
@@ -53,16 +53,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - `0`: only important things
   - `1`: normal details (the default option)
   - `2`: high details (for debugging purposes)
-- Allow extensions on Nunjucks. [#108]
+- Allow extensions on Nunjucks. [#108].
 
 ### Fixed
 - Improved the way CLI arguments are applied to the site instance.
 - Ensure duplicated pages have an unique `src.path` value.
-- The `relative_urls` plugin should ignore data URLs. [#107]
+- The `relative_urls` plugin should ignore data URLs. [#107].
 
 ## [0.23.2] - 2021-06-19
 ### Fixed
-- Relative URL resolution. [#105]
+- Relative URL resolution. [#105].
 
 ## [0.23.1] - 2021-06-17
 ### Fixed
@@ -178,7 +178,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The `url` filter shouldn’t add the path prefix if it’s already added.
 - `search.pages()` must return only HTML pages.
   (Previously, it also returned assets.)
-- Windows installation. [#98]
+- Windows installation. [#98].
 
 ## [0.21.1] - 2021-06-03
 ### Fixed
@@ -186,7 +186,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.21.0] - 2021-06-01
 ### Added
-- The `postcss` and `terser` filters. [#97]
+- The `postcss` and `terser` filters. [#97].
 - The `--plugins` argument to `lume init`, so you can load and use plugins.
   Example: `lume init --plugins=postcss,terser,pug`.
 - The property `document` to `Page` that returns the parsed HTML.
@@ -249,7 +249,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New properties `pretty` and `slugify` for the `url` page variable
   to override the corresponding `prettyUrls` and `slugifyUrls` site options
-  in particular pages. [#95]
+  in particular pages. [#95].
 - `import_map.json` to the installation process. This allows to import Lume
   in the `_config.js` file with `import lume from "lume/mod.js";`.
 - New command `lume install` to install Lume easily using the import map.
@@ -262,18 +262,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 - The minimum Deno version supported to `1.10.0`.
 - BREAKING: `prettyUrls` to not apply to the `url` page variable
-  if it’s a string. To generate a custom pretty URL: [#95]
+  if it’s a string. To generate a custom pretty URL: [#95].
   - use an object (e.g., `{ path: /about-me }`)
   - add a trailing slash (e.g., `/about-me/`)
   - use a full URL (e.g., `/about-me/index.html`).
 - BREAKING: `url` values to not assume that the page is HTML.
-  This means the `.html` extension won’t be added by default. [#95]
+  This means the `.html` extension won’t be added by default. [#95].
 - `lume init` to generate a `_config.js` file using the import map.
   Use `lume init --import-map=false` to use the old URLs.
 
 ### Removed
 - The property `ext` from the `url` page variable,
-  because `path` now includes it. [#95]
+  because `path` now includes it. [#95].
 - The command `lume update`. It’s not needed thanks to import maps.
 
 ### Fixed
@@ -282,11 +282,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [0.19.0] - 2021-05-10
 ### Added
 - The `url` page variable supports an object with `path` and `ext` properties
-  to fully customize the output filename. [#83]
-- New plugin `relative_urls` to convert all URLs to relative. [#85]
-- Preprocessors (like processors, but are executed before rendering). [#91]
-- Allowed setting options for the Nunjucks plugin. [#90]
-- Options to customize the `slugifyUrls` setting: [#94]
+  to fully customize the output filename. [#83].
+- New plugin `relative_urls` to convert all URLs to relative. [#85].
+- Preprocessors (like processors, but are executed before rendering). [#91].
+- Allowed setting options for the Nunjucks plugin. [#90].
+- Options to customize the `slugifyUrls` setting: [#94].
   - `lowercase`: to enable/disable lowercase conversion (`true` by default)
   - `alphanumeric`: to convert all characters to ASCII (`true` by default)
   - `separator`: to customize the separator (`-` by default)
@@ -307,11 +307,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The deprecated `permalink` variable in pages. Use `url` instead.
 
 ### Fixed
-- Ignored files on server update weren’t detected properly. [#88]
-- Throw an error when a proper template engine can’t be found. [#87]
+- Ignored files on server update weren’t detected properly. [#88].
+- Throw an error when a proper template engine can’t be found. [#87].
 - Missing doctype after DOM manipulation.
-- The `njk` filter didn’t work with async filters. [#93]
-- Fixed support for subextensions (like `page.html.md`). [#83]
+- The `njk` filter didn’t work with async filters. [#93].
+- Fixed support for subextensions (like `page.html.md`). [#83].
 - Improved the errors of the `inline` plugin.
 - Made sure that all characters are lowercased when slugifying
   (so “№” becomes `no` and not `No`).
@@ -322,38 +322,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.18.1] - 2021-04-26
 ### Fixed
-- Creation of `Date` values. [#82]
-- Updated the `postcss` and `terser` dependencies. [#81]
+- Creation of `Date` values. [#82].
+- Updated the `postcss` and `terser` dependencies. [#81].
 
 ## [0.18.0] - 2021-04-24
 ### Added
 - A second argument for the `lume()` function
-  to configure the default plugins. [#45]
-- Support for more file formats on local server. [#67]
+  to configure the default plugins. [#45].
+- Support for more file formats on local server. [#67].
 
 ### Changed
-- API for the `search` helper: [#69]
+- API for the `search` helper: [#69].
   - Replaced the operator `~=` with `*=`.
   - Added the `<`, `<=`, `>` and `>=` operators.
   - Allowed using the `OR` operator with pipes,
     like `tag1|tag2` or `title=value1|value2`.
   - Added support for numeric values.
   - Added support for date and datetime values.
-- The `date("ATOM")` filter uses `Z` instead of `+00:00`. [#64]
-- Removed the `hljs` class from the blocks of unhighlighted code. [#71]
+- The `date("ATOM")` filter uses `Z` instead of `+00:00`. [#64].
+- Removed the `hljs` class from the blocks of unhighlighted code. [#71].
 - Datetime values in filenames can omit the seconds,
   like in `2021-04-24-18-00_post.md`.
 
 ### Fixed
 - User options are overridden by default options in the Markdown plugin.
-- Changed some filenames to align with the Deno style guide. [#73]
-- Updated dependencies. [#63], [#70], [#72], [#76], [#79]
-- Improved the CLI help output. [#77]
+- Changed some filenames to align with the Deno style guide. [#73].
+- Updated dependencies. [#63], [#70], [#72], [#76], [#79].
+- Improved the CLI help output. [#77].
 
 ## [0.17.1] - 2021-04-14
 ### Added
 - New option `-o`/`--open` to open the browser automatically
-  when running `lume --serve`. [#62]
+  when running `lume --serve`. [#62].
 
 ### Removed
 - The extensions `.html.js` and `.html.ts` introduced in 0.17.0.
@@ -366,26 +366,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.17.0] - 2021-04-11
 ### Added
-- The local IP address is shown on `lume --serve`. [#55]
-- Allowed an empty front matter. [#54]
+- The local IP address is shown on `lume --serve`. [#55].
+- Allowed an empty front matter. [#54].
 - The extensions `.html.js` and `.html.ts` are processed as pages
   (in order to replace to `.tmpl.js` and `.tmpl.ts`
   that will be removed in the future).
-- Added ability to change the sort direction in `search`. [#57]
+- Added ability to change the sort direction in `search`. [#57].
 
 ### Changed
-- Deprecated the `permalink` page variable. Use `url` instead. [#46]
+- Deprecated the `permalink` page variable. Use `url` instead. [#46].
 - Removed the `permalink` variable in the `paginate` helper that uses `sprintf`.
   Now it accepts only the `url` option that must be a function.
 
 ### Fixed
-- Improved the slugifier, including a better support for Unicode. [#50], [#56]
-- Update the MIME types used by the server. [#51]
-- Updated some dependencies. [#59]
+- Improved the slugifier, including a better support for Unicode. [#50], [#56].
+- Update the MIME types used by the server. [#51].
+- Updated some dependencies. [#59].
 
 ## [0.16.6] - 2021-04-04
 ### Added
-- New option `slugifyUrls` to disable the slugifier introduced in 0.16.0. [#44]
+- New option `slugifyUrls` to disable the slugifier introduced in 0.16.0. [#44].
 
 ## [0.16.5] - 2021-03-29
 ### Fixed
@@ -408,7 +408,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.16.3] - 2021-03-21
 ### Fixed
-- The SVG plugin was failed by the SVGO dependency. [#43]
+- The SVG plugin was failed by the SVGO dependency. [#43].
 
 ## [0.16.2] - 2021-03-20
 ### Added
@@ -445,7 +445,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.15.3] - 2021-03-06
 ### Fixed
-- Some issues with paths on Windows. [#41]
+- Some issues with paths on Windows. [#41].
 
 ## [0.15.2] - 2021-02-22
 ### Fixed
@@ -457,7 +457,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   to set a site directly.
 
 ### Fixed
-- Pug templates loaded with `extends` were cached indefinitely. [#39]
+- Pug templates loaded with `extends` were cached indefinitely. [#39].
 - Allow relative paths in the `--root` CLI argument.
 
 ## [0.15.0] - 2021-02-05
@@ -483,7 +483,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Cache wasn’t correctly refreshed
-  when using different versions of plugins. [#35]
+  when using different versions of plugins. [#35].
 - Updated dependencies.
 - Ensure the processors are executed in the same order they where defined.
 - The `inline` plugin when the site is located in a subdirectory.
@@ -494,7 +494,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - Tags are stored as an array in `page.data.tags`
     (they were previously contained by a `Set` in `page.tags`).
   - Removed the `page.fullData` property. `page.data` contains the merged data.
-- CLI: [#33], [#34]
+- CLI: [#33], [#34].
   - Switched some options (arguments starting with `--`) to commands:
     - `lume --upgrade` to `lume upgrade`
     - `lume --update` to `lume update`
@@ -505,7 +505,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
     instead of `lume path/to/site`, use `lume --root=path/to/site`.
 
 ### Fixed
-- Link to the docs in `--help`. [#32]
+- Link to the docs in `--help`. [#32].
 
 ## [0.13.2] - 2021-01-23
 ### Fixed
@@ -556,7 +556,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [0.11.0] - 2021-01-12
 ### Added
 - New plugin `inline`.
-- New plugin `terser`. [#29], [#30]
+- New plugin `terser`. [#29], [#30].
 
 ### Changed
 - Renamed the plugin `css` to `postcss` and renamed some of its options:
@@ -570,15 +570,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [0.10.8] - 2021-01-03
 ### Fixed
 - Sometimes, the live reload didn’t reload the page,
-  even if the changes were sent to the browser. [#20]
+  even if the changes were sent to the browser. [#20].
 
 ## [0.10.7] - 2021-01-02
 ### Added
-- Support for async filters. [#22]
+- Support for async filters. [#22].
 - The events `beforeUpdate` and `afterUpdate` got a property `files`
   with the names of all changed files.
 - Allow configuring the CSS plugin with the following options:
-  - `postcssPlugins`: an array of the PostCSS plugins [#26]
+  - `postcssPlugins`: an array of the PostCSS plugins [#26].
   - `map`: set `true` to generate source maps.
 - Ability to dynamically add or remove pages from processors.
 
@@ -607,7 +607,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The `TypeError` on reloading the server.
 - Removed extra whitespace when parsing the front matter.
 - Improved the Pug plugin.
-- The TypeScript errors due to conflicts with Eta. [#18]
+- The TypeScript errors due to conflicts with Eta. [#18].
 - Added cache for the compiled templates.
 - Improved filters.
 - Added hot reloading for modules (`.ts`, `.js`) and fixed some issues.
@@ -617,7 +617,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Don’t add the `.html` extension to files with a subextension.
   For example `scripts.js.njk` should be saved as `scripts.js`
-  instead of `scripts.js.html`. [#13]
+  instead of `scripts.js.html`. [#13].
 - Refresh the Deno cache with `lume --upgrade`.
 
 ## [0.10.1] - 2020-12-16
@@ -626,7 +626,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.10.0] - 2020-12-16
 ### Added
-- New plugin to use Pug as a template engine. [#10]
+- New plugin to use Pug as a template engine. [#10].
 - New functions `search.previousPage()` and `search.nextPage()`.
 - Support for definition lists (`<dl>`) in Markdown.
 - Improved the default `404` error page.
@@ -638,7 +638,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Live reload didn’t always work with HTML.
 - HTTP server timeout on missing `/index.html`.
 - Nunjucks cache didn’t detect the changes to included templates.
-- Showing the version on upgrade. [#9]
+- Showing the version on upgrade. [#9].
 - `url` filter in Markdown.
 - `url` filter to handle hashes and queries
   (such as `#hashid` and `?query=value`)
@@ -658,7 +658,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.9.9] - 2020-12-01
 ### Fixed
-- Async script runner no longer exits before all promises are resolved. [#7]
+- Async script runner no longer exits before all promises are resolved. [#7].
 - Improved the `--upgrade` command.
 
 ## [0.9.8] - 2020-12-01
@@ -674,9 +674,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   like the ones in `lume --serve -- flag1 flag2`.
 
 ### Fixed
-- Fixed multi-command scripts in Linux. [#7]
+- Fixed multi-command scripts in Linux. [#7].
 - Replaced `dev.jspm.io` with `jspm.dev` for dependencies.
-- Replaced `denopkg.com` with `cdn.jsdelivr.net` for dependencies. [#8]
+- Replaced `denopkg.com` with `cdn.jsdelivr.net` for dependencies. [#8].
 - Updated `highlight.js` to `10.x`.
 
 ## [0.9.6] - 2020-11-28
@@ -684,7 +684,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Creating multiple pages with generators.
 - Updated dependencies.
 - Simplify the code generated by `lume --init`.
-- Multiple commands joined with `&&` and `&`. [#7]
+- Multiple commands joined with `&&` and `&`. [#7].
 
 ## [0.9.5] - 2020-11-25
 ### Added
@@ -715,7 +715,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Renamed the `--version` shortcut `-V` to `-v`.
 
 ### Fixed
-- The `denjucks` installation. [#6]
+- The `denjucks` installation. [#6].
 
 ## [0.9.1] - 2020-11-06
 ### Fixed
@@ -767,7 +767,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.7.1] - 2020-10-10
 ### Fixed
-- Permalinks not respecting the `prettyUrls` option. [#1]
+- Permalinks not respecting the `prettyUrls` option. [#1].
 - Improved the docs about updating the Lume version.
 
 ## [0.7.0] - 2020-10-09
