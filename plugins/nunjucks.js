@@ -30,10 +30,10 @@ export default function (userOptions) {
     site.addEventListener("beforeUpdate", (ev) => {
       for (const file of ev.files) {
         const filename = site.src(file);
-        const name = loader.pathsToNames[filename];
+        const name = fsLoader.pathsToNames[filename];
 
         if (name) {
-          delete loader.cache[name];
+          delete fsLoader.cache[name];
           continue;
         }
       }
