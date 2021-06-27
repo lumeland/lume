@@ -59,6 +59,25 @@ const run = new Command()
     "Specify the lume config file",
     { default: "_config.js" },
   )
+  .option(
+    "--src <src>",
+    "The source directory for your site",
+    { default: "./" },
+  )
+  .option(
+    "--dest <dest>",
+    "The build destination",
+    { default: "_site" },
+  )
+  .option(
+    "--location <location>",
+    "The url location of the website",
+    { default: "http://localhost" },
+  )
+  .option(
+    "--quiet [quiet:boolean]",
+    "Enable quiet mode (show less info)",
+  )
   .action(runCommand);
 
 const lume = new Command()
@@ -78,6 +97,11 @@ const lume = new Command()
     { default: "./" },
   )
   .option(
+    "--config <config>",
+    "Specify the lume config file",
+    { default: "_config.js" },
+  )
+  .option(
     "--src <src>",
     "The source directory for your site",
     { default: "./" },
@@ -86,11 +110,6 @@ const lume = new Command()
     "--dest <dest>",
     "The build destination",
     { default: "_site" },
-  )
-  .option(
-    "--config <config>",
-    "Specify the lume config file",
-    { default: "_config.js" },
   )
   .option(
     "--location <location>",
@@ -129,7 +148,7 @@ const lume = new Command()
   .action(buildCommand)
   .command("init", init)
   .command("upgrade", upgrade)
-  .command("run", run);
+  .command("run <script...>", run);
 
 try {
   await lume.parse(Deno.args);
