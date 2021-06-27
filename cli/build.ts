@@ -34,7 +34,7 @@ export default async function build(
   }
 
   if (serve) {
-    await runWatch(site);
+    runWatch(site);
     await runServe(site);
   } else if (watch) {
     await runWatch(site);
