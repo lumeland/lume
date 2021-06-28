@@ -1,5 +1,5 @@
 import { optimize } from "../deps/svgo.ts";
-import { merge } from "../utils.js";
+import { merge } from "../utils.ts";
 
 // Default options
 const defaults = {

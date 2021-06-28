@@ -1,7 +1,7 @@
 import * as pug from "../deps/pug.ts";
 import Pug from "../engines/pug.ts";
 import loader from "../loaders/text.js";
-import { merge } from "../utils.js";
+import { merge } from "../utils.ts";
 
 // Default options
 const defaults = {

@@ -1,5 +1,5 @@
 import { format } from "../deps/date.ts";
-import { merge } from "../utils.js";
+import { merge } from "../utils.ts";
 
 const formats = new Map([
   ["ATOM", "yyyy-MM-dd'T'HH:mm:ssXXX"],

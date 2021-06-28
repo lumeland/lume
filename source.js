@@ -6,7 +6,7 @@ import {
   Exception,
   normalizePath,
   searchByExtension,
-} from "./utils.js";
+} from "./utils.ts";
 
 export default class Source {
   root = new Directory({ path: "/" });

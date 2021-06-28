@@ -12,7 +12,7 @@ import {
   merge,
   normalizePath,
   searchByExtension,
-} from "./utils.js";
+} from "./utils.ts";
 
 const defaults = {
   cwd: Deno.cwd(),

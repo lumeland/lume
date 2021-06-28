@@ -1,5 +1,5 @@
 import { join } from "./deps/path.ts";
-import { documentToString, stringToDocument } from "./utils.js";
+import { documentToString, stringToDocument } from "./utils.ts";
 
 class Base {
   src = {};
