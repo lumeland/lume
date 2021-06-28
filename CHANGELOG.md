@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - new `site.includes()` method, similar to `site.src()`.
 - `options` configuration value to the `pug` plugin
   to set options to the `pug` compiler.
+- Command `lume completions` to generate shell completions for Lume.
 
 ### Changed
 - Render pages in parallel, reducing the build time for large sites.
@@ -32,10 +33,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Removed the `import_map.json` file because it’s not used.
   It was kept only for backward compatibility of `lume upgrade`
   from old versions.
-- Some internal code has been ported to typescript:
-  - The cli
-  - Dependencies files
-  - The template engines
+- Some internal code has been ported to TypeScript:
+  - the CLI
+  - the dependency files
+  - the template engines.
 
 ### Removed
 - The `--verbose` option. Use `--quiet` for the same behavior as `--verbose=1`.

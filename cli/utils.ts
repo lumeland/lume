@@ -96,3 +96,27 @@ export function printError(
     console.log();
   }
 }
+
+export const pluginNames = [
+  "attributes",
+  "base_path",
+  "bundler",
+  "code_highlight",
+  "date",
+  "eta",
+  "inline",
+  "json",
+  "jsx",
+  "markdown",
+  "modules",
+  "nunjucks",
+  "postcss",
+  "pug",
+  "relative_urls",
+  "search",
+  "slugify_urls",
+  "svg",
+  "terser",
+  "url",
+  "yaml",
+];

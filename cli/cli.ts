@@ -1,5 +1,5 @@
-import { Command } from "../deps/cliffy.ts";
-import { getCurrentVersion, printError } from "./utils.ts";
+import { Command, CompletionsCommand } from "../deps/cliffy.ts";
+import { getCurrentVersion, pluginNames, printError } from "./utils.ts";
 import initCommand from "./init.ts";
 import upgradeCommand from "./upgrade.ts";
 import runCommand from "./run.ts";
@@ -19,10 +19,11 @@ const init = new Command()
     "Use full URLs instead of a import map.",
   )
   .option(
-    "--plugins <plugins:string[]",
+    "--plugins <plugins:string[]:plugin",
     "A comma-separated list of plugins to use.",
     { default: [] },
   )
+  .complete("plugin", () => pluginNames)
   .action(initCommand);
 
 const upgrade = new Command()
@@ -149,7 +150,8 @@ const lume = new Command()
   .action(buildCommand)
   .command("init", init)
   .command("upgrade", upgrade)
-  .command("run <script...>", run);
+  .command("run <script...>", run)
+  .command("completions <shell>", new CompletionsCommand());
 
 try {
   await lume.parse(Deno.args);
