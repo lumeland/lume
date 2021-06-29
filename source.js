@@ -1,6 +1,6 @@
 import { basename, dirname, extname, join } from "./deps/path.ts";
 import { existsSync } from "./deps/fs.ts";
-import { Directory, Page } from "./filesystem.js";
+import { Directory, Page } from "./filesystem.ts";
 import {
   concurrent,
   Exception,

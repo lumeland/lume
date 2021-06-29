@@ -4,7 +4,7 @@ import { exists } from "../deps/fs.ts";
 import { join, resolve, toFileUrl } from "../deps/path.ts";
 import { bold, dim, red } from "../deps/colors.ts";
 import { Exception } from "../utils.ts";
-import { Page } from "../filesystem.js";
+import { Page } from "../filesystem.ts";
 
 /**
  * Returns the current installed version

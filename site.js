@@ -3,8 +3,8 @@ import { copy, emptyDir, ensureDir, exists } from "./deps/fs.ts";
 import { gray } from "./deps/colors.ts";
 import { createHash } from "./deps/hash.ts";
 import Source from "./source.js";
-import Scripts from "./scripts.js";
-import Metrics from "./metrics.js";
+import Scripts from "./scripts.ts";
+import Metrics from "./metrics.ts";
 import textLoader from "./loaders/text.js";
 import {
   concurrent,

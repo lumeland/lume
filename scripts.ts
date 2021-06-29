@@ -1,17 +1,29 @@
 import { brightGreen, gray } from "./deps/colors.ts";
+import Site from "./site.js";
+import { Command, CommandOptions } from "./types.ts";
 
+/**
+ * This class manages and execute all user scripts
+ */
 export default class Scripts {
-  scripts = new Map();
+  site: Site;
+  scripts: Map<string, Command[]> = new Map();
 
-  constructor(site) {
+  constructor(site: Site) {
     this.site = site;
   }
 
-  set(name, ...commands) {
+  /**
+   * Register a new script
+   */
+  set(name: string, ...commands: Command[]) {
     this.scripts.set(name, commands);
   }
 
-  async run(options = {}, ...names) {
+  /**
+   * Run one or more scripts
+   */
+  async run(options: CommandOptions, ...names: Command[]) {
     options = { cwd: this.site.options.cwd, ...options };
 
     for (const name of names) {
@@ -25,13 +37,16 @@ export default class Scripts {
     return true;
   }
 
-  async #runScript(options, name) {
-    if (this.scripts.has(name)) {
+  /**
+   * Run an individual script or command
+   */
+  async #runScript(options: CommandOptions, name: Command): Promise<unknown> {
+    if (typeof name === "string" && this.scripts.has(name)) {
       if (!this.site.options.quiet) {
         console.log(`⚡️ ${brightGreen(name)}`);
       }
-      name = this.scripts.get(name);
-      return this.run(options, ...name);
+      const command = this.scripts.get(name)!;
+      return this.run(options, ...command);
     }
 
     if (Array.isArray(name)) {
@@ -48,7 +63,10 @@ export default class Scripts {
     return this.#runCommand(options, name);
   }
 
-  async #runFunction(fn) {
+  /**
+   * Run a function
+   */
+  async #runFunction(fn: (site: Site) => unknown) {
     if (fn.name && !this.site.options.quiet) {
       console.log(gray(`⚡️ ${fn.name}()`));
     }
@@ -56,7 +74,10 @@ export default class Scripts {
     return result !== false;
   }
 
-  async #runCommand(options, command) {
+  /**
+   * Run a shell command
+   */
+  async #runCommand(options: CommandOptions, command: string) {
     if (!this.site.options.quiet) {
       console.log(gray(`⚡️ ${command}`));
     }
@@ -70,7 +91,10 @@ export default class Scripts {
   }
 }
 
-function shArgs(command) {
+/**
+ * Returns the shell arguments for the current platform
+ */
+function shArgs(command: string) {
   return Deno.build.os === "windows"
     ? ["PowerShell.exe", "-Command", command]
     : ["/bin/bash", "-c", command];

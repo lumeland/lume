@@ -1,4 +1,4 @@
-import Metrics from "../metrics.js";
+import Metrics from "../metrics.ts";
 import { createSite } from "./utils.ts";
 import { brightGreen, gray } from "../deps/colors.ts";
 import runWatch from "./watch.ts";

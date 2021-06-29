@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Changed
+- Continue porting more code to TypeScript.
+
 ## [0.24.0] - 2021-06-28
 ### Added
 - New `-w`/`--watch` option to watch changes without starting a web server.
@@ -950,6 +954,7 @@ The first version.
 [#117]: https://github.com/lumeland/lume/issues/117
 [#120]: https://github.com/lumeland/lume/issues/120
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v0.24.0...HEAD
 [0.24.0]: https://github.com/lumeland/lume/compare/v0.23.3...v0.24.0
 [0.23.3]: https://github.com/lumeland/lume/compare/v0.23.2...v0.23.3
 [0.23.2]: https://github.com/lumeland/lume/compare/v0.23.1...v0.23.2

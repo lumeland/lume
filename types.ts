@@ -1,4 +1,5 @@
-import { Page } from "./filesystem.js";
+import Site from "./site.js";
+import { Page } from "./filesystem.ts";
 
 /**
  * The data of a page
@@ -46,3 +47,37 @@ export interface Event {
   type: EventType;
   files?: string[];
 }
+
+/**
+ * The .src property for a Page or Directory
+ */
+export interface Src {
+  path: string;
+  ext?: string;
+  lastModified?: Date;
+  created?: Date;
+}
+
+/**
+ * The .dest property for a Page
+ */
+export interface Dest {
+  path: string;
+  ext: string;
+  hash?: string;
+}
+
+/**
+ * The .content property for a Page
+ */
+export type Content = Uint8Array | string;
+
+/**
+ * Command executed by scripts
+ */
+export type Command = string | ((site: Site) => unknown) | Command[];
+
+/**
+ * Options available for Commands
+ */
+export type CommandOptions = Omit<Deno.RunOptions, "cmd">;

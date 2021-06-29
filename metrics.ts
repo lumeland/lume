@@ -1,27 +1,43 @@
-import { Page } from "./filesystem.js";
+import Site from "./site.js";
+import { Page } from "./filesystem.ts";
 import { brightGreen, gray } from "./deps/colors.ts";
 
+/**
+ * Class to collect and return performance metrics
+ */
 export default class Metrics {
-  constructor(site) {
+  site: Site;
+
+  constructor(site: Site) {
     this.site = site;
   }
 
-  start(name, subject, processor) {
+  /**
+   * Create a mark to start to measure
+   */
+  start(name: string, subject?: unknown, processor?: unknown) {
     if (this.site.options.metrics) {
       const markName = this.#getMarkName(name, subject, processor);
       performance.mark(markName);
     }
   }
 
-  end(name, subject, processor) {
+  /**
+   * Measure the time from a mark to now.
+   */
+  end(name: string, subject?: unknown, processor?: unknown) {
     if (this.site.options.metrics) {
       const markName = this.#getMarkName(name, subject, processor);
       performance.measure(markName, markName);
     }
   }
 
-  #getMarkName(name, subject, processor) {
+  /**
+   * Generate an unique mark name
+   */
+  #getMarkName(name: string, subject?: unknown, processor?: unknown) {
     if (processor) {
+      // @ts-ignore: processor is the type unknown
       name += ` ${processor.name}`;
     }
     if (subject) {
@@ -32,10 +48,16 @@ export default class Metrics {
     return name;
   }
 
+  /**
+   * Return the list of collected metrics
+   */
   get entries() {
     return performance.getEntriesByType("measure");
   }
 
+  /**
+   * Print the metrics in the console
+   */
   print() {
     // Sort by duration and get the 100 longest
     const metrics = this.entries
@@ -52,7 +74,10 @@ export default class Metrics {
     }
   }
 
-  async save(file) {
+  /**
+   * Save the metrics data in a file
+   */
+  async save(file: string) {
     await Deno.writeTextFile(file, JSON.stringify(this.entries));
   }
 }
