@@ -1,3 +1,4 @@
+import Site from "./site.js";
 import { basename, dirname, extname, join } from "./deps/path.ts";
 import { existsSync } from "./deps/fs.ts";
 import { Directory, Page } from "./filesystem.ts";
@@ -7,18 +8,24 @@ import {
   normalizePath,
   searchByExtension,
 } from "./utils.ts";
+import { Data, Event, Loader } from "./types.ts";
 
+/**
+ * Class to scan and load files from the source folder
+ * with the data, pages, assets and static files
+ */
 export default class Source {
+  site: Site;
   root = new Directory({ path: "/" });
 
-  data = new Map();
-  pages = new Map();
-  staticFiles = new Map();
-  assets = new Set();
-  ignored = new Set();
-  #cache = new Map();
+  data: Map<string, Loader> = new Map();
+  pages: Map<string, Loader> = new Map();
+  staticFiles: Map<string, string> = new Map();
+  assets: Set<string> = new Set();
+  ignored: Set<string> = new Set();
+  #cache: Map<string, Promise<Data>> = new Map();
 
-  constructor(site) {
+  constructor(site: Site) {
     this.site = site;
 
     // Update cache
@@ -27,10 +34,10 @@ export default class Source {
       this.#cache.clear();
     });
 
-    site.addEventListener("beforeUpdate", (ev) => {
+    site.addEventListener("beforeUpdate", (ev: Event) => {
       this.root.refreshCache();
 
-      for (const filename of ev.files) {
+      for (const filename of ev.files!) {
         this.#cache.delete(site.src(filename));
       }
     });
@@ -38,8 +45,9 @@ export default class Source {
 
   /**
    * Returns the Directory instance of a path
+   * and create if it doesn't exist
    */
-  getOrCreateDirectory(path) {
+  getOrCreateDirectory(path: string) {
     let dir = this.root;
 
     path.split("/").forEach((name) => {
@@ -51,7 +59,7 @@ export default class Source {
         dir.createDirectory(name);
       }
 
-      dir = dir.dirs.get(name);
+      dir = dir.dirs.get(name)!;
     });
 
     return dir;
@@ -60,8 +68,8 @@ export default class Source {
   /**
    * Returns the File or Directory of a path
    */
-  getFileOrDirectory(path) {
-    let result = this.root;
+  getFileOrDirectory(path: string): Directory | Page | undefined {
+    let result: Directory | Page | undefined = this.root;
 
     path.split("/").forEach((name) => {
       if (!name || !result) {
@@ -70,8 +78,6 @@ export default class Source {
 
       if (result instanceof Directory) {
         result = result.dirs.get(name) || result.pages.get(name);
-      } else {
-        return null;
       }
     });
 
@@ -80,8 +86,9 @@ export default class Source {
 
   /**
    * Check whether a file is included in the static files
+   * and return the [from, to] tupple
    */
-  isStatic(file) {
+  isStatic(file: string) {
     for (const entry of this.staticFiles) {
       const [from] = entry;
 
@@ -96,7 +103,7 @@ export default class Source {
   /**
    * Check whether a path is ignored or not
    */
-  isIgnored(path) {
+  isIgnored(path: string) {
     for (const pattern of this.ignored) {
       if (pattern === path || path.startsWith(`${pattern}/`)) {
         return true;
@@ -121,7 +128,7 @@ export default class Source {
   /**
    * Reload some files
    */
-  async loadFile(file) {
+  async loadFile(file: string) {
     const entry = {
       name: basename(file),
       isFile: true,
@@ -138,14 +145,14 @@ export default class Source {
       const path = dirname(remain).split("/").filter((name) =>
         name && name !== "."
       );
-      let data = directory.data;
+      let data = directory.data as Record<string, unknown>;
 
       for (const name of path) {
         if (!(name in data)) {
           data[name] = {};
         }
 
-        data = data[name];
+        data = data[name] as Record<string, unknown>;
       }
 
       return await this.#loadDataDirectoryEntry(
@@ -162,7 +169,7 @@ export default class Source {
   /**
    * Load an entry from a directory
    */
-  async #loadEntry(directory, entry) {
+  async #loadEntry(directory: Directory, entry: Deno.DirEntry) {
     if (entry.isSymlink || entry.name.startsWith(".")) {
       return;
     }
@@ -217,7 +224,7 @@ export default class Source {
   /**
    * Create and returns a Page
    */
-  async #loadPage(path) {
+  async #loadPage(path: string) {
     const result = searchByExtension(path, this.pages);
 
     if (!result) {
@@ -232,30 +239,17 @@ export default class Source {
     }
 
     const info = await Deno.stat(fullPath);
-    const src = {
+    const page = new Page({
       path: path.slice(0, -ext.length),
-      lastModified: info.mtime,
-      created: info.birthtime,
+      lastModified: info.mtime || undefined,
+      created: info.birthtime || undefined,
       ext,
-    };
-
-    const dest = {
-      path: normalizePath(src.path),
-    };
-
-    const subext = extname(src.path);
-
-    if (this.assets.has(ext)) {
-      dest.ext = ext;
-    } else if (subext) {
-      dest.path = dest.path.slice(0, -subext.length);
-      dest.ext = subext;
-    }
+    });
 
     const data = await this.load(fullPath, loader);
 
     if (!data.date) {
-      data.date = getDate(src, dest);
+      data.date = getDate(page);
     } else if (!(data.date instanceof Date)) {
       throw new Exception(
         'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
@@ -263,9 +257,20 @@ export default class Source {
       );
     }
 
-    const page = new Page(src);
     page.data = data;
-    page.dest = dest;
+
+    // If it's not an asset, remove the extension
+    if (!this.assets.has(page.dest.ext)) {
+      page.dest.ext = "";
+    }
+
+    // Sub-extensions. Ex: styles.css.njk
+    const subext = extname(page.dest.path);
+
+    if (subext) {
+      page.dest.path = page.dest.path.slice(0, -subext.length);
+      page.dest.ext = subext;
+    }
 
     return page;
   }
@@ -273,19 +278,21 @@ export default class Source {
   /**
    * Load a _data.* file and return the content
    */
-  #loadData(path) {
+  async #loadData(path: string): Promise<Data> {
     const result = searchByExtension(path, this.data);
 
     if (result) {
       const [, loader] = result;
-      return this.load(this.site.src(path), loader);
+      return await this.load(this.site.src(path), loader);
     }
+
+    return {};
   }
 
   /**
    * Load a _data directory and return the content of all files
    */
-  async #loadDataDirectory(path) {
+  async #loadDataDirectory(path: string) {
     const data = {};
 
     for (const entry of Deno.readDirSync(this.site.src(path))) {
@@ -298,7 +305,11 @@ export default class Source {
   /**
    * Load a data file inside a _data directory
    */
-  async #loadDataDirectoryEntry(path, entry, data) {
+  async #loadDataDirectoryEntry(
+    path: string,
+    entry: Deno.DirEntry,
+    data: Record<string, unknown>,
+  ) {
     if (
       entry.isSymlink ||
       entry.name.startsWith(".") || entry.name.startsWith("_")
@@ -325,20 +336,21 @@ export default class Source {
   /**
    * Load a file and save the content in the cache
    */
-  load(path, loader) {
+  load(path: string, loader: Loader): Promise<Data> {
     try {
       if (!this.#cache.has(path)) {
         this.#cache.set(path, loader(path));
       }
 
-      return this.#cache.get(path);
+      return this.#cache.get(path)!;
     } catch (err) {
       throw new Exception("Couldn't load this file", { path }, err);
     }
   }
 }
 
-function getDate(src, dest) {
+function getDate(page: Page) {
+  const { src, dest } = page;
   const fileName = basename(src.path);
 
   const dateInPath = fileName.match(

@@ -81,3 +81,8 @@ export type Command = string | ((site: Site) => unknown) | Command[];
  * Options available for Commands
  */
 export type CommandOptions = Omit<Deno.RunOptions, "cmd">;
+
+/**
+ * A loader is a function that load and return a file content
+ */
+export type Loader = (path: string) => Promise<Data>;

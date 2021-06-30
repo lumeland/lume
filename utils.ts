@@ -119,7 +119,7 @@ export function normalizePath(path: string) {
 export function searchByExtension<Type>(
   path: string,
   extensions: Map<string, Type>,
-) {
+): [string, Type] | undefined {
   for (const [key, value] of extensions) {
     if (path.endsWith(key)) {
       return [key, value];
