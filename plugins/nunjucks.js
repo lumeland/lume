@@ -1,6 +1,6 @@
 import nunjucks from "../deps/nunjucks.ts";
 import NunjucksEngine from "../engines/nunjucks.ts";
-import loader from "../loaders/text.js";
+import loader from "../loaders/text.ts";
 import { merge } from "../utils.ts";
 
 // Default options

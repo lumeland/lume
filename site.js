@@ -5,7 +5,7 @@ import { createHash } from "./deps/hash.ts";
 import Source from "./source.ts";
 import Scripts from "./scripts.ts";
 import Metrics from "./metrics.ts";
-import textLoader from "./loaders/text.js";
+import textLoader from "./loaders/text.ts";
 import {
   concurrent,
   Exception,

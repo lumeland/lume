@@ -1,7 +1,13 @@
-export default async function (path) {
+import { Data } from "../types.ts";
+
+/**
+ * Load Javascript/Typescript files.
+ * It uses a random hashes to prevent caching
+ */
+export default async function (path: string): Promise<Data> {
   const hash = Date.now();
   const mod = await import(`file://${path}#${hash}`);
-  const data = {};
+  const data: Data = {};
 
   for (const [name, value] of Object.entries(mod)) {
     if (name === "default") {

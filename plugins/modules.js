@@ -1,5 +1,5 @@
 import Module from "../engines/module.ts";
-import loader from "../loaders/module.js";
+import loader from "../loaders/module.ts";
 
 export default function () {
   return (site) => {

@@ -4,7 +4,7 @@ import {
   markdownItDeflist,
   markdownItReplaceLink,
 } from "../deps/markdown_it.ts";
-import loader from "../loaders/text.js";
+import loader from "../loaders/text.ts";
 import Markdown from "../engines/markdown.ts";
 import { merge } from "../utils.ts";
 

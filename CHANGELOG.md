@@ -9,7 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Changed
-- Continue porting more code to TypeScript.
+- BREAKING: Lume has been ported to TypeScript.
+  This means that all files have the `.ts` extension.
+  You have to edit your `_config.js` file to import `.ts` files instead `.js`.
 
 ## [0.24.0] - 2021-06-28
 ### Added

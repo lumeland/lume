@@ -1,6 +1,6 @@
 import * as pug from "../deps/pug.ts";
 import Pug from "../engines/pug.ts";
-import loader from "../loaders/text.js";
+import loader from "../loaders/text.ts";
 import { merge } from "../utils.ts";
 
 // Default options
