@@ -127,7 +127,8 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
       }
 
       if (!options.async) {
-        return fn(...args);
+        const string = fn(...args);
+        return new nunjucks.runtime.SafeString(string);
       }
 
       const callback = args.pop();

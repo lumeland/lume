@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   This means that all files have the `.ts` extension.
   You have to edit your `_config.js` file to import `.ts` files instead `.js`.
 
+### Fixed
+- Sync Nunjucks tags doesn't return safe strings.
+
 ## [0.24.0] - 2021-06-28
 ### Added
 - New `-w`/`--watch` option to watch changes without starting a web server.
