@@ -1,5 +1,5 @@
 import * as eta from "../deps/eta.ts";
-import Site from "../site.js";
+import Site from "../site.ts";
 import Engine from "./engine.ts";
 import { Data, Helper, HelperOptions } from "../types.ts";
 

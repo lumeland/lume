@@ -1,4 +1,4 @@
-import Site from "./site.js";
+import Site from "./site.ts";
 import { basename, dirname, extname, join } from "./deps/path.ts";
 import { existsSync } from "./deps/fs.ts";
 import { Directory, Page } from "./filesystem.ts";

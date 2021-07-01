@@ -1,5 +1,5 @@
 import nunjucks from "../deps/nunjucks.ts";
-import Site from "../site.js";
+import Site from "../site.ts";
 import Engine from "./engine.ts";
 import { Data, Event, Helper, HelperOptions } from "../types.ts";
 

@@ -1,4 +1,4 @@
-import Site from "./site.js";
+import Site from "./site.ts";
 import { Page } from "./filesystem.ts";
 
 /**
@@ -45,8 +45,13 @@ export type EventType =
  */
 export interface Event {
   type: EventType;
-  files?: string[];
+  files?: Set<string>;
 }
+
+/**
+ * A listener for events
+ */
+export type EventListener = (event: Event) => unknown;
 
 /**
  * The .src property for a Page or Directory
@@ -109,3 +114,44 @@ export interface PaginateResult {
     next: string | null;
   };
 }
+
+/**
+ * Available options to configure the site build
+ */
+export interface SiteOptions {
+  cwd: string;
+  src: string;
+  dest: string;
+  includes: string;
+  dev: boolean;
+  location: URL;
+  metrics: boolean;
+  prettyUrls: boolean;
+  flags: string[];
+  quiet: boolean;
+  server: ServerOptions;
+}
+
+/**
+ * The options to configure the local server
+ */
+export interface ServerOptions {
+  port: number;
+  open: boolean;
+  page404: string;
+}
+
+/**
+ * A (pre)processor
+ */
+export type Processor = (page: Page, site: Site) => void;
+
+/**
+ * The function that install a plugin
+ */
+export type PluginSetup = ((options: unknown) => Plugin);
+
+/**
+ * A generical Lume plugin
+ */
+export type Plugin = (site: Site) => void;

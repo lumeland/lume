@@ -1,4 +1,4 @@
-import Site from "../site.js";
+import Site from "../site.ts";
 import { Data, Helper, HelperOptions } from "../types.ts";
 
 /**

@@ -1,4 +1,4 @@
-import Site from "../site.js";
+import Site from "../site.ts";
 import lume from "../mod.js";
 import { exists } from "../deps/fs.ts";
 import { join, resolve, toFileUrl } from "../deps/path.ts";

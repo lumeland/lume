@@ -1,5 +1,5 @@
 import { brightGreen, gray } from "./deps/colors.ts";
-import Site from "./site.js";
+import Site from "./site.ts";
 import { Command, CommandOptions } from "./types.ts";
 
 /**

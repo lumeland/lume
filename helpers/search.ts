@@ -1,4 +1,4 @@
-import Site from "../site.js";
+import Site from "../site.ts";
 import { Page } from "../filesystem.ts";
 
 type Query = string | string[];

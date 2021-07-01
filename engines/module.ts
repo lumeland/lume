@@ -8,7 +8,7 @@ export type Content =
 export default class Module extends Engine {
   helpers: Record<string, Helper> = {};
 
-  async render(content: Content, data: Data) {
+  async render(content: Content, data: Data): Promise<unknown> {
     return typeof content === "function"
       ? await content(data, this.helpers)
       : content;

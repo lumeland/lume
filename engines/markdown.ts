@@ -1,5 +1,5 @@
 import Engine from "./engine.ts";
-import Site from "../site.js";
+import Site from "../site.ts";
 
 interface MarkdownEngine {
   render: (input: string) => string;
