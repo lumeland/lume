@@ -5,7 +5,7 @@ import { Page } from "./filesystem.ts";
  * The data of a page
  */
 export interface Data {
-  tags?: string | string[];
+  tags?: string[];
   url?: string | ((page: Page) => string);
   draft?: boolean;
   renderOrder?: number;
