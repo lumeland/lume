@@ -1,15 +1,20 @@
+import Site from "../site.ts";
 import yaml from "../loaders/yaml.ts";
 import { merge } from "../utils.ts";
 
+interface Options {
+  extensions: string[];
+}
+
 // Default options
-const defaults = {
+const defaults: Options = {
   extensions: [".yaml", ".yml"],
 };
 
-export default function (userOptions) {
+export default function (userOptions: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
-  return (site) => {
+  return (site: Site) => {
     site.loadData(options.extensions, yaml);
     site.loadPages(options.extensions, yaml);
   };

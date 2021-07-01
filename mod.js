@@ -2,13 +2,13 @@ import { parse } from "./deps/flags.ts";
 import { resolve } from "./deps/path.ts";
 import Site from "./site.ts";
 
-import url from "./plugins/url.js";
-import json from "./plugins/json.js";
-import markdown from "./plugins/markdown.js";
-import modules from "./plugins/modules.js";
-import nunjucks from "./plugins/nunjucks.js";
-import search from "./plugins/search.js";
-import yaml from "./plugins/yaml.js";
+import url from "./plugins/url.ts";
+import json from "./plugins/json.ts";
+import markdown from "./plugins/markdown.ts";
+import modules from "./plugins/modules.ts";
+import nunjucks from "./plugins/nunjucks.ts";
+import search from "./plugins/search.ts";
+import yaml from "./plugins/yaml.ts";
 import { merge } from "./utils.ts";
 
 export default function (options = {}, pluginOptions = {}) {

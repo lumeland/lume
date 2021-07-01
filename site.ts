@@ -165,7 +165,7 @@ export default class Site {
   /**
    * Register a page loader for some extensions
    */
-  loadPages(extensions: string[], loader: Loader, engine: Engine) {
+  loadPages(extensions: string[], loader: Loader, engine?: Engine) {
     loader ||= textLoader;
     extensions.forEach((extension) => this.source.pages.set(extension, loader));
 
