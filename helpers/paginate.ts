@@ -1,16 +1,18 @@
-export default function (site) {
-  const ext = site.options.prettyUrls ? "/index.html" : ".html";
+import { PaginateOptions, PaginateResult } from "../types.ts";
+import { merge } from "../utils.ts";
 
-  const defaults = {
-    size: 10,
-    url: (page) => `./page-${page}${ext}`,
-  };
-
-  return function* paginate(results, options = {}) {
-    options = { ...defaults, ...options };
-
+/**
+ * Helper to paginate a list of results
+ */
+export default function (defaults: PaginateOptions) {
+  return function* paginate(
+    results: unknown[],
+    userOptions: Partial<PaginateOptions> = {},
+  ) {
+    const options = merge(defaults, userOptions);
     const totalResults = results.length;
     const totalPages = Math.ceil(results.length / options.size);
+
     let page = 1;
     let data = createPageData(page);
 
@@ -28,7 +30,7 @@ export default function (site) {
       yield data;
     }
 
-    function createPageData(page) {
+    function createPageData(page: number): PaginateResult {
       return {
         url: options.url(page),
         results: [],

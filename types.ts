@@ -86,3 +86,26 @@ export type CommandOptions = Omit<Deno.RunOptions, "cmd">;
  * A loader is a function that load and return a file content
  */
 export type Loader = (path: string) => Promise<Data>;
+
+/**
+ * The available options for the paginate helper
+ */
+export interface PaginateOptions {
+  size: number;
+  url: (page: number) => string;
+}
+
+/**
+ * The paginate result
+ */
+export interface PaginateResult {
+  url: string;
+  results: unknown[];
+  pagination: {
+    page: number;
+    totalPages: number;
+    totalResults: number;
+    previous: string | null;
+    next: string | null;
+  };
+}

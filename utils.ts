@@ -71,7 +71,7 @@ export const mimes: Map<string, string> = new Map([
  * Merge two objects recursively.
  * It's used to merge user options with default options
  */
-export function merge<Type extends Record<string, unknown>>(
+export function merge<Type>(
   defaults: Type,
   user: Partial<Type>,
 ) {
@@ -82,6 +82,7 @@ export function merge<Type extends Record<string, unknown>>(
   }
 
   for (const [key, value] of Object.entries(user)) {
+    // @ts-ignore: No index signature with a parameter of type 'string' was found on type 'unknown'
     if (isPlainObject(merged[key]) && isPlainObject(value)) {
       // @ts-ignore: Type 'string' cannot be used to index type 'Type'
       merged[key] = merge(merged[key], value);
