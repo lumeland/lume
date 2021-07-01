@@ -21,7 +21,7 @@ export function parseFrontmatter(content: string): Data {
       let data = parse(content.slice(3, end)) as Data | undefined;
 
       // Allow empty front matter
-      if (typeof data === "undefined") {
+      if (!data) {
         data = {};
       }
 
