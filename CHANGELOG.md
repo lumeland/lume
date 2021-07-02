@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Changed
-- BREAKING: Lume has been ported to TypeScript.
+- Lume has been ported to TypeScript.
   This means that all files have the `.ts` extension.
-  You have to edit your config file to import `.ts` files instead of `.js`.
+  You should edit your config file to import `.ts` files instead of `.js`.
 
 ### Fixed
 - Sync Nunjucks tags doesn’t return safe strings.

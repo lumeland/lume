@@ -4,10 +4,16 @@ import { brightGreen, gray, red } from "./deps/colors.ts";
 
 const baseUrl = new URL(".", import.meta.url).href;
 const cli = posix.join(baseUrl, "./cli/cli.ts");
+const imports = {
+  imports: {
+    "lume/": posix.join(baseUrl, "/"),
+    "lume/plugins/terser.js": posix.join(baseUrl, "/plugins/terser.ts"),
+    "lume/plugins/eta.js": posix.join(baseUrl, "/plugins/eta.ts"),
+  },
+};
 const importMap = `data:application/json;base64,${
-  encode(`{ "imports": { "lume/": "${posix.join(baseUrl, "/")}" } }`)
+  encode(JSON.stringify(imports))
 }`;
-
 const minDenoVersion = "1.10.3";
 
 if (Deno.version.deno < minDenoVersion) {
