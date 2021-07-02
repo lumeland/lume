@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Sync Nunjucks tags doesn’t return safe strings.
-- Updated `std` and `terser`.
+- Updated `std`, `terser` and `markdown-it`.
 
 ## [0.24.0] - 2021-06-28
 ### Added
