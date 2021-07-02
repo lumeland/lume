@@ -165,9 +165,11 @@ export default class Site {
   /**
    * Register a page loader for some extensions
    */
-  loadPages(extensions: string[], loader: Loader, engine?: Engine) {
+  loadPages(extensions: string[], loader?: Loader, engine?: Engine) {
     loader ||= textLoader;
-    extensions.forEach((extension) => this.source.pages.set(extension, loader));
+    extensions.forEach((extension) =>
+      this.source.pages.set(extension, loader!)
+    );
 
     if (!engine) {
       return this;
@@ -185,9 +187,11 @@ export default class Site {
   /**
    * Register an assets loader for some extensions
    */
-  loadAssets(extensions: string[], loader: Loader) {
+  loadAssets(extensions: string[], loader?: Loader) {
     loader ||= textLoader;
-    extensions.forEach((extension) => this.source.pages.set(extension, loader));
+    extensions.forEach((extension) =>
+      this.source.pages.set(extension, loader!)
+    );
     extensions.forEach((extension) => this.source.assets.add(extension));
     return this;
   }
