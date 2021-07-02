@@ -1,35 +1,5 @@
-import * as eta from "../deps/eta.ts";
-import Eta from "../engines/eta.ts";
-import loader from "../loaders/text.ts";
-import { merge } from "../utils.ts";
-
-// Default options
-const defaults = {
-  extensions: [".eta"],
-  includes: null,
-};
-
-export default function (userOptions) {
-  return (site) => {
-    const options = merge(
-      { ...defaults, includes: site.includes() },
-      userOptions,
-    );
-
-    // Configure eta
-    eta.configure({
-      views: options.includes,
-      useWith: true,
-    });
-
-    // Update cache
-    site.addEventListener("beforeUpdate", (ev) => {
-      for (const filename of ev.files) {
-        eta.templates.remove(site.src(filename));
-      }
-    });
-
-    // Load pages
-    site.loadPages(options.extensions, loader, new Eta(site, eta));
-  };
-}
+export { default } from "./eta.ts";
+const file = "lume/plugins/eta";
+console.log(
+  `WARNING: Deprecated Javascript file ${file}.js. Use the Typescript version ${file}.ts`,
+);
