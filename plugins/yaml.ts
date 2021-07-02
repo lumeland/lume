@@ -11,6 +11,9 @@ const defaults: Options = {
   extensions: [".yaml", ".yml"],
 };
 
+/**
+ * This plugin adds support for yaml files
+ */
 export default function (userOptions: Partial<Options>) {
   const options = merge(defaults, userOptions);
 

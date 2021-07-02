@@ -1,8 +1,21 @@
+import Site from "../site.ts";
+import { Page } from "../filesystem.ts";
 import { posix } from "../deps/path.ts";
 import { merge } from "../utils.ts";
+import { Helper } from "../types.ts";
+
+interface Options {
+  extensions: string[];
+  lowercase: boolean;
+  alphanumeric: boolean;
+  separator: string;
+  replace: {
+    [index: string]: string;
+  };
+}
 
 // Default options
-const defaults = {
+const defaults: Options = {
   extensions: [".html"],
   lowercase: true,
   alphanumeric: true,
@@ -19,16 +32,19 @@ const defaults = {
   },
 };
 
-export default function (userOptions) {
+/**
+ * Plugin to slugify all urls, replacing conflictive characters
+ */
+export default function (userOptions: Partial<Options>) {
   const options = merge(defaults, userOptions);
   const slugify = createSlugifier(options);
 
-  return (site) => {
-    site.filter("slugify", slugify);
+  return (site: Site) => {
+    site.filter("slugify", slugify as Helper);
     site.preprocess(options.extensions, slugifyUrls);
   };
 
-  function slugifyUrls(page) {
+  function slugifyUrls(page: Page) {
     const { dest } = page;
     const path = slugify(dest.path);
 
@@ -45,7 +61,7 @@ export default function (userOptions) {
   }
 }
 
-export function createSlugifier(options) {
+export function createSlugifier(options: Options): (string: string) => string {
   const { lowercase, alphanumeric, separator, replace } = options;
 
   return function (string) {

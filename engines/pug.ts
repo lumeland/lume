@@ -2,25 +2,24 @@ import Site from "../site.ts";
 import Engine from "./engine.ts";
 import { Data, Helper, HelperOptions } from "../types.ts";
 
-interface Options {
-  filters: Record<string, Helper>;
+export interface PugOptions {
+  filters?: Record<string, Helper>;
+  [key: string]: unknown;
 }
 
-interface PugEngine {
-  compile: (
-    input: string,
-    options: Record<string, unknown>,
-  ) => (data: Data) => string;
-}
+export type PugCompiler = (
+  input: string,
+  options: Record<string, unknown>,
+) => (data: Data) => string;
 
 export default class Pug extends Engine {
-  options: Options;
-  engine: PugEngine;
+  options: PugOptions;
+  compiler: PugCompiler;
   cache: Map<string, (data: Data) => string> = new Map();
 
-  constructor(site: Site, engine: PugEngine, options: Options) {
+  constructor(site: Site, compiler: PugCompiler, options: PugOptions) {
     super(site);
-    this.engine = engine;
+    this.compiler = compiler;
     this.options = options;
 
     // Update cache
@@ -31,7 +30,7 @@ export default class Pug extends Engine {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
-        this.engine.compile(content, {
+        this.compiler(content, {
           ...this.options,
           filename,
         }),

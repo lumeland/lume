@@ -1,4 +1,7 @@
-const escapeChars = {
+import Site from "../site.ts";
+import { Helper } from "../types.ts";
+
+const escapeChars: Record<string, string> = {
   "&": "&amp;",
   "<": "&lt;",
   ">": "&gt;",
@@ -6,14 +9,18 @@ const escapeChars = {
   "'": "&#39;",
 };
 
+/**
+ * Plugin to register the filters "attrs" and "class"
+ * that allows to handle html attributes and class names easily
+ */
 export default function () {
-  return (site) => {
-    site.filter("attr", attributes);
+  return (site: Site) => {
+    site.filter("attr", attributes as Helper);
     site.filter("class", classNames);
   };
 }
 
-function attributes(values, ...validNames) {
+function attributes(values: unknown, ...validNames: string[]) {
   const attributes = new Map();
 
   handleAttributes(attributes, values, validNames);
@@ -21,35 +28,40 @@ function attributes(values, ...validNames) {
   return joinAttributes(attributes);
 }
 
-function classNames(...names) {
-  const classes = new Set();
+function classNames(...names: unknown[]) {
+  const classes: Set<string> = new Set();
 
   names.forEach((name) => handleClass(classes, name));
 
   return Array.from(classes).join(" ");
 }
 
-function handleClass(classes, name) {
+function handleClass(classes: Set<string>, name: unknown): void {
   if (!name) {
     return;
   }
 
   if (typeof name === "string") {
-    return classes.add(name);
+    classes.add(name);
+    return;
   }
 
   if (Array.isArray(name)) {
     return name.forEach((value) => handleClass(classes, value));
   }
 
-  for (const [key, value] of Object.entries(name)) {
+  for (const [key, value] of Object.entries(name as Record<string, unknown>)) {
     if (value) {
       classes.add(key);
     }
   }
 }
 
-function handleAttributes(attributes, name, validNames) {
+function handleAttributes(
+  attributes: Map<string, unknown>,
+  name: unknown,
+  validNames: string[],
+): void {
   if (!name) {
     return;
   }
@@ -67,13 +79,13 @@ function handleAttributes(attributes, name, validNames) {
     );
   }
 
-  for (const [key, value] of Object.entries(name)) {
+  for (const [key, value] of Object.entries(name as Record<string, unknown>)) {
     if (!isValid(key, validNames)) {
       continue;
     }
 
     if (key === "class") {
-      const classList = attributes.get("class") || new Set();
+      const classList = (attributes.get("class") || new Set()) as Set<string>;
       handleClass(classList, value);
       attributes.set("class", classList);
       continue;
@@ -83,7 +95,7 @@ function handleAttributes(attributes, name, validNames) {
   }
 }
 
-function joinAttributes(attributes) {
+function joinAttributes(attributes: Map<string, unknown>) {
   const values = [];
 
   for (const [name, value] of attributes) {
@@ -103,16 +115,16 @@ function joinAttributes(attributes) {
       continue;
     }
 
-    values.push(`${name}="${escape(value)}"`);
+    values.push(`${name}="${escape(value as string)}"`);
   }
 
   return values.join(" ");
 }
 
-function escape(value) {
+function escape(value: string) {
   return value.replace(/[&<>'"]/g, (match) => escapeChars[match]);
 }
 
-function isValid(name, validNames) {
+function isValid(name: string, validNames: string[]) {
   return name && (!validNames.length || validNames.includes(name));
 }

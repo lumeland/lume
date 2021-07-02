@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Lume has been ported to TypeScript.
   This means that all files have the `.ts` extension.
   You should edit your config file to import `.ts` files instead of `.js`.
+- Renamed plugin `svg` to `svgo`.
 
 ### Fixed
 - Sync Nunjucks tags doesn’t return safe strings.

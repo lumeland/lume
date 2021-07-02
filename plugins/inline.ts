@@ -1,38 +1,50 @@
+import { Element } from "../deps/dom.ts";
 import { extname, posix, resolve } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
 import { Exception, merge, mimes } from "../utils.ts";
+import Site from "../site.ts";
+import { Page } from "../filesystem.ts";
+
+interface Options {
+  extensions: string[];
+  attribute: string;
+}
 
 // Default options
-const defaults = {
+const defaults: Options = {
   extensions: [".html"],
   attribute: "inline",
 };
 
 const cache = new Map();
 
-export default function (userOptions = {}) {
+/**
+ * Plugin to inline automatically in the HTML assets
+ * like images, javascript, css, svg, etc
+ */
+export default function (userOptions: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
-  return (site) => {
+  return (site: Site) => {
     site.process(options.extensions, inline);
 
     // Update cache
     site.addEventListener("beforeUpdate", (ev) => {
-      for (const filename of ev.files) {
+      for (const filename of ev.files!) {
         cache.delete(filename);
       }
     });
 
     const selector = `[${options.attribute}]`;
 
-    async function inline(page) {
-      for (const element of page.document.querySelectorAll(selector)) {
-        await runInline(page.data.url, element);
-        element.removeAttribute(options.attribute);
+    async function inline(page: Page) {
+      for (const element of page.document!.querySelectorAll(selector)) {
+        await runInline(page.data.url as string, element as Element);
+        (element as Element).removeAttribute(options.attribute);
       }
     }
 
-    function runInline(url, element) {
+    function runInline(url: string, element: Element) {
       if (element.hasAttribute("href")) {
         return element.getAttribute("rel") === "stylesheet"
           ? inlineStyles(url, element)
@@ -46,7 +58,7 @@ export default function (userOptions = {}) {
       }
     }
 
-    function getContent(path, asData = false) {
+    function getContent(path: string, asData = false) {
       // Ensure the path starts with "/"
       path = posix.join("/", path);
 
@@ -57,7 +69,7 @@ export default function (userOptions = {}) {
       return cache.get(path);
     }
 
-    async function readContent(path, asData) {
+    async function readContent(path: string, asData: boolean) {
       const url = posix.join(
         "/",
         posix.relative(site.options.location.pathname, path),
@@ -88,9 +100,9 @@ export default function (userOptions = {}) {
       return `data:${mimes.get(ext)};base64,${encode(content)}`;
     }
 
-    async function inlineStyles(url, element) {
-      const path = posix.resolve(url, element.getAttribute("href"));
-      const style = element.ownerDocument.createElement("style");
+    async function inlineStyles(url: string, element: Element) {
+      const path = posix.resolve(url, element.getAttribute("href")!);
+      const style = element.ownerDocument!.createElement("style");
 
       try {
         style.innerHTML = await getContent(path);
@@ -103,8 +115,8 @@ export default function (userOptions = {}) {
       }
     }
 
-    async function inlineScript(url, element) {
-      const path = posix.resolve(url, element.getAttribute("src"));
+    async function inlineScript(url: string, element: Element) {
+      const path = posix.resolve(url, element.getAttribute("src")!);
 
       try {
         element.innerHTML = await getContent(path);
@@ -117,14 +129,14 @@ export default function (userOptions = {}) {
       }
     }
 
-    async function inlineSrc(url, element) {
-      const path = resolve(url, element.getAttribute("src"));
+    async function inlineSrc(url: string, element: Element) {
+      const path = resolve(url, element.getAttribute("src")!);
       const ext = extname(path);
 
       try {
         if (ext === ".svg") {
           const content = await getContent(path);
-          const div = element.ownerDocument.createElement("div");
+          const div = element.ownerDocument!.createElement("div");
           div.innerHTML = content;
           element.replaceWith(...div.children);
           return;
@@ -139,8 +151,8 @@ export default function (userOptions = {}) {
       }
     }
 
-    async function inlineHref(url, element) {
-      const path = resolve(url, element.getAttribute("href"));
+    async function inlineHref(url: string, element: Element) {
+      const path = resolve(url, element.getAttribute("href")!);
 
       try {
         element.setAttribute("href", await getContent(path, true));

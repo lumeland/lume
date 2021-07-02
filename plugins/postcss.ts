@@ -5,9 +5,19 @@ import {
   postcssNesting,
 } from "../deps/postcss.ts";
 import { merge } from "../utils.ts";
+import Site from "../site.ts";
+import { Page } from "../filesystem.ts";
+import { Helper } from "../types.ts";
+
+interface Options {
+  extensions: string[];
+  sourceMap: boolean;
+  includes: boolean | string;
+  plugins: unknown[];
+}
 
 // Default options
-const defaults = {
+const defaults: Options = {
   extensions: [".css"],
   sourceMap: false,
   includes: false,
@@ -17,8 +27,12 @@ const defaults = {
   ],
 };
 
+/**
+ * Plugin to load all .css files process them
+ * with PostCSS
+ */
 export default function (userOptions = {}) {
-  return (site) => {
+  return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.includes() },
       userOptions,
@@ -32,19 +46,20 @@ export default function (userOptions = {}) {
       }));
     }
 
+    // @ts-ignore: Argument of type 'unknown[]' is not assignable to parameter of type 'AcceptedPlugin[]'.
     const runner = postcss(plugins);
 
     site.loadAssets(options.extensions);
     site.process(options.extensions, postCss);
-    site.filter("postcss", filter, true);
+    site.filter("postcss", filter as Helper, true);
 
-    async function postCss(page) {
+    async function postCss(page: Page) {
       const from = site.src(page.src.path + page.src.ext);
       const to = site.dest(page.dest.path + page.dest.ext);
       const map = options.sourceMap ? { inline: false } : undefined;
 
       // Fix the code with postcss
-      const result = await runner.process(page.content, { from, to, map });
+      const result = await runner.process(page.content!, { from, to, map });
 
       page.content = result.css;
 
@@ -56,7 +71,7 @@ export default function (userOptions = {}) {
       }
     }
 
-    async function filter(code) {
+    async function filter(code: string) {
       const result = await runner.process(code, { from: undefined });
       return result.css;
     }
