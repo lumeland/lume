@@ -4,7 +4,9 @@ import { posix } from "./deps/path.ts";
 const { join } = posix;
 const baseUrl = new URL(".", import.meta.url).href;
 const imports = {
+  "lume": join(baseUrl, "/mod.ts"),
   "lume/": join(baseUrl, "/"),
+  "lume/mod.js": join(baseUrl, "/mod.ts"),
   "lume/plugins/attributes.js": join(baseUrl, "/plugins/attributes.ts"),
   "lume/plugins/base_path.js": join(baseUrl, "/plugins/base_path.ts"),
   "lume/plugins/bundler.js": join(baseUrl, "/plugins/bundler.ts"),

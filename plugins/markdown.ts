@@ -10,13 +10,13 @@ import loader from "../loaders/text.ts";
 import Markdown from "../engines/markdown.ts";
 import { merge } from "../utils.ts";
 
-interface Options {
+export interface Options {
   extensions: string[];
   options: MarkdownItOptions;
   plugins: unknown[];
 }
 
-interface MarkdownItOptions {
+export interface MarkdownItOptions {
   html?: boolean;
   xhtmlOut?: boolean;
   breaks?: boolean;
@@ -43,7 +43,7 @@ const defaults: Options = {
 /**
  * This plugin add support for markdown
  */
-export default function (userOptions: Partial<Options>) {
+export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return function (site: Site) {

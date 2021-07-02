@@ -4,30 +4,42 @@ import Site from "./site.ts";
 
 import url from "./plugins/url.ts";
 import json from "./plugins/json.ts";
-import markdown from "./plugins/markdown.ts";
+import markdown, { Options as MarkdownOptions } from "./plugins/markdown.ts";
 import modules from "./plugins/modules.ts";
-import nunjucks from "./plugins/nunjucks.ts";
+import nunjucks, { Options as NunjucksOptions } from "./plugins/nunjucks.ts";
 import search from "./plugins/search.ts";
-import yaml from "./plugins/yaml.ts";
+import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { merge } from "./utils.ts";
 
-export default function (options = {}, pluginOptions = {}) {
+import { SiteOptions, ServerOptions } from "./types.ts";
+
+interface PluginOptions {
+  markdown?: MarkdownOptions,
+  nunjucks?: NunjucksOptions,
+  yaml?: YamlOptions,
+}
+
+interface Options extends Omit<Partial<SiteOptions>, "server"> {
+  server?: Partial<ServerOptions>
+}
+
+export default function (options: Options = {}, pluginOptions: PluginOptions = {}) {
   options = merge(options, getOptionsFromCli());
 
-  const site = new Site(options);
+  const site = new Site(options as Partial<SiteOptions>);
 
   return site
     .ignore("node_modules")
-    .use(url(pluginOptions.url))
-    .use(json(pluginOptions.json))
+    .use(url())
+    .use(json())
     .use(markdown(pluginOptions.markdown))
-    .use(modules(pluginOptions.modules))
+    .use(modules())
     .use(nunjucks(pluginOptions.nunjucks))
-    .use(search(pluginOptions.search))
+    .use(search())
     .use(yaml(pluginOptions.yaml));
 }
 
-function getOptionsFromCli() {
+function getOptionsFromCli(): Partial<Options> {
   const options = parse(Deno.args, {
     string: [
       "root",
@@ -42,7 +54,7 @@ function getOptionsFromCli() {
     ["--"]: true,
   });
 
-  const overrides = {};
+  const overrides: Partial<Options> = {};
 
   if (options.root) {
     overrides.cwd = resolve(Deno.cwd(), options.root);

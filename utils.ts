@@ -73,7 +73,7 @@ export const mimes: Map<string, string> = new Map([
  */
 export function merge<Type>(
   defaults: Type,
-  user: Partial<Type>,
+  user?: Partial<Type>,
 ) {
   const merged = { ...defaults };
 

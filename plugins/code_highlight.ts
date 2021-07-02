@@ -33,8 +33,9 @@ const defaults = {
 /**
  * Plugin for code syntax highlight using highlight.js library
  */
-export default function (userOptions: Partial<Options>) {
+export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
+  // @ts-ignore: Property 'configure' does not exist on type '{}'
   hljs.configure(options.options);
 
   return (site: Site) => {
@@ -42,6 +43,7 @@ export default function (userOptions: Partial<Options>) {
 
     function codeHighlight(page: Page) {
       page.document!.querySelectorAll(options.options.cssSelector)
+        // @ts-ignore: Property 'highlightElement' does not exist on type '{}'
         .forEach((element) => hljs.highlightElement(element));
     }
   };

@@ -1,5 +1,5 @@
 import Site from "../site.ts";
-import lume from "../mod.js";
+import lume from "../mod.ts";
 import { exists } from "../deps/fs.ts";
 import { join, resolve, toFileUrl } from "../deps/path.ts";
 import { bold, dim, red } from "../deps/colors.ts";

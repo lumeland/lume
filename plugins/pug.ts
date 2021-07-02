@@ -20,7 +20,7 @@ const defaults: Options = {
 /**
  * Plugin to use Pug as a template engine
  */
-export default function (userOptions: Partial<Options>) {
+export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.includes() },

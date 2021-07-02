@@ -5,7 +5,7 @@ import loader from "../loaders/text.ts";
 import { merge } from "../utils.ts";
 import { Helper } from "../types.ts";
 
-interface Options {
+export interface Options {
   extensions: string[];
   includes: string;
   options: {
@@ -27,7 +27,7 @@ const defaults: Options = {
 /**
  * This plugin adds support for Nunjucks templates
  */
-export default function (userOptions: Partial<Options>) {
+export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.includes() },

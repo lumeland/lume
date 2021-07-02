@@ -18,7 +18,7 @@ const defaults: Options = {
 /**
  * Plugin to load all .js and .ts files and bundle them using Deno.emit
  */
-export default function (userOptions: Partial<Options>) {
+export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -30,7 +30,7 @@ export default function (userOptions: Partial<Options>) {
       const { files } = await Deno.emit(from, {
         ...options,
         sources: {
-          [from]: file.content,
+          [from]: file.content as string,
         },
       });
 

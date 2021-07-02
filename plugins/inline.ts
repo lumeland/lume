@@ -22,7 +22,7 @@ const cache = new Map();
  * Plugin to inline automatically in the HTML assets
  * like images, javascript, css, svg, etc
  */
-export default function (userOptions: Partial<Options>) {
+export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
