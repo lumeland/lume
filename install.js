@@ -1,30 +1,6 @@
-import { encode } from "./deps/base64.ts";
-import { posix } from "./deps/path.ts";
 import { brightGreen, gray, red } from "./deps/colors.ts";
+import { cli, importMap } from "./ci.js";
 
-const { join } = posix;
-const baseUrl = new URL(".", import.meta.url).href;
-const cli = join(baseUrl, "./cli/cli.ts");
-const imports = {
-  "lume/": join(baseUrl, "/"),
-  "lume/plugins/attributes.js": join(baseUrl, "/plugins/attributes.ts"),
-  "lume/plugins/base_path.js": join(baseUrl, "/plugins/base_path.ts"),
-  "lume/plugins/bundler.js": join(baseUrl, "/plugins/bundler.ts"),
-  "lume/plugins/code_highlight.js": join(baseUrl, "/plugins/code_highlight.ts"),
-  "lume/plugins/date.js": join(baseUrl, "/plugins/date.ts"),
-  "lume/plugins/inline.js": join(baseUrl, "/plugins/inline.ts"),
-  "lume/plugins/jsx.js": join(baseUrl, "/plugins/jsx.ts"),
-  "lume/plugins/postcss.js": join(baseUrl, "/plugins/postcss.ts"),
-  "lume/plugins/pug.js": join(baseUrl, "/plugins/pug.ts"),
-  "lume/plugins/relative_urls.js": join(baseUrl, "/plugins/relative_urls.ts"),
-  "lume/plugins/slugify_urls.js": join(baseUrl, "/plugins/slugify_urls.ts"),
-  "lume/plugins/svg.js": join(baseUrl, "/plugins/svgo.ts"),
-  "lume/plugins/terser.js": join(baseUrl, "/plugins/terser.ts"),
-  "lume/plugins/eta.js": join(baseUrl, "/plugins/eta.ts"),
-};
-const importMap = `data:application/json;base64,${
-  encode(JSON.stringify({ imports }))
-}`;
 const minDenoVersion = "1.10.3";
 
 if (Deno.version.deno < minDenoVersion) {
