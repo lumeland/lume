@@ -11,19 +11,22 @@ import search from "./plugins/search.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { merge } from "./utils.ts";
 
-import { SiteOptions, ServerOptions } from "./types.ts";
+import { ServerOptions, SiteOptions } from "./types.ts";
 
 interface PluginOptions {
-  markdown?: MarkdownOptions,
-  nunjucks?: NunjucksOptions,
-  yaml?: YamlOptions,
+  markdown?: MarkdownOptions;
+  nunjucks?: NunjucksOptions;
+  yaml?: YamlOptions;
 }
 
 interface Options extends Omit<Partial<SiteOptions>, "server"> {
-  server?: Partial<ServerOptions>
+  server?: Partial<ServerOptions>;
 }
 
-export default function (options: Options = {}, pluginOptions: PluginOptions = {}) {
+export default function (
+  options: Options = {},
+  pluginOptions: PluginOptions = {},
+) {
   options = merge(options, getOptionsFromCli());
 
   const site = new Site(options as Partial<SiteOptions>);

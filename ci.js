@@ -42,10 +42,10 @@ if (import.meta.main) {
       ...Deno.args,
     ],
   });
-  
+
   const status = await process.status();
   process.close();
-  
+
   if (!status.success) {
     window.addEventListener("unload", () => Deno.exit(1));
   }

@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - Optionally, you can do `import lume from "lume";` in your config file
-  (instead `import lume from "lume/mod.ts"`).
+  (instead of `import lume from "lume/mod.ts";`).
 
 ### Changed
 - Lume has been ported to TypeScript.

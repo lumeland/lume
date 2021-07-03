@@ -10,7 +10,7 @@ interface Options {
 }
 
 /**
- * Upgrade the lume installation to the latest version
+ * Upgrade the Lume installation to the latest version
  */
 export default async function upgrade({ dev }: Options) {
   const latest = dev
@@ -19,14 +19,14 @@ export default async function upgrade({ dev }: Options) {
 
   if (latest === getCurrentVersion()) {
     console.log(
-      `You’re using the latest version of lume: ${brightGreen(latest)}!`,
+      `You’re using the latest version of Lume: ${brightGreen(latest)}!`,
     );
     console.log();
     return;
   }
 
   console.log(
-    `New version available. Updating lume to ${brightGreen(latest)}...`,
+    `New version available. Updating Lume to ${brightGreen(latest)}...`,
   );
 
   await install(latest, dev);
@@ -34,7 +34,7 @@ export default async function upgrade({ dev }: Options) {
   console.log();
   console.log("Update successful!");
   console.log(
-    `You’re using the latest version of lume: ${brightGreen(latest)}!`,
+    `You’re using the latest version of Lume: ${brightGreen(latest)}!`,
   );
 
   if (!dev) {

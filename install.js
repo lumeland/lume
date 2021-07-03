@@ -33,7 +33,7 @@ process.close();
 
 if (!status.success) {
   console.log();
-  console.error(red("Error installing lume"));
+  console.error(red("Error installing Lume"));
   console.log(
     `You can report an issue at ${
       gray("https://github.com/lumeland/lume/issues/new")
@@ -49,9 +49,9 @@ if (!status.success) {
 console.log();
 console.log("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥");
 console.log();
-console.log(brightGreen(" lume installed successfully!"));
+console.log(brightGreen(" Lume installed successfully!"));
 console.log();
-console.log("    BENVIDO - WELCOME! 🎉🎉");
+console.log("    BENVIDO – WELCOME! 🎉🎉");
 console.log();
 console.log(gray("-------------------------------"));
 console.log();
