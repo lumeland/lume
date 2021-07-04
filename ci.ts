@@ -30,9 +30,6 @@ export const importMap = `data:application/json;base64,${
 
 // Run the current command
 if (import.meta.main) {
-  console.log("Deprecated JS script:");
-  console.log(`  Please, run '${baseUrl}ci.js' instead of '${baseUrl}ci.ts'`);
-
   const process = Deno.run({
     cmd: [
       Deno.execPath(),
