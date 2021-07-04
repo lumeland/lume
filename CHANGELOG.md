@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - Optionally, you can do `import lume from "lume";` in your config file
   (instead of `import lume from "lume/mod.ts";`).
+- The `options` configuration key to `eta` plugin to configure `Eta`.
 
 ### Changed
 - Lume has been ported to TypeScript.

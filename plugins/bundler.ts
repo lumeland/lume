@@ -28,7 +28,7 @@ export default function (userOptions?: Partial<Options>) {
     async function bundler(file: Page) {
       const from = site.src(file.src.path + file.src.ext);
       const { files } = await Deno.emit(from, {
-        ...options,
+        ...options.options,
         sources: {
           [from]: file.content as string,
         },
