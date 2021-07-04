@@ -8,12 +8,17 @@ import { Helper } from "../types.ts";
 export interface Options {
   extensions: string[];
   includes: string;
-  options: {
-    [index: string]: string;
-  };
+  options: Partial<NunjucksOptions>;
   plugins: {
     [index: string]: unknown;
   };
+}
+
+export interface NunjucksOptions {
+  autoescape: boolean;
+  throwOnUndefined: boolean;
+  trimBlocks: boolean;
+  lstripBlocks: boolean;
 }
 
 // Default options

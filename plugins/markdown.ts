@@ -12,7 +12,7 @@ import { merge } from "../utils.ts";
 
 export interface Options {
   extensions: string[];
-  options: MarkdownItOptions;
+  options: Partial<MarkdownItOptions>;
   plugins: unknown[];
 }
 

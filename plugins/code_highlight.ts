@@ -5,7 +5,7 @@ import { Page } from "../filesystem.ts";
 
 interface Options {
   extensions: string[];
-  options: HighlightOptions;
+  options: Partial<HighlightOptions>;
 }
 
 interface HighlightOptions {
@@ -42,7 +42,7 @@ export default function (userOptions?: Partial<Options>) {
     site.process([".html"], codeHighlight);
 
     function codeHighlight(page: Page) {
-      page.document!.querySelectorAll(options.options.cssSelector)
+      page.document!.querySelectorAll(options.options.cssSelector!)
         // @ts-ignore: Property 'highlightElement' does not exist on type '{}'
         .forEach((element) => hljs.highlightElement(element));
     }

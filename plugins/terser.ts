@@ -8,7 +8,7 @@ import { Helper } from "../types.ts";
 interface Options {
   extensions: string[];
   sourceMap: boolean;
-  options: TerserOptions;
+  options: Partial<TerserOptions>;
 }
 
 interface TerserOptions {

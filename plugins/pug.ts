@@ -7,7 +7,7 @@ import { merge } from "../utils.ts";
 interface Options {
   extensions: string[];
   includes: string;
-  options: PugOptions;
+  options: Partial<PugOptions>;
 }
 
 // Default options
