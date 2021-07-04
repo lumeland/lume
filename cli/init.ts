@@ -13,11 +13,11 @@ interface Options {
 export default async function init({ config, importMap, plugins }: Options) {
   const lumeUrl = importMap ? "lume" : new URL("..", import.meta.url).href;
 
-  const code = [`import lume from "${posix.join(lumeUrl, "mod.js")}";`];
+  const code = [`import lume from "${posix.join(lumeUrl, "mod.ts")}";`];
 
   plugins.sort().forEach((name) =>
     code.push(
-      `import ${name} from "${posix.join(lumeUrl, `plugins/${name}.js`)}";`,
+      `import ${name} from "${posix.join(lumeUrl, `plugins/${name}.ts`)}";`,
     )
   );
   code.push("");
