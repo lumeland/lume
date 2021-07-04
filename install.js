@@ -1,5 +1,5 @@
 import { brightGreen, gray, red } from "./deps/colors.ts";
-import { cli, importMap } from "./ci.js";
+import { cli, importMap } from "./ci.ts";
 
 const minDenoVersion = "1.10.3";
 

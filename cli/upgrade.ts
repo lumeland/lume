@@ -56,7 +56,7 @@ async function install(version: string, dev = false) {
       Deno.execPath(),
       "run",
       "-A",
-      `${url}/install.js`,
+      `${url}/install.ts`,
     ],
   });
 

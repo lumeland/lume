@@ -44,7 +44,7 @@ title: Welcome to my page
 Build it:
 
 ```
-deno run -A https://deno.land/x/lume/ci.js
+deno run -A https://deno.land/x/lume/ci.ts
 ```
 
 This command will compile your documents to HTML and save them into the
