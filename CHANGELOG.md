@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [0.25.1] - Unreleased
 ### Added
 - Detect automatically `_config.ts` file if `_config.js` does not exist.
+- Allow to set options to markdown-it plugins.
 
 ### Fixed
 - Javascript deprecated message

@@ -69,7 +69,9 @@ function createMarkdown(site: Site, options: Options) {
     ...options.options,
   });
 
-  options.plugins.forEach((plugin) => markdown.use(plugin));
+  options.plugins.forEach((plugin) =>
+    Array.isArray(plugin) ? markdown.use(...plugin) : markdown.use(plugin)
+  );
 
   return markdown;
 }
