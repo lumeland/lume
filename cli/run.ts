@@ -2,7 +2,7 @@ import { createSite } from "./utils.ts";
 
 interface Options {
   root: string;
-  config: string;
+  config?: string;
 }
 
 /**

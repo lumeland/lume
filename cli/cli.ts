@@ -8,7 +8,10 @@ import buildCommand from "./build.ts";
 const init = new Command()
   .description("Create a config file for a new site.")
   .example("lume init", "Creates a _config.js file in the current directory.")
-  .example("lume init --config=_config.ts", "Changes the config file path.")
+  .example(
+    "lume init --config=_config.custom.ts",
+    "Changes the config file path.",
+  )
   .option(
     "--config <file>",
     "The config file path.",
@@ -58,7 +61,6 @@ const run = new Command()
   .option(
     "--config <config>",
     "The config file path.",
-    { default: "_config.js" },
   )
   .option(
     "--src <src>",
@@ -100,7 +102,6 @@ const lume = new Command()
   .option(
     "--config <config>",
     "The config file path.",
-    { default: "_config.js" },
   )
   .option(
     "--src <src>",

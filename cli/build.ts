@@ -7,7 +7,7 @@ import { join } from "../deps/path.ts";
 
 interface Options {
   root: string;
-  config: string;
+  config?: string;
   serve: boolean;
   watch: boolean;
 }

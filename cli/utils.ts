@@ -40,13 +40,33 @@ export async function getLastDevelopmentVersion(): Promise<string> {
  * @param root The root directory of the site
  * @param config The name of the config file
  */
-export async function createSite(root: string, config: string): Promise<Site> {
+export async function createSite(root: string, config?: string): Promise<Site> {
   root = resolve(Deno.cwd(), root);
-  config = join(root, config);
 
-  if (await exists(config)) {
-    const mod = await import(toFileUrl(config).href);
-    return mod.default;
+  if (config) {
+    const path = join(root, config);
+
+    if (await exists(path)) {
+      console.log(`Loading config file ${dim(config)}`);
+      console.log();
+      const mod = await import(toFileUrl(path).href);
+      return mod.default;
+    }
+
+    throw new Exception("Config file not found", { path });
+  }
+
+  const files = ["_config.js", "_config.ts"];
+
+  for (const file of files) {
+    const path = join(root, file);
+
+    if (await exists(path)) {
+      console.log(`Loading config file ${dim(file)}`);
+      console.log();
+      const mod = await import(toFileUrl(path).href);
+      return mod.default;
+    }
   }
 
   return lume();
