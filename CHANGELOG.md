@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - The JavaScript deprecation message.
+- The `lume init` command
+  provided completions for the plugins enabled by default.
 
 ## [0.25.0] - 2021-07-04
 ### Added
