@@ -12,7 +12,7 @@ import { Helper } from "../types.ts";
 interface Options {
   extensions: string[];
   sourceMap: boolean;
-  includes: string;
+  includes: string | string[];
   plugins: unknown[];
 }
 
@@ -20,7 +20,7 @@ interface Options {
 const defaults: Options = {
   extensions: [".css"],
   sourceMap: false,
-  includes: "",
+  includes: [],
   plugins: [
     postcssNesting(),
     autoprefixer(),
@@ -42,7 +42,9 @@ export default function (userOptions?: Partial<Options>) {
 
     if (options.includes) {
       plugins.unshift(postcssImport({
-        path: site.src(options.includes),
+        path: Array.isArray(options.includes)
+          ? options.includes.map((path) => site.src(path))
+          : site.src(options.includes),
       }));
     }
 
