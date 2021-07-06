@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   provided completions for the plugins enabled by default.
 - Custom `includes` configuration for plugins is not correctly resolved
   if the `root` is different to `Deno.cwd()`.
+- Plugin `bundler` in Windows.
 
 ## [0.25.0] - 2021-07-04
 ### Added
