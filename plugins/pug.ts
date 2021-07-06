@@ -23,11 +23,11 @@ const defaults: Options = {
 export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(
-      { ...defaults, includes: site.includes() },
+      { ...defaults, includes: site.options.includes },
       userOptions,
     );
 
-    options.options.basedir = options.includes;
+    options.options.basedir = site.src(options.includes);
 
     site.loadPages(
       options.extensions,

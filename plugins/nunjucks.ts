@@ -35,12 +35,12 @@ const defaults: Options = {
 export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(
-      { ...defaults, includes: site.includes() },
+      { ...defaults, includes: site.options.includes },
       userOptions,
     );
 
     // Create the nunjucks environment instance
-    const fsLoader = new nunjucks.FileSystemLoader(options.includes);
+    const fsLoader = new nunjucks.FileSystemLoader(site.src(options.includes));
     const engine = new nunjucks.Environment(fsLoader, options.options);
 
     for (const [name, fn] of Object.entries(options.plugins)) {

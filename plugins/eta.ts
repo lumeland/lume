@@ -26,14 +26,14 @@ const defaults: Options = {
 export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(
-      { ...defaults, includes: site.includes() },
+      { ...defaults, includes: site.options.includes },
       userOptions,
     );
 
     // Configure eta
     eta.configure({
       ...options.options,
-      views: options.includes,
+      views: site.src(options.includes),
     });
 
     // Update cache

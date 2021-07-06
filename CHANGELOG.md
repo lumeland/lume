@@ -12,10 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Detect the `_config.ts` file automatically if `_config.js` does not exist.
 - Allow to set options to markdown-it plugins.
 
+### Removed
+- `site.includes()` function due is not consistent with custom includes.
+
 ### Fixed
 - The JavaScript deprecation message.
 - The `lume init` command
   provided completions for the plugins enabled by default.
+- Custom `includes` configuration for plugins is not correctly resolved
+  if the `root` is different to `Deno.cwd()`.
 
 ## [0.25.0] - 2021-07-04
 ### Added

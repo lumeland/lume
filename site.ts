@@ -94,13 +94,6 @@ export default class Site {
   }
 
   /**
-   * Returns the includes path
-   */
-  includes(...path: string[]) {
-    return this.src(this.options.includes, ...path);
-  }
-
-  /**
    * Adds an event
    */
   addEventListener(type: EventType, listener: EventListener | string) {
@@ -633,7 +626,7 @@ export default class Site {
         );
       }
 
-      const layoutPath = this.includes(layout);
+      const layoutPath = this.src(this.options.includes, layout);
       const layoutData = await this.source.load(layoutPath, result[1]);
       const engine = this.#getEngine(layout, layoutData.templateEngine);
 
