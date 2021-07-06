@@ -12,6 +12,7 @@ const init = new Command()
     "lume init --config=_config.custom.ts",
     "Changes the config file path.",
   )
+  .complete("plugin", () => pluginNames)
   .option(
     "--config <file>",
     "The config file path.",
@@ -26,7 +27,6 @@ const init = new Command()
     "A comma-separated list of plugins to use.",
     { default: [] },
   )
-  .complete("plugin", () => pluginNames)
   .action(initCommand);
 
 const upgrade = new Command()
@@ -152,7 +152,7 @@ const lume = new Command()
   .command("init", init)
   .command("upgrade", upgrade)
   .command("run <script...>", run)
-  .command("completions <shell>", new CompletionsCommand());
+  .command("completions", new CompletionsCommand());
 
 try {
   await lume.parse(Deno.args);
