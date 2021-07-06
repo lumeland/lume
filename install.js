@@ -10,7 +10,9 @@ if (Deno.version.deno < minDenoVersion) {
   console.log(`Lume needs Deno ${brightGreen(minDenoVersion)} or greater`);
   console.log(`Your current version is ${red(Deno.version.deno)}`);
   console.log();
-  console.log(`Run ${brightGreen("deno upgrade")} before install/upgrade Lume`);
+  console.log(
+    `Run ${brightGreen("deno upgrade")} before installing or upgrading Lume`,
+  );
   console.log();
   Deno.exit(1);
 }
