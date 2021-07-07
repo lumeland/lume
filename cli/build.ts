@@ -38,7 +38,7 @@ export default async function build(
     const file = typeof site.options.metrics === "string"
       ? site.options.metrics
       : undefined;
-    handleMetrics(site.metrics, file, quiet);
+    handleMetrics(site.metrics, quiet, file);
   }
 
   if (serve) {
@@ -53,7 +53,7 @@ export default async function build(
  * Print the performance metrics
  * or save them to a file
  */
-async function handleMetrics(metrics: Metrics, file?: string, quiet: boolean) {
+async function handleMetrics(metrics: Metrics, quiet: boolean, file?: string) {
   if (file) {
     await metrics.save(file);
 
