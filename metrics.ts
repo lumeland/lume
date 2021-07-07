@@ -1,6 +1,8 @@
 import Site from "./site.ts";
 import { Page } from "./filesystem.ts";
 import { brightGreen, gray } from "./deps/colors.ts";
+import { dirname, join } from "./deps/path.ts";
+import { ensureDir } from "./deps/fs.ts";
 
 /**
  * Class to collect and return performance metrics
@@ -78,6 +80,8 @@ export default class Metrics {
    * Save the metrics data in a file
    */
   async save(file: string) {
-    await Deno.writeTextFile(file, JSON.stringify(this.entries));
+    const path = join(this.site.options.cwd, file);
+    await ensureDir(dirname(path));
+    await Deno.writeTextFile(path, JSON.stringify(this.entries));
   }
 }

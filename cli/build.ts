@@ -3,7 +3,6 @@ import { createSite } from "./utils.ts";
 import { brightGreen, gray } from "../deps/colors.ts";
 import runWatch from "./watch.ts";
 import runServe from "./serve.ts";
-import { join } from "../deps/path.ts";
 
 interface Options {
   root: string;
@@ -20,17 +19,26 @@ export default async function build(
   { root, config, serve, watch }: Options,
 ) {
   const site = await createSite(root, config);
+  const quiet = site.options.quiet;
 
-  console.log();
+  if (!quiet) {
+    console.log();
+  }
+
   await site.build(serve);
-  console.log();
-  console.log(`🍾 ${brightGreen("Site built into")} ${gray(site.options.dest)}`);
+
+  if (!quiet) {
+    console.log();
+    console.log(
+      `🍾 ${brightGreen("Site built into")} ${gray(site.options.dest)}`,
+    );
+  }
 
   if (site.options.metrics) {
     const file = typeof site.options.metrics === "string"
       ? site.options.metrics
       : undefined;
-    printMetrics(site.metrics, file);
+    handleMetrics(site.metrics, file, quiet);
   }
 
   if (serve) {
@@ -45,13 +53,15 @@ export default async function build(
  * Print the performance metrics
  * or save them to a file
  */
-async function printMetrics(metrics: Metrics, file?: string) {
+async function handleMetrics(metrics: Metrics, file?: string, quiet: boolean) {
   if (file) {
-    file = join(Deno.cwd(), file);
     await metrics.save(file);
-    console.log();
-    console.log(`⏲ ${brightGreen("Metrics data saved in")} ${gray(file)}`);
-    console.log();
+
+    if (!quiet) {
+      console.log();
+      console.log(`⏲ ${brightGreen("Metrics data saved in")} ${gray(file)}`);
+      console.log();
+    }
     return;
   }
 
