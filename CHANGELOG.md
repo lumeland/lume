@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - The filename to save the metrics should be relative to `site.options.cwd`.
 - Allow to save the metrics files in a subdirectory (and create it if doesn't exist).
+- The `--quiet` mode is now more quieter.
 
 ## [0.25.1] - 2021-07-07
 ### Added
