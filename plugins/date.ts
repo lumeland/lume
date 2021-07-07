@@ -42,7 +42,9 @@ export default function (userOptions?: Partial<Options>) {
         return;
       }
 
-      if (!(date instanceof Date)) {
+      if (date === "now") {
+        date = new Date();
+      } else if (!(date instanceof Date)) {
         date = new Date(date);
       }
 

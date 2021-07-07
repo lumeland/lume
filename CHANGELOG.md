@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.25.2] - Unreleased
+### Added
+- The plugin `date` accepts `now` as value to format the current time.
+
 ### Fixed
 - The filename to save the metrics should be relative to `site.options.cwd`.
 - Allow to save the metrics files in a subdirectory (and create it if doesn't exist).
