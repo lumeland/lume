@@ -7,9 +7,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.0.0] - Unreleased
 ### Changed
 - The minimum version of Deno supported is `1.12.2`.
+
+### Removed
+- BREAKING: Removed import map aliases to `.js` files.
+  Use `.ts` extension on import lume modules.
+- BREAKING: `install.js`, `ci.js` and `cli.js` (with `.js` extension) no longer exists.
+  Use the `.ts` extension (`install.ts`, `ci.ts` and `cli.ts`).
 
 ### Fixed
 - Updated `std`, `cliffy` and `postcss`.
@@ -1039,7 +1045,7 @@ The first version.
 [#125]: https://github.com/lumeland/lume/issues/125
 [#131]: https://github.com/lumeland/lume/issues/131
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v0.25.5...HEAD
+[1.0.0]: https://github.com/lumeland/lume/compare/v0.25.5...HEAD
 [0.25.5]: https://github.com/lumeland/lume/compare/v0.25.4...v0.25.5
 [0.25.4]: https://github.com/lumeland/lume/compare/v0.25.3...v0.25.4
 [0.25.3]: https://github.com/lumeland/lume/compare/v0.25.2...v0.25.3
