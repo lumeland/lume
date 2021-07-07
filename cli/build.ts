@@ -3,7 +3,6 @@ import { createSite } from "./utils.ts";
 import { brightGreen, gray } from "../deps/colors.ts";
 import runWatch from "./watch.ts";
 import runServe from "./serve.ts";
-import { join } from "../deps/path.ts";
 
 interface Options {
   root: string;
@@ -30,7 +29,7 @@ export default async function build(
     const file = typeof site.options.metrics === "string"
       ? site.options.metrics
       : undefined;
-    printMetrics(site.metrics, file);
+    handleMetrics(site.metrics, file);
   }
 
   if (serve) {
@@ -45,9 +44,8 @@ export default async function build(
  * Print the performance metrics
  * or save them to a file
  */
-async function printMetrics(metrics: Metrics, file?: string) {
+async function handleMetrics(metrics: Metrics, file?: string) {
   if (file) {
-    file = join(Deno.cwd(), file);
     await metrics.save(file);
     console.log();
     console.log(`⏲ ${brightGreen("Metrics data saved in")} ${gray(file)}`);
