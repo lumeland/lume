@@ -7,6 +7,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.0] - Unreleased
+Finally, the first stable version.
+
 ## [0.25.1] - 2021-07-07
 ### Added
 - Detect the `_config.ts` file automatically if `_config.js` does not exist.
@@ -983,6 +986,7 @@ The first version.
 [#117]: https://github.com/lumeland/lume/issues/117
 [#120]: https://github.com/lumeland/lume/issues/120
 
+[1.0.0]: https://github.com/lumeland/lume/compare/v0.25.1...HEAD
 [0.25.1]: https://github.com/lumeland/lume/compare/v0.25.0...v0.25.1
 [0.25.0]: https://github.com/lumeland/lume/compare/v0.24.0...v0.25.0
 [0.24.0]: https://github.com/lumeland/lume/compare/v0.23.3...v0.24.0
