@@ -297,6 +297,8 @@ export default class Site {
 
     this.metrics.end("Build (entire site)");
     await this.dispatchEvent({ type: "afterBuild" });
+
+    this.metrics.finish();
   }
 
   /**

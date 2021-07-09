@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - The plugin `date` accepts `now` as value to format the current time.
 
+### Changed
+- Moved metrics save/print logic from cli to `Metrics` class, so it's uncoupled from cli.
+
 ### Fixed
 - The filename to save the metrics should be relative to `site.options.cwd`.
 - Allow to save the metrics files in a subdirectory (and create it if doesn't exist).

@@ -57,6 +57,20 @@ export default class Metrics {
     return performance.getEntriesByType("measure");
   }
 
+  async finish() {
+    const { metrics } = this.site.options;
+
+    if (typeof metrics === "string") {
+      await this.save(metrics);
+    } else if (metrics) {
+      this.print();
+    }
+
+    // Clear all data
+    performance.clearMarks();
+    performance.clearMeasures();
+  }
+
   /**
    * Print the metrics in the console
    */
@@ -65,6 +79,10 @@ export default class Metrics {
     const metrics = this.entries
       .sort((a, b) => a.duration - b.duration)
       .slice(-100);
+
+    console.log();
+    console.log(`⏲ Metrics data:`);
+    console.log();
 
     for (const metric of metrics) {
       const duration = Math.round(metric.duration) + "ms";
@@ -83,5 +101,11 @@ export default class Metrics {
     const path = join(this.site.options.cwd, file);
     await ensureDir(dirname(path));
     await Deno.writeTextFile(path, JSON.stringify(this.entries));
+
+    if (!this.site.options.quiet) {
+      console.log();
+      console.log(`⏲ ${brightGreen("Metrics data saved in")} ${gray(path)}`);
+      console.log();
+    }
   }
 }
