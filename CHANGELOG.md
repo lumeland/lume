@@ -31,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Allow to set options to markdown-it plugins.
 
 ### Removed
-- `site.includes()` function due is not consistent with custom includes.
+- The `site.includes()` method since it’s not consistent with custom includes.
 
 ### Fixed
 - The JavaScript deprecation message.
@@ -39,8 +39,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   provided completions for the plugins enabled by default.
 - Custom `includes` configuration for plugins is not correctly resolved
   if the `root` is different to `Deno.cwd()`.
-- Plugin `bundler` in Windows.
-- Plugin `postcss` with multiple includes.
+- The plugin `bundler` in Windows.
+- The plugin `postcss` with multiple includes.
 
 ## [0.25.0] - 2021-07-04
 ### Added
@@ -151,7 +151,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - The class signature of template engines:
-  replaced the `addFilter` method with more generic `addHelper`
+  replaced the `addFilter()` method with more generic `addHelper()`
   that allows to register not only filters but also custom tags
   and other features supported by some engines, like Nunjucks.
 
@@ -267,7 +267,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 - The `.markdown` extension.
   Use `.md` or configure the Markdown plugin to enable it.
-- The function `site.engine()`. Use the third argument of `site.loadPages()`.
+- The method `site.engine()`. Use the third argument of `site.loadPages()`.
   For example: `site.loadPages([".html"], textLoader, nunjucksEngine)`.
 - The plugin `dom`.
   It’s no longer needed because pages can easily return the parsed HTML.
@@ -683,7 +683,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [0.10.0] - 2020-12-16
 ### Added
 - New plugin to use Pug as a template engine. [#10].
-- New functions `search.previousPage()` and `search.nextPage()`.
+- New methods `search.previousPage()` and `search.nextPage()`.
 - Support for definition lists (`<dl>`) in Markdown.
 - Improved the default `404` error page.
   Now it displays a list of files and subdirectories.
@@ -797,7 +797,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.8.0] - 2020-10-27
 ### Added
-- New function `loadAssets()` to register asset loaders.
+- New method `loadAssets()` to register asset loaders.
 - New CLI argument to build the site in a different directory
   and even to choose a different `_config.js` file.
 
@@ -830,7 +830,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - Events `beforeBuild` and `afterBuild`.
 - Helper `paginate()`.
-- Function `site.process()`.
+- Method `site.process()`.
 - Option `prettyUrls`, which is `true` by default.
 
 ### Removed
@@ -847,7 +847,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New parameter for `search.pages()` to sort pages alphabetically.
 - New argument `--help` and aliases `-h` and `-V` for CLI.
 - New plugin `eta` to support the `Eta` template engine.
-- New function `helper` to assign global helpers
+- New method `helper()` to register global helpers
   that can be used in templates.
 
 ### Removed
@@ -874,7 +874,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [0.4.0] - 2020-09-22
 ### Added
 - Ability to include the date in the filename.
-- New function `search.folder()`.
+- New method `search.folder()`.
 - New option `--dev` to build in development mode.
 
 ### Fixed
