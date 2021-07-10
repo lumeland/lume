@@ -7,17 +7,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Fixed
+- Updated `highlight.js`.
+
 ## [0.25.2] - 2021-07-09
 ### Added
-- The plugin `date` accepts `now` as value to format the current time.
+- The plugin `date` accepts `now` as a value to format the current time.
 
 ### Changed
-- Moved metrics save/print logic from cli to `Metrics` class, so it's uncoupled from cli.
+- Moved metrics save/print logic from the CLI to the `Metrics` class,
+  so it’s decoupled from the CLI.
 
 ### Fixed
 - The filename to save the metrics should be relative to `site.options.cwd`.
-- Allow to save the metrics files in a subdirectory (and create it if doesn't exist).
-- The `--quiet` mode is now more quieter.
+- Allow to save the metrics files in a subdirectory
+  (and create it if doesn’t exist).
+- The `--quiet` mode is now even quieter.
 
 ## [0.25.1] - 2021-07-07
 ### Added
@@ -220,9 +226,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - BREAKING: The `url` variable of the pages must start with `/`, `./` or `../`.
-- Uncoupled the loaders. Now they only need the path argument.
+- Decoupled the loaders. Now they only need the path argument.
 - Preprocessors check the extension of the input and output file.
-  (Previously only the output extension was used.)
+  (Previously, only the output extension was used.)
 
 ### Fixed
 - The `url` filter shouldn’t add the path prefix if it’s already added.
@@ -242,7 +248,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The property `document` to `Page` that returns the parsed HTML.
 - New plugin `code_highlight` to automatically highlight all code
   inside `pre code`. Previously, it was part of the Markdown plugin.
-  Now it’s uncoupled, so it can be used by any template engine.
+  Now it’s decoupled, so it can be used by any template engine.
 - The `extensions` and `attribute` options to the `inline` plugin.
 - New argument `--dev` (or `-d`) for `lume upgrade`
   to upgrade to the latest development version.
@@ -995,6 +1001,7 @@ The first version.
 [#117]: https://github.com/lumeland/lume/issues/117
 [#120]: https://github.com/lumeland/lume/issues/120
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v0.25.2...HEAD
 [0.25.2]: https://github.com/lumeland/lume/compare/v0.25.1...v0.25.2
 [0.25.1]: https://github.com/lumeland/lume/compare/v0.25.0...v0.25.1
 [0.25.0]: https://github.com/lumeland/lume/compare/v0.24.0...v0.25.0
