@@ -182,17 +182,15 @@ export default class Source {
     }
 
     if (entry.isDirectory && entry.name === "_data") {
-      metrics.start("Load", path);
+      const endLoad = metrics.start("Load", { path });
       directory.data = await this.#loadDataDirectory(path);
-      metrics.end("Load", path);
-      return;
+      return endLoad();
     }
 
     if (entry.isFile && /^_data\.\w+$/.test(entry.name)) {
-      metrics.start("Load", path);
+      const endLoad = metrics.start("Load", { path });
       directory.data = await this.#loadData(path);
-      metrics.end("Load", path);
-      return;
+      return endLoad();
     }
 
     if (entry.name.startsWith("_")) {
@@ -200,7 +198,7 @@ export default class Source {
     }
 
     if (entry.isFile) {
-      metrics.start("Load", path);
+      const endLoad = metrics.start("Load", { path });
       const page = await this.#loadPage(path);
 
       if (page) {
@@ -208,16 +206,14 @@ export default class Source {
       } else {
         directory.unsetPage(entry.name);
       }
-      metrics.end("Load", path);
-      return;
+      return endLoad();
     }
 
     if (entry.isDirectory) {
-      metrics.start("Load", path);
+      const endLoad = metrics.start("Load", { path });
       const subDirectory = directory.createDirectory(entry.name);
       await this.loadDirectory(subDirectory);
-      metrics.end("Load", path);
-      return;
+      return endLoad();
     }
   }
 

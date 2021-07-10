@@ -269,33 +269,35 @@ export default class Site {
    * Build the entire site
    */
   async build(watchMode = false) {
-    this.metrics.start("Build (entire site)");
+    const endBuild = this.metrics.start("Build (entire site)");
     await this.dispatchEvent({ type: "beforeBuild" });
 
     await this.clear();
 
-    this.metrics.start("Copy (all files)");
+    const endCopy = this.metrics.start("Copy (all files)");
     for (const [from, to] of this.source.staticFiles) {
       await this.#copyStatic(from, to);
     }
-    this.metrics.end("Copy (all files)");
+    endCopy();
 
-    this.metrics.start("Load (all pages)");
+    const endLoad = this.metrics.start("Load (all pages)");
     await this.source.loadDirectory();
-    this.metrics.end("Load (all pages)");
+    endLoad();
 
-    this.metrics.start("Preprocess + render + process (all pages)");
+    const endRender = this.metrics.start(
+      "Preprocess + render + process (all pages)",
+    );
     await this.#buildPages();
-    this.metrics.end("Preprocess + render + process (all pages)");
+    endRender();
 
     await this.dispatchEvent({ type: "beforeSave" });
 
     // Save the pages
-    this.metrics.start("Save (all pages)");
+    const endSave = this.metrics.start("Save (all pages)");
     await this.#savePages(watchMode);
-    this.metrics.end("Save (all pages)");
+    endSave();
 
-    this.metrics.end("Build (entire site)");
+    endBuild();
     await this.dispatchEvent({ type: "afterBuild" });
 
     this.metrics.finish();
@@ -416,7 +418,7 @@ export default class Site {
    * Copy a static file
    */
   async #copyStatic(from: string, to: string) {
-    this.metrics.start("Copy", from);
+    const endCopy = this.metrics.start("Copy", { from });
     const pathFrom = this.src(from);
     const pathTo = this.dest(to);
 
@@ -427,7 +429,7 @@ export default class Site {
       }
       return copy(pathFrom, pathTo, { overwrite: true });
     }
-    this.metrics.end("Copy", from);
+    endCopy();
   }
 
   /**
@@ -438,8 +440,9 @@ export default class Site {
 
     // Group pages by renderOrder
     const renderOrder: Record<number | string, Page[]> = {};
-
-    this.metrics.start("Preprocess + render (all pages)");
+    const endPreprocessAndRender = this.metrics.start(
+      "Preprocess + render (all pages)",
+    );
 
     for (const page of this.source.root.getPages()) {
       if (page.data.draft && !this.options.dev) {
@@ -500,9 +503,12 @@ export default class Site {
             try {
               if (ext === page.src.ext || ext === page.dest.ext) {
                 for (const preprocess of preprocessors) {
-                  this.metrics.start("Preprocess", page, preprocess);
+                  const endPreprocess = this.metrics.start("Preprocess", {
+                    page,
+                    processor: preprocess.name,
+                  });
                   await preprocess(page, this);
-                  this.metrics.end("Preprocess", page, preprocess);
+                  endPreprocess();
                 }
               }
             } catch (err) {
@@ -517,9 +523,9 @@ export default class Site {
         pages,
         async (page) => {
           try {
-            this.metrics.start("Render", page);
+            const endRender = this.metrics.start("Render", { page });
             page.content = await this.#renderPage(page) as string;
-            this.metrics.end("Render", page);
+            endRender();
           } catch (err) {
             throw new Exception("Error rendering this page", { page }, err);
           }
@@ -527,25 +533,30 @@ export default class Site {
       );
     }
     await this.dispatchEvent({ type: "afterRender" });
-    this.metrics.end("Preprocess + render (all pages)");
+    endPreprocessAndRender();
 
     // Process the pages
-    this.metrics.start("Process (all pages)");
+    const endProcessAll = this.metrics.start("Process (all pages)");
+
     for (const [ext, processors] of this.processors) {
       await concurrent(
         this.pages,
         async (page) => {
           if (ext === page.dest.ext && page.content) {
             for (const process of processors) {
-              this.metrics.start("Process", page, process);
+              const endProcess = this.metrics.start("Process", {
+                page,
+                processor: process.name,
+              });
               await process(page, this);
-              this.metrics.end("Process", page, process);
+              endProcess();
             }
           }
         },
       );
     }
-    this.metrics.end("Process (all pages)");
+
+    endProcessAll();
   }
 
   /**
@@ -669,8 +680,7 @@ export default class Site {
       return;
     }
 
-    this.metrics.start("Save", page);
-
+    const endSave = this.metrics.start("Save", { page });
     const dest = page.dest.path + page.dest.ext;
 
     if (watchMode) {
@@ -699,7 +709,7 @@ export default class Site {
       ? await Deno.writeFile(filename, page.content)
       : await Deno.writeTextFile(filename, page.content);
 
-    this.metrics.end("Save", page);
+    endSave();
   }
 
   /**

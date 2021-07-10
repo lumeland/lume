@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Changed
+- Improved the `metrics` generation [#125].
+
 ### Fixed
 - Updated `highlight.js`.
 
@@ -1000,6 +1003,7 @@ The first version.
 [#116]: https://github.com/lumeland/lume/issues/116
 [#117]: https://github.com/lumeland/lume/issues/117
 [#120]: https://github.com/lumeland/lume/issues/120
+[#125]: https://github.com/lumeland/lume/issues/125
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v0.25.2...HEAD
 [0.25.2]: https://github.com/lumeland/lume/compare/v0.25.1...v0.25.2

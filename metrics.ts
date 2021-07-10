@@ -17,37 +17,36 @@ export default class Metrics {
   /**
    * Create a mark to start to measure
    */
-  start(name: string, subject?: unknown, processor?: unknown) {
+  start(
+    name: string,
+    details?: Record<string, unknown>,
+  ): (extra?: Record<string, unknown>) => void {
     if (this.site.options.metrics) {
-      const markName = this.#getMarkName(name, subject, processor);
+      const markName = this.#getMarkName(name, details);
       performance.mark(markName);
+      return (extra = {}) => {
+        performance.measure(markName, {
+          start: markName,
+          detail: { name, ...details, ...extra },
+        });
+      };
     }
+
+    return () => {};
   }
 
-  /**
-   * Measure the time from a mark to now.
-   */
-  end(name: string, subject?: unknown, processor?: unknown) {
-    if (this.site.options.metrics) {
-      const markName = this.#getMarkName(name, subject, processor);
-      performance.measure(markName, markName);
+  #getMarkName(name: string, details?: Record<string, unknown>): string {
+    if (!details) {
+      return name;
     }
-  }
 
-  /**
-   * Generate an unique mark name
-   */
-  #getMarkName(name: string, subject?: unknown, processor?: unknown) {
-    if (processor) {
-      // @ts-ignore: processor is the type unknown
-      name += ` ${processor.name}`;
+    const data = { ...details };
+
+    if (data.page && data.page instanceof Page) {
+      data.page = data.page.src.path + data.page.src.ext;
     }
-    if (subject) {
-      name += `: ${
-        subject instanceof Page ? subject.src.path + subject.src.ext : subject
-      }`;
-    }
-    return name;
+
+    return `${name}: ${[...Object.values(data)].join(" ")}`;
   }
 
   /**
@@ -100,7 +99,23 @@ export default class Metrics {
   async save(file: string) {
     const path = join(this.site.options.cwd, file);
     await ensureDir(dirname(path));
-    await Deno.writeTextFile(path, JSON.stringify(this.entries));
+
+    function replacer(key: string, value: unknown) {
+      if (key === "page") {
+        const page = value as Page;
+
+        return {
+          src: page.src.path + page.src.ext,
+          dest: page.dest.path + page.dest.ext,
+        };
+      }
+      return value;
+    }
+
+    await Deno.writeTextFile(
+      path,
+      JSON.stringify(this.entries, replacer, "  "),
+    );
 
     if (!this.site.options.quiet) {
       console.log();
