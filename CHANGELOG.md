@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Improved the `metrics` generation [#125].
 - Internal code improvements:
   - The abstract class `Engine` is converted to a TypeScript interface.
+  - Created interfaces for Site, Page, Directory, Source, Metrics, etc.
 
 ### Fixed
 - Updated `highlight.js`.

@@ -1,11 +1,18 @@
 import { join } from "./deps/path.ts";
 import { HTMLDocument } from "./deps/dom.ts";
 import { documentToString, normalizePath, stringToDocument } from "./utils.ts";
-import { Content, Data, Dest, Src } from "./types.ts";
+import {
+  Content,
+  Data,
+  Dest,
+  Directory as iDirectory,
+  Page as iPage,
+  Src,
+} from "./types.ts";
 
 class Base {
   src: Src;
-  parent: Directory | null = null;
+  parent?: iDirectory;
   #data: Data = {};
   #cache?: Data;
 
@@ -70,7 +77,7 @@ class Base {
 /**
  * Class to represent a page file
  */
-export class Page extends Base {
+export class Page extends Base implements iPage {
   dest: Dest;
   #content?: Content;
   #document?: HTMLDocument;
@@ -89,7 +96,7 @@ export class Page extends Base {
    * Duplicate this page.
    * Optionally you can provide new data
    */
-  duplicate(data = {}) {
+  duplicate(data = {}): iPage {
     const page = new Page({ ...this.src });
     page.dest = { ...this.dest };
     page.data = { ...this.data, ...data };
@@ -142,14 +149,14 @@ export class Page extends Base {
 /**
  * Class to represent a directory
  */
-export class Directory extends Base {
-  pages: Map<string, Page> = new Map();
-  dirs: Map<string, Directory> = new Map();
+export class Directory extends Base implements iDirectory {
+  pages: Map<string, iPage> = new Map();
+  dirs: Map<string, iDirectory> = new Map();
 
   /**
    * Create a subdirectory and return it
    */
-  createDirectory(name: string) {
+  createDirectory(name: string): iDirectory {
     const path = join(this.src.path, name);
     const directory = new Directory({ path });
     directory.parent = this;
@@ -161,7 +168,7 @@ export class Directory extends Base {
   /**
    * Add a page to this directory
    */
-  setPage(name: string, page: Page) {
+  setPage(name: string, page: iPage) {
     const oldPage = this.pages.get(name);
     page.parent = this;
     this.pages.set(name, page);
@@ -182,7 +189,7 @@ export class Directory extends Base {
    * Return the list of pages in this directory
    * and subdirectories recursivelly.
    */
-  *getPages(): Iterable<Page> {
+  *getPages(): Iterable<iPage> {
     for (const page of this.pages.values()) {
       yield page;
     }

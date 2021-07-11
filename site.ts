@@ -17,11 +17,15 @@ import {
   Helper,
   HelperOptions,
   Loader,
+  Metrics as iMetrics,
+  Page,
   Plugin,
   Processor,
+  Scripts as iScripts,
+  Site as iSite,
   SiteOptions,
+  Source as iSource,
 } from "./types.ts";
-import { Page } from "./filesystem.ts";
 import {
   concurrent,
   Exception,
@@ -52,11 +56,11 @@ const defaults: SiteOptions = {
  * This is the heart of Lume, the class that contains everything
  * needed to build the site.
  */
-export default class Site {
+export default class Site implements iSite {
   options: SiteOptions;
-  source: Source;
-  scripts: Scripts;
-  metrics: Metrics;
+  source: iSource;
+  scripts: iScripts;
+  metrics: iMetrics;
   engines: Map<string, Engine> = new Map();
   helpers: Map<string, [Helper, HelperOptions]> = new Map();
   extraData: Record<string, unknown> = {};
@@ -111,7 +115,7 @@ export default class Site {
     const listeners = this.listeners.get(type);
 
     if (!listeners) {
-      return;
+      return true;
     }
 
     for (const listener of listeners) {
@@ -129,6 +133,7 @@ export default class Site {
         return false;
       }
     }
+    return true;
   }
 
   /**
@@ -269,38 +274,45 @@ export default class Site {
    * Build the entire site
    */
   async build(watchMode = false) {
-    const endBuild = this.metrics.start("Build (entire site)");
+    const buildMetric = this.metrics.start("Build (entire site)");
     await this.dispatchEvent({ type: "beforeBuild" });
 
     await this.clear();
 
-    const endCopy = this.metrics.start("Copy (all files)");
+    let metric = this.metrics.start("Copy (all files)");
     for (const [from, to] of this.source.staticFiles) {
       await this.#copyStatic(from, to);
     }
-    endCopy();
+    metric.stop();
 
-    const endLoad = this.metrics.start("Load (all pages)");
+    metric = this.metrics.start("Load (all pages)");
     await this.source.loadDirectory();
-    endLoad();
+    metric.stop();
 
-    const endRender = this.metrics.start(
+    metric = this.metrics.start(
       "Preprocess + render + process (all pages)",
     );
     await this.#buildPages();
-    endRender();
+    metric.stop();
 
     await this.dispatchEvent({ type: "beforeSave" });
 
     // Save the pages
-    const endSave = this.metrics.start("Save (all pages)");
+    metric = this.metrics.start("Save (all pages)");
     await this.#savePages(watchMode);
-    endSave();
+    metric.stop();
 
-    endBuild();
+    buildMetric.stop();
     await this.dispatchEvent({ type: "afterBuild" });
 
-    this.metrics.finish();
+    // Print or save collected metrics
+    const { metrics } = this.options;
+
+    if (typeof metrics === "string") {
+      await this.metrics.save(join(this.options.cwd, metrics));
+    } else if (metrics) {
+      this.metrics.print();
+    }
   }
 
   /**
@@ -418,7 +430,7 @@ export default class Site {
    * Copy a static file
    */
   async #copyStatic(from: string, to: string) {
-    const endCopy = this.metrics.start("Copy", { from });
+    const metric = this.metrics.start("Copy", { from });
     const pathFrom = this.src(from);
     const pathTo = this.dest(to);
 
@@ -429,7 +441,7 @@ export default class Site {
       }
       return copy(pathFrom, pathTo, { overwrite: true });
     }
-    endCopy();
+    metric.stop();
   }
 
   /**
@@ -440,7 +452,7 @@ export default class Site {
 
     // Group pages by renderOrder
     const renderOrder: Record<number | string, Page[]> = {};
-    const endPreprocessAndRender = this.metrics.start(
+    const metricPreprocessAndRender = this.metrics.start(
       "Preprocess + render (all pages)",
     );
 
@@ -503,12 +515,12 @@ export default class Site {
             try {
               if (ext === page.src.ext || ext === page.dest.ext) {
                 for (const preprocess of preprocessors) {
-                  const endPreprocess = this.metrics.start("Preprocess", {
+                  const metric = this.metrics.start("Preprocess", {
                     page,
                     processor: preprocess.name,
                   });
                   await preprocess(page, this);
-                  endPreprocess();
+                  metric.stop();
                 }
               }
             } catch (err) {
@@ -523,9 +535,9 @@ export default class Site {
         pages,
         async (page) => {
           try {
-            const endRender = this.metrics.start("Render", { page });
+            const metric = this.metrics.start("Render", { page });
             page.content = await this.#renderPage(page) as string;
-            endRender();
+            metric.stop();
           } catch (err) {
             throw new Exception("Error rendering this page", { page }, err);
           }
@@ -533,10 +545,10 @@ export default class Site {
       );
     }
     await this.dispatchEvent({ type: "afterRender" });
-    endPreprocessAndRender();
+    metricPreprocessAndRender.stop();
 
     // Process the pages
-    const endProcessAll = this.metrics.start("Process (all pages)");
+    const metricProcess = this.metrics.start("Process (all pages)");
 
     for (const [ext, processors] of this.processors) {
       await concurrent(
@@ -544,19 +556,19 @@ export default class Site {
         async (page) => {
           if (ext === page.dest.ext && page.content) {
             for (const process of processors) {
-              const endProcess = this.metrics.start("Process", {
+              const metric = this.metrics.start("Process", {
                 page,
                 processor: process.name,
               });
               await process(page, this);
-              endProcess();
+              metric.stop();
             }
           }
         },
       );
     }
 
-    endProcessAll();
+    metricProcess.stop();
   }
 
   /**
@@ -680,7 +692,7 @@ export default class Site {
       return;
     }
 
-    const endSave = this.metrics.start("Save", { page });
+    const metric = this.metrics.start("Save", { page });
     const dest = page.dest.path + page.dest.ext;
 
     if (watchMode) {
@@ -709,7 +721,7 @@ export default class Site {
       ? await Deno.writeFile(filename, page.content)
       : await Deno.writeTextFile(filename, page.content);
 
-    endSave();
+    metric.stop();
   }
 
   /**

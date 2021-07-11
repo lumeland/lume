@@ -8,13 +8,20 @@ import {
   normalizePath,
   searchByExtension,
 } from "./utils.ts";
-import { Data, Event, Loader } from "./types.ts";
+import {
+  Data,
+  Directory as iDirectory,
+  Event,
+  Loader,
+  Page as iPage,
+  Source as iSource,
+} from "./types.ts";
 
 /**
  * Class to scan and load files from the source folder
  * with the data, pages, assets and static files
  */
-export default class Source {
+export default class Source implements iSource {
   site: Site;
   root = new Directory({ path: "/" });
 
@@ -48,7 +55,7 @@ export default class Source {
    * and create if it doesn't exist
    */
   getOrCreateDirectory(path: string) {
-    let dir = this.root;
+    let dir: iDirectory = this.root;
 
     path.split("/").forEach((name) => {
       if (!name || !dir) {
@@ -68,8 +75,8 @@ export default class Source {
   /**
    * Returns the File or Directory of a path
    */
-  getFileOrDirectory(path: string): Directory | Page | undefined {
-    let result: Directory | Page | undefined = this.root;
+  getFileOrDirectory(path: string): iDirectory | iPage | undefined {
+    let result: iDirectory | iPage | undefined = this.root;
 
     path.split("/").forEach((name) => {
       if (!name || !result) {
@@ -116,7 +123,7 @@ export default class Source {
   /**
    * Load a directory recursively
    */
-  loadDirectory(directory = this.root) {
+  loadDirectory(directory: iDirectory = this.root) {
     const path = this.site.src(directory.src.path);
 
     return concurrent(
@@ -169,7 +176,7 @@ export default class Source {
   /**
    * Load an entry from a directory
    */
-  async #loadEntry(directory: Directory, entry: Deno.DirEntry) {
+  async #loadEntry(directory: iDirectory, entry: Deno.DirEntry) {
     if (entry.isSymlink || entry.name.startsWith(".")) {
       return;
     }
@@ -182,15 +189,15 @@ export default class Source {
     }
 
     if (entry.isDirectory && entry.name === "_data") {
-      const endLoad = metrics.start("Load", { path });
+      const metric = metrics.start("Load", { path });
       directory.data = await this.#loadDataDirectory(path);
-      return endLoad();
+      return metric.stop();
     }
 
     if (entry.isFile && /^_data\.\w+$/.test(entry.name)) {
-      const endLoad = metrics.start("Load", { path });
+      const metric = metrics.start("Load", { path });
       directory.data = await this.#loadData(path);
-      return endLoad();
+      return metric.stop();
     }
 
     if (entry.name.startsWith("_")) {
@@ -198,7 +205,7 @@ export default class Source {
     }
 
     if (entry.isFile) {
-      const endLoad = metrics.start("Load", { path });
+      const metric = metrics.start("Load", { path });
       const page = await this.#loadPage(path);
 
       if (page) {
@@ -206,14 +213,14 @@ export default class Source {
       } else {
         directory.unsetPage(entry.name);
       }
-      return endLoad();
+      return metric.stop();
     }
 
     if (entry.isDirectory) {
-      const endLoad = metrics.start("Load", { path });
+      const metric = metrics.start("Load", { path });
       const subDirectory = directory.createDirectory(entry.name);
       await this.loadDirectory(subDirectory);
-      return endLoad();
+      return metric.stop();
     }
   }
 
@@ -345,7 +352,7 @@ export default class Source {
   }
 }
 
-function getDate(page: Page) {
+function getDate(page: iPage) {
   const { src, dest } = page;
   const fileName = basename(src.path);
 

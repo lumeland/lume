@@ -1,11 +1,11 @@
 import { brightGreen, gray } from "./deps/colors.ts";
 import Site from "./site.ts";
-import { Command, CommandOptions } from "./types.ts";
+import { Command, CommandOptions, Scripts as iScripts } from "./types.ts";
 
 /**
  * This class manages and execute all user scripts
  */
-export default class Scripts {
+export default class Scripts implements iScripts {
   site: Site;
   scripts: Map<string, Command[]> = new Map();
 

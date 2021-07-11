@@ -1,5 +1,4 @@
-import Site from "./site.ts";
-import { Page } from "./filesystem.ts";
+import { HTMLDocument } from "./deps/dom.ts";
 
 /**
  * The data of a page
@@ -185,4 +184,203 @@ export interface Engine {
     fn: Helper,
     options: HelperOptions,
   ): void;
+}
+
+/**
+ * Interface to represent a Page
+ */
+export interface Page {
+  parent?: Directory;
+  src: Src;
+  dest: Dest;
+  data: Data;
+  content?: Content;
+  document?: HTMLDocument;
+  duplicate(data?: Data): Page;
+  refreshCache(): void;
+}
+
+/**
+ * Interface to represent a Directory
+ */
+export interface Directory {
+  parent?: Directory;
+  src: Src;
+  data: Data;
+  pages: Map<string, Page>;
+  dirs: Map<string, Directory>;
+  createDirectory(name: string): Directory;
+  setPage(name: string, page: Page): void;
+  unsetPage(name: string): void;
+  getPages(): Iterable<Page>;
+  refreshCache(): void;
+}
+
+/**
+ * Interface to represent a source loader
+ */
+export interface Source {
+  site: Site;
+  root: Directory;
+  data: Map<string, Loader>;
+  pages: Map<string, Loader>;
+  staticFiles: Map<string, string>;
+  assets: Set<string>;
+  ignored: Set<string>;
+  getOrCreateDirectory(path: string): Directory;
+  getFileOrDirectory(path: string): Directory | Page | undefined;
+  isStatic(file: string): [string, string] | false;
+  isIgnored(path: string): boolean;
+  loadDirectory(directory?: Directory): Promise<void>;
+  loadFile(file: string): Promise<void>;
+  load(path: string, loader: Loader): Promise<Data>;
+}
+
+/**
+ * Interface to represent a script runner
+ */
+export interface Scripts {
+  set(name: string, ...commands: Command[]): void;
+  run(options: CommandOptions, ...names: Command[]): Promise<boolean>;
+}
+
+/**
+ * Interface to represet a site builder
+ */
+export interface Site {
+  options: SiteOptions;
+  source: Source;
+  scripts: Scripts;
+  metrics: Metrics;
+  engines: Map<string, Engine>;
+  helpers: Map<string, [Helper, HelperOptions]>;
+  extraData: Record<string, unknown>;
+  listeners: Map<EventType, Set<EventListener | string>>;
+  preprocessors: Map<string, Processor[]>;
+  processors: Map<string, Processor[]>;
+  pages: Page[];
+  flags: string[];
+
+  /**
+   * Returns the src path
+   */
+  src(...path: string[]): string;
+
+  /**
+   * Returns the dest path
+   */
+  dest(...path: string[]): string;
+
+  /**
+   * Adds an event
+   */
+  addEventListener(type: EventType, listener: EventListener | string): this;
+
+  /**
+   * Dispatch an event
+   */
+  dispatchEvent(event: Event): Promise<boolean>;
+
+  /**
+   * Use a plugin
+   */
+  use(plugin: Plugin): this;
+
+  /**
+   * Register a script
+   */
+  script(name: string, ...scripts: Command[]): this;
+
+  /**
+   * Register a data loader for some extensions
+   */
+  loadData(extensions: string[], loader: Loader): this;
+
+  /**
+   * Register a page loader for some extensions
+   */
+  loadPages(extensions: string[], loader?: Loader, engine?: Engine): this;
+
+  /**
+   * Register an assets loader for some extensions
+   */
+  loadAssets(extensions: string[], loader?: Loader): this;
+
+  /**
+   * Register a preprocessor for some extensions
+   */
+  preprocess(extensions: string[], preprocessor: Processor): this;
+
+  /**
+   * Register a processor for some extensions
+   */
+  process(extensions: string[], processor: Processor): this;
+
+  /**
+   * Register a template filter
+   */
+  filter(name: string, filter: Helper, async: boolean): this;
+
+  /**
+   * Register a template helper
+   */
+  helper(name: string, fn: Helper, options: HelperOptions): this;
+
+  /**
+   * Register extra data accessible by layouts
+   */
+  data(name: string, data: unknown): this;
+
+  /**
+   * Copy static files or directories without processing
+   */
+  copy(from: string, to?: string): this;
+
+  /**
+   * Ignore one or several files or directories
+   */
+  ignore(...paths: string[]): this;
+
+  /**
+   * Clear the dest directory
+   */
+  clear(): Promise<void>;
+
+  /**
+   * Build the entire site
+   */
+  build(watchMode: boolean): Promise<void>;
+
+  /**
+   * Reload some files that might be changed
+   */
+  update(files: Set<string>): Promise<void>;
+
+  /**
+   * Run a script
+   */
+  run(name: string, options?: CommandOptions): Promise<boolean>;
+
+  /**
+   * Returns the URL of a page
+   */
+  url(path: string, absolute: boolean): string;
+}
+
+/**
+ * Interface to collect all lume metrics
+ */
+export interface Metrics {
+  start(name: string, details?: Record<string, unknown>): Metric;
+  print(): void;
+  save(file: string): Promise<void>;
+}
+
+/**
+ * Interface to represent a metric
+ */
+export interface Metric {
+  name: string;
+  details?: Record<string, unknown>;
+  stop(): void;
 }

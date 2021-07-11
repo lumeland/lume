@@ -3,11 +3,42 @@ import { Page } from "./filesystem.ts";
 import { brightGreen, gray } from "./deps/colors.ts";
 import { dirname, join } from "./deps/path.ts";
 import { ensureDir } from "./deps/fs.ts";
+import { Metric as iMetric, Metrics as iMetrics } from "./types.ts";
+
+/**
+ * Class to represent a disabled Metric
+ */
+export class EmptyMetric implements iMetric {
+  name = "";
+  detail?: Record<string, unknown>;
+
+  stop() {
+  }
+}
+
+/**
+ * Class to represent a Metric
+ */
+export class Metric implements iMetric {
+  name: string;
+  detail?: Record<string, unknown>;
+
+  constructor(name: string = "") {
+    this.name = name;
+  }
+
+  stop() {
+    performance.measure(this.name, {
+      start: this.name,
+      detail: this.detail,
+    });
+  }
+}
 
 /**
  * Class to collect and return performance metrics
  */
-export default class Metrics {
+export default class Metrics implements iMetrics {
   site: Site;
 
   constructor(site: Site) {
@@ -20,19 +51,14 @@ export default class Metrics {
   start(
     name: string,
     details?: Record<string, unknown>,
-  ): (extra?: Record<string, unknown>) => void {
+  ): iMetric {
     if (this.site.options.metrics) {
       const markName = this.#getMarkName(name, details);
       performance.mark(markName);
-      return (extra = {}) => {
-        performance.measure(markName, {
-          start: markName,
-          detail: { name, ...details, ...extra },
-        });
-      };
+      return new Metric(markName);
     }
 
-    return () => {};
+    return new EmptyMetric();
   }
 
   #getMarkName(name: string, details?: Record<string, unknown>): string {
@@ -97,8 +123,7 @@ export default class Metrics {
    * Save the metrics data in a file
    */
   async save(file: string) {
-    const path = join(this.site.options.cwd, file);
-    await ensureDir(dirname(path));
+    await ensureDir(dirname(file));
 
     function replacer(key: string, value: unknown) {
       if (key === "page") {
@@ -113,13 +138,13 @@ export default class Metrics {
     }
 
     await Deno.writeTextFile(
-      path,
+      file,
       JSON.stringify(this.entries, replacer, "  "),
     );
 
     if (!this.site.options.quiet) {
       console.log();
-      console.log(`⏲ ${brightGreen("Metrics data saved in")} ${gray(path)}`);
+      console.log(`⏲ ${brightGreen("Metrics data saved in")} ${gray(file)}`);
       console.log();
     }
   }
