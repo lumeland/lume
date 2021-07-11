@@ -7,7 +7,7 @@ import loader from "../loaders/module.ts";
  */
 export default function () {
   return (site: Site) => {
-    site.loadPages([".tmpl.js", ".tmpl.ts"], loader, new Module(site));
+    site.loadPages([".tmpl.js", ".tmpl.ts"], loader, new Module());
     site.loadData([".js", ".ts"], loader);
   };
 }

@@ -155,3 +155,34 @@ export type PluginSetup = ((options: unknown) => Plugin);
  * A generical Lume plugin
  */
 export type Plugin = (site: Site) => void;
+
+/**
+ * Interface used by all template engines
+ */
+export interface Engine {
+  /**
+   * Renders a template
+   *
+   * @param content The template content
+   * @param data The data used to render the template
+   * @param filename The filename of the template
+   */
+  render(
+    content: unknown,
+    data: Data,
+    filename: string,
+  ): unknown | Promise<unknown>;
+
+  /**
+   * Adds a helper to the template engine
+   *
+   * @param name The helper name
+   * @param fn The function assigned
+   * @param options Options to configure the helper
+   */
+  addHelper(
+    name: string,
+    fn: Helper,
+    options: HelperOptions,
+  ): void;
+}

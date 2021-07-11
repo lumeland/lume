@@ -44,6 +44,6 @@ export default function (userOptions?: Partial<Options>) {
     });
 
     // Load pages
-    site.loadPages(options.extensions, loader, new Eta(site, eta));
+    site.loadPages(options.extensions, loader, new Eta(eta));
   };
 }

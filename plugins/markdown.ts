@@ -49,7 +49,7 @@ export default function (userOptions?: Partial<Options>) {
   return function (site: Site) {
     const engine = createMarkdown(site, options);
 
-    site.loadPages(options.extensions, loader, new Markdown(site, engine));
+    site.loadPages(options.extensions, loader, new Markdown(engine));
     site.filter("md", filter as Helper);
 
     function filter(string: string, inline = false): string {

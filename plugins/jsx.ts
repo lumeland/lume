@@ -19,7 +19,7 @@ export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    const jsxEngine = new JsxEngine(site);
+    const jsxEngine = new JsxEngine();
 
     site.loadPages(options.extensions, loader, jsxEngine);
   };

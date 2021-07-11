@@ -1,14 +1,11 @@
 import * as eta from "../deps/eta.ts";
-import Site from "../site.ts";
-import Engine from "./engine.ts";
-import { Data, Helper, HelperOptions } from "../types.ts";
+import { Data, Engine, Helper, HelperOptions } from "../types.ts";
 
-export default class Eta extends Engine {
+export default class Eta implements Engine {
   engine: typeof eta;
   filters: Record<string, Helper> = {};
 
-  constructor(site: Site, engine: typeof eta) {
-    super(site);
+  constructor(engine: typeof eta) {
     this.engine = engine;
   }
 

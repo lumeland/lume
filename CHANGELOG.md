@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Changed
 - Improved the `metrics` generation [#125].
+- Internal code improvements:
+  - The abstract class `Engine` is converted to a TypeScript interface.
 
 ### Fixed
 - Updated `highlight.js`.

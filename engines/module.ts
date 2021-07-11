@@ -1,11 +1,10 @@
-import Engine from "./engine.ts";
-import { Data, Helper } from "../types.ts";
+import { Data, Engine, Helper } from "../types.ts";
 
 export type Content =
   | string
   | ((data: Data, helpers: Record<string, Helper>) => unknown);
 
-export default class Module extends Engine {
+export default class Module implements Engine {
   helpers: Record<string, Helper> = {};
 
   async render(content: Content, data: Data): Promise<unknown> {
