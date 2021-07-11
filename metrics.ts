@@ -1,7 +1,7 @@
 import Site from "./site.ts";
 import { Page } from "./filesystem.ts";
 import { brightGreen, gray } from "./deps/colors.ts";
-import { dirname, join } from "./deps/path.ts";
+import { dirname } from "./deps/path.ts";
 import { ensureDir } from "./deps/fs.ts";
 import { Metric as iMetric, Metrics as iMetrics } from "./types.ts";
 
