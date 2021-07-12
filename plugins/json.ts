@@ -1,5 +1,5 @@
-import { Site } from "../types.ts";
-import json from "../loaders/json.ts";
+import { Site } from "../core.ts";
+import json from "../core/loaders/json.ts";
 
 /** This plugin adds support for json */
 export default function () {

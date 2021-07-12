@@ -1,6 +1,6 @@
-import { Site } from "../types.ts";
-import Search from "../helpers/search.ts";
-import paginate from "../helpers/paginate.ts";
+import { Site } from "../core.ts";
+import Search from "../core/helpers/search.ts";
+import paginate from "../core/helpers/paginate.ts";
 
 /** This plugin enable search and paginate helpers */
 export default function () {

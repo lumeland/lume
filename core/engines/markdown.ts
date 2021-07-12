@@ -1,4 +1,4 @@
-import { Engine } from "../types.ts";
+import { Engine } from "../../core.ts";
 
 interface MarkdownEngine {
   render: (input: string) => string;

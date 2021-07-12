@@ -1,6 +1,6 @@
 import { posix } from "../deps/path.ts";
-import { merge } from "../utils.ts";
-import { Helper, Page, Site } from "../types.ts";
+import { merge } from "../core/utils.ts";
+import { Helper, Page, Site } from "../core.ts";
 
 interface Options {
   extensions: string[];

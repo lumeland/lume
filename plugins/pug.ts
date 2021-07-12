@@ -1,8 +1,8 @@
 import { compile } from "../deps/pug.ts";
-import { Site } from "../types.ts";
-import Pug, { PugCompiler, PugOptions } from "../engines/pug.ts";
-import loader from "../loaders/text.ts";
-import { merge } from "../utils.ts";
+import { Site } from "../core.ts";
+import Pug, { PugCompiler, PugOptions } from "../core/engines/pug.ts";
+import loader from "../core/loaders/text.ts";
+import { merge } from "../core/utils.ts";
 
 interface Options {
   extensions: string[];

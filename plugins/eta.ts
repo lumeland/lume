@@ -1,9 +1,9 @@
-import { Site } from "../types.ts";
+import { Site } from "../core.ts";
 import * as eta from "../deps/eta.ts";
 import { EtaConfig } from "../deps/eta.ts";
-import Eta from "../engines/eta.ts";
-import loader from "../loaders/text.ts";
-import { merge } from "../utils.ts";
+import Eta from "../core/engines/eta.ts";
+import loader from "../core/loaders/text.ts";
+import { merge } from "../core/utils.ts";
 
 interface Options {
   extensions: string[];

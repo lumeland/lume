@@ -1,7 +1,7 @@
-import { dirname, extname, join, posix, SEP } from "./deps/path.ts";
-import { copy, emptyDir, ensureDir, exists } from "./deps/fs.ts";
-import { gray } from "./deps/colors.ts";
-import { createHash } from "./deps/hash.ts";
+import { dirname, extname, join, posix, SEP } from "../deps/path.ts";
+import { copy, emptyDir, ensureDir, exists } from "../deps/fs.ts";
+import { gray } from "../deps/colors.ts";
+import { createHash } from "../deps/hash.ts";
 import SiteSource from "./source.ts";
 import ScriptRunner from "./scripts.ts";
 import PerformanceMetrics from "./metrics.ts";
@@ -25,7 +25,7 @@ import {
   Site,
   SiteOptions,
   Source,
-} from "./types.ts";
+} from "../core.ts";
 import {
   concurrent,
   Exception,

@@ -1,11 +1,11 @@
-import { Site } from "../types.ts";
+import { Site } from "../core.ts";
 import { listenAndServe, ServerRequest } from "../deps/server.ts";
 import { acceptWebSocket, WebSocket } from "../deps/ws.ts";
 import { dirname, extname, join, posix, relative } from "../deps/path.ts";
 import { brightGreen, red } from "../deps/colors.ts";
 import { exists } from "../deps/fs.ts";
 import localIp from "../deps/local_ip.ts";
-import { mimes, normalizePath } from "../utils.ts";
+import { mimes, normalizePath } from "../core/utils.ts";
 import { readAll } from "../deps/util.ts";
 
 /** Start a local HTTP server and live-reload the changes */

@@ -1,4 +1,4 @@
-import { Data } from "../types.ts";
+import { Data } from "../../core.ts";
 import { parseFrontmatter } from "./yaml.ts";
 
 /** Load text files. It detects and parse the front matter */

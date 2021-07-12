@@ -1,4 +1,4 @@
-import { Site } from "../types.ts";
+import { Site } from "../core.ts";
 import { printError } from "./utils.ts";
 import { join, relative } from "../deps/path.ts";
 

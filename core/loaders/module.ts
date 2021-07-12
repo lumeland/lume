@@ -1,4 +1,4 @@
-import { Data } from "../types.ts";
+import { Data } from "../../core.ts";
 
 /**
  * Load Javascript/Typescript files.

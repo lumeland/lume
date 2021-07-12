@@ -1,5 +1,5 @@
-import { brightGreen, gray } from "./deps/colors.ts";
-import { Command, CommandOptions, Scripts, Site } from "./types.ts";
+import { brightGreen, gray } from "../deps/colors.ts";
+import { Command, CommandOptions, Scripts, Site } from "../core.ts";
 
 /** This class manages and execute all user scripts */
 export default class ScriptRunner implements Scripts {

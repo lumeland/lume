@@ -1,4 +1,4 @@
-import { Data, Engine, Helper } from "../types.ts";
+import { Data, Engine, Helper } from "../../core.ts";
 
 export type Content =
   | string

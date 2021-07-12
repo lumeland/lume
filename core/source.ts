@@ -1,5 +1,5 @@
-import { basename, dirname, extname, join } from "./deps/path.ts";
-import { existsSync } from "./deps/fs.ts";
+import { basename, dirname, extname, join } from "../deps/path.ts";
+import { existsSync } from "../deps/fs.ts";
 import { SiteDirectory, SitePage } from "./filesystem.ts";
 import {
   concurrent,
@@ -7,7 +7,7 @@ import {
   normalizePath,
   searchByExtension,
 } from "./utils.ts";
-import { Data, Directory, Event, Loader, Page, Site, Source } from "./types.ts";
+import { Data, Directory, Event, Loader, Page, Site, Source } from "../core.ts";
 
 /**
  * Class to scan and load files from the source folder

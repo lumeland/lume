@@ -1,4 +1,4 @@
-import { Data, Engine, Helper, HelperOptions, Site } from "../types.ts";
+import { Data, Engine, Helper, HelperOptions, Site } from "../../core.ts";
 
 export interface PugOptions {
   filters?: Record<string, Helper>;

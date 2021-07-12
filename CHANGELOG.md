@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Internal code improvements:
   - The abstract class `Engine` is converted to a TypeScript interface.
   - Created interfaces for Site, Page, Directory, Source, Metrics, etc.
+  - Moved core files to `core/` directory.
+  - Renamed `types.ts` to `core.ts`.
 
 ### Fixed
 - Updated `highlight.js`.

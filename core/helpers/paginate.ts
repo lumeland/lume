@@ -1,4 +1,4 @@
-import { PaginateOptions, PaginateResult } from "../types.ts";
+import { PaginateOptions, PaginateResult } from "../../core.ts";
 import { merge } from "../utils.ts";
 
 /** Helper to paginate a list of results */

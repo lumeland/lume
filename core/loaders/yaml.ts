@@ -1,5 +1,5 @@
-import { Data } from "../types.ts";
-import { parse } from "../deps/yaml.ts";
+import { Data } from "../../core.ts";
+import { parse } from "../../deps/yaml.ts";
 
 /** Load and parse YAML files */
 export default async function (path: string): Promise<Data> {

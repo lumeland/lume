@@ -1,5 +1,5 @@
-import * as eta from "../deps/eta.ts";
-import { Data, Engine, Helper, HelperOptions } from "../types.ts";
+import * as eta from "../../deps/eta.ts";
+import { Data, Engine, Helper, HelperOptions } from "../../core.ts";
 
 export default class Eta implements Engine {
   engine: typeof eta;

@@ -1,8 +1,8 @@
 import { Element } from "../deps/dom.ts";
 import { extname, posix, resolve } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
-import { Exception, merge, mimes } from "../utils.ts";
-import { Page, Site } from "../types.ts";
+import { Exception, merge, mimes } from "../core/utils.ts";
+import { Page, Site } from "../core.ts";
 
 interface Options {
   extensions: string[];

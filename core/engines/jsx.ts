@@ -1,5 +1,5 @@
-import { React, ReactDOMServer } from "../deps/react.ts";
-import { Data } from "../types.ts";
+import { React, ReactDOMServer } from "../../deps/react.ts";
+import { Data } from "../../core.ts";
 import Module, { Content } from "./module.ts";
 
 // @ts-ignore: Property 'React' does not exist on type 'Window & typeof globalThis'.

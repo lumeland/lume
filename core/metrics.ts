@@ -1,7 +1,7 @@
-import { brightGreen, gray } from "./deps/colors.ts";
-import { dirname } from "./deps/path.ts";
-import { ensureDir } from "./deps/fs.ts";
-import { Metric, MetricDetail, Metrics, Page, Site } from "./types.ts";
+import { brightGreen, gray } from "../deps/colors.ts";
+import { dirname } from "../deps/path.ts";
+import { ensureDir } from "../deps/fs.ts";
+import { Metric, MetricDetail, Metrics, Page, Site } from "../core.ts";
 
 /** Class to represent a disabled Metric */
 export class EmptyMetric implements Metric {

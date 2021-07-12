@@ -1,13 +1,13 @@
-import { Helper, Site } from "../types.ts";
+import { Helper, Site } from "../core.ts";
 import {
   markdownIt,
   markdownItAttrs,
   markdownItDeflist,
   markdownItReplaceLink,
 } from "../deps/markdown_it.ts";
-import loader from "../loaders/text.ts";
-import Markdown from "../engines/markdown.ts";
-import { merge } from "../utils.ts";
+import loader from "../core/loaders/text.ts";
+import Markdown from "../core/engines/markdown.ts";
+import { merge } from "../core/utils.ts";
 
 export interface Options {
   extensions: string[];

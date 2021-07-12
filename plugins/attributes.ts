@@ -1,4 +1,4 @@
-import { Helper, Site } from "../types.ts";
+import { Helper, Site } from "../core.ts";
 
 const escapeChars: Record<string, string> = {
   "&": "&amp;",

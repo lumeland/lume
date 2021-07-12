@@ -1,5 +1,12 @@
-import nunjucks from "../deps/nunjucks.ts";
-import { Data, Engine, Event, Helper, HelperOptions, Site } from "../types.ts";
+import nunjucks from "../../deps/nunjucks.ts";
+import {
+  Data,
+  Engine,
+  Event,
+  Helper,
+  HelperOptions,
+  Site,
+} from "../../core.ts";
 
 export default class Nunjucks implements Engine {
   engine: unknown;

@@ -1,6 +1,6 @@
 import hljs from "../deps/highlight.ts";
-import { merge } from "../utils.ts";
-import { Page, Site } from "../types.ts";
+import { merge } from "../core/utils.ts";
+import { Page, Site } from "../core.ts";
 
 interface Options {
   extensions: string[];

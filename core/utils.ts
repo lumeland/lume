@@ -1,5 +1,5 @@
-import { DOMParser, HTMLDocument } from "./deps/dom.ts";
-import { SEP } from "./deps/path.ts";
+import { DOMParser, HTMLDocument } from "../deps/dom.ts";
+import { SEP } from "../deps/path.ts";
 
 /** Run concurrently a callback with all elements of a Iterable */
 export async function concurrent<Type>(

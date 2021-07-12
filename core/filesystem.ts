@@ -1,7 +1,7 @@
-import { join } from "./deps/path.ts";
-import { HTMLDocument } from "./deps/dom.ts";
+import { join } from "../deps/path.ts";
+import { HTMLDocument } from "../deps/dom.ts";
 import { documentToString, normalizePath, stringToDocument } from "./utils.ts";
-import { Content, Data, Dest, Directory, Page, Src } from "./types.ts";
+import { Content, Data, Dest, Directory, Page, Src } from "../core.ts";
 
 class Base {
   src: Src;

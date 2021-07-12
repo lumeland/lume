@@ -1,9 +1,9 @@
-import { Page, Site } from "../types.ts";
+import { Page, Site } from "../core.ts";
 import lume from "../mod.ts";
 import { exists } from "../deps/fs.ts";
 import { join, resolve, toFileUrl } from "../deps/path.ts";
 import { bold, dim, red } from "../deps/colors.ts";
-import { Exception } from "../utils.ts";
+import { Exception } from "../core/utils.ts";
 
 /** Returns the current installed version */
 export function getCurrentVersion(): string {
