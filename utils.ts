@@ -1,13 +1,7 @@
 import { DOMParser, HTMLDocument } from "./deps/dom.ts";
 import { SEP } from "./deps/path.ts";
 
-/**
- * Run concurrently a callback with all elements of a Iterable.
- *
- * @param iterable The iterable with all elements
- * @param iteratorFn The function to execute for every element
- * @param limit The maximum number of callbacks run at the same time
- */
+/** Run concurrently a callback with all elements of a Iterable */
 export async function concurrent<Type>(
   iterable: AsyncIterable<Type> | Iterable<Type>,
   iteratorFn: (arg: Type) => Promise<unknown>,
@@ -96,9 +90,7 @@ export function merge<Type>(
   return merged;
 }
 
-/**
- * Check if the argument passed is a plain object.
- */
+/** Check if the argument passed is a plain object. */
 function isPlainObject(obj: unknown) {
   return typeof obj === "object" && obj !== null &&
     obj.toString() === "[object Object]";
@@ -128,9 +120,7 @@ export function searchByExtension<Type>(
   }
 }
 
-/**
- * Converts a HTMLDocument instance to string code.
- */
+/** Converts a HTMLDocument instance to string code. */
 export function documentToString(document: HTMLDocument) {
   const { doctype, documentElement } = document;
 
@@ -147,9 +137,7 @@ export function documentToString(document: HTMLDocument) {
 
 const parser = new DOMParser();
 
-/**
- * Parse a string with HTML code and return a HTMLDocument
- */
+/** Parse a string with HTML code and return a HTMLDocument */
 export function stringToDocument(string: string): HTMLDocument {
   const document = parser.parseFromString(string, "text/html");
 

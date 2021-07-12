@@ -30,9 +30,7 @@ const defaults: Options = {
   },
 };
 
-/**
- * Plugin to slugify all urls, replacing conflictive characters
- */
+/** Plugin to slugify all urls, replacing conflictive characters */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
   const slugify = createSlugifier(options);

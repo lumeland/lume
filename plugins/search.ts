@@ -2,9 +2,7 @@ import { Site } from "../types.ts";
 import Search from "../helpers/search.ts";
 import paginate from "../helpers/paginate.ts";
 
-/**
- * This plugin enable search and paginate helpers
- */
+/** This plugin enable search and paginate helpers */
 export default function () {
   return (site: Site) => {
     const ext = site.options.prettyUrls ? "/index.html" : ".html";

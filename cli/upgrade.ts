@@ -9,9 +9,7 @@ interface Options {
   dev: boolean;
 }
 
-/**
- * Upgrade the Lume installation to the latest version
- */
+/** Upgrade the Lume installation to the latest version */
 export default async function upgrade({ dev }: Options) {
   const latest = dev
     ? await getLastDevelopmentVersion()

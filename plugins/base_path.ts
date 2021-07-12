@@ -1,9 +1,7 @@
 import { Element } from "../deps/dom.ts";
 import { Page, Site } from "../types.ts";
 
-/**
- * Plugin to prepend automatically a base path to all internal urls
- */
+/** Plugin to prepend automatically a base path to all internal urls */
 export default function () {
   return (site: Site) => {
     site.process([".html"], basePath);

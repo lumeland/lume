@@ -1,10 +1,8 @@
 import { brightGreen, gray } from "./deps/colors.ts";
-import { Command, CommandOptions, Scripts as iScripts, Site } from "./types.ts";
+import { Command, CommandOptions, Scripts, Site } from "./types.ts";
 
-/**
- * This class manages and execute all user scripts
- */
-export default class Scripts implements iScripts {
+/** This class manages and execute all user scripts */
+export default class ScriptRunner implements Scripts {
   site: Site;
   scripts: Map<string, Command[]> = new Map();
 
@@ -12,16 +10,10 @@ export default class Scripts implements iScripts {
     this.site = site;
   }
 
-  /**
-   * Register a new script
-   */
   set(name: string, ...commands: Command[]) {
     this.scripts.set(name, commands);
   }
 
-  /**
-   * Run one or more scripts
-   */
   async run(options: CommandOptions, ...names: Command[]) {
     options = { cwd: this.site.options.cwd, ...options };
 
@@ -36,9 +28,7 @@ export default class Scripts implements iScripts {
     return true;
   }
 
-  /**
-   * Run an individual script or command
-   */
+  /** Run an individual script or command */
   async #runScript(options: CommandOptions, name: Command): Promise<unknown> {
     if (typeof name === "string" && this.scripts.has(name)) {
       if (!this.site.options.quiet) {
@@ -62,9 +52,7 @@ export default class Scripts implements iScripts {
     return this.#runCommand(options, name);
   }
 
-  /**
-   * Run a function
-   */
+  /** Run a function */
   async #runFunction(fn: (site: Site) => unknown) {
     if (fn.name && !this.site.options.quiet) {
       console.log(gray(`⚡️ ${fn.name}()`));
@@ -73,9 +61,7 @@ export default class Scripts implements iScripts {
     return result !== false;
   }
 
-  /**
-   * Run a shell command
-   */
+  /** Run a shell command */
   async #runCommand(options: CommandOptions, command: string) {
     if (!this.site.options.quiet) {
       console.log(gray(`⚡️ ${command}`));
@@ -90,9 +76,7 @@ export default class Scripts implements iScripts {
   }
 }
 
-/**
- * Returns the shell arguments for the current platform
- */
+/** Returns the shell arguments for the current platform */
 function shArgs(command: string) {
   return Deno.build.os === "windows"
     ? ["PowerShell.exe", "-Command", command]

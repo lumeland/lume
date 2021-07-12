@@ -28,9 +28,7 @@ const defaults: Options = {
   plugins: {},
 };
 
-/**
- * This plugin adds support for Nunjucks templates
- */
+/** This plugin adds support for Nunjucks templates */
 export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(

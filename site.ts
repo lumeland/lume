@@ -2,9 +2,9 @@ import { dirname, extname, join, posix, SEP } from "./deps/path.ts";
 import { copy, emptyDir, ensureDir, exists } from "./deps/fs.ts";
 import { gray } from "./deps/colors.ts";
 import { createHash } from "./deps/hash.ts";
-import Source from "./source.ts";
-import Scripts from "./scripts.ts";
-import Metrics from "./metrics.ts";
+import SiteSource from "./source.ts";
+import ScriptRunner from "./scripts.ts";
+import PerformanceMetrics from "./metrics.ts";
 import textLoader from "./loaders/text.ts";
 import {
   Command,
@@ -17,14 +17,14 @@ import {
   Helper,
   HelperOptions,
   Loader,
-  Metrics as iMetrics,
+  Metrics,
   Page,
   Plugin,
   Processor,
-  Scripts as iScripts,
-  Site as iSite,
+  Scripts,
+  Site,
   SiteOptions,
-  Source as iSource,
+  Source,
 } from "./types.ts";
 import {
   concurrent,
@@ -56,11 +56,11 @@ const defaults: SiteOptions = {
  * This is the heart of Lume, the class that contains everything
  * needed to build the site.
  */
-export default class Site implements iSite {
+export default class LumeSite implements Site {
   options: SiteOptions;
-  source: iSource;
-  scripts: iScripts;
-  metrics: iMetrics;
+  source: Source;
+  scripts: Scripts;
+  metrics: Metrics;
   engines: Map<string, Engine> = new Map();
   helpers: Map<string, [Helper, HelperOptions]> = new Map();
   extraData: Record<string, unknown> = {};
@@ -78,28 +78,19 @@ export default class Site implements iSite {
       this.options.location = new URL(this.options.location);
     }
 
-    this.source = new Source(this);
-    this.scripts = new Scripts(this);
-    this.metrics = new Metrics(this);
+    this.source = new SiteSource(this);
+    this.scripts = new ScriptRunner(this);
+    this.metrics = new PerformanceMetrics(this);
   }
 
-  /**
-   * Returns the src path
-   */
   src(...path: string[]) {
     return join(this.options.cwd, this.options.src, ...path);
   }
 
-  /**
-   * Returns the dest path
-   */
   dest(...path: string[]) {
     return join(this.options.cwd, this.options.dest, ...path);
   }
 
-  /**
-   * Adds an event
-   */
   addEventListener(type: EventType, listener: EventListener | string) {
     const listeners = this.listeners.get(type) || new Set();
     listeners.add(listener);
@@ -107,9 +98,6 @@ export default class Site implements iSite {
     return this;
   }
 
-  /**
-   * Dispatch an event
-   */
   async dispatchEvent(event: Event) {
     const type = event.type;
     const listeners = this.listeners.get(type);
@@ -136,33 +124,21 @@ export default class Site implements iSite {
     return true;
   }
 
-  /**
-   * Use a plugin
-   */
   use(plugin: Plugin) {
     plugin(this);
     return this;
   }
 
-  /**
-   * Register a script
-   */
   script(name: string, ...scripts: Command[]) {
     this.scripts.set(name, ...scripts);
     return this;
   }
 
-  /**
-   * Register a data loader for some extensions
-   */
   loadData(extensions: string[], loader: Loader) {
     extensions.forEach((extension) => this.source.data.set(extension, loader));
     return this;
   }
 
-  /**
-   * Register a page loader for some extensions
-   */
   loadPages(extensions: string[], loader?: Loader, engine?: Engine) {
     loader ||= textLoader;
     extensions.forEach((extension) =>
@@ -182,9 +158,6 @@ export default class Site implements iSite {
     return this;
   }
 
-  /**
-   * Register an assets loader for some extensions
-   */
   loadAssets(extensions: string[], loader?: Loader) {
     loader ||= textLoader;
     extensions.forEach((extension) =>
@@ -194,9 +167,6 @@ export default class Site implements iSite {
     return this;
   }
 
-  /**
-   * Register a preprocessor for some extensions
-   */
   preprocess(extensions: string[], preprocessor: Processor) {
     extensions.forEach((extension) => {
       const preprocessors = this.preprocessors.get(extension) || [];
@@ -206,9 +176,6 @@ export default class Site implements iSite {
     return this;
   }
 
-  /**
-   * Register a processor for some extensions
-   */
   process(extensions: string[], processor: Processor) {
     extensions.forEach((extension) => {
       const processors = this.processors.get(extension) || [];
@@ -218,16 +185,10 @@ export default class Site implements iSite {
     return this;
   }
 
-  /**
-   * Register a template filter
-   */
   filter(name: string, filter: Helper, async = false) {
     return this.helper(name, filter, { type: "filter", async });
   }
 
-  /**
-   * Register a template helper
-   */
   helper(name: string, fn: Helper, options: HelperOptions) {
     this.helpers.set(name, [fn, options]);
 
@@ -238,41 +199,26 @@ export default class Site implements iSite {
     return this;
   }
 
-  /**
-   * Register extra data accessible by layouts
-   */
   data(name: string, data: unknown) {
     this.extraData[name] = data;
     return this;
   }
 
-  /**
-   * Copy static files or directories without processing
-   */
   copy(from: string, to = from) {
     this.source.staticFiles.set(join("/", from), join("/", to));
     return this;
   }
 
-  /**
-   * Ignore one or several files or directories
-   */
   ignore(...paths: string[]) {
     paths.forEach((path) => this.source.ignored.add(join("/", path)));
     return this;
   }
 
-  /**
-   * Clear the dest directory
-   */
   async clear() {
     await emptyDir(this.dest());
     this.#hashes.clear();
   }
 
-  /**
-   * Build the entire site
-   */
   async build(watchMode = false) {
     const buildMetric = this.metrics.start("Build (entire site)");
     await this.dispatchEvent({ type: "beforeBuild" });
@@ -315,9 +261,6 @@ export default class Site implements iSite {
     }
   }
 
-  /**
-   * Reload some files that might be changed
-   */
   async update(files: Set<string>) {
     await this.dispatchEvent({ type: "beforeUpdate", files });
 
@@ -360,9 +303,6 @@ export default class Site implements iSite {
     await this.dispatchEvent({ type: "afterUpdate", files });
   }
 
-  /**
-   * Run a script
-   */
   async run(name: string, options: CommandOptions = {}) {
     return await this.scripts.run(options, name);
   }
@@ -374,12 +314,6 @@ export default class Site implements iSite {
     return this.options.flags || [];
   }
 
-  /**
-   * Returns the URL of a page
-   *
-   * @param {string} path
-   * @param {bool} absolute
-   */
   url(path: string, absolute = false) {
     if (
       path.startsWith("./") || path.startsWith("../") ||
@@ -426,9 +360,7 @@ export default class Site implements iSite {
     return absolute ? this.options.location.origin + path : path;
   }
 
-  /**
-   * Copy a static file
-   */
+  /** Copy a static file */
   async #copyStatic(from: string, to: string) {
     const metric = this.metrics.start("Copy", { from });
     const pathFrom = this.src(from);
@@ -444,9 +376,7 @@ export default class Site implements iSite {
     metric.stop();
   }
 
-  /**
-   * Build the pages
-   */
+  /** Build the pages */
   async #buildPages() {
     this.pages = [];
 
@@ -571,9 +501,7 @@ export default class Site implements iSite {
     metricProcess.stop();
   }
 
-  /**
-   * Save all pages
-   */
+  /** Save all pages */
   async #savePages(watchMode: boolean) {
     await concurrent(
       this.pages,
@@ -581,9 +509,7 @@ export default class Site implements iSite {
     );
   }
 
-  /**
-   * Generate the URL and dest info of a page
-   */
+  /** Generate the URL and dest info of a page */
   #urlPage(page: Page) {
     const { dest } = page;
     let url = page.data.url;
@@ -623,9 +549,7 @@ export default class Site implements iSite {
         : dest.path + dest.ext;
   }
 
-  /**
-   * Render a page
-   */
+  /** Render a page */
   async #renderPage(page: Page) {
     let content = page.data.content;
     let pageData = { ...page.data, ...this.extraData };
@@ -683,9 +607,7 @@ export default class Site implements iSite {
     return content;
   }
 
-  /**
-   * Save a page
-   */
+  /** Save a page */
   async #savePage(page: Page, watchMode: boolean) {
     // Ignore empty files
     if (!page.content) {
@@ -724,9 +646,7 @@ export default class Site implements iSite {
     metric.stop();
   }
 
-  /**
-   * Get the engine used by a path or extension
-   */
+  /** Get the engine used by a path or extension */
   #getEngine(path: string, templateEngine: Data["templateEngine"]) {
     if (templateEngine) {
       templateEngine = Array.isArray(templateEngine)

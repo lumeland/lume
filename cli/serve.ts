@@ -8,10 +8,7 @@ import localIp from "../deps/local_ip.ts";
 import { mimes, normalizePath } from "../utils.ts";
 import { readAll } from "../deps/util.ts";
 
-/**
- * Start a local HTTP server and live-reload the changes
- * @param site The Site instance
- */
+/** Start a local HTTP server and live-reload the changes */
 export default async function server(site: Site) {
   const root = site.dest();
   const port = site.options.server.port || 3000;

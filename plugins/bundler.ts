@@ -14,9 +14,7 @@ const defaults: Options = {
   options: {},
 };
 
-/**
- * Plugin to load all .js and .ts files and bundle them using Deno.emit
- */
+/** Plugin to load all .js and .ts files and bundle them using Deno.emit */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 

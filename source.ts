@@ -1,29 +1,21 @@
 import { basename, dirname, extname, join } from "./deps/path.ts";
 import { existsSync } from "./deps/fs.ts";
-import { Directory, Page } from "./filesystem.ts";
+import { SiteDirectory, SitePage } from "./filesystem.ts";
 import {
   concurrent,
   Exception,
   normalizePath,
   searchByExtension,
 } from "./utils.ts";
-import {
-  Data,
-  Directory as iDirectory,
-  Event,
-  Loader,
-  Page as iPage,
-  Site,
-  Source as iSource,
-} from "./types.ts";
+import { Data, Directory, Event, Loader, Page, Site, Source } from "./types.ts";
 
 /**
  * Class to scan and load files from the source folder
  * with the data, pages, assets and static files
  */
-export default class Source implements iSource {
+export default class SiteSource implements Source {
   site: Site;
-  root = new Directory({ path: "/" });
+  root = new SiteDirectory({ path: "/" });
 
   data: Map<string, Loader> = new Map();
   pages: Map<string, Loader> = new Map();
@@ -50,12 +42,8 @@ export default class Source implements iSource {
     });
   }
 
-  /**
-   * Returns the Directory instance of a path
-   * and create if it doesn't exist
-   */
   getOrCreateDirectory(path: string) {
-    let dir: iDirectory = this.root;
+    let dir: Directory = this.root;
 
     path.split("/").forEach((name) => {
       if (!name || !dir) {
@@ -72,18 +60,15 @@ export default class Source implements iSource {
     return dir;
   }
 
-  /**
-   * Returns the File or Directory of a path
-   */
-  getFileOrDirectory(path: string): iDirectory | iPage | undefined {
-    let result: iDirectory | iPage | undefined = this.root;
+  getFileOrDirectory(path: string): Directory | Page | undefined {
+    let result: Directory | Page | undefined = this.root;
 
     path.split("/").forEach((name) => {
       if (!name || !result) {
         return;
       }
 
-      if (result instanceof Directory) {
+      if (result instanceof SiteDirectory) {
         result = result.dirs.get(name) || result.pages.get(name);
       }
     });
@@ -91,10 +76,6 @@ export default class Source implements iSource {
     return result;
   }
 
-  /**
-   * Check whether a file is included in the static files
-   * and return the [from, to] tupple
-   */
   isStatic(file: string) {
     for (const entry of this.staticFiles) {
       const [from] = entry;
@@ -107,9 +88,6 @@ export default class Source implements iSource {
     return false;
   }
 
-  /**
-   * Check whether a path is ignored or not
-   */
   isIgnored(path: string) {
     for (const pattern of this.ignored) {
       if (pattern === path || path.startsWith(`${pattern}/`)) {
@@ -120,10 +98,7 @@ export default class Source implements iSource {
     return false;
   }
 
-  /**
-   * Load a directory recursively
-   */
-  loadDirectory(directory: iDirectory = this.root) {
+  loadDirectory(directory: Directory = this.root) {
     const path = this.site.src(directory.src.path);
 
     return concurrent(
@@ -132,9 +107,6 @@ export default class Source implements iSource {
     );
   }
 
-  /**
-   * Reload some files
-   */
   async loadFile(file: string) {
     const entry = {
       name: basename(file),
@@ -173,10 +145,8 @@ export default class Source implements iSource {
     await this.#loadEntry(directory, entry);
   }
 
-  /**
-   * Load an entry from a directory
-   */
-  async #loadEntry(directory: iDirectory, entry: Deno.DirEntry) {
+  /** Load an entry from a directory */
+  async #loadEntry(directory: Directory, entry: Deno.DirEntry) {
     if (entry.isSymlink || entry.name.startsWith(".")) {
       return;
     }
@@ -224,9 +194,7 @@ export default class Source implements iSource {
     }
   }
 
-  /**
-   * Create and returns a Page
-   */
+  /** Create and returns a Page */
   async #loadPage(path: string) {
     const result = searchByExtension(path, this.pages);
 
@@ -242,7 +210,7 @@ export default class Source implements iSource {
     }
 
     const info = await Deno.stat(fullPath);
-    const page = new Page({
+    const page = new SitePage({
       path: path.slice(0, -ext.length),
       lastModified: info.mtime || undefined,
       created: info.birthtime || undefined,
@@ -278,9 +246,7 @@ export default class Source implements iSource {
     return page;
   }
 
-  /**
-   * Load a _data.* file and return the content
-   */
+  /** Load a _data.* file and return the content */
   async #loadData(path: string): Promise<Data> {
     const result = searchByExtension(path, this.data);
 
@@ -292,9 +258,7 @@ export default class Source implements iSource {
     return {};
   }
 
-  /**
-   * Load a _data directory and return the content of all files
-   */
+  /** Load a _data directory and return the content of all files */
   async #loadDataDirectory(path: string) {
     const data = {};
 
@@ -305,9 +269,7 @@ export default class Source implements iSource {
     return data;
   }
 
-  /**
-   * Load a data file inside a _data directory
-   */
+  /** Load a data file inside a _data directory */
   async #loadDataDirectoryEntry(
     path: string,
     entry: Deno.DirEntry,
@@ -336,9 +298,6 @@ export default class Source implements iSource {
     }
   }
 
-  /**
-   * Load a file and save the content in the cache
-   */
   load(path: string, loader: Loader): Promise<Data> {
     try {
       if (!this.#cache.has(path)) {
@@ -352,7 +311,7 @@ export default class Source implements iSource {
   }
 }
 
-function getDate(page: iPage) {
+function getDate(page: Page) {
   const { src, dest } = page;
   const fileName = basename(src.path);
 

@@ -10,10 +10,7 @@ interface Options {
   watch: boolean;
 }
 
-/**
- * Command to build the website
- * and optionally watch changes and serve the site
- */
+/** Build the website and optionally watch changes and serve the site */
 export default async function build(
   { root, config, serve, watch }: Options,
 ) {

@@ -2,10 +2,7 @@ import { Site } from "../types.ts";
 import { printError } from "./utils.ts";
 import { join, relative } from "../deps/path.ts";
 
-/**
- * Watch and rebuild the site on changes
- * @param site The Site instance
- */
+/** Watch and rebuild the site on changes */
 export default async function watch(site: Site) {
   // Disable metrics for the watcher
   site.options.metrics = false;

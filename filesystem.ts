@@ -1,18 +1,11 @@
 import { join } from "./deps/path.ts";
 import { HTMLDocument } from "./deps/dom.ts";
 import { documentToString, normalizePath, stringToDocument } from "./utils.ts";
-import {
-  Content,
-  Data,
-  Dest,
-  Directory as iDirectory,
-  Page as iPage,
-  Src,
-} from "./types.ts";
+import { Content, Data, Dest, Directory, Page, Src } from "./types.ts";
 
 class Base {
   src: Src;
-  parent?: iDirectory;
+  parent?: Directory;
   #data: Data = {};
   #cache?: Data;
 
@@ -20,9 +13,6 @@ class Base {
     this.src = src;
   }
 
-  /**
-   * Returns the merged data associated
-   */
   get data(): Data {
     if (!this.#cache) {
       this.#cache = this.#getMergedData();
@@ -31,16 +21,11 @@ class Base {
     return this.#cache;
   }
 
-  /**
-   * Set new data
-   */
   set data(data: Data) {
     this.#data = data;
   }
 
-  /**
-   * Merge and return the data
-   */
+  /** Merge and return the data */
   #getMergedData(): Data {
     let data = { ...this.#data };
     let tags: string[] = [];
@@ -65,19 +50,13 @@ class Base {
     return data;
   }
 
-  /**
-   * Refresh the cached merged data
-   * (used for rebuild)
-   */
   refreshCache() {
     this.#cache = undefined;
   }
 }
 
-/**
- * Class to represent a page file
- */
-export class Page extends Base implements iPage {
+/** Class to represent a page of the site */
+export class SitePage extends Base implements Page {
   dest: Dest;
   #content?: Content;
   #document?: HTMLDocument;
@@ -92,12 +71,8 @@ export class Page extends Base implements iPage {
     };
   }
 
-  /**
-   * Duplicate this page.
-   * Optionally you can provide new data
-   */
-  duplicate(data = {}): iPage {
-    const page = new Page({ ...this.src });
+  duplicate(data = {}): Page {
+    const page = new SitePage({ ...this.src });
     page.dest = { ...this.dest };
     page.data = { ...this.data, ...data };
     page.parent = this.parent;
@@ -106,17 +81,11 @@ export class Page extends Base implements iPage {
     return page;
   }
 
-  /**
-   * Set new content to this page
-   */
   set content(content: Content | undefined) {
     this.#document = undefined;
     this.#content = content;
   }
 
-  /**
-   * Return the page content.
-   */
   get content(): Content | undefined {
     if (this.#document) {
       this.#content = documentToString(this.#document);
@@ -126,17 +95,11 @@ export class Page extends Base implements iPage {
     return this.#content;
   }
 
-  /**
-   * Set a new HTMLDocument and replace the content.
-   */
   set document(document: HTMLDocument | undefined) {
     this.#content = undefined;
     this.#document = document;
   }
 
-  /**
-   * Parse the HTML code and return a HTMLDocument.
-   */
   get document(): HTMLDocument | undefined {
     if (!this.#document && this.#content && typeof this.#content === "string") {
       this.#document = stringToDocument(this.#content);
@@ -146,29 +109,21 @@ export class Page extends Base implements iPage {
   }
 }
 
-/**
- * Class to represent a directory
- */
-export class Directory extends Base implements iDirectory {
-  pages: Map<string, iPage> = new Map();
-  dirs: Map<string, iDirectory> = new Map();
+/** Class to represent a directory */
+export class SiteDirectory extends Base implements Directory {
+  pages: Map<string, Page> = new Map();
+  dirs: Map<string, Directory> = new Map();
 
-  /**
-   * Create a subdirectory and return it
-   */
-  createDirectory(name: string): iDirectory {
+  createDirectory(name: string): Directory {
     const path = join(this.src.path, name);
-    const directory = new Directory({ path });
+    const directory = new SiteDirectory({ path });
     directory.parent = this;
     this.dirs.set(name, directory);
 
     return directory;
   }
 
-  /**
-   * Add a page to this directory
-   */
-  setPage(name: string, page: iPage) {
+  setPage(name: string, page: Page) {
     const oldPage = this.pages.get(name);
     page.parent = this;
     this.pages.set(name, page);
@@ -178,18 +133,11 @@ export class Directory extends Base implements iDirectory {
     }
   }
 
-  /**
-   * Remove a page from this directory
-   */
   unsetPage(name: string) {
     this.pages.delete(name);
   }
 
-  /**
-   * Return the list of pages in this directory
-   * and subdirectories recursivelly.
-   */
-  *getPages(): Iterable<iPage> {
+  *getPages(): Iterable<Page> {
     for (const page of this.pages.values()) {
       yield page;
     }
@@ -199,11 +147,6 @@ export class Directory extends Base implements iDirectory {
     }
   }
 
-  /**
-   * Refresh the data cache in this directory,
-   * pages and subdirectories recursively.
-   * (used for rebuild)
-   */
   refreshCache() {
     this.pages.forEach((page) => page.refreshCache());
     this.dirs.forEach((dir) => dir.refreshCache());

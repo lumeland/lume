@@ -1,18 +1,10 @@
 import { brightGreen, gray } from "./deps/colors.ts";
 import { dirname } from "./deps/path.ts";
 import { ensureDir } from "./deps/fs.ts";
-import {
-  Metric as iMetric,
-  MetricDetail,
-  Metrics as iMetrics,
-  Page,
-  Site,
-} from "./types.ts";
+import { Metric, MetricDetail, Metrics, Page, Site } from "./types.ts";
 
-/**
- * Class to represent a disabled Metric
- */
-export class EmptyMetric implements iMetric {
+/** Class to represent a disabled Metric */
+export class EmptyMetric implements Metric {
   name = "";
   detail?: MetricDetail;
 
@@ -20,10 +12,8 @@ export class EmptyMetric implements iMetric {
   }
 }
 
-/**
- * Class to represent a Metric
- */
-export class Metric implements iMetric {
+/** Class to represent a Metric */
+export class PerformanceMetric implements Metric {
   name: string;
   detail?: MetricDetail;
 
@@ -39,32 +29,28 @@ export class Metric implements iMetric {
   }
 }
 
-/**
- * Class to collect and return performance metrics
- */
-export default class Metrics implements iMetrics {
+/** Class to collect and return performance metrics */
+export default class LumeMetrics implements Metrics {
   site: Site;
 
   constructor(site: Site) {
     this.site = site;
   }
 
-  /**
-   * Create a mark to start to measure
-   */
   start(
     name: string,
     details?: MetricDetail,
-  ): iMetric {
+  ): Metric {
     if (this.site.options.metrics) {
       const markName = this.#getMarkName(name, details);
       performance.mark(markName);
-      return new Metric(markName);
+      return new PerformanceMetric(markName);
     }
 
     return new EmptyMetric();
   }
 
+  /** Generate an unique mark name */
   #getMarkName(name: string, details?: MetricDetail): string {
     if (!details) {
       return name;
@@ -79,30 +65,11 @@ export default class Metrics implements iMetrics {
     return `${name}: ${[...Object.values(data)].join(" ")}`;
   }
 
-  /**
-   * Return the list of collected metrics
-   */
+  /** Return the list of collected metrics */
   get entries() {
     return performance.getEntriesByType("measure");
   }
 
-  async finish() {
-    const { metrics } = this.site.options;
-
-    if (typeof metrics === "string") {
-      await this.save(metrics);
-    } else if (metrics) {
-      this.print();
-    }
-
-    // Clear all data
-    performance.clearMarks();
-    performance.clearMeasures();
-  }
-
-  /**
-   * Print the metrics in the console
-   */
   print() {
     // Sort by duration and get the 100 longest
     const metrics = this.entries
@@ -123,9 +90,6 @@ export default class Metrics implements iMetrics {
     }
   }
 
-  /**
-   * Save the metrics data in a file
-   */
   async save(file: string) {
     await ensureDir(dirname(file));
 

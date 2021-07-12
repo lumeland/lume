@@ -25,10 +25,7 @@ const defaults: Options = {
   ],
 };
 
-/**
- * Plugin to load all .css files process them
- * with PostCSS
- */
+/** Plugin to load all .css files process them with PostCSS */
 export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(

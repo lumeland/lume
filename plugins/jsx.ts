@@ -12,9 +12,7 @@ const defaults: Options = {
   extensions: [".jsx", ".tsx"],
 };
 
-/**
- * Plugin to add support for jsx and tsx files
- */
+/** Plugin to add support for jsx and tsx files */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 

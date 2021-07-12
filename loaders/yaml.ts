@@ -1,9 +1,7 @@
 import { Data } from "../types.ts";
 import { parse } from "../deps/yaml.ts";
 
-/**
- * Load and parse YAML files
- */
+/** Load and parse YAML files */
 export default async function (path: string): Promise<Data> {
   const content = await Deno.readTextFile(path);
   return parse(content) as Data;

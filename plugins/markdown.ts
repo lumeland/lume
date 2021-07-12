@@ -39,9 +39,7 @@ const defaults: Options = {
   ],
 };
 
-/**
- * This plugin add support for markdown
- */
+/** This plugin add support for markdown */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 

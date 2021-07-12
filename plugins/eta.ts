@@ -20,9 +20,7 @@ const defaults: Options = {
   },
 };
 
-/**
- * Plugin to add support for Eta as a template engine
- */
+/** Plugin to add support for Eta as a template engine */
 export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(

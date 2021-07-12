@@ -2,9 +2,7 @@ import { Element } from "../deps/dom.ts";
 import { posix } from "../deps/path.ts";
 import { Page, Site } from "../types.ts";
 
-/**
- * Plugin to convert all internal urls to relative
- */
+/** Plugin to convert all internal urls to relative */
 export default function () {
   return (site: Site) => {
     site.process([".html"], relativeUrls);
