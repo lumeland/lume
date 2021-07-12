@@ -1,4 +1,4 @@
-import Site from "../site.ts";
+import { Site } from "../types.ts";
 import { listenAndServe, ServerRequest } from "../deps/server.ts";
 import { acceptWebSocket, WebSocket } from "../deps/ws.ts";
 import { dirname, extname, join, posix, relative } from "../deps/path.ts";

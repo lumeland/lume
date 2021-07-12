@@ -371,7 +371,7 @@ export interface Site {
  * Interface to collect all lume metrics
  */
 export interface Metrics {
-  start(name: string, details?: Record<string, unknown>): Metric;
+  start(name: string, details?: MetricDetail): Metric;
   print(): void;
   save(file: string): Promise<void>;
 }
@@ -381,6 +381,14 @@ export interface Metrics {
  */
 export interface Metric {
   name: string;
-  details?: Record<string, unknown>;
+  details?: MetricDetail;
   stop(): void;
+}
+
+/**
+ * Details associated to a metric
+ */
+export interface MetricDetail {
+  page?: Page;
+  [key: string]: unknown;
 }

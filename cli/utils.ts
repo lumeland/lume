@@ -1,10 +1,9 @@
-import Site from "../site.ts";
+import { Page, Site } from "../types.ts";
 import lume from "../mod.ts";
 import { exists } from "../deps/fs.ts";
 import { join, resolve, toFileUrl } from "../deps/path.ts";
 import { bold, dim, red } from "../deps/colors.ts";
 import { Exception } from "../utils.ts";
-import { Page } from "../filesystem.ts";
 
 /**
  * Returns the current installed version
@@ -90,9 +89,8 @@ export function printError(
 
   if (error instanceof Exception) {
     for (let [key, value] of Object.entries(error.data ?? {})) {
-      if (value instanceof Page) {
-        // @ts-ignore: Missing Src type
-        value = value.src.path + value.src.ext;
+      if (key === "page") {
+        value = (value as Page).src.path + (value as Page).src.ext;
       }
       console.log(dim(`${tab}${key}:`), value);
     }

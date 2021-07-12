@@ -1,6 +1,5 @@
 import { brightGreen, gray } from "./deps/colors.ts";
-import Site from "./site.ts";
-import { Command, CommandOptions, Scripts as iScripts } from "./types.ts";
+import { Command, CommandOptions, Scripts as iScripts, Site } from "./types.ts";
 
 /**
  * This class manages and execute all user scripts

@@ -1,4 +1,3 @@
-import Site from "./site.ts";
 import { basename, dirname, extname, join } from "./deps/path.ts";
 import { existsSync } from "./deps/fs.ts";
 import { Directory, Page } from "./filesystem.ts";
@@ -14,6 +13,7 @@ import {
   Event,
   Loader,
   Page as iPage,
+  Site,
   Source as iSource,
 } from "./types.ts";
 
