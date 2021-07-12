@@ -1,7 +1,7 @@
 import JsxEngine from "../engines/jsx.ts";
 import loader from "../loaders/module.ts";
 import { merge } from "../utils.ts";
-import Site from "../site.ts";
+import { Site } from "../types.ts";
 
 interface Options {
   extensions: string[];

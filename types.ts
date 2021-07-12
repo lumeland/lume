@@ -319,7 +319,7 @@ export interface Site {
   /**
    * Register a template filter
    */
-  filter(name: string, filter: Helper, async: boolean): this;
+  filter(name: string, filter: Helper, async?: boolean): this;
 
   /**
    * Register a template helper
@@ -364,7 +364,7 @@ export interface Site {
   /**
    * Returns the URL of a page
    */
-  url(path: string, absolute: boolean): string;
+  url(path: string, absolute?: boolean): string;
 }
 
 /**

@@ -1,5 +1,4 @@
-import Site from "../site.ts";
-import { Page } from "../filesystem.ts";
+import { Page, Site } from "../types.ts";
 
 type Query = string | string[];
 type Condition = [string, string, unknown];

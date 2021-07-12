@@ -1,9 +1,8 @@
-import Site from "../site.ts";
 import nunjucks from "../deps/nunjucks.ts";
 import NunjucksEngine from "../engines/nunjucks.ts";
 import loader from "../loaders/text.ts";
 import { merge } from "../utils.ts";
-import { Helper } from "../types.ts";
+import { Helper, Site } from "../types.ts";
 
 export interface Options {
   extensions: string[];

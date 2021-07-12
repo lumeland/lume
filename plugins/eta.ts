@@ -1,4 +1,4 @@
-import Site from "../site.ts";
+import { Site } from "../types.ts";
 import * as eta from "../deps/eta.ts";
 import { EtaConfig } from "../deps/eta.ts";
 import Eta from "../engines/eta.ts";

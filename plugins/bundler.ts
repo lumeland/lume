@@ -1,6 +1,5 @@
 import { merge } from "../utils.ts";
-import Site from "../site.ts";
-import { Page } from "../filesystem.ts";
+import { Page, Site } from "../types.ts";
 
 interface Options {
   extensions: string[];

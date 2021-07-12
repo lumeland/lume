@@ -1,5 +1,4 @@
-import Site from "../site.ts";
-import { Data, Engine, Helper, HelperOptions } from "../types.ts";
+import { Data, Engine, Helper, HelperOptions, Site } from "../types.ts";
 
 export interface PugOptions {
   filters?: Record<string, Helper>;

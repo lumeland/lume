@@ -1,7 +1,6 @@
 import { Element } from "../deps/dom.ts";
 import { posix } from "../deps/path.ts";
-import Site from "../site.ts";
-import { Page } from "../filesystem.ts";
+import { Page, Site } from "../types.ts";
 
 /**
  * Plugin to convert all internal urls to relative

@@ -1,9 +1,7 @@
 import { minify } from "../deps/terser.ts";
 import { basename } from "../deps/path.ts";
 import { Exception, merge } from "../utils.ts";
-import Site from "../site.ts";
-import { Page } from "../filesystem.ts";
-import { Helper } from "../types.ts";
+import { Helper, Page, Site } from "../types.ts";
 
 interface Options {
   extensions: string[];

@@ -1,12 +1,11 @@
 import nunjucks from "../deps/nunjucks.ts";
-import Site from "../site.ts";
-import { Data, Engine, Event, Helper, HelperOptions } from "../types.ts";
+import { Data, Engine, Event, Helper, HelperOptions, Site } from "../types.ts";
 
 export default class Nunjucks implements Engine {
-  engine: typeof nunjucks;
+  engine: unknown;
   cache = new Map();
 
-  constructor(site: Site, engine: typeof nunjucks) {
+  constructor(site: Site, engine: unknown) {
     this.engine = engine;
 
     // Update internal cache

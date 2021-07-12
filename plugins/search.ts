@@ -1,4 +1,4 @@
-import Site from "../site.ts";
+import { Site } from "../types.ts";
 import Search from "../helpers/search.ts";
 import paginate from "../helpers/paginate.ts";
 

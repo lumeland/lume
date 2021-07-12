@@ -1,5 +1,4 @@
-import Site from "../site.ts";
-import { Helper } from "../types.ts";
+import { Helper, Site } from "../types.ts";
 
 /**
  * This plugin register the filters "url" and "htmlUrl"

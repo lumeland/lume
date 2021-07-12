@@ -2,8 +2,7 @@ import { Element } from "../deps/dom.ts";
 import { extname, posix, resolve } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
 import { Exception, merge, mimes } from "../utils.ts";
-import Site from "../site.ts";
-import { Page } from "../filesystem.ts";
+import { Page, Site } from "../types.ts";
 
 interface Options {
   extensions: string[];

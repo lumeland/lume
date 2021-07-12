@@ -1,4 +1,4 @@
-import Site from "../site.ts";
+import { Site } from "../types.ts";
 import Module from "../engines/module.ts";
 import loader from "../loaders/module.ts";
 

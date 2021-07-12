@@ -1,6 +1,5 @@
 import { Element } from "../deps/dom.ts";
-import Site from "../site.ts";
-import { Page } from "../filesystem.ts";
+import { Page, Site } from "../types.ts";
 
 /**
  * Plugin to prepend automatically a base path to all internal urls

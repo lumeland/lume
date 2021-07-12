@@ -1,5 +1,5 @@
 import { compile } from "../deps/pug.ts";
-import Site from "../site.ts";
+import { Site } from "../types.ts";
 import Pug, { PugCompiler, PugOptions } from "../engines/pug.ts";
 import loader from "../loaders/text.ts";
 import { merge } from "../utils.ts";

@@ -1,4 +1,4 @@
-import Site from "../site.ts";
+import { Site } from "../types.ts";
 import yaml from "../loaders/yaml.ts";
 import { merge } from "../utils.ts";
 
