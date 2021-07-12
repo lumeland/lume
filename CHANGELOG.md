@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Updated `highlight.js`.
+- Updated `eta`.
 
 ## [0.25.2] - 2021-07-09
 ### Added
