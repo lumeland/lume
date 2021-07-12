@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.25.3] - 2021-07-12
 ### Changed
 - Improved the `metrics` generation [#125].
 - Internal code improvements:
@@ -1011,7 +1011,7 @@ The first version.
 [#120]: https://github.com/lumeland/lume/issues/120
 [#125]: https://github.com/lumeland/lume/issues/125
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v0.25.2...HEAD
+[0.25.3]: https://github.com/lumeland/lume/compare/v0.25.2...v0.25.3
 [0.25.2]: https://github.com/lumeland/lume/compare/v0.25.1...v0.25.2
 [0.25.1]: https://github.com/lumeland/lume/compare/v0.25.0...v0.25.1
 [0.25.0]: https://github.com/lumeland/lume/compare/v0.24.0...v0.25.0
