@@ -1,8 +1,8 @@
 import { Helper, Site } from "../core.ts";
 
 /**
- * This plugin register the filters "url" and "htmlUrl"
- * to normalize urls in the templates
+ * A plugin to register the filters "url" and "htmlUrl"
+ * for normalizing URLs in the templates
  */
 export default function () {
   return (site: Site) => {

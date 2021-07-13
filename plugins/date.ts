@@ -22,7 +22,7 @@ const defaults: Options = {
   formats: {},
 };
 
-/** Plugin to format Date values */
+/** A plugin to format Date values */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
   const defaultLocale = Object.keys(options.locales).shift();

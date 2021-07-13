@@ -55,7 +55,7 @@ class Base {
   }
 }
 
-/** Class to represent a page of the site */
+/** A page of the site */
 export class SitePage extends Base implements Page {
   dest: Dest;
   #content?: Content;
@@ -109,7 +109,7 @@ export class SitePage extends Base implements Page {
   }
 }
 
-/** Class to represent a directory */
+/** A directory */
 export class SiteDirectory extends Base implements Directory {
   pages: Map<string, Page> = new Map();
   dirs: Map<string, Directory> = new Map();

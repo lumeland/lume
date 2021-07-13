@@ -45,7 +45,7 @@ export default async function server(site: Site) {
 
   // Static files server
   listenAndServe({ port }, (req: ServerRequest) => {
-    // Is websocket
+    // Is a websocket
     if (req.headers.get("upgrade") === "websocket") {
       handleSocket(req);
     } else {

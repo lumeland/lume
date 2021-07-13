@@ -45,7 +45,7 @@ const defaults: Options = {
   options: {},
 };
 
-/** Plugin to load all .svg files and minify them using SVGO */
+/** A plugin to load all SVG files and minify them using SVGO */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 

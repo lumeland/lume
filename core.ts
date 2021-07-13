@@ -12,17 +12,17 @@ export interface Data {
   [index: string]: unknown;
 }
 
-/** Generical helper to use in the template engines */
+/** A generic helper to be used in template engines */
 export type Helper = (...args: unknown[]) => string | Promise<string>;
 
-/** The available options for template helpers */
+/** The options for a template helper */
 export interface HelperOptions {
   type: string;
   async?: boolean;
   body?: boolean;
 }
 
-/** All available event types */
+/** The event types */
 export type EventType =
   | "beforeBuild"
   | "afterBuild"
@@ -37,7 +37,7 @@ export interface Event {
   files?: Set<string>;
 }
 
-/** A listener for events */
+/** An event listener */
 export type EventListener = (event: Event) => unknown;
 
 /** The .src property for a Page or Directory */
@@ -58,16 +58,16 @@ export interface Dest {
 /** The .content property for a Page */
 export type Content = Uint8Array | string;
 
-/** Command executed by scripts */
+/** A command executed by a script */
 export type Command = string | ((site: Site) => unknown) | Command[];
 
-/** Options available for Commands */
+/** The options for a Command */
 export type CommandOptions = Omit<Deno.RunOptions, "cmd">;
 
-/** A loader is a function that load and return a file content */
+/** A function that loads and returns the file content */
 export type Loader = (path: string) => Promise<Data>;
 
-/** The available options for the paginate helper */
+/** The options for the paginate helper */
 export interface PaginateOptions {
   size: number;
   url: (page: number) => string;
@@ -86,7 +86,7 @@ export interface PaginateResult {
   };
 }
 
-/** Available options to configure the site build */
+/** The options to configure the site build */
 export interface SiteOptions {
   cwd: string;
   src: string;
@@ -111,22 +111,22 @@ export interface ServerOptions {
 /** A (pre)processor */
 export type Processor = (page: Page, site: Site) => void;
 
-/** The function that install a plugin */
+/** The method that installs a plugin */
 export type PluginSetup = ((options: unknown) => Plugin);
 
-/** A generical Lume plugin */
+/** A generic Lume plugin */
 export type Plugin = (site: Site) => void;
 
-/** Interface used by all template engines */
+/** An interface used by all template engines */
 export interface Engine {
-  /** Renders a template */
+  /** Render a template */
   render(
     content: unknown,
     data: Data,
     filename: string,
   ): unknown | Promise<unknown>;
 
-  /** Adds a helper to the template engine */
+  /** Add a helper to the template engine */
   addHelper(
     name: string,
     fn: Helper,
@@ -134,29 +134,29 @@ export interface Engine {
   ): void;
 }
 
-/** Interface to represent a Page */
+/** A page */
 export interface Page {
   parent?: Directory;
   src: Src;
   dest: Dest;
 
-  /** Returns the merged data associated */
+  /** The associated merged data */
   data: Data;
 
-  /** the content of this page */
+  /** The content of this page */
   content?: Content;
 
   /** The parsed HTML code from the content */
   document?: HTMLDocument;
 
-  /** Duplicate this page. Optionally you can provide new data */
+  /** Duplicate this page. Optionally, you can provide new data */
   duplicate(data?: Data): Page;
 
   /** Refresh the cached merged data (used for rebuild) */
   refreshCache(): void;
 }
 
-/** Interface to represent a Directory */
+/** A directory */
 export interface Directory {
   parent?: Directory;
   src: Src;
@@ -173,14 +173,14 @@ export interface Directory {
   /** Remove a page from this directory */
   unsetPage(name: string): void;
 
-  /** Return the list of pages in this directory recursivelly */
+  /** Return the list of pages in this directory recursively */
   getPages(): Iterable<Page>;
 
-  /** Refresh recursivelly the data cache in this directory (used for rebuild) */
+  /** Refresh the data cache in this directory recursively (used for rebuild) */
   refreshCache(): void;
 }
 
-/** Interface to represent a source loader */
+/** A source loader */
 export interface Source {
   site: Site;
   root: Directory;
@@ -191,17 +191,17 @@ export interface Source {
   ignored: Set<string>;
 
   /**
-   * Returns the Directory instance of a path
+   * Return the Directory instance of a path
    * and create if it doesn't exist
    */
   getOrCreateDirectory(path: string): Directory;
 
-  /** Returns the File or Directory of a path */
+  /** Return the File or Directory of a path */
   getFileOrDirectory(path: string): Directory | Page | undefined;
 
   /**
    * Check whether a file is included in the static files
-   * and return the [from, to] tupple
+   * and return a [from, to] tuple
    */
   isStatic(file: string): [string, string] | false;
 
@@ -218,7 +218,7 @@ export interface Source {
   load(path: string, loader: Loader): Promise<Data>;
 }
 
-/** Interface to represent a script runner */
+/** A script runner */
 export interface Scripts {
   /** Register a new script */
   set(name: string, ...commands: Command[]): void;
@@ -227,7 +227,7 @@ export interface Scripts {
   run(options: CommandOptions, ...names: Command[]): Promise<boolean>;
 }
 
-/** Interface to represet a site builder */
+/** A site builder */
 export interface Site {
   options: SiteOptions;
   source: Source;
@@ -242,13 +242,13 @@ export interface Site {
   pages: Page[];
   flags: string[];
 
-  /** Returns the src path */
+  /** Return the src path */
   src(...path: string[]): string;
 
-  /** Returns the dest path */
+  /** Return the dest path */
   dest(...path: string[]): string;
 
-  /** Adds an event */
+  /** Add an event */
   addEventListener(type: EventType, listener: EventListener | string): this;
 
   /** Dispatch an event */
@@ -302,13 +302,13 @@ export interface Site {
   /** Run a script */
   run(name: string, options?: CommandOptions): Promise<boolean>;
 
-  /** Returns the URL of a page */
+  /** Return the URL of a page */
   url(path: string, absolute?: boolean): string;
 }
 
-/** Interface to collect all lume metrics */
+/** A collection of all metrics */
 export interface Metrics {
-  /** Start to measure */
+  /** Start measuring */
   start(name: string, details?: MetricDetail): Metric;
 
   /** Print the metrics in the console */
@@ -318,14 +318,14 @@ export interface Metrics {
   save(file: string): Promise<void>;
 }
 
-/** Interface to represent a metric */
+/** A single metric */
 export interface Metric {
   name: string;
   details?: MetricDetail;
   stop(): void;
 }
 
-/** Details associated to a metric */
+/** The details associated to a metric */
 export interface MetricDetail {
   page?: Page;
   [key: string]: unknown;

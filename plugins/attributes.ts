@@ -9,8 +9,8 @@ const escapeChars: Record<string, string> = {
 };
 
 /**
- * Plugin to register the filters "attrs" and "class"
- * that allows to handle html attributes and class names easily
+ * A plugin to register the filters "attrs" and "class",
+ * which allow to handle HTML attributes and class names easily
  */
 export default function () {
   return (site: Site) => {

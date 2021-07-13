@@ -13,16 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.25.3] - 2021-07-12
 ### Changed
-- Improved the `metrics` generation [#125].
+- Improved the `metrics` generation. [#125].
 - Internal code improvements:
   - The abstract class `Engine` is converted to a TypeScript interface.
-  - Created interfaces for Site, Page, Directory, Source, Metrics, etc.
-  - Moved core files to `core/` directory.
+  - Created interfaces
+    for `Site`, `Page`, `Directory`, `Source`, `Metrics`, etc.
+  - Moved the core files to a `core/` directory.
   - Renamed `types.ts` to `core.ts`.
 
 ### Fixed
-- Updated `highlight.js`.
-- Updated `eta`.
+- Updated `highlight.js` and `eta`.
 
 ## [0.25.2] - 2021-07-09
 ### Added
@@ -52,7 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   provided completions for the plugins enabled by default.
 - Custom `includes` configuration for plugins is not correctly resolved
   if the `root` is different to `Deno.cwd()`.
-- The plugin `bundler` in Windows.
+- The plugin `bundler` on Windows.
 - The plugin `postcss` with multiple includes.
 
 ## [0.25.0] - 2021-07-04

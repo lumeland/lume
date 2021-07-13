@@ -10,7 +10,7 @@ import {
 import { Data, Directory, Event, Loader, Page, Site, Source } from "../core.ts";
 
 /**
- * Class to scan and load files from the source folder
+ * Scan and load files from the source folder
  * with the data, pages, assets and static files
  */
 export default class SiteSource implements Source {
@@ -27,7 +27,7 @@ export default class SiteSource implements Source {
   constructor(site: Site) {
     this.site = site;
 
-    // Update cache
+    // Update the cache
     site.addEventListener("beforeBuild", () => {
       this.root.refreshCache();
       this.#cache.clear();
@@ -117,7 +117,7 @@ export default class SiteSource implements Source {
 
     file = normalizePath(file);
 
-    // Is a file inside _data directory
+    // Is a file inside a _data directory
     if (file.includes("/_data/")) {
       const [dir, remain] = file.split("/_data/", 2);
       const directory = this.getOrCreateDirectory(dir);
@@ -194,7 +194,7 @@ export default class SiteSource implements Source {
     }
   }
 
-  /** Create and returns a Page */
+  /** Create and return a Page */
   async #loadPage(path: string) {
     const result = searchByExtension(path, this.pages);
 
@@ -235,7 +235,7 @@ export default class SiteSource implements Source {
       page.dest.ext = "";
     }
 
-    // Sub-extensions. Ex: styles.css.njk
+    // Subextensions, like styles.css.njk
     const subext = extname(page.dest.path);
 
     if (subext) {

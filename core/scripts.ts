@@ -1,7 +1,7 @@
 import { brightGreen, gray } from "../deps/colors.ts";
 import { Command, CommandOptions, Scripts, Site } from "../core.ts";
 
-/** This class manages and execute all user scripts */
+/** Manage and execute user scripts */
 export default class ScriptRunner implements Scripts {
   site: Site;
   scripts: Map<string, Command[]> = new Map();

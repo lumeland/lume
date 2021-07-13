@@ -1,9 +1,6 @@
 import { Data } from "../../core.ts";
 
-/**
- * Load Javascript/Typescript files.
- * It uses a random hashes to prevent caching
- */
+/** Load a JavaScript/TypeScript file. Use a random hash to prevent caching */
 export default async function (path: string): Promise<Data> {
   const hash = Date.now();
   const mod = await import(`file://${path}#${hash}`);

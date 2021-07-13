@@ -25,7 +25,7 @@ const defaults: Options = {
   ],
 };
 
-/** Plugin to load all .css files process them with PostCSS */
+/** A plugin to load all CSS files and process them using PostCSS */
 export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(
@@ -55,7 +55,7 @@ export default function (userOptions?: Partial<Options>) {
       const to = site.dest(page.dest.path + page.dest.ext);
       const map = options.sourceMap ? { inline: false } : undefined;
 
-      // Fix the code with postcss
+      // Process the code with PostCSS
       const result = await runner.process(page.content!, { from, to, map });
 
       page.content = result.css;

@@ -3,7 +3,7 @@ import { dirname } from "../deps/path.ts";
 import { ensureDir } from "../deps/fs.ts";
 import { Metric, MetricDetail, Metrics, Page, Site } from "../core.ts";
 
-/** Class to represent a disabled Metric */
+/** A disabled metric */
 export class EmptyMetric implements Metric {
   name = "";
   detail?: MetricDetail;
@@ -12,7 +12,7 @@ export class EmptyMetric implements Metric {
   }
 }
 
-/** Class to represent a Metric */
+/** A metric */
 export class PerformanceMetric implements Metric {
   name: string;
   detail?: MetricDetail;
@@ -29,7 +29,7 @@ export class PerformanceMetric implements Metric {
   }
 }
 
-/** Class to collect and return performance metrics */
+/** Collect and return performance metrics */
 export default class LumeMetrics implements Metrics {
   site: Site;
 

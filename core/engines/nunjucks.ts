@@ -15,7 +15,7 @@ export default class Nunjucks implements Engine {
   constructor(site: Site, engine: unknown) {
     this.engine = engine;
 
-    // Update internal cache
+    // Update the internal cache
     site.addEventListener("beforeUpdate", (ev: Event) => {
       for (const file of ev.files!) {
         this.cache.delete(site.src(file));
@@ -66,8 +66,8 @@ export default class Nunjucks implements Engine {
 }
 
 /**
- * Function to create an asynchronous filter
- * Used to addapt the Promise-based functions to callbacks used by nunjucks
+ * Create an asynchronous filter
+ * by to adapting the Promise-based functions to callbacks used by Nunjucks
  * https://mozilla.github.io/nunjucks/api.html#custom-filters
  */
 function createAsyncFilter(fn: Helper) {
@@ -84,12 +84,12 @@ function createAsyncFilter(fn: Helper) {
 }
 
 /**
- * Function to create a tag extension
+ * Create a tag extension
  * https://mozilla.github.io/nunjucks/api.html#custom-tags
  *
  * @param name The tag name
  * @param fn The function to render this tag
- * @param options Options to configure the tag
+ * @param options The options to configure this tag
  */
 function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
   const tagExtension = {

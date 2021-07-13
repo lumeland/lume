@@ -20,7 +20,7 @@ const defaults: Options = {
   },
 };
 
-/** Plugin to add support for Eta as a template engine */
+/** A plugin to use Eta as a template engine */
 export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(
@@ -28,20 +28,20 @@ export default function (userOptions?: Partial<Options>) {
       userOptions,
     );
 
-    // Configure eta
+    // Configure Eta
     eta.configure({
       ...options.options,
       views: site.src(options.includes),
     });
 
-    // Update cache
+    // Update the cache
     site.addEventListener("beforeUpdate", (ev) => {
       for (const filename of ev.files!) {
         eta.templates.remove(site.src(filename));
       }
     });
 
-    // Load pages
+    // Load the pages
     site.loadPages(options.extensions, loader, new Eta(eta));
   };
 }

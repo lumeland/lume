@@ -28,7 +28,7 @@ const defaults: Options = {
   plugins: {},
 };
 
-/** This plugin adds support for Nunjucks templates */
+/** A plugin to use Nunjucks as a template engine */
 export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(
@@ -44,7 +44,7 @@ export default function (userOptions?: Partial<Options>) {
       engine.addExtension(name, fn);
     }
 
-    // Update cache
+    // Update the cache
     site.addEventListener("beforeUpdate", (ev) => {
       for (const file of ev.files!) {
         const filename = site.src(file);

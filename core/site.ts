@@ -53,8 +53,8 @@ const defaults: SiteOptions = {
 };
 
 /**
- * This is the heart of Lume, the class that contains everything
- * needed to build the site.
+ * This is the heart of Lume,
+ * a class that contains everything needed to build the site
  */
 export default class LumeSite implements Site {
   options: SiteOptions;
@@ -251,7 +251,7 @@ export default class LumeSite implements Site {
     buildMetric.stop();
     await this.dispatchEvent({ type: "afterBuild" });
 
-    // Print or save collected metrics
+    // Print or save the collected metrics
     const { metrics } = this.options;
 
     if (typeof metrics === "string") {
@@ -278,7 +278,7 @@ export default class LumeSite implements Site {
         continue;
       }
 
-      // The path contains /_ or /.
+      // The path contains /_ or /
       if (normalized.includes("/_") || normalized.includes("/.")) {
         continue;
       }
@@ -322,7 +322,7 @@ export default class LumeSite implements Site {
       return path;
     }
 
-    // It's source file
+    // It's a source file
     if (path.startsWith("~/")) {
       path = path.slice(1).replaceAll("/", SEP);
 

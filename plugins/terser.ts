@@ -30,7 +30,7 @@ const defaults: Options = {
   },
 };
 
-/** Plugin to load all .js files and minify them using Terser */
+/** A plugin to load all JavaScript files and minify them using Terser */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 

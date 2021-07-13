@@ -17,7 +17,7 @@ const defaults: Options = {
   options: {},
 };
 
-/** Plugin to use Pug as a template engine */
+/** A plugin to use Pug as a template engine */
 export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(

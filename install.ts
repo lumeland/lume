@@ -53,7 +53,7 @@ console.log("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥");
 console.log();
 console.log(brightGreen(" Lume installed successfully!"));
 console.log();
-console.log("    BENVIDO – WELCOME! 🎉🎉");
+console.log("    BENVIDO - WELCOME! 🎉🎉");
 console.log();
 console.log(gray("-------------------------------"));
 console.log();

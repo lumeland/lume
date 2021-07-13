@@ -29,7 +29,7 @@ const defaults = {
   },
 };
 
-/** Plugin for code syntax highlight using highlight.js library */
+/** A plugin to syntax-highlight code using the highlight.js library */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
   // @ts-ignore: Property 'configure' does not exist on type '{}'

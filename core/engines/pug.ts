@@ -19,7 +19,7 @@ export default class Pug implements Engine {
     this.compiler = compiler;
     this.options = options;
 
-    // Update cache
+    // Update the cache
     site.addEventListener("beforeUpdate", () => this.cache.clear());
   }
 

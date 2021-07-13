@@ -5,20 +5,20 @@ import { join, resolve, toFileUrl } from "../deps/path.ts";
 import { bold, dim, red } from "../deps/colors.ts";
 import { Exception } from "../core/utils.ts";
 
-/** Returns the current installed version */
+/** Return the current installed version */
 export function getCurrentVersion(): string {
   const url = new URL("../", import.meta.url).pathname;
   return url.match(/@([^/]+)/)?.[1] ?? `local (${url})`;
 }
 
-/** Returns the latest stable version from the deno.land/x repository */
+/** Return the latest stable version from the deno.land/x repository */
 export async function getLastVersion(): Promise<string> {
   const response = await fetch("https://cdn.deno.land/lume/meta/versions.json");
   const versions = await response.json();
   return versions.latest;
 }
 
-/** Returns the hash of the latest commit from the GitHub repository */
+/** Return the hash of the latest commit from the GitHub repository */
 export async function getLastDevelopmentVersion(): Promise<string> {
   const response = await fetch(
     "https://api.github.com/repos/lumeland/lume/commits?per_page=1",
@@ -83,7 +83,7 @@ export function printError(
   if (error.stack) {
     const stack = error.stack.split("\n");
 
-    // We skip all the stack lines that have been presented already.
+    // Skip all the stack lines that have been already presented
     stack.slice(1, stack.length - stackLines).forEach((line) => {
       console.log(`${tab}${line.trim()}`);
       stackLines++;
@@ -99,7 +99,7 @@ export function printError(
   }
 }
 
-/** List of available optional plugins */
+/** A list of the available optional plugins */
 export const pluginNames = [
   "attributes",
   "base_path",
