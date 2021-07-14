@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Updated `std`.
 - `PluginOption` argument typing of the `lume()` function.
 - `yaml` loader should return an empty object instead of `undefined` on empty files.
+- Relaxed the return type of helpers.
 
 ## [0.25.3] - 2021-07-12
 ### Changed

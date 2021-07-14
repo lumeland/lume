@@ -13,7 +13,7 @@ export interface Data {
 }
 
 /** A generic helper to be used in template engines */
-export type Helper = (...args: unknown[]) => string | Promise<string>;
+export type Helper = (...args: unknown[]) => unknown | Promise<unknown>;
 
 /** The options for a template helper */
 export interface HelperOptions {
