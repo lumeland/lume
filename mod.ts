@@ -14,9 +14,9 @@ import { merge } from "./core/utils.ts";
 import { ServerOptions, SiteOptions } from "./core.ts";
 
 interface PluginOptions {
-  markdown?: MarkdownOptions;
-  nunjucks?: NunjucksOptions;
-  yaml?: YamlOptions;
+  markdown?: Partial<MarkdownOptions>;
+  nunjucks?: Partial<NunjucksOptions>;
+  yaml?: Partial<YamlOptions>;
 }
 
 interface Options extends Omit<Partial<SiteOptions>, "server"> {

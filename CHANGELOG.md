@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Fixed
 - Updated `std`.
+- `PluginOption` argument typing of the `lume()` function.
 
 ## [0.25.3] - 2021-07-12
 ### Changed
