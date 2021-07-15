@@ -55,6 +55,7 @@ async function install(version: string, dev = false) {
       "run",
       "-A",
       `${url}/install.ts`,
+      "--upgrade",
     ],
   });
 
