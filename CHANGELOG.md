@@ -9,14 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Fixed
-- Updated `std`.
-- `PluginOption` argument typing of the `lume()` function.
-- `yaml` loader should return an empty object instead of `undefined` on empty files.
+- The `PluginOption` argument typing of the `lume()` function.
+- The `yaml` loader should return an empty object instead of `undefined`
+  on empty files.
 - Relaxed the return type of helpers.
+- Updated `std` and `cliffy`.
 
 ## [0.25.3] - 2021-07-12
 ### Changed
-- Improved the `metrics` generation. [#125].
+- Improved the metrics generation. [#125].
 - Internal code improvements:
   - The abstract class `Engine` is converted to a TypeScript interface.
   - Created interfaces
