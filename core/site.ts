@@ -73,11 +73,6 @@ export default class LumeSite implements Site {
 
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);
-
-    if (typeof this.options.location === "string") {
-      this.options.location = new URL(this.options.location);
-    }
-
     this.source = new SiteSource(this);
     this.scripts = new ScriptRunner(this);
     this.metrics = new PerformanceMetrics(this);
