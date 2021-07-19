@@ -48,22 +48,24 @@ if (!status.success) {
   Deno.exit(1);
 }
 
-console.log();
-console.log("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥");
-console.log();
-console.log(brightGreen(" Lume installed successfully!"));
-console.log();
-console.log("    BENVIDO – WELCOME! 🎉🎉");
-console.log();
-console.log(gray("-------------------------------"));
-console.log();
-console.log(`Run ${brightGreen("lume --help")} for usage information`);
-console.log(
-  `See ${gray("https://lumeland.github.io/")} for online documentation`,
-);
-console.log(
-  `See ${
-    gray("https://discord.gg/YbTmpACHWB")
-  } to propose new ideas and get help at Discord`,
-);
-console.log();
+if (Deno.args[0] !== "--upgrade") {
+  console.log();
+  console.log("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥");
+  console.log();
+  console.log(brightGreen(" Lume installed successfully!"));
+  console.log();
+  console.log("    BENVIDO - WELCOME! 🎉🎉");
+  console.log();
+  console.log(gray("-------------------------------"));
+  console.log();
+  console.log(`Run ${brightGreen("lume --help")} for usage information`);
+  console.log(
+    `See ${gray("https://lumeland.github.io/")} for online documentation`,
+  );
+  console.log(
+    `See ${
+      gray("https://discord.gg/YbTmpACHWB")
+    } to propose new ideas and get help at Discord`,
+  );
+  console.log();
+}

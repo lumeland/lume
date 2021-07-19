@@ -1,4 +1,3 @@
-import Metrics from "../metrics.ts";
 import { createSite } from "./utils.ts";
 import { brightGreen, gray } from "../deps/colors.ts";
 import runWatch from "./watch.ts";
@@ -11,10 +10,7 @@ interface Options {
   watch: boolean;
 }
 
-/**
- * Command to build the website
- * and optionally watch changes and serve the site
- */
+/** Build the website and optionally watch changes and serve the site */
 export default async function build(
   { root, config, serve, watch }: Options,
 ) {
@@ -34,39 +30,10 @@ export default async function build(
     );
   }
 
-  if (site.options.metrics) {
-    const file = typeof site.options.metrics === "string"
-      ? site.options.metrics
-      : undefined;
-    handleMetrics(site.metrics, quiet, file);
-  }
-
   if (serve) {
     runWatch(site);
     await runServe(site);
   } else if (watch) {
     await runWatch(site);
   }
-}
-
-/**
- * Print the performance metrics
- * or save them to a file
- */
-async function handleMetrics(metrics: Metrics, quiet: boolean, file?: string) {
-  if (file) {
-    await metrics.save(file);
-
-    if (!quiet) {
-      console.log();
-      console.log(`⏲ ${brightGreen("Metrics data saved in")} ${gray(file)}`);
-      console.log();
-    }
-    return;
-  }
-
-  console.log();
-  console.log(`⏲ Metrics data:`);
-  console.log();
-  metrics.print();
 }

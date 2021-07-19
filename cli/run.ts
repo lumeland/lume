@@ -5,9 +5,7 @@ interface Options {
   config?: string;
 }
 
-/**
- * Run one or more custom scripts
- */
+/** Run one or more custom scripts */
 export default async function run(
   { root, config }: Options,
   scripts: string[],

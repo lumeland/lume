@@ -1,7 +1,7 @@
-import JsxEngine from "../engines/jsx.ts";
-import loader from "../loaders/module.ts";
-import { merge } from "../utils.ts";
-import Site from "../site.ts";
+import JsxEngine from "../core/engines/jsx.ts";
+import loader from "../core/loaders/module.ts";
+import { merge } from "../core/utils.ts";
+import { Site } from "../core.ts";
 
 interface Options {
   extensions: string[];
@@ -12,14 +12,12 @@ const defaults: Options = {
   extensions: [".jsx", ".tsx"],
 };
 
-/**
- * Plugin to add support for jsx and tsx files
- */
+/** A plugin to add support for JSX and TSX files */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    const jsxEngine = new JsxEngine(site);
+    const jsxEngine = new JsxEngine();
 
     site.loadPages(options.extensions, loader, jsxEngine);
   };

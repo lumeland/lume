@@ -1,9 +1,8 @@
-import Site from "../site.ts";
 import nunjucks from "../deps/nunjucks.ts";
-import NunjucksEngine from "../engines/nunjucks.ts";
-import loader from "../loaders/text.ts";
-import { merge } from "../utils.ts";
-import { Helper } from "../types.ts";
+import NunjucksEngine from "../core/engines/nunjucks.ts";
+import loader from "../core/loaders/text.ts";
+import { merge } from "../core/utils.ts";
+import { Helper, Site } from "../core.ts";
 
 export interface Options {
   extensions: string[];
@@ -29,9 +28,7 @@ const defaults: Options = {
   plugins: {},
 };
 
-/**
- * This plugin adds support for Nunjucks templates
- */
+/** A plugin to use Nunjucks as a template engine */
 export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(
@@ -47,7 +44,7 @@ export default function (userOptions?: Partial<Options>) {
       engine.addExtension(name, fn);
     }
 
-    // Update cache
+    // Update the cache
     site.addEventListener("beforeUpdate", (ev) => {
       for (const file of ev.files!) {
         const filename = site.src(file);

@@ -1,6 +1,6 @@
 import { parse } from "./deps/flags.ts";
 import { resolve } from "./deps/path.ts";
-import Site from "./site.ts";
+import Site from "./core/site.ts";
 
 import url from "./plugins/url.ts";
 import json from "./plugins/json.ts";
@@ -9,14 +9,14 @@ import modules from "./plugins/modules.ts";
 import nunjucks, { Options as NunjucksOptions } from "./plugins/nunjucks.ts";
 import search from "./plugins/search.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
-import { merge } from "./utils.ts";
+import { merge } from "./core/utils.ts";
 
-import { ServerOptions, SiteOptions } from "./types.ts";
+import { ServerOptions, SiteOptions } from "./core.ts";
 
 interface PluginOptions {
-  markdown?: MarkdownOptions;
-  nunjucks?: NunjucksOptions;
-  yaml?: YamlOptions;
+  markdown?: Partial<MarkdownOptions>;
+  nunjucks?: Partial<NunjucksOptions>;
+  yaml?: Partial<YamlOptions>;
 }
 
 interface Options extends Omit<Partial<SiteOptions>, "server"> {

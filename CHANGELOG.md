@@ -7,14 +7,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## 1.0.0 - Unreleased
-Finally, the first stable version.
+## [Unreleased]
+### Fixed
+- The `PluginOption` argument typing of the `lume()` function.
+- The `yaml` loader should return an empty object instead of `undefined`
+  on empty files.
+- Relaxed the return type of helpers.
+- Updated `std` and `cliffy`.
 
-## [0.25.2] - Unreleased
+## [0.25.3] - 2021-07-12
+### Changed
+- Improved the metrics generation. [#125].
+- Internal code improvements:
+  - The abstract class `Engine` is converted to a TypeScript interface.
+  - Created interfaces
+    for `Site`, `Page`, `Directory`, `Source`, `Metrics`, etc.
+  - Moved the core files to a `core/` directory.
+  - Renamed `types.ts` to `core.ts`.
+
+### Fixed
+- Updated `highlight.js` and `eta`.
+
+## [0.25.2] - 2021-07-09
+### Added
+- The plugin `date` accepts `now` as a value to format the current time.
+
+### Changed
+- Moved metrics save/print logic from the CLI to the `Metrics` class,
+  so it’s decoupled from the CLI.
+
 ### Fixed
 - The filename to save the metrics should be relative to `site.options.cwd`.
-- Allow to save the metrics files in a subdirectory (and create it if doesn't exist).
-- The `--quiet` mode is now more quieter.
+- Allow to save the metrics files in a subdirectory
+  (and create it if doesn’t exist).
+- The `--quiet` mode is now even quieter.
 
 ## [0.25.1] - 2021-07-07
 ### Added
@@ -22,7 +48,7 @@ Finally, the first stable version.
 - Allow to set options to markdown-it plugins.
 
 ### Removed
-- `site.includes()` function due is not consistent with custom includes.
+- The `site.includes()` method since it’s not consistent with custom includes.
 
 ### Fixed
 - The JavaScript deprecation message.
@@ -30,8 +56,8 @@ Finally, the first stable version.
   provided completions for the plugins enabled by default.
 - Custom `includes` configuration for plugins is not correctly resolved
   if the `root` is different to `Deno.cwd()`.
-- Plugin `bundler` in Windows.
-- Plugin `postcss` with multiple includes.
+- The plugin `bundler` on Windows.
+- The plugin `postcss` with multiple includes.
 
 ## [0.25.0] - 2021-07-04
 ### Added
@@ -142,7 +168,7 @@ Finally, the first stable version.
 
 ### Changed
 - The class signature of template engines:
-  replaced the `addFilter` method with more generic `addHelper`
+  replaced the `addFilter()` method with more generic `addHelper()`
   that allows to register not only filters but also custom tags
   and other features supported by some engines, like Nunjucks.
 
@@ -217,9 +243,9 @@ Finally, the first stable version.
 
 ### Changed
 - BREAKING: The `url` variable of the pages must start with `/`, `./` or `../`.
-- Uncoupled the loaders. Now they only need the path argument.
+- Decoupled the loaders. Now they only need the path argument.
 - Preprocessors check the extension of the input and output file.
-  (Previously only the output extension was used.)
+  (Previously, only the output extension was used.)
 
 ### Fixed
 - The `url` filter shouldn’t add the path prefix if it’s already added.
@@ -239,7 +265,7 @@ Finally, the first stable version.
 - The property `document` to `Page` that returns the parsed HTML.
 - New plugin `code_highlight` to automatically highlight all code
   inside `pre code`. Previously, it was part of the Markdown plugin.
-  Now it’s uncoupled, so it can be used by any template engine.
+  Now it’s decoupled, so it can be used by any template engine.
 - The `extensions` and `attribute` options to the `inline` plugin.
 - New argument `--dev` (or `-d`) for `lume upgrade`
   to upgrade to the latest development version.
@@ -258,7 +284,7 @@ Finally, the first stable version.
 ### Removed
 - The `.markdown` extension.
   Use `.md` or configure the Markdown plugin to enable it.
-- The function `site.engine()`. Use the third argument of `site.loadPages()`.
+- The method `site.engine()`. Use the third argument of `site.loadPages()`.
   For example: `site.loadPages([".html"], textLoader, nunjucksEngine)`.
 - The plugin `dom`.
   It’s no longer needed because pages can easily return the parsed HTML.
@@ -674,7 +700,7 @@ Finally, the first stable version.
 ## [0.10.0] - 2020-12-16
 ### Added
 - New plugin to use Pug as a template engine. [#10].
-- New functions `search.previousPage()` and `search.nextPage()`.
+- New methods `search.previousPage()` and `search.nextPage()`.
 - Support for definition lists (`<dl>`) in Markdown.
 - Improved the default `404` error page.
   Now it displays a list of files and subdirectories.
@@ -788,7 +814,7 @@ Finally, the first stable version.
 
 ## [0.8.0] - 2020-10-27
 ### Added
-- New function `loadAssets()` to register asset loaders.
+- New method `loadAssets()` to register asset loaders.
 - New CLI argument to build the site in a different directory
   and even to choose a different `_config.js` file.
 
@@ -821,7 +847,7 @@ Finally, the first stable version.
 ### Added
 - Events `beforeBuild` and `afterBuild`.
 - Helper `paginate()`.
-- Function `site.process()`.
+- Method `site.process()`.
 - Option `prettyUrls`, which is `true` by default.
 
 ### Removed
@@ -838,7 +864,7 @@ Finally, the first stable version.
 - New parameter for `search.pages()` to sort pages alphabetically.
 - New argument `--help` and aliases `-h` and `-V` for CLI.
 - New plugin `eta` to support the `Eta` template engine.
-- New function `helper` to assign global helpers
+- New method `helper()` to register global helpers
   that can be used in templates.
 
 ### Removed
@@ -865,7 +891,7 @@ Finally, the first stable version.
 ## [0.4.0] - 2020-09-22
 ### Added
 - Ability to include the date in the filename.
-- New function `search.folder()`.
+- New method `search.folder()`.
 - New option `--dev` to build in development mode.
 
 ### Fixed
@@ -991,8 +1017,11 @@ The first version.
 [#116]: https://github.com/lumeland/lume/issues/116
 [#117]: https://github.com/lumeland/lume/issues/117
 [#120]: https://github.com/lumeland/lume/issues/120
+[#125]: https://github.com/lumeland/lume/issues/125
 
-[0.25.2]: https://github.com/lumeland/lume/compare/v0.25.1...HEAD
+[Unreleased]: https://github.com/lumeland/lume/compare/v0.25.3...HEAD
+[0.25.3]: https://github.com/lumeland/lume/compare/v0.25.2...v0.25.3
+[0.25.2]: https://github.com/lumeland/lume/compare/v0.25.1...v0.25.2
 [0.25.1]: https://github.com/lumeland/lume/compare/v0.25.0...v0.25.1
 [0.25.0]: https://github.com/lumeland/lume/compare/v0.24.0...v0.25.0
 [0.24.0]: https://github.com/lumeland/lume/compare/v0.23.3...v0.24.0

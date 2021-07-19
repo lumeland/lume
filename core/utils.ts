@@ -1,13 +1,7 @@
-import { DOMParser, HTMLDocument } from "./deps/dom.ts";
-import { SEP } from "./deps/path.ts";
+import { DOMParser, HTMLDocument } from "../deps/dom.ts";
+import { SEP } from "../deps/path.ts";
 
-/**
- * Run concurrently a callback with all elements of a Iterable.
- *
- * @param iterable The iterable with all elements
- * @param iteratorFn The function to execute for every element
- * @param limit The maximum number of callbacks run at the same time
- */
+/** Run a callback concurrently with all the elements of an Iterable */
 export async function concurrent<Type>(
   iterable: AsyncIterable<Type> | Iterable<Type>,
   iteratorFn: (arg: Type) => Promise<unknown>,
@@ -31,7 +25,7 @@ export async function concurrent<Type>(
 }
 
 /**
- * The list of supported mime types.
+ * The list of supported MIME types.
  * It's used by the server and some plugins.
  */
 export const mimes: Map<string, string> = new Map([
@@ -69,7 +63,7 @@ export const mimes: Map<string, string> = new Map([
 
 /**
  * Merge two objects recursively.
- * It's used to merge user options with default options
+ * It's used to merge user options with default options.
  */
 export function merge<Type>(
   defaults: Type,
@@ -96,9 +90,7 @@ export function merge<Type>(
   return merged;
 }
 
-/**
- * Check if the argument passed is a plain object.
- */
+/** Check if the argument passed is a plain object */
 function isPlainObject(obj: unknown) {
   return typeof obj === "object" && obj !== null &&
     obj.toString() === "[object Object]";
@@ -113,7 +105,7 @@ export function normalizePath(path: string) {
 }
 
 /**
- * Search an extension in a Map.
+ * Search an extension in a map.
  * It's useful for cases in which the extension is multiple.
  * Example: page.tmpl.js
  */
@@ -128,9 +120,7 @@ export function searchByExtension<Type>(
   }
 }
 
-/**
- * Converts a HTMLDocument instance to string code.
- */
+/** Convert an HTMLDocument instance to a string */
 export function documentToString(document: HTMLDocument) {
   const { doctype, documentElement } = document;
 
@@ -147,9 +137,7 @@ export function documentToString(document: HTMLDocument) {
 
 const parser = new DOMParser();
 
-/**
- * Parse a string with HTML code and return a HTMLDocument
- */
+/** Parse a string with HTML code and return an HTMLDocument */
 export function stringToDocument(string: string): HTMLDocument {
   const document = parser.parseFromString(string, "text/html");
 

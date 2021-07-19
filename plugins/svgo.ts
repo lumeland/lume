@@ -1,7 +1,6 @@
-import Site from "../site.ts";
 import { optimize } from "../deps/svgo.ts";
-import { merge } from "../utils.ts";
-import { Page } from "../filesystem.ts";
+import { merge } from "../core/utils.ts";
+import { Page, Site } from "../core.ts";
 
 interface Options {
   extensions: string[];
@@ -46,10 +45,7 @@ const defaults: Options = {
   options: {},
 };
 
-/**
- * Plugin to load all .svg files and minify them
- * using SVGO
- */
+/** A plugin to load all SVG files and minify them using SVGO */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 

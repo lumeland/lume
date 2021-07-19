@@ -1,9 +1,7 @@
 import { minify } from "../deps/terser.ts";
 import { basename } from "../deps/path.ts";
-import { Exception, merge } from "../utils.ts";
-import Site from "../site.ts";
-import { Page } from "../filesystem.ts";
-import { Helper } from "../types.ts";
+import { Exception, merge } from "../core/utils.ts";
+import { Helper, Page, Site } from "../core.ts";
 
 interface Options {
   extensions: string[];
@@ -32,10 +30,7 @@ const defaults: Options = {
   },
 };
 
-/**
- * Plugin to load all .js files and minify them
- * using Terser
- */
+/** A plugin to load all JavaScript files and minify them using Terser */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 

@@ -1,9 +1,8 @@
 import { Element } from "../deps/dom.ts";
 import { extname, posix, resolve } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
-import { Exception, merge, mimes } from "../utils.ts";
-import Site from "../site.ts";
-import { Page } from "../filesystem.ts";
+import { Exception, merge, mimes } from "../core/utils.ts";
+import { Page, Site } from "../core.ts";
 
 interface Options {
   extensions: string[];
@@ -19,8 +18,8 @@ const defaults: Options = {
 const cache = new Map();
 
 /**
- * Plugin to inline automatically in the HTML assets
- * like images, javascript, css, svg, etc
+ * A plugin to inline the HTML assets,
+ * like images, JavaScript, CSS, SVG, etc.
  */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
@@ -28,7 +27,7 @@ export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     site.process(options.extensions, inline);
 
-    // Update cache
+    // Update the cache
     site.addEventListener("beforeUpdate", (ev) => {
       for (const filename of ev.files!) {
         cache.delete(filename);
@@ -75,7 +74,7 @@ export default function (userOptions?: Partial<Options>) {
         posix.relative(site.options.location.pathname, path),
       );
 
-      // Is a page/asset ?
+      // Is a page or an asset
       const page = site.pages.find((page) => page.data.url === url);
 
       if (page) {

@@ -1,6 +1,5 @@
-import { merge } from "../utils.ts";
-import Site from "../site.ts";
-import { Page } from "../filesystem.ts";
+import { merge } from "../core/utils.ts";
+import { Page, Site } from "../core.ts";
 
 interface Options {
   extensions: string[];
@@ -15,9 +14,7 @@ const defaults: Options = {
   options: {},
 };
 
-/**
- * Plugin to load all .js and .ts files and bundle them using Deno.emit
- */
+/** A plugin to load all .js and .ts files and bundle them using Deno.emit() */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 

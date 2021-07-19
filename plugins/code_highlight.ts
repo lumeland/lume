@@ -1,7 +1,6 @@
 import hljs from "../deps/highlight.ts";
-import { merge } from "../utils.ts";
-import Site from "../site.ts";
-import { Page } from "../filesystem.ts";
+import { merge } from "../core/utils.ts";
+import { Page, Site } from "../core.ts";
 
 interface Options {
   extensions: string[];
@@ -30,9 +29,7 @@ const defaults = {
   },
 };
 
-/**
- * Plugin for code syntax highlight using highlight.js library
- */
+/** A plugin to syntax-highlight code using the highlight.js library */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
   // @ts-ignore: Property 'configure' does not exist on type '{}'

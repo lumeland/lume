@@ -1,5 +1,4 @@
-import Site from "../site.ts";
-import { Helper } from "../types.ts";
+import { Helper, Site } from "../core.ts";
 
 const escapeChars: Record<string, string> = {
   "&": "&amp;",
@@ -10,8 +9,8 @@ const escapeChars: Record<string, string> = {
 };
 
 /**
- * Plugin to register the filters "attrs" and "class"
- * that allows to handle html attributes and class names easily
+ * A plugin to register the filters "attrs" and "class",
+ * which allow to handle HTML attributes and class names easily
  */
 export default function () {
   return (site: Site) => {

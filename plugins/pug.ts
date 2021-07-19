@@ -1,8 +1,8 @@
 import { compile } from "../deps/pug.ts";
-import Site from "../site.ts";
-import Pug, { PugCompiler, PugOptions } from "../engines/pug.ts";
-import loader from "../loaders/text.ts";
-import { merge } from "../utils.ts";
+import { Site } from "../core.ts";
+import Pug, { PugCompiler, PugOptions } from "../core/engines/pug.ts";
+import loader from "../core/loaders/text.ts";
+import { merge } from "../core/utils.ts";
 
 interface Options {
   extensions: string[];
@@ -17,9 +17,7 @@ const defaults: Options = {
   options: {},
 };
 
-/**
- * Plugin to use Pug as a template engine
- */
+/** A plugin to use Pug as a template engine */
 export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(

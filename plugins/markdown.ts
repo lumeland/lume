@@ -1,14 +1,13 @@
-import Site from "../site.ts";
-import { Helper } from "../types.ts";
+import { Helper, Site } from "../core.ts";
 import {
   markdownIt,
   markdownItAttrs,
   markdownItDeflist,
   markdownItReplaceLink,
 } from "../deps/markdown_it.ts";
-import loader from "../loaders/text.ts";
-import Markdown from "../engines/markdown.ts";
-import { merge } from "../utils.ts";
+import loader from "../core/loaders/text.ts";
+import Markdown from "../core/engines/markdown.ts";
+import { merge } from "../core/utils.ts";
 
 export interface Options {
   extensions: string[];
@@ -40,16 +39,14 @@ const defaults: Options = {
   ],
 };
 
-/**
- * This plugin add support for markdown
- */
+/** A plugin to add support for Markdown */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return function (site: Site) {
     const engine = createMarkdown(site, options);
 
-    site.loadPages(options.extensions, loader, new Markdown(site, engine));
+    site.loadPages(options.extensions, loader, new Markdown(engine));
     site.filter("md", filter as Helper);
 
     function filter(string: string, inline = false): string {

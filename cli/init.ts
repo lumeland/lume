@@ -7,9 +7,7 @@ interface Options {
   plugins: string[];
 }
 
-/**
- * Generate a _config.js file
- */
+/** Generate a _config.js file */
 export default async function init({ config, importMap, plugins }: Options) {
   const lumeUrl = importMap ? "lume" : new URL("..", import.meta.url).href;
 

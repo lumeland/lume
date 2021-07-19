@@ -1,22 +1,21 @@
-import Site from "./site.ts";
-import { basename, dirname, extname, join } from "./deps/path.ts";
-import { existsSync } from "./deps/fs.ts";
-import { Directory, Page } from "./filesystem.ts";
+import { basename, dirname, extname, join } from "../deps/path.ts";
+import { existsSync } from "../deps/fs.ts";
+import { SiteDirectory, SitePage } from "./filesystem.ts";
 import {
   concurrent,
   Exception,
   normalizePath,
   searchByExtension,
 } from "./utils.ts";
-import { Data, Event, Loader } from "./types.ts";
+import { Data, Directory, Event, Loader, Page, Site, Source } from "../core.ts";
 
 /**
- * Class to scan and load files from the source folder
+ * Scan and load files from the source folder
  * with the data, pages, assets and static files
  */
-export default class Source {
+export default class SiteSource implements Source {
   site: Site;
-  root = new Directory({ path: "/" });
+  root = new SiteDirectory({ path: "/" });
 
   data: Map<string, Loader> = new Map();
   pages: Map<string, Loader> = new Map();
@@ -28,7 +27,7 @@ export default class Source {
   constructor(site: Site) {
     this.site = site;
 
-    // Update cache
+    // Update the cache
     site.addEventListener("beforeBuild", () => {
       this.root.refreshCache();
       this.#cache.clear();
@@ -43,12 +42,8 @@ export default class Source {
     });
   }
 
-  /**
-   * Returns the Directory instance of a path
-   * and create if it doesn't exist
-   */
   getOrCreateDirectory(path: string) {
-    let dir = this.root;
+    let dir: Directory = this.root;
 
     path.split("/").forEach((name) => {
       if (!name || !dir) {
@@ -65,9 +60,6 @@ export default class Source {
     return dir;
   }
 
-  /**
-   * Returns the File or Directory of a path
-   */
   getFileOrDirectory(path: string): Directory | Page | undefined {
     let result: Directory | Page | undefined = this.root;
 
@@ -76,7 +68,7 @@ export default class Source {
         return;
       }
 
-      if (result instanceof Directory) {
+      if (result instanceof SiteDirectory) {
         result = result.dirs.get(name) || result.pages.get(name);
       }
     });
@@ -84,10 +76,6 @@ export default class Source {
     return result;
   }
 
-  /**
-   * Check whether a file is included in the static files
-   * and return the [from, to] tupple
-   */
   isStatic(file: string) {
     for (const entry of this.staticFiles) {
       const [from] = entry;
@@ -100,9 +88,6 @@ export default class Source {
     return false;
   }
 
-  /**
-   * Check whether a path is ignored or not
-   */
   isIgnored(path: string) {
     for (const pattern of this.ignored) {
       if (pattern === path || path.startsWith(`${pattern}/`)) {
@@ -113,10 +98,7 @@ export default class Source {
     return false;
   }
 
-  /**
-   * Load a directory recursively
-   */
-  loadDirectory(directory = this.root) {
+  loadDirectory(directory: Directory = this.root) {
     const path = this.site.src(directory.src.path);
 
     return concurrent(
@@ -125,9 +107,6 @@ export default class Source {
     );
   }
 
-  /**
-   * Reload some files
-   */
   async loadFile(file: string) {
     const entry = {
       name: basename(file),
@@ -138,7 +117,7 @@ export default class Source {
 
     file = normalizePath(file);
 
-    // Is a file inside _data directory
+    // Is a file inside a _data directory
     if (file.includes("/_data/")) {
       const [dir, remain] = file.split("/_data/", 2);
       const directory = this.getOrCreateDirectory(dir);
@@ -166,9 +145,7 @@ export default class Source {
     await this.#loadEntry(directory, entry);
   }
 
-  /**
-   * Load an entry from a directory
-   */
+  /** Load an entry from a directory */
   async #loadEntry(directory: Directory, entry: Deno.DirEntry) {
     if (entry.isSymlink || entry.name.startsWith(".")) {
       return;
@@ -182,17 +159,15 @@ export default class Source {
     }
 
     if (entry.isDirectory && entry.name === "_data") {
-      metrics.start("Load", path);
+      const metric = metrics.start("Load", { path });
       directory.data = await this.#loadDataDirectory(path);
-      metrics.end("Load", path);
-      return;
+      return metric.stop();
     }
 
     if (entry.isFile && /^_data\.\w+$/.test(entry.name)) {
-      metrics.start("Load", path);
+      const metric = metrics.start("Load", { path });
       directory.data = await this.#loadData(path);
-      metrics.end("Load", path);
-      return;
+      return metric.stop();
     }
 
     if (entry.name.startsWith("_")) {
@@ -200,7 +175,7 @@ export default class Source {
     }
 
     if (entry.isFile) {
-      metrics.start("Load", path);
+      const metric = metrics.start("Load", { path });
       const page = await this.#loadPage(path);
 
       if (page) {
@@ -208,22 +183,18 @@ export default class Source {
       } else {
         directory.unsetPage(entry.name);
       }
-      metrics.end("Load", path);
-      return;
+      return metric.stop();
     }
 
     if (entry.isDirectory) {
-      metrics.start("Load", path);
+      const metric = metrics.start("Load", { path });
       const subDirectory = directory.createDirectory(entry.name);
       await this.loadDirectory(subDirectory);
-      metrics.end("Load", path);
-      return;
+      return metric.stop();
     }
   }
 
-  /**
-   * Create and returns a Page
-   */
+  /** Create and return a Page */
   async #loadPage(path: string) {
     const result = searchByExtension(path, this.pages);
 
@@ -239,7 +210,7 @@ export default class Source {
     }
 
     const info = await Deno.stat(fullPath);
-    const page = new Page({
+    const page = new SitePage({
       path: path.slice(0, -ext.length),
       lastModified: info.mtime || undefined,
       created: info.birthtime || undefined,
@@ -264,7 +235,7 @@ export default class Source {
       page.dest.ext = "";
     }
 
-    // Sub-extensions. Ex: styles.css.njk
+    // Subextensions, like styles.css.njk
     const subext = extname(page.dest.path);
 
     if (subext) {
@@ -275,9 +246,7 @@ export default class Source {
     return page;
   }
 
-  /**
-   * Load a _data.* file and return the content
-   */
+  /** Load a _data.* file and return the content */
   async #loadData(path: string): Promise<Data> {
     const result = searchByExtension(path, this.data);
 
@@ -289,9 +258,7 @@ export default class Source {
     return {};
   }
 
-  /**
-   * Load a _data directory and return the content of all files
-   */
+  /** Load a _data directory and return the content of all files */
   async #loadDataDirectory(path: string) {
     const data = {};
 
@@ -302,9 +269,7 @@ export default class Source {
     return data;
   }
 
-  /**
-   * Load a data file inside a _data directory
-   */
+  /** Load a data file inside a _data directory */
   async #loadDataDirectoryEntry(
     path: string,
     entry: Deno.DirEntry,
@@ -333,9 +298,6 @@ export default class Source {
     }
   }
 
-  /**
-   * Load a file and save the content in the cache
-   */
   load(path: string, loader: Loader): Promise<Data> {
     try {
       if (!this.#cache.has(path)) {

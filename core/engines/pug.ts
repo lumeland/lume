@@ -1,6 +1,4 @@
-import Site from "../site.ts";
-import Engine from "./engine.ts";
-import { Data, Helper, HelperOptions } from "../types.ts";
+import { Data, Engine, Helper, HelperOptions, Site } from "../../core.ts";
 
 export interface PugOptions {
   filters?: Record<string, Helper>;
@@ -12,17 +10,16 @@ export type PugCompiler = (
   options: Record<string, unknown>,
 ) => (data: Data) => string;
 
-export default class Pug extends Engine {
+export default class Pug implements Engine {
   options: PugOptions;
   compiler: PugCompiler;
   cache: Map<string, (data: Data) => string> = new Map();
 
   constructor(site: Site, compiler: PugCompiler, options: PugOptions) {
-    super(site);
     this.compiler = compiler;
     this.options = options;
 
-    // Update cache
+    // Update the cache
     site.addEventListener("beforeUpdate", () => this.cache.clear());
   }
 

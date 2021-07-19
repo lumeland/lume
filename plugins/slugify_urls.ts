@@ -1,8 +1,6 @@
-import Site from "../site.ts";
-import { Page } from "../filesystem.ts";
 import { posix } from "../deps/path.ts";
-import { merge } from "../utils.ts";
-import { Helper } from "../types.ts";
+import { merge } from "../core/utils.ts";
+import { Helper, Page, Site } from "../core.ts";
 
 interface Options {
   extensions: string[];
@@ -32,9 +30,7 @@ const defaults: Options = {
   },
 };
 
-/**
- * Plugin to slugify all urls, replacing conflictive characters
- */
+/** A plugin to slugify all URLs, replacing non-URL-safe characters */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
   const slugify = createSlugifier(options);

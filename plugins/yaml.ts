@@ -1,6 +1,6 @@
-import Site from "../site.ts";
-import yaml from "../loaders/yaml.ts";
-import { merge } from "../utils.ts";
+import { Site } from "../core.ts";
+import yaml from "../core/loaders/yaml.ts";
+import { merge } from "../core/utils.ts";
 
 export interface Options {
   extensions: string[];
@@ -11,9 +11,7 @@ const defaults: Options = {
   extensions: [".yaml", ".yml"],
 };
 
-/**
- * This plugin adds support for yaml files
- */
+/** A plugin to add support for YAML files */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 

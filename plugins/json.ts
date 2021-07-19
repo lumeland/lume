@@ -1,9 +1,7 @@
-import Site from "../site.ts";
-import json from "../loaders/json.ts";
+import { Site } from "../core.ts";
+import json from "../core/loaders/json.ts";
 
-/**
- * This plugin adds support for json
- */
+/** A plugin to add support for JSON files */
 export default function () {
   return (site: Site) => {
     site.loadData([".json"], json);

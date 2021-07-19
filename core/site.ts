@@ -1,27 +1,31 @@
-import { dirname, extname, join, posix, SEP } from "./deps/path.ts";
-import { copy, emptyDir, ensureDir, exists } from "./deps/fs.ts";
-import { gray } from "./deps/colors.ts";
-import { createHash } from "./deps/hash.ts";
-import Source from "./source.ts";
-import Scripts from "./scripts.ts";
-import Metrics from "./metrics.ts";
-import Engine from "./engines/engine.ts";
+import { dirname, extname, join, posix, SEP } from "../deps/path.ts";
+import { copy, emptyDir, ensureDir, exists } from "../deps/fs.ts";
+import { gray } from "../deps/colors.ts";
+import { createHash } from "../deps/hash.ts";
+import SiteSource from "./source.ts";
+import ScriptRunner from "./scripts.ts";
+import PerformanceMetrics from "./metrics.ts";
 import textLoader from "./loaders/text.ts";
 import {
   Command,
   CommandOptions,
   Data,
+  Engine,
   Event,
   EventListener,
   EventType,
   Helper,
   HelperOptions,
   Loader,
+  Metrics,
+  Page,
   Plugin,
   Processor,
+  Scripts,
+  Site,
   SiteOptions,
-} from "./types.ts";
-import { Page } from "./filesystem.ts";
+  Source,
+} from "../core.ts";
 import {
   concurrent,
   Exception,
@@ -49,10 +53,10 @@ const defaults: SiteOptions = {
 };
 
 /**
- * This is the heart of Lume, the class that contains everything
- * needed to build the site.
+ * This is the heart of Lume,
+ * a class that contains everything needed to build the site
  */
-export default class Site {
+export default class LumeSite implements Site {
   options: SiteOptions;
   source: Source;
   scripts: Scripts;
@@ -69,33 +73,19 @@ export default class Site {
 
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);
-
-    if (typeof this.options.location === "string") {
-      this.options.location = new URL(this.options.location);
-    }
-
-    this.source = new Source(this);
-    this.scripts = new Scripts(this);
-    this.metrics = new Metrics(this);
+    this.source = new SiteSource(this);
+    this.scripts = new ScriptRunner(this);
+    this.metrics = new PerformanceMetrics(this);
   }
 
-  /**
-   * Returns the src path
-   */
   src(...path: string[]) {
     return join(this.options.cwd, this.options.src, ...path);
   }
 
-  /**
-   * Returns the dest path
-   */
   dest(...path: string[]) {
     return join(this.options.cwd, this.options.dest, ...path);
   }
 
-  /**
-   * Adds an event
-   */
   addEventListener(type: EventType, listener: EventListener | string) {
     const listeners = this.listeners.get(type) || new Set();
     listeners.add(listener);
@@ -103,15 +93,12 @@ export default class Site {
     return this;
   }
 
-  /**
-   * Dispatch an event
-   */
   async dispatchEvent(event: Event) {
     const type = event.type;
     const listeners = this.listeners.get(type);
 
     if (!listeners) {
-      return;
+      return true;
     }
 
     for (const listener of listeners) {
@@ -129,35 +116,24 @@ export default class Site {
         return false;
       }
     }
+    return true;
   }
 
-  /**
-   * Use a plugin
-   */
   use(plugin: Plugin) {
     plugin(this);
     return this;
   }
 
-  /**
-   * Register a script
-   */
   script(name: string, ...scripts: Command[]) {
     this.scripts.set(name, ...scripts);
     return this;
   }
 
-  /**
-   * Register a data loader for some extensions
-   */
   loadData(extensions: string[], loader: Loader) {
     extensions.forEach((extension) => this.source.data.set(extension, loader));
     return this;
   }
 
-  /**
-   * Register a page loader for some extensions
-   */
   loadPages(extensions: string[], loader?: Loader, engine?: Engine) {
     loader ||= textLoader;
     extensions.forEach((extension) =>
@@ -177,9 +153,6 @@ export default class Site {
     return this;
   }
 
-  /**
-   * Register an assets loader for some extensions
-   */
   loadAssets(extensions: string[], loader?: Loader) {
     loader ||= textLoader;
     extensions.forEach((extension) =>
@@ -189,9 +162,6 @@ export default class Site {
     return this;
   }
 
-  /**
-   * Register a preprocessor for some extensions
-   */
   preprocess(extensions: string[], preprocessor: Processor) {
     extensions.forEach((extension) => {
       const preprocessors = this.preprocessors.get(extension) || [];
@@ -201,9 +171,6 @@ export default class Site {
     return this;
   }
 
-  /**
-   * Register a processor for some extensions
-   */
   process(extensions: string[], processor: Processor) {
     extensions.forEach((extension) => {
       const processors = this.processors.get(extension) || [];
@@ -213,16 +180,10 @@ export default class Site {
     return this;
   }
 
-  /**
-   * Register a template filter
-   */
   filter(name: string, filter: Helper, async = false) {
     return this.helper(name, filter, { type: "filter", async });
   }
 
-  /**
-   * Register a template helper
-   */
   helper(name: string, fn: Helper, options: HelperOptions) {
     this.helpers.set(name, [fn, options]);
 
@@ -233,75 +194,68 @@ export default class Site {
     return this;
   }
 
-  /**
-   * Register extra data accessible by layouts
-   */
   data(name: string, data: unknown) {
     this.extraData[name] = data;
     return this;
   }
 
-  /**
-   * Copy static files or directories without processing
-   */
   copy(from: string, to = from) {
     this.source.staticFiles.set(join("/", from), join("/", to));
     return this;
   }
 
-  /**
-   * Ignore one or several files or directories
-   */
   ignore(...paths: string[]) {
     paths.forEach((path) => this.source.ignored.add(join("/", path)));
     return this;
   }
 
-  /**
-   * Clear the dest directory
-   */
   async clear() {
     await emptyDir(this.dest());
     this.#hashes.clear();
   }
 
-  /**
-   * Build the entire site
-   */
   async build(watchMode = false) {
-    this.metrics.start("Build (entire site)");
+    const buildMetric = this.metrics.start("Build (entire site)");
     await this.dispatchEvent({ type: "beforeBuild" });
 
     await this.clear();
 
-    this.metrics.start("Copy (all files)");
+    let metric = this.metrics.start("Copy (all files)");
     for (const [from, to] of this.source.staticFiles) {
       await this.#copyStatic(from, to);
     }
-    this.metrics.end("Copy (all files)");
+    metric.stop();
 
-    this.metrics.start("Load (all pages)");
+    metric = this.metrics.start("Load (all pages)");
     await this.source.loadDirectory();
-    this.metrics.end("Load (all pages)");
+    metric.stop();
 
-    this.metrics.start("Preprocess + render + process (all pages)");
+    metric = this.metrics.start(
+      "Preprocess + render + process (all pages)",
+    );
     await this.#buildPages();
-    this.metrics.end("Preprocess + render + process (all pages)");
+    metric.stop();
 
     await this.dispatchEvent({ type: "beforeSave" });
 
     // Save the pages
-    this.metrics.start("Save (all pages)");
+    metric = this.metrics.start("Save (all pages)");
     await this.#savePages(watchMode);
-    this.metrics.end("Save (all pages)");
+    metric.stop();
 
-    this.metrics.end("Build (entire site)");
+    buildMetric.stop();
     await this.dispatchEvent({ type: "afterBuild" });
+
+    // Print or save the collected metrics
+    const { metrics } = this.options;
+
+    if (typeof metrics === "string") {
+      await this.metrics.save(join(this.options.cwd, metrics));
+    } else if (metrics) {
+      this.metrics.print();
+    }
   }
 
-  /**
-   * Reload some files that might be changed
-   */
   async update(files: Set<string>) {
     await this.dispatchEvent({ type: "beforeUpdate", files });
 
@@ -319,7 +273,7 @@ export default class Site {
         continue;
       }
 
-      // The path contains /_ or /.
+      // The path contains /_ or /
       if (normalized.includes("/_") || normalized.includes("/.")) {
         continue;
       }
@@ -344,9 +298,6 @@ export default class Site {
     await this.dispatchEvent({ type: "afterUpdate", files });
   }
 
-  /**
-   * Run a script
-   */
   async run(name: string, options: CommandOptions = {}) {
     return await this.scripts.run(options, name);
   }
@@ -358,12 +309,6 @@ export default class Site {
     return this.options.flags || [];
   }
 
-  /**
-   * Returns the URL of a page
-   *
-   * @param {string} path
-   * @param {bool} absolute
-   */
   url(path: string, absolute = false) {
     if (
       path.startsWith("./") || path.startsWith("../") ||
@@ -372,7 +317,7 @@ export default class Site {
       return path;
     }
 
-    // It's source file
+    // It's a source file
     if (path.startsWith("~/")) {
       path = path.slice(1).replaceAll("/", SEP);
 
@@ -410,11 +355,9 @@ export default class Site {
     return absolute ? this.options.location.origin + path : path;
   }
 
-  /**
-   * Copy a static file
-   */
+  /** Copy a static file */
   async #copyStatic(from: string, to: string) {
-    this.metrics.start("Copy", from);
+    const metric = this.metrics.start("Copy", { from });
     const pathFrom = this.src(from);
     const pathTo = this.dest(to);
 
@@ -425,19 +368,18 @@ export default class Site {
       }
       return copy(pathFrom, pathTo, { overwrite: true });
     }
-    this.metrics.end("Copy", from);
+    metric.stop();
   }
 
-  /**
-   * Build the pages
-   */
+  /** Build the pages */
   async #buildPages() {
     this.pages = [];
 
     // Group pages by renderOrder
     const renderOrder: Record<number | string, Page[]> = {};
-
-    this.metrics.start("Preprocess + render (all pages)");
+    const metricPreprocessAndRender = this.metrics.start(
+      "Preprocess + render (all pages)",
+    );
 
     for (const page of this.source.root.getPages()) {
       if (page.data.draft && !this.options.dev) {
@@ -498,9 +440,12 @@ export default class Site {
             try {
               if (ext === page.src.ext || ext === page.dest.ext) {
                 for (const preprocess of preprocessors) {
-                  this.metrics.start("Preprocess", page, preprocess);
+                  const metric = this.metrics.start("Preprocess", {
+                    page,
+                    processor: preprocess.name,
+                  });
                   await preprocess(page, this);
-                  this.metrics.end("Preprocess", page, preprocess);
+                  metric.stop();
                 }
               }
             } catch (err) {
@@ -515,9 +460,9 @@ export default class Site {
         pages,
         async (page) => {
           try {
-            this.metrics.start("Render", page);
+            const metric = this.metrics.start("Render", { page });
             page.content = await this.#renderPage(page) as string;
-            this.metrics.end("Render", page);
+            metric.stop();
           } catch (err) {
             throw new Exception("Error rendering this page", { page }, err);
           }
@@ -525,30 +470,33 @@ export default class Site {
       );
     }
     await this.dispatchEvent({ type: "afterRender" });
-    this.metrics.end("Preprocess + render (all pages)");
+    metricPreprocessAndRender.stop();
 
     // Process the pages
-    this.metrics.start("Process (all pages)");
+    const metricProcess = this.metrics.start("Process (all pages)");
+
     for (const [ext, processors] of this.processors) {
       await concurrent(
         this.pages,
         async (page) => {
           if (ext === page.dest.ext && page.content) {
             for (const process of processors) {
-              this.metrics.start("Process", page, process);
+              const metric = this.metrics.start("Process", {
+                page,
+                processor: process.name,
+              });
               await process(page, this);
-              this.metrics.end("Process", page, process);
+              metric.stop();
             }
           }
         },
       );
     }
-    this.metrics.end("Process (all pages)");
+
+    metricProcess.stop();
   }
 
-  /**
-   * Save all pages
-   */
+  /** Save all pages */
   async #savePages(watchMode: boolean) {
     await concurrent(
       this.pages,
@@ -556,9 +504,7 @@ export default class Site {
     );
   }
 
-  /**
-   * Generate the URL and dest info of a page
-   */
+  /** Generate the URL and dest info of a page */
   #urlPage(page: Page) {
     const { dest } = page;
     let url = page.data.url;
@@ -598,9 +544,7 @@ export default class Site {
         : dest.path + dest.ext;
   }
 
-  /**
-   * Render a page
-   */
+  /** Render a page */
   async #renderPage(page: Page) {
     let content = page.data.content;
     let pageData = { ...page.data, ...this.extraData };
@@ -658,17 +602,14 @@ export default class Site {
     return content;
   }
 
-  /**
-   * Save a page
-   */
+  /** Save a page */
   async #savePage(page: Page, watchMode: boolean) {
     // Ignore empty files
     if (!page.content) {
       return;
     }
 
-    this.metrics.start("Save", page);
-
+    const metric = this.metrics.start("Save", { page });
     const dest = page.dest.path + page.dest.ext;
 
     if (watchMode) {
@@ -697,12 +638,10 @@ export default class Site {
       ? await Deno.writeFile(filename, page.content)
       : await Deno.writeTextFile(filename, page.content);
 
-    this.metrics.end("Save", page);
+    metric.stop();
   }
 
-  /**
-   * Get the engine used by a path or extension
-   */
+  /** Get the engine used by a path or extension */
   #getEngine(path: string, templateEngine: Data["templateEngine"]) {
     if (templateEngine) {
       templateEngine = Array.isArray(templateEngine)

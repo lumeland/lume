@@ -1,17 +1,14 @@
-import Site from "../site.ts";
+import { Site } from "../core.ts";
 import { listenAndServe, ServerRequest } from "../deps/server.ts";
 import { acceptWebSocket, WebSocket } from "../deps/ws.ts";
 import { dirname, extname, join, posix, relative } from "../deps/path.ts";
 import { brightGreen, red } from "../deps/colors.ts";
 import { exists } from "../deps/fs.ts";
 import localIp from "../deps/local_ip.ts";
-import { mimes, normalizePath } from "../utils.ts";
+import { mimes, normalizePath } from "../core/utils.ts";
 import { readAll } from "../deps/util.ts";
 
-/**
- * Start a local HTTP server and live-reload the changes
- * @param site The Site instance
- */
+/** Start a local HTTP server and live-reload the changes */
 export default async function server(site: Site) {
   const root = site.dest();
   const port = site.options.server.port || 3000;
@@ -48,7 +45,7 @@ export default async function server(site: Site) {
 
   // Static files server
   listenAndServe({ port }, (req: ServerRequest) => {
-    // Is websocket
+    // Is a websocket
     if (req.headers.get("upgrade") === "websocket") {
       handleSocket(req);
     } else {

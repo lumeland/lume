@@ -1,15 +1,13 @@
-import Engine from "./engine.ts";
-import Site from "../site.ts";
+import { Engine } from "../../core.ts";
 
 interface MarkdownEngine {
   render: (input: string) => string;
 }
 
-export default class Markdown extends Engine {
+export default class Markdown implements Engine {
   engine: MarkdownEngine;
 
-  constructor(site: Site, engine: MarkdownEngine) {
-    super(site);
+  constructor(engine: MarkdownEngine) {
     this.engine = engine;
   }
 

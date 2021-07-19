@@ -9,9 +9,7 @@ interface Options {
   dev: boolean;
 }
 
-/**
- * Upgrade the Lume installation to the latest version
- */
+/** Upgrade the Lume installation to the latest version */
 export default async function upgrade({ dev }: Options) {
   const latest = dev
     ? await getLastDevelopmentVersion()
@@ -19,7 +17,7 @@ export default async function upgrade({ dev }: Options) {
 
   if (latest === getCurrentVersion()) {
     console.log(
-      `You’re using the latest version of Lume: ${brightGreen(latest)}!`,
+      `You're using the latest version of Lume: ${brightGreen(latest)}!`,
     );
     console.log();
     return;
@@ -34,7 +32,7 @@ export default async function upgrade({ dev }: Options) {
   console.log();
   console.log("Update successful!");
   console.log(
-    `You’re using the latest version of Lume: ${brightGreen(latest)}!`,
+    `You're using the latest version of Lume: ${brightGreen(latest)}!`,
   );
 
   if (!dev) {
@@ -57,6 +55,7 @@ async function install(version: string, dev = false) {
       "run",
       "-A",
       `${url}/install.ts`,
+      "--upgrade",
     ],
   });
 
