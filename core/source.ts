@@ -42,24 +42,6 @@ export default class SiteSource implements Source {
     });
   }
 
-  getOrCreateDirectory(path: string) {
-    let dir: Directory = this.root;
-
-    path.split("/").forEach((name) => {
-      if (!name || !dir) {
-        return;
-      }
-
-      if (!dir.dirs.has(name)) {
-        dir.createDirectory(name);
-      }
-
-      dir = dir.dirs.get(name)!;
-    });
-
-    return dir;
-  }
-
   getFileOrDirectory(path: string): Directory | Page | undefined {
     let result: Directory | Page | undefined = this.root;
 
@@ -120,7 +102,7 @@ export default class SiteSource implements Source {
     // Is a file inside a _data directory
     if (file.includes("/_data/")) {
       const [dir, remain] = file.split("/_data/", 2);
-      const directory = this.getOrCreateDirectory(dir);
+      const directory = this.#getOrCreateDirectory(dir);
       const path = dirname(remain).split("/").filter((name) =>
         name && name !== "."
       );
@@ -141,8 +123,27 @@ export default class SiteSource implements Source {
       );
     }
 
-    const directory = this.getOrCreateDirectory(dirname(file));
+    const directory = this.#getOrCreateDirectory(dirname(file));
     await this.#loadEntry(directory, entry);
+  }
+
+  /** Get an existing directory. Load it if it doesn't exist */
+  #getOrCreateDirectory(path: string): Directory {
+    let dir: Directory = this.root;
+
+    path.split("/").forEach((name) => {
+      if (!name || !dir) {
+        return;
+      }
+
+      if (!dir.dirs.has(name)) {
+        dir.createDirectory(name);
+      }
+
+      dir = dir.dirs.get(name)!;
+    });
+
+    return dir;
   }
 
   /** Load an entry from a directory */

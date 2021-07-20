@@ -190,17 +190,11 @@ export interface Source {
   assets: Set<string>;
   ignored: Set<string>;
 
-  /**
-   * Return the Directory instance of a path
-   * and create if it doesn't exist
-   */
-  getOrCreateDirectory(path: string): Directory;
-
   /** Return the File or Directory of a path */
   getFileOrDirectory(path: string): Directory | Page | undefined;
 
   /**
-   * Check whether a file is included in the static files
+   * Check whether a file is included in the list of static files
    * and return a [from, to] tuple
    */
   isStatic(file: string): [string, string] | false;

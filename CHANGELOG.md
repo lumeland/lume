@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Changed
+- Internal: make `Source.getOrCreateDirectory()` a private method.
+
 ### Fixed
 - The `PluginOption` argument typing of the `lume()` function.
 - The `yaml` loader should return an empty object instead of `undefined`
