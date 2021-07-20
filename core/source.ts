@@ -102,8 +102,8 @@ export default class SiteSource implements Source {
     // Is a file inside a _data directory
     if (file.includes("/_data/")) {
       const [dir, remain] = file.split("/_data/", 2);
-      const directory = this.#getOrCreateDirectory(dir);
-      const path = dirname(remain).split("/").filter((name) =>
+      const directory = await this.#getOrCreateDirectory(dir);
+      const path = dirname(remain).split("/").filter((name: string) =>
         name && name !== "."
       );
       let data = directory.data as Record<string, unknown>;
@@ -123,37 +123,55 @@ export default class SiteSource implements Source {
       );
     }
 
-    const directory = this.#getOrCreateDirectory(dirname(file));
+    const directory = await this.#getOrCreateDirectory(dirname(file));
     await this.#loadEntry(directory, entry);
   }
 
   /** Get an existing directory. Load it if it doesn't exist */
-  #getOrCreateDirectory(path: string): Directory {
+  async #getOrCreateDirectory(path: string): Promise<Directory> {
     let dir: Directory = this.root;
 
-    path.split("/").forEach((name) => {
-      if (!name || !dir) {
-        return;
+    if (!dir.dataLoaded) {
+      const path = this.site.src(dir.src.path);
+
+      await concurrent(
+        Deno.readDir(path),
+        (entry) => this.#loadEntry(dir, entry, true),
+      );
+    }
+
+    for (const name of path.split("/")) {
+      if (!name) {
+        continue;
       }
 
-      if (!dir.dirs.has(name)) {
-        dir.createDirectory(name);
-      }
+      dir = dir.dirs.get(name) || dir.createDirectory(name);
 
-      dir = dir.dirs.get(name)!;
-    });
+      if (!dir.dataLoaded) {
+        const path = this.site.src(dir.src.path);
+
+        await concurrent(
+          Deno.readDir(path),
+          (entry) => this.#loadEntry(dir, entry, true),
+        );
+      }
+    }
 
     return dir;
   }
 
   /** Load an entry from a directory */
-  async #loadEntry(directory: Directory, entry: Deno.DirEntry) {
+  async #loadEntry(
+    directory: Directory,
+    entry: Deno.DirEntry,
+    onlyData = false,
+  ) {
     if (entry.isSymlink || entry.name.startsWith(".")) {
       return;
     }
 
     const path = join(directory.src.path, entry.name);
-    const metrics = this.site.metrics;
+    const { metrics } = this.site;
 
     if (this.staticFiles.has(path) || this.ignored.has(path)) {
       return;
@@ -171,7 +189,7 @@ export default class SiteSource implements Source {
       return metric.stop();
     }
 
-    if (entry.name.startsWith("_")) {
+    if (onlyData || entry.name.startsWith("_")) {
       return;
     }
 

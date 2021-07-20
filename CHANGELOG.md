@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Changed
 - Internal: make `Source.getOrCreateDirectory()` a private method.
+- Ensure that new directories created dinamically during watching
+  load `_data` files and folders.
+  This opens the door to implement [DPR](https://github.com/jamstack/jamstack.org/discussions/549) in Lume.
 
 ### Fixed
 - The `PluginOption` argument typing of the `lume()` function.

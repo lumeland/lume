@@ -6,7 +6,8 @@ import { Content, Data, Dest, Directory, Page, Src } from "../core.ts";
 class Base {
   src: Src;
   parent?: Directory;
-  #data: Data = {};
+  dataLoaded = false;
+  #data?: Data;
   #cache?: Data;
 
   constructor(src: Src) {
@@ -22,6 +23,7 @@ class Base {
   }
 
   set data(data: Data) {
+    this.dataLoaded = true;
     this.#data = data;
   }
 

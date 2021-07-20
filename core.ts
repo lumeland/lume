@@ -139,6 +139,7 @@ export interface Page {
   parent?: Directory;
   src: Src;
   dest: Dest;
+  dataLoaded: boolean;
 
   /** The associated merged data */
   data: Data;
@@ -160,8 +161,15 @@ export interface Page {
 export interface Directory {
   parent?: Directory;
   src: Src;
+  dataLoaded: boolean;
+
+  /** The associated merged data */
   data: Data;
+
+  /** The list of pages included in this directory */
   pages: Map<string, Page>;
+
+  /** The list os subdirectories */
   dirs: Map<string, Directory>;
 
   /** Create a subdirectory and return it */
