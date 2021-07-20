@@ -23,9 +23,7 @@ const imports = {
 };
 
 export const cli = join(baseUrl, "./cli/cli.ts");
-export const importMap = `data:application/json;utf8,${
-  JSON.stringify({ imports })
-}`;
+export const importMap = `data:application/json,${JSON.stringify({ imports })}`;
 
 // Run the current command
 if (import.meta.main) {
