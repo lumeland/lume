@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.25.4] - 2021-07-21
 ### Changed
 - Internal: make `Source.getOrCreateDirectory()` a private method.
 - Ensure that new directories created dinamically during watching
@@ -1025,7 +1025,7 @@ The first version.
 [#120]: https://github.com/lumeland/lume/issues/120
 [#125]: https://github.com/lumeland/lume/issues/125
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v0.25.3...HEAD
+[0.25.4]: https://github.com/lumeland/lume/compare/v0.25.3...v0.25.4
 [0.25.3]: https://github.com/lumeland/lume/compare/v0.25.2...v0.25.3
 [0.25.2]: https://github.com/lumeland/lume/compare/v0.25.1...v0.25.2
 [0.25.1]: https://github.com/lumeland/lume/compare/v0.25.0...v0.25.1
