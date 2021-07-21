@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.25.5] - 2021-07-21
+### Fixed
+- Installation in Windows [#131].
+
 ## [0.25.4] - 2021-07-21
 ### Changed
 - Internal: make `Source.getOrCreateDirectory()` a private method.
@@ -1024,7 +1028,9 @@ The first version.
 [#117]: https://github.com/lumeland/lume/issues/117
 [#120]: https://github.com/lumeland/lume/issues/120
 [#125]: https://github.com/lumeland/lume/issues/125
+[#131]: https://github.com/lumeland/lume/issues/131
 
+[0.25.5]: https://github.com/lumeland/lume/compare/v0.25.4...v0.25.5
 [0.25.4]: https://github.com/lumeland/lume/compare/v0.25.3...v0.25.4
 [0.25.3]: https://github.com/lumeland/lume/compare/v0.25.2...v0.25.3
 [0.25.2]: https://github.com/lumeland/lume/compare/v0.25.1...v0.25.2
