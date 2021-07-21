@@ -1,3 +1,4 @@
+import { encode } from "./deps/base64.ts";
 import { posix } from "./deps/path.ts";
 
 const { join } = posix;
@@ -23,7 +24,7 @@ const imports = {
 };
 
 export const cli = join(baseUrl, "./cli/cli.ts");
-export const importMap = `data:application/json,${JSON.stringify({ imports })}`;
+export const importMap = `data:application/json;base64,${encode(JSON.stringify({ imports }))}`;
 
 // Run the current command
 if (import.meta.main) {
