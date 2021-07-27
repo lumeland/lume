@@ -7,16 +7,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Fixed
+- Updated `std`, `cliffy` and `postcss`.
+
 ## [0.25.5] - 2021-07-21
 ### Fixed
-- Installation in Windows [#131].
+- Installation on Windows. [#131].
 
 ## [0.25.4] - 2021-07-21
 ### Changed
 - Internal: make `Source.getOrCreateDirectory()` a private method.
-- Ensure that new directories created dinamically during watching
+- Ensure that new directories created dynamically during watching
   load `_data` files and folders.
-  This opens the door to implement [DPR](https://github.com/jamstack/jamstack.org/discussions/549) in Lume.
+  This opens the door to implement
+  [DPR](https://github.com/jamstack/jamstack.org/discussions/549)
+  in Lume.
 
 ### Fixed
 - The `PluginOption` argument typing of the `lume()` function.
@@ -1030,6 +1036,7 @@ The first version.
 [#125]: https://github.com/lumeland/lume/issues/125
 [#131]: https://github.com/lumeland/lume/issues/131
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v0.25.5...HEAD
 [0.25.5]: https://github.com/lumeland/lume/compare/v0.25.4...v0.25.5
 [0.25.4]: https://github.com/lumeland/lume/compare/v0.25.3...v0.25.4
 [0.25.3]: https://github.com/lumeland/lume/compare/v0.25.2...v0.25.3
