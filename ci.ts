@@ -8,7 +8,7 @@ const imports = {
   "lume/": join(baseUrl, "/"),
 };
 
-export const cli = join(baseUrl, "./cli/cli.ts");
+export const cli = join(baseUrl, "./cli.ts");
 export const importMap = `data:application/json;base64,${
   encode(JSON.stringify({ imports }))
 }`;
