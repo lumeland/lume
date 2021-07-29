@@ -23,7 +23,7 @@ const init = new Command()
     "Use full URLs instead of a import map.",
   )
   .option(
-    "--plugins <plugins:string[]:plugin",
+    "--plugins <plugin:string[]>",
     "A comma-separated list of plugins to use.",
     { default: [] },
   )
