@@ -12,14 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The minimum version of Deno supported is `1.12.2`.
 
 ### Removed
-- BREAKING: Removed import map aliases to `.js` files.
-  Use `.ts` extension on import lume modules.
-- BREAKING: `install.js`, `ci.js` and `cli.js` (with `.js` extension) no longer exists.
+- BREAKING: Removed the import map aliases to `.js` files.
+  Use the `.ts` extension to import Lume modules.
+- BREAKING: `install.js`, `ci.js` and `cli.js` (with the `.js` extension)
+  no longer exists.
   Use the `.ts` extension (`install.ts`, `ci.ts` and `cli.ts`).
 
 ### Fixed
+- The `--plugins` option of `lume init`.
 - Updated `std`, `cliffy` and `postcss`.
-- `--plugins` option of `lume init`.
 
 ## [0.25.5] - 2021-07-21
 ### Fixed
