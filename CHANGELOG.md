@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - The `--plugins` option of `lume init`.
-- Updated `std`, `cliffy` and `postcss`.
+- Updated `std`, `cliffy`, `postcss`, `highlight.js` and `markdown-it`.
 
 ## [0.25.5] - 2021-07-21
 ### Fixed
