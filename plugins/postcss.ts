@@ -7,7 +7,7 @@ import {
 import { merge } from "../core/utils.ts";
 import { Helper, Page, Site } from "../core.ts";
 
-interface Options {
+export interface Options {
   extensions: string[];
   sourceMap: boolean;
   includes: string | string[];

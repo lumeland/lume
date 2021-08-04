@@ -11,7 +11,7 @@ const formats = new Map([
   ["HUMAN_DATETIME", "PPPppp"],
 ]);
 
-interface Options {
+export interface Options {
   locales: Record<string, unknown>;
   formats: Record<string, string>;
 }

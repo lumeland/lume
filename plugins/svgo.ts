@@ -2,12 +2,12 @@ import { optimize } from "../deps/svgo.ts";
 import { merge } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
 
-interface Options {
+export interface Options {
   extensions: string[];
   options: Partial<SvgoOptions>;
 }
 
-interface SvgoOptions {
+export interface SvgoOptions {
   multipass: boolean;
   plugins: unknown[];
   datauri: "base64" | "enc" | "unenc";

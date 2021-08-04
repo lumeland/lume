@@ -5,7 +5,7 @@ import Eta from "../core/engines/eta.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
-interface Options {
+export interface Options {
   extensions: string[];
   includes: string;
   options: Partial<EtaConfig>;

@@ -2,7 +2,7 @@ import { posix } from "../deps/path.ts";
 import { merge } from "../core/utils.ts";
 import { Helper, Page, Site } from "../core.ts";
 
-interface Options {
+export interface Options {
   extensions: string[];
   lowercase: boolean;
   alphanumeric: boolean;

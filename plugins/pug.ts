@@ -4,7 +4,7 @@ import Pug, { PugCompiler, PugOptions } from "../core/engines/pug.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
-interface Options {
+export interface Options {
   extensions: string[];
   includes: string;
   options: Partial<PugOptions>;

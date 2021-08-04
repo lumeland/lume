@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Search pages using values with one character.
   For example: `search.pages("url!=/")`.
 - Custom includes path resolution.
+- Export plugins types for Deno doc.
 
 ## [0.25.5] - 2021-07-21
 ### Fixed

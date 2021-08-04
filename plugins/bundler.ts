@@ -1,7 +1,7 @@
 import { merge } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
 
-interface Options {
+export interface Options {
   extensions: string[];
   sourceMap: boolean;
   options: Deno.EmitOptions;

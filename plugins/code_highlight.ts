@@ -2,12 +2,12 @@ import hljs from "../deps/highlight.ts";
 import { merge } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
 
-interface Options {
+export interface Options {
   extensions: string[];
   options: Partial<HighlightOptions>;
 }
 
-interface HighlightOptions {
+export interface HighlightOptions {
   ignoreUnescapedHTML: boolean;
   noHighlightRe: RegExp;
   languageDetectRe: RegExp;

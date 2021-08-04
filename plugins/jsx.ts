@@ -3,7 +3,7 @@ import loader from "../core/loaders/module.ts";
 import { merge } from "../core/utils.ts";
 import { Site } from "../core.ts";
 
-interface Options {
+export interface Options {
   extensions: string[];
 }
 

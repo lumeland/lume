@@ -4,7 +4,7 @@ import { encode } from "../deps/base64.ts";
 import { Exception, merge, mimes } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
 
-interface Options {
+export interface Options {
   extensions: string[];
   attribute: string;
 }

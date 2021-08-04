@@ -3,13 +3,13 @@ import { basename } from "../deps/path.ts";
 import { Exception, merge } from "../core/utils.ts";
 import { Helper, Page, Site } from "../core.ts";
 
-interface Options {
+export interface Options {
   extensions: string[];
   sourceMap: boolean;
   options: Partial<TerserOptions>;
 }
 
-interface TerserOptions {
+export interface TerserOptions {
   module: boolean;
   compress: boolean;
   mangle: boolean;
