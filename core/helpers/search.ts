@@ -80,7 +80,7 @@ export function buildFilter(query: string): (page: Page) => boolean {
   // (?:(fieldName)(operator))?(value|"value"|'value')
   const matches = query
     ? query.matchAll(
-      /(?:([\w.-]+)([!^$*]?=|[<>]=?))?([^'"\s][^\s=<>]+|"[^"]+"|'[^']+')/g,
+      /(?:([\w.-]+)([!^$*]?=|[<>]=?))?([^'"\s][^\s=<>]*|"[^"]+"|'[^']+')/g,
     )
     : [];
   const conditions: Condition[] = [["dest.ext", "=", ".html"]];
