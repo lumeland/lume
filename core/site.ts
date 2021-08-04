@@ -67,6 +67,7 @@ export default class LumeSite implements Site {
   listeners: Map<EventType, Set<EventListener | string>> = new Map();
   preprocessors: Map<string, Processor[]> = new Map();
   processors: Map<string, Processor[]> = new Map();
+  includes: Map<string, string> = new Map();
   pages: Page[] = [];
 
   #hashes = new Map();
@@ -570,8 +571,13 @@ export default class LumeSite implements Site {
         );
       }
 
-      const layoutPath = this.src(this.options.includes, layout);
-      const layoutData = await this.source.load(layoutPath, result[1]);
+      const [ext, loader] = result;
+
+      const layoutPath = this.src(
+        this.includes.get(ext) || this.options.includes,
+        layout,
+      );
+      const layoutData = await this.source.load(layoutPath, loader);
       const engine = this.#getEngine(layout, layoutData.templateEngine);
 
       if (!engine) {

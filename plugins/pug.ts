@@ -25,7 +25,11 @@ export default function (userOptions?: Partial<Options>) {
       userOptions,
     );
 
+    // Configure includes
     options.options.basedir = site.src(options.includes);
+    options.extensions.forEach((ext) =>
+      site.includes.set(ext, options.includes)
+    );
 
     site.loadPages(
       options.extensions,

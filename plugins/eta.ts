@@ -34,6 +34,11 @@ export default function (userOptions?: Partial<Options>) {
       views: site.src(options.includes),
     });
 
+    // Configure includes
+    options.extensions.forEach((ext) =>
+      site.includes.set(ext, options.includes)
+    );
+
     // Update the cache
     site.addEventListener("beforeUpdate", (ev) => {
       for (const filename of ev.files!) {

@@ -40,6 +40,11 @@ export default function (userOptions?: Partial<Options>) {
     const fsLoader = new nunjucks.FileSystemLoader(site.src(options.includes));
     const engine = new nunjucks.Environment(fsLoader, options.options);
 
+    // Configure includes
+    options.extensions.forEach((ext) =>
+      site.includes.set(ext, options.includes)
+    );
+
     for (const [name, fn] of Object.entries(options.plugins)) {
       engine.addExtension(name, fn);
     }

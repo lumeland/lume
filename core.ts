@@ -243,6 +243,7 @@ export interface Site {
   processors: Map<string, Processor[]>;
   pages: Page[];
   flags: string[];
+  includes: Map<string, string>;
 
   /** Return the src path */
   src(...path: string[]): string;
