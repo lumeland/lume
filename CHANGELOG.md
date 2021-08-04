@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.0.0] - Unreleased
+## [1.0.0] - 2021-08-04
 ### Changed
 - The minimum version of Deno supported is `1.12.2`.
 
@@ -1051,7 +1051,7 @@ The first version.
 [#125]: https://github.com/lumeland/lume/issues/125
 [#131]: https://github.com/lumeland/lume/issues/131
 
-[1.0.0]: https://github.com/lumeland/lume/compare/v0.25.5...HEAD
+[1.0.0]: https://github.com/lumeland/lume/compare/v0.25.5...v1.0.0
 [0.25.5]: https://github.com/lumeland/lume/compare/v0.25.4...v0.25.5
 [0.25.4]: https://github.com/lumeland/lume/compare/v0.25.3...v0.25.4
 [0.25.3]: https://github.com/lumeland/lume/compare/v0.25.2...v0.25.3
