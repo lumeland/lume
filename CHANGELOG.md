@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Fixed
+- Updated `std`, `cliffy` and `deno_dom`.
+
 ## [1.0.1] - 2021-08-04
 No changes.
 
@@ -23,11 +27,11 @@ No changes.
 
 ### Fixed
 - The `--plugins` option of `lume init`.
-- Updated `std`, `cliffy`, `postcss`, `highlight.js` and `markdown-it`.
 - Search pages using values with one character.
   For example: `search.pages("url!=/")`.
 - Custom includes path resolution.
 - Export plugins types for Deno doc.
+- Updated `std`, `cliffy`, `postcss`, `highlight.js` and `markdown-it`.
 
 ## [0.25.5] - 2021-07-21
 ### Fixed
@@ -1054,6 +1058,7 @@ The first version.
 [#125]: https://github.com/lumeland/lume/issues/125
 [#131]: https://github.com/lumeland/lume/issues/131
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.0.1...HEAD
 [1.0.1]: https://github.com/lumeland/lume/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/lumeland/lume/compare/v0.25.5...v1.0.0
 [0.25.5]: https://github.com/lumeland/lume/compare/v0.25.4...v0.25.5
