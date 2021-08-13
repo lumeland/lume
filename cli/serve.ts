@@ -1,6 +1,4 @@
 import { Site } from "../core.ts";
-import { listenAndServe, ServerRequest } from "../deps/server.ts";
-import { acceptWebSocket, WebSocket } from "../deps/ws.ts";
 import { dirname, extname, join, posix, relative } from "../deps/path.ts";
 import { brightGreen, red } from "../deps/colors.ts";
 import { exists } from "../deps/fs.ts";
@@ -43,18 +41,34 @@ export default async function server(site: Site) {
   // Live reload server
   const watcher = Deno.watchFs(root);
 
-  // Static files server
-  listenAndServe({ port }, (req: ServerRequest) => {
-    // Is a websocket
-    if (req.headers.get("upgrade") === "websocket") {
-      handleSocket(req);
-    } else {
-      handleFile(req);
-    }
-  });
+  let timer = 0;
+  // let socket: WebSocket;
+  const changes: Set<string> = new Set();
 
-  async function handleFile(req: ServerRequest) {
-    let path = join(root, decodeURIComponent(req.url.split("?", 2).shift()!));
+  // Static files server
+  const server = Deno.listen({ port });
+
+  for await (const conn of server) {
+    handleConnection(conn);
+  }
+
+  async function handleConnection(conn: Deno.Conn) {
+    const httpConn = Deno.serveHttp(conn);
+
+    for await (const requestEvent of httpConn) {
+      // Is a websocket
+      if (requestEvent.request.headers.get("upgrade") === "websocket") {
+        handleSocket(requestEvent);
+        continue;
+      }
+
+      handleFile(requestEvent);
+    }
+  }
+
+  async function handleFile(event: Deno.RequestEvent) {
+    const { request } = event;
+    let path = join(root, new URL(request.url).pathname);
 
     try {
       const info = await Deno.stat(path);
@@ -68,50 +82,51 @@ export default async function server(site: Site) {
         "application/octet-stream";
 
       try {
-        await req.respond({
-          status: 200,
-          headers: new Headers({
-            "content-type": mimeType,
-            "cache-control": "no-cache no-store must-revalidate",
+        const body = await (mimeType === "text/html; charset=utf-8"
+          ? getHtmlBody(path)
+          : getBody(path));
+
+        await event.respondWith(
+          new Response(body, {
+            status: 200,
+            headers: new Headers({
+              "content-type": mimeType,
+              "cache-control": "no-cache no-store must-revalidate",
+            }),
           }),
-          body: await (mimeType === "text/html; charset=utf-8"
-            ? getHtmlBody(path)
-            : getBody(path)),
-        });
+        );
       } catch {
         return;
       }
 
-      console.log(`${brightGreen("200")} ${req.url}`);
+      console.log(`${brightGreen("200")} ${request.url}`);
     } catch {
-      console.log(`${red("404")} ${req.url}`);
+      console.log(`${red("404")} ${request.url}`);
 
       try {
-        await req.respond({
-          status: 404,
-          headers: new Headers({
-            "content-type": mimes.get(".html")!,
+        const body = await getNotFoundBody(root, page404, path);
+        await event.respondWith(
+          new Response(body, {
+            status: 404,
+            headers: new Headers({
+              "content-type": mimes.get(".html")!,
+            }),
           }),
-          body: await getNotFoundBody(root, page404, path),
-        });
+        );
       } catch {
         return;
       }
     }
   }
 
-  let timer = 0;
-  let socket: WebSocket;
-  const changes: Set<string> = new Set();
+  async function handleSocket(event: Deno.RequestEvent) {
+    const { socket, response } = Deno.upgradeWebSocket(event.request);
 
-  async function handleSocket(req: ServerRequest) {
-    const { conn, r: bufReader, w: bufWriter, headers } = req;
-    socket = await acceptWebSocket({
-      conn,
-      bufReader,
-      bufWriter,
-      headers,
-    });
+    socket.onopen = () => console.log("Socket opened");
+    socket.onclose = () => console.log("Socket closed");
+    socket.onerror = (e) => console.log("Socket errored", e);
+
+    event.respondWith(response);
 
     async function sendChanges() {
       if (!changes.size) {
@@ -125,16 +140,14 @@ export default async function server(site: Site) {
       changes.clear();
 
       try {
+        console.log("Changed sent to the browser");
         await socket.send(JSON.stringify(files));
-        console.log("Changes sent to browser");
       } catch (err) {
         console.log(
           `Changes couldn't be sent to browser due "${err.message.trim()}"`,
         );
       }
     }
-
-    console.log("Connected to browser");
 
     for await (const event of watcher) {
       if (event.kind !== "modify" && event.kind !== "create") {
