@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Updated `std`, `cliffy` and `deno_dom`.
+- The plugin `bundler` error on processing files in watch.
 
 ## [1.0.1] - 2021-08-04
 No changes.
