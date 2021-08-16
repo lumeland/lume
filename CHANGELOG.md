@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Added
+- Internal property `_data` to save arbitrary values in the pages.
+
 ### Fixed
 - Updated `std`, `cliffy` and `deno_dom`.
 

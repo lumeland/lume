@@ -144,6 +144,9 @@ export interface Page {
   /** The associated merged data */
   data: Data;
 
+  /** Internal data, used by plugins, processors, etc to save arbitrary values */
+  _data: Record<string, unknown>;
+
   /** The content of this page */
   content?: Content;
 

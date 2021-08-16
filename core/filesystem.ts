@@ -60,6 +60,7 @@ class Base {
 /** A page of the site */
 export class SitePage extends Base implements Page {
   dest: Dest;
+  _data = {};
   #content?: Content;
   #document?: HTMLDocument;
   #copy = 0;
