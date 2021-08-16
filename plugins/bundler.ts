@@ -36,7 +36,7 @@ export default function (userOptions?: Partial<Options>) {
 
       for (const [path, content] of Object.entries(files)) {
         if (path.endsWith(".js")) {
-          file.content = content;
+          file.content = fixExtensions(content);
           file.dest.ext = ".js";
           continue;
         }
@@ -51,4 +51,9 @@ export default function (userOptions?: Partial<Options>) {
       }
     }
   };
+}
+
+/** Replace all .ts, .tsx and .jsx files with .js files */
+function fixExtensions(content: string) {
+  return content.replaceAll(/\.(ts|tsx|jsx)("|')/ig, ".js$2");
 }
