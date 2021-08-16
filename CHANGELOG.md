@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Internal property `_data` to save arbitrary values in the pages.
+- Internal property `_data` to save arbitrary values in the pages internally.
+  Used by (pre)processors.
 
 ### Fixed
 - Updated `std`, `cliffy` and `deno_dom`.
