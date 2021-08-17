@@ -42,7 +42,7 @@ export default async function server(site: Site) {
   const watcher = Deno.watchFs(root);
 
   let timer = 0;
-  // let socket: WebSocket;
+  let currentSocket: WebSocket | undefined;
   const changes: Set<string> = new Set();
 
   // Static files server
@@ -122,14 +122,23 @@ export default async function server(site: Site) {
   async function handleSocket(event: Deno.RequestEvent) {
     const { socket, response } = Deno.upgradeWebSocket(event.request);
 
-    socket.onopen = () => console.log("Socket opened");
-    socket.onclose = () => console.log("Socket closed");
+    socket.onopen = () => {
+      if (!currentSocket) {
+        console.log("Live reload started");
+      }
+      currentSocket = socket;
+    };
+    socket.onclose = () => {
+      if (socket === currentSocket) {
+        currentSocket = undefined;
+      }
+    };
     socket.onerror = (e) => console.log("Socket errored", e);
 
     event.respondWith(response);
 
     async function sendChanges() {
-      if (!changes.size) {
+      if (!changes.size || !currentSocket) {
         return;
       }
 
@@ -141,7 +150,7 @@ export default async function server(site: Site) {
 
       try {
         console.log("Changed sent to the browser");
-        await socket.send(JSON.stringify(files));
+        await currentSocket.send(JSON.stringify(files));
       } catch (err) {
         console.log(
           `Changes couldn't be sent to browser due "${err.message.trim()}"`,
