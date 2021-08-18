@@ -9,11 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Internal property `_data` to save arbitrary values in the pages internally.
+- Property `_data` to save arbitrary values in the pages internally.
   Used by (pre)processors.
 
 ### Changed
-- Switch to Deno native HTTP to local server and live-reload socket.
+- Switch to Deno's native HTTP for local server and live-reload socket.
   This improves the performance and remove the dependencies `std/http/server` and `std/ws`.
 
 ### Fixed
