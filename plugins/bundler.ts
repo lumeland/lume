@@ -22,16 +22,32 @@ export default function (userOptions?: Partial<Options>) {
     site.loadAssets(options.extensions);
     site.process(options.extensions, bundler);
 
+    let allSources: Record<string, string>;
+
+    // Collect all sources before run the bundler
+    if (options.options.bundle) {
+      site.addEventListener("afterRender", () => {
+        allSources = {};
+
+        site.pages.forEach((file) => {
+          if (options.extensions.includes(file.src.ext!)) {
+            const path = file.data.url as string;
+            allSources[path] = file.content as string;
+          }
+        });
+      });
+    }
+
     async function bundler(file: Page) {
       if (!file._data.url) {
         file._data.url = file.data.url;
       }
+
       const from = file._data.url as string;
+      const sources = allSources || { [from]: file.content as string };
       const { files } = await Deno.emit(from, {
         ...options.options,
-        sources: {
-          [from]: file.content as string,
-        },
+        sources,
       });
 
       for (const [path, content] of Object.entries(files)) {
