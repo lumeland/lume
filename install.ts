@@ -1,7 +1,7 @@
 import { brightGreen, gray, red } from "./deps/colors.ts";
 import { cli, importMap } from "./ci.ts";
 
-const minDenoVersion = "1.12.2";
+const minDenoVersion = "1.13.1";
 
 if (Deno.version.deno < minDenoVersion) {
   console.log();

@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   Used by (pre)processors.
 
 ### Changed
+- The minimum version supported of Deno is `1.13.1` (from `1.12.2`).
 - Switch to Deno's native HTTP for local server and live-reload socket.
   This improves the performance and remove the dependencies `std/http/server` and `std/ws`.
 
@@ -20,8 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Updated `std`, `cliffy` and `deno_dom`.
 - Fixed some bugs in the `bundler` plugin:
   - Error processing files while watching due wrong file extensions.
-  - The processor now search and replace all `.ts`, `.tsx` and `.jsx` extensions with `.js`.
-    This fixes the import errors.
+  - The processor now search and replace all `.ts`, `.tsx` and `.jsx` extensions with `.js`. This fixes the import errors.
 
 ## [1.0.1] - 2021-08-04
 No changes.
