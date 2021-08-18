@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Internal property `_data` to save arbitrary values in the pages internally.
   Used by (pre)processors.
 
+### Changed
+- Switch to Deno native HTTP to local server and live-reload socket.
+  This improves the performance and remove the dependencies `std/http/server` and `std/ws`.
+
 ### Fixed
 - Updated `std`, `cliffy` and `deno_dom`.
 - Fixed some bugs in the `bundler` plugin:
