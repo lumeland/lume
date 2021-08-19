@@ -5,18 +5,32 @@ import { merge } from "../core/utils.ts";
 import { Helper, Site } from "../core.ts";
 
 export interface Options {
+  /** The list of extensions this plugin applies to */
   extensions: string[];
+
+  /** Custom includes path */
   includes: string;
+
+  /** Options passed to Nunjucks */
   options: Partial<NunjucksOptions>;
+
+  /** Plugins loaded by Nunjucks */
   plugins: {
     [index: string]: unknown;
   };
 }
 
 export interface NunjucksOptions {
+  /** Controls if output with dangerous characters are escaped automatically. */
   autoescape: boolean;
+
+  /** Throw errors when outputting a null/undefined value */
   throwOnUndefined: boolean;
+
+  /** Automatically remove trailing newlines from a block/tag */
   trimBlocks: boolean;
+
+  /** Automatically remove leading whitespace from a block/tag */
   lstripBlocks: boolean;
 }
 

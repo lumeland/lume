@@ -5,8 +5,13 @@ import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
 export interface Options {
+  /** The list of extensions this plugin applies to */
   extensions: string[];
+
+  /** Custom includes path for Pug */
   includes: string;
+
+  /** Options passed to Pug */
   options: Partial<PugOptions>;
 }
 

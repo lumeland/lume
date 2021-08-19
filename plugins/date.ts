@@ -12,7 +12,10 @@ const formats = new Map([
 ]);
 
 export interface Options {
+  /** The loaded locales */
   locales: Record<string, unknown>;
+
+  /** Custom date formats */
   formats: Record<string, string>;
 }
 

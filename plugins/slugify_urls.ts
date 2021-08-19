@@ -3,10 +3,19 @@ import { merge } from "../core/utils.ts";
 import { Helper, Page, Site } from "../core.ts";
 
 export interface Options {
+  /** The list of extensions this plugin applies to */
   extensions: string[];
+
+  /** Convert the paths to lower case */
   lowercase: boolean;
+
+  /** Remove all non-alphanumeric characters */
   alphanumeric: boolean;
+
+  /** Character used as word separator */
   separator: string;
+
+  /** Characters to replace */
   replace: {
     [index: string]: string;
   };

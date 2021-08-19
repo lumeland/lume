@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - Property `_data` to save arbitrary values in the pages internally.
   Used by (pre)processors.
+- Improved docs.
 
 ### Changed
 - The minimum version supported of Deno is `1.13.1` (from `1.12.2`).

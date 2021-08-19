@@ -3,10 +3,14 @@ import { merge } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
 
 export interface Options {
+  /** The list of extensions this plugin applies to */
   extensions: string[];
+
+  /** Options passed to SVGO */
   options: Partial<SvgoOptions>;
 }
 
+/** SVGO options */
 export interface SvgoOptions {
   multipass: boolean;
   plugins: unknown[];
