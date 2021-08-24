@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Fixed
-- Updated `std`.
+- Updated `std` and `terser`.
 - Updated `react` to include typings.
 
 ## [1.0.2] - 2021-08-20
