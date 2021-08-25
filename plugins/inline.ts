@@ -5,7 +5,10 @@ import { Exception, merge, mimes } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
 
 export interface Options {
+  /** The list of extensions this plugin applies to */
   extensions: string[];
+
+  /** Attribute used to select the elements this plugin applies to */
   attribute: string;
 }
 

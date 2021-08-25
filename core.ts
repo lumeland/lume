@@ -2,13 +2,27 @@ import { HTMLDocument } from "./deps/dom.ts";
 
 /** The data of a page */
 export interface Data {
+  /** List of tags assigned to a page or folder */
   tags?: string[];
+
+  /** The url of a page */
   url?: string | ((page: Page) => string);
+
+  /** If is `true`, the page will be visible only in `dev` mode */
   draft?: boolean;
+
+  /** To configure the render order of a page */
   renderOrder?: number;
+
+  /** The content of a page */
   content?: unknown;
+
+  /** The layout used to render a page */
   layout?: string;
+
+  /** To configure a different template engine(s) to render a page */
   templateEngine?: string | string[];
+
   [index: string]: unknown;
 }
 
@@ -17,8 +31,13 @@ export type Helper = (...args: unknown[]) => unknown | Promise<unknown>;
 
 /** The options for a template helper */
 export interface HelperOptions {
+  /** The type of the helper (tag, filter, etc) */
   type: string;
+
+  /** Whether the helper returns an instance or not */
   async?: boolean;
+
+  /** Whether the helper has a body or not (used for tag types) */
   body?: boolean;
 }
 
@@ -33,7 +52,13 @@ export type EventType =
 
 /** An event object */
 export interface Event {
+  /** The event type */
   type: EventType;
+
+  /**
+   * Available only in "beforeUpdate" and "afterUpdate"
+   * contains the files that were changed
+   */
   files?: Set<string>;
 }
 
@@ -42,16 +67,28 @@ export type EventListener = (event: Event) => unknown;
 
 /** The .src property for a Page or Directory */
 export interface Src {
+  /** The path to the file (without extension) */
   path: string;
+
+  /** The extension of the file (undefined for folders) */
   ext?: string;
+
+  /** The last modified time */
   lastModified?: Date;
+
+  /** The creation time */
   created?: Date;
 }
 
 /** The .dest property for a Page */
 export interface Dest {
+  /** The path to the file (without extension) */
   path: string;
+
+  /** The extension of the file */
   ext: string;
+
+  /** The hash (used to detect content changes) */
   hash?: string;
 }
 
@@ -69,42 +106,85 @@ export type Loader = (path: string) => Promise<Data>;
 
 /** The options for the paginate helper */
 export interface PaginateOptions {
+  /** The number of elements per page */
   size: number;
+
+  /** The function to generate the url of the pages */
   url: (page: number) => string;
 }
 
 /** The paginate result */
 export interface PaginateResult {
+  /** The page url */
   url: string;
+
+  /** The page elements */
   results: unknown[];
+
+  /** The pagination info */
   pagination: {
+    /** The current page number */
     page: number;
+
+    /** The total number of pages */
     totalPages: number;
+
+    /** The total number of elements */
     totalResults: number;
+
+    /** The url of the previous page */
     previous: string | null;
+
+    /** The url of the next page */
     next: string | null;
   };
 }
 
 /** The options to configure the site build */
 export interface SiteOptions {
+  /** The path of the current working directory */
   cwd: string;
+
+  /** The path of the site source */
   src: string;
+
+  /** The path of the built destination */
   dest: string;
+
+  /** The default includes path */
   includes: string;
+
+  /** Set `true` to enable the `dev` mode */
   dev: boolean;
+
+  /** The site location (used to generate final urls) */
   location: URL;
+
+  /** Set true to collect metrics and measure the build performance */
   metrics: boolean;
+
+  /** Set true to generate pretty urls (`/about-me/`) */
   prettyUrls: boolean;
+
+  /** The list of flags to pass to the site build */
   flags: string[];
+
+  /** Set `true` to skip logs */
   quiet: boolean;
+
+  /** The local server options */
   server: ServerOptions;
 }
 
 /** The options to configure the local server */
 export interface ServerOptions {
+  /** The port to listen on */
   port: number;
+
+  /** To open the server in a browser */
   open: boolean;
+
+  /** The file to serve on 404 error */
   page404: string;
 }
 
@@ -136,9 +216,16 @@ export interface Engine {
 
 /** A page */
 export interface Page {
+  /** The directory this page is in */
   parent?: Directory;
+
+  /** The src info of this page */
   src: Src;
+
+  /** The destination of the page */
   dest: Dest;
+
+  /** Is `true` if the data assigned to this page was merged */
   dataLoaded: boolean;
 
   /** The associated merged data */
@@ -162,8 +249,16 @@ export interface Page {
 
 /** A directory */
 export interface Directory {
+  /** The parent directory */
   parent?: Directory;
+
+  /** The src info of this directory */
   src: Src;
+
+  /**
+   * Is `true` if the data assigned to this directory was loaded
+   * _data or _data.* files, and merged
+   */
   dataLoaded: boolean;
 
   /** The associated merged data */
@@ -193,12 +288,25 @@ export interface Directory {
 
 /** A source loader */
 export interface Source {
+  /** The Site instance associated with this source */
   site: Site;
+
+  /** The root of the src directory */
   root: Directory;
+
+  /** List of extensions to load data files and the loader used */
   data: Map<string, Loader>;
+
+  /** List of extensions to load page files and the loader used */
   pages: Map<string, Loader>;
+
+  /** List of files and folders to copy */
   staticFiles: Map<string, string>;
+
+  /** List of extensions that must be treated as assets (`.css`, `.js`, etc) */
   assets: Set<string>;
+
+  /** The list of paths to ignore */
   ignored: Set<string>;
 
   /** Return the File or Directory of a path */
@@ -234,18 +342,43 @@ export interface Scripts {
 
 /** A site builder */
 export interface Site {
+  /** The site options */
   options: SiteOptions;
+
+  /** The source handler instance */
   source: Source;
+
+  /** The script runner instance */
   scripts: Scripts;
+
+  /** The metric handler instance */
   metrics: Metrics;
+
+  /** Template engines by extension */
   engines: Map<string, Engine>;
+
+  /** The registered helpers */
   helpers: Map<string, [Helper, HelperOptions]>;
+
+  /** Extra data to be passed to the layouts */
   extraData: Record<string, unknown>;
+
+  /** Event listeners */
   listeners: Map<EventType, Set<EventListener | string>>;
+
+  /** Preprocessors by extension */
   preprocessors: Map<string, Processor[]>;
+
+  /** Processors by extension */
   processors: Map<string, Processor[]>;
+
+  /** List of pages generated by the build */
   pages: Page[];
+
+  /** Flags passed after `--` */
   flags: string[];
+
+  /** To store the includes paths by extension */
   includes: Map<string, string>;
 
   /** Return the src path */
@@ -326,13 +459,20 @@ export interface Metrics {
 
 /** A single metric */
 export interface Metric {
+  /** The metric name */
   name: string;
+
+  /** Additional info of the metric */
   details?: MetricDetail;
+
+  /** Stop measuring */
   stop(): void;
 }
 
 /** The details associated to a metric */
 export interface MetricDetail {
+  /** Page related with this metric */
   page?: Page;
+
   [key: string]: unknown;
 }

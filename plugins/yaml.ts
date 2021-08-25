@@ -3,6 +3,7 @@ import yaml from "../core/loaders/yaml.ts";
 import { merge } from "../core/utils.ts";
 
 export interface Options {
+  /** The list of extensions this plugin applies to */
   extensions: string[];
 }
 

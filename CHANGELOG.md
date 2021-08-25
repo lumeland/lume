@@ -8,20 +8,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- Updated `std` and `terser`.
+- Updated `react` to include typings.
+
+## [1.0.2] - 2021-08-20
 ### Added
 - Property `_data` to save arbitrary values in the pages internally.
   Used by (pre)processors.
+- Improved docs.
 
 ### Changed
-- Switch to Deno's native HTTP for local server and live-reload socket.
-  This improves the performance and remove the dependencies `std/http/server` and `std/ws`.
+- The minimum Deno version supported to `1.13.1` (from `1.12.2`).
+- Switched to Deno’s native HTTP for the local server and live-reload socket.
+  This improves the performance
+  and removes the dependencies `std/http/server` and `std/ws`.
 
 ### Fixed
-- Updated `std`, `cliffy` and `deno_dom`.
 - Fixed some bugs in the `bundler` plugin:
-  - Error processing files while watching due wrong file extensions.
-  - The processor now search and replace all `.ts`, `.tsx` and `.jsx` extensions with `.js`.
+  - Error processing files while watching due to wrong file extensions.
+  - The processor now searches and replaces
+    all `.ts`, `.tsx` and `.jsx` extensions with `.js`.
     This fixes the import errors.
+- Updated `std`, `cliffy` and `deno_dom`.
 
 ## [1.0.1] - 2021-08-04
 No changes.
@@ -1070,7 +1079,8 @@ The first version.
 [#125]: https://github.com/lumeland/lume/issues/125
 [#131]: https://github.com/lumeland/lume/issues/131
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/lumeland/lume/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/lumeland/lume/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/lumeland/lume/compare/v0.25.5...v1.0.0
 [0.25.5]: https://github.com/lumeland/lume/compare/v0.25.4...v0.25.5

@@ -2,8 +2,13 @@ import { merge } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
 
 export interface Options {
+  /** The list of extensions this plugin applies to */
   extensions: string[];
+
+  /** Set `true` to generate source map files */
   sourceMap: boolean;
+
+  /** The options for Deno.emit */
   options: Deno.EmitOptions;
 }
 

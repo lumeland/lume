@@ -6,8 +6,13 @@ import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
 export interface Options {
+  /** The list of extensions this plugin applies to */
   extensions: string[];
+
+  /** Custom includes path */
   includes: string;
+
+  /** Configuration to pass to Eta */
   options: Partial<EtaConfig>;
 }
 

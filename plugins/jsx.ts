@@ -4,6 +4,7 @@ import { merge } from "../core/utils.ts";
 import { Site } from "../core.ts";
 
 export interface Options {
+  /** The list of extensions this plugin applies to */
   extensions: string[];
 }
 
