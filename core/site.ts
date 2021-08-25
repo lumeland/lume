@@ -65,8 +65,8 @@ export default class LumeSite implements Site {
   helpers: Map<string, [Helper, HelperOptions]> = new Map();
   extraData: Record<string, unknown> = {};
   listeners: Map<EventType, Set<EventListener | string>> = new Map();
-  preprocessors: Map<string, Processor[]> = new Map();
-  processors: Map<string, Processor[]> = new Map();
+  preprocessors: Map<Processor, string[]> = new Map();
+  processors: Map<Processor, string[]> = new Map();
   includes: Map<string, string> = new Map();
   pages: Page[] = [];
 
@@ -164,20 +164,12 @@ export default class LumeSite implements Site {
   }
 
   preprocess(extensions: string[], preprocessor: Processor) {
-    extensions.forEach((extension) => {
-      const preprocessors = this.preprocessors.get(extension) || [];
-      preprocessors.push(preprocessor);
-      this.preprocessors.set(extension, preprocessors);
-    });
+    this.preprocessors.set(preprocessor, extensions);
     return this;
   }
 
   process(extensions: string[], processor: Processor) {
-    extensions.forEach((extension) => {
-      const processors = this.processors.get(extension) || [];
-      processors.push(processor);
-      this.processors.set(extension, processors);
-    });
+    this.processors.set(processor, extensions);
     return this;
   }
 
@@ -434,23 +426,27 @@ export default class LumeSite implements Site {
       }
 
       // Preprocess the pages
-      for (const [ext, preprocessors] of this.preprocessors) {
+      for (const [preprocess, exts] of this.preprocessors) {
         await concurrent(
           pages,
           async (page) => {
             try {
-              if (ext === page.src.ext || ext === page.dest.ext) {
-                for (const preprocess of preprocessors) {
-                  const metric = this.metrics.start("Preprocess", {
-                    page,
-                    processor: preprocess.name,
-                  });
-                  await preprocess(page, this);
-                  metric.stop();
-                }
+              if (
+                (page.src.ext && exts.includes(page.src.ext)) ||
+                exts.includes(page.dest.ext)
+              ) {
+                const metric = this.metrics.start("Preprocess", {
+                  page,
+                  processor: preprocess.name,
+                });
+                await preprocess(page, this);
+                metric.stop();
               }
             } catch (err) {
-              throw new Exception("Error preprocessing page", { page }, err);
+              throw new Exception("Error preprocessing page", {
+                page,
+                preprocess: preprocess.name,
+              }, err);
             }
           },
         );
@@ -476,23 +472,24 @@ export default class LumeSite implements Site {
     // Process the pages
     const metricProcess = this.metrics.start("Process (all pages)");
 
-    for (const [ext, processors] of this.processors) {
+    for (const [process, exts] of this.processors) {
       await concurrent(
         this.pages,
         async (page) => {
           try {
-            if (ext === page.dest.ext && page.content) {
-              for (const process of processors) {
-                const metric = this.metrics.start("Process", {
-                  page,
-                  processor: process.name,
-                });
-                await process(page, this);
-                metric.stop();
-              }
+            if (exts.includes(page.dest.ext) && page.content) {
+              const metric = this.metrics.start("Process", {
+                page,
+                processor: process.name,
+              });
+              await process(page, this);
+              metric.stop();
             }
           } catch (err) {
-            throw new Exception("Error processing page", { page }, err);
+            throw new Exception("Error processing page", {
+              page,
+              processor: process.name,
+            }, err);
           }
         },
       );

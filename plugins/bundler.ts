@@ -31,47 +31,37 @@ const defaults: Options = {
 /** A plugin to load all .js and .ts files and bundle them using Deno.emit() */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
-  moveToLast(options.extensions, ".js");
 
   return async (site: Site) => {
     site.loadAssets(options.extensions);
-    site.preprocess(options.extensions, prepare);
+    site.process(options.extensions, prepare);
     site.process(options.extensions, bundler);
 
-    const includes = await downloadIncludes(options.includes);
+    const includesSources = await downloadIncludes(options.includes);
 
-    let pageSources: Record<string, string>;
+    let pageSources: Record<string, string> = {};
 
-    // Collect all sources before run the bundler
-    if (options.options.bundle) {
-      site.addEventListener("afterRender", () => {
-        pageSources = {};
+    site.addEventListener("beforeSave", () => {
+      // Clean the pageSources
+      pageSources = {};
 
-        site.pages.forEach((file) => {
-          if (file._data.bundle) {
-            const path = file._data.url as string;
-            pageSources[path] = file.content as string;
-          }
-        });
-      });
-    }
-
-    // Remove all files that shouldn't be bundled
-    if (options.entries.length) {
-      site.addEventListener("beforeSave", () => {
-        site.pages = site.pages.filter((file) => {
-          return !file._data.bundle ||
-            options.entries.includes(file._data.url as string);
-        });
-      });
-    }
+      // Remove all files that shouldn't be bundled
+      if (options.entries.length) {
+        site.pages = site.pages.filter(
+          (file) =>
+            !file._data.url ||
+            options.entries.includes(file._data.url as string),
+        );
+      }
+    });
 
     function prepare(file: Page) {
       if (!file._data.url) {
-        file._data.bundle = true;
         file._data.url = file.data.url;
-        file._data.ext = file.dest.ext;
       }
+
+      const path = file._data.url as string;
+      pageSources[path] = file.content as string;
     }
 
     async function bundler(file: Page) {
@@ -82,7 +72,7 @@ export default function (userOptions?: Partial<Options>) {
       }
 
       const sources = {
-        ...includes,
+        ...includesSources,
         ...pageSources,
         ...options.options.sources,
         [from]: file.content as string,
@@ -140,15 +130,4 @@ async function downloadIncludes(
   }));
 
   return result;
-}
-
-// Ensure a element is the last item in the array if exists
-function moveToLast<Item>(array: Item[], item: Item): void {
-  const index = array.indexOf(item);
-  if (index === -1) {
-    return;
-  }
-
-  array.splice(index, 1);
-  array.push(item);
 }
