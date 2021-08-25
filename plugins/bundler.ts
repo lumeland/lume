@@ -31,6 +31,7 @@ const defaults: Options = {
 /** A plugin to load all .js and .ts files and bundle them using Deno.emit() */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
+  moveToLast(options.extensions, ".js");
 
   return async (site: Site) => {
     site.loadAssets(options.extensions);
@@ -139,4 +140,15 @@ async function downloadIncludes(
   }));
 
   return result;
+}
+
+// Ensure a element is the last item in the array if exists
+function moveToLast<Item>(array: Item[], item: Item): void {
+  const index = array.indexOf(item);
+  if (index === -1) {
+    return;
+  }
+
+  array.splice(index, 1);
+  array.push(item);
 }

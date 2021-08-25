@@ -480,15 +480,19 @@ export default class LumeSite implements Site {
       await concurrent(
         this.pages,
         async (page) => {
-          if (ext === page.dest.ext && page.content) {
-            for (const process of processors) {
-              const metric = this.metrics.start("Process", {
-                page,
-                processor: process.name,
-              });
-              await process(page, this);
-              metric.stop();
+          try {
+            if (ext === page.dest.ext && page.content) {
+              for (const process of processors) {
+                const metric = this.metrics.start("Process", {
+                  page,
+                  processor: process.name,
+                });
+                await process(page, this);
+                metric.stop();
+              }
             }
+          } catch (err) {
+            throw new Exception("Error processing page", { page }, err);
           }
         },
       );

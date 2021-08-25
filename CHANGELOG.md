@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Updated `std` and `terser`.
 - Updated `react` to include typings.
+- `bundler` and `terser` plugins combinations.
 
 ## [1.0.2] - 2021-08-20
 ### Added
