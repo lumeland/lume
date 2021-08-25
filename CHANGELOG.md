@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - Improved `bundler` plugin with the following additions:
   - New option `entries` to only emit some files.
+  - New option `includes` to download and include external dependencies.
   - Support for `Deno.EmitOptions.bundle` to emit a single file with all dependencies.
 
 ### Fixed
