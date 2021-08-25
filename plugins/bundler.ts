@@ -2,6 +2,9 @@ import { merge } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
 
 export interface Options {
+  /** Only generate these entry files */
+  entries: string[];
+
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
@@ -14,6 +17,7 @@ export interface Options {
 
 // Default options
 const defaults: Options = {
+  entries: [],
   extensions: [".ts", ".js"],
   sourceMap: false,
   options: {},
@@ -32,7 +36,9 @@ export default function (userOptions?: Partial<Options>) {
     // Collect all sources before run the bundler
     if (options.options.bundle) {
       site.addEventListener("afterRender", () => {
-        allSources = {};
+        allSources = {
+          ...options.options.sources,
+        };
 
         site.pages.forEach((file) => {
           if (options.extensions.includes(file.src.ext!)) {
@@ -49,6 +55,11 @@ export default function (userOptions?: Partial<Options>) {
       }
 
       const from = file._data.url as string;
+
+      if (options.entries.length && !options.entries.includes(from)) {
+        return;
+      }
+
       const sources = allSources || { [from]: file.content as string };
       const { files } = await Deno.emit(from, {
         ...options.options,

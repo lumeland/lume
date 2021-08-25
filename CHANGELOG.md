@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Added
+- Improved `bundler` plugin with the following additions:
+  - New option `entries` to only emit some files.
+  - Support for `Deno.EmitOptions.bundle` to emit a single file with all dependencies.
+
 ### Fixed
 - Updated `std` and `terser`.
 - Updated `react` to include typings.
