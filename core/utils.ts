@@ -154,11 +154,11 @@ export function stringToDocument(string: string): HTMLDocument {
  */
 export class Exception extends Error {
   data?: Record<string, unknown>;
-  error?: Error;
 
-  constructor(message: string, data?: Record<string, unknown>, error?: Error) {
-    super(message);
+  constructor(message: string, data?: Record<string, unknown>, cause?: Error) {
+    const options = cause ? { cause } : {};
+
+    super(message, options);
     this.data = data;
-    this.error = error;
   }
 }

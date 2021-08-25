@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Updated `react` to include typings.
 - Internal changes to how the processors and preprocessors are handled
   to ensure that they are executed in the same order they were registered.
+- Use [Error cause](https://deno.com/blog/v1.13#error-cause) property to chain errors.
 
 ## [1.0.2] - 2021-08-20
 ### Added

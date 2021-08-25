@@ -90,8 +90,8 @@ export function printError(
     });
   }
 
-  if (error instanceof Exception && error.error) {
-    printError(error.error, indent + 1, stackLines);
+  if (error.cause) {
+    printError(error.cause, indent + 1, stackLines);
   }
 
   if (indent == 0) {
