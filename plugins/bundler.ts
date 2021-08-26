@@ -37,6 +37,21 @@ export default function (userOptions?: Partial<Options>) {
     site.process(options.extensions, prepare);
     site.process(options.extensions, bundler);
 
+    // Check configuration
+    if (!options.options.bundle) {
+      if (options.entries.length) {
+        throw new Error(
+          "[bundle] You must set `options.bundle` to 'module' or 'classic' to use `entries`",
+        );
+      }
+
+      if (options.includes.length) {
+        throw new Error(
+          "[bundle] You must set `options.bundle` to 'module' or 'classic' to use `includes`",
+        );
+      }
+    }
+
     const includesSources = await downloadIncludes(options.includes);
 
     let pageSources: Record<string, string> = {};
@@ -61,7 +76,10 @@ export default function (userOptions?: Partial<Options>) {
       }
 
       const path = file._data.url as string;
-      pageSources[path] = file.content as string;
+
+      if (options.options.bundle) {
+        pageSources[path] = file.content as string;
+      }
     }
 
     async function bundler(file: Page) {
