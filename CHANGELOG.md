@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - Support for `Deno.EmitOptions.bundle` to emit a single file with all dependencies.
 
 ### Fixed
-- Updated `std` and `terser`.
+- Updated `std`, `terser` and `svgo`.
 - Updated `react` to include typings.
 - Internal changes to how the processors and preprocessors are handled
   to ensure that they are executed in the same order they were registered.
