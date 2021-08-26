@@ -50,24 +50,18 @@ export default function (userOptions?: Partial<Options>) {
           "[bundle] You must set `options.bundle` to 'module' or 'classic' to use `includes`",
         );
       }
+    } else if (!options.entries.length) {
+      throw new Error(
+        "[bundle] You must set at least one `entries` to use `options.bundle`",
+      );
     }
 
     const includesSources = await downloadIncludes(options.includes);
-
     let pageSources: Record<string, string> = {};
 
-    site.addEventListener("beforeSave", () => {
-      // Clean the pageSources
+    // Clean the pageSources
+    site.addEventListener("beforeUpdate", () => {
       pageSources = {};
-
-      // Remove all files that shouldn't be bundled
-      if (options.entries.length) {
-        site.pages = site.pages.filter(
-          (file) =>
-            !file._data.url ||
-            options.entries.includes(file._data.url as string),
-        );
-      }
     });
 
     function prepare(file: Page) {
@@ -79,6 +73,11 @@ export default function (userOptions?: Partial<Options>) {
 
       if (options.options.bundle) {
         pageSources[path] = file.content as string;
+
+        // Empty the file if it's not going to be bundled
+        if (options.entries.length && !options.entries.includes(path)) {
+          file.content = "";
+        }
       }
     }
 
