@@ -3,11 +3,11 @@ import { Page, Site } from "../core.ts";
 import { walk } from "../deps/fs.ts";
 
 export interface Options {
-  /** Only output these entry files */
+  /** List of entry points to bundle */
   entries: string[];
 
   /** Extra includes imported */
-  includes: (string | URL)[];
+  includes: string[];
 
   /** The list of extensions this plugin applies to */
   extensions: string[];
@@ -52,7 +52,7 @@ export default function (userOptions?: Partial<Options>) {
       }
     } else if (!options.entries.length) {
       throw new Error(
-        "[bundle] You must set at least one `entries` to use `options.bundle`",
+        "[bundle] You must set at least one file in `options.entries` to use `options.bundle`",
       );
     }
 
@@ -126,7 +126,7 @@ function fixExtensions(content: string) {
 
 /** A loader to load all .js and .ts files and bundle them using Deno.emit() */
 async function downloadIncludes(
-  includes: (string | URL)[],
+  includes: (string)[],
 ): Promise<Record<string, string>> {
   if (includes.length) {
     console.log(`[bundle] Loading ${includes.length} includes`);
@@ -135,9 +135,9 @@ async function downloadIncludes(
   const result: Record<string, string> = {};
 
   await Promise.all(includes.map(async (url) => {
-    if (url instanceof URL) {
+    if (url.match(/^https?:\/\//)) {
       const response = await fetch(url);
-      result[url.href] = await response.text();
+      result[url] = await response.text();
       return;
     }
 
