@@ -32,32 +32,37 @@ const defaults: Options = {
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
-  return async (site: Site) => {
+  // Check configuration
+  if (!options.options.bundle) {
+    if (options.entries.length) {
+      throw new Error(
+        "[bundle] You must set `options.bundle` to 'module' or 'classic' to use `entries`",
+      );
+    }
+
+    if (options.includes.length) {
+      throw new Error(
+        "[bundle] You must set `options.bundle` to 'module' or 'classic' to use `includes`",
+      );
+    }
+  } else if (!options.entries.length) {
+    throw new Error(
+      "[bundle] You must set at least one file in `options.entries` to use `options.bundle`",
+    );
+  }
+
+  return (site: Site) => {
+    let includesSources: Record<string, string> = {};
+    let pageSources: Record<string, string> = {};
+
     site.loadAssets(options.extensions);
     site.process(options.extensions, prepare);
     site.process(options.extensions, bundler);
 
-    // Check configuration
-    if (!options.options.bundle) {
-      if (options.entries.length) {
-        throw new Error(
-          "[bundle] You must set `options.bundle` to 'module' or 'classic' to use `entries`",
-        );
-      }
-
-      if (options.includes.length) {
-        throw new Error(
-          "[bundle] You must set `options.bundle` to 'module' or 'classic' to use `includes`",
-        );
-      }
-    } else if (!options.entries.length) {
-      throw new Error(
-        "[bundle] You must set at least one file in `options.entries` to use `options.bundle`",
-      );
-    }
-
-    const includesSources = await downloadIncludes(options.includes);
-    let pageSources: Record<string, string> = {};
+    // Download all includes
+    site.addEventListener("beforeBuild", async () => {
+      includesSources = await downloadIncludes(options.includes);
+    });
 
     // Clean the pageSources
     site.addEventListener("beforeUpdate", () => {
