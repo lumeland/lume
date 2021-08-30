@@ -69,7 +69,7 @@ export function printError(
   console.log();
   const tab = "  ".repeat(indent);
 
-  console.error(`${tab}${bold(red(`Error:`))}`, error.message);
+  console.error(`${tab}${bold(red(`${error.name}:`))}`, error.message);
 
   if (error instanceof Exception) {
     for (let [key, value] of Object.entries(error.data ?? {})) {

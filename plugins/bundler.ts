@@ -35,20 +35,26 @@ export default function (userOptions?: Partial<Options>) {
   // Check configuration
   if (!options.options.bundle) {
     if (options.entries.length) {
-      throw new Error(
-        "[bundle] You must set `options.bundle` to 'module' or 'classic' to use `entries`",
+      const error = new Error(
+        "'entries' option requires `options.bundle` set to 'module' or 'classic'",
       );
+      error.name = "Bundler plugin";
+      throw error;
     }
 
     if (options.includes.length) {
-      throw new Error(
-        "[bundle] You must set `options.bundle` to 'module' or 'classic' to use `includes`",
+      const error = new Error(
+        "'includes' option requires `options.bundle` set to 'module' or 'classic'",
       );
+      error.name = "Bundler plugin";
+      throw error;
     }
   } else if (!options.entries.length) {
-    throw new Error(
-      "[bundle] You must set at least one file in `options.entries` to use `options.bundle`",
+    const error = new Error(
+      "'option.bundle' option requires at least one value in 'options.entries'",
     );
+    error.name = "Bundler plugin";
+    throw error;
   }
 
   return (site: Site) => {
