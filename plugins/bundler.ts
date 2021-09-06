@@ -78,7 +78,7 @@ export default function (userOptions?: Partial<Options>) {
       }
     }
 
-    // Load all dependencies
+    // Load all dependencies and save them in `sources`
     async function loadGraph(file: Page) {
       const specifier = file._data.specifier as string;
 
