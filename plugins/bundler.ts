@@ -1,13 +1,11 @@
 import { merge } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
-import { walk } from "../deps/fs.ts";
+import { toFileUrl } from "../deps/path.ts";
+import { createGraph, load, LoadResponse } from "../deps/graph.ts";
 
 export interface Options {
   /** List of entry points to bundle */
   entries: string[];
-
-  /** Extra includes imported */
-  includes: string[];
 
   /** The list of extensions this plugin applies to */
   extensions: string[];
@@ -22,7 +20,6 @@ export interface Options {
 // Default options
 const defaults: Options = {
   entries: [],
-  includes: [],
   extensions: [".ts", ".js"],
   sourceMap: false,
   options: {},
@@ -41,14 +38,6 @@ export default function (userOptions?: Partial<Options>) {
       error.name = "Bundler plugin";
       throw error;
     }
-
-    if (options.includes.length) {
-      const error = new Error(
-        "'includes' option requires `options.bundle` set to 'module' or 'classic'",
-      );
-      error.name = "Bundler plugin";
-      throw error;
-    }
   } else if (!options.entries.length) {
     const error = new Error(
       "'option.bundle' option requires at least one value in 'options.entries'",
@@ -58,55 +47,72 @@ export default function (userOptions?: Partial<Options>) {
   }
 
   return (site: Site) => {
-    let includesSources: Record<string, string> = {};
-    let pageSources: Record<string, string> = {};
+    const sources: Record<string, string> = {};
 
     site.loadAssets(options.extensions);
     site.process(options.extensions, prepare);
+
+    if (options.options.bundle) {
+      site.process(options.extensions, loadGraph);
+    }
     site.process(options.extensions, bundler);
 
-    // Download all includes
-    site.addEventListener("beforeBuild", async () => {
-      includesSources = await downloadIncludes(options.includes);
-    });
-
-    // Clean the pageSources
-    site.addEventListener("beforeUpdate", () => {
-      pageSources = {};
-    });
-
+    // Prepare the specifiers
     function prepare(file: Page) {
       if (!file._data.url) {
-        file._data.url = file.data.url;
+        const url = file.data.url as string;
+        file._data.url = url;
+        file._data.specifier = toFileUrl(site.src(url)).href;
       }
 
-      const path = file._data.url as string;
+      const specifier = file._data.specifier as string;
+      sources[specifier] = file.content as string;
 
+      // Empty the file if it's not going to be bundled
+      // This disable the next processors for this file
       if (options.options.bundle) {
-        pageSources[path] = file.content as string;
-
-        // Empty the file if it's not going to be bundled
-        if (options.entries.length && !options.entries.includes(path)) {
+        const url = file._data.url as string;
+        if (options.entries.length && !options.entries.includes(url)) {
           file.content = "";
         }
       }
     }
 
+    // Load all dependencies
+    async function loadGraph(file: Page) {
+      const specifier = file._data.specifier as string;
+
+      await createGraph(specifier, {
+        async load(
+          specifier: string,
+          isDynamic: boolean,
+        ): Promise<LoadResponse | undefined> {
+          if (isDynamic) {
+            return;
+          }
+
+          if (specifier in sources) {
+            return {
+              specifier: specifier,
+              content: sources[specifier] || "",
+            };
+          }
+
+          const response = await load(specifier);
+
+          if (response) {
+            sources[response.specifier] = response.content;
+            return response;
+          }
+        },
+      });
+    }
+
+    // Bundle all files
     async function bundler(file: Page) {
-      const from = file._data.url as string;
+      const specifier = file._data.specifier as string;
 
-      if (options.entries.length && !options.entries.includes(from)) {
-        return;
-      }
-
-      const sources = {
-        ...includesSources,
-        ...pageSources,
-        ...options.options.sources,
-        [from]: file.content as string,
-      };
-
-      const { files } = await Deno.emit(from, {
+      const { files } = await Deno.emit(specifier, {
         ...options.options,
         sources,
       });
@@ -133,29 +139,4 @@ export default function (userOptions?: Partial<Options>) {
 /** Replace all .ts, .tsx and .jsx files with .js files */
 function fixExtensions(content: string) {
   return content.replaceAll(/\.(ts|tsx|jsx)("|')/ig, ".js$2");
-}
-
-/** A loader to load all .js and .ts files and bundle them using Deno.emit() */
-async function downloadIncludes(
-  includes: (string)[],
-): Promise<Record<string, string>> {
-  if (includes.length) {
-    console.log(`[bundle] Loading ${includes.length} includes`);
-  }
-
-  const result: Record<string, string> = {};
-
-  await Promise.all(includes.map(async (url) => {
-    if (url.match(/^https?:\/\//)) {
-      const response = await fetch(url);
-      result[url] = await response.text();
-      return;
-    }
-
-    for await (const entry of walk(url, { includeDirs: false })) {
-      result[`/${entry.path}`] = await Deno.readTextFile(entry.path);
-    }
-  }));
-
-  return result;
 }
