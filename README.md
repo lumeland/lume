@@ -25,7 +25,7 @@ faster, simpler and easier to use and configure, besides being super flexible.
 
 Make sure you have [Deno installed](https://deno.land/#installation).
 
-Create your first page, for example, by using a Nunjucks template:
+Create your first page, for example, using the Nunjucks file `index.njk`:
 
 ```html
 ---
