@@ -161,4 +161,9 @@ export class Exception extends Error {
     super(message, options);
     this.data = data;
   }
+
+  setName(name: string) {
+    this.name = name;
+    return this;
+  }
 }

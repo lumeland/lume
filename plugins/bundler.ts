@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { Exception, merge } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
 import { toFileUrl } from "../deps/path.ts";
 import { createGraph, load, LoadResponse } from "../deps/graph.ts";
@@ -32,18 +32,14 @@ export default function (userOptions?: Partial<Options>) {
   // Check configuration
   if (!options.options.bundle) {
     if (options.entries.length) {
-      const error = new Error(
+      throw new Exception(
         "'entries' option requires `options.bundle` set to 'module' or 'classic'",
-      );
-      error.name = "Bundler plugin";
-      throw error;
+      ).setName("Bundler plugin");
     }
   } else if (!options.entries.length) {
-    const error = new Error(
+    throw new Exception(
       "'option.bundle' option requires at least one value in 'options.entries'",
-    );
-    error.name = "Bundler plugin";
-    throw error;
+    ).setName("Bundler plugin");
   }
 
   return (site: Site) => {
@@ -51,30 +47,44 @@ export default function (userOptions?: Partial<Options>) {
 
     site.loadAssets(options.extensions);
     site.process(options.extensions, prepare);
-
     if (options.options.bundle) {
       site.process(options.extensions, loadGraph);
     }
     site.process(options.extensions, bundler);
 
+    // Transform the entries to specifiers
+    const entries = options.entries.map((path) =>
+      toFileUrl(site.src(path)).href
+    );
+    const notFoundEntries = entries.concat();
+
+    // Throw and exception is for not found entries
+    site.addEventListener("beforeSave", () => {
+      if (notFoundEntries.length) {
+        throw new Exception(
+          "Some entries have not been found",
+          { notFoundEntries },
+        ).setName("Bundler plugin");
+      }
+    });
+
     // Prepare the specifiers
     function prepare(file: Page) {
-      if (!file._data.url) {
-        const url = file.data.url as string;
-        file._data.url = url;
-        file._data.specifier = toFileUrl(site.src(url)).href;
-      }
+      file._data.specifier ||=
+        toFileUrl(site.src(file.data.url as string)).href;
 
       const specifier = file._data.specifier as string;
-      sources[specifier] = file.content as string;
 
-      // Empty the file if it's not going to be bundled
-      // This disable the next processors for this file
       if (options.options.bundle) {
-        const url = file._data.url as string;
-        if (options.entries.length && !options.entries.includes(url)) {
-          file.content = "";
-        }
+        sources[specifier] = file.content as string;
+      }
+
+      const entryIndex = notFoundEntries.indexOf(specifier);
+
+      if (entryIndex !== -1) {
+        notFoundEntries.splice(entryIndex, 1);
+      } else if (entries.length) {
+        file.content = "";
       }
     }
 
@@ -111,26 +121,30 @@ export default function (userOptions?: Partial<Options>) {
     // Bundle all files
     async function bundler(file: Page) {
       const specifier = file._data.specifier as string;
-
       const { files } = await Deno.emit(specifier, {
         ...options.options,
-        sources,
+        sources: {
+          ...sources,
+          [specifier]: file.content as string,
+        },
       });
 
-      for (const [path, content] of Object.entries(files)) {
-        if (path.endsWith(".js")) {
-          file.content = fixExtensions(content);
-          file.dest.ext = ".js";
-          continue;
-        }
+      const content = files[specifier] || files[specifier + ".js"] ||
+        files["deno:///bundle.js"];
 
-        if (options.sourceMap && path.endsWith(".map")) {
-          const mapFile = file.duplicate();
-          mapFile.content = content;
-          mapFile.dest.ext = ".js.map";
-          site.pages.push(mapFile);
-          continue;
-        }
+      if (content) {
+        file.content = fixExtensions(content);
+        file.dest.ext = ".js";
+      }
+
+      const mapContent = files[specifier + ".map"] ||
+        files[specifier + ".js.map"] || files["deno:///bundle.js.map"];
+
+      if (options.sourceMap && mapContent) {
+        const mapFile = file.duplicate();
+        mapFile.content = mapContent;
+        mapFile.dest.ext = ".js.map";
+        site.pages.push(mapFile);
       }
     }
   };

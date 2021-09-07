@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.5] - Unreleased
+### Fixed
+- Added some tweaks to the `bundler` plugin:
+  - The `entries` array items dont't need to start with `/`.
+  - Show an error if some entry was not found.
+  - Wrong content saved when `options.bundler` is `undefined`.
+
 ## [1.0.4] - 2021-09-06
 ### Changed
 - Removed `includes` option for `bundler` plugin.
@@ -1093,6 +1100,7 @@ The first version.
 [#125]: https://github.com/lumeland/lume/issues/125
 [#131]: https://github.com/lumeland/lume/issues/131
 
+[1.0.5]: https://github.com/lumeland/lume/compare/v1.0.4...HEAD
 [1.0.4]: https://github.com/lumeland/lume/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/lumeland/lume/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/lumeland/lume/compare/v1.0.1...v1.0.2
