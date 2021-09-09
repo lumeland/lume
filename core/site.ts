@@ -477,7 +477,10 @@ export default class LumeSite implements Site {
         this.pages,
         async (page) => {
           try {
-            if (exts.includes(page.dest.ext) && page.content) {
+            if (
+              (page.src.ext && exts.includes(page.src.ext)) ||
+              exts.includes(page.dest.ext)
+            ) {
               const metric = this.metrics.start("Process", {
                 page,
                 processor: process.name,

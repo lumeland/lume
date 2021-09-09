@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.6] - Unreleased
+### Fixed
+- Processors take into account the `src` extension,
+  in addition to the `dest` extension to match with preprocessors behavior.
+
 ## [1.0.5] - 2021-09-07
 ### Fixed
 - Some bugs in the `bundler` plugin:
@@ -1100,6 +1105,7 @@ The first version.
 [#125]: https://github.com/lumeland/lume/issues/125
 [#131]: https://github.com/lumeland/lume/issues/131
 
+[1.0.6]: https://github.com/lumeland/lume/compare/v1.0.5...HEAD
 [1.0.5]: https://github.com/lumeland/lume/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/lumeland/lume/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/lumeland/lume/compare/v1.0.2...v1.0.3
