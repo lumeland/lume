@@ -1,5 +1,5 @@
 import { assertEquals as equals } from "../deps/assert.ts";
-import { merge, searchByExtension } from "../core/utils.ts";
+import { isPlainObject, merge, searchByExtension } from "../core/utils.ts";
 
 Deno.test("merge options", () => {
   interface Options {
@@ -74,4 +74,13 @@ Deno.test("search by extension", () => {
   equals(searchByExtension("file.ts", extensions), [".ts", "ts"]);
   equals(searchByExtension(".ts", extensions), [".ts", "ts"]);
   equals(searchByExtension("foo", extensions), undefined);
+});
+
+Deno.test("isPlainObject", () => {
+  equals(isPlainObject({}), true);
+  equals(isPlainObject(new URL("http://localhost")), false);
+  equals(isPlainObject([]), false);
+  equals(isPlainObject(new Map()), false);
+  equals(isPlainObject(new Set()), false);
+  equals(isPlainObject(Symbol.for("foo")), false);
 });
