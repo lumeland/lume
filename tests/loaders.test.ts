@@ -1,10 +1,5 @@
-import {
-  assert,
-  assertStrictEquals as equals,
-  assertStringIncludes as contains,
-} from "../deps/assert.ts";
+import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
-import { Event } from "../core.ts";
 
 const cwd = new URL("./assets", import.meta.url).pathname;
 
@@ -39,16 +34,14 @@ Deno.test("load the pages of a site", async () => {
   equals(page1.data.date?.getTime(), 1);
 
   // Shared data
-
   // @ts-ignore: unknown property
-  equals(page1.data.colors.rgb.red, "#ff0000");
-  // To-do: what happens if default data is not an object?
+  equals(page1.data.colors.length, 3);
   // @ts-ignore: unknown property
-  equals(page1.data.documents.content.length, 3);
+  equals(page1.data.documents.length, 3);
   // @ts-ignore: unknown property
   equals(page1.data.drinks.alcoholic.length, 2);
   // @ts-ignore: unknown property
-  equals(page1.data.names[0], "Oscar");
+  equals(page1.data.names.length, 2);
 
   const page2 = pages.find((p) => p.src.path === "/pages/2020-06-21_page2")!;
 

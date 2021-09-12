@@ -303,11 +303,13 @@ export default class SiteSource implements Source {
 
     if (entry.isFile) {
       const name = basename(entry.name, extname(entry.name));
+      const fileData = await this.#loadData(join(path, entry.name));
 
-      data[name] = Object.assign(
-        data[name] || {},
-        await this.#loadData(join(path, entry.name)),
-      );
+      if (fileData.content && Object.keys(fileData).length === 1) {
+        data[name] = fileData.content;
+      } else {
+        data[name] = Object.assign(data[name] || {}, fileData);
+      }
 
       return;
     }

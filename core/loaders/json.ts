@@ -1,7 +1,18 @@
 import { Data } from "../../core.ts";
+import { isPlainObject } from "../utils.ts";
 
 /** Load and parse a JSON file */
 export default async function (path: string): Promise<Data> {
-  const content = await Deno.readTextFile(path);
-  return JSON.parse(content);
+  const text = await Deno.readTextFile(path);
+  const content = JSON.parse(text);
+
+  if (!content) {
+    return {};
+  }
+
+  if (isPlainObject(content)) {
+    return content as Data;
+  }
+
+  return { content };
 }

@@ -8,10 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.0.6] - Unreleased
+### Added
+- Created a bunch of tests
+
 ### Fixed
 - Processors take into account the `src` extension,
   in addition to the `dest` extension to match with preprocessors behavior.
 - The `server.page404` option accepts pretty urls (ex: `/404/`)
+- Keep the return type of the files in `_data` folders that returns not plain objects
+  (for example, arrays, numbers, etc)
 
 ## [1.0.5] - 2021-09-07
 ### Fixed
