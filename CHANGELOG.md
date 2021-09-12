@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Processors take into account the `src` extension,
   in addition to the `dest` extension to match with preprocessors behavior.
+- The `server.page404` option accepts pretty urls (ex: `/404/`)
 
 ## [1.0.5] - 2021-09-07
 ### Fixed

@@ -11,7 +11,11 @@ export default async function server(site: Site) {
   const root = site.dest();
   const port = site.options.server.port || 3000;
   const ipAddr = await localIp();
-  const page404 = site.options.server.page404 || "/404.html";
+  let page404 = site.options.server.page404 || "/404.html";
+
+  if (page404.endsWith("/")) {
+    page404 += "index.html";
+  }
 
   console.log();
   console.log("  Server started at:");
