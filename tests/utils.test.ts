@@ -1,25 +1,5 @@
 import { assertEquals as equals } from "../deps/assert.ts";
-import { merge } from "../core/utils.ts";
-
-Deno.test("merge options", () => {
-  interface Options {
-    foo: string;
-  }
-
-  const defaults: Options = {
-    foo: "bar",
-  };
-
-  const user: Partial<Options> = {
-    foo: "baz",
-  };
-
-  const expected: Options = {
-    foo: "baz",
-  };
-
-  equals(expected, merge(defaults, user));
-});
+import { merge, searchByExtension } from "../core/utils.ts";
 
 Deno.test("merge options", () => {
   interface Options {
@@ -77,4 +57,21 @@ Deno.test("merge inner options", () => {
   };
 
   equals(expected, merge(defaults, user));
+});
+
+Deno.test("search by extension", () => {
+  const extensions = new Map([
+    [".tmpl.ts", "ts template"],
+    [".tmpl.js", "js template"],
+    [".js", "js"],
+    [".ts", "ts"],
+  ]);
+
+  equals(searchByExtension("file.tmpl.ts", extensions), [
+    ".tmpl.ts",
+    "ts template",
+  ]);
+  equals(searchByExtension("file.ts", extensions), [".ts", "ts"]);
+  equals(searchByExtension(".ts", extensions), [".ts", "ts"]);
+  equals(searchByExtension("foo", extensions), undefined);
 });

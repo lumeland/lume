@@ -18,7 +18,7 @@ Deno.test("build a simple site", async () => {
 
   const { pages } = site;
 
-  // Test the generated page
+  // Test the generated pages
   equals(pages.length, 1);
   equals(pages[0].src.path, "/page1");
   equals(pages[0].src.ext, ".md");

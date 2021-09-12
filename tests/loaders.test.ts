@@ -1,0 +1,111 @@
+import {
+  assert,
+  assertStrictEquals as equals,
+  assertStringIncludes as contains,
+} from "../deps/assert.ts";
+import lume from "../mod.ts";
+import { Event } from "../core.ts";
+
+const cwd = new URL("./assets", import.meta.url).pathname;
+
+Deno.test("load the pages of a site", async () => {
+  const site = lume({
+    cwd,
+    test: true,
+    dev: true,
+    src: "normal",
+  });
+
+  await site.build();
+
+  const { pages } = site;
+
+  // Test the generated pages
+  equals(pages.length, 5);
+
+  // The data is merged
+  const page1 = pages.find((p) => p.src.path === "/pages/1_page1")!;
+
+  assert(page1);
+  assert(page1.data.draft);
+  equals(page1.data.url, "/pages/page1/");
+  equals(page1.data.title, "Page 1");
+  equals(page1.data.tags?.length, 2);
+  equals(page1.data.tags?.[0], "pages");
+  equals(page1.data.tags?.[1], "page1");
+  equals(page1.data.site, "Default site name");
+  equals(page1.dest.path, "/pages/page1/index");
+  equals(page1.dest.ext, ".html");
+  equals(page1.data.date?.getTime(), 1);
+
+  const page2 = pages.find((p) => p.src.path === "/pages/2020-06-21_page2")!;
+
+  assert(page2);
+  assert(!page2.data.draft);
+  equals(page2.data.url, "/overrided-page2/");
+  equals(page2.data.title, "Page 2");
+  equals(page2.data.tags?.length, 1);
+  equals(page2.data.tags?.[0], "pages");
+  equals(page2.data.site, "Default site name");
+  equals(page2.dest.path, "/overrided-page2/index");
+  equals(page2.dest.ext, ".html");
+  equals(page2.data.date?.getTime(), new Date(2020, 5, 21).getTime());
+
+  const page3 = pages.find((p) => p.src.path === "/pages/page3")!;
+
+  assert(page3);
+  assert(!page3.data.draft);
+  equals(page3.data.url, "/page_3");
+  equals(page3.data.title, "Page 3");
+  equals(page3.data.tags?.length, 1);
+  equals(page3.data.tags?.[0], "pages");
+  equals(page3.data.site, "Default site name");
+  equals(page3.dest.path, "/page_3");
+  equals(page3.dest.ext, "");
+  equals(page3.data.date?.getTime(), new Date(2020, 0, 1).getTime());
+
+  const page4 = pages.find((p) =>
+    p.src.path === "/pages/2021-01-02-18-32_page4"
+  )!;
+
+  assert(page4);
+  assert(!page4.data.draft);
+  equals(page4.data.url, "/pages/page4/");
+  equals(page4.data.title, "Page 4");
+  equals(page4.data.tags?.length, 1);
+  equals(page4.data.tags?.[0], "pages");
+  equals(page4.data.site, "Overrided site name");
+  equals(page4.dest.path, "/pages/page4/index");
+  equals(page4.dest.ext, ".html");
+  // To-do: Maybe the date in the filenames should be created with Date.UTC?
+  equals(page4.data.date?.getTime(), new Date(2021, 0, 2, 18, 32).getTime());
+
+  const page5 = pages.find((p) => p.src.path === "/pages/page5")!;
+
+  assert(page5);
+  assert(!page5.data.draft);
+  equals(page5.data.url, "/pages/page5/");
+  equals(page5.data.title, "Page 5");
+  equals(page5.data.tags?.length, 1);
+  equals(page5.data.tags?.[0], "pages");
+  equals(page5.data.site, "Default site name");
+  equals(page5.dest.path, "/pages/page5/index");
+  equals(page5.dest.ext, ".html");
+  equals(
+    page5.data.date?.getTime(),
+    new Date(Date.UTC(1979, 5, 21, 23, 45, 0)).getTime(),
+  );
+});
+
+Deno.test("ignored draft pages on dev=false", async () => {
+  const site = lume({
+    cwd,
+    test: true,
+    dev: false,
+    src: "normal",
+  });
+
+  await site.build();
+
+  equals(site.pages.length, 4);
+});

@@ -11,6 +11,9 @@ export interface Data {
   /** If is `true`, the page will be visible only in `dev` mode */
   draft?: boolean;
 
+  /** The date creation of the page */
+  date?: Date;
+
   /** To configure the render order of a page */
   renderOrder?: number;
 
