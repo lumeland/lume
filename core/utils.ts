@@ -91,7 +91,7 @@ export function merge<Type>(
 }
 
 /** Check if the argument passed is a plain object */
-function isPlainObject(obj: unknown) {
+export function isPlainObject(obj: unknown) {
   return typeof obj === "object" && obj !== null &&
     obj.toString() === "[object Object]";
 }

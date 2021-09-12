@@ -1,4 +1,5 @@
 import { Data } from "../../core.ts";
+import { isPlainObject } from "../utils.ts";
 
 /** Load a JavaScript/TypeScript file. Use a random hash to prevent caching */
 export default async function (path: string): Promise<Data> {
@@ -8,15 +9,11 @@ export default async function (path: string): Promise<Data> {
 
   for (const [name, value] of Object.entries(mod)) {
     if (name === "default") {
-      switch (typeof value) {
-        case "string":
-        case "function":
-          data.content = value;
-          break;
-        default:
-          Object.assign(data, value);
+      if (isPlainObject(value)) {
+        Object.assign(data, value);
+      } else {
+        data.content = value;
       }
-
       continue;
     }
 

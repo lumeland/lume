@@ -38,6 +38,18 @@ Deno.test("load the pages of a site", async () => {
   equals(page1.dest.ext, ".html");
   equals(page1.data.date?.getTime(), 1);
 
+  // Shared data
+
+  // @ts-ignore: unknown property
+  equals(page1.data.colors.rgb.red, "#ff0000");
+  // To-do: what happens if default data is not an object?
+  // @ts-ignore: unknown property
+  equals(page1.data.documents.content.length, 3);
+  // @ts-ignore: unknown property
+  equals(page1.data.drinks.alcoholic.length, 2);
+  // @ts-ignore: unknown property
+  equals(page1.data.names[0], "Oscar");
+
   const page2 = pages.find((p) => p.src.path === "/pages/2020-06-21_page2")!;
 
   assert(page2);
@@ -50,6 +62,17 @@ Deno.test("load the pages of a site", async () => {
   equals(page2.dest.path, "/overrided-page2/index");
   equals(page2.dest.ext, ".html");
   equals(page2.data.date?.getTime(), new Date(2020, 5, 21).getTime());
+
+  // Shared data
+
+  // @ts-ignore: unknown property
+  assert(page1.data.colors === page2.data.colors);
+  // @ts-ignore: unknown property
+  assert(page1.data.documents === page2.data.documents);
+  // @ts-ignore: unknown property
+  assert(page1.data.drinks === page2.data.drinks);
+  // @ts-ignore: unknown property
+  assert(page1.data.names === page2.data.names);
 
   const page3 = pages.find((p) => p.src.path === "/pages/page3")!;
 
