@@ -6,6 +6,7 @@ import {
 } from "../deps/postcss.ts";
 import { merge } from "../core/utils.ts";
 import { Helper, Page, Site } from "../core.ts";
+import { SitePage } from "../core/filesystem.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -57,20 +58,23 @@ export default function (userOptions?: Partial<Options>) {
     site.process(options.extensions, postCss);
     site.filter("postcss", filter as Helper, true);
 
-    async function postCss(page: Page) {
-      const from = site.src(page.src.path + page.src.ext);
-      const to = site.dest(page.dest.path + page.dest.ext);
+    async function postCss(file: Page) {
+      const from = site.src(file.src.path + file.src.ext);
+      const to = site.dest(file.dest.path + file.dest.ext);
       const map = options.sourceMap ? { inline: false } : undefined;
 
       // Process the code with PostCSS
-      const result = await runner.process(page.content!, { from, to, map });
+      const result = await runner.process(file.content!, { from, to, map });
 
-      page.content = result.css;
+      file.content = result.css;
 
       if (result.map) {
-        const mapFile = page.duplicate();
+        const mapFile = new SitePage();
+        mapFile.dest = {
+          path: file.src.path,
+          ext: ".css.map",
+        };
         mapFile.content = result.map.toString();
-        mapFile.dest.ext = ".css.map";
         site.pages.push(mapFile);
       }
     }

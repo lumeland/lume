@@ -485,8 +485,9 @@ export default class LumeSite implements Site {
         async (page) => {
           try {
             if (
-              (page.src.ext && exts.includes(page.src.ext)) ||
-              exts.includes(page.dest.ext)
+              page.content &&
+              ((page.src.ext && exts.includes(page.src.ext)) ||
+                exts.includes(page.dest.ext))
             ) {
               const metric = this.metrics.start("Process", {
                 page,
@@ -644,7 +645,9 @@ export default class LumeSite implements Site {
     }
 
     if (!this.options.quiet) {
-      const src = page.src.path ? page.src.path + page.src.ext : "(generated)";
+      const src = page.src.path
+        ? page.src.path + (page.src.ext || "")
+        : "(generated)";
       console.log(`🔥 ${dest} ${gray(src)}`);
     }
 

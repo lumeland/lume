@@ -10,8 +10,8 @@ class Base {
   #data?: Data;
   #cache?: Data;
 
-  constructor(src: Src) {
-    this.src = src;
+  constructor(src?: Src) {
+    this.src = src || { path: "" };
   }
 
   get data(): Data {
@@ -65,12 +65,12 @@ export class SitePage extends Base implements Page {
   #document?: HTMLDocument;
   #copy = 0;
 
-  constructor(src: Src) {
+  constructor(src?: Src) {
     super(src);
 
     this.dest = {
-      path: normalizePath(src.path),
-      ext: src.ext || "",
+      path: normalizePath(this.src.path),
+      ext: this.src.ext || "",
     };
   }
 

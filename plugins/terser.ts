@@ -2,6 +2,7 @@ import { minify } from "../deps/terser.ts";
 import { basename } from "../deps/path.ts";
 import { Exception, merge } from "../core/utils.ts";
 import { Helper, Page, Site } from "../core.ts";
+import { SitePage } from "../core/filesystem.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -69,17 +70,20 @@ export default function (userOptions?: Partial<Options>) {
         file.content = output.code;
 
         if (output.map) {
-          const mapFile = file.duplicate();
+          const mapFile = new SitePage();
+          mapFile.dest = {
+            path: file.src.path,
+            ext: ".js.map",
+          };
           mapFile.content = output.map;
-          mapFile.dest.ext = ".js.map";
           site.pages.push(mapFile);
         }
       } catch (err) {
         throw new Exception(
-          "Plugin terser: Error processing the file",
-          { page: file },
+          "Error processing the file",
+          { page: file, content },
           err,
-        );
+        ).setName("Plugin Terser");
       }
     }
 

@@ -2,6 +2,7 @@ import { Exception, merge } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
 import { toFileUrl } from "../deps/path.ts";
 import { createGraph, load, LoadResponse } from "../deps/graph.ts";
+import { SitePage } from "../core/filesystem.ts";
 
 export interface Options {
   /** List of entry points to bundle */
@@ -141,9 +142,12 @@ export default function (userOptions?: Partial<Options>) {
         files[specifier + ".js.map"] || files["deno:///bundle.js.map"];
 
       if (options.sourceMap && mapContent) {
-        const mapFile = file.duplicate();
+        const mapFile = new SitePage();
+        mapFile.dest = {
+          path: file.src.path,
+          ext: ".js.map",
+        };
         mapFile.content = mapContent;
-        mapFile.dest.ext = ".js.map";
         site.pages.push(mapFile);
       }
     }
