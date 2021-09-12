@@ -27,7 +27,9 @@ export default function (
   options: Options = {},
   pluginOptions: PluginOptions = {},
 ) {
-  options = merge(options, getOptionsFromCli());
+  if (!options.test) {
+    options = merge(options, getOptionsFromCli());
+  }
 
   const site = new Site(options as Partial<SiteOptions>);
 

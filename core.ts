@@ -172,6 +172,9 @@ export interface SiteOptions {
   /** Set `true` to skip logs */
   quiet: boolean;
 
+  /** Set `true` for testing mode (output files won't be saved in `dest` folder) */
+  test: boolean;
+
   /** The local server options */
   server: ServerOptions;
 }
@@ -333,6 +336,9 @@ export interface Source {
 
 /** A script runner */
 export interface Scripts {
+  /** All registered scripts */
+  scripts: Map<string, Command[]>;
+
   /** Register a new script */
   set(name: string, ...commands: Command[]): void;
 

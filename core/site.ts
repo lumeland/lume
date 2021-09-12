@@ -45,6 +45,7 @@ const defaults: SiteOptions = {
   dev: false,
   prettyUrls: true,
   flags: [],
+  test: false,
   server: {
     port: 3000,
     open: false,
@@ -211,7 +212,9 @@ export default class LumeSite implements Site {
     const buildMetric = this.metrics.start("Build (entire site)");
     await this.dispatchEvent({ type: "beforeBuild" });
 
-    await this.clear();
+    if (!this.options.test) {
+      await this.clear();
+    }
 
     let metric = this.metrics.start("Copy (all files)");
     for (const [from, to] of this.source.staticFiles) {
@@ -232,9 +235,11 @@ export default class LumeSite implements Site {
     await this.dispatchEvent({ type: "beforeSave" });
 
     // Save the pages
-    metric = this.metrics.start("Save (all pages)");
-    await this.#savePages(watchMode);
-    metric.stop();
+    if (!this.options.test) {
+      metric = this.metrics.start("Save (all pages)");
+      await this.#savePages(watchMode);
+      metric.stop();
+    }
 
     buildMetric.stop();
     await this.dispatchEvent({ type: "afterBuild" });
@@ -287,7 +292,9 @@ export default class LumeSite implements Site {
 
     await this.#buildPages();
     await this.dispatchEvent({ type: "beforeSave" });
-    await this.#savePages(true);
+    if (!this.options.test) {
+      await this.#savePages(true);
+    }
     await this.dispatchEvent({ type: "afterUpdate", files });
   }
 

@@ -1,0 +1,20 @@
+name: Create Release
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Setup Deno environment
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Run tests
+        run: |
+          deno test --unstable --allow-read
