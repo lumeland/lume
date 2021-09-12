@@ -72,7 +72,7 @@ export default function (userOptions?: Partial<Options>) {
         if (output.map) {
           const mapFile = new SitePage();
           mapFile.dest = {
-            path: file.src.path,
+            path: file.dest.path,
             ext: ".js.map",
           };
           mapFile.content = output.map;

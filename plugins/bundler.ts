@@ -144,7 +144,7 @@ export default function (userOptions?: Partial<Options>) {
       if (options.sourceMap && mapContent) {
         const mapFile = new SitePage();
         mapFile.dest = {
-          path: file.src.path,
+          path: file.dest.path,
           ext: ".js.map",
         };
         mapFile.content = mapContent;

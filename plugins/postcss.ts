@@ -71,7 +71,7 @@ export default function (userOptions?: Partial<Options>) {
       if (result.map) {
         const mapFile = new SitePage();
         mapFile.dest = {
-          path: file.src.path,
+          path: file.dest.path,
           ext: ".css.map",
         };
         mapFile.content = result.map.toString();
