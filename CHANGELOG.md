@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.0.6] - Unreleased
 ### Added
 - Created a bunch of tests
+- `.jsx` pages can default export a JSX element, not only a function.
 
 ### Fixed
 - Processors take into account the `src` extension,

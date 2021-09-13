@@ -13,6 +13,18 @@ Deno.test("build a site with js/ts modules", async () => {
   testPage(site, "/simple", (page) => {
     equals(page.document?.querySelectorAll("h1").length, 1);
     equals(page.document?.querySelector("h1")?.innerText, page.data.title);
+    equals(
+      page.document?.querySelector(".home")?.getAttribute("href"),
+      "https://example.com/blog/",
+    );
+    equals(
+      page.document?.querySelector(".link-1")?.getAttribute("href"),
+      "/blog/",
+    );
+    equals(
+      page.document?.querySelector(".link-2")?.getAttribute("href"),
+      "/blog/simple-page-new-permalink.html",
+    );
   });
 
   testPage(site, "/multiple[0]", (page) => {

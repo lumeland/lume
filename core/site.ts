@@ -209,20 +209,21 @@ export default class LumeSite implements Site {
   }
 
   async build(watchMode = false) {
+    const { test } = this.options;
     const buildMetric = this.metrics.start("Build (entire site)");
     await this.dispatchEvent({ type: "beforeBuild" });
 
-    if (!this.options.test) {
+    if (!test) {
       await this.clear();
+
+      const metric = this.metrics.start("Copy (all files)");
+      for (const [from, to] of this.source.staticFiles) {
+        await this.#copyStatic(from, to);
+      }
+      metric.stop();
     }
 
-    let metric = this.metrics.start("Copy (all files)");
-    for (const [from, to] of this.source.staticFiles) {
-      await this.#copyStatic(from, to);
-    }
-    metric.stop();
-
-    metric = this.metrics.start("Load (all pages)");
+    let metric = this.metrics.start("Load (all pages)");
     await this.source.loadDirectory();
     metric.stop();
 
@@ -235,7 +236,7 @@ export default class LumeSite implements Site {
     await this.dispatchEvent({ type: "beforeSave" });
 
     // Save the pages
-    if (!this.options.test) {
+    if (!test) {
       metric = this.metrics.start("Save (all pages)");
       await this.#savePages(watchMode);
       metric.stop();

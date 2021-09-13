@@ -12,7 +12,10 @@ export default class Jsx extends Module {
       });
     }
 
-    const element = await super.render(content, data) as React.ReactElement;
+    const element = React.isValidElement(content)
+      ? content
+      : await super.render(content, data) as React.ReactElement;
+
     data.children = element;
 
     return ReactDOMServer.renderToStaticMarkup(element);

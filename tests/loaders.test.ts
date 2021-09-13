@@ -8,6 +8,8 @@ Deno.test("load the pages of a site", async () => {
     src: "normal",
   });
 
+  site.copy("static.yml");
+
   await site.build();
 
   // Test the generated pages
@@ -111,6 +113,8 @@ Deno.test("ignored draft pages on dev=false", async () => {
     dev: false,
     src: "normal",
   });
+
+  site.copy("static.yml");
 
   await site.build();
 
