@@ -57,7 +57,7 @@ export default function () {
   };
 }
 
-function relativeUrl(basePath: string, from: string, to: string) {
+export function relativeUrl(basePath: string, from: string, to: string) {
   if (ignore(to)) {
     return to;
   }
@@ -66,7 +66,12 @@ function relativeUrl(basePath: string, from: string, to: string) {
     to = posix.join(basePath, to);
   }
 
-  const relative = posix.relative(from, to);
+  let relative = posix.relative(from, to);
+
+  if (to.endsWith("/") && !relative.endsWith("/")) {
+    relative += "/";
+  }
+
   return !relative || relative.startsWith("/") ? `.${relative}` : relative;
 }
 
