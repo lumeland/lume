@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<%~ await includeFile("/header", { title }) %>
+<body>
+  <nav>
+    <a href="<%= filters.url("/") %>">Go to home</a>
+  </nav>
+  <%~ content %>
+</body>
+</html>

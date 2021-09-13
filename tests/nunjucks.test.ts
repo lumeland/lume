@@ -18,6 +18,12 @@ Deno.test("build a site with nunjucks", async () => {
     true,
   );
 
+  // Register a custom tag
+  site.helper("custom", (text) => `<custom-tag>${text}</custom-tag>`, {
+    type: "tag",
+    body: true,
+  });
+
   await site.build();
 
   testPage(site, "/index", (page) => {
@@ -28,6 +34,10 @@ Deno.test("build a site with nunjucks", async () => {
       page.data.title + " (async)",
     );
     equals(page.document?.querySelector("title")?.innerText, page.data.title);
+    equals(
+      page.document?.querySelector("custom-tag")?.innerText,
+      page.data.title,
+    );
   });
 
   testPage(site, "/data.json", (page) => {

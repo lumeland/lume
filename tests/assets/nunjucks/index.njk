@@ -3,3 +3,7 @@ title: Hello World
 ---
 
 <h1>{{ title | returnAsync }}</h1>
+
+{% custom -%}
+{{ title }}
+{%- endcustom %}

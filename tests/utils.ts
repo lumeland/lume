@@ -1,5 +1,6 @@
 import lume from "../mod.ts";
 import { Page, Site, SiteOptions } from "../core.ts";
+import { printError } from "../cli/utils.ts";
 
 const cwd = new URL("./assets", import.meta.url).pathname;
 
@@ -30,4 +31,14 @@ export function testPage(
   const page = getPage(site, path);
 
   return test(page);
+}
+
+/** Build a site and print errors */
+export async function build(site: Site) {
+  try {
+    await site.build(false);
+  } catch (error) {
+    printError(error);
+    throw error;
+  }
 }

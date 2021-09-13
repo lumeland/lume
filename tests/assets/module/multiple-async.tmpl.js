@@ -4,13 +4,14 @@ export const layout = "layout.tmpl.js";
 export default async function* () {
   const pages = [1, 2];
 
-  for (const page of pages) {
+  for (const num of pages) {
     yield new Promise((res) =>
       setTimeout(() =>
         res({
-          title: `Multiple page ${page}`,
-          url: `/async/${page}/`,
-          content: `Async Page ${page}`,
+          title: `Multiple page ${num}`,
+          url: (page) => `/async/${page.data.num}/`,
+          content: `Async Page ${num}`,
+          num,
         }), 100)
     );
   }
