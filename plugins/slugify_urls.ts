@@ -66,7 +66,7 @@ export default function (userOptions?: Partial<Options>) {
   }
 }
 
-export function createSlugifier(options: Options): (string: string) => string {
+export function createSlugifier(options: Options = defaults): (string: string) => string {
   const { lowercase, alphanumeric, separator, replace } = options;
 
   return function (string) {
