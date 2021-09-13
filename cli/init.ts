@@ -9,8 +9,9 @@ interface Options {
 
 /** Generate a _config.js file */
 export default async function init({ config, importMap, plugins }: Options) {
-  const lumeUrl = importMap ? "lume" : new URL("..", import.meta.url).href;
-
+  const lumeUrl = importMap
+    ? "https://deno.land/x/lume/"
+    : new URL("..", import.meta.url).href;
   const code = [`import lume from "${posix.join(lumeUrl, "mod.ts")}";`];
 
   plugins.sort().forEach((name) =>

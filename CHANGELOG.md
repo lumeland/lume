@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The installed import map includes `https://deno.land/x/lume/` in addition to `lume/`.
   This makes the `_config.js` file work without CLI.
 
+### Changed
+- `lume init` code imports lume from `https://deno.land/x/lume/` instead `lume`.
+
 ### Fixed
 - Processors take into account the `src` extension,
   in addition to the `dest` extension to match with preprocessors behavior.
