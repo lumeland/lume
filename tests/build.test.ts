@@ -2,14 +2,11 @@ import {
   assertStrictEquals as equals,
   assertStringIncludes as contains,
 } from "../deps/assert.ts";
-import lume from "../mod.ts";
+import { getSite } from "./utils.ts";
 import { Event } from "../core.ts";
 
-const cwd = new URL("./assets", import.meta.url).pathname;
-
 Deno.test("build a simple site", async () => {
-  const site = lume({
-    cwd,
+  const site = getSite({
     test: true,
     src: "simple",
   });
@@ -29,8 +26,7 @@ Deno.test("build a simple site", async () => {
 });
 
 Deno.test("build/update events", async () => {
-  const site = lume({
-    cwd,
+  const site = getSite({
     test: true,
     src: "simple",
   });

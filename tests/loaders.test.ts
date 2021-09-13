@@ -1,11 +1,8 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
-import lume from "../mod.ts";
-
-const cwd = new URL("./assets", import.meta.url).pathname;
+import { getPage, getSite } from "./utils.ts";
 
 Deno.test("load the pages of a site", async () => {
-  const site = lume({
-    cwd,
+  const site = getSite({
     test: true,
     dev: true,
     src: "normal",
@@ -13,13 +10,11 @@ Deno.test("load the pages of a site", async () => {
 
   await site.build();
 
-  const { pages } = site;
-
   // Test the generated pages
-  equals(pages.length, 5);
+  equals(site.pages.length, 5);
 
   // The data is merged
-  const page1 = pages.find((p) => p.src.path === "/pages/1_page1")!;
+  const page1 = getPage(site, "/pages/1_page1");
 
   assert(page1);
   assert(page1.data.draft);
@@ -43,7 +38,7 @@ Deno.test("load the pages of a site", async () => {
   // @ts-ignore: unknown property
   equals(page1.data.names.length, 2);
 
-  const page2 = pages.find((p) => p.src.path === "/pages/2020-06-21_page2")!;
+  const page2 = getPage(site, "/pages/2020-06-21_page2");
 
   assert(page2);
   assert(!page2.data.draft);
@@ -67,7 +62,7 @@ Deno.test("load the pages of a site", async () => {
   // @ts-ignore: unknown property
   assert(page1.data.names === page2.data.names);
 
-  const page3 = pages.find((p) => p.src.path === "/pages/page3")!;
+  const page3 = getPage(site, "/pages/page3");
 
   assert(page3);
   assert(!page3.data.draft);
@@ -80,9 +75,7 @@ Deno.test("load the pages of a site", async () => {
   equals(page3.dest.ext, "");
   equals(page3.data.date?.getTime(), new Date(2020, 0, 1).getTime());
 
-  const page4 = pages.find((p) =>
-    p.src.path === "/pages/2021-01-02-18-32_page4"
-  )!;
+  const page4 = getPage(site, "/pages/2021-01-02-18-32_page4");
 
   assert(page4);
   assert(!page4.data.draft);
@@ -96,16 +89,18 @@ Deno.test("load the pages of a site", async () => {
   // To-do: Maybe the date in the filenames should be created with Date.UTC?
   equals(page4.data.date?.getTime(), new Date(2021, 0, 2, 18, 32).getTime());
 
-  const page5 = pages.find((p) => p.src.path === "/pages/page5")!;
+  const page5 = getPage(site, "/page5");
 
   assert(page5);
+  assert(!page5.data.colors);
+  assert(!page5.data.documents);
   assert(!page5.data.draft);
-  equals(page5.data.url, "/pages/page5/");
+  equals(page5.data.url, "/page5/");
   equals(page5.data.title, "Page 5");
   equals(page5.data.tags?.length, 1);
   equals(page5.data.tags?.[0], "pages");
   equals(page5.data.site, "Default site name");
-  equals(page5.dest.path, "/pages/page5/index");
+  equals(page5.dest.path, "/page5/index");
   equals(page5.dest.ext, ".html");
   equals(
     page5.data.date?.getTime(),
@@ -114,8 +109,7 @@ Deno.test("load the pages of a site", async () => {
 });
 
 Deno.test("ignored draft pages on dev=false", async () => {
-  const site = lume({
-    cwd,
+  const site = getSite({
     test: true,
     dev: false,
     src: "normal",
