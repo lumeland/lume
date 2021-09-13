@@ -15,11 +15,11 @@ const escapeChars: Record<string, string> = {
 export default function () {
   return (site: Site) => {
     site.filter("attr", attributes as Helper);
-    site.filter("class", classNames);
+    site.filter("class", className);
   };
 }
 
-function attributes(values: unknown, ...validNames: string[]) {
+export function attributes(values: unknown, ...validNames: string[]) {
   const attributes = new Map();
 
   handleAttributes(attributes, values, validNames);
@@ -27,7 +27,7 @@ function attributes(values: unknown, ...validNames: string[]) {
   return joinAttributes(attributes);
 }
 
-function classNames(...names: unknown[]) {
+export function className(...names: unknown[]) {
   const classes: Set<string> = new Set();
 
   names.forEach((name) => handleClass(classes, name));
