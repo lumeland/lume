@@ -7,10 +7,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.0.6] - Unreleased
+## [1.1.0] - Unreleased
 ### Added
 - Created a bunch of tests
 - `.jsx` pages can default export a JSX element, not only a function.
+- The installed import map includes `https://deno.land/x/lume/` in addition to `lume/`.
+  This makes the `_config.js` file work without CLI.
 
 ### Fixed
 - Processors take into account the `src` extension,

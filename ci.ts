@@ -6,6 +6,7 @@ const baseUrl = new URL(".", import.meta.url).href;
 const imports = {
   "lume": join(baseUrl, "/mod.ts"),
   "lume/": join(baseUrl, "/"),
+  "https://deno.land/x/lume/": join(baseUrl, "/"),
 };
 
 export const cli = join(baseUrl, "./cli.ts");
