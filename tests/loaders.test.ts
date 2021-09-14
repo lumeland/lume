@@ -1,4 +1,5 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
+import binaryLoader from "../core/loaders/binary.ts";
 import { getPage, getSite, testPage } from "./utils.ts";
 
 Deno.test("load the pages of a site", async () => {
@@ -8,12 +9,13 @@ Deno.test("load the pages of a site", async () => {
     src: "normal",
   });
 
+  site.loadAssets([".png"], binaryLoader);
   site.copy("static.yml");
 
   await site.build();
 
   // Test the generated pages
-  equals(site.pages.length, 5);
+  equals(site.pages.length, 6);
 
   // The data is merged
   testPage(site, "/pages/1_page1", (page) => {
@@ -104,6 +106,12 @@ Deno.test("load the pages of a site", async () => {
       page.data.date?.getTime(),
       new Date(Date.UTC(1979, 5, 21, 23, 45, 0)).getTime(),
     );
+  });
+
+  // Test binary loader
+  testPage(site, "/favicon", (page) => {
+    equals(typeof page.content, "object");
+    assert(page.content instanceof Uint8Array);
   });
 });
 
