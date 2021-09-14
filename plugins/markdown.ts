@@ -18,6 +18,9 @@ export interface Options {
 
   /** The list of markdown-it plugins to use */
   plugins: unknown[];
+
+  /** Set `true` append your plugins to the defaults */
+  keepDefaultPlugins: boolean;
 }
 
 export interface MarkdownItOptions {
@@ -72,11 +75,16 @@ const defaults: Options = {
     markdownItDeflist,
     markdownItReplaceLink,
   ],
+  keepDefaultPlugins: false,
 };
 
 /** A plugin to add support for Markdown */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
+
+  if (options.keepDefaultPlugins && userOptions?.plugins?.length) {
+    options.plugins = defaults.plugins.concat(userOptions.plugins);
+  }
 
   return function (site: Site) {
     const engine = createMarkdown(site, options);

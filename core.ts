@@ -452,6 +452,9 @@ export interface Site {
 
   /** Return the URL of a page */
   url(path: string, absolute?: boolean): string;
+
+  /** Return the content of a file of the site */
+  getFileContent(url: string): Promise<string | Uint8Array>;
 }
 
 /** A collection of all metrics */

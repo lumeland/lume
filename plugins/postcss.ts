@@ -20,6 +20,9 @@ export interface Options {
 
   /** Plugins to use by postcss */
   plugins: unknown[];
+
+  /** Set `true` append your plugins to the defaults */
+  keepDefaultPlugins: boolean;
 }
 
 // Default options
@@ -31,6 +34,7 @@ const defaults: Options = {
     postcssNesting(),
     autoprefixer(),
   ],
+  keepDefaultPlugins: false,
 };
 
 /** A plugin to load all CSS files and process them using PostCSS */
@@ -40,6 +44,10 @@ export default function (userOptions?: Partial<Options>) {
       { ...defaults, includes: site.options.includes },
       userOptions,
     );
+
+    if (options.keepDefaultPlugins && userOptions?.plugins?.length) {
+      options.plugins = defaults.plugins.concat(userOptions.plugins);
+    }
 
     const plugins = [...options.plugins];
 

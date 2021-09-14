@@ -13,6 +13,7 @@ Deno.test("code_hightlight plugin", async () => {
   site.use(inline());
   site.loadAssets([".svg", ".js"]);
   site.loadAssets([".png"], binaryLoader);
+  site.copy("favicon.png", "favicon2.png");
   await build(site);
 
   testPage(site, "/styles.css", (page) => {

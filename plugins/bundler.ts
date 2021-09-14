@@ -1,15 +1,16 @@
 import { Exception, merge } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
-import { toFileUrl } from "../deps/path.ts";
+import { Element } from "../deps/dom.ts";
+import { posix, toFileUrl } from "../deps/path.ts";
 import { createGraph, load, LoadResponse } from "../deps/graph.ts";
 import { SitePage } from "../core/filesystem.ts";
 
 export interface Options {
-  /** List of entry points to bundle */
-  entries: string[];
-
   /** The list of extensions this plugin applies to */
   extensions: string[];
+
+  /** Attribute used to select the elements this plugin applies to */
+  attribute: string;
 
   /** Set `true` to generate source map files */
   sourceMap: boolean;
@@ -20,7 +21,7 @@ export interface Options {
 
 // Default options
 const defaults: Options = {
-  entries: [],
+  attribute: "bundle",
   extensions: [".ts", ".js"],
   sourceMap: false,
   options: {},
@@ -30,98 +31,83 @@ const defaults: Options = {
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
-  // Check configuration
-  if (!options.options.bundle) {
-    if (options.entries.length) {
-      throw new Exception(
-        "'entries' option requires `options.bundle` set to 'module' or 'classic'",
-      ).setName("Bundler plugin");
-    }
-  } else if (!options.entries.length) {
-    throw new Exception(
-      "'option.bundle' option requires at least one value in 'options.entries'",
-    ).setName("Bundler plugin");
-  }
-
   return (site: Site) => {
     const sources: Record<string, string> = {};
+    const entries: string[] = [];
 
     site.loadAssets(options.extensions);
-    site.process(options.extensions, prepare);
-    if (options.options.bundle) {
-      site.process(options.extensions, loadGraph);
-    }
-    site.process(options.extensions, bundler);
 
-    // Transform the entries to specifiers
-    const entries = options.entries.map((path) =>
-      toFileUrl(site.src(path)).href
-    );
-    const notFoundEntries = entries.concat();
+    const bundleMode = options.options.bundle;
 
-    // Throw and exception is for not found entries
-    site.addEventListener("beforeSave", () => {
-      if (notFoundEntries.length) {
-        throw new Exception(
-          "Some entries have not been found",
-          { notFoundEntries },
-        ).setName("Bundler plugin");
-      }
-    });
+    /**
+     * In the bundle mode, we need to load all the files sources
+     * before emit the entries
+     */
+    if (bundleMode) {
+      // Find entries in the HTML documents and save them in `entries`
+      const selector = `script[${options.attribute}]`;
 
-    // Prepare the specifiers
-    function prepare(file: Page) {
-      file._data.specifier ||=
-        toFileUrl(site.src(file.data.url as string)).href;
+      site.process([".html"], (page) => {
+        const from = page.data.url as string;
 
-      const specifier = file._data.specifier as string;
+        page.document?.querySelectorAll(selector).forEach((node) => {
+          const script = node as Element;
 
-      if (options.options.bundle) {
+          const src = script.getAttribute("src");
+
+          if (src) {
+            const path = posix.resolve(from, src);
+            entries.push(toFileUrl(site.src(path)).href);
+            script.setAttribute("src", src.replace(/\.(ts|tsx|jsx)$/i, ".js"));
+            script.removeAttribute(options.attribute as string);
+          }
+        });
+      });
+
+      // Load all source files and save the content in `sources`
+      site.process(options.extensions, (file: Page) => {
+        const specifier = getSpecifier(file);
         sources[specifier] = file.content as string;
-      }
 
-      const entryIndex = notFoundEntries.indexOf(specifier);
+        if (!entries.includes(specifier)) {
+          file.content = "";
+        }
+      });
 
-      if (entryIndex !== -1) {
-        notFoundEntries.splice(entryIndex, 1);
-      } else if (entries.length) {
-        file.content = "";
-      }
-    }
+      // Load all other dependencies and save the content in `sources`
+      site.process(options.extensions, async (file: Page) => {
+        const specifier = getSpecifier(file);
 
-    // Load all dependencies and save them in `sources`
-    async function loadGraph(file: Page) {
-      const specifier = file._data.specifier as string;
+        await createGraph(specifier, {
+          async load(
+            specifier: string,
+            isDynamic: boolean,
+          ): Promise<LoadResponse | undefined> {
+            if (isDynamic) {
+              return;
+            }
 
-      await createGraph(specifier, {
-        async load(
-          specifier: string,
-          isDynamic: boolean,
-        ): Promise<LoadResponse | undefined> {
-          if (isDynamic) {
-            return;
-          }
+            if (specifier in sources) {
+              return {
+                specifier: specifier,
+                content: sources[specifier] || "",
+              };
+            }
 
-          if (specifier in sources) {
-            return {
-              specifier: specifier,
-              content: sources[specifier] || "",
-            };
-          }
+            const response = await load(specifier);
 
-          const response = await load(specifier);
-
-          if (response) {
-            sources[response.specifier] = response.content;
-            return response;
-          }
-        },
+            if (response) {
+              sources[response.specifier] = response.content;
+              return response;
+            }
+          },
+        });
       });
     }
 
-    // Bundle all files
-    async function bundler(file: Page) {
-      const specifier = file._data.specifier as string;
+    // Now we are ready to emit the entries
+    site.process(options.extensions, async (file: Page) => {
+      const specifier = getSpecifier(file);
       const { files } = await Deno.emit(specifier, {
         ...options.options,
         sources: {
@@ -150,6 +136,12 @@ export default function (userOptions?: Partial<Options>) {
         mapFile.content = mapContent;
         site.pages.push(mapFile);
       }
+    });
+
+    function getSpecifier(file: Page) {
+      file._data.specifier ||=
+        toFileUrl(site.src(file.data.url as string)).href;
+      return file._data.specifier as string;
     }
   };
 }

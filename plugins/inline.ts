@@ -78,16 +78,7 @@ export default function (userOptions?: Partial<Options>) {
         posix.relative(site.options.location.pathname, path),
       );
 
-      let content: string | Uint8Array;
-
-      // Is a page or an asset
-      const page = site.pages.find((page) => page.data.url === url);
-
-      if (page) {
-        content = page.content as string;
-      } else {
-        content = await Deno.readFile(site.dest(url));
-      }
+      const content = await site.getFileContent(url) as string | Uint8Array;
 
       // Is a file in dest
       if (!asData) {

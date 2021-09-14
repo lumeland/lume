@@ -6,6 +6,7 @@ import SiteSource from "./source.ts";
 import ScriptRunner from "./scripts.ts";
 import PerformanceMetrics from "./metrics.ts";
 import textLoader from "./loaders/text.ts";
+import binaryLoader from "./loaders/binary.ts";
 import {
   Command,
   CommandOptions,
@@ -354,6 +355,31 @@ export default class LumeSite implements Site {
     }
 
     return absolute ? this.options.location.origin + path : path;
+  }
+
+  /** Returns the content of a file or page */
+  async getFileContent(url: string): Promise<string | Uint8Array> {
+    // Is a loaded file
+    const page = this.pages.find((page) => page.data.url === url);
+
+    if (page) {
+      return page.content as string | Uint8Array;
+    }
+
+    // Is a static file
+    for (const entry of this.source.staticFiles) {
+      const [from, to] = entry;
+
+      if (url.startsWith(to)) {
+        const file = this.src(from, url.slice(to.length));
+        const content = await this.source.load(file, binaryLoader);
+        return content.content as Uint8Array;
+      }
+    }
+
+    // Is a source file
+    const content = await this.source.load(this.src(url), binaryLoader);
+    return content.content as Uint8Array;
   }
 
   /** Copy a static file */

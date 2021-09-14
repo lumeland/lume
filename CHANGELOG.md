@@ -13,9 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `.jsx` pages can default export a JSX element, not only a function.
 - The installed import map includes `https://deno.land/x/lume/` in addition to `lume/`.
   This makes the `_config.js` file work without CLI.
+- New option `keepDefaultPlugins` to `postcss` and `markdown`.
+  Set to `true` to keep the default plugins and append more, instead of override them.
 
 ### Changed
 - `lume init` code imports lume from `https://deno.land/x/lume/` instead `lume`.
+- Removed the `entries` argument of `bundler` plugin.
+  From now, the entries are detected automatically from the HTML,
+  with the attribute `bundle`. For example: `<script src="/scripts.ts" bundle>`
 
 ### Fixed
 - Processors take into account the `src` extension,
@@ -1118,7 +1123,7 @@ The first version.
 [#125]: https://github.com/lumeland/lume/issues/125
 [#131]: https://github.com/lumeland/lume/issues/131
 
-[1.0.6]: https://github.com/lumeland/lume/compare/v1.0.5...HEAD
+[1.1.0]: https://github.com/lumeland/lume/compare/v1.0.5...HEAD
 [1.0.5]: https://github.com/lumeland/lume/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/lumeland/lume/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/lumeland/lume/compare/v1.0.2...v1.0.3
