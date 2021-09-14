@@ -17,4 +17,4 @@ jobs:
 
       - name: Run tests
         run: |
-          deno test --unstable --allow-read
+          deno test --unstable -A
