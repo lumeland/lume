@@ -63,12 +63,13 @@ export default function (userOptions?: Partial<Options>) {
     function getContent(path: string, asData = false) {
       // Ensure the path starts with "/"
       path = posix.join("/", path);
+      const id = JSON.stringify([path, asData]);
 
-      if (!cache.has(path)) {
-        cache.set(path, readContent(path, asData));
+      if (!cache.has(id)) {
+        cache.set(id, readContent(path, asData));
       }
 
-      return cache.get(path);
+      return cache.get(id);
     }
 
     async function readContent(path: string, asData: boolean) {
@@ -77,19 +78,22 @@ export default function (userOptions?: Partial<Options>) {
         posix.relative(site.options.location.pathname, path),
       );
 
+      let content: string | Uint8Array;
+
       // Is a page or an asset
       const page = site.pages.find((page) => page.data.url === url);
 
       if (page) {
-        return page.content;
+        content = page.content as string;
+      } else {
+        content = await Deno.readFile(site.dest(url));
       }
 
       // Is a file in dest
       if (!asData) {
-        return Deno.readTextFile(site.dest(url));
+        return content;
       }
 
-      const content = await Deno.readFile(site.dest(url));
       const ext = extname(path);
 
       if (!mimes.has(ext)) {

@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The `server.page404` option accepts pretty urls (ex: `/404/`)
 - Keep the return type of the files in `_data` folders that returns not plain objects
   (for example, arrays, numbers, etc)
+- Some bugs in the `inline` plugin.
 
 ## [1.0.5] - 2021-09-07
 ### Fixed
