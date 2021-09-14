@@ -110,6 +110,9 @@ Deno.test("load the pages of a site", async () => {
 
   // Test binary loader
   testPage(site, "/favicon", (page) => {
+    equals(page.data.url, "/favicon.png");
+    equals(page.dest.path, "/favicon");
+    equals(page.dest.ext, ".png");
     equals(typeof page.content, "object");
     assert(page.content instanceof Uint8Array);
   });
