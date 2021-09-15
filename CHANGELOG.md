@@ -15,12 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   This makes the `_config.js` file work without CLI.
 - New option `keepDefaultPlugins` to `postcss` and `markdown`.
   Set to `true` to keep the default plugins and append more, instead of override them.
+- New option `includes` to `bundler` plugin, to specify the folders of bare imports.
 
 ### Changed
 - `lume init` code imports lume from `https://deno.land/x/lume/` instead `lume`.
 - Removed the `entries` argument of `bundler` plugin.
-  From now, the entries are detected automatically from the HTML,
-  with the attribute `bundle`. For example: `<script src="/scripts.ts" bundle>`
 
 ### Fixed
 - Processors take into account the `src` extension,

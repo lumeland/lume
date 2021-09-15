@@ -1,7 +1,6 @@
-import { Exception, merge } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
-import { Element } from "../deps/dom.ts";
-import { posix, toFileUrl } from "../deps/path.ts";
+import { toFileUrl } from "../deps/path.ts";
 import { createGraph, load, LoadResponse } from "../deps/graph.ts";
 import { SitePage } from "../core/filesystem.ts";
 
@@ -9,22 +8,22 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /** Attribute used to select the elements this plugin applies to */
-  attribute: string;
-
   /** Set `true` to generate source map files */
   sourceMap: boolean;
 
   /** The options for Deno.emit */
   options: Deno.EmitOptions;
+
+  /** Includes paths */
+  includes: Record<string, string>;
 }
 
 // Default options
 const defaults: Options = {
-  attribute: "bundle",
   extensions: [".ts", ".js"],
   sourceMap: false,
   options: {},
+  includes: {},
 };
 
 /** A plugin to load all .js and .ts files and bundle them using Deno.emit() */
@@ -33,45 +32,23 @@ export default function (userOptions?: Partial<Options>) {
 
   return (site: Site) => {
     const sources: Record<string, string> = {};
-    const entries: string[] = [];
+    const imports: Record<string, string> = {};
+
+    for (const [specifier, location] of Object.entries(options.includes)) {
+      imports[specifier] = toFileUrl(site.src(location)).href;
+    }
 
     site.loadAssets(options.extensions);
 
-    const bundleMode = options.options.bundle;
-
     /**
-     * In the bundle mode, we need to load all the files sources
+     * For bundle, we need to load all the files sources
      * before emit the entries
      */
-    if (bundleMode) {
-      // Find entries in the HTML documents and save them in `entries`
-      const selector = `script[${options.attribute}]`;
-
-      site.process([".html"], (page) => {
-        const from = page.data.url as string;
-
-        page.document?.querySelectorAll(selector).forEach((node) => {
-          const script = node as Element;
-
-          const src = script.getAttribute("src");
-
-          if (src) {
-            const path = posix.resolve(from, src);
-            entries.push(toFileUrl(site.src(path)).href);
-            script.setAttribute("src", src.replace(/\.(ts|tsx|jsx)$/i, ".js"));
-            script.removeAttribute(options.attribute as string);
-          }
-        });
-      });
-
+    if (options.options.bundle) {
       // Load all source files and save the content in `sources`
       site.process(options.extensions, (file: Page) => {
         const specifier = getSpecifier(file);
         sources[specifier] = file.content as string;
-
-        if (!entries.includes(specifier)) {
-          file.content = "";
-        }
       });
 
       // Load all other dependencies and save the content in `sources`
@@ -79,6 +56,11 @@ export default function (userOptions?: Partial<Options>) {
         const specifier = getSpecifier(file);
 
         await createGraph(specifier, {
+          resolve(specifier, referrer) {
+            return isBare(specifier)
+              ? getFileSpecifier(specifier)
+              : new URL(specifier, referrer).href;
+          },
           async load(
             specifier: string,
             isDynamic: boolean,
@@ -86,18 +68,17 @@ export default function (userOptions?: Partial<Options>) {
             if (isDynamic) {
               return;
             }
-
             if (specifier in sources) {
               return {
                 specifier: specifier,
-                content: sources[specifier] || "",
+                content: sources[specifier],
               };
             }
 
             const response = await load(specifier);
 
             if (response) {
-              sources[response.specifier] = response.content;
+              sources[specifier] = response.content;
               return response;
             }
           },
@@ -114,6 +95,8 @@ export default function (userOptions?: Partial<Options>) {
           ...sources,
           [specifier]: file.content as string,
         },
+        importMap: { imports },
+        importMapPath: site.src(),
       });
 
       const content = files[specifier] || files[specifier + ".js"] ||
@@ -143,10 +126,23 @@ export default function (userOptions?: Partial<Options>) {
         toFileUrl(site.src(file.data.url as string)).href;
       return file._data.specifier as string;
     }
+
+    function getFileSpecifier(file: string) {
+      for (const key in imports) {
+        if (file.startsWith(key)) {
+          return imports[key] + file.slice(key.length);
+        }
+      }
+      throw new Error(`Invalid specifier ${file}`);
+    }
   };
 }
 
 /** Replace all .ts, .tsx and .jsx files with .js files */
 function fixExtensions(content: string) {
   return content.replaceAll(/\.(ts|tsx|jsx)("|')/ig, ".js$2");
+}
+
+function isBare(specifier: string) {
+  return !specifier.startsWith(".") && !specifier.includes("://");
 }

@@ -8,10 +8,14 @@ Deno.test("bundler plugin", async () => {
     src: "bundler",
   });
 
+  site.ignore("modules");
   site.use(bundler({
     extensions: [".ts", ".tsx"],
     options: {
       bundle: "module",
+    },
+    includes: {
+      "mod/": "modules/",
     },
   }));
 
@@ -28,21 +32,6 @@ Deno.test("bundler plugin", async () => {
     equals(page.dest.ext, ".js");
     const content = page.content as string;
     assert(content.includes('createElement("h1", null, salute)'));
-  });
-
-  testPage(site, "/utils", (page) => {
-    equals(page.content, "");
-  });
-
-  testPage(site, "/modules/title", (page) => {
-    equals(page.content, "");
-  });
-
-  testPage(site, "/index", (page) => {
-    const script = page.document?.querySelector("script");
-    assert(script);
-    equals(script.getAttribute("src"), "/main.js");
-    assert(!script.hasAttribute("bundle"));
   });
 });
 
@@ -63,10 +52,10 @@ Deno.test("bundler plugin (not bundle)", async () => {
     equals(page.dest.path, "/main");
     equals(page.dest.ext, ".js");
     const content = page.content as string;
-    assert(content.includes('import Title from "./modules/title.js";'));
+    assert(content.includes('import Title from "mod/title.js";'));
   });
 
-  testPage(site, "/utils", (page) => {
+  testPage(site, "/modules/utils", (page) => {
     const content = page.content as string;
     assert(content.includes("return `Hello, ${name}`;"));
   });
@@ -74,12 +63,5 @@ Deno.test("bundler plugin (not bundle)", async () => {
   testPage(site, "/modules/title", (page) => {
     const content = page.content as string;
     assert(content.includes('React.createElement("h1", null, salute),'));
-  });
-
-  testPage(site, "/index", (page) => {
-    const script = page.document?.querySelector("script");
-    assert(script);
-    equals(script.getAttribute("src"), "/main.tsx");
-    assert(script.hasAttribute("bundle"));
   });
 });
