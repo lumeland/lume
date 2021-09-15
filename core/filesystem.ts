@@ -24,19 +24,21 @@ class Base {
 
   set data(data: Data) {
     this.dataLoaded = true;
+    this.#cache = undefined;
     this.#data = data;
+  }
+
+  addData(data: Data) {
+    const [oldData, oldTags] = prepareData(this.#data || {});
+    const [newData, newTags] = prepareData(data);
+    const merged = { ...oldData, ...newData };
+    merged.tags = [...oldTags, ...newTags];
+    this.data = merged;
   }
 
   /** Merge and return the data */
   #getMergedData(): Data {
-    let data = { ...this.#data };
-    let tags: string[] = [];
-
-    if (data.tags) {
-      tags = Array.isArray(data.tags)
-        ? data.tags.map((tag) => String(tag))
-        : [String(data.tags)];
-    }
+    let [data, tags] = prepareData({ ...this.#data });
 
     if (this.parent) {
       const parentData = this.parent.data;
@@ -155,4 +157,17 @@ export class SiteDirectory extends Base implements Directory {
     this.dirs.forEach((dir) => dir.refreshCache());
     super.refreshCache();
   }
+}
+
+/** Prepare the data, ensuring that tags is an array with unique values */
+function prepareData(data: Data): [Data, string[]] {
+  let tags: string[] = [];
+
+  if (data.tags) {
+    tags = Array.isArray(data.tags)
+      ? data.tags.map((tag) => String(tag))
+      : [String(data.tags)];
+  }
+
+  return [data, tags];
 }

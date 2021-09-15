@@ -8,6 +8,7 @@ import {
 import loader from "../core/loaders/text.ts";
 import Markdown from "../core/engines/markdown.ts";
 import { merge } from "../core/utils.ts";
+import { posix } from "../deps/path.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -103,7 +104,23 @@ export default function (userOptions?: Partial<Options>) {
 function createMarkdown(site: Site, options: Options) {
   // @ts-ignore: This expression is not callable.
   const markdown = markdownIt({
-    replaceLink(link: string) {
+    replaceLink(link: string, env: Record<string, string>) {
+      const { filename } = env;
+
+      // Resolve links to .md documents automatically
+      if (filename && !link.startsWith("~") && link.endsWith(".md")) {
+        const file = posix.relative(
+          site.src(),
+          posix.resolve(posix.dirname(filename), link),
+        );
+
+        try {
+          return site.url(`~/${file}`);
+        } catch {
+          // Ignored
+        }
+      }
+
       return site.url(link);
     },
     ...options.options,

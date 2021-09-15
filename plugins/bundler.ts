@@ -26,7 +26,7 @@ const defaults: Options = {
   includes: {},
 };
 
-/** A plugin to load all .js and .ts files and bundle them using Deno.emit() */
+/** A plugin to load all .js, .ts, .jsx, .tsx files and bundle them using Deno.emit() */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
@@ -42,7 +42,7 @@ export default function (userOptions?: Partial<Options>) {
 
     /**
      * For bundle, we need to load all the files sources
-     * before emit the entries
+     * before emitting the bundle
      */
     if (options.options.bundle) {
       // Load all source files and save the content in `sources`

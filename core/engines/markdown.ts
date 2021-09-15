@@ -1,7 +1,7 @@
-import { Engine } from "../../core.ts";
+import { Data, Engine } from "../../core.ts";
 
 interface MarkdownEngine {
-  render: (input: string) => string;
+  render: (input: string, env?: Record<string, unknown>) => string;
 }
 
 export default class Markdown implements Engine {
@@ -11,8 +11,8 @@ export default class Markdown implements Engine {
     this.engine = engine;
   }
 
-  render(content: string) {
-    return this.engine.render(content);
+  render(content: string, _data: Data, filename: string): string {
+    return this.engine.render(content, { filename });
   }
 
   addHelper() {}

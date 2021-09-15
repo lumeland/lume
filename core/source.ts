@@ -179,13 +179,13 @@ export default class SiteSource implements Source {
 
     if (entry.isDirectory && entry.name === "_data") {
       const metric = metrics.start("Load", { path });
-      directory.data = await this.#loadDataDirectory(path);
+      directory.addData(await this.#loadDataDirectory(path));
       return metric.stop();
     }
 
     if (entry.isFile && /^_data\.\w+$/.test(entry.name)) {
       const metric = metrics.start("Load", { path });
-      directory.data = await this.#loadData(path);
+      directory.addData(await this.#loadData(path));
       return metric.stop();
     }
 

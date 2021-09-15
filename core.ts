@@ -251,6 +251,9 @@ export interface Page {
 
   /** Refresh the cached merged data (used for rebuild) */
   refreshCache(): void;
+
+  /** Merge more data with the existing */
+  addData(data: Data): void;
 }
 
 /** A directory */
@@ -290,6 +293,9 @@ export interface Directory {
 
   /** Refresh the data cache in this directory recursively (used for rebuild) */
   refreshCache(): void;
+
+  /** Merge more data with the existing */
+  addData(data: Data): void;
 }
 
 /** A source loader */
