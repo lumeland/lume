@@ -476,11 +476,12 @@ export default class LumeSite implements Site {
                 await preprocess(page, this);
                 metric.stop();
               }
-            } catch (err) {
+            } catch (cause) {
               throw new Exception("Error preprocessing page", {
+                cause,
                 page,
                 preprocess: preprocess.name,
-              }, err);
+              });
             }
           },
         );
@@ -494,8 +495,8 @@ export default class LumeSite implements Site {
             const metric = this.metrics.start("Render", { page });
             page.content = await this.#renderPage(page) as string;
             metric.stop();
-          } catch (err) {
-            throw new Exception("Error rendering this page", { page }, err);
+          } catch (cause) {
+            throw new Exception("Error rendering this page", { cause, page });
           }
         },
       );
@@ -523,11 +524,12 @@ export default class LumeSite implements Site {
               await process(page, this);
               metric.stop();
             }
-          } catch (err) {
+          } catch (cause) {
             throw new Exception("Error processing page", {
+              cause,
               page,
               processor: process.name,
-            }, err);
+            });
           }
         },
       );

@@ -60,19 +60,19 @@ export default function (userOptions?: Partial<Options>) {
       }
     }
 
-    function getContent(path: string, asData = false) {
+    function getContent(path: string, asDataUrl = false) {
       // Ensure the path starts with "/"
       path = posix.join("/", path);
-      const id = JSON.stringify([path, asData]);
+      const id = JSON.stringify([path, asDataUrl]);
 
       if (!cache.has(id)) {
-        cache.set(id, readContent(path, asData));
+        cache.set(id, readContent(path, asDataUrl));
       }
 
       return cache.get(id);
     }
 
-    async function readContent(path: string, asData: boolean) {
+    async function readContent(path: string, asDataUrl: boolean) {
       const url = posix.join(
         "/",
         posix.relative(site.options.location.pathname, path),
@@ -80,11 +80,16 @@ export default function (userOptions?: Partial<Options>) {
 
       const content = await site.getFileContent(url) as string | Uint8Array;
 
-      // Is a file in dest
-      if (!asData) {
+      // Return the raw content
+      if (!asDataUrl) {
+        if (content instanceof Uint8Array) {
+          return new TextDecoder().decode(content);
+        }
+
         return content;
       }
 
+      // Return the data URL
       const ext = extname(path);
 
       if (!mimes.has(ext)) {
@@ -104,10 +109,10 @@ export default function (userOptions?: Partial<Options>) {
       try {
         style.innerHTML = await getContent(path);
         element.replaceWith(style);
-      } catch {
+      } catch (cause) {
         throw new Exception(
           "Plugin inline: Unable to inline the file",
-          { path, url },
+          { cause, path, url },
         );
       }
     }
@@ -118,10 +123,10 @@ export default function (userOptions?: Partial<Options>) {
       try {
         element.innerHTML = await getContent(path);
         element.removeAttribute("src");
-      } catch {
+      } catch (cause) {
         throw new Exception(
           "Plugin inline: Unable to inline the file",
-          { path, url },
+          { cause, path, url },
         );
       }
     }
@@ -140,10 +145,10 @@ export default function (userOptions?: Partial<Options>) {
         }
 
         element.setAttribute("src", await getContent(path, true));
-      } catch {
+      } catch (cause) {
         throw new Exception(
           "Plugin inline: Unable to inline the file",
-          { path, url },
+          { cause, path, url },
         );
       }
     }
@@ -153,10 +158,10 @@ export default function (userOptions?: Partial<Options>) {
 
       try {
         element.setAttribute("href", await getContent(path, true));
-      } catch {
+      } catch (cause) {
         throw new Exception(
           "Plugin inline: Unable to inline the file",
-          { path, url },
+          { cause, path, url },
         );
       }
     }

@@ -158,15 +158,23 @@ export function stringToDocument(string: string): HTMLDocument {
 export class Exception extends Error {
   data?: Record<string, unknown>;
 
-  constructor(message: string, data?: Record<string, unknown>, cause?: Error) {
-    const options = cause ? { cause } : {};
+  constructor(message: string, data: ExceptionData = {}) {
+    const options = data.cause ? { cause: data.cause } : {};
+    delete data.cause;
 
     super(message, options);
+
+    if (data.name) {
+      this.name = data.name;
+      delete data.name;
+    }
+
     this.data = data;
   }
+}
 
-  setName(name: string) {
-    this.name = name;
-    return this;
-  }
+export interface ExceptionData {
+  cause?: Error;
+  name?: string;
+  [key: string]: unknown;
 }

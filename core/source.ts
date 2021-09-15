@@ -326,8 +326,8 @@ export default class SiteSource implements Source {
       }
 
       return this.#cache.get(path)!;
-    } catch (err) {
-      throw new Exception("Couldn't load this file", { path }, err);
+    } catch (cause) {
+      throw new Exception("Couldn't load this file", { cause, path });
     }
   }
 }

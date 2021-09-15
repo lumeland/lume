@@ -78,12 +78,11 @@ export default function (userOptions?: Partial<Options>) {
           mapFile.content = output.map;
           site.pages.push(mapFile);
         }
-      } catch (err) {
+      } catch (cause) {
         throw new Exception(
           "Error processing the file",
-          { page: file, content },
-          err,
-        ).setName("Plugin Terser");
+          { name: "Plugin Terser", cause, page: file, content },
+        );
       }
     }
 
