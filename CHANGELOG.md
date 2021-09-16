@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Removed the `entries` argument of `bundler` plugin.
 - The data of different `_data` files and folders in the same directory is now merged.
   Previously it was overriden, causing inconsistencies.
+- The built in server returns a `301` response for folders without trailing slash.
+  For example: `/about-us` to `/about-us/`.
 
 ### Fixed
 - Processors take into account the `src` extension,

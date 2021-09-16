@@ -72,14 +72,27 @@ export default async function server(site: Site) {
 
   async function handleFile(event: Deno.RequestEvent) {
     const { request } = event;
-    let path = join(root, new URL(request.url).pathname);
+    const { pathname } = new URL(request.url);
+    let path = join(root, pathname);
 
     try {
+      if (path.endsWith("/")) {
+        path += "index.html";
+      }
+
       const info = await Deno.stat(path);
 
       if (info.isDirectory) {
-        path = join(path, "index.html");
-        await Deno.stat(path);
+        await event.respondWith(
+          new Response(null, {
+            status: 301,
+            headers: new Headers({
+              "location": join(pathname, "/"),
+              "cache-control": "no-cache no-store must-revalidate",
+            }),
+          }),
+        );
+        return;
       }
 
       const mimeType = mimes.get(extname(path).toLowerCase()) ||
