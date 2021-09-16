@@ -7,7 +7,7 @@ import {
 } from "../deps/markdown_it.ts";
 import loader from "../core/loaders/text.ts";
 import Markdown from "../core/engines/markdown.ts";
-import { merge, warn } from "../core/utils.ts";
+import { getPathInfo, merge, warn } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
 
 export interface Options {
@@ -108,16 +108,22 @@ function createMarkdown(site: Site, options: Options) {
       const { filename } = env;
 
       // Resolve links to .md documents automatically
-      if (filename && !link.startsWith("~") && link.endsWith(".md")) {
+      if (
+        filename && !link.startsWith("~") &&
+        (link.endsWith(".md") || link.includes(".md#") || link.includes(".md?"))
+      ) {
+        const [name, rest] = getPathInfo(link);
         const file = posix.relative(
           site.src(),
-          posix.resolve(posix.dirname(filename), link),
+          posix.resolve(posix.dirname(filename), name),
         );
-
         try {
-          return site.url(`~/${file}`);
+          return site.url(`~/${file}`) + rest;
         } catch {
-          warn("markdown", `Could not resolve link "${link}"`, { filename });
+          warn("markdown", "Could not resolve markdown link", {
+            filename,
+            link,
+          });
         }
       }
 
