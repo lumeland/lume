@@ -7,7 +7,7 @@ import {
 } from "../deps/markdown_it.ts";
 import loader from "../core/loaders/text.ts";
 import Markdown from "../core/engines/markdown.ts";
-import { merge } from "../core/utils.ts";
+import { merge, warn } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
 
 export interface Options {
@@ -117,7 +117,7 @@ function createMarkdown(site: Site, options: Options) {
         try {
           return site.url(`~/${file}`);
         } catch {
-          // Ignored
+          warn("markdown", `Could not resolve link "${link}"`, { filename });
         }
       }
 

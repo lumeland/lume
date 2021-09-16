@@ -1,5 +1,7 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
 import { SEP } from "../deps/path.ts";
+import { bold, dim, yellow } from "../deps/colors.ts";
+import { Page } from "../core.ts";
 
 /** Run a callback concurrently with all the elements of an Iterable */
 export async function concurrent<Type>(
@@ -177,4 +179,20 @@ export interface ExceptionData {
   cause?: Error;
   name?: string;
   [key: string]: unknown;
+}
+
+export function warn(
+  name: string,
+  message: string,
+  data?: Record<string, unknown>,
+) {
+  console.warn("⚠️ " + bold(yellow(name)), message);
+
+  for (let [key, value] of Object.entries(data ?? {})) {
+    if (key === "page") {
+      value = (value as Page).src.path + (value as Page).src.ext;
+    }
+
+    console.log(dim(`  ${key}:`), value);
+  }
 }
