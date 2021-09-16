@@ -16,7 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New option `keepDefaultPlugins` to `postcss` and `markdown`.
   Set to `true` to keep the default plugins and append more, instead of override them.
 - New option `includes` to `bundler` plugin, to specify the folders of bare imports.
-- Links to `.md` documents in markdown resolves to the real url
+- Links to `.md` documents in markdown resolves to the real url.
+  This makes the links to other `.md` files works in GitHub, which is great for documentation.
 
 ### Changed
 - `lume init` code imports lume from `https://deno.land/x/lume/` instead `lume`.
