@@ -45,7 +45,7 @@ Deno.test("build a markdown site", async () => {
 
   testPage(site, "/with-links", (page) => {
     const anchors = page.document?.querySelectorAll("a");
-    equals(anchors?.length, 9);
+    equals(anchors?.length, 7);
     // @ts-ignore getAttribute does not exist on Node
     equals(anchors?.item(0)?.getAttribute("href"), "/blog/bar");
     // @ts-ignore getAttribute does not exist on Node
@@ -60,10 +60,6 @@ Deno.test("build a markdown site", async () => {
     equals(anchors?.item(5)?.getAttribute("href"), "?foo=bar");
     // @ts-ignore getAttribute does not exist on Node
     equals(anchors?.item(6)?.getAttribute("href"), "/blog/basic/");
-    // @ts-ignore getAttribute does not exist on Node
-    equals(anchors?.item(7)?.getAttribute("href"), "/blog/with-code/");
-    // @ts-ignore getAttribute does not exist on Node
-    equals(anchors?.item(8)?.getAttribute("href"), "./unexisting-document.md");
   });
 
   testPage(site, "/empty", (page) => {

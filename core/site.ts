@@ -314,7 +314,7 @@ export default class LumeSite implements Site {
   url(path: string, absolute = false) {
     if (
       path.startsWith("./") || path.startsWith("../") ||
-      path.startsWith("?") || path.startsWith("#")
+      path.startsWith("?") || path.startsWith("#") || path.startsWith("//")
     ) {
       return path;
     }

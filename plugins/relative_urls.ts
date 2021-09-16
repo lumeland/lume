@@ -1,86 +1,25 @@
-import { Element } from "../deps/dom.ts";
 import { posix } from "../deps/path.ts";
-import { Page, Site } from "../core.ts";
+import { Site } from "../core.ts";
+import modifyUrls from "./modify_urls.ts";
 
 /** A plugin to convert all internal URLs to relative */
 export default function () {
   return (site: Site) => {
-    site.process([".html"], relativeUrls);
-
     const basePath = site.options.location.pathname;
 
-    function relativeUrls(page: Page) {
-      const document = page.document!;
-      const from = posix.dirname(site.url(page.dest.path));
+    site.use(modifyUrls({
+      fn(url, page) {
+        if (!url.startsWith("/") || url.startsWith("//")) {
+          return url;
+        }
 
-      document.querySelectorAll("[href]").forEach((node) => {
-        const element = node as Element;
-        element.setAttribute(
-          "href",
-          relativeUrl(basePath, from, element.getAttribute("href")!),
-        );
-      });
+        if (!url.startsWith(basePath)) {
+          url = posix.join(basePath, url);
+        }
 
-      document.querySelectorAll("[src]").forEach((node) => {
-        const element = node as Element;
-        element.setAttribute(
-          "src",
-          relativeUrl(basePath, from, element.getAttribute("src")!),
-        );
-      });
-
-      const srcsetUrlRegex =
-        /(?<=^\s*|,\s+|\s,+|\s[^\s,]+,+)[^\s,](?:\S*[^\s,])?/g;
-
-      document.querySelectorAll("[srcset]").forEach((node) => {
-        const element = node as Element;
-        element.setAttribute(
-          "srcset",
-          element.getAttribute("srcset")!.replace(
-            srcsetUrlRegex,
-            (url: string) => relativeUrl(basePath, from, url),
-          ),
-        );
-      });
-
-      document.querySelectorAll("[imagesrcset]").forEach((node) => {
-        const element = node as Element;
-        element.setAttribute(
-          "imagesrcset",
-          element.getAttribute("imagesrcset")!.replace(
-            srcsetUrlRegex,
-            (url: string) => relativeUrl(basePath, from, url),
-          ),
-        );
-      });
-    }
+        const from = site.url(page.data.url as string);
+        return posix.relative(from, url);
+      },
+    }));
   };
-}
-
-export function relativeUrl(basePath: string, from: string, to: string) {
-  if (ignore(to)) {
-    return to;
-  }
-
-  if (!to.startsWith(basePath)) {
-    to = posix.join(basePath, to);
-  }
-
-  let relative = posix.relative(from, to);
-
-  if (to.endsWith("/") && !relative.endsWith("/")) {
-    relative += "/";
-  }
-
-  return !relative || relative.startsWith("/") ? `.${relative}` : relative;
-}
-
-function ignore(url: string) {
-  return !url ||
-    url.startsWith("./") ||
-    url.startsWith("../") ||
-    url.startsWith("?") ||
-    url.startsWith("#") ||
-    url.startsWith("data:") ||
-    url.includes("//");
 }

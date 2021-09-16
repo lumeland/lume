@@ -197,22 +197,3 @@ export function warn(message: string, data: ErrorData = {}) {
     console.log(dim(`  ${key}:`), value);
   }
 }
-
-/**
- * Split the filename and the extra content (query or hash) from a path
- * Example: "/foo.md?hello=world" => ["/foo.md", "?hello=world"]
- * Example: "/foo.md#hello=world" => ["/foo.md", "#hello=world"]
- */
-export function getPathInfo(path: string): [string, string] {
-  let file = path, rest = "";
-
-  if (path.includes("?")) {
-    [file, rest] = path.split("?", 2);
-    rest = `?${rest}`;
-  } else if (path.includes("#")) {
-    [file, rest] = path.split("#", 2);
-    rest = `#${rest}`;
-  }
-
-  return [file, rest];
-}

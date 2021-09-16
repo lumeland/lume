@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.1.0] - Unreleased
 ### Added
 - Created a bunch of tests
+- New plugin `modify_urls` that allows to edit the urls of HTML pages.
+  It's used internally by other plugins like `relative_urls`, `base_path` or `resolve_urls`.
 - `.jsx` pages can default export a JSX element, not only a function.
 - The installed import map includes `https://deno.land/x/lume/` in addition to `lume/`.
   This makes the `_config.js` file work without CLI.
@@ -34,6 +36,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Keep the return type of the files in `_data` folders that returns not plain objects
   (for example, arrays, numbers, etc)
 - Some bugs in the `inline` plugin.
+- Urls starting with `//` are not normalized because they are absolute urls
+  For example: `//domain.com`
 
 ## [1.0.5] - 2021-09-07
 ### Fixed

@@ -6,5 +6,3 @@
 [url](#foo)
 [url](?foo=bar)
 [url](~/basic.md)
-[url](./with-code.md)
-[url](./unexisting-document.md)
