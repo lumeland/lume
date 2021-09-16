@@ -1,7 +1,7 @@
 import { Element } from "../deps/dom.ts";
 import { extname, posix, resolve } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
-import { Exception, merge, mimes } from "../core/utils.ts";
+import { merge, mimes, warn } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
 
 export interface Options {
@@ -93,10 +93,12 @@ export default function (userOptions?: Partial<Options>) {
       const ext = extname(path);
 
       if (!mimes.has(ext)) {
-        throw new Exception(
-          "Plugin inline: Unknown file format",
-          { path, available: mimes },
-        );
+        warn("Unknown file format", {
+          name: "Inline plugin",
+          path,
+          url,
+          available: mimes,
+        });
       }
 
       return `data:${mimes.get(ext)};base64,${encode(content)}`;
@@ -110,10 +112,12 @@ export default function (userOptions?: Partial<Options>) {
         style.innerHTML = await getContent(path);
         element.replaceWith(style);
       } catch (cause) {
-        throw new Exception(
-          "Plugin inline: Unable to inline the file",
-          { cause, path, url },
-        );
+        warn("Unable to inline the file", {
+          name: "Inline plugin",
+          cause,
+          path,
+          url,
+        });
       }
     }
 
@@ -124,10 +128,12 @@ export default function (userOptions?: Partial<Options>) {
         element.innerHTML = await getContent(path);
         element.removeAttribute("src");
       } catch (cause) {
-        throw new Exception(
-          "Plugin inline: Unable to inline the file",
-          { cause, path, url },
-        );
+        warn("Unable to inline the file", {
+          name: "Inline plugin",
+          cause,
+          path,
+          url,
+        });
       }
     }
 
@@ -146,10 +152,12 @@ export default function (userOptions?: Partial<Options>) {
 
         element.setAttribute("src", await getContent(path, true));
       } catch (cause) {
-        throw new Exception(
-          "Plugin inline: Unable to inline the file",
-          { cause, path, url },
-        );
+        warn("Unable to inline the file", {
+          name: "Inline plugin",
+          cause,
+          path,
+          url,
+        });
       }
     }
 
@@ -159,10 +167,12 @@ export default function (userOptions?: Partial<Options>) {
       try {
         element.setAttribute("href", await getContent(path, true));
       } catch (cause) {
-        throw new Exception(
-          "Plugin inline: Unable to inline the file",
-          { cause, path, url },
-        );
+        warn("Unable to inline the file", {
+          name: "Inline plugin",
+          cause,
+          path,
+          url,
+        });
       }
     }
   };

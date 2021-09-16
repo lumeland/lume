@@ -119,10 +119,12 @@ function createMarkdown(site: Site, options: Options) {
         );
         try {
           return site.url(`~/${file}`) + rest;
-        } catch {
-          warn("markdown", "Could not resolve markdown link", {
+        } catch (cause) {
+          warn("Could not resolve markdown link", {
+            name: "Markdown plugin",
             filename,
             link,
+            cause,
           });
         }
       }

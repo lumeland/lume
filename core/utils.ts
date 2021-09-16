@@ -153,6 +153,12 @@ export function stringToDocument(string: string): HTMLDocument {
   return document;
 }
 
+export interface ErrorData {
+  cause?: Error;
+  name?: string;
+  [key: string]: unknown;
+}
+
 /**
  * Generic Exception to throw errors.
  * It allows to include extra data and the previous exception.
@@ -160,7 +166,7 @@ export function stringToDocument(string: string): HTMLDocument {
 export class Exception extends Error {
   data?: Record<string, unknown>;
 
-  constructor(message: string, data: ExceptionData = {}) {
+  constructor(message: string, data: ErrorData = {}) {
     const options = data.cause ? { cause: data.cause } : {};
     delete data.cause;
 
@@ -175,22 +181,17 @@ export class Exception extends Error {
   }
 }
 
-export interface ExceptionData {
-  cause?: Error;
-  name?: string;
-  [key: string]: unknown;
-}
+export function warn(message: string, data: ErrorData = {}) {
+  const name = data.name || "Warning";
+  delete data.name;
 
-export function warn(
-  name: string,
-  message: string,
-  data?: Record<string, unknown>,
-) {
   console.warn("⚠️ " + bold(yellow(name)), message);
 
   for (let [key, value] of Object.entries(data ?? {})) {
     if (key === "page") {
       value = (value as Page).src.path + (value as Page).src.ext;
+    } else if (value instanceof Error) {
+      value = value.toString();
     }
 
     console.log(dim(`  ${key}:`), value);
