@@ -10,39 +10,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.1.0] - Unreleased
 ### Added
 - Created a bunch of tests
-- New plugin `resolve_urls` that transform links to source files to final urls.
+- New plugin `resolve_urls` that transform links with source files to final urls.
+  For example: `/posts/post-1.md -> /post/post-1/`.
+  This allows to write markdown files that are navigable in GitHub.
 - New plugin `modify_urls` that allows to edit the urls of HTML pages.
   It's used internally by other plugins like `relative_urls`, `base_path` or `resolve_urls`.
 - `.jsx` pages can export a JSX element as default (previously only a function was accepted).
-- The installed import map includes `https://deno.land/x/lume/` in addition to `lume/`.
-  This makes the `_config.js` file work without CLI.
+- The lume import map includes `https://deno.land/x/lume/` in addition to `lume/`.
+  This allows to use the `_config.js` file with or without import maps.
 - New option `keepDefaultPlugins` to `postcss` and `markdown`.
-  Set to `true` to keep the default plugins and append yours, instead of override them.
-- Configuration options for `json` and `module` plugins.
+  Set to `true` append your plugins instead override the defaults.
+- Minimal configuration options for `json` and `module` plugins.
 - `lume init` can configure VS Code.
-- The `server.page404` option accepts pretty urls (ex: `/404/`)
+- The `server.page404` option works also with pretty urls (ex: `/404/`)
 
 ### Changed
 - Removed all options of `lume init` and convert it to an interactive command.
 - The data of different `_data` files and folders in the same directory is now merged.
   Previously it was overriden, causing inconsistencies.
 - The built in server returns a `301` response for folders without trailing slash.
-  For example: `/about-us` to `/about-us/`.
+  For example: `/about-us -> /about-us/`.
 
 ### Removed
-- BREAKING: The links in markdown don't are fixed by default. Use `resolve_links` plugin.
+- BREAKING: Markdown no longer modify the links automatically.
+  Use `resolve_links` plugin.
 - BREAKING: Removed the `entries` argument of `bundler` plugin.
+  (sorry, it was a bad idea)
 
 ### Fixed
-- Processors take into account the `src` extension,
-  in addition to the `dest` extension to match with preprocessors behavior.
-- Some types like arrays, numbers, etc returned by `_data` files were converted to plain object.
-  This doesn't happen anymore.
+- Processors take into account the extension of the source file,
+  in addition to the output extension to match with preprocessors behavior.
+- Some types like arrays returned by `_data` files no more are converted to plain object.
 - Some bugs in the `inline` plugin.
 - Urls starting with `//` are not normalized because they are absolute urls
   For example: `//domain.com`
 - Updated dependencies `std`, `deno_dom`.
 - The property `data` of the pages is now enumerable.
+  This makes pages compatible with some filters of Nunjucks.
 
 ## [1.0.5] - 2021-09-07
 ### Fixed
