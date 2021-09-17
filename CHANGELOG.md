@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.1.0] - Unreleased
 ### Added
 - Created a bunch of tests
+- New plugin `resolve_urls` that transform links to source files to final urls.
 - New plugin `modify_urls` that allows to edit the urls of HTML pages.
   It's used internally by other plugins like `relative_urls`, `base_path` or `resolve_urls`.
 - `.jsx` pages can default export a JSX element, not only a function.
