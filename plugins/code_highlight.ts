@@ -34,7 +34,7 @@ export interface HighlightOptions {
 }
 
 // Default options
-const defaults = {
+const defaults: Options = {
   extensions: [".html"],
   options: {
     ignoreUnescapedHTML: false,
@@ -53,7 +53,7 @@ export default function (userOptions?: Partial<Options>) {
   hljs.configure(options.options);
 
   return (site: Site) => {
-    site.process([".html"], codeHighlight);
+    site.process(options.extensions, codeHighlight);
 
     function codeHighlight(page: Page) {
       page.document!.querySelectorAll(options.options.cssSelector!)

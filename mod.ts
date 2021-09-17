@@ -3,9 +3,9 @@ import { resolve } from "./deps/path.ts";
 import Site from "./core/site.ts";
 
 import url from "./plugins/url.ts";
-import json from "./plugins/json.ts";
+import json, { Options as JsonOptions } from "./plugins/json.ts";
 import markdown, { Options as MarkdownOptions } from "./plugins/markdown.ts";
-import modules from "./plugins/modules.ts";
+import modules, { Options as ModulesOptions } from "./plugins/modules.ts";
 import nunjucks, { Options as NunjucksOptions } from "./plugins/nunjucks.ts";
 import search from "./plugins/search.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
@@ -14,7 +14,9 @@ import { merge } from "./core/utils.ts";
 import { ServerOptions, SiteOptions } from "./core.ts";
 
 interface PluginOptions {
+  json?: Partial<JsonOptions>;
   markdown?: Partial<MarkdownOptions>;
+  modules?: Partial<ModulesOptions>;
   nunjucks?: Partial<NunjucksOptions>;
   yaml?: Partial<YamlOptions>;
 }
@@ -36,9 +38,9 @@ export default function (
   return site
     .ignore("node_modules")
     .use(url())
-    .use(json())
+    .use(json(pluginOptions.json))
     .use(markdown(pluginOptions.markdown))
-    .use(modules())
+    .use(modules(pluginOptions.modules))
     .use(nunjucks(pluginOptions.nunjucks))
     .use(search())
     .use(yaml(pluginOptions.yaml));

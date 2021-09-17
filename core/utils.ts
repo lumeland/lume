@@ -197,3 +197,14 @@ export function warn(message: string, data: ErrorData = {}) {
     console.log(dim(`  ${key}:`), value);
   }
 }
+
+export function checkExtensions(extensions: string[]) {
+  extensions.forEach((extension) => {
+    if (extension.charAt(0) !== ".") {
+      throw new Exception(
+        "Invalid extension. It must start with '.'",
+        { extension },
+      );
+    }
+  });
+}

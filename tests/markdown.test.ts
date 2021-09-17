@@ -19,7 +19,7 @@ Deno.test("build a markdown site", async () => {
     equals(page.document?.querySelectorAll("li").length, 3);
     equals(
       page.document?.querySelector("li")?.innerHTML,
-      'one: <a href="/blog/items/un.html">un</a>',
+      'one: <a href="/items/un.html">un</a>',
     );
   });
 
@@ -43,25 +43,6 @@ Deno.test("build a markdown site", async () => {
     equals(page.document?.querySelectorAll("pre")?.length, 2);
   });
 
-  testPage(site, "/with-links", (page) => {
-    const anchors = page.document?.querySelectorAll("a");
-    equals(anchors?.length, 7);
-    // @ts-ignore getAttribute does not exist on Node
-    equals(anchors?.item(0)?.getAttribute("href"), "/blog/bar");
-    // @ts-ignore getAttribute does not exist on Node
-    equals(anchors?.item(1)?.getAttribute("href"), "/blog/foo");
-    // @ts-ignore getAttribute does not exist on Node
-    equals(anchors?.item(2)?.getAttribute("href"), "./foo");
-    // @ts-ignore getAttribute does not exist on Node
-    equals(anchors?.item(3)?.getAttribute("href"), "../foo");
-    // @ts-ignore getAttribute does not exist on Node
-    equals(anchors?.item(4)?.getAttribute("href"), "#foo");
-    // @ts-ignore getAttribute does not exist on Node
-    equals(anchors?.item(5)?.getAttribute("href"), "?foo=bar");
-    // @ts-ignore getAttribute does not exist on Node
-    equals(anchors?.item(6)?.getAttribute("href"), "/blog/basic/");
-  });
-
   testPage(site, "/empty", (page) => {
     assert(!page.document);
   });
@@ -69,7 +50,7 @@ Deno.test("build a markdown site", async () => {
   testPage(site, "/with-module", (page) => {
     equals(page.document?.querySelectorAll("h1").length, 1);
     equals(page.document?.querySelector("h1")?.innerText, page.data.title);
-    equals(page.document?.querySelector("a")?.getAttribute("href"), "/blog/");
+    equals(page.document?.querySelector("a")?.getAttribute("href"), "/");
   });
 
   testPage(site, "/with-filter", (page) => {
@@ -78,6 +59,6 @@ Deno.test("build a markdown site", async () => {
       page.document?.querySelector("h1")?.innerHTML,
       "Module <strong>example</strong>",
     );
-    equals(page.document?.querySelector("a")?.getAttribute("href"), "/blog/");
+    equals(page.document?.querySelector("a")?.getAttribute("href"), "/");
   });
 });

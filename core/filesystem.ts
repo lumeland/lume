@@ -159,7 +159,7 @@ export class SiteDirectory extends Base implements Directory {
   }
 }
 
-/** Prepare the data, ensuring that tags is an array with unique values */
+/** Prepare the data, ensuring that tags is an array of strings */
 function prepareData(data: Data): [Data, string[]] {
   let tags: string[] = [];
 

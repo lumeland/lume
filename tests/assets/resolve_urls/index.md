@@ -5,4 +5,6 @@
 [url](../foo)
 [url](#foo)
 [url](?foo=bar)
-[url](~/basic.md)
+[url](~/other.md)
+[url](other.md)
+[url](https://domain.com)

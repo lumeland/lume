@@ -28,6 +28,7 @@ import {
   Source,
 } from "../core.ts";
 import {
+  checkExtensions,
   concurrent,
   Exception,
   merge,
@@ -133,11 +134,13 @@ export default class LumeSite implements Site {
   }
 
   loadData(extensions: string[], loader: Loader) {
+    checkExtensions(extensions);
     extensions.forEach((extension) => this.source.data.set(extension, loader));
     return this;
   }
 
   loadPages(extensions: string[], loader?: Loader, engine?: Engine) {
+    checkExtensions(extensions);
     loader ||= textLoader;
     extensions.forEach((extension) =>
       this.source.pages.set(extension, loader!)
@@ -157,6 +160,7 @@ export default class LumeSite implements Site {
   }
 
   loadAssets(extensions: string[], loader?: Loader) {
+    checkExtensions(extensions);
     loader ||= textLoader;
     extensions.forEach((extension) =>
       this.source.pages.set(extension, loader!)
@@ -166,11 +170,13 @@ export default class LumeSite implements Site {
   }
 
   preprocess(extensions: string[], preprocessor: Processor) {
+    checkExtensions(extensions);
     this.preprocessors.set(preprocessor, extensions);
     return this;
   }
 
   process(extensions: string[], processor: Processor) {
+    checkExtensions(extensions);
     this.processors.set(processor, extensions);
     return this;
   }

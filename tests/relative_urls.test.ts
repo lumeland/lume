@@ -21,7 +21,7 @@ Deno.test("relative_url plugin", async () => {
     equals(getHref(page, 3), "about-us/presentation");
     equals(getHref(page, 4), "?ignored=true");
     equals(getHref(page, 5), "#ignored");
-    equals(getHref(page, 6), "https://ignored.com/");
+    equals(getHref(page, 6), "https://ignored.com");
     equals(getHref(page, 7), "//ignored.com");
   });
 

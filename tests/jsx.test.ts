@@ -33,6 +33,6 @@ Deno.test("build a site with jsx/tsx modules", async () => {
     equals(page.data.title, "Markdown combined with JSX");
     equals(page.document?.querySelector("h1")?.innerText, "Hello world");
     equals(page.document?.querySelector("title")?.innerText, page.data.title);
-    equals(page.document?.querySelector("a")?.getAttribute("href"), "/blog/");
+    equals(page.document?.querySelector("a")?.getAttribute("href"), "/");
   });
 });

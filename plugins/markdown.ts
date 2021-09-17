@@ -3,7 +3,6 @@ import {
   markdownIt,
   markdownItAttrs,
   markdownItDeflist,
-  markdownItReplaceLink,
 } from "../deps/markdown_it.ts";
 import loader from "../core/loaders/text.ts";
 import Markdown from "../core/engines/markdown.ts";
@@ -73,7 +72,6 @@ const defaults: Options = {
   plugins: [
     markdownItAttrs,
     markdownItDeflist,
-    markdownItReplaceLink,
   ],
   keepDefaultPlugins: false,
 };
@@ -87,7 +85,7 @@ export default function (userOptions?: Partial<Options>) {
   }
 
   return function (site: Site) {
-    const engine = createMarkdown(site, options);
+    const engine = createMarkdown(options);
 
     site.loadPages(options.extensions, loader, new Markdown(engine));
     site.filter("md", filter as Helper);
@@ -100,12 +98,9 @@ export default function (userOptions?: Partial<Options>) {
   };
 }
 
-function createMarkdown(site: Site, options: Options) {
+function createMarkdown(options: Options) {
   // @ts-ignore: This expression is not callable.
   const markdown = markdownIt({
-    replaceLink(link: string) {
-      return site.url(link);
-    },
     ...options.options,
   });
 

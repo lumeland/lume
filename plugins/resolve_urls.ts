@@ -5,7 +5,7 @@ import modifyUrls from "./modify_urls.ts";
 /** A plugin to convert links to source files to the final page */
 export default function () {
   return (site: Site) => {
-    const cache = new Map<string, string>();
+    const cache = new Map<string, string | null>();
 
     site.addEventListener("beforeUpdate", () => cache.clear());
 
@@ -16,11 +16,15 @@ export default function () {
           return url;
         }
 
-        const [name, rest] = getPathInfo(url);
-        const file = posix.resolve(posix.dirname(page.src.path), name);
+        let [file, rest] = getPathInfo(url);
+
+        if (!file.startsWith("~")) {
+          file = posix.resolve(posix.dirname(page.src.path), file);
+        }
 
         if (cache.has(file)) {
-          return cache.get(file) + rest;
+          const cached = cache.get(file);
+          return cached ? cached + rest : url;
         }
 
         try {
@@ -31,7 +35,7 @@ export default function () {
           cache.set(file, resolved);
           return resolved + rest;
         } catch {
-          cache.set(file, name);
+          cache.set(file, null);
         }
 
         return url;
