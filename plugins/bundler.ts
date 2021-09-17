@@ -30,6 +30,14 @@ export default function (userOptions?: Partial<Options>) {
     const sources: Record<string, string> = {};
     const { importMap } = options.options;
 
+    // Refresh updated files
+    site.addEventListener("beforeUpdate", (event) => {
+      event.files?.forEach((file) => {
+        const specifier = toFileUrl(site.src(file)).href;
+        delete sources[specifier];
+      });
+    });
+
     site.loadAssets(options.extensions);
 
     /**
