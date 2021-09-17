@@ -17,9 +17,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   This makes the `_config.js` file work without CLI.
 - New option `keepDefaultPlugins` to `postcss` and `markdown`.
   Set to `true` to keep the default plugins and append more, instead of override them.
-- New option `includes` to `bundler` plugin, to specify the folders of bare imports.
-- Links to `.md` documents in markdown resolves to the real url.
-  This makes the links to other `.md` files works in GitHub, which is great for documentation.
 
 ### Changed
 - Removed all options of `lume init` and convert the flow to interactive.
@@ -27,6 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   Previously it was overriden, causing inconsistencies.
 - The built in server returns a `301` response for folders without trailing slash.
   For example: `/about-us` to `/about-us/`.
+
+### Removed
+- Removed the `entries` argument of `bundler` plugin.
 
 ### Fixed
 - Processors take into account the `src` extension,
@@ -37,9 +37,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Some bugs in the `inline` plugin.
 - Urls starting with `//` are not normalized because they are absolute urls
   For example: `//domain.com`
-
-### Removed
-- Removed the `entries` argument of `bundler` plugin.
 
 ## [1.0.5] - 2021-09-07
 ### Fixed

@@ -13,9 +13,6 @@ export interface Options {
 
   /** The options for Deno.emit */
   options: Deno.EmitOptions;
-
-  /** Includes paths */
-  includes: Record<string, string>;
 }
 
 // Default options
@@ -23,7 +20,6 @@ const defaults: Options = {
   extensions: [".ts", ".js"],
   sourceMap: false,
   options: {},
-  includes: {},
 };
 
 /** A plugin to load all .js, .ts, .jsx, .tsx files and bundle them using Deno.emit() */
@@ -32,11 +28,7 @@ export default function (userOptions?: Partial<Options>) {
 
   return (site: Site) => {
     const sources: Record<string, string> = {};
-    const imports: Record<string, string> = {};
-
-    for (const [specifier, location] of Object.entries(options.includes)) {
-      imports[specifier] = toFileUrl(site.src(location)).href;
-    }
+    const { importMap } = options.options;
 
     site.loadAssets(options.extensions);
 
@@ -95,8 +87,6 @@ export default function (userOptions?: Partial<Options>) {
           ...sources,
           [specifier]: file.content as string,
         },
-        importMap: { imports },
-        importMapPath: site.src(),
       });
 
       const content = files[specifier] || files[specifier + ".js"] ||
@@ -128,9 +118,9 @@ export default function (userOptions?: Partial<Options>) {
     }
 
     function getFileSpecifier(file: string) {
-      for (const key in imports) {
+      for (const key in importMap?.imports) {
         if (file.startsWith(key)) {
-          return imports[key] + file.slice(key.length);
+          return importMap?.imports[key] + file.slice(key.length);
         }
       }
       throw new Error(`Invalid specifier ${file}`);
