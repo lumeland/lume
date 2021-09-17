@@ -14,9 +14,6 @@ Deno.test("bundler plugin", async () => {
     options: {
       bundle: "module",
     },
-    includes: {
-      "mod/": "modules/",
-    },
   }));
 
   await build(site);
@@ -52,7 +49,7 @@ Deno.test("bundler plugin (not bundle)", async () => {
     equals(page.dest.path, "/main");
     equals(page.dest.ext, ".js");
     const content = page.content as string;
-    assert(content.includes('import Title from "mod/title.js";'));
+    assert(content.includes('import Title from "./modules/title.js";'));
   });
 
   testPage(site, "/modules/utils", (page) => {
