@@ -24,6 +24,8 @@ Deno.test("relative_url plugin", async () => {
     equals(getHref(page, 6), "/other/");
     equals(getHref(page, 7), "/other/");
     equals(getHref(page, 8), "https://domain.com");
+    equals(getHref(page, 9), "/other/?tab=1");
+    equals(getHref(page, 10), "/other/#tab-1");
   });
 
   testPage(site, "/articles/article-1", (page) => {
