@@ -1,4 +1,5 @@
 import {
+  assertEquals,
   assertStrictEquals as equals,
   assertStringIncludes as contains,
 } from "../deps/assert.ts";
@@ -23,6 +24,10 @@ Deno.test("build a simple site", async () => {
   equals(pages[0].dest.ext, ".html");
   equals(pages[0].data.url, "/page1/");
   contains(pages[0].content as string, "<h1>Welcome</h1>");
+
+  // Test the enumerated properties
+  const page = site.pages[0];
+  assertEquals(Object.keys(page), ["src", "parent", "data", "dest"]);
 });
 
 Deno.test("build/update events", async () => {

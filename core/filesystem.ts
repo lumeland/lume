@@ -6,12 +6,23 @@ import { Content, Data, Dest, Directory, Page, Src } from "../core.ts";
 class Base {
   src: Src;
   parent?: Directory;
-  dataLoaded = false;
+  #dataLoaded = false;
   #data?: Data;
   #cache?: Data;
 
   constructor(src?: Src) {
     this.src = src || { path: "" };
+
+    // Make data enumerable
+    const data = Object.assign(
+      Object.getOwnPropertyDescriptor(Base.prototype, "data"),
+      { enumerable: true },
+    );
+    Object.defineProperty(this, "data", data);
+  }
+
+  get dataLoaded() {
+    return this.#dataLoaded;
   }
 
   get data(): Data {
@@ -23,7 +34,7 @@ class Base {
   }
 
   set data(data: Data) {
-    this.dataLoaded = true;
+    this.#dataLoaded = true;
     this.#cache = undefined;
     this.#data = data;
   }
@@ -62,7 +73,7 @@ class Base {
 /** A page of the site */
 export class SitePage extends Base implements Page {
   dest: Dest;
-  _data = {};
+  #_data = {};
   #content?: Content;
   #document?: HTMLDocument;
   #copy = 0;
@@ -84,6 +95,14 @@ export class SitePage extends Base implements Page {
     page.src.path += `[${this.#copy++}]`;
 
     return page;
+  }
+
+  set _data(data: Record<string, unknown>) {
+    this.#_data = data;
+  }
+
+  get _data() {
+    return this.#_data;
   }
 
   set content(content: Content | undefined) {

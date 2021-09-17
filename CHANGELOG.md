@@ -42,6 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Urls starting with `//` are not normalized because they are absolute urls
   For example: `//domain.com`
 - Updated dependencies `std`, `deno_dom`.
+- The property `data` of the pages is now enumerable.
 
 ## [1.0.5] - 2021-09-07
 ### Fixed
