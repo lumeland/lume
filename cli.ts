@@ -1,5 +1,5 @@
 import { Command, CompletionsCommand } from "./deps/cliffy.ts";
-import { getCurrentVersion, pluginNames, printError } from "./cli/utils.ts";
+import { getCurrentVersion, printError } from "./cli/utils.ts";
 import initCommand from "./cli/init.ts";
 import upgradeCommand from "./cli/upgrade.ts";
 import runCommand from "./cli/run.ts";
@@ -8,25 +8,6 @@ import buildCommand from "./cli/build.ts";
 const init = new Command()
   .description("Create a config file for a new site.")
   .example("lume init", "Creates a _config.js file in the current directory.")
-  .example(
-    "lume init --config=_config.custom.ts",
-    "Changes the config file path.",
-  )
-  .complete("plugin", () => pluginNames)
-  .option(
-    "--config <file>",
-    "The config file path.",
-    { default: "_config.js" },
-  )
-  .option(
-    "--no-import-map",
-    "Use full URLs instead of a import map.",
-  )
-  .option(
-    "--plugins <plugin:string[]>",
-    "A comma-separated list of plugins to use.",
-    { default: [] },
-  )
   .action(initCommand);
 
 const upgrade = new Command()

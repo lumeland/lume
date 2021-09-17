@@ -22,8 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   This makes the links to other `.md` files works in GitHub, which is great for documentation.
 
 ### Changed
-- `lume init` code imports lume from `https://deno.land/x/lume/` instead `lume`.
-- Removed the `entries` argument of `bundler` plugin.
+- Removed all options of `lume init` and convert the flow to interactive.
 - The data of different `_data` files and folders in the same directory is now merged.
   Previously it was overriden, causing inconsistencies.
 - The built in server returns a `301` response for folders without trailing slash.
@@ -38,6 +37,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Some bugs in the `inline` plugin.
 - Urls starting with `//` are not normalized because they are absolute urls
   For example: `//domain.com`
+
+### Removed
+- Removed the `entries` argument of `bundler` plugin.
 
 ## [1.0.5] - 2021-09-07
 ### Fixed
