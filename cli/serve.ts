@@ -1,5 +1,5 @@
 import { Site } from "../core.ts";
-import { dirname, extname, join, posix, relative } from "../deps/path.ts";
+import { dirname, extname, join, posix, relative, SEP } from "../deps/path.ts";
 import { brightGreen, red } from "../deps/colors.ts";
 import { exists } from "../deps/fs.ts";
 import localIp from "../deps/local_ip.ts";
@@ -76,7 +76,7 @@ export default async function server(site: Site) {
     let path = join(root, pathname);
 
     try {
-      if (path.endsWith("/")) {
+      if (path.endsWith(SEP)) {
         path += "index.html";
       }
 
