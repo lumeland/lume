@@ -9,7 +9,7 @@ export default async function init() {
 
   const lumeUrl = getLumeUrl(thisLume);
   const plugins = getPlugins();
-  const configFile = getConfigFile();
+  const configFile = await getConfigFile();
   const vsCode = configureVSCode();
 
   // Generate the code for the config file
@@ -63,32 +63,34 @@ export default async function init() {
 
     // Create a launch.json file to debug
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    const baseConfig = {
+      request: "launch",
+      type: "pwa-node",
+      program: posix.join(thisLume, "/cli.ts"),
+      cwd: "${workspaceFolder}",
+      runtimeExecutable: "deno",
+      runtimeArgs: [
+        "run",
+        "--unstable",
+        "--import-map=.vscode/lume_import_map.json",
+        "--inspect",
+        "--allow-all",
+      ],
+      attachSimplePort: 9229,
+    };
+
     const launch = {
       "version": "0.2.0",
       "configurations": [
-        {
-          "name": "Lume build",
-          "request": "launch",
-          "type": "pwa-node",
-          "program": ".vscode/lume_launch.ts",
-          "cwd": "${workspaceFolder}",
-          "runtimeExecutable": "deno",
-          "runtimeArgs": [
-            "run",
-            "--unstable",
-            "--import-map=.vscode/lume_import_map.json",
-            "--inspect",
-            "--allow-all",
-          ],
-          "attachSimplePort": 9229,
-        },
+        Object.assign({}, baseConfig, {
+          name: "Lume build",
+        }),
+        Object.assign({}, baseConfig, {
+          name: "Lume serve",
+          args: ["--serve"],
+        }),
       ],
     };
-
-    const launchLume = `
-import site from "../${configFile}";
-site.build();
-`;
 
     await Deno.writeTextFile(
       ".vscode/settings.json",
@@ -102,17 +104,15 @@ site.build();
       ".vscode/launch.json",
       JSON.stringify(launch, null, 2),
     );
-    await Deno.writeTextFile(
-      ".vscode/lume_launch.ts",
-      launchLume,
-    );
     console.log(brightGreen("VS Code configured"));
   }
 
   // Write the code to the file
-  await Deno.writeTextFile(configFile, code.join("\n"));
-  console.log();
-  console.log(brightGreen("Created a config file"), configFile);
+  if (configFile) {
+    await Deno.writeTextFile(configFile, code.join("\n"));
+    console.log();
+    console.log(brightGreen("Created a config file"), configFile);
+  }
 }
 
 function getLumeUrl(lumeUrl: string) {
@@ -161,16 +161,23 @@ Example: ${dim(`postcss, terser, base_path`)}
   });
 }
 
-function getConfigFile() {
-  const message = `
-${brightGreen("Use Typescript for the configuration file?")}
-`;
-  return confirm(message) ? "_config.ts" : "_config.js";
+async function getConfigFile(): Promise<string | false> {
+  const configFile =
+    confirm(brightGreen("Use Typescript for the configuration file?"))
+      ? "_config.ts"
+      : "_config.js";
+
+  if (await exists(configFile)) {
+    return confirm(
+        brightGreen(`The file "${configFile}" already exist. Override?`),
+      )
+      ? configFile
+      : false;
+  }
+
+  return configFile;
 }
 
 function configureVSCode() {
-  const message = `
-${brightGreen("Do you want to configure VS Code?")}
-`;
-  return confirm(message);
+  return confirm(brightGreen("Do you want to configure VS Code?"));
 }
