@@ -69,5 +69,5 @@ function ignore(url: string) {
     url.startsWith("#") ||
     url.startsWith("data:") ||
     url.includes("//") ||
-    url.endsWith("/"); // Pretty url
+    (url.endsWith("/") && !url.startsWith("~")); // Pretty url
 }
