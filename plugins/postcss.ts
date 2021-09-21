@@ -16,7 +16,7 @@ export interface Options {
   sourceMap: boolean;
 
   /** Custom includes path for `postcss-import` */
-  includes: string | string[];
+  includes: string | string[] | false;
 
   /** Plugins to use by postcss */
   plugins: unknown[];
