@@ -26,6 +26,9 @@ export interface Data {
   /** To configure a different template engine(s) to render a page */
   templateEngine?: string | string[];
 
+  /** Dependencies to watch for this page */
+  dependencies?: string[];
+
   [index: string]: unknown;
 }
 
