@@ -35,7 +35,7 @@ Deno.test("load the pages of a site", async () => {
     // @ts-ignore: unknown property
     equals(page.data.colors.length, 3);
     // @ts-ignore: unknown property
-    equals(page.data.documents.length, 3);
+    equals(page.data.documents.content.length, 3);
     // @ts-ignore: unknown property
     equals(page.data.drinks.alcoholic.length, 2);
     // @ts-ignore: unknown property

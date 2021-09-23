@@ -1,5 +1,6 @@
-import { basename, dirname, extname, join } from "../deps/path.ts";
+import { Data, Directory, Event, Loader, Page, Site, Source } from "../core.ts";
 import { existsSync } from "../deps/fs.ts";
+import { basename, dirname, extname, join, relative } from "../deps/path.ts";
 import { SiteDirectory, SitePage } from "./filesystem.ts";
 import {
   concurrent,
@@ -7,7 +8,6 @@ import {
   normalizePath,
   searchByExtension,
 } from "./utils.ts";
-import { Data, Directory, Event, Loader, Page, Site, Source } from "../core.ts";
 
 /**
  * Scan and load files from the source folder
@@ -22,7 +22,9 @@ export default class SiteSource implements Source {
   staticFiles: Map<string, string> = new Map();
   assets: Set<string> = new Set();
   ignored: Set<string> = new Set();
+
   #cache: Map<string, Promise<Data>> = new Map();
+  #dependants: Map<string, Set<string>> = new Map();
 
   constructor(site: Site) {
     this.site = site;
@@ -36,8 +38,20 @@ export default class SiteSource implements Source {
     site.addEventListener("beforeUpdate", (ev: Event) => {
       this.root.refreshCache();
 
-      for (const filename of ev.files!) {
+      // copy files list so the following loop is not affected by mutation
+      const files = [...ev.files!];
+
+      for (const filename of files) {
         this.#cache.delete(site.src(filename));
+
+        const dependants = this.#dependants.get(filename);
+
+        if (dependants) {
+          dependants.forEach((dependant) => {
+            ev.files!.add(dependant);
+            this.#cache.delete(site.src(dependant));
+          });
+        }
       }
     });
   }
@@ -103,9 +117,9 @@ export default class SiteSource implements Source {
     if (file.includes("/_data/")) {
       const [dir, remain] = file.split("/_data/", 2);
       const directory = await this.#getOrCreateDirectory(dir);
-      const path = dirname(remain).split("/").filter((name: string) =>
-        name && name !== "."
-      );
+      const path = dirname(remain)
+        .split("/")
+        .filter((name: string) => name && name !== ".");
       let data = directory.data as Record<string, unknown>;
 
       for (const name of path) {
@@ -296,7 +310,8 @@ export default class SiteSource implements Source {
   ) {
     if (
       entry.isSymlink ||
-      entry.name.startsWith(".") || entry.name.startsWith("_")
+      entry.name.startsWith(".") ||
+      entry.name.startsWith("_")
     ) {
       return;
     }
@@ -321,15 +336,43 @@ export default class SiteSource implements Source {
 
   load(path: string, loader: Loader): Promise<Data> {
     try {
-      if (!this.#cache.has(path)) {
-        this.#cache.set(path, loader(path));
+      if (this.#cache.has(path)) {
+        return this.#cache.get(path)!;
       }
 
-      return this.#cache.get(path)!;
+      const promise = loader(path);
+      this.#cache.set(path, promise);
+
+      promise.then((data) => this.#updateDependencies(path, data));
+
+      return promise;
     } catch (cause) {
       throw new Exception("Couldn't load this file", { cause, path });
     }
   }
+
+  #updateDependencies(path: string, { dependencies }: Data) {
+    const toLocal = absolutePathToLocal(this.site.src());
+    const currentFile = toLocal(path);
+
+    for (const [_, dependants] of this.#dependants) {
+      dependants.delete(currentFile);
+    }
+
+    if (!dependencies) return;
+
+    for (const dependency of dependencies.map(toLocal)) {
+      if (!this.#dependants.has(dependency)) {
+        this.#dependants.set(dependency, new Set());
+      }
+
+      this.#dependants.get(dependency)!.add(currentFile);
+    }
+  }
+}
+
+function absolutePathToLocal(root: string) {
+  return (absolute: string) => join("/", relative(root, absolute));
 }
 
 function getDate(page: Page) {
