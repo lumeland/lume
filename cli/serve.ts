@@ -234,6 +234,11 @@ async function getNotFoundBody(root: string, page404: string, file: string) {
     ).join("\n")
   }
     </ul>
+    ${
+    typeof wsFile === "string"
+      ? `${content}<script type="module" id="lume-live-reload">${wsFile}</script>`
+      : `${content}<script type="module" src="${wsFile}" id="lume-live-reload"></script>`
+  }
   </body>
 </html>`;
 }

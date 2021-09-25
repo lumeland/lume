@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Upgrade `svgo`.
 - File paths with UTF-8 characters are correctly handled.
+- Inserted live-reload script in the default 404 html response.
 
 ## [1.1.0] - 2021-09-21
 ### Added
