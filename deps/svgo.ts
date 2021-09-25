@@ -1,1 +1,1 @@
-export * from "https://cdn.jsdelivr.net/gh/lumeland/svgo@v3.2.0/mod.js";
+export * from "https://unpkg.com/svgo@2.7.0/dist/svgo.browser.js";

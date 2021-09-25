@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.1.1] - Unreleased
+### Fixed
+- Upgrade `svgo`.
+
 ## [1.1.0] - 2021-09-21
 ### Added
 - Created a bunch of tests
@@ -1141,6 +1145,7 @@ The first version.
 [#125]: https://github.com/lumeland/lume/issues/125
 [#131]: https://github.com/lumeland/lume/issues/131
 
+[1.1.1]: https://github.com/lumeland/lume/compare/v1.1.0...HEAD
 [1.1.0]: https://github.com/lumeland/lume/compare/v1.0.5...v1.1.0
 [1.0.5]: https://github.com/lumeland/lume/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/lumeland/lume/compare/v1.0.3...v1.0.4
