@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.1.1] - Unreleased
 ### Fixed
 - Upgrade `svgo`.
+- File paths with UTF-8 characters are correctly handled.
 
 ## [1.1.0] - 2021-09-21
 ### Added

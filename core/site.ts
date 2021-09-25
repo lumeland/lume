@@ -328,6 +328,7 @@ export default class LumeSite implements Site {
     // It's a source file
     if (path.startsWith("~/")) {
       path = path.slice(1).replaceAll("/", SEP);
+      path = decodeURI(path);
 
       // It's a page
       const page = this.pages.find((page) =>

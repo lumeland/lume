@@ -1,6 +1,7 @@
 import { assertStrictEquals as equals } from "../deps/assert.ts";
 import { getSite, testPage } from "./utils.ts";
 import resolveUrls from "../plugins/resolve_urls.ts";
+import slugifyUrls from "../plugins/slugify_urls.ts";
 import { Element } from "../deps/dom.ts";
 import { Page } from "../core.ts";
 
@@ -12,6 +13,7 @@ Deno.test("relative_url plugin", async () => {
 
   site.copy("statics", "");
   site.use(resolveUrls());
+  site.use(slugifyUrls()); // Test combined with slugify_urls
   await site.build();
 
   testPage(site, "/index", (page) => {
@@ -27,6 +29,7 @@ Deno.test("relative_url plugin", async () => {
     equals(getHref(page, 9), "/other/?tab=1");
     equals(getHref(page, 10), "/other/#tab-1");
     equals(getHref(page, 11), "/");
+    equals(getHref(page, 12), "/tilde-and-ene/");
   });
 
   testPage(site, "/articles/article-1", (page) => {
