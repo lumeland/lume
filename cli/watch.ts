@@ -1,13 +1,18 @@
-import { Site } from "../core.ts";
 import { printError } from "./utils.ts";
 import { join, relative } from "../deps/path.ts";
 
-/** Watch and rebuild the site on changes */
-export default async function watch(site: Site) {
-  // Disable metrics for the watcher
-  site.options.metrics = false;
+export interface WatchOptions {
+  /** The folder root to watch */
+  root: string;
+  /** The folder destination that must be ignored by the watcher */
+  ignore: string;
+  /** The update function */
+  update: (files: Set<string>) => Promise<void>;
+}
 
-  const watcher = Deno.watchFs(site.src());
+/** Watch and rebuild the site on changes */
+export default async function watch(options: WatchOptions) {
+  const watcher = Deno.watchFs(options.root);
   const changes: Set<string> = new Set();
   console.log("Watching for changes...");
 
@@ -20,7 +25,7 @@ export default async function watch(site: Site) {
     changes.clear();
 
     try {
-      await site.update(files);
+      await options.update(files);
       console.log("Done");
       console.log();
     } catch (error) {
@@ -29,12 +34,12 @@ export default async function watch(site: Site) {
   };
 
   for await (const event of watcher) {
-    if (event.paths.every((path) => path.startsWith(site.dest()))) {
+    if (event.paths.every((path) => path.startsWith(options.ignore))) {
       continue;
     }
 
     event.paths.forEach((path) =>
-      changes.add(join("/", relative(site.src(), path)))
+      changes.add(join("/", relative(options.root, path)))
     );
 
     // Debounce

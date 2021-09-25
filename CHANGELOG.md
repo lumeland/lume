@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.1.1] - Unreleased
+### Changed
+- Uncoupled `cli/watch.ts` and `cli/server.ts` from `Site`.
+  These modules no longer require a `Site` instance to work, only the necessary options.
+
 ### Fixed
 - Upgrade `svgo`.
 - File paths with UTF-8 characters are correctly handled.

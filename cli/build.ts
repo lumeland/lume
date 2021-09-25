@@ -30,10 +30,20 @@ export default async function build(
     );
   }
 
-  if (serve) {
-    runWatch(site);
-    await runServe(site);
-  } else if (watch) {
-    await runWatch(site);
+  if (serve || watch) {
+    // Disable metrics for the watcher
+    site.options.metrics = false;
+
+    // Start the watcher
+    runWatch({
+      root: site.src(),
+      ignore: site.dest(),
+      update: (files) => site.update(files),
+    });
+
+    // Start the local server
+    if (serve) {
+      await runServe(site.dest(), site.options.server);
+    }
   }
 }

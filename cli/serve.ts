@@ -1,4 +1,4 @@
-import { Site } from "../core.ts";
+import { ServerOptions } from "../core.ts";
 import { dirname, extname, join, posix, relative, SEP } from "../deps/path.ts";
 import { brightGreen, red } from "../deps/colors.ts";
 import { exists } from "../deps/fs.ts";
@@ -7,11 +7,10 @@ import { mimes, normalizePath } from "../core/utils.ts";
 import { readAll } from "../deps/util.ts";
 
 /** Start a local HTTP server and live-reload the changes */
-export default async function server(site: Site) {
-  const root = site.dest();
-  const port = site.options.server.port || 3000;
+export default async function server(root: string, options?: ServerOptions) {
+  const port = options?.port || 3000;
   const ipAddr = await localIp();
-  let page404 = site.options.server.page404 || "/404.html";
+  let page404 = options?.page404 || "/404.html";
 
   if (page404.endsWith("/")) {
     page404 += "index.html";
@@ -32,7 +31,7 @@ export default async function server(site: Site) {
 
   console.log();
 
-  if (site.options.server.open) {
+  if (options?.open) {
     const commands = {
       darwin: "open",
       linux: "xdg-open",
