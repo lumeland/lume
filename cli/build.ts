@@ -1,5 +1,5 @@
-import { createSite } from "./utils.ts";
-import { brightGreen, gray } from "../deps/colors.ts";
+import { createSite, runWatch } from "./utils.ts";
+import { brightGreen, dim } from "../deps/colors.ts";
 import runServe from "./serve.ts";
 
 interface Options {
@@ -7,14 +7,15 @@ interface Options {
   config?: string;
   serve: boolean;
   watch: boolean;
+  rebuild: boolean;
 }
 
 /** Build the website and optionally watch changes and serve the site */
 export default async function build(
-  { root, config, serve, watch }: Options,
+  { root, config, serve, watch, rebuild }: Options,
 ) {
-  if (serve || watch) {
-    buildAndWatch(serve, root, config);
+  if (rebuild) {
+    runRebuild(serve, root, config);
     return;
   }
 
@@ -25,18 +26,43 @@ export default async function build(
     console.log();
   }
 
-  await site.build(false);
+  await site.build(serve);
 
   if (!quiet) {
     console.log();
     console.log(
-      `🍾 ${brightGreen("Site built into")} ${gray(site.options.dest)}`,
+      `🍾 ${brightGreen("Site built into")} ${dim(site.options.dest)}`,
     );
+  }
+
+  if (!serve && !watch) {
+    return;
+  }
+
+  // Disable metrics for the watcher
+  site.options.metrics = false;
+
+  // Start the watcher
+  runWatch({
+    root: site.src(),
+    ignore: site.dest(),
+    fn: (files) => {
+      console.log();
+      console.log("Changes detected:");
+      files.forEach((file) => console.log("-", dim(file)));
+      console.log();
+      return site.update(files);
+    },
+  });
+
+  // Start the local server
+  if (serve) {
+    await runServe(site.dest(), site.options.server);
   }
 }
 
 /** Build the site using a Worker so it can reload the modules */
-function buildAndWatch(initServer: boolean, root: string, config?: string) {
+function runRebuild(initServer: boolean, root: string, config?: string) {
   const url = new URL("watch.ts", import.meta.url);
   let serving = false;
 

@@ -1,9 +1,10 @@
-import { createSite, watch } from "./utils.ts";
+import { createSite, runWatch } from "./utils.ts";
 import { dim } from "../deps/colors.ts";
 
 onmessage = async (event) => {
   const { root, config } = event.data;
   const site = await createSite(root, config);
+
   await site.build(true);
 
   postMessage({
@@ -21,7 +22,7 @@ onmessage = async (event) => {
   console.log();
   console.log("Watching for changes...");
 
-  watch({
+  runWatch({
     root: site.src(),
     ignore: site.dest(),
     fn: (files) => {

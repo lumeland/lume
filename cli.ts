@@ -129,6 +129,10 @@ const lume = new Command()
     "-w, --watch [watch:boolean]",
     "Build and watch changes.",
   )
+  .option(
+    "--rebuild [rebuild:boolean]",
+    "To use the new watch mode (experimental).",
+  )
   .action(buildCommand)
   .command("init", init)
   .command("upgrade", upgrade)

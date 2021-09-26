@@ -5,7 +5,7 @@ import { exists } from "../deps/fs.ts";
 import localIp from "../deps/local_ip.ts";
 import { mimes, normalizePath } from "../core/utils.ts";
 import { readAll } from "../deps/util.ts";
-import { watch } from "./utils.ts";
+import { runWatch } from "./utils.ts";
 
 /** Start a local HTTP server and live-reload the changes */
 export default async function server(root: string, options?: ServerOptions) {
@@ -45,7 +45,7 @@ export default async function server(root: string, options?: ServerOptions) {
   // Live reload server
   let currentSocket: WebSocket | undefined;
 
-  watch({
+  runWatch({
     root,
     fn: (files: Set<string>) => {
       if (!currentSocket) {

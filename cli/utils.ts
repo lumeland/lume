@@ -27,18 +27,18 @@ export async function getLastDevelopmentVersion(): Promise<string> {
   return commits[0].sha;
 }
 
-/** Create a site instance */
-export async function createSite(root: string, config?: string): Promise<Site> {
+/** Returns the _config file of a site */
+export async function getConfigFile(
+  root: string,
+  config?: string,
+): Promise<string | undefined> {
   root = resolve(Deno.cwd(), root);
 
   if (config) {
     const path = join(root, config);
 
     if (await exists(path)) {
-      console.log(`Loading config file ${dim(config)}`);
-      console.log();
-      const mod = await import(toFileUrl(path).href);
-      return mod.default;
+      return path;
     }
 
     throw new Exception("Config file not found", { path });
@@ -50,11 +50,20 @@ export async function createSite(root: string, config?: string): Promise<Site> {
     const path = join(root, file);
 
     if (await exists(path)) {
-      console.log(`Loading config file ${dim(file)}`);
-      console.log();
-      const mod = await import(toFileUrl(path).href);
-      return mod.default;
+      return path;
     }
+  }
+}
+
+/** Create a site instance */
+export async function createSite(root: string, config?: string): Promise<Site> {
+  const path = await getConfigFile(root, config);
+
+  if (path) {
+    console.log(`Loading config file ${dim(path)}`);
+    console.log();
+    const mod = await import(toFileUrl(path).href);
+    return mod.default;
   }
 
   return lume();
@@ -127,7 +136,7 @@ export interface WatchOptions {
 }
 
 /** Watch file changes in a directory */
-export async function watch({ root, ignore, fn }: WatchOptions) {
+export async function runWatch({ root, ignore, fn }: WatchOptions) {
   const watcher = Deno.watchFs(root);
   const changes: Set<string> = new Set();
   let timer = 0;
