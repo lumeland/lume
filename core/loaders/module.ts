@@ -1,10 +1,9 @@
 import { Data } from "../../core.ts";
 import { isPlainObject } from "../utils.ts";
 
-/** Load a JavaScript/TypeScript file. Use a random hash to prevent caching */
+/** Load a JavaScript/TypeScript file */
 export default async function (path: string): Promise<Data> {
-  const hash = Date.now();
-  const mod = await import(`file://${path}#${hash}`);
+  const mod = await import(`file://${path}`);
   const data: Data = {};
 
   for (const [name, value] of Object.entries(mod)) {

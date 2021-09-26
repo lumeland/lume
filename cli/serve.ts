@@ -1,10 +1,11 @@
 import { ServerOptions } from "../core.ts";
-import { dirname, extname, join, posix, relative, SEP } from "../deps/path.ts";
+import { dirname, extname, join, relative, SEP } from "../deps/path.ts";
 import { brightGreen, red } from "../deps/colors.ts";
 import { exists } from "../deps/fs.ts";
 import localIp from "../deps/local_ip.ts";
 import { mimes, normalizePath } from "../core/utils.ts";
 import { readAll } from "../deps/util.ts";
+import { watch } from "./utils.ts";
 
 /** Start a local HTTP server and live-reload the changes */
 export default async function server(root: string, options?: ServerOptions) {
@@ -42,11 +43,19 @@ export default async function server(root: string, options?: ServerOptions) {
   }
 
   // Live reload server
-  const watcher = Deno.watchFs(root);
-
-  let timer = 0;
   let currentSocket: WebSocket | undefined;
-  const changes: Set<string> = new Set();
+
+  watch({
+    root,
+    fn: (files: Set<string>) => {
+      if (!currentSocket) {
+        return;
+      }
+      const urls = Array.from(files).map((file) => normalizePath(file));
+      console.log("Changes sent to the browser");
+      return currentSocket.send(JSON.stringify(urls));
+    },
+  });
 
   // Static files server
   const server = Deno.listen({ port });
@@ -135,12 +144,12 @@ export default async function server(root: string, options?: ServerOptions) {
     }
   }
 
-  async function handleSocket(event: Deno.RequestEvent) {
+  function handleSocket(event: Deno.RequestEvent) {
     const { socket, response } = Deno.upgradeWebSocket(event.request);
 
     socket.onopen = () => {
       if (!currentSocket) {
-        console.log("Live reload started");
+        console.log("Live reload active");
       }
       currentSocket = socket;
     };
@@ -152,39 +161,6 @@ export default async function server(root: string, options?: ServerOptions) {
     socket.onerror = (e) => console.log("Socket errored", e);
 
     event.respondWith(response);
-
-    async function sendChanges() {
-      if (!changes.size || !currentSocket) {
-        return;
-      }
-
-      const files = Array.from(changes).map((path) =>
-        posix.join("/", normalizePath(relative(root, path)))
-      );
-
-      changes.clear();
-
-      try {
-        console.log("Changed sent to the browser");
-        await currentSocket.send(JSON.stringify(files));
-      } catch (err) {
-        console.log(
-          `Changes couldn't be sent to browser due "${err.message.trim()}"`,
-        );
-      }
-    }
-
-    for await (const event of watcher) {
-      if (event.kind !== "modify" && event.kind !== "create") {
-        continue;
-      }
-
-      event.paths.forEach((path) => changes.add(path));
-
-      // Debounce
-      clearTimeout(timer);
-      timer = setTimeout(sendChanges, 100);
-    }
   }
 }
 

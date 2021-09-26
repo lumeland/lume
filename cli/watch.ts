@@ -1,49 +1,47 @@
-import { printError } from "./utils.ts";
-import { join, relative } from "../deps/path.ts";
+import { createSite, watch } from "./utils.ts";
+import { dim } from "../deps/colors.ts";
 
-export interface WatchOptions {
-  /** The folder root to watch */
-  root: string;
-  /** The folder destination that must be ignored by the watcher */
-  ignore: string;
-  /** The update function */
-  update: (files: Set<string>) => Promise<void>;
-}
+onmessage = async (event) => {
+  const { root, config } = event.data;
+  const site = await createSite(root, config);
+  await site.build(true);
 
-/** Watch and rebuild the site on changes */
-export default async function watch(options: WatchOptions) {
-  const watcher = Deno.watchFs(options.root);
-  const changes: Set<string> = new Set();
+  postMessage({
+    type: "built",
+    root: site.dest(),
+    options: site.options.server,
+  });
+
+  // Set up what extensions need to reload the entire build
+  const modules = [".js", ".ts", ".jsx", ".tsx"];
+  const reloadExtensions = Array.from(site.source.pages.keys())
+    .filter((ext) => modules.some((module) => ext.endsWith(module)));
+
+  // Start the watcher
+  console.log();
   console.log("Watching for changes...");
 
-  let timer = 0;
-
-  const rebuild = async () => {
-    console.log();
-    console.log("Changes detected. Building...");
-    const files = new Set(changes);
-    changes.clear();
-
-    try {
-      await options.update(files);
-      console.log("Done");
+  watch({
+    root: site.src(),
+    ignore: site.dest(),
+    fn: (files) => {
       console.log();
-    } catch (error) {
-      printError(error);
-    }
-  };
+      console.log("Changes detected:");
+      files.forEach((file) => console.log("-", dim(file)));
+      console.log();
 
-  for await (const event of watcher) {
-    if (event.paths.every((path) => path.startsWith(options.ignore))) {
-      continue;
-    }
+      if (mustReload(files)) {
+        postMessage({ type: "reload" });
+        return false;
+      }
 
-    event.paths.forEach((path) =>
-      changes.add(join("/", relative(options.root, path)))
+      return site.update(files);
+    },
+  });
+
+  function mustReload(files: Set<string>) {
+    return [...files].some((file) =>
+      reloadExtensions.some((ext) => file.endsWith(ext))
     );
-
-    // Debounce
-    clearTimeout(timer);
-    timer = setTimeout(rebuild, 500);
   }
-}
+};

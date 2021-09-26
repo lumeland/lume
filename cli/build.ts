@@ -1,6 +1,5 @@
 import { createSite } from "./utils.ts";
 import { brightGreen, gray } from "../deps/colors.ts";
-import runWatch from "./watch.ts";
 import runServe from "./serve.ts";
 
 interface Options {
@@ -14,6 +13,11 @@ interface Options {
 export default async function build(
   { root, config, serve, watch }: Options,
 ) {
+  if (serve || watch) {
+    buildAndWatch(serve, root, config);
+    return;
+  }
+
   const site = await createSite(root, config);
   const quiet = site.options.quiet;
 
@@ -21,7 +25,7 @@ export default async function build(
     console.log();
   }
 
-  await site.build(serve);
+  await site.build(false);
 
   if (!quiet) {
     console.log();
@@ -29,21 +33,45 @@ export default async function build(
       `🍾 ${brightGreen("Site built into")} ${gray(site.options.dest)}`,
     );
   }
+}
 
-  if (serve || watch) {
-    // Disable metrics for the watcher
-    site.options.metrics = false;
+/** Build the site using a Worker so it can reload the modules */
+function buildAndWatch(initServer: boolean, root: string, config?: string) {
+  const url = new URL("watch.ts", import.meta.url);
+  let serving = false;
 
-    // Start the watcher
-    runWatch({
-      root: site.src(),
-      ignore: site.dest(),
-      update: (files) => site.update(files),
+  function init() {
+    const work = new Worker(url, {
+      type: "module",
+      deno: true,
     });
 
-    // Start the local server
-    if (serve) {
-      await runServe(site.dest(), site.options.server);
-    }
+    // Start watching
+    work.postMessage({ root, config });
+
+    // Listen for messages
+    work.onmessage = (event) => {
+      const { type } = event.data;
+
+      // Init the local server
+      if (type === "built") {
+        if (serving || !initServer) {
+          return;
+        }
+
+        const { root, options } = event.data;
+        runServe(root, options);
+        serving = true;
+        return;
+      }
+
+      // Reload the worker
+      if (type === "reload") {
+        work.terminate();
+        init();
+      }
+    };
   }
+
+  init();
 }

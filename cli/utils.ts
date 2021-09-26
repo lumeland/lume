@@ -1,7 +1,7 @@
 import { Page, Site } from "../core.ts";
 import lume from "../mod.ts";
 import { exists } from "../deps/fs.ts";
-import { join, resolve, toFileUrl } from "../deps/path.ts";
+import { join, relative, resolve, toFileUrl } from "../deps/path.ts";
 import { bold, dim, red } from "../deps/colors.ts";
 import { Exception } from "../core/utils.ts";
 
@@ -116,3 +116,51 @@ export const pluginNames = [
   "svg",
   "terser",
 ];
+
+export interface WatchOptions {
+  /** The folder root to watch */
+  root: string;
+  /** The folder destination that must be ignored by the watcher */
+  ignore?: string;
+  /** The callback function. Return false to close the watcher */
+  fn: (files: Set<string>) => void | false | Promise<void | false>;
+}
+
+/** Watch file changes in a directory */
+export async function watch({ root, ignore, fn }: WatchOptions) {
+  const watcher = Deno.watchFs(root);
+  const changes: Set<string> = new Set();
+  let timer = 0;
+  let runningCallback = false;
+
+  const callback = async () => {
+    if (!changes.size || runningCallback) {
+      return;
+    }
+
+    const files = new Set(changes);
+    changes.clear();
+
+    runningCallback = true;
+    try {
+      if (false === await fn(files)) {
+        return watcher.close();
+      }
+    } catch (error) {
+      printError(error);
+    }
+    runningCallback = false;
+  };
+
+  for await (const event of watcher) {
+    if (ignore && event.paths.every((path) => path.startsWith(ignore))) {
+      continue;
+    }
+
+    event.paths.forEach((path) => changes.add(join("/", relative(root, path))));
+
+    // Debounce
+    clearTimeout(timer);
+    timer = setTimeout(callback, 500);
+  }
+}
