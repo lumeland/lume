@@ -79,5 +79,8 @@ Deno.test("build a site with nunjucks", async () => {
       // @ts-ignore: innerText doesn't exist on Node
       equals(p.innerText, page.data.title.toUpperCase());
     });
+
+    const div = page.document?.querySelector("div");
+    equals(div?.innerText, "hello (async)");
   });
 });
