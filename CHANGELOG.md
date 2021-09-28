@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   These modules no longer require a `Site` instance to work, only the necessary options.
 
 ### Fixed
-- Upgrade `svgo`.
+- Upgrade `svgo` and `terser`.
 - File paths with UTF-8 characters are correctly handled.
 - Inserted live-reload script in the default 404 html response.
 - `base_path` plugin may not be executed if the `location` option is changed later.
