@@ -1,4 +1,5 @@
 import { createSite, runWatch } from "./utils.ts";
+import { warn } from "../core/utils.ts";
 import { brightGreen, dim } from "../deps/colors.ts";
 import runServe from "./serve.ts";
 
@@ -7,15 +8,19 @@ interface Options {
   config?: string;
   serve: boolean;
   watch: boolean;
-  rebuild: boolean;
+  experimental: boolean;
 }
 
 /** Build the website and optionally watch changes and serve the site */
 export default async function build(
-  { root, config, serve, watch, rebuild }: Options,
+  { root, config, serve, watch, experimental }: Options,
 ) {
-  if (rebuild) {
-    runRebuild(serve, root, config);
+  if (experimental) {
+    if (!serve && !watch) {
+      warn("Experimental mode requires either --serve or --watch");
+      return;
+    }
+    runExperimentalWatcher(serve, root, config);
     return;
   }
 
@@ -62,7 +67,11 @@ export default async function build(
 }
 
 /** Build the site using a Worker so it can reload the modules */
-function runRebuild(initServer: boolean, root: string, config?: string) {
+function runExperimentalWatcher(
+  initServer: boolean,
+  root: string,
+  config?: string,
+) {
   const url = new URL("watch.ts", import.meta.url);
   let serving = false;
 
