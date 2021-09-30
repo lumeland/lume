@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.1.1] - Unreleased
+### Added
+- A new experimental watcher (enabled with `lume --serve --experimental` or `lume --watch --experimental`).
+  - It use Workers to build the site, in order to refresh the imported modules.
+  - For now, import maps are not supported yet. [See the Deno issue](https://github.com/denoland/deno/issues/6675)
+
 ### Changed
 - Uncoupled `cli/watch.ts` and `cli/server.ts` from `Site`.
   These modules no longer require a `Site` instance to work, only the necessary options.
