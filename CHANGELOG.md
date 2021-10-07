@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Reduced the debounce timing from 500ms to 100ms [#136]
 
 ### Fixed
-- Upgrade `svgo` and `terser`.
+- Upgrade `svgo`, `std`, `cliffy`, `postcss` and `terser`.
 - File paths with UTF-8 characters are correctly handled.
 - Inserted live-reload script in the default 404 html response.
 - `base_path` plugin may not be executed if the `location` option is changed later.
