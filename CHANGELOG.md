@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 - Uncoupled `cli/watch.ts` and `cli/server.ts` from `Site`.
   These modules no longer require a `Site` instance to work, only the necessary options.
+- Reduced the debounce timing from 500ms to 100ms [#136]
 
 ### Fixed
 - Upgrade `svgo` and `terser`.
@@ -1156,6 +1157,7 @@ The first version.
 [#120]: https://github.com/lumeland/lume/issues/120
 [#125]: https://github.com/lumeland/lume/issues/125
 [#131]: https://github.com/lumeland/lume/issues/131
+[#136]: https://github.com/lumeland/lume/issues/136
 
 [1.1.1]: https://github.com/lumeland/lume/compare/v1.1.0...HEAD
 [1.1.0]: https://github.com/lumeland/lume/compare/v1.0.5...v1.1.0

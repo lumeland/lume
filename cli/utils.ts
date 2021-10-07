@@ -170,6 +170,6 @@ export async function runWatch({ root, ignore, fn }: WatchOptions) {
 
     // Debounce
     clearTimeout(timer);
-    timer = setTimeout(callback, 500);
+    timer = setTimeout(callback, 100);
   }
 }
