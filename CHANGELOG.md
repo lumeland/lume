@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.1.1] - Unreleased
+## [1.1.1] - 2021-10-08
 ### Added
 - A new experimental watcher (enabled with `lume --serve --experimental` or `lume --watch --experimental`).
   - It use Workers to build the site, in order to refresh the imported modules.
@@ -1159,7 +1159,7 @@ The first version.
 [#131]: https://github.com/lumeland/lume/issues/131
 [#136]: https://github.com/lumeland/lume/issues/136
 
-[1.1.1]: https://github.com/lumeland/lume/compare/v1.1.0...HEAD
+[1.1.1]: https://github.com/lumeland/lume/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/lumeland/lume/compare/v1.0.5...v1.1.0
 [1.0.5]: https://github.com/lumeland/lume/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/lumeland/lume/compare/v1.0.3...v1.0.4
