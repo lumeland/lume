@@ -1,5 +1,5 @@
 import { assertStrictEquals as equals } from "../deps/assert.ts";
-import { buildFilter, buildSort } from "../core/helpers/search.ts";
+import { buildFilter, buildSort } from "../plugins/search.ts";
 
 Deno.test("Search by Tags", () => {
   const filter = buildFilter("foo bar");

@@ -1,8 +1,12 @@
 import { compile } from "../deps/pug.ts";
-import { Site } from "../core.ts";
-import Pug, { PugCompiler, PugOptions } from "../core/engines/pug.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
+import { Data, Engine, Helper, HelperOptions, Site } from "../core.ts";
+
+interface PugOptions {
+  filters?: Record<string, Helper>;
+  [key: string]: unknown;
+}
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -22,7 +26,58 @@ const defaults: Options = {
   options: {},
 };
 
-/** A plugin to use Pug as a template engine */
+type PugCompiler = (
+  input: string,
+  options: Record<string, unknown>,
+) => (data: Data) => string;
+
+/** Template engine to render Pug files */
+export class PugEngine implements Engine {
+  options: PugOptions;
+  compiler: PugCompiler;
+  cache: Map<string, (data: Data) => string> = new Map();
+
+  constructor(site: Site, compiler: PugCompiler, options: PugOptions) {
+    this.compiler = compiler;
+    this.options = options;
+
+    // Update the cache
+    site.addEventListener("beforeUpdate", () => this.cache.clear());
+  }
+
+  render(content: string, data: Data, filename: string) {
+    if (!this.cache.has(filename)) {
+      this.cache.set(
+        filename,
+        this.compiler(content, {
+          ...this.options,
+          filename,
+        }),
+      );
+    }
+
+    return this.cache.get(filename)!(data);
+  }
+
+  addHelper(name: string, fn: Helper, options: HelperOptions) {
+    switch (options.type) {
+      case "filter": {
+        this.options.filters ||= {};
+
+        const filter = (text: string, opt: Record<string, unknown>) => {
+          delete opt.filename;
+          const args = Object.values(opt);
+          return fn(text, ...args);
+        };
+
+        this.options.filters[name] = filter as Helper;
+        return;
+      }
+    }
+  }
+}
+
+/** Register the plugin to use Pug as a template engine */
 export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(
@@ -36,10 +91,11 @@ export default function (userOptions?: Partial<Options>) {
       site.includes.set(ext, options.includes)
     );
 
+    // Load the pages
     site.loadPages(
       options.extensions,
       loader,
-      new Pug(site, compile as PugCompiler, options.options),
+      new PugEngine(site, compile as PugCompiler, options.options),
     );
   };
 }

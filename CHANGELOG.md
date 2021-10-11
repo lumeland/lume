@@ -7,6 +7,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.1.2] - Unreleased
+### Added
+- Options to `search` and `paginate` plugins. Now you can configure the helpers names.
+
+### Changed
+- Code restructuring: Moved the template engines to inside the plugins that use them
+  to improve the code comprehension.
+- Code restructuring: Split the `search` plugin to `paginate` and `search` plugins for coherence
+  (both are enabled by default).
+  The code of helpers was moved to inside the plugins.
+
 ## [1.1.1] - 2021-10-08
 ### Added
 - A new experimental watcher (enabled with `lume --serve --experimental` or `lume --watch --experimental`).
@@ -1159,6 +1170,7 @@ The first version.
 [#131]: https://github.com/lumeland/lume/issues/131
 [#136]: https://github.com/lumeland/lume/issues/136
 
+[1.1.2]: https://github.com/lumeland/lume/compare/v1.1.1...HEAD
 [1.1.1]: https://github.com/lumeland/lume/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/lumeland/lume/compare/v1.0.5...v1.1.0
 [1.0.5]: https://github.com/lumeland/lume/compare/v1.0.4...v1.0.5
