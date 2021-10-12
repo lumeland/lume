@@ -40,15 +40,16 @@ Deno.test("ignored files configuration", () => {
   const site = lume();
   const { ignored } = site.source;
 
-  equals(ignored.size, 1);
+  equals(ignored.size, 2);
   equals(ignored.has("/node_modules"), true);
+  equals(ignored.has("/_site"), true);
 
   site.ignore("README.md");
-  equals(ignored.size, 2);
+  equals(ignored.size, 3);
   equals(ignored.has("/README.md"), true);
 
   site.ignore("file2", "file3", "README.md");
-  equals(ignored.size, 4);
+  equals(ignored.size, 5);
   equals(ignored.has("/file2"), true);
   equals(ignored.has("/file3"), true);
 });
