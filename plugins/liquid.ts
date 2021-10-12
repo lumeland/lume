@@ -1,11 +1,4 @@
-import {
-  Context,
-  Liquid as Liquidjs,
-  LiquidOptions,
-  TagImplOptions,
-  TagToken,
-  Template,
-} from "../deps/liquid.ts";
+import { Liquid as Liquidjs, LiquidOptions } from "../deps/liquid.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 import { Data, Engine, Event, Helper, HelperOptions, Site } from "../core.ts";
@@ -30,10 +23,10 @@ const defaults: Options = {
 
 /** Template engine to render Liquid files */
 export class LiquidEngine implements Engine {
-  engine: Liquidjs;
-  cache: Map<string, Template[]> = new Map();
+  engine: unknown;
+  cache: Map<string, unknown> = new Map();
 
-  constructor(site: Site, engine: Liquidjs) {
+  constructor(site: Site, engine: unknown) {
     this.engine = engine;
 
     // Update the internal cache
@@ -48,22 +41,26 @@ export class LiquidEngine implements Engine {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
+        // @ts-ignore: No types for Liquid
         this.engine.parse(content, filename),
       );
     }
     const template = this.cache.get(filename)!;
+    // @ts-ignore: No types for Liquid
     return await this.engine.render(template, data);
   }
 
   addHelper(name: string, fn: Helper, options: HelperOptions) {
     switch (options.type) {
       case "filter":
+        // @ts-ignore: No types for Liquid
         this.engine.registerFilter(name, fn);
         break;
 
       case "tag":
         // Tag with body not supported yet
         if (!options.body) {
+          // @ts-ignore: No types for Liquid
           this.engine.registerTag(name, createCustomTag(fn));
         }
         break;
@@ -106,13 +103,15 @@ export default function (userOptions?: Partial<Options>) {
  * Create a custom tag
  * https://liquidjs.com/tutorials/register-filters-tags.html#Register-Tags
  */
-function createCustomTag(fn: Helper): TagImplOptions {
+function createCustomTag(fn: Helper) {
   return {
-    parse(tagToken: TagToken) {
+    parse(tagToken: unknown) {
+      // @ts-ignore: No types for Liquid
       this.str = tagToken.args;
     },
 
-    async render(ctx: Context) {
+    async render(ctx: unknown): Promise<unknown> {
+      // @ts-ignore: No types for Liquid
       const str = await this.liquid.evalValue(this.str, ctx);
       return fn(str);
     },
