@@ -52,6 +52,12 @@ Deno.test("ignored files configuration", () => {
   equals(ignored.size, 5);
   equals(ignored.has("/file2"), true);
   equals(ignored.has("/file3"), true);
+  
+  site.copy("img");
+  site.copy("statics", ".");
+  equals(ignored.size, 7);
+  equals(ignored.has("/img"), true);
+  equals(ignored.has("/statics"), true);
 });
 
 Deno.test("event listener configuration", () => {
