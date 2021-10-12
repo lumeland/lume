@@ -1,12 +1,7 @@
-import { compile } from "../deps/pug.ts";
+import { compile, PugOptions } from "../deps/pug.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 import { Data, Engine, Helper, HelperOptions, Site } from "../core.ts";
-
-interface PugOptions {
-  filters?: Record<string, Helper>;
-  [key: string]: unknown;
-}
 
 export interface Options {
   /** The list of extensions this plugin applies to */

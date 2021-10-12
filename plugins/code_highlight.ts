@@ -1,4 +1,4 @@
-import hljs from "../deps/highlight.ts";
+import hljs, { HighlightOptions } from "../deps/highlight.ts";
 import { merge } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
 
@@ -8,29 +8,6 @@ export interface Options {
 
   /** Options passed to highlight.js */
   options: Partial<HighlightOptions>;
-}
-
-/** Options of the code highlighter */
-export interface HighlightOptions {
-  ignoreUnescapedHTML: boolean;
-
-  /** A regex to configure which CSS classes are to be skipped completely. **/
-  noHighlightRe: RegExp;
-
-  /** A regex to configure how CSS class names map to language */
-  languageDetectRe: RegExp;
-
-  /**
-   * A string prefix added before class names in the generated markup,
-   * used for backwards compatibility with stylesheets.
-   */
-  classPrefix: string;
-
-  /** A CSS selector to configure which elements are affected */
-  cssSelector: string;
-
-  /** An array of language names and aliases restricting auto detection to only these languages. */
-  languages: unknown;
 }
 
 // Default options

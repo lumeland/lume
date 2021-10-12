@@ -1,4 +1,4 @@
-import { minify } from "../deps/terser.ts";
+import { minify, TerserOptions } from "../deps/terser.ts";
 import { basename } from "../deps/path.ts";
 import { Exception, merge } from "../core/utils.ts";
 import { Helper, Page, Site } from "../core.ts";
@@ -13,24 +13,6 @@ export interface Options {
 
   /** Options passed to `terser` */
   options: Partial<TerserOptions>;
-}
-
-/** Terser options */
-export interface TerserOptions {
-  /** Use when minifying an ES6 module. */
-  module: boolean;
-
-  /** To compress the code */
-  compress: boolean;
-
-  /** Pass false to skip mangling names */
-  mangle: boolean;
-
-  /** To generate a source map */
-  sourceMap?: {
-    filename: string;
-    url: string;
-  };
 }
 
 // Default options

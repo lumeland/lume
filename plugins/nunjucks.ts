@@ -1,4 +1,4 @@
-import nunjucks from "../deps/nunjucks.ts";
+import nunjucks, { NunjucksOptions } from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 import { Data, Engine, Event, Helper, HelperOptions, Site } from "../core.ts";
@@ -17,20 +17,6 @@ export interface Options {
   plugins: {
     [index: string]: unknown;
   };
-}
-
-export interface NunjucksOptions {
-  /** Controls if output with dangerous characters are escaped automatically. */
-  autoescape: boolean;
-
-  /** Throw errors when outputting a null/undefined value */
-  throwOnUndefined: boolean;
-
-  /** Automatically remove trailing newlines from a block/tag */
-  trimBlocks: boolean;
-
-  /** Automatically remove leading whitespace from a block/tag */
-  lstripBlocks: boolean;
 }
 
 // Default options

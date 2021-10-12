@@ -17,5 +17,4 @@ jobs:
 
       - name: Run tests
         run: |
-          deno test --unstable -A --ignore=tests/liquid.test.ts
-          deno test --unstable -A --no-check tests/liquid.test.ts
+          deno test --unstable -A

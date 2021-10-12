@@ -1,4 +1,4 @@
-import { optimize } from "../deps/svgo.ts";
+import { optimize, SvgoOptions } from "../deps/svgo.ts";
 import { merge } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
 
@@ -8,39 +8,6 @@ export interface Options {
 
   /** Options passed to SVGO */
   options: Partial<SvgoOptions>;
-}
-
-/** SVGO options */
-export interface SvgoOptions {
-  multipass: boolean;
-  plugins: unknown[];
-  datauri: "base64" | "enc" | "unenc";
-  js2svg: {
-    doctypeStart?: string;
-    doctypeEnd?: string;
-    procInstStart?: string;
-    procInstEnd?: string;
-    tagOpenStart?: string;
-    tagOpenEnd?: string;
-    tagCloseStart?: string;
-    tagCloseEnd?: string;
-    tagShortStart?: string;
-    tagShortEnd?: string;
-    attrStart?: string;
-    attrEnd?: string;
-    commentStart?: string;
-    commentEnd?: string;
-    cdataStart?: string;
-    cdataEnd?: string;
-    textStart?: string;
-    textEnd?: string;
-    indent?: number;
-    regEntities?: RegExp;
-    regValEntities?: RegExp;
-    encodeEntity?: (char: string) => string;
-    pretty?: boolean;
-    useShortTags?: boolean;
-  };
 }
 
 // Default options
