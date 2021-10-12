@@ -118,11 +118,14 @@ export const pluginNames = [
   "eta",
   "inline",
   "jsx",
+  "liquid",
+  "modify_urls",
   "postcss",
   "pug",
   "relative_urls",
+  "resolve_urls",
   "slugify_urls",
-  "svg",
+  "svgo",
   "terser",
 ];
 
