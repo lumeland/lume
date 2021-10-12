@@ -279,7 +279,7 @@ export default class LumeSite implements Site {
         continue;
       }
 
-      // The path contains /_ or /
+      // Any path segment starts with _ or .
       if (normalized.includes("/_") || normalized.includes("/.")) {
         continue;
       }
