@@ -80,7 +80,7 @@ export default function (userOptions?: Partial<Options>) {
     );
 
     const liquidOptions: LiquidOptions = {
-      root: options.includes,
+      root: site.src(options.includes),
       ...options.options,
     };
 
@@ -92,6 +92,13 @@ export default function (userOptions?: Partial<Options>) {
       loader,
       new LiquidEngine(site, engine),
     );
+
+    // Register the liquid filter
+    site.filter("liquid", filter as Helper, true);
+
+    function filter(string: string, data = {}) {
+      return engine.parseAndRender(string, data);
+    }
   };
 }
 
