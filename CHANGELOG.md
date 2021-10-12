@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Updated `deno_graph`.
+- Ignore the `dest` folder if it's inside `src` and doesn't start with `_` or `.`.
 
 ## [1.1.1] - 2021-10-08
 ### Added

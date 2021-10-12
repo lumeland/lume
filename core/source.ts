@@ -173,7 +173,7 @@ export default class SiteSource implements Source {
     const path = join(directory.src.path, entry.name);
     const { metrics } = this.site;
 
-    if (this.staticFiles.has(path) || this.ignored.has(path)) {
+    if (this.ignored.has(path)) {
       return;
     }
 

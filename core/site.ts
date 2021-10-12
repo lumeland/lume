@@ -80,6 +80,11 @@ export default class LumeSite implements Site {
     this.source = new SiteSource(this);
     this.scripts = new ScriptRunner(this);
     this.metrics = new PerformanceMetrics(this);
+
+    // Ignore the dest directory if it's inside src
+    if (this.dest().startsWith(this.src())) {
+      this.ignore(this.options.dest);
+    }
   }
 
   src(...path: string[]) {
@@ -202,7 +207,7 @@ export default class LumeSite implements Site {
 
   copy(from: string, to = from) {
     this.source.staticFiles.set(join("/", from), join("/", to));
-    return this;
+    return this.ignore(from); // Ignore static files
   }
 
   ignore(...paths: string[]) {
@@ -266,6 +271,16 @@ export default class LumeSite implements Site {
     await this.dispatchEvent({ type: "beforeUpdate", files });
 
     for (const file of files) {
+      // It's a static file
+      const entry = this.source.isStatic(file);
+
+      if (entry) {
+        const [from, to] = entry;
+
+        await this.#copyStatic(file, join(to, file.slice(from.length)));
+        continue;
+      }
+
       // It's an ignored file
       if (this.source.isIgnored(file)) {
         continue;
@@ -281,16 +296,6 @@ export default class LumeSite implements Site {
 
       // Any path segment starts with _ or .
       if (normalized.includes("/_") || normalized.includes("/.")) {
-        continue;
-      }
-
-      // It's a static file
-      const entry = this.source.isStatic(file);
-
-      if (entry) {
-        const [from, to] = entry;
-
-        await this.#copyStatic(file, join(to, file.slice(from.length)));
         continue;
       }
 
