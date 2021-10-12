@@ -7,7 +7,8 @@ import json, { Options as JsonOptions } from "./plugins/json.ts";
 import markdown, { Options as MarkdownOptions } from "./plugins/markdown.ts";
 import modules, { Options as ModulesOptions } from "./plugins/modules.ts";
 import nunjucks, { Options as NunjucksOptions } from "./plugins/nunjucks.ts";
-import search from "./plugins/search.ts";
+import search, { Options as SearchOptions } from "./plugins/search.ts";
+import paginate, { Options as PaginateOptions } from "./plugins/paginate.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { merge } from "./core/utils.ts";
 
@@ -18,6 +19,8 @@ interface PluginOptions {
   markdown?: Partial<MarkdownOptions>;
   modules?: Partial<ModulesOptions>;
   nunjucks?: Partial<NunjucksOptions>;
+  search?: Partial<SearchOptions>;
+  paginate?: Partial<PaginateOptions>;
   yaml?: Partial<YamlOptions>;
 }
 
@@ -42,7 +45,8 @@ export default function (
     .use(markdown(pluginOptions.markdown))
     .use(modules(pluginOptions.modules))
     .use(nunjucks(pluginOptions.nunjucks))
-    .use(search())
+    .use(paginate(pluginOptions.paginate))
+    .use(search(pluginOptions.search))
     .use(yaml(pluginOptions.yaml));
 }
 

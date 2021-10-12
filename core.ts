@@ -107,42 +107,6 @@ export type CommandOptions = Omit<Deno.RunOptions, "cmd">;
 /** A function that loads and returns the file content */
 export type Loader = (path: string) => Promise<Data>;
 
-/** The options for the paginate helper */
-export interface PaginateOptions {
-  /** The number of elements per page */
-  size: number;
-
-  /** The function to generate the url of the pages */
-  url: (page: number) => string;
-}
-
-/** The paginate result */
-export interface PaginateResult {
-  /** The page url */
-  url: string;
-
-  /** The page elements */
-  results: unknown[];
-
-  /** The pagination info */
-  pagination: {
-    /** The current page number */
-    page: number;
-
-    /** The total number of pages */
-    totalPages: number;
-
-    /** The total number of elements */
-    totalResults: number;
-
-    /** The url of the previous page */
-    previous: string | null;
-
-    /** The url of the next page */
-    next: string | null;
-  };
-}
-
 /** The options to configure the site build */
 export interface SiteOptions {
   /** The path of the current working directory */

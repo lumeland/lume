@@ -1,11 +1,10 @@
-import { Helper, Site } from "../core.ts";
+import { Data, Engine, Helper, Site } from "../core.ts";
 import {
   markdownIt,
   markdownItAttrs,
   markdownItDeflist,
 } from "../deps/markdown_it.ts";
 import loader from "../core/loaders/text.ts";
-import Markdown from "../core/engines/markdown.ts";
 import { merge } from "../core/utils.ts";
 
 export interface Options {
@@ -76,7 +75,26 @@ const defaults: Options = {
   keepDefaultPlugins: false,
 };
 
-/** A plugin to add support for Markdown */
+interface MarkdownItEngine {
+  render: (input: string, env?: Record<string, unknown>) => string;
+}
+
+/** Template engine to render Markdown files */
+export class MarkdownEngine implements Engine {
+  engine: MarkdownItEngine;
+
+  constructor(engine: MarkdownItEngine) {
+    this.engine = engine;
+  }
+
+  render(content: string, _data: Data, filename: string): string {
+    return this.engine.render(content, { filename });
+  }
+
+  addHelper() {}
+}
+
+/** Register the plugin to support Markdown */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
@@ -85,9 +103,18 @@ export default function (userOptions?: Partial<Options>) {
   }
 
   return function (site: Site) {
-    const engine = createMarkdown(options);
+    // @ts-ignore: This expression is not callable.
+    const engine = markdownIt(options.options);
 
-    site.loadPages(options.extensions, loader, new Markdown(engine));
+    // Register markdown-it plugins
+    options.plugins.forEach((plugin) =>
+      Array.isArray(plugin) ? engine.use(...plugin) : engine.use(plugin)
+    );
+
+    // Load the pages
+    site.loadPages(options.extensions, loader, new MarkdownEngine(engine));
+
+    // Register the md filter
     site.filter("md", filter as Helper);
 
     function filter(string: string, inline = false): string {
@@ -96,17 +123,4 @@ export default function (userOptions?: Partial<Options>) {
         : engine.render(string || "").trim();
     }
   };
-}
-
-function createMarkdown(options: Options) {
-  // @ts-ignore: This expression is not callable.
-  const markdown = markdownIt({
-    ...options.options,
-  });
-
-  options.plugins.forEach((plugin) =>
-    Array.isArray(plugin) ? markdown.use(...plugin) : markdown.use(plugin)
-  );
-
-  return markdown;
 }

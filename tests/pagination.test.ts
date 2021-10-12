@@ -1,8 +1,8 @@
 import { assertStrictEquals as equals } from "../deps/assert.ts";
-import paginate from "../core/helpers/paginate.ts";
+import { createPaginator } from "../plugins/paginate.ts";
 
 Deno.test("pagination plugin function", () => {
-  const paginator = paginate({
+  const paginator = createPaginator({
     size: 10,
     url: (num) => `/page/${num}`,
   });

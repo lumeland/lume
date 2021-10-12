@@ -1,7 +1,7 @@
-import JsxEngine from "../core/engines/jsx.ts";
+import { React, ReactDOMServer } from "../deps/react.ts";
 import loader from "../core/loaders/module.ts";
 import { merge } from "../core/utils.ts";
-import { Site } from "../core.ts";
+import { Data, Engine, Helper, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -13,13 +13,45 @@ const defaults: Options = {
   extensions: [".jsx", ".tsx"],
 };
 
-/** A plugin to add support for JSX and TSX files */
+// Ensure React is available in the global scope
+// so no need to import it in every file
+window.React ||= React;
+
+/** Template engine to render JSX files */
+export class JsxEngine implements Engine {
+  helpers: Record<string, Helper> = {};
+
+  async render(content: unknown, data: Data) {
+    if (!data.children && data.content) {
+      data.children = React.createElement("div", {
+        dangerouslySetInnerHTML: { __html: data.content },
+      });
+    }
+
+    const element = typeof content === "object" && React.isValidElement(content)
+      ? content
+      : (typeof content === "function"
+        ? await content(data, this.helpers)
+        : content) as React.ReactElement;
+
+    data.children = element;
+
+    return ReactDOMServer.renderToStaticMarkup(element);
+  }
+
+  addHelper(name: string, fn: Helper) {
+    this.helpers[name] = fn;
+  }
+}
+
+/** Register the plugin to support JSX and TSX files */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
     const jsxEngine = new JsxEngine();
 
+    // Load the pages
     site.loadPages(options.extensions, loader, jsxEngine);
   };
 }
