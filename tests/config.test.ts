@@ -52,7 +52,7 @@ Deno.test("ignored files configuration", () => {
   equals(ignored.size, 5);
   equals(ignored.has("/file2"), true);
   equals(ignored.has("/file3"), true);
-  
+
   site.copy("img");
   site.copy("statics", ".");
   equals(ignored.size, 7);
