@@ -33,6 +33,6 @@ if (import.meta.main) {
   process.close();
 
   if (!status.success) {
-    window.addEventListener("unload", () => Deno.exit(1));
+    addEventListener("unload", () => Deno.exit(1));
   }
 }
