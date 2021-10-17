@@ -17,7 +17,7 @@ export default async function run(
     const success = await site.run(script);
 
     if (!success) {
-      window.addEventListener("unload", () => Deno.exit(1));
+      addEventListener("unload", () => Deno.exit(1));
       break;
     }
   }
