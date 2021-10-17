@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - Split the `search` plugin to `paginate` and `search` plugins for coherence
     (both are enabled by default).
   - Moved the types of the dependencies to their deps/ files.
+- `--quiet` is more quiet on `ci.ts` [#139].
 
 ### Fixed
 - Updated `deno_graph` and `std`.
@@ -1174,6 +1175,7 @@ The first version.
 [#125]: https://github.com/lumeland/lume/issues/125
 [#131]: https://github.com/lumeland/lume/issues/131
 [#136]: https://github.com/lumeland/lume/issues/136
+[#139]: https://github.com/lumeland/lume/issues/139
 
 [1.2.0]: https://github.com/lumeland/lume/compare/v1.1.1...HEAD
 [1.1.1]: https://github.com/lumeland/lume/compare/v1.1.0...v1.1.1

@@ -16,14 +16,22 @@ export const importMap = `data:application/json;base64,${
 
 // Run the current command
 if (import.meta.main) {
+  const denoArgs = [
+    "--unstable",
+    "-A",
+    `--import-map=${importMap}`,
+    `--no-check`,
+  ];
+
+  if (Deno.args.includes("--quiet")) {
+    denoArgs.push("--quiet");
+  }
+
   const process = Deno.run({
     cmd: [
       Deno.execPath(),
       "run",
-      "--unstable",
-      "-A",
-      `--import-map=${importMap}`,
-      `--no-check`,
+      ...denoArgs,
       cli,
       ...Deno.args,
     ],
