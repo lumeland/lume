@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `--quiet` is more quiet on `ci.ts` [#139].
 
 ### Fixed
-- Updated `deno_graph` and `std`.
+- Updated `postcss`, `deno_graph` and `std`.
 - Ignore the `dest` folder if it's inside `src` and doesn't start with `_` or `.`.
 
 ## [1.1.1] - 2021-10-08
