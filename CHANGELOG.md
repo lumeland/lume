@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New plugin `liquid` to use the [Liquid](https://liquidjs.com/) template engine.
 - Options to `search` and `paginate` plugins. Now you can configure the helpers names.
+- New module `lume/plugins.ts` that exports all available plugins.
 
 ### Changed
 - Some internal restructuring to improve the code comprehension:
