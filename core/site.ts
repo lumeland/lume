@@ -1,5 +1,5 @@
 import { dirname, extname, join, posix, SEP } from "../deps/path.ts";
-import { copy, emptyDir, ensureDir, exists } from "../deps/fs.ts";
+import { copy, emptyDir, ensureDir } from "../deps/fs.ts";
 import { gray } from "../deps/colors.ts";
 import { createHash } from "../deps/hash.ts";
 import SiteSource from "./source.ts";
@@ -400,13 +400,16 @@ export default class LumeSite implements Site {
     const pathFrom = this.src(from);
     const pathTo = this.dest(to);
 
-    if (await exists(pathFrom)) {
+    try {
       await ensureDir(dirname(pathTo));
       if (!this.options.quiet) {
         console.log(`🔥 ${normalizePath(to)} ${gray(from)}`);
       }
       return copy(pathFrom, pathTo, { overwrite: true });
+    } catch {
+      //Ignored
     }
+
     metric.stop();
   }
 
