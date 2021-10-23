@@ -1,5 +1,4 @@
 import { basename, dirname, extname, join } from "../deps/path.ts";
-import { existsSync } from "../deps/fs.ts";
 import { SiteDirectory, SitePage } from "./filesystem.ts";
 import {
   concurrent,
@@ -224,11 +223,15 @@ export default class SiteSource implements Source {
     const [ext, loader] = result;
     const fullPath = this.site.src(path);
 
-    if (!existsSync(fullPath)) {
+    let info: Deno.FileInfo;
+
+    try {
+      info = await Deno.stat(fullPath);
+    } catch {
+      // File doesn't exist
       return;
     }
 
-    const info = await Deno.stat(fullPath);
     const page = new SitePage({
       path: path.slice(0, -ext.length),
       lastModified: info.mtime || undefined,
