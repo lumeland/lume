@@ -1,7 +1,6 @@
 import { ServerOptions } from "../core.ts";
 import { dirname, extname, join, relative, SEP } from "../deps/path.ts";
 import { brightGreen, red } from "../deps/colors.ts";
-import { exists } from "../deps/fs.ts";
 import localIp from "../deps/local_ip.ts";
 import { mimes, normalizePath } from "../core/utils.ts";
 import { readAll } from "../deps/util.ts";
@@ -181,8 +180,10 @@ async function getHtmlBody(path: string) {
 async function getNotFoundBody(root: string, page404: string, file: string) {
   const filepath = join(root, page404);
 
-  if (await exists(filepath)) {
-    return getHtmlBody(filepath);
+  try {
+    return await getHtmlBody(filepath);
+  } catch {
+    // Ignored
   }
 
   const content = await listDirectory(dirname(file));
@@ -203,8 +204,8 @@ async function getNotFoundBody(root: string, page404: string, file: string) {
       ${
     content.map((item) =>
       `<li>
-            <a href="${relative(root, item[1])}">
-              ${item[0]}
+            <a href="${item}">
+              ${item}
             </a>
           </li>`
     ).join("\n")
@@ -212,8 +213,8 @@ async function getNotFoundBody(root: string, page404: string, file: string) {
     </ul>
     ${
     typeof wsFile === "string"
-      ? `${content}<script type="module" id="lume-live-reload">${wsFile}</script>`
-      : `${content}<script type="module" src="${wsFile}" id="lume-live-reload"></script>`
+      ? `<script type="module" id="lume-live-reload">${wsFile}</script>`
+      : `<script type="module" src="${wsFile}" id="lume-live-reload"></script>`
   }
   </body>
 </html>`;
@@ -228,17 +229,14 @@ async function getBody(path: string) {
 }
 
 async function listDirectory(directory: string) {
-  const files: [string, string][] = [];
+  const files: string[] = [];
 
-  if (!await exists(directory)) {
+  try {
+    for await (const info of Deno.readDir(directory)) {
+      files.push(info.isDirectory ? `${info.name}/` : info.name);
+    }
+  } catch {
     return files;
-  }
-
-  for await (const info of Deno.readDir(directory)) {
-    const name = info.name;
-    const href = normalizePath(join(directory, name));
-
-    files.push([name, href]);
   }
 
   return files;

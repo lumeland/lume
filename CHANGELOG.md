@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Updated `postcss`, `deno_graph` and `std`.
 - Ignore the `dest` folder if it's inside `src` and doesn't start with `_` or `.`.
+- Removed unnecesary file system checkings.
+- Default 404 page in local server.
 
 ## [1.1.1] - 2021-10-08
 ### Added

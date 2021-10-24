@@ -34,8 +34,10 @@ export default async function init() {
 
   // Configure VS Code
   if (vsCode) {
-    if (!await exists(".vscode")) {
+    try {
       await Deno.mkdir(".vscode");
+    } catch {
+      // Ignore if the directory already exists
     }
 
     // Enable Deno plugin
