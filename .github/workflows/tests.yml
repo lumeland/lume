@@ -17,4 +17,4 @@ jobs:
 
       - name: Run tests
         run: |
-          deno test --unstable -A --no-check
+          deno test --unstable -A

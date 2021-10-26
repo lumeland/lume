@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.2.0] - Unreleased
+## [1.2.0] - 2021-10-26
 ### Added
 - New plugin `liquid` to use the [Liquid](https://liquidjs.com/) template engine.
 - Options to `search` and `paginate` plugins. Now you can configure the helpers names.
@@ -1180,7 +1180,7 @@ The first version.
 [#136]: https://github.com/lumeland/lume/issues/136
 [#139]: https://github.com/lumeland/lume/issues/139
 
-[1.2.0]: https://github.com/lumeland/lume/compare/v1.1.1...HEAD
+[1.2.0]: https://github.com/lumeland/lume/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/lumeland/lume/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/lumeland/lume/compare/v1.0.5...v1.1.0
 [1.0.5]: https://github.com/lumeland/lume/compare/v1.0.4...v1.0.5
