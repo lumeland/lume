@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.2.1] - Unreleased
 ### Fixed
-- Upgraded `postcss-nesting` plugin.
-- Upgraded `liquid` template engine.
+- Upgraded `postcss-nesting`, `liquid`, `std`, `deno_graph` and `cliffy`
+  to their latest version.
 - Default `url` option for `paginate` helper.
 
 ## [1.2.0] - 2021-10-26
