@@ -10,6 +10,11 @@ export interface PaginateOptions {
   url: (page: number) => string;
 }
 
+export type Paginator = (
+  results: unknown[],
+  userOptions?: Partial<PaginateOptions>,
+) => Generator<PaginateResult, void, unknown>;
+
 /** The paginate result */
 export interface PaginateResult {
   /** The page url */
@@ -58,7 +63,7 @@ export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    if (!options.options.url) {
+    if (!userOptions?.options?.url) {
       const ext = site.options.prettyUrls ? "/index.html" : ".html";
       options.options.url = (page: number) => `./page-${page}${ext}`;
     }
@@ -69,7 +74,7 @@ export default function (userOptions?: Partial<Options>) {
 }
 
 /** Create a paginator function */
-export function createPaginator(defaults: PaginateOptions) {
+export function createPaginator(defaults: PaginateOptions): Paginator {
   return function* paginate(
     results: unknown[],
     userOptions: Partial<PaginateOptions> = {},

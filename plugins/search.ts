@@ -43,7 +43,7 @@ export class Search {
   }
 
   /** Search pages */
-  pages(query: Query, sort?: Query, limit?: number) {
+  pages(query?: Query, sort?: Query, limit?: number) {
     const result = this.#searchPages(query, sort);
 
     if (!limit) {
@@ -54,7 +54,7 @@ export class Search {
   }
 
   /** Returns all tags values of a search */
-  tags(query: Query) {
+  tags(query?: Query) {
     const tags = new Set();
 
     this.pages(query).forEach((page) =>
@@ -65,7 +65,7 @@ export class Search {
   }
 
   /** Return the next page of a search */
-  nextPage(url: string, query: Query, sort?: Query) {
+  nextPage(url: string, query?: Query, sort?: Query) {
     const pages = this.pages(query, sort);
     const index = pages.findIndex((page) => page.data.url === url);
 
@@ -73,14 +73,14 @@ export class Search {
   }
 
   /** Return the previous page of a search */
-  previousPage(url: string, query: Query, sort?: Query) {
+  previousPage(url: string, query?: Query, sort?: Query) {
     const pages = this.pages(query, sort);
     const index = pages.findIndex((page) => page.data.url === url);
 
     return (index <= 0) ? undefined : pages[index - 1];
   }
 
-  #searchPages(query: Query, sort: Query = "date"): Page[] {
+  #searchPages(query?: Query, sort: Query = "date"): Page[] {
     if (Array.isArray(query)) {
       query = query.join(" ");
     }
@@ -107,7 +107,7 @@ export class Search {
  * example: "title=foo level<3"
  * returns: (page) => page.data.title === "foo" && page.data.level < 3
  */
-export function buildFilter(query: string): (page: Page) => boolean {
+export function buildFilter(query?: string): (page: Page) => boolean {
   // (?:(fieldName)(operator))?(value|"value"|'value')
   const matches = query
     ? query.matchAll(
