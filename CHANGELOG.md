@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.2.1] - Unreleased
+## [1.2.1] - 2021-10-28
 ### Fixed
 - Upgraded `postcss-nesting`, `liquid`, `std`, `deno_graph` and `cliffy`
   to their latest version.
@@ -1186,7 +1186,7 @@ The first version.
 [#136]: https://github.com/lumeland/lume/issues/136
 [#139]: https://github.com/lumeland/lume/issues/139
 
-[1.2.1]: https://github.com/lumeland/lume/compare/v1.2.0...HEAD
+[1.2.1]: https://github.com/lumeland/lume/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/lumeland/lume/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/lumeland/lume/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/lumeland/lume/compare/v1.0.5...v1.1.0
