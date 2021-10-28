@@ -35,4 +35,14 @@ Deno.test("build a site with jsx/tsx modules", async () => {
     equals(page.document?.querySelector("title")?.innerText, page.data.title);
     equals(page.document?.querySelector("a")?.getAttribute("href"), "/");
   });
+
+  testPage(site, "/multiple[0]", (page) => {
+    equals(page.data.url, "/page/1");
+    equals(page.document?.querySelector("div")?.innerText, "1");
+  });
+
+  testPage(site, "/multiple[1]", (page) => {
+    equals(page.data.url, "/page/2");
+    equals(page.document?.querySelector("div")?.innerText, "2");
+  });
 });
