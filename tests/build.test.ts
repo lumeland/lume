@@ -8,7 +8,6 @@ import { Event } from "../core.ts";
 
 Deno.test("build a simple site", async () => {
   const site = getSite({
-    test: true,
     src: "simple",
   });
 
@@ -32,7 +31,6 @@ Deno.test("build a simple site", async () => {
 
 Deno.test("build/update events", async () => {
   const site = getSite({
-    test: true,
     src: "simple",
   });
 

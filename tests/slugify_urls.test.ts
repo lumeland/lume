@@ -4,7 +4,6 @@ import slugifyUrls, { createSlugifier } from "../plugins/slugify_urls.ts";
 
 Deno.test("slugify_urls plugin", async () => {
   const site = getSite({
-    test: true,
     src: "slugify_urls",
   });
 

@@ -1,10 +1,10 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import { build, getSite, testPage } from "./utils.ts";
 import postcss from "../plugins/postcss.ts";
+import LumeSource from "../core/source.ts";
 
 Deno.test("postcss plugin", async () => {
   const site = getSite({
-    test: true,
     src: "postcss",
   });
 
@@ -14,9 +14,11 @@ Deno.test("postcss plugin", async () => {
 
   equals(site.pages.length, 2);
 
+  const { assets, pageLoaders } = site.source as LumeSource;
+
   // Register the .css loader
-  assert(site.source.assets.has(".css"));
-  assert(site.source.pages.has(".css"));
+  assert(assets.has(".css"));
+  assert(pageLoaders.has(".css"));
 
   testPage(site, "/index", (page) => {
     equals(page.data.url, "/index.css");
@@ -43,7 +45,6 @@ Deno.test("postcss plugin", async () => {
 
 Deno.test("postcss plugin without includes", async () => {
   const site = getSite({
-    test: true,
     src: "postcss",
   });
 

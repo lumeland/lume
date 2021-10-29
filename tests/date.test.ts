@@ -15,7 +15,7 @@ Deno.test("date plugin", () => {
     },
   }));
 
-  const [format] = site.helpers.get("date")!;
+  const [format] = site.renderer.helpers.get("date")!;
 
   equals(format(date0, "yyyy-MM-dd"), "1970-01-01");
   equals(format("now", "yyyy"), new Date().getFullYear().toString());
@@ -38,7 +38,7 @@ Deno.test("date plugin with custom locale", () => {
     locales: { gl, pt },
   }));
 
-  const [format] = site.helpers.get("date")!;
+  const [format] = site.renderer.helpers.get("date")!;
 
   equals(format(date0, "HUMAN_DATE"), "1 de xaneiro 1970");
   equals(format(date0, "HUMAN_DATE", "pt"), "1 de janeiro de 1970");

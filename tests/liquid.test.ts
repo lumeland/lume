@@ -4,7 +4,6 @@ import liquid from "../plugins/liquid.ts";
 
 Deno.test("build a site with liquid", async () => {
   const site = getSite({
-    test: true,
     src: "liquid",
     location: new URL("https://example.com/blog"),
   });

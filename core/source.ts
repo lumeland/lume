@@ -1,6 +1,7 @@
 import { basename, dirname, extname, join } from "../deps/path.ts";
 import { SiteDirectory, SitePage } from "./filesystem.ts";
 import {
+  checkExtensions,
   concurrent,
   Exception,
   normalizePath,
@@ -14,13 +15,26 @@ import { Data, Directory, Event, Loader, Page, Site, Source } from "../core.ts";
  */
 export default class SiteSource implements Source {
   site: Site;
+
+  /** The root of the src directory */
   root = new SiteDirectory({ path: "/" });
 
-  data: Map<string, Loader> = new Map();
-  pages: Map<string, Loader> = new Map();
+  /** List of extensions to load data files and the loader used */
+  dataLoaders: Map<string, Loader> = new Map();
+
+  /** List of extensions to load page files and the loader used */
+  pageLoaders: Map<string, Loader> = new Map();
+
+  /** List of files and folders to copy */
   staticFiles: Map<string, string> = new Map();
+
+  /** List of extensions that must be treated as assets (`.css`, `.js`, etc) */
   assets: Set<string> = new Set();
+
+  /** The list of paths to ignore */
   ignored: Set<string> = new Set();
+
+  /** Used to cache the loaded files */
   #cache: Map<string, Promise<Data>> = new Map();
 
   constructor(site: Site) {
@@ -39,6 +53,37 @@ export default class SiteSource implements Source {
         this.#cache.delete(site.src(filename));
       }
     });
+  }
+
+  addDataLoader(extensions: string[], loader: Loader) {
+    checkExtensions(extensions);
+    extensions.forEach((extension) => this.dataLoaders.set(extension, loader));
+  }
+
+  addPageLoader(extensions: string[], loader: Loader, isAsset: boolean) {
+    checkExtensions(extensions);
+    extensions.forEach((extension) => this.pageLoaders.set(extension, loader));
+
+    if (isAsset) {
+      extensions.forEach((extension) => this.assets.add(extension));
+    }
+  }
+
+  getPageLoader(path: string): [ext: string, loader: Loader] | undefined {
+    return searchByExtension(path, this.pageLoaders);
+  }
+
+  addStaticFile(from: string, to: string) {
+    this.staticFiles.set(join("/", from), join("/", to));
+    this.addIgnoredPath(from); // Ignore static paths
+  }
+
+  addIgnoredPath(path: string) {
+    this.ignored.add(join("/", path));
+  }
+
+  get pages(): Iterable<Page> {
+    return this.root.getPages();
   }
 
   getFileOrDirectory(path: string): Directory | Page | undefined {
@@ -214,7 +259,7 @@ export default class SiteSource implements Source {
 
   /** Create and return a Page */
   async #loadPage(path: string) {
-    const result = searchByExtension(path, this.pages);
+    const result = this.getPageLoader(path);
 
     if (!result) {
       return;
@@ -270,7 +315,7 @@ export default class SiteSource implements Source {
 
   /** Load a _data.* file and return the content */
   async #loadData(path: string): Promise<Data> {
-    const result = searchByExtension(path, this.data);
+    const result = searchByExtension(path, this.dataLoaders);
 
     if (result) {
       const [, loader] = result;

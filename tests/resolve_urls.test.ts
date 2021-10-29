@@ -7,7 +7,6 @@ import { Page } from "../core.ts";
 
 Deno.test("relative_url plugin", async () => {
   const site = getSite({
-    test: true,
     src: "resolve_urls",
   });
 

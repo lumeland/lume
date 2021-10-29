@@ -31,8 +31,9 @@ interface Options extends Omit<Partial<SiteOptions>, "server"> {
 export default function (
   options: Options = {},
   pluginOptions: PluginOptions = {},
+  cliOptions = true,
 ) {
-  if (!options.test) {
+  if (cliOptions) {
     options = merge(options, getOptionsFromCli());
   }
 

@@ -6,7 +6,6 @@ import { Page } from "../core.ts";
 
 Deno.test("code_hightlight plugin", async () => {
   const site = getSite({
-    test: true,
     src: "inline",
   });
 

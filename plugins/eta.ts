@@ -72,7 +72,7 @@ export default function (userOptions?: Partial<Options>) {
 
     // Configure includes
     options.extensions.forEach((ext) =>
-      site.includes.set(ext, options.includes)
+      site.renderer.includes.set(ext, options.includes)
     );
 
     // Update the cache

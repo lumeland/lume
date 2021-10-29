@@ -5,7 +5,6 @@ import basePath from "../plugins/base_path.ts";
 
 Deno.test("base_path plugin", async () => {
   const site = getSite({
-    test: true,
     src: "base_path",
     location: new URL("https://example.com/blog"),
   });

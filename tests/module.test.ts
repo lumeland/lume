@@ -3,7 +3,6 @@ import { getSite, testPage } from "./utils.ts";
 
 Deno.test("build a site with js/ts modules", async () => {
   const site = getSite({
-    test: true,
     src: "module",
     location: new URL("https://example.com/blog"),
   });

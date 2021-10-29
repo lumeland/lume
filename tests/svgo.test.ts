@@ -1,10 +1,10 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import { build, getSite, testPage } from "./utils.ts";
 import svgo from "../plugins/svgo.ts";
+import LumeSource from "../core/source.ts";
 
 Deno.test("terser plugin", async () => {
   const site = getSite({
-    test: true,
     src: "svgo",
   });
 
@@ -15,8 +15,10 @@ Deno.test("terser plugin", async () => {
   equals(site.pages.length, 1);
 
   // Register the .svg loader
-  assert(site.source.assets.has(".svg"));
-  assert(site.source.pages.has(".svg"));
+  const { assets, pageLoaders } = site.source as LumeSource;
+
+  assert(assets.has(".svg"));
+  assert(pageLoaders.has(".svg"));
 
   testPage(site, "/favicon", (page) => {
     equals(page.data.url, "/favicon.svg");

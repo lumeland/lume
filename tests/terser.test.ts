@@ -1,10 +1,10 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import { build, getSite, testPage } from "./utils.ts";
 import terser from "../plugins/terser.ts";
+import LumeSource from "../core/source.ts";
 
 Deno.test("terser plugin", async () => {
   const site = getSite({
-    test: true,
     src: "terser",
   });
 
@@ -15,9 +15,11 @@ Deno.test("terser plugin", async () => {
   equals(site.pages.length, 2);
 
   // Register the .js loader
-  assert(site.source.assets.has(".js"));
-  assert(site.source.pages.has(".js"));
-  assert(!site.source.assets.has(".ts"));
+  const { assets, pageLoaders } = site.source as LumeSource;
+
+  assert(assets.has(".js"));
+  assert(pageLoaders.has(".js"));
+  assert(!assets.has(".ts"));
 
   testPage(site, "/numbers.js", (page) => {
     equals(page.data.url, "/numbers.js");

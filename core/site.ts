@@ -1,16 +1,15 @@
-import { dirname, join, posix, SEP } from "../deps/path.ts";
-import { copy, emptyDir, ensureDir } from "../deps/fs.ts";
-import { gray } from "../deps/colors.ts";
-import { createHash } from "../deps/hash.ts";
+import { join, posix, SEP } from "../deps/path.ts";
 import SiteSource from "./source.ts";
 import ScriptRunner from "./scripts.ts";
 import PerformanceMetrics from "./metrics.ts";
-import Renderer from "./renderer.ts";
+import SiteRenderer from "./renderer.ts";
+import SiteEmitter from "./emitter.ts";
 import textLoader from "./loaders/text.ts";
 import binaryLoader from "./loaders/binary.ts";
 import {
   Command,
   CommandOptions,
+  Emitter,
   Engine,
   Event,
   EventListener,
@@ -22,18 +21,13 @@ import {
   Page,
   Plugin,
   Processor,
+  Renderer,
   Scripts,
   Site,
   SiteOptions,
   Source,
 } from "../core.ts";
-import {
-  checkExtensions,
-  concurrent,
-  Exception,
-  merge,
-  normalizePath,
-} from "./utils.ts";
+import { concurrent, Exception, merge, normalizePath } from "./utils.ts";
 
 const defaults: SiteOptions = {
   cwd: Deno.cwd(),
@@ -46,7 +40,6 @@ const defaults: SiteOptions = {
   dev: false,
   prettyUrls: true,
   flags: [],
-  test: false,
   server: {
     port: 3000,
     open: false,
@@ -65,16 +58,16 @@ export default class LumeSite implements Site {
   metrics: Metrics;
   listeners: Map<EventType, Set<EventListener | string>> = new Map();
   renderer: Renderer;
+  emitter: Emitter;
   pages: Page[] = [];
-
-  #hashes = new Map();
 
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);
     this.source = new SiteSource(this);
     this.scripts = new ScriptRunner(this);
     this.metrics = new PerformanceMetrics(this);
-    this.renderer = new Renderer(this);
+    this.renderer = new SiteRenderer(this);
+    this.emitter = new SiteEmitter(this);
 
     // Ignore the dest directory if it's inside src
     if (this.dest().startsWith(this.src())) {
@@ -123,6 +116,10 @@ export default class LumeSite implements Site {
     return true;
   }
 
+  get flags() {
+    return this.options.flags || [];
+  }
+
   use(plugin: Plugin) {
     plugin(this);
     return this;
@@ -134,17 +131,12 @@ export default class LumeSite implements Site {
   }
 
   loadData(extensions: string[], loader: Loader) {
-    checkExtensions(extensions);
-    extensions.forEach((extension) => this.source.data.set(extension, loader));
+    this.source.addDataLoader(extensions, loader);
     return this;
   }
 
   loadPages(extensions: string[], loader?: Loader, engine?: Engine) {
-    checkExtensions(extensions);
-    loader ||= textLoader;
-    extensions.forEach((extension) =>
-      this.source.pages.set(extension, loader!)
-    );
+    this.source.addPageLoader(extensions, loader || textLoader, false);
 
     if (engine) {
       this.renderer.addEngine(extensions, engine);
@@ -154,12 +146,7 @@ export default class LumeSite implements Site {
   }
 
   loadAssets(extensions: string[], loader?: Loader) {
-    checkExtensions(extensions);
-    loader ||= textLoader;
-    extensions.forEach((extension) =>
-      this.source.pages.set(extension, loader!)
-    );
-    extensions.forEach((extension) => this.source.assets.add(extension));
+    this.source.addPageLoader(extensions, loader || textLoader, true);
     return this;
   }
 
@@ -183,58 +170,54 @@ export default class LumeSite implements Site {
   }
 
   data(name: string, data: unknown) {
-    this.renderer.extraData[name] = data;
+    this.renderer.addData(name, data);
     return this;
   }
 
   copy(from: string, to = from) {
-    this.source.staticFiles.set(join("/", from), join("/", to));
-    return this.ignore(from); // Ignore static files
+    this.source.addStaticFile(join("/", from), join("/", to));
+    return this;
   }
 
   ignore(...paths: string[]) {
-    paths.forEach((path) => this.source.ignored.add(join("/", path)));
+    paths.forEach((path) => this.source.addIgnoredPath(join("/", path)));
     return this;
   }
 
   async clear() {
-    await emptyDir(this.dest());
-    this.#hashes.clear();
+    await this.emitter.clear();
   }
 
-  async build(watchMode = false) {
-    const { test } = this.options;
+  async build() {
     const buildMetric = this.metrics.start("Build (entire site)");
     await this.dispatchEvent({ type: "beforeBuild" });
+    await this.clear();
 
-    if (!test) {
-      await this.clear();
-
-      const metric = this.metrics.start("Copy (all files)");
-      for (const [from, to] of this.source.staticFiles) {
-        await this.#copyStatic(from, to);
-      }
-      metric.stop();
+    let metric = this.metrics.start("Copy (all files)");
+    for (const [from, to] of this.source.staticFiles) {
+      await this.emitter.copyFile(from, to);
     }
+    metric.stop();
 
-    let metric = this.metrics.start("Load (all pages)");
+    metric = this.metrics.start("Load (all pages)");
     await this.source.loadDirectory();
     metric.stop();
 
     metric = this.metrics.start(
       "Preprocess + render + process (all pages)",
     );
-    await this.renderer.buildPages(this.source.root.getPages());
+    await this.renderer.buildPages(this.source.pages);
     metric.stop();
 
     await this.dispatchEvent({ type: "beforeSave" });
 
     // Save the pages
-    if (!test) {
-      metric = this.metrics.start("Save (all pages)");
-      await this.#savePages(watchMode);
-      metric.stop();
-    }
+    metric = this.metrics.start("Save (all pages)");
+    await concurrent(
+      this.pages,
+      (page) => this.emitter.savePage(page),
+    );
+    metric.stop();
 
     buildMetric.stop();
     await this.dispatchEvent({ type: "afterBuild" });
@@ -259,7 +242,7 @@ export default class LumeSite implements Site {
       if (entry) {
         const [from, to] = entry;
 
-        await this.#copyStatic(file, join(to, file.slice(from.length)));
+        await this.emitter.copyFile(file, join(to, file.slice(from.length)));
         continue;
       }
 
@@ -285,23 +268,17 @@ export default class LumeSite implements Site {
       await this.source.loadFile(file);
     }
 
-    await this.renderer.buildPages(this.source.root.getPages());
+    await this.renderer.buildPages(this.source.pages);
     await this.dispatchEvent({ type: "beforeSave" });
-    if (!this.options.test) {
-      await this.#savePages(true);
-    }
+    await concurrent(
+      this.pages,
+      (page) => this.emitter.savePage(page),
+    );
     await this.dispatchEvent({ type: "afterUpdate", files });
   }
 
   async run(name: string, options: CommandOptions = {}) {
     return await this.scripts.run(options, name);
-  }
-
-  /**
-   * Return the site flags
-   */
-  get flags() {
-    return this.options.flags || [];
   }
 
   url(path: string, absolute = false) {
@@ -374,73 +351,5 @@ export default class LumeSite implements Site {
     // Is a source file
     const content = await this.source.load(this.src(url), binaryLoader);
     return content.content as Uint8Array;
-  }
-
-  /** Copy a static file */
-  async #copyStatic(from: string, to: string) {
-    const metric = this.metrics.start("Copy", { from });
-    const pathFrom = this.src(from);
-    const pathTo = this.dest(to);
-
-    try {
-      await ensureDir(dirname(pathTo));
-      if (!this.options.quiet) {
-        console.log(`🔥 ${normalizePath(to)} ${gray(from)}`);
-      }
-      return copy(pathFrom, pathTo, { overwrite: true });
-    } catch {
-      //Ignored
-    }
-
-    metric.stop();
-  }
-
-  /** Save all pages */
-  async #savePages(watchMode: boolean) {
-    await concurrent(
-      this.pages,
-      (page) => this.#savePage(page, watchMode),
-    );
-  }
-
-  /** Save a page */
-  async #savePage(page: Page, watchMode: boolean) {
-    // Ignore empty files
-    if (!page.content) {
-      return;
-    }
-
-    const metric = this.metrics.start("Save", { page });
-    const dest = page.dest.path + page.dest.ext;
-
-    if (watchMode) {
-      const sha1 = createHash("sha1");
-      sha1.update(page.content);
-      const hash = sha1.toString();
-      const previousHash = this.#hashes.get(dest);
-
-      // The page content didn't change
-      if (previousHash === hash) {
-        return;
-      }
-
-      this.#hashes.set(dest, hash);
-    }
-
-    if (!this.options.quiet) {
-      const src = page.src.path
-        ? page.src.path + (page.src.ext || "")
-        : "(generated)";
-      console.log(`🔥 ${dest} ${gray(src)}`);
-    }
-
-    const filename = this.dest(dest);
-    await ensureDir(dirname(filename));
-
-    page.content instanceof Uint8Array
-      ? await Deno.writeFile(filename, page.content)
-      : await Deno.writeTextFile(filename, page.content);
-
-    metric.stop();
   }
 }

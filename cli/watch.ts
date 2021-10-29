@@ -5,7 +5,7 @@ onmessage = async (event) => {
   const { root, config } = event.data;
   const site = await createSite(root, config);
 
-  await site.build(true);
+  await site.build();
 
   postMessage({
     type: "built",
@@ -14,9 +14,7 @@ onmessage = async (event) => {
   });
 
   // Set up what extensions need to reload the entire build
-  const modules = [".js", ".ts", ".jsx", ".tsx"];
-  const reloadExtensions = Array.from(site.source.pages.keys())
-    .filter((ext) => modules.some((module) => ext.endsWith(module)));
+  const reloadExtensions = [".js", ".ts", ".jsx", ".tsx"];
 
   // Start the watcher
   console.log();

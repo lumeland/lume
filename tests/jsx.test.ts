@@ -4,7 +4,6 @@ import jsx from "../plugins/jsx.ts";
 
 Deno.test("build a site with jsx/tsx modules", async () => {
   const site = getSite({
-    test: true,
     src: "jsx",
     location: new URL("https://example.com/blog"),
   });

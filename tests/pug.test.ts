@@ -4,7 +4,6 @@ import pug from "../plugins/pug.ts";
 
 Deno.test("build a site with eta", async () => {
   const site = getSite({
-    test: true,
     src: "pug",
     location: new URL("https://example.com/blog"),
   });

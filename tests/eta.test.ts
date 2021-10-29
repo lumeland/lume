@@ -4,7 +4,6 @@ import eta from "../plugins/eta.ts";
 
 Deno.test("build a site with eta", async () => {
   const site = getSite({
-    test: true,
     src: "eta",
     location: new URL("https://example.com/blog"),
   });

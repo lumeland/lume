@@ -3,7 +3,6 @@ import { getSite } from "./utils.ts";
 
 Deno.test("render order property", async () => {
   const site = getSite({
-    test: true,
     src: "render_order",
   });
 

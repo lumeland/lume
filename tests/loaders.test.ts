@@ -4,7 +4,6 @@ import { getPage, getSite, testPage } from "./utils.ts";
 
 Deno.test("load the pages of a site", async () => {
   const site = getSite({
-    test: true,
     dev: true,
     src: "normal",
   });
@@ -124,7 +123,6 @@ Deno.test("load the pages of a site", async () => {
 
 Deno.test("ignored draft pages on dev=false", async () => {
   const site = getSite({
-    test: true,
     dev: false,
     src: "normal",
   });

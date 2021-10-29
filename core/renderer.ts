@@ -6,6 +6,7 @@ import {
   HelperOptions,
   Page,
   Processor,
+  Renderer,
   Site,
 } from "../core.ts";
 import {
@@ -15,7 +16,7 @@ import {
   searchByExtension,
 } from "./utils.ts";
 
-export default class Renderer {
+export default class LumeRenderer implements Renderer {
   site: Site;
   engines: Map<string, Engine> = new Map();
   extraData: Record<string, unknown> = {};
@@ -57,6 +58,10 @@ export default class Renderer {
     return this;
   }
 
+  addData(name: string, data: unknown) {
+    this.extraData[name] = data;
+  }
+
   filterPage(page: Page): boolean {
     return !!page.data.draft && !this.site.options.dev;
   }
@@ -67,9 +72,6 @@ export default class Renderer {
 
     // Group pages by renderOrder
     const renderOrder: Record<number | string, Page[]> = {};
-    const metricPreprocessAndRender = this.site.metrics.start(
-      "Preprocess + render (all pages)",
-    );
 
     for (const page of pages) {
       if (this.filterPage(page)) {
@@ -123,66 +125,51 @@ export default class Renderer {
       }
 
       // Preprocess the pages
-      for (const [preprocess, exts] of this.preprocessors) {
-        await concurrent(
-          orderPages,
-          async (page) => {
-            try {
-              if (
-                (page.src.ext && exts.includes(page.src.ext)) ||
-                exts.includes(page.dest.ext)
-              ) {
-                const metric = this.site.metrics.start("Preprocess", {
-                  page,
-                  processor: preprocess.name,
-                });
-                await preprocess(page, this.site);
-                metric.stop();
-              }
-            } catch (cause) {
-              throw new Exception("Error preprocessing page", {
-                cause,
-                page,
-                preprocess: preprocess.name,
-              });
-            }
-          },
-        );
-      }
+      await this.#runProcessors(orderPages, this.preprocessors, true);
 
       // Render all pages
       await concurrent(
         orderPages,
         async (page) => {
+          const metric = this.site.metrics.start("Render", { page });
           try {
-            const metric = this.site.metrics.start("Render", { page });
             page.content = await this.#renderPage(page) as string;
-            metric.stop();
           } catch (cause) {
             throw new Exception("Error rendering this page", { cause, page });
+          } finally {
+            metric.stop();
           }
         },
       );
     }
     await this.site.dispatchEvent({ type: "afterRender" });
-    metricPreprocessAndRender.stop();
 
     // Process the pages
     const metricProcess = this.site.metrics.start("Process (all pages)");
+    await this.#runProcessors(this.site.pages, this.processors);
+    metricProcess.stop();
+  }
 
-    for (const [process, exts] of this.processors) {
+  /** Run the (pre)processors to the provided pages */
+  async #runProcessors(
+    pages: Page[],
+    processors: Map<Processor, string[]>,
+    preProcess = false,
+  ): Promise<void> {
+    for (const [process, exts] of processors) {
       await concurrent(
-        this.site.pages,
+        pages,
         async (page) => {
           try {
             if (
-              page.content &&
+              (preProcess || page.content) &&
               ((page.src.ext && exts.includes(page.src.ext)) ||
                 exts.includes(page.dest.ext))
             ) {
               const metric = this.site.metrics.start("Process", {
                 page,
                 processor: process.name,
+                preProcess,
               });
               await process(page, this.site);
               metric.stop();
@@ -192,13 +179,12 @@ export default class Renderer {
               cause,
               page,
               processor: process.name,
+              preProcess,
             });
           }
         },
       );
     }
-
-    metricProcess.stop();
   }
 
   /** Generate the URL and dest info of a page */
@@ -259,8 +245,9 @@ export default class Renderer {
       content = await engine.render(content, pageData, path);
     }
 
+    // Render the layouts recursively
     while (layout) {
-      const result = searchByExtension(layout, this.site.source.pages);
+      const result = this.site.source.getPageLoader(layout);
 
       if (!result) {
         throw new Exception(

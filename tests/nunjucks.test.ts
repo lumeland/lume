@@ -3,7 +3,6 @@ import { getSite, testPage } from "./utils.ts";
 
 Deno.test("build a site with nunjucks", async () => {
   const site = getSite({
-    test: true,
     src: "nunjucks",
     location: new URL("https://example.com/blog"),
   });
