@@ -132,14 +132,16 @@ export const pluginNames = [
 export interface WatchOptions {
   /** The folder root to watch */
   root: string;
-  /** The folder destination that must be ignored by the watcher */
-  ignore?: string;
+  /** Paths ignored by the watcher */
+  ignore?: string[];
+  /** The debounce waiting time */
+  debounce?: number;
   /** The callback function. Return false to close the watcher */
   fn: (files: Set<string>) => void | false | Promise<void | false>;
 }
 
 /** Watch file changes in a directory */
-export async function runWatch({ root, ignore, fn }: WatchOptions) {
+export async function runWatch({ root, ignore, fn, debounce }: WatchOptions) {
   const watcher = Deno.watchFs(root);
   const changes: Set<string> = new Set();
   let timer = 0;
@@ -165,14 +167,22 @@ export async function runWatch({ root, ignore, fn }: WatchOptions) {
   };
 
   for await (const event of watcher) {
-    if (ignore && event.paths.every((path) => path.startsWith(ignore))) {
+    let { paths } = event;
+
+    if (ignore) {
+      paths = paths.filter((path) =>
+        !ignore.some((ignore) => path.startsWith(ignore))
+      );
+    }
+
+    if (paths.length) {
       continue;
     }
 
-    event.paths.forEach((path) => changes.add(join("/", relative(root, path))));
+    paths.forEach((path) => changes.add(join("/", relative(root, path))));
 
     // Debounce
     clearTimeout(timer);
-    timer = setTimeout(callback, 100);
+    timer = setTimeout(callback, debounce || 100);
   }
 }

@@ -31,7 +31,7 @@ export default async function build(
     console.log();
   }
 
-  await site.build(serve);
+  await site.build();
 
   if (!quiet) {
     console.log();
@@ -50,7 +50,8 @@ export default async function build(
   // Start the watcher
   runWatch({
     root: site.src(),
-    ignore: site.dest(),
+    ignore: site.options.watcher.ignore,
+    debounce: site.options.watcher.debounce,
     fn: (files) => {
       console.log();
       console.log("Changes detected:");
@@ -62,7 +63,11 @@ export default async function build(
 
   // Start the local server
   if (serve) {
-    await runServe(site.dest(), site.options.server);
+    await runServe(
+      site.dest(),
+      site.options.server,
+      (url) => site.onDemand.response(url),
+    );
   }
 }
 

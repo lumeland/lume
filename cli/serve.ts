@@ -7,7 +7,11 @@ import { readAll } from "../deps/util.ts";
 import { runWatch } from "./utils.ts";
 
 /** Start a local HTTP server and live-reload the changes */
-export default async function server(root: string, options?: ServerOptions) {
+export default async function server(
+  root: string,
+  options?: ServerOptions,
+  notFound?: (url: URL) => Promise<Response | undefined>,
+) {
   const port = options?.port || 3000;
   const ipAddr = await localIp();
   let page404 = options?.page404 || "/404.html";
@@ -125,6 +129,16 @@ export default async function server(root: string, options?: ServerOptions) {
 
       console.log(`${brightGreen("200")} ${request.url}`);
     } catch {
+      if (notFound) {
+        const response = await notFound(new URL(request.url));
+
+        if (response) {
+          console.log(`${brightGreen("200")} (on demand) ${request.url}`);
+
+          return await event.respondWith(response);
+        }
+      }
+
       console.log(`${red("404")} ${request.url}`);
 
       try {

@@ -78,10 +78,6 @@ export default class LumeRenderer implements Renderer {
     extensions.forEach((ext) => this.includes.set(ext, path));
   }
 
-  filterPage(page: Page): boolean {
-    return !!page.data.draft && !this.site.options.dev;
-  }
-
   /** Render the provided pages */
   async renderPages(pages: Iterable<Page>) {
     this.site.pages = [];
@@ -90,7 +86,8 @@ export default class LumeRenderer implements Renderer {
     const renderOrder: Record<number | string, Page[]> = {};
 
     for (const page of pages) {
-      if (this.filterPage(page)) {
+      // Ignore draft pages in production
+      if (!!page.data.draft && !this.site.options.dev) {
         continue;
       }
 
@@ -113,8 +110,13 @@ export default class LumeRenderer implements Renderer {
         }
 
         this.#urlPage(page);
-        orderPages.push(page);
         this.site.pages.push(page);
+
+        if (page.data.ondemand) {
+          this.site.onDemand.addPage(page);
+        } else {
+          orderPages.push(page);
+        }
       }
 
       // Auto-generate pages
@@ -160,10 +162,22 @@ export default class LumeRenderer implements Renderer {
     }
     await this.site.dispatchEvent({ type: "afterRender" });
 
+    // Remove ondemand pages from the site pages
+    this.site.pages = this.site.pages.filter((page) => !page.data.ondemand);
+
     // Process the pages
     const metricProcess = this.site.metrics.start("Process (all pages)");
     await this.#runProcessors(this.site.pages, this.processors);
     metricProcess.stop();
+  }
+
+  /** Render the provided pages */
+  async renderPageOnDemand(page: Page): Promise<void> {
+    this.#urlPage(page);
+
+    await this.#runProcessors([page], this.preprocessors, true);
+    page.content = await this.#renderPage(page) as string;
+    await this.#runProcessors([page], this.processors);
   }
 
   /** Run the (pre)processors to the provided pages */

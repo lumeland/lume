@@ -12,7 +12,7 @@ import paginate, { Options as PaginateOptions } from "./plugins/paginate.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { merge } from "./core/utils.ts";
 
-import { ServerOptions, SiteOptions } from "./core.ts";
+import { ServerOptions, SiteOptions, WatcherOptions } from "./core.ts";
 
 interface PluginOptions {
   json?: Partial<JsonOptions>;
@@ -24,8 +24,9 @@ interface PluginOptions {
   yaml?: Partial<YamlOptions>;
 }
 
-interface Options extends Omit<Partial<SiteOptions>, "server"> {
+interface Options extends Omit<Partial<SiteOptions>, "server" | "watcher"> {
   server?: Partial<ServerOptions>;
+  watcher?: Partial<WatcherOptions>;
 }
 
 export default function (
