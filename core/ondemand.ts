@@ -41,14 +41,16 @@ export default class LumeOnDemand implements OnDemand {
       }
     }
     console.log(this.#pages);
+    console.log(url.pathname);
     const file = this.#pages.get(url.pathname);
+    console.log({file});
 
     if (!file) {
       return;
     }
 
     const page = await this.site.renderPage(file);
-
+    console.log({page});
     if (!page) {
       return;
     }
