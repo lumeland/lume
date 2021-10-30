@@ -40,7 +40,7 @@ export default class LumeOnDemand implements OnDemand {
         return;
       }
     }
-
+    console.log(this.#pages);
     const file = this.#pages.get(url.pathname);
 
     if (!file) {
