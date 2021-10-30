@@ -252,7 +252,7 @@ export interface OnDemand {
   addPage(page: Page): void;
 
   /** Return the response related with a url */
-  response(url: URL): Promise<Response | undefined>;
+  response(url: URL): Promise<Response | void>;
 }
 
 /** Script runner to store and run commands */

@@ -73,7 +73,6 @@ Deno.test("event listener configuration", () => {
   equals(listeners.get("beforeUpdate")?.size, 4);
 
   site.addEventListener("afterBuild", "afterbuild-command");
-  equals(listeners.size, 3);
   equals(listeners.get("afterBuild")?.size, 1);
   equals(listeners.get("afterBuild")?.has("afterbuild-command"), true);
 });
