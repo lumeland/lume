@@ -3,13 +3,12 @@ import { mimes } from "./utils.ts";
 
 export default class LumeOnDemand implements OnDemand {
   site: Site;
-  #init = false;
 
   /** Filename to save the url => path of on-demand pages */
   pathsFile: string;
 
   /** Pages that must be generated on demand */
-  #pages: Map<string, string> = new Map();
+  #pages?: Map<string, string>;
 
   constructor(site: Site) {
     this.site = site;
@@ -18,11 +17,30 @@ export default class LumeOnDemand implements OnDemand {
   }
 
   addPage(page: Page): void {
-    this.#runInit();
+    if (!this.#pages) {
+      this.#pages = new Map();
+      this.site.addEventListener("afterBuild", () => this.#saveOnDemandPages());
+      this.site.addEventListener(
+        "afterUpdate",
+        () => this.#saveOnDemandPages(),
+      );
+    }
+
     this.#pages.set(page.data.url as string, page.src.path + page.src.ext);
   }
 
   async response(url: URL): Promise<Response | void> {
+    if (!this.#pages) {
+      try {
+        const pages = JSON.parse(
+          await Deno.readTextFile(this.pathsFile),
+        ) as Record<string, string>;
+        this.#pages = new Map(Object.entries(pages));
+      } catch {
+        return;
+      }
+    }
+
     const file = this.#pages.get(url.pathname);
 
     if (!file) {
@@ -45,21 +63,8 @@ export default class LumeOnDemand implements OnDemand {
     });
   }
 
-  /**
-   * Register the event listeners on demand
-   */
-  #runInit(): void {
-    if (this.#init) {
-      return;
-    }
-
-    this.#init = true;
-    this.site.addEventListener("afterBuild", () => this.#saveOnDemandPages());
-    this.site.addEventListener("afterUpdate", () => this.#saveOnDemandPages());
-  }
-
   async #saveOnDemandPages(): Promise<void> {
-    if (!this.#pages.size) {
+    if (!this.#pages?.size) {
       return;
     }
 
