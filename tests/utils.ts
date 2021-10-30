@@ -1,5 +1,5 @@
 import lume from "../mod.ts";
-import { Emitter, OnDemand, Page, Site, SiteOptions } from "../core.ts";
+import { Emitter, Page, Site, SiteOptions } from "../core.ts";
 import { printError } from "../cli/utils.ts";
 
 const cwd = new URL("./assets", import.meta.url).pathname;
