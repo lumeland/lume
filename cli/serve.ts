@@ -10,7 +10,7 @@ import { runWatch } from "./utils.ts";
 export default async function server(
   root: string,
   options?: ServerOptions,
-  notFound?: (url: URL) => Promise<Response | undefined>,
+  notFound?: (url: URL) => Promise<Response | void>,
 ) {
   const port = options?.port || 3000;
   const ipAddr = await localIp();
