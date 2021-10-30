@@ -17,7 +17,7 @@ export default class SiteSource implements Source {
   site: Site;
 
   /** The root of the src directory */
-  root = new SiteDirectory({ path: "/" });
+  root?: Directory;
 
   /** List of extensions to load data files and the loader used */
   dataLoaders: Map<string, Loader> = new Map();
@@ -42,12 +42,12 @@ export default class SiteSource implements Source {
 
     // Update the cache
     site.addEventListener("beforeBuild", () => {
-      this.root.refreshCache();
+      this.root?.refreshCache();
       this.#cache.clear();
     });
 
     site.addEventListener("beforeUpdate", (ev: Event) => {
-      this.root.refreshCache();
+      this.root?.refreshCache();
 
       for (const filename of ev.files!) {
         this.#cache.delete(site.src(filename));
@@ -83,7 +83,34 @@ export default class SiteSource implements Source {
   }
 
   get pages(): Iterable<Page> {
-    return this.root.getPages();
+    return this.root?.getPages() ?? [];
+  }
+
+  load() {
+    this.root = new SiteDirectory({ path: "/" });
+    return this.#loadDirectory(this.root);
+  }
+
+  async reload(file: string): Promise<void> {
+    // It's an ignored file
+    if (this.#isIgnored(file)) {
+      return;
+    }
+
+    const normalized = normalizePath(file);
+
+    // It's inside a _data file or directory
+    if (/\/_data(?:\.\w+$|\/)/.test(normalized)) {
+      return await this.#reloadFile(file);
+    }
+
+    // Any path segment starts with _ or .
+    if (normalized.includes("/_") || normalized.includes("/.")) {
+      return;
+    }
+
+    // Default
+    return await this.#reloadFile(file);
   }
 
   getFileOrDirectory(path: string): Directory | Page | undefined {
@@ -102,19 +129,20 @@ export default class SiteSource implements Source {
     return result;
   }
 
-  isStatic(file: string) {
-    for (const entry of this.staticFiles) {
-      const [from] = entry;
-
-      if (file.startsWith(from)) {
-        return entry;
+  readFile(path: string, loader: Loader): Promise<Data> {
+    try {
+      if (!this.#cache.has(path)) {
+        this.#cache.set(path, loader(path));
       }
-    }
 
-    return false;
+      return this.#cache.get(path)!;
+    } catch (cause) {
+      throw new Exception("Couldn't load this file", { cause, path });
+    }
   }
 
-  isIgnored(path: string) {
+  /* Check if a file is in the ignored list */
+  #isIgnored(path: string) {
     for (const pattern of this.ignored) {
       if (pattern === path || path.startsWith(`${pattern}/`)) {
         return true;
@@ -124,7 +152,8 @@ export default class SiteSource implements Source {
     return false;
   }
 
-  loadDirectory(directory: Directory = this.root) {
+  /** Loads a directory recursively */
+  #loadDirectory(directory: Directory) {
     const path = this.site.src(directory.src.path);
 
     return concurrent(
@@ -133,7 +162,8 @@ export default class SiteSource implements Source {
     );
   }
 
-  async loadFile(file: string) {
+  /** Reloads a file */
+  async #reloadFile(file: string) {
     const entry = {
       name: basename(file),
       isFile: true,
@@ -171,12 +201,15 @@ export default class SiteSource implements Source {
     await this.#loadEntry(directory, entry);
   }
 
-  /** Get an existing directory. Load it if it doesn't exist */
+  /** Get an existing directory. Create it if it doesn't exist */
   async #getOrCreateDirectory(path: string): Promise<Directory> {
-    let dir: Directory = this.root;
+    let dir: Directory;
 
-    if (!dir.dataLoaded) {
-      const path = this.site.src(dir.src.path);
+    if (this.root) {
+      dir = this.root;
+    } else {
+      dir = this.root = new SiteDirectory({ path: "/" });
+      const path = this.site.src();
 
       await concurrent(
         Deno.readDir(path),
@@ -189,16 +222,19 @@ export default class SiteSource implements Source {
         continue;
       }
 
-      dir = dir.dirs.get(name) || dir.createDirectory(name);
-
-      if (!dir.dataLoaded) {
-        const path = this.site.src(dir.src.path);
-
-        await concurrent(
-          Deno.readDir(path),
-          (entry) => this.#loadEntry(dir, entry, true),
-        );
+      if (dir.dirs.has(name)) {
+        dir = dir.dirs.get(name)!;
+        continue;
       }
+
+      dir.createDirectory(name);
+
+      const path = this.site.src(dir.src.path);
+
+      await concurrent(
+        Deno.readDir(path),
+        (entry) => this.#loadEntry(dir, entry, true),
+      );
     }
 
     return dir;
@@ -252,7 +288,7 @@ export default class SiteSource implements Source {
     if (entry.isDirectory) {
       const metric = metrics.start("Load", { path });
       const subDirectory = directory.createDirectory(entry.name);
-      await this.loadDirectory(subDirectory);
+      await this.#loadDirectory(subDirectory);
       return metric.stop();
     }
   }
@@ -284,7 +320,7 @@ export default class SiteSource implements Source {
       ext,
     });
 
-    const data = await this.load(fullPath, loader);
+    const data = await this.readFile(fullPath, loader);
 
     if (!data.date) {
       data.date = getDate(page);
@@ -319,7 +355,7 @@ export default class SiteSource implements Source {
 
     if (result) {
       const [, loader] = result;
-      return await this.load(this.site.src(path), loader);
+      return await this.readFile(this.site.src(path), loader);
     }
 
     return {};
@@ -364,18 +400,6 @@ export default class SiteSource implements Source {
 
     if (entry.isDirectory) {
       data[entry.name] = await this.#loadDataDirectory(join(path, entry.name));
-    }
-  }
-
-  load(path: string, loader: Loader): Promise<Data> {
-    try {
-      if (!this.#cache.has(path)) {
-        this.#cache.set(path, loader(path));
-      }
-
-      return this.#cache.get(path)!;
-    } catch (cause) {
-      throw new Exception("Couldn't load this file", { cause, path });
     }
   }
 }

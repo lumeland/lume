@@ -1,6 +1,8 @@
 import { assertStrictEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
 import LumeSource from "../core/source.ts";
+import LumeRenderer from "../core/renderer.ts";
+import LumeScripts from "../core/scripts.ts";
 
 Deno.test("default configuration", () => {
   const site = lume();
@@ -78,7 +80,7 @@ Deno.test("event listener configuration", () => {
 
 Deno.test("script configuration", () => {
   const site = lume();
-  const { scripts } = site.scripts;
+  const { scripts } = site.scripts as LumeScripts;
 
   equals(scripts.size, 0);
 
@@ -125,7 +127,7 @@ Deno.test("data configuration", () => {
 
 Deno.test("pages configuration", () => {
   const site = lume();
-  const { engines } = site.renderer;
+  const { engines } = site.renderer as LumeRenderer;
   const { pageLoaders } = site.source as LumeSource;
 
   equals(pageLoaders.size, 7);
@@ -179,7 +181,7 @@ Deno.test("assets configuration", () => {
 
 Deno.test("preprocessor configuration", () => {
   const site = lume();
-  const { preprocessors } = site.renderer;
+  const { preprocessors } = site.renderer as LumeRenderer;
 
   equals(preprocessors.size, 0);
 
@@ -206,7 +208,7 @@ Deno.test("preprocessor configuration", () => {
 
 Deno.test("processor configuration", () => {
   const site = lume();
-  const { processors } = site.renderer;
+  const { processors } = site.renderer as LumeRenderer;
 
   equals(processors.size, 0);
 
@@ -233,7 +235,7 @@ Deno.test("processor configuration", () => {
 
 Deno.test("helpers configuration", () => {
   const site = lume();
-  const { helpers } = site.renderer;
+  const { helpers } = site.renderer as LumeRenderer;
 
   equals(helpers.size, 4);
   equals(helpers.has("url"), true);
@@ -261,7 +263,7 @@ Deno.test("helpers configuration", () => {
 
 Deno.test("extra data", () => {
   const site = lume();
-  const { extraData } = site.renderer;
+  const { extraData } = site.renderer as LumeRenderer;
 
   equals(Object.keys(extraData).length, 2);
   equals(Object.keys(extraData)[0], "paginate");

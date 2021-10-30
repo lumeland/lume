@@ -5,7 +5,6 @@ import PerformanceMetrics from "./metrics.ts";
 import SiteRenderer from "./renderer.ts";
 import SiteEmitter from "./emitter.ts";
 import textLoader from "./loaders/text.ts";
-import binaryLoader from "./loaders/binary.ts";
 import {
   Command,
   CommandOptions,
@@ -48,8 +47,7 @@ const defaults: SiteOptions = {
 };
 
 /**
- * This is the heart of Lume,
- * a class that contains everything needed to build the site
+ * The default site builder
  */
 export default class LumeSite implements Site {
   options: SiteOptions;
@@ -126,7 +124,7 @@ export default class LumeSite implements Site {
   }
 
   script(name: string, ...scripts: Command[]) {
-    this.scripts.set(name, ...scripts);
+    this.scripts.add(name, ...scripts);
     return this;
   }
 
@@ -200,13 +198,13 @@ export default class LumeSite implements Site {
     metric.stop();
 
     metric = this.metrics.start("Load (all pages)");
-    await this.source.loadDirectory();
+    await this.source.load();
     metric.stop();
 
     metric = this.metrics.start(
       "Preprocess + render + process (all pages)",
     );
-    await this.renderer.buildPages(this.source.pages);
+    await this.renderer.renderPages(this.source.pages);
     metric.stop();
 
     await this.dispatchEvent({ type: "beforeSave" });
@@ -237,7 +235,7 @@ export default class LumeSite implements Site {
 
     for (const file of files) {
       // It's a static file
-      const entry = this.source.isStatic(file);
+      const entry = this.#isStaticFile(file);
 
       if (entry) {
         const [from, to] = entry;
@@ -246,29 +244,10 @@ export default class LumeSite implements Site {
         continue;
       }
 
-      // It's an ignored file
-      if (this.source.isIgnored(file)) {
-        continue;
-      }
-
-      const normalized = normalizePath(file);
-
-      // It's inside a _data file or directory
-      if (/\/_data(?:\.\w+$|\/)/.test(normalized)) {
-        await this.source.loadFile(file);
-        continue;
-      }
-
-      // Any path segment starts with _ or .
-      if (normalized.includes("/_") || normalized.includes("/.")) {
-        continue;
-      }
-
-      // Default
-      await this.source.loadFile(file);
+      await this.source.reload(file);
     }
 
-    await this.renderer.buildPages(this.source.pages);
+    await this.renderer.renderPages(this.source.pages);
     await this.dispatchEvent({ type: "beforeSave" });
     await concurrent(
       this.pages,
@@ -303,7 +282,7 @@ export default class LumeSite implements Site {
         path = page.data.url as string;
       } else {
         // It's a static file
-        const entry = this.source.isStatic(path);
+        const entry = this.#isStaticFile(path);
 
         if (entry) {
           const [from, to] = entry;
@@ -328,28 +307,19 @@ export default class LumeSite implements Site {
     return absolute ? this.options.location.origin + path : path;
   }
 
-  /** Returns the content of a file or page */
-  async getFileContent(url: string): Promise<string | Uint8Array> {
-    // Is a loaded file
-    const page = this.pages.find((page) => page.data.url === url);
-
-    if (page) {
-      return page.content as string | Uint8Array;
-    }
-
-    // Is a static file
+  /**
+   * Check whether a file is included in the list of static files
+   * and return a [from, to] tuple
+   */
+  #isStaticFile(file: string) {
     for (const entry of this.source.staticFiles) {
-      const [from, to] = entry;
+      const [from] = entry;
 
-      if (url.startsWith(to)) {
-        const file = this.src(from, url.slice(to.length));
-        const content = await this.source.load(file, binaryLoader);
-        return content.content as Uint8Array;
+      if (file.startsWith(from)) {
+        return entry;
       }
     }
 
-    // Is a source file
-    const content = await this.source.load(this.src(url), binaryLoader);
-    return content.content as Uint8Array;
+    return false;
   }
 }

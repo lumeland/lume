@@ -4,13 +4,15 @@ import { Command, CommandOptions, Scripts, Site } from "../core.ts";
 /** Manage and execute user scripts */
 export default class ScriptRunner implements Scripts {
   site: Site;
+
+  /** All registered scripts */
   scripts: Map<string, Command[]> = new Map();
 
   constructor(site: Site) {
     this.site = site;
   }
 
-  set(name: string, ...commands: Command[]) {
+  add(name: string, ...commands: Command[]) {
     this.scripts.set(name, commands);
   }
 

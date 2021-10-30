@@ -1,5 +1,6 @@
 import { assertStrictEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
+import LumeRenderer from "../core/renderer.ts";
 import date from "../plugins/date.ts";
 import gl from "https://deno.land/x/date_fns@v2.22.1/locale/gl/index.js";
 import pt from "https://deno.land/x/date_fns@v2.22.1/locale/pt/index.js";
@@ -15,7 +16,8 @@ Deno.test("date plugin", () => {
     },
   }));
 
-  const [format] = site.renderer.helpers.get("date")!;
+  const { helpers } = site.renderer as LumeRenderer;
+  const [format] = helpers.get("date")!;
 
   equals(format(date0, "yyyy-MM-dd"), "1970-01-01");
   equals(format("now", "yyyy"), new Date().getFullYear().toString());
@@ -38,7 +40,8 @@ Deno.test("date plugin with custom locale", () => {
     locales: { gl, pt },
   }));
 
-  const [format] = site.renderer.helpers.get("date")!;
+  const { helpers } = site.renderer as LumeRenderer;
+  const [format] = helpers.get("date")!;
 
   equals(format(date0, "HUMAN_DATE"), "1 de xaneiro 1970");
   equals(format(date0, "HUMAN_DATE", "pt"), "1 de janeiro de 1970");

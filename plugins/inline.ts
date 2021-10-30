@@ -3,6 +3,7 @@ import { extname, posix, resolve } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
 import { merge, mimes, warn } from "../core/utils.ts";
 import { Page, Site } from "../core.ts";
+import binaryLoader from "../core/loaders/binary.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -78,7 +79,7 @@ export default function (userOptions?: Partial<Options>) {
         posix.relative(site.options.location.pathname, path),
       );
 
-      const content = await site.getFileContent(url) as string | Uint8Array;
+      const content = await getFileContent(site, url) as string | Uint8Array;
 
       // Return the raw content
       if (!asDataUrl) {
@@ -176,4 +177,32 @@ export default function (userOptions?: Partial<Options>) {
       }
     }
   };
+}
+
+/** Returns the content of a file or page */
+async function getFileContent(
+  site: Site,
+  url: string,
+): Promise<string | Uint8Array> {
+  // Is a loaded file
+  const page = site.pages.find((page) => page.data.url === url);
+
+  if (page) {
+    return page.content as string | Uint8Array;
+  }
+
+  // Is a static file
+  for (const entry of site.source.staticFiles) {
+    const [from, to] = entry;
+
+    if (url.startsWith(to)) {
+      const file = site.src(from, url.slice(to.length));
+      const content = await site.source.readFile(file, binaryLoader);
+      return content.content as Uint8Array;
+    }
+  }
+
+  // Is a source file
+  const content = await site.source.readFile(site.src(url), binaryLoader);
+  return content.content as Uint8Array;
 }

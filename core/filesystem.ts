@@ -6,7 +6,6 @@ import { Content, Data, Dest, Directory, Page, Src } from "../core.ts";
 class Base {
   src: Src;
   parent?: Directory;
-  #dataLoaded = false;
   #data?: Data;
   #cache?: Data;
 
@@ -21,10 +20,6 @@ class Base {
     Object.defineProperty(this, "data", data);
   }
 
-  get dataLoaded() {
-    return this.#dataLoaded;
-  }
-
   get data(): Data {
     if (!this.#cache) {
       this.#cache = this.#getMergedData();
@@ -34,7 +29,6 @@ class Base {
   }
 
   set data(data: Data) {
-    this.#dataLoaded = true;
     this.#cache = undefined;
     this.#data = data;
   }

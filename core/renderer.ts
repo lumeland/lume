@@ -18,11 +18,23 @@ import {
 
 export default class LumeRenderer implements Renderer {
   site: Site;
+
+  /** Template engines by extension */
   engines: Map<string, Engine> = new Map();
+
+  /** Extra data to be passed to the layouts */
   extraData: Record<string, unknown> = {};
+
+  /** All preprocessors */
   preprocessors: Map<Processor, string[]> = new Map();
+
+  /** All processors */
   processors: Map<Processor, string[]> = new Map();
+
+  /** To store the includes paths by extension */
   includes: Map<string, string> = new Map();
+
+  /** The registered helpers */
   helpers: Map<string, [Helper, HelperOptions]> = new Map();
 
   constructor(site: Site) {
@@ -62,12 +74,16 @@ export default class LumeRenderer implements Renderer {
     this.extraData[name] = data;
   }
 
+  addInclude(extensions: string[], path: string) {
+    extensions.forEach((ext) => this.includes.set(ext, path));
+  }
+
   filterPage(page: Page): boolean {
     return !!page.data.draft && !this.site.options.dev;
   }
 
-  /** Build pages */
-  async buildPages(pages: Iterable<Page>) {
+  /** Render the provided pages */
+  async renderPages(pages: Iterable<Page>) {
     this.site.pages = [];
 
     // Group pages by renderOrder
@@ -262,7 +278,7 @@ export default class LumeRenderer implements Renderer {
         this.includes.get(ext) || this.site.options.includes,
         layout,
       );
-      const layoutData = await this.site.source.load(layoutPath, loader);
+      const layoutData = await this.site.source.readFile(layoutPath, loader);
       const engine = this.#getEngine(layout, layoutData.templateEngine);
 
       if (!engine) {

@@ -98,9 +98,7 @@ export default function (userOptions?: Partial<Options>) {
     const engine = new nunjucks.Environment(fsLoader, options.options);
 
     // Configure includes
-    options.extensions.forEach((ext) =>
-      site.renderer.includes.set(ext, options.includes)
-    );
+    site.renderer.addInclude(options.extensions, options.includes);
 
     // Register nunjucks extensions
     for (const [name, fn] of Object.entries(options.plugins)) {

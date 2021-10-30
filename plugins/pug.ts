@@ -82,9 +82,7 @@ export default function (userOptions?: Partial<Options>) {
 
     // Configure includes
     options.options.basedir = site.src(options.includes);
-    options.extensions.forEach((ext) =>
-      site.renderer.includes.set(ext, options.includes)
-    );
+    site.renderer.addInclude(options.extensions, options.includes);
 
     // Load the pages
     site.loadPages(
