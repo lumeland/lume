@@ -175,7 +175,7 @@ export async function runWatch({ root, ignore, fn, debounce }: WatchOptions) {
       );
     }
 
-    if (paths.length) {
+    if (!paths.length) {
       continue;
     }
 

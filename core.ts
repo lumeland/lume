@@ -251,8 +251,8 @@ export interface OnDemand {
   /** Add a page to be rendered on demand */
   addPage(page: Page): void;
 
-  /** Return the response related with a url */
-  response(url: URL): Promise<Response | void>;
+  /** Return the body and other ResponseInit related with a url */
+  response(url: URL): Promise<[BodyInit, ResponseInit] | void>;
 }
 
 /** Script runner to store and run commands */

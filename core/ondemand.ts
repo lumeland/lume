@@ -29,7 +29,7 @@ export default class LumeOnDemand implements OnDemand {
     this.#pages.set(page.data.url as string, page.src.path + page.src.ext);
   }
 
-  async response(url: URL): Promise<Response | void> {
+  async response(url: URL): Promise<[BodyInit, ResponseInit] | void> {
     if (!this.#pages) {
       try {
         const pages = JSON.parse(
@@ -42,25 +42,24 @@ export default class LumeOnDemand implements OnDemand {
     }
 
     const file = this.#pages.get(url.pathname);
-
     if (!file) {
       return;
     }
 
     const page = await this.site.renderPage(file);
-
     if (!page) {
       return;
     }
 
-    const mime = mimes.get(page.dest.ext) || mimes.get(".html")!;
-
-    return new Response(page.content, {
-      status: 200,
-      headers: new Headers({
-        "content-type": mime,
-      }),
-    });
+    return [
+      page.content as string | Uint8Array,
+      {
+        status: 200,
+        headers: {
+          "content-type": mimes.get(page.dest.ext) || mimes.get(".html")!,
+        },
+      },
+    ];
   }
 
   async #saveOnDemandPages(): Promise<void> {
