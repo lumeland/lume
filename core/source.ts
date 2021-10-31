@@ -302,20 +302,20 @@ export default class SiteSource implements Source {
     const [ext, loader] = result;
     const fullPath = this.site.src(path);
 
-    let info: Deno.FileInfo;
+    let info: Deno.FileInfo | undefined;
 
     try {
       info = await Deno.stat(fullPath);
-    } catch (cause) {
-      // File doesn't exist
-      console.log({cause, fullPath});
-      return;
+    } catch (err) {
+      if (err instanceof Deno.errors.NotFound) {
+        return;
+      }
     }
 
     const page = new SitePage({
       path: path.slice(0, -ext.length),
-      lastModified: info.mtime || undefined,
-      created: info.birthtime || undefined,
+      lastModified: info?.mtime || undefined,
+      created: info?.birthtime || undefined,
       ext,
     });
 
