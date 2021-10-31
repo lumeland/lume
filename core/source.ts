@@ -294,7 +294,7 @@ export default class SiteSource implements Source {
   /** Create and return a Page */
   async #loadPage(path: string) {
     const result = this.getPageLoader(path);
-    console.log({ path, result });
+
     if (!result) {
       return;
     }
@@ -306,8 +306,9 @@ export default class SiteSource implements Source {
 
     try {
       info = await Deno.stat(fullPath);
-    } catch {
+    } catch (cause) {
       // File doesn't exist
+      console.log({cause, fullPath});
       return;
     }
 
