@@ -225,7 +225,7 @@ export default class SiteSource implements Source {
         continue;
       }
 
-      dir.createDirectory(name);
+      dir = dir.createDirectory(name);
 
       const path = this.site.src(dir.src.path);
 
