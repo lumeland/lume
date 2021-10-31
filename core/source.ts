@@ -101,7 +101,7 @@ export default class SiteSource implements Source {
 
     // It's inside a _data file or directory
     if (/\/_data(?:\.\w+$|\/)/.test(normalized)) {
-      return await this.#reloadFile(file);
+      return await this.#reloadFile(normalized);
     }
 
     // Any path segment starts with _ or .
@@ -110,7 +110,7 @@ export default class SiteSource implements Source {
     }
 
     // Default
-    return await this.#reloadFile(file);
+    return await this.#reloadFile(normalized);
   }
 
   getFileOrDirectory(path: string): Directory | Page | undefined {
@@ -170,8 +170,6 @@ export default class SiteSource implements Source {
       isDirectory: false,
       isSymlink: false,
     };
-
-    file = normalizePath(file);
 
     // Is a file inside a _data directory
     if (file.includes("/_data/")) {
