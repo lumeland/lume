@@ -97,6 +97,7 @@ export default class LumeRenderer implements Renderer {
     }
 
     const orderKeys = Object.keys(renderOrder).sort();
+    let hasOndemand = false;
 
     for (const order of orderKeys) {
       const orderPages = [];
@@ -114,6 +115,8 @@ export default class LumeRenderer implements Renderer {
 
         if (!page.data.ondemand) {
           orderPages.push(page);
+        } else {
+          hasOndemand = true;
         }
       }
 
@@ -161,7 +164,9 @@ export default class LumeRenderer implements Renderer {
     await this.site.dispatchEvent({ type: "afterRender" });
 
     // Remove ondemand pages from the site pages
-    this.site.pages = this.site.pages.filter((page) => !page.data.ondemand);
+    if (hasOndemand) {
+      this.site.pages = this.site.pages.filter((page) => !page.data.ondemand);
+    }
 
     // Process the pages
     const metricProcess = this.site.metrics.start("Process (all pages)");

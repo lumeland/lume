@@ -18,7 +18,6 @@ export default function (userOptions?: Partial<Options>) {
     const routesFile = site.src(options.routesFile);
     const router = new Router(routesFile);
 
-    site.addEventListener("beforeBuild", () => router.loadRoutes());
     site.addEventListener(
       "afterRender",
       () => router.collectRoutes(site.pages),
@@ -65,33 +64,30 @@ export class Router {
   #routesFile: string;
 
   /** Pages that must be generated on demand */
-  #pages: Map<string, string> = new Map();
+  #routes?: Map<string, string>;
 
   constructor(routesFile: string) {
     this.#routesFile = routesFile;
   }
 
   async match(url: URL): Promise<string | undefined> {
-    if (!this.#pages) {
-      try {
-        const pages = JSON.parse(
-          await Deno.readTextFile(this.#routesFile),
-        ) as Record<string, string>;
-        this.#pages = new Map(Object.entries(pages));
-      } catch {
-        return;
-      }
+    if (!this.#routes) {
+      await this.loadRoutes();
     }
 
-    return this.#pages.get(url.pathname);
+    return this.#routes?.get(url.pathname);
   }
 
   collectRoutes(pages: Page[]): void {
+    const routes: Map<string, string> = new Map();
+
     pages.forEach((page) => {
       if (page.data.ondemand) {
-        this.#pages.set(page.data.url as string, page.src.path + page.src.ext);
+        routes.set(page.data.url as string, page.src.path + page.src.ext);
       }
     });
+
+    this.#routes = routes;
   }
 
   async loadRoutes(): Promise<void> {
@@ -99,19 +95,19 @@ export class Router {
       const pages = JSON.parse(
         await Deno.readTextFile(this.#routesFile),
       ) as Record<string, string>;
-      this.#pages = new Map(Object.entries(pages));
+      this.#routes = new Map(Object.entries(pages));
     } catch {
-      // Ignore
+      this.#routes = new Map();
     }
   }
 
   async saveRoutes(): Promise<void> {
-    if (!this.#pages?.size) {
+    if (!this.#routes?.size) {
       return;
     }
 
     const data: Record<string, string> = {};
-    this.#pages.forEach((path, url) => data[url] = path);
+    this.#routes.forEach((path, url) => data[url] = path);
 
     await Deno.writeTextFile(
       this.#routesFile,
