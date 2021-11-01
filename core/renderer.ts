@@ -112,9 +112,7 @@ export default class LumeRenderer implements Renderer {
         this.#urlPage(page);
         this.site.pages.push(page);
 
-        if (page.data.ondemand) {
-          this.site.onDemand.addPage(page);
-        } else {
+        if (!page.data.ondemand) {
           orderPages.push(page);
         }
       }

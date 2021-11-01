@@ -4,7 +4,6 @@ import ScriptRunner from "./scripts.ts";
 import PerformanceMetrics from "./metrics.ts";
 import SiteRenderer from "./renderer.ts";
 import SiteEmitter from "./emitter.ts";
-import SiteOnDemand from "./ondemand.ts";
 import textLoader from "./loaders/text.ts";
 import {
   Command,
@@ -18,7 +17,6 @@ import {
   HelperOptions,
   Loader,
   Metrics,
-  OnDemand,
   Page,
   Plugin,
   Processor,
@@ -64,7 +62,6 @@ export default class LumeSite implements Site {
   renderer: Renderer;
   emitter: Emitter;
   pages: Page[] = [];
-  onDemand: OnDemand;
 
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);
@@ -73,7 +70,6 @@ export default class LumeSite implements Site {
     this.metrics = new PerformanceMetrics(this);
     this.renderer = new SiteRenderer(this);
     this.emitter = new SiteEmitter(this);
-    this.onDemand = new SiteOnDemand(this);
 
     // Ignore the dest directory if it's inside src
     if (this.dest().startsWith(this.src())) {
