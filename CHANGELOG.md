@@ -7,6 +7,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Added
+- Support for on demand server side rendering,
+  used to generate pages dynamically, like [Jamstack's DPR](https://github.com/jamstack/jamstack.org/discussions/549).
+  This is compatible with Deno Deploy.
+- New plugin `on_demand` to implement page rendering on demand.
+- New option `watcher` to configure the watcher of the live reload
+  (the debounce interval and a list of ignored paths).
+
+### Changed
+- BREAKING: Some internal parts have been refactored for more flexibility. This change affects to Lume types in `core.ts`.
+  - New interface `Renderer` to render the site pages. This allows to create your own renderer to replace the default one.
+  - New interface `Emitter` to emit the site pages and static files (save them in _site folder). This allows to create your own emitter to replace the default one.
+
 ## [1.2.1] - 2021-10-28
 ### Fixed
 - Upgraded `postcss-nesting`, `liquid`, `std`, `deno_graph` and `cliffy`
@@ -1186,6 +1200,7 @@ The first version.
 [#136]: https://github.com/lumeland/lume/issues/136
 [#139]: https://github.com/lumeland/lume/issues/139
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.2.1...HEAD
 [1.2.1]: https://github.com/lumeland/lume/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/lumeland/lume/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/lumeland/lume/compare/v1.1.0...v1.1.1
