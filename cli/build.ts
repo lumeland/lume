@@ -63,11 +63,7 @@ export default async function build(
 
   // Start the local server
   if (serve) {
-    await runServe(
-      site.dest(),
-      site.options.server,
-      (url) => site.onDemand.response(url),
-    );
+    await runServe(site.dest(), site.options.server);
   }
 }
 

@@ -9,7 +9,6 @@ import { runWatch } from "./utils.ts";
 export default async function server(
   root: string,
   options?: ServerOptions,
-  notFound?: (url: URL) => Promise<[BodyInit, ResponseInit] | void>,
 ) {
   const port = options?.port || 3000;
   const ipAddr = await localIp();
@@ -127,8 +126,8 @@ export default async function server(
       console.log(`${brightGreen("200")} ${request.url}`);
     } catch {
       // Serve pages on demand
-      if (notFound) {
-        const result = await notFound(new URL(request.url));
+      if (options?.router) {
+        const result = await options.router(new URL(request.url));
 
         if (result) {
           const [body, options] = result;

@@ -148,6 +148,9 @@ export interface ServerOptions {
 
   /** The file to serve on 404 error */
   page404: string;
+
+  /** Optional request handler for pages served on demand */
+  router?: (url: URL) => Promise<[BodyInit, ResponseInit] | undefined>;
 }
 
 /** The options to configure the local watcher */
@@ -239,14 +242,6 @@ export interface Renderer {
 
   /** Render a page on demand */
   renderPageOnDemand(page: Page): Promise<void>;
-}
-
-/**
- * Class to manage the pages that must be rendered on demand
- */
-export interface Router {
-  /** Return the file associated with a url */
-  match(url: URL): string | null | Promise<string | null>;
 }
 
 /** Script runner to store and run commands */

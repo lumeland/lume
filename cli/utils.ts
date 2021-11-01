@@ -120,6 +120,7 @@ export const pluginNames = [
   "jsx",
   "liquid",
   "modify_urls",
+  "on_demand",
   "postcss",
   "pug",
   "relative_urls",
