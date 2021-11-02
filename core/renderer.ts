@@ -122,15 +122,7 @@ export default class LumeRenderer implements Renderer {
 
       // Auto-generate pages
       for (const page of generators) {
-        const engine = this.engines.get(".tmpl.js") as Engine;
-        const generator = await engine.render(
-          page.data.content,
-          {
-            ...page.data,
-            ...this.extraData,
-          },
-          this.site.src(page.src.path + page.src.ext),
-        ) as Generator<Data, Data>;
+        const generator = await this.#generatePages(page);
 
         for await (const data of generator) {
           if (!data.content) {
@@ -176,11 +168,31 @@ export default class LumeRenderer implements Renderer {
 
   /** Render the provided pages */
   async renderPageOnDemand(page: Page): Promise<void> {
+    if (isGenerator(page.data.content)) {
+      throw new Exception("Cannot render a multiple page on demand.", {
+        page,
+      });
+    }
+
     this.#urlPage(page);
 
     await this.#runProcessors([page], this.preprocessors, true);
     page.content = await this.#renderPage(page) as string;
     await this.#runProcessors([page], this.processors);
+  }
+
+  /** Returns a generator for multipages */
+  async #generatePages(page: Page): Promise<Generator<Data, Data>> {
+    const engine = this.engines.get(".tmpl.js") as Engine;
+
+    return await engine.render(
+      page.data.content,
+      {
+        ...page.data,
+        ...this.extraData,
+      },
+      this.site.src(page.src.path + page.src.ext),
+    ) as Generator<Data, Data>;
   }
 
   /** Run the (pre)processors to the provided pages */

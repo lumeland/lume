@@ -1,9 +1,9 @@
 import { ServerOptions } from "../core.ts";
 import { dirname, extname, join, relative, SEP } from "../deps/path.ts";
-import { brightGreen, red } from "../deps/colors.ts";
+import { brightGreen, dim, red } from "../deps/colors.ts";
 import localIp from "../deps/local_ip.ts";
 import { mimes, normalizePath, warn } from "../core/utils.ts";
-import { runWatch } from "./utils.ts";
+import { printError, runWatch } from "./utils.ts";
 
 /** Start a local HTTP server and live-reload the changes */
 export default async function server(
@@ -120,6 +120,7 @@ export default async function server(
 
         await event.respondWith(response);
       } catch {
+        // File not found
         return;
       }
 
@@ -127,12 +128,20 @@ export default async function server(
     } catch {
       // Serve pages on demand
       if (options?.router) {
-        const result = await options.router(new URL(request.url));
+        try {
+          const result = await options.router(new URL(request.url));
 
-        if (result) {
-          const [body, options] = result;
-          await event.respondWith(createResponse(body, options));
-          console.log(`${brightGreen("200")} (on demand) ${request.url}`);
+          if (result) {
+            const [body, options] = result;
+            await event.respondWith(createResponse(body, options));
+            console.log(
+              `${brightGreen("200")} ${request.url}`,
+              dim("(on demand)"),
+            );
+            return;
+          }
+        } catch (error) {
+          printError(error);
           return;
         }
       }
@@ -195,6 +204,10 @@ async function getNotFoundBody(root: string, page404: string, file: string) {
 
   const content = await listDirectory(dirname(file));
 
+  if (relative(root, file).includes("/")) {
+    content.unshift(["../", ".."]);
+  }
+
   return `
 <!DOCTYPE html>
   <html lang="en">
@@ -209,10 +222,10 @@ async function getNotFoundBody(root: string, page404: string, file: string) {
     <p>The URL <code>${relative(root, file)}</code> does not exist</p>
     <ul>
 ${
-    content.map((item) => `
+    content.map(([url, name]) => `
     <li>
-      <a href="${item}">
-        ${item}
+      <a href="${url}">
+        ${name}
       </a>
     </li>`).join("\n")
   }
@@ -239,15 +252,18 @@ function createResponse(body: BodyInit, options: ResponseInit): Response {
 }
 
 async function listDirectory(directory: string) {
-  const files: string[] = [];
+  const folders: [string, string][] = [];
+  const files: [string, string][] = [];
 
   try {
     for await (const info of Deno.readDir(directory)) {
-      files.push(info.isDirectory ? `${info.name}/` : info.name);
+      info.isDirectory
+        ? folders.push([`${info.name}/`, `📁 ${info.name}/`])
+        : files.push([info.name, `📄 ${info.name}`]);
     }
   } catch {
     return files;
   }
 
-  return files;
+  return folders.concat(files);
 }
