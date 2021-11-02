@@ -22,6 +22,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - New interface `Renderer` to render the site pages. This allows to create your own renderer to replace the default one.
   - New interface `Emitter` to emit the site pages and static files (save them in _site folder). This allows to create your own emitter to replace the default one.
 
+### Removed
+- `deno.land/std/io/util.ts` dependency because it's not needed anymore.
+
+### Fixed
+- Updated `cliffy`, `deno_dom`, `deno_graph`, `liquid` and `svgo` dependencies.
+
 ## [1.2.1] - 2021-10-28
 ### Fixed
 - Upgraded `postcss-nesting`, `liquid`, `std`, `deno_graph` and `cliffy`

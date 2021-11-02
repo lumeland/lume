@@ -1,4 +1,4 @@
-export * from "https://unpkg.com/svgo@2.7.0/dist/svgo.browser.js";
+export * from "https://unpkg.com/svgo@2.8.0/dist/svgo.browser.js";
 
 /** SVGO options */
 export interface SvgoOptions {
