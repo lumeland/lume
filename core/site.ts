@@ -270,7 +270,7 @@ export default class LumeSite implements Site {
     if (!page) {
       return;
     }
-
+    await this.dispatchEvent({ type: "beforeRenderOnDemand", page });
     await this.renderer.renderPageOnDemand(page);
     return page;
   }

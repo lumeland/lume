@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   used to generate pages dynamically, like [Jamstack's DPR](https://github.com/jamstack/jamstack.org/discussions/549).
   This is compatible with Deno Deploy.
 - New plugin `on_demand` to implement page rendering on demand.
+- New event `beforeRenderOnDemand`.
 - New option `watcher` to configure the watcher of the live reload
   (the debounce interval and a list of ignored paths).
 - Improved default 404 page of the local server.

@@ -301,6 +301,12 @@ export interface Event {
    * contains the files that were changed
    */
   files?: Set<string>;
+
+  /**
+   * Available only in "beforeRenderOnDemand"
+   * contains the page that will be rendered
+   */
+  page?: Page;
 }
 
 /** The available event types */
@@ -310,6 +316,7 @@ export type EventType =
   | "beforeUpdate"
   | "afterUpdate"
   | "afterRender"
+  | "beforeRenderOnDemand"
   | "beforeSave";
 
 /** An event listener */
