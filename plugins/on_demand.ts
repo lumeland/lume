@@ -144,7 +144,7 @@ export class JsonRouter {
 
     await Deno.writeTextFile(
       this.#routesFile,
-      JSON.stringify(data, null, 2),
+      JSON.stringify(data, null, 2) + "\n",
     );
   }
 }
