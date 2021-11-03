@@ -1,8 +1,7 @@
 import { ServerOptions } from "../core.ts";
-import { dirname, extname, join, relative, SEP } from "../deps/path.ts";
 import { brightGreen, dim, red } from "../deps/colors.ts";
 import localIp from "../deps/local_ip.ts";
-import { mimes, normalizePath, warn } from "../core/utils.ts";
+import { mimes, normalizePath, serveFile } from "../core/utils.ts";
 import { printError, runWatch } from "./utils.ts";
 
 /** Start a local HTTP server and live-reload the changes */
@@ -81,89 +80,41 @@ export default async function server(
 
   async function handleFile(event: Deno.RequestEvent) {
     const { request } = event;
-    const { pathname } = new URL(request.url);
-    let path = join(root, pathname);
+    const url = new URL(request.url);
 
     try {
-      if (path.endsWith(SEP)) {
-        path += "index.html";
-      }
+      let [body, data] = await serveFile(url, {
+        root,
+        directoryIndex: true,
+        page404,
+        router: options?.router,
+      });
 
-      // Redirect /example to /example/
-      const info = await Deno.stat(path);
+      data.headers = new Headers(data.headers);
 
-      if (info.isDirectory) {
-        await event.respondWith(
-          new Response(null, {
-            status: 301,
-            headers: new Headers({
-              "location": join(pathname, "/"),
-              "cache-control": "no-cache no-store must-revalidate",
-            }),
-          }),
-        );
-        return;
-      }
-
-      // Serve the static file
-      try {
-        const mimeType = mimes.get(extname(path).toLowerCase()) ||
-          "application/octet-stream";
-        const body = await Deno.readFile(path);
-        const response = createResponse(body, {
-          status: 200,
-          headers: {
-            "content-type": mimeType,
-            "cache-control": "no-cache no-store must-revalidate",
-          },
-        });
-
-        await event.respondWith(response);
-      } catch {
-        // File not found
-        return;
-      }
-
-      console.log(`${brightGreen("200")} ${request.url}`);
-    } catch {
-      // Serve pages on demand
-      if (options?.router) {
-        try {
-          const result = await options.router(new URL(request.url));
-
-          if (result) {
-            const [body, options] = result;
-            await event.respondWith(createResponse(body, options));
-            console.log(
-              `${brightGreen("200")} ${request.url}`,
-              dim("(on demand)"),
-            );
-            return;
-          }
-        } catch (error) {
-          printError(error);
-          return;
+      // Insert live-reload script
+      if (data.headers.get("content-type") === mimes.get(".html")) {
+        if (body instanceof Uint8Array) {
+          body = new TextDecoder().decode(body);
         }
+
+        body = (body || "") +
+          (typeof wsFile === "string"
+            ? `<script type="module" id="lume-live-reload">${wsFile}</script>`
+            : `<script type="module" src="${wsFile}" id="lume-live-reload"></script>`);
       }
 
-      // Not found page
-      try {
-        const body = await getNotFoundBody(root, page404, path);
-        const response = createResponse(body, {
-          status: 404,
-          headers: {
-            "content-type": mimes.get(".html")!,
-          },
-        });
-        await event.respondWith(response);
-        console.log(`${red("404")} ${request.url}`);
-      } catch {
-        warn("Unable to serve the Not Found page", {
-          url: request.url,
-          page404,
-        });
-        return;
-      }
+      // Add headers to prevent cache
+      data.headers.set("cache-control", "no-cache no-store must-revalidate");
+      const response = new Response(body, data);
+      await event.respondWith(response);
+      logResponse(response.status, url);
+    } catch (cause) {
+      const response = new Response(`Error: ${cause.toString()}`, {
+        status: 500,
+      });
+      await event.respondWith(response);
+      logResponse(response.status, url, cause);
     }
   }
 
@@ -193,77 +144,16 @@ if (wsFile.protocol === "file:") {
   wsFile = await Deno.readTextFile(wsFile);
 }
 
-async function getNotFoundBody(root: string, page404: string, file: string) {
-  const filepath = join(root, page404);
-
-  try {
-    return await Deno.readTextFile(filepath);
-  } catch {
-    // Ignored
+function logResponse(status: number, url: URL, cause?: Error) {
+  if (status === 404 || status === 500) {
+    console.log(`${red(status.toString())} ${url.pathname}`);
+  } else if (status === 200) {
+    console.log(`${brightGreen(status.toString())} ${url.pathname}`);
+  } else {
+    console.log(`${dim(status.toString())} ${url.pathname}`);
   }
 
-  const content = await listDirectory(dirname(file));
-
-  if (relative(root, file).includes("/")) {
-    content.unshift(["../", ".."]);
+  if (cause) {
+    printError(cause);
   }
-
-  return `
-<!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Not found</title>
-    <style> body { font-family: sans-serif; max-width: 40em; margin: auto; padding: 2em; line-height: 1.5; }</style>
-  </head>
-  <body>
-    <h1>404 - Not found</h1>
-    <p>The URL <code>${relative(root, file)}</code> does not exist</p>
-    <ul>
-  ${
-    content.map(([url, name]) => `
-    <li>
-      <a href="${url}">
-        ${name}
-      </a>
-    </li>`).join("\n")
-  }
-    </ul>
-  </body>
-</html>`;
-}
-
-function createResponse(body: BodyInit, options: ResponseInit): Response {
-  options.headers = new Headers(options.headers);
-
-  // Insert live-reload script
-  if (options.headers.get("content-type") === mimes.get(".html")) {
-    if (body instanceof Uint8Array) {
-      body = new TextDecoder().decode(body);
-    }
-
-    body = typeof wsFile === "string"
-      ? `${body}<script type="module" id="lume-live-reload">${wsFile}</script>`
-      : `${body}<script type="module" src="${wsFile}" id="lume-live-reload"></script>`;
-  }
-
-  return new Response(body, options);
-}
-
-async function listDirectory(directory: string) {
-  const folders: [string, string][] = [];
-  const files: [string, string][] = [];
-
-  try {
-    for await (const info of Deno.readDir(directory)) {
-      info.isDirectory
-        ? folders.push([`${info.name}/`, `📁 ${info.name}/`])
-        : files.push([info.name, `📄 ${info.name}`]);
-    }
-  } catch {
-    return files;
-  }
-
-  return folders.concat(files);
 }

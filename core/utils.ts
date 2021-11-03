@@ -1,5 +1,5 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
-import { SEP } from "../deps/path.ts";
+import { extname, join, SEP } from "../deps/path.ts";
 import { bold, dim, yellow } from "../deps/colors.ts";
 import { Page } from "../core.ts";
 
@@ -223,6 +223,8 @@ export function warn(message: string, data: ErrorData = {}) {
       value = (value as Page).src.path + (value as Page).src.ext;
     } else if (value instanceof Error) {
       value = value.toString();
+    } else if (value instanceof URL) {
+      value = value.toString();
     }
 
     console.log(dim(`  ${key}:`), value);
@@ -238,4 +240,131 @@ export function checkExtensions(extensions: string[]) {
       );
     }
   });
+}
+
+export type serveFileResponse = [BodyInit | null, ResponseInit];
+
+export interface serveFileOptions {
+  root: string;
+  directoryIndex: boolean;
+  page404: string;
+  router?: (url: URL) => Promise<serveFileResponse | undefined>;
+}
+
+export async function serveFile(
+  url: URL,
+  { root, directoryIndex, page404, router }: serveFileOptions,
+): Promise<serveFileResponse> {
+  const { pathname } = url;
+  let path = join(root, pathname);
+
+  try {
+    if (path.endsWith(SEP)) {
+      path += "index.html";
+    }
+
+    // Redirect /example to /example/
+    const info = await Deno.stat(path);
+
+    if (info.isDirectory) {
+      return [
+        null,
+        {
+          status: 301,
+          headers: {
+            "location": join(pathname, "/"),
+          },
+        },
+      ];
+    }
+
+    // Serve the static file
+    return [
+      await Deno.readFile(path),
+      {
+        status: 200,
+        headers: {
+          "content-type": mimes.get(extname(path).toLowerCase()) ||
+            "application/octet-stream",
+        },
+      },
+    ];
+  } catch {
+    // Serve pages on demand
+    if (router) {
+      const result = await router(url);
+
+      if (result) {
+        return result;
+      }
+    }
+
+    // Not found page
+    let body: BodyInit = "Not found";
+
+    try {
+      body = await Deno.readFile(join(root, page404));
+    } catch {
+      if (directoryIndex) {
+        body = await getDirectoryIndex(root, pathname);
+      }
+    }
+
+    return [
+      body,
+      {
+        status: 404,
+        headers: {
+          "content-type": mimes.get(".html")!,
+        },
+      },
+    ];
+  }
+}
+
+/** Generate the default body for a 404 response */
+async function getDirectoryIndex(root: string, file: string): Promise<string> {
+  const folders: [string, string][] = [];
+  const files: [string, string][] = [];
+
+  try {
+    for await (const info of Deno.readDir(join(root, file))) {
+      info.isDirectory
+        ? folders.push([`${info.name}/`, `📁 ${info.name}/`])
+        : files.push([info.name, `📄 ${info.name}`]);
+    }
+  } catch {
+    // It's not a directory
+  }
+
+  const content = folders.concat(files);
+
+  if (file.match(/.+\/.+/)) {
+    content.unshift(["../", ".."]);
+  }
+
+  return `
+  <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>404 - Not found</title>
+      <style> body { font-family: sans-serif; max-width: 40em; margin: auto; padding: 2em; line-height: 1.5; }</style>
+    </head>
+    <body>
+      <h1>404 - Not found</h1>
+      <p>The URL <code>${file}</code> does not exist</p>
+      <ul>
+    ${
+    content.map(([url, name]) => `
+      <li>
+        <a href="${url}">
+          ${name}
+        </a>
+      </li>`).join("\n")
+  }
+      </ul>
+    </body>
+  </html>`;
 }
