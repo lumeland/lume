@@ -1,7 +1,7 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
 import { extname, join, SEP } from "../deps/path.ts";
 import { bold, dim, yellow } from "../deps/colors.ts";
-import { Page } from "../core.ts";
+import { FileResponse, Page } from "../core.ts";
 
 /** Run a callback concurrently with all the elements of an Iterable */
 export async function concurrent<Type>(
@@ -242,19 +242,17 @@ export function checkExtensions(extensions: string[]) {
   });
 }
 
-export type serveFileResponse = [BodyInit | null, ResponseInit];
-
 export interface serveFileOptions {
   root: string;
   directoryIndex: boolean;
   page404: string;
-  router?: (url: URL) => Promise<serveFileResponse | undefined>;
+  router?: (url: URL) => Promise<FileResponse | undefined>;
 }
 
 export async function serveFile(
   url: URL,
   { root, directoryIndex, page404, router }: serveFileOptions,
-): Promise<serveFileResponse> {
+): Promise<FileResponse> {
   const { pathname } = url;
   let path = join(root, pathname);
 

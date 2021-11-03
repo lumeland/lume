@@ -108,13 +108,13 @@ export default async function server(
       data.headers.set("cache-control", "no-cache no-store must-revalidate");
       const response = new Response(body, data);
       await event.respondWith(response);
-      logResponse(response.status, url);
+      logResponse(response, url);
     } catch (cause) {
       const response = new Response(`Error: ${cause.toString()}`, {
         status: 500,
       });
       await event.respondWith(response);
-      logResponse(response.status, url, cause);
+      logResponse(response, url, cause);
     }
   }
 
@@ -144,13 +144,22 @@ if (wsFile.protocol === "file:") {
   wsFile = await Deno.readTextFile(wsFile);
 }
 
-function logResponse(status: number, url: URL, cause?: Error) {
+function logResponse(response: Response, url: URL, cause?: Error) {
+  const { status } = response;
+  const { pathname } = url;
+
   if (status === 404 || status === 500) {
-    console.log(`${red(status.toString())} ${url.pathname}`);
+    console.log(`${red(status.toString())} ${pathname}`);
   } else if (status === 200) {
-    console.log(`${brightGreen(status.toString())} ${url.pathname}`);
+    console.log(`${brightGreen(status.toString())} ${pathname}`);
+  } else if (status === 301 || status === 302) {
+    console.log(
+      `${dim(status.toString())} ${pathname} => ${
+        response.headers.get("location")
+      }`,
+    );
   } else {
-    console.log(`${dim(status.toString())} ${url.pathname}`);
+    console.log(`${dim(status.toString())} ${pathname}`);
   }
 
   if (cause) {

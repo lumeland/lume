@@ -1,5 +1,6 @@
-import { Page, Site } from "../core.ts";
+import { FileResponse, Page, Site } from "../core.ts";
 import { merge, mimes } from "../core/utils.ts";
+import { posix } from "../deps/path.ts";
 
 export interface Options {
   /** A function to return the page file associated with the provided url */
@@ -30,7 +31,7 @@ async function serve(
   url: URL,
   site: Site,
   router: Router,
-): Promise<[BodyInit, ResponseInit] | undefined> {
+): Promise<FileResponse | undefined> {
   const file = await router(url);
 
   if (!file) {
@@ -41,6 +42,20 @@ async function serve(
 
   if (!page) {
     return undefined;
+  }
+
+  // Redirect /example to /example/
+  const pageUrl = page.data.url as string;
+  if (!url.pathname.endsWith("/") && pageUrl.endsWith("/")) {
+    return [
+      null,
+      {
+        status: 301,
+        headers: {
+          "location": posix.join(url.pathname, "/"),
+        },
+      },
+    ];
   }
 
   const body = page.content as string | Uint8Array;
@@ -82,7 +97,15 @@ export class JsonRouter {
       await this.#loadRoutes();
     }
 
-    return this.#routes?.get(url.pathname);
+    const { pathname } = url;
+    const path = this.#routes?.get(pathname);
+
+    // Handle urls like /example as /example/
+    if (!path && !pathname.endsWith("/")) {
+      return this.#routes?.get(pathname + "/");
+    }
+
+    return path;
   }
 
   /** Collect the routes of all pages with data.ondemand = true */

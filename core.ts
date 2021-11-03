@@ -150,8 +150,11 @@ export interface ServerOptions {
   page404: string;
 
   /** Optional request handler for pages served on demand */
-  router?: (url: URL) => Promise<[BodyInit, ResponseInit] | undefined>;
+  router?: (url: URL) => Promise<FileResponse | undefined>;
 }
+
+/** Data to create a new response. */
+export type FileResponse = [BodyInit | null, ResponseInit];
 
 /** The options to configure the local watcher */
 export interface WatcherOptions {
