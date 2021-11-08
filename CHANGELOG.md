@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Updated `cliffy`, `deno_dom`, `deno_graph`, `liquid` and `svgo` dependencies.
+- Catch a possible thrown error that stops the local server.
 
 ## [1.2.1] - 2021-10-28
 ### Fixed

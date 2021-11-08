@@ -113,8 +113,12 @@ export default async function server(
       const response = new Response(`Error: ${cause.toString()}`, {
         status: 500,
       });
-      await event.respondWith(response);
-      logResponse(response, url, cause);
+      try {
+        await event.respondWith(response);
+        logResponse(response, url, cause);
+      } catch {
+        // Ignore
+      }
     }
   }
 
