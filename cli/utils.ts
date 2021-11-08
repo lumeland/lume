@@ -184,6 +184,6 @@ export async function runWatch({ root, ignore, fn, debounce }: WatchOptions) {
 
     // Debounce
     clearTimeout(timer);
-    timer = setTimeout(callback, debounce || 100);
+    timer = setTimeout(callback, debounce ?? 100);
   }
 }
