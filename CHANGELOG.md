@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - New interface `Renderer` to render the site pages. This allows to create your own renderer to replace the default one.
   - New interface `Emitter` to emit the site pages and static files (save them in _site folder). This allows to create your own emitter to replace the default one.
 - Updated `deno_dom` to `v0.1.17-alpha` and use the native version which is much more faster than WASM version.
+- If a "before" event listener like `beforeBuild`, `beforeSave`, `beforeUpdate` returns `false`
+  the build/update process is stopped.
 
 ### Removed
 - `deno.land/std/io/util.ts` dependency because it's not needed anymore.
