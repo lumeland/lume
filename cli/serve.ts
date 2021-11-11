@@ -43,17 +43,18 @@ export default async function server(
   }
 
   // Live reload server
-  let currentSocket: WebSocket | undefined;
+  const sockets: WebSocket[] = [];
 
   runWatch({
     root,
     fn: (files: Set<string>) => {
-      if (!currentSocket) {
+      if (!sockets.length) {
         return;
       }
       const urls = Array.from(files).map((file) => normalizePath(file));
       console.log("Changes sent to the browser");
-      return currentSocket.send(JSON.stringify(urls));
+      const message = JSON.stringify(urls);
+      sockets.forEach((socket) => socket.send(message));
     },
   });
 
@@ -125,15 +126,12 @@ export default async function server(
   function handleSocket(event: Deno.RequestEvent) {
     const { socket, response } = Deno.upgradeWebSocket(event.request);
 
-    socket.onopen = () => {
-      if (!currentSocket) {
-        console.log("Live reload active");
-      }
-      currentSocket = socket;
-    };
+    socket.onopen = () => sockets.push(socket);
     socket.onclose = () => {
-      if (socket === currentSocket) {
-        currentSocket = undefined;
+      const index = sockets.indexOf(socket);
+
+      if (index !== -1) {
+        sockets.splice(index, 1);
       }
     };
     socket.onerror = (e) => console.log("Socket errored", e);
