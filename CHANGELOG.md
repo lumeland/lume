@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - It connects faster.
 
 ### Changed
+- BREAKING: Upgraded the minimum version of Deno supported to `1.16.1`.
 - BREAKING: Some internal parts have been refactored for more flexibility. This change affects to Lume types in `core.ts`.
   - New interface `Renderer` to render the site pages. This allows to create your own renderer to replace the default one.
   - New interface `Emitter` to emit the site pages and static files (save them in _site folder). This allows to create your own emitter to replace the default one.
