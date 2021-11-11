@@ -1,4 +1,5 @@
 let ws;
+let wasClosed = false;
 
 function socket() {
   if (ws && ws.readyState !== 3) {
@@ -7,7 +8,14 @@ function socket() {
 
   ws = new WebSocket("ws://" + document.location.host);
   ws.onopen = () => {
-    console.log("Socket connection open. Listening for events.");
+    console.log("Lume live reloading is ready. Listening for changes...");
+
+    // Reload after reconnect
+    if (wasClosed) {
+      location.reload();
+      return;
+    }
+
     const files = read("refresh");
 
     if (files) {
@@ -24,12 +32,15 @@ function socket() {
 
     refresh(files);
   };
-  ws.onerror = (err) => {
-    console.error("WebSocket error observed:", err);
+  ws.onclose = () => {
+    wasClosed = true;
+    // Socket connection closed. Will attempt to reconnect in 5 seconds.
+    setTimeout(socket, 5000);
   };
+  ws.onerror = (err) => console.error("Lume webSocket error observed:", err);
 }
 
-setInterval(socket, 1000);
+socket();
 
 function refresh(files) {
   let path = document.location.pathname;
@@ -48,7 +59,7 @@ function refresh(files) {
     return;
   }
 
-  files.forEach((file) => {
+  for (const file of files) {
     const format = file.split(".").pop().toLowerCase();
 
     switch (format) {
@@ -75,9 +86,9 @@ function refresh(files) {
 
       case "js":
         location.reload();
-        break;
+        return;
     }
-  });
+  }
 }
 
 function cache(el, prop, file, clone = false) {

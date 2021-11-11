@@ -4,6 +4,9 @@ import localIp from "../deps/local_ip.ts";
 import { mimes, normalizePath, serveFile } from "../core/utils.ts";
 import { printError, runWatch } from "./utils.ts";
 
+// Websocket client code
+const wsCode = await (await fetch(new URL("./ws.js", import.meta.url))).text();
+
 /** Start a local HTTP server and live-reload the changes */
 export default async function server(
   root: string,
@@ -99,10 +102,9 @@ export default async function server(
           body = new TextDecoder().decode(body);
         }
 
-        body = (body || "") +
-          (typeof wsFile === "string"
-            ? `<script type="module" id="lume-live-reload">${wsFile}</script>`
-            : `<script type="module" src="${wsFile}" id="lume-live-reload"></script>`);
+        body = `${
+          body ?? ""
+        }<script type="module" id="lume-live-reload">${wsCode}</script>`;
       }
 
       // Add headers to prevent cache
@@ -138,12 +140,6 @@ export default async function server(
 
     event.respondWith(response);
   }
-}
-
-let wsFile: URL | string = new URL("./ws.js", import.meta.url);
-
-if (wsFile.protocol === "file:") {
-  wsFile = await Deno.readTextFile(wsFile);
 }
 
 function logResponse(response: Response, url: URL, cause?: Error) {

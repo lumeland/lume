@@ -18,7 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   (the debounce interval and a list of ignored paths).
 - Improved default 404 page of the local server.
 - Added more mime types to the local server.
-- Live-reload works with multiple browsers simultaneously.
+- Improved the live reloading of the local server:
+  - It works with multiple browsers simultaneously.
+  - It reloads the current page after starting a server, to update with the latest changes.
+  - It connects faster.
 
 ### Changed
 - BREAKING: Some internal parts have been refactored for more flexibility. This change affects to Lume types in `core.ts`.
