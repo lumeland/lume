@@ -1,5 +1,5 @@
 import { brightGreen, gray, red } from "./deps/colors.ts";
-import { cli, importMap } from "./ci.ts";
+import { getImportMap } from "./ci.ts";
 
 const minDenoVersion = "1.16.1";
 
@@ -17,13 +17,15 @@ if (Deno.version.deno < minDenoVersion) {
   Deno.exit(1);
 }
 
+const cli = new URL("./cli.ts", import.meta.url).href;
+
 const process = Deno.run({
   cmd: [
     Deno.execPath(),
     "install",
     "--unstable",
     "-Af",
-    `--import-map=${importMap}`,
+    `--import-map=${await getImportMap()}`,
     `--no-check`,
     "--name=lume",
     cli,

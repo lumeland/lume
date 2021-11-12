@@ -38,7 +38,6 @@ const defaults: SiteOptions = {
   quiet: false,
   dev: false,
   prettyUrls: true,
-  flags: [],
   server: {
     port: 3000,
     open: false,
@@ -119,10 +118,6 @@ export default class LumeSite implements Site {
       }
     }
     return true;
-  }
-
-  get flags() {
-    return this.options.flags || [];
   }
 
   use(plugin: Plugin) {

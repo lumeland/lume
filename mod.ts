@@ -107,9 +107,5 @@ function getOptionsFromCli(): Partial<Options> {
     (overrides.server ||= {}).open = options.open;
   }
 
-  if (options["--"]) {
-    overrides.flags = options["--"];
-  }
-
   return overrides;
 }

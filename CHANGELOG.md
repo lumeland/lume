@@ -25,6 +25,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The command `lume init` has the option `--only` to initialize only
   the config file (`lume init --only=config`)
   or VSCode (`lume init --only=vscode`).
+- Now you can pass arguments to Deno from the Lume cli. For example, to add a custom import_map,
+  passing arguments after `--`. For example: `lume --serve -- import-map="import_map.json"`.
+  Note: This supersedes flags feature that is no longer available (use env variables for that).
 
 ### Changed
 - BREAKING: Upgraded the minimum version of Deno supported to `1.16.1`.
@@ -37,6 +40,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 - `deno.land/std/io/util.ts` dependency because it's not needed anymore.
+- BREAKING: Removed `flags` options. Use env variables to pass arbitrary data.
+  For example, use `domain=example.com lume` instead of `lume -- example.com`.
 
 ### Fixed
 - Updated `cliffy`, `deno_graph`, `liquid` and `svgo` dependencies.

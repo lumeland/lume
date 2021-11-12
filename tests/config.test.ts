@@ -17,7 +17,6 @@ Deno.test("default configuration", () => {
   equals(options.server.port, 3000);
   equals(options.server.page404, "/404.html");
   equals(options.server.open, false);
-  equals(options.flags.length, 0);
 });
 
 Deno.test("static files configuration", () => {

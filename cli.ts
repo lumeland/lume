@@ -4,6 +4,7 @@ import initCommand from "./cli/init.ts";
 import upgradeCommand from "./cli/upgrade.ts";
 import runCommand from "./cli/run.ts";
 import buildCommand from "./cli/build.ts";
+import ci from "./ci.ts";
 
 const initOnlyOptions = new EnumType(["config", "vscode"]);
 
@@ -146,8 +147,13 @@ const lume = new Command()
   .command("run <script...>", run)
   .command("completions", new CompletionsCommand());
 
+// If the command contains deno arguments, use ci.ts
 try {
-  await lume.parse(Deno.args);
+  if (Deno.args.some((arg) => arg === "--")) {
+    await ci(Deno.args);
+  } else {
+    await lume.parse(Deno.args);
+  }
 } catch (error) {
   printError(error);
   Deno.exit(1);
