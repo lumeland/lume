@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Support for on demand server side rendering,
+- Initial support for on demand server side rendering,
   used to generate pages dynamically, like [Jamstack's DPR](https://github.com/jamstack/jamstack.org/discussions/549).
-  This is compatible with Deno Deploy.
+  This is compatible with Deno Deploy, but with some limitations due Deno Deploy lack of support for some features (import maps or code generation from strings).
 - New plugin `on_demand` to implement page rendering on demand.
 - New event `beforeRenderOnDemand`.
 - New option `watcher` to configure the watcher of the live reload
