@@ -22,6 +22,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - It works with multiple browsers simultaneously.
   - It reloads the current page after starting a server, to update with the latest changes.
   - It connects faster.
+- The command `lume init` has the option `--only` to initialize only
+  the config file (`lume init --only=config`)
+  or VSCode (`lume init --only=vscode`).
 
 ### Changed
 - BREAKING: Upgraded the minimum version of Deno supported to `1.16.1`.
