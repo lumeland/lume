@@ -27,6 +27,7 @@ import {
   Source,
 } from "../core.ts";
 import { concurrent, Exception, merge, normalizePath } from "./utils.ts";
+import Changes from "./changes.ts";
 
 const defaults: SiteOptions = {
   cwd: Deno.cwd(),
@@ -61,6 +62,7 @@ export default class LumeSite implements Site {
   renderer: Renderer;
   emitter: Emitter;
   pages: Page[] = [];
+  #scopedExtensions: Set<string[]> = new Set();
 
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);
@@ -184,6 +186,11 @@ export default class LumeSite implements Site {
     return this;
   }
 
+  scopedExtensions(...scopes: string[][]) {
+    scopes.forEach((scope) => this.#scopedExtensions.add(scope));
+    return this;
+  }
+
   async clear() {
     await this.emitter.clear();
   }
@@ -243,7 +250,11 @@ export default class LumeSite implements Site {
       return;
     }
 
+    const changes = new Changes(this.#scopedExtensions);
+
     for (const file of files) {
+      changes.add(file);
+
       // It's a static file
       const entry = this.#isStaticFile(file);
 
@@ -257,7 +268,9 @@ export default class LumeSite implements Site {
       await this.source.reload(file);
     }
 
-    await this.renderer.renderPages(this.source.pages);
+    const filter = changes.getFilter();
+
+    await this.renderer.renderPages(filter(this.source.pages));
 
     if (await this.dispatchEvent({ type: "beforeSave" }) === false) {
       return;

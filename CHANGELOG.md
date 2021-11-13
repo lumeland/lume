@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Now you can pass arguments to Deno from the Lume cli. For example, to add a custom import_map,
   passing arguments after `--`. For example: `lume --serve -- import-map="import_map.json"`.
   Note: This supersedes flags feature that is no longer available (use env variables for that).
+- New option `scopedExtensions` to define independent scopes of file extensions and avoid to rebuild the entire site on update.
 
 ### Changed
 - BREAKING: Upgraded the minimum version of Deno supported to `1.16.1`.
@@ -46,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Updated `cliffy`, `deno_graph`, `liquid` and `svgo` dependencies.
 - Catch a possible thrown error that stops the local server.
+- Use `any` instead of `unknown` for the `Helper` type for more flexibility.
 
 ## [1.2.1] - 2021-10-28
 ### Fixed

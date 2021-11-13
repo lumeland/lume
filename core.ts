@@ -77,6 +77,9 @@ export interface Site {
   /** Ignore one or several files or directories */
   ignore(...paths: string[]): this;
 
+  /** Define an independent scoped set of extensions to optimize the update process */
+  scopedExtensions(...scopes: string[][]): this;
+
   /** Clear the dest directory */
   clear(): Promise<void>;
 
@@ -480,7 +483,7 @@ export interface Engine {
 }
 
 /** A generic helper to be used in template engines */
-export type Helper = (...args: unknown[]) => unknown | Promise<unknown>;
+export type Helper = (...args: any[]) => any;
 
 /** The options for a template helper */
 export interface HelperOptions {
