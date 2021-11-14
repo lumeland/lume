@@ -1,20 +1,21 @@
-import { Page } from "../core.ts";
+import { Page, ScopeFilter } from "../core.ts";
 
 /** This class manages the file changes to know which files needs to be updated */
 export default class Changes {
-  scopes: Set<string[]>;
-  changed: Set<string> = new Set();
+  scopes: Set<ScopeFilter>;
+  changed: Set<ScopeFilter> = new Set();
   noScoped = false;
 
-  constructor(scopes: Set<string[]>) {
+  constructor(scopes: Set<ScopeFilter>) {
     this.scopes = scopes;
   }
 
+  /** Register a filename that have changed */
   add(file: string) {
     let found = false;
-    for (const scope of this.scopes) {
-      if (scope.some((ext) => file.endsWith(ext))) {
-        scope.forEach((ext) => this.changed.add(ext));
+    for (const scopeFn of this.scopes) {
+      if (scopeFn(file)) {
+        this.changed.add(scopeFn);
         found = true;
         break;
       }
@@ -25,7 +26,9 @@ export default class Changes {
     }
   }
 
+  /** Returns a function to filter the pages that must be rebuild */
   getFilter(): (pages: Iterable<Page>) => Generator<Page, void, unknown> {
+    // There's no any scope, so rebuild all pages
     if (this.scopes.size === 0) {
       return function* (pages: Iterable<Page>) {
         yield* pages;
@@ -35,28 +38,30 @@ export default class Changes {
     const { changed, noScoped } = this;
 
     // Calculate scoped extensions that didn't change
-    const notChanged: Set<string> = new Set();
+    const notChanged: ScopeFilter[] = [];
 
-    for (const scope of this.scopes) {
-      scope.forEach((ext) => {
-        if (!changed.has(ext)) {
-          notChanged.add(ext);
-        }
-      });
+    for (const scopeFn of this.scopes) {
+      if (!changed.has(scopeFn)) {
+        notChanged.push(scopeFn);
+      }
     }
 
     // Generate the filter function
     return function* (pages: Iterable<Page>) {
+      pages:
       for (const page of pages) {
-        const ext = page.src.ext!;
+        const path = page.src.path + page.src.ext;
 
-        // It's in the list of the changed extensions
-        if (changed.has(ext)) {
-          yield page;
+        // It matches with any scope that has changed
+        for (const scopeFn of changed) {
+          if (scopeFn(path)) {
+            yield page;
+            continue pages;
+          }
         }
 
         // It's not scoped
-        if (noScoped && !notChanged.has(ext)) {
+        if (noScoped && notChanged.every((scopeFn) => !scopeFn(path))) {
           yield page;
         }
       }

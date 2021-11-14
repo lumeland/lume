@@ -77,8 +77,8 @@ export interface Site {
   /** Ignore one or several files or directories */
   ignore(...paths: string[]): this;
 
-  /** Define an independent scoped set of extensions to optimize the update process */
-  scopedExtensions(...scopes: string[][]): this;
+  /** Define independent scopes to optimize the update process */
+  scopedUpdates(...scopes: ScopeFilter[]): this;
 
   /** Clear the dest directory */
   clear(): Promise<void>;
@@ -98,6 +98,8 @@ export interface Site {
   /** Return the URL of a page */
   url(path: string, absolute?: boolean): string;
 }
+
+export type ScopeFilter = (path: string) => boolean;
 
 /** The options to configure the site build */
 export interface SiteOptions {

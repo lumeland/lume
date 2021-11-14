@@ -21,6 +21,7 @@ import {
   Plugin,
   Processor,
   Renderer,
+  ScopeFilter,
   Scripts,
   Site,
   SiteOptions,
@@ -62,7 +63,7 @@ export default class LumeSite implements Site {
   renderer: Renderer;
   emitter: Emitter;
   pages: Page[] = [];
-  #scopedExtensions: Set<string[]> = new Set();
+  #scopes: Set<ScopeFilter> = new Set();
 
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);
@@ -186,8 +187,8 @@ export default class LumeSite implements Site {
     return this;
   }
 
-  scopedExtensions(...scopes: string[][]) {
-    scopes.forEach((scope) => this.#scopedExtensions.add(scope));
+  scopedUpdates(...scopes: ScopeFilter[]) {
+    scopes.forEach((scope) => this.#scopes.add(scope));
     return this;
   }
 
@@ -250,7 +251,7 @@ export default class LumeSite implements Site {
       return;
     }
 
-    const changes = new Changes(this.#scopedExtensions);
+    const changes = new Changes(this.#scopes);
 
     for (const file of files) {
       changes.add(file);
