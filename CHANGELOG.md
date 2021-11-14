@@ -35,7 +35,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - BREAKING: Some internal parts have been refactored for more flexibility. This change affects to Lume types in `core.ts`.
   - New interface `Renderer` to render the site pages. This allows to create your own renderer to replace the default one.
   - New interface `Emitter` to emit the site pages and static files (save them in _site folder). This allows to create your own emitter to replace the default one.
-- Updated `deno_dom` to `v0.1.17-alpha` and use the native version which is much more faster than WASM version.
 - If a "before" event listener like `beforeBuild`, `beforeSave`, `beforeUpdate` returns `false`
   the build/update process is stopped.
 
@@ -45,7 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   For example, use `domain=example.com lume` instead of `lume -- example.com`.
 
 ### Fixed
-- Updated `cliffy`, `deno_graph`, `liquid` and `svgo` dependencies.
+- Updated `deno_dom`, `cliffy`, `deno_graph`, `liquid` and `svgo` dependencies.
 - Catch a possible thrown error that stops the local server.
 - Use `any` instead of `unknown` for the `Helper` type for more flexibility.
 
