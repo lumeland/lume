@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   the config file (`lume init --only=config`)
   or VSCode (`lume init --only=vscode`).
 - Now you can pass arguments to Deno from the Lume cli. For example, to add a custom import_map,
-  passing arguments after `--`. For example: `lume --serve -- import-map="import_map.json"`.
+  passing arguments after `--`. For example: `lume --serve -- --import-map="import_map.json"`.
   Note: This supersedes flags feature that is no longer available (use env variables for that).
 - New option `scopedUpdates` to define independent scopes and avoid to rebuild the entire site on update.
 - New `options` argument to `addEventListener`:
