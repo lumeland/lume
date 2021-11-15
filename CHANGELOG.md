@@ -7,9 +7,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.3.0] - 2021-11-15
 ### Added
-- Initial support for on demand server side rendering,
+- Initial (experimental) support for on demand server side rendering,
   used to generate pages dynamically, like [Jamstack's DPR](https://github.com/jamstack/jamstack.org/discussions/549).
   This is compatible with Deno Deploy, but with some limitations due Deno Deploy lack of support for some features (import maps or code generation from strings).
 - New plugin `on_demand` to implement page rendering on demand.
@@ -1230,7 +1230,7 @@ The first version.
 [#136]: https://github.com/lumeland/lume/issues/136
 [#139]: https://github.com/lumeland/lume/issues/139
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.2.1...HEAD
+[1.3.0]: https://github.com/lumeland/lume/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/lumeland/lume/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/lumeland/lume/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/lumeland/lume/compare/v1.1.0...v1.1.1
