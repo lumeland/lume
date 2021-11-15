@@ -29,6 +29,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   passing arguments after `--`. For example: `lume --serve -- import-map="import_map.json"`.
   Note: This supersedes flags feature that is no longer available (use env variables for that).
 - New option `scopedUpdates` to define independent scopes and avoid to rebuild the entire site on update.
+- New `options` argument to `addEventListener`:
+  - `once` To remove the listener after the first execution.
+  - `signal` To provide an `AbortSignal` to remove the listener at any time.
 
 ### Changed
 - BREAKING: Upgraded the minimum version of Deno supported to `1.16.1`.

@@ -1,5 +1,6 @@
 import { assertStrictEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
+import LumeSite from "../core/site.ts";
 import LumeSource from "../core/source.ts";
 import LumeRenderer from "../core/renderer.ts";
 import LumeScripts from "../core/scripts.ts";
@@ -63,7 +64,7 @@ Deno.test("ignored files configuration", () => {
 
 Deno.test("event listener configuration", () => {
   const site = lume();
-  const { listeners } = site;
+  const { listeners } = site as LumeSite;
 
   equals(listeners.size, 2);
   equals(listeners.has("beforeBuild"), true);
@@ -73,7 +74,8 @@ Deno.test("event listener configuration", () => {
 
   site.addEventListener("afterBuild", "afterbuild-command");
   equals(listeners.get("afterBuild")?.size, 1);
-  equals(listeners.get("afterBuild")?.has("afterbuild-command"), true);
+  const listenersList = Array.from(listeners.get("afterBuild")!);
+  equals(listenersList[0][0], "afterbuild-command");
 });
 
 Deno.test("script configuration", () => {

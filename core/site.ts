@@ -12,6 +12,7 @@ import {
   Engine,
   Event,
   EventListener,
+  EventOptions,
   EventType,
   Helper,
   HelperOptions,
@@ -51,6 +52,8 @@ const defaults: SiteOptions = {
   },
 };
 
+type Listener = [EventListener | string, EventOptions | undefined];
+
 /**
  * The default site builder
  */
@@ -59,7 +62,7 @@ export default class LumeSite implements Site {
   source: Source;
   scripts: Scripts;
   metrics: Metrics;
-  listeners: Map<EventType, Set<EventListener | string>> = new Map();
+  listeners: Map<EventType, Set<Listener>> = new Map();
   renderer: Renderer;
   emitter: Emitter;
   pages: Page[] = [];
@@ -90,10 +93,26 @@ export default class LumeSite implements Site {
     return join(this.options.cwd, this.options.dest, ...path);
   }
 
-  addEventListener(type: EventType, listener: EventListener | string) {
+  addEventListener(
+    type: EventType,
+    listenerFn: EventListener | string,
+    options?: EventOptions,
+  ) {
     const listeners = this.listeners.get(type) || new Set();
+    const listener: Listener = [
+      listenerFn,
+      options,
+    ];
     listeners.add(listener);
     this.listeners.set(type, listeners);
+
+    // Remove on abort
+    if (options?.signal) {
+      options.signal.addEventListener("abort", () => {
+        listeners.delete(listener);
+      });
+    }
+
     return this;
   }
 
@@ -106,8 +125,15 @@ export default class LumeSite implements Site {
     }
 
     for (const listener of listeners) {
-      if (typeof listener === "string") {
-        const success = await this.run(listener);
+      const [listenerFn, listenerOptions] = listener;
+
+      // Remove the listener if it's a once listener
+      if (listenerOptions?.once) {
+        listeners.delete(listener);
+      }
+
+      if (typeof listenerFn === "string") {
+        const success = await this.run(listenerFn);
 
         if (!success) {
           return false;
@@ -116,7 +142,7 @@ export default class LumeSite implements Site {
         continue;
       }
 
-      if (await listener(event) === false) {
+      if (await listenerFn(event) === false) {
         return false;
       }
     }
