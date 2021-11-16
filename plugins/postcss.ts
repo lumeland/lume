@@ -3,6 +3,7 @@ import {
   postcss,
   postcssImport,
   postcssNesting,
+  SourceMapOptions,
 } from "../deps/postcss.ts";
 import { merge } from "../core/utils.ts";
 import { Helper, Page, Site } from "../core.ts";
@@ -13,7 +14,7 @@ export interface Options {
   extensions: string[];
 
   /** Set `true` to generate source map files */
-  sourceMap: boolean;
+  sourceMap: boolean | SourceMapOptions;
 
   /** Custom includes path for `postcss-import` */
   includes: string | string[] | false;
