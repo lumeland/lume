@@ -69,7 +69,7 @@ export default function (userOptions?: Partial<Options>) {
     async function postCss(file: Page) {
       const from = site.src(file.src.path + file.src.ext);
       const to = site.dest(file.dest.path + file.dest.ext);
-      const map = options.sourceMap ? { inline: false } : undefined;
+      const map = options.sourceMap;
 
       // Process the code with PostCSS
       const result = await runner.process(file.content!, { from, to, map });
