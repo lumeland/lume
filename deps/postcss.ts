@@ -7,7 +7,7 @@ export interface SourceMapOptions {
   inline?: boolean
   prev?: string | boolean | object | ((file: string) => string)
   sourcesContent?: boolean
-  annotation?: string | boolean | ((file: string, root: Root) => string)
+  annotation?: string | boolean | ((file: string, root: any) => string)
   from?: string
   absolute?: boolean
 }
