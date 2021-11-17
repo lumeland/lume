@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Changed
+- The option `sourceMap` of `postcss` plugin accepts the same options as `postcss` library [#147].
+  Note: Previously, `sourceMap: true` created a `.map` file.
+  Now it inlines the source map in the css file (because it's the default behavior of `postcss`).
+  Set the value to `sourceMap: { inline: false }` to keep the old behavior.
+
+### Fixed
+- Updated `std`, `postcss-nesting`, `deno_dom` and `deno_graph`.
+
 ## [1.3.0] - 2021-11-15
 ### Added
 - Initial (experimental) support for on demand server side rendering,
@@ -1229,7 +1239,9 @@ The first version.
 [#131]: https://github.com/lumeland/lume/issues/131
 [#136]: https://github.com/lumeland/lume/issues/136
 [#139]: https://github.com/lumeland/lume/issues/139
+[#147]: https://github.com/lumeland/lume/issues/147
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.3.0...HEAD
 [1.3.0]: https://github.com/lumeland/lume/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/lumeland/lume/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/lumeland/lume/compare/v1.1.1...v1.2.0
