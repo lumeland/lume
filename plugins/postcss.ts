@@ -3,6 +3,7 @@ import {
   postcss,
   postcssImport,
   postcssNesting,
+  SourceMapOptions,
 } from "../deps/postcss.ts";
 import { merge } from "../core/utils.ts";
 import { Helper, Page, Site } from "../core.ts";
@@ -13,7 +14,7 @@ export interface Options {
   extensions: string[];
 
   /** Set `true` to generate source map files */
-  sourceMap: boolean;
+  sourceMap: boolean | SourceMapOptions;
 
   /** Custom includes path for `postcss-import` */
   includes: string | string[] | false;
@@ -69,7 +70,7 @@ export default function (userOptions?: Partial<Options>) {
     async function postCss(file: Page) {
       const from = site.src(file.src.path + file.src.ext);
       const to = site.dest(file.dest.path + file.dest.ext);
-      const map = options.sourceMap ? { inline: false } : undefined;
+      const map = options.sourceMap;
 
       // Process the code with PostCSS
       const result = await runner.process(file.content!, { from, to, map });
