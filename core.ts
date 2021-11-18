@@ -490,6 +490,7 @@ export interface Engine {
 }
 
 /** A generic helper to be used in template engines */
+// deno-lint-ignore no-explicit-any
 export type Helper = (...args: any[]) => any;
 
 /** The options for a template helper */
