@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   Set the value to `sourceMap: { inline: false }` to keep the old behavior.
 
 ### Fixed
-- Updated `std`, `postcss-nesting`, `deno_dom` and `deno_graph`.
+- Updated `std`, `postcss`, `postcss-nesting`, `deno_dom` and `deno_graph`.
 
 ## [1.3.0] - 2021-11-15
 ### Added
