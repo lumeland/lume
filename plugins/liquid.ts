@@ -24,7 +24,7 @@ const defaults: Options = {
 /** Template engine to render Liquid files */
 export class LiquidEngine implements Engine {
   engine: unknown;
-  cache: Map<string, unknown> = new Map();
+  cache = new Map<string, unknown>();
 
   constructor(site: Site, engine: unknown) {
     this.engine = engine;

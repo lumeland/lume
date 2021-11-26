@@ -30,7 +30,7 @@ type PugCompiler = (
 export class PugEngine implements Engine {
   options: PugOptions;
   compiler: PugCompiler;
-  cache: Map<string, (data: Data) => string> = new Map();
+  cache = new Map<string, (data: Data) => string>();
 
   constructor(site: Site, compiler: PugCompiler, options: PugOptions) {
     this.compiler = compiler;

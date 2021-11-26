@@ -6,7 +6,7 @@ export default class ScriptRunner implements Scripts {
   site: Site;
 
   /** All registered scripts */
-  scripts: Map<string, Command[]> = new Map();
+  scripts = new Map<string, Command[]>();
 
   constructor(site: Site) {
     this.site = site;

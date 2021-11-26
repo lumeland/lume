@@ -129,8 +129,8 @@ export class SitePage extends Base implements Page {
 
 /** A directory */
 export class SiteDirectory extends Base implements Directory {
-  pages: Map<string, Page> = new Map();
-  dirs: Map<string, Directory> = new Map();
+  pages = new Map<string, Page>();
+  dirs = new Map<string, Directory>();
 
   createDirectory(name: string): Directory {
     const path = join(this.src.path, name);

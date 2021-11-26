@@ -3,7 +3,7 @@ import { Page, ScopeFilter } from "../core.ts";
 /** This class manages the file changes to know which files needs to be updated */
 export default class Changes {
   scopes: Set<ScopeFilter>;
-  changed: Set<ScopeFilter> = new Set();
+  changed = new Set<ScopeFilter>();
   noScoped = false;
 
   constructor(scopes: Set<ScopeFilter>) {

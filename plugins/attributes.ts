@@ -28,7 +28,7 @@ export function attributes(values: unknown, ...validNames: string[]) {
 }
 
 export function className(...names: unknown[]) {
-  const classes: Set<string> = new Set();
+  const classes = new Set<string>();
 
   names.forEach((name) => handleClass(classes, name));
 

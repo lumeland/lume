@@ -110,7 +110,7 @@ export class JsonRouter {
 
   /** Collect the routes of all pages with data.ondemand = true */
   #collectRoutes(pages: Page[]): void {
-    const routes: Map<string, string> = new Map();
+    const routes = new Map<string, string>();
 
     pages.forEach((page) => {
       if (page.data.ondemand) {

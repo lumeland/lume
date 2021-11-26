@@ -62,11 +62,11 @@ export default class LumeSite implements Site {
   source: Source;
   scripts: Scripts;
   metrics: Metrics;
-  listeners: Map<EventType, Set<Listener>> = new Map();
   renderer: Renderer;
   emitter: Emitter;
   pages: Page[] = [];
-  #scopes: Set<ScopeFilter> = new Set();
+  listeners = new Map<EventType, Set<Listener>>();
+  #scopes = new Set<ScopeFilter>();
 
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);

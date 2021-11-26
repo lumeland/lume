@@ -144,7 +144,7 @@ export interface WatchOptions {
 /** Watch file changes in a directory */
 export async function runWatch({ root, ignore, fn, debounce }: WatchOptions) {
   const watcher = Deno.watchFs(root);
-  const changes: Set<string> = new Set();
+  const changes = new Set<string>();
   let timer = 0;
   let runningCallback = false;
 

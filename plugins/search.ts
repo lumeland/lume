@@ -25,7 +25,7 @@ type Condition = [string, string, unknown];
 /** Search helper */
 export class Search {
   #site: Site;
-  #cache: Map<string, Page[]> = new Map();
+  #cache = new Map<string, Page[]>();
 
   constructor(site: Site) {
     this.#site = site;

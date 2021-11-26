@@ -20,22 +20,22 @@ export default class LumeRenderer implements Renderer {
   site: Site;
 
   /** Template engines by extension */
-  engines: Map<string, Engine> = new Map();
+  engines = new Map<string, Engine>();
 
   /** Extra data to be passed to the layouts */
   extraData: Record<string, unknown> = {};
 
   /** All preprocessors */
-  preprocessors: Map<Processor, string[]> = new Map();
+  preprocessors = new Map<Processor, string[]>();
 
   /** All processors */
-  processors: Map<Processor, string[]> = new Map();
+  processors = new Map<Processor, string[]>();
 
   /** To store the includes paths by extension */
-  includes: Map<string, string> = new Map();
+  includes = new Map<string, string>();
 
   /** The registered helpers */
-  helpers: Map<string, [Helper, HelperOptions]> = new Map();
+  helpers = new Map<string, [Helper, HelperOptions]>();
 
   constructor(site: Site) {
     this.site = site;

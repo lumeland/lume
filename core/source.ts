@@ -20,22 +20,22 @@ export default class SiteSource implements Source {
   root?: Directory;
 
   /** List of extensions to load data files and the loader used */
-  dataLoaders: Map<string, Loader> = new Map();
+  dataLoaders = new Map<string, Loader>();
 
   /** List of extensions to load page files and the loader used */
-  pageLoaders: Map<string, Loader> = new Map();
+  pageLoaders = new Map<string, Loader>();
 
   /** List of files and folders to copy */
-  staticFiles: Map<string, string> = new Map();
+  staticFiles = new Map<string, string>();
 
   /** List of extensions that must be treated as assets (`.css`, `.js`, etc) */
-  assets: Set<string> = new Set();
+  assets = new Set<string>();
 
   /** The list of paths to ignore */
-  ignored: Set<string> = new Set();
+  ignored = new Set<string>();
 
   /** Used to cache the loaded files */
-  #cache: Map<string, Promise<Data>> = new Map();
+  #cache = new Map<string, Promise<Data>>();
 
   constructor(site: Site) {
     this.site = site;

@@ -30,7 +30,7 @@ export async function concurrent<Type>(
  * The list of supported MIME types.
  * It's used by the server and some plugins.
  */
-export const mimes: Map<string, string> = new Map([
+export const mimes = new Map<string, string>([
   [".aac", "audio/x-aac"],
   [".apng", "image/apng"],
   [".atom", "application/atom+xml; charset=utf-8"],
