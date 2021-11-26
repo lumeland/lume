@@ -222,6 +222,12 @@ export interface Emitter {
  * and render the pages
  */
 export interface Renderer {
+  /** Template engines by extension */
+  engines: Map<string, Engine>;
+
+  /** Extra data to be passed to the layouts */
+  extraData: Record<string, unknown>;
+
   /** Register a template engine for some extensions */
   addEngine(extensions: string[], engine: Engine): void;
 
@@ -236,9 +242,6 @@ export interface Renderer {
 
   /** Register a template helper */
   addHelper(name: string, fn: Helper, options: HelperOptions): void;
-
-  /** Add global data accesible by the layouts */
-  addData(name: string, data: unknown): void;
 
   /** Render the pages */
   renderPages(pages: Iterable<Page>): Promise<void>;
@@ -461,7 +464,7 @@ export interface Directory {
 }
 
 /** A function that loads and returns the file content */
-export type Loader = (path: string) => Promise<Data>;
+export type Loader = (path: string, site: Site) => Promise<Data>;
 
 /** A (pre)processor */
 export type Processor = (page: Page, site: Site) => void;

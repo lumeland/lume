@@ -199,7 +199,7 @@ export default class LumeSite implements Site {
   }
 
   data(name: string, data: unknown) {
-    this.renderer.addData(name, data);
+    this.renderer.extraData[name] = data;
     return this;
   }
 

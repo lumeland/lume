@@ -127,7 +127,7 @@ Deno.test("data configuration", () => {
 
 Deno.test("pages configuration", () => {
   const site = lume();
-  const { engines } = site.renderer as LumeRenderer;
+  const { engines } = site.renderer;
   const { pageLoaders } = site.source as LumeSource;
 
   equals(pageLoaders.size, 7);
@@ -263,7 +263,7 @@ Deno.test("helpers configuration", () => {
 
 Deno.test("extra data", () => {
   const site = lume();
-  const { extraData } = site.renderer as LumeRenderer;
+  const { extraData } = site.renderer;
 
   equals(Object.keys(extraData).length, 2);
   equals(Object.keys(extraData)[0], "paginate");

@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Added
+- The loaders accepts a second argument with the `Site` instance.
+- The interface of `Renderer` exposes the engines and `extraData`.
+
 ### Changed
 - The option `sourceMap` of `postcss` plugin accepts the same options as `postcss` library [#147].
   Note: Previously, `sourceMap: true` created a `.map` file.

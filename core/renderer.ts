@@ -70,10 +70,6 @@ export default class LumeRenderer implements Renderer {
     return this;
   }
 
-  addData(name: string, data: unknown) {
-    this.extraData[name] = data;
-  }
-
   addInclude(extensions: string[], path: string) {
     extensions.forEach((ext) => this.includes.set(ext, path));
   }
