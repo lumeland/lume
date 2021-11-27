@@ -464,7 +464,7 @@ export interface Directory {
 }
 
 /** A function that loads and returns the file content */
-export type Loader = (path: string, site: Site) => Promise<Data>;
+export type Loader = (path: string) => Promise<Data>;
 
 /** A (pre)processor */
 export type Processor = (page: Page, site: Site) => void;

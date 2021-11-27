@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
-- The loaders accepts a second argument with the `Site` instance.
 - The interface of `Renderer` exposes the engines and `extraData`.
 - The `Engine` interface has a new optional method `renderSync`.
 

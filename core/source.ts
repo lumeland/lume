@@ -132,7 +132,7 @@ export default class SiteSource implements Source {
   readFile(path: string, loader: Loader): Promise<Data> {
     try {
       if (!this.#cache.has(path)) {
-        this.#cache.set(path, loader(path, this.site));
+        this.#cache.set(path, loader(path));
       }
 
       return this.#cache.get(path)!;
