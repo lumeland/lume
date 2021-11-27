@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - The loaders accepts a second argument with the `Site` instance.
 - The interface of `Renderer` exposes the engines and `extraData`.
+- The `Engine` interface has a new optional method `renderSync`.
 
 ### Changed
 - The option `sourceMap` of `postcss` plugin accepts the same options as `postcss` library [#147].

@@ -26,6 +26,12 @@ export class ModuleEngine implements Engine {
       : content;
   }
 
+  renderSync(content: unknown, data: Data): string {
+    return typeof content === "function"
+      ? content(data, this.helpers)
+      : content;
+  }
+
   addHelper(name: string, fn: Helper) {
     this.helpers[name] = fn;
   }

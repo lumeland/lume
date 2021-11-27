@@ -484,6 +484,13 @@ export interface Engine {
     filename: string,
   ): unknown | Promise<unknown>;
 
+  /** Render a template synchronous (optional) */
+  renderSync?(
+    content: unknown,
+    data: Data,
+    filename: string,
+  ): string;
+
   /** Add a helper to the template engine */
   addHelper(
     name: string,

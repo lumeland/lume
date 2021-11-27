@@ -44,15 +44,10 @@ export class NunjucksEngine implements Engine {
   }
 
   render(content: string, data: Data, filename: string) {
-    if (!this.cache.has(filename)) {
-      this.cache.set(
-        filename,
-        nunjucks.compile(content, this.engine, filename),
-      );
-    }
+    const template = this.getTemplate(content, filename);
 
     return new Promise((resolve, reject) => {
-      this.cache.get(filename).render(data, (err: unknown, result: string) => {
+      template.render(data, (err: unknown, result: string) => {
         if (err) {
           reject(err);
         } else {
@@ -60,6 +55,22 @@ export class NunjucksEngine implements Engine {
         }
       });
     });
+  }
+
+  renderSync(content: string, data: Data, filename: string): string {
+    const template = this.getTemplate(content, filename);
+    return template.render(data);
+  }
+
+  getTemplate(content: string, filename: string) {
+    if (!this.cache.has(filename)) {
+      this.cache.set(
+        filename,
+        nunjucks.compile(content, this.engine, filename),
+      );
+    }
+
+    return this.cache.get(filename)!;
   }
 
   addHelper(name: string, fn: Helper, options: HelperOptions) {
