@@ -35,8 +35,17 @@ export class JsxEngine implements Engine {
         : content) as React.ReactElement;
 
     data.children = element;
+    element.toString = () => ReactDOMServer.renderToStaticMarkup(element);
+    return element;
+  }
 
-    return ReactDOMServer.renderToStaticMarkup(element);
+  renderSync(content: unknown, data: Data): string {
+    const element = typeof content === "function"
+      ? content(data, this.helpers)
+      : content;
+
+    element.toString = () => ReactDOMServer.renderToStaticMarkup(element);
+    return element;
   }
 
   addHelper(name: string, fn: Helper) {

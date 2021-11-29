@@ -119,8 +119,8 @@ export class SitePage extends Base implements Page {
   }
 
   get document(): HTMLDocument | undefined {
-    if (!this.#document && this.#content && typeof this.#content === "string") {
-      this.#document = stringToDocument(this.#content);
+    if (!this.#document && this.#content) {
+      this.#document = stringToDocument(this.#content.toString());
     }
 
     return this.#document;

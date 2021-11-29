@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   Note: Previously, `sourceMap: true` created a `.map` file.
   Now it inlines the source map in the css file (because it's the default behavior of `postcss`).
   Set the value to `sourceMap: { inline: false }` to keep the old behavior.
+- `jsx` elements have the `toString()` function to render to html automatically.
 
 ### Fixed
 - Updated `std`, `postcss`, `postcss-nesting`, `deno_dom` and `deno_graph`.
