@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
-- The interface of `Renderer` exposes the engines and `extraData`.
+- The interface of `Renderer` exposes the `extraData` property.
 - The `Engine` interface has a new optional method `renderSync`.
 
 ### Changed

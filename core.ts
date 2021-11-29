@@ -222,9 +222,6 @@ export interface Emitter {
  * and render the pages
  */
 export interface Renderer {
-  /** Template engines by extension */
-  engines: Map<string, Engine>;
-
   /** Extra data to be passed to the layouts */
   extraData: Record<string, unknown>;
 

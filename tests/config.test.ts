@@ -127,7 +127,7 @@ Deno.test("data configuration", () => {
 
 Deno.test("pages configuration", () => {
   const site = lume();
-  const { engines } = site.renderer;
+  const { engines } = site.renderer as LumeRenderer;
   const { pageLoaders } = site.source as LumeSource;
 
   equals(pageLoaders.size, 7);
