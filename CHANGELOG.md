@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - The interface of `Renderer` exposes the `extraData` property.
-- The `Engine` interface has a new optional method `renderSync`.
+- The `Engine` interface has a new method `renderSync`.
 
 ### Changed
 - The option `sourceMap` of `postcss` plugin accepts the same options as `postcss` library [#147].

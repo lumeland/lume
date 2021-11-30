@@ -38,6 +38,18 @@ export class LiquidEngine implements Engine {
   }
 
   async render(content: string, data: Data, filename: string) {
+    const template = this.getTemplate(content, filename);
+    // @ts-ignore: No types for Liquid
+    return await this.engine.render(template, data);
+  }
+
+  renderSync(content: string, data: Data, filename: string) {
+    const template = this.getTemplate(content, filename);
+    // @ts-ignore: No types for Liquid
+    return this.engine.renderSync(template, data);
+  }
+
+  getTemplate(content: string, filename: string) {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
@@ -45,9 +57,7 @@ export class LiquidEngine implements Engine {
         this.engine.parse(content, filename),
       );
     }
-    const template = this.cache.get(filename)!;
-    // @ts-ignore: No types for Liquid
-    return await this.engine.render(template, data);
+    return this.cache.get(filename)!;
   }
 
   addHelper(name: string, fn: Helper, options: HelperOptions) {

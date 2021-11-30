@@ -34,13 +34,17 @@ export class EtaEngine implements Engine {
     this.engine = engine;
   }
 
-  async render(content: string, data: Data, filename: string) {
+  render(content: string, data: Data, filename: string) {
+    return this.renderSync(content, data, filename);
+  }
+
+  renderSync(content: string, data: Data, filename: string) {
     if (!this.engine.templates.get(filename)) {
       this.engine.templates.define(filename, this.engine.compile(content));
     }
     data.filters = this.filters;
     const fn = this.engine.templates.get(filename);
-    return await fn(data, this.engine.config);
+    return fn(data, this.engine.config);
   }
 
   addHelper(name: string, fn: Helper, options: HelperOptions) {

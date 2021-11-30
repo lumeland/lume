@@ -148,6 +148,7 @@ Deno.test("pages configuration", () => {
   const loader = () => Promise.resolve({});
   const engine = {
     render: () => {},
+    renderSync: () => "",
     addHelper: () => {},
   };
 

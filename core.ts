@@ -481,8 +481,8 @@ export interface Engine {
     filename: string,
   ): unknown | Promise<unknown>;
 
-  /** Render a template synchronous (optional) */
-  renderSync?(
+  /** Render a template synchronous */
+  renderSync(
     content: unknown,
     data: Data,
     filename: string,

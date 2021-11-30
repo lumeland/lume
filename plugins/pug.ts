@@ -41,6 +41,10 @@ export class PugEngine implements Engine {
   }
 
   render(content: string, data: Data, filename: string) {
+    return this.renderSync(content, data, filename);
+  }
+
+  renderSync(content: string, data: Data, filename: string) {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
