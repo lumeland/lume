@@ -26,6 +26,19 @@ export async function concurrent<Type>(
   await Promise.all(executing);
 }
 
+const decoder = new TextDecoder();
+const encoder = new TextEncoder();
+
+/** Encode a message using SHA-1 algorithm */
+export async function sha1(message: string | Uint8Array): Promise<string> {
+  if (typeof message === "string") {
+    message = encoder.encode(message);
+  }
+
+  const hash = await crypto.subtle.digest("SHA-1", message);
+  return decoder.decode(hash);
+}
+
 /**
  * The list of supported MIME types.
  * It's used by the server and some plugins.

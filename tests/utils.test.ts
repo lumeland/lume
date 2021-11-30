@@ -1,5 +1,10 @@
 import { assertEquals as equals } from "../deps/assert.ts";
-import { isPlainObject, merge, searchByExtension } from "../core/utils.ts";
+import {
+  isPlainObject,
+  merge,
+  searchByExtension,
+  sha1,
+} from "../core/utils.ts";
 
 Deno.test("merge options", () => {
   interface Options {
@@ -83,4 +88,13 @@ Deno.test("isPlainObject", () => {
   equals(isPlainObject(new Map()), false);
   equals(isPlainObject(new Set()), false);
   equals(isPlainObject(Symbol.for("foo")), false);
+});
+
+Deno.test("sha1 function", async () => {
+  const data = "Hello World";
+  const dataUint8 = new TextEncoder().encode(data);
+  const expected = "\nMU��x�\x02/�p\x19w��@�Ć�";
+
+  equals(await sha1(data), expected);
+  equals(await sha1(dataUint8), expected);
 });

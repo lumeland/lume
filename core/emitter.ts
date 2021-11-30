@@ -2,8 +2,7 @@ import { gray } from "../deps/colors.ts";
 import { dirname } from "../deps/path.ts";
 import { copy, emptyDir, ensureDir } from "../deps/fs.ts";
 import { Emitter, Page, Site } from "../core.ts";
-import { createHash } from "../deps/hash.ts";
-import { normalizePath } from "./utils.ts";
+import { normalizePath, sha1 } from "./utils.ts";
 
 export default class LumeEmitter implements Emitter {
   site: Site;
@@ -22,9 +21,7 @@ export default class LumeEmitter implements Emitter {
     const metric = this.site.metrics.start("Save", { page });
     const dest = page.dest.path + page.dest.ext;
 
-    const sha1 = createHash("sha1");
-    sha1.update(page.content);
-    const hash = sha1.toString();
+    const hash = await sha1(page.content);
     const previousHash = this.#hashes.get(dest);
 
     // The page content didn't change
