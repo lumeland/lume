@@ -20,10 +20,10 @@ class TestEmitter implements Emitter {
 }
 
 /** Create a new lume site using the "assets" path as cwd */
-export function getSite(options: Partial<SiteOptions> = {}): Site {
+export function getSite(options: Partial<SiteOptions> = {}, pluginOptions?: any): Site {
   options.cwd = cwd;
 
-  const site = lume(options, {}, false);
+  const site = lume(options, pluginOptions, false);
   site.emitter = new TestEmitter();
 
   return site;
