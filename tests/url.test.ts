@@ -13,17 +13,16 @@ Deno.test("url and htmlUrl update href", async () => {
   testPage(site, "/default-filter", (page) => {
     equals(
       page.document?.querySelector("#url")?.getAttribute("href"),
-      "https://example.com/test/url/"
+      "https://example.com/test/url/",
     );
   });
 
   testPage(site, "/default-filter", (page) => {
     equals(
       page.document?.querySelector("#htmlUrl")?.getAttribute("href"),
-      "https://example.com/test/htmlUrl/"
+      "https://example.com/test/htmlUrl/",
     );
   });
-
 });
 
 Deno.test("configure url and htmlUrl names", async () => {
@@ -34,8 +33,8 @@ Deno.test("configure url and htmlUrl names", async () => {
   }, {
     url: {
       names: {
-        url: 'urlify',
-        htmlUrl: 'htmlUrlify',
+        url: "urlify",
+        htmlUrl: "htmlUrlify",
       },
     },
   });
@@ -45,15 +44,14 @@ Deno.test("configure url and htmlUrl names", async () => {
   testPage(site, "/renamed-filter", (page) => {
     equals(
       page.document?.querySelector("#urlify")?.getAttribute("href"),
-      "https://example.com/urlify/"
+      "https://example.com/urlify/",
     );
   });
 
   testPage(site, "/renamed-filter", (page) => {
     equals(
       page.document?.querySelector("#htmlUrlify")?.getAttribute("href"),
-      "https://example.com/htmlUrlify/"
+      "https://example.com/htmlUrlify/",
     );
   });
-
 });

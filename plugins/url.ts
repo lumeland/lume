@@ -4,15 +4,15 @@ import { merge } from "../core/utils.ts";
 export interface Options {
   /** The url helper name */
   names: {
-      url: string;
-      htmlUrl: string;
+    url: string;
+    htmlUrl: string;
   };
 }
 
 const defaults: Options = {
   names: {
-      url: 'url',
-      htmlUrl: 'htmlUrl'
+    url: "url",
+    htmlUrl: "htmlUrl",
   },
 };
 

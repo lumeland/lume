@@ -10,7 +10,10 @@ export default function ({}, { urlify, htmlUrlify }) {
         </head>
         <body>
             <a id="urlify" href="${urlify?.("/urlify/", true)}">Urlify</a>
-            ${htmlUrlify?.('<a id="htmlUrlify" href="/htmlUrlify/">htmlUrlify</a>', true)}
+            ${htmlUrlify?.(
+    '<a id="htmlUrlify" href="/htmlUrlify/">htmlUrlify</a>',
+    true,
+  )}
         </body>
     </html>
   `;
