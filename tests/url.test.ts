@@ -1,6 +1,5 @@
 import { assertStrictEquals as equals } from "../deps/assert.ts";
 import { getSite, testPage } from "./utils.ts";
-import urlPlugin from "../plugins/url.ts";
 
 Deno.test("url and htmlUrl update href", async () => {
   const site = getSite({
@@ -8,8 +7,6 @@ Deno.test("url and htmlUrl update href", async () => {
     src: "url",
     location: new URL("https://example.com/test/"),
   });
-
-  site.use(urlPlugin({}));
 
   await site.build();
 
@@ -34,14 +31,14 @@ Deno.test("configure url and htmlUrl names", async () => {
     dev: true,
     src: "url",
     location: new URL("https://example.com/"),
-  });
-
-  site.use(urlPlugin({
-    names: {
-      url: 'urlify',
-      htmlUrl: 'htmlUrlify',
+  }, {
+    url: {
+      names: {
+        url: 'urlify',
+        htmlUrl: 'htmlUrlify',
+      },
     },
-  }));
+  });
 
   await site.build();
 
