@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - The interface of `Renderer` exposes the `extraData` property.
 - The `Engine` interface has a new method `renderSync`.
+- Options for the `url` plugin to change the helpers' name [#149].
 
 ### Changed
 - The option `sourceMap` of `postcss` plugin accepts the same options as `postcss` library [#147].
@@ -1246,6 +1247,7 @@ The first version.
 [#136]: https://github.com/lumeland/lume/issues/136
 [#139]: https://github.com/lumeland/lume/issues/139
 [#147]: https://github.com/lumeland/lume/issues/147
+[#149]: https://github.com/lumeland/lume/issues/149
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.3.0...HEAD
 [1.3.0]: https://github.com/lumeland/lume/compare/v1.2.1...v1.3.0
