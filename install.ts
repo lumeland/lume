@@ -1,21 +1,7 @@
 import { brightGreen, gray, red } from "./deps/colors.ts";
-import { getImportMap } from "./ci.ts";
+import { checkDenoVersion, getImportMap } from "./ci.ts";
 
-const minDenoVersion = "1.16.1";
-
-if (Deno.version.deno < minDenoVersion) {
-  console.log();
-  console.error(red("Error installing Lume"));
-  console.log("You have an old version of Deno");
-  console.log(`Lume needs Deno ${brightGreen(minDenoVersion)} or greater`);
-  console.log(`Your current version is ${red(Deno.version.deno)}`);
-  console.log();
-  console.log(
-    `Run ${brightGreen("deno upgrade")} before installing or upgrading Lume`,
-  );
-  console.log();
-  Deno.exit(1);
-}
+checkDenoVersion();
 
 const cli = new URL("./cli.ts", import.meta.url).href;
 

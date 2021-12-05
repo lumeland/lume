@@ -1,6 +1,7 @@
 import { encode } from "./deps/base64.ts";
 import { posix } from "./deps/path.ts";
 import { parse } from "./deps/flags.ts";
+import { brightGreen, red } from "./deps/colors.ts";
 import { Exception } from "./core/utils.ts";
 
 const { join } = posix;
@@ -9,6 +10,24 @@ const baseUrl = new URL(".", import.meta.url).href;
 interface ImportMap {
   imports: Record<string, string>;
   scopes?: Record<string, Record<string, string>>;
+}
+
+export function checkDenoVersion(): void {
+  const minDenoVersion = "1.16.1";
+
+  if (Deno.version.deno < minDenoVersion) {
+    console.log();
+    console.error(red("Error installing or running Lume"));
+    console.log("You have an old version of Deno");
+    console.log(`Lume needs Deno ${brightGreen(minDenoVersion)} or greater`);
+    console.log(`Your current version is ${red(Deno.version.deno)}`);
+    console.log();
+    console.log(
+      `Run ${brightGreen("deno upgrade")} and try again`,
+    );
+    console.log();
+    Deno.exit(1);
+  }
 }
 
 /**
@@ -79,8 +98,9 @@ export async function getArgs(args: string[]): Promise<[string[], string[]]> {
 }
 
 export default async function main(args: string[]) {
-  const [lumeArgs, denoArgs] = await getArgs(args);
+  checkDenoVersion();
 
+  const [lumeArgs, denoArgs] = await getArgs(args);
   const cli = join(baseUrl, "./cli.ts");
   const process = Deno.run({
     cmd: [
