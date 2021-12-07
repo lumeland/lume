@@ -101,7 +101,9 @@ export class SitePage extends Base implements Page {
 
   set content(content: Content | undefined) {
     this.#document = undefined;
-    this.#content = content;
+    this.#content = content instanceof Uint8Array
+      ? content
+      : content && content.toString();
   }
 
   get content(): Content | undefined {
