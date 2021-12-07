@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.3.1] - 2021-12-07
 ### Added
 - The interface of `Renderer` exposes the `extraData` property.
 - The `Engine` interface has a new method `renderSync`.
@@ -1249,7 +1249,7 @@ The first version.
 [#147]: https://github.com/lumeland/lume/issues/147
 [#149]: https://github.com/lumeland/lume/issues/149
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.3.0...HEAD
+[1.3.1]: https://github.com/lumeland/lume/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/lumeland/lume/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/lumeland/lume/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/lumeland/lume/compare/v1.1.1...v1.2.0
