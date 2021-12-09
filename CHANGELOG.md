@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - Options for the `date` plugin to change the helpers' name [#150].
 
+### Fixed
+- Updated `std`, `deno_graph` and `postcss` to the latest version.
+
 ## [1.3.1] - 2021-12-07
 ### Added
 - The interface of `Renderer` exposes the `extraData` property.
