@@ -12,7 +12,6 @@ const formats = new Map([
 ]);
 
 export interface Options {
-
   /** The name of the helper */
   name: string;
 
