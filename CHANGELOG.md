@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.3.2] - Unreleased
+### Added
+- Options for the `date` plugin to change the helpers' name [#150].
+
 ## [1.3.1] - 2021-12-07
 ### Added
 - The interface of `Renderer` exposes the `extraData` property.
@@ -1173,7 +1177,7 @@ No changes.
 ### Fixed
 - The JSX engine.
 
-## 0.1.0 - 2020-09-13
+## [0.1.0] - 2020-09-13
 The first version.
 
 [#1]: https://github.com/lumeland/lume/issues/1
@@ -1248,7 +1252,9 @@ The first version.
 [#139]: https://github.com/lumeland/lume/issues/139
 [#147]: https://github.com/lumeland/lume/issues/147
 [#149]: https://github.com/lumeland/lume/issues/149
+[#150]: https://github.com/lumeland/lume/issues/150
 
+[1.3.2]: https://github.com/lumeland/lume/compare/v1.3.1...HEAD
 [1.3.1]: https://github.com/lumeland/lume/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/lumeland/lume/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/lumeland/lume/compare/v1.2.0...v1.2.1
@@ -1346,3 +1352,4 @@ The first version.
 [0.2.2]: https://github.com/lumeland/lume/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/lumeland/lume/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/lumeland/lume/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/lumeland/lume/releases/tag/v0.1.0
