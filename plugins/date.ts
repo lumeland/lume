@@ -12,6 +12,10 @@ const formats = new Map([
 ]);
 
 export interface Options {
+
+  /** The name of the helper */
+  name: string;
+
   /** The loaded locales */
   locales: Record<string, unknown>;
 
@@ -21,6 +25,7 @@ export interface Options {
 
 // Default options
 const defaults: Options = {
+  name: "date",
   locales: {},
   formats: {},
 };
@@ -31,7 +36,7 @@ export default function (userOptions?: Partial<Options>) {
   const defaultLocale = Object.keys(options.locales).shift();
 
   return (site: Site) => {
-    site.filter("date", filter as Helper);
+    site.filter(options.name, filter as Helper);
 
     function filter(
       date: string | Date,
