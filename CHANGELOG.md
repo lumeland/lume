@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   can access to shared data (like `search`, `paginate` etc)
 
 ### Fixed
-- Updated `std`, `deno_graph`, `liquid` and `postcss` to the latest version.
+- Updated `std`, `deno_graph`, `liquid`, `pug` and `postcss` to the latest version.
 
 ## [1.3.1] - 2021-12-07
 ### Added
