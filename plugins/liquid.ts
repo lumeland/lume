@@ -23,11 +23,13 @@ const defaults: Options = {
 
 /** Template engine to render Liquid files */
 export class LiquidEngine implements Engine {
-  engine: unknown;
+  // deno-lint-ignore no-explicit-any
+  liquid: any;
   cache = new Map<string, unknown>();
 
-  constructor(site: Site, engine: unknown) {
-    this.engine = engine;
+  // deno-lint-ignore no-explicit-any
+  constructor(site: Site, liquid: any) {
+    this.liquid = liquid;
 
     // Update the internal cache
     site.addEventListener("beforeUpdate", (ev: Event) => {
@@ -37,24 +39,29 @@ export class LiquidEngine implements Engine {
     });
   }
 
-  async render(content: string, data: Data, filename: string) {
+  async render(content: string, data?: Data, filename?: string) {
+    if (!filename) {
+      return this.liquid.parseAndRender(content, data);
+    }
+
     const template = this.getTemplate(content, filename);
-    // @ts-ignore: No types for Liquid
-    return await this.engine.render(template, data);
+    return await this.liquid.render(template, data);
   }
 
-  renderSync(content: string, data: Data, filename: string) {
+  renderSync(content: string, data?: Data, filename?: string) {
+    if (!filename) {
+      return this.liquid.parseAndRenderSync(content, data);
+    }
+
     const template = this.getTemplate(content, filename);
-    // @ts-ignore: No types for Liquid
-    return this.engine.renderSync(template, data);
+    return this.liquid.renderSync(template, data);
   }
 
   getTemplate(content: string, filename: string) {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
-        // @ts-ignore: No types for Liquid
-        this.engine.parse(content, filename),
+        this.liquid.parse(content, filename),
       );
     }
     return this.cache.get(filename)!;
@@ -63,15 +70,13 @@ export class LiquidEngine implements Engine {
   addHelper(name: string, fn: Helper, options: HelperOptions) {
     switch (options.type) {
       case "filter":
-        // @ts-ignore: No types for Liquid
-        this.engine.registerFilter(name, fn);
+        this.liquid.registerFilter(name, fn);
         break;
 
       case "tag":
         // Tag with body not supported yet
         if (!options.body) {
-          // @ts-ignore: No types for Liquid
-          this.engine.registerTag(name, createCustomTag(fn));
+          this.liquid.registerTag(name, createCustomTag(fn));
         }
         break;
     }
@@ -91,20 +96,16 @@ export default function (userOptions?: Partial<Options>) {
       ...options.options,
     };
 
-    const engine = new Liquidjs(liquidOptions);
+    const engine = new LiquidEngine(site, new Liquidjs(liquidOptions));
 
     // Load the liquid pages
-    site.loadPages(
-      options.extensions,
-      loader,
-      new LiquidEngine(site, engine),
-    );
+    site.loadPages(options.extensions, loader, engine);
 
     // Register the liquid filter
     site.filter("liquid", filter as Helper, true);
 
-    function filter(string: string, data = {}) {
-      return engine.parseAndRender(string, data);
+    function filter(string: string, data?: Data) {
+      return site.renderer.render(engine, string, data);
     }
   };
 }

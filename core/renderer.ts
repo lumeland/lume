@@ -74,6 +74,28 @@ export default class LumeRenderer implements Renderer {
     extensions.forEach((ext) => this.includes.set(ext, path));
   }
 
+  /** Render a template */
+  render(
+    engine: Engine,
+    content: unknown,
+    data?: Data,
+    filename?: string,
+  ): unknown | Promise<unknown> {
+    data = { ...this.extraData, ...data };
+    return engine.render(content, data, filename);
+  }
+
+  /** Render a template synchronous */
+  renderSync(
+    engine: Engine,
+    content: unknown,
+    data?: Data,
+    filename?: string,
+  ): string {
+    data = { ...this.extraData, ...data };
+    return engine.renderSync(content, data, filename);
+  }
+
   /** Render the provided pages */
   async renderPages(pages: Iterable<Page>) {
     this.site.pages = [];
@@ -273,17 +295,17 @@ export default class LumeRenderer implements Renderer {
   /** Render a page */
   async #renderPage(page: Page) {
     let content = page.data.content;
-    let pageData = { ...page.data, ...this.extraData };
-    let layout = pageData.layout;
+    let pageData = page.data;
+    let { layout } = pageData;
     const path = this.site.src(page.src.path + page.src.ext);
     const engine = this.#getEngine(path, pageData.templateEngine);
 
     if (Array.isArray(engine)) {
       for (const eng of engine) {
-        content = await eng.render(content, pageData, path);
+        content = await this.render(eng, content, pageData, path);
       }
     } else if (engine) {
-      content = await engine.render(content, pageData, path);
+      content = await this.render(engine, content, pageData, path);
     }
 
     // Render the layouts recursively
@@ -317,15 +339,24 @@ export default class LumeRenderer implements Renderer {
         ...layoutData,
         ...pageData,
         content,
-        ...this.extraData,
       };
 
       if (Array.isArray(engine)) {
         for (const eng of engine) {
-          content = await eng.render(layoutData.content, pageData, layoutPath);
+          content = await this.render(
+            eng,
+            layoutData.content,
+            pageData,
+            layoutPath,
+          );
         }
       } else {
-        content = await engine.render(layoutData.content, pageData, layoutPath);
+        content = await this.render(
+          engine,
+          layoutData.content,
+          pageData,
+          layoutPath,
+        );
       }
 
       layout = layoutData.layout;

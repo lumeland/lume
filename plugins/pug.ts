@@ -24,13 +24,13 @@ const defaults: Options = {
 type PugCompiler = (
   input: string,
   options: Record<string, unknown>,
-) => (data: Data) => string;
+) => (data?: Data) => string;
 
 /** Template engine to render Pug files */
 export class PugEngine implements Engine {
   options: PugOptions;
   compiler: PugCompiler;
-  cache = new Map<string, (data: Data) => string>();
+  cache = new Map<string, (data?: Data) => string>();
 
   constructor(site: Site, compiler: PugCompiler, options: PugOptions) {
     this.compiler = compiler;
@@ -40,11 +40,14 @@ export class PugEngine implements Engine {
     site.addEventListener("beforeUpdate", () => this.cache.clear());
   }
 
-  render(content: string, data: Data, filename: string) {
+  render(content: string, data?: Data, filename?: string) {
     return this.renderSync(content, data, filename);
   }
 
-  renderSync(content: string, data: Data, filename: string) {
+  renderSync(content: string, data?: Data, filename?: string) {
+    if (!filename) {
+      return this.compiler(content, this.options)(data);
+    }
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
@@ -88,11 +91,16 @@ export default function (userOptions?: Partial<Options>) {
     options.options.basedir = site.src(options.includes);
     site.renderer.addInclude(options.extensions, options.includes);
 
+    const engine = new PugEngine(site, compile as PugCompiler, options.options);
+
     // Load the pages
-    site.loadPages(
-      options.extensions,
-      loader,
-      new PugEngine(site, compile as PugCompiler, options.options),
-    );
+    site.loadPages(options.extensions, loader, engine);
+
+    // Register the pug filter
+    site.filter("pug", filter as Helper, true);
+
+    function filter(string: string, data?: Data) {
+      return site.renderer.render(engine, string, data);
+    }
   };
 }

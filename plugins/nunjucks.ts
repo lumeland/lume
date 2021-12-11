@@ -29,11 +29,13 @@ const defaults: Options = {
 
 /** Template engine to render Nunjucks files */
 export class NunjucksEngine implements Engine {
-  engine: unknown;
+  // deno-lint-ignore no-explicit-any
+  env: any;
   cache = new Map();
 
-  constructor(site: Site, engine: unknown) {
-    this.engine = engine;
+  // deno-lint-ignore no-explicit-any
+  constructor(site: Site, env: any) {
+    this.env = env;
 
     // Update the internal cache
     site.addEventListener("beforeUpdate", (ev: Event) => {
@@ -43,7 +45,19 @@ export class NunjucksEngine implements Engine {
     });
   }
 
-  render(content: string, data: Data, filename: string) {
+  render(content: string, data?: Data, filename?: string) {
+    if (!filename) {
+      return new Promise((resolve, reject) => {
+        this.env.renderString(content, data, (err: Error, result: string) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(result);
+          }
+        });
+      });
+    }
+
     const template = this.getTemplate(content, filename);
 
     return new Promise((resolve, reject) => {
@@ -57,7 +71,11 @@ export class NunjucksEngine implements Engine {
     });
   }
 
-  renderSync(content: string, data: Data, filename: string): string {
+  renderSync(content: string, data?: Data, filename?: string): string {
+    if (!filename) {
+      return this.env.renderString(content, data);
+    }
+
     const template = this.getTemplate(content, filename);
     return template.render(data);
   }
@@ -66,7 +84,7 @@ export class NunjucksEngine implements Engine {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
-        nunjucks.compile(content, this.engine, filename),
+        nunjucks.compile(content, this.env, filename),
       );
     }
 
@@ -77,21 +95,18 @@ export class NunjucksEngine implements Engine {
     switch (options.type) {
       case "tag": {
         const tag = createCustomTag(name, fn, options);
-        // @ts-ignore: this.engine is of type 'unknown'.
-        this.engine.addExtension(name, tag);
+        this.env.addExtension(name, tag);
         return;
       }
 
       case "filter":
         if (options.async) {
           const filter = createAsyncFilter(fn);
-          // @ts-ignore: this.engine is of type 'unknown'.
-          this.engine.addFilter(name, filter, true);
+          this.env.addFilter(name, filter, true);
           return;
         }
 
-        // @ts-ignore: this.engine is of type 'unknown'.
-        this.engine.addFilter(name, fn);
+        this.env.addFilter(name, fn);
     }
   }
 }
@@ -106,14 +121,14 @@ export default function (userOptions?: Partial<Options>) {
 
     // Create the nunjucks environment instance
     const fsLoader = new nunjucks.FileSystemLoader(site.src(options.includes));
-    const engine = new nunjucks.Environment(fsLoader, options.options);
+    const env = new nunjucks.Environment(fsLoader, options.options);
 
     // Configure includes
     site.renderer.addInclude(options.extensions, options.includes);
 
     // Register nunjucks extensions
     for (const [name, fn] of Object.entries(options.plugins)) {
-      engine.addExtension(name, fn);
+      env.addExtension(name, fn);
     }
 
     // Update the cache
@@ -131,26 +146,16 @@ export default function (userOptions?: Partial<Options>) {
       }
     });
 
+    const engine = new NunjucksEngine(site, env);
+
     // Load the pages
-    site.loadPages(
-      options.extensions,
-      loader,
-      new NunjucksEngine(site, engine),
-    );
+    site.loadPages(options.extensions, loader, engine);
 
     // Register the njk filter
     site.filter("njk", filter as Helper, true);
 
-    function filter(string: string, data = {}) {
-      return new Promise((resolve, reject) => {
-        engine.renderString(string, data, (err: Error, result: string) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(result);
-          }
-        });
-      });
+    function filter(string: string, data?: Data) {
+      return site.renderer.render(engine, string, data);
     }
   };
 }

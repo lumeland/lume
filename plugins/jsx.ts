@@ -21,7 +21,7 @@ window.React ||= React;
 export class JsxEngine implements Engine {
   helpers: Record<string, Helper> = {};
 
-  async render(content: unknown, data: Data) {
+  async render(content: unknown, data: Data = {}) {
     if (!data.children && data.content) {
       data.children = React.createElement("div", {
         dangerouslySetInnerHTML: { __html: data.content },
@@ -39,7 +39,7 @@ export class JsxEngine implements Engine {
     return element;
   }
 
-  renderSync(content: unknown, data: Data): string {
+  renderSync(content: unknown, data: Data = {}): string {
     const element = typeof content === "function"
       ? content(data, this.helpers)
       : content;

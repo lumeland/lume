@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.3.2] - Unreleased
 ### Added
 - Options for the `date` plugin to change the helpers' name [#150].
+- The `pug` plugin registers the `pug` filter.
+- Template engine filters (`njk`, `pug`, `liquid`...)
+  can access to shared data (like `search`, `paginate` etc)
 
 ### Fixed
 - Updated `std`, `deno_graph` and `postcss` to the latest version.

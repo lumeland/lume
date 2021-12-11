@@ -245,6 +245,22 @@ export interface Renderer {
 
   /** Render a page on demand */
   renderPageOnDemand(page: Page): Promise<void>;
+
+  /** Render a template */
+  render(
+    engine: Engine,
+    content: unknown,
+    data?: Data,
+    filename?: string,
+  ): unknown | Promise<unknown>;
+
+  /** Render a template synchronous */
+  renderSync(
+    engine: Engine,
+    content: unknown,
+    data?: Data,
+    filename?: string,
+  ): string;
 }
 
 /** Script runner to store and run commands */
@@ -477,15 +493,15 @@ export interface Engine {
   /** Render a template */
   render(
     content: unknown,
-    data: Data,
-    filename: string,
+    data?: Data,
+    filename?: string,
   ): unknown | Promise<unknown>;
 
   /** Render a template synchronous */
   renderSync(
     content: unknown,
-    data: Data,
-    filename: string,
+    data?: Data,
+    filename?: string,
   ): string;
 
   /** Add a helper to the template engine */
