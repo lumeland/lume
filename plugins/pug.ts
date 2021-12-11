@@ -1,4 +1,4 @@
-import { compile, PugOptions } from "../deps/pug.ts";
+import { compile, Options as PugOptions } from "../deps/pug.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 import { Data, Engine, Helper, HelperOptions, Site } from "../core.ts";
@@ -21,18 +21,15 @@ const defaults: Options = {
   options: {},
 };
 
-type PugCompiler = (
-  input: string,
-  options: Record<string, unknown>,
-) => (data?: Data) => string;
+type Compiler = typeof compile;
 
 /** Template engine to render Pug files */
 export class PugEngine implements Engine {
   options: PugOptions;
-  compiler: PugCompiler;
+  compiler: Compiler;
   cache = new Map<string, (data?: Data) => string>();
 
-  constructor(site: Site, compiler: PugCompiler, options: PugOptions) {
+  constructor(site: Site, compiler: Compiler, options: PugOptions) {
     this.compiler = compiler;
     this.options = options;
 
@@ -91,7 +88,7 @@ export default function (userOptions?: Partial<Options>) {
     options.options.basedir = site.src(options.includes);
     site.renderer.addInclude(options.extensions, options.includes);
 
-    const engine = new PugEngine(site, compile as PugCompiler, options.options);
+    const engine = new PugEngine(site, compile, options.options);
 
     // Load the pages
     site.loadPages(options.extensions, loader, engine);
