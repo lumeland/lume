@@ -197,12 +197,12 @@ async function getFileContent(
 
     if (url.startsWith(to)) {
       const file = site.src(from, url.slice(to.length));
-      const content = await site.source.readFile(file, binaryLoader);
+      const content = await site.reader.read(file, binaryLoader);
       return content.content as Uint8Array;
     }
   }
 
   // Is a source file
-  const content = await site.source.readFile(site.src(url), binaryLoader);
+  const content = await site.reader.read(site.src(url), binaryLoader);
   return content.content as Uint8Array;
 }

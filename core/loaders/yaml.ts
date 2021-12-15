@@ -1,6 +1,7 @@
-import { Data } from "../../core.ts";
 import { parse } from "../../deps/yaml.ts";
 import { isPlainObject } from "../utils.ts";
+
+import type { Data } from "../../core.ts";
 
 /** Load and parse a YAML file */
 export default async function (path: string): Promise<Data> {

@@ -1,8 +1,8 @@
 import { merge } from "../core/utils.ts";
-import { Page, Site } from "../core.ts";
+import { Site } from "../core.ts";
 import { toFileUrl } from "../deps/path.ts";
 import { createGraph, load, LoadResponse } from "../deps/graph.ts";
-import { SitePage } from "../core/filesystem.ts";
+import { Page } from "../core/filesystem.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -109,7 +109,7 @@ export default function (userOptions?: Partial<Options>) {
         files[specifier + ".js.map"] || files["deno:///bundle.js.map"];
 
       if (options.sourceMap && mapContent) {
-        const mapFile = new SitePage();
+        const mapFile = new Page();
         mapFile.dest = {
           path: file.dest.path,
           ext: ".js.map",

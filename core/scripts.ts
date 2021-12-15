@@ -1,26 +1,38 @@
-import { brightGreen, gray } from "../deps/colors.ts";
-import { Command, CommandOptions, Scripts, Site } from "../core.ts";
+import type Logger from "./logger.ts";
 
-/** Manage and execute user scripts */
-export default class ScriptRunner implements Scripts {
-  site: Site;
+/**
+ * Script runner to store and run commands or execute functions
+ * It can execute the scripts and functions in parallel or sequentially
+ */
+export default class Scripts {
+  /** The logger to output messages in the terminal */
+  logger: Logger;
 
-  /** All registered scripts */
-  scripts = new Map<string, Command[]>();
+  /** The default options to execute the scripts */
+  defaults: ScriptOptions;
 
-  constructor(site: Site) {
-    this.site = site;
+  /** All registered scripts and functions */
+  scripts = new Map<string, ScriptOrFunction[]>();
+
+  constructor(logger: Logger, defaults: ScriptOptions) {
+    this.logger = logger;
+    this.defaults = defaults;
   }
 
-  add(name: string, ...commands: Command[]) {
-    this.scripts.set(name, commands);
+  /** Register one or more scripts under a specific name */
+  add(name: string, ...scripts: ScriptOrFunction[]): void {
+    this.scripts.set(name, scripts);
   }
 
-  async run(options: CommandOptions, ...names: Command[]) {
-    options = { cwd: this.site.options.cwd, ...options };
+  /** Run one or more commands */
+  async run(
+    options: ScriptOptions,
+    ...names: ScriptOrFunction[]
+  ): Promise<boolean> {
+    options = { ...this.defaults, ...options };
 
     for (const name of names) {
-      const success = await this.#runScript(options, name);
+      const success = await this.#run(options, name);
 
       if (!success) {
         return false;
@@ -30,19 +42,17 @@ export default class ScriptRunner implements Scripts {
     return true;
   }
 
-  /** Run an individual script or command */
-  async #runScript(options: CommandOptions, name: Command): Promise<unknown> {
+  /** Run an individual script or function */
+  async #run(options: ScriptOptions, name: ScriptOrFunction): Promise<unknown> {
     if (typeof name === "string" && this.scripts.has(name)) {
-      if (!this.site.options.quiet) {
-        console.log(`⚡️ ${brightGreen(name)}`);
-      }
+      this.logger.log(`⚡️ <green>${name}</green>`);
       const command = this.scripts.get(name)!;
       return this.run(options, ...command);
     }
 
     if (Array.isArray(name)) {
       const results = await Promise.all(
-        name.map((n) => this.#runScript(options, n)),
+        name.map((n) => this.#run(options, n)),
       );
       return results.every((success) => success);
     }
@@ -51,25 +61,21 @@ export default class ScriptRunner implements Scripts {
       return this.#runFunction(name);
     }
 
-    return this.#runCommand(options, name);
+    return this.#runScript(options, name);
   }
 
   /** Run a function */
-  async #runFunction(fn: (site: Site) => unknown) {
-    if (fn.name && !this.site.options.quiet) {
-      console.log(gray(`⚡️ ${fn.name}()`));
-    }
-    const result = await fn(this.site);
+  async #runFunction(fn: () => unknown) {
+    this.logger.log(`⚡️ <dim>${fn.name}()</dim>`);
+    const result = await fn();
     return result !== false;
   }
 
   /** Run a shell command */
-  async #runCommand(options: CommandOptions, command: string) {
-    if (!this.site.options.quiet) {
-      console.log(gray(`⚡️ ${command}`));
-    }
+  async #runScript(options: ScriptOptions, script: string) {
+    this.logger.log(`⚡️ <dim>${script}</dim>`);
 
-    const cmd = shArgs(command);
+    const cmd = shArgs(script);
     const process = Deno.run({ cmd, ...options });
     const status = await process.status();
     process.close();
@@ -79,8 +85,14 @@ export default class ScriptRunner implements Scripts {
 }
 
 /** Returns the shell arguments for the current platform */
-function shArgs(command: string) {
+function shArgs(script: string) {
   return Deno.build.os === "windows"
-    ? ["PowerShell.exe", "-Command", command]
-    : ["/bin/bash", "-c", command];
+    ? ["PowerShell.exe", "-Command", script]
+    : ["/bin/bash", "-c", script];
 }
+
+/** A script or function */
+export type ScriptOrFunction = string | (() => unknown) | ScriptOrFunction[];
+
+/** The options for a script */
+export type ScriptOptions = Omit<Deno.RunOptions, "cmd">;

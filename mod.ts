@@ -60,7 +60,6 @@ function getOptionsFromCli(): Partial<Options> {
       "src",
       "dest",
       "location",
-      "metrics",
       "port",
     ],
     boolean: ["quiet", "dev", "serve", "open"],
@@ -86,10 +85,6 @@ function getOptionsFromCli(): Partial<Options> {
     overrides.location = new URL(options.location);
   } else if (options.serve) {
     overrides.location = new URL(`http://localhost:${options.port || 3000}/`);
-  }
-
-  if ("metrics" in options) {
-    overrides.metrics = options.metrics || true;
   }
 
   if (options.quiet) {

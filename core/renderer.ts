@@ -1,146 +1,71 @@
 import { dirname, extname, posix } from "../deps/path.ts";
-import {
-  Data,
-  Engine,
-  Helper,
-  HelperOptions,
-  Page,
-  Processor,
-  Renderer,
-  Site,
-} from "../core.ts";
-import {
-  checkExtensions,
-  concurrent,
-  Exception,
-  searchByExtension,
-} from "./utils.ts";
+import { concurrent, Exception } from "./utils.ts";
 
-export default class LumeRenderer implements Renderer {
-  site: Site;
+import type { Data } from "../core.ts";
+import type IncludesLoader from "./source/includes.ts";
+import type Processors from "./processors.ts";
+import type Engines from "./engines.ts";
+import type { Page } from "./filesystem.ts";
+
+export interface Options {
+  includesLoader: IncludesLoader;
+  prettyUrls: boolean;
+  preprocessors: Processors;
+  engines: Engines;
+}
+
+/**
+ * The renderer is responsible for rendering the site pages
+ * in the right order and using the right template engine.
+ */
+export default class Renderer {
+  /** To load the includes files (layouts) */
+  includesLoader: IncludesLoader;
+
+  /** To convert the urls to pretty /example.html => /example/ */
+  prettyUrls: boolean;
 
   /** Template engines by extension */
-  engines = new Map<string, Engine>();
-
-  /** Extra data to be passed to the layouts */
-  extraData: Record<string, unknown> = {};
+  engines: Engines;
 
   /** All preprocessors */
-  preprocessors = new Map<Processor, string[]>();
+  preprocessors: Processors;
 
-  /** All processors */
-  processors = new Map<Processor, string[]>();
-
-  /** To store the includes paths by extension */
-  includes = new Map<string, string>();
-
-  /** The registered helpers */
-  helpers = new Map<string, [Helper, HelperOptions]>();
-
-  constructor(site: Site) {
-    this.site = site;
-  }
-
-  addEngine(extensions: string[], engine: Engine) {
-    checkExtensions(extensions);
-    extensions.forEach((extension) => this.engines.set(extension, engine));
-
-    for (const [name, helper] of this.helpers) {
-      engine.addHelper(name, ...helper);
-    }
-  }
-
-  addPreprocessor(extensions: string[], preprocessor: Processor) {
-    checkExtensions(extensions);
-    this.preprocessors.set(preprocessor, extensions);
-  }
-
-  addProcessor(extensions: string[], processor: Processor) {
-    checkExtensions(extensions);
-    this.processors.set(processor, extensions);
-  }
-
-  addHelper(name: string, fn: Helper, options: HelperOptions) {
-    this.helpers.set(name, [fn, options]);
-
-    for (const engine of this.engines.values()) {
-      engine.addHelper(name, fn, options);
-    }
-
-    return this;
-  }
-
-  addInclude(extensions: string[], path: string) {
-    extensions.forEach((ext) => this.includes.set(ext, path));
-  }
-
-  /** Render a template */
-  render(
-    engine: Engine,
-    content: unknown,
-    data?: Data,
-    filename?: string,
-  ): unknown | Promise<unknown> {
-    data = { ...this.extraData, ...data };
-    return engine.render(content, data, filename);
-  }
-
-  /** Render a template synchronous */
-  renderSync(
-    engine: Engine,
-    content: unknown,
-    data?: Data,
-    filename?: string,
-  ): string {
-    data = { ...this.extraData, ...data };
-    return engine.renderSync(content, data, filename);
+  constructor(options: Options) {
+    this.includesLoader = options.includesLoader;
+    this.prettyUrls = options.prettyUrls;
+    this.preprocessors = options.preprocessors;
+    this.engines = options.engines;
   }
 
   /** Render the provided pages */
-  async renderPages(pages: Iterable<Page>) {
-    this.site.pages = [];
-
-    // Group pages by renderOrder
-    const renderOrder: Record<number | string, Page[]> = {};
-
-    for (const page of pages) {
-      // Ignore draft pages in production
-      if (!!page.data.draft && !this.site.options.dev) {
-        continue;
-      }
-
-      const order = page.data.renderOrder || 0;
-      renderOrder[order] = renderOrder[order] || [];
-      renderOrder[order].push(page);
-    }
-
-    const orderKeys = Object.keys(renderOrder).sort();
-    let hasOndemand = false;
-
-    for (const order of orderKeys) {
-      const orderPages = [];
+  async renderPages(from: Page[], to: Page[]) {
+    for (const group of this.#groupPages(from)) {
+      const pages = [];
       const generators = [];
 
-      // Prepare the pages
-      for (const page of renderOrder[order]) {
+      // Split regular pages and generators
+      for (const page of group) {
         if (isGenerator(page.data.content)) {
           generators.push(page);
           continue;
         }
 
         this.#urlPage(page);
-        this.site.pages.push(page);
+        to.push(page);
 
         if (!page.data.ondemand) {
-          orderPages.push(page);
-        } else {
-          hasOndemand = true;
+          pages.push(page);
         }
       }
 
-      // Auto-generate pages
+      // Auto-generate pages and join them with the others
       for (const page of generators) {
-        const generator = await this.#generatePages(page);
+        const generator = await this.engines.render(
+          page.data.content,
+          page.data,
+          page.src.path + page.src.ext,
+        ) as Generator<Data, Data>;
 
         for await (const data of generator) {
           if (!data.content) {
@@ -148,40 +73,26 @@ export default class LumeRenderer implements Renderer {
           }
           const newPage = page.duplicate(data);
           this.#urlPage(newPage);
-          orderPages.push(newPage);
-          this.site.pages.push(newPage);
+          pages.push(newPage);
+          to.push(newPage);
         }
       }
 
       // Preprocess the pages
-      await this.#runProcessors(orderPages, this.preprocessors, true);
+      await this.preprocessors.run(pages);
 
       // Render all pages
       await concurrent(
-        orderPages,
+        pages,
         async (page) => {
-          const metric = this.site.metrics.start("Render", { page });
           try {
             page.content = await this.#renderPage(page) as string;
           } catch (cause) {
             throw new Exception("Error rendering this page", { cause, page });
-          } finally {
-            metric.stop();
           }
         },
       );
     }
-    await this.site.dispatchEvent({ type: "afterRender" });
-
-    // Remove ondemand pages from the site pages
-    if (hasOndemand) {
-      this.site.pages = this.site.pages.filter((page) => !page.data.ondemand);
-    }
-
-    // Process the pages
-    const metricProcess = this.site.metrics.start("Process (all pages)");
-    await this.#runProcessors(this.site.pages, this.processors);
-    metricProcess.stop();
   }
 
   /** Render the provided pages */
@@ -194,60 +105,8 @@ export default class LumeRenderer implements Renderer {
 
     this.#urlPage(page);
 
-    await this.#runProcessors([page], this.preprocessors, true);
+    await this.preprocessors.run([page]);
     page.content = await this.#renderPage(page) as string;
-    await this.#runProcessors([page], this.processors);
-  }
-
-  /** Returns a generator for multipages */
-  async #generatePages(page: Page): Promise<Generator<Data, Data>> {
-    const engine = this.engines.get(".tmpl.js") as Engine;
-
-    return await engine.render(
-      page.data.content,
-      {
-        ...page.data,
-        ...this.extraData,
-      },
-      this.site.src(page.src.path + page.src.ext),
-    ) as Generator<Data, Data>;
-  }
-
-  /** Run the (pre)processors to the provided pages */
-  async #runProcessors(
-    pages: Page[],
-    processors: Map<Processor, string[]>,
-    preProcess = false,
-  ): Promise<void> {
-    for (const [process, exts] of processors) {
-      await concurrent(
-        pages,
-        async (page) => {
-          try {
-            if (
-              (preProcess || page.content) &&
-              ((page.src.ext && exts.includes(page.src.ext)) ||
-                exts.includes(page.dest.ext))
-            ) {
-              const metric = this.site.metrics.start("Process", {
-                page,
-                processor: process.name,
-                preProcess,
-              });
-              await process(page, this.site);
-              metric.stop();
-            }
-          } catch (cause) {
-            throw new Exception("Error processing page", {
-              cause,
-              page,
-              processor: process.name,
-              preProcess,
-            });
-          }
-        },
-      );
-    }
   }
 
   /** Generate the URL and dest info of a page */
@@ -279,7 +138,7 @@ export default class LumeRenderer implements Renderer {
       }
     } else if (!dest.ext) {
       if (
-        this.site.options.prettyUrls && posix.basename(dest.path) !== "index"
+        this.prettyUrls && posix.basename(dest.path) !== "index"
       ) {
         dest.path = posix.join(dest.path, "index");
       }
@@ -292,108 +151,61 @@ export default class LumeRenderer implements Renderer {
         : dest.path + dest.ext;
   }
 
+  /** Group the pages by renderOrder */
+  #groupPages(pages: Page[]): Page[][] {
+    const renderOrder: Record<number | string, Page[]> = {};
+
+    for (const page of pages) {
+      const order = page.data.renderOrder || 0;
+      renderOrder[order] = renderOrder[order] || [];
+      renderOrder[order].push(page);
+    }
+
+    return Object.keys(renderOrder).sort().map((order) => renderOrder[order]);
+  }
+
   /** Render a page */
   async #renderPage(page: Page) {
-    let content = page.data.content;
-    let pageData = page.data;
-    let { layout } = pageData;
-    const path = this.site.src(page.src.path + page.src.ext);
-    const engine = this.#getEngine(path, pageData.templateEngine);
+    let { data } = page;
+    let { content, layout } = data;
+    const path = page.src.path + page.src.ext;
 
-    if (Array.isArray(engine)) {
-      for (const eng of engine) {
-        content = await this.render(eng, content, pageData, path);
-      }
-    } else if (engine) {
-      content = await this.render(engine, content, pageData, path);
-    }
+    content = await this.engines.render(content, data, path);
 
     // Render the layouts recursively
     while (layout) {
-      const result = this.site.source.getPageLoader(layout);
+      const result = await this.includesLoader.load(layout);
 
       if (!result) {
         throw new Exception(
-          "Couldn't find a loader for this layout",
+          "Couldn't load this layout",
           { layout },
         );
       }
 
-      const [ext, loader] = result;
+      delete data.layout;
+      delete data.templateEngine;
 
-      const layoutPath = this.site.src(
-        this.includes.get(ext) || this.site.options.includes,
-        layout,
-      );
-      const layoutData = await this.site.source.readFile(layoutPath, loader);
-      const engine = this.#getEngine(layout, layoutData.templateEngine);
+      const [layoutPath, layoutData] = result;
 
-      if (!engine) {
-        throw new Exception(
-          "Couldn't find a template engine for this layout",
-          { layout },
-        );
-      }
-
-      pageData = {
+      data = {
         ...layoutData,
-        ...pageData,
+        ...data,
         content,
       };
 
-      if (Array.isArray(engine)) {
-        for (const eng of engine) {
-          content = await this.render(
-            eng,
-            layoutData.content,
-            pageData,
-            layoutPath,
-          );
-        }
-      } else {
-        content = await this.render(
-          engine,
-          layoutData.content,
-          pageData,
-          layoutPath,
-        );
-      }
-
+      content = await this.engines.render(layoutData.content, data, layoutPath);
       layout = layoutData.layout;
     }
 
     return content;
   }
-
-  /** Get the engine used by a path or extension */
-  #getEngine(path: string, templateEngine: Data["templateEngine"]) {
-    if (templateEngine) {
-      templateEngine = Array.isArray(templateEngine)
-        ? templateEngine
-        : templateEngine.split(",");
-
-      return templateEngine.map((name) => {
-        const engine = this.engines.get(`.${name.trim()}`);
-
-        if (engine) {
-          return engine;
-        }
-
-        throw new Exception(
-          "Invalid value for templateEngine",
-          { path, templateEngine },
-        );
-      });
-    }
-
-    const result = searchByExtension(path, this.engines);
-
-    if (result) {
-      return result[1];
-    }
-  }
 }
 
+/**
+ * Check if the content of a page is a generator.
+ * Used to generate multiple pages
+ */
 function isGenerator(content: unknown) {
   if (typeof content !== "function") {
     return false;

@@ -108,10 +108,6 @@ const lume = new Command()
     { default: "http://localhost" },
   )
   .option(
-    "--metrics [metrics]",
-    "Show performance metrics or save them in a file.",
-  )
-  .option(
     "--quiet [quiet:boolean]",
     "Enable quiet mode (show less info).",
   )

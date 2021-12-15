@@ -44,9 +44,6 @@ export default async function build(
     return;
   }
 
-  // Disable metrics for the watcher
-  site.options.metrics = false;
-
   // Start the watcher
   runWatch({
     root: site.src(),

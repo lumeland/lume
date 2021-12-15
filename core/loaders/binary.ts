@@ -1,4 +1,4 @@
-import { Data } from "../../core.ts";
+import type { Data } from "../../core.ts";
 
 /** Load binary files, like images, audio, video, etc. */
 export default async function (path: string): Promise<Data> {

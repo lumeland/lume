@@ -124,7 +124,7 @@ export default function (userOptions?: Partial<Options>) {
     const env = new nunjucks.Environment(fsLoader, options.options);
 
     // Configure includes
-    site.renderer.addInclude(options.extensions, options.includes);
+    site.includes(options.extensions, options.includes);
 
     // Register nunjucks extensions
     for (const [name, fn] of Object.entries(options.plugins)) {

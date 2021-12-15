@@ -1,35 +1,49 @@
 import { join, posix, SEP } from "../deps/path.ts";
-import SiteSource from "./source.ts";
-import ScriptRunner from "./scripts.ts";
-import PerformanceMetrics from "./metrics.ts";
-import SiteRenderer from "./renderer.ts";
-import SiteEmitter from "./emitter.ts";
-import textLoader from "./loaders/text.ts";
+import Source from "./source.ts";
 import {
-  Command,
-  CommandOptions,
-  Emitter,
+  default as Scripts,
+  ScriptOptions,
+  ScriptOrFunction,
+} from "./scripts.ts";
+import Renderer from "./renderer.ts";
+import { Writer } from "./writer.ts";
+import textLoader from "./loaders/text.ts";
+import Reader from "./reader.ts";
+import PageLoader from "./source/page.ts";
+import AssetLoader from "./source/asset.ts";
+import DataLoader from "./source/data.ts";
+import IncludesLoader from "./source/includes.ts";
+import Processors from "./processors.ts";
+import Scopes from "./scopes.ts";
+import {
+  default as Engines,
   Engine,
+  Helper,
+  HelperOptions,
+} from "./engines.ts";
+import Logger from "./logger.ts";
+import {
+  default as Events,
   Event,
   EventListener,
   EventOptions,
   EventType,
-  Helper,
-  HelperOptions,
+} from "./events.ts";
+import {
   Loader,
-  Metrics,
   Page,
   Plugin,
   Processor,
-  Renderer,
   ScopeFilter,
-  Scripts,
-  Site,
   SiteOptions,
-  Source,
 } from "../core.ts";
-import { concurrent, Exception, merge, normalizePath } from "./utils.ts";
-import Changes from "./changes.ts";
+import {
+  checkExtensions,
+  concurrent,
+  Exception,
+  merge,
+  normalizePath,
+} from "./utils.ts";
 
 const defaults: SiteOptions = {
   cwd: Deno.cwd(),
@@ -37,7 +51,6 @@ const defaults: SiteOptions = {
   dest: "./_site",
   includes: "_includes",
   location: new URL("http://localhost"),
-  metrics: false,
   quiet: false,
   dev: false,
   prettyUrls: true,
@@ -52,29 +65,117 @@ const defaults: SiteOptions = {
   },
 };
 
-type Listener = [EventListener | string, EventOptions | undefined];
-
 /**
- * The default site builder
+ * This is the heart of Lume,
+ * it contains everything needed to build the site
  */
-export default class LumeSite implements Site {
+export default class Site {
   options: SiteOptions;
-  source: Source;
+
+  /** To output messages to the console */
+  logger: Logger;
+
+  /** To listen and dispatch events */
+  events: Events;
+
+  /** To run scripts */
   scripts: Scripts;
-  metrics: Metrics;
+
+  /** To read the files from the filesystem */
+  reader: Reader;
+
+  /** To write the generated pages in the dest folder */
+  writer: Writer;
+
+  /** To load all _data files */
+  dataLoader: DataLoader;
+
+  /** To load all HTML pages */
+  pageLoader: PageLoader;
+
+  /** To load all non-HTML pages */
+  assetLoader: AssetLoader;
+
+  /** To load all _includes files (layouts, templates, etc) */
+  includesLoader: IncludesLoader;
+
+  /** To store and run the processors */
+  processors: Processors;
+
+  /** To store and run the pre-processors */
+  preprocessors: Processors;
+
+  /** To store and run the template engines */
+  engines = new Engines();
+
+  /** To scan the src folder */
+  source: Source;
+
+  /** To render the pages using any template engine */
   renderer: Renderer;
-  emitter: Emitter;
+  
+  /** To update pages of the same scope after any change */
+  scopes: Scopes;
+
+  /** The generated pages are stored here */
   pages: Page[] = [];
-  listeners = new Map<EventType, Set<Listener>>();
-  #scopes = new Set<ScopeFilter>();
+
 
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);
-    this.source = new SiteSource(this);
-    this.scripts = new ScriptRunner(this);
-    this.metrics = new PerformanceMetrics(this);
-    this.renderer = new SiteRenderer(this);
-    this.emitter = new SiteEmitter(this);
+
+    this.scopes = new Scopes();
+    this.events = new Events();
+    this.processors = new Processors();
+    this.preprocessors = new Processors();
+    this.logger = new Logger(this.options.quiet);
+
+    const basePath = this.src();
+
+    this.reader = new Reader(basePath);
+
+    this.pageLoader = new PageLoader(this.reader);
+    this.assetLoader = new AssetLoader(this.reader);
+    this.dataLoader = new DataLoader(this.reader);
+    this.includesLoader = new IncludesLoader(this.reader);
+    this.includesLoader.defaultDir = this.options.includes;
+
+    this.source = new Source({
+      reader: this.reader,
+      pageLoader: this.pageLoader,
+      assetLoader: this.assetLoader,
+      dataLoader: this.dataLoader,
+    });
+
+    this.scripts = new Scripts(this.logger, {
+      cwd: this.options.cwd,
+    });
+
+    this.addEventListener("beforeBuild", () => {
+      this.source.clearCache();
+      this.reader.clearCache();
+    });
+
+    this.addEventListener("beforeUpdate", (ev: Event) => {
+      this.source.clearCache();
+
+      for (const filename of ev.files!) {
+        this.reader.deleteCache(filename);
+      }
+    });
+
+    this.renderer = new Renderer({
+      includesLoader: this.includesLoader,
+      prettyUrls: this.options.prettyUrls,
+      preprocessors: this.preprocessors,
+      engines: this.engines,
+    });
+
+    this.writer = new Writer({
+      src: this.src(),
+      dest: this.dest(),
+      logger: this.logger,
+    });
 
     // Ignore the dest directory if it's inside src
     if (this.dest().startsWith(this.src())) {
@@ -85,219 +186,235 @@ export default class LumeSite implements Site {
     this.options.watcher.ignore.push(this.dest());
   }
 
+  /**
+   * Returns the full path to the src directory.
+   * Use the arguments to return a subpath
+   */
   src(...path: string[]) {
     return join(this.options.cwd, this.options.src, ...path);
   }
 
+  /**
+   * Returns the full path to the dest directory.
+   * Use the arguments to return a subpath
+   */
   dest(...path: string[]) {
     return join(this.options.cwd, this.options.dest, ...path);
   }
 
+  /** Add a listener to an event */
   addEventListener(
     type: EventType,
-    listenerFn: EventListener | string,
+    listener: EventListener | string,
     options?: EventOptions,
   ) {
-    const listeners = this.listeners.get(type) || new Set();
-    const listener: Listener = [
-      listenerFn,
-      options,
-    ];
-    listeners.add(listener);
-    this.listeners.set(type, listeners);
+    const fn = typeof listener === "string"
+      ? () => this.run(listener)
+      : listener;
 
-    // Remove on abort
-    if (options?.signal) {
-      options.signal.addEventListener("abort", () => {
-        listeners.delete(listener);
-      });
-    }
-
+    this.events.addEventListener(type, fn, options);
     return this;
   }
 
-  async dispatchEvent(event: Event) {
-    const type = event.type;
-    const listeners = this.listeners.get(type);
-
-    if (!listeners) {
-      return true;
-    }
-
-    for (const listener of listeners) {
-      const [listenerFn, listenerOptions] = listener;
-
-      // Remove the listener if it's a once listener
-      if (listenerOptions?.once) {
-        listeners.delete(listener);
-      }
-
-      if (typeof listenerFn === "string") {
-        const success = await this.run(listenerFn);
-
-        if (!success) {
-          return false;
-        }
-
-        continue;
-      }
-
-      if (await listenerFn(event) === false) {
-        return false;
-      }
-    }
-    return true;
+  /** Dispatch an event */
+  dispatchEvent(event: Event) {
+    return this.events.dispatchEvent(event);
   }
 
+  /** Use a plugin */
   use(plugin: Plugin) {
     plugin(this);
     return this;
   }
 
-  script(name: string, ...scripts: Command[]) {
+  /**
+   * Register a script or a function, so it can be executed with
+   * lume run <name>
+   */
+  script(name: string, ...scripts: ScriptOrFunction[]) {
     this.scripts.add(name, ...scripts);
     return this;
   }
 
+  /** Runs a script or function */
+  async run(name: string, options: ScriptOptions = {}) {
+    return await this.scripts.run(options, name);
+  }
+
+  /** Register a data loader for some extensions */
   loadData(extensions: string[], loader: Loader) {
-    this.source.addDataLoader(extensions, loader);
+    checkExtensions(extensions);
+    extensions.forEach((extension) =>
+      this.dataLoader.loaders.set(extension, loader)
+    );
     return this;
   }
 
-  loadPages(extensions: string[], loader?: Loader, engine?: Engine) {
-    this.source.addPageLoader(extensions, loader || textLoader, false);
+  /** Register a page loader for some extensions */
+  loadPages(
+    extensions: string[],
+    loader: Loader = textLoader,
+    engine?: Engine,
+  ) {
+    checkExtensions(extensions);
+    extensions.forEach((extension) => {
+      this.pageLoader.loaders.set(extension, loader);
+      this.includesLoader.loaders.set(extension, loader);
+    });
 
     if (engine) {
-      this.renderer.addEngine(extensions, engine);
+      this.engines.addEngine(extensions, engine);
     }
-
     return this;
   }
 
-  loadAssets(extensions: string[], loader?: Loader) {
-    this.source.addPageLoader(extensions, loader || textLoader, true);
+  /** Register an assets loader for some extensions */
+  loadAssets(extensions: string[], loader: Loader = textLoader) {
+    checkExtensions(extensions);
+    extensions.forEach((extension) =>
+      this.assetLoader.loaders.set(extension, loader)
+    );
     return this;
   }
 
+  /** Register an import path for some extensions  */
+  includes(extensions: string[], path: string) {
+    checkExtensions(extensions);
+
+    extensions.forEach((extension) =>
+      this.includesLoader.includes.set(extension, path)
+    );
+    return this;
+  }
+
+  /** Register a preprocessor for some extensions */
   preprocess(extensions: string[], preprocessor: Processor) {
-    this.renderer.addPreprocessor(extensions, preprocessor);
+    checkExtensions(extensions);
+    this.preprocessors.processors.set(preprocessor, extensions);
     return this;
   }
 
+  /** Register a processor for some extensions */
   process(extensions: string[], processor: Processor) {
-    this.renderer.addProcessor(extensions, processor);
+    checkExtensions(extensions);
+    this.processors.processors.set(processor, extensions);
     return this;
   }
 
+  /** Register a template filter */
   filter(name: string, filter: Helper, async = false) {
     return this.helper(name, filter, { type: "filter", async });
   }
 
+  /** Register a template helper */
   helper(name: string, fn: Helper, options: HelperOptions) {
-    this.renderer.addHelper(name, fn, options);
+    this.engines.addHelper(name, fn, options);
     return this;
   }
 
+  /** Register extra data accessible by layouts */
   data(name: string, data: unknown) {
-    this.renderer.extraData[name] = data;
+    this.engines.extraData[name] = data;
     return this;
   }
 
+  /** Copy static files or directories without processing */
   copy(from: string, to = from) {
     this.source.addStaticFile(join("/", from), join("/", to));
     return this;
   }
 
+  /** Ignore one or several files or directories */
   ignore(...paths: string[]) {
     paths.forEach((path) => this.source.addIgnoredPath(join("/", path)));
     return this;
   }
 
+  /** Define independent scopes to optimize the update process */
   scopedUpdates(...scopes: ScopeFilter[]) {
-    scopes.forEach((scope) => this.#scopes.add(scope));
+    scopes.forEach((scope) => this.scopes.scopes.add(scope));
     return this;
   }
 
+  /** Clear the dest directory */
   async clear() {
-    await this.emitter.clear();
+    await this.writer.clear();
   }
 
+  /** Build the entire site */
   async build() {
-    const buildMetric = this.metrics.start("Build (entire site)");
-
     if (await this.dispatchEvent({ type: "beforeBuild" }) === false) {
-      return buildMetric.stop();
+      return;
     }
 
     await this.clear();
 
-    let metric = this.metrics.start("Copy (all files)");
     for (const [from, to] of this.source.staticFiles) {
-      await this.emitter.copyFile(from, to);
+      await this.writer.copyFile(from, to);
     }
-    metric.stop();
 
-    metric = this.metrics.start("Load (all pages)");
     await this.source.load();
-    metric.stop();
 
-    metric = this.metrics.start(
-      "Preprocess + render + process (all pages)",
+    this.pages = [];
+
+    const from = this.source.getPages(
+      (page) => !page.data.draft || this.options.dev,
     );
-    await this.renderer.renderPages(this.source.pages);
-    metric.stop();
+
+    await this.renderer.renderPages(from, this.pages);
+    await this.events.dispatchEvent({ type: "afterRender" });
+
+    // Remove empty and ondemand pages
+    this.pages = this.pages.filter((page) =>
+      !!page.content && !page.data.ondemand
+    );
+
+    // Process the pages
+    await this.processors.run(this.pages);
 
     if (await this.dispatchEvent({ type: "beforeSave" }) === false) {
-      return buildMetric.stop();
+      return;
     }
 
     // Save the pages
-    metric = this.metrics.start("Save (all pages)");
     await concurrent(
       this.pages,
-      (page) => this.emitter.savePage(page),
+      (page) => this.writer.savePage(page),
     );
-    metric.stop();
 
-    buildMetric.stop();
     await this.dispatchEvent({ type: "afterBuild" });
-
-    // Print or save the collected metrics
-    const { metrics } = this.options;
-
-    if (typeof metrics === "string") {
-      await this.metrics.save(join(this.options.cwd, metrics));
-    } else if (metrics) {
-      this.metrics.print();
-    }
   }
 
+  /** Reload some files that might be changed */
   async update(files: Set<string>) {
     if (await this.dispatchEvent({ type: "beforeUpdate", files }) === false) {
       return;
     }
 
-    const changes = new Changes(this.#scopes);
-
     for (const file of files) {
-      changes.add(file);
-
       // It's a static file
       const entry = this.#isStaticFile(file);
 
       if (entry) {
         const [from, to] = entry;
 
-        await this.emitter.copyFile(file, join(to, file.slice(from.length)));
+        await this.writer.copyFile(file, join(to, file.slice(from.length)));
         continue;
       }
 
       await this.source.reload(file);
     }
 
-    const filter = changes.getFilter();
+    const from = this.source.getPages(
+      (page) => !page.data.draft || this.options.dev,
+      this.scopes.getFilter(files),
+    );
 
-    await this.renderer.renderPages(filter(this.source.pages));
+    await this.renderer.renderPages(from, this.pages);
+    await this.events.dispatchEvent({ type: "afterRender" });
+
+    // Process the pages
+    await this.processors.run(this.pages);
 
     if (await this.dispatchEvent({ type: "beforeSave" }) === false) {
       return;
@@ -305,11 +422,12 @@ export default class LumeSite implements Site {
 
     await concurrent(
       this.pages,
-      (page) => this.emitter.savePage(page),
+      (page) => this.writer.savePage(page),
     );
     await this.dispatchEvent({ type: "afterUpdate", files });
   }
 
+  /** Render a single page (used for on demand rendering) */
   async renderPage(file: string): Promise<Page | undefined> {
     await this.source.reload(file);
     const page = this.source.getFileOrDirectory(file) as Page | undefined;
@@ -317,15 +435,16 @@ export default class LumeSite implements Site {
     if (!page) {
       return;
     }
+
     await this.dispatchEvent({ type: "beforeRenderOnDemand", page });
     await this.renderer.renderPageOnDemand(page);
+
+    // Process the page
+    await this.processors.run([page]);
     return page;
   }
 
-  async run(name: string, options: CommandOptions = {}) {
-    return await this.scripts.run(options, name);
-  }
-
+  /** Return the URL of a page */
   url(path: string, absolute = false) {
     if (
       path.startsWith("./") || path.startsWith("../") ||

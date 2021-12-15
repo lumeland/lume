@@ -1,5 +1,6 @@
-import { Data } from "../../core.ts";
 import { isPlainObject } from "../utils.ts";
+
+import type { Data } from "../../core.ts";
 
 /** Load a JavaScript/TypeScript file. Use a random hash to prevent caching */
 export default async function (path: string): Promise<Data> {

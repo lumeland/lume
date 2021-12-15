@@ -1,5 +1,6 @@
-import { Data } from "../../core.ts";
 import { isPlainObject } from "../utils.ts";
+
+import type { Data } from "../../core.ts";
 
 /** Load and parse a JSON file */
 export default async function (path: string): Promise<Data> {

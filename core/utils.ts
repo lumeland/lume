@@ -1,7 +1,7 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
 import { extname, join, SEP } from "../deps/path.ts";
 import { bold, dim, yellow } from "../deps/colors.ts";
-import { FileResponse, Page } from "../core.ts";
+import { ErrorData, FileResponse, Page } from "../core.ts";
 
 /** Run a callback concurrently with all the elements of an Iterable */
 export async function concurrent<Type>(
@@ -195,12 +195,6 @@ export function stringToDocument(string: string): HTMLDocument {
   }
 
   return document;
-}
-
-export interface ErrorData {
-  cause?: Error;
-  name?: string;
-  [key: string]: unknown;
 }
 
 /**
