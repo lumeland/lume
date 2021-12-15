@@ -113,13 +113,12 @@ export default class Site {
 
   /** To render the pages using any template engine */
   renderer: Renderer;
-  
+
   /** To update pages of the same scope after any change */
   scopes: Scopes;
 
   /** The generated pages are stored here */
   pages: Page[] = [];
-
 
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);

@@ -26,7 +26,7 @@ export default class Scopes {
           break;
         }
       }
-  
+
       if (!found) {
         noScoped = true;
       }
