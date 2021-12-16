@@ -1,7 +1,12 @@
-import { Page } from "../filesystem.ts";
-import Extensions from "../extensions.ts";
+import { Page } from "./filesystem.ts";
+import Extensions from "./extensions.ts";
 
-import type { default as Reader, Loader } from "../reader.ts";
+import type { default as Reader, Loader } from "./reader.ts";
+
+export interface Options {
+  /** The reader instance used to read the files */
+  reader: Reader;
+}
 
 /**
  * Class to load page files that generate assets (css, js, etc).
@@ -13,8 +18,8 @@ export default class AssetLoader {
   /** List of extensions to load page files and the loader used */
   loaders = new Extensions<Loader>();
 
-  constructor(reader: Reader) {
-    this.reader = reader;
+  constructor(options: Options) {
+    this.reader = options.reader;
   }
 
   /** Load an asset Page */

@@ -1,8 +1,13 @@
-import { basename, extname, join } from "../../deps/path.ts";
-import Extensions from "../extensions.ts";
+import { basename, extname, join } from "../deps/path.ts";
+import Extensions from "./extensions.ts";
 
-import type { default as Reader, Loader } from "../reader.ts";
-import type { Data } from "../filesystem.ts";
+import type { default as Reader, Loader } from "./reader.ts";
+import type { Data } from "./filesystem.ts";
+
+export interface Options {
+  /** The reader instance used to read the files */
+  reader: Reader;
+}
 
 /**
  * Class to load data files.
@@ -14,8 +19,8 @@ export default class DataLoader {
   /** List of extensions to load page files and the loader used */
   loaders = new Extensions<Loader>();
 
-  constructor(reader: Reader) {
-    this.reader = reader;
+  constructor(options: Options) {
+    this.reader = options.reader;
   }
 
   /** Load a _data.* file */

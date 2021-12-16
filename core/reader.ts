@@ -3,6 +3,11 @@ import { join } from "../deps/path.ts";
 
 import type { Data } from "./filesystem.ts";
 
+export interface Options {
+  /** The root directory of the files */
+  src: string;
+}
+
 /**
  * Class to read directories, files and store the content in a cache
  * It's used to avoid reading the same file multiple times
@@ -11,8 +16,8 @@ export default class Reader {
   src: string;
   #cache = new Map<string, Promise<Data>>();
 
-  constructor(src: string) {
-    this.src = src;
+  constructor(options: Options) {
+    this.src = options.src;
   }
 
   /** Delete a file from the cache */

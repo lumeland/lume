@@ -1,5 +1,13 @@
 import type Logger from "./logger.ts";
 
+export interface Options {
+  /** The logger to use */
+  logger: Logger;
+
+  /** The default cwd for scripts */
+  options: ScriptOptions;
+}
+
 /**
  * Script runner to store and run commands or execute functions
  * It can execute the scripts and functions in parallel or sequentially
@@ -9,14 +17,14 @@ export default class Scripts {
   logger: Logger;
 
   /** The default options to execute the scripts */
-  defaults: ScriptOptions;
+  options: ScriptOptions;
 
   /** All registered scripts and functions */
   scripts = new Map<string, ScriptOrFunction[]>();
 
-  constructor(logger: Logger, defaults: ScriptOptions) {
-    this.logger = logger;
-    this.defaults = defaults;
+  constructor(options: Options) {
+    this.logger = options.logger;
+    this.options = options.options;
   }
 
   /** Register one or more scripts under a specific name */
@@ -29,7 +37,7 @@ export default class Scripts {
     options: ScriptOptions,
     ...names: ScriptOrFunction[]
   ): Promise<boolean> {
-    options = { ...this.defaults, ...options };
+    options = { ...this.options, ...options };
 
     for (const name of names) {
       const success = await this.#run(options, name);

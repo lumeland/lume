@@ -1,35 +1,22 @@
 import { join, posix, SEP } from "../deps/path.ts";
+
+import Reader from "./reader.ts";
+import PageLoader from "./page_loader.ts";
+import AssetLoader from "./asset_loader.ts";
+import DataLoader from "./data_loader.ts";
+import IncludesLoader from "./includes_loader.ts";
 import Source from "./source.ts";
-import {
-  default as Scripts,
-  ScriptOptions,
-  ScriptOrFunction,
-} from "./scripts.ts";
+import StaticFiles from "./static_files.ts";
+import Engines from "./engines.ts";
+import Scopes from "./scopes.ts";
+import Processors from "./processors.ts";
 import Renderer from "./renderer.ts";
+import Events from "./events.ts";
+import Logger from "./logger.ts";
+import Scripts from "./scripts.ts";
 import Writer from "./writer.ts";
 import textLoader from "./loaders/text.ts";
-import { default as Reader, Loader } from "./reader.ts";
-import PageLoader from "./source/page.ts";
-import AssetLoader from "./source/asset.ts";
-import DataLoader from "./source/data.ts";
-import IncludesLoader from "./source/includes.ts";
-import { default as Processors, Processor } from "./processors.ts";
-import { default as Scopes, ScopeFilter } from "./scopes.ts";
-import {
-  default as Engines,
-  Engine,
-  Helper,
-  HelperOptions,
-} from "./engines.ts";
-import Logger from "./logger.ts";
-import {
-  default as Events,
-  Event,
-  EventListener,
-  EventOptions,
-  EventType,
-} from "./events.ts";
-import { Page, Plugin } from "../core.ts";
+
 import {
   checkExtensions,
   concurrent,
@@ -38,6 +25,25 @@ import {
   normalizePath,
 } from "./utils.ts";
 
+import {
+  Engine,
+  Event,
+  EventListener,
+  EventOptions,
+  EventType,
+  FileResponse,
+  Helper,
+  HelperOptions,
+  Loader,
+  Page,
+  Plugin,
+  Processor,
+  ScopeFilter,
+  ScriptOptions,
+  ScriptOrFunction,
+} from "../core.ts";
+
+/** Default options of the site */
 const defaults: SiteOptions = {
   cwd: Deno.cwd(),
   src: "./",
@@ -65,23 +71,8 @@ const defaults: SiteOptions = {
 export default class Site {
   options: SiteOptions;
 
-  /** To output messages to the console */
-  logger: Logger;
-
-  /** To listen and dispatch events */
-  events: Events;
-
-  /** To run scripts */
-  scripts: Scripts;
-
   /** To read the files from the filesystem */
   reader: Reader;
-
-  /** To write the generated pages in the dest folder */
-  writer: Writer;
-
-  /** To load all _data files */
-  dataLoader: DataLoader;
 
   /** To load all HTML pages */
   pageLoader: PageLoader;
@@ -89,8 +80,23 @@ export default class Site {
   /** To load all non-HTML pages */
   assetLoader: AssetLoader;
 
+  /** To load all _data files */
+  dataLoader: DataLoader;
+
   /** To load all _includes files (layouts, templates, etc) */
   includesLoader: IncludesLoader;
+
+  /** To scan the src folder */
+  source: Source;
+
+  /** To handle the static files */
+  staticFiles: StaticFiles;
+
+  /** To store and run the template engines */
+  engines: Engines;
+
+  /** To update pages of the same scope after any change */
+  scopes: Scopes;
 
   /** To store and run the processors */
   processors: Processors;
@@ -98,17 +104,20 @@ export default class Site {
   /** To store and run the pre-processors */
   preprocessors: Processors;
 
-  /** To store and run the template engines */
-  engines = new Engines();
-
-  /** To scan the src folder */
-  source: Source;
-
   /** To render the pages using any template engine */
   renderer: Renderer;
 
-  /** To update pages of the same scope after any change */
-  scopes: Scopes;
+  /** To listen and dispatch events */
+  events: Events;
+
+  /** To output messages to the console */
+  logger: Logger;
+
+  /** To run scripts */
+  scripts: Scripts;
+
+  /** To write the generated pages in the dest folder */
+  writer: Writer;
 
   /** The generated pages are stored here */
   pages: Page[] = [];
@@ -116,38 +125,62 @@ export default class Site {
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);
 
-    this.scopes = new Scopes();
-    this.events = new Events();
-    this.processors = new Processors();
-    this.preprocessors = new Processors();
-    this.logger = new Logger(this.options.quiet);
+    const src = this.src();
+    const dest = this.src();
+    const { quiet, includes, cwd, prettyUrls } = this.options;
 
-    const basePath = this.src();
+    // To load source files
+    const reader = new Reader({ src });
+    const pageLoader = new PageLoader({ reader });
+    const assetLoader = new AssetLoader({ reader });
+    const dataLoader = new DataLoader({ reader });
+    const includesLoader = new IncludesLoader({ reader, includes });
+    const source = new Source({ reader, pageLoader, assetLoader, dataLoader });
+    const staticFiles = new StaticFiles();
 
-    this.reader = new Reader(basePath);
-
-    this.pageLoader = new PageLoader(this.reader);
-    this.assetLoader = new AssetLoader(this.reader);
-    this.dataLoader = new DataLoader(this.reader);
-    this.includesLoader = new IncludesLoader(this.reader);
-    this.includesLoader.paths.default = this.options.includes;
-
-    this.source = new Source({
-      reader: this.reader,
-      pageLoader: this.pageLoader,
-      assetLoader: this.assetLoader,
-      dataLoader: this.dataLoader,
+    // To render pages
+    const engines = new Engines();
+    const scopes = new Scopes();
+    const processors = new Processors();
+    const preprocessors = new Processors();
+    const renderer = new Renderer({
+      includesLoader,
+      prettyUrls,
+      preprocessors,
+      engines,
     });
 
-    this.scripts = new Scripts(this.logger, {
-      cwd: this.options.cwd,
-    });
+    // Other stuff
+    const events = new Events();
+    const logger = new Logger({ quiet });
+    const scripts = new Scripts({ logger, options: { cwd } });
+    const writer = new Writer({ src, dest, logger });
 
+    // Save everything in the site instance
+    this.reader = reader;
+    this.pageLoader = pageLoader;
+    this.assetLoader = assetLoader;
+    this.dataLoader = dataLoader;
+    this.includesLoader = includesLoader;
+    this.source = source;
+    this.staticFiles = staticFiles;
+    this.engines = engines;
+    this.scopes = scopes;
+    this.processors = processors;
+    this.preprocessors = preprocessors;
+    this.renderer = renderer;
+    this.events = events;
+    this.logger = logger;
+    this.scripts = scripts;
+    this.writer = writer;
+
+    // Clear the cache before the build
     this.addEventListener("beforeBuild", () => {
       this.source.clearCache();
       this.reader.clearCache();
     });
 
+    // Clear the cache before every file change
     this.addEventListener("beforeUpdate", (ev: Event) => {
       this.source.clearCache();
 
@@ -156,20 +189,7 @@ export default class Site {
       }
     });
 
-    this.renderer = new Renderer({
-      includesLoader: this.includesLoader,
-      prettyUrls: this.options.prettyUrls,
-      preprocessors: this.preprocessors,
-      engines: this.engines,
-    });
-
-    this.writer = new Writer({
-      src: this.src(),
-      dest: this.dest(),
-      logger: this.logger,
-    });
-
-    // Ignore the dest directory if it's inside src
+    // Ignore the "dest" directory if it's inside src
     if (this.dest().startsWith(this.src())) {
       this.ignore(this.options.dest);
     }
@@ -307,7 +327,8 @@ export default class Site {
 
   /** Copy static files or directories without processing */
   copy(from: string, to = from) {
-    this.source.addStaticFile(join("/", from), join("/", to));
+    this.staticFiles.add(from, to);
+    this.source.addIgnoredPath(from); // Ignore static paths
     return this;
   }
 
@@ -334,36 +355,40 @@ export default class Site {
       return;
     }
 
+    // Clear the dest folder
     await this.clear();
 
-    for (const [from, to] of this.source.staticFiles) {
+    // Copy static files
+    for (const [from, to] of this.staticFiles.paths) {
       await this.writer.copyFile(from, to);
     }
 
+    // Load source files
     await this.source.load();
 
-    this.pages = [];
-
+    // Get all pages to process (ignore drafts)
     const from = this.source.getPages(
       (page) => !page.data.draft || this.options.dev,
     );
 
+    // Render the pages into this.pages array
+    this.pages = [];
     await this.renderer.renderPages(from, this.pages);
     await this.events.dispatchEvent({ type: "afterRender" });
 
-    // Remove empty and ondemand pages
+    // Remove empty pages
     this.pages = this.pages.filter((page) =>
       !!page.content && !page.data.ondemand
     );
 
-    // Process the pages
+    // Run the processors to the pages
     await this.processors.run(this.pages);
 
     if (await this.dispatchEvent({ type: "beforeSave" }) === false) {
       return;
     }
 
-    // Save the pages
+    // Save the pages in the dest folder
     await concurrent(
       this.pages,
       (page) => this.writer.savePage(page),
@@ -378,45 +403,53 @@ export default class Site {
       return;
     }
 
+    // Reload the changed files
     for (const file of files) {
       // It's a static file
-      const entry = this.#isStaticFile(file);
+      const entry = this.staticFiles.search(file);
 
       if (entry) {
         const [from, to] = entry;
 
-        await this.writer.copyFile(file, join(to, file.slice(from.length)));
+        await this.writer.copyFile(from, to);
         continue;
       }
 
       await this.source.reload(file);
     }
 
+    // Get all pages to process (ignore drafts and non scoped pages)
     const from = this.source.getPages(
       (page) => !page.data.draft || this.options.dev,
       this.scopes.getFilter(files),
     );
 
+    // Render the pages into this.pages array
     await this.renderer.renderPages(from, this.pages);
     await this.events.dispatchEvent({ type: "afterRender" });
 
-    // Process the pages
+    // Run the processors to the pages
     await this.processors.run(this.pages);
 
     if (await this.dispatchEvent({ type: "beforeSave" }) === false) {
       return;
     }
 
+    // Save the pages in the dest folder
     await concurrent(
       this.pages,
       (page) => this.writer.savePage(page),
     );
+
     await this.dispatchEvent({ type: "afterUpdate", files });
   }
 
   /** Render a single page (used for on demand rendering) */
   async renderPage(file: string): Promise<Page | undefined> {
+    // Load the page
     await this.source.reload(file);
+
+    // Returns the page
     const page = this.source.getFileOrDirectory(file) as Page | undefined;
 
     if (!page) {
@@ -424,9 +457,11 @@ export default class Site {
     }
 
     await this.dispatchEvent({ type: "beforeRenderOnDemand", page });
+
+    // Render the page
     await this.renderer.renderPageOnDemand(page);
 
-    // Process the page
+    // Run the processors to the page
     await this.processors.run([page]);
     return page;
   }
@@ -454,11 +489,11 @@ export default class Site {
         path = page.data.url as string;
       } else {
         // It's a static file
-        const entry = this.#isStaticFile(path);
+        const entry = this.staticFiles.search(path);
 
         if (entry) {
-          const [from, to] = entry;
-          path = normalizePath(join(to, path.slice(from.length)));
+          const [, to] = entry;
+          path = normalizePath(to);
         } else {
           throw new Exception("Source file not found", { path });
         }
@@ -477,22 +512,6 @@ export default class Site {
     }
 
     return absolute ? this.options.location.origin + path : path;
-  }
-
-  /**
-   * Check whether a file is included in the list of static files
-   * and return a [from, to] tuple
-   */
-  #isStaticFile(file: string) {
-    for (const entry of this.source.staticFiles) {
-      const [from] = entry;
-
-      if (file.startsWith(from)) {
-        return entry;
-      }
-    }
-
-    return false;
   }
 }
 

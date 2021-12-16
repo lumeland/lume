@@ -41,6 +41,21 @@ import type {
   HelperOptions,
 } from "./core/engines.ts";
 
+interface ErrorData {
+  cause?: Error;
+  name?: string;
+  [key: string]: unknown;
+}
+
+/** Data to create a new response. */
+type FileResponse = [BodyInit | null, ResponseInit];
+
+/** The method that installs a plugin */
+type PluginSetup = ((options: unknown) => Plugin);
+
+/** A generic Lume plugin */
+type Plugin = (site: Site) => void;
+
 export type {
   Content,
   Data,
@@ -48,16 +63,20 @@ export type {
   Directory,
   Engine,
   Engines,
+  ErrorData,
   Event,
   EventListener,
   EventOptions,
   Events,
   EventType,
+  FileResponse,
   Helper,
   HelperOptions,
   Loader,
   Logger,
   Page,
+  Plugin,
+  PluginSetup,
   Processor,
   Processors,
   Reader,
@@ -75,18 +94,3 @@ export type {
   WatcherOptions,
   Writer,
 };
-
-export interface ErrorData {
-  cause?: Error;
-  name?: string;
-  [key: string]: unknown;
-}
-
-/** Data to create a new response. */
-export type FileResponse = [BodyInit | null, ResponseInit];
-
-/** The method that installs a plugin */
-export type PluginSetup = ((options: unknown) => Plugin);
-
-/** A generic Lume plugin */
-export type Plugin = (site: Site) => void;

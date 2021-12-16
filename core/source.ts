@@ -2,9 +2,9 @@ import { basename, dirname, join } from "../deps/path.ts";
 import { concurrent, normalizePath } from "./utils.ts";
 import { Directory, Page } from "./filesystem.ts";
 
-import type PageLoader from "./source/page.ts";
-import type AssetLoader from "./source/asset.ts";
-import type DataLoader from "./source/data.ts";
+import type PageLoader from "./page_loader.ts";
+import type AssetLoader from "./asset_loader.ts";
+import type DataLoader from "./data_loader.ts";
 import type Reader from "./reader.ts";
 
 export interface Options {
@@ -34,9 +34,6 @@ export default class Source {
   /** To load all non-HTML pages */
   assetLoader: AssetLoader;
 
-  /** List of files and folders to copy */
-  staticFiles = new Map<string, string>();
-
   /** The list of paths to ignore */
   ignored = new Set<string>();
 
@@ -53,11 +50,6 @@ export default class Source {
    */
   clearCache() {
     this.root?.refreshCache();
-  }
-
-  addStaticFile(from: string, to: string) {
-    this.staticFiles.set(join("/", from), join("/", to));
-    this.addIgnoredPath(from); // Ignore static paths
   }
 
   addIgnoredPath(path: string) {

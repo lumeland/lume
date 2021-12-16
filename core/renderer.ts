@@ -1,7 +1,7 @@
 import { dirname, extname, posix } from "../deps/path.ts";
 import { concurrent, Exception } from "./utils.ts";
 
-import type IncludesLoader from "./source/includes.ts";
+import type IncludesLoader from "./includes_loader.ts";
 import type Processors from "./processors.ts";
 import type Engines from "./engines.ts";
 import type { Data, Page } from "./filesystem.ts";

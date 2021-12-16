@@ -3,6 +3,11 @@ import { bold, brightGreen, dim, red, yellow } from "../deps/colors.ts";
 import type { ErrorData } from "../core.ts";
 import type { Page } from "./filesystem.ts";
 
+export interface Options {
+  /** Set to true to disable logging. */
+  quiet: boolean;
+}
+
 /**
  * Class to output messages to the console.
  * If quiet mode is enabled, no messages will be output.
@@ -20,8 +25,8 @@ export default class Logger {
     Yellow: (str: string) => bold(yellow(str)),
   };
 
-  constructor(quiet = false) {
-    this.quiet = quiet;
+  constructor(options: Options) {
+    this.quiet = options.quiet;
   }
 
   /**
