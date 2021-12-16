@@ -1,8 +1,8 @@
-import { searchByExtension } from "../utils.ts";
 import { join } from "../../deps/path.ts";
+import Extensions from "../extensions.ts";
 
-import type { Data, Loader } from "../../core.ts";
-import type Reader from "../reader.ts";
+import type { Data } from "../filesystem.ts";
+import type { default as Reader, Loader } from "../reader.ts";
 
 /**
  * Class to load _includes files.
@@ -11,32 +11,26 @@ export default class IncludesLoader {
   /** The filesystem reader */
   reader: Reader;
 
-  /** Default includes directory */
-  defaultDir = "_includes";
-
-  /** To store the includes paths by extension */
-  includes = new Map<string, string>();
+  /** To use different includes paths by extension */
+  paths = new Extensions<string>("_includes");
 
   /** List of extensions to load files and the loader used */
-  loaders = new Map<string, Loader>();
+  loaders = new Extensions<Loader>();
 
   constructor(reader: Reader) {
     this.reader = reader;
   }
 
   async load(path: string): Promise<[string, Data] | undefined> {
-    const result = searchByExtension(path, this.loaders);
+    const result = this.loaders.search(path);
 
     if (!result) {
       return;
     }
 
-    const [ext, loader] = result;
-
-    const includesPath = join(
-      this.includes.get(ext) || this.defaultDir,
-      path,
-    );
+    const [, loader] = result;
+    const entry = this.paths.search(path)!;
+    const includesPath = join(entry[1], path);
 
     return [
       includesPath,

@@ -15,7 +15,7 @@ export interface Options {
  * Class to write the generated pages and static files
  * in the dest folder.
  */
-export class Writer {
+export default class Writer {
   src: string;
   dest: string;
   logger: Logger;

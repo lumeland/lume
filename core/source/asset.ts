@@ -1,8 +1,7 @@
-import { searchByExtension } from "../utils.ts";
 import { Page } from "../filesystem.ts";
+import Extensions from "../extensions.ts";
 
-import type { Loader } from "../../core.ts";
-import type Reader from "../reader.ts";
+import type { default as Reader, Loader } from "../reader.ts";
 
 /**
  * Class to load page files that generate assets (css, js, etc).
@@ -12,7 +11,7 @@ export default class AssetLoader {
   reader: Reader;
 
   /** List of extensions to load page files and the loader used */
-  loaders = new Map<string, Loader>();
+  loaders = new Extensions<Loader>();
 
   constructor(reader: Reader) {
     this.reader = reader;
@@ -20,7 +19,7 @@ export default class AssetLoader {
 
   /** Load an asset Page */
   async load(path: string): Promise<Page | undefined> {
-    const result = searchByExtension(path, this.loaders);
+    const result = this.loaders.search(path);
 
     if (!result) {
       return;

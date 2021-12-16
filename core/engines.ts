@@ -1,6 +1,7 @@
-import { checkExtensions, Exception, searchByExtension } from "./utils.ts";
+import { Exception } from "./utils.ts";
+import Extensions from "./extensions.ts";
 
-import type { Data } from "../core.ts";
+import type { Data } from "./filesystem.ts";
 
 /**
  * Class to render the pages
@@ -8,7 +9,7 @@ import type { Data } from "../core.ts";
  */
 export default class Engines {
   /** Template engines by extension */
-  engines = new Map<string, Engine>();
+  engines = new Extensions<Engine>();
 
   /** Extra data to be passed to the engines */
   extraData: Record<string, unknown> = {};
@@ -18,7 +19,6 @@ export default class Engines {
 
   /** Register a new template engine */
   addEngine(extensions: string[], engine: Engine) {
-    checkExtensions(extensions);
     extensions.forEach((extension) => this.engines.set(extension, engine));
 
     for (const [name, helper] of this.helpers) {
@@ -94,7 +94,7 @@ export default class Engines {
       });
     }
 
-    const result = searchByExtension(path, this.engines);
+    const result = this.engines.search(path);
 
     if (result) {
       return [result[1]];

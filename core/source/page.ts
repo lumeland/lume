@@ -2,7 +2,7 @@ import { basename, extname } from "../../deps/path.ts";
 import { Exception } from "../utils.ts";
 import AssetLoader from "./asset.ts";
 
-import type { Dest, Page, Src } from "../../core.ts";
+import type { Dest, Page, Src } from "../filesystem.ts";
 
 /**
  * Class to load page files that generate HTML documents.

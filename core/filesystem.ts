@@ -2,7 +2,6 @@ import { join } from "../deps/path.ts";
 import { documentToString, normalizePath, stringToDocument } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
-import type { Content, Data, Dest, Src } from "../core.ts";
 
 /** Abstract class with common functions for Page and Directory classes */
 abstract class Base {
@@ -229,4 +228,66 @@ function prepareData(data: Data): [Data, string[]] {
   }
 
   return [data, tags];
+}
+
+/** The .src property for a Page or Directory */
+export interface Src {
+  /** The path to the file (without extension) */
+  path: string;
+
+  /** The extension of the file (undefined for folders) */
+  ext?: string;
+
+  /** The last modified time */
+  lastModified?: Date;
+
+  /** The creation time */
+  created?: Date;
+}
+
+/** The .dest property for a Page */
+export interface Dest {
+  /** The path to the file (without extension) */
+  path: string;
+
+  /** The extension of the file */
+  ext: string;
+
+  /** The hash (used to detect content changes) */
+  hash?: string;
+}
+
+/** The .content property for a Page */
+export type Content = Uint8Array | string;
+
+/** The data of a page */
+export interface Data {
+  /** List of tags assigned to a page or folder */
+  tags?: string[];
+
+  /** The url of a page */
+  url?: string | ((page: Page) => string);
+
+  /** If is `true`, the page will be visible only in `dev` mode */
+  draft?: boolean;
+
+  /** The date creation of the page */
+  date?: Date;
+
+  /** To configure the render order of a page */
+  renderOrder?: number;
+
+  /** The content of a page */
+  content?: unknown;
+
+  /** The layout used to render a page */
+  layout?: string;
+
+  /** To configure a different template engine(s) to render a page */
+  templateEngine?: string | string[];
+
+  /** Whether render this page on demand or not */
+  ondemand?: boolean;
+
+  [index: string]: unknown;
 }

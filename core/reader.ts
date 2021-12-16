@@ -1,7 +1,7 @@
 import { Exception } from "./utils.ts";
 import { join } from "../deps/path.ts";
 
-import type { Data, Loader } from "../core.ts";
+import type { Data } from "./filesystem.ts";
 
 /**
  * Class to read directories, files and store the content in a cache
@@ -62,3 +62,6 @@ export default class Reader {
     }
   }
 }
+
+/** A function that loads and returns the file content */
+export type Loader = (path: string) => Promise<Data>;

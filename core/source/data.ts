@@ -1,8 +1,8 @@
-import { searchByExtension } from "../utils.ts";
 import { basename, extname, join } from "../../deps/path.ts";
+import Extensions from "../extensions.ts";
 
-import type { Data, Loader } from "../../core.ts";
-import type Reader from "../reader.ts";
+import type { default as Reader, Loader } from "../reader.ts";
+import type { Data } from "../filesystem.ts";
 
 /**
  * Class to load data files.
@@ -12,7 +12,7 @@ export default class DataLoader {
   reader: Reader;
 
   /** List of extensions to load page files and the loader used */
-  loaders = new Map<string, Loader>();
+  loaders = new Extensions<Loader>();
 
   constructor(reader: Reader) {
     this.reader = reader;
@@ -20,7 +20,7 @@ export default class DataLoader {
 
   /** Load a _data.* file */
   async load(path: string): Promise<Data | undefined> {
-    const result = searchByExtension(path, this.loaders);
+    const result = this.loaders.search(path);
 
     if (!result) {
       return;

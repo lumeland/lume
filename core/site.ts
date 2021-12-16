@@ -6,15 +6,15 @@ import {
   ScriptOrFunction,
 } from "./scripts.ts";
 import Renderer from "./renderer.ts";
-import { Writer } from "./writer.ts";
+import Writer from "./writer.ts";
 import textLoader from "./loaders/text.ts";
-import Reader from "./reader.ts";
+import { default as Reader, Loader } from "./reader.ts";
 import PageLoader from "./source/page.ts";
 import AssetLoader from "./source/asset.ts";
 import DataLoader from "./source/data.ts";
 import IncludesLoader from "./source/includes.ts";
-import Processors from "./processors.ts";
-import Scopes from "./scopes.ts";
+import { default as Processors, Processor } from "./processors.ts";
+import { default as Scopes, ScopeFilter } from "./scopes.ts";
 import {
   default as Engines,
   Engine,
@@ -29,14 +29,7 @@ import {
   EventOptions,
   EventType,
 } from "./events.ts";
-import {
-  Loader,
-  Page,
-  Plugin,
-  Processor,
-  ScopeFilter,
-  SiteOptions,
-} from "../core.ts";
+import { Page, Plugin } from "../core.ts";
 import {
   checkExtensions,
   concurrent,
@@ -137,7 +130,7 @@ export default class Site {
     this.assetLoader = new AssetLoader(this.reader);
     this.dataLoader = new DataLoader(this.reader);
     this.includesLoader = new IncludesLoader(this.reader);
-    this.includesLoader.defaultDir = this.options.includes;
+    this.includesLoader.paths.default = this.options.includes;
 
     this.source = new Source({
       reader: this.reader,
@@ -242,7 +235,6 @@ export default class Site {
 
   /** Register a data loader for some extensions */
   loadData(extensions: string[], loader: Loader) {
-    checkExtensions(extensions);
     extensions.forEach((extension) =>
       this.dataLoader.loaders.set(extension, loader)
     );
@@ -255,7 +247,6 @@ export default class Site {
     loader: Loader = textLoader,
     engine?: Engine,
   ) {
-    checkExtensions(extensions);
     extensions.forEach((extension) => {
       this.pageLoader.loaders.set(extension, loader);
       this.includesLoader.loaders.set(extension, loader);
@@ -269,7 +260,6 @@ export default class Site {
 
   /** Register an assets loader for some extensions */
   loadAssets(extensions: string[], loader: Loader = textLoader) {
-    checkExtensions(extensions);
     extensions.forEach((extension) =>
       this.assetLoader.loaders.set(extension, loader)
     );
@@ -278,10 +268,8 @@ export default class Site {
 
   /** Register an import path for some extensions  */
   includes(extensions: string[], path: string) {
-    checkExtensions(extensions);
-
     extensions.forEach((extension) =>
-      this.includesLoader.includes.set(extension, path)
+      this.includesLoader.paths.set(extension, path)
     );
     return this;
   }
@@ -506,4 +494,61 @@ export default class Site {
 
     return false;
   }
+}
+
+/** The options to configure the site build */
+export interface SiteOptions {
+  /** The path of the current working directory */
+  cwd: string;
+
+  /** The path of the site source */
+  src: string;
+
+  /** The path of the built destination */
+  dest: string;
+
+  /** The default includes path */
+  includes: string;
+
+  /** Set `true` to enable the `dev` mode */
+  dev: boolean;
+
+  /** The site location (used to generate final urls) */
+  location: URL;
+
+  /** Set true to generate pretty urls (`/about-me/`) */
+  prettyUrls: boolean;
+
+  /** Set `true` to skip logs */
+  quiet: boolean;
+
+  /** The local server options */
+  server: ServerOptions;
+
+  /** The local watcher options */
+  watcher: WatcherOptions;
+}
+
+/** The options to configure the local server */
+export interface ServerOptions {
+  /** The port to listen on */
+  port: number;
+
+  /** To open the server in a browser */
+  open: boolean;
+
+  /** The file to serve on 404 error */
+  page404: string;
+
+  /** Optional request handler for pages served on demand */
+  router?: (url: URL) => Promise<FileResponse | undefined>;
+}
+
+/** The options to configure the local watcher */
+export interface WatcherOptions {
+  /** Files or folders to ignore by the watcher */
+  ignore: string[];
+
+  /** The interval in milliseconds to check for changes */
+  debounce: number;
 }

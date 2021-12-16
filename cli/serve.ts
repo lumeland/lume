@@ -1,8 +1,9 @@
-import { ServerOptions } from "../core.ts";
 import { brightGreen, dim, red } from "../deps/colors.ts";
 import localIp from "../deps/local_ip.ts";
 import { mimes, normalizePath, serveFile } from "../core/utils.ts";
 import { printError, runWatch } from "./utils.ts";
+
+import type { ServerOptions } from "../core/site.ts";
 
 // Websocket client code
 const wsCode = await (await fetch(new URL("./ws.js", import.meta.url))).text();

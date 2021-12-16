@@ -6,6 +6,7 @@ import type { Page } from "./filesystem.ts";
  * Class to store and run the (pre)processors
  */
 export default class Processors {
+  /** Processors and the assigned extensions */
   processors = new Map<Processor, string[]>();
 
   /** Apply the processors to the provided pages */

@@ -1,7 +1,6 @@
 import { parse } from "./deps/flags.ts";
 import { resolve } from "./deps/path.ts";
 import Site from "./core/site.ts";
-
 import url, { Options as UrlOptions } from "./plugins/url.ts";
 import json, { Options as JsonOptions } from "./plugins/json.ts";
 import markdown, { Options as MarkdownOptions } from "./plugins/markdown.ts";
@@ -12,7 +11,11 @@ import paginate, { Options as PaginateOptions } from "./plugins/paginate.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { merge } from "./core/utils.ts";
 
-import { ServerOptions, SiteOptions, WatcherOptions } from "./core.ts";
+import type {
+  ServerOptions,
+  SiteOptions,
+  WatcherOptions,
+} from "./core/site.ts";
 
 interface PluginOptions {
   url?: Partial<UrlOptions>;
