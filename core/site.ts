@@ -408,8 +408,14 @@ export default class Site {
     );
 
     // Render the pages into this.pages array
+    this.pages = [];
     await this.renderer.renderPages(from, this.pages);
     await this.events.dispatchEvent({ type: "afterRender" });
+
+    // Remove empty pages
+    this.pages = this.pages.filter((page) =>
+      !!page.content && !page.data.ondemand
+    );
 
     // Run the processors to the pages
     await this.processors.run(this.pages);

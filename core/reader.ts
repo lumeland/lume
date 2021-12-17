@@ -22,7 +22,8 @@ export default class Reader {
 
   /** Delete a file from the cache */
   deleteCache(path: string) {
-    this.#cache.delete(path);
+    const fullPath = this.getFullPath(path);
+    this.#cache.delete(fullPath);
   }
 
   /** Delete all the cache */
