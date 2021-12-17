@@ -30,9 +30,13 @@ Deno.test("build a simple site", async () => {
 });
 
 Deno.test("build/update events", async () => {
-  const site = getSite({
-    src: "simple",
-  });
+  const site = getSite(
+    {
+      src: "empty",
+    },
+    {},
+    false,
+  );
 
   const events: string[] = [];
 

@@ -62,6 +62,11 @@ abstract class Base {
     this.data = merged;
   }
 
+  /** Set or replace a single value */
+  get assignedData(): Data | undefined {
+    return this.#data;
+  }
+
   /** Merge and return the data */
   #getMergedData(): Data {
     let [data, tags] = prepareData({ ...this.#data });

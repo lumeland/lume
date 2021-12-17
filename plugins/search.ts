@@ -1,5 +1,6 @@
-import { Page, Site } from "../core.ts";
 import { merge } from "../core/utils.ts";
+
+import type { Page, Site } from "../core.ts";
 
 export interface Options {
   /** The helper name */

@@ -1,9 +1,10 @@
 import { Site } from "../core.ts";
 import * as eta from "../deps/eta.ts";
-import { EtaConfig } from "../deps/eta.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
-import { Data, Engine, Helper, HelperOptions } from "../core.ts";
+
+import type { Data, Engine, Helper, HelperOptions } from "../core.ts";
+import type { EtaConfig } from "../deps/eta.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -75,7 +76,7 @@ export default function (userOptions?: Partial<Options>) {
     });
 
     // Configure includes
-    site.renderer.addInclude(options.extensions, options.includes);
+    site.includes(options.extensions, options.includes);
 
     // Update the cache
     site.addEventListener("beforeUpdate", (ev) => {

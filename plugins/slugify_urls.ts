@@ -1,6 +1,7 @@
 import { posix } from "../deps/path.ts";
 import { merge } from "../core/utils.ts";
-import { Helper, Page, Site } from "../core.ts";
+
+import type { Helper, Page, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

@@ -1,6 +1,7 @@
-import { FileResponse, Page, Site } from "../core.ts";
 import { merge, mimes } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
+
+import type { FileResponse, Page, Site } from "../core.ts";
 
 export interface Options {
   /** A function to return the page file associated with the provided url */

@@ -1,9 +1,5 @@
 import { assertStrictEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
-import LumeSite from "../core/site.ts";
-import LumeSource from "../core/source.ts";
-import LumeRenderer from "../core/renderer.ts";
-import LumeScripts from "../core/scripts.ts";
 
 Deno.test("default configuration", () => {
   const site = lume();
@@ -22,25 +18,25 @@ Deno.test("default configuration", () => {
 
 Deno.test("static files configuration", () => {
   const site = lume();
-  const { staticFiles } = site.source as LumeSource;
+  const { staticFiles } = site;
 
   site.copy("img");
-  equals(staticFiles.size, 1);
-  equals(staticFiles.has("/img"), true);
-  equals(staticFiles.get("/img"), "/img");
+  equals(staticFiles.paths.size, 1);
+  equals(staticFiles.paths.has("/img"), true);
+  equals(staticFiles.paths.get("/img"), "/img");
 
   site.copy("statics/favicon.ico", "favicon.ico");
-  equals(staticFiles.size, 2);
-  equals(staticFiles.get("/statics/favicon.ico"), "/favicon.ico");
+  equals(staticFiles.paths.size, 2);
+  equals(staticFiles.paths.get("/statics/favicon.ico"), "/favicon.ico");
 
   site.copy("css", ".");
-  equals(staticFiles.size, 3);
-  equals(staticFiles.get("/css"), "/");
+  equals(staticFiles.paths.size, 3);
+  equals(staticFiles.paths.get("/css"), "/");
 });
 
 Deno.test("ignored files configuration", () => {
   const site = lume();
-  const { ignored } = site.source as LumeSource;
+  const { ignored } = site.source;
 
   equals(ignored.size, 2);
   equals(ignored.has("/node_modules"), true);
@@ -64,7 +60,7 @@ Deno.test("ignored files configuration", () => {
 
 Deno.test("event listener configuration", () => {
   const site = lume();
-  const { listeners } = site as LumeSite;
+  const { listeners } = site.events;
 
   equals(listeners.size, 2);
   equals(listeners.has("beforeBuild"), true);
@@ -75,12 +71,12 @@ Deno.test("event listener configuration", () => {
   site.addEventListener("afterBuild", "afterbuild-command");
   equals(listeners.get("afterBuild")?.size, 1);
   const listenersList = Array.from(listeners.get("afterBuild")!);
-  equals(listenersList[0][0], "afterbuild-command");
+  equals(typeof listenersList[0][0], "function");
 });
 
 Deno.test("script configuration", () => {
   const site = lume();
-  const { scripts } = site.scripts as LumeScripts;
+  const { scripts } = site.scripts;
 
   equals(scripts.size, 0);
 
@@ -109,26 +105,28 @@ Deno.test("script configuration", () => {
 
 Deno.test("data configuration", () => {
   const site = lume();
-  const { dataLoaders } = site.source as LumeSource;
+  let entries = new Map(site.dataLoader.loaders.entries);
 
-  equals(dataLoaders.size, 5);
-  equals(dataLoaders.has(".json"), true);
-  equals(dataLoaders.has(".js"), true);
-  equals(dataLoaders.has(".ts"), true);
-  equals(dataLoaders.has(".yaml"), true);
-  equals(dataLoaders.has(".yml"), true);
+  equals(entries.size, 5);
+  equals(entries.has(".json"), true);
+  equals(entries.has(".js"), true);
+  equals(entries.has(".ts"), true);
+  equals(entries.has(".yaml"), true);
+  equals(entries.has(".yml"), true);
 
   const loader = () => Promise.resolve({});
   site.loadData([".ext1", ".ext2"], loader);
-  equals(dataLoaders.size, 7);
-  equals(dataLoaders.get(".ext1"), loader);
-  equals(dataLoaders.get(".ext2"), loader);
+  entries = new Map(site.dataLoader.loaders.entries);
+
+  equals(entries.size, 7);
+  equals(entries.get(".ext1"), loader);
+  equals(entries.get(".ext2"), loader);
 });
 
 Deno.test("pages configuration", () => {
   const site = lume();
-  const { engines } = site.renderer as LumeRenderer;
-  const { pageLoaders } = site.source as LumeSource;
+  let engines = new Map(site.engines.engines.entries);
+  let pageLoaders = new Map(site.pageLoader.loaders.entries);
 
   equals(pageLoaders.size, 7);
   equals(pageLoaders.has(".tmpl.json"), true);
@@ -153,6 +151,9 @@ Deno.test("pages configuration", () => {
   };
 
   site.loadPages([".ext1", ".ext2"], loader, engine);
+  engines = new Map(site.engines.engines.entries);
+  pageLoaders = new Map(site.pageLoader.loaders.entries);
+
   equals(pageLoaders.size, 9);
   equals(pageLoaders.get(".ext1"), loader);
   equals(pageLoaders.get(".ext2"), loader);
@@ -164,52 +165,50 @@ Deno.test("pages configuration", () => {
 
 Deno.test("assets configuration", () => {
   const site = lume();
-  const { pageLoaders, assets } = site.source as LumeSource;
+  let assetLoaders = new Map(site.assetLoader.loaders.entries);
 
-  equals(pageLoaders.size, 7);
-  equals(assets.size, 0);
+  equals(assetLoaders.size, 0);
 
   const loader = () => Promise.resolve({});
   site.loadAssets([".css", ".js"], loader);
+  assetLoaders = new Map(site.assetLoader.loaders.entries);
 
-  equals(pageLoaders.size, 9);
-  equals(assets.size, 2);
-  equals(pageLoaders.get(".css"), loader);
-  equals(pageLoaders.get(".js"), loader);
-  equals(assets.has(".css"), true);
-  equals(assets.has(".js"), true);
+  equals(assetLoaders.size, 2);
+  equals(assetLoaders.has(".css"), true);
+  equals(assetLoaders.has(".js"), true);
 });
 
 Deno.test("preprocessor configuration", () => {
   const site = lume();
-  const { preprocessors } = site.renderer as LumeRenderer;
 
-  equals(preprocessors.size, 0);
+  const { processors } = site.preprocessors;
+
+  equals(processors.size, 0);
 
   const processor = () => Promise.resolve({});
   const ext1 = [".ext1"];
 
   site.preprocess(ext1, processor);
-  equals(preprocessors.size, 1);
-  equals(preprocessors.has(processor), true);
-  equals(preprocessors.get(processor), ext1);
+  equals(processors.size, 1);
+  equals(processors.has(processor), true);
+  equals(processors.get(processor), ext1);
 
   const ext2 = [".ext2"];
   site.preprocess(ext2, processor);
-  equals(preprocessors.size, 1);
-  equals(preprocessors.has(processor), true);
-  equals(preprocessors.get(processor), ext2);
+  equals(processors.size, 1);
+  equals(processors.has(processor), true);
+  equals(processors.get(processor), ext2);
 
   const processor2 = () => Promise.resolve({});
   site.preprocess(ext2, processor2);
-  equals(preprocessors.size, 2);
-  equals(preprocessors.has(processor2), true);
-  equals(preprocessors.get(processor2), ext2);
+  equals(processors.size, 2);
+  equals(processors.has(processor2), true);
+  equals(processors.get(processor2), ext2);
 });
 
 Deno.test("processor configuration", () => {
   const site = lume();
-  const { processors } = site.renderer as LumeRenderer;
+  const { processors } = site.processors;
 
   equals(processors.size, 0);
 
@@ -236,7 +235,7 @@ Deno.test("processor configuration", () => {
 
 Deno.test("helpers configuration", () => {
   const site = lume();
-  const { helpers } = site.renderer as LumeRenderer;
+  const { helpers } = site.engines;
 
   equals(helpers.size, 4);
   equals(helpers.has("url"), true);
@@ -264,7 +263,7 @@ Deno.test("helpers configuration", () => {
 
 Deno.test("extra data", () => {
   const site = lume();
-  const { extraData } = site.renderer;
+  const { extraData } = site.engines;
 
   equals(Object.keys(extraData).length, 2);
   equals(Object.keys(extraData)[0], "paginate");

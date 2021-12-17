@@ -1,33 +1,24 @@
 import lume from "../mod.ts";
-import { Emitter, Page, Site, SiteOptions } from "../core.ts";
 import { printError } from "../cli/utils.ts";
 
+import type { Page, Site, SiteOptions } from "../core.ts";
+
 const cwd = new URL("./assets", import.meta.url).pathname;
-
-// Emitter that doesn't save anything for testing purposes
-class TestEmitter implements Emitter {
-  savePage() {
-    return Promise.resolve();
-  }
-
-  copyFile() {
-    return Promise.resolve();
-  }
-
-  clear() {
-    return Promise.resolve();
-  }
-}
 
 /** Create a new lume site using the "assets" path as cwd */
 export function getSite(
   options: Partial<SiteOptions> = {},
   pluginOptions = {},
+  preventSave = true,
 ): Site {
   options.cwd = cwd;
 
   const site = lume(options, pluginOptions, false);
-  site.emitter = new TestEmitter();
+
+  // Don't save the site to disk
+  if (preventSave) {
+    site.addEventListener("beforeSave", () => false);
+  }
 
   return site;
 }

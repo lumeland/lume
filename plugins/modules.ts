@@ -1,6 +1,7 @@
-import { Data, Engine, Helper, Site } from "../core.ts";
 import loader from "../core/loaders/module.ts";
 import { merge } from "../core/utils.ts";
+
+import type { Data, Engine, Helper, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions used to load data */

@@ -23,6 +23,11 @@ export default class DataLoader {
     this.reader = options.reader;
   }
 
+  /** Assign a loader to some extensions */
+  set(extensions: string[], loader: Loader) {
+    extensions.forEach((extension) => this.loaders.set(extension, loader));
+  }
+
   /** Load a _data.* file */
   async load(path: string): Promise<Data | undefined> {
     const result = this.loaders.search(path);

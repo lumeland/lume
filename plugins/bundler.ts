@@ -1,8 +1,9 @@
 import { merge } from "../core/utils.ts";
-import { Site } from "../core.ts";
 import { toFileUrl } from "../deps/path.ts";
 import { createGraph, load, LoadResponse } from "../deps/graph.ts";
 import { Page } from "../core/filesystem.ts";
+
+import type { Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

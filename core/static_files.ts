@@ -13,7 +13,7 @@ export default class StaticFiles {
   }
 
   /**
-   * Check whether a path is included in the list of static files
+   * Check whether a src path is included in the list of static files
    * and return a [from, to] tuple
    */
   search(file: string): [string, string] | undefined {
@@ -24,5 +24,24 @@ export default class StaticFiles {
         return [file, join(to, file.slice(from.length))];
       }
     }
+  }
+
+  /**
+   * Check whether a dest path is included in the list of static files
+   * and return a [from, to] tuple
+   */
+  searchReverse(file: string): [string, string] | undefined {
+    for (const entry of this.paths) {
+      const [from, to] = entry;
+
+      if (file.startsWith(to)) {
+        return [join(from, file.slice(to.length)), file];
+      }
+    }
+  }
+
+  /** Return all entries */
+  entries(): [string, string][] {
+    return [...this.paths.entries()];
   }
 }

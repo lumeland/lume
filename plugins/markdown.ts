@@ -1,4 +1,3 @@
-import { Data, Engine, Helper, Site } from "../core.ts";
 import {
   markdownIt,
   markdownItAttrs,
@@ -7,6 +6,8 @@ import {
 } from "../deps/markdown_it.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
+
+import type { Data, Engine, Helper, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

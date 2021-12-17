@@ -1,6 +1,8 @@
-import { optimize, SvgoOptions } from "../deps/svgo.ts";
+import { optimize } from "../deps/svgo.ts";
 import { merge } from "../core/utils.ts";
-import { Page, Site } from "../core.ts";
+
+import type { Page, Site } from "../core.ts";
+import type { SvgoOptions } from "../deps/svgo.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

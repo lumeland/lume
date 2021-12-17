@@ -1,7 +1,7 @@
 import { Page } from "./filesystem.ts";
 import Extensions from "./extensions.ts";
 
-import type { default as Reader, Loader } from "./reader.ts";
+import type { Loader, Reader } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
@@ -20,6 +20,11 @@ export default class AssetLoader {
 
   constructor(options: Options) {
     this.reader = options.reader;
+  }
+
+  /** Assign a loader to some extensions */
+  set(extensions: string[], loader: Loader) {
+    extensions.forEach((extension) => this.loaders.set(extension, loader));
   }
 
   /** Load an asset Page */

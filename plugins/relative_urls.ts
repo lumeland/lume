@@ -1,6 +1,7 @@
 import { posix } from "../deps/path.ts";
-import { Site } from "../core.ts";
 import modifyUrls from "./modify_urls.ts";
+
+import type { Site } from "../core.ts";
 
 /** A plugin to convert all internal URLs to relative */
 export default function () {

@@ -19,9 +19,9 @@ export default class PageLoader extends AssetLoader {
 
     // Check the date and set it if it's not set
     if (!page.data.date) {
-      page.data.date = this.#detectDateInPath(page.src, page.dest) ||
-        page.src.created || page.src.lastModified;
-      page.refreshCache();
+      const date = this.#detectDateInPath(page.src, page.dest) ??
+        page.src.created ?? page.src.lastModified;
+      page.data = { ...page.assignedData, date };
     } else if (!(page.data.date instanceof Date)) {
       throw new Exception(
         'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',

@@ -1,5 +1,4 @@
 import { createSite, runWatch } from "./utils.ts";
-import { warn } from "../core/utils.ts";
 import { brightGreen, dim } from "../deps/colors.ts";
 import runServe from "./serve.ts";
 
@@ -17,7 +16,7 @@ export default async function build(
 ) {
   if (experimental) {
     if (!serve && !watch) {
-      warn("Experimental mode requires either --serve or --watch");
+      console.warn("Experimental mode requires either --serve or --watch");
       return;
     }
     runExperimentalWatcher(serve, root, config);

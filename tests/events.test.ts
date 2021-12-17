@@ -2,9 +2,13 @@ import { assertStrictEquals as equals } from "../deps/assert.ts";
 import { getSite } from "./utils.ts";
 
 Deno.test("build events", async () => {
-  const site = getSite({
-    src: "simple",
-  });
+  const site = getSite(
+    {
+      src: "empty",
+    },
+    {},
+    false,
+  );
 
   let times = 0;
   let once = 0;

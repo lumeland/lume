@@ -1,7 +1,6 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import { build, getSite, testPage } from "./utils.ts";
 import bundler from "../plugins/bundler.ts";
-import LumeSource from "../core/source.ts";
 
 Deno.test("bundler plugin", async () => {
   const site = getSite({
@@ -18,13 +17,11 @@ Deno.test("bundler plugin", async () => {
 
   await build(site);
 
-  const { assets, pageLoaders } = site.source as LumeSource;
+  const assetLoaders = new Map(site.assetLoader.loaders.entries);
 
   // Register the loader extensions
-  assert(assets.has(".ts"));
-  assert(assets.has(".tsx"));
-  assert(pageLoaders.has(".ts"));
-  assert(pageLoaders.has(".tsx"));
+  assert(assetLoaders.has(".ts"));
+  assert(assetLoaders.has(".tsx"));
 
   testPage(site, "/main", (page) => {
     equals(page.dest.path, "/main");

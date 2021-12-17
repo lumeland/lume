@@ -3,11 +3,12 @@ import {
   postcss,
   postcssImport,
   postcssNesting,
-  SourceMapOptions,
 } from "../deps/postcss.ts";
 import { merge } from "../core/utils.ts";
-import { Helper, Site } from "../core.ts";
 import { Page } from "../core/filesystem.ts";
+
+import type { Helper, Site } from "../core.ts";
+import type { SourceMapOptions } from "../deps/postcss.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

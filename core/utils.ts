@@ -1,7 +1,7 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
 import { extname, join, SEP } from "../deps/path.ts";
-import { bold, dim, yellow } from "../deps/colors.ts";
-import { ErrorData, FileResponse, Page } from "../core.ts";
+
+import type { ErrorData, FileResponse } from "../core.ts";
 
 /** Run a callback concurrently with all the elements of an Iterable */
 export async function concurrent<Type>(
@@ -217,36 +217,6 @@ export class Exception extends Error {
 
     this.data = data;
   }
-}
-
-export function warn(message: string, data: ErrorData = {}) {
-  const name = data.name || "Warning";
-  delete data.name;
-
-  console.warn("⚠️ " + bold(yellow(name)), message);
-
-  for (let [key, value] of Object.entries(data ?? {})) {
-    if (key === "page") {
-      value = (value as Page).src.path + (value as Page).src.ext;
-    } else if (value instanceof Error) {
-      value = value.toString();
-    } else if (value instanceof URL) {
-      value = value.toString();
-    }
-
-    console.log(dim(`  ${key}:`), value);
-  }
-}
-
-export function checkExtensions(extensions: string[]) {
-  extensions.forEach((extension) => {
-    if (extension.charAt(0) !== ".") {
-      throw new Exception(
-        "Invalid extension. It must start with '.'",
-        { extension },
-      );
-    }
-  });
 }
 
 export interface serveFileOptions {

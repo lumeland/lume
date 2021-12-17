@@ -30,6 +30,16 @@ export default class IncludesLoader {
     this.paths = new Extensions<string>(options.includes);
   }
 
+  /** Assign a loader to some extensions */
+  set(extensions: string[], loader: Loader) {
+    extensions.forEach((extension) => this.loaders.set(extension, loader));
+  }
+
+  /** Assign a path to some extensions */
+  setPath(extensions: string[], path: string) {
+    extensions.forEach((extension) => this.paths.set(extension, path));
+  }
+
   async load(path: string): Promise<[string, Data] | undefined> {
     const result = this.loaders.search(path);
 

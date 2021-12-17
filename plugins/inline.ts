@@ -1,9 +1,10 @@
 import { Element } from "../deps/dom.ts";
 import { extname, posix, resolve } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
-import { merge, mimes, warn } from "../core/utils.ts";
-import { Page, Site } from "../core.ts";
+import { merge, mimes } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
+
+import type { Page, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -94,7 +95,7 @@ export default function (userOptions?: Partial<Options>) {
       const ext = extname(path);
 
       if (!mimes.has(ext)) {
-        warn("Unknown file format", {
+        site.logger.warn("Unknown file format", {
           name: "Inline plugin",
           path,
           url,
@@ -113,7 +114,7 @@ export default function (userOptions?: Partial<Options>) {
         style.innerHTML = await getContent(path);
         element.replaceWith(style);
       } catch (cause) {
-        warn("Unable to inline the file", {
+        site.logger.warn("Unable to inline the file", {
           name: "Inline plugin",
           cause,
           path,
@@ -129,7 +130,7 @@ export default function (userOptions?: Partial<Options>) {
         element.innerHTML = await getContent(path);
         element.removeAttribute("src");
       } catch (cause) {
-        warn("Unable to inline the file", {
+        site.logger.warn("Unable to inline the file", {
           name: "Inline plugin",
           cause,
           path,
@@ -153,7 +154,7 @@ export default function (userOptions?: Partial<Options>) {
 
         element.setAttribute("src", await getContent(path, true));
       } catch (cause) {
-        warn("Unable to inline the file", {
+        site.logger.warn("Unable to inline the file", {
           name: "Inline plugin",
           cause,
           path,
@@ -168,7 +169,7 @@ export default function (userOptions?: Partial<Options>) {
       try {
         element.setAttribute("href", await getContent(path, true));
       } catch (cause) {
-        warn("Unable to inline the file", {
+        site.logger.warn("Unable to inline the file", {
           name: "Inline plugin",
           cause,
           path,
@@ -192,17 +193,14 @@ async function getFileContent(
   }
 
   // Is a static file
-  for (const entry of site.source.staticFiles) {
-    const [from, to] = entry;
+  const entry = site.staticFiles.searchReverse(url);
 
-    if (url.startsWith(to)) {
-      const file = site.src(from, url.slice(to.length));
-      const content = await site.reader.read(file, binaryLoader);
-      return content.content as Uint8Array;
-    }
+  if (entry) {
+    const content = await site.reader.read(entry[0], binaryLoader);
+    return content.content as Uint8Array;
   }
 
   // Is a source file
-  const content = await site.reader.read(site.src(url), binaryLoader);
+  const content = await site.reader.read(url, binaryLoader);
   return content.content as Uint8Array;
 }

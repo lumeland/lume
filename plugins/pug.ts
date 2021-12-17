@@ -1,7 +1,9 @@
-import { compile, Options as PugOptions } from "../deps/pug.ts";
+import { compile } from "../deps/pug.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
-import { Data, Engine, Helper, HelperOptions, Site } from "../core.ts";
+
+import type { Data, Engine, Helper, HelperOptions, Site } from "../core.ts";
+import type { Options as PugOptions } from "../deps/pug.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -86,7 +88,7 @@ export default function (userOptions?: Partial<Options>) {
 
     // Configure includes
     options.options.basedir = site.src(options.includes);
-    site.renderer.addInclude(options.extensions, options.includes);
+    site.includes(options.extensions, options.includes);
 
     const engine = new PugEngine(site, compile, options.options);
 
@@ -97,7 +99,7 @@ export default function (userOptions?: Partial<Options>) {
     site.filter("pug", filter as Helper, true);
 
     function filter(string: string, data?: Data) {
-      return site.renderer.render(engine, string, data);
+      return engine.render(string, { ...site.engines.extraData, ...data });
     }
   };
 }

@@ -1,6 +1,7 @@
-import { Site } from "../core.ts";
 import json from "../core/loaders/json.ts";
 import { merge } from "../core/utils.ts";
+
+import type { Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions used to load data */

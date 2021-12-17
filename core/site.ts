@@ -1,4 +1,5 @@
 import { join, posix, SEP } from "../deps/path.ts";
+import { concurrent, Exception, merge, normalizePath } from "./utils.ts";
 
 import Reader from "./reader.ts";
 import PageLoader from "./page_loader.ts";
@@ -17,15 +18,7 @@ import Scripts from "./scripts.ts";
 import Writer from "./writer.ts";
 import textLoader from "./loaders/text.ts";
 
-import {
-  checkExtensions,
-  concurrent,
-  Exception,
-  merge,
-  normalizePath,
-} from "./utils.ts";
-
-import {
+import type {
   Engine,
   Event,
   EventListener,
@@ -126,7 +119,7 @@ export default class Site {
     this.options = merge(defaults, options);
 
     const src = this.src();
-    const dest = this.src();
+    const dest = this.dest();
     const { quiet, includes, cwd, prettyUrls } = this.options;
 
     // To load source files
@@ -255,9 +248,7 @@ export default class Site {
 
   /** Register a data loader for some extensions */
   loadData(extensions: string[], loader: Loader) {
-    extensions.forEach((extension) =>
-      this.dataLoader.loaders.set(extension, loader)
-    );
+    this.dataLoader.set(extensions, loader);
     return this;
   }
 
@@ -267,10 +258,8 @@ export default class Site {
     loader: Loader = textLoader,
     engine?: Engine,
   ) {
-    extensions.forEach((extension) => {
-      this.pageLoader.loaders.set(extension, loader);
-      this.includesLoader.loaders.set(extension, loader);
-    });
+    this.pageLoader.set(extensions, loader);
+    this.includesLoader.set(extensions, loader);
 
     if (engine) {
       this.engines.addEngine(extensions, engine);
@@ -280,31 +269,25 @@ export default class Site {
 
   /** Register an assets loader for some extensions */
   loadAssets(extensions: string[], loader: Loader = textLoader) {
-    extensions.forEach((extension) =>
-      this.assetLoader.loaders.set(extension, loader)
-    );
+    this.assetLoader.set(extensions, loader);
     return this;
   }
 
   /** Register an import path for some extensions  */
   includes(extensions: string[], path: string) {
-    extensions.forEach((extension) =>
-      this.includesLoader.paths.set(extension, path)
-    );
+    this.includesLoader.setPath(extensions, path);
     return this;
   }
 
   /** Register a preprocessor for some extensions */
   preprocess(extensions: string[], preprocessor: Processor) {
-    checkExtensions(extensions);
-    this.preprocessors.processors.set(preprocessor, extensions);
+    this.preprocessors.set(extensions, preprocessor);
     return this;
   }
 
   /** Register a processor for some extensions */
   process(extensions: string[], processor: Processor) {
-    checkExtensions(extensions);
-    this.processors.processors.set(processor, extensions);
+    this.processors.set(extensions, processor);
     return this;
   }
 

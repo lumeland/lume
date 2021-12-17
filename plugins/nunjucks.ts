@@ -1,7 +1,16 @@
-import nunjucks, { NunjucksOptions } from "../deps/nunjucks.ts";
+import nunjucks from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
-import { Data, Engine, Event, Helper, HelperOptions, Site } from "../core.ts";
+
+import type {
+  Data,
+  Engine,
+  Event,
+  Helper,
+  HelperOptions,
+  Site,
+} from "../core.ts";
+import type { NunjucksOptions } from "../deps/nunjucks.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -155,7 +164,7 @@ export default function (userOptions?: Partial<Options>) {
     site.filter("njk", filter as Helper, true);
 
     function filter(string: string, data?: Data) {
-      return site.renderer.render(engine, string, data);
+      return engine.render(string, { ...site.engines.extraData, ...data });
     }
   };
 }

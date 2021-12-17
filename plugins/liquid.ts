@@ -1,7 +1,16 @@
-import { Liquid as Liquidjs, LiquidOptions } from "../deps/liquid.ts";
+import { Liquid } from "../deps/liquid.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
-import { Data, Engine, Event, Helper, HelperOptions, Site } from "../core.ts";
+
+import type {
+  Data,
+  Engine,
+  Event,
+  Helper,
+  HelperOptions,
+  Site,
+} from "../core.ts";
+import type { LiquidOptions } from "../deps/liquid.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -96,7 +105,7 @@ export default function (userOptions?: Partial<Options>) {
       ...options.options,
     };
 
-    const engine = new LiquidEngine(site, new Liquidjs(liquidOptions));
+    const engine = new LiquidEngine(site, new Liquid(liquidOptions));
 
     // Load the liquid pages
     site.loadPages(options.extensions, loader, engine);
@@ -105,7 +114,7 @@ export default function (userOptions?: Partial<Options>) {
     site.filter("liquid", filter as Helper, true);
 
     function filter(string: string, data?: Data) {
-      return site.renderer.render(engine, string, data);
+      return engine.render(string, { ...site.engines.extraData, ...data });
     }
   };
 }
