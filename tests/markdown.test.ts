@@ -1,5 +1,5 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
-import { getSite, testPage } from "./utils.ts";
+import { getSite, pageExists, testPage } from "./utils.ts";
 
 Deno.test("build a markdown site", async () => {
   const site = getSite({
@@ -42,9 +42,7 @@ Deno.test("build a markdown site", async () => {
     equals(page.document?.querySelectorAll("pre")?.length, 2);
   });
 
-  testPage(site, "/empty", (page) => {
-    assert(!page.document);
-  });
+  assert(pageExists(site, "/empty") === false);
 
   testPage(site, "/with-module", (page) => {
     equals(page.document?.querySelectorAll("h1").length, 1);

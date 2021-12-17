@@ -34,6 +34,12 @@ export function getPage(site: Site, path: string) {
   return page;
 }
 
+/** Check if page exist */
+export function pageExists(site: Site, path: string) {
+  const page = site.pages.find((page) => page.src.path === path);
+  return !!page;
+}
+
 /** Test a generated page by src path */
 export function testPage(
   site: Site,

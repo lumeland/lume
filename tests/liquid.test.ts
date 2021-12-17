@@ -1,5 +1,5 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
-import { build, getSite, testPage } from "./utils.ts";
+import { build, getSite, pageExists, testPage } from "./utils.ts";
 import liquid from "../plugins/liquid.ts";
 
 Deno.test("build a site with liquid", async () => {
@@ -62,9 +62,7 @@ Deno.test("build a site with liquid", async () => {
     );
   });
 
-  testPage(site, "/empty", (page) => {
-    assert(!page.document);
-  });
+  assert(pageExists(site, "/empty") === false);
 
   testPage(site, "/with-helpers", (page) => {
     equals(page.document?.querySelectorAll("p").length, 4);

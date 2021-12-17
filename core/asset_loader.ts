@@ -1,7 +1,7 @@
 import { Page } from "./filesystem.ts";
 import Extensions from "./extensions.ts";
 
-import type { Loader, Reader } from "../core.ts";
+import type { Data, Loader, Reader } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
@@ -49,8 +49,21 @@ export default class AssetLoader {
       ext,
     });
 
-    page.data = await this.reader.read(path, loader);
+    page.data = await this.loadData(page, path, loader);
 
     return page;
+  }
+
+  /** Loads the page data and prepare it */
+  async loadData(_page: Page, path: string, loader: Loader): Promise<Data> {
+    const data = await this.reader.read(path, loader);
+
+    if (data.tags) {
+      data.tags = Array.isArray(data.tags)
+        ? data.tags.map((tag) => String(tag))
+        : [String(data.tags)];
+    }
+
+    return data;
   }
 }

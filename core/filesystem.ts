@@ -40,36 +40,13 @@ abstract class Base {
    * and return the merged data
    */
   get data(): Data {
-    if (!this.#cache) {
-      this.#cache = this.#getMergedData();
+    if (this.#cache) {
+      return this.#cache;
     }
 
-    return this.#cache;
-  }
-
-  /** Replace the data of this object with the given data */
-  set data(data: Data) {
-    this.#cache = undefined;
-    this.#data = data;
-  }
-
-  /** Merge more data with the existing */
-  addData(data: Data) {
-    const [oldData, oldTags] = prepareData(this.#data || {});
-    const [newData, newTags] = prepareData(data);
-    const merged = { ...oldData, ...newData };
-    merged.tags = [...oldTags, ...newTags];
-    this.data = merged;
-  }
-
-  /** Set or replace a single value */
-  get assignedData(): Data | undefined {
-    return this.#data;
-  }
-
-  /** Merge and return the data */
-  #getMergedData(): Data {
-    let [data, tags] = prepareData({ ...this.#data });
+    // Merge the data of the parent directories
+    let data: Data = this.#data || {};
+    let tags = data.tags || [];
 
     if (this.parent) {
       const parentData = this.parent.data;
@@ -82,7 +59,22 @@ abstract class Base {
 
     data.tags = [...new Set(tags)];
 
-    return data;
+    return this.#cache = data;
+  }
+
+  /** Replace the data of this object with the given data */
+  set data(data: Data) {
+    this.#cache = undefined;
+    this.#data = data;
+  }
+
+  /** Merge more data with the existing */
+  addData(data: Data) {
+    const oldTags = this.#data?.tags || [];
+    const newTags = data.tags || [];
+    const merged = { ...this.#data, ...data };
+    merged.tags = [...oldTags, ...newTags];
+    this.data = merged;
   }
 
   /** Clean the cache of the merged data */
@@ -220,19 +212,6 @@ export class Directory extends Base {
     this.dirs.forEach((dir) => dir.refreshCache());
     super.refreshCache();
   }
-}
-
-/** Prepare the data, ensuring that tags is an array of strings */
-function prepareData(data: Data): [Data, string[]] {
-  let tags: string[] = [];
-
-  if (data.tags) {
-    tags = Array.isArray(data.tags)
-      ? data.tags.map((tag) => String(tag))
-      : [String(data.tags)];
-  }
-
-  return [data, tags];
 }
 
 /** The .src property for a Page or Directory */

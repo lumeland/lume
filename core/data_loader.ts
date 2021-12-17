@@ -38,7 +38,17 @@ export default class DataLoader {
 
     const [, loader] = result;
 
-    return await this.reader.read(path, loader);
+    return this.prepareData(await this.reader.read(path, loader));
+  }
+
+  prepareData(data: Data): Data {
+    if (data.tags) {
+      data.tags = Array.isArray(data.tags)
+        ? data.tags.map((tag) => String(tag))
+        : [String(data.tags)];
+    }
+
+    return data;
   }
 
   /** Load a _data directory */

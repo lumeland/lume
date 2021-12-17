@@ -1,5 +1,5 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
-import { getSite, testPage } from "./utils.ts";
+import { getSite, pageExists, testPage } from "./utils.ts";
 
 Deno.test("build a site with nunjucks", async () => {
   const site = getSite({
@@ -67,9 +67,7 @@ Deno.test("build a site with nunjucks", async () => {
     equals(page.document?.querySelector("h1")?.innerText, "NJK FILTER EXAMPLE");
   });
 
-  testPage(site, "/empty", (page) => {
-    assert(!page.document);
-  });
+  assert(pageExists(site, "/empty") === false);
 
   testPage(site, "/with-helpers", (page) => {
     equals(page.document?.querySelectorAll("p").length, 8);

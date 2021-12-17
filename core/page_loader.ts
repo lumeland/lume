@@ -3,6 +3,7 @@ import { Exception } from "./utils.ts";
 import AssetLoader from "./asset_loader.ts";
 
 import type { Dest, Page, Src } from "./filesystem.ts";
+import type { Data, Loader } from "../core.ts";
 
 /**
  * Class to load page files that generate HTML documents.
@@ -15,18 +16,6 @@ export default class PageLoader extends AssetLoader {
 
     if (!page) {
       return undefined;
-    }
-
-    // Check the date and set it if it's not set
-    if (!page.data.date) {
-      const date = this.#detectDateInPath(page.src, page.dest) ??
-        page.src.created ?? page.src.lastModified;
-      page.data = { ...page.assignedData, date };
-    } else if (!(page.data.date instanceof Date)) {
-      throw new Exception(
-        'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
-        { path },
-      );
     }
 
     // Subextensions, like styles.css.njk
@@ -42,6 +31,28 @@ export default class PageLoader extends AssetLoader {
     return page;
   }
 
+  /** Loads the page data and prepare it */
+  async loadData(page: Page, path: string, loader: Loader): Promise<Data> {
+    const data = await super.loadData(page, path, loader);
+
+    // Check the date and set it if it's not set
+    if (!data.date) {
+      data.date = this.#detectDateInPath(page.src, page.dest) ??
+        page.src.created ?? page.src.lastModified;
+    } else if (!(data.date instanceof Date)) {
+      throw new Exception(
+        'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
+        { path },
+      );
+    }
+
+    return data;
+  }
+
+  /**
+   * Detect the date of the page in the filename
+   * Example: 2019-01-01_hello-world.md
+   */
   #detectDateInPath(src: Src, dest: Dest): Date | undefined {
     const fileName = basename(src.path);
 
