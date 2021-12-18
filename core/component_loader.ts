@@ -30,7 +30,18 @@ export default class ComponentsLoader {
   }
 
   /** Load a directory of components */
-  async load(path: string): Promise<ComponentsTree> {
+  async load(path: string): Promise<ComponentsTree | undefined> {
+    const info = await this.reader.getInfo(path);
+
+    if (!info?.isDirectory) {
+      return;
+    }
+
+    return this.#loadDirectory(path);
+  }
+
+  /** Load a directory of components */
+  async #loadDirectory(path: string): Promise<ComponentsTree | undefined> {
     const components: ComponentsTree = new Map();
 
     for await (const entry of this.reader.readDir(path)) {
@@ -44,7 +55,11 @@ export default class ComponentsLoader {
       const fullPath = join(path, entry.name);
 
       if (entry.isDirectory) {
-        components.set(entry.name.toLowerCase(), await this.load(fullPath));
+        const subcomponents = await this.#loadDirectory(fullPath);
+
+        if (subcomponents) {
+          components.set(entry.name.toLowerCase(), subcomponents);
+        }
         continue;
       }
 
@@ -55,7 +70,7 @@ export default class ComponentsLoader {
       }
     }
 
-    return components;
+    return components.size ? components : undefined;
   }
 
   /** Load a component file */

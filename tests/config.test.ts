@@ -38,22 +38,24 @@ Deno.test("ignored files configuration", () => {
   const site = lume();
   const { ignored } = site.source;
 
-  equals(ignored.size, 2);
+  equals(ignored.size, 4);
   equals(ignored.has("/node_modules"), true);
   equals(ignored.has("/_site"), true);
+  equals(ignored.has("/_components"), true);
+  equals(ignored.has("/_includes"), true);
 
   site.ignore("README.md");
-  equals(ignored.size, 3);
+  equals(ignored.size, 5);
   equals(ignored.has("/README.md"), true);
 
   site.ignore("file2", "file3", "README.md");
-  equals(ignored.size, 5);
+  equals(ignored.size, 7);
   equals(ignored.has("/file2"), true);
   equals(ignored.has("/file3"), true);
 
   site.copy("img");
   site.copy("statics", ".");
-  equals(ignored.size, 7);
+  equals(ignored.size, 9);
   equals(ignored.has("/img"), true);
   equals(ignored.has("/statics"), true);
 });
@@ -62,11 +64,9 @@ Deno.test("event listener configuration", () => {
   const site = lume();
   const { listeners } = site.events;
 
-  equals(listeners.size, 2);
-  equals(listeners.has("beforeBuild"), true);
+  equals(listeners.size, 1);
   equals(listeners.has("beforeUpdate"), true);
-  equals(listeners.get("beforeBuild")?.size, 1);
-  equals(listeners.get("beforeUpdate")?.size, 4);
+  equals(listeners.get("beforeUpdate")?.size, 3);
 
   site.addEventListener("afterBuild", "afterbuild-command");
   equals(listeners.get("afterBuild")?.size, 1);

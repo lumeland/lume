@@ -434,7 +434,10 @@ export default class Site {
     // Load the components and save them in the `comp` global variable
     const { variable, directory } = this.options.components;
     const components = await this.componentLoader.load(directory);
-    this.data(variable, this.components.toProxy(components));
+
+    if (components) {
+      this.data(variable, this.components.toProxy(components));
+    }
 
     // Render the pages into this.pages array
     this.pages = [];
