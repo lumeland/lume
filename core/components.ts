@@ -11,7 +11,7 @@ export interface Options {
 }
 
 /**
- * Class to manage the components.
+ * Class to consume the components in the template engines.
  */
 export default class Components {
   globalData: Data;
@@ -70,18 +70,14 @@ export default class Components {
   /**
    * Generate and returns the assets used by the components
    */
-  getAssets(): Page[] {
-    const assets: Page[] = [];
-
+  addAssets(pages: Page[]): void {
     if (this.css.size) {
-      assets.push(this.#createPage(this.css.values(), this.cssFile));
+      pages.push(this.#createPage(this.css.values(), this.cssFile));
     }
 
     if (this.js.size) {
-      assets.push(this.#createPage(this.js.values(), this.jsFile));
+      pages.push(this.#createPage(this.js.values(), this.jsFile));
     }
-
-    return assets;
   }
 
   #createPage(code: IterableIterator<string>, path: string): Page {

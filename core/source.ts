@@ -2,19 +2,12 @@ import { basename, dirname, join } from "../deps/path.ts";
 import { concurrent, normalizePath } from "./utils.ts";
 import { Directory, Page } from "./filesystem.ts";
 
-import type {
-  AssetLoader,
-  ComponentLoader,
-  DataLoader,
-  PageLoader,
-  Reader,
-} from "../core.ts";
+import type { AssetLoader, DataLoader, PageLoader, Reader } from "../core.ts";
 
 export interface Options {
   dataLoader: DataLoader;
   pageLoader: PageLoader;
   assetLoader: AssetLoader;
-  componentLoader: ComponentLoader;
   reader: Reader;
 }
 
@@ -38,9 +31,6 @@ export default class Source {
   /** To load all non-HTML pages */
   assetLoader: AssetLoader;
 
-  /** To load reusable components */
-  componentLoader: ComponentLoader;
-
   /** The list of paths to ignore */
   ignored = new Set<string>();
 
@@ -48,7 +38,6 @@ export default class Source {
     this.pageLoader = options.pageLoader;
     this.assetLoader = options.assetLoader;
     this.dataLoader = options.dataLoader;
-    this.componentLoader = options.componentLoader;
     this.reader = options.reader;
   }
 
@@ -208,16 +197,13 @@ export default class Source {
       return;
     }
 
+    // It's a _data file or directory
     if (entry.name === "_data" || /^_data\.\w+$/.test(entry.name)) {
       directory.addData(await this.dataLoader.load(path) || {});
       return;
     }
 
-    if (entry.name === "_components") {
-      await this.componentLoader.load(path);
-      return;
-    }
-
+    // Ignore entries starting with _
     if (entry.name.startsWith("_")) {
       return;
     }

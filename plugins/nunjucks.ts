@@ -49,7 +49,7 @@ export class NunjucksEngine implements Engine {
     // Update the internal cache
     site.addEventListener("beforeUpdate", (ev: Event) => {
       for (const file of ev.files!) {
-        this.cache.delete(site.src(file));
+        this.cache.delete(file);
       }
     });
   }

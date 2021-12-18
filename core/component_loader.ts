@@ -71,6 +71,7 @@ export default class ComponentsLoader {
     const { content } = data;
 
     return {
+      path,
       name: data.name ?? basename(path, ext),
       render(data) {
         return engine.renderSync(content, data, path);
@@ -82,6 +83,9 @@ export default class ComponentsLoader {
 }
 
 export interface Component {
+  /** The file path of the component */
+  path: string;
+
   /** Name of the component (used to get it from templates) */
   name: string;
 

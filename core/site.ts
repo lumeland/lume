@@ -153,7 +153,6 @@ export default class Site {
       pageLoader,
       assetLoader,
       dataLoader,
-      componentLoader,
     });
     const staticFiles = new StaticFiles();
 
@@ -194,34 +193,6 @@ export default class Site {
     this.logger = logger;
     this.scripts = scripts;
     this.writer = writer;
-
-    // Clear the cache before the build
-    this.addEventListener("beforeBuild", async () => {
-      this.source.clearCache();
-      this.reader.clearCache();
-
-      const comp = await this.componentLoader.load("_components");
-      this.data("comp", components.toProxy(comp));
-    });
-
-    // Clear the cache before every file change
-    this.addEventListener("beforeUpdate", async (ev: Event) => {
-      this.source.clearCache();
-
-      for (const filename of ev.files!) {
-        this.reader.deleteCache(filename);
-      }
-
-      const comp = await this.componentLoader.load("_components");
-      this.data("comp", components.toProxy(comp));
-    });
-
-    // Generate the components assets
-    this.addEventListener("afterRender", () => {
-      for (const page of this.components.getAssets()) {
-        this.pages.push(page);
-      }
-    });
 
     // Ignore the "dest" directory if it's inside src
     if (this.dest().startsWith(this.src())) {
@@ -282,7 +253,7 @@ export default class Site {
     return this;
   }
 
-  /** Runs a script or function */
+  /** Runs a script or function registered previously */
   async run(name: string, options: ScriptOptions = {}) {
     return await this.scripts.run(options, name);
   }
@@ -327,6 +298,7 @@ export default class Site {
   /** Register an import path for some extensions  */
   includes(extensions: string[], path: string) {
     this.includesLoader.setPath(extensions, path);
+    this.ignore(path); // Ignore any includes folder
     return this;
   }
 
@@ -378,8 +350,10 @@ export default class Site {
     return this;
   }
 
-  /** Clear the dest directory */
+  /** Clear the dest directory and any cache */
   async clear() {
+    this.source.clearCache();
+    this.reader.clearCache();
     await this.writer.clear();
   }
 
@@ -389,7 +363,6 @@ export default class Site {
       return;
     }
 
-    // Clear the dest folder
     await this.clear();
 
     // Copy static files
@@ -401,33 +374,12 @@ export default class Site {
     await this.source.load();
 
     // Get all pages to process (ignore drafts)
-    const from = this.source.getPages(
+    const pages = this.source.getPages(
       (page) => !page.data.draft || this.options.dev,
     );
 
-    // Render the pages into this.pages array
-    this.pages = [];
-    await this.renderer.renderPages(from, this.pages);
-    await this.events.dispatchEvent({ type: "afterRender" });
-
-    // Remove empty pages
-    this.pages = this.pages.filter((page) =>
-      !!page.content && !page.data.ondemand
-    );
-
-    // Run the processors to the pages
-    await this.processors.run(this.pages);
-
-    if (await this.dispatchEvent({ type: "beforeSave" }) === false) {
-      return;
-    }
-
-    // Save the pages in the dest folder
-    await concurrent(
-      this.pages,
-      (page) => this.writer.savePage(page),
-    );
-
+    // Build the pages
+    await this.#buildPages(pages);
     await this.dispatchEvent({ type: "afterBuild" });
   }
 
@@ -437,8 +389,14 @@ export default class Site {
       return;
     }
 
+    // Clear the cache before every file change
+    this.source.clearCache();
+
     // Reload the changed files
     for (const file of files) {
+      // Delete the file from the cache
+      this.reader.deleteCache(file);
+
       // It's a static file
       const entry = this.staticFiles.search(file);
 
@@ -452,18 +410,35 @@ export default class Site {
       await this.source.update(file);
     }
 
-    // Get all pages to process (ignore drafts and non scoped pages)
-    const from = this.source.getPages(
+    // Get the selected pages to process (ignore drafts and non scoped pages)
+    const pages = this.source.getPages(
       (page) => !page.data.draft || this.options.dev,
       this.scopes.getFilter(files),
     );
 
+    // Rebuild the selected pages
+    await this.#buildPages(pages);
+    await this.dispatchEvent({ type: "afterUpdate", files });
+  }
+
+  /**
+   * Internal function to render pages
+   * The common operations of build and update
+   */
+  async #buildPages(pages: Page[]) {
+    // Load the components and save them in the `comp` global variable
+    const components = await this.componentLoader.load("/_components");
+    this.data("comp", this.components.toProxy(components));
+
     // Render the pages into this.pages array
     this.pages = [];
-    await this.renderer.renderPages(from, this.pages);
+    await this.renderer.renderPages(pages, this.pages);
     await this.events.dispatchEvent({ type: "afterRender" });
 
-    // Remove empty pages
+    // Adds the components assets to the list of pages
+    this.components.addAssets(this.pages);
+
+    // Remove empty pages and ondemand pages
     this.pages = this.pages.filter((page) =>
       !!page.content && !page.data.ondemand
     );
@@ -480,8 +455,6 @@ export default class Site {
       this.pages,
       (page) => this.writer.savePage(page),
     );
-
-    await this.dispatchEvent({ type: "afterUpdate", files });
   }
 
   /** Render a single page (used for on demand rendering) */
