@@ -58,6 +58,12 @@ const defaults: SiteOptions = {
     ignore: [],
     debounce: 100,
   },
+  components: {
+    directory: "_components",
+    variable: "comp",
+    cssFile: "/components.css",
+    jsFile: "/components.js",
+  },
 };
 
 /**
@@ -134,18 +140,14 @@ export default class Site {
     const dest = this.dest();
     const { globalData } = this;
     const { quiet, includes, cwd, prettyUrls } = this.options;
+    const { cssFile, jsFile } = this.options.components;
 
     // To load source files
     const reader = new Reader({ src });
     const pageLoader = new PageLoader({ reader });
     const assetLoader = new AssetLoader({ reader });
     const componentLoader = new ComponentLoader({ reader });
-    const components = new Components({
-      globalData,
-      path: "_components",
-      cssFile: "components.css",
-      jsFile: "components.js",
-    });
+    const components = new Components({ globalData, cssFile, jsFile });
     const dataLoader = new DataLoader({ reader });
     const includesLoader = new IncludesLoader({ reader, includes });
     const source = new Source({
@@ -198,6 +200,9 @@ export default class Site {
     if (this.dest().startsWith(this.src())) {
       this.ignore(this.options.dest);
     }
+
+    // Ignore components directory
+    this.ignore(this.options.components.directory);
 
     // Ignore the dest folder by the watcher
     this.options.watcher.ignore.push(this.dest());
@@ -427,8 +432,9 @@ export default class Site {
    */
   async #buildPages(pages: Page[]) {
     // Load the components and save them in the `comp` global variable
-    const components = await this.componentLoader.load("/_components");
-    this.data("comp", this.components.toProxy(components));
+    const { variable, directory } = this.options.components;
+    const components = await this.componentLoader.load(directory);
+    this.data(variable, this.components.toProxy(components));
 
     // Render the pages into this.pages array
     this.pages = [];
@@ -559,6 +565,9 @@ export interface SiteOptions {
 
   /** The local watcher options */
   watcher: WatcherOptions;
+
+  /** The components options */
+  components: ComponentsOptions;
 }
 
 /** The options to configure the local server */
@@ -583,4 +592,19 @@ export interface WatcherOptions {
 
   /** The interval in milliseconds to check for changes */
   debounce: number;
+}
+
+/** The options to configure the components */
+export interface ComponentsOptions {
+  /** Directory in the src folder where are the components files */
+  directory: string;
+
+  /** The variable name used to access to the components */
+  variable: string;
+
+  /** The name of the file to save the components css code */
+  cssFile: string;
+
+  /** The name of the file to save the components javascript code */
+  jsFile: string;
 }

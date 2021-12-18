@@ -5,7 +5,6 @@ import type { ComponentsTree, Data } from "../core.ts";
 
 export interface Options {
   globalData: Data;
-  path: string;
   cssFile: string;
   jsFile: string;
 }
@@ -15,7 +14,6 @@ export interface Options {
  */
 export default class Components {
   globalData: Data;
-  path: string;
   cssFile: string;
   jsFile: string;
 
@@ -24,7 +22,6 @@ export default class Components {
 
   constructor(options: Options) {
     this.globalData = options.globalData;
-    this.path = options.path;
     this.cssFile = options.cssFile;
     this.jsFile = options.jsFile;
   }
@@ -72,21 +69,28 @@ export default class Components {
    */
   addAssets(pages: Page[]): void {
     if (this.css.size) {
-      pages.push(this.#createPage(this.css.values(), this.cssFile));
+      this.#exportPage(pages, this.css.values(), this.cssFile);
     }
 
     if (this.js.size) {
-      pages.push(this.#createPage(this.js.values(), this.jsFile));
+      this.#exportPage(pages, this.js.values(), this.jsFile);
     }
   }
 
-  #createPage(code: IterableIterator<string>, path: string): Page {
+  #exportPage(pages: Page[], code: IterableIterator<string>, path: string) {
+    const exists = pages.find((page) => page.data.url === path);
+
+    if (exists) {
+      exists.content += Array.from(code).join("\n");
+      return;
+    }
+
     const page = new Page();
     const ext = extname(path);
     page.dest.ext = ext;
     page.dest.path = path.slice(0, -ext.length);
     page.content = Array.from(code).join("\n");
-    return page;
+    pages.push(page);
   }
 }
 

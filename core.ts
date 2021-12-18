@@ -1,4 +1,5 @@
 import type {
+  ComponentsOptions,
   default as Site,
   ServerOptions,
   SiteOptions,
@@ -69,6 +70,7 @@ export type {
   AssetLoader,
   Component,
   ComponentLoader,
+  ComponentsOptions,
   ComponentsTree,
   Content,
   Data,

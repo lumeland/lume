@@ -12,6 +12,7 @@ import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { merge } from "./core/utils.ts";
 
 import type {
+  ComponentsOptions,
   ServerOptions,
   SiteOptions,
   WatcherOptions,
@@ -28,9 +29,11 @@ interface PluginOptions {
   yaml?: Partial<YamlOptions>;
 }
 
-interface Options extends Omit<Partial<SiteOptions>, "server" | "watcher"> {
+interface Options
+  extends Omit<Partial<SiteOptions>, "server" | "watcher" | "components"> {
   server?: Partial<ServerOptions>;
   watcher?: Partial<WatcherOptions>;
+  components?: Partial<ComponentsOptions>;
 }
 
 export default function (
