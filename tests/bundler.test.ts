@@ -27,8 +27,7 @@ Deno.test("bundler plugin", async () => {
     equals(page.dest.path, "/main");
     equals(page.dest.ext, ".js");
     const content = page.content as string;
-    console.log(content);
-    assert(content.includes('createElement("h1", null, salute)'));
+    assert(content.includes('.createElement("h1", null, salute1)'));
   });
 });
 
