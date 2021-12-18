@@ -73,6 +73,12 @@ export interface Event {
    * contains the page that will be rendered
    */
   page?: Page;
+
+  /**
+   * Available only in "afterBuild" and "afterUpdate"
+   * contains the list of pages that have been saved
+   */
+  pages?: Page[];
 }
 
 /** The available event types */

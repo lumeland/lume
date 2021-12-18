@@ -1,6 +1,6 @@
 import { dirname, join } from "../deps/path.ts";
 import { copy, emptyDir, ensureDir } from "../deps/fs.ts";
-import { normalizePath, sha1 } from "./utils.ts";
+import { concurrent, normalizePath, sha1 } from "./utils.ts";
 
 import type { Page } from "./filesystem.ts";
 import type Logger from "./logger.ts";
@@ -27,11 +27,33 @@ export default class Writer {
     this.logger = options.logger;
   }
 
-  /** Save a page in the dest folder */
-  async savePage(page: Page) {
+  /**
+   * Save the pages in the dest folder
+   * Returns an array of pages that have been saved
+   */
+  async savePages(pages: Page[]): Promise<Page[]> {
+    const savedPages: Page[] = [];
+
+    await concurrent(
+      pages,
+      async (page) => {
+        if (await this.savePage(page)) {
+          savedPages.push(page);
+        }
+      },
+    );
+
+    return savedPages;
+  }
+
+  /**
+   * Save a page in the dest folder
+   * Returns a boolean indicating if the page has saved
+   */
+  async savePage(page: Page): Promise<boolean> {
     // Ignore empty files
     if (!page.content) {
-      return;
+      return false;
     }
 
     const dest = page.dest.path + page.dest.ext;
@@ -40,7 +62,7 @@ export default class Writer {
 
     // The page content didn't change
     if (previousHash === hash) {
-      return;
+      return false;
     }
 
     this.#hashes.set(dest, hash);
@@ -56,6 +78,8 @@ export default class Writer {
     page.content instanceof Uint8Array
       ? await Deno.writeFile(filename, page.content)
       : await Deno.writeTextFile(filename, page.content);
+
+    return true;
   }
 
   /** Copy a static file in the dest folder */

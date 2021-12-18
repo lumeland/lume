@@ -1,5 +1,5 @@
 import { join, posix, SEP } from "../deps/path.ts";
-import { concurrent, Exception, merge, normalizePath } from "./utils.ts";
+import { Exception, merge, normalizePath } from "./utils.ts";
 
 import Reader from "./reader.ts";
 import PageLoader from "./page_loader.ts";
@@ -59,7 +59,7 @@ const defaults: SiteOptions = {
     debounce: 100,
   },
   components: {
-    directory: "_components",
+    directory: "/_components",
     variable: "comp",
     cssFile: "/components.css",
     jsFile: "/components.js",
@@ -379,13 +379,13 @@ export default class Site {
     await this.source.load();
 
     // Get all pages to process (ignore drafts)
-    const pages = this.source.getPages(
+    const pagesToBuild = this.source.getPages(
       (page) => !page.data.draft || this.options.dev,
     );
 
     // Build the pages
-    await this.#buildPages(pages);
-    await this.dispatchEvent({ type: "afterBuild" });
+    const pages = await this.#buildPages(pagesToBuild);
+    await this.dispatchEvent({ type: "afterBuild", pages });
   }
 
   /** Reload some files that might be changed */
@@ -416,24 +416,25 @@ export default class Site {
     }
 
     // Get the selected pages to process (ignore drafts and non scoped pages)
-    const pages = this.source.getPages(
+    const pagesToBuild = this.source.getPages(
       (page) => !page.data.draft || this.options.dev,
       this.scopes.getFilter(files),
     );
 
     // Rebuild the selected pages
-    await this.#buildPages(pages);
-    await this.dispatchEvent({ type: "afterUpdate", files });
+    const pages = await this.#buildPages(pagesToBuild);
+    await this.dispatchEvent({ type: "afterUpdate", files, pages });
   }
 
   /**
    * Internal function to render pages
    * The common operations of build and update
+   * Returns the list of pages that have been built
    */
-  async #buildPages(pages: Page[]) {
+  async #buildPages(pages: Page[]): Promise<Page[]> {
     // Load the components and save them in the `comp` global variable
     const { variable, directory } = this.options.components;
-    const components = await this.componentLoader.load(directory);
+    const components = await this.componentLoader.load(join("/", directory));
 
     if (components) {
       this.data(variable, this.components.toProxy(components));
@@ -456,14 +457,11 @@ export default class Site {
     await this.processors.run(this.pages);
 
     if (await this.dispatchEvent({ type: "beforeSave" }) === false) {
-      return;
+      return [];
     }
 
     // Save the pages in the dest folder
-    await concurrent(
-      this.pages,
-      (page) => this.writer.savePage(page),
-    );
+    return this.writer.savePages(this.pages);
   }
 
   /** Render a single page (used for on demand rendering) */
