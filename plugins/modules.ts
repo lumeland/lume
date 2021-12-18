@@ -43,7 +43,10 @@ export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.loadPages(options.pagesExtensions, loader, new ModuleEngine());
+    const engine = new ModuleEngine();
+
+    site.loadPages(options.pagesExtensions, loader, engine);
     site.loadData(options.dataExtensions, loader);
+    site.loadComponents(options.dataExtensions, loader, engine);
   };
 }

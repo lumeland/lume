@@ -1,7 +1,12 @@
 import { Exception } from "./utils.ts";
 import Extensions from "./extensions.ts";
 
-import type { Data } from "./filesystem.ts";
+import type { Data } from "../core.ts";
+
+export interface Options {
+  /** Extra data to be passed to the engines */
+  globalData: Data;
+}
 
 /**
  * Class to render the pages
@@ -12,10 +17,14 @@ export default class Engines {
   engines = new Extensions<Engine>();
 
   /** Extra data to be passed to the engines */
-  extraData: Record<string, unknown> = {};
+  globalData: Data;
 
   /** The registered helpers */
   helpers = new Map<string, [Helper, HelperOptions]>();
+
+  constructor(options: Options) {
+    this.globalData = options.globalData || {};
+  }
 
   /** Register a new template engine */
   addEngine(extensions: string[], engine: Engine) {
@@ -46,7 +55,7 @@ export default class Engines {
     const engines = this.getEngine(filename, data);
 
     if (engines) {
-      data = { ...this.extraData, ...data };
+      data = { ...this.globalData, ...data };
 
       for (const engine of engines) {
         content = await engine.render(content, data, filename);
@@ -61,7 +70,7 @@ export default class Engines {
     const engines = this.getEngine(filename, data);
 
     if (engines) {
-      data = { ...this.extraData, ...data };
+      data = { ...this.globalData, ...data };
 
       for (const engine of engines) {
         content = engine.renderSync(content, data, filename);

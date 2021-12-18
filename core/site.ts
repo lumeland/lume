@@ -4,6 +4,8 @@ import { concurrent, Exception, merge, normalizePath } from "./utils.ts";
 import Reader from "./reader.ts";
 import PageLoader from "./page_loader.ts";
 import AssetLoader from "./asset_loader.ts";
+import ComponentLoader from "./component_loader.ts";
+import Components from "./components.ts";
 import DataLoader from "./data_loader.ts";
 import IncludesLoader from "./includes_loader.ts";
 import Source from "./source.ts";
@@ -19,6 +21,7 @@ import Writer from "./writer.ts";
 import textLoader from "./loaders/text.ts";
 
 import type {
+  Data,
   Engine,
   Event,
   EventListener,
@@ -79,6 +82,12 @@ export default class Site {
   /** To load all _includes files (layouts, templates, etc) */
   includesLoader: IncludesLoader;
 
+  /** To load reusable components */
+  componentLoader: ComponentLoader;
+
+  /** To manage and use loaded components */
+  components: Components;
+
   /** To scan the src folder */
   source: Source;
 
@@ -112,6 +121,9 @@ export default class Site {
   /** To write the generated pages in the dest folder */
   writer: Writer;
 
+  /** Global data to be passed to the engines */
+  globalData: Data = {};
+
   /** The generated pages are stored here */
   pages: Page[] = [];
 
@@ -120,19 +132,33 @@ export default class Site {
 
     const src = this.src();
     const dest = this.dest();
+    const { globalData } = this;
     const { quiet, includes, cwd, prettyUrls } = this.options;
 
     // To load source files
     const reader = new Reader({ src });
     const pageLoader = new PageLoader({ reader });
     const assetLoader = new AssetLoader({ reader });
+    const componentLoader = new ComponentLoader({ reader });
+    const components = new Components({
+      globalData,
+      path: "_components",
+      cssFile: "components.css",
+      jsFile: "components.js",
+    });
     const dataLoader = new DataLoader({ reader });
     const includesLoader = new IncludesLoader({ reader, includes });
-    const source = new Source({ reader, pageLoader, assetLoader, dataLoader });
+    const source = new Source({
+      reader,
+      pageLoader,
+      assetLoader,
+      dataLoader,
+      componentLoader,
+    });
     const staticFiles = new StaticFiles();
 
     // To render pages
-    const engines = new Engines();
+    const engines = new Engines({ globalData });
     const scopes = new Scopes();
     const processors = new Processors();
     const preprocessors = new Processors();
@@ -153,6 +179,8 @@ export default class Site {
     this.reader = reader;
     this.pageLoader = pageLoader;
     this.assetLoader = assetLoader;
+    this.componentLoader = componentLoader;
+    this.components = components;
     this.dataLoader = dataLoader;
     this.includesLoader = includesLoader;
     this.source = source;
@@ -168,17 +196,30 @@ export default class Site {
     this.writer = writer;
 
     // Clear the cache before the build
-    this.addEventListener("beforeBuild", () => {
+    this.addEventListener("beforeBuild", async () => {
       this.source.clearCache();
       this.reader.clearCache();
+
+      const comp = await this.componentLoader.load("_components");
+      this.data("comp", components.toProxy(comp));
     });
 
     // Clear the cache before every file change
-    this.addEventListener("beforeUpdate", (ev: Event) => {
+    this.addEventListener("beforeUpdate", async (ev: Event) => {
       this.source.clearCache();
 
       for (const filename of ev.files!) {
         this.reader.deleteCache(filename);
+      }
+
+      const comp = await this.componentLoader.load("_components");
+      this.data("comp", components.toProxy(comp));
+    });
+
+    // Generate the components assets
+    this.addEventListener("afterRender", () => {
+      for (const page of this.components.getAssets()) {
+        this.pages.push(page);
       }
     });
 
@@ -267,6 +308,16 @@ export default class Site {
     return this;
   }
 
+  /** Register a component loader for some extensions */
+  loadComponents(
+    extensions: string[],
+    loader: Loader = textLoader,
+    engine: Engine,
+  ) {
+    this.componentLoader.set(extensions, loader, engine);
+    return this;
+  }
+
   /** Register an assets loader for some extensions */
   loadAssets(extensions: string[], loader: Loader = textLoader) {
     this.assetLoader.set(extensions, loader);
@@ -304,7 +355,7 @@ export default class Site {
 
   /** Register extra data accessible by layouts */
   data(name: string, data: unknown) {
-    this.engines.extraData[name] = data;
+    this.globalData[name] = data;
     return this;
   }
 
@@ -398,7 +449,7 @@ export default class Site {
         continue;
       }
 
-      await this.source.reload(file);
+      await this.source.update(file);
     }
 
     // Get all pages to process (ignore drafts and non scoped pages)
@@ -436,7 +487,7 @@ export default class Site {
   /** Render a single page (used for on demand rendering) */
   async renderPage(file: string): Promise<Page | undefined> {
     // Load the page
-    await this.source.reload(file);
+    await this.source.update(file);
 
     // Returns the page
     const page = this.source.getFileOrDirectory(file) as Page | undefined;

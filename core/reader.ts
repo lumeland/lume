@@ -1,7 +1,7 @@
 import { Exception } from "./utils.ts";
 import { join } from "../deps/path.ts";
 
-import type { Data } from "./filesystem.ts";
+import type { Data } from "../core.ts";
 
 export interface Options {
   /** The root directory of the files */

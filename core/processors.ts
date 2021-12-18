@@ -1,6 +1,6 @@
 import { concurrent, Exception } from "./utils.ts";
 
-import type { Page } from "./filesystem.ts";
+import type { Page } from "../core.ts";
 
 /**
  * Class to store and run the (pre)processors

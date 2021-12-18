@@ -1,4 +1,4 @@
-import type { Page } from "./filesystem.ts";
+import type { Page } from "../core.ts";
 
 /**
  * Define independent updates scopes

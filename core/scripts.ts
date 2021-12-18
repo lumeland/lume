@@ -1,4 +1,4 @@
-import type Logger from "./logger.ts";
+import type { Logger } from "../core.ts";
 
 export interface Options {
   /** The logger to use */

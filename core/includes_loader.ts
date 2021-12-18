@@ -1,8 +1,7 @@
 import { join } from "../deps/path.ts";
 import Extensions from "./extensions.ts";
 
-import type { Data } from "./filesystem.ts";
-import type { default as Reader, Loader } from "./reader.ts";
+import type { Data, Loader, Reader } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */

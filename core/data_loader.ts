@@ -1,8 +1,7 @@
 import { basename, extname, join } from "../deps/path.ts";
 import Extensions from "./extensions.ts";
 
-import type { default as Reader, Loader } from "./reader.ts";
-import type { Data } from "./filesystem.ts";
+import type { Data, Loader, Reader } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
@@ -28,8 +27,22 @@ export default class DataLoader {
     extensions.forEach((extension) => this.loaders.set(extension, loader));
   }
 
-  /** Load a _data.* file */
   async load(path: string): Promise<Data | undefined> {
+    const info = await this.reader.getInfo(path);
+
+    if (!info) {
+      return;
+    }
+
+    if (info.isDirectory) {
+      return this.#loadDirectory(path);
+    }
+
+    return this.#loadFile(path);
+  }
+
+  /** Load a _data.* file */
+  async #loadFile(path: string): Promise<Data | undefined> {
     const result = this.loaders.search(path);
 
     if (!result) {
@@ -38,10 +51,9 @@ export default class DataLoader {
 
     const [, loader] = result;
 
-    return this.prepareData(await this.reader.read(path, loader));
-  }
+    const data = await this.reader.read(path, loader);
 
-  prepareData(data: Data): Data {
+    // Ensure the the tags is string[]
     if (data.tags) {
       data.tags = Array.isArray(data.tags)
         ? data.tags.map((tag) => String(tag))
@@ -52,7 +64,7 @@ export default class DataLoader {
   }
 
   /** Load a _data directory */
-  async loadDirectory(path: string): Promise<Data> {
+  async #loadDirectory(path: string): Promise<Data> {
     const data: Data = {};
 
     for await (const entry of this.reader.readDir(path)) {
@@ -62,7 +74,10 @@ export default class DataLoader {
     return data;
   }
 
-  /** Load a data entry inside a _data directory */
+  /**
+   * Load a data entry inside a _data directory
+   * and append the data to the data object
+   */
   async loadEntry(path: string, entry: Deno.DirEntry, data: Data) {
     if (
       entry.isSymlink ||
@@ -73,7 +88,7 @@ export default class DataLoader {
 
     if (entry.isFile) {
       const name = basename(entry.name, extname(entry.name));
-      const fileData = await this.load(join(path, entry.name)) || {};
+      const fileData = await this.#loadFile(join(path, entry.name)) || {};
 
       if (fileData.content && Object.keys(fileData).length === 1) {
         data[name] = fileData.content;
@@ -85,7 +100,7 @@ export default class DataLoader {
     }
 
     if (entry.isDirectory) {
-      data[entry.name] = await this.loadDirectory(join(path, entry.name));
+      data[entry.name] = await this.#loadDirectory(join(path, entry.name));
     }
   }
 }

@@ -1,7 +1,6 @@
 import { bold, brightGreen, dim, red, yellow } from "../deps/colors.ts";
 
-import type { ErrorData } from "../core.ts";
-import type { Page } from "./filesystem.ts";
+import type { ErrorData, Page } from "../core.ts";
 
 export interface Options {
   /** Set to true to disable logging. */

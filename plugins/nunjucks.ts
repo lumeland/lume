@@ -163,8 +163,11 @@ export default function (userOptions?: Partial<Options>) {
     // Register the njk filter
     site.filter("njk", filter as Helper, true);
 
+    // Register njk components
+    site.loadComponents(options.extensions, loader, engine);
+
     function filter(string: string, data?: Data) {
-      return engine.render(string, { ...site.engines.extraData, ...data });
+      return engine.render(string, { ...site.globalData, ...data });
     }
   };
 }

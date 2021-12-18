@@ -263,15 +263,15 @@ Deno.test("helpers configuration", () => {
 
 Deno.test("extra data", () => {
   const site = lume();
-  const { extraData } = site.engines;
+  const { globalData } = site;
 
-  equals(Object.keys(extraData).length, 2);
-  equals(Object.keys(extraData)[0], "paginate");
-  equals(Object.keys(extraData)[1], "search");
+  equals(Object.keys(globalData).length, 2);
+  equals(Object.keys(globalData)[0], "paginate");
+  equals(Object.keys(globalData)[1], "search");
 
   site.data("name", "lume");
-  equals(Object.keys(extraData).length, 3);
-  equals(extraData.name, "lume");
+  equals(Object.keys(globalData).length, 3);
+  equals(globalData.name, "lume");
 });
 
 Deno.test("url location", () => {

@@ -99,7 +99,7 @@ export default function (userOptions?: Partial<Options>) {
     site.filter("pug", filter as Helper, true);
 
     function filter(string: string, data?: Data) {
-      return engine.render(string, { ...site.engines.extraData, ...data });
+      return engine.render(string, { ...site.globalData, ...data });
     }
   };
 }

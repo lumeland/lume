@@ -22,6 +22,15 @@ import type {
 import type { default as Reader, Loader } from "./core/reader.ts";
 import type Logger from "./core/logger.ts";
 import type Writer from "./core/writer.ts";
+import type IncludesLoader from "./core/includes_loader.ts";
+import type PageLoader from "./core/page_loader.ts";
+import type AssetLoader from "./core/asset_loader.ts";
+import type DataLoader from "./core/data_loader.ts";
+import type {
+  Component,
+  ComponentsTree,
+  default as ComponentLoader,
+} from "./core/component_loader.ts";
 import type {
   Content,
   Data,
@@ -57,8 +66,13 @@ type PluginSetup = ((options: unknown) => Plugin);
 type Plugin = (site: Site) => void;
 
 export type {
+  AssetLoader,
+  Component,
+  ComponentLoader,
+  ComponentsTree,
   Content,
   Data,
+  DataLoader,
   Dest,
   Directory,
   Engine,
@@ -72,9 +86,11 @@ export type {
   FileResponse,
   Helper,
   HelperOptions,
+  IncludesLoader,
   Loader,
   Logger,
   Page,
+  PageLoader,
   Plugin,
   PluginSetup,
   Processor,
