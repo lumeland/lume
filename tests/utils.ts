@@ -1,9 +1,14 @@
 import lume from "../mod.ts";
+import { join } from "../deps/path.ts";
 import { printError } from "../cli/utils.ts";
 
 import type { Page, Site, SiteOptions } from "../core.ts";
 
-const cwd = new URL("./assets", import.meta.url).pathname;
+const cwd = new URL("./", import.meta.url).pathname;
+
+export function getPath(path: string): string {
+  return join(cwd, path);
+}
 
 /** Create a new lume site using the "assets" path as cwd */
 export function getSite(
@@ -11,7 +16,7 @@ export function getSite(
   pluginOptions = {},
   preventSave = true,
 ): Site {
-  options.cwd = cwd;
+  options.cwd = getPath("assets");
 
   const site = lume(options, pluginOptions, false);
 

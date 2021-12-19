@@ -28,7 +28,7 @@ export default class Scripts {
   }
 
   /** Register one or more scripts under a specific name */
-  add(name: string, ...scripts: ScriptOrFunction[]): void {
+  set(name: string, ...scripts: ScriptOrFunction[]): void {
     this.scripts.set(name, scripts);
   }
 

@@ -1,5 +1,6 @@
 import { Page } from "./filesystem.ts";
 import Extensions from "./extensions.ts";
+import { join } from "../deps/path.ts";
 
 import type { Data, Loader, Reader } from "../core.ts";
 
@@ -29,6 +30,7 @@ export default class AssetLoader {
 
   /** Load an asset Page */
   async load(path: string): Promise<Page | undefined> {
+    path = join("/", path);
     const result = this.loaders.search(path);
 
     if (!result) {

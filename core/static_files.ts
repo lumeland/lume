@@ -17,6 +17,8 @@ export default class StaticFiles {
    * and return a [from, to] tuple
    */
   search(file: string): [string, string] | undefined {
+    file = join("/", file);
+
     for (const entry of this.paths) {
       const [from, to] = entry;
 
@@ -31,6 +33,8 @@ export default class StaticFiles {
    * and return a [from, to] tuple
    */
   searchReverse(file: string): [string, string] | undefined {
+    file = join("/", file);
+
     for (const entry of this.paths) {
       const [from, to] = entry;
 

@@ -63,14 +63,14 @@ export default class PageLoader extends AssetLoader {
       const [found, year, month, day, hour, minute, second] = dateInPath;
       dest.path = dest.path.replace(found, "");
 
-      return new Date(
+      return new Date(Date.UTC(
         parseInt(year),
         parseInt(month) - 1,
         parseInt(day),
         hour ? parseInt(hour) : 0,
         minute ? parseInt(minute) : 0,
         second ? parseInt(second) : 0,
-      );
+      ));
     }
 
     const orderInPath = fileName.match(/^(\d+)_/);

@@ -254,7 +254,7 @@ export default class Site {
    * lume run <name>
    */
   script(name: string, ...scripts: ScriptOrFunction[]) {
-    this.scripts.add(name, ...scripts);
+    this.scripts.set(name, ...scripts);
     return this;
   }
 

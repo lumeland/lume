@@ -1,0 +1,5 @@
+---
+title: Title in the front matter
+tags: tag1
+---
+Hello world
