@@ -2,14 +2,7 @@ import { Liquid } from "../deps/liquid.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
-import type {
-  Data,
-  Engine,
-  Event,
-  Helper,
-  HelperOptions,
-  Site,
-} from "../core.ts";
+import type { Data, Engine, Helper, HelperOptions, Site } from "../core.ts";
 import type { LiquidOptions } from "../deps/liquid.ts";
 
 export interface Options {
@@ -37,15 +30,12 @@ export class LiquidEngine implements Engine {
   cache = new Map<string, unknown>();
 
   // deno-lint-ignore no-explicit-any
-  constructor(site: Site, liquid: any) {
+  constructor(liquid: any) {
     this.liquid = liquid;
+  }
 
-    // Update the internal cache
-    site.addEventListener("beforeUpdate", (ev: Event) => {
-      for (const file of ev.files!) {
-        this.cache.delete(site.src(file));
-      }
-    });
+  deleteCache(file: string): void {
+    this.cache.delete(file);
   }
 
   async render(content: string, data?: Data, filename?: string) {
@@ -105,13 +95,16 @@ export default function (userOptions?: Partial<Options>) {
       ...options.options,
     };
 
-    const engine = new LiquidEngine(site, new Liquid(liquidOptions));
+    const engine = new LiquidEngine(new Liquid(liquidOptions));
 
     // Load the liquid pages
     site.loadPages(options.extensions, loader, engine);
 
     // Register the liquid filter
     site.filter("liquid", filter as Helper, true);
+
+    // Register liquid components
+    site.loadComponents(options.extensions, loader, engine);
 
     function filter(string: string, data?: Data) {
       return engine.render(string, { ...site.globalData, ...data });

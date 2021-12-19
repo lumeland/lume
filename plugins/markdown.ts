@@ -48,6 +48,8 @@ export class MarkdownEngine implements Engine {
     this.engine = engine;
   }
 
+  deleteCache() {}
+
   render(content: string, data?: Data, filename?: string): string {
     return this.renderSync(content, data, filename);
   }

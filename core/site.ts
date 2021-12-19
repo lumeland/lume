@@ -339,13 +339,13 @@ export default class Site {
   /** Copy static files or directories without processing */
   copy(from: string, to = from) {
     this.staticFiles.add(from, to);
-    this.source.addIgnoredPath(from); // Ignore static paths
+    this.ignore(from); // Ignore static paths
     return this;
   }
 
   /** Ignore one or several files or directories */
   ignore(...paths: string[]) {
-    paths.forEach((path) => this.source.addIgnoredPath(join("/", path)));
+    paths.forEach((path) => this.source.addIgnoredPath(path));
     return this;
   }
 
@@ -401,6 +401,7 @@ export default class Site {
     for (const file of files) {
       // Delete the file from the cache
       this.reader.deleteCache(file);
+      this.engines.deleteCache(file);
 
       // It's a static file
       const entry = this.staticFiles.search(file);
@@ -434,7 +435,7 @@ export default class Site {
   async #buildPages(pages: Page[]): Promise<Page[]> {
     // Load the components and save them in the `comp` global variable
     const { variable, directory } = this.options.components;
-    const components = await this.componentLoader.load(join("/", directory));
+    const components = await this.componentLoader.load(directory);
 
     if (components) {
       this.data(variable, this.components.toProxy(components));

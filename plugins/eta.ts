@@ -35,13 +35,25 @@ export class EtaEngine implements Engine {
     this.engine = engine;
   }
 
+  deleteCache(file: string): void {
+    this.engine.templates.remove(file);
+  }
+
   render(content: string, data: Data, filename: string) {
-    return this.renderSync(content, data, filename);
+    if (!this.engine.templates.get(filename)) {
+      this.engine.templates.define(filename, this.engine.compile(content));
+    }
+    data.filters = this.filters;
+    const fn = this.engine.templates.get(filename);
+    return fn(data, this.engine.config);
   }
 
   renderSync(content: string, data: Data, filename: string) {
     if (!this.engine.templates.get(filename)) {
-      this.engine.templates.define(filename, this.engine.compile(content));
+      this.engine.templates.define(
+        filename,
+        this.engine.compile(content, this.engine.getConfig({ async: false })),
+      );
     }
     data.filters = this.filters;
     const fn = this.engine.templates.get(filename);
@@ -78,14 +90,12 @@ export default function (userOptions?: Partial<Options>) {
     // Configure includes
     site.includes(options.extensions, options.includes);
 
-    // Update the cache
-    site.addEventListener("beforeUpdate", (ev) => {
-      for (const filename of ev.files!) {
-        eta.templates.remove(site.src(filename));
-      }
-    });
+    const engine = new EtaEngine(eta);
 
     // Load the pages
-    site.loadPages(options.extensions, loader, new EtaEngine(eta));
+    site.loadPages(options.extensions, loader, engine);
+
+    // Register eta components
+    site.loadComponents(options.extensions, loader, engine);
   };
 }

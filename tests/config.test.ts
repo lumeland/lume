@@ -66,7 +66,7 @@ Deno.test("event listener configuration", () => {
 
   equals(listeners.size, 1);
   equals(listeners.has("beforeUpdate"), true);
-  equals(listeners.get("beforeUpdate")?.size, 3);
+  equals(listeners.get("beforeUpdate")?.size, 1);
 
   site.addEventListener("afterBuild", "afterbuild-command");
   equals(listeners.get("afterBuild")?.size, 1);
@@ -145,6 +145,7 @@ Deno.test("pages configuration", () => {
 
   const loader = () => Promise.resolve({});
   const engine = {
+    deleteCache: () => {},
     render: () => {},
     renderSync: () => "",
     addHelper: () => {},

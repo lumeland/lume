@@ -22,6 +22,8 @@ window.React ||= React;
 export class JsxEngine implements Engine {
   helpers: Record<string, Helper> = {};
 
+  deleteCache() {}
+
   async render(content: unknown, data: Data = {}) {
     if (!data.children && data.content) {
       data.children = React.createElement("div", {

@@ -1,15 +1,9 @@
 import nunjucks from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
+import { join } from "../deps/path.ts";
 
-import type {
-  Data,
-  Engine,
-  Event,
-  Helper,
-  HelperOptions,
-  Site,
-} from "../core.ts";
+import type { Data, Engine, Helper, HelperOptions, Site } from "../core.ts";
 import type { NunjucksOptions } from "../deps/nunjucks.ts";
 
 export interface Options {
@@ -43,15 +37,22 @@ export class NunjucksEngine implements Engine {
   cache = new Map();
 
   // deno-lint-ignore no-explicit-any
-  constructor(site: Site, env: any) {
+  constructor(env: any) {
     this.env = env;
+  }
 
-    // Update the internal cache
-    site.addEventListener("beforeUpdate", (ev: Event) => {
-      for (const file of ev.files!) {
-        this.cache.delete(file);
-      }
-    });
+  deleteCache(file: string): void {
+    this.cache.delete(file);
+
+    // Remove the internal cache of nunjucks
+    const fsLoader = this.env.loaders[0];
+    const basePath = fsLoader?.searchPaths[0];
+    const filename = join(basePath, file);
+    const name = fsLoader.pathsToNames[filename];
+
+    if (name) {
+      delete fsLoader.cache[name];
+    }
   }
 
   render(content: string, data?: Data, filename?: string) {
@@ -140,22 +141,7 @@ export default function (userOptions?: Partial<Options>) {
       env.addExtension(name, fn);
     }
 
-    // Update the cache
-    site.addEventListener("beforeUpdate", (ev) => {
-      for (const file of ev.files!) {
-        const filename = site.src(file);
-        // @ts-ignore: No index signature with a parameter of type 'string' was found on type '{}'
-        const name = fsLoader.pathsToNames[filename];
-
-        if (name) {
-          // @ts-ignore: Property 'cache' does not exist on type 'FileSystemLoader'.
-          delete fsLoader.cache[name];
-          continue;
-        }
-      }
-    });
-
-    const engine = new NunjucksEngine(site, env);
+    const engine = new NunjucksEngine(env);
 
     // Load the pages
     site.loadPages(options.extensions, loader, engine);

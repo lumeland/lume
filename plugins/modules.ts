@@ -21,6 +21,8 @@ const defaults: Options = {
 export class ModuleEngine implements Engine {
   helpers: Record<string, Helper> = {};
 
+  deleteCache() {}
+
   async render(content: unknown, data: Data): Promise<unknown> {
     return typeof content === "function"
       ? await content(data, this.helpers)

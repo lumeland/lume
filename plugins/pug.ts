@@ -31,12 +31,13 @@ export class PugEngine implements Engine {
   compiler: Compiler;
   cache = new Map<string, (data?: Data) => string>();
 
-  constructor(site: Site, compiler: Compiler, options: PugOptions) {
+  constructor(compiler: Compiler, options: PugOptions) {
     this.compiler = compiler;
     this.options = options;
+  }
 
-    // Update the cache
-    site.addEventListener("beforeUpdate", () => this.cache.clear());
+  deleteCache(): void {
+    this.cache.clear();
   }
 
   render(content: string, data?: Data, filename?: string) {
@@ -90,10 +91,13 @@ export default function (userOptions?: Partial<Options>) {
     options.options.basedir = site.src(options.includes);
     site.includes(options.extensions, options.includes);
 
-    const engine = new PugEngine(site, compile, options.options);
+    const engine = new PugEngine(compile, options.options);
 
     // Load the pages
     site.loadPages(options.extensions, loader, engine);
+
+    // Register pug components
+    site.loadComponents(options.extensions, loader, engine);
 
     // Register the pug filter
     site.filter("pug", filter as Helper, true);

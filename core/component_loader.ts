@@ -31,6 +31,7 @@ export default class ComponentsLoader {
 
   /** Load a directory of components */
   async load(path: string): Promise<ComponentsTree | undefined> {
+    path = join("/", path);
     const info = await this.reader.getInfo(path);
 
     if (!info?.isDirectory) {

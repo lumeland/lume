@@ -26,6 +26,13 @@ export default class Engines {
     this.globalData = options.globalData || {};
   }
 
+  /** Delete a cached template */
+  deleteCache(file: string): void {
+    for (const engine of this.engines.values()) {
+      engine.deleteCache(file);
+    }
+  }
+
   /** Register a new template engine */
   addEngine(extensions: string[], engine: Engine) {
     extensions.forEach((extension) => this.engines.set(extension, engine));
@@ -113,6 +120,9 @@ export default class Engines {
 
 /** An interface used by all template engines */
 export interface Engine {
+  /** Delete a cached template */
+  deleteCache(file: string): void;
+
   /** Render a template */
   render(
     content: unknown,
