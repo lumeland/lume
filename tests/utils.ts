@@ -1,6 +1,8 @@
+import { assertStrictEquals } from "../deps/assert.ts";
 import lume from "../mod.ts";
-import { join } from "../deps/path.ts";
+import { join, SEP } from "../deps/path.ts";
 import { printError } from "../cli/utils.ts";
+import { platformPath } from "../core/utils.ts";
 
 import type { Page, Site, SiteOptions } from "../core.ts";
 
@@ -8,6 +10,16 @@ const cwd = new URL("./", import.meta.url).pathname;
 
 export function getPath(path: string): string {
   return join(cwd, path);
+}
+
+export function assertEqualsPaths(path1: unknown, path2: unknown) {
+  if (typeof path1 === "string") {
+    path1 = platformPath(path1);
+  }
+  if (typeof path2 === "string") {
+    path2 = platformPath(path2);
+  }
+  assertStrictEquals(path1, path2);
 }
 
 /** Create a new lume site using the "assets" path as cwd */

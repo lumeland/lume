@@ -154,6 +154,14 @@ export function normalizePath(path: string) {
 }
 
 /**
+ * Convert a path to Posix or Win32
+ * depending on de current platform.
+ */
+export function platformPath(path: string) {
+  return path.replaceAll(/[\\/]+/g, SEP);
+}
+
+/**
  * Search an extension in a map.
  * It's useful for cases in which the extension is multiple.
  * Example: page.tmpl.js
