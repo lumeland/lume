@@ -3,8 +3,7 @@ import {
   assertEquals,
   assertStrictEquals as equals,
 } from "../../deps/assert.ts";
-import { assertEqualsPaths } from "../utils.ts";
-import { fromFileUrl } from "../../deps/path.ts";
+import { assertEqualsPaths, getPath } from "../utils.ts";
 import Reader from "../../core/reader.ts";
 import IncludesLoader from "../../core/includes_loader.ts";
 import PageLoader from "../../core/page_loader.ts";
@@ -16,7 +15,7 @@ import jsonLoader from "../../core/loaders/json.ts";
 import textLoader from "../../core/loaders/text.ts";
 
 Deno.test("Loaders", async (t) => {
-  const src = fromFileUrl(new URL("./loaders_assets", import.meta.url));
+  const src = getPath("core/loaders_assets");
 
   const reader = new Reader({ src });
   const includesLoader = new IncludesLoader({ reader, includes: "/" });

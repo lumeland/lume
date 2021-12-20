@@ -1,12 +1,12 @@
 import { assertStrictEquals } from "../deps/assert.ts";
 import lume from "../mod.ts";
-import { join, SEP } from "../deps/path.ts";
+import { join, fromFileUrl } from "../deps/path.ts";
 import { printError } from "../cli/utils.ts";
 import { platformPath } from "../core/utils.ts";
 
 import type { Page, Site, SiteOptions } from "../core.ts";
 
-const cwd = new URL("./", import.meta.url).pathname;
+const cwd = fromFileUrl(new URL("./", import.meta.url));
 
 export function getPath(path: string): string {
   return join(cwd, path);
