@@ -1,6 +1,6 @@
 import { assertStrictEquals } from "../deps/assert.ts";
 import lume from "../mod.ts";
-import { join, fromFileUrl } from "../deps/path.ts";
+import { fromFileUrl, join } from "../deps/path.ts";
 import { printError } from "../cli/utils.ts";
 import { platformPath } from "../core/utils.ts";
 

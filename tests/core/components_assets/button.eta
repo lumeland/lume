@@ -1,0 +1,9 @@
+---
+name: button_eta
+css: |
+  .button_eta {
+    color: white;
+    background-color: blue;
+  }
+---
+<button class="button_eta"><%= text %></button>

@@ -31,7 +31,7 @@ export class PugEngine implements Engine {
   compiler: Compiler;
   cache = new Map<string, (data?: Data) => string>();
 
-  constructor(compiler: Compiler, options: PugOptions) {
+  constructor(compiler: Compiler, options: PugOptions = {}) {
     this.compiler = compiler;
     this.options = options;
   }
