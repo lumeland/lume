@@ -1,8 +1,7 @@
 import { assertStrictEquals } from "../deps/assert.ts";
 import lume from "../mod.ts";
-import { fromFileUrl, join } from "../deps/path.ts";
+import { fromFileUrl, join, SEP } from "../deps/path.ts";
 import { printError } from "../cli/utils.ts";
-import { platformPath } from "../core/utils.ts";
 
 import type { Page, Site, SiteOptions } from "../core.ts";
 
@@ -10,6 +9,14 @@ const cwd = fromFileUrl(new URL("./", import.meta.url));
 
 export function getPath(path: string): string {
   return join(cwd, path);
+}
+
+/**
+ * Convert a path to Posix or Win32
+ * depending on de current platform.
+ */
+export function platformPath(path: string) {
+  return path.replaceAll(/[\\/]+/g, SEP);
 }
 
 export function assertEqualsPaths(path1: unknown, path2: unknown) {

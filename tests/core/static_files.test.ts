@@ -1,6 +1,5 @@
 import { assertStrictEquals as equals } from "../../deps/assert.ts";
-import { assertEqualsPaths } from "../utils.ts";
-import { platformPath } from "../../core/utils.ts";
+import { assertEqualsPaths, platformPath } from "../utils.ts";
 import StaticFiles from "../../core/static_files.ts";
 
 Deno.test("Static files", async (t) => {
