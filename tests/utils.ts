@@ -42,6 +42,7 @@ export function getSite(
 
 /** Returns a generated page by src path */
 export function getPage(site: Site, path: string) {
+  path = platformPath(path);
   const page = site.pages.find((page) => page.src.path === path);
 
   if (!page) {
@@ -53,6 +54,7 @@ export function getPage(site: Site, path: string) {
 
 /** Check if page exist */
 export function pageExists(site: Site, path: string) {
+  path = platformPath(path);
   const page = site.pages.find((page) => page.src.path === path);
   return !!page;
 }
