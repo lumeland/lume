@@ -20,8 +20,9 @@ Deno.test("postcss plugin", async () => {
 
   testPage(site, "/index", (page) => {
     equals(page.data.url, "/index.css");
+    const content = page.content as string;
     equals(
-      page.content,
+      content.replaceAll("\r\n", "\n"),
       `::root {
   --color: #333;
   --background: #fff;
@@ -54,8 +55,9 @@ Deno.test("postcss plugin without includes", async () => {
 
   testPage(site, "/index", (page) => {
     equals(page.data.url, "/index.css");
+    const content = page.content as string;
     equals(
-      page.content,
+      content.replaceAll("\r\n", "\n"),
       `@import "variables.css";
 @import "./text.css";
 `,

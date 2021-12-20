@@ -1,5 +1,5 @@
 import { Element } from "../deps/dom.ts";
-import { extname, posix, resolve } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
 import { merge, mimes } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
@@ -92,7 +92,7 @@ export default function (userOptions?: Partial<Options>) {
       }
 
       // Return the data URL
-      const ext = extname(path);
+      const ext = posix.extname(path);
 
       if (!mimes.has(ext)) {
         site.logger.warn("Unknown file format", {
@@ -140,8 +140,8 @@ export default function (userOptions?: Partial<Options>) {
     }
 
     async function inlineSrc(url: string, element: Element) {
-      const path = resolve(url, element.getAttribute("src")!);
-      const ext = extname(path);
+      const path = posix.resolve(url, element.getAttribute("src")!);
+      const ext = posix.extname(path);
 
       try {
         if (ext === ".svg") {
@@ -164,7 +164,7 @@ export default function (userOptions?: Partial<Options>) {
     }
 
     async function inlineHref(url: string, element: Element) {
-      const path = resolve(url, element.getAttribute("href")!);
+      const path = posix.resolve(url, element.getAttribute("href")!);
 
       try {
         element.setAttribute("href", await getContent(path, true));
