@@ -170,13 +170,13 @@ export default class Renderer {
   async #renderPage(page: Page) {
     let { data } = page;
     let { content, layout } = data;
-    const path = page.src.path + page.src.ext;
+    let path = page.src.path + page.src.ext;
 
     content = await this.engines.render(content, data, path);
 
     // Render the layouts recursively
     while (layout) {
-      const result = await this.includesLoader.load(layout);
+      const result = await this.includesLoader.load(layout, path);
 
       if (!result) {
         throw new Exception(
@@ -198,6 +198,7 @@ export default class Renderer {
 
       content = await this.engines.render(layoutData.content, data, layoutPath);
       layout = layoutData.layout;
+      path = layoutPath;
     }
 
     return content;

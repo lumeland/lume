@@ -1,5 +1,6 @@
-import { join } from "../deps/path.ts";
+import { dirname, join } from "../deps/path.ts";
 import Extensions from "./extensions.ts";
+import { Exception } from "./utils.ts";
 
 import type { Data, Loader, Reader } from "../core.ts";
 
@@ -39,16 +40,29 @@ export default class IncludesLoader {
     extensions.forEach((extension) => this.paths.set(extension, path));
   }
 
-  async load(path: string): Promise<[string, Data] | undefined> {
+  async load(path: string, from?: string): Promise<[string, Data] | undefined> {
     const result = this.loaders.search(path);
 
     if (!result) {
       return;
     }
 
+    let includesPath: string;
+
+    if (path.startsWith(".")) {
+      if (!from) {
+        throw new Exception(`Cannot load "${path}" without a base path`, {
+          path,
+        });
+      }
+
+      includesPath = join(dirname(from), path);
+    } else {
+      const entry = this.paths.search(path)!;
+      includesPath = join(entry[1], path);
+    }
+
     const [, loader] = result;
-    const entry = this.paths.search(path)!;
-    const includesPath = join(entry[1], path);
 
     return [
       includesPath,
