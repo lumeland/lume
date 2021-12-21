@@ -1,5 +1,6 @@
 import { Site } from "../core.ts";
 import * as eta from "../deps/eta.ts";
+import { join } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
@@ -30,34 +31,44 @@ const defaults: Options = {
 export class EtaEngine implements Engine {
   engine: typeof eta;
   filters: Record<string, Helper> = {};
+  basePath: string;
 
-  constructor(engine: typeof eta) {
+  constructor(engine: typeof eta, basePath: string) {
     this.engine = engine;
+    this.basePath = basePath;
   }
 
   deleteCache(file: string): void {
-    this.engine.templates.remove(file);
+    this.engine.templates.remove(join(this.basePath, file));
   }
 
   render(content: string, data: Data, filename: string) {
-    if (!this.engine.templates.get(filename)) {
-      this.engine.templates.define(filename, this.engine.compile(content));
-    }
+    const template = this.getTemplate(content, filename);
+
     data.filters = this.filters;
-    const fn = this.engine.templates.get(filename);
-    return fn(data, this.engine.config);
+    return template(data, this.engine.config);
   }
 
   renderSync(content: string, data: Data, filename: string) {
+    const template = this.getTemplate(content, filename, { async: false });
+
+    data.filters = this.filters;
+    return template(data, this.engine.config);
+  }
+
+  getTemplate(content: string, filename: string, options?: Partial<EtaConfig>) {
+    filename = join(this.basePath, filename);
+
     if (!this.engine.templates.get(filename)) {
       this.engine.templates.define(
         filename,
-        this.engine.compile(content, this.engine.getConfig({ async: false })),
+        this.engine.compile(
+          content,
+          this.engine.getConfig({ filename, ...options }),
+        ),
       );
     }
-    data.filters = this.filters;
-    const fn = this.engine.templates.get(filename);
-    return fn(data, this.engine.config);
+    return this.engine.templates.get(filename)!;
   }
 
   addHelper(name: string, fn: Helper, options: HelperOptions) {
@@ -84,13 +95,16 @@ export default function (userOptions?: Partial<Options>) {
     // Configure Eta
     eta.configure({
       ...options.options,
-      views: site.src(options.includes),
+      views: [
+        site.src(options.includes),
+        site.src(),
+      ],
     });
 
     // Configure includes
     site.includes(options.extensions, options.includes);
 
-    const engine = new EtaEngine(eta);
+    const engine = new EtaEngine(eta, site.src());
 
     // Load the pages
     site.loadPages(options.extensions, loader, engine);

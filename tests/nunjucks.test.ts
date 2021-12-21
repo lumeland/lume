@@ -81,7 +81,7 @@ Deno.test("build a site with nunjucks", async () => {
     equals(div?.innerText, "hello (async)");
 
     const lis = page.document?.querySelectorAll("li");
-    equals(lis?.length, 2);
+    equals(lis?.length, 4);
     // @ts-ignore: innerText doesn't exist on Node
     equals(lis.item(0)?.innerHTML, "This is a partial");
     // @ts-ignore: innerText doesn't exist on Node

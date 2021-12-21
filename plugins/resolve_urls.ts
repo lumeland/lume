@@ -21,7 +21,10 @@ export default function () {
         let [file, rest] = getPathInfo(url);
 
         if (!file.startsWith("~")) {
-          file = posix.resolve(posix.dirname(normalizePath(page.src.path)), file);
+          file = posix.resolve(
+            posix.dirname(normalizePath(page.src.path)),
+            file,
+          );
         }
 
         if (cache.has(file)) {

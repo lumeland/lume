@@ -51,7 +51,10 @@ Deno.test("load the pages of a site", async () => {
     equals(page.data.site, "Folder overrided site name");
     equals(page.dest.path, "/overrided-page2/index");
     equals(page.dest.ext, ".html");
-    equals(page.data.date?.getTime(), new Date(Date.UTC(2020, 5, 21)).getTime());
+    equals(
+      page.data.date?.getTime(),
+      new Date(Date.UTC(2020, 5, 21)).getTime(),
+    );
   });
 
   // Shared data
@@ -90,7 +93,10 @@ Deno.test("load the pages of a site", async () => {
     equals(page.data.site, "Overrided site name");
     equals(page.dest.path, "/pages/page4/index");
     equals(page.dest.ext, ".html");
-    equals(page.data.date?.getTime(), new Date(Date.UTC(2021, 0, 2, 18, 32)).getTime());
+    equals(
+      page.data.date?.getTime(),
+      new Date(Date.UTC(2021, 0, 2, 18, 32)).getTime(),
+    );
   });
 
   testPage(site, "/page5", (page) => {

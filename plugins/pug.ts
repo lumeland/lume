@@ -1,4 +1,5 @@
 import { compile } from "../deps/pug.ts";
+import { join } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
@@ -30,10 +31,12 @@ export class PugEngine implements Engine {
   options: PugOptions;
   compiler: Compiler;
   cache = new Map<string, (data?: Data) => string>();
+  basePath: string;
 
-  constructor(compiler: Compiler, options: PugOptions = {}) {
+  constructor(compiler: Compiler, basePath: string, options: PugOptions = {}) {
     this.compiler = compiler;
     this.options = options;
+    this.basePath = basePath;
   }
 
   deleteCache(): void {
@@ -53,7 +56,7 @@ export class PugEngine implements Engine {
         filename,
         this.compiler(content, {
           ...this.options,
-          filename,
+          filename: join(this.basePath, filename),
         }),
       );
     }
@@ -91,7 +94,7 @@ export default function (userOptions?: Partial<Options>) {
     options.options.basedir = site.src(options.includes);
     site.includes(options.extensions, options.includes);
 
-    const engine = new PugEngine(compile, options.options);
+    const engine = new PugEngine(compile, site.src(), options.options);
 
     // Load the pages
     site.loadPages(options.extensions, loader, engine);

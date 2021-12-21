@@ -35,10 +35,12 @@ export class NunjucksEngine implements Engine {
   // deno-lint-ignore no-explicit-any
   env: any;
   cache = new Map();
+  basePath: string;
 
   // deno-lint-ignore no-explicit-any
-  constructor(env: any) {
+  constructor(env: any, basePath: string) {
     this.env = env;
+    this.basePath = basePath;
   }
 
   deleteCache(file: string): void {
@@ -46,8 +48,7 @@ export class NunjucksEngine implements Engine {
 
     // Remove the internal cache of nunjucks
     const fsLoader = this.env.loaders[0];
-    const basePath = fsLoader?.searchPaths[0];
-    const filename = join(basePath, file);
+    const filename = join(this.basePath, file);
     const name = fsLoader.pathsToNames[filename];
 
     if (name) {
@@ -94,7 +95,7 @@ export class NunjucksEngine implements Engine {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
-        nunjucks.compile(content, this.env, filename),
+        nunjucks.compile(content, this.env, join(this.basePath, filename)),
       );
     }
 
@@ -141,7 +142,7 @@ export default function (userOptions?: Partial<Options>) {
       env.addExtension(name, fn);
     }
 
-    const engine = new NunjucksEngine(env);
+    const engine = new NunjucksEngine(env, site.src());
 
     // Load the pages
     site.loadPages(options.extensions, loader, engine);

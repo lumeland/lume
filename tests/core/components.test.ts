@@ -31,20 +31,24 @@ Deno.test("Components", async (t) => {
   // Set up nunjucks
   const fsLoader = new nunjucks.FileSystemLoader(src);
   const env = new nunjucks.Environment(fsLoader);
-  componentsLoader.set([".njk"], textLoader, new NunjucksEngine(env));
+  componentsLoader.set([".njk"], textLoader, new NunjucksEngine(env, src));
 
   // Set up liquid
-  componentsLoader.set([".liquid"], textLoader, new LiquidEngine(new Liquid()));
+  componentsLoader.set(
+    [".liquid"],
+    textLoader,
+    new LiquidEngine(new Liquid(), src),
+  );
 
   // Set up modules
   componentsLoader.set([".ts"], moduleLoader, new ModuleEngine());
 
   // Set up eta
   eta.configure({ useWith: true });
-  componentsLoader.set([".eta"], textLoader, new EtaEngine(eta));
+  componentsLoader.set([".eta"], textLoader, new EtaEngine(eta, src));
 
   // Set up pug
-  componentsLoader.set([".pug"], textLoader, new PugEngine(pug));
+  componentsLoader.set([".pug"], textLoader, new PugEngine(pug, src));
 
   // Set up jsx
   componentsLoader.set([".jsx"], moduleLoader, new JsxEngine());

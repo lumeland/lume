@@ -1,4 +1,5 @@
 import { Liquid } from "../deps/liquid.ts";
+import { join } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
@@ -28,10 +29,12 @@ export class LiquidEngine implements Engine {
   // deno-lint-ignore no-explicit-any
   liquid: any;
   cache = new Map<string, unknown>();
+  basePath: string;
 
   // deno-lint-ignore no-explicit-any
-  constructor(liquid: any) {
+  constructor(liquid: any, basePath: string) {
     this.liquid = liquid;
+    this.basePath = basePath;
   }
 
   deleteCache(file: string): void {
@@ -60,7 +63,7 @@ export class LiquidEngine implements Engine {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
-        this.liquid.parse(content, filename),
+        this.liquid.parse(content, join(this.basePath, filename)),
       );
     }
     return this.cache.get(filename)!;
@@ -95,7 +98,7 @@ export default function (userOptions?: Partial<Options>) {
       ...options.options,
     };
 
-    const engine = new LiquidEngine(new Liquid(liquidOptions));
+    const engine = new LiquidEngine(new Liquid(liquidOptions), site.src());
 
     // Load the liquid pages
     site.loadPages(options.extensions, loader, engine);

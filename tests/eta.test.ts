@@ -28,5 +28,9 @@ Deno.test("build a site with eta", async () => {
       page.document?.querySelector("nav a")?.getAttribute("href"),
       "/blog/",
     );
+    equals(
+      page.document?.querySelectorAll("footer")?.length,
+      2,
+    );
   });
 });
