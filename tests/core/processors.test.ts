@@ -20,6 +20,15 @@ Deno.test("Processors", async (t) => {
     const entry = Array.from(processors.processors)[0];
     equals(entry[0], fn);
     equals(entry[1], ext);
+
+    const asterisk = (page: Page) => {
+      const content = page.content as string;
+      page.content = content + "*";
+    };
+
+    processors.set("*", asterisk);
+
+    equals(processors.processors.size, 2);
   });
 
   await t.step("Run processors", async () => {
@@ -45,8 +54,8 @@ Deno.test("Processors", async (t) => {
     const pages = [page1, page2, page3];
     await processors.run(pages);
 
-    equals(page1.content, "CONTENT PAGE 1");
-    equals(page2.content, "content page 2");
-    equals(page3.content, "CONTENT PAGE 3");
+    equals(page1.content, "CONTENT PAGE 1*");
+    equals(page2.content, "content page 2*");
+    equals(page3.content, "CONTENT PAGE 3*");
   });
 });

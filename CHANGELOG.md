@@ -7,15 +7,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.3.2] - Unreleased
+## [2.0.0] - Unreleased
+This major version of Lume has a big internal code refactor but maintaining the public API,
+so your sites should work without changes.
+
 ### Added
+- **New Components feature**. It allows to create reusable components under the folder `_components`
+  that you can use in your template engines.
+  It's compatible with any engine (nunjucks, js/ts modules, jsx, liquid, pug, etc).
+  - New function `site.loadComponents()` to set up more components loaders.
+    For example: `site.loadComponents([".jsx"], moduleLoader, jsxEngine)`.
 - Options for the `date` plugin to change the helpers' name [#150].
 - The `pug` plugin registers the `pug` filter.
 - Template engine filters (`njk`, `pug`, `liquid`...)
   can access to shared data (like `search`, `paginate` etc)
+- You can add processors and preprocessors to run in all pages with `site.process("*", processFunction)`.
+- You can use relative paths for `layout` values
+  and when include templates using the template engine syntax (ex: `{% include "./template.njk" %}`).
+- New function `site.includes()` to define different directories for specific extensions.
+  For example: `site.includes([".css"], "_styles")`;
+
+### Changed
+- Big internal code refactoring.
+  - Many core classes have been splitted into different small classes
+    with single responsabilities (SOLID principles).
+  - In the version `1.x` there are many interface (like: `Site`)
+    independent of the implementation (like: `LumeSite implements Site`).
+    This was not easy to maintain and it makes hard to explore the Lume code in VSCode
+    because everything is linked to the interfaces instead of the code.
+    So I decided to remove these generic interfaces.
+- The dates extracted from the filename (like `2022-12-05_pagename.md`) use UTC timezone,
+  for consistency with the dates defined in the front matter.
+
+### Removed
+- The `metrics` feature was removed. It was not very useful and I think maybe it can be implemented in better ways in the future.
 
 ### Fixed
 - Updated `std`, `deno_graph`, `liquid`, `pug` and `postcss` to the latest version.
+- Improved extensions detection: In `1.x` you have to load `.windi.css` before `.css` to prevent conflict. This was fixed in `2.x`.
+- Lot of bugfixes in Windows, specially related with the different path formats.
 
 ## [1.3.1] - 2021-12-07
 ### Added
@@ -1260,7 +1290,7 @@ The first version.
 [#149]: https://github.com/lumeland/lume/issues/149
 [#150]: https://github.com/lumeland/lume/issues/150
 
-[1.3.2]: https://github.com/lumeland/lume/compare/v1.3.1...HEAD
+[2.0.0]: https://github.com/lumeland/lume/compare/v1.3.1...HEAD
 [1.3.1]: https://github.com/lumeland/lume/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/lumeland/lume/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/lumeland/lume/compare/v1.2.0...v1.2.1

@@ -308,13 +308,13 @@ export default class Site {
   }
 
   /** Register a preprocessor for some extensions */
-  preprocess(extensions: string[], preprocessor: Processor) {
+  preprocess(extensions: string[] | "*", preprocessor: Processor) {
     this.preprocessors.set(extensions, preprocessor);
     return this;
   }
 
   /** Register a processor for some extensions */
-  process(extensions: string[], processor: Processor) {
+  process(extensions: string[] | "*", processor: Processor) {
     this.processors.set(extensions, processor);
     return this;
   }
