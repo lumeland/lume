@@ -1,6 +1,6 @@
 import { dirname, join } from "../deps/path.ts";
 import Extensions from "./extensions.ts";
-import { Exception } from "./utils.ts";
+import { Exception } from "./errors.ts";
 
 import type { Data, Loader, Reader } from "../core.ts";
 

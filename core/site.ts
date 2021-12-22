@@ -1,5 +1,6 @@
 import { join, posix, SEP } from "../deps/path.ts";
-import { Exception, merge, normalizePath } from "./utils.ts";
+import { merge, normalizePath } from "./utils.ts";
+import { Exception } from "./errors.ts";
 
 import Reader from "./reader.ts";
 import PageLoader from "./page_loader.ts";

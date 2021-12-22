@@ -2,7 +2,7 @@ import { encode } from "./deps/base64.ts";
 import { posix } from "./deps/path.ts";
 import { parse } from "./deps/flags.ts";
 import { brightGreen, red } from "./deps/colors.ts";
-import { Exception } from "./core/utils.ts";
+import { Exception } from "./core/errors.ts";
 
 const { join } = posix;
 const baseUrl = new URL(".", import.meta.url).href;

@@ -1,6 +1,7 @@
 import { minify } from "../deps/terser.ts";
 import { basename } from "../deps/path.ts";
-import { Exception, merge } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
+import { Exception } from "../core/errors.ts";
 import { Page } from "../core/filesystem.ts";
 
 import type { Helper, Site } from "../core.ts";

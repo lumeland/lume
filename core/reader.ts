@@ -1,4 +1,4 @@
-import { Exception } from "./utils.ts";
+import { Exception } from "./errors.ts";
 import { join } from "../deps/path.ts";
 
 import type { Data } from "../core.ts";
@@ -54,17 +54,17 @@ export default class Reader {
   }
 
   /** Read a file using a loader and return the content */
-  read(path: string, loader: Loader): Promise<Data> {
-    const fullPath = this.getFullPath(path);
+  async read(path: string, loader: Loader): Promise<Data> {
+    path = this.getFullPath(path);
 
     try {
-      if (!this.#cache.has(fullPath)) {
-        this.#cache.set(fullPath, loader(fullPath));
+      if (!this.#cache.has(path)) {
+        this.#cache.set(path, loader(path));
       }
 
-      return this.#cache.get(fullPath)!;
+      return await this.#cache.get(path)!;
     } catch (cause) {
-      throw new Exception("Couldn't load this file", { cause, fullPath });
+      throw new Exception("Couldn't load this file", { cause, path });
     }
   }
 }

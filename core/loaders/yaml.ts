@@ -1,5 +1,6 @@
 import { parse } from "../../deps/yaml.ts";
 import { isPlainObject } from "../utils.ts";
+import { Exception } from "../errors.ts";
 
 import type { Data } from "../../core.ts";
 
@@ -20,12 +21,25 @@ export default async function (path: string): Promise<Data> {
 }
 
 /** Parse the front matter from any text content */
-export function parseFrontMatter(content: string): Data {
+export function parseFrontMatter(content: string, path?: string): Data {
   if (content.startsWith("---") && content.charAt(3) !== "-") {
     const end = content.indexOf("---", 3);
 
     if (end !== -1) {
-      let data = parse(content.slice(3, end)) as Data | undefined;
+      let data;
+      try {
+        data = parse(content.slice(3, end)) as Data | undefined;
+      } catch (cause) {
+        const mark = cause.mark
+          ? {
+            file: path,
+            line: cause.mark.line,
+            column: cause.mark.column + 1,
+          }
+          : undefined;
+
+        throw new Exception(`Invalid front matter: ${cause.message}`, { mark });
+      }
 
       // Allow empty front matter
       if (!data) {

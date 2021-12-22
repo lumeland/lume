@@ -1,7 +1,7 @@
 import { assertStrictEquals } from "../deps/assert.ts";
 import lume from "../mod.ts";
 import { fromFileUrl, join, SEP } from "../deps/path.ts";
-import { printError } from "../cli/utils.ts";
+import { printError } from "../core/errors.ts";
 
 import type { Page, Site, SiteOptions } from "../core.ts";
 

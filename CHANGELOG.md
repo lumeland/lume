@@ -17,6 +17,7 @@ so your sites should work without changes.
   It's compatible with any engine (nunjucks, js/ts modules, jsx, liquid, pug, etc).
   - New function `site.loadComponents()` to set up more components loaders.
     For example: `site.loadComponents([".jsx"], moduleLoader, jsxEngine)`.
+- Improved errors logs.
 - Options for the `date` plugin to change the helpers' name [#150].
 - The `pug` plugin registers the `pug` filter.
 - Template engine filters (`njk`, `pug`, `liquid`...)

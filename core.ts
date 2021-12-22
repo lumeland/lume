@@ -50,12 +50,7 @@ import type {
   Helper,
   HelperOptions,
 } from "./core/engines.ts";
-
-interface ErrorData {
-  cause?: Error;
-  name?: string;
-  [key: string]: unknown;
-}
+import type { ErrorData, Exception } from "./core/errors.ts";
 
 /** Data to create a new response. */
 type FileResponse = [BodyInit | null, ResponseInit];
@@ -85,6 +80,7 @@ export type {
   EventOptions,
   Events,
   EventType,
+  Exception,
   FileResponse,
   Helper,
   HelperOptions,

@@ -1,7 +1,8 @@
 import { brightGreen, dim, red } from "../deps/colors.ts";
 import localIp from "../deps/local_ip.ts";
 import { mimes, normalizePath, serveFile } from "../core/utils.ts";
-import { printError, runWatch } from "./utils.ts";
+import { printError } from "../core/errors.ts";
+import { runWatch } from "./utils.ts";
 
 import type { ServerOptions } from "../core/site.ts";
 

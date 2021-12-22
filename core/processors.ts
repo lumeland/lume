@@ -1,4 +1,5 @@
-import { concurrent, Exception } from "./utils.ts";
+import { concurrent } from "./utils.ts";
+import { Exception } from "./errors.ts";
 
 import type { Page } from "../core.ts";
 

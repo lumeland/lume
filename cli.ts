@@ -1,5 +1,6 @@
 import { Command, CompletionsCommand, EnumType } from "./deps/cliffy.ts";
-import { getCurrentVersion, printError } from "./cli/utils.ts";
+import { getCurrentVersion } from "./cli/utils.ts";
+import { printError } from "./core/errors.ts";
 import initCommand from "./cli/init.ts";
 import upgradeCommand from "./cli/upgrade.ts";
 import runCommand from "./cli/run.ts";

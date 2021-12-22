@@ -1,7 +1,7 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
 import { extname, join, SEP } from "../deps/path.ts";
 
-import type { ErrorData, FileResponse } from "../core.ts";
+import type { FileResponse } from "../core.ts";
 
 /** Run a callback concurrently with all the elements of an Iterable */
 export async function concurrent<Type>(
@@ -195,28 +195,6 @@ export function stringToDocument(string: string): HTMLDocument {
   }
 
   return document;
-}
-
-/**
- * Generic Exception to throw errors.
- * It allows to include extra data and the previous exception.
- */
-export class Exception extends Error {
-  data?: Record<string, unknown>;
-
-  constructor(message: string, data: ErrorData = {}) {
-    const options = data.cause ? { cause: data.cause } : {};
-    delete data.cause;
-
-    super(message, options);
-
-    if (data.name) {
-      this.name = data.name;
-      delete data.name;
-    }
-
-    this.data = data;
-  }
 }
 
 export interface serveFileOptions {

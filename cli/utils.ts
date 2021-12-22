@@ -1,9 +1,10 @@
-import { Page, Site } from "../core.ts";
 import lume from "../mod.ts";
 import { exists } from "../deps/fs.ts";
 import { join, relative, resolve, toFileUrl } from "../deps/path.ts";
-import { bold, dim, red } from "../deps/colors.ts";
-import { Exception } from "../core/utils.ts";
+import { dim } from "../deps/colors.ts";
+import { Exception, printError } from "../core/errors.ts";
+
+import type { Site } from "../core.ts";
 
 /** Return the current installed version */
 export function getCurrentVersion(): string {
@@ -67,45 +68,6 @@ export async function createSite(root: string, config?: string): Promise<Site> {
   }
 
   return lume();
-}
-
-/** Pretty-print an Error or Exception instance */
-export function printError(
-  error: Error | Exception,
-  indent = 0,
-  stackLines = 1,
-) {
-  console.log();
-  const tab = "  ".repeat(indent);
-
-  console.error(`${tab}${bold(red(`${error.name}:`))}`, error.message);
-
-  if (error instanceof Exception) {
-    for (let [key, value] of Object.entries(error.data ?? {})) {
-      if (key === "page") {
-        value = (value as Page).src.path + (value as Page).src.ext;
-      }
-      console.log(dim(`${tab}${key}:`), value);
-    }
-  }
-
-  if (error.stack) {
-    const stack = error.stack.split("\n");
-
-    // Skip all the stack lines that have been already presented
-    stack.slice(1, stack.length - stackLines).forEach((line) => {
-      console.log(`${tab}${line.trim()}`);
-      stackLines++;
-    });
-  }
-
-  if (error.cause) {
-    printError(error.cause, indent + 1, stackLines);
-  }
-
-  if (indent == 0) {
-    console.log();
-  }
 }
 
 /** A list of the available optional plugins */

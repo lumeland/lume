@@ -1,4 +1,4 @@
-import { Exception } from "./utils.ts";
+import { Exception } from "./errors.ts";
 import { extname } from "../deps/path.ts";
 
 /** Generic class to store and retrieve items related with extensions */

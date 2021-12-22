@@ -1,5 +1,6 @@
 import { dirname, extname, posix } from "../deps/path.ts";
-import { concurrent, Exception } from "./utils.ts";
+import { concurrent } from "./utils.ts";
+import { Exception } from "./errors.ts";
 
 import type {
   Data,

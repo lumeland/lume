@@ -1,4 +1,4 @@
-import { Exception } from "./utils.ts";
+import { Exception } from "./errors.ts";
 import Extensions from "./extensions.ts";
 
 import type { Data } from "../core.ts";
