@@ -4,17 +4,21 @@ import { merge } from "../core/utils.ts";
 import type { Data, Engine, Helper, Site } from "../core.ts";
 
 export interface Options {
-  /** The list of extensions used to load data */
-  dataExtensions: string[];
-
-  /** The list of extensions used to load pages */
-  pagesExtensions: string[];
+  /** The list of extensions used to load files */
+  extensions: string[] | {
+    pages: string[];
+    data: string[];
+    components: string[];
+  };
 }
 
 // Default options
 const defaults: Options = {
-  dataExtensions: [".js", ".ts"],
-  pagesExtensions: [".tmpl.js", ".tmpl.ts"],
+  extensions: {
+    pages: [".tmpl.js", ".tmpl.ts"],
+    data: [".js", ".ts"],
+    components: [".js", ".ts"],
+  },
 };
 
 /** Template engine to render js/ts files */
@@ -44,11 +48,19 @@ export class ModuleEngine implements Engine {
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
+  const extensions = Array.isArray(options.extensions)
+    ? {
+      pages: options.extensions,
+      data: options.extensions,
+      components: options.extensions,
+    }
+    : options.extensions;
+
   return (site: Site) => {
     const engine = new ModuleEngine();
 
-    site.loadPages(options.pagesExtensions, loader, engine);
-    site.loadData(options.dataExtensions, loader);
-    site.loadComponents(options.dataExtensions, loader, engine);
+    site.loadData(extensions.data, loader);
+    site.loadPages(extensions.pages, loader, engine);
+    site.loadComponents(extensions.components, loader, engine);
   };
 }

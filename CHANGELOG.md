@@ -27,6 +27,9 @@ so your sites should work without changes.
   and when include templates using the template engine syntax (ex: `{% include "./template.njk" %}`).
 - New function `site.includes()` to define different directories for specific extensions.
   For example: `site.includes([".css"], "_styles")`;
+- The `extensions` option of some plugins allows to define different extensions
+  for different purposes. For example:
+  `{ pages: [".tmpl.js"], data: [".js"], components: [".comp.js"]}`.
 
 ### Changed
 - Big internal code refactoring.

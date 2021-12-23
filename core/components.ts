@@ -1,5 +1,6 @@
 import { extname } from "../deps/path.ts";
 import { Page } from "./filesystem.ts";
+import { Exception } from "./errors.ts";
 
 import type { ComponentsTree, Data } from "../core.ts";
 
@@ -41,7 +42,7 @@ export default class Components {
         const component = target.get(key);
 
         if (!component) {
-          throw new Error("Component not found: " + name);
+          throw new Exception(`Component "${name}" not found`);
         }
 
         if (component instanceof Map) {

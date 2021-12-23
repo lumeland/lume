@@ -9,7 +9,10 @@ import type { EtaConfig } from "../deps/eta.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions: string[] | {
+    pages: string[];
+    components: string[];
+  };
 
   /** Custom includes path */
   includes: string;
@@ -101,15 +104,15 @@ export default function (userOptions?: Partial<Options>) {
       ],
     });
 
-    // Configure includes
-    site.includes(options.extensions, options.includes);
+    const extensions = Array.isArray(options.extensions)
+      ? { pages: options.extensions, components: options.extensions }
+      : options.extensions;
 
     const engine = new EtaEngine(eta, site.src());
 
-    // Load the pages
-    site.loadPages(options.extensions, loader, engine);
-
-    // Register eta components
-    site.loadComponents(options.extensions, loader, engine);
+    site.loadPages(extensions.pages, loader, engine);
+    site.includes(extensions.pages, options.includes);
+    site.includes(extensions.components, options.includes);
+    site.loadComponents(extensions.components, loader, engine);
   };
 }

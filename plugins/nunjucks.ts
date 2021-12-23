@@ -8,7 +8,10 @@ import type { NunjucksOptions } from "../deps/nunjucks.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions: string[] | {
+    pages: string[];
+    components: string[];
+  };
 
   /** Custom includes path */
   includes: string;
@@ -129,29 +132,26 @@ export default function (userOptions?: Partial<Options>) {
       { ...defaults, includes: site.options.includes },
       userOptions,
     );
+    const extensions = Array.isArray(options.extensions)
+      ? { pages: options.extensions, components: options.extensions }
+      : options.extensions;
 
     // Create the nunjucks environment instance
     const fsLoader = new nunjucks.FileSystemLoader(site.src(options.includes));
     const env = new nunjucks.Environment(fsLoader, options.options);
 
-    // Configure includes
-    site.includes(options.extensions, options.includes);
-
-    // Register nunjucks extensions
     for (const [name, fn] of Object.entries(options.plugins)) {
       env.addExtension(name, fn);
     }
 
     const engine = new NunjucksEngine(env, site.src());
 
-    // Load the pages
-    site.loadPages(options.extensions, loader, engine);
+    site.loadPages(extensions.pages, loader, engine);
+    site.includes(extensions.pages, options.includes);
+    site.loadComponents(extensions.components, loader, engine);
 
     // Register the njk filter
     site.filter("njk", filter as Helper, true);
-
-    // Register njk components
-    site.loadComponents(options.extensions, loader, engine);
 
     function filter(string: string, data?: Data) {
       return engine.render(string, { ...site.globalData, ...data });

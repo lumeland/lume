@@ -8,7 +8,10 @@ import type { Options as PugOptions } from "../deps/pug.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions: string[] | {
+    pages: string[];
+    components: string[];
+  };
 
   /** Custom includes path for Pug */
   includes: string;
@@ -89,18 +92,17 @@ export default function (userOptions?: Partial<Options>) {
       { ...defaults, includes: site.options.includes },
       userOptions,
     );
-
-    // Configure includes
     options.options.basedir = site.src(options.includes);
-    site.includes(options.extensions, options.includes);
+
+    const extensions = Array.isArray(options.extensions)
+      ? { pages: options.extensions, components: options.extensions }
+      : options.extensions;
 
     const engine = new PugEngine(compile, site.src(), options.options);
 
-    // Load the pages
-    site.loadPages(options.extensions, loader, engine);
-
-    // Register pug components
-    site.loadComponents(options.extensions, loader, engine);
+    site.loadPages(extensions.components, loader, engine);
+    site.includes(extensions.pages, options.includes);
+    site.loadComponents(extensions.components, loader, engine);
 
     // Register the pug filter
     site.filter("pug", filter as Helper, true);

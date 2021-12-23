@@ -8,7 +8,10 @@ import type { LiquidOptions } from "../deps/liquid.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions: string[] | {
+    pages: string[];
+    components: string[];
+  };
 
   /** Custom includes path */
   includes: string;
@@ -93,6 +96,14 @@ export default function (userOptions?: Partial<Options>) {
       userOptions,
     );
 
+    const extensions = Array.isArray(options.extensions)
+      ? {
+        pages: options.extensions,
+        includes: options.extensions,
+        components: options.extensions,
+      }
+      : options.extensions;
+
     const liquidOptions: LiquidOptions = {
       root: site.src(options.includes),
       ...options.options,
@@ -100,14 +111,13 @@ export default function (userOptions?: Partial<Options>) {
 
     const engine = new LiquidEngine(new Liquid(liquidOptions), site.src());
 
-    // Load the liquid pages
-    site.loadPages(options.extensions, loader, engine);
+    site.loadPages(extensions.pages, loader, engine);
+    site.includes(extensions.pages, options.includes);
+    site.includes(extensions.components, options.includes);
+    site.loadComponents(extensions.components, loader, engine);
 
     // Register the liquid filter
     site.filter("liquid", filter as Helper, true);
-
-    // Register liquid components
-    site.loadComponents(options.extensions, loader, engine);
 
     function filter(string: string, data?: Data) {
       return engine.render(string, { ...site.globalData, ...data });
