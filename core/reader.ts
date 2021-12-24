@@ -14,7 +14,7 @@ export interface Options {
  */
 export default class Reader {
   src: string;
-  #cache = new Map<string, Promise<Data>>();
+  cache = new Map<string, Promise<Data>>();
 
   constructor(options: Options) {
     this.src = options.src;
@@ -23,12 +23,12 @@ export default class Reader {
   /** Delete a file from the cache */
   deleteCache(path: string) {
     const fullPath = this.getFullPath(path);
-    this.#cache.delete(fullPath);
+    this.cache.delete(fullPath);
   }
 
   /** Delete all the cache */
   clearCache() {
-    this.#cache.clear();
+    this.cache.clear();
   }
 
   getFullPath(path: string): string {
@@ -58,11 +58,11 @@ export default class Reader {
     path = this.getFullPath(path);
 
     try {
-      if (!this.#cache.has(path)) {
-        this.#cache.set(path, loader(path));
+      if (!this.cache.has(path)) {
+        this.cache.set(path, loader(path));
       }
 
-      return await this.#cache.get(path)!;
+      return await this.cache.get(path)!;
     } catch (cause) {
       throw new Exception("Couldn't load this file", { cause, path });
     }

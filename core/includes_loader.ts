@@ -56,10 +56,10 @@ export default class IncludesLoader {
         });
       }
 
-      includesPath = join(dirname(from), path);
+      includesPath = join("/", dirname(from), path);
     } else {
       const entry = this.paths.search(path)!;
-      includesPath = join(entry[1], path);
+      includesPath = join("/", entry[1], path);
     }
 
     const [, loader] = result;
