@@ -7,7 +7,7 @@ export interface Options {
   name: string;
 }
 
-const defaults: Options = {
+export const defaults: Options = {
   name: "search",
 };
 

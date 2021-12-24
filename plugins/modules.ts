@@ -13,7 +13,7 @@ export interface Options {
 }
 
 // Default options
-const defaults: Options = {
+export const defaults: Options = {
   extensions: {
     pages: [".tmpl.js", ".tmpl.ts"],
     data: [".js", ".ts"],

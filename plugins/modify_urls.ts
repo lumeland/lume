@@ -12,7 +12,7 @@ export interface Options {
 }
 
 // Default options
-const defaults: Options = {
+export const defaults: Options = {
   extensions: [".html"],
   fn: (url) => url,
 };

@@ -11,7 +11,7 @@ export interface Options {
 export type Router = (url: URL) => Promise<string | undefined>;
 
 // Default options
-const defaults: Options = {};
+export const defaults: Options = {};
 
 /** A plugin to generate pages on demand in the server side */
 export default function (userOptions?: Partial<Options>) {

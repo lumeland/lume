@@ -19,7 +19,7 @@ export interface Options {
 }
 
 // Default options
-const defaults: Options = {
+export const defaults: Options = {
   extensions: [".js"],
   sourceMap: false,
   options: {

@@ -51,7 +51,7 @@ export interface Options {
   options: PaginateOptions;
 }
 
-const defaults: Options = {
+export const defaults: Options = {
   name: "paginate",
   options: {
     size: 10,

@@ -10,7 +10,7 @@ export interface Options {
   };
 }
 
-const defaults: Options = {
+export const defaults: Options = {
   names: {
     url: "url",
     htmlUrl: "htmlUrl",

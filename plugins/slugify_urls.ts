@@ -23,7 +23,7 @@ export interface Options {
 }
 
 // Default options
-const defaults: Options = {
+export const defaults: Options = {
   extensions: [".html"],
   lowercase: true,
   alphanumeric: true,
