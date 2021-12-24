@@ -86,8 +86,8 @@ export default function (userOptions?: Partial<Options>) {
 
     function filter(string: string, inline = false): string {
       return inline
-        ? engine.renderInline(string || "").trim()
-        : engine.render(string || "").trim();
+        ? engine.renderInline(string?.toString() || "").trim()
+        : engine.render(string?.toString() || "").trim();
     }
   };
 }
