@@ -55,5 +55,8 @@ if (Deno.args[0] !== "--upgrade") {
       gray("https://discord.gg/YbTmpACHWB")
     } to propose new ideas and get help at Discord`,
   );
+  console.log(
+    `See ${gray("https://opencollective.com/lume")} to provide some support`,
+  );
   console.log();
 }
