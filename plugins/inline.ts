@@ -1,9 +1,9 @@
-import { Element } from "../deps/dom.ts";
 import { posix } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
 import { merge, mimes } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
 
+import type { Element } from "../deps/dom.ts";
 import type { Page, Site } from "../core.ts";
 
 export interface Options {
