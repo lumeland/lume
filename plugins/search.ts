@@ -54,6 +54,11 @@ export class Search {
     return (limit < 0) ? result.slice(limit) : result.slice(0, limit);
   }
 
+  /** Search and return a page */
+  page(query?: Query, sort?: Query) {
+    return this.pages(query, sort)[0];
+  }
+
   /** Returns all tags values of a search */
   tags(query?: Query) {
     const tags = new Set();

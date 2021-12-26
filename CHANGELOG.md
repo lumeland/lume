@@ -30,6 +30,7 @@ so your sites should work without changes.
 - The `extensions` option of some plugins allows to define different extensions
   for different purposes. For example:
   `{ pages: [".tmpl.js"], data: [".js"], components: [".comp.js"]}`.
+- New search method `search.page()` to return the first page found instead an array with all pages.
 
 ### Changed
 - Big internal code refactoring.
@@ -47,7 +48,7 @@ so your sites should work without changes.
 - The `metrics` feature was removed. It was not very useful and I think maybe it can be implemented in better ways in the future.
 
 ### Fixed
-- Updated `std`, `deno_graph`, `liquid`, `pug` and `postcss` to the latest version.
+- Updated `std`, `deno_dom`, `deno_graph`, `liquid`, `pug`, `liquid` and `postcss` to the latest version.
 - Improved extensions detection: In `1.x` you have to load `.windi.css` before `.css` to prevent conflict. This was fixed in `2.x`.
 - Lot of bugfixes in Windows, specially related with the different path formats.
 - Socket error in Safari [#155].
