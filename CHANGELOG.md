@@ -50,6 +50,7 @@ so your sites should work without changes.
 - Updated `std`, `deno_graph`, `liquid`, `pug` and `postcss` to the latest version.
 - Improved extensions detection: In `1.x` you have to load `.windi.css` before `.css` to prevent conflict. This was fixed in `2.x`.
 - Lot of bugfixes in Windows, specially related with the different path formats.
+- Socket error in Safari [#155].
 
 ## [1.3.1] - 2021-12-07
 ### Added
@@ -1293,6 +1294,7 @@ The first version.
 [#147]: https://github.com/lumeland/lume/issues/147
 [#149]: https://github.com/lumeland/lume/issues/149
 [#150]: https://github.com/lumeland/lume/issues/150
+[#155]: https://github.com/lumeland/lume/issues/155
 
 [2.0.0]: https://github.com/lumeland/lume/compare/v1.3.1...HEAD
 [1.3.1]: https://github.com/lumeland/lume/compare/v1.3.0...v1.3.1

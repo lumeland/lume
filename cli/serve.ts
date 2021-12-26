@@ -57,9 +57,9 @@ export default async function server(
         return;
       }
       const urls = Array.from(files).map((file) => normalizePath(file));
-      console.log("Changes sent to the browser");
       const message = JSON.stringify(urls);
       sockets.forEach((socket) => socket.send(message));
+      console.log("Changes sent to the browser");
     },
   });
 

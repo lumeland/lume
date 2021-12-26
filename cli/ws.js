@@ -39,6 +39,11 @@ function socket() {
   };
   ws.onerror = (err) => console.error("Lume webSocket error observed:", err);
 }
+addEventListener("pagehide", () => {
+  if (ws) {
+    ws.close();
+  }
+});
 
 socket();
 
