@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.4.1] - 2021-12-27
+### Fixed
+- Upgrade command must be run with `--unstable` flag.
+
 ## [1.4.0] - 2021-12-27
 This version of Lume has a big internal code refactor but maintaining the public API,
 so your sites should work without changes (unless you depend on internal undocumented features).
@@ -1301,6 +1305,7 @@ The first version.
 [#150]: https://github.com/lumeland/lume/issues/150
 [#155]: https://github.com/lumeland/lume/issues/155
 
+[1.4.1]: https://github.com/lumeland/lume/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/lumeland/lume/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/lumeland/lume/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/lumeland/lume/compare/v1.2.1...v1.3.0
