@@ -53,6 +53,7 @@ async function install(version: string, dev = false) {
     cmd: [
       Deno.execPath(),
       "run",
+      "--unstable",
       "-A",
       `${url}/install.ts`,
       "--upgrade",
