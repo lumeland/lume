@@ -43,8 +43,8 @@ The only important change is the removal of `metrics` feature but probably you a
     This was not easy to maintain and it makes hard to explore the Lume code in VSCode
     because everything is linked to the interfaces instead of the code.
     So I decided to remove these generic interfaces.
-- The dates extracted from the filename (like `2022-12-05_pagename.md`) use UTC timezone,
-  for consistency with the dates defined in the front matter.
+- The dates extracted from the filename (like `2022-12-05_pagename.md`)
+  use UTC timezone for consistency with the dates defined in the front matter.
 
 ### Removed
 - The `metrics` feature was removed. It was not very useful and I think maybe it can be implemented in better ways in the future.
@@ -55,6 +55,7 @@ The only important change is the removal of `metrics` feature but probably you a
 - Lot of bugfixes in Windows, specially related with the different path formats.
 - Socket error in Safari [#155].
 - Added a bunch of new tests.
+- Changes in the `.git` directory are no longer detected by the watcher.
 
 ## [1.3.1] - 2021-12-07
 ### Added

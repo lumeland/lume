@@ -205,8 +205,9 @@ export default class Site {
     // Ignore components directory
     this.ignore(this.options.components.directory);
 
-    // Ignore the dest folder by the watcher
-    this.options.watcher.ignore.push(this.dest());
+    // Ignore the dest and .git folder by the watcher
+    this.options.watcher.ignore.push(this.options.dest);
+    this.options.watcher.ignore.push(".git");
   }
 
   /**

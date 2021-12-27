@@ -132,9 +132,10 @@ export async function runWatch({ root, ignore, fn, debounce }: WatchOptions) {
   for await (const event of watcher) {
     let { paths } = event;
 
+    // Filter the ignored paths
     if (ignore) {
       paths = paths.filter((path) =>
-        !ignore.some((ignore) => path.startsWith(ignore))
+        !ignore.some((ignore) => path.startsWith(join(root, ignore, "/")))
       );
     }
 
