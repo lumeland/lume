@@ -7,12 +7,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [2.0.0] - Unreleased
-This major version of Lume has a big internal code refactor but maintaining the public API,
+## [1.4.0] - Unreleased
+This version of Lume has a big internal code refactor but maintaining the public API,
 so your sites should work without changes.
 
 ### Added
-- **New Components feature**. It allows to create reusable components under the folder `_components`
+- **New Components feature**.
+  It allows to create reusable components under the folder `_components`
   that you can use in your template engines.
   It's compatible with any engine (nunjucks, js/ts modules, jsx, liquid, pug, etc).
   - New function `site.loadComponents()` to set up more components loaders.
@@ -1297,7 +1298,7 @@ The first version.
 [#150]: https://github.com/lumeland/lume/issues/150
 [#155]: https://github.com/lumeland/lume/issues/155
 
-[2.0.0]: https://github.com/lumeland/lume/compare/v1.3.1...HEAD
+[1.4.0]: https://github.com/lumeland/lume/compare/v1.3.1...HEAD
 [1.3.1]: https://github.com/lumeland/lume/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/lumeland/lume/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/lumeland/lume/compare/v1.2.0...v1.2.1
