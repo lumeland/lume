@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.4.1] - 2021-12-27
 ### Fixed
-- Upgrade command must be run with `--unstable` flag.
+- Upgrade errors due unstable features.
 
 ## [1.4.0] - 2021-12-27
 This version of Lume has a big internal code refactor but maintaining the public API,
