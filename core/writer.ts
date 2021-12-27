@@ -1,5 +1,6 @@
 import { dirname, join } from "../deps/path.ts";
-import { copy, emptyDir, ensureDir } from "../deps/fs.ts";
+import { emptyDir, ensureDir } from "../deps/fs.ts";
+import { copy } from "../deps/fs_copy.ts";
 import { concurrent, normalizePath, sha1 } from "./utils.ts";
 
 import type { Page } from "./filesystem.ts";
