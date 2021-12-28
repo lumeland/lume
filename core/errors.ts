@@ -1,6 +1,8 @@
 import { bold, cyan, dim, red, yellow } from "../deps/colors.ts";
 import { fromFileUrl } from "../deps/path.ts";
 
+import type { Page } from "../core.ts";
+
 /** Error payload interface  */
 export interface ErrorData {
   cause?: Error;
@@ -74,8 +76,7 @@ export function printError(error: Error, caused = false) {
 
     for (let [key, value] of Object.entries(error.data ?? {})) {
       if (key === "page") {
-        // @ts-ignore: this is a Page instance
-        value = value.src.path + value.src.ext;
+        value = (value as Page).src.path + (value as Page).src.ext;
       }
       console.log(dim(`- ${key}:`), value);
     }
