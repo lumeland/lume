@@ -1,7 +1,7 @@
 export const title = "Default Filter";
 export const url = "/default-filter";
 
-export default function ({}, { url, htmlUrl }) {
+export default function (_, { url, htmlUrl }) {
   return `
     <!DOCTYPE html>
     <html lang="en">

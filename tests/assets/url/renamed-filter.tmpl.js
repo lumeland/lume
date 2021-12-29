@@ -1,7 +1,7 @@
 export const title = "Renamed Filter";
 export const url = "/renamed-filter";
 
-export default function ({}, { urlify, htmlUrlify }) {
+export default function (_, { urlify, htmlUrlify }) {
   return `
     <!DOCTYPE html>
     <html lang="en">

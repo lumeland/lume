@@ -3,7 +3,7 @@ import {
   assertEquals,
   assertStrictEquals as equals,
 } from "../../deps/assert.ts";
-import { assertEqualsPaths, getPath } from "../utils.ts";
+import { getPath } from "../utils.ts";
 import Reader from "../../core/reader.ts";
 import nunjucks from "../../deps/nunjucks.ts";
 import { compile as pug } from "../../deps/pug.ts";
