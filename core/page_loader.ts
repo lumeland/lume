@@ -2,7 +2,7 @@ import { basename, extname } from "../deps/path.ts";
 import { Exception } from "./errors.ts";
 import AssetLoader from "./asset_loader.ts";
 
-import type { Data, Dest, Loader, Page, Src } from "../core.ts";
+import type { Data, Dest, Page, Src } from "../core.ts";
 
 /**
  * Class to load page files that generate HTML documents.
@@ -10,14 +10,23 @@ import type { Data, Dest, Loader, Page, Src } from "../core.ts";
  * and ensure there's a `date` property in the data.
  */
 export default class PageLoader extends AssetLoader {
-  async load(path: string): Promise<Page | undefined> {
-    const page = await super.load(path);
+  /** Prepare the data and the page */
+  prepare(page: Page, data: Data): void {
+    super.prepare(page, data);
 
-    if (!page) {
-      return undefined;
+    const datePath = this.#handleDatePath(page.src, page.dest);
+
+    // Ensure the data prop is defined
+    if (!data.date) {
+      data.date = datePath ?? page.src.created ?? page.src.lastModified;
+    } else if (!(data.date instanceof Date)) {
+      throw new Exception(
+        'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
+        { page },
+      );
     }
 
-    // Subextensions, like styles.css.njk
+    // Handle subextensions, like styles.css.njk
     const subext = extname(page.dest.path);
 
     if (subext) {
@@ -26,33 +35,14 @@ export default class PageLoader extends AssetLoader {
     } else {
       page.dest.ext = "";
     }
-
-    return page;
-  }
-
-  /** Loads the page data and prepare it */
-  async loadData(page: Page, path: string, loader: Loader): Promise<Data> {
-    const data = await super.loadData(page, path, loader);
-
-    // Check the date and set it if it's not set
-    if (!data.date) {
-      data.date = this.#detectDateInPath(page.src, page.dest) ??
-        page.src.created ?? page.src.lastModified;
-    } else if (!(data.date instanceof Date)) {
-      throw new Exception(
-        'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
-        { path },
-      );
-    }
-
-    return data;
   }
 
   /**
    * Detect the date of the page in the filename
+   * and remove it in dest.path
    * Example: 2019-01-01_hello-world.md
    */
-  #detectDateInPath(src: Src, dest: Dest): Date | undefined {
+  #handleDatePath(src: Src, dest: Dest): Date | undefined {
     const fileName = basename(src.path);
 
     const dateInPath = fileName.match(

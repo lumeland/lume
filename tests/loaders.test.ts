@@ -14,7 +14,7 @@ Deno.test("load the pages of a site", async () => {
   await site.build();
 
   // Test the generated pages
-  equals(site.pages.length, 6);
+  equals(site.pages.length, 7);
 
   // The data is merged
   testPage(site, "/pages/1_page1", (page) => {
@@ -116,6 +116,20 @@ Deno.test("load the pages of a site", async () => {
     );
   });
 
+  testPage(site, "/pages/2021-12-29_page6", (page) => {
+    equals(page.data.url, "/pages/page6/");
+    equals(page.data.title, "Page 6");
+    equals(page.data.tags?.length, 3);
+    equals(page.data.tags?.[0], "pages");
+    equals(page.data.site, "Folder overrided site name");
+    equals(page.dest.path, "/pages/page6/index");
+    equals(page.dest.ext, ".html");
+    equals(
+      page.data.date?.getTime(),
+      new Date(Date.UTC(2022, 0, 1, 0, 0, 0)).getTime(),
+    );
+  });
+
   // Test binary loader
   testPage(site, "/favicon", (page) => {
     equals(page.data.url, "/favicon.png");
@@ -136,5 +150,5 @@ Deno.test("ignored draft pages on dev=false", async () => {
 
   await site.build();
 
-  equals(site.pages.length, 4);
+  equals(site.pages.length, 5);
 });

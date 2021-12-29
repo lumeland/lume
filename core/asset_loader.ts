@@ -31,6 +31,8 @@ export default class AssetLoader {
   /** Load an asset Page */
   async load(path: string): Promise<Page | undefined> {
     path = join("/", path);
+
+    // Search for the loader
     const result = this.loaders.search(path);
 
     if (!result) {
@@ -44,6 +46,7 @@ export default class AssetLoader {
       return;
     }
 
+    // Create the page
     const page = new Page({
       path: path.slice(0, -ext.length),
       lastModified: info?.mtime || undefined,
@@ -51,21 +54,20 @@ export default class AssetLoader {
       ext,
     });
 
-    page.data = await this.loadData(page, path, loader);
+    // Prepare the data
+    const data = await this.reader.read(path, loader);
+    this.prepare(page, data);
+    page.data = data;
 
     return page;
   }
 
-  /** Loads the page data and prepare it */
-  async loadData(_page: Page, path: string, loader: Loader): Promise<Data> {
-    const data = await this.reader.read(path, loader);
-
+  /** Prepare the data and the page */
+  prepare(_page: Page, data: Data): void {
     if (data.tags) {
       data.tags = Array.isArray(data.tags)
         ? data.tags.map((tag) => String(tag))
         : [String(data.tags)];
     }
-
-    return data;
   }
 }

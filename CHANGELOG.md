@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.4.2] - Unreleased
 ### Fixed
 - Removed unstable Deno API functions on copy files.
+- Remove always the date in the filenames of the pages,
+  including pages that contain other date in the front matter.
 
 ## [1.4.1] - 2021-12-27
 ### Fixed
