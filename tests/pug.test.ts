@@ -25,4 +25,11 @@ Deno.test("build a site with eta", async () => {
     equals(page.document?.querySelector("h1")?.innerText, "This is a title");
     equals(page.document?.querySelectorAll("li")?.length, 2);
   });
+
+  testPage(site, "/layout", (page) => {
+    equals(page.data.title, "Pug example");
+    equals(page.data.url, "/layout/");
+    equals(page.document?.querySelector("title")?.innerText, "Pug example");
+    equals(page.document?.querySelector("h1")?.innerHTML, "Pug example");
+  });
 });
