@@ -17,6 +17,9 @@ export default class Extensions<Value> {
       return;
     }
 
+    // If extension is already defined, we remove it.
+    this.entries = this.entries.filter(([ext]) => ext != extension);
+
     // Simple extension (.ts, .js, .json)
     if (extension.match(/^\.\w+$/)) {
       this.entries.push([extension, value]);
