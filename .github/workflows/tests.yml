@@ -1,11 +1,16 @@
-name: Test
+name: Test Windows
 
 on: [push, pull_request]
 
 jobs:
   build:
     name: Run tests
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os:
+          - windows-latest
+          - ubuntu-latest
+          - macos-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -14,6 +19,10 @@ jobs:
         uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
+
+      - name: Test installation
+        run: |
+          deno run -A install.ts
 
       - name: Run tests
         run: |
