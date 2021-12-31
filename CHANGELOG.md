@@ -7,11 +7,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.4.2] - Unreleased
+## [1.4.2] - 2021-12-31
 ### Fixed
 - Removed unstable Deno API functions on copy files.
 - Remove always the date in the filenames of the pages,
   including pages that contain other date in the front matter.
+- Prevent duplicated extensions configuration [#157], [#158].
 
 ## [1.4.1] - 2021-12-27
 ### Fixed
@@ -1310,8 +1311,10 @@ The first version.
 [#149]: https://github.com/lumeland/lume/issues/149
 [#150]: https://github.com/lumeland/lume/issues/150
 [#155]: https://github.com/lumeland/lume/issues/155
+[#157]: https://github.com/lumeland/lume/issues/157
+[#158]: https://github.com/lumeland/lume/issues/158
 
-[1.4.2]: https://github.com/lumeland/lume/compare/v1.4.1...HEAD
+[1.4.2]: https://github.com/lumeland/lume/compare/v1.4.1...v1.4.2
 [1.4.1]: https://github.com/lumeland/lume/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/lumeland/lume/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/lumeland/lume/compare/v1.3.0...v1.3.1
