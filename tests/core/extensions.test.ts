@@ -7,6 +7,10 @@ Deno.test("Extensions", async (t) => {
   equals(extensions.values().length, 0);
 
   await t.step("Add extensions", () => {
+    extensions.set(".foo", "bar");
+    equals(extensions.values().length, 1);
+    equals(extensions.get(".foo"), "bar");
+
     extensions.set(".foo", "foo");
     equals(extensions.values().length, 1);
     equals(extensions.get(".foo"), "foo");

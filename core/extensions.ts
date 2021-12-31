@@ -18,7 +18,7 @@ export default class Extensions<Value> {
     }
 
     // If extension is already defined, we remove it.
-    this.entries = this.entries.filter(([ext]) => ext != extension);
+    this.delete(extension);
 
     // Simple extension (.ts, .js, .json)
     if (extension.match(/^\.\w+$/)) {
@@ -40,8 +40,23 @@ export default class Extensions<Value> {
 
   /** Get the value assigned to an extension */
   get(extension: string): Value | undefined {
+    if (extension === "*") {
+      return this.default;
+    }
     const entry = this.entries.find(([ext]) => ext === extension);
     return entry ? entry[1] : this.default;
+  }
+
+  /** Delete a extension */
+  delete(extension: string): void {
+    if (extension === "*") {
+      this.default = undefined;
+      return;
+    }
+    const index = this.entries.findIndex(([ext]) => ext === extension);
+    if (index !== -1) {
+      this.entries.splice(index, 1);
+    }
   }
 
   /** Search a extension/value pair for a path */
