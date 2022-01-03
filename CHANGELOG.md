@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.4.3] - Unreleased
+### Fixed
+- Updated `liquid`.
+
 ## [1.4.2] - 2021-12-31
 ### Fixed
 - Removed unstable Deno API functions on copy files.
@@ -1314,6 +1318,7 @@ The first version.
 [#157]: https://github.com/lumeland/lume/issues/157
 [#158]: https://github.com/lumeland/lume/issues/158
 
+[1.4.3]: https://github.com/lumeland/lume/compare/v1.4.2...HEAD
 [1.4.2]: https://github.com/lumeland/lume/compare/v1.4.1...v1.4.2
 [1.4.1]: https://github.com/lumeland/lume/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/lumeland/lume/compare/v1.3.1...v1.4.0
