@@ -30,6 +30,14 @@ export function checkDenoVersion(): void {
   }
 }
 
+async function ensureUrl(maybeUrl: string) {
+  try {
+    return new URL(maybeUrl);
+  } catch {
+    return new URL("file:" + await Deno.realPath(maybeUrl));
+  }
+}
+
 /**
  * Return a data url with the import map of Lume
  * Optionally merge it with a custom import map from the user
@@ -45,7 +53,8 @@ export async function getImportMap(mapFile?: string) {
 
   if (mapFile) {
     try {
-      const file = await (await fetch(mapFile)).text();
+      const url = await ensureUrl(mapFile);
+      const file = await (await fetch(url)).text();
       const parsedMap = JSON.parse(file) as ImportMap;
       map.imports = { ...map.imports, ...parsedMap.imports };
       map.scopes = parsedMap.scopes;
