@@ -1,5 +1,5 @@
 import { encode } from "./deps/base64.ts";
-import { posix } from "./deps/path.ts";
+import { posix, toFileUrl } from "./deps/path.ts";
 import { parse } from "./deps/flags.ts";
 import { brightGreen, red } from "./deps/colors.ts";
 import { Exception } from "./core/errors.ts";
@@ -34,7 +34,7 @@ async function ensureUrl(maybeUrl: string) {
   try {
     return new URL(maybeUrl);
   } catch {
-    return new URL("file:" + await Deno.realPath(maybeUrl));
+    return toFileUrl(await Deno.realPath(maybeUrl));
   }
 }
 
