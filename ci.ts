@@ -1,5 +1,5 @@
 import { encode } from "./deps/base64.ts";
-import { posix } from "./deps/path.ts";
+import { posix, toFileUrl } from "./deps/path.ts";
 import { parse } from "./deps/flags.ts";
 import { brightGreen, red } from "./deps/colors.ts";
 import { Exception } from "./core/errors.ts";
@@ -30,6 +30,14 @@ export function checkDenoVersion(): void {
   }
 }
 
+async function ensureUrl(maybeUrl: string) {
+  try {
+    return new URL(maybeUrl);
+  } catch {
+    return toFileUrl(await Deno.realPath(maybeUrl));
+  }
+}
+
 /**
  * Return a data url with the import map of Lume
  * Optionally merge it with a custom import map from the user
@@ -45,7 +53,8 @@ export async function getImportMap(mapFile?: string) {
 
   if (mapFile) {
     try {
-      const file = await (await fetch(mapFile)).text();
+      const url = await ensureUrl(mapFile);
+      const file = await (await fetch(url)).text();
       const parsedMap = JSON.parse(file) as ImportMap;
       map.imports = { ...map.imports, ...parsedMap.imports };
       map.scopes = parsedMap.scopes;
