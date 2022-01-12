@@ -41,20 +41,20 @@ async function ensureUrl(maybeUrl: string) {
 }
 
 /**
- * If a given specifier map has a value which starts with "./",
- * resolve it with given base URL.
+ * If a given specifier map has relative paths,
+ * resolve them with a given base URL.
  */
 function resolveSpecifierMap(specifierMap: SpecifierMap, baseUrl: URL) {
   return Object.fromEntries(
     Object.entries(specifierMap).map((
       [key, value],
-    ) => [key, value.startsWith("./") ? new URL(value, baseUrl).href : value]),
+    ) => [key, new URL(value, baseUrl).href]),
   );
 }
 
 /**
- * If any specifier maps in the given import map has a value which starts with "./",
- * resolve it with given base URL.
+ * If any specifier maps in a given import map have relative paths,
+ * resolve it with a given base URL.
  */
 function resolveImportMap(importMap: ImportMap, baseUrl: URL) {
   const imports = resolveSpecifierMap(importMap.imports, baseUrl);
