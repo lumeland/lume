@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.4.3] - Unreleased
 ### Fixed
-- Updated `liquid`.
+- Updated `liquid`, `std`, `deno_dom` and `deno_graph`.
+- Import maps with local files [#159], [#162].
 
 ## [1.4.2] - 2021-12-31
 ### Fixed
@@ -1317,6 +1318,8 @@ The first version.
 [#155]: https://github.com/lumeland/lume/issues/155
 [#157]: https://github.com/lumeland/lume/issues/157
 [#158]: https://github.com/lumeland/lume/issues/158
+[#159]: https://github.com/lumeland/lume/issues/159
+[#162]: https://github.com/lumeland/lume/issues/162
 
 [1.4.3]: https://github.com/lumeland/lume/compare/v1.4.2...HEAD
 [1.4.2]: https://github.com/lumeland/lume/compare/v1.4.1...v1.4.2
