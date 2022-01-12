@@ -7,9 +7,11 @@ import { Exception } from "./core/errors.ts";
 const { join } = posix;
 const baseUrl = new URL(".", import.meta.url).href;
 
+type SpecifierMap = Record<string, string>;
+
 interface ImportMap {
-  imports: Record<string, string>;
-  scopes?: Record<string, Record<string, string>>;
+  imports: SpecifierMap;
+  scopes?: Record<string, SpecifierMap>;
 }
 
 export function checkDenoVersion(): void {
@@ -39,6 +41,32 @@ async function ensureUrl(maybeUrl: string) {
 }
 
 /**
+ * If a given specifier map has relative paths,
+ * resolve them with a given base URL.
+ */
+function resolveSpecifierMap(specifierMap: SpecifierMap, baseUrl: URL) {
+  return Object.fromEntries(
+    Object.entries(specifierMap).map((
+      [key, value],
+    ) => [key, new URL(value, baseUrl).href]),
+  );
+}
+
+/**
+ * If any specifier maps in a given import map have relative paths,
+ * resolve it with a given base URL.
+ */
+function resolveImportMap(importMap: ImportMap, baseUrl: URL) {
+  const imports = resolveSpecifierMap(importMap.imports, baseUrl);
+  const scopes = Object.fromEntries(
+    Object.entries(importMap.scopes ?? []).map((
+      [scopeSpecifier, specifierMap],
+    ) => [scopeSpecifier, resolveSpecifierMap(specifierMap, baseUrl)]),
+  );
+  return { imports, scopes };
+}
+
+/**
  * Return a data url with the import map of Lume
  * Optionally merge it with a custom import map from the user
  */
@@ -56,7 +84,8 @@ export async function getImportMap(mapFile?: string) {
       const url = await ensureUrl(mapFile);
       const file = await (await fetch(url)).text();
       const parsedMap = JSON.parse(file) as ImportMap;
-      map.imports = { ...map.imports, ...parsedMap.imports };
+      const resolvedMap = resolveImportMap(parsedMap, url);
+      map.imports = { ...map.imports, ...resolvedMap.imports };
       map.scopes = parsedMap.scopes;
     } catch (cause) {
       throw new Exception("Unable to load the import map file", {
