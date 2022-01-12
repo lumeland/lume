@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Updated `liquid`, `std`, `deno_dom` and `deno_graph`.
 - Import maps with local files [#159], [#162].
+- Ignored files in experimental watcher.
+- Ignore the error on copy renamed files.
 
 ## [1.4.2] - 2021-12-31
 ### Fixed

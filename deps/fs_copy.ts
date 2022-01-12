@@ -132,19 +132,27 @@ export async function copy(
     throw new Error("Source and destination cannot be the same.");
   }
 
-  const srcStat = await Deno.lstat(src);
+  try {
+    const srcStat = await Deno.lstat(src);
+  
+    if (srcStat.isDirectory && dest.startsWith(src)) {
+      throw new Error(
+        `Cannot copy '${src}' to a subdirectory of itself, '${dest}'.`,
+      );
+    }
+  
+    if (srcStat.isSymlink) {
+      await copySymLink(src, dest, options);
+    } else if (srcStat.isDirectory) {
+      await copyDir(src, dest, options);
+    } else if (srcStat.isFile) {
+      await copyFile(src, dest, options);
+    }
+  } catch (err) {
+    if (err instanceof Deno.errors.NotFound) {
+      return false;
+    }
 
-  if (srcStat.isDirectory && dest.startsWith(src)) {
-    throw new Error(
-      `Cannot copy '${src}' to a subdirectory of itself, '${dest}'.`,
-    );
-  }
-
-  if (srcStat.isSymlink) {
-    await copySymLink(src, dest, options);
-  } else if (srcStat.isDirectory) {
-    await copyDir(src, dest, options);
-  } else if (srcStat.isFile) {
-    await copyFile(src, dest, options);
+    throw err;
   }
 }

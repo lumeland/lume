@@ -22,7 +22,7 @@ onmessage = async (event) => {
 
   runWatch({
     root: site.src(),
-    ignore: site.dest(),
+    ignore: site.options.watcher.ignore,
     fn: (files) => {
       console.log();
       console.log("Changes detected:");
