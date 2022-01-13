@@ -197,6 +197,65 @@ export function stringToDocument(string: string): HTMLDocument {
   return document;
 }
 
+/** Return the current installed version */
+export function getCurrentVersion(): string {
+  const url = new URL("../", import.meta.url).pathname;
+  return url.match(/@([^/]+)/)?.[1] ?? `local (${url})`;
+}
+
+/** Return the latest stable version from the deno.land/x repository */
+export async function getLatestVersion(): Promise<string> {
+  const response = await fetch("https://cdn.deno.land/lume/meta/versions.json");
+  const versions = await response.json();
+  return versions.latest;
+}
+
+/** Return the hash of the latest commit from the GitHub repository */
+export async function getLatestDevelopmentVersion(): Promise<string> {
+  const response = await fetch(
+    "https://api.github.com/repos/lumeland/lume/commits?per_page=1",
+  );
+  const commits = await response.json();
+  return commits[0].sha;
+}
+
+export interface UpgradeInfo {
+  current: string;
+  latest: string;
+  command: string;
+}
+
+export async function mustNotifyUpgrade(): Promise<undefined | UpgradeInfo> {
+  const current = getCurrentVersion();
+
+  // It's a local version
+  if (current.startsWith("local ")) {
+    return;
+  }
+
+  const stable = !!current.match(/^v\d+\./);
+
+  const expires = 1000 * 60 * 60 * 24; // 1 day
+  const interval = localStorage.getItem("lume-upgrade");
+
+  if (interval && parseInt(interval) + expires > Date.now()) {
+    return;
+  }
+
+  localStorage.setItem("lume-upgrade", Date.now().toString());
+
+  const latest = stable
+    ? await getLatestVersion()
+    : await getLatestDevelopmentVersion();
+
+  if (current === latest) {
+    return;
+  }
+
+  const command = stable ? "lume upgrade" : "lume upgrade --dev";
+  return { current, latest, command };
+}
+
 export interface serveFileOptions {
   root: string;
   directoryIndex: boolean;

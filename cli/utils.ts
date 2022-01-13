@@ -6,28 +6,6 @@ import { Exception, printError } from "../core/errors.ts";
 
 import type { Site } from "../core.ts";
 
-/** Return the current installed version */
-export function getCurrentVersion(): string {
-  const url = new URL("../", import.meta.url).pathname;
-  return url.match(/@([^/]+)/)?.[1] ?? `local (${url})`;
-}
-
-/** Return the latest stable version from the deno.land/x repository */
-export async function getLastVersion(): Promise<string> {
-  const response = await fetch("https://cdn.deno.land/lume/meta/versions.json");
-  const versions = await response.json();
-  return versions.latest;
-}
-
-/** Return the hash of the latest commit from the GitHub repository */
-export async function getLastDevelopmentVersion(): Promise<string> {
-  const response = await fetch(
-    "https://api.github.com/repos/lumeland/lume/commits?per_page=1",
-  );
-  const commits = await response.json();
-  return commits[0].sha;
-}
-
 /** Returns the _config file of a site */
 export async function getConfigFile(
   root: string,

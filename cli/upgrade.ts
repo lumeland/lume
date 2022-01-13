@@ -1,8 +1,8 @@
 import {
   getCurrentVersion,
-  getLastDevelopmentVersion,
-  getLastVersion,
-} from "./utils.ts";
+  getLatestDevelopmentVersion,
+  getLatestVersion,
+} from "../core/utils.ts";
 import { brightGreen, gray } from "../deps/colors.ts";
 
 interface Options {
@@ -12,8 +12,8 @@ interface Options {
 /** Upgrade the Lume installation to the latest version */
 export default async function upgrade({ dev }: Options) {
   const latest = dev
-    ? await getLastDevelopmentVersion()
-    : await getLastVersion();
+    ? await getLatestDevelopmentVersion()
+    : await getLatestVersion();
 
   if (latest === getCurrentVersion()) {
     console.log(

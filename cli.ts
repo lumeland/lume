@@ -1,10 +1,11 @@
 import { Command, CompletionsCommand, EnumType } from "./deps/cliffy.ts";
-import { getCurrentVersion } from "./cli/utils.ts";
+import { getCurrentVersion, mustNotifyUpgrade } from "./core/utils.ts";
 import { printError } from "./core/errors.ts";
 import initCommand from "./cli/init.ts";
 import upgradeCommand from "./cli/upgrade.ts";
 import runCommand from "./cli/run.ts";
 import buildCommand from "./cli/build.ts";
+import { cyan, dim, green } from "./deps/colors.ts";
 import ci from "./ci.ts";
 
 const initOnlyOptions = new EnumType(["config", "vscode"]);
@@ -149,6 +150,18 @@ try {
   if (Deno.args.some((arg) => arg === "--")) {
     await ci(Deno.args);
   } else {
+    if (!Deno.args.includes("--quiet")) {
+      const info = await mustNotifyUpgrade();
+
+      if (info) {
+        console.log("----------------------------------------");
+        console.log(
+          `Update available ${dim(info.current)}  → ${green(info.latest)}`,
+        );
+        console.log(`Run ${cyan(info.command)} to update`);
+        console.log("----------------------------------------");
+      }
+    }
     await lume.parse(Deno.args);
   }
 } catch (error) {

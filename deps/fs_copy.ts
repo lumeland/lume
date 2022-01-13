@@ -134,13 +134,13 @@ export async function copy(
 
   try {
     const srcStat = await Deno.lstat(src);
-  
+
     if (srcStat.isDirectory && dest.startsWith(src)) {
       throw new Error(
         `Cannot copy '${src}' to a subdirectory of itself, '${dest}'.`,
       );
     }
-  
+
     if (srcStat.isSymlink) {
       await copySymLink(src, dest, options);
     } else if (srcStat.isDirectory) {

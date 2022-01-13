@@ -16,7 +16,7 @@ function socket() {
       return;
     }
 
-    const files = read("refresh");
+    const files = read();
 
     if (files) {
       refresh(files);
@@ -59,7 +59,7 @@ function refresh(files) {
   // Reload the entire page if the HTML changes
   if (index !== -1) {
     files.splice(index, 1);
-    save("refresh", files);
+    save(files);
     location.reload();
     return;
   }
@@ -122,13 +122,13 @@ function cache(el, prop, file, clone = false) {
   el[prop] = url.href;
 }
 
-function save(key, data) {
-  localStorage.setItem(key, JSON.stringify(data));
+function save(data) {
+  sessionStorage.setItem("lume-reload", JSON.stringify(data));
 }
 
-function read(key) {
-  const data = localStorage.getItem(key);
-  localStorage.removeItem(key);
+function read() {
+  const data = sessionStorage.getItem("lume-reload");
+  sessionStorage.removeItem("lume-reload");
 
   if (data) {
     return JSON.parse(data);
