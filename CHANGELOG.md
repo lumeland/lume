@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.4.4] - Unreleased
+### Added
+- New upgrade notification if it's detected an old version of Lume.
+
 ## [1.4.3] - 2022-01-12
 ### Fixed
 - Updated `liquid`, `std`, `deno_dom` and `deno_graph`.
@@ -1323,6 +1327,7 @@ The first version.
 [#159]: https://github.com/lumeland/lume/issues/159
 [#162]: https://github.com/lumeland/lume/issues/162
 
+[1.4.4]: https://github.com/lumeland/lume/compare/v1.4.3...HEAD
 [1.4.3]: https://github.com/lumeland/lume/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/lumeland/lume/compare/v1.4.1...v1.4.2
 [1.4.1]: https://github.com/lumeland/lume/compare/v1.4.0...v1.4.1
