@@ -110,6 +110,7 @@ Deno.test("Loaders", async (t) => {
     equals(yaml.data.title, "Hello world");
     assertEquals(yaml.data.tags, ["tag1", "tag2"]);
     assert(yaml.data.date instanceof Date);
+    equals(yaml.data.date.toISOString(), "2021-12-22T00:11:50.799Z");
     assertEqualsPaths(yaml.src.path, "/data");
     equals(yaml.src.ext, ".yml");
     assertEqualsPaths(yaml.dest.path, "/data");
@@ -121,6 +122,7 @@ Deno.test("Loaders", async (t) => {
     equals(module.data.subtitle, "Subtitle value");
     assertEquals(module.data.tags, ["tag1"]);
     assert(module.data.date instanceof Date);
+    equals(module.data.date.toISOString(), "2021-12-22T00:11:50.798Z");
     assertEqualsPaths(module.src.path, "/data");
     equals(module.src.ext, ".ts");
     assertEqualsPaths(module.dest.path, "/data");
@@ -131,6 +133,7 @@ Deno.test("Loaders", async (t) => {
     equals(json.data.title, "Title from json");
     assertEquals(json.data.tags, ["tag1", "tag2"]);
     assert(json.data.date instanceof Date);
+    equals(json.data.date.toISOString(), "2021-12-22T00:11:50.798Z");
     assertEqualsPaths(json.src.path, "/data");
     equals(json.src.ext, ".json");
     assertEqualsPaths(json.dest.path, "/data");
@@ -142,6 +145,7 @@ Deno.test("Loaders", async (t) => {
     equals(text.data.content, "Hello world");
     assertEquals(text.data.tags, ["tag1"]);
     assert(text.data.date instanceof Date);
+    equals(text.data.date.toISOString(), "2021-12-22T00:11:50.799Z");
     assertEqualsPaths(text.src.path, "/data");
     equals(text.src.ext, ".txt");
     assertEqualsPaths(text.dest.path, "/data");
@@ -158,6 +162,7 @@ Deno.test("Loaders", async (t) => {
     equals(page1.data.date.getUTCHours(), 0);
     equals(page1.data.date.getUTCMinutes(), 0);
     equals(page1.data.date.getUTCSeconds(), 0);
+    equals(page1.data.date.toISOString(), "2022-05-21T00:00:00.000Z");
 
     const page2 = await pageLoader.load("1_page.txt");
     assert(page2);
@@ -168,6 +173,7 @@ Deno.test("Loaders", async (t) => {
     equals(page2.data.date.getUTCHours(), 0);
     equals(page2.data.date.getUTCMinutes(), 0);
     equals(page2.data.date.getUTCSeconds(), 0);
+    equals(page2.data.date.toISOString(), "1970-01-01T00:00:00.001Z");
 
     const page3 = await pageLoader.load("2021-12-19_page.txt");
     assert(page3);
@@ -178,6 +184,7 @@ Deno.test("Loaders", async (t) => {
     equals(page3.data.date.getUTCHours(), 0);
     equals(page3.data.date.getUTCMinutes(), 0);
     equals(page3.data.date.getUTCSeconds(), 0);
+    equals(page3.data.date.toISOString(), "2021-12-19T00:00:00.000Z");
 
     const page4 = await pageLoader.load("2021-12-19-20-35_page.txt");
     assert(page4);
@@ -188,6 +195,7 @@ Deno.test("Loaders", async (t) => {
     equals(page4.data.date.getUTCHours(), 20);
     equals(page4.data.date.getUTCMinutes(), 35);
     equals(page4.data.date.getUTCSeconds(), 0);
+    equals(page4.data.date.toISOString(), "2021-12-19T20:35:00.000Z");
   });
 
   assetLoader.set([".yml"], yamlLoader);
