@@ -25,6 +25,7 @@ export default class PageLoader extends AssetLoader {
         { page },
       );
     }
+    console.log(page.src);
 
     // Handle subextensions, like styles.css.njk
     const subext = extname(page.dest.path);
