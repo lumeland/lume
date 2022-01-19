@@ -100,7 +100,7 @@ export default class Server {
 
     try {
       const response = await next(request);
-      event.respondWith(response);
+      await event.respondWith(response);
     } catch {
       // Ignore
     }
