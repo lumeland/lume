@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - `page.document` must return `undefined` if the page is not a HTML page [#163].
+- Updated `liquidjs`.
 
 ## [1.4.3] - 2022-01-12
 ### Fixed
