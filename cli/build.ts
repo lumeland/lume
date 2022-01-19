@@ -1,6 +1,8 @@
 import { createSite, runWatch } from "./utils.ts";
 import { brightGreen, dim } from "../deps/colors.ts";
 import runServe from "./serve.ts";
+import Server from "../server/mod.ts";
+import * as middlewares from "../server/middlewares.ts";
 
 interface Options {
   root: string;
@@ -42,7 +44,21 @@ export default async function build(
   if (!serve && !watch) {
     return;
   }
+  const server = new Server({
+    root: site.dest(),
+    port: site.options.server.port,
+    open: site.options.server.open,
+    page404: site.options.server.page404,
+  });
 
+  server.use(middlewares.log);
+  server.use(middlewares.contentLength);
+  server.use(middlewares.contentType);
+  server.use(middlewares.noCache);
+
+  await server.start();
+
+  return;
   // Start the watcher
   runWatch({
     root: site.src(),
