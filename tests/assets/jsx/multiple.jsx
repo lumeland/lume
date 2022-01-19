@@ -6,7 +6,7 @@ export default function* () {
 
   for (const page of pages) {
     yield {
-      url: `/page/${page}`,
+      url: `/page/${page}/`,
       content: <div>{page}</div>,
     };
   }

@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New upgrade notification if it's detected an old version of Lume.
 
+### Fixed
+- `page.document` must return `undefined` if the page is not a HTML page [#163].
+
 ## [1.4.3] - 2022-01-12
 ### Fixed
 - Updated `liquid`, `std`, `deno_dom` and `deno_graph`.
@@ -1326,6 +1329,7 @@ The first version.
 [#158]: https://github.com/lumeland/lume/issues/158
 [#159]: https://github.com/lumeland/lume/issues/159
 [#162]: https://github.com/lumeland/lume/issues/162
+[#163]: https://github.com/lumeland/lume/issues/163
 
 [1.4.4]: https://github.com/lumeland/lume/compare/v1.4.3...HEAD
 [1.4.3]: https://github.com/lumeland/lume/compare/v1.4.2...v1.4.3

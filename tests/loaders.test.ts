@@ -10,11 +10,12 @@ Deno.test("load the pages of a site", async () => {
 
   site.loadAssets([".png"], binaryLoader);
   site.copy("static.yml");
+  site.loadAssets([".css"]);
 
   await site.build();
 
   // Test the generated pages
-  equals(site.pages.length, 7);
+  equals(site.pages.length, 8);
 
   // The data is merged
   testPage(site, "/pages/1_page1", (page) => {
@@ -137,6 +138,15 @@ Deno.test("load the pages of a site", async () => {
     equals(page.dest.ext, ".png");
     equals(typeof page.content, "object");
     assert(page.content instanceof Uint8Array);
+  });
+
+  // Test non HTML pages
+  testPage(site, "/styles", (page) => {
+    assert(page.document === undefined);
+    equals(page.data.url, "/styles.css");
+    equals(page.dest.path, "/styles");
+    equals(page.dest.ext, ".css");
+    equals(typeof page.content, "string");
   });
 });
 

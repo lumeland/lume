@@ -36,12 +36,12 @@ Deno.test("build a site with jsx/tsx modules", async () => {
   });
 
   testPage(site, "/multiple[0]", (page) => {
-    equals(page.data.url, "/page/1");
+    equals(page.data.url, "/page/1/");
     equals(page.document?.querySelector("div")?.innerText, "1");
   });
 
   testPage(site, "/multiple[1]", (page) => {
-    equals(page.data.url, "/page/2");
+    equals(page.data.url, "/page/2/");
     equals(page.document?.querySelector("div")?.innerText, "2");
   });
 });

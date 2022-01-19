@@ -156,7 +156,10 @@ export class Page extends Base {
   }
 
   get document(): HTMLDocument | undefined {
-    if (!this.#document && this.#content) {
+    if (
+      !this.#document && this.#content &&
+      (this.dest.ext === ".html" || this.dest.ext === ".htm")
+    ) {
       this.#document = stringToDocument(this.#content.toString());
     }
 
