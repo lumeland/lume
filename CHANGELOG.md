@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.4.4] - Unreleased
 ### Added
 - New upgrade notification if it's detected an old version of Lume.
+- New architecture for the local server, with support for middlewares.
 
 ### Fixed
 - `page.document` must return `undefined` if the page is not a HTML page [#163].
