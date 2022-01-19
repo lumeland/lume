@@ -7,7 +7,8 @@ export default function log(): Middleware {
   return async (request, next) => {
     try {
       const response = await next(request);
-      const { pathname } = new URL(request.url);
+      const url = new URL(request.url);
+      const pathname = decodeURIComponent(url.pathname);
       const { status } = response;
 
       if (status === 404 || status === 500) {

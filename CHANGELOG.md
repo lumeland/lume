@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New upgrade notification if it's detected an old version of Lume.
 - New architecture for the local server, with support for middlewares.
 
+### Removed
+- Experimental watcher.
+
 ### Fixed
 - `page.document` must return `undefined` if the page is not a HTML page [#163].
 

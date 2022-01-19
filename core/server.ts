@@ -108,7 +108,7 @@ export default class Server {
 
   async serveFile(request: Request): Promise<Response> {
     const url = new URL(request.url);
-    const { pathname } = url;
+    const pathname = decodeURIComponent(url.pathname);
     let path = join(this.options.root, pathname);
 
     try {

@@ -28,10 +28,10 @@ import type {
   EventListener,
   EventOptions,
   EventType,
-  FileResponse,
   Helper,
   HelperOptions,
   Loader,
+  Middleware,
   Page,
   Plugin,
   Processor,
@@ -585,8 +585,8 @@ export interface ServerOptions {
   /** The file to serve on 404 error */
   page404: string;
 
-  /** Optional request handler for pages served on demand */
-  router?: (url: URL) => Promise<FileResponse | undefined>;
+  /** Optional for the server */
+  middlewares?: Middleware[];
 }
 
 /** The options to configure the local watcher */

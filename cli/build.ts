@@ -12,22 +12,12 @@ interface Options {
   config?: string;
   serve: boolean;
   watch: boolean;
-  experimental: boolean;
 }
 
 /** Build the website and optionally watch changes and serve the site */
 export default async function build(
-  { root, config, serve, watch, experimental }: Options,
+  { root, config, serve, watch }: Options,
 ) {
-  if (experimental) {
-    if (!serve && !watch) {
-      console.warn("Experimental mode requires either --serve or --watch");
-      return;
-    }
-    runExperimentalWatcher(serve, root, config);
-    return;
-  }
-
   const site = await createSite(root, config);
   const quiet = site.options.quiet;
 
@@ -63,94 +53,25 @@ export default async function build(
   });
 
   // Start the local server
-  const { port, open, page404 } = site.options.server;
+  const { port, open, page404, middlewares } = site.options.server;
 
-  const server = createServer({
-    root: site.dest(),
-    port,
-    open,
-    page404,
-    directoryIndex: true,
-  });
-
-  await server.start();
-}
-
-/** Build the site using a Worker so it can reload the modules */
-function runExperimentalWatcher(
-  initServer: boolean,
-  root: string,
-  config?: string,
-) {
-  const url = new URL("exp_watcher.ts", import.meta.url);
-  let server: Server | undefined;
-
-  function init() {
-    const work = new Worker(url, {
-      type: "module",
-      deno: true,
-    });
-
-    // Start watching
-    work.postMessage({ root, config });
-
-    // Listen for messages
-    work.onmessage = (event) => {
-      const { type } = event.data;
-
-      // Init the local server
-      if (type === "built") {
-        if (server || !initServer) {
-          return;
-        }
-
-        const { root, options } = event.data;
-        server = createServer({
-          root,
-          open: options.open,
-          port: options.port,
-          directoryIndex: true,
-          page404: options.page404,
-        });
-        server.start();
-        return;
-      }
-
-      // Reload the worker
-      if (type === "reload") {
-        work.terminate();
-        init();
-      }
-    };
-  }
-
-  init();
-}
-
-interface serveOptions {
-  root: string;
-  port: number;
-  open: boolean;
-  directoryIndex: boolean;
-  page404: string;
-}
-
-function createServer(options: serveOptions): Server {
-  const { root, port, open, directoryIndex, page404 } = options;
-
-  const server = new Server({ root, port, open });
+  const server = new Server({ root: site.dest(), port, open });
 
   server.use(
     logger(),
-    reload({ root }),
+    reload({ root: site.dest() }),
     contentType(),
     noCache(),
     notFound({
-      root,
+      root: site.dest(),
       page404,
-      directoryIndex,
+      directoryIndex: true,
     }),
   );
 
-  return server;
+  if (middlewares) {
+    server.use(...middlewares);
+  }
+
+  await server.start();
 }

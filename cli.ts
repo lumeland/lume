@@ -135,10 +135,6 @@ const lume = new Command()
     "-w, --watch [watch:boolean]",
     "Build and watch changes.",
   )
-  .option(
-    "--experimental [experimental:boolean]",
-    "To use the new experimental watcher (unstable).",
-  )
   .action(buildCommand)
   .command("init", init)
   .command("upgrade", upgrade)

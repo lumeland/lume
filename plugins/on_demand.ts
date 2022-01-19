@@ -1,7 +1,7 @@
-import { merge, mimes } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
 
-import type { FileResponse, Page, Site } from "../core.ts";
+import type { Page, Site } from "../core.ts";
 
 export interface Options {
   /** A function to return the page file associated with the provided url */
@@ -23,51 +23,46 @@ export default function (userOptions?: Partial<Options>) {
       options.router = router.match.bind(router);
     }
 
-    site.options.server.router ||= (url) => serve(url, site, options.router!);
+    const { router } = options;
+
+    site.options.server.middlewares ||= [];
+    site.options.server.middlewares.push(async (request, next) => {
+      const response = await next(request);
+
+      if (response.status !== 404) {
+        return response;
+      }
+
+      const url = new URL(request.url);
+      const file = await router(url);
+
+      if (!file) {
+        return response;
+      }
+
+      const page = await site.renderPage(file);
+
+      if (!page) {
+        return response;
+      }
+
+      // Redirect /example to /example/
+      const pageUrl = page.data.url as string;
+      if (!url.pathname.endsWith("/") && pageUrl.endsWith("/")) {
+        return new Response(null, {
+          status: 301,
+          headers: {
+            "location": posix.join(url.pathname, "/"),
+          },
+        });
+      }
+
+      return new Response(
+        page.content,
+        { status: 200 },
+      );
+    });
   };
-}
-
-/** Build and serve a page on demand */
-async function serve(
-  url: URL,
-  site: Site,
-  router: Router,
-): Promise<FileResponse | undefined> {
-  const file = await router(url);
-
-  if (!file) {
-    return;
-  }
-
-  const page = await site.renderPage(file);
-
-  if (!page) {
-    return undefined;
-  }
-
-  // Redirect /example to /example/
-  const pageUrl = page.data.url as string;
-  if (!url.pathname.endsWith("/") && pageUrl.endsWith("/")) {
-    return [
-      null,
-      {
-        status: 301,
-        headers: {
-          "location": posix.join(url.pathname, "/"),
-        },
-      },
-    ];
-  }
-
-  const body = page.content as string | Uint8Array;
-  const response = {
-    status: 200,
-    headers: {
-      "content-type": mimes.get(page.dest.ext) || mimes.get(".html")!,
-    },
-  };
-
-  return [body, response];
 }
 
 /** Class to load and manage static routes in a JSON file
