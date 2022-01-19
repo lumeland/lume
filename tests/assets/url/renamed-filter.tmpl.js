@@ -1,5 +1,5 @@
 export const title = "Renamed Filter";
-export const url = "/renamed-filter";
+export const url = "/renamed-filter/";
 
 export default function (_, { urlify, htmlUrlify }) {
   return `

@@ -1,5 +1,5 @@
 export const title = "Default Filter";
-export const url = "/default-filter";
+export const url = "/default-filter/";
 
 export default function (_, { url, htmlUrl }) {
   return `
