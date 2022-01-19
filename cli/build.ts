@@ -1,8 +1,11 @@
 import { createSite, runWatch } from "./utils.ts";
 import { brightGreen, dim } from "../deps/colors.ts";
-import runServe from "./serve.ts";
-import Server from "../server/mod.ts";
-import * as middlewares from "../server/middlewares.ts";
+import Server from "../core/server.ts";
+import contentType from "../middlewares/content_type.ts";
+import logger from "../middlewares/logger.ts";
+import noCache from "../middlewares/no_cache.ts";
+import notFound from "../middlewares/not_found.ts";
+import reload from "../middlewares/reload.ts";
 
 interface Options {
   root: string;
@@ -44,21 +47,7 @@ export default async function build(
   if (!serve && !watch) {
     return;
   }
-  const server = new Server({
-    root: site.dest(),
-    port: site.options.server.port,
-    open: site.options.server.open,
-    page404: site.options.server.page404,
-  });
 
-  server.use(middlewares.log);
-  server.use(middlewares.contentLength);
-  server.use(middlewares.contentType);
-  server.use(middlewares.noCache);
-
-  await server.start();
-
-  return;
   // Start the watcher
   runWatch({
     root: site.src(),
@@ -74,9 +63,17 @@ export default async function build(
   });
 
   // Start the local server
-  if (serve) {
-    await runServe(site.dest(), site.options.server);
-  }
+  const { port, open, page404 } = site.options.server;
+
+  const server = createServer({
+    root: site.dest(),
+    port,
+    open,
+    page404,
+    directoryIndex: true,
+  });
+
+  await server.start();
 }
 
 /** Build the site using a Worker so it can reload the modules */
@@ -85,8 +82,8 @@ function runExperimentalWatcher(
   root: string,
   config?: string,
 ) {
-  const url = new URL("watch.ts", import.meta.url);
-  let serving = false;
+  const url = new URL("exp_watcher.ts", import.meta.url);
+  let server: Server | undefined;
 
   function init() {
     const work = new Worker(url, {
@@ -103,13 +100,19 @@ function runExperimentalWatcher(
 
       // Init the local server
       if (type === "built") {
-        if (serving || !initServer) {
+        if (server || !initServer) {
           return;
         }
 
         const { root, options } = event.data;
-        runServe(root, options);
-        serving = true;
+        server = createServer({
+          root,
+          open: options.open,
+          port: options.port,
+          directoryIndex: true,
+          page404: options.page404,
+        });
+        server.start();
         return;
       }
 
@@ -122,4 +125,32 @@ function runExperimentalWatcher(
   }
 
   init();
+}
+
+interface serveOptions {
+  root: string;
+  port: number;
+  open: boolean;
+  directoryIndex: boolean;
+  page404: string;
+}
+
+function createServer(options: serveOptions): Server {
+  const { root, port, open, directoryIndex, page404 } = options;
+
+  const server = new Server({ root, port, open });
+
+  server.use(
+    logger(),
+    reload({ root }),
+    contentType(),
+    noCache(),
+    notFound({
+      root,
+      page404,
+      directoryIndex,
+    }),
+  );
+
+  return server;
 }

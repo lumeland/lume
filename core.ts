@@ -51,9 +51,11 @@ import type {
   HelperOptions,
 } from "./core/engines.ts";
 import type { ErrorData, Exception } from "./core/errors.ts";
-
-/** Data to create a new response. */
-type FileResponse = [BodyInit | null, ResponseInit];
+import type {
+  default as Server,
+  Middleware,
+  RequestHandler,
+} from "./core/server.ts";
 
 /** The method that installs a plugin */
 type PluginSetup = ((options: unknown) => Plugin);
@@ -81,12 +83,12 @@ export type {
   Events,
   EventType,
   Exception,
-  FileResponse,
   Helper,
   HelperOptions,
   IncludesLoader,
   Loader,
   Logger,
+  Middleware,
   Page,
   PageLoader,
   Plugin,
@@ -95,11 +97,13 @@ export type {
   Processors,
   Reader,
   Renderer,
+  RequestHandler,
   ScopeFilter,
   Scopes,
   ScriptOptions,
   ScriptOrFunction,
   Scripts,
+  Server,
   ServerOptions,
   Site,
   SiteOptions,
