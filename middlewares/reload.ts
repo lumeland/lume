@@ -45,17 +45,21 @@ export default function reload(options: Options): Middleware {
     // It's a regular request
     const response = await next(request);
 
+    if (!response.body) {
+      return response;
+    }
+
     // Insert live-reload script in the body
     if (response.headers.get("content-type") === mimes.get(".html")) {
-      const reader = response.body?.getReader();
+      const reader = response.body.getReader();
 
       let body = "";
-      let result = await reader!.read();
+      let result = await reader.read();
       const decoder = new TextDecoder();
 
       while (!result.done) {
         body += decoder.decode(result.value);
-        result = await reader!.read();
+        result = await reader.read();
       }
 
       body += `<script type="module" id="lume-live-reload">${wsCode}</script>`;
