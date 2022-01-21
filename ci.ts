@@ -1,102 +1,12 @@
 import { encode } from "./deps/base64.ts";
-import { posix, toFileUrl } from "./deps/path.ts";
 import { parse } from "./deps/flags.ts";
-import { brightGreen, red } from "./deps/colors.ts";
-import { Exception } from "./core/errors.ts";
-
-const { join } = posix;
-const baseUrl = new URL(".", import.meta.url).href;
-
-type SpecifierMap = Record<string, string>;
-
-interface ImportMap {
-  imports: SpecifierMap;
-  scopes?: Record<string, SpecifierMap>;
-}
-
-export function checkDenoVersion(): void {
-  const minDenoVersion = "1.16.1";
-
-  if (Deno.version.deno < minDenoVersion) {
-    console.log();
-    console.error(red("Error installing or running Lume"));
-    console.log("You have an old version of Deno");
-    console.log(`Lume needs Deno ${brightGreen(minDenoVersion)} or greater`);
-    console.log(`Your current version is ${red(Deno.version.deno)}`);
-    console.log();
-    console.log(
-      `Run ${brightGreen("deno upgrade")} and try again`,
-    );
-    console.log();
-    Deno.exit(1);
-  }
-}
-
-async function ensureUrl(maybeUrl: string) {
-  try {
-    return new URL(maybeUrl);
-  } catch {
-    return toFileUrl(await Deno.realPath(maybeUrl));
-  }
-}
-
-/**
- * If a given specifier map has relative paths,
- * resolve them with a given base URL.
- */
-function resolveSpecifierMap(specifierMap: SpecifierMap, baseUrl: URL) {
-  return Object.fromEntries(
-    Object.entries(specifierMap).map((
-      [key, value],
-    ) => [key, new URL(value, baseUrl).href]),
-  );
-}
-
-/**
- * If any specifier maps in a given import map have relative paths,
- * resolve it with a given base URL.
- */
-function resolveImportMap(importMap: ImportMap, baseUrl: URL) {
-  const imports = resolveSpecifierMap(importMap.imports, baseUrl);
-  const scopes = Object.fromEntries(
-    Object.entries(importMap.scopes ?? []).map((
-      [scopeSpecifier, specifierMap],
-    ) => [scopeSpecifier, resolveSpecifierMap(specifierMap, baseUrl)]),
-  );
-  return { imports, scopes };
-}
-
-/**
- * Return a data url with the import map of Lume
- * Optionally merge it with a custom import map from the user
- */
-export async function getImportMap(mapFile?: string) {
-  const map: ImportMap = {
-    imports: {
-      "lume": join(baseUrl, "/mod.ts"),
-      "lume/": join(baseUrl, "/"),
-      "https://deno.land/x/lume/": join(baseUrl, "/"),
-    },
-  };
-
-  if (mapFile) {
-    try {
-      const url = await ensureUrl(mapFile);
-      const file = await (await fetch(url)).text();
-      const parsedMap = JSON.parse(file) as ImportMap;
-      const resolvedMap = resolveImportMap(parsedMap, url);
-      map.imports = { ...map.imports, ...resolvedMap.imports };
-      map.scopes = parsedMap.scopes;
-    } catch (cause) {
-      throw new Exception("Unable to load the import map file", {
-        cause,
-        mapFile,
-      });
-    }
-  }
-
-  return `data:application/json;base64,${encode(JSON.stringify(map))}`;
-}
+import { cyan, green, red } from "./deps/colors.ts";
+import {
+  checkDenoVersion,
+  getImportMap,
+  ImportMap,
+  toUrl,
+} from "./core/utils.ts";
 
 /** Returns the Lume & Deno arguments */
 export async function getArgs(args: string[]): Promise<[string[], string[]]> {
@@ -130,16 +40,40 @@ export async function getArgs(args: string[]): Promise<[string[], string[]]> {
   }
 
   // Merge the import map
-  denoArgs.push(`--import-map=${await getImportMap(parsedArgs["import-map"])}`);
+  let importMap: ImportMap;
+
+  if (parsedArgs["import-map"]) {
+    const mapUrl = await toUrl(parsedArgs["import-map"]);
+    const mapContent = await (await fetch(mapUrl)).text();
+    const parsedMap = JSON.parse(mapContent) as ImportMap;
+    importMap = getImportMap(parsedMap, mapUrl);
+  } else {
+    importMap = await getImportMap();
+  }
+
+  const mapUrl = `data:application/json;base64,${
+    encode(JSON.stringify(importMap))
+  }`;
+  denoArgs.push(`--import-map=${mapUrl}`);
 
   return [lumeArgs, denoArgs];
 }
 
 export default async function main(args: string[]) {
-  checkDenoVersion();
+  const denoInfo = checkDenoVersion();
+
+  if (denoInfo) {
+    console.log("----------------------------------------");
+    console.error(red("Error running Lume"));
+    console.log(`Lume needs Deno ${green(denoInfo.minimum)} or greater`);
+    console.log(`Your current version is ${red(denoInfo.current)}`);
+    console.log(`Run ${cyan(denoInfo.command)} and try again`);
+    console.log("----------------------------------------");
+    Deno.exit(1);
+  }
 
   const [lumeArgs, denoArgs] = await getArgs(args);
-  const cli = join(baseUrl, "./cli.ts");
+  const cli = new URL("./cli.ts", import.meta.url).href;
   const process = Deno.run({
     cmd: [
       Deno.execPath(),

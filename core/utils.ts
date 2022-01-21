@@ -1,5 +1,7 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
-import { SEP } from "../deps/path.ts";
+import { SEP, toFileUrl } from "../deps/path.ts";
+
+const baseUrl = new URL("../", import.meta.url);
 
 /** Run a callback concurrently with all the elements of an Iterable */
 export async function concurrent<Type>(
@@ -181,8 +183,8 @@ export function stringToDocument(string: string): HTMLDocument {
 
 /** Return the current installed version */
 export function getCurrentVersion(): string {
-  const url = new URL("../", import.meta.url).pathname;
-  return url.match(/@([^/]+)/)?.[1] ?? `local (${url})`;
+  const { pathname } = baseUrl;
+  return pathname.match(/@([^/]+)/)?.[1] ?? `local (${pathname})`;
 }
 
 /** Return the latest stable version from the deno.land/x repository */
@@ -236,4 +238,88 @@ export async function mustNotifyUpgrade(): Promise<undefined | UpgradeInfo> {
 
   const command = stable ? "lume upgrade" : "lume upgrade --dev";
   return { current, latest, command };
+}
+
+/**
+ * If a given specifier map has relative paths,
+ * resolve them with a given base URL.
+ */
+function resolveSpecifierMap(specifierMap: SpecifierMap, baseUrl: URL) {
+  for (const [specifier, url] of Object.entries(specifierMap)) {
+    specifierMap[specifier] = new URL(url, baseUrl).href;
+  }
+}
+
+/**
+ * If any specifier maps in a given import map have relative paths,
+ * resolve it with a given base URL.
+ */
+function resolveImportMap(importMap: ImportMap, baseUrl: URL) {
+  resolveSpecifierMap(importMap.imports, baseUrl);
+
+  if (importMap.scopes) {
+    for (const scope of Object.values(importMap.scopes)) {
+      resolveSpecifierMap(scope, baseUrl);
+    }
+  }
+}
+
+/**
+ * Return a data url with the import map of Lume
+ * Optionally merge it with a custom import map from the user
+ */
+export function getImportMap(userMap?: ImportMap, url?: URL): ImportMap {
+  const map: ImportMap = {
+    imports: {
+      "lume": new URL("./mod.ts", baseUrl).href,
+      "lume/": new URL("./", baseUrl).href,
+      "https://deno.land/x/lume/": new URL("./", baseUrl).href,
+    },
+  };
+
+  if (userMap) {
+    if (url) {
+      resolveImportMap(userMap, url);
+    }
+
+    map.imports = { ...map.imports, ...userMap.imports };
+    map.scopes = userMap.scopes;
+  }
+
+  return map;
+}
+
+export type SpecifierMap = Record<string, string>;
+
+export interface ImportMap {
+  imports: SpecifierMap;
+  scopes?: Record<string, SpecifierMap>;
+}
+
+/** Check the compatibility with the current Deno version */
+export interface DenoInfo {
+  current: string;
+  minimum: string;
+  command: string;
+}
+
+export function checkDenoVersion(): DenoInfo | undefined {
+  const minimum = "1.16.1";
+  const current = Deno.version.deno;
+
+  if (current < minimum) {
+    return { current, minimum, command: "deno upgrade" };
+  }
+}
+
+export async function toUrl(maybeUrl: string | URL): Promise<URL> {
+  if (maybeUrl instanceof URL) {
+    return maybeUrl;
+  }
+
+  try {
+    return new URL(maybeUrl);
+  } catch {
+    return toFileUrl(await Deno.realPath(maybeUrl));
+  }
 }

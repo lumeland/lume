@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New upgrade notification if it's detected an old version of Lume.
 - New architecture for the local server, with support for middlewares.
+- New command `lume import-map` to create/update import maps files [#164].
+
+### Changed
+- Moved some functions to `core/utils.ts`.
 
 ### Removed
 - Experimental watcher.
@@ -1336,6 +1340,7 @@ The first version.
 [#159]: https://github.com/lumeland/lume/issues/159
 [#162]: https://github.com/lumeland/lume/issues/162
 [#163]: https://github.com/lumeland/lume/issues/163
+[#164]: https://github.com/lumeland/lume/issues/164
 
 [1.4.4]: https://github.com/lumeland/lume/compare/v1.4.3...HEAD
 [1.4.3]: https://github.com/lumeland/lume/compare/v1.4.2...v1.4.3

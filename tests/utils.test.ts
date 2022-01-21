@@ -1,5 +1,5 @@
 import { assertEquals as equals } from "../deps/assert.ts";
-import { isPlainObject, merge, sha1 } from "../core/utils.ts";
+import { getImportMap, isPlainObject, merge, sha1 } from "../core/utils.ts";
 
 Deno.test("merge options", () => {
   interface Options {
@@ -75,4 +75,84 @@ Deno.test("sha1 function", async () => {
 
   equals(await sha1(data), expected);
   equals(await sha1(dataUint8), expected);
+});
+
+Deno.test("import map", () => {
+  const map = getImportMap();
+
+  equals(map.imports["lume"], new URL("../mod.ts", import.meta.url).href);
+  equals(map.imports["lume/"], new URL("../", import.meta.url).href);
+  equals(map.imports["lume/"], new URL("../", import.meta.url).href);
+
+  equals(map, {
+    imports: {
+      "lume": new URL("../mod.ts", import.meta.url).href,
+      "lume/": new URL("../", import.meta.url).href,
+      "https://deno.land/x/lume/": new URL("../", import.meta.url).href,
+    },
+  });
+});
+
+Deno.test("merge import map", async () => {
+  const map = await getImportMap({
+    imports: {
+      "lume": "https://lume.land/lume.ts",
+      "std/": "https://deno.land/std@0.121.0/",
+      "/": "./",
+    },
+    scopes: {
+      "foo/": {
+        "std/": "https://deno.land/std@0.121.0/foo/",
+        "/": "./foo/",
+      },
+    },
+  });
+
+  equals(map, {
+    imports: {
+      "lume": "https://lume.land/lume.ts",
+      "lume/": new URL("../", import.meta.url).href,
+      "https://deno.land/x/lume/": new URL("../", import.meta.url).href,
+      "std/": "https://deno.land/std@0.121.0/",
+      "/": "./",
+    },
+    scopes: {
+      "foo/": {
+        "std/": "https://deno.land/std@0.121.0/foo/",
+        "/": "./foo/",
+      },
+    },
+  });
+});
+Deno.test("merge and resolve import map", async () => {
+  const path = new URL("./assets/import_map.json", import.meta.url);
+  const map = await getImportMap({
+    imports: {
+      "lume": "https://lume.land/lume.ts",
+      "std/": "https://deno.land/std@0.121.0/",
+      "/": "./",
+    },
+    scopes: {
+      "foo/": {
+        "std/": "https://deno.land/std@0.121.0/foo/",
+        "/": "./foo/",
+      },
+    },
+  }, path);
+
+  equals(map, {
+    imports: {
+      "lume": "https://lume.land/lume.ts",
+      "lume/": new URL("../", import.meta.url).href,
+      "https://deno.land/x/lume/": new URL("../", import.meta.url).href,
+      "std/": "https://deno.land/std@0.121.0/",
+      "/": new URL("./assets/", import.meta.url).href,
+    },
+    scopes: {
+      "foo/": {
+        "std/": "https://deno.land/std@0.121.0/foo/",
+        "/": new URL("./assets/foo/", import.meta.url).href,
+      },
+    },
+  });
 });

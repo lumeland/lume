@@ -5,6 +5,7 @@ import initCommand from "./cli/init.ts";
 import upgradeCommand from "./cli/upgrade.ts";
 import runCommand from "./cli/run.ts";
 import buildCommand from "./cli/build.ts";
+import importMapCommand from "./cli/import_map.ts";
 import { cyan, dim, green } from "./deps/colors.ts";
 import ci from "./ci.ts";
 
@@ -29,6 +30,17 @@ const upgrade = new Command()
     "Install the latest development version (last Git commit).",
   )
   .action(upgradeCommand);
+
+const importMap = new Command()
+  .description("Create or update a import map file with the Lume imports.")
+  .example("lume import-map", "Create/update the file import_map.json.")
+  .example("lume import-map --file=my-map.json", "Create/update a custom file.")
+  .option(
+    "-f, --file [file:string]",
+    "The name of the import map file.",
+    { default: "./import_map.json" },
+  )
+  .action(importMapCommand);
 
 const run = new Command()
   .description("Run one or more scripts from the config file.")
@@ -138,6 +150,7 @@ const lume = new Command()
   .action(buildCommand)
   .command("init", init)
   .command("upgrade", upgrade)
+  .command("import-map", importMap)
   .command("run <script...>", run)
   .command("completions", new CompletionsCommand());
 
