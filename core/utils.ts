@@ -151,22 +151,6 @@ export function normalizePath(path: string) {
   return SEP === "/" ? path : path.replaceAll(SEP, "/");
 }
 
-/**
- * Search an extension in a map.
- * It's useful for cases in which the extension is multiple.
- * Example: page.tmpl.js
- */
-export function searchByExtension<Type>(
-  path: string,
-  extensions: Map<string, Type>,
-): [string, Type] | undefined {
-  for (const [key, value] of extensions) {
-    if (path.endsWith(key)) {
-      return [key, value];
-    }
-  }
-}
-
 /** Convert an HTMLDocument instance to a string */
 export function documentToString(document: HTMLDocument) {
   const { doctype, documentElement } = document;

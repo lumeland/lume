@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 - Experimental watcher.
+- `searchByExtension` function in `core/utils.ts` because it's not needed anymore.
 
 ### Fixed
 - `page.document` must return `undefined` if the page is not a HTML page [#163].
