@@ -1,4 +1,4 @@
-import type { Page } from "../core.ts";
+import type { Resource } from "../core.ts";
 
 /**
  * Define independent updates scopes
@@ -7,9 +7,9 @@ import type { Page } from "../core.ts";
 export default class Scopes {
   scopes = new Set<ScopeFilter>();
 
-  /** Returns a function to filter the pages that must be rebuild */
-  getFilter(changedFiles: Iterable<string>): (page: Page) => boolean {
-    // There's no any scope, so rebuild all pages
+  /** Returns a function to filter the resources that must be rebuild */
+  getFilter(changedFiles: Iterable<string>): (resource: Resource) => boolean {
+    // There's no any scope, so rebuild all resources
     if (this.scopes.size === 0) {
       return () => true;
     }

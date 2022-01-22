@@ -33,11 +33,13 @@ import type {
   default as ComponentLoader,
 } from "./core/component_loader.ts";
 import type {
+  Asset,
   Content,
   Data,
   Dest,
   Directory,
   Page,
+  Resource,
   Src,
 } from "./core/filesystem.ts";
 import type Source from "./core/source.ts";
@@ -64,6 +66,7 @@ type PluginSetup = ((options: unknown) => Plugin);
 type Plugin = (site: Site) => void;
 
 export type {
+  Asset,
   AssetLoader,
   Component,
   ComponentLoader,
@@ -98,6 +101,7 @@ export type {
   Reader,
   Renderer,
   RequestHandler,
+  Resource,
   ScopeFilter,
   Scopes,
   ScriptOptions,

@@ -1,9 +1,16 @@
 import { basename, dirname, join } from "../deps/path.ts";
 import { concurrent, normalizePath } from "./utils.ts";
-import { Directory, Page } from "./filesystem.ts";
+import { Directory } from "./filesystem.ts";
 import { Exception } from "./errors.ts";
 
-import type { AssetLoader, DataLoader, PageLoader, Reader } from "../core.ts";
+import type {
+  Asset,
+  AssetLoader,
+  DataLoader,
+  Page,
+  PageLoader,
+  Reader,
+} from "../core.ts";
 
 export interface Options {
   dataLoader: DataLoader;
@@ -62,6 +69,17 @@ export default class Source {
 
     return [...this.root.getPages()].filter((page) =>
       filters.every((filter) => filter(page))
+    );
+  }
+
+  /** Returns all assets found */
+  getAssets(...filters: ((asset: Asset) => boolean)[]): Asset[] {
+    if (!this.root) {
+      return [];
+    }
+
+    return [...this.root.getAssets()].filter((asset) =>
+      filters.every((filter) => filter(asset))
     );
   }
 
@@ -219,24 +237,29 @@ export default class Source {
         );
       }
 
-      let page: Page | undefined = undefined;
+      let loadedPage: Page | undefined;
+      let loadedAsset: Asset | undefined;
+
       if (pageExtension && assetExtension) {
         // Prioritize chained extensions (.tmpl.js, .windi.css) over simple extensions (.ts, .js, .json)
         if (pageExtension.length > assetExtension.length) {
-          page = await this.pageLoader.load(path);
+          loadedPage = await this.pageLoader.load(path);
         } else {
-          page = await this.assetLoader.load(path);
+          loadedAsset = await this.assetLoader.load(path);
         }
       } else if (pageExtension) {
-        page = await this.pageLoader.load(path);
+        loadedPage = await this.pageLoader.load(path);
       } else if (assetExtension) {
-        page = await this.assetLoader.load(path);
+        loadedAsset = await this.assetLoader.load(path);
       }
 
-      if (page) {
-        directory.setPage(entry.name, page);
+      if (loadedPage) {
+        directory.setPage(entry.name, loadedPage);
+      } else if (loadedAsset) {
+        directory.setAsset(entry.name, loadedAsset);
       } else {
         directory.unsetPage(entry.name);
+        directory.unsetAsset(entry.name);
       }
       return;
     }

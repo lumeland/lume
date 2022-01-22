@@ -1,7 +1,7 @@
 import { concurrent } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
-import type { Page } from "../core.ts";
+import type { Resource } from "../core.ts";
 
 /**
  * Class to store and run the (pre)processors
@@ -27,10 +27,10 @@ export default class Processors {
   }
 
   /** Apply the processors to the provided pages */
-  async run(pages: Page[]): Promise<void> {
+  async run(resources: Resource[]): Promise<void> {
     for (const [process, exts] of this.processors) {
       await concurrent(
-        pages,
+        resources,
         async (page) => {
           try {
             if (
@@ -53,4 +53,4 @@ export default class Processors {
 }
 
 /** A (pre)processor */
-export type Processor = (page: Page) => void;
+export type Processor = (resource: Resource) => void;

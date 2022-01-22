@@ -1,4 +1,4 @@
-import { Page } from "./filesystem.ts";
+import { Asset } from "./filesystem.ts";
 import Extensions from "./extensions.ts";
 import { join } from "../deps/path.ts";
 
@@ -28,8 +28,8 @@ export default class AssetLoader {
     extensions.forEach((extension) => this.loaders.set(extension, loader));
   }
 
-  /** Load an asset Page */
-  async load(path: string): Promise<Page | undefined> {
+  /** Load an Asset */
+  async load(path: string): Promise<Asset | undefined> {
     path = join("/", path);
 
     // Search for the loader
@@ -46,8 +46,8 @@ export default class AssetLoader {
       return;
     }
 
-    // Create the page
-    const page = new Page({
+    // Create the asset
+    const asset = new Asset({
       path: path.slice(0, -ext.length),
       lastModified: info?.mtime || undefined,
       created: info?.birthtime || undefined,
@@ -56,14 +56,14 @@ export default class AssetLoader {
 
     // Prepare the data
     const data = await this.reader.read(path, loader);
-    this.prepare(page, data);
-    page.data = data;
+    this.prepare(asset, data);
+    asset.data = data;
 
-    return page;
+    return asset;
   }
 
-  /** Prepare the data and the page */
-  prepare(_page: Page, data: Data): void {
+  /** Prepare the data and the asset */
+  prepare(_asset: Asset, data: Data): void {
     if (data.tags) {
       data.tags = Array.isArray(data.tags)
         ? data.tags.map((tag) => String(tag))

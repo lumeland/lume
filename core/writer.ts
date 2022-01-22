@@ -3,7 +3,7 @@ import { emptyDir, ensureDir } from "../deps/fs.ts";
 import { copy } from "../deps/fs_copy.ts";
 import { concurrent, normalizePath, sha1 } from "./utils.ts";
 
-import type { Page } from "./filesystem.ts";
+import type { Resource } from "./filesystem.ts";
 import type Logger from "./logger.ts";
 
 export interface Options {
@@ -13,7 +13,7 @@ export interface Options {
 }
 
 /**
- * Class to write the generated pages and static files
+ * Class to write the generated resources and static files
  * in the dest folder.
  */
 export default class Writer {
@@ -29,36 +29,36 @@ export default class Writer {
   }
 
   /**
-   * Save the pages in the dest folder
-   * Returns an array of pages that have been saved
+   * Save the resources in the dest folder
+   * Returns an array of resources that have been saved
    */
-  async savePages(pages: Page[]): Promise<Page[]> {
-    const savedPages: Page[] = [];
+  async saveResources(resources: Resource[]): Promise<Resource[]> {
+    const savedResources: Resource[] = [];
 
     await concurrent(
-      pages,
-      async (page) => {
-        if (await this.savePage(page)) {
-          savedPages.push(page);
+      resources,
+      async (resource) => {
+        if (await this.saveResource(resource)) {
+          savedResources.push(resource);
         }
       },
     );
 
-    return savedPages;
+    return savedResources;
   }
 
   /**
-   * Save a page in the dest folder
-   * Returns a boolean indicating if the page has saved
+   * Save a resource in the dest folder
+   * Returns a boolean indicating if the resource has saved
    */
-  async savePage(page: Page): Promise<boolean> {
+  async saveResource(resource: Resource): Promise<boolean> {
     // Ignore empty files
-    if (!page.content) {
+    if (!resource.content) {
       return false;
     }
 
-    const dest = page.dest.path + page.dest.ext;
-    const hash = await sha1(page.content);
+    const dest = resource.dest.path + resource.dest.ext;
+    const hash = await sha1(resource.content);
     const previousHash = this.#hashes.get(dest);
 
     // The page content didn't change
@@ -68,17 +68,17 @@ export default class Writer {
 
     this.#hashes.set(dest, hash);
 
-    const src = page.src.path
-      ? page.src.path + (page.src.ext || "")
+    const src = resource.src.path
+      ? resource.src.path + (resource.src.ext || "")
       : "(generated)";
     this.logger.log(`🔥 ${dest} <dim>${src}</dim>`);
 
     const filename = join(this.dest, dest);
     await ensureDir(dirname(filename));
 
-    page.content instanceof Uint8Array
-      ? await Deno.writeFile(filename, page.content)
-      : await Deno.writeTextFile(filename, page.content);
+    resource.content instanceof Uint8Array
+      ? await Deno.writeFile(filename, resource.content)
+      : await Deno.writeTextFile(filename, resource.content);
 
     return true;
   }

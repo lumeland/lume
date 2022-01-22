@@ -1,13 +1,16 @@
 import { dirname, extname, posix } from "../deps/path.ts";
+import { Resources } from "./filesystem.ts";
 import { concurrent } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
 import type {
+  Asset,
   Data,
   Engines,
   IncludesLoader,
   Page,
   Processors,
+  Resource,
 } from "../core.ts";
 
 export interface Options {
@@ -16,6 +19,10 @@ export interface Options {
   preprocessors: Processors;
   engines: Engines;
 }
+
+type TypedResource =
+  | { type: "page"; resource: Page }
+  | { type: "asset"; resource: Asset };
 
 /**
  * The renderer is responsible for rendering the site pages
@@ -41,24 +48,30 @@ export default class Renderer {
     this.engines = options.engines;
   }
 
-  /** Render the provided pages */
-  async renderPages(from: Page[], to: Page[]) {
-    for (const group of this.#groupPages(from)) {
-      const pages = [];
-      const generators = [];
+  /** Render the provided resources */
+  async renderResources(from: Resources, to: Resources) {
+    const typedResources = [
+      ...from.pages.map((page) => ({ type: "page", resource: page })),
+      ...from.assets.map((asset) => ({ type: "asset", resource: asset })),
+    ] as TypedResource[];
+
+    for (const group of this.#groupResources(typedResources)) {
+      const resources: TypedResource[] = [];
+      const generators: Page[] = [];
 
       // Split regular pages and generators
-      for (const page of group) {
-        if (isGenerator(page.data.content)) {
-          generators.push(page);
+      for (const { type, resource } of group) {
+        if (isGenerator(resource.data.content)) {
+          generators.push(resource as Page);
           continue;
         }
 
-        this.#urlPage(page);
-        to.push(page);
+        this.#urlResource(resource);
+        if (type === "page") to.pages.push(resource as Page);
+        if (type === "asset") to.assets.push(resource as Asset);
 
-        if (!page.data.ondemand) {
-          pages.push(page);
+        if (!resource.data.ondemand) {
+          resources.push({ type, resource } as TypedResource);
         }
       }
 
@@ -75,23 +88,32 @@ export default class Renderer {
             data.content = null;
           }
           const newPage = page.duplicate(data);
-          this.#urlPage(newPage);
-          pages.push(newPage);
-          to.push(newPage);
+          this.#urlResource(newPage);
+          resources.push({ type: "page", resource: newPage });
+          to.pages.push(newPage);
         }
       }
 
-      // Preprocess the pages
-      await this.preprocessors.run(pages);
+      // Preprocess the resource
+      await this.preprocessors.run(resources.map(({ resource }) => resource));
 
-      // Render all pages
+      // Render all resources
       await concurrent(
-        pages,
-        async (page) => {
+        resources,
+        async ({ type, resource }) => {
           try {
-            page.content = await this.#renderPage(page) as string;
+            if (type === "page") {
+              resource.content = await this.#renderPage(
+                resource as Page,
+              ) as string;
+            } else {
+              resource.content = resource.data.content as string;
+            }
           } catch (cause) {
-            throw new Exception("Error rendering this page", { cause, page });
+            throw new Exception("Error rendering this page", {
+              cause,
+              resource,
+            });
           }
         },
       );
@@ -106,29 +128,29 @@ export default class Renderer {
       });
     }
 
-    this.#urlPage(page);
+    this.#urlResource(page);
 
     await this.preprocessors.run([page]);
     page.content = await this.#renderPage(page) as string;
   }
 
-  /** Generate the URL and dest info of a page */
-  #urlPage(page: Page) {
-    const { dest } = page;
-    let url = page.data.url;
+  /** Generate the URL and dest info of a resource */
+  #urlResource(resource: Resource) {
+    const { dest } = resource;
+    let url = resource.data.url;
 
     if (typeof url === "function") {
-      url = url(page);
+      url = url(resource);
     }
 
     if (typeof url === "string") {
       // Relative URL
       if (url.startsWith("./") || url.startsWith("../")) {
-        url = posix.join(dirname(page.dest.path), url);
+        url = posix.join(dirname(resource.dest.path), url);
       } else if (!url.startsWith("/")) {
         throw new Exception(
           `The url variable must start with "/", "./" or "../"`,
-          { page, url },
+          { resource, url },
         );
       }
 
@@ -148,20 +170,20 @@ export default class Renderer {
       dest.ext = ".html";
     }
 
-    page.data.url =
+    resource.data.url =
       (dest.ext === ".html" && posix.basename(dest.path) === "index")
         ? dest.path.slice(0, -5)
         : dest.path + dest.ext;
   }
 
-  /** Group the pages by renderOrder */
-  #groupPages(pages: Page[]): Page[][] {
-    const renderOrder: Record<number | string, Page[]> = {};
+  /** Group the resources by renderOrder */
+  #groupResources(resources: TypedResource[]): TypedResource[][] {
+    const renderOrder: Record<number | string, TypedResource[]> = {};
 
-    for (const page of pages) {
-      const order = page.data.renderOrder || 0;
+    for (const { type, resource } of resources) {
+      const order = resource.data.renderOrder || 0;
       renderOrder[order] = renderOrder[order] || [];
-      renderOrder[order].push(page);
+      renderOrder[order].push({ type, resource } as TypedResource);
     }
 
     return Object.keys(renderOrder).sort().map((order) => renderOrder[order]);

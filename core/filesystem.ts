@@ -3,7 +3,7 @@ import { documentToString, normalizePath, stringToDocument } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
 
-/** Abstract class with common functions for Page and Directory classes */
+/** Abstract class with common functions for Resource and Directory classes */
 abstract class Base {
   /** The src info */
   src: Src;
@@ -83,21 +83,15 @@ abstract class Base {
   }
 }
 
-/** A page of the site */
-export class Page extends Base {
-  /** The destination of the page */
+/** Page and resource of the site */
+export abstract class Resource extends Base {
+  /** The destination of the resource */
   dest: Dest;
 
   /** Internal data */
   #_data = {};
 
-  /** The page content (string or Uint8Array) */
-  #content?: Content;
-
-  /** The parsed HTML (only for HTML documents) */
-  #document?: HTMLDocument;
-
-  /** Count duplicated pages */
+  /** Count duplicated resources */
   #copy = 0;
 
   constructor(src?: Src) {
@@ -109,15 +103,15 @@ export class Page extends Base {
     };
   }
 
-  /** Duplicate this page. Optionally, you can provide new data */
+  /** Duplicate this resource. Optionally, you can provide new data */
   duplicate(data = {}): Page {
-    const page = new Page({ ...this.src });
-    page.dest = { ...this.dest };
-    page.data = { ...this.data, ...data };
-    page.parent = this.parent;
-    page.src.path += `[${this.#copy++}]`;
+    const resource = new Page({ ...this.src });
+    resource.dest = { ...this.dest };
+    resource.data = { ...this.data, ...data };
+    resource.parent = this.parent;
+    resource.src.path += `[${this.#copy++}]`;
 
-    return page;
+    return resource;
   }
 
   /**
@@ -131,6 +125,21 @@ export class Page extends Base {
   get _data() {
     return this.#_data;
   }
+
+  /** The content of this page */
+  abstract set content(content: Content | undefined);
+  abstract get content(): Content | undefined;
+}
+
+export type Resources = { pages: Page[]; assets: Asset[] };
+
+/** A page of the site */
+export class Page extends Resource {
+  /** The parsed HTML (only for HTML documents) */
+  #document?: HTMLDocument;
+
+  /** The page content (string or Uint8Array) */
+  #content?: Content;
 
   /** The content of this page */
   set content(content: Content | undefined) {
@@ -167,9 +176,27 @@ export class Page extends Base {
   }
 }
 
+/** An asset of the site */
+export class Asset extends Resource {
+  /** The asset content (string or Uint8Array) */
+  #content?: Content;
+
+  /** The content of this asset */
+  set content(content: Content | undefined) {
+    this.#content = content instanceof Uint8Array
+      ? content
+      : content && content.toString();
+  }
+
+  get content(): Content | undefined {
+    return this.#content;
+  }
+}
+
 /** A directory of the src folder */
 export class Directory extends Base {
   pages = new Map<string, Page>();
+  assets = new Map<string, Asset>();
   dirs = new Map<string, Directory>();
 
   /** Create a subdirectory and return it */
@@ -206,6 +233,33 @@ export class Directory extends Base {
 
     for (const dir of this.dirs.values()) {
       yield* dir.getPages();
+    }
+  }
+
+  /** Add an asset to this directory */
+  setAsset(name: string, asset: Asset) {
+    const oldAsset = this.pages.get(name);
+    asset.parent = this;
+    this.assets.set(name, asset);
+
+    if (oldAsset) {
+      asset.dest.hash = oldAsset.dest.hash;
+    }
+  }
+
+  /** Remove an asset from this directory */
+  unsetAsset(name: string) {
+    this.assets.delete(name);
+  }
+
+  /** Return the list of assets in this directory recursively */
+  *getAssets(): Iterable<Asset> {
+    for (const asset of this.assets.values()) {
+      yield asset;
+    }
+
+    for (const dir of this.dirs.values()) {
+      yield* dir.getAssets();
     }
   }
 
@@ -249,22 +303,22 @@ export type Content = Uint8Array | string;
 
 /** The data of a page */
 export interface Data {
-  /** List of tags assigned to a page or folder */
+  /** List of tags assigned to a resource or folder */
   tags?: string[];
 
-  /** The url of a page */
-  url?: string | ((page: Page) => string);
+  /** The url of a resource */
+  url?: string | ((resource: Resource) => string);
 
   /** If is `true`, the page will be visible only in `dev` mode */
   draft?: boolean;
 
-  /** The date creation of the page */
+  /** The date creation of the resource */
   date?: Date;
 
-  /** To configure the render order of a page */
+  /** To configure the render order of a resource */
   renderOrder?: number;
 
-  /** The content of a page */
+  /** The content of a resource */
   content?: unknown;
 
   /** The layout used to render a page */

@@ -1,4 +1,5 @@
 import { join, posix, SEP } from "../deps/path.ts";
+import { Resources } from "./filesystem.ts";
 import { merge, normalizePath } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
@@ -22,6 +23,7 @@ import Writer from "./writer.ts";
 import textLoader from "./loaders/text.ts";
 
 import type {
+  Asset,
   Data,
   Engine,
   Event,
@@ -35,6 +37,7 @@ import type {
   Page,
   Plugin,
   Processor,
+  Resource,
   ScopeFilter,
   ScriptOptions,
   ScriptOrFunction,
@@ -133,6 +136,9 @@ export default class Site {
 
   /** The generated pages are stored here */
   pages: Page[] = [];
+
+  /** The generated assets */
+  assets: Asset[] = [];
 
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);
@@ -380,14 +386,15 @@ export default class Site {
     // Load source files
     await this.source.load();
 
-    // Get all pages to process (ignore drafts)
-    const pagesToBuild = this.source.getPages(
-      (page) => !page.data.draft || this.options.dev,
-    );
+    // Get all pages and assets to process (ignore drafts)
+    const resourceFilter = (resource: Resource) =>
+      !resource.data.draft || this.options.dev;
+    const pages = this.source.getPages(resourceFilter);
+    const assets = this.source.getAssets(resourceFilter);
 
-    // Build the pages
-    const pages = await this.#buildPages(pagesToBuild);
-    await this.dispatchEvent({ type: "afterBuild", pages });
+    // Process the resources
+    await this.#buildResources({ pages, assets });
+    await this.dispatchEvent({ type: "afterBuild", pages, assets });
   }
 
   /** Reload some files that might be changed */
@@ -419,22 +426,28 @@ export default class Site {
     }
 
     // Get the selected pages to process (ignore drafts and non scoped pages)
-    const pagesToBuild = this.source.getPages(
-      (page) => !page.data.draft || this.options.dev,
+    const resourceFilter = (resource: Resource) =>
+      !resource.data.draft || this.options.dev;
+    const pages = this.source.getPages(
+      resourceFilter,
+      this.scopes.getFilter(files),
+    );
+    const assets = this.source.getAssets(
+      resourceFilter,
       this.scopes.getFilter(files),
     );
 
     // Rebuild the selected pages
-    const pages = await this.#buildPages(pagesToBuild);
-    await this.dispatchEvent({ type: "afterUpdate", files, pages });
+    await this.#buildResources({ pages, assets });
+    await this.dispatchEvent({ type: "afterUpdate", files, pages, assets });
   }
 
   /**
-   * Internal function to render pages
+   * Internal function to render resources
    * The common operations of build and update
-   * Returns the list of pages that have been built
+   * Returns the list of resources that have been built
    */
-  async #buildPages(pages: Page[]): Promise<Page[]> {
+  async #buildResources(resources: Resources): Promise<Resources> {
     // Load the components and save them in the `comp` global variable
     const { variable, directory } = this.options.components;
     const components = await this.componentLoader.load(directory);
@@ -443,9 +456,12 @@ export default class Site {
       this.data(variable, this.components.toProxy(components));
     }
 
-    // Render the pages into this.pages array
-    this.pages = [];
-    await this.renderer.renderPages(pages, this.pages);
+    // Render the pages and the assets into this.pages, this.assets array
+    this.pages = this.assets = [];
+    await this.renderer.renderResources(resources, {
+      pages: this.pages,
+      assets: this.assets,
+    });
     await this.events.dispatchEvent({ type: "afterRender" });
 
     // Adds the components assets to the list of pages
@@ -457,14 +473,16 @@ export default class Site {
     );
 
     // Run the processors to the pages
-    await this.processors.run(this.pages);
+    await this.processors.run([...this.pages, ...this.assets]);
 
     if (await this.dispatchEvent({ type: "beforeSave" }) === false) {
-      return [];
+      return { pages: [], assets: [] };
     }
 
     // Save the pages in the dest folder
-    return this.writer.savePages(this.pages);
+    this.writer.saveResources([...this.pages, ...this.assets]);
+
+    return { pages: this.pages, assets: this.assets };
   }
 
   /** Render a single page (used for on demand rendering) */
@@ -503,13 +521,13 @@ export default class Site {
       path = path.slice(1).replaceAll("/", SEP);
       path = decodeURI(path);
 
-      // It's a page
-      const page = this.pages.find((page) =>
-        page.src.path + page.src.ext === path
+      // It's a resource
+      const resource = [...this.pages, ...this.assets].find((resource) =>
+        resource.src.path + resource.src.ext === path
       );
 
-      if (page) {
-        path = page.data.url as string;
+      if (resource) {
+        path = resource.data.url as string;
       } else {
         // It's a static file
         const entry = this.staticFiles.search(path);

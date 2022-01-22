@@ -1,4 +1,4 @@
-import type { Page } from "../core.ts";
+import type { Asset, Page } from "../core.ts";
 
 type Listener = [EventListener, EventOptions | undefined];
 
@@ -79,6 +79,12 @@ export interface Event {
    * contains the list of pages that have been saved
    */
   pages?: Page[];
+
+  /**
+   * Available only in "afterBuild" and "afterUpdate"
+   * contains the list of pages that have been saved
+   */
+  assets?: Asset[];
 }
 
 /** The available event types */

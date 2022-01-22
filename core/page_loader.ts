@@ -10,6 +10,13 @@ import type { Data, Dest, Page, Src } from "../core.ts";
  * and ensure there's a `date` property in the data.
  */
 export default class PageLoader extends AssetLoader {
+  /** Load a Page */
+  load(path: string): Promise<Page | undefined> {
+    return AssetLoader.prototype.load.call(this, path) as Promise<
+      Page | undefined
+    >;
+  }
+
   /** Prepare the data and the page */
   prepare(page: Page, data: Data): void {
     super.prepare(page, data);
