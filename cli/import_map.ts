@@ -1,4 +1,6 @@
 import { brightGreen } from "../deps/colors.ts";
+import { dirname } from "../deps/path.ts";
+import { ensureDir } from "../deps/fs.ts";
 import { getImportMap, ImportMap, toUrl } from "../core/utils.ts";
 
 interface Options {
@@ -20,8 +22,8 @@ export default async function importMap({ file }: Options) {
     importMap = getImportMap();
   }
 
+  await ensureDir(dirname(file));
   await Deno.writeTextFile(file, JSON.stringify(importMap, null, 2));
-  console.log();
 
   if (updated) {
     console.log(brightGreen("Updated the file"), file);
