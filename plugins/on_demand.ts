@@ -1,14 +1,13 @@
 import { merge } from "../core/utils.ts";
-import { posix } from "../deps/path.ts";
+import onDemand from "../middlewares/on_demand.ts";
 
 import type { Page, Site } from "../core.ts";
+import type { Router } from "../middlewares/on_demand.ts";
 
 export interface Options {
   /** A function to return the page file associated with the provided url */
   router?: Router;
 }
-
-export type Router = (url: URL) => Promise<string | undefined>;
 
 // Default options
 export const defaults: Options = {};
@@ -19,49 +18,15 @@ export default function (userOptions?: Partial<Options>) {
 
   return (site: Site) => {
     if (!options.router) {
-      const router = new JsonRouter(site, site.src("_routes.json"));
+      const router = new JsonRouter(site.src("_routes.json"));
+      router.startCollecting(site);
       options.router = router.match.bind(router);
     }
 
     const { router } = options;
 
     site.options.server.middlewares ||= [];
-    site.options.server.middlewares.push(async (request, next) => {
-      const response = await next(request);
-
-      if (response.status !== 404) {
-        return response;
-      }
-
-      const url = new URL(request.url);
-      const file = await router(url);
-
-      if (!file) {
-        return response;
-      }
-
-      const page = await site.renderPage(file);
-
-      if (!page) {
-        return response;
-      }
-
-      // Redirect /example to /example/
-      const pageUrl = page.data.url as string;
-      if (!url.pathname.endsWith("/") && pageUrl.endsWith("/")) {
-        return new Response(null, {
-          status: 301,
-          headers: {
-            "location": posix.join(url.pathname, "/"),
-          },
-        });
-      }
-
-      return new Response(
-        page.content,
-        { status: 200 },
-      );
-    });
+    site.options.server.middlewares.push(onDemand({ site, router }));
   };
 }
 
@@ -75,16 +40,7 @@ export class JsonRouter {
   /** Pages that must be generated on demand */
   #routes?: Map<string, string>;
 
-  constructor(site: Site, routesFile: string) {
-    // Events to collect and save the routes automatically
-    site.addEventListener(
-      "afterRender",
-      () => this.#collectRoutes(site.pages),
-    );
-    site.addEventListener("afterBuild", () => this.#saveRoutes());
-
-    // Ignore the routes file by the watcher
-    site.options.watcher.ignore.push(routesFile);
+  constructor(routesFile: string) {
     this.#routesFile = routesFile;
   }
 
@@ -102,6 +58,18 @@ export class JsonRouter {
     }
 
     return path;
+  }
+
+  startCollecting(site: Site): void {
+    // Events to collect and save the routes automatically
+    site.addEventListener(
+      "afterRender",
+      () => this.#collectRoutes(site.pages),
+    );
+    site.addEventListener("afterBuild", () => this.#saveRoutes());
+
+    // Ignore the routes file by the watcher
+    site.options.watcher.ignore.push(this.#routesFile);
   }
 
   /** Collect the routes of all pages with data.ondemand = true */

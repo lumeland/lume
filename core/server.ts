@@ -11,7 +11,7 @@ export interface Options {
   port: number;
 
   /** To open the server in a browser */
-  open: boolean;
+  open?: boolean;
 }
 
 export type RequestHandler = (req: Request) => Promise<Response>;
