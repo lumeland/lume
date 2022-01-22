@@ -1,4 +1,4 @@
-import { Command, CompletionsCommand, EnumType } from "./deps/cliffy.ts";
+import { Command, CompletionsCommand } from "./deps/cliffy.ts";
 import { getCurrentVersion, mustNotifyUpgrade } from "./core/utils.ts";
 import { printError } from "./core/errors.ts";
 import initCommand from "./cli/init.ts";
@@ -9,16 +9,9 @@ import importMapCommand from "./cli/import_map.ts";
 import { cyan, dim, green } from "./deps/colors.ts";
 import ci from "./ci.ts";
 
-const initOnlyOptions = new EnumType(["config", "vscode"]);
-
 const init = new Command()
   .description("Create a config file for a new site.")
   .example("lume init", "Creates a _config.js file in the current directory.")
-  .type("init", initOnlyOptions)
-  .option<{ init: typeof initOnlyOptions }>(
-    "--only [value:init]",
-    "To only initialize one thing",
-  )
   .action(initCommand);
 
 const upgrade = new Command()

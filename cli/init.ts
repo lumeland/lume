@@ -1,28 +1,28 @@
 import { exists } from "../deps/fs.ts";
 import { posix } from "../deps/path.ts";
-import { brightGreen, dim, red } from "../deps/colors.ts";
+import { brightGreen, cyan, dim, red } from "../deps/colors.ts";
 import { pluginNames } from "./utils.ts";
-
-interface Options {
-  only?: "config" | "vscode";
-}
+import importMap from "./import_map.ts";
 
 /** Generate a _config.js file */
-export default async function init({ only }: Options) {
+export default async function init() {
   const path = new URL("..", import.meta.url).href;
-
-  if (only === "config") {
-    return await initConfig(path);
-  }
-
-  if (only === "vscode") {
-    return await initVSCode(path);
-  }
 
   await initConfig(path);
 
-  if (confirm(brightGreen("Do you want to configure VS Code?"))) {
-    return await initVSCode(path);
+  let importMapFile: string | undefined = undefined;
+
+  if (confirm(cyan("Do you want to create a import map file?"))) {
+    const file = await getImportMapFile();
+
+    if (file) {
+      await importMap({ file });
+      importMapFile = file;
+    }
+  }
+
+  if (confirm(cyan("Do you want to configure VS Code?"))) {
+    return await initVSCode(path, importMapFile);
   }
 }
 
@@ -67,7 +67,7 @@ async function initConfig(path: string) {
 }
 
 /** (Re)configure VSCode for Deno/Lume */
-async function initVSCode(path: string) {
+async function initVSCode(path: string, importMapFile: string | undefined) {
   try {
     await Deno.mkdir(".vscode");
   } catch {
@@ -75,9 +75,14 @@ async function initVSCode(path: string) {
   }
 
   // Enable Deno plugin
-  const config = await exists(".vscode/settings.json")
-    ? JSON.parse(await Deno.readTextFile(".vscode/settings.json"))
-    : {};
+  let config: Record<string, unknown> = {};
+
+  try {
+    const existing = await Deno.readTextFile(".vscode/settings.json");
+    config = JSON.parse(existing);
+  } catch {
+    // ignore
+  }
 
   config["deno.enable"] = true;
   config["deno.lint"] = true;
@@ -86,16 +91,13 @@ async function initVSCode(path: string) {
     "https://deno.land": true,
   };
 
-  // Set up the import map
-  config["deno.importMap"] = ".vscode/lume_import_map.json";
+  if (!importMapFile) {
+    importMapFile = ".vscode/lume_import_map.json";
+    await importMap({ file: importMapFile });
+  }
 
-  const importMap = {
-    imports: {
-      "lume": posix.join(path, "/mod.ts"),
-      "lume/": posix.join(path, "/"),
-      "https://deno.land/x/lume/": posix.join(path, "/"),
-    },
-  };
+  // Set up the import map
+  config["deno.importMap"] = importMapFile;
 
   // Create a launch.json file to debug
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
@@ -108,7 +110,7 @@ async function initVSCode(path: string) {
     runtimeArgs: [
       "run",
       "--unstable",
-      "--import-map=.vscode/lume_import_map.json",
+      `--import-map=${importMapFile}`,
       "--inspect",
       "--allow-all",
     ],
@@ -133,20 +135,17 @@ async function initVSCode(path: string) {
     JSON.stringify(config, null, 2),
   );
   await Deno.writeTextFile(
-    ".vscode/lume_import_map.json",
-    JSON.stringify(importMap, null, 2),
-  );
-  await Deno.writeTextFile(
     ".vscode/launch.json",
     JSON.stringify(launch, null, 2),
   );
+  console.log();
   console.log(brightGreen("VS Code configured"));
 }
 
 /** Question to get the style to import lume in the config file */
 function getLumeUrl(path: string) {
   const message = `
-${brightGreen("How do you want to import lume?")}
+${cyan("How do you want to import lume?")}
 Type a number:
 1 ${dim('import lume from "lume/mod.ts"')}
 2 ${dim('import lume from "https://deno.land/x/lume/mod.ts"')}
@@ -166,8 +165,8 @@ Type a number:
 /** Question to get the list of plugins to install in the config file */
 function getPlugins() {
   const message = `
-${brightGreen("Do you want to import plugins?")}
-Type the plugins you want to use separated by comma.
+${cyan("Do you want to use plugins?")}
+Type the plugins separated by comma.
 
 All available options:
 ${
@@ -186,25 +185,46 @@ Example: ${dim(`postcss, terser, base_path`)}
     if (pluginNames.includes(plugin)) {
       return true;
     }
-    console.log(red(`Ignored not found plugin ${plugin}.`));
+    console.log(red(`Ignored not valid plugin ${plugin}.`));
     return false;
   });
 }
 
 /** Question to get the filename of the config file */
 async function getConfigFile(): Promise<string | false> {
-  const configFile =
-    confirm(brightGreen("Use Typescript for the configuration file?"))
-      ? "_config.ts"
-      : "_config.js";
+  const configFile = confirm(cyan("Use Typescript for the configuration file?"))
+    ? "_config.ts"
+    : "_config.js";
 
   if (await exists(configFile)) {
     return confirm(
-        brightGreen(`The file "${configFile}" already exist. Override?`),
+        cyan(`The file "${configFile}" already exist. Override?`),
       )
       ? configFile
       : false;
   }
 
   return configFile;
+}
+
+/** Question to get the filename of the import_map file */
+async function getImportMapFile(): Promise<string | false> {
+  const importMapFile = prompt(
+    cyan("Name of the import map file?"),
+    "import_map.json",
+  );
+
+  if (!importMapFile) {
+    return false;
+  }
+
+  if (await exists(importMapFile)) {
+    return confirm(
+        cyan(`The file "${importMapFile}" already exist. Update it?`),
+      )
+      ? importMapFile
+      : false;
+  }
+
+  return importMapFile;
 }
