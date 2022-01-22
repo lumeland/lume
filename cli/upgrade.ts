@@ -17,7 +17,10 @@ export default async function upgrade({ dev }: Options) {
 
   if (latest === getCurrentVersion()) {
     console.log(
-      `You're using the latest version of Lume: ${brightGreen(latest)}!`,
+      dev
+        ? "You're using the latest version of Lume:"
+        : "You're using the latest development version of Lume:",
+      brightGreen(latest),
     );
     console.log();
     return;
