@@ -1,6 +1,7 @@
 import { basename, dirname, join } from "../deps/path.ts";
 import { concurrent, normalizePath } from "./utils.ts";
 import { Directory, Page } from "./filesystem.ts";
+import { Exception } from "./errors.ts";
 
 import type { AssetLoader, DataLoader, PageLoader, Reader } from "../core.ts";
 
@@ -209,8 +210,28 @@ export default class Source {
     }
 
     if (entry.isFile) {
-      const page = (await this.pageLoader.load(path)) ??
-        (await this.assetLoader.load(path));
+      const [pageExtension] = this.pageLoader.loaders.search(path) ?? [];
+      const [assetExtension] = this.assetLoader.loaders.search(path) ?? [];
+
+      if (pageExtension && pageExtension === assetExtension) {
+        throw new Exception(
+          `Extension '${pageExtension}' is registered for both page and asset.`,
+        );
+      }
+
+      let page: Page | undefined = undefined;
+      if (pageExtension && assetExtension) {
+        // Prioritize chained extensions (.tmpl.js, .windi.css) over simple extensions (.ts, .js, .json)
+        if (pageExtension.length > assetExtension.length) {
+          page = await this.pageLoader.load(path);
+        } else {
+          page = await this.assetLoader.load(path);
+        }
+      } else if (pageExtension) {
+        page = await this.pageLoader.load(path);
+      } else if (assetExtension) {
+        page = await this.assetLoader.load(path);
+      }
 
       if (page) {
         directory.setPage(entry.name, page);
