@@ -17,11 +17,13 @@ Deno.test("bundler plugin", async () => {
 
   await build(site);
 
-  const assetLoaders = new Map(site.assetLoader.loaders.entries);
+  const resourceLoaders = new Map(site.resourceLoader.loaders.entries);
 
   // Register the loader extensions
-  assert(assetLoaders.has(".ts"));
-  assert(assetLoaders.has(".tsx"));
+  assert(resourceLoaders.has(".ts"));
+  assert(resourceLoaders.has(".tsx"));
+  equals(resourceLoaders.get(".ts")?.type, "asset");
+  equals(resourceLoaders.get(".tsx")?.type, "asset");
 
   testPage(site, "/main", (page) => {
     equals(page.dest.path, "/main");

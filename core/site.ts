@@ -3,8 +3,7 @@ import { merge, normalizePath } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
 import Reader from "./reader.ts";
-import PageLoader from "./page_loader.ts";
-import AssetLoader from "./asset_loader.ts";
+import ResourceLoader from "./resource_loader.ts";
 import ComponentLoader from "./component_loader.ts";
 import Components from "./components.ts";
 import DataLoader from "./data_loader.ts";
@@ -35,6 +34,8 @@ import type {
   Page,
   Plugin,
   Processor,
+  Resource,
+  ResourceType,
   ScopeFilter,
   ScriptOptions,
   ScriptOrFunction,
@@ -77,11 +78,8 @@ export default class Site {
   /** To read the files from the filesystem */
   reader: Reader;
 
-  /** To load all HTML pages */
-  pageLoader: PageLoader;
-
-  /** To load all non-HTML pages */
-  assetLoader: AssetLoader;
+  /** To load all resources (HTML pages and assets) */
+  resourceLoader: ResourceLoader;
 
   /** To load all _data files */
   dataLoader: DataLoader;
@@ -145,16 +143,14 @@ export default class Site {
 
     // To load source files
     const reader = new Reader({ src });
-    const pageLoader = new PageLoader({ reader });
-    const assetLoader = new AssetLoader({ reader });
+    const resourceLoader = new ResourceLoader({ reader });
     const componentLoader = new ComponentLoader({ reader });
     const components = new Components({ globalData, cssFile, jsFile });
     const dataLoader = new DataLoader({ reader });
     const includesLoader = new IncludesLoader({ reader, includes });
     const source = new Source({
       reader,
-      pageLoader,
-      assetLoader,
+      resourceLoader,
       dataLoader,
     });
     const staticFiles = new StaticFiles();
@@ -179,8 +175,7 @@ export default class Site {
 
     // Save everything in the site instance
     this.reader = reader;
-    this.pageLoader = pageLoader;
-    this.assetLoader = assetLoader;
+    this.resourceLoader = resourceLoader;
     this.componentLoader = componentLoader;
     this.components = components;
     this.dataLoader = dataLoader;
@@ -271,19 +266,38 @@ export default class Site {
     return this;
   }
 
+  /** Register a loader for some extensions */
+  loadResources(extensions: string[], resource: Resource, engine?: Engine) {
+    this.resourceLoader.set(extensions, resource);
+    this.includesLoader.set(extensions, resource.loader);
+
+    if (engine) {
+      this.engines.addEngine(extensions, engine);
+    }
+
+    return this;
+  }
+
   /** Register a page loader for some extensions */
   loadPages(
     extensions: string[],
     loader: Loader = textLoader,
     engine?: Engine,
   ) {
-    this.pageLoader.set(extensions, loader);
-    this.includesLoader.set(extensions, loader);
+    const resource: Resource = {
+      loader,
+      type: "page",
+    };
+    return this.loadResources(extensions, resource, engine);
+  }
 
-    if (engine) {
-      this.engines.addEngine(extensions, engine);
-    }
-    return this;
+  /** Register an assets loader for some extensions */
+  loadAssets(extensions: string[], loader: Loader = textLoader) {
+    const resource: Resource = {
+      loader,
+      type: "asset",
+    };
+    return this.resourceLoader.set(extensions, resource);
   }
 
   /** Register a component loader for some extensions */
@@ -293,12 +307,6 @@ export default class Site {
     engine: Engine,
   ) {
     this.componentLoader.set(extensions, loader, engine);
-    return this;
-  }
-
-  /** Register an assets loader for some extensions */
-  loadAssets(extensions: string[], loader: Loader = textLoader) {
-    this.assetLoader.set(extensions, loader);
     return this;
   }
 

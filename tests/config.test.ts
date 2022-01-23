@@ -130,16 +130,23 @@ Deno.test("data configuration", () => {
 Deno.test("pages configuration", () => {
   const site = lume();
   let engines = new Map(site.engines.engines.entries);
-  let pageLoaders = new Map(site.pageLoader.loaders.entries);
+  let resourceLoaders = new Map(site.resourceLoader.loaders.entries);
 
-  equals(pageLoaders.size, 7);
-  equals(pageLoaders.has(".tmpl.json"), true);
-  equals(pageLoaders.has(".tmpl.js"), true);
-  equals(pageLoaders.has(".tmpl.ts"), true);
-  equals(pageLoaders.has(".md"), true);
-  equals(pageLoaders.has(".njk"), true);
-  equals(pageLoaders.has(".yaml"), true);
-  equals(pageLoaders.has(".yml"), true);
+  equals(resourceLoaders.size, 7);
+  equals(resourceLoaders.has(".tmpl.json"), true);
+  equals(resourceLoaders.get(".tmpl.json")?.type, "page");
+  equals(resourceLoaders.has(".tmpl.js"), true);
+  equals(resourceLoaders.get(".tmpl.js")?.type, "page");
+  equals(resourceLoaders.has(".tmpl.ts"), true);
+  equals(resourceLoaders.get(".tmpl.ts")?.type, "page");
+  equals(resourceLoaders.has(".md"), true);
+  equals(resourceLoaders.get(".md")?.type, "page");
+  equals(resourceLoaders.has(".njk"), true);
+  equals(resourceLoaders.get(".njk")?.type, "page");
+  equals(resourceLoaders.has(".yaml"), true);
+  equals(resourceLoaders.get(".yaml")?.type, "page");
+  equals(resourceLoaders.has(".yml"), true);
+  equals(resourceLoaders.get(".yml")?.type, "page");
 
   equals(engines.size, 4);
   equals(engines.has(".tmpl.js"), true);
@@ -157,11 +164,13 @@ Deno.test("pages configuration", () => {
 
   site.loadPages([".ext1", ".ext2"], loader, engine);
   engines = new Map(site.engines.engines.entries);
-  pageLoaders = new Map(site.pageLoader.loaders.entries);
+  resourceLoaders = new Map(site.resourceLoader.loaders.entries);
 
-  equals(pageLoaders.size, 9);
-  equals(pageLoaders.get(".ext1"), loader);
-  equals(pageLoaders.get(".ext2"), loader);
+  equals(resourceLoaders.size, 9);
+  equals(resourceLoaders.get(".ext1")?.loader, loader);
+  equals(resourceLoaders.get(".ext1")?.type, "page");
+  equals(resourceLoaders.get(".ext2")?.loader, loader);
+  equals(resourceLoaders.get(".ext2")?.type, "page");
 
   equals(engines.size, 6);
   equals(engines.get(".ext1"), engine);
@@ -170,17 +179,21 @@ Deno.test("pages configuration", () => {
 
 Deno.test("assets configuration", () => {
   const site = lume();
-  let assetLoaders = new Map(site.assetLoader.loaders.entries);
+  let resourceLoaders = new Map(site.resourceLoader.loaders.entries);
 
-  equals(assetLoaders.size, 0);
+  equals(resourceLoaders.size, 7);
 
   const loader = () => Promise.resolve({});
   site.loadAssets([".css", ".js"], loader);
-  assetLoaders = new Map(site.assetLoader.loaders.entries);
+  resourceLoaders = new Map(site.resourceLoader.loaders.entries);
 
-  equals(assetLoaders.size, 2);
-  equals(assetLoaders.has(".css"), true);
-  equals(assetLoaders.has(".js"), true);
+  equals(resourceLoaders.size, 9);
+  equals(resourceLoaders.has(".css"), true);
+  equals(resourceLoaders.get(".css")?.loader, loader);
+  equals(resourceLoaders.get(".css")?.type, "asset");
+  equals(resourceLoaders.has(".js"), true);
+  equals(resourceLoaders.get(".js")?.loader, loader);
+  equals(resourceLoaders.get(".js")?.type, "asset");
 });
 
 Deno.test("preprocessor configuration", () => {

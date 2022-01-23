@@ -24,8 +24,11 @@ import type { default as Reader, Loader } from "./core/reader.ts";
 import type Logger from "./core/logger.ts";
 import type Writer from "./core/writer.ts";
 import type IncludesLoader from "./core/includes_loader.ts";
-import type PageLoader from "./core/page_loader.ts";
-import type AssetLoader from "./core/asset_loader.ts";
+import type {
+  default as ResourceLoader,
+  Resource,
+  ResourceType,
+} from "./core/resource_loader.ts";
 import type DataLoader from "./core/data_loader.ts";
 import type {
   Component,
@@ -64,7 +67,6 @@ type PluginSetup = ((options: unknown) => Plugin);
 type Plugin = (site: Site) => void;
 
 export type {
-  AssetLoader,
   Component,
   ComponentLoader,
   ComponentsOptions,
@@ -90,7 +92,6 @@ export type {
   Logger,
   Middleware,
   Page,
-  PageLoader,
   Plugin,
   PluginSetup,
   Processor,
@@ -98,6 +99,9 @@ export type {
   Reader,
   Renderer,
   RequestHandler,
+  Resource,
+  ResourceLoader,
+  ResourceType,
   ScopeFilter,
   Scopes,
   ScriptOptions,
