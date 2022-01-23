@@ -14,10 +14,10 @@ Deno.test("terser plugin", async () => {
   equals(site.pages.length, 2);
 
   // Register the .js loader
-  const resourceLoaders = new Map(site.resourceLoader.loaders.entries);
+  const extensions = new Map(site.extensions.entries);
 
-  assert(resourceLoaders.has(".js"));
-  equals(resourceLoaders.get(".js")?.type, "asset");
+  assert(extensions.has(".js"));
+  equals(extensions.get(".js")?.type, "asset");
 
   testPage(site, "/numbers.js", (page) => {
     equals(page.data.url, "/numbers.js");

@@ -1,13 +1,23 @@
 import { Page } from "./filesystem.ts";
-import Extensions from "./extensions.ts";
 import { Exception } from "./errors.ts";
 import { basename, extname, join } from "../deps/path.ts";
 
-import type { Data, Dest, Loader, Reader, Src } from "../core.ts";
+import type {
+  Data,
+  Dest,
+  Extension,
+  Extensions,
+  Reader,
+  ResourceType,
+  Src,
+} from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
   reader: Reader;
+
+  /** The extensions instance used to save the loaders */
+  extensions: Extensions<Extension>;
 }
 
 /**
@@ -18,15 +28,16 @@ export default class ResourceLoader {
   reader: Reader;
 
   /** List of extensions to load page files and the loader used */
-  loaders = new Extensions<Resource>();
+  extensions: Extensions<Extension>;
 
   constructor(options: Options) {
     this.reader = options.reader;
+    this.extensions = options.extensions;
   }
 
   /** Assign a loader to some extensions */
-  set(extensions: string[], resource: Resource) {
-    extensions.forEach((extension) => this.loaders.set(extension, resource));
+  set(extensions: string[], info: Extension) {
+    extensions.forEach((extension) => this.extensions.set(extension, info));
   }
 
   /** Load an asset Page */
@@ -34,13 +45,18 @@ export default class ResourceLoader {
     path = join("/", path);
 
     // Search for the loader
-    const result = this.loaders.search(path);
+    const result = this.extensions.search(path);
 
     if (!result) {
       return;
     }
 
     const [ext, { loader, type }] = result;
+
+    if (!loader || !type) {
+      return;
+    }
+
     const info = await this.reader.getInfo(path);
 
     if (!info) {
@@ -138,11 +154,4 @@ export default class ResourceLoader {
       return new Date(parseInt(timestamp));
     }
   }
-}
-
-export type ResourceType = "page" | "asset";
-
-export interface Resource {
-  loader: Loader;
-  type: ResourceType;
 }

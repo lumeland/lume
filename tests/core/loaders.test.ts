@@ -5,6 +5,7 @@ import {
 } from "../../deps/assert.ts";
 import { assertEqualsPaths, getPath } from "../utils.ts";
 import Reader from "../../core/reader.ts";
+import Extensions from "../../core/extensions.ts";
 import IncludesLoader from "../../core/includes_loader.ts";
 import ResourceLoader from "../../core/resource_loader.ts";
 import DataLoader from "../../core/data_loader.ts";
@@ -13,17 +14,19 @@ import moduleLoader from "../../core/loaders/module.ts";
 import jsonLoader from "../../core/loaders/json.ts";
 import textLoader from "../../core/loaders/text.ts";
 
+import type { Extension } from "../../core.ts";
+
 Deno.test("Loaders", async (t) => {
   const src = getPath("core/loaders_assets");
 
   const reader = new Reader({ src });
+  const extensions = new Extensions<Extension>();
   const includesLoader = new IncludesLoader({ reader, includes: "/" });
-  const resourceLoader = new ResourceLoader({ reader });
+  const resourceLoader = new ResourceLoader({ reader, extensions });
   const dataLoader = new DataLoader({ reader });
 
-  equals(includesLoader.loaders.entries.length, 0);
+  equals(extensions.entries.length, 0);
   equals(includesLoader.paths.entries.length, 0);
-  equals(resourceLoader.loaders.entries.length, 0);
   equals(dataLoader.loaders.entries.length, 0);
 
   dataLoader.set([".yml"], yamlLoader);
@@ -99,7 +102,7 @@ Deno.test("Loaders", async (t) => {
   resourceLoader.set([".ts"], { loader: moduleLoader, type: "page" });
   resourceLoader.set([".json"], { loader: jsonLoader, type: "page" });
   resourceLoader.set([".txt"], { loader: textLoader, type: "page" });
-  equals(resourceLoader.loaders.entries.length, 4);
+  equals(extensions.entries.length, 4);
 
   await t.step("Page loader", async () => {
     const yaml = await resourceLoader.load("data.yml");

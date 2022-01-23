@@ -24,11 +24,7 @@ import type { default as Reader, Loader } from "./core/reader.ts";
 import type Logger from "./core/logger.ts";
 import type Writer from "./core/writer.ts";
 import type IncludesLoader from "./core/includes_loader.ts";
-import type {
-  default as ResourceLoader,
-  Resource,
-  ResourceType,
-} from "./core/resource_loader.ts";
+import type { default as ResourceLoader } from "./core/resource_loader.ts";
 import type DataLoader from "./core/data_loader.ts";
 import type {
   Component,
@@ -54,6 +50,7 @@ import type {
   HelperOptions,
 } from "./core/engines.ts";
 import type { ErrorData, Exception } from "./core/errors.ts";
+import type Extensions from "./core/extensions.ts";
 import type {
   default as Server,
   Middleware,
@@ -65,6 +62,14 @@ type PluginSetup = ((options: unknown) => Plugin);
 
 /** A generic Lume plugin */
 type Plugin = (site: Site) => void;
+
+type ResourceType = "page" | "asset";
+
+interface Extension {
+  loader?: Loader;
+  type?: ResourceType;
+  engine?: Engine;
+}
 
 export type {
   Component,
@@ -85,6 +90,8 @@ export type {
   Events,
   EventType,
   Exception,
+  Extension,
+  Extensions,
   Helper,
   HelperOptions,
   IncludesLoader,
@@ -99,7 +106,6 @@ export type {
   Reader,
   Renderer,
   RequestHandler,
-  Resource,
   ResourceLoader,
   ResourceType,
   ScopeFilter,

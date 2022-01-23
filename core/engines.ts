@@ -1,11 +1,13 @@
 import { Exception } from "./errors.ts";
-import Extensions from "./extensions.ts";
 
-import type { Data } from "../core.ts";
+import type { Data, Extension, Extensions } from "../core.ts";
 
 export interface Options {
   /** Extra data to be passed to the engines */
   globalData: Data;
+
+  /** The extensions instance used to save the loaders */
+  extensions: Extensions<Extension>;
 }
 
 /**
@@ -14,7 +16,7 @@ export interface Options {
  */
 export default class Engines {
   /** Template engines by extension */
-  engines = new Extensions<Engine>();
+  extensions: Extensions<Extension>;
 
   /** Extra data to be passed to the engines */
   globalData: Data;
@@ -24,18 +26,24 @@ export default class Engines {
 
   constructor(options: Options) {
     this.globalData = options.globalData || {};
+    this.extensions = options.extensions;
   }
 
   /** Delete a cached template */
   deleteCache(file: string): void {
-    for (const engine of this.engines.values()) {
-      engine.deleteCache(file);
+    for (const extension of this.extensions.values()) {
+      extension.engine?.deleteCache(file);
     }
   }
 
   /** Register a new template engine */
   addEngine(extensions: string[], engine: Engine) {
-    extensions.forEach((extension) => this.engines.set(extension, engine));
+    extensions.forEach((extension) => {
+      const data = this.extensions.get(extension) || {};
+
+      data.engine = engine;
+      this.extensions.set(extension, data);
+    });
 
     for (const [name, helper] of this.helpers) {
       engine.addHelper(name, ...helper);
@@ -46,8 +54,8 @@ export default class Engines {
   addHelper(name: string, fn: Helper, options: HelperOptions) {
     this.helpers.set(name, [fn, options]);
 
-    for (const engine of this.engines.values()) {
-      engine.addHelper(name, fn, options);
+    for (const extension of this.extensions.values()) {
+      extension.engine?.addHelper(name, fn, options);
     }
 
     return this;
@@ -97,10 +105,10 @@ export default class Engines {
         : templateEngine.split(",");
 
       return templateEngine.map((name) => {
-        const engine = this.engines.get(`.${name.trim()}`);
+        const extension = this.extensions.get(`.${name.trim()}`);
 
-        if (engine) {
-          return engine;
+        if (extension?.engine) {
+          return extension.engine;
         }
 
         throw new Exception(
@@ -110,10 +118,10 @@ export default class Engines {
       });
     }
 
-    const result = this.engines.search(path);
+    const extension = this.extensions.search(path);
 
-    if (result) {
-      return [result[1]];
+    if (extension && extension[1].engine) {
+      return [extension[1].engine];
     }
   }
 }

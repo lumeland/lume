@@ -1,12 +1,14 @@
 import { assertStrictEquals as equals } from "../../deps/assert.ts";
 import Engines from "../../core/engines.ts";
-import { Data } from "../../core.ts";
+import Extensions from "../../core/extensions.ts";
+import { Data, Extension } from "../../core.ts";
 
 Deno.test("Engines", async (t) => {
   const globalData = {};
-  const engines = new Engines({ globalData });
+  const extensions = new Extensions<Extension>();
+  const engines = new Engines({ globalData, extensions });
 
-  equals(engines.engines.entries.length, 0);
+  equals(extensions.entries.length, 0);
 
   await t.step("Add a template engine", () => {
     engines.addEngine([".foo"], {
@@ -20,7 +22,7 @@ Deno.test("Engines", async (t) => {
       deleteCache() {},
     });
 
-    equals(engines.engines.entries.length, 1);
+    equals(extensions.entries.length, 1);
   });
 
   await t.step("Run the template engine", async () => {
@@ -47,7 +49,7 @@ Deno.test("Engines", async (t) => {
       deleteCache() {},
     });
 
-    equals(engines.engines.entries.length, 2);
+    equals(engines.extensions.entries.length, 2);
   });
 
   await t.step("Run the other template engine", async () => {
