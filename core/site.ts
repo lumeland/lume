@@ -35,7 +35,6 @@ import type {
   Plugin,
   Processor,
   Resource,
-  ResourceType,
   ScopeFilter,
   ScriptOptions,
   ScriptOrFunction,
