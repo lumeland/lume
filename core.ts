@@ -24,7 +24,7 @@ import type { default as Reader, Loader } from "./core/reader.ts";
 import type Logger from "./core/logger.ts";
 import type Writer from "./core/writer.ts";
 import type IncludesLoader from "./core/includes_loader.ts";
-import type { default as ResourceLoader } from "./core/resource_loader.ts";
+import type { default as PageLoader } from "./core/page_loader.ts";
 import type DataLoader from "./core/data_loader.ts";
 import type {
   Component,
@@ -91,6 +91,7 @@ export type {
   Logger,
   Middleware,
   Page,
+  PageLoader,
   PageType,
   Plugin,
   PluginSetup,
@@ -99,7 +100,6 @@ export type {
   Reader,
   Renderer,
   RequestHandler,
-  ResourceLoader,
   ScopeFilter,
   Scopes,
   ScriptOptions,

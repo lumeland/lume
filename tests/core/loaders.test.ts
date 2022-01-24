@@ -15,7 +15,7 @@ Deno.test("Loaders", async (t) => {
     cwd: getPath("core/loaders_assets"),
   });
 
-  const { formats, dataLoader, includesLoader, resourceLoader } = site;
+  const { formats, dataLoader, includesLoader, pageLoader } = site;
 
   equals(formats.size, 0);
   site.loadData([".yml"], yamlLoader);
@@ -95,7 +95,7 @@ Deno.test("Loaders", async (t) => {
   equals(formats.size, 4);
 
   await t.step("Page loader", async () => {
-    const yaml = await resourceLoader.load("data.yml");
+    const yaml = await pageLoader.load("data.yml");
     assert(yaml);
     equals(yaml.data.title, "Hello world");
     assertEquals(yaml.data.tags, ["tag1", "tag2"]);
@@ -105,7 +105,7 @@ Deno.test("Loaders", async (t) => {
     assertEqualsPaths(yaml.dest.path, "/data");
     equals(yaml.dest.ext, "");
 
-    const module = await resourceLoader.load("data.ts");
+    const module = await pageLoader.load("data.ts");
     assert(module);
     equals(module.data.title, "Title from default");
     equals(module.data.subtitle, "Subtitle value");
@@ -116,7 +116,7 @@ Deno.test("Loaders", async (t) => {
     assertEqualsPaths(module.dest.path, "/data");
     equals(module.dest.ext, "");
 
-    const json = await resourceLoader.load("data.json");
+    const json = await pageLoader.load("data.json");
     assert(json);
     equals(json.data.title, "Title from json");
     assertEquals(json.data.tags, ["tag1", "tag2"]);
@@ -126,7 +126,7 @@ Deno.test("Loaders", async (t) => {
     assertEqualsPaths(json.dest.path, "/data");
     equals(json.dest.ext, "");
 
-    const text = await resourceLoader.load("data.txt");
+    const text = await pageLoader.load("data.txt");
     assert(text);
     equals(text.data.title, "Title in the front matter");
     equals(text.data.content, "Hello world");
@@ -139,7 +139,7 @@ Deno.test("Loaders", async (t) => {
   });
 
   await t.step("Page data detection", async () => {
-    const page1 = await resourceLoader.load("page.txt");
+    const page1 = await pageLoader.load("page.txt");
     assert(page1);
     assert(page1.data.date instanceof Date);
     equals(page1.data.date.getUTCDate(), 21);
@@ -149,7 +149,7 @@ Deno.test("Loaders", async (t) => {
     equals(page1.data.date.getUTCMinutes(), 0);
     equals(page1.data.date.getUTCSeconds(), 0);
 
-    const page2 = await resourceLoader.load("1_page.txt");
+    const page2 = await pageLoader.load("1_page.txt");
     assert(page2);
     assert(page2.data.date instanceof Date);
     equals(page2.data.date.getUTCDate(), 1);
@@ -159,7 +159,7 @@ Deno.test("Loaders", async (t) => {
     equals(page2.data.date.getUTCMinutes(), 0);
     equals(page2.data.date.getUTCSeconds(), 0);
 
-    const page3 = await resourceLoader.load("2021-12-19_page.txt");
+    const page3 = await pageLoader.load("2021-12-19_page.txt");
     assert(page3);
     assert(page3.data.date instanceof Date);
     equals(page3.data.date.getUTCDate(), 19);
@@ -169,7 +169,7 @@ Deno.test("Loaders", async (t) => {
     equals(page3.data.date.getUTCMinutes(), 0);
     equals(page3.data.date.getUTCSeconds(), 0);
 
-    const page4 = await resourceLoader.load("2021-12-19-20-35_page.txt");
+    const page4 = await pageLoader.load("2021-12-19-20-35_page.txt");
     assert(page4);
     assert(page4.data.date instanceof Date);
     equals(page4.data.date.getUTCDate(), 19);

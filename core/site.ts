@@ -3,7 +3,7 @@ import { merge, normalizePath } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
 import Reader from "./reader.ts";
-import ResourceLoader from "./resource_loader.ts";
+import PageLoader from "./page_loader.ts";
 import ComponentLoader from "./component_loader.ts";
 import Components from "./components.ts";
 import DataLoader from "./data_loader.ts";
@@ -80,8 +80,8 @@ export default class Site {
   /** Info about how to handle different file formats */
   formats: Formats;
 
-  /** To load all resources (HTML pages and assets) */
-  resourceLoader: ResourceLoader;
+  /** To load all pages */
+  pageLoader: PageLoader;
 
   /** To load all _data files */
   dataLoader: DataLoader;
@@ -147,14 +147,14 @@ export default class Site {
     const reader = new Reader({ src });
     const formats = new Formats();
 
-    const resourceLoader = new ResourceLoader({ reader, formats });
+    const pageLoader = new PageLoader({ reader, formats });
     const dataLoader = new DataLoader({ reader, formats });
     const includesLoader = new IncludesLoader({ reader, includes, formats });
     const componentLoader = new ComponentLoader({ reader, formats });
     const components = new Components({ globalData, cssFile, jsFile });
     const source = new Source({
       reader,
-      resourceLoader,
+      pageLoader,
       dataLoader,
     });
     const staticFiles = new StaticFiles();
@@ -180,7 +180,7 @@ export default class Site {
     // Save everything in the site instance
     this.reader = reader;
     this.formats = formats;
-    this.resourceLoader = resourceLoader;
+    this.pageLoader = pageLoader;
     this.componentLoader = componentLoader;
     this.components = components;
     this.dataLoader = dataLoader;

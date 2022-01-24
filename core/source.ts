@@ -2,11 +2,11 @@ import { basename, dirname, join } from "../deps/path.ts";
 import { concurrent, normalizePath } from "./utils.ts";
 import { Directory, Page } from "./filesystem.ts";
 
-import type { DataLoader, Reader, ResourceLoader } from "../core.ts";
+import type { DataLoader, PageLoader, Reader } from "../core.ts";
 
 export interface Options {
   dataLoader: DataLoader;
-  resourceLoader: ResourceLoader;
+  pageLoader: PageLoader;
   reader: Reader;
 }
 
@@ -25,13 +25,13 @@ export default class Source {
   dataLoader: DataLoader;
 
   /** To load all resources (HTML pages and assets) */
-  resourceLoader: ResourceLoader;
+  pageLoader: PageLoader;
 
   /** The list of paths to ignore */
   ignored = new Set<string>();
 
   constructor(options: Options) {
-    this.resourceLoader = options.resourceLoader;
+    this.pageLoader = options.pageLoader;
     this.dataLoader = options.dataLoader;
     this.reader = options.reader;
   }
@@ -204,7 +204,7 @@ export default class Source {
     }
 
     if (entry.isFile) {
-      const page = (await this.resourceLoader.load(path));
+      const page = (await this.pageLoader.load(path));
 
       if (page) {
         directory.setPage(entry.name, page);

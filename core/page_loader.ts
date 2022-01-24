@@ -15,7 +15,7 @@ export interface Options {
 /**
  * Class to load page files that generate assets (css, js, etc).
  */
-export default class ResourceLoader {
+export default class PageLoader {
   /** The filesystem reader */
   reader: Reader;
 
