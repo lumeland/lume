@@ -1,11 +1,13 @@
 import { Exception } from "./errors.ts";
-import Extensions from "./extensions.ts";
 
-import type { Data } from "../core.ts";
+import type { Data, Formats } from "../core.ts";
 
 export interface Options {
   /** Extra data to be passed to the engines */
   globalData: Data;
+
+  /** The file formats */
+  formats: Formats;
 }
 
 /**
@@ -14,7 +16,7 @@ export interface Options {
  */
 export default class Engines {
   /** Template engines by extension */
-  engines = new Extensions<Engine>();
+  formats: Formats;
 
   /** Extra data to be passed to the engines */
   globalData: Data;
@@ -24,30 +26,15 @@ export default class Engines {
 
   constructor(options: Options) {
     this.globalData = options.globalData || {};
-  }
-
-  /** Delete a cached template */
-  deleteCache(file: string): void {
-    for (const engine of this.engines.values()) {
-      engine.deleteCache(file);
-    }
-  }
-
-  /** Register a new template engine */
-  addEngine(extensions: string[], engine: Engine) {
-    extensions.forEach((extension) => this.engines.set(extension, engine));
-
-    for (const [name, helper] of this.helpers) {
-      engine.addHelper(name, ...helper);
-    }
+    this.formats = options.formats;
   }
 
   /** Register a new helper used by the template engines */
   addHelper(name: string, fn: Helper, options: HelperOptions) {
     this.helpers.set(name, [fn, options]);
 
-    for (const engine of this.engines.values()) {
-      engine.addHelper(name, fn, options);
+    for (const format of this.formats.formats()) {
+      format.engine?.addHelper(name, fn, options);
     }
 
     return this;
@@ -97,10 +84,10 @@ export default class Engines {
         : templateEngine.split(",");
 
       return templateEngine.map((name) => {
-        const engine = this.engines.get(`.${name.trim()}`);
+        const format = this.formats.get(`.${name.trim()}`);
 
-        if (engine) {
-          return engine;
+        if (format?.engine) {
+          return format.engine;
         }
 
         throw new Exception(
@@ -110,10 +97,10 @@ export default class Engines {
       });
     }
 
-    const result = this.engines.search(path);
+    const extension = this.formats.search(path);
 
-    if (result) {
-      return [result[1]];
+    if (extension && extension[1].engine) {
+      return [extension[1].engine];
     }
   }
 }

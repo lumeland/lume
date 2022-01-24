@@ -24,8 +24,7 @@ import type { default as Reader, Loader } from "./core/reader.ts";
 import type Logger from "./core/logger.ts";
 import type Writer from "./core/writer.ts";
 import type IncludesLoader from "./core/includes_loader.ts";
-import type PageLoader from "./core/page_loader.ts";
-import type AssetLoader from "./core/asset_loader.ts";
+import type { default as PageLoader } from "./core/page_loader.ts";
 import type DataLoader from "./core/data_loader.ts";
 import type {
   Component,
@@ -51,6 +50,7 @@ import type {
   HelperOptions,
 } from "./core/engines.ts";
 import type { ErrorData, Exception } from "./core/errors.ts";
+import type { default as Formats, Format, PageType } from "./core/formats.ts";
 import type {
   default as Server,
   Middleware,
@@ -64,7 +64,6 @@ type PluginSetup = ((options: unknown) => Plugin);
 type Plugin = (site: Site) => void;
 
 export type {
-  AssetLoader,
   Component,
   ComponentLoader,
   ComponentsOptions,
@@ -83,6 +82,8 @@ export type {
   Events,
   EventType,
   Exception,
+  Format,
+  Formats,
   Helper,
   HelperOptions,
   IncludesLoader,
@@ -91,6 +92,7 @@ export type {
   Middleware,
   Page,
   PageLoader,
+  PageType,
   Plugin,
   PluginSetup,
   Processor,

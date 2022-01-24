@@ -13,10 +13,11 @@ Deno.test("postcss plugin", async () => {
 
   equals(site.pages.length, 2);
 
-  const assetLoaders = new Map(site.assetLoader.loaders.entries);
+  const { formats } = site;
 
   // Register the .css loader
-  assert(assetLoaders.has(".css"));
+  assert(formats.has(".css"));
+  equals(formats.get(".css")?.pageType, "asset");
 
   testPage(site, "/index", (page) => {
     equals(page.data.url, "/index.css");

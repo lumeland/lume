@@ -1,19 +1,89 @@
-import { basename, extname } from "../deps/path.ts";
+import { Page } from "./filesystem.ts";
 import { Exception } from "./errors.ts";
-import AssetLoader from "./asset_loader.ts";
+import { basename, extname, join } from "../deps/path.ts";
 
-import type { Data, Dest, Page, Src } from "../core.ts";
+import type { Data, Dest, Formats, PageType, Reader, Src } from "../core.ts";
+
+export interface Options {
+  /** The reader instance used to read the files */
+  reader: Reader;
+
+  /** The extensions instance used to save the loaders */
+  formats: Formats;
+}
 
 /**
- * Class to load page files that generate HTML documents.
- * It's very similar to the AssetLoader, but it removes the extension
- * and ensure there's a `date` property in the data.
+ * Class to load page files that generate assets (css, js, etc).
  */
-export default class PageLoader extends AssetLoader {
-  /** Prepare the data and the page */
-  prepare(page: Page, data: Data): void {
-    super.prepare(page, data);
+export default class PageLoader {
+  /** The filesystem reader */
+  reader: Reader;
 
+  /** List of extensions to load page files and the loader used */
+  formats: Formats;
+
+  constructor(options: Options) {
+    this.reader = options.reader;
+    this.formats = options.formats;
+  }
+
+  /** Load an asset Page */
+  async load(path: string): Promise<Page | undefined> {
+    path = join("/", path);
+
+    // Search for the loader
+    const result = this.formats.search(path);
+
+    if (!result) {
+      return;
+    }
+
+    const [ext, { pageLoader, pageType }] = result;
+
+    if (!pageLoader || !pageType) {
+      return;
+    }
+
+    const info = await this.reader.getInfo(path);
+
+    if (!info) {
+      return;
+    }
+
+    // Create the page
+    const page = new Page({
+      path: path.slice(0, -ext.length),
+      lastModified: info?.mtime || undefined,
+      created: info?.birthtime || undefined,
+      ext,
+    });
+
+    // Prepare the data
+    const data = await this.reader.read(path, pageLoader);
+    this.prepare(page, data, pageType);
+    page.data = data;
+
+    return page;
+  }
+
+  /** Prepare the data and the page */
+  prepare(page: Page, data: Data, type: PageType): void {
+    if (data.tags) {
+      data.tags = Array.isArray(data.tags)
+        ? data.tags.map((tag) => String(tag))
+        : [String(data.tags)];
+    }
+
+    if (type === "page") {
+      this.preparePage(page, data);
+    }
+  }
+
+  /**
+   * Additional preparation for the HTML pages
+   * it removes the extension and ensure there's a `date` property in the data.
+   */
+  preparePage(page: Page, data: Data): void {
     const datePath = this.#handleDatePath(page.src, page.dest);
 
     // Ensure the data prop is defined

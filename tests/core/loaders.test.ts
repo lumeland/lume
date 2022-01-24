@@ -4,36 +4,26 @@ import {
   assertStrictEquals as equals,
 } from "../../deps/assert.ts";
 import { assertEqualsPaths, getPath } from "../utils.ts";
-import Reader from "../../core/reader.ts";
-import IncludesLoader from "../../core/includes_loader.ts";
-import PageLoader from "../../core/page_loader.ts";
-import AssetLoader from "../../core/asset_loader.ts";
-import DataLoader from "../../core/data_loader.ts";
 import yamlLoader from "../../core/loaders/yaml.ts";
 import moduleLoader from "../../core/loaders/module.ts";
 import jsonLoader from "../../core/loaders/json.ts";
 import textLoader from "../../core/loaders/text.ts";
+import Site from "../../core/site.ts";
 
 Deno.test("Loaders", async (t) => {
-  const src = getPath("core/loaders_assets");
+  const site = new Site({
+    cwd: getPath("core/loaders_assets"),
+  });
 
-  const reader = new Reader({ src });
-  const includesLoader = new IncludesLoader({ reader, includes: "/" });
-  const pageLoader = new PageLoader({ reader });
-  const assetLoader = new AssetLoader({ reader });
-  const dataLoader = new DataLoader({ reader });
+  const { formats, dataLoader, includesLoader, pageLoader } = site;
 
-  equals(includesLoader.loaders.entries.length, 0);
-  equals(includesLoader.paths.entries.length, 0);
-  equals(pageLoader.loaders.entries.length, 0);
-  equals(assetLoader.loaders.entries.length, 0);
-  equals(dataLoader.loaders.entries.length, 0);
-
-  dataLoader.set([".yml"], yamlLoader);
-  dataLoader.set([".ts"], moduleLoader);
-  dataLoader.set([".json"], jsonLoader);
-  dataLoader.set([".txt"], textLoader);
-  equals(dataLoader.loaders.entries.length, 4);
+  equals(formats.size, 0);
+  site.loadData([".yml"], yamlLoader);
+  site.loadData([".ts"], moduleLoader);
+  site.loadData([".json"], jsonLoader);
+  site.loadData([".txt"], textLoader);
+  site.includes([".yml", ".ts", ".json", ".txt"], "/");
+  equals(formats.size, 4);
 
   await t.step("Data loader", async () => {
     const yaml = await dataLoader.load("data.yml");
@@ -69,11 +59,11 @@ Deno.test("Loaders", async (t) => {
     });
   });
 
-  includesLoader.set([".yml"], yamlLoader);
-  includesLoader.set([".ts"], moduleLoader);
-  includesLoader.set([".json"], jsonLoader);
-  includesLoader.set([".txt"], textLoader);
-  equals(includesLoader.loaders.entries.length, 4);
+  formats.set(".yml", { includesLoader: yamlLoader });
+  formats.set(".ts", { includesLoader: moduleLoader });
+  formats.set(".json", { includesLoader: jsonLoader });
+  formats.set(".txt", { includesLoader: textLoader });
+  equals(formats.size, 4);
 
   await t.step("Includes loader", async () => {
     const yaml = await includesLoader.load("data.yml");
@@ -98,11 +88,11 @@ Deno.test("Loaders", async (t) => {
     equals(text[1].title, "Title in the front matter");
   });
 
-  pageLoader.set([".yml"], yamlLoader);
-  pageLoader.set([".ts"], moduleLoader);
-  pageLoader.set([".json"], jsonLoader);
-  pageLoader.set([".txt"], textLoader);
-  equals(pageLoader.loaders.entries.length, 4);
+  site.loadPages([".yml"], yamlLoader);
+  site.loadPages([".ts"], moduleLoader);
+  site.loadPages([".json"], jsonLoader);
+  site.loadPages([".txt"], textLoader);
+  equals(formats.size, 4);
 
   await t.step("Page loader", async () => {
     const yaml = await pageLoader.load("data.yml");
@@ -188,55 +178,5 @@ Deno.test("Loaders", async (t) => {
     equals(page4.data.date.getUTCHours(), 20);
     equals(page4.data.date.getUTCMinutes(), 35);
     equals(page4.data.date.getUTCSeconds(), 0);
-  });
-
-  assetLoader.set([".yml"], yamlLoader);
-  assetLoader.set([".ts"], moduleLoader);
-  assetLoader.set([".json"], jsonLoader);
-  assetLoader.set([".txt"], textLoader);
-  equals(assetLoader.loaders.entries.length, 4);
-
-  await t.step("Asset loader", async () => {
-    const yaml = await assetLoader.load("data.yml");
-    assert(yaml);
-    equals(yaml.data.title, "Hello world");
-    assertEquals(yaml.data.tags, ["tag1", "tag2"]);
-    assert(yaml.data.date instanceof Date);
-    assertEqualsPaths(yaml.src.path, "/data");
-    equals(yaml.src.ext, ".yml");
-    assertEqualsPaths(yaml.dest.path, "/data");
-    equals(yaml.dest.ext, ".yml");
-
-    const module = await assetLoader.load("data.ts");
-    assert(module);
-    equals(module.data.title, "Title from default");
-    equals(module.data.subtitle, "Subtitle value");
-    assertEquals(module.data.tags, ["tag1"]);
-    assert(module.data.date instanceof Date);
-    assertEqualsPaths(module.src.path, "/data");
-    equals(module.src.ext, ".ts");
-    assertEqualsPaths(module.dest.path, "/data");
-    equals(module.dest.ext, ".ts");
-
-    const json = await assetLoader.load("data.json");
-    assert(json);
-    equals(json.data.title, "Title from json");
-    assertEquals(json.data.tags, ["tag1", "tag2"]);
-    assert(json.data.date instanceof Date);
-    assertEqualsPaths(json.src.path, "/data");
-    equals(json.src.ext, ".json");
-    assertEqualsPaths(json.dest.path, "/data");
-    equals(json.dest.ext, ".json");
-
-    const text = await assetLoader.load("data.txt");
-    assert(text);
-    equals(text.data.title, "Title in the front matter");
-    equals(text.data.content, "Hello world");
-    assertEquals(text.data.tags, ["tag1"]);
-    assert(text.data.date instanceof Date);
-    assertEqualsPaths(text.src.path, "/data");
-    equals(text.src.ext, ".txt");
-    assertEqualsPaths(text.dest.path, "/data");
-    equals(text.dest.ext, ".txt");
   });
 });

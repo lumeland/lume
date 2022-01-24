@@ -1,4 +1,4 @@
-import { assertStrictEquals as equals } from "../deps/assert.ts";
+import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
 import { assertEqualsPaths, platformPath } from "./utils.ts";
 
@@ -109,43 +109,51 @@ Deno.test("script configuration", () => {
 
 Deno.test("data configuration", () => {
   const site = lume();
-  let entries = new Map(site.dataLoader.loaders.entries);
+  const { formats } = site;
 
-  equals(entries.size, 5);
-  equals(entries.has(".json"), true);
-  equals(entries.has(".js"), true);
-  equals(entries.has(".ts"), true);
-  equals(entries.has(".yaml"), true);
-  equals(entries.has(".yml"), true);
+  equals(formats.size, 10);
+  equals(formats.has(".json"), true);
+  assert(formats.get(".json")?.dataLoader);
+  equals(formats.has(".js"), true);
+  assert(formats.get(".js")?.dataLoader);
+  equals(formats.has(".ts"), true);
+  assert(formats.get(".ts")?.dataLoader);
+  equals(formats.has(".yaml"), true);
+  assert(formats.get(".yaml")?.dataLoader);
+  equals(formats.has(".yml"), true);
+  assert(formats.get(".yml")?.dataLoader);
 
   const loader = () => Promise.resolve({});
   site.loadData([".ext1", ".ext2"], loader);
-  entries = new Map(site.dataLoader.loaders.entries);
 
-  equals(entries.size, 7);
-  equals(entries.get(".ext1"), loader);
-  equals(entries.get(".ext2"), loader);
+  equals(formats.size, 12);
+  equals(formats.get(".ext1")?.dataLoader, loader);
+  equals(formats.get(".ext2")?.dataLoader, loader);
 });
 
 Deno.test("pages configuration", () => {
   const site = lume();
-  let engines = new Map(site.engines.engines.entries);
-  let pageLoaders = new Map(site.pageLoader.loaders.entries);
+  const { formats } = site;
 
-  equals(pageLoaders.size, 7);
-  equals(pageLoaders.has(".tmpl.json"), true);
-  equals(pageLoaders.has(".tmpl.js"), true);
-  equals(pageLoaders.has(".tmpl.ts"), true);
-  equals(pageLoaders.has(".md"), true);
-  equals(pageLoaders.has(".njk"), true);
-  equals(pageLoaders.has(".yaml"), true);
-  equals(pageLoaders.has(".yml"), true);
-
-  equals(engines.size, 4);
-  equals(engines.has(".tmpl.js"), true);
-  equals(engines.has(".tmpl.ts"), true);
-  equals(engines.has(".md"), true);
-  equals(engines.has(".njk"), true);
+  equals(formats.size, 10);
+  equals(formats.has(".tmpl.json"), true);
+  equals(formats.get(".tmpl.json")?.pageType, "page");
+  equals(formats.has(".tmpl.js"), true);
+  equals(formats.get(".tmpl.js")?.pageType, "page");
+  assert(formats.get(".tmpl.js")?.engine);
+  equals(formats.has(".tmpl.ts"), true);
+  equals(formats.get(".tmpl.ts")?.pageType, "page");
+  assert(formats.get(".tmpl.ts")?.engine);
+  equals(formats.has(".md"), true);
+  equals(formats.get(".md")?.pageType, "page");
+  assert(formats.get(".md")?.engine);
+  equals(formats.has(".njk"), true);
+  equals(formats.get(".njk")?.pageType, "page");
+  assert(formats.get(".njk")?.engine);
+  equals(formats.has(".yaml"), true);
+  equals(formats.get(".yaml")?.pageType, "page");
+  equals(formats.has(".yml"), true);
+  equals(formats.get(".yml")?.pageType, "page");
 
   const loader = () => Promise.resolve({});
   const engine = {
@@ -156,31 +164,32 @@ Deno.test("pages configuration", () => {
   };
 
   site.loadPages([".ext1", ".ext2"], loader, engine);
-  engines = new Map(site.engines.engines.entries);
-  pageLoaders = new Map(site.pageLoader.loaders.entries);
 
-  equals(pageLoaders.size, 9);
-  equals(pageLoaders.get(".ext1"), loader);
-  equals(pageLoaders.get(".ext2"), loader);
-
-  equals(engines.size, 6);
-  equals(engines.get(".ext1"), engine);
-  equals(engines.get(".ext2"), engine);
+  equals(formats.size, 12);
+  equals(formats.get(".ext1")?.pageLoader, loader);
+  equals(formats.get(".ext1")?.pageType, "page");
+  assert(formats.get(".ext1")?.engine);
+  equals(formats.get(".ext2")?.pageLoader, loader);
+  equals(formats.get(".ext2")?.pageType, "page");
+  assert(formats.get(".ext2")?.engine);
 });
 
 Deno.test("assets configuration", () => {
   const site = lume();
-  let assetLoaders = new Map(site.assetLoader.loaders.entries);
+  const { formats } = site;
 
-  equals(assetLoaders.size, 0);
+  equals(formats.size, 10);
 
   const loader = () => Promise.resolve({});
   site.loadAssets([".css", ".js"], loader);
-  assetLoaders = new Map(site.assetLoader.loaders.entries);
 
-  equals(assetLoaders.size, 2);
-  equals(assetLoaders.has(".css"), true);
-  equals(assetLoaders.has(".js"), true);
+  equals(formats.size, 11);
+  equals(formats.has(".css"), true);
+  equals(formats.get(".css")?.pageLoader, loader);
+  equals(formats.get(".css")?.pageType, "asset");
+  equals(formats.has(".js"), true);
+  equals(formats.get(".js")?.pageLoader, loader);
+  equals(formats.get(".js")?.pageType, "asset");
 });
 
 Deno.test("preprocessor configuration", () => {

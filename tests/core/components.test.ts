@@ -4,7 +4,6 @@ import {
   assertStrictEquals as equals,
 } from "../../deps/assert.ts";
 import { getPath } from "../utils.ts";
-import Reader from "../../core/reader.ts";
 import nunjucks from "../../deps/nunjucks.ts";
 import { compile as pug } from "../../deps/pug.ts";
 import * as eta from "../../deps/eta.ts";
@@ -15,45 +14,45 @@ import { ModuleEngine } from "../../plugins/modules.ts";
 import { EtaEngine } from "../../plugins/eta.ts";
 import { PugEngine } from "../../plugins/pug.ts";
 import { JsxEngine } from "../../plugins/jsx.ts";
-import ComponentsLoader from "../../core/component_loader.ts";
 import Components from "../../core/components.ts";
+import Site from "../../core/site.ts";
 import textLoader from "../../core/loaders/text.ts";
 import moduleLoader from "../../core/loaders/module.ts";
 
 Deno.test("Components", async (t) => {
   const src = getPath("core/components_assets");
 
-  const reader = new Reader({ src });
-  const componentsLoader = new ComponentsLoader({ reader });
+  const site = new Site({ cwd: src });
+  const { formats, componentLoader } = site;
 
-  equals(componentsLoader.loaders.entries.length, 0);
+  equals(formats.size, 0);
 
   // Set up nunjucks
   const fsLoader = new nunjucks.FileSystemLoader(src);
   const env = new nunjucks.Environment(fsLoader);
-  componentsLoader.set([".njk"], textLoader, new NunjucksEngine(env, src));
+  site.loadComponents([".njk"], textLoader, new NunjucksEngine(env, src));
 
   // Set up liquid
-  componentsLoader.set(
+  site.loadComponents(
     [".liquid"],
     textLoader,
     new LiquidEngine(new Liquid(), src),
   );
 
   // Set up modules
-  componentsLoader.set([".ts"], moduleLoader, new ModuleEngine());
+  site.loadComponents([".ts"], moduleLoader, new ModuleEngine());
 
   // Set up eta
   eta.configure({ useWith: true });
-  componentsLoader.set([".eta"], textLoader, new EtaEngine(eta, src));
+  site.loadComponents([".eta"], textLoader, new EtaEngine(eta, src));
 
   // Set up pug
-  componentsLoader.set([".pug"], textLoader, new PugEngine(pug, src));
+  site.loadComponents([".pug"], textLoader, new PugEngine(pug, src));
 
   // Set up jsx
-  componentsLoader.set([".jsx"], moduleLoader, new JsxEngine());
+  site.loadComponents([".jsx"], moduleLoader, new JsxEngine());
 
-  const componentsTree = (await componentsLoader.load("/"))!;
+  const componentsTree = (await componentLoader.load("/"))!;
   const components = new Components({
     globalData: {},
     cssFile: "/components.css",

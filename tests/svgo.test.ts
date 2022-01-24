@@ -14,9 +14,10 @@ Deno.test("terser plugin", async () => {
   equals(site.pages.length, 1);
 
   // Register the .svg loader
-  const assetLoaders = new Map(site.assetLoader.loaders.entries);
+  const { formats } = site;
 
-  assert(assetLoaders.has(".svg"));
+  assert(formats.has(".svg"));
+  equals(formats.get(".svg")?.pageType, "asset");
 
   testPage(site, "/favicon", (page) => {
     equals(page.data.url, "/favicon.svg");
