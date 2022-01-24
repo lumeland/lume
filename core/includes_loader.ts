@@ -1,8 +1,7 @@
 import { dirname, join } from "../deps/path.ts";
-import Extensions from "./extensions.ts";
 import { Exception } from "./errors.ts";
 
-import type { Data, Loader, Reader } from "../core.ts";
+import type { Data, Formats, Reader } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
@@ -10,6 +9,9 @@ export interface Options {
 
   /** The default _includes directory */
   includes: string;
+
+  /** The registered file formats */
+  formats: Formats;
 }
 
 /**
@@ -19,35 +21,32 @@ export default class IncludesLoader {
   /** The filesystem reader */
   reader: Reader;
 
-  /** To use different includes paths by extension */
-  paths: Extensions<string>;
+  /** Default _includes path */
+  includes: string;
 
   /** List of extensions to load files and the loader used */
-  loaders = new Extensions<Loader>();
+  formats: Formats;
 
   constructor(options: Options) {
     this.reader = options.reader;
-    this.paths = new Extensions<string>(options.includes);
-  }
-
-  /** Assign a loader to some extensions */
-  set(extensions: string[], loader: Loader) {
-    extensions.forEach((extension) => this.loaders.set(extension, loader));
-  }
-
-  /** Assign a path to some extensions */
-  setPath(extensions: string[], path: string) {
-    extensions.forEach((extension) => this.paths.set(extension, path));
+    this.formats = options.formats;
+    this.includes = options.includes;
   }
 
   async load(path: string, from?: string): Promise<[string, Data] | undefined> {
-    const result = this.loaders.search(path);
+    const entry = this.formats.search(path);
 
-    if (!result) {
+    if (!entry) {
       return;
     }
 
-    let includesPath: string;
+    const [, { includesLoader, includesPath }] = entry;
+
+    if (!includesLoader) {
+      return;
+    }
+
+    let finalPath: string;
 
     if (path.startsWith(".")) {
       if (!from) {
@@ -56,17 +55,14 @@ export default class IncludesLoader {
         });
       }
 
-      includesPath = join("/", dirname(from), path);
+      finalPath = join("/", dirname(from), path);
     } else {
-      const entry = this.paths.search(path)!;
-      includesPath = join("/", entry[1], path);
+      finalPath = join("/", includesPath || this.includes, path);
     }
 
-    const [, loader] = result;
-
     return [
-      includesPath,
-      await this.reader.read(includesPath, loader),
+      finalPath,
+      await this.reader.read(finalPath, includesLoader),
     ];
   }
 }

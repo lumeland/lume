@@ -1,11 +1,13 @@
 import { basename, join } from "../deps/path.ts";
-import Extensions from "./extensions.ts";
 
-import type { Engine, Loader, Reader } from "../core.ts";
+import type { Engine, Formats, Loader, Reader } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
   reader: Reader;
+
+  /** The registered file formats */
+  formats: Formats;
 }
 
 /**
@@ -16,17 +18,11 @@ export default class ComponentsLoader {
   reader: Reader;
 
   /** List of loaders and engines used by extensions */
-  loaders = new Extensions<[Loader, Engine]>();
+  formats: Formats;
 
   constructor(options: Options) {
     this.reader = options.reader;
-  }
-
-  /** Assign a loader to some extensions */
-  set(extensions: string[], loader: Loader, engine: Engine) {
-    extensions.forEach((extension) =>
-      this.loaders.set(extension, [loader, engine])
-    );
+    this.formats = options.formats;
   }
 
   /** Load a directory of components */
@@ -76,21 +72,26 @@ export default class ComponentsLoader {
 
   /** Load a component file */
   async #loadComponent(path: string): Promise<Component | undefined> {
-    const result = this.loaders.search(path);
+    const result = this.formats.search(path);
 
     if (!result) {
       return;
     }
 
-    const [ext, [loader, engine]] = result;
-    const data = await this.reader.read(path, loader);
+    const [ext, { componentLoader, componentEngine }] = result;
+
+    if (!componentLoader || !componentEngine) {
+      return;
+    }
+
+    const data = await this.reader.read(path, componentLoader);
     const { content } = data;
 
     return {
       path,
       name: data.name ?? basename(path, ext),
       render(data) {
-        return engine.renderSync(content, data, path);
+        return componentEngine.renderSync(content, data, path);
       },
       css: data.css,
       js: data.js,

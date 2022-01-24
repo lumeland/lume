@@ -1,17 +1,17 @@
 import { assertStrictEquals as equals } from "../../deps/assert.ts";
-import Engines from "../../core/engines.ts";
-import Extensions from "../../core/extensions.ts";
-import { Data, Extension } from "../../core.ts";
+import Site from "../../core/site.ts";
+
+import type { Data } from "../../core.ts";
 
 Deno.test("Engines", async (t) => {
-  const globalData = {};
-  const extensions = new Extensions<Extension>();
-  const engines = new Engines({ globalData, extensions });
+  const site = new Site();
 
-  equals(extensions.entries.length, 0);
+  const { formats, engines } = site;
+
+  equals(formats.size, 0);
 
   await t.step("Add a template engine", () => {
-    engines.addEngine([".foo"], {
+    site.engine([".foo"], {
       render(content: string, data: Data): Promise<string> {
         return Promise.resolve(this.renderSync(content, data));
       },
@@ -22,7 +22,7 @@ Deno.test("Engines", async (t) => {
       deleteCache() {},
     });
 
-    equals(extensions.entries.length, 1);
+    equals(formats.size, 1);
   });
 
   await t.step("Run the template engine", async () => {
@@ -38,7 +38,7 @@ Deno.test("Engines", async (t) => {
   });
 
   await t.step("Add other template engine", () => {
-    engines.addEngine([".upper"], {
+    site.engine([".upper"], {
       render(content: string): Promise<string> {
         return Promise.resolve(this.renderSync(content));
       },
@@ -49,7 +49,7 @@ Deno.test("Engines", async (t) => {
       deleteCache() {},
     });
 
-    equals(engines.extensions.entries.length, 2);
+    equals(formats.size, 2);
   });
 
   await t.step("Run the other template engine", async () => {

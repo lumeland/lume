@@ -50,7 +50,7 @@ import type {
   HelperOptions,
 } from "./core/engines.ts";
 import type { ErrorData, Exception } from "./core/errors.ts";
-import type Extensions from "./core/extensions.ts";
+import type { default as Formats, Format, PageType } from "./core/formats.ts";
 import type {
   default as Server,
   Middleware,
@@ -62,14 +62,6 @@ type PluginSetup = ((options: unknown) => Plugin);
 
 /** A generic Lume plugin */
 type Plugin = (site: Site) => void;
-
-type ResourceType = "page" | "asset";
-
-interface Extension {
-  loader?: Loader;
-  type?: ResourceType;
-  engine?: Engine;
-}
 
 export type {
   Component,
@@ -90,8 +82,8 @@ export type {
   Events,
   EventType,
   Exception,
-  Extension,
-  Extensions,
+  Format,
+  Formats,
   Helper,
   HelperOptions,
   IncludesLoader,
@@ -99,6 +91,7 @@ export type {
   Logger,
   Middleware,
   Page,
+  PageType,
   Plugin,
   PluginSetup,
   Processor,
@@ -107,7 +100,6 @@ export type {
   Renderer,
   RequestHandler,
   ResourceLoader,
-  ResourceType,
   ScopeFilter,
   Scopes,
   ScriptOptions,

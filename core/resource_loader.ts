@@ -2,22 +2,14 @@ import { Page } from "./filesystem.ts";
 import { Exception } from "./errors.ts";
 import { basename, extname, join } from "../deps/path.ts";
 
-import type {
-  Data,
-  Dest,
-  Extension,
-  Extensions,
-  Reader,
-  ResourceType,
-  Src,
-} from "../core.ts";
+import type { Data, Dest, Formats, PageType, Reader, Src } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
   reader: Reader;
 
   /** The extensions instance used to save the loaders */
-  extensions: Extensions<Extension>;
+  formats: Formats;
 }
 
 /**
@@ -28,16 +20,11 @@ export default class ResourceLoader {
   reader: Reader;
 
   /** List of extensions to load page files and the loader used */
-  extensions: Extensions<Extension>;
+  formats: Formats;
 
   constructor(options: Options) {
     this.reader = options.reader;
-    this.extensions = options.extensions;
-  }
-
-  /** Assign a loader to some extensions */
-  set(extensions: string[], info: Extension) {
-    extensions.forEach((extension) => this.extensions.set(extension, info));
+    this.formats = options.formats;
   }
 
   /** Load an asset Page */
@@ -45,15 +32,15 @@ export default class ResourceLoader {
     path = join("/", path);
 
     // Search for the loader
-    const result = this.extensions.search(path);
+    const result = this.formats.search(path);
 
     if (!result) {
       return;
     }
 
-    const [ext, { loader, type }] = result;
+    const [ext, { pageLoader, pageType }] = result;
 
-    if (!loader || !type) {
+    if (!pageLoader || !pageType) {
       return;
     }
 
@@ -72,15 +59,15 @@ export default class ResourceLoader {
     });
 
     // Prepare the data
-    const data = await this.reader.read(path, loader);
-    this.prepare(page, data, type);
+    const data = await this.reader.read(path, pageLoader);
+    this.prepare(page, data, pageType);
     page.data = data;
 
     return page;
   }
 
   /** Prepare the data and the page */
-  prepare(page: Page, data: Data, type: ResourceType): void {
+  prepare(page: Page, data: Data, type: PageType): void {
     if (data.tags) {
       data.tags = Array.isArray(data.tags)
         ? data.tags.map((tag) => String(tag))

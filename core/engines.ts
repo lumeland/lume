@@ -1,13 +1,13 @@
 import { Exception } from "./errors.ts";
 
-import type { Data, Extension, Extensions } from "../core.ts";
+import type { Data, Formats } from "../core.ts";
 
 export interface Options {
   /** Extra data to be passed to the engines */
   globalData: Data;
 
-  /** The extensions instance used to save the loaders */
-  extensions: Extensions<Extension>;
+  /** The file formats */
+  formats: Formats;
 }
 
 /**
@@ -16,7 +16,7 @@ export interface Options {
  */
 export default class Engines {
   /** Template engines by extension */
-  extensions: Extensions<Extension>;
+  formats: Formats;
 
   /** Extra data to be passed to the engines */
   globalData: Data;
@@ -26,27 +26,13 @@ export default class Engines {
 
   constructor(options: Options) {
     this.globalData = options.globalData || {};
-    this.extensions = options.extensions;
+    this.formats = options.formats;
   }
 
   /** Delete a cached template */
   deleteCache(file: string): void {
-    for (const extension of this.extensions.values()) {
-      extension.engine?.deleteCache(file);
-    }
-  }
-
-  /** Register a new template engine */
-  addEngine(extensions: string[], engine: Engine) {
-    extensions.forEach((extension) => {
-      const data = this.extensions.get(extension) || {};
-
-      data.engine = engine;
-      this.extensions.set(extension, data);
-    });
-
-    for (const [name, helper] of this.helpers) {
-      engine.addHelper(name, ...helper);
+    for (const format of this.formats.formats()) {
+      format.engine?.deleteCache(file);
     }
   }
 
@@ -54,8 +40,8 @@ export default class Engines {
   addHelper(name: string, fn: Helper, options: HelperOptions) {
     this.helpers.set(name, [fn, options]);
 
-    for (const extension of this.extensions.values()) {
-      extension.engine?.addHelper(name, fn, options);
+    for (const format of this.formats.formats()) {
+      format.engine?.addHelper(name, fn, options);
     }
 
     return this;
@@ -105,10 +91,10 @@ export default class Engines {
         : templateEngine.split(",");
 
       return templateEngine.map((name) => {
-        const extension = this.extensions.get(`.${name.trim()}`);
+        const format = this.formats.get(`.${name.trim()}`);
 
-        if (extension?.engine) {
-          return extension.engine;
+        if (format?.engine) {
+          return format.engine;
         }
 
         throw new Exception(
@@ -118,7 +104,7 @@ export default class Engines {
       });
     }
 
-    const extension = this.extensions.search(path);
+    const extension = this.formats.search(path);
 
     if (extension && extension[1].engine) {
       return [extension[1].engine];

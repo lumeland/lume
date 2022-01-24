@@ -1,11 +1,13 @@
 import { basename, extname, join } from "../deps/path.ts";
-import Extensions from "./extensions.ts";
 
-import type { Data, Loader, Reader } from "../core.ts";
+import type { Data, Formats, Reader } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
   reader: Reader;
+
+  /** The registered file formats */
+  formats: Formats;
 }
 
 /**
@@ -15,16 +17,12 @@ export default class DataLoader {
   /** The filesystem reader */
   reader: Reader;
 
-  /** List of extensions to load page files and the loader used */
-  loaders = new Extensions<Loader>();
+  /** List of extensions to load data files and the loader used */
+  formats: Formats;
 
   constructor(options: Options) {
     this.reader = options.reader;
-  }
-
-  /** Assign a loader to some extensions */
-  set(extensions: string[], loader: Loader) {
-    extensions.forEach((extension) => this.loaders.set(extension, loader));
+    this.formats = options.formats;
   }
 
   async load(path: string): Promise<Data | undefined> {
@@ -43,15 +41,19 @@ export default class DataLoader {
 
   /** Load a _data.* file */
   async #loadFile(path: string): Promise<Data | undefined> {
-    const result = this.loaders.search(path);
+    const result = this.formats.search(path);
 
     if (!result) {
       return;
     }
 
-    const [, loader] = result;
+    const [, { dataLoader }] = result;
 
-    const data = await this.reader.read(path, loader);
+    if (!dataLoader) {
+      return;
+    }
+
+    const data = await this.reader.read(path, dataLoader);
 
     // Ensure the the tags is string[]
     if (data.tags) {

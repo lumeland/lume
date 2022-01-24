@@ -4,36 +4,26 @@ import {
   assertStrictEquals as equals,
 } from "../../deps/assert.ts";
 import { assertEqualsPaths, getPath } from "../utils.ts";
-import Reader from "../../core/reader.ts";
-import Extensions from "../../core/extensions.ts";
-import IncludesLoader from "../../core/includes_loader.ts";
-import ResourceLoader from "../../core/resource_loader.ts";
-import DataLoader from "../../core/data_loader.ts";
 import yamlLoader from "../../core/loaders/yaml.ts";
 import moduleLoader from "../../core/loaders/module.ts";
 import jsonLoader from "../../core/loaders/json.ts";
 import textLoader from "../../core/loaders/text.ts";
-
-import type { Extension } from "../../core.ts";
+import Site from "../../core/site.ts";
 
 Deno.test("Loaders", async (t) => {
-  const src = getPath("core/loaders_assets");
+  const site = new Site({
+    cwd: getPath("core/loaders_assets"),
+  });
 
-  const reader = new Reader({ src });
-  const extensions = new Extensions<Extension>();
-  const includesLoader = new IncludesLoader({ reader, includes: "/" });
-  const resourceLoader = new ResourceLoader({ reader, extensions });
-  const dataLoader = new DataLoader({ reader });
+  const { formats, dataLoader, includesLoader, resourceLoader } = site;
 
-  equals(extensions.entries.length, 0);
-  equals(includesLoader.paths.entries.length, 0);
-  equals(dataLoader.loaders.entries.length, 0);
-
-  dataLoader.set([".yml"], yamlLoader);
-  dataLoader.set([".ts"], moduleLoader);
-  dataLoader.set([".json"], jsonLoader);
-  dataLoader.set([".txt"], textLoader);
-  equals(dataLoader.loaders.entries.length, 4);
+  equals(formats.size, 0);
+  site.loadData([".yml"], yamlLoader);
+  site.loadData([".ts"], moduleLoader);
+  site.loadData([".json"], jsonLoader);
+  site.loadData([".txt"], textLoader);
+  site.includes([".yml", ".ts", ".json", ".txt"], "/");
+  equals(formats.size, 4);
 
   await t.step("Data loader", async () => {
     const yaml = await dataLoader.load("data.yml");
@@ -69,11 +59,11 @@ Deno.test("Loaders", async (t) => {
     });
   });
 
-  includesLoader.set([".yml"], yamlLoader);
-  includesLoader.set([".ts"], moduleLoader);
-  includesLoader.set([".json"], jsonLoader);
-  includesLoader.set([".txt"], textLoader);
-  equals(includesLoader.loaders.entries.length, 4);
+  formats.set(".yml", { includesLoader: yamlLoader });
+  formats.set(".ts", { includesLoader: moduleLoader });
+  formats.set(".json", { includesLoader: jsonLoader });
+  formats.set(".txt", { includesLoader: textLoader });
+  equals(formats.size, 4);
 
   await t.step("Includes loader", async () => {
     const yaml = await includesLoader.load("data.yml");
@@ -98,11 +88,11 @@ Deno.test("Loaders", async (t) => {
     equals(text[1].title, "Title in the front matter");
   });
 
-  resourceLoader.set([".yml"], { loader: yamlLoader, type: "page" });
-  resourceLoader.set([".ts"], { loader: moduleLoader, type: "page" });
-  resourceLoader.set([".json"], { loader: jsonLoader, type: "page" });
-  resourceLoader.set([".txt"], { loader: textLoader, type: "page" });
-  equals(extensions.entries.length, 4);
+  site.loadPages([".yml"], yamlLoader);
+  site.loadPages([".ts"], moduleLoader);
+  site.loadPages([".json"], jsonLoader);
+  site.loadPages([".txt"], textLoader);
+  equals(formats.size, 4);
 
   await t.step("Page loader", async () => {
     const yaml = await resourceLoader.load("data.yml");

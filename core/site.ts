@@ -15,7 +15,7 @@ import Scopes from "./scopes.ts";
 import Processors from "./processors.ts";
 import Renderer from "./renderer.ts";
 import Events from "./events.ts";
-import Extensions from "./extensions.ts";
+import Formats from "./formats.ts";
 import Logger from "./logger.ts";
 import Scripts from "./scripts.ts";
 import Writer from "./writer.ts";
@@ -28,7 +28,6 @@ import type {
   EventListener,
   EventOptions,
   EventType,
-  Extension,
   Helper,
   HelperOptions,
   Loader,
@@ -78,8 +77,8 @@ export default class Site {
   /** To read the files from the filesystem */
   reader: Reader;
 
-  /** Info about how to load and handle different extensions */
-  extensions: Extensions<Extension>;
+  /** Info about how to handle different file formats */
+  formats: Formats;
 
   /** To load all resources (HTML pages and assets) */
   resourceLoader: ResourceLoader;
@@ -146,13 +145,13 @@ export default class Site {
 
     // To load source files
     const reader = new Reader({ src });
-    const extensions = new Extensions<Extension>();
+    const formats = new Formats();
 
-    const resourceLoader = new ResourceLoader({ reader, extensions });
-    const componentLoader = new ComponentLoader({ reader });
+    const resourceLoader = new ResourceLoader({ reader, formats });
+    const dataLoader = new DataLoader({ reader, formats });
+    const includesLoader = new IncludesLoader({ reader, includes, formats });
+    const componentLoader = new ComponentLoader({ reader, formats });
     const components = new Components({ globalData, cssFile, jsFile });
-    const dataLoader = new DataLoader({ reader });
-    const includesLoader = new IncludesLoader({ reader, includes });
     const source = new Source({
       reader,
       resourceLoader,
@@ -161,7 +160,7 @@ export default class Site {
     const staticFiles = new StaticFiles();
 
     // To render pages
-    const engines = new Engines({ globalData, extensions });
+    const engines = new Engines({ globalData, formats });
     const scopes = new Scopes();
     const processors = new Processors();
     const preprocessors = new Processors();
@@ -180,7 +179,7 @@ export default class Site {
 
     // Save everything in the site instance
     this.reader = reader;
-    this.extensions = extensions;
+    this.formats = formats;
     this.resourceLoader = resourceLoader;
     this.componentLoader = componentLoader;
     this.components = components;
@@ -268,22 +267,9 @@ export default class Site {
 
   /** Register a data loader for some extensions */
   loadData(extensions: string[], loader: Loader) {
-    this.dataLoader.set(extensions, loader);
-    return this;
-  }
-
-  /** Register a loader for some extensions */
-  loadResources(extensions: string[], resource: Extension, engine?: Engine) {
-    this.resourceLoader.set(extensions, resource);
-
-    if (resource.loader) {
-      this.includesLoader.set(extensions, resource.loader);
-    }
-
-    if (engine) {
-      this.engines.addEngine(extensions, engine);
-    }
-
+    extensions.forEach((extension) => {
+      this.formats.set(extension, { dataLoader: loader });
+    });
     return this;
   }
 
@@ -293,20 +279,31 @@ export default class Site {
     loader: Loader = textLoader,
     engine?: Engine,
   ) {
-    const extension: Extension = {
-      loader,
-      type: "page",
-    };
-    return this.loadResources(extensions, extension, engine);
+    extensions.forEach((extension) => {
+      this.formats.set(extension, {
+        pageLoader: loader,
+        includesLoader: loader,
+        pageType: "page",
+      });
+    });
+
+    if (engine) {
+      this.engine(extensions, engine);
+    }
+
+    return this;
   }
 
   /** Register an assets loader for some extensions */
   loadAssets(extensions: string[], loader: Loader = textLoader) {
-    const extension: Extension = {
-      loader,
-      type: "asset",
-    };
-    return this.resourceLoader.set(extensions, extension);
+    extensions.forEach((extension) => {
+      this.formats.set(extension, {
+        pageLoader: loader,
+        pageType: "asset",
+      });
+    });
+
+    return this;
   }
 
   /** Register a component loader for some extensions */
@@ -315,14 +312,38 @@ export default class Site {
     loader: Loader = textLoader,
     engine: Engine,
   ) {
-    this.componentLoader.set(extensions, loader, engine);
+    extensions.forEach((extension) => {
+      this.formats.set(extension, {
+        componentLoader: loader,
+        componentEngine: engine,
+      });
+    });
+
     return this;
   }
 
   /** Register an import path for some extensions  */
   includes(extensions: string[], path: string) {
-    this.includesLoader.setPath(extensions, path);
+    extensions.forEach((extension) => {
+      this.formats.set(extension, {
+        includesPath: path,
+      });
+    });
+
     this.ignore(path); // Ignore any includes folder
+    return this;
+  }
+
+  /** Register a engine for some extensions  */
+  engine(extensions: string[], engine: Engine) {
+    extensions.forEach((extension) => {
+      this.formats.set(extension, { engine });
+    });
+
+    for (const [name, helper] of this.engines.helpers) {
+      engine.addHelper(name, ...helper);
+    }
+
     return this;
   }
 
