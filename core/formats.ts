@@ -15,7 +15,7 @@ export interface Format {
   componentEngine?: Engine;
 }
 
-/** Generic class to store and retrieve items related with extensions */
+/** Class to store loaders, engines and other stuff related with different formats */
 export default class Formats {
   entries = new Map<string, Format>();
 

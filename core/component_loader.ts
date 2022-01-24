@@ -1,6 +1,6 @@
 import { basename, join } from "../deps/path.ts";
 
-import type { Engine, Formats, Loader, Reader } from "../core.ts";
+import type { Formats, Reader } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
