@@ -29,13 +29,6 @@ export default class Engines {
     this.formats = options.formats;
   }
 
-  /** Delete a cached template */
-  deleteCache(file: string): void {
-    for (const format of this.formats.formats()) {
-      format.engine?.deleteCache(file);
-    }
-  }
-
   /** Register a new helper used by the template engines */
   addHelper(name: string, fn: Helper, options: HelperOptions) {
     this.helpers.set(name, [fn, options]);

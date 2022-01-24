@@ -441,7 +441,7 @@ export default class Site {
     for (const file of files) {
       // Delete the file from the cache
       this.reader.deleteCache(file);
-      this.engines.deleteCache(file);
+      this.formats.deleteCache(file);
 
       // It's a static file
       const entry = this.staticFiles.search(file);

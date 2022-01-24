@@ -76,6 +76,14 @@ export default class Formats {
     }
   }
 
+  /** Delete a cached template */
+  deleteCache(file: string): void {
+    for (const format of this.formats()) {
+      format.engine?.deleteCache(file);
+      format.componentEngine?.deleteCache(file);
+    }
+  }
+
   /** Return a iterator for the formats */
   formats() {
     return this.entries.values();
