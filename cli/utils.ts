@@ -55,6 +55,7 @@ export const pluginNames = [
   "bundler",
   "code_highlight",
   "date",
+  "esbuild",
   "eta",
   "inline",
   "jsx",

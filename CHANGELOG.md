@@ -7,8 +7,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.4.4] - Unreleased
+## [1.5.0] - Unreleased
 ### Added
+- New plugin `esbuild`.
 - New upgrade notification if it's detected an old version of Lume.
 - New architecture for the local server, with support for middlewares.
 - New command `lume import-map` to create/update import maps files [#164].
