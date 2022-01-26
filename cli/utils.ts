@@ -62,6 +62,7 @@ export const pluginNames = [
   "liquid",
   "modify_urls",
   "on_demand",
+  "parcel_css",
   "postcss",
   "pug",
   "relative_urls",
