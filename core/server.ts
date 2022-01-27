@@ -1,6 +1,5 @@
-import { brightGreen, red } from "../deps/colors.ts";
+import { brightGreen } from "../deps/colors.ts";
 import { join, SEP } from "../deps/path.ts";
-import localIp from "../deps/local_ip.ts";
 
 /** The options to configure the local server */
 export interface Options {
@@ -37,27 +36,32 @@ export default class Server {
     const { port } = this.options;
     const server = Deno.listen({ port });
 
-    await this.init();
+    this.init();
 
     for await (const conn of server) {
       this.handleConnection(conn);
     }
   }
 
-  async init() {
-    const ipAddr = await localIp();
+  #localIp(): string | undefined {
+    for (const info of Deno.networkInterfaces()) {
+      if (info.family !== "IPv4" || info.address.startsWith("127.")) {
+        continue;
+      }
+
+      return info.address;
+    }
+  }
+
+  init() {
+    const ipAddr = this.#localIp();
     const { port } = this.options;
 
     console.log();
     console.log("  Server started at:");
     console.log(brightGreen(`  http://localhost:${port}/`), "(local)");
 
-    if (!ipAddr) {
-      console.log(red("Warning") + " Unable to detect your local IP address");
-      console.log(
-        "If you're on an Ubuntu machine, try installing net-tools with 'apt install net-tools'",
-      );
-    } else {
+    if (ipAddr) {
       console.log(brightGreen(`  http://${ipAddr}:${port}/`), "(network)");
     }
 

@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New command `lume import-map` to create/update import maps files [#164].
 
 ### Changed
+- Upgrade the minimum Deno version supported to `1.18.1`.
 - Moved some functions to `core/utils.ts`.
 
 ### Removed
