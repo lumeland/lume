@@ -42,24 +42,26 @@ Deno.test("ignored files configuration", () => {
   const site = lume();
   const { ignored } = site.source;
 
-  equals(ignored.size, 4);
+  equals(ignored.size, 6);
   equals(ignored.has(platformPath("/node_modules")), true);
   equals(ignored.has(platformPath("/_site")), true);
   equals(ignored.has(platformPath("/_components")), true);
   equals(ignored.has(platformPath("/_includes")), true);
+  equals(ignored.has(platformPath("/import_map.json")), true);
+  equals(ignored.has(platformPath("/deno.json")), true);
 
   site.ignore("README.md");
-  equals(ignored.size, 5);
+  equals(ignored.size, 7);
   equals(ignored.has(platformPath("/README.md")), true);
 
   site.ignore("file2", "file3", "README.md");
-  equals(ignored.size, 7);
+  equals(ignored.size, 9);
   equals(ignored.has(platformPath("/file2")), true);
   equals(ignored.has(platformPath("/file3")), true);
 
   site.copy("img");
   site.copy("statics", ".");
-  equals(ignored.size, 9);
+  equals(ignored.size, 11);
   equals(ignored.has(platformPath("/img")), true);
   equals(ignored.has(platformPath("/statics")), true);
 });
