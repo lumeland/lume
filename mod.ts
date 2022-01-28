@@ -49,6 +49,8 @@ export default function (
 
   return site
     .ignore("node_modules")
+    .ignore("import_map.json")
+    .ignore("deno.json")
     .use(url(pluginOptions.url))
     .use(json(pluginOptions.json))
     .use(markdown(pluginOptions.markdown))

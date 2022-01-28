@@ -41,7 +41,11 @@ export class JsxEngine implements Engine {
         : content) as React.ReactElement;
 
     data.children = element;
-    element.toString = () => ReactDOMServer.renderToStaticMarkup(element);
+
+    if (element) {
+      element.toString = () => ReactDOMServer.renderToStaticMarkup(element);
+    }
+
     return element;
   }
 
@@ -50,7 +54,10 @@ export class JsxEngine implements Engine {
       ? content(data, this.helpers)
       : content;
 
-    element.toString = () => ReactDOMServer.renderToStaticMarkup(element);
+    if (element) {
+      element.toString = () => ReactDOMServer.renderToStaticMarkup(element);
+    }
+
     return element;
   }
 
