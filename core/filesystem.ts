@@ -35,6 +35,11 @@ abstract class Base {
     Object.defineProperty(this, "data", data);
   }
 
+  /** Returns the front matter for pages _data for directories */
+  get baseData(): Data | undefined {
+    return this.#data;
+  }
+
   /**
    * Merge the data of parent directories recursively
    * and return the merged data
@@ -66,15 +71,6 @@ abstract class Base {
   set data(data: Data) {
     this.#cache = undefined;
     this.#data = data;
-  }
-
-  /** Merge more data with the existing */
-  addData(data: Data) {
-    const oldTags = this.#data?.tags || [];
-    const newTags = data.tags || [];
-    const merged = { ...this.#data, ...data };
-    merged.tags = [...oldTags, ...newTags];
-    this.data = merged;
   }
 
   /** Clean the cache of the merged data */
@@ -171,6 +167,15 @@ export class Page extends Base {
 export class Directory extends Base {
   pages = new Map<string, Page>();
   dirs = new Map<string, Directory>();
+
+  /** Merge more data with the existing */
+  addData(data: Data) {
+    const oldTags = this.baseData?.tags || [];
+    const newTags = data.tags || [];
+    const merged = { ...this.baseData, ...data };
+    merged.tags = [...oldTags, ...newTags];
+    this.data = merged;
+  }
 
   /** Create a subdirectory and return it */
   createDirectory(name: string): Directory {
