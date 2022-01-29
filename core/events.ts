@@ -1,22 +1,20 @@
-import type { Page } from "../core.ts";
-
-type Listener = [EventListener, EventOptions | undefined];
+type Listener<E extends Event> = [EventListener<E>, EventOptions | undefined];
 
 /**
  * Class to manage the event listeners
  * and dispatch events
  */
-export default class Events {
-  listeners = new Map<EventType, Set<Listener>>();
+export default class Events<E extends Event> {
+  listeners = new Map<string, Set<Listener<E>>>();
 
   /** Assign a listener to an event */
   addEventListener(
-    type: EventType,
-    listenerFn: EventListener,
+    type: string,
+    listenerFn: EventListener<E>,
     options?: EventOptions,
   ) {
     const listeners = this.listeners.get(type) || new Set();
-    const listener: Listener = [listenerFn, options];
+    const listener: Listener<E> = [listenerFn, options];
 
     listeners.add(listener);
     this.listeners.set(type, listeners);
@@ -32,7 +30,7 @@ export default class Events {
   }
 
   /** Dispatch an event */
-  async dispatchEvent(event: Event) {
+  async dispatchEvent(event: E) {
     const { type } = event;
     const listeners = this.listeners.get(type);
 
@@ -60,39 +58,11 @@ export default class Events {
 /** An event object */
 export interface Event {
   /** The event type */
-  type: EventType;
-
-  /**
-   * Available only in "beforeUpdate" and "afterUpdate"
-   * contains the files that were changed
-   */
-  files?: Set<string>;
-
-  /**
-   * Available only in "beforeRenderOnDemand"
-   * contains the page that will be rendered
-   */
-  page?: Page;
-
-  /**
-   * Available only in "afterBuild" and "afterUpdate"
-   * contains the list of pages that have been saved
-   */
-  pages?: Page[];
+  type: string;
 }
 
-/** The available event types */
-export type EventType =
-  | "beforeBuild"
-  | "afterBuild"
-  | "beforeUpdate"
-  | "afterUpdate"
-  | "afterRender"
-  | "beforeRenderOnDemand"
-  | "beforeSave";
-
 /** Event listener */
-export type EventListener = (event: Event) => unknown;
+export type EventListener<E extends Event> = (event: E) => unknown;
 
 /** The available options for events */
 export interface EventOptions {

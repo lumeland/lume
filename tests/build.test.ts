@@ -4,7 +4,7 @@ import {
   assertStringIncludes as contains,
 } from "../deps/assert.ts";
 import { assertEqualsPaths, getSite, platformPath } from "./utils.ts";
-import { Event } from "../core.ts";
+import { SiteEvent } from "../core.ts";
 
 Deno.test("build a simple site", async () => {
   const site = getSite({
@@ -40,8 +40,8 @@ Deno.test("build/update events", async () => {
 
   const events: string[] = [];
 
-  const listener = (event: Event) => events.push(event.type);
-  const updateListener = (event: Event) => {
+  const listener = (event: SiteEvent) => events.push(event.type);
+  const updateListener = (event: SiteEvent) => {
     equals(event.files!.size, 1);
     equals(event.files!.has(platformPath("/page1.md")), true);
     listener(event);

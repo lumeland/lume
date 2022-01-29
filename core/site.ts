@@ -27,7 +27,6 @@ import type {
   Event,
   EventListener,
   EventOptions,
-  EventType,
   Helper,
   HelperOptions,
   Loader,
@@ -117,7 +116,7 @@ export default class Site {
   renderer: Renderer;
 
   /** To listen and dispatch events */
-  events: Events;
+  events: Events<SiteEvent>;
 
   /** To output messages to the console */
   logger: Logger;
@@ -172,7 +171,7 @@ export default class Site {
     });
 
     // Other stuff
-    const events = new Events();
+    const events = new Events<SiteEvent>();
     const logger = new Logger({ quiet });
     const scripts = new Scripts({ logger, options: { cwd } });
     const writer = new Writer({ src, dest, logger });
@@ -228,8 +227,8 @@ export default class Site {
 
   /** Add a listener to an event */
   addEventListener(
-    type: EventType,
-    listener: EventListener | string,
+    type: SiteEventType,
+    listener: EventListener<SiteEvent> | string,
     options?: EventOptions,
   ) {
     const fn = typeof listener === "string"
@@ -241,7 +240,7 @@ export default class Site {
   }
 
   /** Dispatch an event */
-  dispatchEvent(event: Event) {
+  dispatchEvent(event: SiteEvent) {
     return this.events.dispatchEvent(event);
   }
 
@@ -650,3 +649,37 @@ export interface ComponentsOptions {
   /** The name of the file to save the components javascript code */
   jsFile: string;
 }
+
+/** Custom events for site build */
+export interface SiteEvent extends Event {
+  /** The event type */
+  type: SiteEventType;
+
+  /**
+   * Available only in "beforeUpdate" and "afterUpdate"
+   * contains the files that were changed
+   */
+  files?: Set<string>;
+
+  /**
+   * Available only in "beforeRenderOnDemand"
+   * contains the page that will be rendered
+   */
+  page?: Page;
+
+  /**
+   * Available only in "afterBuild" and "afterUpdate"
+   * contains the list of pages that have been saved
+   */
+  pages?: Page[];
+}
+
+/** The available event types */
+export type SiteEventType =
+  | "beforeBuild"
+  | "afterBuild"
+  | "beforeUpdate"
+  | "afterUpdate"
+  | "afterRender"
+  | "beforeRenderOnDemand"
+  | "beforeSave";

@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Upgrade the minimum Deno version supported to `1.18.1`.
 - Moved some functions to `core/utils.ts`.
 - Ignored the files `deno.json` and `import_map.json` by default.
+- Renamed `Event` interface to `SiteEvent`.
 
 ### Removed
 - Experimental watcher.

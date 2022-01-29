@@ -2,6 +2,8 @@ import type {
   ComponentsOptions,
   default as Site,
   ServerOptions,
+  SiteEvent,
+  SiteEventType,
   SiteOptions,
   WatcherOptions,
 } from "./core/site.ts";
@@ -11,7 +13,6 @@ import type {
   Event,
   EventListener,
   EventOptions,
-  EventType,
 } from "./core/events.ts";
 
 import type {
@@ -80,7 +81,6 @@ export type {
   EventListener,
   EventOptions,
   Events,
-  EventType,
   Exception,
   Format,
   Formats,
@@ -108,6 +108,8 @@ export type {
   Server,
   ServerOptions,
   Site,
+  SiteEvent,
+  SiteEventType,
   SiteOptions,
   Source,
   Src,

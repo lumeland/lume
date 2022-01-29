@@ -54,8 +54,31 @@ export default async function build(
 
   // Start the local server
   const { port, open, page404, middlewares } = site.options.server;
+  const server = new Server({ root: site.dest(), port });
 
-  const server = new Server({ root: site.dest(), port, open });
+  server.addEventListener("start", () => {
+    const ipAddr = localIp();
+
+    console.log();
+    console.log("  Server started at:");
+    console.log(brightGreen(`  http://localhost:${port}/`), "(local)");
+
+    if (ipAddr) {
+      console.log(brightGreen(`  http://${ipAddr}:${port}/`), "(network)");
+    }
+
+    console.log();
+
+    if (open) {
+      const commands = {
+        darwin: "open",
+        linux: "xdg-open",
+        windows: "explorer",
+      };
+
+      Deno.run({ cmd: [commands[Deno.build.os], `http://localhost:${port}/`] });
+    }
+  });
 
   server.use(
     logger(),
@@ -74,4 +97,14 @@ export default async function build(
   }
 
   await server.start();
+}
+
+function localIp(): string | undefined {
+  for (const info of Deno.networkInterfaces()) {
+    if (info.family !== "IPv4" || info.address.startsWith("127.")) {
+      continue;
+    }
+
+    return info.address;
+  }
 }

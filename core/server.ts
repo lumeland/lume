@@ -1,5 +1,7 @@
-import { brightGreen } from "../deps/colors.ts";
 import { join, SEP } from "../deps/path.ts";
+import Events from "./events.ts";
+
+import type { Event, EventListener, EventOptions } from "../core.ts";
 
 /** The options to configure the local server */
 export interface Options {
@@ -8,9 +10,6 @@ export interface Options {
 
   /** The port to listen on */
   port: number;
-
-  /** To open the server in a browser */
-  open?: boolean;
 }
 
 export type RequestHandler = (req: Request) => Promise<Response>;
@@ -19,7 +18,25 @@ export type Middleware = (
   next: RequestHandler,
 ) => Promise<Response>;
 
+/** Custom events for server */
+export interface ServerEvent extends Event {
+  /** The event type */
+  type: ServerEventType;
+
+  /** The request object */
+  request?: Request;
+
+  /** The error object (only for "error" events) */
+  error?: Error;
+}
+
+/** The available event types */
+export type ServerEventType =
+  | "start"
+  | "error";
+
 export default class Server {
+  events: Events<ServerEvent> = new Events<ServerEvent>();
   options: Options;
   middlewares: Middleware[] = [];
 
@@ -27,57 +44,40 @@ export default class Server {
     this.options = options;
   }
 
+  /** Register one or more middlewares */
   use(...middleware: Middleware[]) {
     this.middlewares.push(...middleware);
     return this;
   }
 
+  /** Add a listener to an event */
+  addEventListener(
+    type: ServerEventType,
+    listener: EventListener<ServerEvent>,
+    options?: EventOptions,
+  ) {
+    this.events.addEventListener(type, listener, options);
+    return this;
+  }
+
+  /** Dispatch an event */
+  dispatchEvent(event: ServerEvent) {
+    return this.events.dispatchEvent(event);
+  }
+
+  /** Start the server */
   async start() {
     const { port } = this.options;
     const server = Deno.listen({ port });
 
-    this.init();
+    this.dispatchEvent({ type: "start" });
 
     for await (const conn of server) {
       this.handleConnection(conn);
     }
   }
 
-  #localIp(): string | undefined {
-    for (const info of Deno.networkInterfaces()) {
-      if (info.family !== "IPv4" || info.address.startsWith("127.")) {
-        continue;
-      }
-
-      return info.address;
-    }
-  }
-
-  init() {
-    const ipAddr = this.#localIp();
-    const { port } = this.options;
-
-    console.log();
-    console.log("  Server started at:");
-    console.log(brightGreen(`  http://localhost:${port}/`), "(local)");
-
-    if (ipAddr) {
-      console.log(brightGreen(`  http://${ipAddr}:${port}/`), "(network)");
-    }
-
-    console.log();
-
-    if (this.options.open) {
-      const commands = {
-        darwin: "open",
-        linux: "xdg-open",
-        windows: "explorer",
-      };
-
-      Deno.run({ cmd: [commands[Deno.build.os], `http://localhost:${port}/`] });
-    }
-  }
-
+  /** Handle a http connection */
   async handleConnection(conn: Deno.Conn) {
     const httpConn = Deno.serveHttp(conn);
 
@@ -86,6 +86,7 @@ export default class Server {
     }
   }
 
+  /** Handle a http request event */
   async handle(event: Deno.RequestEvent) {
     const { request } = event;
     const middlewares = [...this.middlewares];
@@ -105,11 +106,12 @@ export default class Server {
     try {
       const response = await next(request);
       await event.respondWith(response);
-    } catch {
-      // Ignore
+    } catch (error) {
+      this.dispatchEvent({ type: "error", request, error });
     }
   }
 
+  /** Server a static file */
   async serveFile(request: Request): Promise<Response> {
     const url = new URL(request.url);
     const pathname = decodeURIComponent(url.pathname);
