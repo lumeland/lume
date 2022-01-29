@@ -1,8 +1,8 @@
 import lume from "../mod.ts";
 import { exists } from "../deps/fs.ts";
-import { join, relative, resolve, toFileUrl } from "../deps/path.ts";
+import { join, resolve, toFileUrl } from "../deps/path.ts";
 import { dim } from "../deps/colors.ts";
-import { Exception, printError } from "../core/errors.ts";
+import { Exception } from "../core/errors.ts";
 
 import type { Site } from "../core.ts";
 
@@ -71,62 +71,3 @@ export const pluginNames = [
   "svgo",
   "terser",
 ];
-
-export interface WatchOptions {
-  /** The folder root to watch */
-  root: string;
-  /** Paths ignored by the watcher */
-  ignore?: string[];
-  /** The debounce waiting time */
-  debounce?: number;
-  /** The callback function. Return false to close the watcher */
-  fn: (files: Set<string>) => void | false | Promise<void | false>;
-}
-
-/** Watch file changes in a directory */
-export async function runWatch({ root, ignore, fn, debounce }: WatchOptions) {
-  const watcher = Deno.watchFs(root);
-  const changes = new Set<string>();
-  let timer = 0;
-  let runningCallback = false;
-
-  const callback = async () => {
-    if (!changes.size || runningCallback) {
-      return;
-    }
-
-    const files = new Set(changes);
-    changes.clear();
-
-    runningCallback = true;
-    try {
-      if (false === await fn(files)) {
-        return watcher.close();
-      }
-    } catch (error) {
-      printError(error);
-    }
-    runningCallback = false;
-  };
-
-  for await (const event of watcher) {
-    let { paths } = event;
-
-    // Filter the ignored paths
-    if (ignore) {
-      paths = paths.filter((path) =>
-        !ignore.some((ignore) => path.startsWith(join(root, ignore, "/")))
-      );
-    }
-
-    if (!paths.length) {
-      continue;
-    }
-
-    paths.forEach((path) => changes.add(join("/", relative(root, path))));
-
-    // Debounce
-    clearTimeout(timer);
-    timer = setTimeout(callback, debounce ?? 100);
-  }
-}

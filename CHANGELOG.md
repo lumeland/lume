@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `parcel_css`.
 - New upgrade notification if it's detected an old version of Lume.
 - New architecture for the local server, with support for middlewares and events.
+- Moved the watcher code to a new class `Watcher` in the core, with support for events.
 - New command `lume import-map` to create/update import maps files [#164].
 
 ### Changed

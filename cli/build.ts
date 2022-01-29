@@ -1,6 +1,8 @@
-import { createSite, runWatch } from "./utils.ts";
+import { createSite } from "./utils.ts";
 import { brightGreen, dim } from "../deps/colors.ts";
 import Server from "../core/server.ts";
+import Watcher from "../core/watcher.ts";
+import { printError } from "../core/errors.ts";
 import contentType from "../middlewares/content_type.ts";
 import logger from "../middlewares/logger.ts";
 import noCache from "../middlewares/no_cache.ts";
@@ -39,18 +41,31 @@ export default async function build(
   }
 
   // Start the watcher
-  runWatch({
+  const watcher = new Watcher({
     root: site.src(),
     ignore: site.options.watcher.ignore,
     debounce: site.options.watcher.debounce,
-    fn: (files) => {
-      console.log();
-      console.log("Changes detected:");
-      files.forEach((file) => console.log("-", dim(file)));
-      console.log();
-      return site.update(files);
-    },
   });
+
+  watcher.addEventListener("change", (event) => {
+    const files = event.files!;
+
+    console.log();
+    console.log("Changes detected:");
+    files.forEach((file) => console.log("-", dim(file)));
+    console.log();
+    return site.update(files);
+  });
+
+  watcher.addEventListener("error", (event) => {
+    printError(event.error!);
+  });
+
+  watcher.start();
+
+  if (!serve) {
+    return;
+  }
 
   // Start the local server
   const { port, open, page404, middlewares } = site.options.server;

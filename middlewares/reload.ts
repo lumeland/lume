@@ -1,4 +1,4 @@
-import { runWatch } from "../cli/utils.ts";
+import Watcher from "../core/watcher.ts";
 import { mimes, normalizePath } from "../core/utils.ts";
 
 import type { Middleware } from "../core.ts";
@@ -16,19 +16,24 @@ export default function reload(options: Options): Middleware {
   // Live reload server
   const sockets = new Set<WebSocket>();
 
-  runWatch({
+  // Create the watcher
+  const watcher = new Watcher({
     root: options.root,
-    fn: (files: Set<string>) => {
-      if (!sockets.size) {
-        return;
-      }
-
-      const urls = Array.from(files).map((file) => normalizePath(file));
-      const message = JSON.stringify(urls);
-      sockets.forEach((socket) => socket.send(message));
-      console.log("Changes sent to the browser");
-    },
   });
+
+  watcher.addEventListener("change", (event) => {
+    if (!sockets.size) {
+      return;
+    }
+
+    const files = event.files!;
+    const urls = Array.from(files).map((file) => normalizePath(file));
+    const message = JSON.stringify(urls);
+    sockets.forEach((socket) => socket.send(message));
+    console.log("Changes sent to the browser");
+  });
+
+  watcher.start();
 
   return async (request, next) => {
     // Is a websocket

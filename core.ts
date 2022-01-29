@@ -56,7 +56,14 @@ import type {
   default as Server,
   Middleware,
   RequestHandler,
+  ServerEvent,
+  ServerEventType,
 } from "./core/server.ts";
+import type {
+  default as Watcher,
+  WatchEvent,
+  WatchEventType,
+} from "./core/watcher.ts";
 
 /** The method that installs a plugin */
 type PluginSetup = ((options: unknown) => Plugin);
@@ -106,6 +113,8 @@ export type {
   ScriptOrFunction,
   Scripts,
   Server,
+  ServerEvent,
+  ServerEventType,
   ServerOptions,
   Site,
   SiteEvent,
@@ -113,6 +122,9 @@ export type {
   SiteOptions,
   Source,
   Src,
+  Watcher,
   WatcherOptions,
+  WatchEvent,
+  WatchEventType,
   Writer,
 };
