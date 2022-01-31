@@ -7,11 +7,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.5.0] - Unreleased
+## [1.5.0] - 2022-01-31
 ### Added
 - New plugin `esbuild`.
 - New plugin `parcel_css`.
-- New upgrade notification if it's detected an old version of Lume.
+- New notification when an old version of Lume is detected.
 - New architecture for the local server, with support for middlewares and events.
 - Moved the watcher code to a new class `Watcher` in the core, with support for events.
 - New command `lume import-map` to create/update import maps files [#164].
@@ -1349,7 +1349,7 @@ The first version.
 [#163]: https://github.com/lumeland/lume/issues/163
 [#164]: https://github.com/lumeland/lume/issues/164
 
-[1.4.4]: https://github.com/lumeland/lume/compare/v1.4.3...HEAD
+[1.5.0]: https://github.com/lumeland/lume/compare/v1.4.3...v1.5.0
 [1.4.3]: https://github.com/lumeland/lume/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/lumeland/lume/compare/v1.4.1...v1.4.2
 [1.4.1]: https://github.com/lumeland/lume/compare/v1.4.0...v1.4.1
