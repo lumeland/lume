@@ -19,6 +19,23 @@ Deno.test("Search by Equal", () => {
   );
 });
 
+Deno.test("Search by Equal undefined", () => {
+  const filter = buildFilter("foo=undefined");
+
+  equals(
+    "(page) => page.dest?.ext === value0 && page.data?.foo === value1",
+    filter.toString(),
+  );
+});
+Deno.test("Search by Equal null", () => {
+  const filter = buildFilter("foo=null");
+
+  equals(
+    "(page) => page.dest?.ext === value0 && page.data?.foo === value1",
+    filter.toString(),
+  );
+});
+
 Deno.test("Search by Upper than", () => {
   const filter = buildFilter("foo>bar");
 

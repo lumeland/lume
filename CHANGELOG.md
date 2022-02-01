@@ -7,6 +7,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.5.1] - 2022-02-01
+### Added
+- The `search` helper converts `undefined` and `null` values.
+  Previously, only `true` and `false` values were converted.
+
+### Fixed
+- Revert a change in `1.5.0` that makes that some pages doesn't have the `url` value.
+
 ## [1.5.0] - 2022-01-31
 ### Added
 - New plugin `esbuild`.
@@ -1349,6 +1357,7 @@ The first version.
 [#163]: https://github.com/lumeland/lume/issues/163
 [#164]: https://github.com/lumeland/lume/issues/164
 
+[1.5.1]: https://github.com/lumeland/lume/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/lumeland/lume/compare/v1.4.3...v1.5.0
 [1.4.3]: https://github.com/lumeland/lume/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/lumeland/lume/compare/v1.4.1...v1.4.2

@@ -265,6 +265,12 @@ function compileValue(value: string): unknown {
   if (value.toLowerCase() === "false") {
     return false;
   }
+  if (value.toLowerCase() === "undefined") {
+    return undefined;
+  }
+  if (value.toLowerCase() === "null") {
+    return null;
+  }
   if (typeof value === "number" && isFinite(value)) {
     return Number(value);
   }
