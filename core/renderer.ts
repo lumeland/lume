@@ -1,3 +1,4 @@
+import { dirname, extname, posix } from "../deps/path.ts";
 import { concurrent } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
@@ -53,6 +54,7 @@ export default class Renderer {
           continue;
         }
 
+        this.#urlPage(page);
         to.push(page);
 
         if (!page.data.ondemand) {
@@ -73,7 +75,7 @@ export default class Renderer {
             data.content = null;
           }
           const newPage = page.duplicate(data);
-
+          this.#urlPage(newPage);
           pages.push(newPage);
           to.push(newPage);
         }
@@ -104,8 +106,52 @@ export default class Renderer {
       });
     }
 
+    this.#urlPage(page);
+
     await this.preprocessors.run([page]);
     page.content = await this.#renderPage(page) as string;
+  }
+
+  /** Generate the URL and dest info of a page */
+  #urlPage(page: Page) {
+    const { dest } = page;
+    let url = page.data.url;
+
+    if (typeof url === "function") {
+      url = url(page);
+    }
+
+    if (typeof url === "string") {
+      // Relative URL
+      if (url.startsWith("./") || url.startsWith("../")) {
+        url = posix.join(dirname(page.dest.path), url);
+      } else if (!url.startsWith("/")) {
+        throw new Exception(
+          `The url variable must start with "/", "./" or "../"`,
+          { page, url },
+        );
+      }
+
+      if (url.endsWith("/")) {
+        dest.path = `${url}index`;
+        dest.ext = ".html";
+      } else {
+        dest.ext = extname(url);
+        dest.path = dest.ext ? url.slice(0, -dest.ext.length) : url;
+      }
+    } else if (!dest.ext) {
+      if (
+        this.prettyUrls && posix.basename(dest.path) !== "index"
+      ) {
+        dest.path = posix.join(dest.path, "index");
+      }
+      dest.ext = ".html";
+    }
+
+    page.data.url =
+      (dest.ext === ".html" && posix.basename(dest.path) === "index")
+        ? dest.path.slice(0, -5)
+        : dest.path + dest.ext;
   }
 
   /** Group the pages by renderOrder */

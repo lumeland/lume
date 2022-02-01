@@ -199,25 +199,25 @@ Deno.test("preprocessor configuration", () => {
 
   const { processors } = site.preprocessors;
 
-  equals(processors.size, 1);
+  equals(processors.size, 0);
 
   const processor = () => Promise.resolve({});
   const ext1 = [".ext1"];
 
   site.preprocess(ext1, processor);
-  equals(processors.size, 2);
+  equals(processors.size, 1);
   equals(processors.has(processor), true);
   equals(processors.get(processor), ext1);
 
   const ext2 = [".ext2"];
   site.preprocess(ext2, processor);
-  equals(processors.size, 2);
+  equals(processors.size, 1);
   equals(processors.has(processor), true);
   equals(processors.get(processor), ext2);
 
   const processor2 = () => Promise.resolve({});
   site.preprocess(ext2, processor2);
-  equals(processors.size, 3);
+  equals(processors.size, 2);
   equals(processors.has(processor2), true);
   equals(processors.get(processor2), ext2);
 });
