@@ -1,6 +1,8 @@
 import hljs, { HighlightOptions } from "../deps/highlight.ts";
 import { merge } from "../core/utils.ts";
 
+export { hljs };
+
 import type { Page, Site } from "../core.ts";
 
 export interface Options {
