@@ -1,4 +1,4 @@
-export { default } from "https://jspm.dev/highlight.js@11.2.0";
+export { default, type LanguageFn } from "https://jspm.dev/highlight.js@11.2.0";
 
 /** Options of the code highlighter */
 export interface HighlightOptions {
