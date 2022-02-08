@@ -1,4 +1,4 @@
-import hljs, { HighlightOptions } from "../deps/highlight.ts";
+import hljs, { HighlightOptions, LanguageFn } from "../deps/highlight.ts";
 import { merge } from "../core/utils.ts";
 
 import type { Page, Site } from "../core.ts";
@@ -6,6 +6,9 @@ import type { Page, Site } from "../core.ts";
 export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
+
+  /** Register languages on the Highlight.js context. */
+  languages?: Record<string, LanguageFn>;
 
   /** Options passed to highlight.js */
   options: Partial<HighlightOptions>;
@@ -29,6 +32,13 @@ export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
   // @ts-ignore: Property 'configure' does not exist on type '{}'
   hljs.configure(options.options);
+
+  if (options.languages) {
+    for (const [name, fn] of Object.entries(options.languages)) {
+      // @ts-ignore: Property 'registerLanguage' does not exist on type {}
+      hljs.registerLangauge(name, fn);
+    }
+  }
 
   return (site: Site) => {
     site.process(options.extensions, codeHighlight);
