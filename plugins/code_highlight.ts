@@ -34,7 +34,7 @@ export default function (userOptions?: Partial<Options>) {
   hljs.configure(options.options);
 
   if (options.languages) {
-    for (const [name, fn] of Object.entries(userOptions.languages)) {
+    for (const [name, fn] of Object.entries(options.languages)) {
       // @ts-ignore: Property 'registerLanguage' does not exist on type {}
       hljs.registerLangauge(name, fn);
     }
