@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Added
+- New option `languages` to `codeHighlight` plugin [#169].
+
 ## [1.5.1] - 2022-02-01
 ### Added
 - The `search` helper converts `undefined` and `null` values.
@@ -1356,7 +1360,9 @@ The first version.
 [#162]: https://github.com/lumeland/lume/issues/162
 [#163]: https://github.com/lumeland/lume/issues/163
 [#164]: https://github.com/lumeland/lume/issues/164
+[#169]: https://github.com/lumeland/lume/issues/169
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.5.1...HEAD
 [1.5.1]: https://github.com/lumeland/lume/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/lumeland/lume/compare/v1.4.3...v1.5.0
 [1.4.3]: https://github.com/lumeland/lume/compare/v1.4.2...v1.4.3

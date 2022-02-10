@@ -2,6 +2,7 @@ import hljs, { HighlightOptions, LanguageFn } from "../deps/highlight.ts";
 import { merge } from "../core/utils.ts";
 
 import type { Page, Site } from "../core.ts";
+import type { Element } from "../deps/dom.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -30,13 +31,11 @@ export const defaults: Options = {
 /** A plugin to syntax-highlight code using the highlight.js library */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
-  // @ts-ignore: Property 'configure' does not exist on type '{}'
   hljs.configure(options.options);
 
   if (options.languages) {
     for (const [name, fn] of Object.entries(options.languages)) {
-      // @ts-ignore: Property 'registerLanguage' does not exist on type {}
-      hljs.registerLangauge(name, fn);
+      hljs.registerLanguage(name, fn);
     }
   }
 
@@ -45,8 +44,7 @@ export default function (userOptions?: Partial<Options>) {
 
     function codeHighlight(page: Page) {
       page.document!.querySelectorAll(options.options.cssSelector!)
-        // @ts-ignore: Property 'highlightElement' does not exist on type '{}'
-        .forEach((element) => hljs.highlightElement(element));
+        .forEach((element) => hljs.highlightElement(element as Element));
     }
   };
 }
