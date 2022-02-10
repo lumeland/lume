@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 - Use `std/http` modules to create the local server.
 
+### Fixed
+- Updated `std`, `esbuild`, `deno_graph` and `postcss` dependencies.
+
 ## [1.5.1] - 2022-02-01
 ### Added
 - The `search` helper converts `undefined` and `null` values.
