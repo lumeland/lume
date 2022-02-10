@@ -1,5 +1,5 @@
 import Watcher from "../core/watcher.ts";
-import { mimes, normalizePath } from "../core/utils.ts";
+import { normalizePath } from "../core/utils.ts";
 
 import type { Middleware } from "../core.ts";
 
@@ -50,12 +50,12 @@ export default function reload(options: Options): Middleware {
     // It's a regular request
     const response = await next(request);
 
-    if (!response.body) {
+    if (!response.body || response.status !== 200) {
       return response;
     }
 
     // Insert live-reload script in the body
-    if (response.headers.get("content-type") === mimes.get(".html")) {
+    if (response.headers.get("content-type")?.includes("html")) {
       const reader = response.body.getReader();
 
       let body = "";
@@ -69,11 +69,11 @@ export default function reload(options: Options): Middleware {
 
       body += `<script type="module" id="lume-live-reload">${wsCode}</script>`;
 
-      return new Response(body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers: response.headers,
-      });
+      const { status, statusText } = response;
+      const headers = new Headers();
+      headers.set("content-type", "text/html");
+
+      return new Response(body, { status, statusText, headers });
     }
 
     return response;

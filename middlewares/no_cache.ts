@@ -4,7 +4,11 @@ import type { Middleware } from "../core.ts";
 export default function noCache(): Middleware {
   return async (request, next) => {
     const response = await next(request);
-    response.headers.set("cache-control", "no-cache no-store must-revalidate");
+    const { headers } = response;
+    headers.set("cache-control", "no-cache no-store must-revalidate");
+    headers.delete("last-modified");
+    headers.delete("etag");
+
     return response;
   };
 }

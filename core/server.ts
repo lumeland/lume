@@ -1,5 +1,6 @@
 import { join, SEP } from "../deps/path.ts";
 import Events from "./events.ts";
+import { serveFile, Server as HttpServer } from "../deps/http.ts";
 
 import type { Event, EventListener, EventOptions } from "../core.ts";
 
@@ -68,27 +69,19 @@ export default class Server {
   /** Start the server */
   async start() {
     const { port } = this.options;
-    const server = Deno.listen({ port });
+
+    const server = new HttpServer({
+      port: port,
+      handler: (request) => this.handle(request),
+    });
 
     this.dispatchEvent({ type: "start" });
 
-    for await (const conn of server) {
-      this.handleConnection(conn);
-    }
-  }
-
-  /** Handle a http connection */
-  async handleConnection(conn: Deno.Conn) {
-    const httpConn = Deno.serveHttp(conn);
-
-    for await (const event of httpConn) {
-      this.handle(event);
-    }
+    await server.listenAndServe();
   }
 
   /** Handle a http request event */
-  async handle(event: Deno.RequestEvent) {
-    const { request } = event;
+  async handle(request: Request): Promise<Response> {
     const middlewares = [...this.middlewares];
 
     const next: RequestHandler = async (
@@ -103,12 +96,7 @@ export default class Server {
       return await this.serveFile(request);
     };
 
-    try {
-      const response = await next(request);
-      await event.respondWith(response);
-    } catch (error) {
-      this.dispatchEvent({ type: "error", request, error });
-    }
+    return await next(request);
   }
 
   /** Server a static file */
@@ -135,10 +123,7 @@ export default class Server {
       }
 
       // Serve the static file
-      return new Response(
-        await Deno.readFile(path),
-        { status: 200 },
-      );
+      return await serveFile(request, path);
     } catch {
       return new Response(
         "Not found",

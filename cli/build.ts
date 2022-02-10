@@ -3,7 +3,6 @@ import { brightGreen, dim } from "../deps/colors.ts";
 import Server from "../core/server.ts";
 import Watcher from "../core/watcher.ts";
 import { printError } from "../core/errors.ts";
-import contentType from "../middlewares/content_type.ts";
 import logger from "../middlewares/logger.ts";
 import noCache from "../middlewares/no_cache.ts";
 import notFound from "../middlewares/not_found.ts";
@@ -98,7 +97,6 @@ export default async function build(
   server.use(
     logger(),
     reload({ root: site.dest() }),
-    contentType(),
     noCache(),
     notFound({
       root: site.dest(),

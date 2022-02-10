@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New option `languages` to `codeHighlight` plugin [#169].
 
+### Changed
+- Use `std/http` modules to create the local server.
+
 ## [1.5.1] - 2022-02-01
 ### Added
 - The `search` helper converts `undefined` and `null` values.

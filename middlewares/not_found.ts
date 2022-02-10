@@ -20,20 +20,17 @@ export default function notFound(options: Options): Middleware {
     const response = await next(request);
 
     if (response.status === 404) {
+      const { headers, status } = response;
+      headers.set("content-type", "text/html");
+
       try {
         const body = await Deno.readFile(join(root, page404));
-        return new Response(body, {
-          status: response.status,
-          headers: response.headers,
-        });
+        return new Response(body, { status, headers });
       } catch {
         if (directoryIndex) {
           const { pathname } = new URL(request.url);
           const body = await getDirectoryIndex(root, pathname);
-          return new Response(body, {
-            status: response.status,
-            headers: response.headers,
-          });
+          return new Response(body, { status, headers });
         }
       }
     }
