@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Use `std/http` modules to create the local server.
 
 ### Fixed
+- Pretty print the urls of the generated pages on build.
+  Example: `/about/` instead of `/about/index.html`.
 - Updated `std`, `esbuild`, `deno_graph` and `postcss` dependencies.
 
 ## [1.5.1] - 2022-02-01

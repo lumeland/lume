@@ -71,7 +71,7 @@ export default class Writer {
     const src = page.src.path
       ? page.src.path + (page.src.ext || "")
       : "(generated)";
-    this.logger.log(`🔥 ${dest} <dim>${src}</dim>`);
+    this.logger.log(`🔥 ${dest.replace(/index\.html?$/, "")} <dim>${src}</dim>`);
 
     const filename = join(this.dest, dest);
     await ensureDir(dirname(filename));
