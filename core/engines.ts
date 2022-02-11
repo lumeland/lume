@@ -110,14 +110,14 @@ export interface Engine {
   /** Delete a cached template */
   deleteCache(file: string): void;
 
-  /** Render a template */
+  /** Render a template (used to render pages) */
   render(
     content: unknown,
     data?: Data,
     filename?: string,
   ): unknown | Promise<unknown>;
 
-  /** Render a template synchronous */
+  /** Render a template synchronous (used to render components) */
   renderSync(
     content: unknown,
     data?: Data,
