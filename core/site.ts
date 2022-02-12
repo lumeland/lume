@@ -159,7 +159,7 @@ export default class Site {
     const staticFiles = new StaticFiles();
 
     // To render pages
-    const engines = new Engines({ globalData, formats });
+    const engines = new Engines({ formats });
     const scopes = new Scopes();
     const processors = new Processors();
     const preprocessors = new Processors();
@@ -417,6 +417,11 @@ export default class Site {
     // Load source files
     await this.source.load();
 
+    // Assign the global data
+    for (const [name, data] of Object.entries(this.globalData)) {
+      this.source.root!.data[name] = data;
+    }
+
     // Get all pages to process (ignore drafts)
     const pagesToBuild = this.source.getPages(
       (page) => !page.data.draft || this.options.dev,
@@ -435,6 +440,11 @@ export default class Site {
 
     // Clear the cache before every file change
     this.source.clearCache();
+
+    // Assign the global data
+    for (const [name, data] of Object.entries(this.globalData)) {
+      this.source.root!.data[name] = data;
+    }
 
     // Reload the changed files
     for (const file of files) {

@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - Use `std/http` modules to create the local server.
+- The page data is passed to Markdown engine as an env variable.
+  This allows to create markdown-it plugins that read/edit the page data,
+  for example to get the content title and save it.
 
 ### Fixed
 - Pretty print the urls of the generated pages on build.

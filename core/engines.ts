@@ -3,9 +3,6 @@ import { Exception } from "./errors.ts";
 import type { Data, Formats } from "../core.ts";
 
 export interface Options {
-  /** Extra data to be passed to the engines */
-  globalData: Data;
-
   /** The file formats */
   formats: Formats;
 }
@@ -18,14 +15,10 @@ export default class Engines {
   /** Template engines by extension */
   formats: Formats;
 
-  /** Extra data to be passed to the engines */
-  globalData: Data;
-
   /** The registered helpers */
   helpers = new Map<string, [Helper, HelperOptions]>();
 
   constructor(options: Options) {
-    this.globalData = options.globalData || {};
     this.formats = options.formats;
   }
 
@@ -49,8 +42,6 @@ export default class Engines {
     const engines = this.getEngine(filename, data);
 
     if (engines) {
-      data = { ...this.globalData, ...data };
-
       for (const engine of engines) {
         content = await engine.render(content, data, filename);
       }
@@ -64,8 +55,6 @@ export default class Engines {
     const engines = this.getEngine(filename, data);
 
     if (engines) {
-      data = { ...this.globalData, ...data };
-
       for (const engine of engines) {
         content = engine.renderSync(content, data, filename);
       }
