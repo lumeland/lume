@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
+- New plugin `sass`.
 - New option `languages` to `codeHighlight` plugin [#169].
 
 ### Changed
