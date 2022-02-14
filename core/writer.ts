@@ -76,10 +76,22 @@ export default class Writer {
     const filename = join(this.dest, dest);
     await ensureDir(dirname(filename));
 
-    page.content instanceof Uint8Array
-      ? await Deno.writeFile(filename, page.content)
-      : await Deno.writeTextFile(filename, page.content);
+    const file = await Deno.open(filename, { write: true, create: true });
+    await Deno.flock(file.rid);
+    try {
+      // Prevent overwriting (often happens on case-insensitive file systems)
+      const stat = await file.stat();
+      if (stat.size !== 0) {
+        throw new Error(`File '${filename}' already exists.`);
+      }
 
+      const contentStream = page.content instanceof Uint8Array
+        ? page.content
+        : new TextEncoder().encode(page.content);
+      await file.write(contentStream);
+    } finally {
+      file.close();
+    }
     return true;
   }
 
