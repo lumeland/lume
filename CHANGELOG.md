@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Pretty print the urls of the generated pages on build.
   Example: `/about/` instead of `/about/index.html`.
-- Updated `std`, `esbuild`, `deno_graph`, `markdown-it` and `postcss` dependencies.
+- Updated `std`, `esbuild`, `deno_graph`, `markdown_it`, `parcel_css` and `postcss` dependencies.
 
 ## [1.5.1] - 2022-02-01
 ### Added
