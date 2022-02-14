@@ -21,6 +21,7 @@ export { default as pug } from "./plugins/pug.ts";
 export { default as relativeUrls } from "./plugins/relative_urls.ts";
 export { default as resolveUrls } from "./plugins/resolve_urls.ts";
 export { default as search } from "./plugins/search.ts";
+export { default as sass } from "./plugins/sass.ts";
 export { default as slugifyUrls } from "./plugins/slugify_urls.ts";
 export { default as svgo } from "./plugins/svgo.ts";
 export { default as terser } from "./plugins/terser.ts";

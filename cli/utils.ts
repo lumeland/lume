@@ -67,6 +67,7 @@ export const pluginNames = [
   "pug",
   "relative_urls",
   "resolve_urls",
+  "sass",
   "slugify_urls",
   "svgo",
   "terser",
