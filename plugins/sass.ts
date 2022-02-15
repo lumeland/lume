@@ -16,7 +16,7 @@ export interface Options {
 }
 
 const defaults: Options = {
-  extensions: [".sass", ".scss"],
+  extensions: [".scss"],
   format: "compressed",
   includes: [],
 };
