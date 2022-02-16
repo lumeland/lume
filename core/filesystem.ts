@@ -19,8 +19,13 @@ abstract class Base {
   #data?: Data;
 
   /**
+   * Internal data. Used to save arbitrary data by plugins and processors
+   */
+  #_data = {};
+
+  /**
    * Used to save the merged data:
-   * the assigned data with the parent data
+   * the base data with the parent data
    */
   #cache?: Data;
 
@@ -73,6 +78,18 @@ abstract class Base {
     this.#data = data;
   }
 
+  /**
+   * The property _data is to store internal data,
+   * used by plugins, processors, etc to save arbitrary values
+   */
+  set _data(data: Record<string, unknown>) {
+    this.#_data = data;
+  }
+
+  get _data() {
+    return this.#_data;
+  }
+
   /** Clean the cache of the merged data */
   refreshCache() {
     this.#cache = undefined;
@@ -83,9 +100,6 @@ abstract class Base {
 export class Page extends Base {
   /** The destination of the page */
   dest: Dest;
-
-  /** Internal data */
-  #_data = {};
 
   /** The page content (string or Uint8Array) */
   #content?: Content;
@@ -114,18 +128,6 @@ export class Page extends Base {
     page.src.path += `[${this.#copy++}]`;
 
     return page;
-  }
-
-  /**
-   * The property _data is to store internal data,
-   * used by plugins, processors, etc to save arbitrary values
-   */
-  set _data(data: Record<string, unknown>) {
-    this.#_data = data;
-  }
-
-  get _data() {
-    return this.#_data;
   }
 
   /** The content of this page */
