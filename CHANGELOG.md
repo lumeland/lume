@@ -11,13 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New plugin `sass`.
 - New option `languages` to `codeHighlight` plugin [#169].
-- Show a warning when two pages have the same url and ouputs to the same file (case insensitive).
 
 ### Changed
 - Use `std/http` modules to create the local server.
 - The page data is passed to Markdown engine as an env variable.
   This allows to create markdown-it plugins that read/edit the page data,
   for example to get the content title and save it.
+- Throw an error when two pages have the same url and ouputs to the same file (case insensitive) [#170].
 
 ### Fixed
 - Pretty print the urls of the generated pages on build.
