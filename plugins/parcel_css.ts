@@ -31,7 +31,7 @@ export const defaults: Options = {
 // Init parcelCSS
 await init();
 
-/** A plugin to load all CSS files and process them using PostCSS */
+/** A plugin to load all CSS files and process them using parcelCSS */
 export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     const options = merge(defaults, userOptions);
