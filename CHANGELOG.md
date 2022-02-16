@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New plugin `sass`.
 - New option `languages` to `codeHighlight` plugin [#169].
+- Show a warning when two pages have the same url and ouputs to the same file (case insensitive).
 
 ### Changed
 - Use `std/http` modules to create the local server.
@@ -22,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Pretty print the urls of the generated pages on build.
   Example: `/about/` instead of `/about/index.html`.
 - Updated `std`, `esbuild`, `deno_graph`, `markdown_it`, `parcel_css` and `postcss` dependencies.
+- Prevent the mixture of the content for two pages that outputs to the same file [#170].
 
 ## [1.5.1] - 2022-02-01
 ### Added
@@ -1373,6 +1375,7 @@ The first version.
 [#163]: https://github.com/lumeland/lume/issues/163
 [#164]: https://github.com/lumeland/lume/issues/164
 [#169]: https://github.com/lumeland/lume/issues/169
+[#170]: https://github.com/lumeland/lume/issues/170
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.5.1...HEAD
 [1.5.1]: https://github.com/lumeland/lume/compare/v1.5.0...v1.5.1
