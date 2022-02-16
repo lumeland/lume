@@ -20,7 +20,8 @@ export default class Writer {
   src: string;
   dest: string;
   logger: Logger;
-  #hashes = new Map();
+  #saveCount = 0;
+  #outputs = new Map<string, [number, string, string]>();
 
   constructor(options: Options) {
     this.src = options.src;
@@ -34,6 +35,7 @@ export default class Writer {
    */
   async savePages(pages: Page[]): Promise<Page[]> {
     const savedPages: Page[] = [];
+    ++this.#saveCount;
 
     await concurrent(
       pages,
@@ -56,21 +58,35 @@ export default class Writer {
     if (!page.content) {
       return false;
     }
-
-    const dest = page.dest.path + page.dest.ext;
-    const hash = await sha1(page.content);
-    const previousHash = this.#hashes.get(dest);
-
-    // The page content didn't change
-    if (previousHash === hash) {
-      return false;
-    }
-
-    this.#hashes.set(dest, hash);
-
     const src = page.src.path
       ? page.src.path + (page.src.ext || "")
       : "(generated)";
+    const dest = page.dest.path + page.dest.ext;
+    const id = dest.toLowerCase();
+    const hash = await sha1(page.content);
+    const previous = this.#outputs.get(id);
+    this.#outputs.set(id, [this.#saveCount, src, hash]);
+
+    if (previous) {
+      const [previousCount, previousPage, previousHash] = previous;
+
+      if (previousCount === this.#saveCount) {
+        this.logger.warn(
+          "The content of a page saved previously will be ovewriten. Use distinct `url` values to resolve the conflict.",
+          {
+            previousPage,
+            currentPage: page.src.path + page.src.ext,
+            output: dest,
+          },
+        );
+      }
+
+      // The page content didn't change
+      if (previousHash === hash) {
+        return false;
+      }
+    }
+
     this.logger.log(`🔥 ${dest.replace(/index\.html?$/, "")} <dim>${src}</dim>`);
 
     const filename = join(this.dest, dest);
@@ -107,6 +123,6 @@ export default class Writer {
   /** Empty the dest folder */
   async clear() {
     await emptyDir(this.dest);
-    this.#hashes.clear();
+    this.#outputs.clear();
   }
 }
