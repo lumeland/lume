@@ -93,17 +93,10 @@ export default class Writer {
     const filename = join(this.dest, dest);
     await ensureDir(dirname(filename));
 
-    const file = await Deno.open(filename, { write: true, create: true });
-    try {
-      await Deno.flock(file.rid);
-      await file.truncate();
-      const contentStream = page.content instanceof Uint8Array
-        ? page.content
-        : new TextEncoder().encode(page.content);
-      await file.write(contentStream);
-    } finally {
-      file.close();
-    }
+    page.content instanceof Uint8Array
+      ? await Deno.writeFile(filename, page.content)
+      : await Deno.writeTextFile(filename, page.content);
+
     return true;
   }
 
