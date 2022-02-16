@@ -148,10 +148,7 @@ export default class Renderer {
       dest.ext = ".html";
     }
 
-    page.data.url =
-      (dest.ext === ".html" && posix.basename(dest.path) === "index")
-        ? dest.path.slice(0, -5)
-        : dest.path + dest.ext;
+    page.updateUrl();
   }
 
   /** Group the pages by renderOrder */

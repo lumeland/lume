@@ -105,7 +105,7 @@ export default function (userOptions?: Partial<Options>) {
 
       if (content) {
         file.content = fixExtensions(content);
-        file.dest.ext = ".js";
+        file.ext = ".js";
       }
 
       const mapContent = files[specifier + ".map"] ||

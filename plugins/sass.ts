@@ -48,8 +48,7 @@ export default function (userOptions?: Partial<Options>) {
       const result = str(code, sassOptions);
 
       page.content = result;
-      page.dest.ext = ".css";
-      page.data.url = page.dest.path + page.dest.ext;
+      page.ext = ".css";
     }
   };
 }

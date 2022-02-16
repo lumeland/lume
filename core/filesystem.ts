@@ -1,4 +1,4 @@
-import { extname, join } from "../deps/path.ts";
+import { join, posix } from "../deps/path.ts";
 import { documentToString, normalizePath, stringToDocument } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
@@ -112,7 +112,7 @@ export class Page extends Base {
 
   /** Convenient way to create a page dinamically with a url and content */
   static create(url: string, content: Content): Page {
-    const ext = extname(url);
+    const ext = posix.extname(url);
     const path = ext ? url.slice(0, -ext.length) : url;
 
     const page = new Page();
@@ -141,6 +141,34 @@ export class Page extends Base {
     page.src.path += `[${this.#copy++}]`;
 
     return page;
+  }
+
+  /** The output path */
+  set path(path: string) {
+    this.dest.path = path;
+    this.updateUrl();
+  }
+
+  get path(): string {
+    return this.dest.path;
+  }
+
+  /** The output extension */
+  set ext(ext: string) {
+    this.dest.ext = ext;
+    this.updateUrl();
+  }
+
+  get ext(): string {
+    return this.dest.ext;
+  }
+
+  /** Update the page url according with the dest value */
+  updateUrl() {
+    this.data.url =
+      (this.dest.ext === ".html" && posix.basename(this.dest.path) === "index")
+        ? this.dest.path.slice(0, -5)
+        : this.dest.path + this.dest.ext;
   }
 
   /** The content of this page */
