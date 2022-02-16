@@ -77,14 +77,9 @@ export default class Writer {
     await ensureDir(dirname(filename));
 
     const file = await Deno.open(filename, { write: true, create: true });
-    await Deno.flock(file.rid);
     try {
-      // Prevent overwriting (often happens on case-insensitive file systems)
-      const stat = await file.stat();
-      if (stat.size !== 0) {
-        throw new Error(`File '${filename}' already exists.`);
-      }
-
+      await Deno.flock(file.rid);
+      await file.truncate();
       const contentStream = page.content instanceof Uint8Array
         ? page.content
         : new TextEncoder().encode(page.content);
