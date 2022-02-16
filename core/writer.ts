@@ -2,6 +2,7 @@ import { dirname, join } from "../deps/path.ts";
 import { emptyDir, ensureDir } from "../deps/fs.ts";
 import { copy } from "../deps/fs_copy.ts";
 import { concurrent, normalizePath, sha1 } from "./utils.ts";
+import { Exception } from "./errors.ts";
 
 import type { Page } from "./filesystem.ts";
 import type Logger from "./logger.ts";
@@ -71,12 +72,12 @@ export default class Writer {
       const [previousCount, previousPage, previousHash] = previous;
 
       if (previousCount === this.#saveCount) {
-        this.logger.warn(
-          "The content of a page saved previously will be ovewriten. Use distinct `url` values to resolve the conflict.",
+        throw new Exception(
+          "A page will overwrite another page. Use distinct `url` values to resolve the conflict.",
           {
+            page,
             previousPage,
-            currentPage: page.src.path + page.src.ext,
-            output: dest,
+            destination: dest,
           },
         );
       }
