@@ -4,6 +4,7 @@ import { createGraph, load, LoadResponse } from "../deps/graph.ts";
 import { Page } from "../core/filesystem.ts";
 
 import type { Site } from "../core.ts";
+import type { LoadResponseModule } from "../deps/graph.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -71,12 +72,13 @@ export default function (userOptions?: Partial<Options>) {
             }
             if (specifier in sources) {
               return {
+                kind: "module",
                 specifier: specifier,
                 content: sources[specifier],
               };
             }
 
-            const response = await load(specifier);
+            const response = await load(specifier) as LoadResponseModule;
 
             if (response) {
               sources[specifier] = response.content;
