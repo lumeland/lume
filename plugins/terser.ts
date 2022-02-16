@@ -55,12 +55,7 @@ export default function (userOptions?: Partial<Options>) {
         file.content = output.code;
 
         if (output.map) {
-          const mapFile = new Page();
-          mapFile.dest = {
-            path: file.dest.path,
-            ext: ".js.map",
-          };
-          mapFile.content = output.map;
+          const mapFile = Page.create(file.dest.path + ".js.map", output.map);
           site.pages.push(mapFile);
         }
       } catch (cause) {

@@ -63,12 +63,10 @@ export default function (userOptions?: Partial<Options>) {
       file.content = decoder.decode(result.code);
 
       if (result.map) {
-        const mapFile = new Page();
-        mapFile.dest = {
-          path: file.dest.path,
-          ext: ".css.map",
-        };
-        mapFile.content = decoder.decode(result.map);
+        const mapFile = Page.create(
+          file.dest.path + ".css.map",
+          decoder.decode(result.map),
+        );
         site.pages.push(mapFile);
       }
     }

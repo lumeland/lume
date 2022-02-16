@@ -1,4 +1,4 @@
-import { join } from "../deps/path.ts";
+import { extname, join } from "../deps/path.ts";
 import { documentToString, normalizePath, stringToDocument } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
@@ -109,6 +109,19 @@ export class Page extends Base {
 
   /** Count duplicated pages */
   #copy = 0;
+
+  /** Convenient way to create a page dinamically with a url and content */
+  static create(url: string, content: Content): Page {
+    const ext = extname(url);
+    const path = ext ? url.slice(0, -ext.length) : url;
+
+    const page = new Page();
+    page.dest = { path, ext };
+    page.data = { url, content };
+    page.content = content;
+
+    return page;
+  }
 
   constructor(src?: Src) {
     super(src);

@@ -112,12 +112,7 @@ export default function (userOptions?: Partial<Options>) {
         files[specifier + ".js.map"] || files["deno:///bundle.js.map"];
 
       if (options.sourceMap && mapContent) {
-        const mapFile = new Page();
-        mapFile.dest = {
-          path: file.dest.path,
-          ext: ".js.map",
-        };
-        mapFile.content = mapContent;
+        const mapFile = Page.create(file.dest.path + ".js.map", mapContent);
         site.pages.push(mapFile);
       }
     });

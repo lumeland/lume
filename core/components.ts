@@ -1,4 +1,3 @@
-import { extname } from "../deps/path.ts";
 import { Page } from "./filesystem.ts";
 import { Exception } from "./errors.ts";
 
@@ -86,11 +85,7 @@ export default class Components {
       return;
     }
 
-    const page = new Page();
-    const ext = extname(path);
-    page.dest.ext = ext;
-    page.dest.path = path.slice(0, -ext.length);
-    page.content = Array.from(code).join("\n");
+    const page = Page.create(path, Array.from(code).join("\n"));
     pages.push(page);
   }
 }
