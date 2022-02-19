@@ -49,12 +49,13 @@ export default class Renderer {
 
       // Split regular pages and generators
       for (const page of group) {
+        this.#urlPage(page);
+
         if (isGenerator(page.data.content)) {
           generators.push(page);
           continue;
         }
 
-        this.#urlPage(page);
         to.push(page);
 
         if (!page.data.ondemand) {
