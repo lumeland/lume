@@ -22,7 +22,7 @@ export default class StaticFiles {
     for (const entry of this.paths) {
       const [from, to] = entry;
 
-      if (file.startsWith(from)) {
+      if (file === from || file.startsWith(join(from, "/"))) {
         return [file, join(to, file.slice(from.length))];
       }
     }
@@ -38,7 +38,7 @@ export default class StaticFiles {
     for (const entry of this.paths) {
       const [from, to] = entry;
 
-      if (file.startsWith(to)) {
+      if (file === to || file.startsWith(join(to, "/"))) {
         return [join(from, file.slice(to.length)), file];
       }
     }

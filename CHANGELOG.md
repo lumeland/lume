@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Updated `std`, `esbuild`, `deno_graph`, `markdown_it`, `parcel_css` and `postcss` dependencies.
 - Prevent the mixture of the content for two pages that outputs to the same file [#170].
 - Consistency of `page.data.url` after change any `page.dest` value.
+- Bug detecting static files changes on update.
 
 ## [1.5.1] - 2022-02-01
 ### Added
