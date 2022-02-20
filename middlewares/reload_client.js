@@ -69,9 +69,25 @@ function refresh(files) {
 
     switch (format) {
       case "css":
-        document.querySelectorAll('link[rel="stylesheet"]').forEach((el) =>
-          cache(el, "href", file, true)
-        );
+        {
+          const href = new URL(file, document.location.href).href;
+
+          for (const style of Array.from(document.styleSheets)) {
+            const url = new URL(style.href);
+            url.searchParams.delete("_cache");
+
+            if (url.href === href) {
+              reloadStylesheet(style.ownerNode);
+              continue;
+            }
+
+            // The file is @import'ed in a stylesheet
+            if (styleIsImported(href, style)) {
+              location.reload();
+              break;
+            }
+          }
+        }
         break;
 
       case "apng":
@@ -82,13 +98,22 @@ function refresh(files) {
       case "png":
       case "svg":
       case "webp":
-        document.querySelectorAll("img").forEach((el) =>
-          cache(el, "src", file)
-        );
+        {
+          const href = new URL(file, document.location.href).href;
+
+          for (const image of Array.from(document.images)) {
+            const src = new URL(image.src);
+            src.searchParams.delete("_cache");
+
+            if (src.href === href) {
+              reloadSource(image);
+              continue;
+            }
+          }
+        }
         break;
 
       // Reload the entire page for JavaScript changes
-
       case "js":
         location.reload();
         return;
@@ -96,30 +121,41 @@ function refresh(files) {
   }
 }
 
-function cache(el, prop, file, clone = false) {
-  const value = el[prop];
-
-  if (!value) {
-    return;
+function styleIsImported(file, style) {
+  if (style.href === file) {
+    return true;
   }
 
-  const url = new URL(value);
+  for (let i = 0; i < style.cssRules.length; i++) {
+    const rule = style.cssRules[i];
 
-  if (url.pathname !== file) {
-    return;
+    if (!(rule instanceof CSSImportRule)) {
+      continue;
+    }
+
+    if (styleIsImported(file, rule.styleSheet)) {
+      return true;
+    }
   }
+
+  return false;
+}
+
+function reloadSource(element) {
+  const src = new URL(element.src);
+  src.searchParams.set("_cache", Date.now());
+  element.src = src.href;
+}
+
+function reloadStylesheet(element) {
+  const url = new URL(element.href);
 
   url.searchParams.set("_cache", Date.now());
 
-  if (clone) {
-    const newEl = el.cloneNode();
-    newEl[prop] = url.href;
-    el.after(newEl);
-    setTimeout(() => el.remove(), 500);
-    return;
-  }
-
-  el[prop] = url.href;
+  const newElement = element.cloneNode();
+  newElement.href = url.href;
+  element.after(newElement);
+  setTimeout(() => element.remove(), 500);
 }
 
 function save(data) {
