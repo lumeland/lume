@@ -114,6 +114,7 @@ function refresh(files) {
         break;
 
       // Reload the entire page for JavaScript changes
+
       case "js":
         location.reload();
         return;

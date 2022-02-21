@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Pretty print the urls of the generated pages on build.
   Example: `/about/` instead of `/about/index.html`.
-- Updated `std`, `esbuild`, `deno_graph`, `markdown_it`, `parcel_css` and `postcss` dependencies.
+- Updated dependecies: `std`, `esbuild`, `deno_graph`, `markdown_it`, `liquidjs`, `parcel_css` and `postcss`.
 - Prevent the mixture of the content for two pages that outputs to the same file [#170].
 - Consistency of `page.data.url` after change any `page.dest` value.
 - Bug detecting static files changes on update.
