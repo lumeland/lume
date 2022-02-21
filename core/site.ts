@@ -417,6 +417,14 @@ export default class Site {
     // Load source files
     await this.source.load();
 
+    // Load the components and save them in the a global variable
+    const { variable, directory } = this.options.components;
+    const components = await this.componentLoader.load(directory);
+
+    if (components) {
+      this.data(variable, this.components.toProxy(components));
+    }
+
     // Assign the global data
     for (const [name, data] of Object.entries(this.globalData)) {
       this.source.root!.data[name] = data;
@@ -440,6 +448,14 @@ export default class Site {
 
     // Clear the cache before every file change
     this.source.clearCache();
+
+    // Load the components and save them in the a global variable
+    const { variable, directory } = this.options.components;
+    const components = await this.componentLoader.load(directory);
+
+    if (components) {
+      this.data(variable, this.components.toProxy(components));
+    }
 
     // Assign the global data
     for (const [name, data] of Object.entries(this.globalData)) {
@@ -482,14 +498,6 @@ export default class Site {
    * Returns the list of pages that have been built
    */
   async #buildPages(pages: Page[]): Promise<Page[]> {
-    // Load the components and save them in the `comp` global variable
-    const { variable, directory } = this.options.components;
-    const components = await this.componentLoader.load(directory);
-
-    if (components) {
-      this.data(variable, this.components.toProxy(components));
-    }
-
     // Render the pages into this.pages array
     this.pages = [];
     await this.renderer.renderPages(pages, this.pages);
