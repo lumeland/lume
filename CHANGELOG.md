@@ -7,6 +7,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.6.1] - 2022-02-23
+### Changed
+- Added default targets to `parcel_css` plugin
+  (the most recent version of every browser).
+
+### Fixed
+- CSS Live reload error checking cross-origin `@import`.
+
 ## [1.6.0] - 2022-02-21
 ### Added
 - New plugin `sass`.
@@ -1380,6 +1388,7 @@ The first version.
 [#169]: https://github.com/lumeland/lume/issues/169
 [#170]: https://github.com/lumeland/lume/issues/170
 
+[1.6.1]: https://github.com/lumeland/lume/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/lumeland/lume/compare/v1.5.1...v1.6.0
 [1.5.1]: https://github.com/lumeland/lume/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/lumeland/lume/compare/v1.4.3...v1.5.0

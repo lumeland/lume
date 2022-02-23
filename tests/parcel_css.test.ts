@@ -33,7 +33,7 @@ Deno.test("parcelCSS plugin", async () => {
     const content = page.content as string;
     equals(
       content,
-      ".text{font-family:var(--font-family)& p{color:var(--color);box-shadow:0 0 .5em var(--background);backface-visibility:hidden}}",
+      ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);backface-visibility:hidden}",
     );
   });
 });

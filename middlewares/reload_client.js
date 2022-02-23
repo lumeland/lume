@@ -65,24 +65,23 @@ function refresh(files) {
   }
 
   for (const file of files) {
-    const format = file.split(".").pop().toLowerCase();
+    const url = new URL(file, document.location.href);
+    const format = url.pathname.split(".").pop().toLowerCase();
 
     switch (format) {
       case "css":
         {
-          const href = new URL(file, document.location.href).href;
-
           for (const style of Array.from(document.styleSheets)) {
-            const url = new URL(style.href);
-            url.searchParams.delete("_cache");
+            const src = new URL(style.href);
+            src.searchParams.delete("_cache");
 
-            if (url.href === href) {
+            if (src.href === url.href) {
               reloadStylesheet(style.ownerNode);
               continue;
             }
 
             // The file is @import'ed in a stylesheet
-            if (styleIsImported(href, style)) {
+            if (styleIsImported(url, style)) {
               location.reload();
               break;
             }
@@ -99,13 +98,11 @@ function refresh(files) {
       case "svg":
       case "webp":
         {
-          const href = new URL(file, document.location.href).href;
-
           for (const image of Array.from(document.images)) {
             const src = new URL(image.src);
             src.searchParams.delete("_cache");
 
-            if (src.href === href) {
+            if (src.href === url.href) {
               reloadSource(image);
               continue;
             }
@@ -122,8 +119,8 @@ function refresh(files) {
   }
 }
 
-function styleIsImported(file, style) {
-  if (style.href === file) {
+function styleIsImported(url, style) {
+  if (style.href === url.href) {
     return true;
   }
 
@@ -134,7 +131,11 @@ function styleIsImported(file, style) {
       continue;
     }
 
-    if (styleIsImported(file, rule.styleSheet)) {
+    if (!rule.styleSheet.href.startsWith(url.origin)) {
+      continue;
+    }
+
+    if (styleIsImported(url, rule.styleSheet)) {
       return true;
     }
   }
