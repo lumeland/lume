@@ -72,12 +72,14 @@ function refresh(files) {
       case "css":
         {
           for (const style of Array.from(document.styleSheets)) {
-            const src = new URL(style.href);
-            src.searchParams.delete("_cache");
+            if (style.href) {
+              const src = new URL(style.href);
+              src.searchParams.delete("_cache");
 
-            if (src.href === url.href) {
-              reloadStylesheet(style.ownerNode);
-              continue;
+              if (src.href === url.href) {
+                reloadStylesheet(style.ownerNode);
+                continue;
+              }
             }
 
             // The file is @import'ed in a stylesheet

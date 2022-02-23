@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.6.2] - Unreleased
+### Fixed
+- CSS live reload error with `<style>`.
+
 ## [1.6.1] - 2022-02-23
 ### Changed
 - Added default targets to `parcel_css` plugin
