@@ -90,12 +90,16 @@ export default class Watcher {
     for await (const event of watcher) {
       let { paths } = event;
 
-      // Filter the ignored paths
-      if (ignore) {
-        paths = paths.filter((path) =>
-          !ignore.some((ignore) => path.startsWith(join(root, ignore, "/")))
-        );
-      }
+      // Filter ignored paths
+      paths = paths.filter((path) => {
+        if (path.endsWith(".DS_Store")) { // macOS file
+          return false;
+        }
+
+        return ignore
+          ? !ignore.some((ignore) => path.startsWith(join(root, ignore, "/")))
+          : true;
+      });
 
       if (!paths.length) {
         continue;

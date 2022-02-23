@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - CSS live reload error with `<style>`.
 - Updated `deno_graph`, `liquidjs` and `parcel_css`.
+- The file watcher ignores the `.DS_Store` files (macOS).
 
 ## [1.6.1] - 2022-02-23
 ### Changed
