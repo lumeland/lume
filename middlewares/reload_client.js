@@ -112,9 +112,8 @@ function refresh(files) {
         }
         break;
 
-      // Reload the entire page for JavaScript changes
-
       case "js":
+        // Reload the entire page for JavaScript changes
         location.reload();
         return;
     }
