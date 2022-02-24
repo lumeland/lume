@@ -26,14 +26,14 @@ export const defaults: Options = {
       customMedia: true,
     },
     targets: {
-      android: 98,
-      chrome: 98,
-      edge: 98,
-      firefox: 97,
-      ios_saf: 15,
-      safari: 15,
-      opera: 83,
-      samsung: 16,
+      android: version(98),
+      chrome: version(98),
+      edge: version(98),
+      firefox: version(97),
+      ios_saf: version(15),
+      safari: version(15),
+      opera: version(83),
+      samsung: version(16),
     },
   },
 };
@@ -81,4 +81,11 @@ export default function (userOptions?: Partial<Options>) {
       }
     }
   };
+}
+
+/**
+ * Convert a version number to a single 24-bit number
+ */
+export function version(major: number, minor = 0, patch = 0): number {
+  return (major << 16) | (minor << 8) | patch;
 }
