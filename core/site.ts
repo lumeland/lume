@@ -168,6 +168,8 @@ export default class Site {
       prettyUrls,
       preprocessors,
       engines,
+      defaultLayout: this.options.defaultLayout,
+
     });
 
     // Other stuff
@@ -627,6 +629,9 @@ export interface SiteOptions {
 
   /** The components options */
   components: ComponentsOptions;
+
+  /** The layout option */
+  defaultLayout?: string;
 }
 
 /** The options to configure the local server */

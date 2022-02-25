@@ -15,6 +15,7 @@ export interface Options {
   prettyUrls: boolean;
   preprocessors: Processors;
   engines: Engines;
+  defaultLayout?: string;
 }
 
 /**
@@ -28,6 +29,8 @@ export default class Renderer {
   /** To convert the urls to pretty /example.html => /example/ */
   prettyUrls: boolean;
 
+  /** Default layout if no layout is declare on the page data **/
+  defaultLayout?: string;
   /** Template engines to render the content */
   engines: Engines;
 
@@ -39,6 +42,7 @@ export default class Renderer {
     this.prettyUrls = options.prettyUrls;
     this.preprocessors = options.preprocessors;
     this.engines = options.engines;
+    this.defaultLayout = options.defaultLayout;
   }
 
   /** Render the provided pages */
@@ -171,6 +175,7 @@ export default class Renderer {
     let { content, layout } = data;
     let path = page.src.path + page.src.ext;
 
+    layout = layout || this.defaultLayout;
     content = await this.engines.render(content, data, path);
 
     // Render the layouts recursively
