@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.6.3] - 2022-03-01
+### Changed
+- The loader argument of `site.loadData()` is optional
+  and use `textLoader` by default.
+
 ### Fixed
 - Default targets to `parcel_css` plugin.
 

@@ -265,7 +265,7 @@ export default class Site {
   }
 
   /** Register a data loader for some extensions */
-  loadData(extensions: string[], loader: Loader) {
+  loadData(extensions: string[], loader: Loader = textLoader) {
     extensions.forEach((extension) => {
       this.formats.set(extension, { dataLoader: loader });
     });
