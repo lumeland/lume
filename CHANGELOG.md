@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.6.3] - Unreleased
+## [1.6.3] - 2022-03-01
 ### Fixed
 - Default targets to `parcel_css` plugin.
 
@@ -1398,7 +1398,7 @@ The first version.
 [#169]: https://github.com/lumeland/lume/issues/169
 [#170]: https://github.com/lumeland/lume/issues/170
 
-[1.6.3]: https://github.com/lumeland/lume/compare/v1.6.2...HEAD
+[1.6.3]: https://github.com/lumeland/lume/compare/v1.6.2...v1.6.3
 [1.6.2]: https://github.com/lumeland/lume/compare/v1.6.1...v1.6.2
 [1.6.1]: https://github.com/lumeland/lume/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/lumeland/lume/compare/v1.5.1...v1.6.0
