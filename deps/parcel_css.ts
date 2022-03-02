@@ -2,7 +2,7 @@ export {
   default,
   transform,
   transformStyleAttribute,
-} from "https://unpkg.com/@parcel/css-wasm@1.4.0/index.js";
+} from "https://unpkg.com/@parcel/css-wasm@1.5.0/index.js";
 
 // https://unpkg.com/@parcel/css-wasm@1.4.0/index.d.ts
 

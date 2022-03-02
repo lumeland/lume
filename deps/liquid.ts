@@ -1,4 +1,4 @@
-export * from "https://esm.sh/liquidjs@9.35.0";
+export * from "https://esm.sh/liquidjs@9.35.1";
 
 export interface LiquidOptions {
   /** A directory or an array of directories from where to resolve layout and include templates, and the filename passed to `.renderFile()`. If it's an array, the files are looked up in the order they occur in the array. Defaults to `["."]` */

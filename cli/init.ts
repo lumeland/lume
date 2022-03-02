@@ -104,7 +104,9 @@ async function initVSCode(path: string, importMapFile: string | undefined) {
   const baseConfig = {
     request: "launch",
     type: "pwa-node",
-    program: posix.join(path, "/cli.ts"),
+    program: path.startsWith("https://")
+      ? new URL("./cli.ts", path).href
+      : posix.join(path, "/cli.ts"),
     cwd: "${workspaceFolder}",
     runtimeExecutable: "deno",
     runtimeArgs: [
