@@ -171,7 +171,7 @@ Type the plugins separated by comma.
 All available options:
 ${
     pluginNames.map((plugin) =>
-      `- ${dim(plugin)} https://lumeland.github.io/plugins/${plugin}/`
+      `- ${dim(plugin)} https://lume.land/plugins/${plugin}/`
     ).join("\n")
   }
 

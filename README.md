@@ -16,7 +16,7 @@ faster, simpler and easier to use and configure, besides being super flexible.
 
 ---
 
-- [See the docs to learn more](https://lumeland.github.io/)
+- [See the docs to learn more](https://lume.land)
 - [Propose new ideas and get help at Discord](https://discord.gg/YbTmpACHWB)
 - If you like the project and want to provide some support
   [see our Open Collective organization](https://opencollective.com/lume)

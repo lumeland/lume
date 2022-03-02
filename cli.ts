@@ -83,7 +83,7 @@ const lume = new Command()
   .name("🔥lume")
   .version(getCurrentVersion)
   .description(
-    "A static site generator for Deno. \nDocs: https://lumeland.github.io/",
+    "A static site generator for Deno. \nDocs: https://lume.land",
   )
   .example("lume", "Builds the site.")
   .example("lume --serve", "Serves the site in localhost.")

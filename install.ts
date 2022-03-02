@@ -61,7 +61,7 @@ if (Deno.args[0] !== "--upgrade") {
   console.log();
   console.log(`Run ${brightGreen("lume --help")} for usage information`);
   console.log(
-    `See ${gray("https://lumeland.github.io/")} for online documentation`,
+    `See ${gray("https://lume.land")} for online documentation`,
   );
   console.log(
     `See ${
