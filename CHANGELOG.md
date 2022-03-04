@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Added
+- New `expires` middleware to add the `Expires` header to responses.
+
 ## [1.6.4] - 2022-03-02
 ### Fixed
 - Updated urls from `https://lumeland.github.io` to `https://lume.land` [#175].
@@ -1409,6 +1413,7 @@ The first version.
 [#170]: https://github.com/lumeland/lume/issues/170
 [#175]: https://github.com/lumeland/lume/issues/175
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.6.4...HEAD
 [1.6.4]: https://github.com/lumeland/lume/compare/v1.6.3...v1.6.4
 [1.6.3]: https://github.com/lumeland/lume/compare/v1.6.2...v1.6.3
 [1.6.2]: https://github.com/lumeland/lume/compare/v1.6.1...v1.6.2
