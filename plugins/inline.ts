@@ -148,7 +148,19 @@ export default function (userOptions?: Partial<Options>) {
           const content = await getContent(path);
           const div = element.ownerDocument!.createElement("div");
           div.innerHTML = content;
-          element.replaceWith(...div.children);
+          const svg = div.firstElementChild;
+
+          if (svg) {
+            if (!svg.className) {
+              svg.className = element.className;
+            }
+
+            if (!svg.id) {
+              svg.id = element.id;
+            }
+
+            element.replaceWith(svg);
+          }
           return;
         }
 

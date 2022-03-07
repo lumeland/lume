@@ -26,7 +26,8 @@ Deno.test("code_hightlight plugin", async () => {
     assert(!inlined(page, "el-4", "href"));
     assert(inlined(page, "el-5", "href"));
     assert(!inlined(page, "el-6", "href"));
-    equals(page.document?.querySelector("body > :first-child")?.tagName, "SVG");
+    equals(page.document?.querySelector("#el-7")?.tagName, "SVG");
+    equals(page.document?.querySelector("#el-7")?.className, "has-svg");
     assert(!inlined(page, "el-8", "src"));
     assert(inlined(page, "el-9", "src"));
     assert(!inlined(page, "el-10", "src"));

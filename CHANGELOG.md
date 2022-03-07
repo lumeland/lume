@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New `expires` middleware to add the `Expires` header to responses.
 
+### Changed
+- The `inline` plugin adds the `id` and `class` attributes
+  from the removed `<img>` to the inlined `<svg>`.
+
 ## [1.6.4] - 2022-03-02
 ### Fixed
 - Updated urls from `https://lumeland.github.io` to `https://lume.land` [#175].
