@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
+- New plugin `imagick`.
 - New `expires` middleware to add the `Expires` header to responses.
 
 ### Changed

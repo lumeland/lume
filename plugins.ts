@@ -5,6 +5,7 @@ export { default as codeHighlight } from "./plugins/code_highlight.ts";
 export { default as date } from "./plugins/date.ts";
 export { default as eta } from "./plugins/eta.ts";
 export { default as esbuild } from "./plugins/esbuild.ts";
+export { default as imagick } from "./plugins/imagick.ts";
 export { default as inline } from "./plugins/inline.ts";
 export { default as json } from "./plugins/json.ts";
 export { default as jsx } from "./plugins/jsx.ts";

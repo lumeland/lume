@@ -77,6 +77,21 @@ export function testPage(
   return test(page);
 }
 
+/** Test a generated page by output url */
+export function testUrlPage(
+  site: Site,
+  url: string,
+  test: (page: Page) => void | Promise<void>,
+) {
+  const page = site.pages.find((page) => page.data.url === url);
+
+  if (!page) {
+    throw new Error(`Page "${url}" not found`);
+  }
+
+  return test(page);
+}
+
 /** Build a site and print errors */
 export async function build(site: Site) {
   try {

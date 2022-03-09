@@ -1,0 +1,10 @@
+imagick:
+  - suffix: -small
+    resize: 20
+    blur: 10
+  - suffix: -big
+    resize: 20
+    blur: 10
+  - format: jpg
+  - format: webp
+  - format: png

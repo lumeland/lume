@@ -57,6 +57,7 @@ export const pluginNames = [
   "date",
   "esbuild",
   "eta",
+  "imagick",
   "inline",
   "jsx",
   "liquid",
