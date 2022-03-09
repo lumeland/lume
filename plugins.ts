@@ -14,6 +14,7 @@ export { default as markdown } from "./plugins/markdown.ts";
 export { default as modifyUrls } from "./plugins/modify_urls.ts";
 export { default as modules } from "./plugins/modules.ts";
 export { default as nunjucks } from "./plugins/nunjucks.ts";
+export { default as netlifyCMS } from "./plugins/netlify_cms.ts";
 export { default as onDemand } from "./plugins/on_demand.ts";
 export { default as paginate } from "./plugins/paginate.ts";
 export { default as parcelCss } from "./plugins/parcel_css.ts";

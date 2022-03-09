@@ -120,6 +120,8 @@ export class Page extends Base {
     page.data = { url, content };
     page.content = content;
 
+    page.updateUrl();
+
     return page;
   }
 

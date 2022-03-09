@@ -62,6 +62,7 @@ export const pluginNames = [
   "jsx",
   "liquid",
   "modify_urls",
+  "netlify_cms",
   "on_demand",
   "parcel_css",
   "postcss",
