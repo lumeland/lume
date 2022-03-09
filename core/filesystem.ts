@@ -110,7 +110,7 @@ export class Page extends Base {
   /** Count duplicated pages */
   #copy = 0;
 
-  /** Convenient way to create a page dinamically with a url and content */
+  /** Convenient way to create a page dynamically with a url and content */
   static create(url: string, content: Content): Page {
     const ext = posix.extname(url);
     const path = ext ? url.slice(0, -ext.length) : url;
