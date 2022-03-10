@@ -1,5 +1,8 @@
 # 🔥Lume
 
+[![deno.land/x/lume](https://shield.deno.dev/x/lume)](https://deno.land/x/lume)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
+
 **Lume** is the Galician word for _fire_ but also a (yet another) static site
 generator for [Deno](https://deno.land/).
 
