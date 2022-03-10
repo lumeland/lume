@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   from the removed `<img>` to the inlined `<svg>`.
 
 ### Fixed
-- Updated `std`, `esbuild`, `postcss` and `liquid`.
+- Updated `std`, `esbuild`, `postcss`, `parcel_css` and `liquid`.
 
 ## [1.6.4] - 2022-03-02
 ### Fixed
