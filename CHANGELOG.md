@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Updated `std`, `esbuild`, `postcss`, `parcel_css` and `liquid`.
+- `lume import-map` doesn't update the lume version.
 
 ## [1.6.4] - 2022-03-02
 ### Fixed

@@ -282,7 +282,7 @@ export function getImportMap(userMap?: ImportMap, url?: URL): ImportMap {
       resolveImportMap(userMap, url);
     }
 
-    map.imports = { ...map.imports, ...userMap.imports };
+    map.imports = { ...userMap.imports, ...map.imports };
     map.scopes = userMap.scopes;
   }
 
