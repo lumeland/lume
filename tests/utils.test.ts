@@ -80,10 +80,6 @@ Deno.test("sha1 function", async () => {
 Deno.test("import map", () => {
   const map = getImportMap();
 
-  equals(map.imports["lume"], new URL("../mod.ts", import.meta.url).href);
-  equals(map.imports["lume/"], new URL("../", import.meta.url).href);
-  equals(map.imports["lume/"], new URL("../", import.meta.url).href);
-
   equals(map, {
     imports: {
       "lume": new URL("../mod.ts", import.meta.url).href,
@@ -110,7 +106,7 @@ Deno.test("merge import map", async () => {
 
   equals(map, {
     imports: {
-      "lume": "https://lume.land/lume.ts",
+      "lume": new URL("../mod.ts", import.meta.url).href,
       "lume/": new URL("../", import.meta.url).href,
       "https://deno.land/x/lume/": new URL("../", import.meta.url).href,
       "std/": "https://deno.land/std@0.121.0/",
@@ -142,7 +138,7 @@ Deno.test("merge and resolve import map", async () => {
 
   equals(map, {
     imports: {
-      "lume": "https://lume.land/lume.ts",
+      "lume": new URL("../mod.ts", import.meta.url).href,
       "lume/": new URL("../", import.meta.url).href,
       "https://deno.land/x/lume/": new URL("../", import.meta.url).href,
       "std/": "https://deno.land/std@0.121.0/",
