@@ -396,7 +396,6 @@ export default class Site {
 
   /** Clear the dest directory and any cache */
   async clear() {
-    this.source.clearCache();
     this.reader.clearCache();
     await this.writer.clear();
   }
@@ -446,22 +445,6 @@ export default class Site {
       return;
     }
 
-    // Clear the cache before every file change
-    this.source.clearCache();
-
-    // Load the components and save them in the a global variable
-    const { variable, directory } = this.options.components;
-    const components = await this.componentLoader.load(directory);
-
-    if (components) {
-      this.data(variable, this.components.toProxy(components));
-    }
-
-    // Assign the global data
-    for (const [name, data] of Object.entries(this.globalData)) {
-      this.source.root!.data[name] = data;
-    }
-
     // Reload the changed files
     for (const file of files) {
       // Delete the file from the cache
@@ -479,6 +462,19 @@ export default class Site {
       }
 
       await this.source.update(file);
+    }
+
+    // Load the components and save them in the a global variable
+    const { variable, directory } = this.options.components;
+    const components = await this.componentLoader.load(directory);
+
+    if (components) {
+      this.data(variable, this.components.toProxy(components));
+    }
+
+    // Assign the global data
+    for (const [name, data] of Object.entries(this.globalData)) {
+      this.source.root!.data[name] = data;
     }
 
     // Get the selected pages to process (ignore drafts and non scoped pages)

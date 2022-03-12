@@ -40,9 +40,15 @@ abstract class Base {
     Object.defineProperty(this, "data", data);
   }
 
-  /** Returns the front matter for pages _data for directories */
+  /** Returns the front matter for pages, _data for directories */
   get baseData(): Data | undefined {
     return this.#data;
+  }
+
+  /** Set front matter for pages, _data for directories */
+  set baseData(data: Data | undefined) {
+    this.#data = data;
+    this.refreshCache();
   }
 
   /**
@@ -251,15 +257,6 @@ export class Page extends Base {
 export class Directory extends Base {
   pages = new Map<string, Page>();
   dirs = new Map<string, Directory>();
-
-  /** Merge more data with the existing */
-  addData(data: Data) {
-    const oldTags = this.baseData?.tags || [];
-    const newTags = data.tags || [];
-    const merged = { ...this.baseData, ...data };
-    merged.tags = [...oldTags, ...newTags];
-    this.data = merged;
-  }
 
   /** Create a subdirectory and return it */
   createDirectory(name: string): Directory {

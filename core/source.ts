@@ -2,7 +2,7 @@ import { basename, dirname, join } from "../deps/path.ts";
 import { concurrent, normalizePath } from "./utils.ts";
 import { Directory, Page } from "./filesystem.ts";
 
-import type { DataLoader, PageLoader, Reader } from "../core.ts";
+import type { Data, DataLoader, PageLoader, Reader } from "../core.ts";
 
 export interface Options {
   dataLoader: DataLoader;
@@ -36,14 +36,6 @@ export default class Source {
     this.reader = options.reader;
   }
 
-  /**
-   * Refresh the cache
-   * Used on update files
-   */
-  clearCache() {
-    this.root?.refreshCache();
-  }
-
   addIgnoredPath(path: string) {
     this.ignored.add(join("/", path));
   }
@@ -60,9 +52,9 @@ export default class Source {
   }
 
   /** Load all sources */
-  load() {
-    this.root = new Directory({ path: "/" });
-    return this.#loadDirectory(this.root);
+  async load() {
+    const [root] = await this.#getOrCreateDirectory("/");
+    return this.#loadDirectory(root);
   }
 
   /** Update a file */
@@ -77,11 +69,17 @@ export default class Source {
     const normalized = normalizePath(file);
 
     // It's inside a _data file or directory
-    if (/\/_data(?:\.\w+$|\/)/.test(normalized)) {
-      return await this.#updateFile(normalized);
+    const matches = normalized.match(/(.*)\/_data(?:\.\w+$|\/)/);
+
+    if (matches) {
+      const [directory, created] = await this.#getOrCreateDirectory(matches[1]);
+
+      if (!created) {
+        await this.#loadData(directory);
+      }
     }
 
-    // Any path segment starts with _ or .
+    // Any path segment starting with _ or .
     if (normalized.includes("/_") || normalized.includes("/.")) {
       return;
     }
@@ -124,37 +122,14 @@ export default class Source {
       isSymlink: false,
     };
 
-    // Is a file inside a _data directory
-    if (file.includes("/_data/")) {
-      const [dir, remain] = file.split("/_data/", 2);
-      const directory = await this.#getOrCreateDirectory(dir);
-      const path = dirname(remain).split("/").filter((name: string) =>
-        name && name !== "."
-      );
-      let data = directory.data as Record<string, unknown>;
-
-      for (const name of path) {
-        if (!(name in data)) {
-          data[name] = {};
-        }
-
-        data = data[name] as Record<string, unknown>;
-      }
-
-      return await this.dataLoader.loadEntry(
-        join(dirname(file)),
-        entry,
-        data,
-      );
-    }
-
-    const directory = await this.#getOrCreateDirectory(dirname(file));
+    const [directory] = await this.#getOrCreateDirectory(dirname(file));
     await this.#loadEntry(directory, entry);
   }
 
-  /** Get an existing directory. Create it if it doesn't exist */
-  async #getOrCreateDirectory(path: string): Promise<Directory> {
+  /** Get an existing directory or create it if it doesn't exist */
+  async #getOrCreateDirectory(path: string): Promise<[Directory, boolean]> {
     let dir: Directory;
+    let created = false;
 
     if (this.root) {
       dir = this.root;
@@ -175,31 +150,24 @@ export default class Source {
 
       dir = dir.createDirectory(name);
       await this.#loadData(dir);
+      created = true;
     }
 
-    return dir;
+    return [dir, created];
   }
 
   /** Load an entry from a directory */
   async #loadEntry(directory: Directory, entry: Deno.DirEntry) {
-    if (entry.isSymlink || entry.name.startsWith(".")) {
+    if (
+      entry.isSymlink || entry.name.startsWith(".") ||
+      entry.name.startsWith("_")
+    ) {
       return;
     }
 
     const path = join(directory.src.path, entry.name);
 
     if (this.ignored.has(path)) {
-      return;
-    }
-
-    // It's a _data file or directory
-    if (entry.name === "_data" || /^_data\.\w+$/.test(entry.name)) {
-      directory.addData(await this.dataLoader.load(path) || {});
-      return;
-    }
-
-    // Ignore entries starting with _
-    if (entry.name.startsWith("_")) {
       return;
     }
 
@@ -215,7 +183,7 @@ export default class Source {
     }
 
     if (entry.isDirectory) {
-      const subDirectory = directory.createDirectory(entry.name);
+      const [subDirectory] = await this.#getOrCreateDirectory(path);
       await this.#loadDirectory(subDirectory);
       return;
     }
@@ -223,6 +191,8 @@ export default class Source {
 
   /** Load the _data inside a directory */
   async #loadData(directory: Directory) {
+    const data: Data = {};
+
     await concurrent(
       this.reader.readDir(directory.src.path),
       async (entry) => {
@@ -233,10 +203,12 @@ export default class Source {
         }
 
         if (entry.name === "_data" || /^_data\.\w+$/.test(entry.name)) {
-          directory.addData(await this.dataLoader.load(path) || {});
-          return;
+          const dataFile = await this.dataLoader.load(path);
+          Object.assign(data, dataFile);
         }
       },
     );
+
+    directory.baseData = data;
   }
 }
