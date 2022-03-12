@@ -55,19 +55,58 @@ abstract class Base {
     }
 
     // Merge the data of the parent directories
-    let data: Data = this.#data || {};
-    let tags = data.tags || [];
+    const pageData: Data = this.#data || {};
+    const parentData: Data = this.parent?.data || {};
+    const data: Data = { ...parentData, ...pageData };
 
-    if (this.parent) {
-      const parentData = this.parent.data;
-      data = { ...parentData, ...data };
+    // Merge special keys
+    const mergedKeys: Record<string, string> = {
+      tags: "stringArray",
+      ...parentData.mergedKeys,
+      ...pageData.mergedKeys,
+    };
 
-      if (parentData.tags) {
-        tags = [...parentData.tags, ...tags];
+    for (const [key, type] of Object.entries(mergedKeys)) {
+      switch (type) {
+        case "stringArray":
+        case "array":
+          {
+            const pageValue: unknown[] = Array.isArray(pageData[key])
+              ? pageData[key] as unknown[]
+              : (key in pageData)
+              ? [pageData[key]]
+              : [];
+
+            const parentValue: unknown[] = Array.isArray(parentData[key])
+              ? parentData[key] as unknown[]
+              : (key in parentData)
+              ? [parentData[key]]
+              : [];
+
+            const merged = [...parentValue, ...pageValue];
+
+            data[key] = [
+              ...new Set(
+                type === "stringArray" ? merged.map((v) => String(v)) : merged,
+              ),
+            ];
+          }
+          break;
+
+        case "object":
+          {
+            const pageValue = pageData[key] as
+              | Record<string, unknown>
+              | undefined;
+            const parentValue = parentData[key] as
+              | Record<string, unknown>
+              | undefined;
+
+            data[key] = { ...parentValue, ...pageValue };
+          }
+          break;
       }
     }
-
-    data.tags = [...new Set(tags)];
 
     return this.#cache = data;
   }
@@ -322,6 +361,9 @@ export interface Data {
 
   /** To configure a different template engine(s) to render a page */
   templateEngine?: string | string[];
+
+  /** To configure how some data keys will be merged with the parent */
+  mergedKeys?: Record<string, "array" | "stringArray" | "object">;
 
   /** Whether render this page on demand or not */
   ondemand?: boolean;

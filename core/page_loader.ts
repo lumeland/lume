@@ -68,12 +68,6 @@ export default class PageLoader {
 
   /** Prepare the data and the page */
   prepare(page: Page, data: Data, type: PageType): void {
-    if (data.tags) {
-      data.tags = Array.isArray(data.tags)
-        ? data.tags.map((tag) => String(tag))
-        : [String(data.tags)];
-    }
-
     if (type === "page") {
       this.preparePage(page, data);
     }

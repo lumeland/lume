@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `imagick`.
 - New plugin `netlify_cms`.
 - New `expires` middleware to add the `Expires` header to responses.
+- New `mergedKeys` data key to configure how some keys will be merged.
 
 ### Changed
 - The `inline` plugin adds the `id` and `class` attributes

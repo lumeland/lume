@@ -19,6 +19,9 @@ Deno.test("load the pages of a site", async () => {
 
   // The data is merged
   testPage(site, "/pages/1_page1", (page) => {
+    const metas = page.data.metas as Record<string, unknown>;
+    const imagick = page.data.imagick as Record<string, unknown>;
+
     assert(page.data.draft);
     equals(page.data.url, "/pages/page1/");
     equals(page.data.title, "Page 1");
@@ -26,6 +29,9 @@ Deno.test("load the pages of a site", async () => {
     equals(page.data.tags?.[0], "pages");
     equals(page.data.tags?.[1], "sub-pages");
     equals(page.data.tags?.[2], "page1");
+    equals(metas.title, "Custom title");
+    equals(metas.description, "Default description");
+    equals(imagick.length, 2);
     equals(page.data.site, "Folder overrided site name");
     equals(page.dest.path, "/pages/page1/index");
     equals(page.dest.ext, ".html");
