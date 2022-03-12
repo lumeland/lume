@@ -425,9 +425,10 @@ export default class Site {
     }
 
     // Assign the global data
-    for (const [name, data] of Object.entries(this.globalData)) {
-      this.source.root!.data[name] = data;
-    }
+    this.source.root!.baseData = {
+      ...this.globalData,
+      ...this.source.root?.baseData,
+    };
 
     // Get all pages to process (ignore drafts)
     const pagesToBuild = this.source.getPages(
@@ -473,9 +474,10 @@ export default class Site {
     }
 
     // Assign the global data
-    for (const [name, data] of Object.entries(this.globalData)) {
-      this.source.root!.data[name] = data;
-    }
+    this.source.root!.baseData = {
+      ...this.globalData,
+      ...this.source.root?.baseData,
+    };
 
     // Get the selected pages to process (ignore drafts and non scoped pages)
     const pagesToBuild = this.source.getPages(
