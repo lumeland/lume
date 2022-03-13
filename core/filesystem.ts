@@ -136,8 +136,12 @@ abstract class Base {
   }
 
   /** Clean the cache of the merged data */
-  refreshCache() {
-    this.#cache = undefined;
+  refreshCache(): boolean {
+    if (this.#cache) {
+      this.#cache = undefined;
+      return true;
+    }
+    return false;
   }
 }
 
@@ -296,10 +300,14 @@ export class Directory extends Base {
   }
 
   /** Refresh the data cache in this directory recursively (used for rebuild) */
-  refreshCache() {
-    this.pages.forEach((page) => page.refreshCache());
-    this.dirs.forEach((dir) => dir.refreshCache());
-    super.refreshCache();
+  refreshCache(): boolean {
+    if (super.refreshCache()) {
+      this.pages.forEach((page) => page.refreshCache());
+      this.dirs.forEach((dir) => dir.refreshCache());
+      return true;
+    }
+
+    return false;
   }
 }
 
