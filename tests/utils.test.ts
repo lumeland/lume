@@ -1,6 +1,10 @@
 import { assertEquals as equals } from "../deps/assert.ts";
 import { getImportMap, isPlainObject, merge, sha1 } from "../core/utils.ts";
 
+const datefn_version =
+  (await (await fetch("https://cdn.deno.land/date_fns/meta/versions.json"))
+    .json()).latest;
+
 Deno.test("merge options", () => {
   interface Options {
     foo: string;
@@ -85,6 +89,8 @@ Deno.test("import map", () => {
       "lume": new URL("../mod.ts", import.meta.url).href,
       "lume/": new URL("../", import.meta.url).href,
       "https://deno.land/x/lume/": new URL("../", import.meta.url).href,
+      "lume/plugins/date/locale":
+        `https://deno.land/x/date_fns@${datefn_version}/locale`,
     },
   });
 });
@@ -109,6 +115,8 @@ Deno.test("merge import map", async () => {
       "lume": new URL("../mod.ts", import.meta.url).href,
       "lume/": new URL("../", import.meta.url).href,
       "https://deno.land/x/lume/": new URL("../", import.meta.url).href,
+      "lume/plugins/date/locale":
+        `https://deno.land/x/date_fns@${datefn_version}/locale`,
       "std/": "https://deno.land/std@0.121.0/",
       "/": "./",
     },
@@ -141,6 +149,8 @@ Deno.test("merge and resolve import map", async () => {
       "lume": new URL("../mod.ts", import.meta.url).href,
       "lume/": new URL("../", import.meta.url).href,
       "https://deno.land/x/lume/": new URL("../", import.meta.url).href,
+      "lume/plugins/date/locale":
+        `https://deno.land/x/date_fns@${datefn_version}/locale`,
       "std/": "https://deno.land/std@0.121.0/",
       "/": new URL("./assets/", import.meta.url).href,
     },
