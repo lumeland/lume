@@ -416,19 +416,8 @@ export default class Site {
     // Load source files
     await this.source.load();
 
-    // Load the components and save them in the a global variable
-    const { variable, directory } = this.options.components;
-    const components = await this.componentLoader.load(directory);
-
-    if (components) {
-      this.data(variable, this.components.toProxy(components));
-    }
-
-    // Assign the global data
-    this.source.root!.baseData = {
-      ...this.globalData,
-      ...this.source.root?.baseData,
-    };
+    // Load the components and prepare the data
+    await this.#prepareToBuild();
 
     // Get all pages to process (ignore drafts)
     const pagesToBuild = this.source.getPages(
@@ -465,19 +454,8 @@ export default class Site {
       await this.source.update(file);
     }
 
-    // Load the components and save them in the a global variable
-    const { variable, directory } = this.options.components;
-    const components = await this.componentLoader.load(directory);
-
-    if (components) {
-      this.data(variable, this.components.toProxy(components));
-    }
-
-    // Assign the global data
-    this.source.root!.baseData = {
-      ...this.globalData,
-      ...this.source.root?.baseData,
-    };
+    // Reload the components and prepare the data
+    await this.#prepareToBuild();
 
     // Get the selected pages to process (ignore drafts and non scoped pages)
     const pagesToBuild = this.source.getPages(
@@ -488,6 +466,29 @@ export default class Site {
     // Rebuild the selected pages
     const pages = await this.#buildPages(pagesToBuild);
     await this.dispatchEvent({ type: "afterUpdate", files, pages });
+  }
+
+  /**
+   * Internal function to prepare the data and load the components
+   * before build the pages
+   * Common operations of build and update
+   */
+  async #prepareToBuild(): Promise<void> {
+    const baseData = {
+      ...this.globalData,
+      ...this.source.root?.baseData,
+    };
+
+    // Load the components and save them in the a global variable
+    const { variable, directory } = this.options.components;
+    const components = await this.componentLoader.load(directory);
+
+    if (components) {
+      baseData[variable] = this.components.toProxy(components);
+    }
+
+    // Assign the global data
+    this.source.root!.baseData = baseData;
   }
 
   /**
