@@ -1,9 +1,8 @@
 import { assertEquals as equals } from "../deps/assert.ts";
 import { getImportMap, isPlainObject, merge, sha1 } from "../core/utils.ts";
+import { getDepVersion } from "./utils.ts";
 
-const datefn_version =
-  (await (await fetch("https://cdn.deno.land/date_fns/meta/versions.json"))
-    .json()).latest;
+const datefn_version = await getDepVersion("date.ts", "date_fns");
 
 Deno.test("merge options", () => {
   interface Options {

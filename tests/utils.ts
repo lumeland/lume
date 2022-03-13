@@ -101,3 +101,17 @@ export async function build(site: Site) {
     throw error;
   }
 }
+
+/** Get the version of a dependency */
+export async function getDepVersion(
+  file: string,
+  name: string,
+): Promise<string | undefined> {
+  const filepath = join(cwd, `../deps/${file}`);
+  const content = await Deno.readTextFile(filepath);
+  const match = content.match(`${name}@([^\/]+)`);
+
+  if (match) {
+    return match[1];
+  }
+}
