@@ -1,10 +1,9 @@
 import { Page } from "./filesystem.ts";
 import { Exception } from "./errors.ts";
 
-import type { ComponentsTree, Data } from "../core.ts";
+import type { ComponentsTree } from "../core.ts";
 
 export interface Options {
-  globalData: Data;
   cssFile: string;
   jsFile: string;
 }
@@ -13,7 +12,6 @@ export interface Options {
  * Class to consume the components in the template engines.
  */
 export default class Components {
-  globalData: Data;
   cssFile: string;
   jsFile: string;
 
@@ -21,7 +19,6 @@ export default class Components {
   js = new Map<string, string>();
 
   constructor(options: Options) {
-    this.globalData = options.globalData;
     this.cssFile = options.cssFile;
     this.jsFile = options.jsFile;
   }
@@ -31,21 +28,32 @@ export default class Components {
    * as comp.name() instead of components.get("name").render()
    */
   toProxy(components: ComponentsTree): ProxyComponents {
-    return new Proxy(components, {
+    const node = {
+      _components: components,
+      _proxies: new Map(),
+    };
+    return new Proxy(node, {
       get: (target, name) => {
-        if (typeof name !== "string") {
+        if (typeof name !== "string" || name in target) {
           return;
         }
 
         const key = name.toLowerCase();
-        const component = target.get(key);
+
+        if (target._proxies.has(key)) {
+          return target._proxies.get(key);
+        }
+
+        const component = target._components.get(key);
 
         if (!component) {
           throw new Exception(`Component "${name}" not found`);
         }
 
         if (component instanceof Map) {
-          return this.toProxy(component);
+          const proxy = this.toProxy(component);
+          target._proxies.set(key, proxy);
+          return proxy;
         }
 
         // Save CSS & JS code for the component
@@ -58,8 +66,7 @@ export default class Components {
         }
 
         // Return the function to render the component
-        return (props: Record<string, unknown>) =>
-          component.render({ ...this.globalData, ...props });
+        return (props: Record<string, unknown>) => component.render(props);
       },
     }) as unknown as ProxyComponents;
   }

@@ -40,7 +40,7 @@ Deno.test("Components", async (t) => {
   );
 
   // Set up modules
-  site.loadComponents([".ts"], moduleLoader, new ModuleEngine());
+  site.loadComponents([".ts", ".js"], moduleLoader, new ModuleEngine());
 
   // Set up eta
   eta.configure({ useWith: true });
@@ -52,14 +52,14 @@ Deno.test("Components", async (t) => {
   // Set up jsx
   site.loadComponents([".jsx"], moduleLoader, new JsxEngine());
 
-  const componentsTree = (await componentLoader.load("/"))!;
+  const componentsTree = (await componentLoader.load("/", site.globalData))!;
   const components = new Components({
-    globalData: {},
     cssFile: "/components.css",
     jsFile: "/components.js",
   });
 
   const comps = components.toProxy(componentsTree);
+  site.globalData.comp = comps;
 
   await t.step("Nunjucks components", () => {
     assert(componentsTree.has("button_njk"));
@@ -124,6 +124,17 @@ Deno.test("Components", async (t) => {
     assertEquals(
       result.toString().trim(),
       `<button class="button_jsx">Hello world</button>`,
+    );
+  });
+
+  await t.step("JS inner components", () => {
+    assert(componentsTree.has("innerbutton"));
+    assert(comps.innerButton);
+    // @ts-ignore: TODO: fix
+    const result = comps.innerButton({ text: "Inner button" });
+    assertEquals(
+      result.toString().trim(),
+      `<div><button class="button_jsx">Inner button</button></div>`,
     );
   });
 });

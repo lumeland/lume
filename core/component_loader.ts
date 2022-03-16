@@ -1,6 +1,6 @@
 import { basename, join } from "../deps/path.ts";
 
-import type { Formats, Reader } from "../core.ts";
+import type { Data, Formats, Reader } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
@@ -26,7 +26,10 @@ export default class ComponentsLoader {
   }
 
   /** Load a directory of components */
-  async load(path: string): Promise<ComponentsTree | undefined> {
+  async load(
+    path: string,
+    extraData: Data = {},
+  ): Promise<ComponentsTree | undefined> {
     path = join("/", path);
     const info = await this.reader.getInfo(path);
 
@@ -34,11 +37,14 @@ export default class ComponentsLoader {
       return;
     }
 
-    return this.#loadDirectory(path);
+    return this.#loadDirectory(path, extraData);
   }
 
   /** Load a directory of components */
-  async #loadDirectory(path: string): Promise<ComponentsTree | undefined> {
+  async #loadDirectory(
+    path: string,
+    extraData: Data,
+  ): Promise<ComponentsTree | undefined> {
     const components: ComponentsTree = new Map();
 
     for await (const entry of this.reader.readDir(path)) {
@@ -52,7 +58,7 @@ export default class ComponentsLoader {
       const fullPath = join(path, entry.name);
 
       if (entry.isDirectory) {
-        const subcomponents = await this.#loadDirectory(fullPath);
+        const subcomponents = await this.#loadDirectory(fullPath, extraData);
 
         if (subcomponents) {
           components.set(entry.name.toLowerCase(), subcomponents);
@@ -60,7 +66,7 @@ export default class ComponentsLoader {
         continue;
       }
 
-      const component = await this.#loadComponent(fullPath);
+      const component = await this.#loadComponent(fullPath, extraData);
 
       if (component) {
         components.set(component.name.toLowerCase(), component);
@@ -71,7 +77,10 @@ export default class ComponentsLoader {
   }
 
   /** Load a component file */
-  async #loadComponent(path: string): Promise<Component | undefined> {
+  async #loadComponent(
+    path: string,
+    extraData: Data,
+  ): Promise<Component | undefined> {
     const result = this.formats.search(path);
 
     if (!result) {
@@ -84,17 +93,21 @@ export default class ComponentsLoader {
       return;
     }
 
-    const data = await this.reader.read(path, componentLoader);
-    const { content } = data;
+    const component = await this.reader.read(path, componentLoader);
+    const { content } = component;
 
     return {
       path,
-      name: data.name ?? basename(path, ext),
+      name: component.name ?? basename(path, ext),
       render(data) {
-        return componentEngine.renderSync(content, data, path);
+        return componentEngine.renderSync(
+          content,
+          { ...extraData, ...data },
+          path,
+        );
       },
-      css: data.css,
-      js: data.js,
+      css: component.css,
+      js: component.js,
     } as Component;
   }
 }

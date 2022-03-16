@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Updated `std`, `esbuild`, `postcss`, `parcel_css` and `liquid`.
 - `lume import-map` doesn't update the lume version.
 - Improved `_data` reloading in watching mode.
+- Refactor of components due Deno's bug with `console.log()`.
 
 ## [1.6.4] - 2022-03-02
 ### Fixed

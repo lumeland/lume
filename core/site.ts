@@ -138,7 +138,6 @@ export default class Site {
 
     const src = this.src();
     const dest = this.dest();
-    const { globalData } = this;
     const { quiet, includes, cwd, prettyUrls } = this.options;
     const { cssFile, jsFile } = this.options.components;
 
@@ -150,7 +149,7 @@ export default class Site {
     const dataLoader = new DataLoader({ reader, formats });
     const includesLoader = new IncludesLoader({ reader, includes, formats });
     const componentLoader = new ComponentLoader({ reader, formats });
-    const components = new Components({ globalData, cssFile, jsFile });
+    const components = new Components({ cssFile, jsFile });
     const source = new Source({
       reader,
       pageLoader,
@@ -481,7 +480,7 @@ export default class Site {
 
     // Load the components and save them in the a global variable
     const { variable, directory } = this.options.components;
-    const components = await this.componentLoader.load(directory);
+    const components = await this.componentLoader.load(directory, baseData);
 
     if (components) {
       baseData[variable] = this.components.toProxy(components);
