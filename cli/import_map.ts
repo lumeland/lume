@@ -1,33 +1,19 @@
 import { brightGreen } from "../deps/colors.ts";
-import { dirname } from "../deps/path.ts";
-import { ensureDir } from "../deps/fs.ts";
-import { getImportMap, ImportMap, toUrl } from "../core/utils.ts";
+import { getDenoOptions, getImportMap } from "../core/utils.ts";
 
-interface Options {
-  file: string;
-}
+/** Generate import_map.json and deno.json files */
+export default async function importMap() {
+  const options = await getDenoOptions();
+  const importMap = await getImportMap(options.importMap);
 
-/** Generate a _config.js file */
-export default async function importMap({ file }: Options) {
-  let importMap: ImportMap;
-  let updated = false;
+  options.importMap ||= "import_map.json";
 
-  try {
-    const mapUrl = await toUrl(file);
-    const mapContent = await (await fetch(mapUrl)).text();
-    const parsedMap = JSON.parse(mapContent) as ImportMap;
-    importMap = getImportMap(parsedMap, mapUrl);
-    updated = true;
-  } catch {
-    importMap = getImportMap();
-  }
+  await Deno.writeTextFile(
+    options.importMap,
+    JSON.stringify(importMap, null, 2),
+  );
+  await Deno.writeTextFile("deno.json", JSON.stringify(options, null, 2));
 
-  await ensureDir(dirname(file));
-  await Deno.writeTextFile(file, JSON.stringify(importMap, null, 2));
-
-  if (updated) {
-    console.log(brightGreen("Updated the file"), file);
-  } else {
-    console.log(brightGreen("Created a new import map file"), file);
-  }
+  console.log(brightGreen("Deno config saved in"), "deno.json");
+  console.log(brightGreen("Import map saved in"), options.importMap);
 }

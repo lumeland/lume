@@ -250,17 +250,19 @@ function resolveSpecifierMap(specifierMap: SpecifierMap, baseUrl: URL) {
   }
 }
 
-/**
- * If any specifier maps in a given import map have relative paths,
- * resolve it with a given base URL.
- */
-function resolveImportMap(importMap: ImportMap, baseUrl: URL) {
-  resolveSpecifierMap(importMap.imports, baseUrl);
+/** Basic options for deno.json file */
+export interface DenoOptions {
+  importMap?: string;
+  tasks?: Record<string, string>;
+  [key: string]: unknown;
+}
 
-  if (importMap.scopes) {
-    for (const scope of Object.values(importMap.scopes)) {
-      resolveSpecifierMap(scope, baseUrl);
-    }
+export async function getDenoOptions(): Promise<DenoOptions> {
+  try {
+    const content = await Deno.readTextFile("deno.json");
+    return JSON.parse(content) as DenoOptions;
+  } catch {
+    return {};
   }
 }
 
@@ -268,7 +270,7 @@ function resolveImportMap(importMap: ImportMap, baseUrl: URL) {
  * Return a data url with the import map of Lume
  * Optionally merge it with a custom import map from the user
  */
-export function getImportMap(userMap?: ImportMap, url?: URL): ImportMap {
+export async function getImportMap(mapFile?: string): Promise<ImportMap> {
   const map: ImportMap = {
     imports: {
       "lume": new URL("./mod.ts", baseUrl).href,
@@ -278,13 +280,20 @@ export function getImportMap(userMap?: ImportMap, url?: URL): ImportMap {
     },
   };
 
-  if (userMap) {
-    if (url) {
-      resolveImportMap(userMap, url);
+  if (mapFile) {
+    const url = await toUrl(mapFile);
+    const importMap = await (await fetch(url)).json() as ImportMap;
+
+    resolveSpecifierMap(importMap.imports, url);
+
+    if (importMap.scopes) {
+      for (const scope of Object.values(importMap.scopes)) {
+        resolveSpecifierMap(scope, baseUrl);
+      }
     }
 
-    map.imports = { ...userMap.imports, ...map.imports };
-    map.scopes = userMap.scopes;
+    map.imports = { ...importMap.imports, ...map.imports };
+    map.scopes = importMap.scopes;
   }
 
   return map;

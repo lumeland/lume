@@ -1,6 +1,5 @@
 import { brightGreen, cyan, gray, green, red } from "./deps/colors.ts";
-import { checkDenoVersion, getImportMap } from "./core/utils.ts";
-import { encode } from "./deps/base64.ts";
+import { checkDenoVersion } from "./core/utils.ts";
 
 const denoInfo = checkDenoVersion();
 
@@ -14,20 +13,15 @@ if (denoInfo) {
   Deno.exit(1);
 }
 
-const importMap = `data:application/json;base64,${
-  encode(JSON.stringify(getImportMap()))
-}`;
-const cli = new URL("./cli.ts", import.meta.url).href;
 const process = Deno.run({
   cmd: [
     Deno.execPath(),
     "install",
     "--unstable",
     "-Af",
-    `--import-map=${importMap}`,
     `--no-check`,
     "--name=lume",
-    cli,
+    new URL("./ci.ts", import.meta.url).href,
   ],
 });
 

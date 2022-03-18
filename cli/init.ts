@@ -10,19 +10,8 @@ export default async function init() {
 
   await initConfig(path);
 
-  let importMapFile: string | undefined = undefined;
-
   if (confirm(cyan("Do you want to create a import map file?"))) {
-    const file = await getImportMapFile();
-
-    if (file) {
-      await importMap({ file });
-      importMapFile = file;
-    }
-  }
-
-  if (confirm(cyan("Do you want to configure VS Code?"))) {
-    return await initVSCode(path, importMapFile);
+    await importMap();
   }
 }
 
@@ -64,84 +53,6 @@ async function initConfig(path: string) {
   await Deno.writeTextFile(configFile, code.join("\n"));
   console.log();
   console.log(brightGreen("Created a config file"), configFile);
-}
-
-/** (Re)configure VSCode for Deno/Lume */
-async function initVSCode(path: string, importMapFile: string | undefined) {
-  try {
-    await Deno.mkdir(".vscode");
-  } catch {
-    // Ignore if the directory already exists
-  }
-
-  // Enable Deno plugin
-  let config: Record<string, unknown> = {};
-
-  try {
-    const existing = await Deno.readTextFile(".vscode/settings.json");
-    config = JSON.parse(existing);
-  } catch {
-    // ignore
-  }
-
-  config["deno.enable"] = true;
-  config["deno.lint"] = true;
-  config["deno.unstable"] = true;
-  config["deno.suggest.imports.hosts"] = {
-    "https://deno.land": true,
-  };
-
-  if (!importMapFile) {
-    importMapFile = ".vscode/lume_import_map.json";
-    await importMap({ file: importMapFile });
-  }
-
-  // Set up the import map
-  config["deno.importMap"] = importMapFile;
-
-  // Create a launch.json file to debug
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  const baseConfig = {
-    request: "launch",
-    type: "pwa-node",
-    program: path.startsWith("https://")
-      ? new URL("./cli.ts", path).href
-      : posix.join(path, "/cli.ts"),
-    cwd: "${workspaceFolder}",
-    runtimeExecutable: "deno",
-    runtimeArgs: [
-      "run",
-      "--unstable",
-      `--import-map=${importMapFile}`,
-      "--inspect",
-      "--allow-all",
-    ],
-    attachSimplePort: 9229,
-  };
-
-  const launch = {
-    "version": "0.2.0",
-    "configurations": [
-      Object.assign({}, baseConfig, {
-        name: "Lume build",
-      }),
-      Object.assign({}, baseConfig, {
-        name: "Lume serve",
-        args: ["--serve"],
-      }),
-    ],
-  };
-
-  await Deno.writeTextFile(
-    ".vscode/settings.json",
-    JSON.stringify(config, null, 2),
-  );
-  await Deno.writeTextFile(
-    ".vscode/launch.json",
-    JSON.stringify(launch, null, 2),
-  );
-  console.log();
-  console.log(brightGreen("VS Code configured"));
 }
 
 /** Question to get the style to import lume in the config file */
@@ -207,26 +118,4 @@ async function getConfigFile(): Promise<string | false> {
   }
 
   return configFile;
-}
-
-/** Question to get the filename of the import_map file */
-async function getImportMapFile(): Promise<string | false> {
-  const importMapFile = prompt(
-    cyan("Name of the import map file?"),
-    "import_map.json",
-  );
-
-  if (!importMapFile) {
-    return false;
-  }
-
-  if (await exists(importMapFile)) {
-    return confirm(
-        cyan(`The file "${importMapFile}" already exist. Update it?`),
-      )
-      ? importMapFile
-      : false;
-  }
-
-  return importMapFile;
 }
