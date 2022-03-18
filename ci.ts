@@ -1,7 +1,14 @@
 import { encode } from "./deps/base64.ts";
 import { parse } from "./deps/flags.ts";
 import { cyan, green, red } from "./deps/colors.ts";
-import { checkDenoVersion, getDenoConfig, getImportMap } from "./core/utils.ts";
+import {
+  checkDenoVersion,
+  DenoConfig,
+  getDenoConfig,
+  getImportMap,
+  ImportMap,
+  toUrl,
+} from "./core/utils.ts";
 
 /** Returns the Lume & Deno arguments */
 export async function getArgs(args: string[]): Promise<[string[], string[]]> {
@@ -42,28 +49,37 @@ export async function getArgs(args: string[]): Promise<[string[], string[]]> {
   }
 
   if (options) {
-    denoArgs.push(`--config="deno.json"`);
+    denoArgs.push(`--config=deno.json`);
+  }
 
-    if (!parsedArgs["import-map"]) {
-      if (options.importMap) {
-        denoArgs.push(`--import-map=${options.importMap}`);
-      } else {
-        const importMap = await getImportMap(options.importMap);
-        const mapUrl = `data:application/json;base64,${
-          encode(JSON.stringify(importMap))
-        }`;
-        denoArgs.push(`--import-map=${mapUrl}`);
-      }
-    }
-  } else {
-    const importMap = await getImportMap();
-    const mapUrl = `data:application/json;base64,${
-      encode(JSON.stringify(importMap))
-    }`;
-    denoArgs.push(`--import-map=${mapUrl}`);
+  const importMap = await resolveImportMap(parsedArgs, options);
+
+  if (importMap) {
+    denoArgs.push(`--import-map=${importMap}`);
   }
 
   return [lumeArgs, denoArgs];
+}
+
+async function resolveImportMap(
+  args: Record<string, string>,
+  options: DenoConfig | undefined,
+): Promise<string | undefined> {
+  if (args["import-map"]) {
+    return args["import-map"];
+  }
+
+  if (options?.importMap) {
+    const url = await toUrl(options.importMap);
+    const importMap = await (await fetch(url)).json() as ImportMap;
+
+    if (importMap.imports.lume) {
+      return;
+    }
+  }
+
+  const importMap = await getImportMap(options?.importMap);
+  return `data:application/json;base64,${encode(JSON.stringify(importMap))}`;
 }
 
 export default async function main(args: string[]) {

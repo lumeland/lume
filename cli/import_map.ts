@@ -1,5 +1,5 @@
 import { brightGreen } from "../deps/colors.ts";
-import { getDenoConfig, getImportMap } from "../core/utils.ts";
+import { baseUrl, getDenoConfig, getImportMap } from "../core/utils.ts";
 
 /** Generate import_map.json and deno.json files */
 export default async function importMap() {
@@ -7,6 +7,9 @@ export default async function importMap() {
   const importMap = await getImportMap(config.importMap);
 
   config.importMap ||= "import_map.json";
+  const tasks = config.tasks || {};
+  tasks.build = `deno run -A ${new URL("./ci.ts", baseUrl).href}`;
+  tasks.serve = "deno task build -- -s";
 
   await Deno.writeTextFile(
     config.importMap,

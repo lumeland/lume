@@ -14,16 +14,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New `expires` middleware to add the `Expires` header to responses.
 - New `mergedKeys` data key to configure how some keys will be merged.
 - `lume/plugins/date/locale` bare import to the import_map.
+- The `lume import-map` command creates a `deno.json` file (in addition to `import_map.json`)
+  to automatically link the import map to Deno,
+  meaning that you no longer need to specify the import map file in the command line
+  (`lume -- --import-map=import_map.json`) because it's automatically detected.
+- The `deno.json` file not only includes the `importMap` key with the "import_map.json"
+  value but also a couple of tasks (build and serve) to run Lume using Deno tasks
+  (`deno task build` and `deno task serve`).
 
 ### Changed
 - The `inline` plugin adds the `id` and `class` attributes
   from the removed `<img>` to the inlined `<svg>`.
+
+### Removed
+- The VS Code configuration in `lume init`. You can use a `deno.json` file with the `importMap` key.
 
 ### Fixed
 - Updated `std`, `esbuild`, `postcss`, `parcel_css` and `liquid`.
 - `lume import-map` doesn't update the lume version.
 - Improved `_data` reloading in watching mode.
 - Refactor of components due Deno's bug with `console.log()`.
+- `deno.json` file detection.
 
 ## [1.6.4] - 2022-03-02
 ### Fixed

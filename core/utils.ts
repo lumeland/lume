@@ -1,7 +1,7 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
 import { SEP, toFileUrl } from "../deps/path.ts";
 
-const baseUrl = new URL("../", import.meta.url);
+export const baseUrl = new URL("../", import.meta.url);
 
 /** Run a callback concurrently with all the elements of an Iterable */
 export async function concurrent<Type>(
@@ -261,8 +261,12 @@ export async function getDenoConfig(): Promise<DenoConfig | undefined> {
   try {
     const content = await Deno.readTextFile("deno.json");
     return JSON.parse(content) as DenoConfig;
-  } catch {
-    return;
+  } catch (err) {
+    if (err instanceof Deno.errors.NotFound) {
+      return;
+    }
+
+    throw err;
   }
 }
 

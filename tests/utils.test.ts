@@ -1,6 +1,6 @@
 import { assertEquals as equals } from "../deps/assert.ts";
 import { getImportMap, isPlainObject, merge, sha1 } from "../core/utils.ts";
-import { getDepVersion } from "./utils.ts";
+import { getDepVersion, getPath } from "./utils.ts";
 
 const datefn_version = await getDepVersion("date.ts", "date_fns");
 
@@ -80,8 +80,8 @@ Deno.test("sha1 function", async () => {
   equals(await sha1(dataUint8), expected);
 });
 
-Deno.test("import map", () => {
-  const map = getImportMap();
+Deno.test("import map", async () => {
+  const map = await getImportMap();
 
   equals(map, {
     imports: {
@@ -95,53 +95,7 @@ Deno.test("import map", () => {
 });
 
 Deno.test("merge import map", async () => {
-  const map = await getImportMap({
-    imports: {
-      "lume": "https://lume.land/lume.ts",
-      "std/": "https://deno.land/std@0.121.0/",
-      "/": "./",
-    },
-    scopes: {
-      "foo/": {
-        "std/": "https://deno.land/std@0.121.0/foo/",
-        "/": "./foo/",
-      },
-    },
-  });
-
-  equals(map, {
-    imports: {
-      "lume": new URL("../mod.ts", import.meta.url).href,
-      "lume/": new URL("../", import.meta.url).href,
-      "https://deno.land/x/lume/": new URL("../", import.meta.url).href,
-      "lume/plugins/date/locale":
-        `https://deno.land/x/date_fns@${datefn_version}/locale`,
-      "std/": "https://deno.land/std@0.121.0/",
-      "/": "./",
-    },
-    scopes: {
-      "foo/": {
-        "std/": "https://deno.land/std@0.121.0/foo/",
-        "/": "./foo/",
-      },
-    },
-  });
-});
-Deno.test("merge and resolve import map", async () => {
-  const path = new URL("./assets/import_map.json", import.meta.url);
-  const map = await getImportMap({
-    imports: {
-      "lume": "https://lume.land/lume.ts",
-      "std/": "https://deno.land/std@0.121.0/",
-      "/": "./",
-    },
-    scopes: {
-      "foo/": {
-        "std/": "https://deno.land/std@0.121.0/foo/",
-        "/": "./foo/",
-      },
-    },
-  }, path);
+  const map = await getImportMap(getPath("assets/import_map.json"));
 
   equals(map, {
     imports: {
@@ -156,7 +110,7 @@ Deno.test("merge and resolve import map", async () => {
     scopes: {
       "foo/": {
         "std/": "https://deno.land/std@0.121.0/foo/",
-        "/": new URL("./assets/foo/", import.meta.url).href,
+        "/": new URL("../foo/", import.meta.url).href,
       },
     },
   });
