@@ -251,18 +251,18 @@ function resolveSpecifierMap(specifierMap: SpecifierMap, baseUrl: URL) {
 }
 
 /** Basic options for deno.json file */
-export interface DenoOptions {
+export interface DenoConfig {
   importMap?: string;
   tasks?: Record<string, string>;
   [key: string]: unknown;
 }
 
-export async function getDenoOptions(): Promise<DenoOptions> {
+export async function getDenoConfig(): Promise<DenoConfig | undefined> {
   try {
     const content = await Deno.readTextFile("deno.json");
-    return JSON.parse(content) as DenoOptions;
+    return JSON.parse(content) as DenoConfig;
   } catch {
-    return {};
+    return;
   }
 }
 

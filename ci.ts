@@ -1,12 +1,7 @@
 import { encode } from "./deps/base64.ts";
 import { parse } from "./deps/flags.ts";
 import { cyan, green, red } from "./deps/colors.ts";
-import {
-  checkDenoVersion,
-  getDenoOptions,
-  getImportMap,
-  ImportMap,
-} from "./core/utils.ts";
+import { checkDenoVersion, getDenoConfig, getImportMap } from "./core/utils.ts";
 
 /** Returns the Lume & Deno arguments */
 export async function getArgs(args: string[]): Promise<[string[], string[]]> {
@@ -40,16 +35,31 @@ export async function getArgs(args: string[]): Promise<[string[], string[]]> {
   }
 
   // Merge the import map
-  const options = await getDenoOptions();
+  const options = await getDenoConfig();
 
-  if (parsedArgs["import-map"] || !options.importMap) {
-    const importMap = await getImportMap(
-      parsedArgs["import-map"] || options.importMap,
-    );
+  if (parsedArgs["import-map"]) {
+    denoArgs.push(`--import-map=${parsedArgs["import-map"]}`);
+  }
+
+  if (options) {
+    denoArgs.push(`--config="deno.json"`);
+
+    if (!parsedArgs["import-map"]) {
+      if (options.importMap) {
+        denoArgs.push(`--import-map=${options.importMap}`);
+      } else {
+        const importMap = await getImportMap(options.importMap);
+        const mapUrl = `data:application/json;base64,${
+          encode(JSON.stringify(importMap))
+        }`;
+        denoArgs.push(`--import-map=${mapUrl}`);
+      }
+    }
+  } else {
+    const importMap = await getImportMap();
     const mapUrl = `data:application/json;base64,${
       encode(JSON.stringify(importMap))
     }`;
-
     denoArgs.push(`--import-map=${mapUrl}`);
   }
 
