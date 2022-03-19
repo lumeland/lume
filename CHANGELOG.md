@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   (`deno task build` and `deno task serve`).
 
 ### Changed
+- Updated minimum Deno version supported to `1.20.1`.
 - The `inline` plugin adds the `id` and `class` attributes
   from the removed `<img>` to the inlined `<svg>`.
 
