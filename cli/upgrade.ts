@@ -64,16 +64,8 @@ async function install(version: string, dev = false) {
     ],
   });
 
-  const status = await process.status();
+  await process.status();
   process.close();
 
-  try {
-    Deno.stat("deno.json");
-    Deno.stat("import_map.json");
-    await importMap();
-  } catch {
-    // Don't update import_map.json or deno.json
-  }
-
-  return status.success;
+  return url;
 }
