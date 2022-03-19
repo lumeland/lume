@@ -15,9 +15,16 @@ interface Options {
   watch: boolean;
 }
 
+export default function ({ root, config, serve, watch }: Options) {
+  return build(root, config, serve, watch);
+}
+
 /** Build the website and optionally watch changes and serve the site */
-export default async function build(
-  { root, config, serve, watch }: Options,
+export async function build(
+  root: string,
+  config: string | undefined,
+  serve: boolean,
+  watch: boolean,
 ) {
   const site = await createSite(root, config);
   const quiet = site.options.quiet;

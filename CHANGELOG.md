@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 - The VS Code configuration in `lume init`. You can use a `deno.json` file with the `importMap` key.
+- The `--file` option to `lume import-map`.
 
 ### Fixed
 - Updated `std`, `esbuild`, `postcss`, `parcel_css` and `liquid`.

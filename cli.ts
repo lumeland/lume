@@ -7,7 +7,6 @@ import runCommand from "./cli/run.ts";
 import buildCommand from "./cli/build.ts";
 import importMapCommand from "./cli/import_map.ts";
 import { cyan, dim, green } from "./deps/colors.ts";
-import ci from "./ci.ts";
 
 const init = new Command()
   .description("Create a config file for a new site.")
@@ -27,12 +26,6 @@ const upgrade = new Command()
 const importMap = new Command()
   .description("Create or update a import map file with the Lume imports.")
   .example("lume import-map", "Create/update the file import_map.json.")
-  .example("lume import-map --file=my-map.json", "Create/update a custom file.")
-  .option(
-    "-f, --file [file:string]",
-    "The name of the import map file.",
-    { default: "./import_map.json" },
-  )
   .action(importMapCommand);
 
 const run = new Command()
@@ -149,23 +142,19 @@ const lume = new Command()
 
 // If the command contains deno arguments, use ci.ts
 try {
-  if (Deno.args.some((arg) => arg === "--")) {
-    await ci(Deno.args);
-  } else {
-    if (!Deno.args.includes("--quiet")) {
-      const info = await mustNotifyUpgrade();
+  if (!Deno.args.includes("--quiet")) {
+    const info = await mustNotifyUpgrade();
 
-      if (info) {
-        console.log("----------------------------------------");
-        console.log(
-          `Update available ${dim(info.current)}  → ${green(info.latest)}`,
-        );
-        console.log(`Run ${cyan(info.command)} to update`);
-        console.log("----------------------------------------");
-      }
+    if (info) {
+      console.log("----------------------------------------");
+      console.log(
+        `Update available ${dim(info.current)}  → ${green(info.latest)}`,
+      );
+      console.log(`Run ${cyan(info.command)} to update`);
+      console.log("----------------------------------------");
     }
-    await lume.parse(Deno.args);
   }
+  await lume.parse(Deno.args);
 } catch (error) {
   printError(error);
   Deno.exit(1);

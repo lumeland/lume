@@ -5,9 +5,14 @@ interface Options {
   config?: string;
 }
 
+export default function ({ root, config }: Options, scripts: string[]) {
+  return run(root, config, scripts);
+}
+
 /** Run one or more custom scripts */
-export default async function run(
-  { root, config }: Options,
+export async function run(
+  root: string,
+  config: string | undefined,
   scripts: string[],
 ) {
   const site = await createSite(root, config);

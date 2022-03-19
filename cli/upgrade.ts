@@ -4,14 +4,17 @@ import {
   getLatestVersion,
 } from "../core/utils.ts";
 import { brightGreen, gray } from "../deps/colors.ts";
-import importMap from "./import_map.ts";
+import { importMap } from "./import_map.ts";
 
 interface Options {
   dev: boolean;
 }
+export default function ({ dev }: Options) {
+  return upgrade(dev);
+}
 
 /** Upgrade the Lume installation to the latest version */
-export default async function upgrade({ dev }: Options) {
+export async function upgrade(dev = false) {
   const latest = dev
     ? await getLatestDevelopmentVersion()
     : await getLatestVersion();

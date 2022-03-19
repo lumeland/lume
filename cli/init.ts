@@ -5,7 +5,11 @@ import { pluginNames } from "./utils.ts";
 import importMap from "./import_map.ts";
 
 /** Generate a _config.js file */
-export default async function init() {
+export default function () {
+  return init();
+}
+
+export async function init() {
   const path = new URL("..", import.meta.url).href;
 
   await initConfig(path);
