@@ -72,7 +72,7 @@ async function install(version: string, dev = false) {
       "run",
       "--unstable",
       "-A",
-      new URL("./install.ts", url).href,
+      url.href + "/install.ts",
       "--upgrade",
     ],
   });
