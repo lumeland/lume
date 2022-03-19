@@ -57,9 +57,11 @@ export default async function upgrade({ dev }: Options) {
 }
 
 async function install(version: string, dev = false) {
-  const url = dev
-    ? `https://cdn.jsdelivr.net/gh/lumeland/lume@${version}`
-    : `https://deno.land/x/lume@${version}`;
+  const url = new URL(
+    dev
+      ? `https://cdn.jsdelivr.net/gh/lumeland/lume@${version}`
+      : `https://deno.land/x/lume@${version}`,
+  );
 
   const process = Deno.run({
     cmd: [
@@ -67,13 +69,17 @@ async function install(version: string, dev = false) {
       "run",
       "--unstable",
       "-A",
-      `${url}/install.ts`,
+      new URL("./install.ts", url).href,
       "--upgrade",
     ],
   });
 
-  await process.status();
+  const status = await process.status();
   process.close();
+
+  if (!status.success) {
+    throw new Error("Error upgrading Lume");
+  }
 
   return url;
 }

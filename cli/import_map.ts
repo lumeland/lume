@@ -2,7 +2,7 @@ import { brightGreen } from "../deps/colors.ts";
 import { baseUrl, getDenoConfig, getImportMap } from "../core/utils.ts";
 
 /** Generate import_map.json and deno.json files */
-export default async function importMap(url: string | URL = baseUrl) {
+export default async function importMap(url = baseUrl) {
   const config = await getDenoConfig() || {};
   const importMap = await getImportMap(config.importMap);
 
