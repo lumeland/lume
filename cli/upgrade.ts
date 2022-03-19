@@ -1,7 +1,7 @@
 import {
-  getCurrentVersion,
   getLatestDevelopmentVersion,
   getLatestVersion,
+  getLumeVersion,
 } from "../core/utils.ts";
 import { brightGreen, gray } from "../deps/colors.ts";
 import { importMap } from "./import_map.ts";
@@ -19,7 +19,7 @@ export async function upgrade(dev = false) {
     ? await getLatestDevelopmentVersion()
     : await getLatestVersion();
 
-  if (latest === getCurrentVersion()) {
+  if (latest === getLumeVersion()) {
     console.log(
       dev
         ? "You're using the latest version of Lume:"

@@ -1,14 +1,25 @@
 import { encode } from "./deps/base64.ts";
 import { parse } from "./deps/flags.ts";
-import { cyan, green, red } from "./deps/colors.ts";
+import { cyan, dim, green, red } from "./deps/colors.ts";
 import {
   checkDenoVersion,
-  DenoConfig,
   getDenoConfig,
   getImportMap,
-  ImportMap,
-  toUrl,
+  getLumeVersion,
+  loadImportMap,
+  mustNotifyUpgrade,
 } from "./core/utils.ts";
+
+/**
+ * This file works as a proxy to the actual Lume CLI to fix the following issues:
+ * - Add defaults flags to Deno (--unstable, -A, --no-check)
+ * - Adds user provided flags to Deno (for example --compact)
+ * - Detect and set the lume --quiet flag in Deno.
+ * - Detect and use the deno.json file automatically.
+ * - Add the import-map option to Deno if it's missing
+ * - Check whether the import_map.json file has the Lume imports.
+ * - Check whether the Lume version is the latest.
+ */
 
 /** Returns the Lume & Deno arguments */
 export async function getArgs(args: string[]): Promise<[string[], string[]]> {
@@ -31,7 +42,6 @@ export async function getArgs(args: string[]): Promise<[string[], string[]]> {
   for (const [name, value] of Object.entries(parsedArgs)) {
     switch (name) {
       case "_":
-      case "import-map":
         break;
 
       default: {
@@ -41,45 +51,66 @@ export async function getArgs(args: string[]): Promise<[string[], string[]]> {
     }
   }
 
-  // Merge the import map
+  // Detect and use the deno.json file automatically
   const options = await getDenoConfig();
-
-  if (parsedArgs["import-map"]) {
-    denoArgs.push(`--import-map=${parsedArgs["import-map"]}`);
-  }
 
   if (options) {
     denoArgs.push(`--config=deno.json`);
   }
 
-  const importMap = await resolveImportMap(parsedArgs, options);
+  // Add the import-map option to Deno if it's missing
+  const importMapUrl = parsedArgs["import-map"] || options?.importMap;
 
-  if (importMap) {
+  // There's a import map file
+  if (importMapUrl) {
+    const importMap = await loadImportMap(importMapUrl);
+
+    if (!importMap.imports["lume/"]) {
+      // The import map doesn't include Lume imports
+      console.log("----------------------------------------");
+      console.error(red("Error:"));
+      console.log(
+        `The import map file ${
+          dim(importMapUrl)
+        } does not include Lume imports.`,
+      );
+      if (importMapUrl === "import_map.json") {
+        console.log(
+          `Run ${cyan("lume import-map")} to update import_map.json.`,
+        );
+      }
+      console.log("----------------------------------------");
+    } else {
+      // Check whether the import_map.json file has the same version of lume as the installed version.
+      const cliVersion = getLumeVersion();
+      const mapVersion = getLumeVersion(new URL(importMap.imports["lume/"]));
+
+      if (cliVersion !== mapVersion) {
+        console.log("----------------------------------------");
+        console.error(red("Warning:"));
+        console.log(
+          `The import map file ${dim(importMapUrl)} imports the Lume version ${
+            dim(mapVersion)
+          }`,
+        );
+        console.log(`but you are using Lume ${dim(cliVersion)}.`);
+        if (importMapUrl === "import_map.json") {
+          console.log(
+            `Run ${cyan("lume import-map")} to update import_map.json.`,
+          );
+        }
+        console.log("----------------------------------------");
+      }
+    }
+  } else {
+    // There's no import map file, so we generate one automatically
+    const importMap = `data:application/json;base64,${
+      encode(JSON.stringify(await getImportMap()))
+    }`;
     denoArgs.push(`--import-map=${importMap}`);
   }
 
   return [lumeArgs, denoArgs];
-}
-
-async function resolveImportMap(
-  args: Record<string, string>,
-  options: DenoConfig | undefined,
-): Promise<string | undefined> {
-  if (args["import-map"]) {
-    return args["import-map"];
-  }
-
-  if (options?.importMap) {
-    const url = await toUrl(options.importMap);
-    const importMap = await (await fetch(url)).json() as ImportMap;
-
-    if (importMap.imports.lume) {
-      return;
-    }
-  }
-
-  const importMap = await getImportMap(options?.importMap);
-  return `data:application/json;base64,${encode(JSON.stringify(importMap))}`;
 }
 
 export default async function main(args: string[]) {
@@ -93,6 +124,19 @@ export default async function main(args: string[]) {
     console.log(`Run ${cyan(denoInfo.command)} and try again`);
     console.log("----------------------------------------");
     Deno.exit(1);
+  }
+
+  if (!args.includes("--quiet")) {
+    const info = await mustNotifyUpgrade();
+
+    if (info) {
+      console.log("----------------------------------------");
+      console.log(
+        `Update available ${dim(info.current)}  → ${green(info.latest)}`,
+      );
+      console.log(`Run ${cyan(info.command)} to update`);
+      console.log("----------------------------------------");
+    }
   }
 
   const [lumeArgs, denoArgs] = await getArgs(args);

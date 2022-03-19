@@ -182,8 +182,8 @@ export function stringToDocument(string: string): HTMLDocument {
 }
 
 /** Return the current installed version */
-export function getCurrentVersion(): string {
-  const { pathname } = baseUrl;
+export function getLumeVersion(url = baseUrl): string {
+  const { pathname } = url;
   return pathname.match(/@([^/]+)/)?.[1] ?? `local (${pathname})`;
 }
 
@@ -210,7 +210,7 @@ export interface UpgradeInfo {
 }
 
 export async function mustNotifyUpgrade(): Promise<undefined | UpgradeInfo> {
-  const current = getCurrentVersion();
+  const current = getLumeVersion();
 
   // It's a local version
   if (current.startsWith("local ")) {
@@ -240,16 +240,6 @@ export async function mustNotifyUpgrade(): Promise<undefined | UpgradeInfo> {
   return { current, latest, command };
 }
 
-/**
- * If a given specifier map has relative paths,
- * resolve them with a given base URL.
- */
-function resolveSpecifierMap(specifierMap: SpecifierMap, baseUrl: URL) {
-  for (const [specifier, url] of Object.entries(specifierMap)) {
-    specifierMap[specifier] = new URL(url, baseUrl).href;
-  }
-}
-
 /** Basic options for deno.json file */
 export interface DenoConfig {
   importMap?: string;
@@ -270,6 +260,11 @@ export async function getDenoConfig(): Promise<DenoConfig | undefined> {
   }
 }
 
+export async function loadImportMap(mapFile: string): Promise<ImportMap> {
+  const url = await toUrl(mapFile);
+  return await (await fetch(url)).json() as ImportMap;
+}
+
 /**
  * Return a data url with the import map of Lume
  * Optionally merge it with a custom import map from the user
@@ -285,16 +280,7 @@ export async function getImportMap(mapFile?: string): Promise<ImportMap> {
   };
 
   if (mapFile) {
-    const url = await toUrl(mapFile);
-    const importMap = await (await fetch(url)).json() as ImportMap;
-
-    resolveSpecifierMap(importMap.imports, url);
-
-    if (importMap.scopes) {
-      for (const scope of Object.values(importMap.scopes)) {
-        resolveSpecifierMap(scope, baseUrl);
-      }
-    }
+    const importMap = await loadImportMap(mapFile);
 
     map.imports = { ...importMap.imports, ...map.imports };
     map.scopes = importMap.scopes;

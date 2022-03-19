@@ -1,12 +1,11 @@
 import { Command, CompletionsCommand } from "./deps/cliffy.ts";
-import { getCurrentVersion, mustNotifyUpgrade } from "./core/utils.ts";
+import { getLumeVersion } from "./core/utils.ts";
 import { printError } from "./core/errors.ts";
 import initCommand from "./cli/init.ts";
 import upgradeCommand from "./cli/upgrade.ts";
 import runCommand from "./cli/run.ts";
 import buildCommand from "./cli/build.ts";
 import importMapCommand from "./cli/import_map.ts";
-import { cyan, dim, green } from "./deps/colors.ts";
 
 const init = new Command()
   .description("Create a config file for a new site.")
@@ -74,7 +73,7 @@ const run = new Command()
 
 const lume = new Command()
   .name("🔥lume")
-  .version(getCurrentVersion)
+  .version(() => getLumeVersion())
   .description(
     "A static site generator for Deno. \nDocs: https://lume.land",
   )
@@ -140,20 +139,7 @@ const lume = new Command()
   .command("run <script...>", run)
   .command("completions", new CompletionsCommand());
 
-// If the command contains deno arguments, use ci.ts
 try {
-  if (!Deno.args.includes("--quiet")) {
-    const info = await mustNotifyUpgrade();
-
-    if (info) {
-      console.log("----------------------------------------");
-      console.log(
-        `Update available ${dim(info.current)}  → ${green(info.latest)}`,
-      );
-      console.log(`Run ${cyan(info.command)} to update`);
-      console.log("----------------------------------------");
-    }
-  }
   await lume.parse(Deno.args);
 } catch (error) {
   printError(error);
