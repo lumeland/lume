@@ -37,8 +37,10 @@ export async function upgrade(dev = false) {
   const url = await install(latest, dev);
 
   try {
-    Deno.stat("deno.json");
-    Deno.stat("import_map.json");
+    await Promise.all([
+      Deno.stat("deno.json"),
+      Deno.stat("import_map.json"),
+    ]);
     await importMap(url);
   } catch {
     // Don't update import_map.json or deno.json
