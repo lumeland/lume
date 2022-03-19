@@ -4,6 +4,7 @@ import {
   getLatestVersion,
 } from "../core/utils.ts";
 import { brightGreen, gray } from "../deps/colors.ts";
+import importMap from "./import_map.ts";
 
 interface Options {
   dev: boolean;
@@ -65,6 +66,14 @@ async function install(version: string, dev = false) {
 
   const status = await process.status();
   process.close();
+
+  try {
+    Deno.stat("deno.json");
+    Deno.stat("import_map.json");
+    await importMap();
+  } catch {
+    // Don't update import_map.json or deno.json
+  }
 
   return status.success;
 }
