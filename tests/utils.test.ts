@@ -105,12 +105,12 @@ Deno.test("merge import map", async () => {
       "lume/plugins/date/locale":
         `https://deno.land/x/date_fns@${datefn_version}/locale`,
       "std/": "https://deno.land/std@0.121.0/",
-      "/": new URL("./assets/", import.meta.url).href,
+      "/": "./",
     },
     scopes: {
       "foo/": {
         "std/": "https://deno.land/std@0.121.0/foo/",
-        "/": new URL("../foo/", import.meta.url).href,
+        "/": "./foo/",
       },
     },
   });
