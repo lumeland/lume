@@ -31,7 +31,15 @@ export default async function upgrade({ dev }: Options) {
     `New version available. Updating Lume to ${brightGreen(latest)}...`,
   );
 
-  await install(latest, dev);
+  const url = await install(latest, dev);
+
+  try {
+    Deno.stat("deno.json");
+    Deno.stat("import_map.json");
+    await importMap(url);
+  } catch {
+    // Don't update import_map.json or deno.json
+  }
 
   console.log();
   console.log("Update successful!");
