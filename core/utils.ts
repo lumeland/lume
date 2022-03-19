@@ -326,10 +326,10 @@ export function checkDenoVersion(): DenoInfo | undefined {
   }
 }
 
-export async function toUrl(url: string): Promise<URL> {
-  try {
-    return new URL(url);
-  } catch {
-    return toFileUrl(await Deno.realPath(url));
+export async function toUrl(path: string): Promise<URL> {
+  if (path.match(/https?:\/\//)) {
+    return new URL(path);
   }
+
+  return toFileUrl(await Deno.realPath(path));
 }
