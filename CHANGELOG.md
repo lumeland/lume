@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `imagick`.
 - New plugin `netlify_cms`.
 - New `expires` middleware to add the `Expires` header to responses.
+- New `cache_busting` middleware to include the assets version identifier in the path.
 - New `mergedKeys` data key to configure how some keys will be merged.
 - `lume/plugins/date/locale` bare import to the import_map.
 - The `lume import-map` command creates a `deno.json` file (in addition to `import_map.json`)

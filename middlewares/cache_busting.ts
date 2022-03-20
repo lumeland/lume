@@ -1,0 +1,30 @@
+import type { Middleware } from "../core.ts";
+
+export interface Options {
+  regex: RegExp;
+  replacement: string;
+}
+
+export const defaults: Options = {
+  regex: /^\/v[\d]+\//,
+  replacement: "/",
+};
+
+/** Implements cache busting */
+export default function cacheBusting(options: Partial<Options>): Middleware {
+  const { regex, replacement } = { ...defaults, ...options };
+
+  return async (request, next) => {
+    const url = new URL(request.url);
+    const { pathname } = url;
+
+    if (pathname.match(regex)) {
+      url.pathname = pathname.replace(regex, replacement);
+      request = new Request(url.href, {
+        ...request,
+      });
+    }
+
+    return await next(request);
+  };
+}

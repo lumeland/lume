@@ -32,12 +32,7 @@ export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     site.process(options.extensions, inline);
 
-    // Update the cache
-    site.addEventListener("beforeUpdate", (ev) => {
-      for (const filename of ev.files!) {
-        cache.delete(filename);
-      }
-    });
+    site.addEventListener("beforeUpdate", () => cache.clear());
 
     const selector = `[${options.attribute}]`;
 
