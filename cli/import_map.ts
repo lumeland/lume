@@ -8,7 +8,20 @@ export default function () {
 
 export async function importMap(url: URL) {
   const config = await getDenoConfig() || {};
-  const importMap = await getImportMap(config.importMap);
+  let currentMap = config.importMap;
+
+  if (!currentMap) {
+    try {
+      await Deno.stat("./import_map.json");
+      currentMap = "./import_map.json";
+    } catch (error) {
+      if (!(error instanceof Deno.errors.NotFound)) {
+        throw error;
+      }
+    }
+  }
+
+  const importMap = await getImportMap(currentMap);
 
   config.importMap ||= "import_map.json";
   const tasks = config.tasks || {};
