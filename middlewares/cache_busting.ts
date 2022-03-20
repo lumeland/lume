@@ -11,7 +11,7 @@ export const defaults: Options = {
 };
 
 /** Implements cache busting */
-export default function cacheBusting(options: Partial<Options>): Middleware {
+export default function cacheBusting(options?: Partial<Options>): Middleware {
   const { regex, replacement } = { ...defaults, ...options };
 
   return async (request, next) => {
