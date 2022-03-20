@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.7.0] - 2022-03-20
 ### Added
 - New plugin `imagick`.
 - New plugin `netlify_cms`.
@@ -1442,7 +1442,7 @@ The first version.
 [#170]: https://github.com/lumeland/lume/issues/170
 [#175]: https://github.com/lumeland/lume/issues/175
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.6.4...HEAD
+[1.7.0]: https://github.com/lumeland/lume/compare/v1.6.4...v1.7.0
 [1.6.4]: https://github.com/lumeland/lume/compare/v1.6.3...v1.6.4
 [1.6.3]: https://github.com/lumeland/lume/compare/v1.6.2...v1.6.3
 [1.6.2]: https://github.com/lumeland/lume/compare/v1.6.1...v1.6.2
