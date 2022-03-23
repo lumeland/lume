@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Fixed
+- Throw an exception on missing configuration for Netlify CMS in the `netlify_cms` plugin.
+
 ## [1.7.1] - 2022-03-20
 ### Fixed
 - Task creation in the `deno.json` file.
@@ -1446,6 +1450,7 @@ The first version.
 [#170]: https://github.com/lumeland/lume/issues/170
 [#175]: https://github.com/lumeland/lume/issues/175
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.7.1...HEAD
 [1.7.1]: https://github.com/lumeland/lume/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/lumeland/lume/compare/v1.6.4...v1.7.0
 [1.6.4]: https://github.com/lumeland/lume/compare/v1.6.3...v1.6.4

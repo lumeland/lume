@@ -1,5 +1,6 @@
 import { Page } from "../core/filesystem.ts";
 import { merge } from "../core/utils.ts";
+import { Exception } from "../core/errors.ts";
 import { posix } from "../deps/path.ts";
 import { stringify } from "../deps/yaml.ts";
 
@@ -52,9 +53,14 @@ export default function (userOptions?: Partial<Options>) {
     // Build the admin page
     site.addEventListener("afterRender", () => {
       const root = site.source.root!;
-      const config: Record<string, unknown> =
-        root.data[options.configKey] as Record<string, unknown> | undefined ||
-        {};
+      const config: Record<string, unknown> | undefined =
+        root.data[options.configKey] as Record<string, unknown> | undefined;
+
+      if (!config) {
+        throw new Exception("Missing configuration for Netlify CMS", {
+          key: options.configKey,
+        });
+      }
 
       // Create config.yml
       const configUrl = posix.join(options.path, "config.yml");
