@@ -32,8 +32,9 @@ export default function expires(userOptions?: Partial<Options>): Middleware {
     const response = await next(request);
     const { headers } = response;
     const type = headers.get("Content-Type");
-    const duration = (type && options.durations[type]) ||
-      options.defaultDuration;
+    const duration = (type && type in options.durations)
+      ? options.durations[type]
+      : options.defaultDuration;
     headers.set("Expires", new Date(Date.now() + duration).toUTCString());
 
     return response;

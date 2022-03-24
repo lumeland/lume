@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Fixed
 - Throw an exception on missing configuration for Netlify CMS in the `netlify_cms` plugin.
+- Fixed `expires` middleware for `0` values.
 
 ## [1.7.1] - 2022-03-20
 ### Fixed
