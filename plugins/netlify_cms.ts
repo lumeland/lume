@@ -34,7 +34,7 @@ const defaults: Options = {
   extraHTML: "",
 };
 
-/** A plugin to use SASS in Lume */
+/** A plugin to use Netlify CMS in Lume easily */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
