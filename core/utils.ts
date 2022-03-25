@@ -275,7 +275,6 @@ export async function getImportMap(mapFile?: string): Promise<ImportMap> {
       "lume": new URL("./mod.ts", baseUrl).href,
       "lume/": new URL("./", baseUrl).href,
       "https://deno.land/x/lume/": new URL("./", baseUrl).href,
-      "lume/plugins/date/locale": "https://deno.land/x/date_fns@v2.22.1/locale",
     },
   };
 

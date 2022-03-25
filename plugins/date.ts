@@ -1,4 +1,4 @@
-import { format } from "../deps/date.ts";
+import { format, loadLanguages } from "../deps/date.ts";
 import { merge } from "../core/utils.ts";
 
 import type { Helper, Site } from "../core.ts";
@@ -17,7 +17,7 @@ export interface Options {
   name: string;
 
   /** The loaded locales */
-  locales: Record<string, unknown>;
+  locales: Record<string, unknown> | string[];
 
   /** Custom date formats */
   formats: Record<string, string>;
@@ -31,9 +31,14 @@ export const defaults: Options = {
 };
 
 /** A plugin to format Date values */
-export default function (userOptions?: Partial<Options>) {
+export default async function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
-  const defaultLocale = Object.keys(options.locales).shift();
+
+  const locales = Array.isArray(options.locales)
+    ? await loadLanguages(options.locales)
+    : options.locales;
+
+  const defaultLocale = Object.keys(locales).shift();
 
   return (site: Site) => {
     site.filter(options.name, filter as Helper);
@@ -55,7 +60,7 @@ export default function (userOptions?: Partial<Options>) {
 
       const patt = options.formats[pattern] || formats.get(pattern) ||
         pattern;
-      const locale = lang ? options.locales[lang] : undefined;
+      const locale = lang ? locales[lang] : undefined;
 
       return format(date, patt, { locale });
     }
