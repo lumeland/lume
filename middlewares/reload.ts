@@ -1,11 +1,8 @@
 import Watcher from "../core/watcher.ts";
 import { normalizePath } from "../core/utils.ts";
+import reloadClient from "./reload_client.js";
 
 import type { Middleware } from "../core.ts";
-
-// Websocket client code
-const wsCode =
-  await (await fetch(new URL("./reload_client.js", import.meta.url))).text();
 
 export interface Options {
   root: string;
@@ -67,7 +64,8 @@ export default function reload(options: Options): Middleware {
         result = await reader.read();
       }
 
-      body += `<script type="module" id="lume-live-reload">${wsCode}</script>`;
+      body +=
+        `<script type="module" id="lume-live-reload">${reloadClient}; liveReload();</script>`;
 
       const { status, statusText } = response;
       const headers = new Headers();
