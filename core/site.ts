@@ -244,15 +244,7 @@ export default class Site {
   }
 
   /** Use a plugin */
-  use(plugin: Plugin | Promise<Plugin>) {
-    // Promises are resolved before build
-    if (plugin instanceof Promise) {
-      return this.addEventListener("beforeBuild", async () => {
-        const plug = await plugin;
-        plug(this);
-      });
-    }
-
+  use(plugin: Plugin) {
     plugin(this);
     return this;
   }

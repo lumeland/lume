@@ -31,38 +31,40 @@ export const defaults: Options = {
 };
 
 /** A plugin to format Date values */
-export default async function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
-  const locales = Array.isArray(options.locales)
-    ? await loadLanguages(options.locales)
-    : options.locales;
-
-  const defaultLocale = Object.keys(locales).shift();
-
   return (site: Site) => {
-    site.filter(options.name, filter as Helper);
+    site.addEventListener("beforeBuild", async () => {
+      const locales = Array.isArray(options.locales)
+        ? await loadLanguages(options.locales)
+        : options.locales;
 
-    function filter(
-      date: string | Date,
-      pattern = "DATE",
-      lang = defaultLocale,
-    ) {
-      if (!date) {
-        return;
+      const defaultLocale = Object.keys(locales).shift();
+
+      site.filter(options.name, filter as Helper);
+
+      function filter(
+        date: string | Date,
+        pattern = "DATE",
+        lang = defaultLocale,
+      ) {
+        if (!date) {
+          return;
+        }
+
+        if (date === "now") {
+          date = new Date();
+        } else if (!(date instanceof Date)) {
+          date = new Date(date);
+        }
+
+        const patt = options.formats[pattern] || formats.get(pattern) ||
+          pattern;
+        const locale = lang ? locales[lang] : undefined;
+
+        return format(date, patt, { locale });
       }
-
-      if (date === "now") {
-        date = new Date();
-      } else if (!(date instanceof Date)) {
-        date = new Date(date);
-      }
-
-      const patt = options.formats[pattern] || formats.get(pattern) ||
-        pattern;
-      const locale = lang ? locales[lang] : undefined;
-
-      return format(date, patt, { locale });
-    }
+    });
   };
 }

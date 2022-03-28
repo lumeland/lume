@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
-- `site.use()` accepts Promises, resolved in the `beforeBuild` event.
 - `date` plugin accepts an array of locales (ex: `["en", "gl", "pt", "es"]`),
   that are loaded automatically.
 
