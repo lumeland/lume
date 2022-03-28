@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Throw an exception on missing configuration for Netlify CMS in the `netlify_cms` plugin.
 - Fixed `expires` middleware for `0` values.
 - Live reload works offline.
+- Updated `deno_graph` and `std`.
 
 ## [1.7.1] - 2022-03-20
 ### Fixed
