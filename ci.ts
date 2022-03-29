@@ -22,7 +22,10 @@ import {
  */
 
 /** Returns the Lume & Deno arguments */
-export async function getArgs(args: string[]): Promise<[string[], string[]]> {
+export async function getArgs(
+  args: string[],
+  quiet: boolean,
+): Promise<[string[], string[]]> {
   const sep = args.indexOf("--");
   const lumeArgs = sep === -1 ? args : args.slice(0, sep);
   const denoArgs = [
@@ -31,24 +34,20 @@ export async function getArgs(args: string[]): Promise<[string[], string[]]> {
     `--no-check`,
   ];
 
-  if (lumeArgs.includes("--quiet")) {
+  if (quiet) {
     denoArgs.push("--quiet");
   }
 
-  // Deno flags
+  // Flags passed to Deno
   const parsedArgs = parse(sep === -1 ? [] : args.slice(sep + 1));
 
-  // Regular flags
   for (const [name, value] of Object.entries(parsedArgs)) {
-    switch (name) {
-      case "_":
-        break;
-
-      default: {
-        const flagName = name.length === 1 ? `-${name}` : `--${name}`;
-        denoArgs.push(value === true ? flagName : `${flagName}=${value}`);
-      }
+    if (name === "_") {
+      continue;
     }
+
+    const flagName = name.length === 1 ? `-${name}` : `--${name}`;
+    denoArgs.push(value === true ? flagName : `${flagName}=${value}`);
   }
 
   // Detect and use the deno.json file automatically
@@ -67,39 +66,31 @@ export async function getArgs(args: string[]): Promise<[string[], string[]]> {
 
     if (!importMap.imports["lume/"]) {
       // The import map doesn't include Lume imports
-      console.log("----------------------------------------");
-      console.error(red("Error:"));
-      console.log(
+      !quiet && warn(
+        red("Error:"),
         `The import map file ${
           dim(importMapUrl)
         } does not include Lume imports.`,
+        (importMapUrl === "import_map.json")
+          ? `Run ${cyan("lume import-map")} to update import_map.json.`
+          : "",
       );
-      if (importMapUrl === "import_map.json") {
-        console.log(
-          `Run ${cyan("lume import-map")} to update import_map.json.`,
-        );
-      }
-      console.log("----------------------------------------");
     } else {
-      // Check whether the import_map.json file has the same version of lume as the installed version.
+      // Check whether the import_map.json file has the same lume version as the installed version.
       const cliVersion = getLumeVersion();
       const mapVersion = getLumeVersion(new URL(importMap.imports["lume/"]));
 
       if (cliVersion !== mapVersion) {
-        console.log("----------------------------------------");
-        console.error(red("Warning:"));
-        console.log(
-          `The import map file ${dim(importMapUrl)} imports the Lume version ${
+        !quiet && warn(
+          red("Different lume versions mixed:"),
+          `The import map file ${dim(importMapUrl)} imports Lume ${
             dim(mapVersion)
           }`,
+          `but CLI version is ${dim(cliVersion)}.`,
+          (importMapUrl === "import_map.json")
+            ? `Run ${cyan("lume import-map")} to update import_map.json.`
+            : undefined,
         );
-        console.log(`but you are using Lume ${dim(cliVersion)}.`);
-        if (importMapUrl === "import_map.json") {
-          console.log(
-            `Run ${cyan("lume import-map")} to update import_map.json.`,
-          );
-        }
-        console.log("----------------------------------------");
       }
     }
   } else {
@@ -113,33 +104,33 @@ export async function getArgs(args: string[]): Promise<[string[], string[]]> {
   return [lumeArgs, denoArgs];
 }
 
+/** Runs the Lume CLI */
 export default async function main(args: string[]) {
   const denoInfo = checkDenoVersion();
+  const quiet = args.includes("--quiet");
 
   if (denoInfo) {
-    console.log("----------------------------------------");
-    console.error(red("Error running Lume"));
-    console.log(`Lume needs Deno ${green(denoInfo.minimum)} or greater`);
-    console.log(`Your current version is ${red(denoInfo.current)}`);
-    console.log(`Run ${cyan(denoInfo.command)} and try again`);
-    console.log("----------------------------------------");
+    warn(
+      red("Error running Lume"),
+      `Lume needs Deno ${green(denoInfo.minimum)} or greater`,
+      `Your current version is ${red(denoInfo.current)}`,
+      `Run ${cyan(denoInfo.command)} and try again`,
+    );
     Deno.exit(1);
   }
 
-  if (!args.includes("--quiet")) {
+  if (!quiet) {
     const info = await mustNotifyUpgrade();
 
     if (info) {
-      console.log("----------------------------------------");
-      console.log(
+      warn(
         `Update available ${dim(info.current)}  → ${green(info.latest)}`,
+        `Run ${cyan(info.command)} to update`,
       );
-      console.log(`Run ${cyan(info.command)} to update`);
-      console.log("----------------------------------------");
     }
   }
 
-  const [lumeArgs, denoArgs] = await getArgs(args);
+  const [lumeArgs, denoArgs] = await getArgs(args, quiet);
   const process = Deno.run({
     cmd: [
       Deno.execPath(),
@@ -161,4 +152,10 @@ export default async function main(args: string[]) {
 // Run the current command
 if (import.meta.main) {
   main(Deno.args);
+}
+
+function warn(...lines: (string | undefined)[]) {
+  console.log("----------------------------------------");
+  lines.forEach((line) => line && console.log(line));
+  console.log("----------------------------------------");
 }
