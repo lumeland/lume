@@ -1,4 +1,4 @@
-import React from "https://deno.land/x/react_deno@17.0.2/react.ts";
-import ReactDOMServer from "https://deno.land/x/react_deno@17.0.2/dom_server.ts";
+import React from "https://esm.sh/react@18.0.0";
+import ReactDOMServer from "https://esm.sh/react-dom@18.0.0/server";
 
 export { React, ReactDOMServer };

@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.7.3] - Unreleased
 ### Fixed
-- Updated `parcel-css`.
+- Updated `parcel-css` and `react`.
 
 ## [1.7.2] - 2022-03-28
 ### Added
