@@ -159,17 +159,19 @@ if (import.meta.main) {
 }
 
 function warn(...lines: (string | undefined)[]) {
-  let executed = false;
+  const { args } = Deno;
+  const syncWarn = args.includes("--serve") || args.includes("-s") ||
+    args.includes("--watch") || args.includes("-w");
 
   function log() {
-    if (!executed) {
-      console.log("----------------------------------------");
-      lines.forEach((line) => line && console.log(line));
-      console.log("----------------------------------------");
-      executed = true;
-    }
+    console.log("----------------------------------------");
+    lines.forEach((line) => line && console.log(line));
+    console.log("----------------------------------------");
   }
 
-  addEventListener("unload", log);
-  Deno.addSignalListener("SIGINT", log);
+  if (syncWarn) {
+    log();
+  } else {
+    addEventListener("unload", log);
+  }
 }
