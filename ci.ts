@@ -59,6 +59,8 @@ export async function getArgs(
 
   // Add the import-map option to Deno if it's missing
   const importMapUrl = parsedArgs["import-map"] || options?.importMap;
+  const shouldWarn = !quiet &&
+    !["import-map", "upgrade", "init"].includes(lumeArgs[0]);
 
   // There's a import map file
   if (importMapUrl) {
@@ -66,7 +68,7 @@ export async function getArgs(
 
     if (!importMap.imports["lume/"]) {
       // The import map doesn't include Lume imports
-      !quiet && warn(
+      shouldWarn && warn(
         red("Error:"),
         `The import map file ${
           dim(importMapUrl)
@@ -81,14 +83,16 @@ export async function getArgs(
       const mapVersion = getLumeVersion(new URL(importMap.imports["lume/"]));
 
       if (cliVersion !== mapVersion) {
-        !quiet && warn(
+        shouldWarn && warn(
           red("Different lume versions mixed:"),
           `The import map file ${dim(importMapUrl)} imports Lume ${
             dim(mapVersion)
           }`,
           `but CLI version is ${dim(cliVersion)}.`,
           (importMapUrl === "import_map.json")
-            ? `Run ${cyan("lume import-map")} to update import_map.json.`
+            ? `Run ${
+              cyan("lume import-map")
+            } to update import_map.json with your CLI version.`
             : undefined,
         );
       }
@@ -155,7 +159,17 @@ if (import.meta.main) {
 }
 
 function warn(...lines: (string | undefined)[]) {
-  console.log("----------------------------------------");
-  lines.forEach((line) => line && console.log(line));
-  console.log("----------------------------------------");
+  let executed = false;
+
+  function log() {
+    if (!executed) {
+      console.log("----------------------------------------");
+      lines.forEach((line) => line && console.log(line));
+      console.log("----------------------------------------");
+      executed = true;
+    }
+  }
+
+  addEventListener("unload", log);
+  Deno.addSignalListener("SIGINT", log);
 }
