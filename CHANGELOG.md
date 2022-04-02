@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Simplified `lume init` command:
   - Doesn't ask for import style. Always use `import lume from "lume/mod.ts"`.
   - Doesn't ask for creating import map file. It's created always.
+- Simplified `import_map.json` file generation:
+  Only `lume/` import is added. `lume` and `https://deno.land/x/lume/` are removed.
+  The main reason is it's more easy to manage and with the new tasks and importMap keys in the `deno.json` file there's no need to do magic stuff.
 
 ### Fixed
 - Updated `parcel-css` and `react`.

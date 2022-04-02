@@ -272,9 +272,7 @@ export async function loadImportMap(mapFile: string): Promise<ImportMap> {
 export async function getImportMap(mapFile?: string): Promise<ImportMap> {
   const map: ImportMap = {
     imports: {
-      "lume": new URL("./mod.ts", baseUrl).href,
       "lume/": new URL("./", baseUrl).href,
-      "https://deno.land/x/lume/": new URL("./", baseUrl).href,
     },
   };
 

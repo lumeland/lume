@@ -83,9 +83,7 @@ Deno.test("import map", async () => {
 
   equals(map, {
     imports: {
-      "lume": new URL("../mod.ts", import.meta.url).href,
       "lume/": new URL("../", import.meta.url).href,
-      "https://deno.land/x/lume/": new URL("../", import.meta.url).href,
     },
   });
 });
@@ -95,9 +93,7 @@ Deno.test("merge import map", async () => {
 
   equals(map, {
     imports: {
-      "lume": new URL("../mod.ts", import.meta.url).href,
       "lume/": new URL("../", import.meta.url).href,
-      "https://deno.land/x/lume/": new URL("../", import.meta.url).href,
       "std/": "https://deno.land/std@0.121.0/",
       "/": "./",
     },
