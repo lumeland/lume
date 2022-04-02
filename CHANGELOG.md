@@ -8,8 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.7.3] - Unreleased
+### Changed
+- Simplified `lume init` command:
+  - Doesn't ask for import style. Always use `import lume from "lume/mod.ts"`.
+  - Doesn't ask for creating import map file. It's created always.
+
 ### Fixed
 - Updated `parcel-css` and `react`.
+- Improved Lume warnings.
 
 ## [1.7.2] - 2022-03-28
 ### Added

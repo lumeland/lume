@@ -1,5 +1,3 @@
-import { exists } from "../deps/fs.ts";
-import { posix } from "../deps/path.ts";
 import { brightGreen, cyan, dim, red } from "../deps/colors.ts";
 import { pluginNames } from "./utils.ts";
 import importMap from "./import_map.ts";
@@ -10,17 +8,12 @@ export default function () {
 }
 
 export async function init() {
-  const path = new URL("..", import.meta.url).href;
-
-  await initConfig(path);
-
-  if (confirm(cyan("Do you want to create a import map file?"))) {
-    await importMap();
-  }
+  await initConfig();
+  await importMap();
 }
 
 /** (Re)configure lume config file */
-async function initConfig(path: string) {
+async function initConfig() {
   const configFile = await getConfigFile();
 
   if (!configFile) {
@@ -29,16 +22,13 @@ async function initConfig(path: string) {
     return;
   }
 
-  // Get the import path style
-  path = getLumeUrl(path);
-
   // Generate the code for the config file
-  const code = [`import lume from "${posix.join(path, "mod.ts")}";`];
+  const code = [`import lume from "lume/mod.ts";`];
 
   const plugins = getPlugins();
   plugins.forEach((name) =>
     code.push(
-      `import ${name} from "${posix.join(path, `plugins/${name}.ts`)}";`,
+      `import ${name} from "lume/plugins/${name}.ts";`,
     )
   );
   code.push("");
@@ -56,27 +46,7 @@ async function initConfig(path: string) {
   // Write the code to the file
   await Deno.writeTextFile(configFile, code.join("\n"));
   console.log();
-  console.log(brightGreen("Created a config file"), configFile);
-}
-
-/** Question to get the style to import lume in the config file */
-function getLumeUrl(path: string) {
-  const message = `
-${cyan("How do you want to import lume?")}
-Type a number:
-1 ${dim('import lume from "lume/mod.ts"')}
-2 ${dim('import lume from "https://deno.land/x/lume/mod.ts"')}
-3 ${dim(`import lume from "${posix.join(path, "mod.ts")}"`)}
-`;
-  const choice = prompt(message, "1");
-
-  switch (choice) {
-    case "1":
-      return "lume";
-    case "2":
-      return "https://deno.land/x/lume/";
-  }
-  return path;
+  console.log(brightGreen("Lume configuration file saved:"), configFile);
 }
 
 /** Question to get the list of plugins to install in the config file */
@@ -113,13 +83,18 @@ async function getConfigFile(): Promise<string | false> {
     ? "_config.ts"
     : "_config.js";
 
-  if (await exists(configFile)) {
+  try {
+    await Deno.lstat(configFile);
     return confirm(
         cyan(`The file "${configFile}" already exist. Override?`),
       )
       ? configFile
       : false;
-  }
+  } catch (err) {
+    if (err instanceof Deno.errors.NotFound) {
+      return configFile;
+    }
 
-  return configFile;
+    throw err;
+  }
 }
