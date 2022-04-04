@@ -14,6 +14,10 @@ const init = new Command()
 
 const upgrade = new Command()
   .description("Upgrade your Lume executable to the latest version.")
+  .option(
+    "--version <version>",
+    "The version to upgrade to.",
+  )
   .example("lume upgrade", "Upgrades to the latest stable version.")
   .example("lume upgrade --dev", "Upgrades to the latest development version.")
   .option(

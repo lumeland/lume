@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.7.3] - Unreleased
+### Added
+- New option `--version` to `lume upgrade`, to set a specific version to upgrade.
+
 ### Changed
 - Simplified `lume init` command:
   - Doesn't ask the import style. Always use `import lume from "lume/mod.ts"`.

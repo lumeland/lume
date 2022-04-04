@@ -8,20 +8,25 @@ import { importMap } from "./import_map.ts";
 
 interface Options {
   dev: boolean;
+  version?: string;
 }
-export default function ({ dev }: Options) {
-  return upgrade(dev);
+export default function ({ dev, version }: Options) {
+  return upgrade(dev, version);
 }
 
 /** Upgrade the Lume installation to the latest version */
-export async function upgrade(dev = false) {
-  const latest = dev
+export async function upgrade(dev = false, version?: string) {
+  const latest = version
+    ? version
+    : dev
     ? await getLatestDevelopmentVersion()
     : await getLatestVersion();
 
   if (latest === getLumeVersion()) {
     console.log(
-      dev
+      version
+        ? `You're already using this of Lume:`
+        : dev
         ? "You're using the latest version of Lume:"
         : "You're using the latest development version of Lume:",
       brightGreen(latest),
@@ -31,7 +36,9 @@ export async function upgrade(dev = false) {
   }
 
   console.log(
-    `New version available. Updating Lume to ${brightGreen(latest)}...`,
+    version
+      ? `Updating Lume to ${brightGreen(latest)}...`
+      : `New version available. Updating Lume to ${brightGreen(latest)}...`,
   );
 
   const url = await install(latest, dev);
@@ -49,7 +56,9 @@ export async function upgrade(dev = false) {
   console.log();
   console.log("Update successful!");
   console.log(
-    `You're using the latest version of Lume: ${brightGreen(latest)}!`,
+    version
+      ? `You're using Lume ${brightGreen(latest)}!`
+      : `You're using the latest version of Lume: ${brightGreen(latest)}!`,
   );
 
   if (!dev) {
@@ -62,6 +71,11 @@ export async function upgrade(dev = false) {
 }
 
 async function install(version: string, dev = false) {
+  // Prepend automatically "v" to the version if it's missing
+  if (!dev && !version.startsWith("v")) {
+    version = `v${version}`;
+  }
+
   const url = new URL(
     dev
       ? `https://cdn.jsdelivr.net/gh/lumeland/lume@${version}`
