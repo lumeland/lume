@@ -10,19 +10,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.7.3] - Unreleased
 ### Changed
 - Simplified `lume init` command:
-  - Doesn't ask for import style. Always use `import lume from "lume/mod.ts"`.
-  - Doesn't ask for creating import map file. It's created always.
+  - Doesn't ask the import style. Always use `import lume from "lume/mod.ts"`.
+  - Doesn't ask whether create a import map file. It's created always.
 - Simplified `import_map.json` file generation:
   Only `lume/` import is added. `lume` and `https://deno.land/x/lume/` are removed.
   The main reason is it's more easy to manage and with the new tasks and importMap keys in the `deno.json` file there's no need to do magic stuff.
 
 ### Fixed
-- Updated `std`, `esbuild`, `parcel-css` and `react`.
+- Updated `std`, `esbuild`, `deno_dom`, `parcel-css` and `react`.
 - Improved Lume warnings.
 
 ## [1.7.2] - 2022-03-28
 ### Added
-- `date` plugin accepts an array of locales (ex: `["en", "gl", "pt", "es"]`),
+- The `date` plugin accepts an array of locales (ex: `["en", "gl", "pt", "es"]`),
   that are loaded automatically.
 
 ### Removed
@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Throw an exception on missing configuration for Netlify CMS in the `netlify_cms` plugin.
-- Fixed `expires` middleware for `0` values.
+- Fixed the `expires` middleware for `0` values.
 - Live reload works offline.
 - Updated `deno_graph` and `std`.
 

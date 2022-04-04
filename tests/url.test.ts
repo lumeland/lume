@@ -1,4 +1,4 @@
-import { assertStrictEquals as equals } from "../deps/assert.ts";
+import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import { getSite, testPage } from "./utils.ts";
 
 Deno.test("url and htmlUrl update href", async () => {
@@ -15,6 +15,10 @@ Deno.test("url and htmlUrl update href", async () => {
       page.document?.querySelector("#url")?.getAttribute("href"),
       "https://example.com/test/url/",
     );
+
+    // Test <template> element, which was not supported in the previous version of deno_dom
+    const template = page.document?.querySelector("template");
+    assert(template);
   });
 
   testPage(site, "/default-filter", (page) => {
