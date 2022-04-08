@@ -2,9 +2,9 @@ export {
   default,
   transform,
   transformStyleAttribute,
-} from "https://unpkg.com/@parcel/css-wasm@1.7.4/index.js";
+} from "https://unpkg.com/@parcel/css-wasm@1.8.0/index.js";
 
-// https://unpkg.com/@parcel/css-wasm@1.7.4/index.d.ts
+// https://unpkg.com/@parcel/css-wasm@1.8.0/index.d.ts
 
 export interface TransformOptions {
   /** The filename being transformed. Used for error messages and source maps. */
