@@ -1,7 +1,7 @@
 /**
  * This code is a modified version of the original code that is deprecated.
  *
- * Source: https://deno.land/std@0.133.0/fs/copy.ts
+ * Source: https://deno.land/std@0.134.0/fs/copy.ts
  * Copyright 2018-2021 the Deno authors. All rights reserved. MIT license.
  *
  * - Removed the `preserveTimestamps` option, as it is an unstable feature.

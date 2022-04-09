@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   The main reason is it's more easy to manage and with the new tasks and importMap keys in the `deno.json` file there's no need to do magic stuff.
 
 ### Fixed
-- Updated `std`, `esbuild`, `deno_dom`, `parcel-css` and `react`.
+- Updated `std`, `esbuild`, `deno_dom`, `deno_graph`, `parcel-css` and `react`.
 - Improved Lume warnings.
 
 ## [1.7.2] - 2022-03-28
