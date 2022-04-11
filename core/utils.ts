@@ -3,6 +3,12 @@ import { SEP, toFileUrl } from "../deps/path.ts";
 
 export const baseUrl = new URL("../", import.meta.url);
 
+// TODO: Remove this once Deno.ImportMap is available
+interface ImportMap {
+  imports: Record<string, string>;
+  scopes?: Record<string, Record<string, string>>;
+}
+
 /** Run a callback concurrently with all the elements of an Iterable */
 export async function concurrent<Type>(
   iterable: AsyncIterable<Type> | Iterable<Type>,
@@ -260,17 +266,17 @@ export async function getDenoConfig(): Promise<DenoConfig | undefined> {
   }
 }
 
-export async function loadImportMap(mapFile: string): Promise<Deno.ImportMap> {
+export async function loadImportMap(mapFile: string): Promise<ImportMap> {
   const url = await toUrl(mapFile);
-  return await (await fetch(url)).json() as Deno.ImportMap;
+  return await (await fetch(url)).json() as ImportMap;
 }
 
 /**
  * Return a data url with the import map of Lume
  * Optionally merge it with a custom import map from the user
  */
-export async function getImportMap(mapFile?: string): Promise<Deno.ImportMap> {
-  const map: Deno.ImportMap = {
+export async function getImportMap(mapFile?: string): Promise<ImportMap> {
+  const map: ImportMap = {
     imports: {
       "lume/": new URL("./", baseUrl).href,
     },
