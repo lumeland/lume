@@ -260,17 +260,17 @@ export async function getDenoConfig(): Promise<DenoConfig | undefined> {
   }
 }
 
-export async function loadImportMap(mapFile: string): Promise<ImportMap> {
+export async function loadImportMap(mapFile: string): Promise<Deno.ImportMap> {
   const url = await toUrl(mapFile);
-  return await (await fetch(url)).json() as ImportMap;
+  return await (await fetch(url)).json() as Deno.ImportMap;
 }
 
 /**
  * Return a data url with the import map of Lume
  * Optionally merge it with a custom import map from the user
  */
-export async function getImportMap(mapFile?: string): Promise<ImportMap> {
-  const map: ImportMap = {
+export async function getImportMap(mapFile?: string): Promise<Deno.ImportMap> {
+  const map: Deno.ImportMap = {
     imports: {
       "lume/": new URL("./", baseUrl).href,
     },
@@ -287,11 +287,6 @@ export async function getImportMap(mapFile?: string): Promise<ImportMap> {
 }
 
 export type SpecifierMap = Record<string, string>;
-
-export interface ImportMap {
-  imports: SpecifierMap;
-  scopes?: Record<string, SpecifierMap>;
-}
 
 /** Check the compatibility with the current Deno version */
 export interface DenoInfo {

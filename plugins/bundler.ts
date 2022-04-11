@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { getDenoConfig, getImportMap, merge } from "../core/utils.ts";
 import { toFileUrl } from "../deps/path.ts";
 import { createGraph, load, LoadResponse } from "../deps/graph.ts";
 import { Page } from "../core/filesystem.ts";
@@ -24,13 +24,23 @@ export const defaults: Options = {
   options: {},
 };
 
+const denoConfig = await getDenoConfig();
+
 /** A plugin to load all .js, .ts, .jsx, .tsx files and bundle them using Deno.emit() */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
     const sources: Record<string, string> = {};
-    const { importMap } = options.options;
+    let importMap: Deno.ImportMap | undefined;
+    let importMapPath: string | undefined;
+
+    // Load import map
+    site.addEventListener("beforeBuild", async () => {
+      importMapPath = options.options.importMapPath || denoConfig?.importMap;
+      importMap = options.options.importMap ||
+        (importMapPath ? await getImportMap(importMapPath) : undefined);
+    });
 
     // Refresh updated files
     site.addEventListener("beforeUpdate", (event) => {
@@ -98,6 +108,8 @@ export default function (userOptions?: Partial<Options>) {
           ...sources,
           [specifier]: file.content as string,
         },
+        importMap,
+        importMapPath,
       });
 
       const content = files[specifier] || files[specifier + ".js"] ||

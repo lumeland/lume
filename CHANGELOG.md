@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.7.3] - Unreleased
 ### Added
 - New option `--version` to `lume upgrade`, to set a specific version to upgrade.
+- The `bundler` plugin detects the `import_map.json` file automatically.
 
 ### Changed
 - Simplified `lume init` command:
