@@ -7,18 +7,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.7.3] - Unreleased
+## [1.7.3] - 2022-04-11
 ### Added
-- New option `--version` to `lume upgrade`, to set a specific version to upgrade.
-- The `bundler` plugin detects the `import_map.json` file automatically.
+- New option `--version` to `lume upgrade`, to upgrade to a specific version.
+- The `bundler` plugin detects automatically the import map file from `deno.json`.
 
 ### Changed
 - Simplified `lume init` command:
-  - Doesn't ask the import style. Always use `import lume from "lume/mod.ts"`.
+  - Doesn't ask for the import style. Always use `import lume from "lume/mod.ts"`.
   - Doesn't ask whether create a import map file. It's created always.
 - Simplified `import_map.json` file generation:
   Only `lume/` import is added. `lume` and `https://deno.land/x/lume/` are removed.
-  The main reason is it's more easy to manage and with the new tasks and importMap keys in the `deno.json` file there's no need to do magic stuff.
 
 ### Fixed
 - Updated `std`, `esbuild`, `deno_dom`, `deno_graph`, `parcel-css`, `highlight.js`, `terser` and `react`.
@@ -1477,7 +1476,7 @@ The first version.
 [#170]: https://github.com/lumeland/lume/issues/170
 [#175]: https://github.com/lumeland/lume/issues/175
 
-[1.7.3]: https://github.com/lumeland/lume/compare/v1.7.2...HEAD
+[1.7.3]: https://github.com/lumeland/lume/compare/v1.7.2...v1.7.3
 [1.7.2]: https://github.com/lumeland/lume/compare/v1.7.1...v1.7.2
 [1.7.1]: https://github.com/lumeland/lume/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/lumeland/lume/compare/v1.6.4...v1.7.0
