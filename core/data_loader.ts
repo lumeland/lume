@@ -53,16 +53,7 @@ export default class DataLoader {
       return;
     }
 
-    const data = await this.reader.read(path, dataLoader);
-
-    // Ensure the the tags is string[]
-    if (data.tags) {
-      data.tags = Array.isArray(data.tags)
-        ? data.tags.map((tag) => String(tag))
-        : [String(data.tags)];
-    }
-
-    return data;
+    return await this.reader.read(path, dataLoader);
   }
 
   /** Load a _data directory */
