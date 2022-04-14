@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.7.4] - Unreleased
+### Fixed
+- _data files exporting an array with one element was detected as a object.
+
 ## [1.7.3] - 2022-04-11
 ### Added
 - New option `--version` to `lume upgrade`, to upgrade to a specific version.

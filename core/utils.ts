@@ -145,7 +145,7 @@ export function merge<Type>(
 const reactElement = Symbol.for("react.element");
 /** Check if the argument passed is a plain object */
 export function isPlainObject(obj: unknown) {
-  return typeof obj === "object" && obj !== null &&
+  return typeof obj === "object" && obj !== null && !Array.isArray(obj) &&
     obj.toString() === "[object Object]" &&
     // @ts-ignore: Check if the argument passed is a React element
     obj["$$typeof"] !== reactElement;

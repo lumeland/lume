@@ -64,6 +64,7 @@ Deno.test("isPlainObject", () => {
   equals(isPlainObject({}), true);
   equals(isPlainObject(new URL("http://localhost")), false);
   equals(isPlainObject([]), false);
+  equals(isPlainObject([{ foo: "bar" }]), false);
   equals(isPlainObject(new Map()), false);
   equals(isPlainObject(new Set()), false);
   equals(isPlainObject(Symbol.for("foo")), false);
