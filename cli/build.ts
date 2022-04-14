@@ -11,8 +11,8 @@ import reload from "../middlewares/reload.ts";
 interface Options {
   root: string;
   config?: string;
-  serve: boolean;
-  watch: boolean;
+  serve?: boolean;
+  watch?: boolean;
 }
 
 export default function ({ root, config, serve, watch }: Options) {
@@ -23,8 +23,8 @@ export default function ({ root, config, serve, watch }: Options) {
 export async function build(
   root: string,
   config: string | undefined,
-  serve: boolean,
-  watch: boolean,
+  serve?: boolean,
+  watch?: boolean,
 ) {
   const site = await createSite(root, config);
   const quiet = site.options.quiet;

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.7.4] - Unreleased
 ### Fixed
 - _data files exporting an array with one element was detected as a object.
+- Updated `cliffy` and `esbuild`.
 
 ## [1.7.3] - 2022-04-11
 ### Added

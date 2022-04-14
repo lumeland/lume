@@ -7,7 +7,7 @@ import { brightGreen, gray } from "../deps/colors.ts";
 import { importMap } from "./import_map.ts";
 
 interface Options {
-  dev: boolean;
+  dev?: boolean;
   version?: string;
 }
 export default function ({ dev, version }: Options) {

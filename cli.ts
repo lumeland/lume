@@ -15,7 +15,7 @@ const init = new Command()
 const upgrade = new Command()
   .description("Upgrade your Lume executable to the latest version.")
   .option(
-    "--version <version>",
+    "--version <version:string>",
     "The version to upgrade to.",
   )
   .example("lume upgrade", "Upgrades to the latest stable version.")
@@ -46,21 +46,21 @@ const run = new Command()
     "Runs the `build` and `deploy` scripts.",
   )
   .option(
-    "--root <root>",
+    "--root <root:string>",
     "The directory where Lume should work.",
     { default: "./" },
   )
   .option(
-    "--config <config>",
+    "--config <config:string>",
     "The config file path.",
   )
   .option(
-    "--src <src>",
+    "--src <src:string>",
     "The source directory for your site.",
     { default: "./" },
   )
   .option(
-    "--dest <dest>",
+    "--dest <dest:string>",
     "The build destination.",
     { default: "_site" },
   )
@@ -73,6 +73,7 @@ const run = new Command()
     "--quiet [quiet:boolean]",
     "Enable quiet mode (show less info).",
   )
+  // @ts-ignore: todo: fix this
   .action(runCommand);
 
 const lume = new Command()
@@ -87,21 +88,21 @@ const lume = new Command()
   .example("lume run <script>", "Runs a custom script.")
   .example("lume [COMMAND] --help", "Shows the help for a command.")
   .option(
-    "--root <root>",
+    "--root <root:string>",
     "The directory where Lume should work.",
     { default: "./" },
   )
   .option(
-    "--config <config>",
+    "--config <config:string>",
     "The config file path.",
   )
   .option(
-    "--src <src>",
+    "--src <src:string>",
     "The source directory for your site.",
     { default: "./" },
   )
   .option(
-    "--dest <dest>",
+    "--dest <dest:string>",
     "The build destination.",
     { default: "_site" },
   )
