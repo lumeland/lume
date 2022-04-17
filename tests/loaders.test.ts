@@ -15,7 +15,7 @@ Deno.test("load the pages of a site", async () => {
   await site.build();
 
   // Test the generated pages
-  equals(site.pages.length, 8);
+  equals(site.pages.length, 9);
 
   // The data is merged
   testPage(site, "/pages/1_page1", (page) => {
@@ -123,6 +123,19 @@ Deno.test("load the pages of a site", async () => {
     );
   });
 
+  testPage(site, "/pages/subpage/page7", (page) => {
+    assert(!page.data.draft);
+    equals(page.data.url, "/pages/subpage/page7/");
+    equals(page.data.title, "Page 7");
+    equals(page.data.tags?.length, 4);
+    equals(page.data.tags?.[0], "pages");
+    equals(page.data.tags?.[1], "sub-pages");
+    equals(page.data.tags?.[2], "sub-sub-pages");
+    equals(page.data.tags?.[3], "page7");
+    equals(page.dest.path, "/pages/subpage/page7/index");
+    equals(page.dest.ext, ".html");
+  });
+
   testPage(site, "/pages/2021-12-29_page6", (page) => {
     equals(page.data.url, "/pages/page6/");
     equals(page.data.title, "Page 6");
@@ -166,5 +179,5 @@ Deno.test("ignored draft pages on dev=false", async () => {
 
   await site.build();
 
-  equals(site.pages.length, 5);
+  equals(site.pages.length, 6);
 });

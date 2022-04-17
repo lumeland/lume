@@ -1,4 +1,4 @@
-import { basename, dirname, join } from "../deps/path.ts";
+import { basename, dirname, join, SEP } from "../deps/path.ts";
 import { concurrent, normalizePath } from "./utils.ts";
 import { Directory, Page } from "./filesystem.ts";
 
@@ -134,11 +134,11 @@ export default class Source {
     if (this.root) {
       dir = this.root;
     } else {
-      dir = this.root = new Directory({ path: "/" });
+      dir = this.root = new Directory({ path: SEP });
       await this.#loadData(dir);
     }
 
-    for (const name of path.split("/")) {
+    for (const name of normalizePath(path).split("/")) {
       if (!name) {
         continue;
       }
