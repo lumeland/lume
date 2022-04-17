@@ -2,6 +2,7 @@ import { merge } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
 import { Exception } from "../core/errors.ts";
 import { ImageMagick, initializeImageMagick } from "../deps/imagick.ts";
+import Cache from "../core/cache.ts";
 
 import type { Page, Site } from "../core.ts";
 import type { IMagickImage, MagickFormat } from "../deps/imagick.ts";
@@ -14,6 +15,9 @@ export interface Options {
 
   /** The key name for the transformations definitions */
   name: string;
+
+  /** The cache folder */
+  cache: string | boolean;
 
   /** Custom transform functions */
   functions: Record<string, TransformationFunction>;
@@ -29,6 +33,7 @@ export type TransformationFunction = (
 export const defaults: Options = {
   extensions: [".jpg", ".jpeg", ".png"],
   name: "imagick",
+  cache: false,
   functions: {
     resize(image: IMagickImage, width: number, height = width): void {
       image.resize(width, height);
@@ -68,7 +73,17 @@ export default function (userOptions?: Partial<Options>) {
     site.loadAssets(options.extensions, binaryLoader);
     site.process(options.extensions, imagick);
 
-    function imagick(page: Page) {
+    // Configure the cache folder
+    const cacheFolder = options.cache === true ? "_cache" : options.cache;
+    const cache = cacheFolder
+      ? new Cache({ folder: site.src(cacheFolder) })
+      : undefined;
+
+    if (cacheFolder) {
+      site.ignore(cacheFolder);
+    }
+
+    async function imagick(page: Page) {
       const imagick = page.data[options.name] as
         | Transformation
         | Transformations
@@ -91,7 +106,24 @@ export default function (userOptions?: Partial<Options>) {
           ? page
           : page.duplicate({ [options.name]: undefined });
 
-        transform(content, output, transformation, options);
+        if (cache) {
+          try {
+            const result = await cache.get(content, transformation);
+            output.path = result.path;
+            output.ext = result.ext;
+            output.content = result.content;
+          } catch {
+            transform(content, output, transformation, options);
+
+            await cache.set(content, transformation, {
+              path: output.path,
+              ext: output.ext,
+              content: output.content,
+            });
+          }
+        } else {
+          transform(content, output, transformation, options);
+        }
 
         if (output !== page) {
           site.pages.push(output);
