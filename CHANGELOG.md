@@ -8,11 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.7.4] - Unreleased
+### Changed
+- The `date` variables of the pages are converted to `Date` from `string` or  `number`automatically [#181].
+
 ### Fixed
 - _data files exporting an array with one element was detected as a object.
 - Updated `cliffy` and `esbuild`.
 - _data files in Windows were incorrectly merged.
 - `afterRender` event must stop the build if any listener returns `false`.
+- After running a `lume upgrade`, the `deno.json` and `import_map.json` files are updated accordingly [#182].
 
 ## [1.7.3] - 2022-04-11
 ### Added
@@ -1482,7 +1486,10 @@ The first version.
 [#169]: https://github.com/lumeland/lume/issues/169
 [#170]: https://github.com/lumeland/lume/issues/170
 [#175]: https://github.com/lumeland/lume/issues/175
+[#181]: https://github.com/lumeland/lume/issues/181
+[#182]: https://github.com/lumeland/lume/issues/182
 
+[1.7.4]: https://github.com/lumeland/lume/compare/v1.7.3...HEAD
 [1.7.3]: https://github.com/lumeland/lume/compare/v1.7.2...v1.7.3
 [1.7.2]: https://github.com/lumeland/lume/compare/v1.7.1...v1.7.2
 [1.7.1]: https://github.com/lumeland/lume/compare/v1.7.0...v1.7.1

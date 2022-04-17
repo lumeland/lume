@@ -22,6 +22,7 @@ export async function importMap(url: URL) {
   }
 
   const importMap = await getImportMap(currentMap);
+  importMap.imports["lume/"] = new URL("./", url).href;
 
   config.importMap ||= "import_map.json";
   const tasks = config.tasks || {};

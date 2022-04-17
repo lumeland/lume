@@ -78,8 +78,8 @@ async function install(version: string, dev = false) {
 
   const url = new URL(
     dev
-      ? `https://cdn.jsdelivr.net/gh/lumeland/lume@${version}`
-      : `https://deno.land/x/lume@${version}`,
+      ? `https://cdn.jsdelivr.net/gh/lumeland/lume@${version}/`
+      : `https://deno.land/x/lume@${version}/`,
   );
 
   const process = Deno.run({
@@ -88,7 +88,7 @@ async function install(version: string, dev = false) {
       "run",
       "--unstable",
       "-A",
-      url.href + "/install.ts",
+      url.href + "install.ts",
       "--upgrade",
     ],
   });
