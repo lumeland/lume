@@ -425,6 +425,11 @@ export default class Site {
 
     // Build the pages
     const pages = await this.#buildPages(pagesToBuild);
+
+    if (!pages) {
+      return;
+    }
+
     await this.dispatchEvent({ type: "afterBuild", pages });
   }
 
@@ -464,6 +469,11 @@ export default class Site {
 
     // Rebuild the selected pages
     const pages = await this.#buildPages(pagesToBuild);
+
+    if (!pages) {
+      return;
+    }
+
     await this.dispatchEvent({ type: "afterUpdate", files, pages });
   }
 
@@ -494,12 +504,16 @@ export default class Site {
    * Internal function to render pages
    * The common operations of build and update
    * Returns the list of pages that have been built
+   * or false if the process stopped
    */
-  async #buildPages(pages: Page[]): Promise<Page[]> {
+  async #buildPages(pages: Page[]): Promise<Page[] | false> {
     // Render the pages into this.pages array
     this.pages = [];
     await this.renderer.renderPages(pages, this.pages);
-    await this.events.dispatchEvent({ type: "afterRender" });
+
+    if (await this.events.dispatchEvent({ type: "afterRender" }) === false) {
+      return false;
+    }
 
     // Adds the components assets to the list of pages
     this.components.addAssets(this.pages);
@@ -513,7 +527,7 @@ export default class Site {
     await this.processors.run(this.pages);
 
     if (await this.dispatchEvent({ type: "beforeSave" }) === false) {
-      return [];
+      return false;
     }
 
     // Save the pages in the dest folder

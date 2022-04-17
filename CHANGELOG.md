@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - _data files exporting an array with one element was detected as a object.
 - Updated `cliffy` and `esbuild`.
 - _data files in Windows were incorrectly merged.
+- `afterRender` event must stop the build if any listener returns `false`.
 
 ## [1.7.3] - 2022-04-11
 ### Added
