@@ -80,14 +80,20 @@ export default class PageLoader {
   preparePage(page: Page, data: Data): void {
     const datePath = this.#handleDatePath(page.src, page.dest);
 
-    // Ensure the data prop is defined
+    // Ensure the data prop is defined and it's a Date instance
     if (!data.date) {
       data.date = datePath ?? page.src.created ?? page.src.lastModified;
-    } else if (!(data.date instanceof Date)) {
-      throw new Exception(
-        'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
-        { page },
-      );
+    } else {
+      if (typeof data.date === "string" || typeof data.date === "number") {
+        data.date = this.#createDate(data.date);
+      }
+
+      if (!(data.date instanceof Date)) {
+        throw new Exception(
+          'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
+          { page },
+        );
+      }
     }
 
     // Handle subextensions, like styles.css.njk
@@ -108,14 +114,33 @@ export default class PageLoader {
    */
   #handleDatePath(src: Src, dest: Dest): Date | undefined {
     const fileName = basename(src.path);
-
-    const dateInPath = fileName.match(
-      /^(\d{4})-(\d\d)-(\d\d)(?:-(\d\d)-(\d\d)(?:-(\d\d))?)?_/,
-    );
+    const dateInPath = fileName.match(/^([^_]+)?_/);
 
     if (dateInPath) {
-      const [found, year, month, day, hour, minute, second] = dateInPath;
-      dest.path = dest.path.replace(found, "");
+      const [found, dateStr] = dateInPath;
+      const date = this.#createDate(dateStr);
+
+      if (date) {
+        dest.path = dest.path.replace(found, "");
+        return date;
+      }
+    }
+  }
+
+  /**
+   * Create a Date instance from a string or number
+   */
+  #createDate(str: string | number): Date | undefined {
+    if (typeof str === "number") {
+      return new Date(str);
+    }
+
+    const datetime = str.match(
+      /^(\d{4})-(\d\d)-(\d\d)(?:-(\d\d)-(\d\d)(?:-(\d\d))?)?$/,
+    );
+
+    if (datetime) {
+      const [, year, month, day, hour, minute, second] = datetime;
 
       return new Date(Date.UTC(
         parseInt(year),
@@ -127,12 +152,8 @@ export default class PageLoader {
       ));
     }
 
-    const orderInPath = fileName.match(/^(\d+)_/);
-
-    if (orderInPath) {
-      const [found, timestamp] = orderInPath;
-      dest.path = dest.path.replace(found, "");
-      return new Date(parseInt(timestamp));
+    if (str.match(/^\d+$/)) {
+      return new Date(parseInt(str));
     }
   }
 }

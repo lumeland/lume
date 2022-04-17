@@ -1,6 +1,6 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import binaryLoader from "../core/loaders/binary.ts";
-import { getPage, getSite, testPage } from "./utils.ts";
+import { build, getPage, getSite, testPage } from "./utils.ts";
 
 Deno.test("load the pages of a site", async () => {
   const site = getSite({
@@ -12,7 +12,7 @@ Deno.test("load the pages of a site", async () => {
   site.copy("static.yml");
   site.loadAssets([".css"]);
 
-  await site.build();
+  await build(site);
 
   // Test the generated pages
   equals(site.pages.length, 9);
