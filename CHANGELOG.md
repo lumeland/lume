@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - _data files exporting an array with one element was detected as a object.
-- Updated `cliffy` and `esbuild`.
+- Updated `cliffy`, `imagick` and `esbuild`.
 - _data files in Windows were incorrectly merged.
 - `afterRender` event must stop the build if any listener returns `false`.
 - After running a `lume upgrade`, the `deno.json` and `import_map.json` files are updated accordingly [#182].
