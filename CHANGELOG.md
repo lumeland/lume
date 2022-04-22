@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Fixed
-- Updated `liquid`.
+- Updated `liquid`, `std`, `esbuild`, `postcss_autoprefixer` and `pug`.
 
 ## [1.7.4] - 2022-04-18
 ### Changed
