@@ -97,6 +97,8 @@ export default class Components {
   }
 }
 
+export type ComponentFunction = (props: Record<string, unknown>) => string;
+
 export interface ProxyComponents {
-  [key: string]: ((props: Record<string, unknown>) => string) | ProxyComponents;
+  [key: string]: ComponentFunction | ProxyComponents;
 }

@@ -32,6 +32,7 @@ import type {
   ComponentsTree,
   default as ComponentLoader,
 } from "./core/component_loader.ts";
+import type { ComponentFunction, ProxyComponents } from "./core/components.ts";
 import type {
   Content,
   Data,
@@ -73,6 +74,7 @@ type Plugin = (site: Site) => void;
 
 export type {
   Component,
+  ComponentFunction,
   ComponentLoader,
   ComponentsOptions,
   ComponentsTree,
@@ -104,6 +106,7 @@ export type {
   PluginSetup,
   Processor,
   Processors,
+  ProxyComponents,
   Reader,
   Renderer,
   RequestHandler,

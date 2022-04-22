@@ -1,9 +1,18 @@
 import nunjucks from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
+import { Exception } from "../core/errors.ts";
 import { join } from "../deps/path.ts";
 
-import type { Data, Engine, Helper, HelperOptions, Site } from "../core.ts";
+import type {
+  ComponentFunction,
+  Data,
+  Engine,
+  Helper,
+  HelperOptions,
+  ProxyComponents,
+  Site,
+} from "../core.ts";
 import type { NunjucksOptions } from "../deps/nunjucks.ts";
 
 export interface Options {
@@ -152,6 +161,43 @@ export default function (userOptions?: Partial<Options>) {
 
     // Register the njk filter
     site.filter("njk", filter as Helper, true);
+
+    // Register the component helper
+    engine.addHelper("comp", (...args) => {
+      const baseData = site.source.root!.baseData || {};
+      const components = baseData[site.options.components.variable] as
+        | ProxyComponents
+        | undefined;
+      const [content, name, options] = args;
+      delete options.__keywords;
+      const props = { content, ...options };
+
+      if (!components) {
+        throw new Exception(`Component "${name}" not found`);
+      }
+
+      const names = name.split(".") as string[];
+      let component: ProxyComponents | ComponentFunction | undefined =
+        components;
+
+      while (names.length) {
+        try {
+          // @ts-ignore: `component` is defined or throw an error
+          component = component[names.shift()];
+        } catch {
+          throw new Exception(`Component "${name}" not found`);
+        }
+      }
+
+      if (typeof component === "function") {
+        return component(props);
+      }
+
+      throw new Exception(`Component "${name}" not found`);
+    }, {
+      type: "tag",
+      body: true,
+    });
 
     function filter(string: string, data?: Data) {
       return engine.render(string, { ...site.globalData, ...data });

@@ -1,0 +1,10 @@
+{{ comp.Button({ content: "button content" }) | safe }}
+{{ comp.icon.User({ content: "this is John", name:"John" }) | safe }}
+
+{% comp "Button", className="my-button" %}
+  button content
+
+  {% comp "icon.user", name="John" %}
+  this is John
+  {% endcomp %}
+{% endcomp %}
