@@ -153,6 +153,22 @@ export default function (userOptions?: Partial<Options>) {
     // Register the njk filter
     site.filter("njk", filter as Helper, true);
 
+    // Register the component helper
+    engine.addHelper("comp", (...args) => {
+      const baseData = site.source.root!.baseData || {};
+      const components = baseData[site.options.components.variable];
+
+      if (!components) {
+        throw new Error("No components found");
+      }
+
+      const [content, name, props] = args;
+      console.log({ content, name, props });
+    }, {
+      type: "tag",
+      body: true,
+    });
+
     function filter(string: string, data?: Data) {
       return engine.render(string, { ...site.globalData, ...data });
     }
