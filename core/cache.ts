@@ -2,7 +2,8 @@
 
 import { emptyDir, ensureDir } from "../deps/fs.ts";
 import { join } from "../deps/path.ts";
-import { createHash } from "https://deno.land/std@0.135.0/hash/mod.ts";
+import { crypto } from "../deps/crypto.ts";
+import { encode } from "../deps/hex.ts";
 
 export interface Options {
   /** The folder to load the files from */
@@ -26,9 +27,13 @@ export default class Cache {
     this.#folder = options.folder || "_cache";
   }
 
-  async set(content: any, key: any, value: CacheItem): Promise<void> {
-    const hash = this.hash(content);
-    const id = this.hash(JSON.stringify(key));
+  async set(
+    content: string | Uint8Array,
+    key: any,
+    value: CacheItem,
+  ): Promise<void> {
+    const hash = await this.hash(content);
+    const id = await this.hash(JSON.stringify(key));
     const result = value.content;
 
     await ensureDir(join(this.#folder, hash));
@@ -62,8 +67,8 @@ export default class Cache {
   }
 
   async get(content: any, key: any): Promise<any> {
-    const hash = this.hash(content);
-    const id = this.hash(JSON.stringify(key));
+    const hash = await this.hash(content);
+    const id = await this.hash(JSON.stringify(key));
 
     try {
       const data = await Deno.readTextFile(
@@ -97,9 +102,13 @@ export default class Cache {
     await emptyDir(this.#folder);
   }
 
-  hash(content: string | Uint8Array): string {
-    const hash = createHash("md5");
-    hash.update(content);
-    return hash.toString();
+  async hash(content: string | Uint8Array): Promise<string> {
+    const hash = await crypto.subtle.digest(
+      "MD5",
+      typeof content === "string" ? new TextEncoder().encode(content) : content,
+    );
+
+    const hex = encode(new Uint8Array(hash));
+    return new TextDecoder().decode(hex);
   }
 }
