@@ -87,4 +87,11 @@ Deno.test("build a site with nunjucks", async () => {
     // @ts-ignore: innerText doesn't exist on Node
     equals(lis.item(1)?.innerHTML, "async helper in a partial (async)");
   });
+
+  testPage(site, "/components", (page) => {
+    equals(page.data.url, "/components/");
+    equals(page.document?.querySelectorAll("button").length, 2);
+    equals(page.document?.querySelectorAll("icon").length, 2);
+    equals(page.document?.querySelectorAll("button icon").length, 1);
+  });
 });
