@@ -132,10 +132,17 @@ export async function assertPageSnapshot(
 
   if (content instanceof Uint8Array) {
     content = `Uint8Array{${content.length}}`;
+  } else if (typeof content === "string") {
+    // Normalize line ending for Windows
+    content = content.replaceAll("\r\n", "\n");
   }
+
   if (data.content instanceof Uint8Array) {
     data.content = `Uint8Array{${data.content.length}}`;
+  } else if (typeof data.content === "string") {
+    data.content = data.content.replaceAll("\r\n", "\n");
   }
+
   // Ignore comp object
   if (data.comp) {
     data.comp = true;
