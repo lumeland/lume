@@ -135,8 +135,13 @@ export async function assertPageSnapshot(
   if (data.content instanceof Uint8Array) {
     data.content = `Uint8Array{${data.content.length}}`;
   }
+  // Ignore comp object
   if (data.comp) {
     data.comp = true;
+  }
+  // Normalize date
+  if (data.date instanceof Date) {
+    data.date = new Date(0);
   }
 
   await assertSnapshot(context, JSON.stringify({ src, dest, data, content }));
