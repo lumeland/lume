@@ -1,4 +1,5 @@
 import { assertStrictEquals } from "../deps/assert.ts";
+import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
 import { fromFileUrl, join, SEP } from "../deps/path.ts";
 import { printError } from "../core/errors.ts";
@@ -36,6 +37,7 @@ export function getSite(
   preventSave = true,
 ): Site {
   options.cwd = getPath("assets");
+  options.quiet = true;
 
   const site = lume(options, pluginOptions, false);
 
@@ -113,5 +115,53 @@ export async function getDepVersion(
 
   if (match) {
     return match[1];
+  }
+}
+
+export async function assertPageSnapshot(
+  context: Deno.TestContext,
+  page: Page,
+) {
+  const { dest, data } = page;
+  let content = page.content as string | Uint8Array | number[];
+  const src = {
+    path: platformPath(page.src.path),
+    ext: page.src.ext,
+  };
+
+  if (content instanceof Uint8Array) {
+    content = [...content];
+  }
+  if (data.content instanceof Uint8Array) {
+    data.content = [...data.content];
+  }
+  if (data.comp) {
+    data.comp = true;
+  }
+
+  await assertSnapshot(context, JSON.stringify({ src, dest, data, content }));
+}
+
+export async function assertSiteSnapshot(
+  context: Deno.TestContext,
+  site: Site,
+) {
+  const { pages } = site;
+
+  // Test number of pages
+  await assertSnapshot(context, pages.length);
+
+  // To-do: test site configuration
+
+  // Sort pages alphabetically
+  pages.sort((a, b) => {
+    const aPath = a.src.path;
+    const bPath = b.src.path;
+    return aPath > bPath ? 1 : aPath < bPath ? -1 : 0;
+  });
+
+  // Test each page
+  for (const page of pages) {
+    await assertPageSnapshot(context, page);
   }
 }

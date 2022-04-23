@@ -1,8 +1,7 @@
-import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
-import { build, getSite, testPage } from "./utils.ts";
+import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import postcss from "../plugins/postcss.ts";
 
-Deno.test("postcss plugin", async () => {
+Deno.test("postcss plugin", async (t) => {
   const site = getSite({
     src: "postcss",
   });
@@ -10,40 +9,10 @@ Deno.test("postcss plugin", async () => {
   site.use(postcss());
 
   await build(site);
-
-  equals(site.pages.length, 2);
-
-  const { formats } = site;
-
-  // Register the .css loader
-  assert(formats.has(".css"));
-  equals(formats.get(".css")?.pageType, "asset");
-
-  testPage(site, "/index", (page) => {
-    equals(page.data.url, "/index.css");
-    const content = page.content as string;
-    equals(
-      content.replaceAll("\r\n", "\n"),
-      `::root {
-  --color: #333;
-  --background: #fff;
-  --font-family: sans-serif;
-}
-.text {
-  font-family: var(--font-family)
-}
-.text p {
-    color: var(--color);
-    box-shadow: 0 0 0.5em var(--background);
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-  }
-`,
-    );
-  });
+  await assertSiteSnapshot(t, site);
 });
 
-Deno.test("postcss plugin without includes", async () => {
+Deno.test("postcss plugin without includes", async (t) => {
   const site = getSite({
     src: "postcss",
   });
@@ -53,15 +22,5 @@ Deno.test("postcss plugin without includes", async () => {
   }));
 
   await build(site);
-
-  testPage(site, "/index", (page) => {
-    equals(page.data.url, "/index.css");
-    const content = page.content as string;
-    equals(
-      content.replaceAll("\r\n", "\n"),
-      `@import "variables.css";
-@import "./text.css";
-`,
-    );
-  });
+  await assertSiteSnapshot(t, site);
 });

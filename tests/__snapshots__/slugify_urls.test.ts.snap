@@ -1,0 +1,9 @@
+export const snapshot = {};
+
+snapshot[`slugify_urls plugin 1`] = `3`;
+
+snapshot[`slugify_urls plugin 2`] = `'{"src":{"path":"/Chourizos ao viño","ext":".md"},"dest":{"path":"/chourizos-ao-vino/index","ext":".html"},"data":{"search":{},"tags":[],"content":"Page 2\\\\n","date":"2021-09-13T21:35:32.221Z","url":"/chourizos-ao-vino/"},"content":"<p>Page 2</p>\\\\n"}'`;
+
+snapshot[`slugify_urls plugin 3`] = `'{"src":{"path":"/Page 1","ext":".md"},"dest":{"path":"/page-1/index","ext":".html"},"data":{"search":{},"tags":[],"content":"Page 1\\\\n","date":"2021-09-13T21:35:05.913Z","url":"/page-1/"},"content":"<p>Page 1</p>\\\\n"}'`;
+
+snapshot[`slugify_urls plugin 4`] = `'{"src":{"path":"/page-3","ext":".md"},"dest":{"path":"/paxina-numero/tres/index","ext":".html"},"data":{"search":{},"tags":[],"url":"/paxina-numero/tres/","content":"\\\\nPage 3\\\\n","date":"2021-09-13T21:36:07.254Z"},"content":"<p>Page 3</p>\\\\n"}'`;

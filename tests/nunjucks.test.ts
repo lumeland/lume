@@ -1,7 +1,6 @@
-import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
-import { getSite, pageExists, testPage } from "./utils.ts";
+import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 
-Deno.test("build a site with nunjucks", async () => {
+Deno.test("build a site with nunjucks", async (t) => {
   const site = getSite({
     src: "nunjucks",
     location: new URL("https://example.com/blog"),
@@ -41,57 +40,6 @@ Deno.test("build a site with nunjucks", async () => {
     { type: "tag", body: true, async: true },
   );
 
-  await site.build();
-
-  testPage(site, "/index", (page) => {
-    equals(page.data.title, "Hello World");
-    equals(page.data.url, "/");
-    equals(page.document?.querySelector("h1")?.innerText, page.data.title);
-    equals(page.document?.querySelector("title")?.innerText, page.data.title);
-  });
-
-  testPage(site, "/data.json", (page) => {
-    equals(page.data.url, "/data.json");
-    equals(page.dest.path, "/data");
-    equals(page.dest.ext, ".json");
-
-    const data = JSON.parse(page.content as string);
-    equals(data.length, 3);
-    equals(data[0], "red");
-    equals(data[1], "green");
-    equals(data[2], "blue");
-  });
-
-  testPage(site, "/njk-filter", (page) => {
-    equals(page.data.url, "/njk-filter/");
-    equals(page.document?.querySelector("h1")?.innerText, "NJK FILTER EXAMPLE");
-  });
-
-  assert(pageExists(site, "/empty") === false);
-
-  testPage(site, "/with-helpers", (page) => {
-    equals(page.document?.querySelectorAll("p").length, 8);
-    equals(page.data.title, "The title");
-    page.document?.querySelectorAll("p").forEach((p) => {
-      // @ts-ignore: innerText doesn't exist on Node
-      equals(p.innerText, page.data.title.toUpperCase());
-    });
-
-    const div = page.document?.querySelector("div");
-    equals(div?.innerText, "hello (async)");
-
-    const lis = page.document?.querySelectorAll("li");
-    equals(lis?.length, 4);
-    // @ts-ignore: innerText doesn't exist on Node
-    equals(lis.item(0)?.innerHTML, "This is a partial");
-    // @ts-ignore: innerText doesn't exist on Node
-    equals(lis.item(1)?.innerHTML, "async helper in a partial (async)");
-  });
-
-  testPage(site, "/components", (page) => {
-    equals(page.data.url, "/components/");
-    equals(page.document?.querySelectorAll("button").length, 2);
-    equals(page.document?.querySelectorAll("icon").length, 2);
-    equals(page.document?.querySelectorAll("button icon").length, 1);
-  });
+  await build(site);
+  await assertSiteSnapshot(t, site);
 });

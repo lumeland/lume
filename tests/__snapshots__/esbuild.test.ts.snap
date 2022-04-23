@@ -1,0 +1,5 @@
+export const snapshot = {};
+
+snapshot[`esbuild plugin 1`] = `1`;
+
+snapshot[`esbuild plugin 2`] = `'{"src":{"path":"/main","ext":".ts"},"dest":{"path":"/main","ext":".js"},"data":{"search":{},"tags":[],"content":"/// <reference lib=\\\\"dom\\\\" />\\\\nimport toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\\\n\\\\ndocument.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\\\n  h1.innerHTML = toUppercase(h1.innerHTML);\\\\n});\\\\n","url":"/main.js"},"content":"var n=Object.defineProperty;var t=(e,o)=>n(e,\\\\"name\\\\",{value:o,configurable:!0});function r(e){return e.toUpperCase()}t(r,\\\\"toUppercase\\\\");document.querySelectorAll(\\\\"h1\\\\")?.forEach(e=>{e.innerHTML=r(e.innerHTML)});\\\\n"}'`;

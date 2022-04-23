@@ -1,0 +1,7 @@
+export const snapshot = {};
+
+snapshot[`parcelCSS plugin 1`] = `2`;
+
+snapshot[`parcelCSS plugin 2`] = `'{"src":{"path":"/index","ext":".css"},"dest":{"path":"/index","ext":".css"},"data":{"search":{},"tags":[],"content":"@import \\\\"variables.css\\\\";\\\\n@import \\\\"./text.css\\\\";\\\\n","url":"/index.css"},"content":"@import \\\\"variables.css\\\\";@import \\\\"./text.css\\\\";"}'`;
+
+snapshot[`parcelCSS plugin 3`] = `'{"src":{"path":"/text","ext":".css"},"dest":{"path":"/text","ext":".css"},"data":{"search":{},"tags":[],"content":".text {\\\\n  font-family: var(--font-family);\\\\n\\\\n  & p {\\\\n    color: var(--color);\\\\n    box-shadow: 0 0 0.5em var(--background);\\\\n    backface-visibility: hidden;\\\\n  }\\\\n}\\\\n","url":"/text.css"},"content":".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}"}'`;

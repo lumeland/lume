@@ -1,0 +1,5 @@
+export const snapshot = {};
+
+snapshot[`sass plugin 1`] = `1`;
+
+snapshot[`sass plugin 2`] = `'{"src":{"path":"/index","ext":".scss"},"dest":{"path":"/index","ext":".css"},"data":{"search":{},"tags":[],"content":"@import \\\\"./_includes/sass/colors\\\\";\\\\n@import \\\\"sass/button\\\\";\\\\n","url":"/index.css"},"content":"body{font:100% Helvetica,sans-serif;color:#333}"}'`;

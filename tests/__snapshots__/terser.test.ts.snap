@@ -1,0 +1,7 @@
+export const snapshot = {};
+
+snapshot[`terser plugin 1`] = `2`;
+
+snapshot[`terser plugin 2`] = `'{"src":{"path":"/main","ext":".js"},"dest":{"path":"/main","ext":".js"},"data":{"search":{},"tags":[],"content":"import { one, two } from \\\\"./numbers.js\\\\";\\\\n\\\\nconsole.log(one() + two());\\\\n","url":"/main.js"},"content":"import{one as o,two as m}from\\\\"./numbers.js\\\\";console.log(o()+m());"}'`;
+
+snapshot[`terser plugin 3`] = `'{"src":{"path":"/numbers.js","ext":".njk"},"dest":{"path":"/numbers","ext":".js"},"data":{"search":{},"tags":[],"one":1,"two":2,"content":"\\\\nexport function one () {\\\\n  return {{ one }};\\\\n}\\\\n\\\\nexport function two () {\\\\n  return {{ two }};\\\\n}\\\\n/*\\\\nCommented code\\\\nexport function two () {\\\\n  return {{ two }};\\\\n}\\\\n*/","date":"2021-09-14T17:57:34.456Z","url":"/numbers.js"},"content":"export function one(){return 1}export function two(){return 2}"}'`;

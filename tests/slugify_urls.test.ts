@@ -1,26 +1,16 @@
 import { assertStrictEquals as equals } from "../deps/assert.ts";
-import { getSite, testPage } from "./utils.ts";
+import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import slugifyUrls, { createSlugifier } from "../plugins/slugify_urls.ts";
 
-Deno.test("slugify_urls plugin", async () => {
+Deno.test("slugify_urls plugin", async (t) => {
   const site = getSite({
     src: "slugify_urls",
   });
 
   site.use(slugifyUrls());
-  await site.build();
 
-  testPage(site, "/Page 1", (page) => {
-    equals(page.data.url, "/page-1/");
-  });
-
-  testPage(site, "/Chourizos ao viño", (page) => {
-    equals(page.data.url, "/chourizos-ao-vino/");
-  });
-
-  testPage(site, "/page-3", (page) => {
-    equals(page.data.url, "/paxina-numero/tres/");
-  });
+  await build(site);
+  await assertSiteSnapshot(t, site);
 });
 
 Deno.test("slugifier function", () => {
