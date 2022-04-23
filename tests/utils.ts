@@ -3,6 +3,7 @@ import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
 import { fromFileUrl, join, SEP } from "../deps/path.ts";
 import { printError } from "../core/errors.ts";
+import { normalizePath } from "../core/utils.ts";
 
 import type { Page, Site, SiteOptions } from "../core.ts";
 
@@ -125,7 +126,7 @@ export async function assertPageSnapshot(
   let { content, data } = page;
   const { dest } = page;
   const src = {
-    path: platformPath(page.src.path),
+    path: normalizePath(page.src.path),
     ext: page.src.ext,
   };
 
