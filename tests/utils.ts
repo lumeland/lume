@@ -122,8 +122,8 @@ export async function assertPageSnapshot(
   context: Deno.TestContext,
   page: Page,
 ) {
-  const { dest, data } = page;
-  let content = page.content;
+  let { content, data } = page;
+  const { dest } = page;
   const src = {
     path: platformPath(page.src.path),
     ext: page.src.ext,
@@ -143,6 +143,9 @@ export async function assertPageSnapshot(
   if (data.date instanceof Date) {
     data.date = new Date(0);
   }
+  // Sort data alphabetically
+  const entries = Object.entries(data).sort((a, b) => a[0].localeCompare(b[0]));
+  data = Object.fromEntries(entries);
 
   await assertSnapshot(context, JSON.stringify({ src, dest, data, content }));
 }

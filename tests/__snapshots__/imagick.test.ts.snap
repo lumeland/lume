@@ -2,12 +2,12 @@ export const snapshot = {};
 
 snapshot[`imagick plugin 1`] = `5`;
 
-snapshot[`imagick plugin 2`] = `'{"src":{"path":"/lume","ext":".png"},"dest":{"path":"/lume","ext":".png"},"data":{"search":{},"imagick":[{"suffix":"-small","resize":20,"blur":10},{"suffix":"-big","resize":20,"blur":10},{"format":"jpg"},{"format":"webp"},{"format":"png"}],"tags":[],"content":"Uint8Array{29014}","url":"/lume.png"},"content":"Uint8Array{14355}"}'`;
+snapshot[`imagick plugin 2`] = `'{"src":{"path":"/lume","ext":".png"},"dest":{"path":"/lume","ext":".png"},"data":{"content":"Uint8Array{29014}","imagick":[{"suffix":"-small","resize":20,"blur":10},{"suffix":"-big","resize":20,"blur":10},{"format":"jpg"},{"format":"webp"},{"format":"png"}],"search":{},"tags":[],"url":"/lume.png"},"content":"Uint8Array{14355}"}'`;
 
-snapshot[`imagick plugin 3`] = `'{"src":{"path":"/lume[0]","ext":".png"},"dest":{"path":"/lume-small","ext":".png"},"data":{"search":{},"tags":[],"content":"Uint8Array{29014}","url":"/lume-small.png"},"content":"Uint8Array{899}"}'`;
+snapshot[`imagick plugin 3`] = `'{"src":{"path":"/lume[0]","ext":".png"},"dest":{"path":"/lume-small","ext":".png"},"data":{"content":"Uint8Array{29014}","search":{},"tags":[],"url":"/lume-small.png"},"content":"Uint8Array{899}"}'`;
 
-snapshot[`imagick plugin 4`] = `'{"src":{"path":"/lume[1]","ext":".png"},"dest":{"path":"/lume-big","ext":".png"},"data":{"search":{},"tags":[],"content":"Uint8Array{29014}","url":"/lume-big.png"},"content":"Uint8Array{899}"}'`;
+snapshot[`imagick plugin 4`] = `'{"src":{"path":"/lume[1]","ext":".png"},"dest":{"path":"/lume-big","ext":".png"},"data":{"content":"Uint8Array{29014}","search":{},"tags":[],"url":"/lume-big.png"},"content":"Uint8Array{899}"}'`;
 
-snapshot[`imagick plugin 5`] = `'{"src":{"path":"/lume[2]","ext":".png"},"dest":{"path":"/lume","ext":".jpg"},"data":{"search":{},"tags":[],"content":"Uint8Array{29014}","url":"/lume.jpg"},"content":"Uint8Array{1231}"}'`;
+snapshot[`imagick plugin 5`] = `'{"src":{"path":"/lume[2]","ext":".png"},"dest":{"path":"/lume","ext":".jpg"},"data":{"content":"Uint8Array{29014}","search":{},"tags":[],"url":"/lume.jpg"},"content":"Uint8Array{1231}"}'`;
 
-snapshot[`imagick plugin 6`] = `'{"src":{"path":"/lume[3]","ext":".png"},"dest":{"path":"/lume","ext":".webp"},"data":{"search":{},"tags":[],"content":"Uint8Array{29014}","url":"/lume.webp"},"content":"Uint8Array{8648}"}'`;
+snapshot[`imagick plugin 6`] = `'{"src":{"path":"/lume[3]","ext":".png"},"dest":{"path":"/lume","ext":".webp"},"data":{"content":"Uint8Array{29014}","search":{},"tags":[],"url":"/lume.webp"},"content":"Uint8Array{8648}"}'`;
