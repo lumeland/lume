@@ -123,17 +123,17 @@ export async function assertPageSnapshot(
   page: Page,
 ) {
   const { dest, data } = page;
-  let content = page.content as string | Uint8Array | number[];
+  let content = page.content;
   const src = {
     path: platformPath(page.src.path),
     ext: page.src.ext,
   };
 
   if (content instanceof Uint8Array) {
-    content = [...content];
+    content = `Uint8Array{${content.length}}`;
   }
   if (data.content instanceof Uint8Array) {
-    data.content = [...data.content];
+    data.content = `Uint8Array{${data.content.length}}`;
   }
   if (data.comp) {
     data.comp = true;

@@ -1,5 +1,6 @@
 {
   "tasks": {
-    "test": "deno test --unstable -A --no-check=remote"
+    "test": "deno test --unstable -A --no-check=remote",
+    "test:update": "deno task test -- -- --update"
   }
 }
