@@ -59,15 +59,26 @@ export class Search {
     return this.pages(query, sort)[0];
   }
 
+  /** Returns all values from the same key of a search */
+  values(key: string, query?: Query) {
+    const values = new Set();
+
+    this.pages(query).forEach((page) => {
+      const value = page.data[key];
+
+      if (Array.isArray(value)) {
+        value.forEach((v) => values.add(v));
+      } else if (value !== undefined) {
+        values.add(value);
+      }
+    });
+
+    return Array.from(values);
+  }
+
   /** Returns all tags values of a search */
   tags(query?: Query) {
-    const tags = new Set();
-
-    this.pages(query).forEach((page) =>
-      page.data.tags!.forEach((tag: string) => tags.add(tag))
-    );
-
-    return Array.from(tags);
+    return this.values("tags", query);
   }
 
   /** Return the next page of a search */
