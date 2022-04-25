@@ -62,39 +62,6 @@ export function getPage(site: Site, path: string) {
   return page;
 }
 
-/** Check if page exist */
-export function pageExists(site: Site, path: string) {
-  path = platformPath(path);
-  const page = site.pages.find((page) => page.src.path === path);
-  return !!page;
-}
-
-/** Test a generated page by src path */
-export function testPage(
-  site: Site,
-  path: string,
-  test: (page: Page) => void | Promise<void>,
-) {
-  const page = getPage(site, path);
-
-  return test(page);
-}
-
-/** Test a generated page by output url */
-export function testUrlPage(
-  site: Site,
-  url: string,
-  test: (page: Page) => void | Promise<void>,
-) {
-  const page = site.pages.find((page) => page.data.url === url);
-
-  if (!page) {
-    throw new Error(`Page "${url}" not found`);
-  }
-
-  return test(page);
-}
-
 /** Build a site and print errors */
 export async function build(site: Site) {
   try {
@@ -133,7 +100,7 @@ function normalizeContent(
   }
 }
 
-export async function assertPageSnapshot(
+async function assertPageSnapshot(
   context: Deno.TestContext,
   page: Page,
 ) {
