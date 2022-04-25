@@ -2,8 +2,10 @@ export const snapshot = {};
 
 snapshot[`slugify_urls plugin 1`] = `3`;
 
-snapshot[`slugify_urls plugin 2`] = `'{"src":{"path":"/Chourizos ao viño","ext":".md"},"dest":{"path":"/chourizos-ao-vino/index","ext":".html"},"data":{"content":"Page 2\\\\n","date":"1970-01-01T00:00:00.000Z","search":{},"tags":[],"url":"/chourizos-ao-vino/"},"content":"<p>Page 2</p>\\\\n"}'`;
+snapshot[`slugify_urls plugin 2`] = `'{"formats":[{"key":".tmpl.ts","pageType":"page"},{"key":".tmpl.js","pageType":"page"},{"key":".tmpl.json","pageType":"page"},{"key":".json"},{"key":".md","pageType":"page"},{"key":".js"},{"key":".ts"},{"key":".njk","pageType":"page","includesPath":"_includes"},{"key":".yaml","pageType":"page"},{"key":".yml","pageType":"page"}]}'`;
 
-snapshot[`slugify_urls plugin 3`] = `'{"src":{"path":"/Page 1","ext":".md"},"dest":{"path":"/page-1/index","ext":".html"},"data":{"content":"Page 1\\\\n","date":"1970-01-01T00:00:00.000Z","search":{},"tags":[],"url":"/page-1/"},"content":"<p>Page 1</p>\\\\n"}'`;
+snapshot[`slugify_urls plugin 3`] = `'{"src":{"path":"/Chourizos ao viño","ext":".md"},"dest":{"path":"/chourizos-ao-vino/index","ext":".html"},"data":{"content":"Page 2\\\\n","date":"1970-01-01T00:00:00.000Z","search":{},"tags":[],"url":"/chourizos-ao-vino/"},"content":"<p>Page 2</p>\\\\n"}'`;
 
-snapshot[`slugify_urls plugin 4`] = `'{"src":{"path":"/page-3","ext":".md"},"dest":{"path":"/paxina-numero/tres/index","ext":".html"},"data":{"content":"\\\\nPage 3\\\\n","date":"1970-01-01T00:00:00.000Z","search":{},"tags":[],"url":"/paxina-numero/tres/"},"content":"<p>Page 3</p>\\\\n"}'`;
+snapshot[`slugify_urls plugin 4`] = `'{"src":{"path":"/Page 1","ext":".md"},"dest":{"path":"/page-1/index","ext":".html"},"data":{"content":"Page 1\\\\n","date":"1970-01-01T00:00:00.000Z","search":{},"tags":[],"url":"/page-1/"},"content":"<p>Page 1</p>\\\\n"}'`;
+
+snapshot[`slugify_urls plugin 5`] = `'{"src":{"path":"/page-3","ext":".md"},"dest":{"path":"/paxina-numero/tres/index","ext":".html"},"data":{"content":"\\\\nPage 3\\\\n","date":"1970-01-01T00:00:00.000Z","search":{},"tags":[],"url":"/paxina-numero/tres/"},"content":"<p>Page 3</p>\\\\n"}'`;

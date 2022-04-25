@@ -2,12 +2,14 @@ export const snapshot = {};
 
 snapshot[`imagick plugin 1`] = `5`;
 
-snapshot[`imagick plugin 2`] = `'{"src":{"path":"/lume","ext":".png"},"dest":{"path":"/lume","ext":".png"},"data":{"content":"Uint8Array(29014)","imagick":[{"suffix":"-small","resize":20,"blur":10},{"suffix":"-big","resize":20,"blur":10},{"format":"jpg"},{"format":"webp"},{"format":"png"}],"search":{},"tags":[],"url":"/lume.png"},"content":"Uint8Array(14355)"}'`;
+snapshot[`imagick plugin 2`] = `'{"formats":[{"key":".tmpl.ts","pageType":"page"},{"key":".tmpl.js","pageType":"page"},{"key":".tmpl.json","pageType":"page"},{"key":".json"},{"key":".md","pageType":"page"},{"key":".js"},{"key":".ts"},{"key":".njk","pageType":"page","includesPath":"_includes"},{"key":".yaml","pageType":"page"},{"key":".yml","pageType":"page"},{"key":".jpg","pageType":"asset"},{"key":".jpeg","pageType":"asset"},{"key":".png","pageType":"asset"}]}'`;
 
-snapshot[`imagick plugin 3`] = `'{"src":{"path":"/lume[0]","ext":".png"},"dest":{"path":"/lume-small","ext":".png"},"data":{"content":"Uint8Array(29014)","search":{},"tags":[],"url":"/lume-small.png"},"content":"Uint8Array(899)"}'`;
+snapshot[`imagick plugin 3`] = `'{"src":{"path":"/lume","ext":".png"},"dest":{"path":"/lume","ext":".png"},"data":{"content":"Uint8Array(29014)","imagick":[{"suffix":"-small","resize":20,"blur":10},{"suffix":"-big","resize":20,"blur":10},{"format":"jpg"},{"format":"webp"},{"format":"png"}],"search":{},"tags":[],"url":"/lume.png"},"content":"Uint8Array(14355)"}'`;
 
-snapshot[`imagick plugin 4`] = `'{"src":{"path":"/lume[1]","ext":".png"},"dest":{"path":"/lume-big","ext":".png"},"data":{"content":"Uint8Array(29014)","search":{},"tags":[],"url":"/lume-big.png"},"content":"Uint8Array(899)"}'`;
+snapshot[`imagick plugin 4`] = `'{"src":{"path":"/lume[0]","ext":".png"},"dest":{"path":"/lume-small","ext":".png"},"data":{"content":"Uint8Array(29014)","search":{},"tags":[],"url":"/lume-small.png"},"content":"Uint8Array(899)"}'`;
 
-snapshot[`imagick plugin 5`] = `'{"src":{"path":"/lume[2]","ext":".png"},"dest":{"path":"/lume","ext":".jpg"},"data":{"content":"Uint8Array(29014)","search":{},"tags":[],"url":"/lume.jpg"},"content":"Uint8Array(1231)"}'`;
+snapshot[`imagick plugin 5`] = `'{"src":{"path":"/lume[1]","ext":".png"},"dest":{"path":"/lume-big","ext":".png"},"data":{"content":"Uint8Array(29014)","search":{},"tags":[],"url":"/lume-big.png"},"content":"Uint8Array(899)"}'`;
 
-snapshot[`imagick plugin 6`] = `'{"src":{"path":"/lume[3]","ext":".png"},"dest":{"path":"/lume","ext":".webp"},"data":{"content":"Uint8Array(29014)","search":{},"tags":[],"url":"/lume.webp"},"content":"Uint8Array(8648)"}'`;
+snapshot[`imagick plugin 6`] = `'{"src":{"path":"/lume[2]","ext":".png"},"dest":{"path":"/lume","ext":".jpg"},"data":{"content":"Uint8Array(29014)","search":{},"tags":[],"url":"/lume.jpg"},"content":"Uint8Array(1231)"}'`;
+
+snapshot[`imagick plugin 7`] = `'{"src":{"path":"/lume[3]","ext":".png"},"dest":{"path":"/lume","ext":".webp"},"data":{"content":"Uint8Array(29014)","search":{},"tags":[],"url":"/lume.webp"},"content":"Uint8Array(8648)"}'`;

@@ -126,7 +126,6 @@ function normalizeContent(
     return `Uint8Array(${content.length})`;
   }
   if (typeof content === "string") {
-    console.log(content);
     // Normalize line ending for Windows
     return content
       .replaceAll("\r\n", "\n")
@@ -176,6 +175,15 @@ export async function assertSiteSnapshot(
   await assertSnapshot(context, pages.length);
 
   // To-do: test site configuration
+  await assertSnapshot(context, JSON.stringify({
+    formats: Array.from(site.formats.entries).map(([key, value]) => {
+      return {
+        key,
+        pageType: value.pageType,
+        includesPath: value.includesPath,
+      };
+    }),
+  }));
 
   // Sort pages alphabetically
   pages.sort((a, b) => {
