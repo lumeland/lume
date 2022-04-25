@@ -2,7 +2,7 @@ export const snapshot = {};
 
 snapshot[`Load the pages of a site 1`] = `9`;
 
-snapshot[`Load the pages of a site 2`] = `'{"src":{"path":"/favicon","ext":".png"},"dest":{"path":"/favicon","ext":".png"},"data":{"content":"Uint8Array{1503}","imagick":[{"resize":[400,300],"suffix":"-small"}],"mergedKeys":{"tags":"stringArray","metas":"object","imagick":"array"},"metas":{"title":"Default title","description":"Default description"},"search":{},"site":"Default site name","tags":["pages"],"url":"/favicon.png"},"content":"Uint8Array{1503}"}'`;
+snapshot[`Load the pages of a site 2`] = `'{"src":{"path":"/favicon","ext":".png"},"dest":{"path":"/favicon","ext":".png"},"data":{"content":"Uint8Array(1503)","imagick":[{"resize":[400,300],"suffix":"-small"}],"mergedKeys":{"tags":"stringArray","metas":"object","imagick":"array"},"metas":{"title":"Default title","description":"Default description"},"search":{},"site":"Default site name","tags":["pages"],"url":"/favicon.png"},"content":"Uint8Array(1503)"}'`;
 
 snapshot[`Load the pages of a site 3`] = `'{"src":{"path":"/page5","ext":".yaml"},"dest":{"path":"/page5/index","ext":".html"},"data":{"content":"Content of Page 5","date":"1970-01-01T00:00:00.000Z","imagick":[{"resize":[400,300],"suffix":"-small"}],"mergedKeys":{"tags":"stringArray","metas":"object","imagick":"array"},"metas":{"title":"Default title","description":"Default description"},"search":{},"site":"Default site name","tags":["pages"],"title":"Page 5","url":"/page5/"},"content":"Content of Page 5"}'`;
 

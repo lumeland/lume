@@ -119,6 +119,21 @@ export async function getDepVersion(
   }
 }
 
+function normalizeContent(
+  content: string | Uint8Array | undefined,
+): string | undefined {
+  if (content instanceof Uint8Array) {
+    return `Uint8Array(${content.length})`;
+  }
+  if (typeof content === "string") {
+    console.log(content);
+    // Normalize line ending for Windows
+    return content
+      .replaceAll("\r\n", "\n")
+      .replaceAll(/base64,[^"]+/g, "base64,(...)");
+  }
+}
+
 export async function assertPageSnapshot(
   context: Deno.TestContext,
   page: Page,
@@ -130,18 +145,11 @@ export async function assertPageSnapshot(
     ext: page.src.ext,
   };
 
-  if (content instanceof Uint8Array) {
-    content = `Uint8Array{${content.length}}`;
-  } else if (typeof content === "string") {
-    // Normalize line ending for Windows
-    content = content.replaceAll("\r\n", "\n");
-  }
-
-  if (data.content instanceof Uint8Array) {
-    data.content = `Uint8Array{${data.content.length}}`;
-  } else if (typeof data.content === "string") {
-    data.content = data.content.replaceAll("\r\n", "\n");
-  }
+  // Normalize content for Windows
+  content = normalizeContent(content);
+  data.content = normalizeContent(
+    data.content as string | Uint8Array | undefined,
+  );
 
   // Ignore comp object
   if (data.comp) {
