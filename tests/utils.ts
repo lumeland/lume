@@ -142,15 +142,18 @@ export async function assertSiteSnapshot(
   await assertSnapshot(context, pages.length);
 
   // To-do: test site configuration
-  await assertSnapshot(context, JSON.stringify({
-    formats: Array.from(site.formats.entries).map(([key, value]) => {
-      return {
-        key,
-        pageType: value.pageType,
-        includesPath: value.includesPath,
-      };
+  await assertSnapshot(
+    context,
+    JSON.stringify({
+      formats: Array.from(site.formats.entries).map(([key, value]) => {
+        return {
+          key,
+          pageType: value.pageType,
+          includesPath: value.includesPath,
+        };
+      }),
     }),
-  }));
+  );
 
   // Sort pages alphabetically
   pages.sort((a, b) => {

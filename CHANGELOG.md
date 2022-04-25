@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Fixed
-- Updated `liquid`, `std`, `esbuild`, `postcss_autoprefixer` and `pug`.
+- Updated `markdown_it`, `liquid`, `std`, `esbuild`, `postcss_autoprefixer` and `pug`.
 
 ## [1.7.4] - 2022-04-18
 ### Changed
@@ -1494,6 +1494,7 @@ The first version.
 [#181]: https://github.com/lumeland/lume/issues/181
 [#182]: https://github.com/lumeland/lume/issues/182
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.7.4...HEAD
 [1.7.4]: https://github.com/lumeland/lume/compare/v1.7.3...v1.7.4
 [1.7.3]: https://github.com/lumeland/lume/compare/v1.7.2...v1.7.3
 [1.7.2]: https://github.com/lumeland/lume/compare/v1.7.1...v1.7.2
