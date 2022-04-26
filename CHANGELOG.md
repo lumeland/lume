@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Inline plugin generates invalid javascript [#192].
-- Updated `markdown_it`, `liquid`, `std`, `esbuild`, `postcss_autoprefixer` and `pug`.
+- Updated `react`, `markdown_it`, `liquid`, `std`, `esbuild`, `postcss_autoprefixer` and `pug`.
 - Improved testing using Deno snapshots [#190].
 
 ## [1.7.4] - 2022-04-18
