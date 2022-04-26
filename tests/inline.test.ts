@@ -2,7 +2,7 @@ import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import inline from "../plugins/inline.ts";
 import binaryLoader from "../core/loaders/binary.ts";
 
-Deno.test("code_hightlight plugin", async (t) => {
+Deno.test("inline plugin", async (t) => {
   const site = getSite({
     src: "inline",
   });
