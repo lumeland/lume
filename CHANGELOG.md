@@ -10,10 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - New function `search.values()` to return an array of all unique values of a key [#191].
+- New option `cache` to `imagick` plugin to cache the transformed images in a `_cache` folder (configurable) [#184].
 
 ### Fixed
 - Inline plugin generates invalid javascript [#192].
 - Updated `markdown_it`, `liquid`, `std`, `esbuild`, `postcss_autoprefixer` and `pug`.
+- Improved testing using Deno snapshots [#190].
 
 ## [1.7.4] - 2022-04-18
 ### Changed
@@ -1497,6 +1499,8 @@ The first version.
 [#175]: https://github.com/lumeland/lume/issues/175
 [#181]: https://github.com/lumeland/lume/issues/181
 [#182]: https://github.com/lumeland/lume/issues/182
+[#184]: https://github.com/lumeland/lume/issues/184
+[#190]: https://github.com/lumeland/lume/issues/190
 [#191]: https://github.com/lumeland/lume/issues/191
 [#192]: https://github.com/lumeland/lume/issues/192
 
