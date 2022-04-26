@@ -122,7 +122,7 @@ export default function (userOptions?: Partial<Options>) {
       const path = posix.resolve(url, element.getAttribute("src")!);
 
       try {
-        element.innerHTML = await getContent(path);
+        element.textContent = await getContent(path);
         element.removeAttribute("src");
       } catch (cause) {
         site.logger.warn("Unable to inline the file", {
