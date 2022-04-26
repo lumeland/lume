@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New function `search.values()` to return an array of all unique values of a key [#191].
 - New option `cache` to `imagick` plugin to cache the transformed images in a `_cache` folder (configurable) [#184].
+- Middewares have a third argument with the connection info.
 
 ### Fixed
 - Inline plugin generates invalid javascript [#192].

@@ -3,6 +3,7 @@ import Events from "./events.ts";
 import { serveFile, Server as HttpServer } from "../deps/http.ts";
 
 import type { Event, EventListener, EventOptions } from "../core.ts";
+import type { ConnInfo } from "../deps/http.ts";
 
 /** The options to configure the local server */
 export interface Options {
@@ -17,6 +18,7 @@ export type RequestHandler = (req: Request) => Promise<Response>;
 export type Middleware = (
   req: Request,
   next: RequestHandler,
+  conn: ConnInfo,
 ) => Promise<Response>;
 
 /** Custom events for server */
@@ -72,7 +74,7 @@ export default class Server {
 
     const server = new HttpServer({
       port: port,
-      handler: (request) => this.handle(request),
+      handler: (request, connInfo) => this.handle(request, connInfo),
     });
 
     this.dispatchEvent({ type: "start" });
@@ -81,7 +83,7 @@ export default class Server {
   }
 
   /** Handle a http request event */
-  async handle(request: Request): Promise<Response> {
+  async handle(request: Request, connInfo: ConnInfo): Promise<Response> {
     const middlewares = [...this.middlewares];
 
     const next: RequestHandler = async (
@@ -90,7 +92,7 @@ export default class Server {
       const middleware = middlewares.shift();
 
       if (middleware) {
-        return await middleware(request, next);
+        return await middleware(request, next, connInfo);
       }
 
       return await this.serveFile(request);
