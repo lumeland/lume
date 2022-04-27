@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New function `search.values()` to return an array of all unique values of a key [#191].
 - New option `cache` to `imagick` plugin to cache the transformed images in a `_cache` folder (configurable) [#184].
 - Middewares have a third argument with the connection info.
+- Support for nested components in Nunjucks using body helpers [#189].
 
 ### Fixed
 - Inline plugin generates invalid javascript [#192].
@@ -1501,6 +1502,7 @@ The first version.
 [#181]: https://github.com/lumeland/lume/issues/181
 [#182]: https://github.com/lumeland/lume/issues/182
 [#184]: https://github.com/lumeland/lume/issues/184
+[#189]: https://github.com/lumeland/lume/issues/189
 [#190]: https://github.com/lumeland/lume/issues/190
 [#191]: https://github.com/lumeland/lume/issues/191
 [#192]: https://github.com/lumeland/lume/issues/192
