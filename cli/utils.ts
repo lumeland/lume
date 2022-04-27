@@ -67,6 +67,7 @@ export const pluginNames = [
   "on_demand",
   "parcel_css",
   "postcss",
+  "prism",
   "pug",
   "relative_urls",
   "resolve_urls",

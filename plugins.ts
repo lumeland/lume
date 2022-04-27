@@ -20,6 +20,7 @@ export { default as onDemand } from "./plugins/on_demand.ts";
 export { default as paginate } from "./plugins/paginate.ts";
 export { default as parcelCss } from "./plugins/parcel_css.ts";
 export { default as postcss } from "./plugins/postcss.ts";
+export { default as prism } from "./plugins/prism.ts";
 export { default as pug } from "./plugins/pug.ts";
 export { default as relativeUrls } from "./plugins/relative_urls.ts";
 export { default as resolveUrls } from "./plugins/resolve_urls.ts";
