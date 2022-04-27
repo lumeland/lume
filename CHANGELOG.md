@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
+- New plugin `metas` to add automatically `<meta>` tags for SEO and social networks [#188].
 - New function `search.values()` to return an array of all unique values of a key [#191].
 - New option `cache` to `imagick` plugin to cache the transformed images in a `_cache` folder (configurable) [#184].
 - Middewares have a third argument with the connection info.
@@ -1502,6 +1503,7 @@ The first version.
 [#181]: https://github.com/lumeland/lume/issues/181
 [#182]: https://github.com/lumeland/lume/issues/182
 [#184]: https://github.com/lumeland/lume/issues/184
+[#188]: https://github.com/lumeland/lume/issues/188
 [#189]: https://github.com/lumeland/lume/issues/189
 [#190]: https://github.com/lumeland/lume/issues/190
 [#191]: https://github.com/lumeland/lume/issues/191

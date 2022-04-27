@@ -1,0 +1,15 @@
+mergeKeys:
+  metas: object
+
+metas:
+  site: My site
+  title: My title
+  description: My description
+  image: /my-image.png
+  icon: /my-icon.png
+  keywords:
+    - one
+    - two
+  twitter: "@myUser"
+  lang: gl
+  color: black
