@@ -11,6 +11,7 @@ export { default as json } from "./plugins/json.ts";
 export { default as jsx } from "./plugins/jsx.ts";
 export { default as liquid } from "./plugins/liquid.ts";
 export { default as markdown } from "./plugins/markdown.ts";
+export { default as metas } from "./plugins/metas.ts";
 export { default as modifyUrls } from "./plugins/modify_urls.ts";
 export { default as modules } from "./plugins/modules.ts";
 export { default as nunjucks } from "./plugins/nunjucks.ts";

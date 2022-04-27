@@ -61,6 +61,7 @@ export const pluginNames = [
   "inline",
   "jsx",
   "liquid",
+  "metas",
   "modify_urls",
   "netlify_cms",
   "on_demand",
