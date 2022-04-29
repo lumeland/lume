@@ -2,8 +2,106 @@ export const snapshot = {};
 
 snapshot[`terser plugin 1`] = `2`;
 
-snapshot[`terser plugin 2`] = `'{"formats":[{"key":".tmpl.ts","pageType":"page"},{"key":".tmpl.js","pageType":"page"},{"key":".tmpl.json","pageType":"page"},{"key":".json"},{"key":".md","pageType":"page"},{"key":".js","pageType":"asset"},{"key":".ts"},{"key":".njk","pageType":"page","includesPath":"_includes"},{"key":".yaml","pageType":"page"},{"key":".yml","pageType":"page"}]}'`;
+snapshot[`terser plugin 2`] = `
+{
+  formats: [
+    {
+      includesPath: undefined,
+      key: ".tmpl.ts",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".tmpl.js",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".tmpl.json",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".json",
+      pageType: undefined,
+    },
+    {
+      includesPath: undefined,
+      key: ".md",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".js",
+      pageType: "asset",
+    },
+    {
+      includesPath: undefined,
+      key: ".ts",
+      pageType: undefined,
+    },
+    {
+      includesPath: "_includes",
+      key: ".njk",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".yaml",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".yml",
+      pageType: "page",
+    },
+  ],
+}
+`;
 
-snapshot[`terser plugin 3`] = `'{"src":{"path":"/main","ext":".js"},"dest":{"path":"/main","ext":".js"},"data":{"content":"import { one, two } from \\\\"./numbers.js\\\\";\\\\n\\\\nconsole.log(one() + two());\\\\n","search":{},"tags":[],"url":"/main.js"},"content":"import{one as o,two as m}from\\\\"./numbers.js\\\\";console.log(o()+m());"}'`;
+snapshot[`terser plugin 3`] = `
+{
+  content: 'import{one as o,two as m}from"./numbers.js";console.log(o()+m());',
+  data: {
+    content: 'import { one, two } from "./numbers.js";\\n\\nconsole.log(one() + two());\\n',
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/main.js",
+  },
+  dest: {
+    ext: ".js",
+    path: "/main",
+  },
+  src: {
+    ext: ".js",
+    path: "/main",
+  },
+}
+`;
 
-snapshot[`terser plugin 4`] = `'{"src":{"path":"/numbers.js","ext":".njk"},"dest":{"path":"/numbers","ext":".js"},"data":{"content":"\\\\nexport function one () {\\\\n  return {{ one }};\\\\n}\\\\n\\\\nexport function two () {\\\\n  return {{ two }};\\\\n}\\\\n/*\\\\nCommented code\\\\nexport function two () {\\\\n  return {{ two }};\\\\n}\\\\n*/","date":"1970-01-01T00:00:00.000Z","one":1,"search":{},"tags":[],"two":2,"url":"/numbers.js"},"content":"export function one(){return 1}export function two(){return 2}"}'`;
+snapshot[`terser plugin 4`] = `
+{
+  content: "export function one(){return 1}export function two(){return 2}",
+  data: {
+    content: "\\nexport function one () {\\n  return {{ one }};\\n}\\n\\nexport function two () {\\n  return {{ two }};\\n}\\n/*\\nCommented code\\nexport function two () {\\n  return {{ two }};\\n}\\n*/",
+    date: 1970-01-01T00:00:00.000Z,
+    one: 1,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    two: 2,
+    url: "/numbers.js",
+  },
+  dest: {
+    ext: ".js",
+    path: "/numbers",
+  },
+  src: {
+    ext: ".njk",
+    path: "/numbers.js",
+  },
+}
+`;

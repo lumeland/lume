@@ -129,7 +129,7 @@ async function assertPageSnapshot(
   const entries = Object.entries(data).sort((a, b) => a[0].localeCompare(b[0]));
   data = Object.fromEntries(entries);
 
-  await assertSnapshot(context, JSON.stringify({ src, dest, data, content }));
+  await assertSnapshot(context, { src, dest, data, content });
 }
 
 export async function assertSiteSnapshot(
@@ -144,7 +144,7 @@ export async function assertSiteSnapshot(
   // To-do: test site configuration
   await assertSnapshot(
     context,
-    JSON.stringify({
+    {
       formats: Array.from(site.formats.entries).map(([key, value]) => {
         return {
           key,
@@ -152,7 +152,7 @@ export async function assertSiteSnapshot(
           includesPath: value.includesPath,
         };
       }),
-    }),
+    },
   );
 
   // Sort pages alphabetically

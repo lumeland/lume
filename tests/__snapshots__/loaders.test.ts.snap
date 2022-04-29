@@ -2,22 +2,659 @@ export const snapshot = {};
 
 snapshot[`Load the pages of a site 1`] = `9`;
 
-snapshot[`Load the pages of a site 2`] = `'{"formats":[{"key":".tmpl.ts","pageType":"page"},{"key":".tmpl.js","pageType":"page"},{"key":".tmpl.json","pageType":"page"},{"key":".json"},{"key":".md","pageType":"page"},{"key":".js"},{"key":".ts"},{"key":".njk","pageType":"page","includesPath":"_includes"},{"key":".yaml","pageType":"page"},{"key":".yml","pageType":"page"},{"key":".png","pageType":"asset"},{"key":".css","pageType":"asset"}]}'`;
+snapshot[`Load the pages of a site 2`] = `
+{
+  formats: [
+    {
+      includesPath: undefined,
+      key: ".tmpl.ts",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".tmpl.js",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".tmpl.json",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".json",
+      pageType: undefined,
+    },
+    {
+      includesPath: undefined,
+      key: ".md",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".js",
+      pageType: undefined,
+    },
+    {
+      includesPath: undefined,
+      key: ".ts",
+      pageType: undefined,
+    },
+    {
+      includesPath: "_includes",
+      key: ".njk",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".yaml",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".yml",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".png",
+      pageType: "asset",
+    },
+    {
+      includesPath: undefined,
+      key: ".css",
+      pageType: "asset",
+    },
+  ],
+}
+`;
 
-snapshot[`Load the pages of a site 3`] = `'{"src":{"path":"/favicon","ext":".png"},"dest":{"path":"/favicon","ext":".png"},"data":{"content":"Uint8Array(1503)","imagick":[{"resize":[400,300],"suffix":"-small"}],"mergedKeys":{"tags":"stringArray","metas":"object","imagick":"array"},"metas":{"title":"Default title","description":"Default description"},"search":{},"site":"Default site name","tags":["pages"],"url":"/favicon.png"},"content":"Uint8Array(1503)"}'`;
+snapshot[`Load the pages of a site 3`] = `
+{
+  content: "Uint8Array(1503)",
+  data: {
+    content: "Uint8Array(1503)",
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Default title",
+    },
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    site: "Default site name",
+    tags: [
+      "pages",
+    ],
+    url: "/favicon.png",
+  },
+  dest: {
+    ext: ".png",
+    path: "/favicon",
+  },
+  src: {
+    ext: ".png",
+    path: "/favicon",
+  },
+}
+`;
 
-snapshot[`Load the pages of a site 4`] = `'{"src":{"path":"/page5","ext":".yaml"},"dest":{"path":"/page5/index","ext":".html"},"data":{"content":"Content of Page 5","date":"1970-01-01T00:00:00.000Z","imagick":[{"resize":[400,300],"suffix":"-small"}],"mergedKeys":{"tags":"stringArray","metas":"object","imagick":"array"},"metas":{"title":"Default title","description":"Default description"},"search":{},"site":"Default site name","tags":["pages"],"title":"Page 5","url":"/page5/"},"content":"Content of Page 5"}'`;
+snapshot[`Load the pages of a site 4`] = `
+{
+  content: "Content of Page 5",
+  data: {
+    content: "Content of Page 5",
+    date: 1970-01-01T00:00:00.000Z,
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Default title",
+    },
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    site: "Default site name",
+    tags: [
+      "pages",
+    ],
+    title: "Page 5",
+    url: "/page5/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page5/index",
+  },
+  src: {
+    ext: ".yaml",
+    path: "/page5",
+  },
+}
+`;
 
-snapshot[`Load the pages of a site 5`] = `'{"src":{"path":"/pages/1_page1","ext":".md"},"dest":{"path":"/pages/page1/index","ext":".html"},"data":{"colors":["#ff0000","#0000ff","#00ff00"],"content":"\\\\nContent of Page 1\\\\n","date":"1970-01-01T00:00:00.000Z","documents":[{"title":"Document 1"},{"title":"Document 2"},{"title":"Document 3"}],"draft":true,"drinks":{"alcoholic":["gin-tonic","gin-soda"],"others":["coffee","tea"]},"imagick":[{"resize":[400,300],"suffix":"-small"},{"resize":[900,900],"suffix":"-big"}],"mergedKeys":{"tags":"stringArray","metas":"object","imagick":"array"},"metas":{"title":"Custom title","description":"Default description"},"names":["Oscar","Laura"],"search":{},"site":"Folder overrided site name","tags":["pages","sub-pages","page1"],"title":"Page 1","url":"/pages/page1/"},"content":"<p>Content of Page 1</p>\\\\n"}'`;
+snapshot[`Load the pages of a site 5`] = `
+{
+  content: "<p>Content of Page 1</p>\\n",
+  data: {
+    colors: [
+      "#ff0000",
+      "#0000ff",
+      "#00ff00",
+    ],
+    content: "\\nContent of Page 1\\n",
+    date: 1970-01-01T00:00:00.000Z,
+    documents: [
+      {
+        title: "Document 1",
+      },
+      {
+        title: "Document 2",
+      },
+      {
+        title: "Document 3",
+      },
+    ],
+    draft: true,
+    drinks: {
+      alcoholic: [
+        "gin-tonic",
+        "gin-soda",
+      ],
+      others: [
+        "coffee",
+        "tea",
+      ],
+    },
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+      {
+        resize: [
+          900,
+          900,
+        ],
+        suffix: "-big",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Custom title",
+    },
+    names: [
+      "Oscar",
+      "Laura",
+    ],
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    site: "Folder overrided site name",
+    tags: [
+      "pages",
+      "sub-pages",
+      "page1",
+    ],
+    title: "Page 1",
+    url: "/pages/page1/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/pages/page1/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/pages/1_page1",
+  },
+}
+`;
 
-snapshot[`Load the pages of a site 6`] = `'{"src":{"path":"/pages/2020-06-21_page2","ext":".tmpl.json"},"dest":{"path":"/overrided-page2/index","ext":".html"},"data":{"colors":["#ff0000","#0000ff","#00ff00"],"content":"Content of Page 2","date":"1970-01-01T00:00:00.000Z","documents":[{"title":"Document 1"},{"title":"Document 2"},{"title":"Document 3"}],"drinks":{"alcoholic":["gin-tonic","gin-soda"],"others":["coffee","tea"]},"imagick":[{"resize":[400,300],"suffix":"-small"}],"mergedKeys":{"tags":"stringArray","metas":"object","imagick":"array"},"metas":{"title":"Default title","description":"Default description"},"names":["Oscar","Laura"],"search":{},"site":"Folder overrided site name","tags":["pages","sub-pages"],"title":"Page 2","url":"/overrided-page2/"},"content":"Content of Page 2"}'`;
+snapshot[`Load the pages of a site 6`] = `
+{
+  content: "Content of Page 2",
+  data: {
+    colors: [
+      "#ff0000",
+      "#0000ff",
+      "#00ff00",
+    ],
+    content: "Content of Page 2",
+    date: 1970-01-01T00:00:00.000Z,
+    documents: [
+      {
+        title: "Document 1",
+      },
+      {
+        title: "Document 2",
+      },
+      {
+        title: "Document 3",
+      },
+    ],
+    drinks: {
+      alcoholic: [
+        "gin-tonic",
+        "gin-soda",
+      ],
+      others: [
+        "coffee",
+        "tea",
+      ],
+    },
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Default title",
+    },
+    names: [
+      "Oscar",
+      "Laura",
+    ],
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    site: "Folder overrided site name",
+    tags: [
+      "pages",
+      "sub-pages",
+    ],
+    title: "Page 2",
+    url: "/overrided-page2/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/overrided-page2/index",
+  },
+  src: {
+    ext: ".tmpl.json",
+    path: "/pages/2020-06-21_page2",
+  },
+}
+`;
 
-snapshot[`Load the pages of a site 7`] = `'{"src":{"path":"/pages/2021-01-02-18-32_page4","ext":".tmpl.ts"},"dest":{"path":"/pages/page4/index","ext":".html"},"data":{"colors":["#ff0000","#0000ff","#00ff00"],"date":"1970-01-01T00:00:00.000Z","documents":[{"title":"Document 1"},{"title":"Document 2"},{"title":"Document 3"}],"drinks":{"alcoholic":["gin-tonic","gin-soda"],"others":["coffee","tea"]},"imagick":[{"resize":[400,300],"suffix":"-small"}],"mergedKeys":{"tags":"stringArray","metas":"object","imagick":"array"},"metas":{"title":"Default title","description":"Default description"},"names":["Oscar","Laura"],"search":{},"site":"Overrided site name","tags":["pages","sub-pages"],"title":"Page 4","url":"/pages/page4/"},"content":"Content of Page 4 in Overrided site name"}'`;
+snapshot[`Load the pages of a site 7`] = `
+{
+  content: "Content of Page 4 in Overrided site name",
+  data: {
+    colors: [
+      "#ff0000",
+      "#0000ff",
+      "#00ff00",
+    ],
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    documents: [
+      {
+        title: "Document 1",
+      },
+      {
+        title: "Document 2",
+      },
+      {
+        title: "Document 3",
+      },
+    ],
+    drinks: {
+      alcoholic: [
+        "gin-tonic",
+        "gin-soda",
+      ],
+      others: [
+        "coffee",
+        "tea",
+      ],
+    },
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Default title",
+    },
+    names: [
+      "Oscar",
+      "Laura",
+    ],
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    site: "Overrided site name",
+    tags: [
+      "pages",
+      "sub-pages",
+    ],
+    title: "Page 4",
+    url: "/pages/page4/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/pages/page4/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages/2021-01-02-18-32_page4",
+  },
+}
+`;
 
-snapshot[`Load the pages of a site 8`] = `'{"src":{"path":"/pages/2021-12-29_page6","ext":".md"},"dest":{"path":"/pages/page6/index","ext":".html"},"data":{"colors":["#ff0000","#0000ff","#00ff00"],"content":"\\\\nContent of Page 6\\\\n","date":"1970-01-01T00:00:00.000Z","documents":[{"title":"Document 1"},{"title":"Document 2"},{"title":"Document 3"}],"drinks":{"alcoholic":["gin-tonic","gin-soda"],"others":["coffee","tea"]},"imagick":[{"resize":[400,300],"suffix":"-small"}],"mergedKeys":{"tags":"stringArray","metas":"object","imagick":"array"},"metas":{"title":"Default title","description":"Default description"},"names":["Oscar","Laura"],"search":{},"site":"Folder overrided site name","tags":["pages","sub-pages","page6"],"title":"Page 6","url":"/pages/page6/"},"content":"<p>Content of Page 6</p>\\\\n"}'`;
+snapshot[`Load the pages of a site 8`] = `
+{
+  content: "<p>Content of Page 6</p>\\n",
+  data: {
+    colors: [
+      "#ff0000",
+      "#0000ff",
+      "#00ff00",
+    ],
+    content: "\\nContent of Page 6\\n",
+    date: 1970-01-01T00:00:00.000Z,
+    documents: [
+      {
+        title: "Document 1",
+      },
+      {
+        title: "Document 2",
+      },
+      {
+        title: "Document 3",
+      },
+    ],
+    drinks: {
+      alcoholic: [
+        "gin-tonic",
+        "gin-soda",
+      ],
+      others: [
+        "coffee",
+        "tea",
+      ],
+    },
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Default title",
+    },
+    names: [
+      "Oscar",
+      "Laura",
+    ],
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    site: "Folder overrided site name",
+    tags: [
+      "pages",
+      "sub-pages",
+      "page6",
+    ],
+    title: "Page 6",
+    url: "/pages/page6/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/pages/page6/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/pages/2021-12-29_page6",
+  },
+}
+`;
 
-snapshot[`Load the pages of a site 9`] = `'{"src":{"path":"/pages/page3","ext":".tmpl.js"},"dest":{"path":"/page_3","ext":""},"data":{"colors":["#ff0000","#0000ff","#00ff00"],"content":"Content of Page 3","date":"1970-01-01T00:00:00.000Z","documents":[{"title":"Document 1"},{"title":"Document 2"},{"title":"Document 3"}],"drinks":{"alcoholic":["gin-tonic","gin-soda"],"others":["coffee","tea"]},"imagick":[{"resize":[400,300],"suffix":"-small"}],"mergedKeys":{"tags":"stringArray","metas":"object","imagick":"array"},"metas":{"title":"Default title","description":"Default description"},"names":["Oscar","Laura"],"search":{},"site":"Folder overrided site name","tags":["pages","sub-pages"],"title":"Page 3","url":"/page_3"},"content":"Content of Page 3"}'`;
+snapshot[`Load the pages of a site 9`] = `
+{
+  content: "Content of Page 3",
+  data: {
+    colors: [
+      "#ff0000",
+      "#0000ff",
+      "#00ff00",
+    ],
+    content: "Content of Page 3",
+    date: 1970-01-01T00:00:00.000Z,
+    documents: [
+      {
+        title: "Document 1",
+      },
+      {
+        title: "Document 2",
+      },
+      {
+        title: "Document 3",
+      },
+    ],
+    drinks: {
+      alcoholic: [
+        "gin-tonic",
+        "gin-soda",
+      ],
+      others: [
+        "coffee",
+        "tea",
+      ],
+    },
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Default title",
+    },
+    names: [
+      "Oscar",
+      "Laura",
+    ],
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    site: "Folder overrided site name",
+    tags: [
+      "pages",
+      "sub-pages",
+    ],
+    title: "Page 3",
+    url: "/page_3",
+  },
+  dest: {
+    ext: "",
+    path: "/page_3",
+  },
+  src: {
+    ext: ".tmpl.js",
+    path: "/pages/page3",
+  },
+}
+`;
 
-snapshot[`Load the pages of a site 10`] = `'{"src":{"path":"/pages/subpage/page7","ext":".tmpl.js"},"dest":{"path":"/pages/subpage/page7/index","ext":".html"},"data":{"colors":["#ff0000","#0000ff","#00ff00"],"content":"Content of Page 7","date":"1970-01-01T00:00:00.000Z","documents":[{"title":"Document 1"},{"title":"Document 2"},{"title":"Document 3"}],"drinks":{"alcoholic":["gin-tonic","gin-soda"],"others":["coffee","tea"]},"imagick":[{"resize":[400,300],"suffix":"-small"}],"mergedKeys":{"tags":"stringArray","metas":"object","imagick":"array"},"metas":{"title":"Default title","description":"Default description"},"names":["Oscar","Laura"],"search":{},"site":"Folder overrided site name","tags":["pages","sub-pages","sub-sub-pages","page7"],"title":"Page 7","url":"/pages/subpage/page7/"},"content":"Content of Page 7"}'`;
+snapshot[`Load the pages of a site 10`] = `
+{
+  content: "Content of Page 7",
+  data: {
+    colors: [
+      "#ff0000",
+      "#0000ff",
+      "#00ff00",
+    ],
+    content: "Content of Page 7",
+    date: 1970-01-01T00:00:00.000Z,
+    documents: [
+      {
+        title: "Document 1",
+      },
+      {
+        title: "Document 2",
+      },
+      {
+        title: "Document 3",
+      },
+    ],
+    drinks: {
+      alcoholic: [
+        "gin-tonic",
+        "gin-soda",
+      ],
+      others: [
+        "coffee",
+        "tea",
+      ],
+    },
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Default title",
+    },
+    names: [
+      "Oscar",
+      "Laura",
+    ],
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    site: "Folder overrided site name",
+    tags: [
+      "pages",
+      "sub-pages",
+      "sub-sub-pages",
+      "page7",
+    ],
+    title: "Page 7",
+    url: "/pages/subpage/page7/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/pages/subpage/page7/index",
+  },
+  src: {
+    ext: ".tmpl.js",
+    path: "/pages/subpage/page7",
+  },
+}
+`;
 
-snapshot[`Load the pages of a site 11`] = `'{"src":{"path":"/styles","ext":".css"},"dest":{"path":"/styles","ext":".css"},"data":{"content":"body {\\\\n  font-family: sans-serif;\\\\n  color: black;\\\\n}\\\\n","imagick":[{"resize":[400,300],"suffix":"-small"}],"mergedKeys":{"tags":"stringArray","metas":"object","imagick":"array"},"metas":{"title":"Default title","description":"Default description"},"search":{},"site":"Default site name","tags":["pages"],"url":"/styles.css"},"content":"body {\\\\n  font-family: sans-serif;\\\\n  color: black;\\\\n}\\\\n"}'`;
+snapshot[`Load the pages of a site 11`] = `
+{
+  content: "body {\\n  font-family: sans-serif;\\n  color: black;\\n}\\n",
+  data: {
+    content: "body {\\n  font-family: sans-serif;\\n  color: black;\\n}\\n",
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Default title",
+    },
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    site: "Default site name",
+    tags: [
+      "pages",
+    ],
+    url: "/styles.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/styles",
+  },
+  src: {
+    ext: ".css",
+    path: "/styles",
+  },
+}
+`;

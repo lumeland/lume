@@ -16,14 +16,5 @@ if (key) {
 }
 
 function show(snapshot: string) {
-  if (snapshot.startsWith("'") && snapshot.endsWith("'")) {
-    snapshot = snapshot.slice(1, -1);
-  }
-
-  snapshot = snapshot.replaceAll("\\\\", "\\");
-
-  const object = JSON.parse(snapshot);
-  for (const [key, value] of Object.entries(object)) {
-    console.log(key, value);
-  }
+  console.log(snapshot.replaceAll("\\n", "\n"));
 }

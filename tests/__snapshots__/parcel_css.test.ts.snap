@@ -2,8 +2,108 @@ export const snapshot = {};
 
 snapshot[`parcelCSS plugin 1`] = `2`;
 
-snapshot[`parcelCSS plugin 2`] = `'{"formats":[{"key":".tmpl.ts","pageType":"page"},{"key":".tmpl.js","pageType":"page"},{"key":".tmpl.json","pageType":"page"},{"key":".json"},{"key":".md","pageType":"page"},{"key":".js"},{"key":".ts"},{"key":".njk","pageType":"page","includesPath":"_includes"},{"key":".yaml","pageType":"page"},{"key":".yml","pageType":"page"},{"key":".css","pageType":"asset"}]}'`;
+snapshot[`parcelCSS plugin 2`] = `
+{
+  formats: [
+    {
+      includesPath: undefined,
+      key: ".tmpl.ts",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".tmpl.js",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".tmpl.json",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".json",
+      pageType: undefined,
+    },
+    {
+      includesPath: undefined,
+      key: ".md",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".js",
+      pageType: undefined,
+    },
+    {
+      includesPath: undefined,
+      key: ".ts",
+      pageType: undefined,
+    },
+    {
+      includesPath: "_includes",
+      key: ".njk",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".yaml",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".yml",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".css",
+      pageType: "asset",
+    },
+  ],
+}
+`;
 
-snapshot[`parcelCSS plugin 3`] = `'{"src":{"path":"/index","ext":".css"},"dest":{"path":"/index","ext":".css"},"data":{"content":"@import \\\\"variables.css\\\\";\\\\n@import \\\\"./text.css\\\\";\\\\n","search":{},"tags":[],"url":"/index.css"},"content":"@import \\\\"variables.css\\\\";@import \\\\"./text.css\\\\";"}'`;
+snapshot[`parcelCSS plugin 3`] = `
+{
+  content: '@import "variables.css";@import "./text.css";',
+  data: {
+    content: '@import "variables.css";\\n@import "./text.css";\\n',
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/index.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/index",
+  },
+  src: {
+    ext: ".css",
+    path: "/index",
+  },
+}
+`;
 
-snapshot[`parcelCSS plugin 4`] = `'{"src":{"path":"/text","ext":".css"},"dest":{"path":"/text","ext":".css"},"data":{"content":".text {\\\\n  font-family: var(--font-family);\\\\n\\\\n  & p {\\\\n    color: var(--color);\\\\n    box-shadow: 0 0 0.5em var(--background);\\\\n    backface-visibility: hidden;\\\\n  }\\\\n}\\\\n","search":{},"tags":[],"url":"/text.css"},"content":".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}"}'`;
+snapshot[`parcelCSS plugin 4`] = `
+{
+  content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}",
+  data: {
+    content: ".text {\\n  font-family: var(--font-family);\\n\\n  & p {\\n    color: var(--color);\\n    box-shadow: 0 0 0.5em var(--background);\\n    backface-visibility: hidden;\\n  }\\n}\\n",
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/text.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/text",
+  },
+  src: {
+    ext: ".css",
+    path: "/text",
+  },
+}
+`;

@@ -2,6 +2,86 @@ export const snapshot = {};
 
 snapshot[`sass plugin 1`] = `1`;
 
-snapshot[`sass plugin 2`] = `'{"formats":[{"key":".tmpl.ts","pageType":"page"},{"key":".tmpl.js","pageType":"page"},{"key":".tmpl.json","pageType":"page"},{"key":".json"},{"key":".md","pageType":"page"},{"key":".js"},{"key":".ts"},{"key":".njk","pageType":"page","includesPath":"_includes"},{"key":".yaml","pageType":"page"},{"key":".yml","pageType":"page"},{"key":".scss","pageType":"asset"}]}'`;
+snapshot[`sass plugin 2`] = `
+{
+  formats: [
+    {
+      includesPath: undefined,
+      key: ".tmpl.ts",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".tmpl.js",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".tmpl.json",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".json",
+      pageType: undefined,
+    },
+    {
+      includesPath: undefined,
+      key: ".md",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".js",
+      pageType: undefined,
+    },
+    {
+      includesPath: undefined,
+      key: ".ts",
+      pageType: undefined,
+    },
+    {
+      includesPath: "_includes",
+      key: ".njk",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".yaml",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".yml",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".scss",
+      pageType: "asset",
+    },
+  ],
+}
+`;
 
-snapshot[`sass plugin 3`] = `'{"src":{"path":"/index","ext":".scss"},"dest":{"path":"/index","ext":".css"},"data":{"content":"@import \\\\"./_includes/sass/colors\\\\";\\\\n@import \\\\"sass/button\\\\";\\\\n","search":{},"tags":[],"url":"/index.css"},"content":"body{font:100% Helvetica,sans-serif;color:#333}"}'`;
+snapshot[`sass plugin 3`] = `
+{
+  content: "body{font:100% Helvetica,sans-serif;color:#333}",
+  data: {
+    content: '@import "./_includes/sass/colors";\\n@import "sass/button";\\n',
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/index.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/index",
+  },
+  src: {
+    ext: ".scss",
+    path: "/index",
+  },
+}
+`;

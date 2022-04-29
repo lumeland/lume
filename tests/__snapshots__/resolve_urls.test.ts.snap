@@ -2,14 +2,174 @@ export const snapshot = {};
 
 snapshot[`relative_url plugin 1`] = `5`;
 
-snapshot[`relative_url plugin 2`] = `'{"formats":[{"key":".tmpl.ts","pageType":"page"},{"key":".tmpl.js","pageType":"page"},{"key":".tmpl.json","pageType":"page"},{"key":".json"},{"key":".md","pageType":"page"},{"key":".js"},{"key":".ts"},{"key":".njk","pageType":"page","includesPath":"_includes"},{"key":".yaml","pageType":"page"},{"key":".yml","pageType":"page"}]}'`;
+snapshot[`relative_url plugin 2`] = `
+{
+  formats: [
+    {
+      includesPath: undefined,
+      key: ".tmpl.ts",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".tmpl.js",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".tmpl.json",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".json",
+      pageType: undefined,
+    },
+    {
+      includesPath: undefined,
+      key: ".md",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".js",
+      pageType: undefined,
+    },
+    {
+      includesPath: undefined,
+      key: ".ts",
+      pageType: undefined,
+    },
+    {
+      includesPath: "_includes",
+      key: ".njk",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".yaml",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".yml",
+      pageType: "page",
+    },
+  ],
+}
+`;
 
-snapshot[`relative_url plugin 3`] = `'{"src":{"path":"/articles/article-1","ext":".md"},"dest":{"path":"/articles/first-article/index","ext":".html"},"data":{"content":"<!-- deno-fmt-ignore-file -->\\\\n\\\\nFirst article\\\\n\\\\n[Go to second](./article-2.md)\\\\n[Go to other](../other.md)\\\\n[Go to index](/index.md)","date":"1970-01-01T00:00:00.000Z","search":{},"tags":[],"url":"/articles/first-article/"},"content":"<!DOCTYPE html>\\\\n<html><head></head><body><p>First article</p>\\\\n<p><a href=\\\\"/drafts/second-article/\\\\">Go to second</a>\\\\n<a href=\\\\"/other/\\\\">Go to other</a>\\\\n<a href=\\\\"/\\\\">Go to index</a></p>\\\\n</body></html>"}'`;
+snapshot[`relative_url plugin 3`] = `
+{
+  content: '<!DOCTYPE html>\\n<html><head></head><body><p>First article</p>\\n<p><a href="/drafts/second-article/">Go to second</a>\\n<a href="/other/">Go to other</a>\\n<a href="/">Go to index</a></p>\\n</body></html>',
+  data: {
+    content: "<!-- deno-fmt-ignore-file -->\\n\\nFirst article\\n\\n[Go to second](./article-2.md)\\n[Go to other](../other.md)\\n[Go to index](/index.md)",
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/articles/first-article/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/first-article/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/articles/article-1",
+  },
+}
+`;
 
-snapshot[`relative_url plugin 4`] = `'{"src":{"path":"/articles/article-2","ext":".md"},"dest":{"path":"/drafts/second-article/index","ext":".html"},"data":{"content":"<!-- deno-fmt-ignore-file -->\\\\n\\\\nSecond article\\\\n\\\\n[Go to first](article-1.md)\\\\n[Go to other](../other.md)\\\\n[Go to index](/index.md)","date":"1970-01-01T00:00:00.000Z","search":{},"tags":[],"url":"/drafts/second-article/"},"content":"<!DOCTYPE html>\\\\n<html><head></head><body><p>Second article</p>\\\\n<p><a href=\\\\"/articles/first-article/\\\\">Go to first</a>\\\\n<a href=\\\\"/other/\\\\">Go to other</a>\\\\n<a href=\\\\"/\\\\">Go to index</a></p>\\\\n</body></html>"}'`;
+snapshot[`relative_url plugin 4`] = `
+{
+  content: '<!DOCTYPE html>\\n<html><head></head><body><p>Second article</p>\\n<p><a href="/articles/first-article/">Go to first</a>\\n<a href="/other/">Go to other</a>\\n<a href="/">Go to index</a></p>\\n</body></html>',
+  data: {
+    content: "<!-- deno-fmt-ignore-file -->\\n\\nSecond article\\n\\n[Go to first](article-1.md)\\n[Go to other](../other.md)\\n[Go to index](/index.md)",
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/drafts/second-article/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/drafts/second-article/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/articles/article-2",
+  },
+}
+`;
 
-snapshot[`relative_url plugin 5`] = `'{"src":{"path":"/index","ext":".md"},"dest":{"path":"/index","ext":".html"},"data":{"content":"<!-- deno-fmt-ignore-file -->\\\\n[url](/bar)\\\\n[url](foo)\\\\n[url](./foo)\\\\n[url](../foo)\\\\n[url](#foo)\\\\n[url](?foo=bar)\\\\n[url](~/other.md)\\\\n[url](other.md)\\\\n[url](https://domain.com)\\\\n[url](other.md?tab=1)\\\\n[url](other.md#tab-1)\\\\n[url](~/statics/)\\\\n[url](tílde-and-eñe.md)\\\\n","date":"1970-01-01T00:00:00.000Z","search":{},"tags":[],"url":"/"},"content":"<!DOCTYPE html>\\\\n<html><head></head><body><p><a href=\\\\"/bar\\\\">url</a>\\\\n<a href=\\\\"foo\\\\">url</a>\\\\n<a href=\\\\"./foo\\\\">url</a>\\\\n<a href=\\\\"../foo\\\\">url</a>\\\\n<a href=\\\\"#foo\\\\">url</a>\\\\n<a href=\\\\"?foo=bar\\\\">url</a>\\\\n<a href=\\\\"/other/\\\\">url</a>\\\\n<a href=\\\\"/other/\\\\">url</a>\\\\n<a href=\\\\"https://domain.com\\\\">url</a>\\\\n<a href=\\\\"/other/?tab=1\\\\">url</a>\\\\n<a href=\\\\"/other/#tab-1\\\\">url</a>\\\\n<a href=\\\\"/\\\\">url</a>\\\\n<a href=\\\\"/tilde-and-ene/\\\\">url</a></p>\\\\n</body></html>"}'`;
+snapshot[`relative_url plugin 5`] = `
+{
+  content: '<!DOCTYPE html>\\n<html><head></head><body><p><a href="/bar">url</a>\\n<a href="foo">url</a>\\n<a href="./foo">url</a>\\n<a href="../foo">url</a>\\n<a href="#foo">url</a>\\n<a href="?foo=bar">url</a>\\n<a href="/other/">url</a>\\n<a href="/other/">url</a>\\n<a href="https://domain.com">url</a>\\n<a href="/other/?tab=1">url</a>\\n<a href="/other/#tab-1">url</a>\\n<a href="/">url</a>\\n<a href="/tilde-and-ene/">url</a></p>\\n</body></html>',
+  data: {
+    content: "<!-- deno-fmt-ignore-file -->\\n[url](/bar)\\n[url](foo)\\n[url](./foo)\\n[url](../foo)\\n[url](#foo)\\n[url](?foo=bar)\\n[url](~/other.md)\\n[url](other.md)\\n[url](https://domain.com)\\n[url](other.md?tab=1)\\n[url](other.md#tab-1)\\n[url](~/statics/)\\n[url](tílde-and-eñe.md)\\n",
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/index",
+  },
+}
+`;
 
-snapshot[`relative_url plugin 6`] = `'{"src":{"path":"/other","ext":".md"},"dest":{"path":"/other/index","ext":".html"},"data":{"content":"Other page\\\\n\\\\n[See robots.txt](statics/robots.txt)\\\\n","date":"1970-01-01T00:00:00.000Z","search":{},"tags":[],"url":"/other/"},"content":"<!DOCTYPE html>\\\\n<html><head></head><body><p>Other page</p>\\\\n<p><a href=\\\\"/robots.txt\\\\">See robots.txt</a></p>\\\\n</body></html>"}'`;
+snapshot[`relative_url plugin 6`] = `
+{
+  content: '<!DOCTYPE html>\\n<html><head></head><body><p>Other page</p>\\n<p><a href="/robots.txt">See robots.txt</a></p>\\n</body></html>',
+  data: {
+    content: "Other page\\n\\n[See robots.txt](statics/robots.txt)\\n",
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/other/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/other/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/other",
+  },
+}
+`;
 
-snapshot[`relative_url plugin 7`] = `'{"src":{"path":"/tílde-and-eñe","ext":".md"},"dest":{"path":"/tilde-and-ene/index","ext":".html"},"data":{"content":"Tilde and eñe\\\\n","date":"1970-01-01T00:00:00.000Z","search":{},"tags":[],"url":"/tilde-and-ene/"},"content":"<!DOCTYPE html>\\\\n<html><head></head><body><p>Tilde and eñe</p>\\\\n</body></html>"}'`;
+snapshot[`relative_url plugin 7`] = `
+{
+  content: "<!DOCTYPE html>\\n<html><head></head><body><p>Tilde and eñe</p>\\n</body></html>",
+  data: {
+    content: "Tilde and eñe\\n",
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/tilde-and-ene/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/tilde-and-ene/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/tílde-and-eñe",
+  },
+}
+`;

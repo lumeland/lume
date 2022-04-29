@@ -2,6 +2,81 @@ export const snapshot = {};
 
 snapshot[`esbuild plugin 1`] = `1`;
 
-snapshot[`esbuild plugin 2`] = `'{"formats":[{"key":".tmpl.ts","pageType":"page"},{"key":".tmpl.js","pageType":"page"},{"key":".tmpl.json","pageType":"page"},{"key":".json"},{"key":".md","pageType":"page"},{"key":".js","pageType":"asset"},{"key":".ts","pageType":"asset"},{"key":".njk","pageType":"page","includesPath":"_includes"},{"key":".yaml","pageType":"page"},{"key":".yml","pageType":"page"}]}'`;
+snapshot[`esbuild plugin 2`] = `
+{
+  formats: [
+    {
+      includesPath: undefined,
+      key: ".tmpl.ts",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".tmpl.js",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".tmpl.json",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".json",
+      pageType: undefined,
+    },
+    {
+      includesPath: undefined,
+      key: ".md",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".js",
+      pageType: "asset",
+    },
+    {
+      includesPath: undefined,
+      key: ".ts",
+      pageType: "asset",
+    },
+    {
+      includesPath: "_includes",
+      key: ".njk",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".yaml",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".yml",
+      pageType: "page",
+    },
+  ],
+}
+`;
 
-snapshot[`esbuild plugin 3`] = `'{"src":{"path":"/main","ext":".ts"},"dest":{"path":"/main","ext":".js"},"data":{"content":"/// <reference lib=\\\\"dom\\\\" />\\\\nimport toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\\\n\\\\ndocument.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\\\n  h1.innerHTML = toUppercase(h1.innerHTML);\\\\n});\\\\n","search":{},"tags":[],"url":"/main.js"},"content":"var n=Object.defineProperty;var t=(e,o)=>n(e,\\\\"name\\\\",{value:o,configurable:!0});function r(e){return e.toUpperCase()}t(r,\\\\"toUppercase\\\\");document.querySelectorAll(\\\\"h1\\\\")?.forEach(e=>{e.innerHTML=r(e.innerHTML)});\\\\n"}'`;
+snapshot[`esbuild plugin 3`] = `
+{
+  content: 'var n=Object.defineProperty;var t=(e,o)=>n(e,"name",{value:o,configurable:!0});function r(e){return e.toUpperCase()}t(r,"toUppercase");document.querySelectorAll("h1")?.forEach(e=>{e.innerHTML=r(e.innerHTML)});\\n',
+  data: {
+    content: '/// <reference lib="dom" />\\nimport toUppercase from "./modules/to_uppercase.ts";\\n\\ndocument.querySelectorAll("h1")?.forEach((h1) => {\\n  h1.innerHTML = toUppercase(h1.innerHTML);\\n});\\n',
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/main.js",
+  },
+  dest: {
+    ext: ".js",
+    path: "/main",
+  },
+  src: {
+    ext: ".ts",
+    path: "/main",
+  },
+}
+`;
