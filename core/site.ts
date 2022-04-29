@@ -382,8 +382,14 @@ export default class Site {
   }
 
   /** Ignore one or several files or directories */
-  ignore(...paths: string[]) {
-    paths.forEach((path) => this.source.addIgnoredPath(path));
+  ignore(...paths: (string | ScopeFilter)[]) {
+    paths.forEach((path) => {
+      if (typeof path === "string") {
+        this.source.addIgnoredPath(path);
+      } else {
+        this.source.addIgnoreFilter(path);
+      }
+    });
     return this;
   }
 

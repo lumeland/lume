@@ -40,9 +40,10 @@ Deno.test("static files configuration", () => {
 
 Deno.test("ignored files configuration", () => {
   const site = lume();
-  const { ignored } = site.source;
+  const { ignored, filters } = site.source;
 
   equals(ignored.size, 6);
+  equals(filters.length, 0);
   equals(ignored.has(platformPath("/node_modules")), true);
   equals(ignored.has(platformPath("/_site")), true);
   equals(ignored.has(platformPath("/_components")), true);
@@ -52,16 +53,22 @@ Deno.test("ignored files configuration", () => {
 
   site.ignore("README.md");
   equals(ignored.size, 7);
+  equals(filters.length, 0);
   equals(ignored.has(platformPath("/README.md")), true);
 
   site.ignore("file2", "file3", "README.md");
   equals(ignored.size, 9);
+  equals(filters.length, 0);
   equals(ignored.has(platformPath("/file2")), true);
   equals(ignored.has(platformPath("/file3")), true);
 
+  const filter = (path: string) => path.includes("file");
+  site.ignore(filter);
   site.copy("img");
   site.copy("statics", ".");
   equals(ignored.size, 11);
+  equals(filters.length, 1);
+  equals(filters[0], filter);
   equals(ignored.has(platformPath("/img")), true);
   equals(ignored.has(platformPath("/statics")), true);
 });

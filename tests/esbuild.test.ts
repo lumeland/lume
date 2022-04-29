@@ -10,7 +10,8 @@ Deno.test(
       src: "esbuild",
     });
 
-    site.ignore("modules");
+    // Test ignore with a function filter
+    site.ignore((path) => path === "/modules" || path.startsWith("/modules/"));
     site.use(esbuild());
 
     await build(site);

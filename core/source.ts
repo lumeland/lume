@@ -2,7 +2,13 @@ import { basename, dirname, join, SEP } from "../deps/path.ts";
 import { concurrent, normalizePath } from "./utils.ts";
 import { Directory, Page } from "./filesystem.ts";
 
-import type { Data, DataLoader, PageLoader, Reader } from "../core.ts";
+import type {
+  Data,
+  DataLoader,
+  PageLoader,
+  Reader,
+  ScopeFilter,
+} from "../core.ts";
 
 export interface Options {
   dataLoader: DataLoader;
@@ -30,6 +36,9 @@ export default class Source {
   /** The list of paths to ignore */
   ignored = new Set<string>();
 
+  /** The path filters to ignore */
+  filters: ScopeFilter[] = [];
+
   constructor(options: Options) {
     this.pageLoader = options.pageLoader;
     this.dataLoader = options.dataLoader;
@@ -38,6 +47,10 @@ export default class Source {
 
   addIgnoredPath(path: string) {
     this.ignored.add(join("/", path));
+  }
+
+  addIgnoreFilter(filter: ScopeFilter) {
+    this.filters.push(filter);
   }
 
   /** Returns all pages found */
@@ -59,11 +72,14 @@ export default class Source {
 
   /** Update a file */
   async update(file: string): Promise<void> {
-    // Check if the file is in the list of ignored paths
+    // Check if the file should be ignored
     for (const path of this.ignored) {
       if (file === path || file.startsWith(join(path, "/"))) {
         return;
       }
+    }
+    if (this.filters.some((filter) => filter(file))) {
+      return;
     }
 
     const normalized = normalizePath(file);
@@ -167,7 +183,11 @@ export default class Source {
 
     const path = join(directory.src.path, entry.name);
 
+    // Check if the file should be ignored
     if (this.ignored.has(path)) {
+      return;
+    }
+    if (this.filters.some((filter) => filter(path))) {
       return;
     }
 
@@ -199,6 +219,9 @@ export default class Source {
         const path = join(directory.src.path, entry.name);
 
         if (this.ignored.has(path)) {
+          return;
+        }
+        if (this.filters.some((filter) => filter(path))) {
           return;
         }
 
