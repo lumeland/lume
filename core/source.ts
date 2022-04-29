@@ -78,7 +78,8 @@ export default class Source {
         return;
       }
     }
-    if (this.filters.some((filter) => filter(file))) {
+
+    if (this.#isFiltered(file)) {
       return;
     }
 
@@ -187,7 +188,8 @@ export default class Source {
     if (this.ignored.has(path)) {
       return;
     }
-    if (this.filters.some((filter) => filter(path))) {
+
+    if (this.#isFiltered(path)) {
       return;
     }
 
@@ -221,7 +223,7 @@ export default class Source {
         if (this.ignored.has(path)) {
           return;
         }
-        if (this.filters.some((filter) => filter(path))) {
+        if (this.#isFiltered(path)) {
           return;
         }
 
@@ -233,5 +235,14 @@ export default class Source {
     );
 
     directory.baseData = data;
+  }
+
+  #isFiltered(path: string): boolean {
+    if (!this.filters.length) {
+      return false;
+    }
+
+    const normalized = normalizePath(path);
+    return this.filters.some((filter) => filter(normalized));
   }
 }
