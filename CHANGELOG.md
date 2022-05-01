@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Improved testing using Deno snapshots [#190].
 - Live reload files with search or hash strings.
 - Live reload files with cache busting path prefixes.
+- Improved the `printError` function to print SASS errors properly [#194].
 
 ## [1.7.4] - 2022-04-18
 ### Changed
@@ -1514,6 +1515,7 @@ The first version.
 [#190]: https://github.com/lumeland/lume/issues/190
 [#191]: https://github.com/lumeland/lume/issues/191
 [#192]: https://github.com/lumeland/lume/issues/192
+[#194]: https://github.com/lumeland/lume/issues/194
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.7.4...HEAD
 [1.7.4]: https://github.com/lumeland/lume/compare/v1.7.3...v1.7.4
