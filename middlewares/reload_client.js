@@ -74,9 +74,7 @@ export default function liveReload() {
           {
             for (const style of Array.from(document.styleSheets)) {
               if (style.href) {
-                const src = createUrl(style.href);
-
-                if (src.href === url.href) {
+                if (isSame(url, style.href)) {
                   reloadStylesheet(style.ownerNode);
                   continue;
                 }
@@ -101,9 +99,7 @@ export default function liveReload() {
         case "webp":
           {
             for (const image of Array.from(document.images)) {
-              const src = createUrl(image.src);
-
-              if (src.href === url.href) {
+              if (isSame(url, src.href)) {
                 reloadSource(image);
                 continue;
               }
@@ -178,6 +174,18 @@ export default function liveReload() {
     const url = new URL(href, document.location.href);
     url.search = "";
     url.hash = "";
+
     return url;
+  }
+
+  function isSame(currentUrl, href) {
+    const newUrl = createUrl(href);
+
+    if (currentUrl.origin !== newUrl.origin) {
+      return false;
+    }
+
+    // To handle cache busting urls (e.g. /v234/styles.css -> /styles.css)
+    return newUrl.pathname.endsWith(currentUrl.pathname);
   }
 }
