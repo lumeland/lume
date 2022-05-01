@@ -66,7 +66,7 @@ export default function liveReload() {
     }
 
     for (const file of files) {
-      const url = new URL(file, document.location.href);
+      const url = createUrl(file);
       const format = url.pathname.split(".").pop().toLowerCase();
 
       switch (format) {
@@ -74,8 +74,7 @@ export default function liveReload() {
           {
             for (const style of Array.from(document.styleSheets)) {
               if (style.href) {
-                const src = new URL(style.href);
-                src.searchParams.delete("_cache");
+                const src = createUrl(style.href);
 
                 if (src.href === url.href) {
                   reloadStylesheet(style.ownerNode);
@@ -102,8 +101,7 @@ export default function liveReload() {
         case "webp":
           {
             for (const image of Array.from(document.images)) {
-              const src = new URL(image.src);
-              src.searchParams.delete("_cache");
+              const src = createUrl(image.src);
 
               if (src.href === url.href) {
                 reloadSource(image);
@@ -173,5 +171,13 @@ export default function liveReload() {
     if (data) {
       return JSON.parse(data);
     }
+  }
+
+  function createUrl(href) {
+    // Remove search and hash
+    const url = new URL(href, document.location.href);
+    url.search = "";
+    url.hash = "";
+    return url;
   }
 }
