@@ -48,14 +48,22 @@ export class Exception extends Error {
 }
 
 /** Pretty-print an Error or Exception instance */
-export function printError(error: Error, caused = false) {
+export function printError(error: unknown, caused = false) {
   console.log();
 
   // Print the error message
   if (caused) {
-    console.error(`Caused by ${bold(red(`${error.name}:`))}`, error.message);
+    if (error instanceof Error) {
+      console.error(`Caused by ${bold(red(`${error.name}:`))}`, error.message);
+    } else {
+      console.error(`Caused by:`, error);
+    }
   } else {
-    console.error(`${bold(red(`${error.name}:`))}`, error.message);
+    if (error instanceof Error) {
+      console.error(`${bold(red(`${error.name}:`))}`, error.message);
+    } else {
+      console.error(error);
+    }
   }
 
   // Print the data and mark of Exception instances
@@ -83,7 +91,7 @@ export function printError(error: Error, caused = false) {
   }
 
   // Print the error stack
-  if (error.stack) {
+  if (error instanceof Error && error.stack) {
     const marks = parseStack(error);
 
     marks.forEach((mark) => {
@@ -125,7 +133,7 @@ export function printError(error: Error, caused = false) {
   }
 
   // Print the error cause
-  if (error.cause) {
+  if (error instanceof Error && error.cause) {
     printError(error.cause, true);
   }
 }
