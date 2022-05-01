@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `metas` to add automatically `<meta>` tags for SEO and social networks [#188].
 - New plugin `prism` to use as code highligher [#187].
 - New function `search.values()` to return an array of all unique values of a key [#191].
-- New option `cache` to `imagick` plugin to cache the transformed images in a `_cache` folder (configurable) [#184].
+- New option `cache` to `imagick` plugin to cache the transformed images in the `_cache` folder [#184].
 - Middewares have a third argument with the connection info.
 - Support for nested components in Nunjucks using body helpers [#189].
 - `site.ignore()` now supports functions [#53].
