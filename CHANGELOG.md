@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Inline plugin generates invalid javascript [#192].
-- Updated `cliffy`, `react`, `markdown_it`, `liquid`, `std`, `esbuild`, `postcss_autoprefixer` and `pug`.
+- Updated `parcel_css`, `cliffy`, `react`, `markdown_it`, `liquid`, `std`, `esbuild`, `postcss`, `postcss_autoprefixer` and `pug`.
 - Improved testing using Deno snapshots [#190].
 - Live reload files with search or hash strings.
 - Live reload files with cache busting path prefixes.
