@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Added an empty last line when generating `import_map.json` and `deno.json` files.
 - `serve` task generation in `deno.json` updated to the changes introduced in Deno 1.21.2
   [denoland/deno/issues/14459](https://github.com/denoland/deno/issues/14459)
+- Support relative path value in "lume" key in import map [#196].
 
 ## [1.7.4] - 2022-04-18
 ### Changed
@@ -1519,6 +1520,7 @@ The first version.
 [#191]: https://github.com/lumeland/lume/issues/191
 [#192]: https://github.com/lumeland/lume/issues/192
 [#194]: https://github.com/lumeland/lume/issues/194
+[#196]: https://github.com/lumeland/lume/issues/196
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.7.4...HEAD
 [1.7.4]: https://github.com/lumeland/lume/compare/v1.7.3...v1.7.4
