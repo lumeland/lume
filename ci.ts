@@ -8,6 +8,7 @@ import {
   getLumeVersion,
   loadImportMap,
   mustNotifyUpgrade,
+  toUrl,
 } from "./core/utils.ts";
 
 /**
@@ -58,12 +59,13 @@ export async function getArgs(
   }
 
   // Add the import-map option to Deno if it's missing
-  const importMapUrl = parsedArgs["import-map"] || options?.importMap;
+  const importMapArg = parsedArgs["import-map"] || options?.importMap;
   const shouldWarn = !quiet &&
     !["import-map", "upgrade", "init"].includes(lumeArgs[0]);
 
   // There's a import map file
-  if (importMapUrl) {
+  if (importMapArg) {
+    const importMapUrl = await toUrl(importMapArg);
     const importMap = await loadImportMap(importMapUrl);
 
     if (!importMap.imports["lume/"]) {
@@ -71,25 +73,30 @@ export async function getArgs(
       shouldWarn && warn(
         red("Error:"),
         `The import map file ${
-          dim(importMapUrl)
+          dim(importMapArg)
         } does not include Lume imports.`,
-        (importMapUrl === "import_map.json")
+        (importMapArg === "import_map.json")
           ? `Run ${cyan("lume import-map")} to update import_map.json.`
           : "",
       );
     } else {
       // Check whether the import_map.json file has the same lume version as the installed version.
       const cliVersion = getLumeVersion();
-      const mapVersion = getLumeVersion(new URL(importMap.imports["lume/"]));
+      const mapValue = importMap.imports["lume/"];
+      const mapVersion = getLumeVersion(
+        mapValue.startsWith("./")
+          ? new URL(mapValue, importMapUrl)
+          : new URL(mapValue),
+      );
 
       if (cliVersion !== mapVersion) {
         shouldWarn && warn(
           red("Different lume versions mixed:"),
-          `The import map file ${dim(importMapUrl)} imports Lume ${
+          `The import map file ${dim(importMapArg)} imports Lume ${
             dim(mapVersion)
           }`,
           `but CLI version is ${dim(cliVersion)}.`,
-          (importMapUrl === "import_map.json")
+          (importMapArg === "import_map.json")
             ? `Run ${
               cyan("lume import-map")
             } to update import_map.json with your CLI version.`

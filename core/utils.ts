@@ -266,8 +266,7 @@ export async function getDenoConfig(): Promise<DenoConfig | undefined> {
   }
 }
 
-export async function loadImportMap(mapFile: string): Promise<ImportMap> {
-  const url = await toUrl(mapFile);
+export async function loadImportMap(url: URL): Promise<ImportMap> {
   return await (await fetch(url)).json() as ImportMap;
 }
 
@@ -283,7 +282,7 @@ export async function getImportMap(mapFile?: string): Promise<ImportMap> {
   };
 
   if (mapFile) {
-    const importMap = await loadImportMap(mapFile);
+    const importMap = await loadImportMap(await toUrl(mapFile));
 
     map.imports = { ...importMap.imports, ...map.imports };
     map.scopes = importMap.scopes;
