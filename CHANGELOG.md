@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Live reload files with cache busting path prefixes.
 - Improved the `printError` function to print SASS errors properly [#194].
 - Added an empty last line when generating `import_map.json` and `deno.json` files.
+- `serve` task generation in `deno.json` updated to the changes introduced in Deno 1.21.2
+  [denoland/deno/issues/14459](https://github.com/denoland/deno/issues/14459)
 
 ## [1.7.4] - 2022-04-18
 ### Changed
