@@ -32,9 +32,9 @@ export async function importMap(url: URL) {
 
   await Deno.writeTextFile(
     config.importMap,
-    JSON.stringify(importMap, null, 2),
+    JSON.stringify(importMap, null, 2) + "\n",
   );
-  await Deno.writeTextFile("deno.json", JSON.stringify(config, null, 2));
+  await Deno.writeTextFile("deno.json", JSON.stringify(config, null, 2) + "\n");
 
   console.log(brightGreen("Deno configuration file saved:"), "deno.json");
   console.log(brightGreen("Import map file saved:"), config.importMap);
