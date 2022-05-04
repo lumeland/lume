@@ -328,15 +328,10 @@ export class Directory extends Base {
   }
 }
 
-export class StaticFile {
+export interface StaticFile {
   src: string;
   dest: string;
-  status?: "removed" | "modified" = "modified";
-
-  constructor(src: string, dest: string) {
-    this.src = src;
-    this.dest = dest;
-  }
+  update?: boolean;
 }
 
 /** The .src property for a Page or Directory */

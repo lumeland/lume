@@ -19,23 +19,23 @@ Deno.test("default configuration", () => {
 
 Deno.test("static files configuration", () => {
   const site = lume();
-  const { staticFiles } = site;
+  const { staticPaths } = site.source;
 
   site.copy("img");
-  equals(staticFiles.paths.size, 1);
-  equals(staticFiles.paths.has(platformPath("/img")), true);
-  equals(staticFiles.paths.get(platformPath("/img")), platformPath("/img"));
+  equals(staticPaths.size, 1);
+  equals(staticPaths.has(platformPath("/img")), true);
+  equals(staticPaths.get(platformPath("/img")), platformPath("/img"));
 
   site.copy("statics/favicon.ico", "favicon.ico");
-  equals(staticFiles.paths.size, 2);
+  equals(staticPaths.size, 2);
   equals(
-    staticFiles.paths.get(platformPath("/statics/favicon.ico")),
+    staticPaths.get(platformPath("/statics/favicon.ico")),
     platformPath("/favicon.ico"),
   );
 
   site.copy("css", ".");
-  equals(staticFiles.paths.size, 3);
-  equals(staticFiles.paths.get(platformPath("/css")), platformPath("/"));
+  equals(staticPaths.size, 3);
+  equals(staticPaths.get(platformPath("/css")), platformPath("/"));
 });
 
 Deno.test("ignored files configuration", () => {
@@ -64,13 +64,9 @@ Deno.test("ignored files configuration", () => {
 
   const filter = (path: string) => path.includes("file");
   site.ignore(filter);
-  site.copy("img");
-  site.copy("statics", ".");
-  equals(ignored.size, 11);
+  equals(ignored.size, 9);
   equals(filters.length, 1);
   equals(filters[0], filter);
-  equals(ignored.has(platformPath("/img")), true);
-  equals(ignored.has(platformPath("/statics")), true);
 });
 
 Deno.test("event listener configuration", () => {

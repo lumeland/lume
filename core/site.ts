@@ -9,7 +9,6 @@ import Components from "./components.ts";
 import DataLoader from "./data_loader.ts";
 import IncludesLoader from "./includes_loader.ts";
 import Source from "./source.ts";
-import StaticFiles from "./static_files.ts";
 import Engines from "./engines.ts";
 import Scopes from "./scopes.ts";
 import Processors from "./processors.ts";
@@ -37,6 +36,7 @@ import type {
   ScopeFilter,
   ScriptOptions,
   ScriptOrFunction,
+  StaticFile,
 } from "../core.ts";
 
 /** Default options of the site */
@@ -97,9 +97,6 @@ export default class Site {
   /** To scan the src folder */
   source: Source;
 
-  /** To handle the static files */
-  staticFiles: StaticFiles;
-
   /** To store and run the template engines */
   engines: Engines;
 
@@ -133,6 +130,9 @@ export default class Site {
   /** The generated pages are stored here */
   pages: Page[] = [];
 
+  /** The static files to be copied are stored here */
+  files: StaticFile[] = [];
+
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);
 
@@ -155,7 +155,6 @@ export default class Site {
       pageLoader,
       dataLoader,
     });
-    const staticFiles = new StaticFiles();
 
     // To render pages
     const engines = new Engines({ formats });
@@ -184,7 +183,6 @@ export default class Site {
     this.dataLoader = dataLoader;
     this.includesLoader = includesLoader;
     this.source = source;
-    this.staticFiles = staticFiles;
     this.engines = engines;
     this.scopes = scopes;
     this.processors = processors;
@@ -377,8 +375,6 @@ export default class Site {
   /** Copy static files or directories without processing */
   copy(from: string, to = from) {
     this.source.addStaticPath(from, to);
-    // this.staticFiles.add(from, to);
-    // this.ignore(from); // Ignore static paths
     return this;
   }
 
@@ -418,7 +414,8 @@ export default class Site {
     await this.source.load();
 
     // Copy static files
-    for (const staticFile of this.source.getStaticFiles()) {
+    this.files = this.source.getStaticFiles();
+    for (const staticFile of this.files) {
       await this.writer.copyFile(staticFile);
     }
 
@@ -453,6 +450,12 @@ export default class Site {
       this.formats.deleteCache(file);
 
       await this.source.update(file);
+    }
+
+    // Copy static files
+    this.files = this.source.getStaticFiles((file) => !!file.update);
+    for (const staticFile of this.files) {
+      await this.writer.copyFile(staticFile);
     }
 
     // Reload the components and prepare the data
@@ -576,11 +579,10 @@ export default class Site {
         path = page.data.url as string;
       } else {
         // It's a static file
-        const entry = this.staticFiles.search(path);
+        const file = this.files.find((file) => file.src === path);
 
-        if (entry) {
-          const [, to] = entry;
-          path = normalizePath(to);
+        if (file) {
+          path = normalizePath(file.dest);
         } else {
           throw new Exception("Source file not found", { path });
         }

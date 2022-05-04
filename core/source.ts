@@ -103,7 +103,29 @@ export default class Source {
 
     const normalized = normalizePath(file);
 
-    // TODO: It's a static file/folder
+    // It's a static file
+    for (const entry of this.staticPaths) {
+      const [src, dest] = entry;
+
+      if (file === src || file.startsWith(join(src, "/"))) {
+        const [directory] = await this.#getOrCreateDirectory(dirname(src));
+
+        for (const staticFile of directory.staticFiles) {
+          if (staticFile.src === file) {
+            staticFile.update = true;
+            return;
+          }
+        }
+
+        directory.setStaticFile({
+          src: file,
+          dest: join(dest, file.slice(src.length)),
+          update: true,
+        });
+
+        return;
+      }
+    }
 
     // It's inside a _data file or directory
     const matches = normalized.match(/(.*)\/_data(?:\.\w+$|\/)/);
@@ -265,8 +287,7 @@ export default class Source {
     }
 
     if (entry.isFile) {
-      const staticFile = new StaticFile(src, dest);
-      directory.setStaticFile(staticFile);
+      directory.setStaticFile({ src, dest });
       return;
     }
 

@@ -40,6 +40,7 @@ import type {
   Directory,
   Page,
   Src,
+  StaticFile,
 } from "./core/filesystem.ts";
 import type Source from "./core/source.ts";
 import type Renderer from "./core/renderer.ts";
@@ -125,6 +126,7 @@ export type {
   SiteOptions,
   Source,
   Src,
+  StaticFile,
   Watcher,
   WatcherOptions,
   WatchEvent,

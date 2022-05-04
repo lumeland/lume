@@ -200,10 +200,10 @@ async function getFileContent(
   }
 
   // Is a static file
-  const entry = site.staticFiles.searchReverse(url);
+  const file = site.files.find((file) => file.dest === url);
 
-  if (entry) {
-    const content = await site.reader.read(entry[0], binaryLoader);
+  if (file) {
+    const content = await site.reader.read(file.src, binaryLoader);
     return content.content as Uint8Array;
   }
 

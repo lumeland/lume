@@ -107,9 +107,17 @@ export default class Writer {
 
     try {
       await ensureDir(dirname(pathTo));
-      this.logger.log(`➡️ ${normalizePath(src)} <dim>${dest}</dim>`);
       await Deno.copyFile(pathFrom, pathTo);
-    } catch {
+      this.logger.log(`➡️ ${normalizePath(src)} <dim>${dest}</dim>`);
+    } catch (err) {
+      if (err instanceof Deno.errors.NotFound) {
+        try {
+          await Deno.remove(pathTo);
+          this.logger.log(`❌ <dim>${dest}</dim>`);
+        } catch {
+          // Ignored
+        }
+      }
       //Ignored
     }
   }
