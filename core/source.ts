@@ -1,6 +1,6 @@
 import { basename, dirname, join, SEP } from "../deps/path.ts";
 import { concurrent, normalizePath } from "./utils.ts";
-import { Directory, Page } from "./filesystem.ts";
+import { Directory, Page, StaticFile } from "./filesystem.ts";
 
 import type {
   Data,
@@ -39,6 +39,9 @@ export default class Source {
   /** The path filters to ignore */
   filters: ScopeFilter[] = [];
 
+  /** List of static files and folders to copy */
+  staticPaths = new Map<string, string>();
+
   constructor(options: Options) {
     this.pageLoader = options.pageLoader;
     this.dataLoader = options.dataLoader;
@@ -53,6 +56,10 @@ export default class Source {
     this.filters.push(filter);
   }
 
+  addStaticPath(from: string, to: string) {
+    this.staticPaths.set(join("/", from), join("/", to));
+  }
+
   /** Returns all pages found */
   getPages(...filters: ((page: Page) => boolean)[]): Page[] {
     if (!this.root) {
@@ -60,6 +67,17 @@ export default class Source {
     }
 
     return [...this.root.getPages()].filter((page) =>
+      filters.every((filter) => filter(page))
+    );
+  }
+
+  /** Returns all static files found */
+  getStaticFiles(...filters: ((file: StaticFile) => boolean)[]): StaticFile[] {
+    if (!this.root) {
+      return [];
+    }
+
+    return [...this.root.getStaticFiles()].filter((page) =>
       filters.every((filter) => filter(page))
     );
   }
@@ -84,6 +102,8 @@ export default class Source {
     }
 
     const normalized = normalizePath(file);
+
+    // TODO: It's a static file/folder
 
     // It's inside a _data file or directory
     const matches = normalized.match(/(.*)\/_data(?:\.\w+$|\/)/);
@@ -184,6 +204,12 @@ export default class Source {
 
     const path = join(directory.src.path, entry.name);
 
+    // It's a static file/folder
+    if (this.staticPaths.has(path)) {
+      await this.#loadStaticFiles(directory, entry);
+      return;
+    }
+
     // Check if the file should be ignored
     if (this.ignored.has(path)) {
       return;
@@ -208,6 +234,51 @@ export default class Source {
       const [subDirectory] = await this.#getOrCreateDirectory(path);
       await this.#loadDirectory(subDirectory);
       return;
+    }
+  }
+
+  /** Read the static files in a directory */
+  async #loadStaticFiles(directory: Directory, entry: Deno.DirEntry) {
+    const path = join(directory.src.path, entry.name);
+    const dest = this.staticPaths.get(path);
+
+    if (!dest) {
+      return;
+    }
+
+    await this.#scanStaticFiles(directory, entry, path, dest);
+  }
+
+  async #scanStaticFiles(
+    directory: Directory,
+    entry: Deno.DirEntry,
+    src: string,
+    dest: string,
+  ) {
+    // Check if the file should be ignored
+    if (this.ignored.has(src)) {
+      return;
+    }
+
+    if (this.#isFiltered(src)) {
+      return;
+    }
+
+    if (entry.isFile) {
+      const staticFile = new StaticFile(src, dest);
+      directory.setStaticFile(staticFile);
+      return;
+    }
+
+    if (entry.isDirectory) {
+      for await (const entry of this.reader.readDir(src)) {
+        await this.#scanStaticFiles(
+          directory,
+          entry,
+          join(src, entry.name),
+          join(dest, entry.name),
+        );
+      }
     }
   }
 

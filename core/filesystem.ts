@@ -261,6 +261,7 @@ export class Page extends Base {
 export class Directory extends Base {
   pages = new Map<string, Page>();
   dirs = new Map<string, Directory>();
+  staticFiles = new Set<StaticFile>();
 
   /** Create a subdirectory and return it */
   createDirectory(name: string): Directory {
@@ -283,6 +284,11 @@ export class Directory extends Base {
     }
   }
 
+  /** Add a static file to this directory */
+  setStaticFile(file: StaticFile) {
+    this.staticFiles.add(file);
+  }
+
   /** Remove a page from this directory */
   unsetPage(name: string) {
     this.pages.delete(name);
@@ -299,6 +305,17 @@ export class Directory extends Base {
     }
   }
 
+  /** Return the list of static files in this directory recursively */
+  *getStaticFiles(): Iterable<StaticFile> {
+    for (const file of this.staticFiles) {
+      yield file;
+    }
+
+    for (const dir of this.dirs.values()) {
+      yield* dir.getStaticFiles();
+    }
+  }
+
   /** Refresh the data cache in this directory recursively (used for rebuild) */
   refreshCache(): boolean {
     if (super.refreshCache()) {
@@ -308,6 +325,17 @@ export class Directory extends Base {
     }
 
     return false;
+  }
+}
+
+export class StaticFile {
+  src: string;
+  dest: string;
+  status?: "removed" | "modified" = "modified";
+
+  constructor(src: string, dest: string) {
+    this.src = src;
+    this.dest = dest;
   }
 }
 

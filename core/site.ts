@@ -376,8 +376,9 @@ export default class Site {
 
   /** Copy static files or directories without processing */
   copy(from: string, to = from) {
-    this.staticFiles.add(from, to);
-    this.ignore(from); // Ignore static paths
+    this.source.addStaticPath(from, to);
+    // this.staticFiles.add(from, to);
+    // this.ignore(from); // Ignore static paths
     return this;
   }
 
@@ -413,13 +414,13 @@ export default class Site {
 
     await this.clear();
 
-    // Copy static files
-    for (const [from, to] of this.staticFiles.paths) {
-      await this.writer.copyFile(from, to);
-    }
-
     // Load source files
     await this.source.load();
+
+    // Copy static files
+    for (const staticFile of this.source.getStaticFiles()) {
+      await this.writer.copyFile(staticFile);
+    }
 
     // Load the components and prepare the data
     await this.#prepareToBuild();
@@ -450,16 +451,6 @@ export default class Site {
       // Delete the file from the cache
       this.reader.deleteCache(file);
       this.formats.deleteCache(file);
-
-      // It's a static file
-      const entry = this.staticFiles.search(file);
-
-      if (entry) {
-        const [from, to] = entry;
-
-        await this.writer.copyFile(from, to);
-        continue;
-      }
 
       await this.source.update(file);
     }
