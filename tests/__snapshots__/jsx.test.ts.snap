@@ -70,6 +70,11 @@ snapshot[`build a site with jsx/tsx modules 2`] = `
 `;
 
 snapshot[`build a site with jsx/tsx modules 3`] = `
+[
+]
+`;
+
+snapshot[`build a site with jsx/tsx modules 4`] = `
 {
   content: "<html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
   data: {
@@ -125,7 +130,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
 }
 `;
 
-snapshot[`build a site with jsx/tsx modules 4`] = `
+snapshot[`build a site with jsx/tsx modules 5`] = `
 {
   content: "<html><head><title></title></head><body><main><div>1</div></main></body></html>",
   data: {
@@ -159,7 +164,7 @@ snapshot[`build a site with jsx/tsx modules 4`] = `
 }
 `;
 
-snapshot[`build a site with jsx/tsx modules 5`] = `
+snapshot[`build a site with jsx/tsx modules 6`] = `
 {
   content: "<html><head><title></title></head><body><main><div>2</div></main></body></html>",
   data: {
@@ -193,7 +198,7 @@ snapshot[`build a site with jsx/tsx modules 5`] = `
 }
 `;
 
-snapshot[`build a site with jsx/tsx modules 6`] = `
+snapshot[`build a site with jsx/tsx modules 7`] = `
 {
   content: '<html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
   data: {
@@ -262,7 +267,7 @@ snapshot[`build a site with jsx/tsx modules 6`] = `
 }
 `;
 
-snapshot[`build a site with jsx/tsx modules 7`] = `
+snapshot[`build a site with jsx/tsx modules 8`] = `
 {
   content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1>Hello world</h1>
 <p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>

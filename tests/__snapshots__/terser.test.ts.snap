@@ -60,6 +60,11 @@ snapshot[`terser plugin 2`] = `
 `;
 
 snapshot[`terser plugin 3`] = `
+[
+]
+`;
+
+snapshot[`terser plugin 4`] = `
 {
   content: 'import{one as o,two as m}from"./numbers.js";console.log(o()+m());',
   data: {
@@ -84,7 +89,7 @@ console.log(one() + two());
 }
 `;
 
-snapshot[`terser plugin 4`] = `
+snapshot[`terser plugin 5`] = `
 {
   content: "export function one(){return 1}export function two(){return 2}",
   data: {

@@ -65,6 +65,11 @@ snapshot[`sass plugin 2`] = `
 `;
 
 snapshot[`sass plugin 3`] = `
+[
+]
+`;
+
+snapshot[`sass plugin 4`] = `
 {
   content: "body{font:100% Helvetica,sans-serif;color:#333}",
   data: {

@@ -65,6 +65,11 @@ snapshot[`bundler plugin 2`] = `
 `;
 
 snapshot[`bundler plugin 3`] = `
+[
+]
+`;
+
+snapshot[`bundler plugin 4`] = `
 {
   content: "// deno-fmt-ignore-file
 // deno-lint-ignore-file
@@ -6311,6 +6316,11 @@ snapshot[`bundler plugin (not bundle) 2`] = `
 `;
 
 snapshot[`bundler plugin (not bundle) 3`] = `
+[
+]
+`;
+
+snapshot[`bundler plugin (not bundle) 4`] = `
 {
   content: 'import Title from "./modules/title.js";
 import { salute } from "./modules/utils.js";
@@ -6347,7 +6357,7 @@ ReactDOM.render(<Title salute={content} />, document.getElementById("app"));
 }
 `;
 
-snapshot[`bundler plugin (not bundle) 4`] = `
+snapshot[`bundler plugin (not bundle) 5`] = `
 {
   content: 'import React from "https://deno.land/x/react_deno@17.0.2/react.js";
 export default function Title({ salute }) {
@@ -6389,7 +6399,7 @@ export default function Title({ salute }: Props) {
 }
 `;
 
-snapshot[`bundler plugin (not bundle) 5`] = `
+snapshot[`bundler plugin (not bundle) 6`] = `
 {
   content: "export function salute(name) {
     return \`Hello, \${name}\`;

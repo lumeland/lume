@@ -65,6 +65,11 @@ snapshot[`build a site with liquid 2`] = `
 `;
 
 snapshot[`build a site with liquid 3`] = `
+[
+]
+`;
+
+snapshot[`build a site with liquid 4`] = `
 {
   content: '
 ["red","green","blue"]
@@ -97,7 +102,7 @@ snapshot[`build a site with liquid 3`] = `
 }
 `;
 
-snapshot[`build a site with liquid 4`] = `
+snapshot[`build a site with liquid 5`] = `
 {
   content: '<!DOCTYPE html>
 
@@ -136,7 +141,7 @@ snapshot[`build a site with liquid 4`] = `
 }
 `;
 
-snapshot[`build a site with liquid 5`] = `
+snapshot[`build a site with liquid 6`] = `
 {
   content: '<!DOCTYPE html>
 
@@ -171,7 +176,7 @@ snapshot[`build a site with liquid 5`] = `
 }
 `;
 
-snapshot[`build a site with liquid 6`] = `
+snapshot[`build a site with liquid 7`] = `
 {
   content: '<!DOCTYPE html>
 

@@ -60,6 +60,11 @@ snapshot[`build a site with nunjucks 2`] = `
 `;
 
 snapshot[`build a site with nunjucks 3`] = `
+[
+]
+`;
+
+snapshot[`build a site with nunjucks 4`] = `
 {
   content: '<!DOCTYPE html>
 
@@ -120,7 +125,7 @@ snapshot[`build a site with nunjucks 3`] = `
 }
 `;
 
-snapshot[`build a site with nunjucks 4`] = `
+snapshot[`build a site with nunjucks 5`] = `
 {
   content: '
 ["red","green","blue"]
@@ -154,7 +159,7 @@ snapshot[`build a site with nunjucks 4`] = `
 }
 `;
 
-snapshot[`build a site with nunjucks 5`] = `
+snapshot[`build a site with nunjucks 6`] = `
 {
   content: '<!DOCTYPE html>
 
@@ -194,7 +199,7 @@ snapshot[`build a site with nunjucks 5`] = `
 }
 `;
 
-snapshot[`build a site with nunjucks 6`] = `
+snapshot[`build a site with nunjucks 7`] = `
 {
   content: '<!DOCTYPE html>
 
@@ -230,7 +235,7 @@ snapshot[`build a site with nunjucks 6`] = `
 }
 `;
 
-snapshot[`build a site with nunjucks 7`] = `
+snapshot[`build a site with nunjucks 8`] = `
 {
   content: '<!DOCTYPE html>
 

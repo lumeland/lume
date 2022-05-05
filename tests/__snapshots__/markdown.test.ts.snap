@@ -60,6 +60,11 @@ snapshot[`Build a markdown site 2`] = `
 `;
 
 snapshot[`Build a markdown site 3`] = `
+[
+]
+`;
+
+snapshot[`Build a markdown site 4`] = `
 {
   content: "<h1>Normal page</h1>
 <ul>
@@ -95,7 +100,7 @@ snapshot[`Build a markdown site 3`] = `
 }
 `;
 
-snapshot[`Build a markdown site 4`] = `
+snapshot[`Build a markdown site 5`] = `
 {
   content: '<p><a href="#foo" target="_blank">link</a></p>
 ',
@@ -120,7 +125,7 @@ snapshot[`Build a markdown site 4`] = `
 }
 `;
 
-snapshot[`Build a markdown site 5`] = `
+snapshot[`Build a markdown site 6`] = `
 {
   content: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
 </code></pre>
@@ -154,7 +159,7 @@ snapshot[`Build a markdown site 5`] = `
 }
 `;
 
-snapshot[`Build a markdown site 6`] = `
+snapshot[`Build a markdown site 7`] = `
 {
   content: "<!-- deno-fmt-ignore-file -->
 <dl>
@@ -192,7 +197,7 @@ Other title
 }
 `;
 
-snapshot[`Build a markdown site 7`] = `
+snapshot[`Build a markdown site 8`] = `
 {
   content: '
 <h1>Module <strong>example</strong></h1>
@@ -226,7 +231,7 @@ snapshot[`Build a markdown site 7`] = `
 }
 `;
 
-snapshot[`Build a markdown site 8`] = `
+snapshot[`Build a markdown site 9`] = `
 {
   content: '<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>
@@ -253,7 +258,7 @@ snapshot[`Build a markdown site 8`] = `
 }
 `;
 
-snapshot[`Build a markdown site 9`] = `
+snapshot[`Build a markdown site 10`] = `
 {
   content: '<!-- deno-fmt-ignore-file -->
 <h1></h1>

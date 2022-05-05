@@ -60,6 +60,15 @@ snapshot[`relative_url plugin 2`] = `
 `;
 
 snapshot[`relative_url plugin 3`] = `
+[
+  {
+    dest: "/robots.txt",
+    src: "/statics/robots.txt",
+  },
+]
+`;
+
+snapshot[`relative_url plugin 4`] = `
 {
   content: '<!DOCTYPE html>
 <html><head></head><body><p>First article</p>
@@ -93,7 +102,7 @@ First article
 }
 `;
 
-snapshot[`relative_url plugin 4`] = `
+snapshot[`relative_url plugin 5`] = `
 {
   content: '<!DOCTYPE html>
 <html><head></head><body><p>Second article</p>
@@ -127,7 +136,7 @@ Second article
 }
 `;
 
-snapshot[`relative_url plugin 5`] = `
+snapshot[`relative_url plugin 6`] = `
 {
   content: '<!DOCTYPE html>
 <html><head></head><body><p><a href="/bar">url</a>
@@ -178,7 +187,7 @@ snapshot[`relative_url plugin 5`] = `
 }
 `;
 
-snapshot[`relative_url plugin 6`] = `
+snapshot[`relative_url plugin 7`] = `
 {
   content: '<!DOCTYPE html>
 <html><head></head><body><p>Other page</p>
@@ -207,7 +216,7 @@ snapshot[`relative_url plugin 6`] = `
 }
 `;
 
-snapshot[`relative_url plugin 7`] = `
+snapshot[`relative_url plugin 8`] = `
 {
   content: "<!DOCTYPE html>
 <html><head></head><body><p>Tilde and eñe</p>

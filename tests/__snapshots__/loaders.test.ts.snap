@@ -70,6 +70,15 @@ snapshot[`Load the pages of a site 2`] = `
 `;
 
 snapshot[`Load the pages of a site 3`] = `
+[
+  {
+    dest: "/static.yml",
+    src: "/static.yml",
+  },
+]
+`;
+
+snapshot[`Load the pages of a site 4`] = `
 {
   content: "Uint8Array(1503)",
   data: {
@@ -111,7 +120,7 @@ snapshot[`Load the pages of a site 3`] = `
 }
 `;
 
-snapshot[`Load the pages of a site 4`] = `
+snapshot[`Load the pages of a site 5`] = `
 {
   content: "Content of Page 5",
   data: {
@@ -155,7 +164,7 @@ snapshot[`Load the pages of a site 4`] = `
 }
 `;
 
-snapshot[`Load the pages of a site 5`] = `
+snapshot[`Load the pages of a site 6`] = `
 {
   content: "<p>Content of Page 1</p>
 ",
@@ -242,7 +251,7 @@ Content of Page 1
 }
 `;
 
-snapshot[`Load the pages of a site 6`] = `
+snapshot[`Load the pages of a site 7`] = `
 {
   content: "Content of Page 2",
   data: {
@@ -317,7 +326,7 @@ snapshot[`Load the pages of a site 6`] = `
 }
 `;
 
-snapshot[`Load the pages of a site 7`] = `
+snapshot[`Load the pages of a site 8`] = `
 {
   content: "Content of Page 4 in Overrided site name",
   data: {
@@ -392,7 +401,7 @@ snapshot[`Load the pages of a site 7`] = `
 }
 `;
 
-snapshot[`Load the pages of a site 8`] = `
+snapshot[`Load the pages of a site 9`] = `
 {
   content: "<p>Content of Page 6</p>
 ",
@@ -471,7 +480,7 @@ Content of Page 6
 }
 `;
 
-snapshot[`Load the pages of a site 9`] = `
+snapshot[`Load the pages of a site 10`] = `
 {
   content: "Content of Page 3",
   data: {
@@ -546,7 +555,7 @@ snapshot[`Load the pages of a site 9`] = `
 }
 `;
 
-snapshot[`Load the pages of a site 10`] = `
+snapshot[`Load the pages of a site 11`] = `
 {
   content: "Content of Page 7",
   data: {
@@ -623,7 +632,7 @@ snapshot[`Load the pages of a site 10`] = `
 }
 `;
 
-snapshot[`Load the pages of a site 11`] = `
+snapshot[`Load the pages of a site 12`] = `
 {
   content: "body {
   font-family: sans-serif;

@@ -60,6 +60,11 @@ snapshot[`relative_url plugin 2`] = `
 `;
 
 snapshot[`relative_url plugin 3`] = `
+[
+]
+`;
+
+snapshot[`relative_url plugin 4`] = `
 {
   content: '<!DOCTYPE html>
 <html><head></head><body><p>Contact</p>
@@ -96,7 +101,7 @@ snapshot[`relative_url plugin 3`] = `
 }
 `;
 
-snapshot[`relative_url plugin 4`] = `
+snapshot[`relative_url plugin 5`] = `
 {
   content: '<!DOCTYPE html>
 <html><head></head><body><p>About us</p>
@@ -133,7 +138,7 @@ snapshot[`relative_url plugin 4`] = `
 }
 `;
 
-snapshot[`relative_url plugin 5`] = `
+snapshot[`relative_url plugin 6`] = `
 {
   content: '<!DOCTYPE html>
 <html><head></head><body><p>Presentation</p>
@@ -170,7 +175,7 @@ snapshot[`relative_url plugin 5`] = `
 }
 `;
 
-snapshot[`relative_url plugin 6`] = `
+snapshot[`relative_url plugin 7`] = `
 {
   content: '<!DOCTYPE html>
 <html><head></head><body><p>Index</p>

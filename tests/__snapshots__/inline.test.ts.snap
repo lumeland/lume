@@ -70,6 +70,15 @@ snapshot[`inline plugin 2`] = `
 `;
 
 snapshot[`inline plugin 3`] = `
+[
+  {
+    dest: "/favicon2.png",
+    src: "/favicon.png",
+  },
+]
+`;
+
+snapshot[`inline plugin 4`] = `
 {
   content: '<?xml version="1.0" encoding="UTF-8"?>
 <svg width="126px" height="126px" viewBox="0 0 126 126" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -103,7 +112,7 @@ snapshot[`inline plugin 3`] = `
 }
 `;
 
-snapshot[`inline plugin 4`] = `
+snapshot[`inline plugin 5`] = `
 {
   content: '<!DOCTYPE html>
 <html lang="en"><head>
@@ -181,7 +190,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
 }
 `;
 
-snapshot[`inline plugin 5`] = `
+snapshot[`inline plugin 6`] = `
 {
   content: 'console.log("Hello world");
 const a = 1, _b = 1 < a, _c = a > 4;
@@ -207,7 +216,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
 }
 `;
 
-snapshot[`inline plugin 6`] = `
+snapshot[`inline plugin 7`] = `
 {
   content: "body {
   background: white;

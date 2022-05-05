@@ -60,6 +60,11 @@ snapshot[`Prism plugin 2`] = `
 `;
 
 snapshot[`Prism plugin 3`] = `
+[
+]
+`;
+
+snapshot[`Prism plugin 4`] = `
 {
   content: '<!DOCTYPE html>
 <html><head></head><body><h1>Hello world</h1>

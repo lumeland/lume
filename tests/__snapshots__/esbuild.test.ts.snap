@@ -60,6 +60,11 @@ snapshot[`esbuild plugin 2`] = `
 `;
 
 snapshot[`esbuild plugin 3`] = `
+[
+]
+`;
+
+snapshot[`esbuild plugin 4`] = `
 {
   content: 'var n=Object.defineProperty;var t=(e,o)=>n(e,"name",{value:o,configurable:!0});function r(e){return e.toUpperCase()}t(r,"toUppercase");document.querySelectorAll("h1")?.forEach(e=>{e.innerHTML=r(e.innerHTML)});
 ',

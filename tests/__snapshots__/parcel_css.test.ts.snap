@@ -65,6 +65,11 @@ snapshot[`parcelCSS plugin 2`] = `
 `;
 
 snapshot[`parcelCSS plugin 3`] = `
+[
+]
+`;
+
+snapshot[`parcelCSS plugin 4`] = `
 {
   content: '@import "variables.css";@import "./text.css";',
   data: {
@@ -88,7 +93,7 @@ snapshot[`parcelCSS plugin 3`] = `
 }
 `;
 
-snapshot[`parcelCSS plugin 4`] = `
+snapshot[`parcelCSS plugin 5`] = `
 {
   content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}",
   data: {

@@ -60,6 +60,11 @@ snapshot[`url and htmlUrl update href 2`] = `
 `;
 
 snapshot[`url and htmlUrl update href 3`] = `
+[
+]
+`;
+
+snapshot[`url and htmlUrl update href 4`] = `
 {
   content: '
     <!DOCTYPE html>
@@ -97,7 +102,7 @@ snapshot[`url and htmlUrl update href 3`] = `
 }
 `;
 
-snapshot[`url and htmlUrl update href 4`] = `
+snapshot[`url and htmlUrl update href 5`] = `
 {
   content: '
     <!DOCTYPE html>
@@ -192,6 +197,11 @@ snapshot[`configure url and htmlUrl names 2`] = `
 `;
 
 snapshot[`configure url and htmlUrl names 3`] = `
+[
+]
+`;
+
+snapshot[`configure url and htmlUrl names 4`] = `
 {
   content: '
     <!DOCTYPE html>
@@ -229,7 +239,7 @@ snapshot[`configure url and htmlUrl names 3`] = `
 }
 `;
 
-snapshot[`configure url and htmlUrl names 4`] = `
+snapshot[`configure url and htmlUrl names 5`] = `
 {
   content: '
     <!DOCTYPE html>

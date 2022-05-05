@@ -60,6 +60,11 @@ snapshot[`Build a site with js/ts modules 2`] = `
 `;
 
 snapshot[`Build a site with js/ts modules 3`] = `
+[
+]
+`;
+
+snapshot[`Build a site with js/ts modules 4`] = `
 {
   content: '
   <!DOCTYPE html>
@@ -96,7 +101,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
 }
 `;
 
-snapshot[`Build a site with js/ts modules 4`] = `
+snapshot[`Build a site with js/ts modules 5`] = `
 {
   content: '
   <!DOCTYPE html>
@@ -133,7 +138,7 @@ snapshot[`Build a site with js/ts modules 4`] = `
 }
 `;
 
-snapshot[`Build a site with js/ts modules 5`] = `
+snapshot[`Build a site with js/ts modules 6`] = `
 {
   content: '
   <!DOCTYPE html>
@@ -169,7 +174,7 @@ snapshot[`Build a site with js/ts modules 5`] = `
 }
 `;
 
-snapshot[`Build a site with js/ts modules 6`] = `
+snapshot[`Build a site with js/ts modules 7`] = `
 {
   content: '
   <!DOCTYPE html>
@@ -204,7 +209,7 @@ snapshot[`Build a site with js/ts modules 6`] = `
 }
 `;
 
-snapshot[`Build a site with js/ts modules 7`] = `
+snapshot[`Build a site with js/ts modules 8`] = `
 {
   content: '
   <!DOCTYPE html>
@@ -239,7 +244,7 @@ snapshot[`Build a site with js/ts modules 7`] = `
 }
 `;
 
-snapshot[`Build a site with js/ts modules 8`] = `
+snapshot[`Build a site with js/ts modules 9`] = `
 {
   content: '
   <!DOCTYPE html>

@@ -136,7 +136,7 @@ export async function assertSiteSnapshot(
   context: Deno.TestContext,
   site: Site,
 ) {
-  const { pages } = site;
+  const { pages, files } = site;
 
   // Test number of pages
   await assertSnapshot(context, pages.length);
@@ -155,14 +155,23 @@ export async function assertSiteSnapshot(
     },
   );
 
-  // Sort pages alphabetically
+  // Sort pages and files alphabetically
   pages.sort((a, b) => {
     const aPath = a.src.path;
     const bPath = b.src.path;
     return aPath > bPath ? 1 : aPath < bPath ? -1 : 0;
   });
 
-  // Test each page
+  files.sort((a, b) => {
+    const aPath = a.src;
+    const bPath = b.src;
+    return aPath > bPath ? 1 : aPath < bPath ? -1 : 0;
+  });
+
+  // Test static files
+  await assertSnapshot(context, files);
+
+  // Test pages
   for (const page of pages) {
     await assertPageSnapshot(context, page);
   }

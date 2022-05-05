@@ -60,6 +60,11 @@ snapshot[`base_path plugin 2`] = `
 `;
 
 snapshot[`base_path plugin 3`] = `
+[
+]
+`;
+
+snapshot[`base_path plugin 4`] = `
 {
   content: '<!DOCTYPE html>
 <html lang="en"><head>

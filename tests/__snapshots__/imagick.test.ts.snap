@@ -75,6 +75,11 @@ snapshot[`imagick plugin 2`] = `
 `;
 
 snapshot[`imagick plugin 3`] = `
+[
+]
+`;
+
+snapshot[`imagick plugin 4`] = `
 {
   content: "Uint8Array(14355)",
   data: {
@@ -117,7 +122,7 @@ snapshot[`imagick plugin 3`] = `
 }
 `;
 
-snapshot[`imagick plugin 4`] = `
+snapshot[`imagick plugin 5`] = `
 {
   content: "Uint8Array(899)",
   data: {
@@ -140,7 +145,7 @@ snapshot[`imagick plugin 4`] = `
 }
 `;
 
-snapshot[`imagick plugin 5`] = `
+snapshot[`imagick plugin 6`] = `
 {
   content: "Uint8Array(899)",
   data: {
@@ -163,7 +168,7 @@ snapshot[`imagick plugin 5`] = `
 }
 `;
 
-snapshot[`imagick plugin 6`] = `
+snapshot[`imagick plugin 7`] = `
 {
   content: "Uint8Array(1231)",
   data: {
@@ -186,7 +191,7 @@ snapshot[`imagick plugin 6`] = `
 }
 `;
 
-snapshot[`imagick plugin 7`] = `
+snapshot[`imagick plugin 8`] = `
 {
   content: "Uint8Array(8648)",
   data: {

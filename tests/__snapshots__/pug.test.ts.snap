@@ -65,6 +65,11 @@ snapshot[`build a site with eta 2`] = `
 `;
 
 snapshot[`build a site with eta 3`] = `
+[
+]
+`;
+
+snapshot[`build a site with eta 4`] = `
 {
   content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
   data: {
@@ -91,7 +96,7 @@ block content
 }
 `;
 
-snapshot[`build a site with eta 4`] = `
+snapshot[`build a site with eta 5`] = `
 {
   content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
 <p>This is a paragraph</p>
@@ -129,7 +134,7 @@ block content
 }
 `;
 
-snapshot[`build a site with eta 5`] = `
+snapshot[`build a site with eta 6`] = `
 {
   content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><header><h1>Pug example</h1></header></body></html>',
   data: {

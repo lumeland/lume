@@ -65,6 +65,11 @@ snapshot[`build a site with eta 2`] = `
 `;
 
 snapshot[`build a site with eta 3`] = `
+[
+]
+`;
+
+snapshot[`build a site with eta 4`] = `
 {
   content: \`<!DOCTYPE html>
 <html lang="en">

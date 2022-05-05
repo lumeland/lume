@@ -65,6 +65,11 @@ snapshot[`postcss plugin 2`] = `
 `;
 
 snapshot[`postcss plugin 3`] = `
+[
+]
+`;
+
+snapshot[`postcss plugin 4`] = `
 {
   content: "::root {
   --color: #333;
@@ -102,7 +107,7 @@ snapshot[`postcss plugin 3`] = `
 }
 `;
 
-snapshot[`postcss plugin 4`] = `
+snapshot[`postcss plugin 5`] = `
 {
   content: ".text {
   font-family: var(--font-family)
@@ -207,6 +212,11 @@ snapshot[`postcss plugin without includes 2`] = `
 `;
 
 snapshot[`postcss plugin without includes 3`] = `
+[
+]
+`;
+
+snapshot[`postcss plugin without includes 4`] = `
 {
   content: '@import "variables.css";
 @import "./text.css";
@@ -232,7 +242,7 @@ snapshot[`postcss plugin without includes 3`] = `
 }
 `;
 
-snapshot[`postcss plugin without includes 4`] = `
+snapshot[`postcss plugin without includes 5`] = `
 {
   content: ".text {
   font-family: var(--font-family)

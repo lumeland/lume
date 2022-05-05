@@ -60,6 +60,11 @@ snapshot[`metas plugin 2`] = `
 `;
 
 snapshot[`metas plugin 3`] = `
+[
+]
+`;
+
+snapshot[`metas plugin 4`] = `
 {
   content: '<!DOCTYPE html>
 <html><head>

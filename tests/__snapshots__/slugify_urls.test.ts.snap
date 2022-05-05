@@ -60,6 +60,11 @@ snapshot[`slugify_urls plugin 2`] = `
 `;
 
 snapshot[`slugify_urls plugin 3`] = `
+[
+]
+`;
+
+snapshot[`slugify_urls plugin 4`] = `
 {
   content: "<p>Page 2</p>
 ",
@@ -84,7 +89,7 @@ snapshot[`slugify_urls plugin 3`] = `
 }
 `;
 
-snapshot[`slugify_urls plugin 4`] = `
+snapshot[`slugify_urls plugin 5`] = `
 {
   content: "<p>Page 1</p>
 ",
@@ -109,7 +114,7 @@ snapshot[`slugify_urls plugin 4`] = `
 }
 `;
 
-snapshot[`slugify_urls plugin 5`] = `
+snapshot[`slugify_urls plugin 6`] = `
 {
   content: "<p>Page 3</p>
 ",

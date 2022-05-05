@@ -60,6 +60,11 @@ snapshot[`code_hightlight plugin 2`] = `
 `;
 
 snapshot[`code_hightlight plugin 3`] = `
+[
+]
+`;
+
+snapshot[`code_hightlight plugin 4`] = `
 {
   content: '<!DOCTYPE html>
 <html><head></head><body><h1>Code highlight plugin testing</h1>
@@ -107,7 +112,7 @@ p {
 }
 `;
 
-snapshot[`code_hightlight plugin 4`] = `
+snapshot[`code_hightlight plugin 5`] = `
 {
   content: '<!DOCTYPE html>
 <html><head></head><body>
