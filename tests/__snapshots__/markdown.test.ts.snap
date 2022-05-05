@@ -61,9 +61,21 @@ snapshot[`Build a markdown site 2`] = `
 
 snapshot[`Build a markdown site 3`] = `
 {
-  content: "<h1>Normal page</h1>\\n<ul>\\n<li>List</li>\\n<li>Of</li>\\n<li>Elements</li>\\n</ul>\\n",
+  content: "<h1>Normal page</h1>
+<ul>
+<li>List</li>
+<li>Of</li>
+<li>Elements</li>
+</ul>
+",
   data: {
-    content: "\\n# Normal page\\n\\n- List\\n- Of\\n- Elements\\n",
+    content: "
+# Normal page
+
+- List
+- Of
+- Elements
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -85,9 +97,11 @@ snapshot[`Build a markdown site 3`] = `
 
 snapshot[`Build a markdown site 4`] = `
 {
-  content: '<p><a href="#foo" target="_blank">link</a></p>\\n',
+  content: '<p><a href="#foo" target="_blank">link</a></p>
+',
   data: {
-    content: "[link](#foo){target=_blank}\\n",
+    content: "[link](#foo){target=_blank}
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -108,9 +122,20 @@ snapshot[`Build a markdown site 4`] = `
 
 snapshot[`Build a markdown site 5`] = `
 {
-  content: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;\\n</code></pre>\\n<pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;\\n</code></pre>\\n',
+  content: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
+</code></pre>
+<pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
+</code></pre>
+',
   data: {
-    content: "\`\`\`html\\n<p>Example</p>\\n\`\`\`\\n\\n\`\`\`\\n<p>Example without color highlight</p>\\n\`\`\`\\n",
+    content: "\`\`\`html
+<p>Example</p>
+\`\`\`
+
+\`\`\`
+<p>Example without color highlight</p>
+\`\`\`
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -131,9 +156,24 @@ snapshot[`Build a markdown site 5`] = `
 
 snapshot[`Build a markdown site 6`] = `
 {
-  content: "<!-- deno-fmt-ignore-file -->\\n<dl>\\n<dt>This is a definition title</dt>\\n<dd>And this the description</dd>\\n<dd>Other description</dd>\\n<dt>Other title</dt>\\n<dd>And other description</dd>\\n</dl>\\n",
+  content: "<!-- deno-fmt-ignore-file -->
+<dl>
+<dt>This is a definition title</dt>
+<dd>And this the description</dd>
+<dd>Other description</dd>
+<dt>Other title</dt>
+<dd>And other description</dd>
+</dl>
+",
   data: {
-    content: "<!-- deno-fmt-ignore-file -->\\nThis is a definition title\\n: And this the description\\n: Other description\\n\\nOther title\\n: And other description\\n",
+    content: "<!-- deno-fmt-ignore-file -->
+This is a definition title
+: And this the description
+: Other description
+
+Other title
+: And other description
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -154,11 +194,20 @@ snapshot[`Build a markdown site 6`] = `
 
 snapshot[`Build a markdown site 7`] = `
 {
-  content: '\\n<h1>Module <strong>example</strong></h1>\\n\\n<div><p>Welcome to this <a href="/">page</a></p></div>\\n',
+  content: '
+<h1>Module <strong>example</strong></h1>
+
+<div><p>Welcome to this <a href="/">page</a></p></div>
+',
   data: {
-    content: "\\n<h1>{{ title | md(true) | safe }}</h1>\\n\\n<div>{{ description | md | safe }}</div>\\n",
+    content: "
+<h1>{{ title | md(true) | safe }}</h1>
+
+<div>{{ description | md | safe }}</div>
+",
     date: 1970-01-01T00:00:00.000Z,
-    description: "Welcome to this [page](/)\\n",
+    description: "Welcome to this [page](/)
+",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -179,7 +228,9 @@ snapshot[`Build a markdown site 7`] = `
 
 snapshot[`Build a markdown site 8`] = `
 {
-  content: '<h1>Module example</h1>\\n<p><a href="/">Back to home</a></p>\\n',
+  content: '<h1>Module example</h1>
+<p><a href="/">Back to home</a></p>
+',
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -204,9 +255,25 @@ snapshot[`Build a markdown site 8`] = `
 
 snapshot[`Build a markdown site 9`] = `
 {
-  content: '<!-- deno-fmt-ignore-file -->\\n<h1></h1>\\n<p>Foo</p>\\n<ul>\\n<li>one: <a href="/items/un.html">un</a></li>\\n<li>two: <a href="/items/dous.html">dous</a></li>\\n<li>three: <a href="/items/tres.html">tres</a></li>\\n</ul>\\n',
+  content: '<!-- deno-fmt-ignore-file -->
+<h1></h1>
+<p>Foo</p>
+<ul>
+<li>one: <a href="/items/un.html">un</a></li>
+<li>two: <a href="/items/dous.html">dous</a></li>
+<li>three: <a href="/items/tres.html">tres</a></li>
+</ul>
+',
   data: {
-    content: "<!-- deno-fmt-ignore-file -->\\n# {{ title }}\\n\\nFoo\\n\\n{% for title, no in myData %}\\n- {{ title }}: [{{ no }}](/items/{{ no }}.html)\\n{%- endfor %}\\n",
+    content: "<!-- deno-fmt-ignore-file -->
+# {{ title }}
+
+Foo
+
+{% for title, no in myData %}
+- {{ title }}: [{{ no }}](/items/{{ no }}.html)
+{%- endfor %}
+",
     date: 1970-01-01T00:00:00.000Z,
     myData: {
       one: "un",

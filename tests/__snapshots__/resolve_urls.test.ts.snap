@@ -61,9 +61,20 @@ snapshot[`relative_url plugin 2`] = `
 
 snapshot[`relative_url plugin 3`] = `
 {
-  content: '<!DOCTYPE html>\\n<html><head></head><body><p>First article</p>\\n<p><a href="/drafts/second-article/">Go to second</a>\\n<a href="/other/">Go to other</a>\\n<a href="/">Go to index</a></p>\\n</body></html>',
+  content: '<!DOCTYPE html>
+<html><head></head><body><p>First article</p>
+<p><a href="/drafts/second-article/">Go to second</a>
+<a href="/other/">Go to other</a>
+<a href="/">Go to index</a></p>
+</body></html>',
   data: {
-    content: "<!-- deno-fmt-ignore-file -->\\n\\nFirst article\\n\\n[Go to second](./article-2.md)\\n[Go to other](../other.md)\\n[Go to index](/index.md)",
+    content: "<!-- deno-fmt-ignore-file -->
+
+First article
+
+[Go to second](./article-2.md)
+[Go to other](../other.md)
+[Go to index](/index.md)",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -84,9 +95,20 @@ snapshot[`relative_url plugin 3`] = `
 
 snapshot[`relative_url plugin 4`] = `
 {
-  content: '<!DOCTYPE html>\\n<html><head></head><body><p>Second article</p>\\n<p><a href="/articles/first-article/">Go to first</a>\\n<a href="/other/">Go to other</a>\\n<a href="/">Go to index</a></p>\\n</body></html>',
+  content: '<!DOCTYPE html>
+<html><head></head><body><p>Second article</p>
+<p><a href="/articles/first-article/">Go to first</a>
+<a href="/other/">Go to other</a>
+<a href="/">Go to index</a></p>
+</body></html>',
   data: {
-    content: "<!-- deno-fmt-ignore-file -->\\n\\nSecond article\\n\\n[Go to first](article-1.md)\\n[Go to other](../other.md)\\n[Go to index](/index.md)",
+    content: "<!-- deno-fmt-ignore-file -->
+
+Second article
+
+[Go to first](article-1.md)
+[Go to other](../other.md)
+[Go to index](/index.md)",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -107,9 +129,37 @@ snapshot[`relative_url plugin 4`] = `
 
 snapshot[`relative_url plugin 5`] = `
 {
-  content: '<!DOCTYPE html>\\n<html><head></head><body><p><a href="/bar">url</a>\\n<a href="foo">url</a>\\n<a href="./foo">url</a>\\n<a href="../foo">url</a>\\n<a href="#foo">url</a>\\n<a href="?foo=bar">url</a>\\n<a href="/other/">url</a>\\n<a href="/other/">url</a>\\n<a href="https://domain.com">url</a>\\n<a href="/other/?tab=1">url</a>\\n<a href="/other/#tab-1">url</a>\\n<a href="/robots.txt">url</a>\\n<a href="/tilde-and-ene/">url</a></p>\\n</body></html>',
+  content: '<!DOCTYPE html>
+<html><head></head><body><p><a href="/bar">url</a>
+<a href="foo">url</a>
+<a href="./foo">url</a>
+<a href="../foo">url</a>
+<a href="#foo">url</a>
+<a href="?foo=bar">url</a>
+<a href="/other/">url</a>
+<a href="/other/">url</a>
+<a href="https://domain.com">url</a>
+<a href="/other/?tab=1">url</a>
+<a href="/other/#tab-1">url</a>
+<a href="/robots.txt">url</a>
+<a href="/tilde-and-ene/">url</a></p>
+</body></html>',
   data: {
-    content: "<!-- deno-fmt-ignore-file -->\\n[url](/bar)\\n[url](foo)\\n[url](./foo)\\n[url](../foo)\\n[url](#foo)\\n[url](?foo=bar)\\n[url](~/other.md)\\n[url](other.md)\\n[url](https://domain.com)\\n[url](other.md?tab=1)\\n[url](other.md#tab-1)\\n[url](~/statics/robots.txt)\\n[url](tílde-and-eñe.md)\\n",
+    content: "<!-- deno-fmt-ignore-file -->
+[url](/bar)
+[url](foo)
+[url](./foo)
+[url](../foo)
+[url](#foo)
+[url](?foo=bar)
+[url](~/other.md)
+[url](other.md)
+[url](https://domain.com)
+[url](other.md?tab=1)
+[url](other.md#tab-1)
+[url](~/statics/robots.txt)
+[url](tílde-and-eñe.md)
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -130,9 +180,15 @@ snapshot[`relative_url plugin 5`] = `
 
 snapshot[`relative_url plugin 6`] = `
 {
-  content: '<!DOCTYPE html>\\n<html><head></head><body><p>Other page</p>\\n<p><a href="/robots.txt">See robots.txt</a></p>\\n</body></html>',
+  content: '<!DOCTYPE html>
+<html><head></head><body><p>Other page</p>
+<p><a href="/robots.txt">See robots.txt</a></p>
+</body></html>',
   data: {
-    content: "Other page\\n\\n[See robots.txt](statics/robots.txt)\\n",
+    content: "Other page
+
+[See robots.txt](statics/robots.txt)
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -153,9 +209,12 @@ snapshot[`relative_url plugin 6`] = `
 
 snapshot[`relative_url plugin 7`] = `
 {
-  content: "<!DOCTYPE html>\\n<html><head></head><body><p>Tilde and eñe</p>\\n</body></html>",
+  content: "<!DOCTYPE html>
+<html><head></head><body><p>Tilde and eñe</p>
+</body></html>",
   data: {
-    content: "Tilde and eñe\\n",
+    content: "Tilde and eñe
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},

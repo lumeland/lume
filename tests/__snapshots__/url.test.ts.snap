@@ -61,7 +61,21 @@ snapshot[`url and htmlUrl update href 2`] = `
 
 snapshot[`url and htmlUrl update href 3`] = `
 {
-  content: '\\n    <!DOCTYPE html>\\n    <html lang="en">\\n        <head>\\n            <title>Default Filter</title>\\n        </head>\\n        <body>\\n            <a id="url" href="https://example.com/test/url/">Url</a>\\n            <a id="htmlUrl" href="https://example.com/test/htmlUrl/">htmlUrl</a>\\n            <template>\\n              <h1>Template content</h1>\\n            </template>\\n        </body>\\n    </html>\\n  ',
+  content: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Default Filter</title>
+        </head>
+        <body>
+            <a id="url" href="https://example.com/test/url/">Url</a>
+            <a id="htmlUrl" href="https://example.com/test/htmlUrl/">htmlUrl</a>
+            <template>
+              <h1>Template content</h1>
+            </template>
+        </body>
+    </html>
+  ',
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -85,7 +99,18 @@ snapshot[`url and htmlUrl update href 3`] = `
 
 snapshot[`url and htmlUrl update href 4`] = `
 {
-  content: '\\n    <!DOCTYPE html>\\n    <html lang="en">\\n        <head>\\n            <title>Renamed Filter</title>\\n        </head>\\n        <body>\\n            <a id="urlify" href="undefined">Urlify</a>\\n            undefined\\n        </body>\\n    </html>\\n  ',
+  content: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Renamed Filter</title>
+        </head>
+        <body>
+            <a id="urlify" href="undefined">Urlify</a>
+            undefined
+        </body>
+    </html>
+  ',
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -168,7 +193,21 @@ snapshot[`configure url and htmlUrl names 2`] = `
 
 snapshot[`configure url and htmlUrl names 3`] = `
 {
-  content: '\\n    <!DOCTYPE html>\\n    <html lang="en">\\n        <head>\\n            <title>Default Filter</title>\\n        </head>\\n        <body>\\n            <a id="url" href="undefined">Url</a>\\n            undefined\\n            <template>\\n              <h1>Template content</h1>\\n            </template>\\n        </body>\\n    </html>\\n  ',
+  content: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Default Filter</title>
+        </head>
+        <body>
+            <a id="url" href="undefined">Url</a>
+            undefined
+            <template>
+              <h1>Template content</h1>
+            </template>
+        </body>
+    </html>
+  ',
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -192,7 +231,18 @@ snapshot[`configure url and htmlUrl names 3`] = `
 
 snapshot[`configure url and htmlUrl names 4`] = `
 {
-  content: '\\n    <!DOCTYPE html>\\n    <html lang="en">\\n        <head>\\n            <title>Renamed Filter</title>\\n        </head>\\n        <body>\\n            <a id="urlify" href="https://example.com/urlify/">Urlify</a>\\n            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>\\n        </body>\\n    </html>\\n  ',
+  content: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Renamed Filter</title>
+        </head>
+        <body>
+            <a id="urlify" href="https://example.com/urlify/">Urlify</a>
+            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>
+        </body>
+    </html>
+  ',
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,

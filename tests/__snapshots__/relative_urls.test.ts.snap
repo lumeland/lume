@@ -61,9 +61,23 @@ snapshot[`relative_url plugin 2`] = `
 
 snapshot[`relative_url plugin 3`] = `
 {
-  content: '<!DOCTYPE html>\\n<html><head></head><body><p>Contact</p>\\n<ul>\\n<li><a href="../..">Index</a></li>\\n<li><a href="..">About us</a></li>\\n<li><a href="">Contact</a></li>\\n<li><a href="../presentation">Presentation</a></li>\\n</ul>\\n</body></html>',
+  content: '<!DOCTYPE html>
+<html><head></head><body><p>Contact</p>
+<ul>
+<li><a href="../..">Index</a></li>
+<li><a href="..">About us</a></li>
+<li><a href="">Contact</a></li>
+<li><a href="../presentation">Presentation</a></li>
+</ul>
+</body></html>',
   data: {
-    content: "Contact\\n\\n- [Index](/)\\n- [About us](/about-us)\\n- [Contact](/about-us/contact)\\n- [Presentation](/about-us/presentation)\\n",
+    content: "Contact
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -84,9 +98,23 @@ snapshot[`relative_url plugin 3`] = `
 
 snapshot[`relative_url plugin 4`] = `
 {
-  content: '<!DOCTYPE html>\\n<html><head></head><body><p>About us</p>\\n<ul>\\n<li><a href="..">Index</a></li>\\n<li><a href="">About us</a></li>\\n<li><a href="contact">Contact</a></li>\\n<li><a href="presentation">Presentation</a></li>\\n</ul>\\n</body></html>',
+  content: '<!DOCTYPE html>
+<html><head></head><body><p>About us</p>
+<ul>
+<li><a href="..">Index</a></li>
+<li><a href="">About us</a></li>
+<li><a href="contact">Contact</a></li>
+<li><a href="presentation">Presentation</a></li>
+</ul>
+</body></html>',
   data: {
-    content: "About us\\n\\n- [Index](/)\\n- [About us](/about-us)\\n- [Contact](/about-us/contact)\\n- [Presentation](/about-us/presentation)\\n",
+    content: "About us
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -107,9 +135,23 @@ snapshot[`relative_url plugin 4`] = `
 
 snapshot[`relative_url plugin 5`] = `
 {
-  content: '<!DOCTYPE html>\\n<html><head></head><body><p>Presentation</p>\\n<ul>\\n<li><a href="../..">Index</a></li>\\n<li><a href="..">About us</a></li>\\n<li><a href="../contact">Contact</a></li>\\n<li><a href="">Presentation</a></li>\\n</ul>\\n</body></html>',
+  content: '<!DOCTYPE html>
+<html><head></head><body><p>Presentation</p>
+<ul>
+<li><a href="../..">Index</a></li>
+<li><a href="..">About us</a></li>
+<li><a href="../contact">Contact</a></li>
+<li><a href="">Presentation</a></li>
+</ul>
+</body></html>',
   data: {
-    content: "Presentation\\n\\n- [Index](/)\\n- [About us](/about-us)\\n- [Contact](/about-us/contact)\\n- [Presentation](/about-us/presentation)\\n",
+    content: "Presentation
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -130,9 +172,31 @@ snapshot[`relative_url plugin 5`] = `
 
 snapshot[`relative_url plugin 6`] = `
 {
-  content: '<!DOCTYPE html>\\n<html><head></head><body><p>Index</p>\\n<ul>\\n<li><a href="">Index</a></li>\\n<li><a href="about-us">About us</a></li>\\n<li><a href="./about-us/contact">Contact</a></li>\\n<li><a href="about-us/presentation">Presentation</a></li>\\n<li><a href="?ignored=true">Ignored</a></li>\\n<li><a href="#ignored">Ignored</a></li>\\n<li><a href="https://ignored.com">Ignored</a></li>\\n<li><a href="//ignored.com">Ignored</a></li>\\n</ul>\\n</body></html>',
+  content: '<!DOCTYPE html>
+<html><head></head><body><p>Index</p>
+<ul>
+<li><a href="">Index</a></li>
+<li><a href="about-us">About us</a></li>
+<li><a href="./about-us/contact">Contact</a></li>
+<li><a href="about-us/presentation">Presentation</a></li>
+<li><a href="?ignored=true">Ignored</a></li>
+<li><a href="#ignored">Ignored</a></li>
+<li><a href="https://ignored.com">Ignored</a></li>
+<li><a href="//ignored.com">Ignored</a></li>
+</ul>
+</body></html>',
   data: {
-    content: "Index\\n\\n- [Index](/)\\n- [About us](about-us)\\n- [Contact](./about-us/contact)\\n- [Presentation](about-us/presentation)\\n- [Ignored](?ignored=true)\\n- [Ignored](#ignored)\\n- [Ignored](https://ignored.com)\\n- [Ignored](//ignored.com)\\n",
+    content: "Index
+
+- [Index](/)
+- [About us](about-us)
+- [Contact](./about-us/contact)
+- [Presentation](about-us/presentation)
+- [Ignored](?ignored=true)
+- [Ignored](#ignored)
+- [Ignored](https://ignored.com)
+- [Ignored](//ignored.com)
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},

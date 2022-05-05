@@ -61,9 +61,11 @@ snapshot[`slugify_urls plugin 2`] = `
 
 snapshot[`slugify_urls plugin 3`] = `
 {
-  content: "<p>Page 2</p>\\n",
+  content: "<p>Page 2</p>
+",
   data: {
-    content: "Page 2\\n",
+    content: "Page 2
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -84,9 +86,11 @@ snapshot[`slugify_urls plugin 3`] = `
 
 snapshot[`slugify_urls plugin 4`] = `
 {
-  content: "<p>Page 1</p>\\n",
+  content: "<p>Page 1</p>
+",
   data: {
-    content: "Page 1\\n",
+    content: "Page 1
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -107,9 +111,12 @@ snapshot[`slugify_urls plugin 4`] = `
 
 snapshot[`slugify_urls plugin 5`] = `
 {
-  content: "<p>Page 3</p>\\n",
+  content: "<p>Page 3</p>
+",
   data: {
-    content: "\\nPage 3\\n",
+    content: "
+Page 3
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},

@@ -157,14 +157,17 @@ snapshot[`Load the pages of a site 4`] = `
 
 snapshot[`Load the pages of a site 5`] = `
 {
-  content: "<p>Content of Page 1</p>\\n",
+  content: "<p>Content of Page 1</p>
+",
   data: {
     colors: [
       "#ff0000",
       "#0000ff",
       "#00ff00",
     ],
-    content: "\\nContent of Page 1\\n",
+    content: "
+Content of Page 1
+",
     date: 1970-01-01T00:00:00.000Z,
     documents: [
       {
@@ -391,14 +394,17 @@ snapshot[`Load the pages of a site 7`] = `
 
 snapshot[`Load the pages of a site 8`] = `
 {
-  content: "<p>Content of Page 6</p>\\n",
+  content: "<p>Content of Page 6</p>
+",
   data: {
     colors: [
       "#ff0000",
       "#0000ff",
       "#00ff00",
     ],
-    content: "\\nContent of Page 6\\n",
+    content: "
+Content of Page 6
+",
     date: 1970-01-01T00:00:00.000Z,
     documents: [
       {
@@ -619,9 +625,17 @@ snapshot[`Load the pages of a site 10`] = `
 
 snapshot[`Load the pages of a site 11`] = `
 {
-  content: "body {\\n  font-family: sans-serif;\\n  color: black;\\n}\\n",
+  content: "body {
+  font-family: sans-serif;
+  color: black;
+}
+",
   data: {
-    content: "body {\\n  font-family: sans-serif;\\n  color: black;\\n}\\n",
+    content: "body {
+  font-family: sans-serif;
+  color: black;
+}
+",
     imagick: [
       {
         resize: [

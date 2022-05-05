@@ -68,7 +68,9 @@ snapshot[`sass plugin 3`] = `
 {
   content: "body{font:100% Helvetica,sans-serif;color:#333}",
   data: {
-    content: '@import "./_includes/sass/colors";\\n@import "sass/button";\\n',
+    content: '@import "./_includes/sass/colors";
+@import "sass/button";
+',
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [

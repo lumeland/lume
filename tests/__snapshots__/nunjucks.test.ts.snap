@@ -61,10 +61,47 @@ snapshot[`build a site with nunjucks 2`] = `
 
 snapshot[`build a site with nunjucks 3`] = `
 {
-  content: '<!DOCTYPE html>\\n\\n<html lang="en">\\n  <head>\\n    <meta charset="utf-8">\\n    <title></title>\\n  </head>\\n  <body>\\n    <main><button class="" type="button">button content</button>\\n<icon name="John">\\n  this is John\\n</icon>\\n\\n\\n<button class="my-button" type="button">\\n  button content\\n\\n  <icon name="John">\\n  \\n  this is John\\n  \\n</icon>\\n\\n</button>\\n</main>\\n  </body>\\n</html>\\n',
+  content: '<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <main><button class="" type="button">button content</button>
+<icon name="John">
+  this is John
+</icon>
+
+
+<button class="my-button" type="button">
+  button content
+
+  <icon name="John">
+  
+  this is John
+  
+</icon>
+
+</button>
+</main>
+  </body>
+</html>
+',
   data: {
     comp: true,
-    content: '{{ comp.Button({ content: "button content" }) | safe }}\\n{{ comp.icon.User({ content: "this is John", name:"John" }) | safe }}\\n\\n{% comp "Button", className="my-button" %}\\n  button content\\n\\n  {% comp "icon.user", name="John" %}\\n  this is John\\n  {% endcomp %}\\n{% endcomp %}\\n',
+    content: '{{ comp.Button({ content: "button content" }) | safe }}
+{{ comp.icon.User({ content: "this is John", name:"John" }) | safe }}
+
+{% comp "Button", className="my-button" %}
+  button content
+
+  {% comp "icon.user", name="John" %}
+  this is John
+  {% endcomp %}
+{% endcomp %}
+',
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -85,7 +122,9 @@ snapshot[`build a site with nunjucks 3`] = `
 
 snapshot[`build a site with nunjucks 4`] = `
 {
-  content: '\\n["red","green","blue"]\\n',
+  content: '
+["red","green","blue"]
+',
   data: {
     colors: [
       "red",
@@ -93,7 +132,9 @@ snapshot[`build a site with nunjucks 4`] = `
       "blue",
     ],
     comp: true,
-    content: "\\n{{ colors | dump | safe }}\\n",
+    content: "
+{{ colors | dump | safe }}
+",
     date: 1970-01-01T00:00:00.000Z,
     layout: null,
     paginate: [GeneratorFunction: paginate],
@@ -115,10 +156,25 @@ snapshot[`build a site with nunjucks 4`] = `
 
 snapshot[`build a site with nunjucks 5`] = `
 {
-  content: '<!DOCTYPE html>\\n\\n<html lang="en">\\n  <head>\\n    <meta charset="utf-8">\\n    <title>Hello World</title>\\n  </head>\\n  <body>\\n    <main>\\n<h1>Hello World</h1>\\n</main>\\n  </body>\\n</html>\\n',
+  content: '<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+  </head>
+  <body>
+    <main>
+<h1>Hello World</h1>
+</main>
+  </body>
+</html>
+',
   data: {
     comp: true,
-    content: "\\n<h1>{{ title }}</h1>\\n",
+    content: "
+<h1>{{ title }}</h1>
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -140,7 +196,18 @@ snapshot[`build a site with nunjucks 5`] = `
 
 snapshot[`build a site with nunjucks 6`] = `
 {
-  content: '<!DOCTYPE html>\\n\\n<html lang="en">\\n  <head>\\n    <meta charset="utf-8">\\n    <title>njk filter example</title>\\n  </head>\\n  <body>\\n    <main><h1>NJK FILTER EXAMPLE</h1></main>\\n  </body>\\n</html>\\n',
+  content: '<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>njk filter example</title>
+  </head>
+  <body>
+    <main><h1>NJK FILTER EXAMPLE</h1></main>
+  </body>
+</html>
+',
   data: {
     comp: true,
     content: undefined,
@@ -165,10 +232,51 @@ snapshot[`build a site with nunjucks 6`] = `
 
 snapshot[`build a site with nunjucks 7`] = `
 {
-  content: '<!DOCTYPE html>\\n\\n<html lang="en">\\n  <head>\\n    <meta charset="utf-8">\\n    <title>The title</title>\\n  </head>\\n  <body>\\n    <main><p><strong>THE TITLE</strong></p>\\n<p><strong>THE TITLE</strong></p>\\n<p><strong>THE TITLE</strong></p>\\n<p><strong>THE TITLE</strong></p>\\n<p><strong>THE TITLE</strong></p>\\n<p><strong>THE TITLE</strong></p>\\n<p><strong>THE TITLE</strong></p>\\n<p><strong>THE TITLE</strong></p>\\n<div>hello (async)</div>\\n\\n<ul>\\n  <li>This is a partial</li>\\n  <li>async helper in a partial (async)</li>\\n</ul>\\n<ul>\\n  <li>This is a partial</li>\\n  <li>async helper in a partial (async)</li>\\n</ul>\\n</main>\\n  </body>\\n</html>\\n',
+  content: '<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The title</title>
+  </head>
+  <body>
+    <main><p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<div>hello (async)</div>
+
+<ul>
+  <li>This is a partial</li>
+  <li>async helper in a partial (async)</li>
+</ul>
+<ul>
+  <li>This is a partial</li>
+  <li>async helper in a partial (async)</li>
+</ul>
+</main>
+  </body>
+</html>
+',
   data: {
     comp: true,
-    content: '<p>{% upperCase title %}</p>\\n<p>{% upperCase "The title" %}</p>\\n<p>{% upperCaseAsync title %}</p>\\n<p>{% upperCaseAsync "The title" %}</p>\\n<p>{% upperCaseBody %}The title{% endupperCaseBody %}</p>\\n<p>{% upperCaseBody %}{{ title }}{% endupperCaseBody %}</p>\\n<p>{% upperCaseBodyAsync %}The title{% endupperCaseBodyAsync %}</p>\\n<p>{% upperCaseBodyAsync %}{{ title }}{% endupperCaseBodyAsync %}</p>\\n<div>{{ "hello" | returnAsync }}</div>\\n\\n{% include "partial.njk" %}\\n{% include "./_includes/partial.njk" %}\\n',
+    content: '<p>{% upperCase title %}</p>
+<p>{% upperCase "The title" %}</p>
+<p>{% upperCaseAsync title %}</p>
+<p>{% upperCaseAsync "The title" %}</p>
+<p>{% upperCaseBody %}The title{% endupperCaseBody %}</p>
+<p>{% upperCaseBody %}{{ title }}{% endupperCaseBody %}</p>
+<p>{% upperCaseBodyAsync %}The title{% endupperCaseBodyAsync %}</p>
+<p>{% upperCaseBodyAsync %}{{ title }}{% endupperCaseBodyAsync %}</p>
+<div>{{ "hello" | returnAsync }}</div>
+
+{% include "partial.njk" %}
+{% include "./_includes/partial.njk" %}
+',
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},

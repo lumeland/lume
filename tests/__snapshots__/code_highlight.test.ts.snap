@@ -61,9 +61,34 @@ snapshot[`code_hightlight plugin 2`] = `
 
 snapshot[`code_hightlight plugin 3`] = `
 {
-  content: '<!DOCTYPE html>\\n<html><head></head><body><h1>Code highlight plugin testing</h1>\\n<pre><code class="language-html hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is a HTML code<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>\\n</code></pre>\\n<pre><code>Not highlighted code\\n</code></pre>\\n<pre><code class="language-css hljs"><span class="hljs-selector-tag">p</span> {\\n  <span class="hljs-attribute">color</span>: red\\n}\\n</code></pre>\\n</body></html>',
+  content: '<!DOCTYPE html>
+<html><head></head><body><h1>Code highlight plugin testing</h1>
+<pre><code class="language-html hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is a HTML code<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+<pre><code>Not highlighted code
+</code></pre>
+<pre><code class="language-css hljs"><span class="hljs-selector-tag">p</span> {
+  <span class="hljs-attribute">color</span>: red
+}
+</code></pre>
+</body></html>',
   data: {
-    content: "# Code highlight plugin testing\\n\\n\`\`\`html\\n<p>This is a HTML code</p>\\n\`\`\`\\n\\n\`\`\`\\nNot highlighted code\\n\`\`\`\\n\\n\`\`\`css\\np {\\n  color: red\\n}\\n\`\`\`\\n",
+    content: "# Code highlight plugin testing
+
+\`\`\`html
+<p>This is a HTML code</p>
+\`\`\`
+
+\`\`\`
+Not highlighted code
+\`\`\`
+
+\`\`\`css
+p {
+  color: red
+}
+\`\`\`
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -84,9 +109,23 @@ snapshot[`code_hightlight plugin 3`] = `
 
 snapshot[`code_hightlight plugin 4`] = `
 {
-  content: '<!DOCTYPE html>\\n<html><head></head><body>\\n  <pre>Code inside a PRE</pre>\\n  <code>Code inside a CODE</code>\\n  <pre><code>Not highlighted code</code></pre>\\n  <pre class="language-css"><code class="hljs language-css"><span class="hljs-selector-tag">p</span> { <span class="hljs-attribute">display</span>: none }</code></pre>\\n\\n</body></html>',
+  content: '<!DOCTYPE html>
+<html><head></head><body>
+  <pre>Code inside a PRE</pre>
+  <code>Code inside a CODE</code>
+  <pre><code>Not highlighted code</code></pre>
+  <pre class="language-css"><code class="hljs language-css"><span class="hljs-selector-tag">p</span> { <span class="hljs-attribute">display</span>: none }</code></pre>
+
+</body></html>',
   data: {
-    content: '<html>\\n<body>\\n  <pre>Code inside a PRE</pre>\\n  <code>Code inside a CODE</code>\\n  <pre><code>Not highlighted code</code></pre>\\n  <pre class="language-css"><code>p { display: none }</code></pre>\\n</body>\\n</html>',
+    content: '<html>
+<body>
+  <pre>Code inside a PRE</pre>
+  <code>Code inside a CODE</code>
+  <pre><code>Not highlighted code</code></pre>
+  <pre class="language-css"><code>p { display: none }</code></pre>
+</body>
+</html>',
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},

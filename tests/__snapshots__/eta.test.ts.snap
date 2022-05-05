@@ -66,9 +66,27 @@ snapshot[`build a site with eta 2`] = `
 
 snapshot[`build a site with eta 3`] = `
 {
-  content: \`<!DOCTYPE html>\\n<html lang="en">\\n<head>\\n  <meta charset="utf-8">\\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\\n  <title>Eta example</title>\\n</head>\\n<body>\\n  <nav>\\n    <a href="/blog/">Go to home</a>\\n  </nav>\\n  <h1>Timothy's Eta source code!</h1>\\n\\n<footer>This is a footer of Timothy</footer><footer>This is a footer of Timothy</footer></body>\\n</html>\\n\`,
+  content: \`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eta example</title>
+</head>
+<body>
+  <nav>
+    <a href="/blog/">Go to home</a>
+  </nav>
+  <h1>Timothy's Eta source code!</h1>
+
+<footer>This is a footer of Timothy</footer><footer>This is a footer of Timothy</footer></body>
+</html>
+\`,
   data: {
-    content: \`<h1><%= name %>'s Eta source code!</h1>\\n\\n<%~ await includeFile("footer", { name }) %>\\n<%~ await includeFile("./_includes/footer", { name }) %>\`,
+    content: \`<h1><%= name %>'s Eta source code!</h1>
+
+<%~ await includeFile("footer", { name }) %>
+<%~ await includeFile("./_includes/footer", { name }) %>\`,
     date: 1970-01-01T00:00:00.000Z,
     filters: {
       htmlUrl: [Function: htmlUrl],

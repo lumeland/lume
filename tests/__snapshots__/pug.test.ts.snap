@@ -68,7 +68,10 @@ snapshot[`build a site with eta 3`] = `
 {
   content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
   data: {
-    content: "extends /layout.pug\\nblock content\\n  h1 Home\\n",
+    content: "extends /layout.pug
+block content
+  h1 Home
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -90,9 +93,23 @@ snapshot[`build a site with eta 3`] = `
 
 snapshot[`build a site with eta 4`] = `
 {
-  content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>\\n<p>This is a paragraph</p>\\n<ul>\\n<li>Option 1</li>\\n<li>Option 2</li>\\n</ul></body></html>',
+  content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
+<p>This is a paragraph</p>
+<ul>
+<li>Option 1</li>
+<li>Option 2</li>
+</ul></body></html>',
   data: {
-    content: "extends ./_includes/layout.pug\\nblock content\\n  :md\\n    # This is a title\\n\\n    This is a paragraph\\n\\n    - Option 1\\n    - Option 2\\n",
+    content: "extends ./_includes/layout.pug
+block content
+  :md
+    # This is a title
+
+    This is a paragraph
+
+    - Option 1
+    - Option 2
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -116,7 +133,9 @@ snapshot[`build a site with eta 5`] = `
 {
   content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><header><h1>Pug example</h1></header></body></html>',
   data: {
-    content: "header\\n  h1 #{title}\\n",
+    content: "header
+  h1 #{title}
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},

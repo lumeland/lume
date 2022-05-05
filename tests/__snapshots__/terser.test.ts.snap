@@ -63,7 +63,10 @@ snapshot[`terser plugin 3`] = `
 {
   content: 'import{one as o,two as m}from"./numbers.js";console.log(o()+m());',
   data: {
-    content: 'import { one, two } from "./numbers.js";\\n\\nconsole.log(one() + two());\\n',
+    content: 'import { one, two } from "./numbers.js";
+
+console.log(one() + two());
+',
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -85,7 +88,20 @@ snapshot[`terser plugin 4`] = `
 {
   content: "export function one(){return 1}export function two(){return 2}",
   data: {
-    content: "\\nexport function one () {\\n  return {{ one }};\\n}\\n\\nexport function two () {\\n  return {{ two }};\\n}\\n/*\\nCommented code\\nexport function two () {\\n  return {{ two }};\\n}\\n*/",
+    content: "
+export function one () {
+  return {{ one }};
+}
+
+export function two () {
+  return {{ two }};
+}
+/*
+Commented code
+export function two () {
+  return {{ two }};
+}
+*/",
     date: 1970-01-01T00:00:00.000Z,
     one: 1,
     paginate: [GeneratorFunction: paginate],

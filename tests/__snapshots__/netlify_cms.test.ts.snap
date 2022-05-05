@@ -61,9 +61,23 @@ snapshot[`code_hightlight plugin 2`] = `
 
 snapshot[`code_hightlight plugin 3`] = `
 {
-  content: "backend:\\n  name: git-gateway\\n  branch: master\\nmedia_folder: img\\npublic_folder: /img\\nsite_url: 'https://example.com/'\\nlocal_backend: false\\n",
+  content: "backend:
+  name: git-gateway
+  branch: master
+media_folder: img
+public_folder: /img
+site_url: 'https://example.com/'
+local_backend: false
+",
   data: {
-    content: "backend:\\n  name: git-gateway\\n  branch: master\\nmedia_folder: img\\npublic_folder: /img\\nsite_url: 'https://example.com/'\\nlocal_backend: false\\n",
+    content: "backend:
+  name: git-gateway
+  branch: master
+media_folder: img
+public_folder: /img
+site_url: 'https://example.com/'
+local_backend: false
+",
     tags: [
     ],
     url: "/admin/config.yml",
@@ -81,9 +95,33 @@ snapshot[`code_hightlight plugin 3`] = `
 
 snapshot[`code_hightlight plugin 4`] = `
 {
-  content: '\\n        <!DOCTYPE html>\\n        <html lang="en">\\n        <head>\\n          <meta charset="UTF-8">\\n          <meta name="viewport" content="width=device-width, initial-scale=1.0">\\n          <title>Admin</title>\\n        </head>\\n        <body>\\n        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>\\n        </body>\\n        </html>\\n        ',
+  content: '
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Admin</title>
+        </head>
+        <body>
+        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+        </body>
+        </html>
+        ',
   data: {
-    content: '\\n        <!DOCTYPE html>\\n        <html lang="en">\\n        <head>\\n          <meta charset="UTF-8">\\n          <meta name="viewport" content="width=device-width, initial-scale=1.0">\\n          <title>Admin</title>\\n        </head>\\n        <body>\\n        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>\\n        </body>\\n        </html>\\n        ',
+    content: '
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Admin</title>
+        </head>
+        <body>
+        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+        </body>
+        </html>
+        ',
     tags: [
     ],
     url: "/admin/",

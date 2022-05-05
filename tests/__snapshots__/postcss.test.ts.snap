@@ -66,9 +66,25 @@ snapshot[`postcss plugin 2`] = `
 
 snapshot[`postcss plugin 3`] = `
 {
-  content: "::root {\\n  --color: #333;\\n  --background: #fff;\\n  --font-family: sans-serif;\\n}\\n.text {\\n  font-family: var(--font-family)\\n}\\n.text p {\\n    color: var(--color);\\n    box-shadow: 0 0 0.5em var(--background);\\n    -webkit-backface-visibility: hidden;\\n            backface-visibility: hidden;\\n  }\\n",
+  content: "::root {
+  --color: #333;
+  --background: #fff;
+  --font-family: sans-serif;
+}
+.text {
+  font-family: var(--font-family)
+}
+.text p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+  }
+",
   data: {
-    content: '@import "variables.css";\\n@import "./text.css";\\n',
+    content: '@import "variables.css";
+@import "./text.css";
+',
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -88,9 +104,27 @@ snapshot[`postcss plugin 3`] = `
 
 snapshot[`postcss plugin 4`] = `
 {
-  content: ".text {\\n  font-family: var(--font-family)\\n}\\n.text p {\\n    color: var(--color);\\n    box-shadow: 0 0 0.5em var(--background);\\n    -webkit-backface-visibility: hidden;\\n            backface-visibility: hidden;\\n  }\\n",
+  content: ".text {
+  font-family: var(--font-family)
+}
+.text p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+  }
+",
   data: {
-    content: ".text {\\n  font-family: var(--font-family);\\n\\n  & p {\\n    color: var(--color);\\n    box-shadow: 0 0 0.5em var(--background);\\n    backface-visibility: hidden;\\n  }\\n}\\n",
+    content: ".text {
+  font-family: var(--font-family);
+
+  & p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    backface-visibility: hidden;
+  }
+}
+",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -174,9 +208,13 @@ snapshot[`postcss plugin without includes 2`] = `
 
 snapshot[`postcss plugin without includes 3`] = `
 {
-  content: '@import "variables.css";\\n@import "./text.css";\\n',
+  content: '@import "variables.css";
+@import "./text.css";
+',
   data: {
-    content: '@import "variables.css";\\n@import "./text.css";\\n',
+    content: '@import "variables.css";
+@import "./text.css";
+',
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -196,9 +234,27 @@ snapshot[`postcss plugin without includes 3`] = `
 
 snapshot[`postcss plugin without includes 4`] = `
 {
-  content: ".text {\\n  font-family: var(--font-family)\\n}\\n.text p {\\n    color: var(--color);\\n    box-shadow: 0 0 0.5em var(--background);\\n    -webkit-backface-visibility: hidden;\\n            backface-visibility: hidden;\\n  }\\n",
+  content: ".text {
+  font-family: var(--font-family)
+}
+.text p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+  }
+",
   data: {
-    content: ".text {\\n  font-family: var(--font-family);\\n\\n  & p {\\n    color: var(--color);\\n    box-shadow: 0 0 0.5em var(--background);\\n    backface-visibility: hidden;\\n  }\\n}\\n",
+    content: ".text {
+  font-family: var(--font-family);
+
+  & p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    backface-visibility: hidden;
+  }
+}
+",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [

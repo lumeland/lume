@@ -66,14 +66,18 @@ snapshot[`build a site with liquid 2`] = `
 
 snapshot[`build a site with liquid 3`] = `
 {
-  content: '\\n["red","green","blue"]\\n',
+  content: '
+["red","green","blue"]
+',
   data: {
     colors: [
       "red",
       "green",
       "blue",
     ],
-    content: "\\n{{ colors | json }}\\n",
+    content: "
+{{ colors | json }}
+",
     date: 1970-01-01T00:00:00.000Z,
     layout: null,
     paginate: [GeneratorFunction: paginate],
@@ -95,9 +99,24 @@ snapshot[`build a site with liquid 3`] = `
 
 snapshot[`build a site with liquid 4`] = `
 {
-  content: '<!DOCTYPE html>\\n\\n<html lang="en">\\n  <head>\\n    <meta charset="utf-8">\\n    <title>Hello World</title>\\n  </head>\\n  <body>\\n    <main>\\n<h1>Hello World</h1>\\n</main>\\n  </body>\\n</html>\\n',
+  content: '<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+  </head>
+  <body>
+    <main>
+<h1>Hello World</h1>
+</main>
+  </body>
+</html>
+',
   data: {
-    content: "\\n<h1>{{ title }}</h1>\\n",
+    content: "
+<h1>{{ title }}</h1>
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -119,7 +138,18 @@ snapshot[`build a site with liquid 4`] = `
 
 snapshot[`build a site with liquid 5`] = `
 {
-  content: '<!DOCTYPE html>\\n\\n<html lang="en">\\n  <head>\\n    <meta charset="utf-8">\\n    <title>liquid filter example</title>\\n  </head>\\n  <body>\\n    <main><h1>LIQUID FILTER EXAMPLE</h1></main>\\n  </body>\\n</html>\\n',
+  content: '<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>liquid filter example</title>
+  </head>
+  <body>
+    <main><h1>LIQUID FILTER EXAMPLE</h1></main>
+  </body>
+</html>
+',
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -143,9 +173,42 @@ snapshot[`build a site with liquid 5`] = `
 
 snapshot[`build a site with liquid 6`] = `
 {
-  content: '<!DOCTYPE html>\\n\\n<html lang="en">\\n  <head>\\n    <meta charset="utf-8">\\n    <title>The title</title>\\n  </head>\\n  <body>\\n    <main><p><strong>THE TITLE</strong></p>\\n<p><strong>THE TITLE</strong></p>\\n<p><strong>THE TITLE</strong></p>\\n<p><strong>THE TITLE</strong></p>\\n<div>hello (async)</div>\\n\\n<ul>\\n  <li>This is a partial</li>\\n  <li>async helper in a partial (async)</li>\\n</ul>\\n<ul>\\n  <li>This is a partial</li>\\n  <li>async helper in a partial (async)</li>\\n</ul>\\n</main>\\n  </body>\\n</html>\\n',
+  content: '<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The title</title>
+  </head>
+  <body>
+    <main><p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<div>hello (async)</div>
+
+<ul>
+  <li>This is a partial</li>
+  <li>async helper in a partial (async)</li>
+</ul>
+<ul>
+  <li>This is a partial</li>
+  <li>async helper in a partial (async)</li>
+</ul>
+</main>
+  </body>
+</html>
+',
   data: {
-    content: '<p>{% upperCase title %}</p>\\n<p>{% upperCase "The title" %}</p>\\n<p>{% upperCaseAsync title %}</p>\\n<p>{% upperCaseAsync "The title" %}</p>\\n<div>{{ "hello" | returnAsync }}</div>\\n\\n{% include "partial.liquid" %}\\n{% include "./_includes/partial.liquid" %}\\n',
+    content: '<p>{% upperCase title %}</p>
+<p>{% upperCase "The title" %}</p>
+<p>{% upperCaseAsync title %}</p>
+<p>{% upperCaseAsync "The title" %}</p>
+<div>{{ "hello" | returnAsync }}</div>
+
+{% include "partial.liquid" %}
+{% include "./_includes/partial.liquid" %}
+',
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},

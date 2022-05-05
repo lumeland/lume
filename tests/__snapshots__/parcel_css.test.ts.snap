@@ -68,7 +68,9 @@ snapshot[`parcelCSS plugin 3`] = `
 {
   content: '@import "variables.css";@import "./text.css";',
   data: {
-    content: '@import "variables.css";\\n@import "./text.css";\\n',
+    content: '@import "variables.css";
+@import "./text.css";
+',
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -90,7 +92,16 @@ snapshot[`parcelCSS plugin 4`] = `
 {
   content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}",
   data: {
-    content: ".text {\\n  font-family: var(--font-family);\\n\\n  & p {\\n    color: var(--color);\\n    box-shadow: 0 0 0.5em var(--background);\\n    backface-visibility: hidden;\\n  }\\n}\\n",
+    content: ".text {
+  font-family: var(--font-family);
+
+  & p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    backface-visibility: hidden;
+  }
+}
+",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [

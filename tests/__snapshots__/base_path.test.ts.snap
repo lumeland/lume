@@ -61,9 +61,54 @@ snapshot[`base_path plugin 2`] = `
 
 snapshot[`base_path plugin 3`] = `
 {
-  content: '<!DOCTYPE html>\\n<html lang="en"><head>\\n  <meta charset="UTF-8">\\n  <meta http-equiv="X-UA-Compatible" content="IE=edge">\\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\\n  <title>Document</title>\\n  <link id="style-1" rel="stylesheet" href="/blog/style.css">\\n  <link id="style-2" rel="stylesheet" href="other-styles.css">\\n  <link id="style-3" rel="stylesheet" href="./other-styles.css">\\n  <link id="preload-1" rel="preload" href="/blog/fonts/cicle_fina-webfont.woff2" as="font" type="font/woff2" crossorigin="">\\n  <link id="preload-2" rel="preload" as="image" imagesrcset="/blog/image-400.jpg 400w, /blog/image-800.jpg 800w, /blog/image-1600.jpg 1600w" imagesizes="100vw">\\n</head>\\n<body>\\n  <a id="link-1" href="/blog/">Home</a>\\n  <a id="link-2" href="/blog/">Blog</a>\\n  <img id="img-1" src="/blog/img/avatar.png">\\n  <img id="img-2" srcset="/blog/image-400.jpg 400w, /blog/image-800.jpg 800w, /blog/image-1600.jpg 1600w" sizes="100vw" alt="">\\n  <picture>\\n    <source id="source-1" srcset="/blog/image.jpeg x1, /blog/image-big.jpeg">\\n  </picture>\\n  <script id="script-1" src="/blog/script.js"></script>\\n\\n</body></html>',
+  content: '<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link id="style-1" rel="stylesheet" href="/blog/style.css">
+  <link id="style-2" rel="stylesheet" href="other-styles.css">
+  <link id="style-3" rel="stylesheet" href="./other-styles.css">
+  <link id="preload-1" rel="preload" href="/blog/fonts/cicle_fina-webfont.woff2" as="font" type="font/woff2" crossorigin="">
+  <link id="preload-2" rel="preload" as="image" imagesrcset="/blog/image-400.jpg 400w, /blog/image-800.jpg 800w, /blog/image-1600.jpg 1600w" imagesizes="100vw">
+</head>
+<body>
+  <a id="link-1" href="/blog/">Home</a>
+  <a id="link-2" href="/blog/">Blog</a>
+  <img id="img-1" src="/blog/img/avatar.png">
+  <img id="img-2" srcset="/blog/image-400.jpg 400w, /blog/image-800.jpg 800w, /blog/image-1600.jpg 1600w" sizes="100vw" alt="">
+  <picture>
+    <source id="source-1" srcset="/blog/image.jpeg x1, /blog/image-big.jpeg">
+  </picture>
+  <script id="script-1" src="/blog/script.js"></script>
+
+</body></html>',
   data: {
-    content: '<!DOCTYPE html>\\n<html lang="en">\\n<head>\\n  <meta charset="UTF-8">\\n  <meta http-equiv="X-UA-Compatible" content="IE=edge">\\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\\n  <title>Document</title>\\n  <link id="style-1" rel="stylesheet" href="/style.css">\\n  <link id="style-2" rel="stylesheet" href="other-styles.css">\\n  <link id="style-3" rel="stylesheet" href="./other-styles.css">\\n  <link id="preload-1" rel="preload" href="/fonts/cicle_fina-webfont.woff2" as="font" type="font/woff2" crossorigin>\\n  <link id="preload-2" rel="preload" as="image" imagesrcset="/image-400.jpg 400w, /image-800.jpg 800w, /image-1600.jpg 1600w" imagesizes="100vw">\\n</head>\\n<body>\\n  <a id="link-1" href="/">Home</a>\\n  <a id="link-2" href="/blog/">Blog</a>\\n  <img id="img-1" src="/img/avatar.png">\\n  <img id="img-2" srcset="/image-400.jpg 400w, /image-800.jpg 800w, /image-1600.jpg 1600w" sizes="100vw" alt="">\\n  <picture>\\n    <source id="source-1" srcset="/blog/image.jpeg x1, /blog/image-big.jpeg">\\n  </picture>\\n  <script id="script-1" src="/script.js"></script>\\n</body>\\n</html>',
+    content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link id="style-1" rel="stylesheet" href="/style.css">
+  <link id="style-2" rel="stylesheet" href="other-styles.css">
+  <link id="style-3" rel="stylesheet" href="./other-styles.css">
+  <link id="preload-1" rel="preload" href="/fonts/cicle_fina-webfont.woff2" as="font" type="font/woff2" crossorigin>
+  <link id="preload-2" rel="preload" as="image" imagesrcset="/image-400.jpg 400w, /image-800.jpg 800w, /image-1600.jpg 1600w" imagesizes="100vw">
+</head>
+<body>
+  <a id="link-1" href="/">Home</a>
+  <a id="link-2" href="/blog/">Blog</a>
+  <img id="img-1" src="/img/avatar.png">
+  <img id="img-2" srcset="/image-400.jpg 400w, /image-800.jpg 800w, /image-1600.jpg 1600w" sizes="100vw" alt="">
+  <picture>
+    <source id="source-1" srcset="/blog/image.jpeg x1, /blog/image-big.jpeg">
+  </picture>
+  <script id="script-1" src="/script.js"></script>
+</body>
+</html>',
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},

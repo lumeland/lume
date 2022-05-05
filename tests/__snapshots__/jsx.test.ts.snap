@@ -264,9 +264,15 @@ snapshot[`build a site with jsx/tsx modules 6`] = `
 
 snapshot[`build a site with jsx/tsx modules 7`] = `
 {
-  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1>Hello world</h1>\\n<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>\\n</div></main></body></html>',
+  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1>Hello world</h1>
+<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+</div></main></body></html>',
   data: {
-    content: "\\n# Hello world\\n\\nThis is a **markdown** text. [Go home](/)\\n",
+    content: "
+# Hello world
+
+This is a **markdown** text. [Go home](/)
+",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
