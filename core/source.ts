@@ -112,7 +112,7 @@ export default class Source {
 
         for (const staticFile of directory.staticFiles) {
           if (staticFile.src === file) {
-            staticFile.update = true;
+            delete staticFile.saved;
             return;
           }
         }
@@ -120,7 +120,6 @@ export default class Source {
         directory.setStaticFile({
           src: file,
           dest: join(dest, file.slice(src.length)),
-          update: true,
         });
 
         return;

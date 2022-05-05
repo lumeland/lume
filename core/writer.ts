@@ -101,7 +101,12 @@ export default class Writer {
 
   /** Copy a static file in the dest folder */
   async copyFile(file: StaticFile) {
-    const { src, dest } = file;
+    const { src, dest, saved, removed } = file;
+
+    if (saved || removed) {
+      return;
+    }
+
     const pathFrom = join(this.src, src);
     const pathTo = join(this.dest, dest);
 
@@ -109,16 +114,17 @@ export default class Writer {
       await ensureDir(dirname(pathTo));
       await Deno.copyFile(pathFrom, pathTo);
       this.logger.log(`➡️ ${normalizePath(src)} <dim>${dest}</dim>`);
+      file.saved = true;
     } catch (err) {
       if (err instanceof Deno.errors.NotFound) {
         try {
           await Deno.remove(pathTo);
           this.logger.log(`❌ <dim>${dest}</dim>`);
+          file.removed = true;
         } catch {
           // Ignored
         }
       }
-      //Ignored
     }
   }
 

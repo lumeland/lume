@@ -73,6 +73,7 @@ snapshot[`inline plugin 3`] = `
 [
   {
     dest: "/favicon2.png",
+    saved: true,
     src: "/favicon.png",
   },
 ]

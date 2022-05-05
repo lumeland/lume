@@ -453,7 +453,7 @@ export default class Site {
     }
 
     // Copy static files
-    this.files = this.source.getStaticFiles((file) => !!file.update);
+    this.files = this.source.getStaticFiles();
     for (const staticFile of this.files) {
       await this.writer.copyFile(staticFile);
     }

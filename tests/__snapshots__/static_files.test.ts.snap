@@ -1,0 +1,85 @@
+export const snapshot = {};
+
+snapshot[`Copy static files 1`] = `0`;
+
+snapshot[`Copy static files 2`] = `
+{
+  formats: [
+    {
+      includesPath: undefined,
+      key: ".tmpl.ts",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".tmpl.js",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".tmpl.json",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".json",
+      pageType: undefined,
+    },
+    {
+      includesPath: undefined,
+      key: ".md",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".js",
+      pageType: undefined,
+    },
+    {
+      includesPath: undefined,
+      key: ".ts",
+      pageType: undefined,
+    },
+    {
+      includesPath: "_includes",
+      key: ".njk",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".yaml",
+      pageType: "page",
+    },
+    {
+      includesPath: undefined,
+      key: ".yml",
+      pageType: "page",
+    },
+  ],
+}
+`;
+
+snapshot[`Copy static files 3`] = `
+[
+  {
+    dest: "/other/one",
+    saved: true,
+    src: "/other/one",
+  },
+  {
+    dest: "/other/two",
+    saved: true,
+    src: "/other/two",
+  },
+  {
+    dest: "/one.yes",
+    saved: true,
+    src: "/static/one.yes",
+  },
+  {
+    dest: "/two.yes",
+    saved: true,
+    src: "/static/two.yes",
+  },
+]
+`;

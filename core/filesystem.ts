@@ -331,7 +331,8 @@ export class Directory extends Base {
 export interface StaticFile {
   src: string;
   dest: string;
-  update?: boolean;
+  saved?: boolean;
+  removed?: boolean;
 }
 
 /** The .src property for a Page or Directory */
