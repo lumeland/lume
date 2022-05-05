@@ -10,5 +10,5 @@
 [url](https://domain.com)
 [url](other.md?tab=1)
 [url](other.md#tab-1)
-[url](~/statics/)
+[url](~/statics/robots.txt)
 [url](tílde-and-eñe.md)

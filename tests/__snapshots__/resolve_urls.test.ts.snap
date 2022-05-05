@@ -107,9 +107,9 @@ snapshot[`relative_url plugin 4`] = `
 
 snapshot[`relative_url plugin 5`] = `
 {
-  content: '<!DOCTYPE html>\\n<html><head></head><body><p><a href="/bar">url</a>\\n<a href="foo">url</a>\\n<a href="./foo">url</a>\\n<a href="../foo">url</a>\\n<a href="#foo">url</a>\\n<a href="?foo=bar">url</a>\\n<a href="/other/">url</a>\\n<a href="/other/">url</a>\\n<a href="https://domain.com">url</a>\\n<a href="/other/?tab=1">url</a>\\n<a href="/other/#tab-1">url</a>\\n<a href="/">url</a>\\n<a href="/tilde-and-ene/">url</a></p>\\n</body></html>',
+  content: '<!DOCTYPE html>\\n<html><head></head><body><p><a href="/bar">url</a>\\n<a href="foo">url</a>\\n<a href="./foo">url</a>\\n<a href="../foo">url</a>\\n<a href="#foo">url</a>\\n<a href="?foo=bar">url</a>\\n<a href="/other/">url</a>\\n<a href="/other/">url</a>\\n<a href="https://domain.com">url</a>\\n<a href="/other/?tab=1">url</a>\\n<a href="/other/#tab-1">url</a>\\n<a href="/robots.txt">url</a>\\n<a href="/tilde-and-ene/">url</a></p>\\n</body></html>',
   data: {
-    content: "<!-- deno-fmt-ignore-file -->\\n[url](/bar)\\n[url](foo)\\n[url](./foo)\\n[url](../foo)\\n[url](#foo)\\n[url](?foo=bar)\\n[url](~/other.md)\\n[url](other.md)\\n[url](https://domain.com)\\n[url](other.md?tab=1)\\n[url](other.md#tab-1)\\n[url](~/statics/)\\n[url](tílde-and-eñe.md)\\n",
+    content: "<!-- deno-fmt-ignore-file -->\\n[url](/bar)\\n[url](foo)\\n[url](./foo)\\n[url](../foo)\\n[url](#foo)\\n[url](?foo=bar)\\n[url](~/other.md)\\n[url](other.md)\\n[url](https://domain.com)\\n[url](other.md?tab=1)\\n[url](other.md#tab-1)\\n[url](~/statics/robots.txt)\\n[url](tílde-and-eñe.md)\\n",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
