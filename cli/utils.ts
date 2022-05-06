@@ -1,6 +1,6 @@
 import lume from "../mod.ts";
 import { exists } from "../deps/fs.ts";
-import { join, resolve, posix, toFileUrl } from "../deps/path.ts";
+import { join, posix, resolve, toFileUrl } from "../deps/path.ts";
 import { dim } from "../deps/colors.ts";
 import { Exception } from "../core/errors.ts";
 

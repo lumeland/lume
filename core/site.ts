@@ -414,10 +414,9 @@ export default class Site {
     await this.source.load();
 
     // Copy static files
-    this.files = this.source.getStaticFiles();
-    for (const staticFile of this.files) {
-      await this.writer.copyFile(staticFile);
-    }
+    const staticFiles = await this.writer.copyFiles(
+      this.source.getStaticFiles(),
+    );
 
     // Load the components and prepare the data
     await this.#prepareToBuild();
@@ -434,7 +433,7 @@ export default class Site {
       return;
     }
 
-    await this.dispatchEvent({ type: "afterBuild", pages });
+    await this.dispatchEvent({ type: "afterBuild", pages, staticFiles });
   }
 
   /** Reload some files that might be changed */
@@ -453,10 +452,9 @@ export default class Site {
     }
 
     // Copy static files
-    this.files = this.source.getStaticFiles();
-    for (const staticFile of this.files) {
-      await this.writer.copyFile(staticFile);
-    }
+    const staticFiles = await this.writer.copyFiles(
+      this.source.getStaticFiles(),
+    );
 
     // Reload the components and prepare the data
     await this.#prepareToBuild();
@@ -474,7 +472,12 @@ export default class Site {
       return;
     }
 
-    await this.dispatchEvent({ type: "afterUpdate", files, pages });
+    await this.dispatchEvent({
+      type: "afterUpdate",
+      files,
+      pages,
+      staticFiles,
+    });
   }
 
   /**
@@ -700,6 +703,12 @@ export interface SiteEvent extends Event {
    * contains the list of pages that have been saved
    */
   pages?: Page[];
+
+  /**
+   * Available only in "afterBuild" and "afterUpdate"
+   * contains the list of static files that have been copied
+   */
+  staticFiles?: StaticFile[];
 }
 
 /** The available event types */

@@ -1,4 +1,4 @@
-import { relative, join } from "../deps/path.ts";
+import { join, relative } from "../deps/path.ts";
 import { normalizePath } from "./utils.ts";
 import Events from "./events.ts";
 
@@ -108,9 +108,7 @@ export default class Watcher {
         continue;
       }
 
-      paths.forEach((path) =>
-        changes.add(normalizePath(relative(root, path)))
-      );
+      paths.forEach((path) => changes.add(normalizePath(relative(root, path))));
 
       // Debounce
       clearTimeout(timer);

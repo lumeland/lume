@@ -99,12 +99,33 @@ export default class Writer {
     return true;
   }
 
-  /** Copy a static file in the dest folder */
-  async copyFile(file: StaticFile) {
+  /**
+   * Copy the static files in the dest folder
+   */
+  async copyFiles(files: StaticFile[]): Promise<StaticFile[]> {
+    const copyFiles: StaticFile[] = [];
+
+    await concurrent(
+      files,
+      async (file) => {
+        if (await this.copyFile(file)) {
+          copyFiles.push(file);
+        }
+      },
+    );
+
+    return copyFiles;
+  }
+
+  /**
+   * Copy a static file in the dest folder
+   * Returns a boolean indicating if the file has saved
+   */
+  async copyFile(file: StaticFile): Promise<boolean> {
     const { src, dest, saved, removed } = file;
 
     if (saved || removed) {
-      return;
+      return false;
     }
 
     const pathFrom = posix.join(this.src, src);
@@ -113,8 +134,9 @@ export default class Writer {
     try {
       await ensureDir(posix.dirname(pathTo));
       await Deno.copyFile(pathFrom, pathTo);
-      this.logger.log(`➡️ ${dest} <dim>${src}</dim>`);
+      this.logger.log(`🔥 ${dest} <dim>${src}</dim>`);
       file.saved = true;
+      return true;
     } catch (err) {
       if (err instanceof Deno.errors.NotFound) {
         try {
@@ -126,6 +148,8 @@ export default class Writer {
         }
       }
     }
+
+    return false;
   }
 
   /** Empty the dest folder */

@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `site.ignore()` affects to static files copied with `site.copy()`.
   This allows to copy a entire directory with `site.copy("statics")`
   but ignoring some subdirectories with `site.ignore("statics/ignored-folder")`.
+- The `afterBuild` and `afterUpdate` events have the `staticFiles` property
+  containing the static files that have been copied.
 
 ### Changed
 - Use posix path style everywhere, even on Windows.
