@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Middewares have a third argument with the connection info.
 - Support for nested components in Nunjucks using body helpers [#189].
 - `site.ignore()` now supports functions [#53].
+- `site.ignore()` affects to static files copied with `site.copy()`.
+  This allows to copy a entire directory with `site.copy("statics")`
+  but ignoring some subdirectories with `site.ignore("statics/ignored-folder")`.
+
+### Changed
+- Use posix path style everywhere, even on Windows.
 
 ### Fixed
 - Inline plugin generates invalid javascript [#192].
