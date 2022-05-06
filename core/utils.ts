@@ -157,9 +157,13 @@ export function isPlainObject(obj: unknown) {
  * and ensure it starts with "/".
  */
 export function normalizePath(path: string) {
-  // Is absolute Windows path (C:\\...)
-  if (SEP !== "/" && path.includes(`:${SEP}`)) {
-    path.replaceAll(SEP, "/");
+  if (SEP !== "/") {
+    path = path.replaceAll(SEP, "/");
+
+    // Is absolute Windows path (C:/...)
+    if (path.includes(":/")) {
+      return path;
+    }
   }
 
   return posix.join("/", path);

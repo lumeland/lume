@@ -1,4 +1,4 @@
-import { posix } from "../deps/path.ts";
+import { relative, join } from "../deps/path.ts";
 import { normalizePath } from "./utils.ts";
 import Events from "./events.ts";
 
@@ -99,7 +99,7 @@ export default class Watcher {
 
         return ignore
           ? !ignore.some((ignore) =>
-            path.startsWith(posix.join(root, ignore, "/"))
+            path.startsWith(normalizePath(join(root, ignore, "/")))
           )
           : true;
       });
@@ -109,7 +109,7 @@ export default class Watcher {
       }
 
       paths.forEach((path) =>
-        changes.add(normalizePath(posix.relative(root, path)))
+        changes.add(normalizePath(relative(root, path)))
       );
 
       // Debounce

@@ -1,6 +1,6 @@
 import lume from "../mod.ts";
 import { exists } from "../deps/fs.ts";
-import { posix, toFileUrl } from "../deps/path.ts";
+import { join, resolve, posix, toFileUrl } from "../deps/path.ts";
 import { dim } from "../deps/colors.ts";
 import { Exception } from "../core/errors.ts";
 
@@ -11,10 +11,10 @@ export async function getConfigFile(
   root: string,
   config?: string,
 ): Promise<string | undefined> {
-  root = posix.resolve(Deno.cwd(), root);
+  root = resolve(Deno.cwd(), root);
 
   if (config) {
-    const path = posix.join(root, config);
+    const path = join(root, config);
 
     if (await exists(path)) {
       return path;
