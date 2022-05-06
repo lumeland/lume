@@ -1,6 +1,6 @@
 import { posix } from "../deps/path.ts";
 import { emptyDir, ensureDir } from "../deps/fs.ts";
-import { concurrent, normalizePath, sha1 } from "./utils.ts";
+import { concurrent, sha1 } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
 import type { Page, StaticFile } from "./filesystem.ts";
@@ -113,7 +113,7 @@ export default class Writer {
     try {
       await ensureDir(posix.dirname(pathTo));
       await Deno.copyFile(pathFrom, pathTo);
-      this.logger.log(`➡️ ${normalizePath(src)} <dim>${dest}</dim>`);
+      this.logger.log(`➡️ ${dest} <dim>${src}</dim>`);
       file.saved = true;
     } catch (err) {
       if (err instanceof Deno.errors.NotFound) {
