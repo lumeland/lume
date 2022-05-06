@@ -414,9 +414,8 @@ export default class Site {
     await this.source.load();
 
     // Copy static files
-    const staticFiles = await this.writer.copyFiles(
-      this.source.getStaticFiles(),
-    );
+    this.files = this.source.getStaticFiles();
+    const staticFiles = await this.writer.copyFiles(this.files);
 
     // Load the components and prepare the data
     await this.#prepareToBuild();
@@ -452,9 +451,8 @@ export default class Site {
     }
 
     // Copy static files
-    const staticFiles = await this.writer.copyFiles(
-      this.source.getStaticFiles(),
-    );
+    this.files = this.source.getStaticFiles();
+    const staticFiles = await this.writer.copyFiles(this.files);
 
     // Reload the components and prepare the data
     await this.#prepareToBuild();

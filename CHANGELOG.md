@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   but ignoring some subdirectories with `site.ignore("statics/ignored-folder")`.
 - The `afterBuild` and `afterUpdate` events have the `staticFiles` property
   containing the static files that have been copied.
+- New property `site.files` containing all static files that will be copied.
+  It's like `site.pages` but for static files.
 
 ### Changed
 - Use posix path style everywhere, even on Windows.
