@@ -1,5 +1,5 @@
 import { Liquid } from "../deps/liquid.ts";
-import { join } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
@@ -66,7 +66,7 @@ export class LiquidEngine implements Engine {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
-        this.liquid.parse(content, join(this.basePath, filename)),
+        this.liquid.parse(content, posix.join(this.basePath, filename)),
       );
     }
     return this.cache.get(filename)!;

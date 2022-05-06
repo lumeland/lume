@@ -1,5 +1,5 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
-import { SEP, toFileUrl } from "../deps/path.ts";
+import { posix, SEP, toFileUrl } from "../deps/path.ts";
 
 export const baseUrl = new URL("../", import.meta.url);
 
@@ -153,10 +153,16 @@ export function isPlainObject(obj: unknown) {
 
 /**
  * Convert the Windows paths (that use the separator "\")
- * to Posix paths (with the separator "/").
+ * to Posix paths (with the separator "/")
+ * and ensure it starts with "/".
  */
 export function normalizePath(path: string) {
-  return SEP === "/" ? path : path.replaceAll(SEP, "/");
+  // Is absolute Windows path (C:\\...)
+  if (SEP !== "/" && path.includes(`:${SEP}`)) {
+    path.replaceAll(SEP, "/");
+  }
+
+  return posix.join("/", path);
 }
 
 /** Convert an HTMLDocument instance to a string */

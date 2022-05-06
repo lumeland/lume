@@ -1,4 +1,4 @@
-import { dirname, join } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 import { Exception } from "./errors.ts";
 
 import type { Data, Formats, Reader } from "../core.ts";
@@ -55,9 +55,9 @@ export default class IncludesLoader {
         });
       }
 
-      finalPath = join("/", dirname(from), path);
+      finalPath = posix.join("/", posix.dirname(from), path);
     } else {
-      finalPath = join("/", includesPath || this.includes, path);
+      finalPath = posix.join("/", includesPath || this.includes, path);
     }
 
     return [

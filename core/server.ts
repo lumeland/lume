@@ -1,4 +1,4 @@
-import { join, SEP } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 import Events from "./events.ts";
 import { serveFile, Server as HttpServer } from "../deps/http.ts";
 
@@ -105,10 +105,10 @@ export default class Server {
   async serveFile(request: Request): Promise<Response> {
     const url = new URL(request.url);
     const pathname = decodeURIComponent(url.pathname);
-    let path = join(this.options.root, pathname);
+    let path = posix.join(this.options.root, pathname);
 
     try {
-      if (path.endsWith(SEP)) {
+      if (path.endsWith("/")) {
         path += "index.html";
       }
 
@@ -119,7 +119,7 @@ export default class Server {
         return new Response(null, {
           status: 301,
           headers: {
-            location: join(pathname, "/"),
+            location: posix.join(pathname, "/"),
           },
         });
       }

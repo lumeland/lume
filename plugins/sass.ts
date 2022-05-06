@@ -1,6 +1,6 @@
 import { merge } from "../core/utils.ts";
 import { SassFormats, SassOptions, str } from "../deps/denosass.ts";
-import { dirname } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 
 import type { Page, Site } from "../core.ts";
 
@@ -40,7 +40,7 @@ export default function (userOptions?: Partial<Options>) {
       const code = page.content as string;
       const filename = site.src(page.src.path + page.src.ext);
       const sassOptions: SassOptions = {
-        load_paths: [...includes, dirname(filename)],
+        load_paths: [...includes, posix.dirname(filename)],
         style: options.format,
         quiet: site.options.quiet,
       };

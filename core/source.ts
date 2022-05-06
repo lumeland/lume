@@ -1,4 +1,4 @@
-import { basename, dirname, join, SEP } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 import { concurrent, normalizePath } from "./utils.ts";
 import { Directory, Page, StaticFile } from "./filesystem.ts";
 
@@ -49,7 +49,7 @@ export default class Source {
   }
 
   addIgnoredPath(path: string) {
-    this.ignored.add(join("/", path));
+    this.ignored.add(normalizePath(path));
   }
 
   addIgnoreFilter(filter: ScopeFilter) {
@@ -57,7 +57,7 @@ export default class Source {
   }
 
   addStaticPath(from: string, to: string) {
-    this.staticPaths.set(join("/", from), join("/", to));
+    this.staticPaths.set(normalizePath(from), normalizePath(to));
   }
 
   /** Returns all pages found */
@@ -92,23 +92,23 @@ export default class Source {
   async update(file: string): Promise<void> {
     // Check if the file should be ignored
     for (const path of this.ignored) {
-      if (file === path || file.startsWith(join(path, "/"))) {
+      if (file === path || file.startsWith(path + "/")) {
         return;
       }
     }
 
-    if (this.#isFiltered(file)) {
+    if (this.filters.some((filter) => filter(file))) {
       return;
     }
-
-    const normalized = normalizePath(file);
 
     // It's a static file
     for (const entry of this.staticPaths) {
       const [src, dest] = entry;
 
-      if (file === src || file.startsWith(join(src, "/"))) {
-        const [directory] = await this.#getOrCreateDirectory(dirname(src));
+      if (file === src || file.startsWith(src + "/")) {
+        const [directory] = await this.#getOrCreateDirectory(
+          posix.dirname(src),
+        );
 
         for (const staticFile of directory.staticFiles) {
           if (staticFile.src === file) {
@@ -119,7 +119,7 @@ export default class Source {
 
         directory.setStaticFile({
           src: file,
-          dest: join(dest, file.slice(src.length)),
+          dest: posix.join(dest, file.slice(src.length)),
         });
 
         return;
@@ -127,7 +127,7 @@ export default class Source {
     }
 
     // It's inside a _data file or directory
-    const matches = normalized.match(/(.*)\/_data(?:\.\w+$|\/)/);
+    const matches = file.match(/(.*)\/_data(?:\.\w+$|\/)/);
 
     if (matches) {
       const [directory, created] = await this.#getOrCreateDirectory(matches[1]);
@@ -138,12 +138,12 @@ export default class Source {
     }
 
     // Any path segment starting with _ or .
-    if (normalized.includes("/_") || normalized.includes("/.")) {
+    if (file.includes("/_") || file.includes("/.")) {
       return;
     }
 
     // Default
-    return await this.#updateFile(normalized);
+    return await this.#updateFile(file);
   }
 
   /** Return the File or Directory of a path */
@@ -174,13 +174,13 @@ export default class Source {
   /** Reloads a file */
   async #updateFile(file: string) {
     const entry = {
-      name: basename(file),
+      name: posix.basename(file),
       isFile: true,
       isDirectory: false,
       isSymlink: false,
     };
 
-    const [directory] = await this.#getOrCreateDirectory(dirname(file));
+    const [directory] = await this.#getOrCreateDirectory(posix.dirname(file));
     await this.#loadEntry(directory, entry);
   }
 
@@ -192,11 +192,11 @@ export default class Source {
     if (this.root) {
       dir = this.root;
     } else {
-      dir = this.root = new Directory({ path: SEP });
+      dir = this.root = new Directory({ path: "/" });
       await this.#loadData(dir);
     }
 
-    for (const name of normalizePath(path).split("/")) {
+    for (const name of path.split("/")) {
       if (!name) {
         continue;
       }
@@ -223,7 +223,7 @@ export default class Source {
       return;
     }
 
-    const path = join(directory.src.path, entry.name);
+    const path = posix.join(directory.src.path, entry.name);
 
     // It's a static file/folder
     if (this.staticPaths.has(path)) {
@@ -236,7 +236,7 @@ export default class Source {
       return;
     }
 
-    if (this.#isFiltered(path)) {
+    if (this.filters.some((filter) => filter(path))) {
       return;
     }
 
@@ -260,14 +260,14 @@ export default class Source {
 
   /** Read the static files in a directory */
   async #loadStaticFiles(directory: Directory, entry: Deno.DirEntry) {
-    const path = join(directory.src.path, entry.name);
-    const dest = this.staticPaths.get(path);
+    const src = posix.join(directory.src.path, entry.name);
+    const dest = this.staticPaths.get(src);
 
     if (!dest) {
       return;
     }
 
-    await this.#scanStaticFiles(directory, entry, path, dest);
+    await this.#scanStaticFiles(directory, entry, src, dest);
   }
 
   async #scanStaticFiles(
@@ -281,7 +281,7 @@ export default class Source {
       return;
     }
 
-    if (this.#isFiltered(src)) {
+    if (this.filters.some((filter) => filter(src))) {
       return;
     }
 
@@ -295,8 +295,8 @@ export default class Source {
         await this.#scanStaticFiles(
           directory,
           entry,
-          join(src, entry.name),
-          join(dest, entry.name),
+          posix.join(src, entry.name),
+          posix.join(dest, entry.name),
         );
       }
     }
@@ -309,12 +309,12 @@ export default class Source {
     await concurrent(
       this.reader.readDir(directory.src.path),
       async (entry) => {
-        const path = join(directory.src.path, entry.name);
+        const path = posix.join(directory.src.path, entry.name);
 
         if (this.ignored.has(path)) {
           return;
         }
-        if (this.#isFiltered(path)) {
+        if (this.filters.some((filter) => filter(path))) {
           return;
         }
 
@@ -326,14 +326,5 @@ export default class Source {
     );
 
     directory.baseData = data;
-  }
-
-  #isFiltered(path: string): boolean {
-    if (!this.filters.length) {
-      return false;
-    }
-
-    const normalized = normalizePath(path);
-    return this.filters.some((filter) => filter(normalized));
   }
 }

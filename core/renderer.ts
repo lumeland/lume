@@ -1,4 +1,4 @@
-import { dirname, extname, posix } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 import { concurrent } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
@@ -125,7 +125,7 @@ export default class Renderer {
     if (typeof url === "string") {
       // Relative URL
       if (url.startsWith("./") || url.startsWith("../")) {
-        url = posix.join(dirname(page.dest.path), url);
+        url = posix.join(posix.dirname(page.dest.path), url);
       } else if (!url.startsWith("/")) {
         throw new Exception(
           `The url variable must start with "/", "./" or "../"`,
@@ -137,7 +137,7 @@ export default class Renderer {
         dest.path = `${url}index`;
         dest.ext = ".html";
       } else {
-        dest.ext = extname(url);
+        dest.ext = posix.extname(url);
         dest.path = dest.ext ? url.slice(0, -dest.ext.length) : url;
       }
     } else if (!dest.ext) {

@@ -1,6 +1,6 @@
 import { Site } from "../core.ts";
 import * as eta from "../deps/eta.ts";
-import { join } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
@@ -42,7 +42,7 @@ export class EtaEngine implements Engine {
   }
 
   deleteCache(file: string): void {
-    this.engine.templates.remove(join(this.basePath, file));
+    this.engine.templates.remove(posix.join(this.basePath, file));
   }
 
   render(content: string, data: Data, filename: string) {
@@ -60,7 +60,7 @@ export class EtaEngine implements Engine {
   }
 
   getTemplate(content: string, filename: string, options?: Partial<EtaConfig>) {
-    filename = join(this.basePath, filename);
+    filename = posix.join(this.basePath, filename);
 
     if (!this.engine.templates.get(filename)) {
       this.engine.templates.define(

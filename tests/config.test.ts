@@ -1,6 +1,5 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
-import { assertEqualsPaths, platformPath } from "./utils.ts";
 
 Deno.test("default configuration", () => {
   const site = lume();
@@ -23,19 +22,19 @@ Deno.test("static files configuration", () => {
 
   site.copy("img");
   equals(staticPaths.size, 1);
-  equals(staticPaths.has(platformPath("/img")), true);
-  equals(staticPaths.get(platformPath("/img")), platformPath("/img"));
+  equals(staticPaths.has("/img"), true);
+  equals(staticPaths.get("/img"), "/img");
 
   site.copy("statics/favicon.ico", "favicon.ico");
   equals(staticPaths.size, 2);
   equals(
-    staticPaths.get(platformPath("/statics/favicon.ico")),
-    platformPath("/favicon.ico"),
+    staticPaths.get("/statics/favicon.ico"),
+    "/favicon.ico",
   );
 
   site.copy("css", ".");
   equals(staticPaths.size, 3);
-  equals(staticPaths.get(platformPath("/css")), platformPath("/"));
+  equals(staticPaths.get("/css"), "/");
 });
 
 Deno.test("ignored files configuration", () => {
@@ -44,23 +43,23 @@ Deno.test("ignored files configuration", () => {
 
   equals(ignored.size, 6);
   equals(filters.length, 0);
-  equals(ignored.has(platformPath("/node_modules")), true);
-  equals(ignored.has(platformPath("/_site")), true);
-  equals(ignored.has(platformPath("/_components")), true);
-  equals(ignored.has(platformPath("/_includes")), true);
-  equals(ignored.has(platformPath("/import_map.json")), true);
-  equals(ignored.has(platformPath("/deno.json")), true);
+  equals(ignored.has("/node_modules"), true);
+  equals(ignored.has("/_site"), true);
+  equals(ignored.has("/_components"), true);
+  equals(ignored.has("/_includes"), true);
+  equals(ignored.has("/import_map.json"), true);
+  equals(ignored.has("/deno.json"), true);
 
   site.ignore("README.md");
   equals(ignored.size, 7);
   equals(filters.length, 0);
-  equals(ignored.has(platformPath("/README.md")), true);
+  equals(ignored.has("/README.md"), true);
 
   site.ignore("file2", "file3", "README.md");
   equals(ignored.size, 9);
   equals(filters.length, 0);
-  equals(ignored.has(platformPath("/file2")), true);
-  equals(ignored.has(platformPath("/file3")), true);
+  equals(ignored.has("/file2"), true);
+  equals(ignored.has("/file3"), true);
 
   const filter = (path: string) => path.includes("file");
   site.ignore(filter);
@@ -335,18 +334,18 @@ Deno.test("src/dest paths", () => {
   equals(site.options.src, "src-files");
   equals(site.options.dest, "dist");
 
-  assertEqualsPaths(site.src(), "/projects/my-website/src-files");
-  assertEqualsPaths(site.src("."), "/projects/my-website/src-files");
-  assertEqualsPaths(site.src("/"), "/projects/my-website/src-files/");
-  assertEqualsPaths(
+  equals(site.src(), "/projects/my-website/src-files");
+  equals(site.src("."), "/projects/my-website/src-files");
+  equals(site.src("/"), "/projects/my-website/src-files/");
+  equals(
     site.src("pages/posts"),
     "/projects/my-website/src-files/pages/posts",
   );
 
-  assertEqualsPaths(site.dest(), "/projects/my-website/dist");
-  assertEqualsPaths(site.dest("."), "/projects/my-website/dist");
-  assertEqualsPaths(site.dest("/"), "/projects/my-website/dist/");
-  assertEqualsPaths(
+  equals(site.dest(), "/projects/my-website/dist");
+  equals(site.dest("."), "/projects/my-website/dist");
+  equals(site.dest("/"), "/projects/my-website/dist/");
+  equals(
     site.dest("pages/posts"),
     "/projects/my-website/dist/pages/posts",
   );

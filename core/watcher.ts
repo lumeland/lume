@@ -1,4 +1,5 @@
-import { join, relative } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
+import { normalizePath } from "./utils.ts";
 import Events from "./events.ts";
 
 import type { Event, EventListener, EventOptions } from "../core.ts";
@@ -88,7 +89,7 @@ export default class Watcher {
     };
 
     for await (const event of watcher) {
-      let { paths } = event;
+      let paths = event.paths.map(normalizePath);
 
       // Filter ignored paths
       paths = paths.filter((path) => {
@@ -97,7 +98,9 @@ export default class Watcher {
         }
 
         return ignore
-          ? !ignore.some((ignore) => path.startsWith(join(root, ignore, "/")))
+          ? !ignore.some((ignore) =>
+            path.startsWith(posix.join(root, ignore, "/"))
+          )
           : true;
       });
 
@@ -105,7 +108,9 @@ export default class Watcher {
         continue;
       }
 
-      paths.forEach((path) => changes.add(join("/", relative(root, path))));
+      paths.forEach((path) =>
+        changes.add(normalizePath(posix.relative(root, path)))
+      );
 
       // Debounce
       clearTimeout(timer);

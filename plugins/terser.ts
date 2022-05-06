@@ -1,5 +1,5 @@
 import { minify } from "../deps/terser.ts";
-import { basename } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 import { merge } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
 import { Page } from "../core/filesystem.ts";
@@ -46,7 +46,7 @@ export default function (userOptions?: Partial<Options>) {
       if (options.sourceMap) {
         terserOptions.sourceMap = {
           filename,
-          url: basename(filename) + ".map",
+          url: posix.basename(filename) + ".map",
         };
       }
 

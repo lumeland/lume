@@ -1,5 +1,5 @@
 import { parse } from "./deps/flags.ts";
-import { resolve } from "./deps/path.ts";
+import { posix } from "./deps/path.ts";
 import Site from "./core/site.ts";
 import url, { Options as UrlOptions } from "./plugins/url.ts";
 import json, { Options as JsonOptions } from "./plugins/json.ts";
@@ -78,7 +78,7 @@ function getOptionsFromCli(): Partial<Options> {
   const overrides: Partial<Options> = {};
 
   if (options.root) {
-    overrides.cwd = resolve(Deno.cwd(), options.root);
+    overrides.cwd = posix.resolve(Deno.cwd(), options.root);
   }
 
   if (options.src) {

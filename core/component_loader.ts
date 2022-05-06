@@ -1,4 +1,5 @@
-import { basename, join } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
+import { normalizePath } from "./utils.ts";
 
 import type { Data, Formats, Reader } from "../core.ts";
 
@@ -30,7 +31,7 @@ export default class ComponentsLoader {
     path: string,
     extraData: Data = {},
   ): Promise<ComponentsTree | undefined> {
-    path = join("/", path);
+    path = normalizePath(path);
     const info = await this.reader.getInfo(path);
 
     if (!info?.isDirectory) {
@@ -55,7 +56,7 @@ export default class ComponentsLoader {
         continue;
       }
 
-      const fullPath = join(path, entry.name);
+      const fullPath = posix.join(path, entry.name);
 
       if (entry.isDirectory) {
         const subcomponents = await this.#loadDirectory(fullPath, extraData);
@@ -98,7 +99,7 @@ export default class ComponentsLoader {
 
     return {
       path,
-      name: component.name ?? basename(path, ext),
+      name: component.name ?? posix.basename(path, ext),
       render(data) {
         return componentEngine.renderSync(
           content,

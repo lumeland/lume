@@ -3,7 +3,7 @@ import {
   assertStrictEquals as equals,
   assertStringIncludes as contains,
 } from "../deps/assert.ts";
-import { assertEqualsPaths, getSite, platformPath } from "./utils.ts";
+import { getSite } from "./utils.ts";
 import { SiteEvent } from "../core.ts";
 
 Deno.test("build a simple site", async () => {
@@ -17,11 +17,11 @@ Deno.test("build a simple site", async () => {
 
   // Test the generated pages
   equals(pages.length, 1);
-  assertEqualsPaths(pages[0].src.path, "/page1");
+  equals(pages[0].src.path, "/page1");
   equals(pages[0].src.ext, ".md");
-  assertEqualsPaths(pages[0].dest.path, "/page1/index");
+  equals(pages[0].dest.path, "/page1/index");
   equals(pages[0].dest.ext, ".html");
-  assertEqualsPaths(pages[0].data.url, "/page1/");
+  equals(pages[0].data.url, "/page1/");
   contains(pages[0].content as string, "<h1>Welcome</h1>");
 
   // Test the enumerated properties
@@ -43,7 +43,7 @@ Deno.test("build/update events", async () => {
   const listener = (event: SiteEvent) => events.push(event.type);
   const updateListener = (event: SiteEvent) => {
     equals(event.files!.size, 1);
-    equals(event.files!.has(platformPath("/page1.md")), true);
+    equals(event.files!.has("/page1.md"), true);
     listener(event);
   };
 
@@ -62,7 +62,7 @@ Deno.test("build/update events", async () => {
   equals(events[2], "beforeSave");
   equals(events[3], "afterBuild");
 
-  await site.update(new Set([platformPath("/page1.md")]));
+  await site.update(new Set(["/page1.md"]));
 
   equals(events.length, 8);
   equals(events[4], "beforeUpdate");

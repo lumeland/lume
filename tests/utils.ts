@@ -1,9 +1,7 @@
-import { assertStrictEquals } from "../deps/assert.ts";
 import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
-import { fromFileUrl, join, SEP } from "../deps/path.ts";
+import { fromFileUrl, join } from "../deps/path.ts";
 import { printError } from "../core/errors.ts";
-import { normalizePath } from "../core/utils.ts";
 
 import type { Page, Site, SiteOptions } from "../core.ts";
 
@@ -11,24 +9,6 @@ const cwd = fromFileUrl(new URL("./", import.meta.url));
 
 export function getPath(path: string): string {
   return join(cwd, path);
-}
-
-/**
- * Convert a path to Posix or Win32
- * depending on de current platform.
- */
-export function platformPath(path: string) {
-  return path.replaceAll(/[\\/]+/g, SEP);
-}
-
-export function assertEqualsPaths(path1: unknown, path2: unknown) {
-  if (typeof path1 === "string") {
-    path1 = platformPath(path1);
-  }
-  if (typeof path2 === "string") {
-    path2 = platformPath(path2);
-  }
-  assertStrictEquals(path1, path2);
 }
 
 /** Create a new lume site using the "assets" path as cwd */
@@ -52,7 +32,6 @@ export function getSite(
 
 /** Returns a generated page by src path */
 export function getPage(site: Site, path: string) {
-  path = platformPath(path);
   const page = site.pages.find((page) => page.src.path === path);
 
   if (!page) {
@@ -107,7 +86,7 @@ async function assertPageSnapshot(
   let { content, data } = page;
   const { dest } = page;
   const src = {
-    path: normalizePath(page.src.path),
+    path: page.src.path,
     ext: page.src.ext,
   };
 

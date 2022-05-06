@@ -1,4 +1,4 @@
-import { dirname, join } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 import { emptyDir, ensureDir } from "../deps/fs.ts";
 import { concurrent, normalizePath, sha1 } from "./utils.ts";
 import { Exception } from "./errors.ts";
@@ -89,8 +89,8 @@ export default class Writer {
 
     this.logger.log(`🔥 ${dest.replace(/index\.html?$/, "")} <dim>${src}</dim>`);
 
-    const filename = join(this.dest, dest);
-    await ensureDir(dirname(filename));
+    const filename = posix.join(this.dest, dest);
+    await ensureDir(posix.dirname(filename));
 
     page.content instanceof Uint8Array
       ? await Deno.writeFile(filename, page.content)
@@ -107,11 +107,11 @@ export default class Writer {
       return;
     }
 
-    const pathFrom = join(this.src, src);
-    const pathTo = join(this.dest, dest);
+    const pathFrom = posix.join(this.src, src);
+    const pathTo = posix.join(this.dest, dest);
 
     try {
-      await ensureDir(dirname(pathTo));
+      await ensureDir(posix.dirname(pathTo));
       await Deno.copyFile(pathFrom, pathTo);
       this.logger.log(`➡️ ${normalizePath(src)} <dim>${dest}</dim>`);
       file.saved = true;

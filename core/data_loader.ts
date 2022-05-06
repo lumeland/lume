@@ -1,4 +1,4 @@
-import { basename, extname, join } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 
 import type { Data, Formats, Reader } from "../core.ts";
 
@@ -80,8 +80,8 @@ export default class DataLoader {
     }
 
     if (entry.isFile) {
-      const name = basename(entry.name, extname(entry.name));
-      const fileData = await this.#loadFile(join(path, entry.name)) || {};
+      const name = posix.basename(entry.name, posix.extname(entry.name));
+      const fileData = await this.#loadFile(posix.join(path, entry.name)) || {};
 
       if (fileData.content && Object.keys(fileData).length === 1) {
         data[name] = fileData.content;
@@ -93,7 +93,9 @@ export default class DataLoader {
     }
 
     if (entry.isDirectory) {
-      data[entry.name] = await this.#loadDirectory(join(path, entry.name));
+      data[entry.name] = await this.#loadDirectory(
+        posix.join(path, entry.name),
+      );
     }
   }
 }

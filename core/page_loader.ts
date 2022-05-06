@@ -1,6 +1,6 @@
 import { Page } from "./filesystem.ts";
 import { Exception } from "./errors.ts";
-import { basename, extname, join } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 
 import type { Data, Dest, Formats, PageType, Reader, Src } from "../core.ts";
 
@@ -29,8 +29,6 @@ export default class PageLoader {
 
   /** Load an asset Page */
   async load(path: string): Promise<Page | undefined> {
-    path = join("/", path);
-
     // Search for the loader
     const result = this.formats.search(path);
 
@@ -97,7 +95,7 @@ export default class PageLoader {
     }
 
     // Handle subextensions, like styles.css.njk
-    const subext = extname(page.dest.path);
+    const subext = posix.extname(page.dest.path);
 
     if (subext) {
       page.dest.path = page.dest.path.slice(0, -subext.length);
@@ -113,7 +111,7 @@ export default class PageLoader {
    * Example: 2019-01-01_hello-world.md
    */
   #handleDatePath(src: Src, dest: Dest): Date | undefined {
-    const fileName = basename(src.path);
+    const fileName = posix.basename(src.path);
     const dateInPath = fileName.match(/^([^_]+)?_/);
 
     if (dateInPath) {

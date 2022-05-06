@@ -1,5 +1,5 @@
-import { join, posix } from "../deps/path.ts";
-import { documentToString, normalizePath, stringToDocument } from "./utils.ts";
+import { posix } from "../deps/path.ts";
+import { documentToString, stringToDocument } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
 
@@ -178,7 +178,7 @@ export class Page extends Base {
     super(src);
 
     this.dest = {
-      path: normalizePath(this.src.path),
+      path: this.src.path,
       ext: this.src.ext || "",
     };
   }
@@ -265,7 +265,7 @@ export class Directory extends Base {
 
   /** Create a subdirectory and return it */
   createDirectory(name: string): Directory {
-    const path = join(this.src.path, name);
+    const path = posix.join(this.src.path, name);
     const directory = new Directory({ path });
     directory.parent = this;
     this.dirs.set(name, directory);

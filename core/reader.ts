@@ -1,5 +1,5 @@
 import { Exception } from "./errors.ts";
-import { join } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 
 import type { Data } from "../core.ts";
 
@@ -32,7 +32,7 @@ export default class Reader {
   }
 
   getFullPath(path: string): string {
-    return join(this.src, path);
+    return posix.join(this.src, path);
   }
 
   /** Returns the file info of a path */

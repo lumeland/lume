@@ -1,5 +1,5 @@
-import { join, posix, SEP } from "../deps/path.ts";
-import { merge, normalizePath } from "./utils.ts";
+import { posix } from "../deps/path.ts";
+import { merge } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
 import Reader from "./reader.ts";
@@ -211,7 +211,7 @@ export default class Site {
    * Use the arguments to return a subpath
    */
   src(...path: string[]) {
-    return join(this.options.cwd, this.options.src, ...path);
+    return posix.join(this.options.cwd, this.options.src, ...path);
   }
 
   /**
@@ -219,7 +219,7 @@ export default class Site {
    * Use the arguments to return a subpath
    */
   dest(...path: string[]) {
-    return join(this.options.cwd, this.options.dest, ...path);
+    return posix.join(this.options.cwd, this.options.dest, ...path);
   }
 
   /** Add a listener to an event */
@@ -567,8 +567,7 @@ export default class Site {
 
     // It's a source file
     if (path.startsWith("~/")) {
-      path = path.slice(1).replaceAll("/", SEP);
-      path = decodeURI(path);
+      path = decodeURI(path.slice(1));
 
       // It's a page
       const page = this.pages.find((page) =>
@@ -582,7 +581,7 @@ export default class Site {
         const file = this.files.find((file) => file.src === path);
 
         if (file) {
-          path = normalizePath(file.dest);
+          path = file.dest;
         } else {
           throw new Exception("Source file not found", { path });
         }

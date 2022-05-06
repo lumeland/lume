@@ -1,7 +1,7 @@
 // deno-lint-ignore-file no-explicit-any
 
 import { emptyDir, ensureDir } from "../deps/fs.ts";
-import { join } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 import { crypto } from "../deps/crypto.ts";
 import { encode } from "../deps/hex.ts";
 
@@ -36,7 +36,7 @@ export default class Cache {
     const id = await this.hash(JSON.stringify(key));
     const result = value.content;
 
-    await ensureDir(join(this.#folder, hash));
+    await ensureDir(posix.join(this.#folder, hash));
 
     if (result) {
       value.content = id;
@@ -45,13 +45,13 @@ export default class Cache {
       if (typeof result === "string") {
         value.contentType = "string";
         await Deno.writeTextFile(
-          join(this.#folder, hash, value.content + ext),
+          posix.join(this.#folder, hash, value.content + ext),
           result,
         );
       } else {
         value.contentType = "Uint8Array";
         await Deno.writeFile(
-          join(this.#folder, hash, value.content + ext),
+          posix.join(this.#folder, hash, value.content + ext),
           result,
         );
       }
@@ -61,7 +61,7 @@ export default class Cache {
     }
 
     await Deno.writeTextFile(
-      join(this.#folder, hash, id + ".json"),
+      posix.join(this.#folder, hash, id + ".json"),
       JSON.stringify(value),
     );
   }
@@ -72,7 +72,7 @@ export default class Cache {
 
     try {
       const data = await Deno.readTextFile(
-        join(this.#folder, hash, id + ".json"),
+        posix.join(this.#folder, hash, id + ".json"),
       );
       const value = JSON.parse(data);
 
@@ -81,12 +81,12 @@ export default class Cache {
 
         if (value.contentType === "string") {
           const content = Deno.readTextFile(
-            join(this.#folder, hash, value.content + ext),
+            posix.join(this.#folder, hash, value.content + ext),
           );
           return { ...value, content };
         } else {
           const content = await Deno.readFile(
-            join(this.#folder, hash, value.content + ext),
+            posix.join(this.#folder, hash, value.content + ext),
           );
           return { ...value, content };
         }
