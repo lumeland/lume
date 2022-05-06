@@ -1,7 +1,7 @@
 {
   "tasks": {
     "test": "deno test --unstable -A --no-check=remote",
-    "test:update": "deno task test -- -- --update",
+    "test:update": "deno task test -- --update",
     "test:preview": "deno run --allow-read tests/__snapshots__/preview.ts"
   }
 }
