@@ -7,10 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.8.0] - 2022-05-06
 ### Added
 - New plugin `metas` to add automatically `<meta>` tags for SEO and social networks [#188].
-- New plugin `prism` to use as code highligher [#187].
+- New plugin `prism` to use this library as code highligher [#187].
 - New function `search.values()` to return an array of all unique values of a key [#191].
 - New option `cache` to `imagick` plugin to cache the transformed images in the `_cache` folder [#184].
 - Middewares have a third argument with the connection info.
@@ -20,12 +20,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   This allows to copy a entire directory with `site.copy("statics")`
   but ignoring some subdirectories with `site.ignore("statics/ignored-folder")`.
 - The `afterBuild` and `afterUpdate` events have the `staticFiles` property
-  containing the static files that have been copied.
-- New property `site.files` containing all static files that will be copied.
+  with info about the static files that have been copied.
+- New property `site.files` containing all static files to be copied.
   It's like `site.pages` but for static files.
 
 ### Changed
-- Use posix path style everywhere, even on Windows.
+- Use posix path style everywhere is possible on Windows.
 
 ### Fixed
 - Inline plugin generates invalid javascript [#192].
@@ -35,7 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Live reload files with cache busting path prefixes.
 - Improved the `printError` function to print SASS errors properly [#194].
 - Added an empty last line when generating `import_map.json` and `deno.json` files.
-- `serve` task generation in `deno.json` updated to the changes introduced in Deno 1.21.2
+- Changed the `serve` task generation in `deno.json` to meet the changes introduced in Deno 1.21.2
   [denoland/deno/issues/14459](https://github.com/denoland/deno/issues/14459)
 - Support relative path value in "lume" key in import map [#196].
 
@@ -1532,7 +1532,7 @@ The first version.
 [#194]: https://github.com/lumeland/lume/issues/194
 [#196]: https://github.com/lumeland/lume/issues/196
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.7.4...HEAD
+[1.8.0]: https://github.com/lumeland/lume/compare/v1.7.4...v1.8.0
 [1.7.4]: https://github.com/lumeland/lume/compare/v1.7.3...v1.7.4
 [1.7.3]: https://github.com/lumeland/lume/compare/v1.7.2...v1.7.3
 [1.7.2]: https://github.com/lumeland/lume/compare/v1.7.1...v1.7.2
