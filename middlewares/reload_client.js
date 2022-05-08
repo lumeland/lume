@@ -49,7 +49,7 @@ export default function liveReload() {
   socket();
 
   function refresh(files) {
-    let path = document.location.pathname;
+    let path = decodeURI(document.location.pathname);
 
     if (!path.endsWith(".html")) {
       path += path.endsWith("/") ? "index.html" : "/index.html";
