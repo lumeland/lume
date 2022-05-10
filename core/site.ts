@@ -26,6 +26,7 @@ import type {
   Event,
   EventListener,
   EventOptions,
+  Format,
   Helper,
   HelperOptions,
   Loader,
@@ -261,15 +262,20 @@ export default class Site {
     return await this.scripts.run(options, name);
   }
 
-  /** Register a data loader for some extensions */
-  loadData(extensions: string[], loader: Loader = textLoader) {
+  /** Configure a format in a low-level way */
+  format(extensions: string[], options: Format) {
     extensions.forEach((extension) => {
-      this.formats.set(extension, {
-        loader,
-        data: true,
-      });
+      this.formats.set(extension, options);
     });
     return this;
+  }
+
+  /** Register a data loader for some extensions */
+  loadData(extensions: string[], loader: Loader = textLoader) {
+    return this.format(extensions, {
+      loader,
+      data: true,
+    });
   }
 
   /** Register a page loader for some extensions */
@@ -278,31 +284,25 @@ export default class Site {
     loader: Loader = textLoader,
     engine?: Engine,
   ) {
-    extensions.forEach((extension) => {
-      this.formats.set(extension, {
-        loader,
-        page: true,
-        removeExtension: true,
-      });
-    });
+    const format: Format = {
+      loader,
+      page: true,
+      removeExtension: true,
+    };
 
     if (engine) {
-      this.engine(extensions, engine);
+      format.engine = engine;
     }
 
-    return this;
+    return this.format(extensions, format);
   }
 
   /** Register an assets loader for some extensions */
   loadAssets(extensions: string[], loader: Loader = textLoader) {
-    extensions.forEach((extension) => {
-      this.formats.set(extension, {
-        loader,
-        page: true,
-      });
+    return this.format(extensions, {
+      loader,
+      page: true,
     });
-
-    return this;
   }
 
   /** Register a component loader for some extensions */
@@ -311,34 +311,26 @@ export default class Site {
     loader: Loader = textLoader,
     engine: Engine,
   ) {
-    extensions.forEach((extension) => {
-      this.formats.set(extension, {
-        loader,
-        engine,
-        component: true,
-      });
+    return this.format(extensions, {
+      loader,
+      engine,
+      component: true,
     });
-
-    return this;
   }
 
   /** Register an import path for some extensions  */
   includes(extensions: string[], path: string) {
-    extensions.forEach((extension) => {
-      this.formats.set(extension, {
-        includesPath: path,
-      });
+    this.format(extensions, {
+      includesPath: path,
     });
 
-    this.ignore(path); // Ignore any includes folder
-    return this;
+    // Ignore any includes folder
+    return this.ignore(path);
   }
 
   /** Register a engine for some extensions  */
   engine(extensions: string[], engine: Engine) {
-    extensions.forEach((extension) => {
-      this.formats.set(extension, { engine });
-    });
+    this.format(extensions, { engine });
 
     for (const [name, helper] of this.engines.helpers) {
       engine.addHelper(name, ...helper);

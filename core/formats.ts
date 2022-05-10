@@ -3,12 +3,30 @@ import { Exception } from "./errors.ts";
 import type { Engine, Loader } from "../core.ts";
 
 export interface Format {
+  /** The file loader used for this format */
   loader?: Loader;
+
+  /** The template engine used to render this format */
   engine?: Engine;
+
+  /** True to load pages in this format */
   page?: boolean;
+
+  /** True to load _data files in this format */
   data?: boolean;
+
+  /** True to load components in this format */
   component?: boolean;
+
+  /** A custom path for includes */
   includesPath?: string;
+
+  /**
+   * True to remove the extension after load the file as a page.
+   * For example, if the file is `index.njk`, the page will be `index`.
+   * This is used to distinguish between pages that output html files (like index.njk -> index.html)
+   * and pages that output assets (like styles.css -> styles.css).
+   */
   removeExtension?: boolean;
 }
 

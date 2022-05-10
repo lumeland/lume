@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.8.1] - Unreleased
 ### Added
 - Ability to extract the Date from the directory path, not only filename [#198].
+- New function `site.format()` to configure how some file extensions
+  must to be handled by Lume in a low level way.
 
 ### Fixed
 - Live reload with unicode characters in the path.
