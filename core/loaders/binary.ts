@@ -1,7 +1,7 @@
 import type { Data } from "../../core.ts";
 
 /** Load binary files, like images, audio, video, etc. */
-export default async function (path: string): Promise<Data> {
+export default async function binary(path: string): Promise<Data> {
   const content = await Deno.readFile(path);
   return { content };
 }

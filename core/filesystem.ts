@@ -1,5 +1,5 @@
 import { posix } from "../deps/path.ts";
-import { documentToString, stringToDocument, createDate } from "./utils.ts";
+import { createDate, documentToString, stringToDocument } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
 

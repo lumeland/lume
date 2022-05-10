@@ -142,22 +142,29 @@ Deno.test("pages configuration", () => {
   equals(formats.size, 10);
   equals(formats.has(".tmpl.json"), true);
   assert(formats.get(".tmpl.json")?.removeExtension);
+  assert(formats.get(".tmpl.json")?.page);
   equals(formats.has(".tmpl.js"), true);
   assert(formats.get(".tmpl.js")?.removeExtension);
+  assert(formats.get(".tmpl.js")?.page);
   assert(formats.get(".tmpl.js")?.engine);
   equals(formats.has(".tmpl.ts"), true);
   assert(formats.get(".tmpl.ts")?.removeExtension);
+  assert(formats.get(".tmpl.ts")?.page);
   assert(formats.get(".tmpl.ts")?.engine);
   equals(formats.has(".md"), true);
   assert(formats.get(".md")?.removeExtension);
+  assert(formats.get(".md")?.page);
   assert(formats.get(".md")?.engine);
   equals(formats.has(".njk"), true);
   assert(formats.get(".njk")?.removeExtension);
+  assert(formats.get(".njk")?.page);
   assert(formats.get(".njk")?.engine);
   equals(formats.has(".yaml"), true);
   assert(formats.get(".yaml")?.removeExtension);
+  assert(formats.get(".yaml")?.page);
   equals(formats.has(".yml"), true);
   assert(formats.get(".yml")?.removeExtension);
+  assert(formats.get(".yml")?.page);
 
   const loader = () => Promise.resolve({});
   const engine = {
@@ -170,10 +177,12 @@ Deno.test("pages configuration", () => {
   site.loadPages([".ext1", ".ext2"], loader, engine);
 
   equals(formats.size, 12);
-  equals(formats.get(".ext1")?.pageLoader, loader);
+  equals(formats.get(".ext1")?.loader, loader);
+  assert(formats.get(".ext1")?.page);
   assert(formats.get(".ext1")?.removeExtension);
   assert(formats.get(".ext1")?.engine);
-  equals(formats.get(".ext2")?.pageLoader, loader);
+  equals(formats.get(".ext2")?.loader, loader);
+  assert(formats.get(".ext2")?.page);
   assert(formats.get(".ext2")?.removeExtension);
   assert(formats.get(".ext2")?.engine);
 });
@@ -189,10 +198,12 @@ Deno.test("assets configuration", () => {
 
   equals(formats.size, 11);
   equals(formats.has(".css"), true);
-  equals(formats.get(".css")?.pageLoader, loader);
+  equals(formats.get(".css")?.loader, loader);
+  assert(formats.get(".css")?.page);
   assert(!formats.get(".css")?.removeExtension);
   equals(formats.has(".js"), true);
-  equals(formats.get(".js")?.pageLoader, loader);
+  equals(formats.get(".js")?.loader, loader);
+  assert(formats.get(".js")?.page);
   assert(!formats.get(".js")?.removeExtension);
 });
 

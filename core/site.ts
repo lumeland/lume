@@ -277,7 +277,8 @@ export default class Site {
   ) {
     extensions.forEach((extension) => {
       this.formats.set(extension, {
-        pageLoader: loader,
+        loader,
+        page: true,
         includesLoader: loader,
         removeExtension: true,
       });
@@ -294,7 +295,8 @@ export default class Site {
   loadAssets(extensions: string[], loader: Loader = textLoader) {
     extensions.forEach((extension) => {
       this.formats.set(extension, {
-        pageLoader: loader
+        loader,
+        page: true,
       });
     });
 

@@ -5,7 +5,7 @@ import { Exception } from "../errors.ts";
 import type { Data } from "../../core.ts";
 
 /** Load and parse a YAML file */
-export default async function (path: string): Promise<Data> {
+export default async function yaml(path: string): Promise<Data> {
   const text = await Deno.readTextFile(path);
   const content = parse(text);
 

@@ -129,6 +129,8 @@ export async function assertSiteSnapshot(
           key,
           removeExtension: value.removeExtension,
           includesPath: value.includesPath,
+          loader: value.loader,
+          page: value.page,
         };
       }),
     },

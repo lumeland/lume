@@ -35,9 +35,9 @@ export default class PageLoader {
       return;
     }
 
-    const [ext, { pageLoader, removeExtension }] = result;
+    const [ext, format] = result;
 
-    if (!pageLoader) {
+    if (!format.loader || !format.page) {
       return;
     }
 
@@ -56,10 +56,10 @@ export default class PageLoader {
     });
 
     // Load the data
-    const data = await this.reader.read(path, pageLoader);
+    const data = await this.reader.read(path, format.loader);
     Object.assign(page.baseData, data);
 
-    if (removeExtension) {
+    if (format.removeExtension) {
       this.#removeExtension(page);
     }
 

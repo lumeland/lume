@@ -4,7 +4,9 @@ import type { Engine, Loader } from "../core.ts";
 
 export interface Format {
   removeExtension?: boolean;
-  pageLoader?: Loader;
+  loader?: Loader;
+  page?: boolean;
+
   dataLoader?: Loader;
   componentLoader?: Loader;
   includesLoader?: Loader;
