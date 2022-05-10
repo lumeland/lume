@@ -262,66 +262,75 @@ export default class Site {
     return await this.scripts.run(options, name);
   }
 
-  /** Configure a format in a low-level way */
-  format(extensions: string[], options: Format) {
+  /** Configure how to load pages, components and data files */
+  load(
+    extensions: string[],
+    loader: Loader = textLoader,
+    loadOptions?: Omit<Format, "loader">,
+  ): this {
+    const options: Format = loadOptions
+      ? { ...loadOptions, loader }
+      : { loader, page: "asset" };
+
     extensions.forEach((extension) => {
       this.formats.set(extension, options);
     });
+
     return this;
   }
 
-  /** Register a data loader for some extensions */
-  loadData(extensions: string[], loader: Loader = textLoader) {
-    return this.format(extensions, {
-      loader,
-      data: true,
-    });
+  /**
+   * Register a data loader for some extensions
+   * @deprecated Use `load` instead
+   */
+  loadData(extensions: string[], loader: Loader = textLoader): this {
+    return this.load(extensions, loader, { data: true });
   }
 
-  /** Register a page loader for some extensions */
+  /**
+   * Register a page loader for some extensions
+   * @deprecated Use `load` instead
+   */
   loadPages(
     extensions: string[],
     loader: Loader = textLoader,
     engine?: Engine,
   ) {
-    const format: Format = {
-      loader,
-      page: true,
-      removeExtension: true,
-    };
+    this.load(extensions, loader, { page: "html" });
 
     if (engine) {
-      format.engine = engine;
+      this.engine(extensions, engine);
     }
 
-    return this.format(extensions, format);
+    return this;
   }
 
-  /** Register an assets loader for some extensions */
-  loadAssets(extensions: string[], loader: Loader = textLoader) {
-    return this.format(extensions, {
-      loader,
-      page: true,
-    });
+  /**
+   * Register an assets loader for some extensions
+   * @deprecated Use `load` instead
+   */
+  loadAssets(extensions: string[], loader?: Loader) {
+    return this.load(extensions, loader);
   }
 
-  /** Register a component loader for some extensions */
+  /**
+   * Register a component loader for some extensions
+   * @deprecated Use `load` instead
+   */
   loadComponents(
     extensions: string[],
     loader: Loader = textLoader,
     engine: Engine,
   ) {
-    return this.format(extensions, {
-      loader,
-      engine,
-      component: true,
-    });
+    this.load(extensions, loader, { component: true });
+    this.engine(extensions, engine);
+    return this;
   }
 
   /** Register an import path for some extensions  */
   includes(extensions: string[], path: string) {
-    this.format(extensions, {
-      includesPath: path,
+    extensions.forEach((extension) => {
+      this.formats.set(extension, { includesPath: path });
     });
 
     // Ignore any includes folder
@@ -330,7 +339,9 @@ export default class Site {
 
   /** Register a engine for some extensions  */
   engine(extensions: string[], engine: Engine) {
-    this.format(extensions, { engine });
+    extensions.forEach((extension) => {
+      this.formats.set(extension, { engine });
+    });
 
     for (const [name, helper] of this.engines.helpers) {
       engine.addHelper(name, ...helper);

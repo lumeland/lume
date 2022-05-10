@@ -9,8 +9,8 @@ export interface Format {
   /** The template engine used to render this format */
   engine?: Engine;
 
-  /** True to load pages in this format */
-  page?: boolean;
+  /** Whether to load pages in this format */
+  page?: "asset" | "html";
 
   /** True to load _data files in this format */
   data?: boolean;

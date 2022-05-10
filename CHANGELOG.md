@@ -10,8 +10,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.8.1] - Unreleased
 ### Added
 - Ability to extract the Date from the directory path, not only filename [#198].
-- New function `site.format()` to configure how some file extensions
-  must to be handled by Lume in a low level way.
+- New function `site.load()` to configure how to load pages, data files and components in a single place.
+
+### Deprecated
+- The functions `site.loadPages()`, `site.loadAssets()`, `site.loadComponents()`.
+  Use the new `site.load()` function:
+  - Load data: `site.load(exts, loader, { data: true })`.
+  - Load assets: `site.load(exts, loader, { page: "asset" })`.
+  - Load pages: `site.load(exts, loader, { page: "html" })`.
+  - Load components: `site.load(exts, loader, { component: true, engine })`.
 
 ### Fixed
 - Live reload with unicode characters in the path.

@@ -59,7 +59,7 @@ export default class PageLoader {
     const data = await this.reader.read(path, format.loader);
     Object.assign(page.baseData, data);
 
-    if (format.removeExtension) {
+    if (format.page === "html") {
       this.#removeExtension(page);
     }
 
