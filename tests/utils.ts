@@ -127,7 +127,7 @@ export async function assertSiteSnapshot(
       formats: Array.from(site.formats.entries).map(([key, value]) => {
         return {
           key,
-          pageType: value.pageType,
+          removeExtension: value.removeExtension,
           includesPath: value.includesPath,
         };
       }),

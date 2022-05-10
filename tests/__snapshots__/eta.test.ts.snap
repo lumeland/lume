@@ -8,57 +8,57 @@ snapshot[`build a site with eta 2`] = `
     {
       includesPath: undefined,
       key: ".tmpl.ts",
-      pageType: "page",
+      removeExtension: true,
     },
     {
       includesPath: undefined,
       key: ".tmpl.js",
-      pageType: "page",
+      removeExtension: true,
     },
     {
       includesPath: undefined,
       key: ".tmpl.json",
-      pageType: "page",
+      removeExtension: true,
     },
     {
       includesPath: undefined,
       key: ".json",
-      pageType: undefined,
+      removeExtension: undefined,
     },
     {
       includesPath: undefined,
       key: ".md",
-      pageType: "page",
+      removeExtension: true,
     },
     {
       includesPath: undefined,
       key: ".js",
-      pageType: undefined,
+      removeExtension: undefined,
     },
     {
       includesPath: undefined,
       key: ".ts",
-      pageType: undefined,
+      removeExtension: undefined,
     },
     {
       includesPath: "_includes",
       key: ".njk",
-      pageType: "page",
+      removeExtension: true,
     },
     {
       includesPath: undefined,
       key: ".yaml",
-      pageType: "page",
+      removeExtension: true,
     },
     {
       includesPath: undefined,
       key: ".yml",
-      pageType: "page",
+      removeExtension: true,
     },
     {
       includesPath: "_includes",
       key: ".eta",
-      pageType: "page",
+      removeExtension: true,
     },
   ],
 }

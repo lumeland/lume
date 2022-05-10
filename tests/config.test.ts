@@ -141,23 +141,23 @@ Deno.test("pages configuration", () => {
 
   equals(formats.size, 10);
   equals(formats.has(".tmpl.json"), true);
-  equals(formats.get(".tmpl.json")?.pageType, "page");
+  assert(formats.get(".tmpl.json")?.removeExtension);
   equals(formats.has(".tmpl.js"), true);
-  equals(formats.get(".tmpl.js")?.pageType, "page");
+  assert(formats.get(".tmpl.js")?.removeExtension);
   assert(formats.get(".tmpl.js")?.engine);
   equals(formats.has(".tmpl.ts"), true);
-  equals(formats.get(".tmpl.ts")?.pageType, "page");
+  assert(formats.get(".tmpl.ts")?.removeExtension);
   assert(formats.get(".tmpl.ts")?.engine);
   equals(formats.has(".md"), true);
-  equals(formats.get(".md")?.pageType, "page");
+  assert(formats.get(".md")?.removeExtension);
   assert(formats.get(".md")?.engine);
   equals(formats.has(".njk"), true);
-  equals(formats.get(".njk")?.pageType, "page");
+  assert(formats.get(".njk")?.removeExtension);
   assert(formats.get(".njk")?.engine);
   equals(formats.has(".yaml"), true);
-  equals(formats.get(".yaml")?.pageType, "page");
+  assert(formats.get(".yaml")?.removeExtension);
   equals(formats.has(".yml"), true);
-  equals(formats.get(".yml")?.pageType, "page");
+  assert(formats.get(".yml")?.removeExtension);
 
   const loader = () => Promise.resolve({});
   const engine = {
@@ -171,10 +171,10 @@ Deno.test("pages configuration", () => {
 
   equals(formats.size, 12);
   equals(formats.get(".ext1")?.pageLoader, loader);
-  equals(formats.get(".ext1")?.pageType, "page");
+  assert(formats.get(".ext1")?.removeExtension);
   assert(formats.get(".ext1")?.engine);
   equals(formats.get(".ext2")?.pageLoader, loader);
-  equals(formats.get(".ext2")?.pageType, "page");
+  assert(formats.get(".ext2")?.removeExtension);
   assert(formats.get(".ext2")?.engine);
 });
 
@@ -190,10 +190,10 @@ Deno.test("assets configuration", () => {
   equals(formats.size, 11);
   equals(formats.has(".css"), true);
   equals(formats.get(".css")?.pageLoader, loader);
-  equals(formats.get(".css")?.pageType, "asset");
+  assert(!formats.get(".css")?.removeExtension);
   equals(formats.has(".js"), true);
   equals(formats.get(".js")?.pageLoader, loader);
-  equals(formats.get(".js")?.pageType, "asset");
+  assert(!formats.get(".js")?.removeExtension);
 });
 
 Deno.test("preprocessor configuration", () => {

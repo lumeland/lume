@@ -35,9 +35,9 @@ export default class PageLoader {
       return;
     }
 
-    const [ext, { pageLoader, pageType }] = result;
+    const [ext, { pageLoader, removeExtension }] = result;
 
-    if (!pageLoader || !pageType) {
+    if (!pageLoader) {
       return;
     }
 
@@ -59,18 +59,15 @@ export default class PageLoader {
     const data = await this.reader.read(path, pageLoader);
     Object.assign(page.baseData, data);
 
-    if (pageType === "page") {
-      this.preparePage(page);
+    if (removeExtension) {
+      this.#removeExtension(page);
     }
 
     return page;
   }
 
-  /**
-   * Additional preparation for the HTML pages
-   * it removes the extension.
-   */
-  preparePage(page: Page): void {
+  /** Removes the extension. */
+  #removeExtension(page: Page): void {
     // Handle subextensions, like styles.css.njk
     const subext = posix.extname(page.dest.path);
 

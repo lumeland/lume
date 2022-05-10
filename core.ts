@@ -53,7 +53,7 @@ import type {
   HelperOptions,
 } from "./core/engines.ts";
 import type { ErrorData, Exception } from "./core/errors.ts";
-import type { default as Formats, Format, PageType } from "./core/formats.ts";
+import type { default as Formats, Format } from "./core/formats.ts";
 import type {
   default as Server,
   Middleware,
@@ -102,7 +102,6 @@ export type {
   Middleware,
   Page,
   PageLoader,
-  PageType,
   Plugin,
   PluginSetup,
   Processor,

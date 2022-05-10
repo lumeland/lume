@@ -2,10 +2,8 @@ import { Exception } from "./errors.ts";
 
 import type { Engine, Loader } from "../core.ts";
 
-export type PageType = "page" | "asset";
-
 export interface Format {
-  pageType?: PageType;
+  removeExtension?: boolean;
   pageLoader?: Loader;
   dataLoader?: Loader;
   componentLoader?: Loader;

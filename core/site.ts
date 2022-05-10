@@ -279,7 +279,7 @@ export default class Site {
       this.formats.set(extension, {
         pageLoader: loader,
         includesLoader: loader,
-        pageType: "page",
+        removeExtension: true,
       });
     });
 
@@ -294,8 +294,7 @@ export default class Site {
   loadAssets(extensions: string[], loader: Loader = textLoader) {
     extensions.forEach((extension) => {
       this.formats.set(extension, {
-        pageLoader: loader,
-        pageType: "asset",
+        pageLoader: loader
       });
     });
 
