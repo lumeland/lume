@@ -282,7 +282,6 @@ export default class Site {
       this.formats.set(extension, {
         loader,
         page: true,
-        includesLoader: loader,
         removeExtension: true,
       });
     });

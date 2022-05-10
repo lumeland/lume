@@ -40,9 +40,9 @@ export default class IncludesLoader {
       return;
     }
 
-    const [, { includesLoader, includesPath }] = entry;
+    const [, format] = entry;
 
-    if (!includesLoader) {
+    if (!format.loader) {
       return;
     }
 
@@ -57,12 +57,12 @@ export default class IncludesLoader {
 
       finalPath = posix.join("/", posix.dirname(from), path);
     } else {
-      finalPath = posix.join("/", includesPath || this.includes, path);
+      finalPath = posix.join("/", format.includesPath || this.includes, path);
     }
 
     return [
       finalPath,
-      await this.reader.read(finalPath, includesLoader),
+      await this.reader.read(finalPath, format.loader),
     ];
   }
 }

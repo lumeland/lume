@@ -9,7 +9,6 @@ export interface Format {
   data?: boolean;
   component?: boolean;
 
-  includesLoader?: Loader;
   includesPath?: string;
   engine?: Engine;
   componentEngine?: Engine;
