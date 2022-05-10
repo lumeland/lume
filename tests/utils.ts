@@ -131,6 +131,7 @@ export async function assertSiteSnapshot(
           includesPath: value.includesPath,
           loader: value.loader,
           page: value.page,
+          data: value.data,
         };
       }),
     },

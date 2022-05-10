@@ -47,13 +47,13 @@ export default class DataLoader {
       return;
     }
 
-    const [, { dataLoader }] = result;
+    const [, format] = result;
 
-    if (!dataLoader) {
+    if (!format.data || !format.loader) {
       return;
     }
 
-    return await this.reader.read(path, dataLoader);
+    return await this.reader.read(path, format.loader);
   }
 
   /** Load a _data directory */

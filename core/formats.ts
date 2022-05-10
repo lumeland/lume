@@ -6,8 +6,8 @@ export interface Format {
   removeExtension?: boolean;
   loader?: Loader;
   page?: boolean;
+  data?: boolean;
 
-  dataLoader?: Loader;
   componentLoader?: Loader;
   includesLoader?: Loader;
   includesPath?: string;

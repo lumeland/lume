@@ -117,22 +117,24 @@ Deno.test("data configuration", () => {
 
   equals(formats.size, 10);
   equals(formats.has(".json"), true);
-  assert(formats.get(".json")?.dataLoader);
+  assert(formats.get(".json")?.data);
   equals(formats.has(".js"), true);
-  assert(formats.get(".js")?.dataLoader);
+  assert(formats.get(".js")?.data);
   equals(formats.has(".ts"), true);
-  assert(formats.get(".ts")?.dataLoader);
+  assert(formats.get(".ts")?.data);
   equals(formats.has(".yaml"), true);
-  assert(formats.get(".yaml")?.dataLoader);
+  assert(formats.get(".yaml")?.data);
   equals(formats.has(".yml"), true);
-  assert(formats.get(".yml")?.dataLoader);
+  assert(formats.get(".yml")?.data);
 
   const loader = () => Promise.resolve({});
   site.loadData([".ext1", ".ext2"], loader);
 
   equals(formats.size, 12);
-  equals(formats.get(".ext1")?.dataLoader, loader);
-  equals(formats.get(".ext2")?.dataLoader, loader);
+  equals(formats.get(".ext1")?.loader, loader);
+  assert(formats.get(".ext1")?.data);
+  equals(formats.get(".ext2")?.loader, loader);
+  assert(formats.get(".ext2")?.data);
 });
 
 Deno.test("pages configuration", () => {

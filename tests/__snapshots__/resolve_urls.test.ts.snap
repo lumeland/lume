@@ -6,6 +6,7 @@ snapshot[`relative_url plugin 2`] = `
 {
   formats: [
     {
+      data: undefined,
       includesPath: undefined,
       key: ".tmpl.ts",
       loader: [AsyncFunction: module],
@@ -13,6 +14,7 @@ snapshot[`relative_url plugin 2`] = `
       removeExtension: true,
     },
     {
+      data: undefined,
       includesPath: undefined,
       key: ".tmpl.js",
       loader: [AsyncFunction: module],
@@ -20,6 +22,7 @@ snapshot[`relative_url plugin 2`] = `
       removeExtension: true,
     },
     {
+      data: undefined,
       includesPath: undefined,
       key: ".tmpl.json",
       loader: [AsyncFunction: json],
@@ -27,13 +30,15 @@ snapshot[`relative_url plugin 2`] = `
       removeExtension: true,
     },
     {
+      data: true,
       includesPath: undefined,
       key: ".json",
-      loader: undefined,
+      loader: [AsyncFunction: json],
       page: undefined,
       removeExtension: undefined,
     },
     {
+      data: undefined,
       includesPath: undefined,
       key: ".md",
       loader: [AsyncFunction: text],
@@ -41,20 +46,23 @@ snapshot[`relative_url plugin 2`] = `
       removeExtension: true,
     },
     {
+      data: true,
       includesPath: undefined,
       key: ".js",
-      loader: undefined,
+      loader: [AsyncFunction: module],
       page: undefined,
       removeExtension: undefined,
     },
     {
+      data: true,
       includesPath: undefined,
       key: ".ts",
-      loader: undefined,
+      loader: [AsyncFunction: module],
       page: undefined,
       removeExtension: undefined,
     },
     {
+      data: undefined,
       includesPath: "_includes",
       key: ".njk",
       loader: [AsyncFunction: text],
@@ -62,6 +70,7 @@ snapshot[`relative_url plugin 2`] = `
       removeExtension: true,
     },
     {
+      data: true,
       includesPath: undefined,
       key: ".yaml",
       loader: [AsyncFunction: yaml],
@@ -69,6 +78,7 @@ snapshot[`relative_url plugin 2`] = `
       removeExtension: true,
     },
     {
+      data: true,
       includesPath: undefined,
       key: ".yml",
       loader: [AsyncFunction: yaml],
