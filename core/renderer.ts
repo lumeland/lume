@@ -1,5 +1,5 @@
 import { posix } from "../deps/path.ts";
-import { concurrent } from "./utils.ts";
+import { concurrent, createDate } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
 import type {
@@ -49,7 +49,7 @@ export default class Renderer {
 
       // Split regular pages and generators
       for (const page of group) {
-        this.#urlPage(page);
+        this.#preparePage(page);
 
         if (isGenerator(page.data.content)) {
           generators.push(page);
@@ -76,7 +76,7 @@ export default class Renderer {
             data.content = null;
           }
           const newPage = page.duplicate(data);
-          this.#urlPage(newPage);
+          this.#preparePage(newPage);
           pages.push(newPage);
           to.push(newPage);
         }
@@ -107,16 +107,22 @@ export default class Renderer {
       });
     }
 
-    this.#urlPage(page);
+    this.#preparePage(page);
 
     await this.preprocessors.run([page]);
     page.content = await this.#renderPage(page) as string;
   }
 
-  /** Generate the URL and dest info of a page */
-  #urlPage(page: Page) {
-    const { dest } = page;
-    let url = page.data.url;
+  /** Prepare the page before rendering
+   * - Generate the URL
+   * - Modify the dest info accordingly
+   * - Ensure the date is set
+   */
+  #preparePage(page: Page) {
+    const { dest, data } = page;
+
+    // Generate the URL and dest info accordingly
+    let url = data.url;
 
     if (typeof url === "function") {
       url = url(page);
@@ -150,6 +156,22 @@ export default class Renderer {
     }
 
     page.updateUrl();
+
+    // Ensure the date is set
+    if (!data.date) {
+      data.date = page.src.created ?? page.src.lastModified;
+    } else {
+      if (typeof data.date === "string" || typeof data.date === "number") {
+        data.date = createDate(data.date);
+      }
+
+      if (!(data.date instanceof Date)) {
+        throw new Exception(
+          'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
+          { page },
+        );
+      }
+    }
   }
 
   /** Group the pages by renderOrder */

@@ -325,6 +325,6 @@ export default class Source {
       },
     );
 
-    directory.baseData = data;
+    Object.assign(directory.baseData, data);
   }
 }

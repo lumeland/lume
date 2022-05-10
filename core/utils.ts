@@ -326,3 +326,30 @@ export async function toUrl(path: string): Promise<URL> {
 
   return toFileUrl(await Deno.realPath(path));
 }
+
+export function createDate(str: string | number): Date | undefined {
+  if (typeof str === "number") {
+    return new Date(str);
+  }
+
+  const datetime = str.match(
+    /^(\d{4})-(\d\d)-(\d\d)(?:-(\d\d)-(\d\d)(?:-(\d\d))?)?$/,
+  );
+
+  if (datetime) {
+    const [, year, month, day, hour, minute, second] = datetime;
+
+    return new Date(Date.UTC(
+      parseInt(year),
+      parseInt(month) - 1,
+      parseInt(day),
+      hour ? parseInt(hour) : 0,
+      minute ? parseInt(minute) : 0,
+      second ? parseInt(second) : 0,
+    ));
+  }
+
+  if (str.match(/^\d+$/)) {
+    return new Date(parseInt(str));
+  }
+}

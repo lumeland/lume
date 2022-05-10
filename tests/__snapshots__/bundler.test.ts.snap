@@ -6234,6 +6234,7 @@ const content = salute("Oscar");
 
 ReactDOM.render(<Title salute={content} />, document.getElementById("app"));
 ',
+    date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -6340,6 +6341,7 @@ const content = salute("Oscar");
 
 ReactDOM.render(<Title salute={content} />, document.getElementById("app"));
 ',
+    date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -6382,6 +6384,7 @@ export default function Title({ salute }: Props) {
   );
 }
 ',
+    date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -6410,6 +6413,7 @@ snapshot[`bundler plugin (not bundle) 6`] = `
   return \`Hello, \${name}\`;
 }
 ",
+    date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [

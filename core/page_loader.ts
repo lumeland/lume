@@ -1,8 +1,7 @@
 import { Page } from "./filesystem.ts";
-import { Exception } from "./errors.ts";
 import { posix } from "../deps/path.ts";
 
-import type { Data, Dest, Formats, PageType, Reader, Src } from "../core.ts";
+import type { Formats, Reader } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
@@ -56,44 +55,22 @@ export default class PageLoader {
       ext,
     });
 
-    // Prepare the data
+    // Load the data
     const data = await this.reader.read(path, pageLoader);
-    this.prepare(page, data, pageType);
-    page.data = data;
+    Object.assign(page.baseData, data);
+
+    if (pageType === "page") {
+      this.preparePage(page);
+    }
 
     return page;
   }
 
-  /** Prepare the data and the page */
-  prepare(page: Page, data: Data, type: PageType): void {
-    if (type === "page") {
-      this.preparePage(page, data);
-    }
-  }
-
   /**
    * Additional preparation for the HTML pages
-   * it removes the extension and ensure there's a `date` property in the data.
+   * it removes the extension.
    */
-  preparePage(page: Page, data: Data): void {
-    const datePath = this.#handleDatePath(page.src, page.dest);
-
-    // Ensure the data prop is defined and it's a Date instance
-    if (!data.date) {
-      data.date = datePath ?? page.src.created ?? page.src.lastModified;
-    } else {
-      if (typeof data.date === "string" || typeof data.date === "number") {
-        data.date = this.#createDate(data.date);
-      }
-
-      if (!(data.date instanceof Date)) {
-        throw new Exception(
-          'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
-          { page },
-        );
-      }
-    }
-
+  preparePage(page: Page): void {
     // Handle subextensions, like styles.css.njk
     const subext = posix.extname(page.dest.path);
 
@@ -102,56 +79,6 @@ export default class PageLoader {
       page.dest.ext = subext;
     } else {
       page.dest.ext = "";
-    }
-  }
-
-  /**
-   * Detect the date of the page in the filename
-   * and remove it in dest.path
-   * Example: 2019-01-01_hello-world.md
-   */
-  #handleDatePath(src: Src, dest: Dest): Date | undefined {
-    const fileName = posix.basename(src.path);
-    const dateInPath = fileName.match(/^([^_]+)?_/);
-
-    if (dateInPath) {
-      const [found, dateStr] = dateInPath;
-      const date = this.#createDate(dateStr);
-
-      if (date) {
-        dest.path = dest.path.replace(found, "");
-        return date;
-      }
-    }
-  }
-
-  /**
-   * Create a Date instance from a string or number
-   */
-  #createDate(str: string | number): Date | undefined {
-    if (typeof str === "number") {
-      return new Date(str);
-    }
-
-    const datetime = str.match(
-      /^(\d{4})-(\d\d)-(\d\d)(?:-(\d\d)-(\d\d)(?:-(\d\d))?)?$/,
-    );
-
-    if (datetime) {
-      const [, year, month, day, hour, minute, second] = datetime;
-
-      return new Date(Date.UTC(
-        parseInt(year),
-        parseInt(month) - 1,
-        parseInt(day),
-        hour ? parseInt(hour) : 0,
-        minute ? parseInt(minute) : 0,
-        second ? parseInt(second) : 0,
-      ));
-    }
-
-    if (str.match(/^\d+$/)) {
-      return new Date(parseInt(str));
     }
   }
 }

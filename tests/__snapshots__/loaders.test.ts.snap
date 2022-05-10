@@ -84,6 +84,7 @@ snapshot[`Load the pages of a site 4`] = `
   content: "Uint8Array(1503)",
   data: {
     content: "Uint8Array(1503)",
+    date: 1970-01-01T00:00:00.000Z,
     imagick: [
       {
         resize: [
@@ -646,6 +647,7 @@ snapshot[`Load the pages of a site 12`] = `
   color: black;
 }
 ",
+    date: 1970-01-01T00:00:00.000Z,
     imagick: [
       {
         resize: [

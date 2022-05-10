@@ -1,5 +1,5 @@
 import { posix } from "../deps/path.ts";
-import { documentToString, stringToDocument } from "./utils.ts";
+import { documentToString, stringToDocument, createDate } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
 
@@ -7,6 +7,9 @@ import type { HTMLDocument } from "../deps/dom.ts";
 abstract class Base {
   /** The src info */
   src: Src;
+
+  /** The destination info */
+  dest: Dest;
 
   /** The parent directory */
   parent?: Directory;
@@ -16,7 +19,7 @@ abstract class Base {
    * For directories, the content of _data or _data.* files
    * For pages, the front matter or exported variables.
    */
-  #data?: Data;
+  #data: Data = {};
 
   /**
    * Internal data. Used to save arbitrary data by plugins and processors
@@ -31,6 +34,24 @@ abstract class Base {
 
   constructor(src?: Src) {
     this.src = src || { path: "" };
+    this.dest = {
+      path: this.src.path,
+      ext: this.src.ext || "",
+    };
+
+    // Detect the date of the page/directory in the filename
+    const basename = posix.basename(this.src.path);
+    const dateInPath = basename.match(/^([^_]+)?_/);
+
+    if (dateInPath) {
+      const [found, dateStr] = dateInPath;
+      const date = createDate(dateStr);
+
+      if (date) {
+        this.dest.path = this.dest.path.replace(found, "");
+        this.#data.date = date;
+      }
+    }
 
     // Make data enumerable
     const data = Object.assign(
@@ -41,12 +62,12 @@ abstract class Base {
   }
 
   /** Returns the front matter for pages, _data for directories */
-  get baseData(): Data | undefined {
+  get baseData(): Data {
     return this.#data;
   }
 
   /** Set front matter for pages, _data for directories */
-  set baseData(data: Data | undefined) {
+  set baseData(data: Data) {
     this.#data = data;
     this.refreshCache();
   }
@@ -147,9 +168,6 @@ abstract class Base {
 
 /** A page of the site */
 export class Page extends Base {
-  /** The destination of the page */
-  dest: Dest;
-
   /** The page content (string or Uint8Array) */
   #content?: Content;
 
@@ -172,15 +190,6 @@ export class Page extends Base {
     page.updateUrl();
 
     return page;
-  }
-
-  constructor(src?: Src) {
-    super(src);
-
-    this.dest = {
-      path: this.src.path,
-      ext: this.src.ext || "",
-    };
   }
 
   /** Duplicate this page. Optionally, you can provide new data */
@@ -277,6 +286,7 @@ export class Directory extends Base {
   setPage(name: string, page: Page) {
     const oldPage = this.pages.get(name);
     page.parent = this;
+    page.dest.path = posix.join(this.dest.path, posix.basename(page.dest.path));
     this.pages.set(name, page);
 
     if (oldPage) {

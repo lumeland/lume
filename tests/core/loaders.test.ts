@@ -99,7 +99,7 @@ Deno.test("Loaders", async (t) => {
     assert(yaml);
     equals(yaml.data.title, "Hello world");
     assertEquals(yaml.data.tags, ["tag1", "tag2"]);
-    assert(yaml.data.date instanceof Date);
+    equals(yaml.data.date, undefined);
     equals(yaml.src.path, "/data");
     equals(yaml.src.ext, ".yml");
     equals(yaml.dest.path, "/data");
@@ -110,7 +110,7 @@ Deno.test("Loaders", async (t) => {
     equals(module.data.title, "Title from default");
     equals(module.data.subtitle, "Subtitle value");
     assertEquals(module.data.tags, ["tag1"]);
-    assert(module.data.date instanceof Date);
+    equals(module.data.date, undefined);
     equals(module.src.path, "/data");
     equals(module.src.ext, ".ts");
     equals(module.dest.path, "/data");
@@ -120,7 +120,7 @@ Deno.test("Loaders", async (t) => {
     assert(json);
     equals(json.data.title, "Title from json");
     assertEquals(json.data.tags, ["tag1", "tag2"]);
-    assert(json.data.date instanceof Date);
+    equals(json.data.date, undefined);
     equals(json.src.path, "/data");
     equals(json.src.ext, ".json");
     equals(json.dest.path, "/data");
@@ -131,14 +131,14 @@ Deno.test("Loaders", async (t) => {
     equals(text.data.title, "Title in the front matter");
     equals(text.data.content, "Hello world");
     assertEquals(text.data.tags, ["tag1"]);
-    assert(text.data.date instanceof Date);
+    equals(text.data.date, undefined);
     equals(text.src.path, "/data");
     equals(text.src.ext, ".txt");
     equals(text.dest.path, "/data");
     equals(text.dest.ext, "");
   });
 
-  await t.step("Page data detection", async () => {
+  await t.step("Page date detection", async () => {
     const page1 = await pageLoader.load("/page.txt");
     assert(page1);
     assert(page1.data.date instanceof Date);
