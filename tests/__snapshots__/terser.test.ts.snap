@@ -6,6 +6,7 @@ snapshot[`terser plugin 2`] = `
 {
   formats: [
     {
+      component: undefined,
       data: undefined,
       includesPath: undefined,
       key: ".tmpl.ts",
@@ -14,6 +15,7 @@ snapshot[`terser plugin 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: undefined,
       includesPath: undefined,
       key: ".tmpl.js",
@@ -22,6 +24,7 @@ snapshot[`terser plugin 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: undefined,
       includesPath: undefined,
       key: ".tmpl.json",
@@ -30,6 +33,7 @@ snapshot[`terser plugin 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: true,
       includesPath: undefined,
       key: ".json",
@@ -38,6 +42,7 @@ snapshot[`terser plugin 2`] = `
       removeExtension: undefined,
     },
     {
+      component: undefined,
       data: undefined,
       includesPath: undefined,
       key: ".md",
@@ -46,6 +51,7 @@ snapshot[`terser plugin 2`] = `
       removeExtension: true,
     },
     {
+      component: true,
       data: true,
       includesPath: undefined,
       key: ".js",
@@ -54,6 +60,7 @@ snapshot[`terser plugin 2`] = `
       removeExtension: undefined,
     },
     {
+      component: true,
       data: true,
       includesPath: undefined,
       key: ".ts",
@@ -62,6 +69,7 @@ snapshot[`terser plugin 2`] = `
       removeExtension: undefined,
     },
     {
+      component: true,
       data: undefined,
       includesPath: "_includes",
       key: ".njk",
@@ -70,6 +78,7 @@ snapshot[`terser plugin 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: true,
       includesPath: undefined,
       key: ".yaml",
@@ -78,6 +87,7 @@ snapshot[`terser plugin 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: true,
       includesPath: undefined,
       key: ".yml",

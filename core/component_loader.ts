@@ -88,20 +88,20 @@ export default class ComponentsLoader {
       return;
     }
 
-    const [ext, { componentLoader, componentEngine }] = result;
+    const [ext, format] = result;
 
-    if (!componentLoader || !componentEngine) {
+    if (!format.component || !format.loader || !format.componentEngine) {
       return;
     }
 
-    const component = await this.reader.read(path, componentLoader);
+    const component = await this.reader.read(path, format.loader);
     const { content } = component;
 
     return {
       path,
       name: component.name ?? posix.basename(path, ext),
       render(data) {
-        return componentEngine.renderSync(
+        return format.componentEngine!.renderSync(
           content,
           { ...extraData, ...data },
           path,

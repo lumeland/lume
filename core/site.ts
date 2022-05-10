@@ -314,7 +314,8 @@ export default class Site {
   ) {
     extensions.forEach((extension) => {
       this.formats.set(extension, {
-        componentLoader: loader,
+        loader,
+        component: true,
         componentEngine: engine,
       });
     });

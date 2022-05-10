@@ -132,6 +132,7 @@ export async function assertSiteSnapshot(
           loader: value.loader,
           page: value.page,
           data: value.data,
+          component: value.component,
         };
       }),
     },

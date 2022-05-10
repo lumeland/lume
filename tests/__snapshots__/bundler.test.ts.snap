@@ -6,6 +6,7 @@ snapshot[`bundler plugin 2`] = `
 {
   formats: [
     {
+      component: undefined,
       data: undefined,
       includesPath: undefined,
       key: ".tmpl.ts",
@@ -14,6 +15,7 @@ snapshot[`bundler plugin 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: undefined,
       includesPath: undefined,
       key: ".tmpl.js",
@@ -22,6 +24,7 @@ snapshot[`bundler plugin 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: undefined,
       includesPath: undefined,
       key: ".tmpl.json",
@@ -30,6 +33,7 @@ snapshot[`bundler plugin 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: true,
       includesPath: undefined,
       key: ".json",
@@ -38,6 +42,7 @@ snapshot[`bundler plugin 2`] = `
       removeExtension: undefined,
     },
     {
+      component: undefined,
       data: undefined,
       includesPath: undefined,
       key: ".md",
@@ -46,6 +51,7 @@ snapshot[`bundler plugin 2`] = `
       removeExtension: true,
     },
     {
+      component: true,
       data: true,
       includesPath: undefined,
       key: ".js",
@@ -54,6 +60,7 @@ snapshot[`bundler plugin 2`] = `
       removeExtension: undefined,
     },
     {
+      component: true,
       data: true,
       includesPath: undefined,
       key: ".ts",
@@ -62,6 +69,7 @@ snapshot[`bundler plugin 2`] = `
       removeExtension: undefined,
     },
     {
+      component: true,
       data: undefined,
       includesPath: "_includes",
       key: ".njk",
@@ -70,6 +78,7 @@ snapshot[`bundler plugin 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: true,
       includesPath: undefined,
       key: ".yaml",
@@ -78,6 +87,7 @@ snapshot[`bundler plugin 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: true,
       includesPath: undefined,
       key: ".yml",
@@ -86,6 +96,7 @@ snapshot[`bundler plugin 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: undefined,
       includesPath: undefined,
       key: ".tsx",
@@ -6291,6 +6302,7 @@ snapshot[`bundler plugin (not bundle) 2`] = `
 {
   formats: [
     {
+      component: undefined,
       data: undefined,
       includesPath: undefined,
       key: ".tmpl.ts",
@@ -6299,6 +6311,7 @@ snapshot[`bundler plugin (not bundle) 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: undefined,
       includesPath: undefined,
       key: ".tmpl.js",
@@ -6307,6 +6320,7 @@ snapshot[`bundler plugin (not bundle) 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: undefined,
       includesPath: undefined,
       key: ".tmpl.json",
@@ -6315,6 +6329,7 @@ snapshot[`bundler plugin (not bundle) 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: true,
       includesPath: undefined,
       key: ".json",
@@ -6323,6 +6338,7 @@ snapshot[`bundler plugin (not bundle) 2`] = `
       removeExtension: undefined,
     },
     {
+      component: undefined,
       data: undefined,
       includesPath: undefined,
       key: ".md",
@@ -6331,6 +6347,7 @@ snapshot[`bundler plugin (not bundle) 2`] = `
       removeExtension: true,
     },
     {
+      component: true,
       data: true,
       includesPath: undefined,
       key: ".js",
@@ -6339,6 +6356,7 @@ snapshot[`bundler plugin (not bundle) 2`] = `
       removeExtension: undefined,
     },
     {
+      component: true,
       data: true,
       includesPath: undefined,
       key: ".ts",
@@ -6347,6 +6365,7 @@ snapshot[`bundler plugin (not bundle) 2`] = `
       removeExtension: undefined,
     },
     {
+      component: true,
       data: undefined,
       includesPath: "_includes",
       key: ".njk",
@@ -6355,6 +6374,7 @@ snapshot[`bundler plugin (not bundle) 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: true,
       includesPath: undefined,
       key: ".yaml",
@@ -6363,6 +6383,7 @@ snapshot[`bundler plugin (not bundle) 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: true,
       includesPath: undefined,
       key: ".yml",
@@ -6371,6 +6392,7 @@ snapshot[`bundler plugin (not bundle) 2`] = `
       removeExtension: true,
     },
     {
+      component: undefined,
       data: undefined,
       includesPath: undefined,
       key: ".tsx",

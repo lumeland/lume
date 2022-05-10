@@ -7,8 +7,8 @@ export interface Format {
   loader?: Loader;
   page?: boolean;
   data?: boolean;
+  component?: boolean;
 
-  componentLoader?: Loader;
   includesLoader?: Loader;
   includesPath?: string;
   engine?: Engine;
