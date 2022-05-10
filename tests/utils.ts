@@ -127,12 +127,8 @@ export async function assertSiteSnapshot(
       formats: Array.from(site.formats.entries).map(([key, value]) => {
         return {
           key,
-          removeExtension: value.removeExtension,
-          includesPath: value.includesPath,
-          loader: value.loader,
-          page: value.page,
-          data: value.data,
-          component: value.component,
+          ...value,
+          engine: !!value.engine,
         };
       }),
     },

@@ -90,7 +90,7 @@ export default class ComponentsLoader {
 
     const [ext, format] = result;
 
-    if (!format.component || !format.loader || !format.componentEngine) {
+    if (!format.component || !format.loader || !format.engine) {
       return;
     }
 
@@ -101,7 +101,7 @@ export default class ComponentsLoader {
       path,
       name: component.name ?? posix.basename(path, ext),
       render(data) {
-        return format.componentEngine!.renderSync(
+        return format.engine!.renderSync(
           content,
           { ...extraData, ...data },
           path,

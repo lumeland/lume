@@ -3,15 +3,13 @@ import { Exception } from "./errors.ts";
 import type { Engine, Loader } from "../core.ts";
 
 export interface Format {
-  removeExtension?: boolean;
   loader?: Loader;
+  engine?: Engine;
   page?: boolean;
   data?: boolean;
   component?: boolean;
-
   includesPath?: string;
-  engine?: Engine;
-  componentEngine?: Engine;
+  removeExtension?: boolean;
 }
 
 /** Class to store loaders, engines and other stuff related with different formats */
@@ -79,7 +77,6 @@ export default class Formats {
   deleteCache(file: string): void {
     for (const format of this.formats()) {
       format.engine?.deleteCache(file);
-      format.componentEngine?.deleteCache(file);
     }
   }
 
