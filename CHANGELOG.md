@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `site.copy()` now accepts an array of file extensions to copy.
   For example: `site.copy([".jpg", ".png"])`.
 
+### Changed
+- The `imagick` plugin has the `cache` option as `true` by default.
+
 ### Deprecated
 - The functions `site.loadPages()`, `site.loadAssets()`, `site.loadComponents()`.
   Use the new `site.load()` function:

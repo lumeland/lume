@@ -33,7 +33,7 @@ export type TransformationFunction = (
 export const defaults: Options = {
   extensions: [".jpg", ".jpeg", ".png"],
   name: "imagick",
-  cache: false,
+  cache: true,
   functions: {
     resize(image: IMagickImage, width: number, height = width): void {
       image.resize(width, height);
@@ -81,6 +81,7 @@ export default function (userOptions?: Partial<Options>) {
 
     if (cacheFolder) {
       site.ignore(cacheFolder);
+      site.options.watcher.ignore.push(cacheFolder);
     }
 
     async function imagick(page: Page) {
@@ -89,12 +90,10 @@ export default function (userOptions?: Partial<Options>) {
         | Transformations
         | undefined;
 
-      if (!imagick || page._data.imagick === JSON.stringify(imagick)) {
-        // No transformation or already processed
+      if (!imagick) {
         return;
       }
 
-      page._data.imagick = JSON.stringify(imagick);
       site.logger.log("🎨", `${page.src.path}${page.src.ext}`);
 
       const content = page.content as Uint8Array;
