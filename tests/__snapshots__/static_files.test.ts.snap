@@ -37,6 +37,7 @@ snapshot[`Copy static files 2`] = `
     },
     {
       component: true,
+      copy: true,
       data: true,
       engine: true,
       key: ".js",
@@ -71,6 +72,11 @@ snapshot[`Copy static files 2`] = `
       loader: [AsyncFunction: yaml],
       page: "html",
     },
+    {
+      copy: true,
+      engine: false,
+      key: ".css",
+    },
   ],
 }
 `;
@@ -88,6 +94,11 @@ snapshot[`Copy static files 3`] = `
     src: "/other/two",
   },
   {
+    dest: "/script/app/main.js",
+    saved: true,
+    src: "/script/2022-01-01_app/main.js",
+  },
+  {
     dest: "/one.yes",
     saved: true,
     src: "/static/one.yes",
@@ -96,6 +107,16 @@ snapshot[`Copy static files 3`] = `
     dest: "/two.yes",
     saved: true,
     src: "/static/two.yes",
+  },
+  {
+    dest: "/styles.css",
+    saved: true,
+    src: "/styles.css",
+  },
+  {
+    dest: "/styles/main.css",
+    saved: true,
+    src: "/styles/main.css",
   },
 ]
 `;

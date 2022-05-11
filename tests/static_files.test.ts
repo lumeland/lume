@@ -7,6 +7,7 @@ Deno.test("Copy static files", async (t) => {
 
   site.copy("static", ".");
   site.copy("other");
+  site.copy([".css", ".js"]);
 
   await build(site);
   await assertSiteSnapshot(t, site);
