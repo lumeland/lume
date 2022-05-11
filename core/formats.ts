@@ -21,6 +21,9 @@ export interface Format {
   /** A custom path for includes */
   includesPath?: string;
 
+  /** Whether this file must be copied instead loaded */
+  copy?: boolean;
+
   /**
    * True to remove the extension after load the file as a page.
    * For example, if the file is `index.njk`, the page will be `index`.

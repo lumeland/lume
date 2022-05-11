@@ -1,14 +1,11 @@
 import { Page } from "./filesystem.ts";
 import { posix } from "../deps/path.ts";
 
-import type { Formats, Reader } from "../core.ts";
+import type { Format, Reader } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
   reader: Reader;
-
-  /** The extensions instance used to save the loaders */
-  formats: Formats;
 }
 
 /**
@@ -18,24 +15,16 @@ export default class PageLoader {
   /** The filesystem reader */
   reader: Reader;
 
-  /** List of extensions to load page files and the loader used */
-  formats: Formats;
-
   constructor(options: Options) {
     this.reader = options.reader;
-    this.formats = options.formats;
   }
 
   /** Load an asset Page */
-  async load(path: string): Promise<Page | undefined> {
-    // Search for the loader
-    const result = this.formats.search(path);
-
-    if (!result) {
-      return;
-    }
-
-    const [ext, format] = result;
+  async load(
+    path: string,
+    formatEntry: [string, Format],
+  ): Promise<Page | undefined> {
+    const [ext, format] = formatEntry;
 
     if (!format.loader || !format.page) {
       return;

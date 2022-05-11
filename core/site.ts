@@ -146,7 +146,7 @@ export default class Site {
     const reader = new Reader({ src });
     const formats = new Formats();
 
-    const pageLoader = new PageLoader({ reader, formats });
+    const pageLoader = new PageLoader({ reader });
     const dataLoader = new DataLoader({ reader, formats });
     const includesLoader = new IncludesLoader({ reader, includes, formats });
     const componentLoader = new ComponentLoader({ reader, formats });
@@ -155,6 +155,7 @@ export default class Site {
       reader,
       pageLoader,
       dataLoader,
+      formats,
     });
 
     // To render pages
@@ -380,7 +381,21 @@ export default class Site {
   }
 
   /** Copy static files or directories without processing */
-  copy(from: string, to = from) {
+  copy(from: string, to?: string): this;
+  copy(from: string[]): this;
+  copy(from: string | string[], to?: string): this {
+    // File extensions
+    if (Array.isArray(from)) {
+      from.forEach((extension) => {
+        this.formats.set(extension, { copy: true });
+      });
+      return this;
+    }
+
+    if (typeof to === "undefined") {
+      to = from;
+    }
+
     this.source.addStaticPath(from, to);
     return this;
   }

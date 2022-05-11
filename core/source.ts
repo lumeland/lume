@@ -5,12 +5,14 @@ import { Directory, Page, StaticFile } from "./filesystem.ts";
 import type {
   Data,
   DataLoader,
+  Formats,
   PageLoader,
   Reader,
   ScopeFilter,
 } from "../core.ts";
 
 export interface Options {
+  formats: Formats;
   dataLoader: DataLoader;
   pageLoader: PageLoader;
   reader: Reader;
@@ -33,6 +35,9 @@ export default class Source {
   /** To load all resources (HTML pages and assets) */
   pageLoader: PageLoader;
 
+  /** Info about how to handle different file formats */
+  formats: Formats;
+
   /** The list of paths to ignore */
   ignored = new Set<string>();
 
@@ -46,6 +51,7 @@ export default class Source {
     this.pageLoader = options.pageLoader;
     this.dataLoader = options.dataLoader;
     this.reader = options.reader;
+    this.formats = options.formats;
   }
 
   addIgnoredPath(path: string) {
@@ -241,7 +247,25 @@ export default class Source {
     }
 
     if (entry.isFile) {
-      const page = (await this.pageLoader.load(path));
+      const formatEntry = this.formats.search(path);
+
+      if (!formatEntry) {
+        return;
+      }
+
+      const [, format] = formatEntry;
+
+      // The file is a static file
+      if (format.copy) {
+        directory.setStaticFile({
+          src: path,
+          dest: posix.join(directory.dest.path, entry.name),
+        });
+        return;
+      }
+
+      // The file is a page (a loadable file)
+      const page = (await this.pageLoader.load(path, formatEntry));
 
       if (page) {
         directory.setPage(entry.name, page);
