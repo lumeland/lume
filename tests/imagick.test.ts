@@ -6,7 +6,9 @@ Deno.test("imagick plugin", async (t) => {
     src: "imagick",
   });
 
-  site.use(imagick());
+  site.use(imagick({
+    cache: false,
+  }));
 
   await build(site);
   await assertSiteSnapshot(t, site);
