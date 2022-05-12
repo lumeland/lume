@@ -265,12 +265,14 @@ export default class Source {
       }
 
       // The file is a page (a loadable file)
-      const page = (await this.pageLoader.load(path, formatEntry));
+      if (format.pageLoader) {
+        const page = (await this.pageLoader.load(path, formatEntry));
 
-      if (page) {
-        directory.setPage(entry.name, page);
-      } else {
-        directory.unsetPage(entry.name);
+        if (page) {
+          directory.setPage(entry.name, page);
+        } else {
+          directory.unsetPage(entry.name);
+        }
       }
       return;
     }

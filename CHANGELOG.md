@@ -10,7 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.8.1] - Unreleased
 ### Added
 - Ability to extract the Date from the directory path, not only filename [#198].
-- New function `site.load()` to configure how to load pages, data files and components in a single place.
 - `site.copy()` now accepts an array of file extensions to copy.
   For example: `site.copy([".jpg", ".png"])`.
 - Support for GitHub HTML server style [#193].

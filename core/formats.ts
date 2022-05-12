@@ -6,12 +6,11 @@ export interface Format {
   /** The file loader used for this format */
   pageLoader?: Loader;
 
-  /**
-   * Whether remove the extension after load the file as a page.
-   * This is used to distinguish between pages that output html files (like index.njk -> index.html)
-   * and pages that output assets (like styles.css -> styles.css).
-   */
-  removeExtension?: boolean;
+  /** Loader for _data files in this format */
+  dataLoader?: Loader;
+
+  /** Loader for _components files in this format */
+  componentLoader?: Loader;
 
   /**
    * The template engine used to render this format
@@ -19,11 +18,12 @@ export interface Format {
    */
   engine?: Engine;
 
-  /** Loader for _data files in this format */
-  dataLoader?: Loader;
-
-  /** True to load components in this format */
-  component?: boolean;
+  /**
+   * Whether remove the extension after load the file as a page.
+   * This is used to distinguish between pages that output html files (like index.njk -> index.html)
+   * and pages that output assets (like styles.css -> styles.css).
+   */
+  removeExtension?: boolean;
 
   /** A custom path for includes */
   includesPath?: string;

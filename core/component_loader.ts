@@ -90,11 +90,11 @@ export default class ComponentsLoader {
 
     const [ext, format] = result;
 
-    if (!format.component || !format.pageLoader || !format.engine) {
+    if (!format.componentLoader || !format.engine) {
       return;
     }
 
-    const component = await this.reader.read(path, format.pageLoader);
+    const component = await this.reader.read(path, format.componentLoader);
     const { content } = component;
 
     return {

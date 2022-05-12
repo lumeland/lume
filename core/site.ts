@@ -26,7 +26,6 @@ import type {
   Event,
   EventListener,
   EventOptions,
-  Format,
   Helper,
   HelperOptions,
   Loader,
@@ -263,23 +262,6 @@ export default class Site {
     return await this.scripts.run(options, name);
   }
 
-  /** Configure how to load pages, components and data files */
-  load(
-    extensions: string[],
-    loader: Loader = textLoader,
-    loadOptions?: Omit<Format, "pageLoader" | "dataLoader" | "copy" | "engine">,
-  ): this {
-    const options: Format = loadOptions
-      ? { ...loadOptions, pageLoader: loader }
-      : { pageLoader: loader };
-
-    extensions.forEach((extension) => {
-      this.formats.set(extension, options);
-    });
-
-    return this;
-  }
-
   /**
    * Register a data loader for some extensions
    */
@@ -299,7 +281,12 @@ export default class Site {
     loader: Loader = textLoader,
     engine?: Engine,
   ) {
-    this.load(extensions, loader, { removeExtension: true });
+    extensions.forEach((extension) => {
+      this.formats.set(extension, {
+        pageLoader: loader,
+        removeExtension: true,
+      });
+    });
 
     if (engine) {
       this.engine(extensions, engine);
@@ -311,8 +298,13 @@ export default class Site {
   /**
    * Register an assets loader for some extensions
    */
-  loadAssets(extensions: string[], loader?: Loader) {
-    return this.load(extensions, loader);
+  loadAssets(extensions: string[], loader: Loader = textLoader) {
+    extensions.forEach((extension) => {
+      this.formats.set(extension, {
+        pageLoader: loader,
+        removeExtension: false,
+      });
+    });
   }
 
   /**
@@ -323,7 +315,9 @@ export default class Site {
     loader: Loader = textLoader,
     engine: Engine,
   ) {
-    this.load(extensions, loader, { component: true });
+    extensions.forEach((extension) => {
+      this.formats.set(extension, { componentLoader: loader });
+    });
     this.engine(extensions, engine);
     return this;
   }
