@@ -647,7 +647,7 @@ export interface SiteOptions {
   location: URL;
 
   /** Set true to generate pretty urls (`/about-me/`) */
-  prettyUrls: boolean;
+  prettyUrls: boolean | "no-html-extension";
 
   /** Set `true` to skip logs */
   quiet: boolean;

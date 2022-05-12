@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `site.copy()` now accepts an array of file extensions to copy.
   For example: `site.copy([".jpg", ".png"])`.
 - Support for GitHub HTML server style [#193].
+- The `prettyUrls` option allows `no-html-extension` value to use the same url resolution as GitHub [#193].
 
 ### Changed
 - The `imagick` plugin has the `cache` option as `true` by default.

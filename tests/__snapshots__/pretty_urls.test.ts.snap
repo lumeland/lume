@@ -1,0 +1,215 @@
+export const snapshot = {};
+
+snapshot[`Disabled pretty URLs 1`] = `1`;
+
+snapshot[`Disabled pretty URLs 2`] = `
+{
+  formats: [
+    {
+      engine: true,
+      key: ".tmpl.ts",
+      loader: [AsyncFunction: module],
+      page: "html",
+    },
+    {
+      engine: true,
+      key: ".tmpl.js",
+      loader: [AsyncFunction: module],
+      page: "html",
+    },
+    {
+      engine: false,
+      key: ".tmpl.json",
+      loader: [AsyncFunction: json],
+      page: "html",
+    },
+    {
+      data: true,
+      engine: false,
+      key: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engine: true,
+      key: ".md",
+      loader: [AsyncFunction: text],
+      page: "html",
+    },
+    {
+      component: true,
+      data: true,
+      engine: true,
+      key: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      component: true,
+      data: true,
+      engine: true,
+      key: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      component: true,
+      engine: true,
+      includesPath: "_includes",
+      key: ".njk",
+      loader: [AsyncFunction: text],
+      page: "html",
+    },
+    {
+      data: true,
+      engine: false,
+      key: ".yaml",
+      loader: [AsyncFunction: yaml],
+      page: "html",
+    },
+    {
+      data: true,
+      engine: false,
+      key: ".yml",
+      loader: [AsyncFunction: yaml],
+      page: "html",
+    },
+  ],
+}
+`;
+
+snapshot[`Disabled pretty URLs 3`] = `
+[
+]
+`;
+
+snapshot[`Disabled pretty URLs 4`] = `
+{
+  content: "<h1>Welcome</h1>
+",
+  data: {
+    content: "
+# Welcome
+",
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "First page",
+    url: "/page1.html",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page1",
+  },
+  src: {
+    ext: ".md",
+    path: "/page1",
+  },
+}
+`;
+
+snapshot[`Pretty URLs with no-html-extension 1`] = `1`;
+
+snapshot[`Pretty URLs with no-html-extension 2`] = `
+{
+  formats: [
+    {
+      engine: true,
+      key: ".tmpl.ts",
+      loader: [AsyncFunction: module],
+      page: "html",
+    },
+    {
+      engine: true,
+      key: ".tmpl.js",
+      loader: [AsyncFunction: module],
+      page: "html",
+    },
+    {
+      engine: false,
+      key: ".tmpl.json",
+      loader: [AsyncFunction: json],
+      page: "html",
+    },
+    {
+      data: true,
+      engine: false,
+      key: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engine: true,
+      key: ".md",
+      loader: [AsyncFunction: text],
+      page: "html",
+    },
+    {
+      component: true,
+      data: true,
+      engine: true,
+      key: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      component: true,
+      data: true,
+      engine: true,
+      key: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      component: true,
+      engine: true,
+      includesPath: "_includes",
+      key: ".njk",
+      loader: [AsyncFunction: text],
+      page: "html",
+    },
+    {
+      data: true,
+      engine: false,
+      key: ".yaml",
+      loader: [AsyncFunction: yaml],
+      page: "html",
+    },
+    {
+      data: true,
+      engine: false,
+      key: ".yml",
+      loader: [AsyncFunction: yaml],
+      page: "html",
+    },
+  ],
+}
+`;
+
+snapshot[`Pretty URLs with no-html-extension 3`] = `
+[
+]
+`;
+
+snapshot[`Pretty URLs with no-html-extension 4`] = `
+{
+  content: "<h1>Welcome</h1>
+",
+  data: {
+    content: "
+# Welcome
+",
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "First page",
+    url: "/page1",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page1",
+  },
+  src: {
+    ext: ".md",
+    path: "/page1",
+  },
+}
+`;

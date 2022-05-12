@@ -12,7 +12,7 @@ import type {
 
 export interface Options {
   includesLoader: IncludesLoader;
-  prettyUrls: boolean;
+  prettyUrls: boolean | "no-html-extension";
   preprocessors: Processors;
   engines: Engines;
 }
@@ -26,7 +26,7 @@ export default class Renderer {
   includesLoader: IncludesLoader;
 
   /** To convert the urls to pretty /example.html => /example/ */
-  prettyUrls: boolean;
+  prettyUrls: boolean | "no-html-extension";
 
   /** Template engines to render the content */
   engines: Engines;
@@ -148,14 +148,14 @@ export default class Renderer {
       }
     } else if (!dest.ext) {
       if (
-        this.prettyUrls && posix.basename(dest.path) !== "index"
+        this.prettyUrls === true && posix.basename(dest.path) !== "index"
       ) {
         dest.path = posix.join(dest.path, "index");
       }
       dest.ext = ".html";
     }
 
-    page.updateUrl();
+    page.updateDest(dest, this.prettyUrls);
 
     // Ensure the date is set
     if (!data.date) {

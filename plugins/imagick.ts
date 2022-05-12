@@ -144,12 +144,12 @@ function transform(
     for (const [name, args] of Object.entries(transformation)) {
       switch (name) {
         case "suffix":
-          page.path += args;
+          page.updateDest({ path: page.dest.path + args });
           break;
 
         case "format":
           format = args;
-          page.ext = "." + args.toLowerCase();
+          page.updateDest({ ext: "." + args.toLowerCase() });
           break;
 
         default:

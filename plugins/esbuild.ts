@@ -62,7 +62,7 @@ export default function (userOptions?: Partial<Options>) {
 
       if (outputFiles?.length) {
         page.content = outputFiles[0].text;
-        page.ext = ".js";
+        page.updateDest({ ext: ".js" });
       }
     });
   };

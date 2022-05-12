@@ -203,6 +203,26 @@ export class Page extends Base {
     return page;
   }
 
+  updateDest(
+    dest: Partial<Dest>,
+    prettyUrl: boolean | "no-html-extension" = false,
+  ): void {
+    this.dest = { ...this.dest, ...dest };
+    const { path, ext } = this.dest;
+
+    if (ext === ".html") {
+      if (posix.basename(path) === "index") {
+        this.data.url = path.slice(0, -5);
+      } else if (prettyUrl === "no-html-extension") {
+        this.data.url = path;
+      } else {
+        this.data.url = path + ext;
+      }
+    } else {
+      this.data.url = path + ext;
+    }
+  }
+
   /** The output path */
   set path(path: string) {
     this.dest.path = path;
