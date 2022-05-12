@@ -10,15 +10,8 @@ export interface Options {
   folder?: string;
 }
 
-interface CacheItem {
-  content?: string | Uint8Array;
-  contentType?: "string" | "Uint8Array";
-  ext?: string;
-  [key: string]: any;
-}
-
 /**
- * Class to manage generic cache. It can be used to store any kind of data.
+ * Class to cache the content transformations (like imagick manipulations)
  */
 export default class Cache {
   #folder: string;
@@ -30,85 +23,60 @@ export default class Cache {
   async set(
     content: string | Uint8Array,
     key: any,
-    value: CacheItem,
+    result: string | Uint8Array,
   ): Promise<void> {
-    const hash = await this.hash(content);
-    const id = await this.hash(JSON.stringify(key));
-    const result = value.content;
+    const [dir, file] = await paths(content, key);
 
-    await ensureDir(posix.join(this.#folder, hash));
+    await ensureDir(posix.join(this.#folder, dir));
 
-    if (result) {
-      value.content = id;
-      const ext = value.ext || "";
-
-      if (typeof result === "string") {
-        value.contentType = "string";
-        await Deno.writeTextFile(
-          posix.join(this.#folder, hash, value.content + ext),
-          result,
-        );
-      } else {
-        value.contentType = "Uint8Array";
-        await Deno.writeFile(
-          posix.join(this.#folder, hash, value.content + ext),
-          result,
-        );
-      }
+    if (typeof result === "string") {
+      await Deno.writeTextFile(posix.join(this.#folder, dir, file), result);
     } else {
-      delete value.content;
-      delete value.contentType;
+      await Deno.writeFile(posix.join(this.#folder, dir, file), result);
     }
-
-    await Deno.writeTextFile(
-      posix.join(this.#folder, hash, id + ".json"),
-      JSON.stringify(value),
-    );
   }
 
-  async get(content: any, key: any): Promise<any> {
-    const hash = await this.hash(content);
-    const id = await this.hash(JSON.stringify(key));
+  async get(content: any, key: any): Promise<Uint8Array | undefined> {
+    const [dir, file] = await paths(content, key);
 
     try {
-      const data = await Deno.readTextFile(
-        posix.join(this.#folder, hash, id + ".json"),
-      );
-      const value = JSON.parse(data);
-
-      if (value.content) {
-        const ext = value.ext || "";
-
-        if (value.contentType === "string") {
-          const content = Deno.readTextFile(
-            posix.join(this.#folder, hash, value.content + ext),
-          );
-          return { ...value, content };
-        } else {
-          const content = await Deno.readFile(
-            posix.join(this.#folder, hash, value.content + ext),
-          );
-          return { ...value, content };
-        }
-      }
-      return value;
+      return await Deno.readFile(posix.join(this.#folder, dir, file));
     } catch {
       // Ignore
     }
-    return;
+  }
+
+  async getText(content: any, key: any): Promise<string | undefined> {
+    const [dir, file] = await paths(content, key);
+
+    try {
+      return await Deno.readTextFile(posix.join(this.#folder, dir, file));
+    } catch {
+      // Ignore
+    }
   }
 
   async clear(): Promise<void> {
     await emptyDir(this.#folder);
   }
+}
 
-  async hash(content: string | Uint8Array): Promise<string> {
-    const hash = await crypto.subtle.digest(
-      "MD5",
-      typeof content === "string" ? new TextEncoder().encode(content) : content,
-    );
+function paths(
+  content: string | Uint8Array,
+  key: any,
+): Promise<[string, string]> {
+  return Promise.all([
+    hash(content),
+    hash(JSON.stringify(key)),
+  ]);
+}
 
-    const hex = encode(new Uint8Array(hash));
-    return new TextDecoder().decode(hex);
-  }
+async function hash(content: string | Uint8Array): Promise<string> {
+  const hash = await crypto.subtle.digest(
+    "MD5",
+    typeof content === "string" ? new TextEncoder().encode(content) : content,
+  );
+
+  const hex = encode(new Uint8Array(hash));
+  return new TextDecoder().decode(hex);
 }

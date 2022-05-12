@@ -105,20 +105,16 @@ export default function (userOptions?: Partial<Options>) {
           ? page
           : page.duplicate({ [options.name]: undefined });
 
-        if (cache) {
-          try {
-            const result = await cache.get(content, transformation);
-            output.path = result.path;
-            output.ext = result.ext;
-            output.content = result.content;
-          } catch {
-            transform(content, output, transformation, options);
+        rename(output, transformation);
 
-            await cache.set(content, transformation, {
-              path: output.path,
-              ext: output.ext,
-              content: output.content,
-            });
+        if (cache) {
+          const result = await cache.get(content, transformation);
+
+          if (result) {
+            output.content = result;
+          } else {
+            transform(content, output, transformation, options);
+            await cache.set(content, transformation, output.content!);
           }
         } else {
           transform(content, output, transformation, options);
@@ -144,12 +140,10 @@ function transform(
     for (const [name, args] of Object.entries(transformation)) {
       switch (name) {
         case "suffix":
-          page.updateDest({ path: page.dest.path + args });
           break;
 
         case "format":
           format = args;
-          page.updateDest({ ext: "." + args.toLowerCase() });
           break;
 
         default:
@@ -170,4 +164,14 @@ function transform(
       format,
     );
   });
+}
+
+function rename(page: Page, transformation: Transformation): void {
+  if (transformation.format) {
+    page.updateDest({ ext: "." + transformation.format });
+  }
+
+  if (transformation.suffix) {
+    page.updateDest({ path: page.dest.path + transformation.suffix });
+  }
 }
