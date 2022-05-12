@@ -35,21 +35,19 @@ snapshot[`sass plugin 2`] = `
       removeExtension: true,
     },
     {
-      component: true,
+      componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engine: true,
       key: ".js",
-      pageLoader: [AsyncFunction: module],
     },
     {
-      component: true,
+      componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engine: true,
       key: ".ts",
-      pageLoader: [AsyncFunction: module],
     },
     {
-      component: true,
+      componentLoader: [AsyncFunction: text],
       engine: true,
       includesPath: "_includes",
       key: ".njk",
@@ -74,6 +72,7 @@ snapshot[`sass plugin 2`] = `
       engine: false,
       key: ".scss",
       pageLoader: [AsyncFunction: text],
+      removeExtension: false,
     },
   ],
 }

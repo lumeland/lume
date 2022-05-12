@@ -35,21 +35,19 @@ snapshot[`Load the pages of a site 2`] = `
       removeExtension: true,
     },
     {
-      component: true,
+      componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engine: true,
       key: ".js",
-      pageLoader: [AsyncFunction: module],
     },
     {
-      component: true,
+      componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engine: true,
       key: ".ts",
-      pageLoader: [AsyncFunction: module],
     },
     {
-      component: true,
+      componentLoader: [AsyncFunction: text],
       engine: true,
       includesPath: "_includes",
       key: ".njk",
@@ -74,11 +72,13 @@ snapshot[`Load the pages of a site 2`] = `
       engine: false,
       key: ".png",
       pageLoader: [AsyncFunction: binary],
+      removeExtension: false,
     },
     {
       engine: false,
       key: ".css",
       pageLoader: [AsyncFunction: text],
+      removeExtension: false,
     },
   ],
 }

@@ -16,15 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The `prettyUrls` option allows `no-html-extension` value to use the same url resolution as GitHub [#193].
 
 ### Changed
-- The `imagick` plugin has the `cache` option as `true` by default.
-
-### Deprecated
-- The functions `site.loadPages()`, `site.loadAssets()`, `site.loadComponents()`.
-  Use the new `site.load()` function:
-  - Load data: `site.load(exts, loader, { data: true })`.
-  - Load assets: `site.load(exts, loader, { page: "asset" })`.
-  - Load pages: `site.load(exts, loader, { page: "html" })`.
-  - Load components: `site.load(exts, loader, { component: true, engine })`.
+- The `imagick` plugin has the `cache` option enabled by default.
 
 ### Fixed
 - Live reload with unicode characters in the path.
