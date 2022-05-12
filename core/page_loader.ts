@@ -26,7 +26,7 @@ export default class PageLoader {
   ): Promise<Page | undefined> {
     const [ext, format] = formatEntry;
 
-    if (!format.loader || !format.page) {
+    if (!format.pageLoader) {
       return;
     }
 
@@ -45,10 +45,10 @@ export default class PageLoader {
     });
 
     // Load the data
-    const data = await this.reader.read(path, format.loader);
+    const data = await this.reader.read(path, format.pageLoader);
     Object.assign(page.baseData, data);
 
-    if (format.page === "html") {
+    if (format.removeExtension) {
       this.#removeExtension(page);
     }
 

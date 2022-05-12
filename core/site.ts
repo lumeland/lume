@@ -267,11 +267,11 @@ export default class Site {
   load(
     extensions: string[],
     loader: Loader = textLoader,
-    loadOptions?: Omit<Format, "loader">,
+    loadOptions?: Omit<Format, "pageLoader" | "dataLoader" | "copy" | "engine">,
   ): this {
     const options: Format = loadOptions
-      ? { ...loadOptions, loader }
-      : { loader, page: "asset" };
+      ? { ...loadOptions, pageLoader: loader }
+      : { pageLoader: loader };
 
     extensions.forEach((extension) => {
       this.formats.set(extension, options);
@@ -282,22 +282,24 @@ export default class Site {
 
   /**
    * Register a data loader for some extensions
-   * @deprecated Use `load` instead
    */
   loadData(extensions: string[], loader: Loader = textLoader): this {
-    return this.load(extensions, loader, { data: true });
+    extensions.forEach((extension) => {
+      this.formats.set(extension, { dataLoader: loader });
+    });
+
+    return this;
   }
 
   /**
    * Register a page loader for some extensions
-   * @deprecated Use `load` instead
    */
   loadPages(
     extensions: string[],
     loader: Loader = textLoader,
     engine?: Engine,
   ) {
-    this.load(extensions, loader, { page: "html" });
+    this.load(extensions, loader, { removeExtension: true });
 
     if (engine) {
       this.engine(extensions, engine);
@@ -308,7 +310,6 @@ export default class Site {
 
   /**
    * Register an assets loader for some extensions
-   * @deprecated Use `load` instead
    */
   loadAssets(extensions: string[], loader?: Loader) {
     return this.load(extensions, loader);
@@ -316,7 +317,6 @@ export default class Site {
 
   /**
    * Register a component loader for some extensions
-   * @deprecated Use `load` instead
    */
   loadComponents(
     extensions: string[],

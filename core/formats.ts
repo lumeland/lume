@@ -4,16 +4,23 @@ import type { Engine, Loader } from "../core.ts";
 
 export interface Format {
   /** The file loader used for this format */
-  loader?: Loader;
+  pageLoader?: Loader;
 
-  /** The template engine used to render this format */
+  /**
+   * Whether remove the extension after load the file as a page.
+   * This is used to distinguish between pages that output html files (like index.njk -> index.html)
+   * and pages that output assets (like styles.css -> styles.css).
+   */
+  removeExtension?: boolean;
+
+  /**
+   * The template engine used to render this format
+   * Used to render the page and components
+   */
   engine?: Engine;
 
-  /** Whether to load pages in this format */
-  page?: "asset" | "html";
-
-  /** True to load _data files in this format */
-  data?: boolean;
+  /** Loader for _data files in this format */
+  dataLoader?: Loader;
 
   /** True to load components in this format */
   component?: boolean;
@@ -23,14 +30,6 @@ export interface Format {
 
   /** Whether this file must be copied instead loaded */
   copy?: boolean;
-
-  /**
-   * True to remove the extension after load the file as a page.
-   * For example, if the file is `index.njk`, the page will be `index`.
-   * This is used to distinguish between pages that output html files (like index.njk -> index.html)
-   * and pages that output assets (like styles.css -> styles.css).
-   */
-  removeExtension?: boolean;
 }
 
 /** Class to store loaders, engines and other stuff related with different formats */

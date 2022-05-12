@@ -60,10 +60,10 @@ Deno.test("Loaders", async (t) => {
     });
   });
 
-  formats.set(".yml", { loader: yamlLoader });
-  formats.set(".ts", { loader: moduleLoader });
-  formats.set(".json", { loader: jsonLoader });
-  formats.set(".txt", { loader: textLoader });
+  formats.set(".yml", { pageLoader: yamlLoader });
+  formats.set(".ts", { pageLoader: moduleLoader });
+  formats.set(".json", { pageLoader: jsonLoader });
+  formats.set(".txt", { pageLoader: textLoader });
   equals(formats.size, 4);
 
   await t.step("Includes loader", async () => {

@@ -42,7 +42,7 @@ export default class IncludesLoader {
 
     const [, format] = entry;
 
-    if (!format.loader) {
+    if (!format.pageLoader) {
       return;
     }
 
@@ -62,7 +62,7 @@ export default class IncludesLoader {
 
     return [
       finalPath,
-      await this.reader.read(finalPath, format.loader),
+      await this.reader.read(finalPath, format.pageLoader),
     ];
   }
 }

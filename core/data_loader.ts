@@ -49,11 +49,11 @@ export default class DataLoader {
 
     const [, format] = result;
 
-    if (!format.data || !format.loader) {
+    if (!format.dataLoader) {
       return;
     }
 
-    return await this.reader.read(path, format.loader);
+    return await this.reader.read(path, format.dataLoader);
   }
 
   /** Load a _data directory */

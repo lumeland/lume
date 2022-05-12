@@ -117,24 +117,22 @@ Deno.test("data configuration", () => {
 
   equals(formats.size, 10);
   equals(formats.has(".json"), true);
-  assert(formats.get(".json")?.data);
+  assert(formats.get(".json")?.dataLoader);
   equals(formats.has(".js"), true);
-  assert(formats.get(".js")?.data);
+  assert(formats.get(".js")?.dataLoader);
   equals(formats.has(".ts"), true);
-  assert(formats.get(".ts")?.data);
+  assert(formats.get(".ts")?.dataLoader);
   equals(formats.has(".yaml"), true);
-  assert(formats.get(".yaml")?.data);
+  assert(formats.get(".yaml")?.dataLoader);
   equals(formats.has(".yml"), true);
-  assert(formats.get(".yml")?.data);
+  assert(formats.get(".yml")?.dataLoader);
 
   const loader = () => Promise.resolve({});
   site.loadData([".ext1", ".ext2"], loader);
 
   equals(formats.size, 12);
-  equals(formats.get(".ext1")?.loader, loader);
-  assert(formats.get(".ext1")?.data);
-  equals(formats.get(".ext2")?.loader, loader);
-  assert(formats.get(".ext2")?.data);
+  equals(formats.get(".ext1")?.dataLoader, loader);
+  equals(formats.get(".ext2")?.dataLoader, loader);
 });
 
 Deno.test("pages configuration", () => {
@@ -142,24 +140,22 @@ Deno.test("pages configuration", () => {
   const { formats } = site;
 
   equals(formats.size, 10);
-  equals(formats.has(".tmpl.json"), true);
-  equals(formats.get(".tmpl.json")?.page, "html");
-  equals(formats.has(".tmpl.js"), true);
-  equals(formats.get(".tmpl.js")?.page, "html");
-  assert(formats.get(".tmpl.js")?.engine);
-  equals(formats.has(".tmpl.ts"), true);
-  equals(formats.get(".tmpl.ts")?.page, "html");
-  assert(formats.get(".tmpl.ts")?.engine);
-  equals(formats.has(".md"), true);
-  equals(formats.get(".md")?.page, "html");
-  assert(formats.get(".md")?.engine);
-  equals(formats.has(".njk"), true);
-  equals(formats.get(".njk")?.page, "html");
-  assert(formats.get(".njk")?.engine);
-  equals(formats.has(".yaml"), true);
-  equals(formats.get(".yaml")?.page, "html");
-  equals(formats.has(".yml"), true);
-  equals(formats.get(".yml")?.page, "html");
+
+  const extensions = [
+    ".tmpl.json",
+    ".tmpl.js",
+    ".tmpl.ts",
+    ".md",
+    ".njk",
+    ".yaml",
+    ".yml",
+  ];
+
+  for (const ext of extensions) {
+    equals(formats.has(ext), true);
+    assert(formats.get(ext)?.pageLoader);
+    assert(formats.get(ext)?.removeExtension);
+  }
 
   const loader = () => Promise.resolve({});
   const engine = {
@@ -169,15 +165,17 @@ Deno.test("pages configuration", () => {
     addHelper: () => {},
   };
 
-  site.loadPages([".ext1", ".ext2"], loader, engine);
+  const newExts = [".ext1", ".ext2"];
+
+  site.loadPages(newExts, loader, engine);
 
   equals(formats.size, 12);
-  equals(formats.get(".ext1")?.loader, loader);
-  equals(formats.get(".ext1")?.page, "html");
-  assert(formats.get(".ext1")?.engine);
-  equals(formats.get(".ext2")?.loader, loader);
-  equals(formats.get(".ext2")?.page, "html");
-  assert(formats.get(".ext2")?.engine);
+
+  for (const ext of newExts) {
+    equals(formats.has(ext), true);
+    assert(formats.get(ext)?.pageLoader);
+    assert(formats.get(ext)?.removeExtension);
+  }
 });
 
 Deno.test("assets configuration", () => {
@@ -187,15 +185,20 @@ Deno.test("assets configuration", () => {
   equals(formats.size, 10);
 
   const loader = () => Promise.resolve({});
-  site.loadAssets([".css", ".js"], loader);
+
+  const extensions = [
+    ".css",
+    ".js",
+  ];
+
+  site.loadAssets(extensions, loader);
 
   equals(formats.size, 11);
-  equals(formats.has(".css"), true);
-  equals(formats.get(".css")?.loader, loader);
-  equals(formats.get(".css")?.page, "asset");
-  equals(formats.has(".js"), true);
-  equals(formats.get(".js")?.loader, loader);
-  equals(formats.get(".js")?.page, "asset");
+  for (const ext of extensions) {
+    equals(formats.has(ext), true);
+    assert(formats.get(ext)?.pageLoader);
+    assert(!formats.get(ext)?.removeExtension);
+  }
 });
 
 Deno.test("preprocessor configuration", () => {
