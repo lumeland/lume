@@ -579,7 +579,7 @@ export default class Site {
     return page;
   }
 
-  /** Return the URL of a page */
+  /** Return the URL of a path */
   url(path: string, absolute = false) {
     if (
       path.startsWith("./") || path.startsWith("../") ||
