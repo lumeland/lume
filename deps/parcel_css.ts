@@ -4,8 +4,9 @@ export {
   transformStyleAttribute,
 } from "https://unpkg.com/@parcel/css-wasm@1.8.2/index.js";
 
-// https://unpkg.com/@parcel/css-wasm@1.8.1/index.d.ts
-
+/**
+ * Types from /index.d.ts
+ */
 export interface TransformOptions {
   /** The filename being transformed. Used for error messages and source maps. */
   filename: string;

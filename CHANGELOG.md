@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Live reload with unicode characters in the path.
+- Updated `cliffy`, `deno_dom` and `esbuild` dependencies.
 
 ## [1.8.0] - 2022-05-06
 ### Added
