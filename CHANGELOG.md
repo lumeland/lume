@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New function `site.load()` to configure how to load pages, data files and components in a single place.
 - `site.copy()` now accepts an array of file extensions to copy.
   For example: `site.copy([".jpg", ".png"])`.
+- Support for GitHub HTML server style [#193].
 
 ### Changed
 - The `imagick` plugin has the `cache` option as `true` by default.
@@ -1551,6 +1552,7 @@ The first version.
 [#190]: https://github.com/lumeland/lume/issues/190
 [#191]: https://github.com/lumeland/lume/issues/191
 [#192]: https://github.com/lumeland/lume/issues/192
+[#193]: https://github.com/lumeland/lume/issues/193
 [#194]: https://github.com/lumeland/lume/issues/194
 [#196]: https://github.com/lumeland/lume/issues/196
 [#198]: https://github.com/lumeland/lume/issues/198

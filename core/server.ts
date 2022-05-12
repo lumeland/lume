@@ -105,15 +105,13 @@ export default class Server {
   async serveFile(request: Request): Promise<Response> {
     const url = new URL(request.url);
     const pathname = decodeURIComponent(url.pathname);
-    let path = posix.join(this.options.root, pathname);
+    const path = posix.join(this.options.root, pathname);
 
     try {
-      if (path.endsWith("/")) {
-        path += "index.html";
-      }
+      const file = path.endsWith("/") ? path + "index.html" : path;
 
       // Redirect /example to /example/
-      const info = await Deno.stat(path);
+      const info = await Deno.stat(file);
 
       if (info.isDirectory) {
         return new Response(null, {
@@ -125,8 +123,17 @@ export default class Server {
       }
 
       // Serve the static file
-      return await serveFile(request, path);
+      return await serveFile(request, file);
     } catch {
+      try {
+        // Exists a HTML file with this name?
+        if (!posix.extname(path)) {
+          return await serveFile(request, path + ".html");
+        }
+      } catch {
+        // Continue
+      }
+
       return new Response(
         "Not found",
         { status: 404 },
