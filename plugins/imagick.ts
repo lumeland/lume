@@ -94,11 +94,10 @@ export default function (userOptions?: Partial<Options>) {
         return;
       }
 
-      site.logger.log("🎨", `${page.src.path}${page.src.ext}`);
-
       const content = page.content as Uint8Array;
       const transformations = Array.isArray(imagick) ? imagick : [imagick];
       const last = transformations[transformations.length - 1];
+      let transformed = false;
 
       for (const transformation of transformations) {
         const output = transformation === last
@@ -114,15 +113,21 @@ export default function (userOptions?: Partial<Options>) {
             output.content = result;
           } else {
             transform(content, output, transformation, options);
+            transformed = true;
             await cache.set(content, transformation, output.content!);
           }
         } else {
           transform(content, output, transformation, options);
+          transformed = true;
         }
 
         if (output !== page) {
           site.pages.push(output);
         }
+      }
+
+      if (transformed) {
+        site.logger.log("🎨", `${page.src.path}${page.src.ext}`);
       }
     }
   };
