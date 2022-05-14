@@ -22,7 +22,7 @@ Deno.test("date plugin", async () => {
     },
   }));
 
-  const { helpers } = site.engines;
+  const { helpers } = site.renderer;
 
   assert(!helpers.has("date"));
   await site.dispatchEvent({ type: "beforeBuild" });
@@ -53,7 +53,7 @@ Deno.test("date plugin with custom locale", async () => {
 
   await site.dispatchEvent({ type: "beforeBuild" });
 
-  const { helpers } = site.engines;
+  const { helpers } = site.renderer;
   const [format] = helpers.get("date")!;
 
   equals(format(date0, "HUMAN_DATE"), "1 de xaneiro 1970");
@@ -77,7 +77,7 @@ Deno.test("date plugin with custom name", async () => {
 
   await site.dispatchEvent({ type: "beforeBuild" });
 
-  const { helpers } = site.engines;
+  const { helpers } = site.renderer;
   const [format] = helpers.get("dateify")!;
 
   equals(format(date0, "HUMAN_DATE"), "1 de xaneiro 1970");
@@ -94,7 +94,7 @@ Deno.test("date plugin load locales automatically", async () => {
 
   await build(site);
 
-  const { helpers } = site.engines;
+  const { helpers } = site.renderer;
 
   const [format] = helpers.get("date")!;
   equals(format(date0, "HUMAN_DATE"), "1 de xaneiro 1970");

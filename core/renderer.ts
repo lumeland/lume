@@ -4,7 +4,6 @@ import { Exception } from "./errors.ts";
 
 import type {
   Data,
-  Engines,
   Formats,
   IncludesLoader,
   Page,
@@ -15,7 +14,6 @@ export interface Options {
   includesLoader: IncludesLoader;
   prettyUrls: boolean | "no-html-extension";
   preprocessors: Processors;
-  engines: Engines;
   formats: Formats;
 }
 
@@ -30,21 +28,31 @@ export default class Renderer {
   /** To convert the urls to pretty /example.html => /example/ */
   prettyUrls: boolean | "no-html-extension";
 
-  /** Template engines to render the content */
-  engines: Engines;
-
   /** All preprocessors */
   preprocessors: Processors;
 
   /** Available file formats */
   formats: Formats;
 
+  /** The registered helpers */
+  helpers = new Map<string, [Helper, HelperOptions]>();
+
   constructor(options: Options) {
     this.includesLoader = options.includesLoader;
     this.prettyUrls = options.prettyUrls;
     this.preprocessors = options.preprocessors;
-    this.engines = options.engines;
     this.formats = options.formats;
+  }
+
+  /** Register a new helper used by the template engines */
+  addHelper(name: string, fn: Helper, options: HelperOptions) {
+    this.helpers.set(name, [fn, options]);
+
+    for (const format of this.formats.formats()) {
+      format.engine?.addHelper(name, fn, options);
+    }
+
+    return this;
   }
 
   /** Render the provided pages */
@@ -71,7 +79,7 @@ export default class Renderer {
 
       // Auto-generate pages and join them with the others
       for (const page of generators) {
-        const generator = await this.engines.render(
+        const generator = await this.render(
           page.data.content,
           page.data,
           page.src.path + page.src.ext,
@@ -117,6 +125,23 @@ export default class Renderer {
 
     await this.preprocessors.run([page]);
     page.content = await this.#renderPage(page) as string;
+  }
+
+  /** Render a template */
+  async render(
+    content: unknown,
+    data: Data,
+    filename: string,
+  ): Promise<unknown> {
+    const engines = this.#getEngine(filename, data);
+
+    if (engines) {
+      for (const engine of engines) {
+        content = await engine.render(content, data, filename);
+      }
+    }
+
+    return content;
   }
 
   /** Prepare the page before rendering
@@ -208,7 +233,7 @@ export default class Renderer {
     let { content, layout } = data;
     let path = page.src.path + page.src.ext;
 
-    content = await this.engines.render(content, data, path);
+    content = await this.render(content, data, path);
 
     // If the page is an asset, just return the content (don't render the layouts)
     if (this.formats.get(page.src.ext || "")?.asset) {
@@ -237,12 +262,42 @@ export default class Renderer {
         content,
       };
 
-      content = await this.engines.render(layoutData.content, data, layoutPath);
+      content = await this.render(layoutData.content, data, layoutPath);
       layout = layoutData.layout;
       path = layoutPath;
     }
 
     return content;
+  }
+
+  /** Get the engines assigned to an extension or configured in the data */
+  #getEngine(path: string, data: Data): Engine[] | undefined {
+    let { templateEngine } = data;
+
+    if (templateEngine) {
+      templateEngine = Array.isArray(templateEngine)
+        ? templateEngine
+        : templateEngine.split(",");
+
+      return templateEngine.map((name) => {
+        const format = this.formats.get(`.${name.trim()}`);
+
+        if (format?.engine) {
+          return format.engine;
+        }
+
+        throw new Exception(
+          "Invalid value for templateEngine",
+          { path, templateEngine },
+        );
+      });
+    }
+
+    const extension = this.formats.search(path);
+
+    if (extension && extension[1].engine) {
+      return [extension[1].engine];
+    }
   }
 }
 
@@ -257,4 +312,47 @@ function isGenerator(content: unknown) {
 
   const name = content.constructor.name;
   return (name === "GeneratorFunction" || name === "AsyncGeneratorFunction");
+}
+
+/** An interface used by all template engines */
+export interface Engine {
+  /** Delete a cached template */
+  deleteCache(file: string): void;
+
+  /** Render a template (used to render pages) */
+  render(
+    content: unknown,
+    data?: Data,
+    filename?: string,
+  ): unknown | Promise<unknown>;
+
+  /** Render a template synchronous (used to render components) */
+  renderSync(
+    content: unknown,
+    data?: Data,
+    filename?: string,
+  ): string;
+
+  /** Add a helper to the template engine */
+  addHelper(
+    name: string,
+    fn: Helper,
+    options: HelperOptions,
+  ): void;
+}
+
+/** A generic helper to be used in template engines */
+// deno-lint-ignore no-explicit-any
+export type Helper = (...args: any[]) => any;
+
+/** The options for a template helper */
+export interface HelperOptions {
+  /** The type of the helper (tag, filter, etc) */
+  type: string;
+
+  /** Whether the helper returns an instance or not */
+  async?: boolean;
+
+  /** Whether the helper has a body or not (used for tag types) */
+  body?: boolean;
 }

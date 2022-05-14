@@ -258,7 +258,7 @@ Deno.test("processor configuration", () => {
 
 Deno.test("helpers configuration", () => {
   const site = lume();
-  const { helpers } = site.engines;
+  const { helpers } = site.renderer;
 
   equals(helpers.size, 4);
   equals(helpers.has("url"), true);

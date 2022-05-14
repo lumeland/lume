@@ -43,15 +43,14 @@ import type {
   StaticFile,
 } from "./core/filesystem.ts";
 import type Source from "./core/source.ts";
-import type Renderer from "./core/renderer.ts";
-import type { default as Processors, Processor } from "./core/processors.ts";
-import type { default as Scopes, ScopeFilter } from "./core/scopes.ts";
 import type {
-  default as Engines,
+  default as Renderer,
   Engine,
   Helper,
   HelperOptions,
-} from "./core/engines.ts";
+} from "./core/renderer.ts";
+import type { default as Processors, Processor } from "./core/processors.ts";
+import type { default as Scopes, ScopeFilter } from "./core/scopes.ts";
 import type { ErrorData, Exception } from "./core/errors.ts";
 import type { default as Formats, Format } from "./core/formats.ts";
 import type {
@@ -85,7 +84,6 @@ export type {
   Dest,
   Directory,
   Engine,
-  Engines,
   ErrorData,
   Event,
   EventListener,

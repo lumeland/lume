@@ -9,7 +9,6 @@ import Components from "./components.ts";
 import DataLoader from "./data_loader.ts";
 import IncludesLoader from "./includes_loader.ts";
 import Source from "./source.ts";
-import Engines from "./engines.ts";
 import Scopes from "./scopes.ts";
 import Processors from "./processors.ts";
 import Renderer from "./renderer.ts";
@@ -97,9 +96,6 @@ export default class Site {
   /** To scan the src folder */
   source: Source;
 
-  /** To store and run the template engines */
-  engines: Engines;
-
   /** To update pages of the same scope after any change */
   scopes: Scopes;
 
@@ -158,7 +154,6 @@ export default class Site {
     });
 
     // To render pages
-    const engines = new Engines({ formats });
     const scopes = new Scopes();
     const processors = new Processors();
     const preprocessors = new Processors();
@@ -166,7 +161,6 @@ export default class Site {
       includesLoader,
       prettyUrls,
       preprocessors,
-      engines,
       formats,
     });
 
@@ -185,7 +179,6 @@ export default class Site {
     this.dataLoader = dataLoader;
     this.includesLoader = includesLoader;
     this.source = source;
-    this.engines = engines;
     this.scopes = scopes;
     this.processors = processors;
     this.preprocessors = preprocessors;
@@ -338,7 +331,7 @@ export default class Site {
       this.formats.set(extension, { engine });
     });
 
-    for (const [name, helper] of this.engines.helpers) {
+    for (const [name, helper] of this.renderer.helpers) {
       engine.addHelper(name, ...helper);
     }
 
@@ -364,7 +357,7 @@ export default class Site {
 
   /** Register a template helper */
   helper(name: string, fn: Helper, options: HelperOptions) {
-    this.engines.addHelper(name, fn, options);
+    this.renderer.addHelper(name, fn, options);
     return this;
   }
 
