@@ -23,7 +23,7 @@ Deno.test("static files configuration", () => {
   site.copy("img");
   equals(staticPaths.size, 1);
   equals(staticPaths.has("/img"), true);
-  equals(staticPaths.get("/img"), "/img");
+  equals(staticPaths.get("/img"), undefined);
 
   site.copy("statics/favicon.ico", "favicon.ico");
   equals(staticPaths.size, 2);

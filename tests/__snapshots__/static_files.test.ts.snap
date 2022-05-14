@@ -74,6 +74,16 @@ snapshot[`Copy static files 2`] = `
       engine: false,
       key: ".css",
     },
+    {
+      copy: true,
+      engine: false,
+      key: ".copy",
+    },
+    {
+      copy: [Function],
+      engine: false,
+      key: ".copy2",
+    },
   ],
 }
 `;
@@ -89,6 +99,56 @@ snapshot[`Copy static files 3`] = `
     dest: "/other/two",
     saved: true,
     src: "/other/two",
+  },
+  {
+    dest: "/posts/first-post/assets/inner/inner2/styles.css",
+    saved: true,
+    src: "/posts/2022-01-01_first-post/assets/inner/inner2/styles.scss",
+  },
+  {
+    dest: "/posts/first-post/assets/inner/styles1.css",
+    saved: true,
+    src: "/posts/2022-01-01_first-post/assets/inner/styles1.scss",
+  },
+  {
+    dest: "/posts/first-post/assets/styles.css",
+    saved: true,
+    src: "/posts/2022-01-01_first-post/assets/styles.scss",
+  },
+  {
+    dest: "/subdir/posts/first-post/callback.copy3",
+    saved: true,
+    src: "/posts/2022-01-01_first-post/callback.copy2",
+  },
+  {
+    dest: "/posts/first-post/individual-file",
+    saved: true,
+    src: "/posts/2022-01-01_first-post/individual-file",
+  },
+  {
+    dest: "/subdir/posts/first-post/inner/callback1.copy3",
+    saved: true,
+    src: "/posts/2022-01-01_first-post/inner/callback1.copy2",
+  },
+  {
+    dest: "/subdir/posts/first-post/inner/inner2/callback2.copy3",
+    saved: true,
+    src: "/posts/2022-01-01_first-post/inner/inner2/callback2.copy2",
+  },
+  {
+    dest: "/posts/first-post/inner/inner2/to-copy2.copy",
+    saved: true,
+    src: "/posts/2022-01-01_first-post/inner/inner2/to-copy2.copy",
+  },
+  {
+    dest: "/posts/first-post/inner/to-copy1.copy",
+    saved: true,
+    src: "/posts/2022-01-01_first-post/inner/to-copy1.copy",
+  },
+  {
+    dest: "/posts/first-post/to-copy.copy",
+    saved: true,
+    src: "/posts/2022-01-01_first-post/to-copy.copy",
   },
   {
     dest: "/script/app/main.js",
