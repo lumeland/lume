@@ -12,7 +12,7 @@ abstract class Base {
   dest: Dest;
 
   /** The parent directory */
-  parent?: Directory;
+  #parent?: Directory;
 
   /**
    * Used to save the assigned data directly
@@ -59,6 +59,20 @@ abstract class Base {
       { enumerable: true },
     );
     Object.defineProperty(this, "data", data);
+  }
+
+  /** Returns the parent directory */
+  get parent(): Directory | undefined {
+    return this.#parent;
+  }
+
+  /** Set the parent directory */
+  set parent(parent: Directory | undefined) {
+    this.dest.path = posix.join(
+      parent?.dest.path || "/",
+      posix.basename(this.dest.path),
+    );
+    this.#parent = parent;
   }
 
   /** Returns the front matter for pages, _data for directories */

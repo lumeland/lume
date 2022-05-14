@@ -29,7 +29,7 @@ export interface Format {
   includesPath?: string;
 
   /** Whether this file must be copied instead loaded */
-  copy?: boolean;
+  copy?: boolean | ((path: string) => string);
 }
 
 /** Class to store loaders, engines and other stuff related with different formats */

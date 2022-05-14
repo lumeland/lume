@@ -274,9 +274,13 @@ export default class Source {
 
       // The file is a static file
       if (format.copy) {
+        const output = posix.join(directory.dest.path, entry.name);
+
         directory.setStaticFile({
           src: path,
-          dest: posix.join(directory.dest.path, entry.name),
+          dest: typeof format.copy === "function"
+            ? format.copy(output)
+            : output,
         });
         return;
       }

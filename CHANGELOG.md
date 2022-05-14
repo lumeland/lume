@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Ability to extract the Date from the directory path, not only filename [#198].
 - `site.copy()` now accepts an array of file extensions to copy.
   For example: `site.copy([".jpg", ".png"])`.
+- `site.copy()` accepts a function as second argument to fine tuning the output file name.
+  For example: `site.copy("assets", (file) => "/dir" + file)`
+  and also with extensions: `site.copy([".jpeg"], (file) => file.replace(".jpeg", ".jpg"))`
 - Support for GitHub HTML server style [#193].
 - The `prettyUrls` option allows `no-html-extension` value to use the same url resolution as GitHub [#193].
 

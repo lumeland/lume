@@ -376,15 +376,22 @@ export default class Site {
 
   /** Copy static files or directories without processing */
   copy(from: string, to?: string | ((path: string) => string)): this;
-  copy(from: string[]): this;
+  copy(from: string[], to?: (path: string) => string): this;
   copy(
     from: string | string[],
     to?: string | ((path: string) => string),
   ): this {
     // File extensions
     if (Array.isArray(from)) {
+      if (typeof to === "string") {
+        throw new Exception(
+          "copy() files by extension expects a function as second argument",
+          { to },
+        );
+      }
+
       from.forEach((extension) => {
-        this.formats.set(extension, { copy: true });
+        this.formats.set(extension, { copy: to ? to : true });
       });
       return this;
     }
