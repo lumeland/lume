@@ -167,6 +167,7 @@ export default class Site {
       prettyUrls,
       preprocessors,
       engines,
+      formats,
     });
 
     // Other stuff
@@ -284,7 +285,6 @@ export default class Site {
     extensions.forEach((extension) => {
       this.formats.set(extension, {
         pageLoader: loader,
-        removeExtension: true,
       });
     });
 
@@ -302,7 +302,7 @@ export default class Site {
     extensions.forEach((extension) => {
       this.formats.set(extension, {
         pageLoader: loader,
-        removeExtension: false,
+        asset: true,
       });
     });
   }

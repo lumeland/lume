@@ -9,19 +9,16 @@ snapshot[`base_path plugin 2`] = `
       engine: true,
       key: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
-      removeExtension: true,
     },
     {
       engine: true,
       key: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
-      removeExtension: true,
     },
     {
       engine: false,
       key: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
-      removeExtension: true,
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -32,7 +29,6 @@ snapshot[`base_path plugin 2`] = `
       engine: true,
       key: ".md",
       pageLoader: [AsyncFunction: text],
-      removeExtension: true,
     },
     {
       componentLoader: [AsyncFunction: module],
@@ -52,21 +48,18 @@ snapshot[`base_path plugin 2`] = `
       includesPath: "_includes",
       key: ".njk",
       pageLoader: [AsyncFunction: text],
-      removeExtension: true,
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engine: false,
       key: ".yaml",
       pageLoader: [AsyncFunction: yaml],
-      removeExtension: true,
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engine: false,
       key: ".yml",
       pageLoader: [AsyncFunction: yaml],
-      removeExtension: true,
     },
   ],
 }

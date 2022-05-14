@@ -106,7 +106,7 @@ Deno.test("Loaders", async (t) => {
     equals(yaml.src.path, "/data");
     equals(yaml.src.ext, ".yml");
     equals(yaml.dest.path, "/data");
-    equals(yaml.dest.ext, "");
+    equals(yaml.dest.ext, ".yml");
 
     const tsEntry = formats.search("/data.ts");
     assert(tsEntry);
@@ -119,7 +119,7 @@ Deno.test("Loaders", async (t) => {
     equals(module.src.path, "/data");
     equals(module.src.ext, ".ts");
     equals(module.dest.path, "/data");
-    equals(module.dest.ext, "");
+    equals(module.dest.ext, ".ts");
 
     const jsonEntry = formats.search("/data.json");
     assert(jsonEntry);
@@ -131,7 +131,7 @@ Deno.test("Loaders", async (t) => {
     equals(json.src.path, "/data");
     equals(json.src.ext, ".json");
     equals(json.dest.path, "/data");
-    equals(json.dest.ext, "");
+    equals(json.dest.ext, ".json");
 
     const textEntry = formats.search("/data.txt");
     assert(textEntry);
@@ -144,7 +144,7 @@ Deno.test("Loaders", async (t) => {
     equals(text.src.path, "/data");
     equals(text.src.ext, ".txt");
     equals(text.dest.path, "/data");
-    equals(text.dest.ext, "");
+    equals(text.dest.ext, ".txt");
   });
 
   await t.step("Page date detection", async () => {

@@ -154,7 +154,7 @@ Deno.test("pages configuration", () => {
   for (const ext of extensions) {
     equals(formats.has(ext), true);
     assert(formats.get(ext)?.pageLoader);
-    assert(formats.get(ext)?.removeExtension);
+    assert(!formats.get(ext)?.asset);
   }
 
   const loader = () => Promise.resolve({});
@@ -174,7 +174,7 @@ Deno.test("pages configuration", () => {
   for (const ext of newExts) {
     equals(formats.has(ext), true);
     assert(formats.get(ext)?.pageLoader);
-    assert(formats.get(ext)?.removeExtension);
+    assert(!formats.get(ext)?.asset);
   }
 });
 
@@ -197,7 +197,7 @@ Deno.test("assets configuration", () => {
   for (const ext of extensions) {
     equals(formats.has(ext), true);
     assert(formats.get(ext)?.pageLoader);
-    assert(!formats.get(ext)?.removeExtension);
+    assert(formats.get(ext)?.asset);
   }
 });
 

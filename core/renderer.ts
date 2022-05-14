@@ -5,6 +5,7 @@ import { Exception } from "./errors.ts";
 import type {
   Data,
   Engines,
+  Formats,
   IncludesLoader,
   Page,
   Processors,
@@ -15,6 +16,7 @@ export interface Options {
   prettyUrls: boolean | "no-html-extension";
   preprocessors: Processors;
   engines: Engines;
+  formats: Formats;
 }
 
 /**
@@ -34,11 +36,15 @@ export default class Renderer {
   /** All preprocessors */
   preprocessors: Processors;
 
+  /** Available file formats */
+  formats: Formats;
+
   constructor(options: Options) {
     this.includesLoader = options.includesLoader;
     this.prettyUrls = options.prettyUrls;
     this.preprocessors = options.preprocessors;
     this.engines = options.engines;
+    this.formats = options.formats;
   }
 
   /** Render the provided pages */
@@ -85,7 +91,7 @@ export default class Renderer {
       // Preprocess the pages
       await this.preprocessors.run(pages);
 
-      // Render all pages
+      // Render pages
       await concurrent(
         pages,
         async (page) => {
@@ -146,13 +152,22 @@ export default class Renderer {
         dest.ext = posix.extname(url);
         dest.path = dest.ext ? url.slice(0, -dest.ext.length) : url;
       }
-    } else if (!dest.ext) {
-      if (
-        this.prettyUrls === true && posix.basename(dest.path) !== "index"
-      ) {
-        dest.path = posix.join(dest.path, "index");
+    } else if (!this.formats.get(page.src.ext || "")?.asset) {
+      // Handle subextensions, like styles.css.njk
+      const subext = posix.extname(page.dest.path);
+
+      if (subext) {
+        dest.path = page.dest.path.slice(0, -subext.length);
+        dest.ext = subext;
+      } else {
+        // Add automatically .html extension
+        if (
+          this.prettyUrls === true && posix.basename(dest.path) !== "index"
+        ) {
+          dest.path = posix.join(dest.path, "index");
+        }
+        dest.ext = ".html";
       }
-      dest.ext = ".html";
     }
 
     page.updateDest(dest, this.prettyUrls);
@@ -194,6 +209,11 @@ export default class Renderer {
     let path = page.src.path + page.src.ext;
 
     content = await this.engines.render(content, data, path);
+
+    // If the page is an asset, just return the content (don't render the layouts)
+    if (this.formats.get(page.src.ext || "")?.asset) {
+      return content;
+    }
 
     // Render the layouts recursively
     while (layout) {

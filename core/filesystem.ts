@@ -197,11 +197,9 @@ export class Page extends Base {
     const path = ext ? url.slice(0, -ext.length) : url;
 
     const page = new Page();
-    page.dest = { path, ext };
     page.data = { url, content };
     page.content = content;
-
-    page.updateUrl();
+    page.updateDest({ path, ext });
 
     return page;
   }
@@ -235,34 +233,6 @@ export class Page extends Base {
     } else {
       this.data.url = path + ext;
     }
-  }
-
-  /** The output path */
-  set path(path: string) {
-    this.dest.path = path;
-    this.updateUrl();
-  }
-
-  get path(): string {
-    return this.dest.path;
-  }
-
-  /** The output extension */
-  set ext(ext: string) {
-    this.dest.ext = ext;
-    this.updateUrl();
-  }
-
-  get ext(): string {
-    return this.dest.ext;
-  }
-
-  /** Update the page url according with the dest value */
-  updateUrl() {
-    this.data.url =
-      (this.dest.ext === ".html" && posix.basename(this.dest.path) === "index")
-        ? this.dest.path.slice(0, -5)
-        : this.dest.path + this.dest.ext;
   }
 
   /** The content of this page */

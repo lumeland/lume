@@ -19,11 +19,10 @@ export interface Format {
   engine?: Engine;
 
   /**
-   * Whether remove the extension after load the file as a page.
    * This is used to distinguish between pages that output html files (like index.njk -> index.html)
    * and pages that output assets (like styles.css -> styles.css).
    */
-  removeExtension?: boolean;
+  asset?: boolean;
 
   /** A custom path for includes */
   includesPath?: string;

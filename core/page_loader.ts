@@ -1,5 +1,4 @@
 import { Page } from "./filesystem.ts";
-import { posix } from "../deps/path.ts";
 
 import type { Format, Reader } from "../core.ts";
 
@@ -48,23 +47,6 @@ export default class PageLoader {
     const data = await this.reader.read(path, format.pageLoader);
     Object.assign(page.baseData, data);
 
-    if (format.removeExtension) {
-      this.#removeExtension(page);
-    }
-
     return page;
-  }
-
-  /** Removes the extension. */
-  #removeExtension(page: Page): void {
-    // Handle subextensions, like styles.css.njk
-    const subext = posix.extname(page.dest.path);
-
-    if (subext) {
-      page.dest.path = page.dest.path.slice(0, -subext.length);
-      page.dest.ext = subext;
-    } else {
-      page.dest.ext = "";
-    }
   }
 }

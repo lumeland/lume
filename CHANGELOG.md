@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.8.1] - Unreleased
+## [1.9.0] - Unreleased
 ### Added
 - Ability to extract the Date from the directory path, not only filename [#198].
 - `site.copy()` now accepts an array of file extensions to copy.
@@ -20,6 +20,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - The `imagick` plugin has the `cache` option enabled by default.
+- BREAKING: The asset pages (those loaded with `site.loadAssets()`) won't render the `layout` variable.
+  This is something that you probably always wanted. 
+  For example after defining a default `layout` in a `_data.yml` file,
+  this value was used also for assets like `.css` or `.jpg` files,
+  and the only way to prevent this is creating another `_data.yml` file inside these files' directory with `layout: null`.
+  With this change, this is no longer required, and `layout` is applied only for pages loaded with `site.loadPages()`.
 
 ### Fixed
 - Live reload with unicode characters in the path.
