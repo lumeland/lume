@@ -45,7 +45,10 @@ export default class Source {
   filters: ScopeFilter[] = [];
 
   /** List of static files and folders to copy */
-  staticPaths = new Map<string, string>();
+  staticPaths = new Map<
+    string,
+    string | ((path: string) => string) | undefined
+  >();
 
   constructor(options: Options) {
     this.pageLoader = options.pageLoader;
@@ -62,8 +65,11 @@ export default class Source {
     this.filters.push(filter);
   }
 
-  addStaticPath(from: string, to: string) {
-    this.staticPaths.set(normalizePath(from), normalizePath(to));
+  addStaticPath(from: string, to?: string | ((path: string) => string)) {
+    this.staticPaths.set(
+      normalizePath(from),
+      typeof to === "string" ? normalizePath(to) : to,
+    );
   }
 
   /** Returns all pages found */
@@ -123,10 +129,21 @@ export default class Source {
           }
         }
 
-        directory.setStaticFile({
-          src: file,
-          dest: posix.join(dest, file.slice(src.length)),
-        });
+        if (typeof dest === "string") {
+          directory.setStaticFile({
+            src: file,
+            dest: posix.join(dest, file.slice(src.length)),
+          });
+        } else {
+          const output = posix.join(
+            directory.dest.path,
+            file.slice(directory.src.path.length),
+          );
+          directory.setStaticFile({
+            src: file,
+            dest: dest ? dest(output) : output,
+          });
+        }
 
         return;
       }
@@ -287,20 +304,24 @@ export default class Source {
   /** Read the static files in a directory */
   async #loadStaticFiles(directory: Directory, entry: Deno.DirEntry) {
     const src = posix.join(directory.src.path, entry.name);
-    const dest = this.staticPaths.get(src);
 
-    if (!dest) {
+    if (!this.staticPaths.has(src)) {
       return;
     }
 
-    await this.#scanStaticFiles(directory, entry, src, dest);
+    await this.#scanStaticFiles(
+      directory,
+      entry,
+      src,
+      this.staticPaths.get(src),
+    );
   }
 
   async #scanStaticFiles(
     directory: Directory,
     entry: Deno.DirEntry,
     src: string,
-    dest: string,
+    dest?: string | ((file: string) => string),
   ) {
     // Check if the file should be ignored
     if (this.ignored.has(src)) {
@@ -312,7 +333,18 @@ export default class Source {
     }
 
     if (entry.isFile) {
-      directory.setStaticFile({ src, dest });
+      if (typeof dest === "string") {
+        directory.setStaticFile({ src, dest });
+      } else {
+        const output = posix.join(
+          directory.dest.path,
+          src.slice(directory.src.path.length),
+        );
+        directory.setStaticFile({
+          src,
+          dest: dest ? dest(output) : output,
+        });
+      }
       return;
     }
 
@@ -322,7 +354,7 @@ export default class Source {
           directory,
           entry,
           posix.join(src, entry.name),
-          posix.join(dest, entry.name),
+          typeof dest === "string" ? posix.join(dest, entry.name) : dest,
         );
       }
     }

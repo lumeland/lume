@@ -375,19 +375,18 @@ export default class Site {
   }
 
   /** Copy static files or directories without processing */
-  copy(from: string, to?: string): this;
+  copy(from: string, to?: string | ((path: string) => string)): this;
   copy(from: string[]): this;
-  copy(from: string | string[], to?: string): this {
+  copy(
+    from: string | string[],
+    to?: string | ((path: string) => string),
+  ): this {
     // File extensions
     if (Array.isArray(from)) {
       from.forEach((extension) => {
         this.formats.set(extension, { copy: true });
       });
       return this;
-    }
-
-    if (typeof to === "undefined") {
-      to = from;
     }
 
     this.source.addStaticPath(from, to);
