@@ -20,7 +20,7 @@ export const defaults: Options = {
   extensions: [".html"],
   options: {
     ignoreUnescapedHTML: false,
-    noHighlightRe: /^$/i,
+    noHighlightRe: /^no-highlight$/i,
     languageDetectRe: /\blanguage-([\w-]+)\b/i,
     classPrefix: "hljs-",
     cssSelector: "pre code",

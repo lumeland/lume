@@ -147,7 +147,7 @@ export default class Renderer {
   /** Prepare the page before rendering
    * - Generate the URL
    * - Modify the dest info accordingly
-   * - Ensure the date is set
+   * - Ensure the date is defined
    */
   #preparePage(page: Page) {
     const { dest, data } = page;
@@ -197,7 +197,7 @@ export default class Renderer {
 
     page.updateDest(dest, this.prettyUrls);
 
-    // Ensure the date is set
+    // Ensure the date is defined
     if (!data.date) {
       data.date = page.src.created ?? page.src.lastModified;
     } else {

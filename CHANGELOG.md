@@ -21,12 +21,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 - The `imagick` plugin has the `cache` option enabled by default.
 - BREAKING: The asset pages (those loaded with `site.loadAssets()`) won't render the `layout` variable.
-  This is something that you probably always wanted. 
+  This is something that you probably always wanted.
   For example after defining a default `layout` in a `_data.yml` file,
   this value was used also for assets like `.css` or `.jpg` files,
   and the only way to prevent this is creating another `_data.yml` file inside these files' directory with `layout: null`.
   With this change, this is no longer required, and `layout` is applied only for pages loaded with `site.loadPages()`.
 - Simplify code: Merged `engines.ts` into `renderer.ts` class.
+- The `code_highlight` plugin ignores elements with the class `no-highlight`.
 
 ### Fixed
 - Live reload with unicode characters in the path.
@@ -1559,7 +1560,7 @@ The first version.
 [#196]: https://github.com/lumeland/lume/issues/196
 [#198]: https://github.com/lumeland/lume/issues/198
 
-[1.8.1]: https://github.com/lumeland/lume/compare/v1.8.0...HEAD
+[1.9.0]: https://github.com/lumeland/lume/compare/v1.8.0...HEAD
 [1.8.0]: https://github.com/lumeland/lume/compare/v1.7.4...v1.8.0
 [1.7.4]: https://github.com/lumeland/lume/compare/v1.7.3...v1.7.4
 [1.7.3]: https://github.com/lumeland/lume/compare/v1.7.2...v1.7.3

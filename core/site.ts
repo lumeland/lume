@@ -205,7 +205,7 @@ export default class Site {
    * Returns the full path to the src directory.
    * Use the arguments to return a subpath
    */
-  src(...path: string[]) {
+  src(...path: string[]): string {
     return posix.join(this.options.cwd, this.options.src, ...path);
   }
 
@@ -213,7 +213,7 @@ export default class Site {
    * Returns the full path to the dest directory.
    * Use the arguments to return a subpath
    */
-  dest(...path: string[]) {
+  dest(...path: string[]): string {
     return posix.join(this.options.cwd, this.options.dest, ...path);
   }
 
@@ -222,7 +222,7 @@ export default class Site {
     type: SiteEventType,
     listener: EventListener<SiteEvent> | string,
     options?: EventOptions,
-  ) {
+  ): this {
     const fn = typeof listener === "string"
       ? () => this.run(listener)
       : listener;
@@ -232,12 +232,12 @@ export default class Site {
   }
 
   /** Dispatch an event */
-  dispatchEvent(event: SiteEvent) {
+  dispatchEvent(event: SiteEvent): Promise<boolean> {
     return this.events.dispatchEvent(event);
   }
 
   /** Use a plugin */
-  use(plugin: Plugin) {
+  use(plugin: Plugin): this {
     plugin(this);
     return this;
   }
@@ -246,13 +246,13 @@ export default class Site {
    * Register a script or a function, so it can be executed with
    * lume run <name>
    */
-  script(name: string, ...scripts: ScriptOrFunction[]) {
+  script(name: string, ...scripts: ScriptOrFunction[]): this {
     this.scripts.set(name, ...scripts);
     return this;
   }
 
   /** Runs a script or function registered previously */
-  async run(name: string, options: ScriptOptions = {}) {
+  async run(name: string, options: ScriptOptions = {}): Promise<boolean> {
     return await this.scripts.run(options, name);
   }
 
@@ -274,7 +274,7 @@ export default class Site {
     extensions: string[],
     loader: Loader = textLoader,
     engine?: Engine,
-  ) {
+  ): this {
     extensions.forEach((extension) => {
       this.formats.set(extension, {
         pageLoader: loader,
@@ -291,13 +291,15 @@ export default class Site {
   /**
    * Register an assets loader for some extensions
    */
-  loadAssets(extensions: string[], loader: Loader = textLoader) {
+  loadAssets(extensions: string[], loader: Loader = textLoader): this {
     extensions.forEach((extension) => {
       this.formats.set(extension, {
         pageLoader: loader,
         asset: true,
       });
     });
+
+    return this;
   }
 
   /**
@@ -307,7 +309,7 @@ export default class Site {
     extensions: string[],
     loader: Loader = textLoader,
     engine: Engine,
-  ) {
+  ): this {
     extensions.forEach((extension) => {
       this.formats.set(extension, { componentLoader: loader });
     });
@@ -316,7 +318,7 @@ export default class Site {
   }
 
   /** Register an import path for some extensions  */
-  includes(extensions: string[], path: string) {
+  includes(extensions: string[], path: string): this {
     extensions.forEach((extension) => {
       this.formats.set(extension, { includesPath: path });
     });
@@ -326,7 +328,7 @@ export default class Site {
   }
 
   /** Register a engine for some extensions  */
-  engine(extensions: string[], engine: Engine) {
+  engine(extensions: string[], engine: Engine): this {
     extensions.forEach((extension) => {
       this.formats.set(extension, { engine });
     });
@@ -339,30 +341,30 @@ export default class Site {
   }
 
   /** Register a preprocessor for some extensions */
-  preprocess(extensions: string[] | "*", preprocessor: Processor) {
+  preprocess(extensions: string[] | "*", preprocessor: Processor): this {
     this.preprocessors.set(extensions, preprocessor);
     return this;
   }
 
   /** Register a processor for some extensions */
-  process(extensions: string[] | "*", processor: Processor) {
+  process(extensions: string[] | "*", processor: Processor): this {
     this.processors.set(extensions, processor);
     return this;
   }
 
   /** Register a template filter */
-  filter(name: string, filter: Helper, async = false) {
+  filter(name: string, filter: Helper, async = false): this {
     return this.helper(name, filter, { type: "filter", async });
   }
 
   /** Register a template helper */
-  helper(name: string, fn: Helper, options: HelperOptions) {
+  helper(name: string, fn: Helper, options: HelperOptions): this {
     this.renderer.addHelper(name, fn, options);
     return this;
   }
 
   /** Register extra data accessible by layouts */
-  data(name: string, data: unknown) {
+  data(name: string, data: unknown): this {
     this.globalData[name] = data;
     return this;
   }
@@ -394,7 +396,7 @@ export default class Site {
   }
 
   /** Ignore one or several files or directories */
-  ignore(...paths: (string | ScopeFilter)[]) {
+  ignore(...paths: (string | ScopeFilter)[]): this {
     paths.forEach((path) => {
       if (typeof path === "string") {
         this.source.addIgnoredPath(path);
@@ -406,19 +408,19 @@ export default class Site {
   }
 
   /** Define independent scopes to optimize the update process */
-  scopedUpdates(...scopes: ScopeFilter[]) {
+  scopedUpdates(...scopes: ScopeFilter[]): this {
     scopes.forEach((scope) => this.scopes.scopes.add(scope));
     return this;
   }
 
   /** Clear the dest directory and any cache */
-  async clear() {
+  async clear(): Promise<void> {
     this.reader.clearCache();
     await this.writer.clear();
   }
 
   /** Build the entire site */
-  async build() {
+  async build(): Promise<void> {
     if (await this.dispatchEvent({ type: "beforeBuild" }) === false) {
       return;
     }
@@ -451,7 +453,7 @@ export default class Site {
   }
 
   /** Reload some files that might be changed */
-  async update(files: Set<string>) {
+  async update(files: Set<string>): Promise<void> {
     if (await this.dispatchEvent({ type: "beforeUpdate", files }) === false) {
       return;
     }
@@ -573,7 +575,7 @@ export default class Site {
   }
 
   /** Return the URL of a path */
-  url(path: string, absolute = false) {
+  url(path: string, absolute = false): string {
     if (
       path.startsWith("./") || path.startsWith("../") ||
       path.startsWith("?") || path.startsWith("#") || path.startsWith("//")
