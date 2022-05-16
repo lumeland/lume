@@ -27,7 +27,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   and the only way to prevent this is creating another `_data.yml` file inside these files' directory with `layout: null`.
   With this change, this is no longer required, and `layout` is applied only for pages loaded with `site.loadPages()`.
 - Simplify code: Merged `engines.ts` into `renderer.ts` class.
-- The `code_highlight` plugin ignores elements with the class `no-highlight`.
 
 ### Fixed
 - Live reload with unicode characters in the path.
