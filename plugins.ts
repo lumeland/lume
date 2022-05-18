@@ -1,6 +1,5 @@
 export { default as attributes } from "./plugins/attributes.ts";
 export { default as basePath } from "./plugins/base_path.ts";
-export { default as bundler } from "./plugins/bundler.ts";
 export { default as codeHighlight } from "./plugins/code_highlight.ts";
 export { default as date } from "./plugins/date.ts";
 export { default as eta } from "./plugins/eta.ts";

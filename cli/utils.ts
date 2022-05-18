@@ -52,7 +52,6 @@ export async function createSite(root: string, config?: string): Promise<Site> {
 export const pluginNames = [
   "attributes",
   "base_path",
-  "bundler",
   "code_highlight",
   "date",
   "esbuild",

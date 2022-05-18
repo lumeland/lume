@@ -11,7 +11,6 @@ Deno.test("Plugins module", () => {
   equals(allNames, [
     "attributes",
     "basePath",
-    "bundler",
     "codeHighlight",
     "date",
     "esbuild",
@@ -51,7 +50,6 @@ Deno.test("Plugins list in init", () => {
   equals(pluginNames, [
     "attributes",
     "base_path",
-    "bundler",
     "code_highlight",
     "date",
     "esbuild",

@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.9.1] - Unreleased
+### Removed
+- BREAKING: Removed `bundle` plugin because [`Deno.emit()` was removed in Deno](https://github.com/denoland/deno/pull/14463).
+
 ### Fixed
 - Duplicated pages with a custom destination.
   This affected to the imagick plugin when generate different copies
