@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { getDenoConfig, merge } from "../core/utils.ts";
 import * as esbuild from "../deps/esbuild.ts";
 
 import type { Site } from "../core.ts";
@@ -11,10 +11,14 @@ export interface Options {
   options: esbuild.BuildOptions;
 }
 
+const denoConfig = await getDenoConfig();
+const importMapFile = denoConfig?.importMap;
+
 // Default options
 const defaults: Options = {
   extensions: [".ts", ".js"],
   options: {
+    plugins: [esbuild.denoPlugin({ importMapFile })],
     bundle: true,
     format: "esm",
     minify: true,
