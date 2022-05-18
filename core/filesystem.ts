@@ -207,11 +207,10 @@ export class Page extends Base {
   /** Duplicate this page. Optionally, you can provide new data */
   duplicate(data = {}): Page {
     const page = new Page({ ...this.src });
+    page.parent = this.parent;
     page.dest = { ...this.dest };
     page.data = { ...this.data, ...data };
-    page.parent = this.parent;
     page.src.path += `[${this.#copy++}]`;
-
     return page;
   }
 

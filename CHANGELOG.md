@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.9.1] - Unreleased
+### Fixed
+- Duplicated pages with a custom destination.
+  This affected to the imagick plugin when generate different copies
+  of the same image [#197].
+
 ## [1.9.0] - 2022-05-16
 ### Added
 - Ability to extract the Date from the directory path, not only filename [#198].
@@ -1557,8 +1563,10 @@ The first version.
 [#193]: https://github.com/lumeland/lume/issues/193
 [#194]: https://github.com/lumeland/lume/issues/194
 [#196]: https://github.com/lumeland/lume/issues/196
+[#197]: https://github.com/lumeland/lume/issues/197
 [#198]: https://github.com/lumeland/lume/issues/198
 
+[1.9.1]: https://github.com/lumeland/lume/compare/v1.9.0...HEAD
 [1.9.0]: https://github.com/lumeland/lume/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/lumeland/lume/compare/v1.7.4...v1.8.0
 [1.7.4]: https://github.com/lumeland/lume/compare/v1.7.3...v1.7.4
