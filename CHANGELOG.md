@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Duplicated pages with a custom destination.
   This affected to the imagick plugin when generate different copies
   of the same image [#197].
+- Improved `site.src()` and `site.dest()` on Windows.
 
 ## [1.9.0] - 2022-05-16
 ### Added

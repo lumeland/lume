@@ -1,5 +1,5 @@
-import { posix } from "../deps/path.ts";
-import { merge } from "./utils.ts";
+import { posix, join } from "../deps/path.ts";
+import { merge, normalizePath } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
 import Reader from "./reader.ts";
@@ -206,7 +206,7 @@ export default class Site {
    * Use the arguments to return a subpath
    */
   src(...path: string[]): string {
-    return posix.join(this.options.cwd, this.options.src, ...path);
+    return normalizePath(join(this.options.cwd, this.options.src, ...path));
   }
 
   /**
@@ -214,7 +214,7 @@ export default class Site {
    * Use the arguments to return a subpath
    */
   dest(...path: string[]): string {
-    return posix.join(this.options.cwd, this.options.dest, ...path);
+    return normalizePath(join(this.options.cwd, this.options.dest, ...path));
   }
 
   /** Add a listener to an event */
