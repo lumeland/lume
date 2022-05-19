@@ -99,7 +99,7 @@ export default function liveReload() {
         case "webp":
           {
             for (const image of Array.from(document.images)) {
-              if (isSame(url, src.href)) {
+              if (isSame(url, image.src)) {
                 reloadSource(image);
                 continue;
               }
