@@ -1,4 +1,4 @@
-import { getDenoConfig, merge } from "../core/utils.ts";
+import { getDenoConfig, merge, toUrl } from "../core/utils.ts";
 import * as esbuild from "../deps/esbuild.ts";
 
 import type { Site } from "../core.ts";
@@ -40,7 +40,7 @@ export default function (userOptions?: Partial<Options>) {
 
     site.process(options.extensions, async (page) => {
       const name = `${page.src.path}${page.src.ext}`;
-      const filename = site.src(name);
+      const filename = await toUrl(site.src(name));
       site.logger.log("📦", name);
 
       const buildOptions: esbuild.BuildOptions = {
@@ -49,7 +49,7 @@ export default function (userOptions?: Partial<Options>) {
         incremental: false,
         watch: false,
         metafile: false,
-        entryPoints: [filename],
+        entryPoints: [filename.href],
       };
 
       const { outputFiles, warnings, errors } = await esbuild.build(
