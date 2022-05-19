@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Improved the `esbuild` plugin:
   - Use [deno_loader](https://deno.land/x/esbuild_deno_loader@0.4.3) plugin by default.
   - Detect the import map file automatically (from `deno.json` file).
+- `watcher.ignore` option accepts functions.
 
 ### Removed
 - BREAKING: Removed `bundle` plugin because [`Deno.emit()` was removed in Deno](https://github.com/denoland/deno/pull/14463).
@@ -21,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   This affected to the imagick plugin when generate different copies
   of the same image [#197].
 - Improved `site.src()` and `site.dest()` on Windows.
+- Ignore `.DS_Store` files by default.
+- Updated `std` dependencies.
 
 ## [1.9.0] - 2022-05-16
 ### Added

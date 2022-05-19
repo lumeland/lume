@@ -10,7 +10,7 @@ export interface Options {
   root: string;
 
   /** Paths ignored by the watcher */
-  ignore?: string[];
+  ignore?: (string | ((path: string) => boolean))[];
 
   /** The debounce waiting time */
   debounce?: number;
@@ -99,7 +99,9 @@ export default class Watcher {
 
         return ignore
           ? !ignore.some((ignore) =>
-            path.startsWith(normalizePath(join(root, ignore, "/")))
+            typeof ignore === "string"
+              ? path.startsWith(normalizePath(join(root, ignore, "/")))
+              : ignore(path)
           )
           : true;
       });

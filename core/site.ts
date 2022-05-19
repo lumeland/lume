@@ -1,4 +1,4 @@
-import { posix, join } from "../deps/path.ts";
+import { join, posix } from "../deps/path.ts";
 import { merge, normalizePath } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
@@ -196,9 +196,8 @@ export default class Site {
     // Ignore components directory
     this.ignore(this.options.components.directory);
 
-    // Ignore the dest and .git folder by the watcher
+    // Ignore the dest folder by the watcher
     this.options.watcher.ignore.push(this.options.dest);
-    this.options.watcher.ignore.push(".git");
   }
 
   /**
@@ -674,8 +673,8 @@ export interface ServerOptions {
 
 /** The options to configure the local watcher */
 export interface WatcherOptions {
-  /** Files or folders to ignore by the watcher */
-  ignore: string[];
+  /** Paths to ignore by the watcher */
+  ignore: (string | ((path: string) => boolean))[];
 
   /** The interval in milliseconds to check for changes */
   debounce: number;
