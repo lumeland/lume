@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.9.1] - Unreleased
 ### Added
 - Improved the `esbuild` plugin:
-  - Use [deno_loader](https://deno.land/x/esbuild_deno_loader@0.4.3) plugin by default.
+  - Use [deno_loader](https://deno.land/x/esbuild_deno_loader) plugin by default.
   - Detect the import map file automatically (from `deno.json` file).
 - `watcher.ignore` option accepts functions.
 
