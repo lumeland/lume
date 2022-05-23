@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Imagick plugin with custom urls [#197].
 - Improved `site.src()` and `site.dest()` on Windows.
 - Ignore `.DS_Store` files by default.
-- Updated `std` and `deno_dom` dependencies.
+- Updated dependencies: `std`.
 
 ## [1.9.0] - 2022-05-16
 ### Added

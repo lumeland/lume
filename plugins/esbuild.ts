@@ -12,13 +12,15 @@ export interface Options {
 }
 
 const denoConfig = await getDenoConfig();
-const importMapFile = denoConfig?.importMap;
+const importMapURL = denoConfig?.importMap
+  ? await toUrl(denoConfig.importMap)
+  : undefined;
 
 // Default options
 const defaults: Options = {
   extensions: [".ts", ".js"],
   options: {
-    plugins: [esbuild.denoPlugin({ importMapFile })],
+    plugins: [esbuild.denoPlugin({ importMapURL })],
     bundle: true,
     format: "esm",
     minify: true,
