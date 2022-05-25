@@ -1,8 +1,7 @@
 {
   "tasks": {
-    "test": "deno test --unstable -A --no-check=remote",
-    "test:update": "deno task test -- --update",
-    "test:preview": "deno run --allow-read tests/__snapshots__/preview.ts",
+    "test": "TZ=Z deno test --unstable -A --no-check=remote",
+    "test:update": "TZ=Z deno task test -- --update",
     "changelog": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.1.0/bin.ts"
   }
 }

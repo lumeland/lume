@@ -12,7 +12,7 @@ export interface Options {
 }
 
 /**
- * Class to load components form the _components folder.
+ * Class to load components from the _components folder.
  */
 export default class ComponentsLoader {
   /** The filesystem reader */
