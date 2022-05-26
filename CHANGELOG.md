@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.9.1] - Unreleased
+## [1.9.1] - 2022-05-26
 ### Added
 - Improved the `esbuild` plugin:
   - Use [deno_loader](https://deno.land/x/esbuild_deno_loader) plugin by default.
@@ -1579,7 +1579,7 @@ The first version.
 [#198]: https://github.com/lumeland/lume/issues/198
 [#202]: https://github.com/lumeland/lume/issues/202
 
-[1.9.1]: https://github.com/lumeland/lume/compare/v1.9.0...HEAD
+[1.9.1]: https://github.com/lumeland/lume/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/lumeland/lume/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/lumeland/lume/compare/v1.7.4...v1.8.0
 [1.7.4]: https://github.com/lumeland/lume/compare/v1.7.3...v1.7.4
