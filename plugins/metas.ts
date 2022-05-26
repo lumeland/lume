@@ -9,9 +9,6 @@ export interface Options {
 
   /** The key name for the transformations definitions */
   name: string;
-
-  /** Default values */
-  defaults: Partial<MetaData>;
 }
 
 export interface MetaData {
@@ -41,12 +38,14 @@ export interface MetaData {
 
   /** The color theme */
   color: string;
+
+  /** Robots configuration (Boolean to enable/disable, String for a custom value) */
+  robots: string | boolean;
 }
 
 const defaults: Options = {
   extensions: [".html"],
   name: "metas",
-  defaults: {},
 };
 
 /** A plugin to insert meta tags for SEO and social media */
@@ -57,18 +56,13 @@ export default function (userOptions?: Partial<Options>) {
     site.process(options.extensions, metas);
 
     function metas(page: Page) {
-      const pageMetas = page.data[options.name] as MetaData | undefined;
+      const metas = page.data[options.name] as MetaData | undefined;
 
-      if (!pageMetas || !page.document) {
+      if (!metas || !page.document) {
         return;
       }
 
       const { document } = page;
-      const metas: Partial<MetaData> = {
-        ...options.defaults,
-        ...pageMetas,
-      };
-
       const url = site.url(page.data.url as string, true);
       const icon = metas.icon ? site.url(metas.icon, true) : undefined;
       const image = metas.image ? site.url(metas.image, true) : undefined;
@@ -102,6 +96,14 @@ export default function (userOptions?: Partial<Options>) {
       // SEO
       addMeta(document, "name", "description", metas.description, 155);
       addMeta(document, "name", "keywords", metas.keywords?.join(", "));
+
+      if (metas.robots === true) {
+        addMeta(document, "name", "robots", "index, follow");
+      } else if (metas.robots === false) {
+        addMeta(document, "name", "robots", "noindex, nofollow, noarchive");
+      } else if (metas.robots) {
+        addMeta(document, "name", "robots", metas.robots);
+      }
 
       // Misc
       addMeta(document, "name", "theme-color", metas.color);

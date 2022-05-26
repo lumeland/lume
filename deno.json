@@ -1,7 +1,7 @@
 {
   "tasks": {
     "test": "TZ=Z deno test --unstable -A --no-check=remote",
-    "test:update": "TZ=Z deno task test -- --update",
+    "test:update": "deno task test -- --update",
     "changelog": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.1.0/bin.ts"
   }
 }

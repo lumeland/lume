@@ -84,6 +84,7 @@ snapshot[`metas plugin 4`] = `
 <meta itemprop="name" content="Custom title">
 <meta itemprop="description" content="Custom description">
 <meta name="description" content="Custom description">
+<meta name="robots" content="index, follow">
 </head>
   <body>
     Hello world
@@ -105,6 +106,7 @@ snapshot[`metas plugin 4`] = `
     },
     metas: {
       description: "Custom description",
+      robots: true,
       title: "Custom title",
     },
     paginate: [GeneratorFunction: paginate],
