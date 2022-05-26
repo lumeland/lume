@@ -121,9 +121,10 @@ function addMeta(
   if (!content) {
     return;
   }
+  content = content.trim();
 
   if (limit && content.length > limit) {
-    content = content.substr(0, limit - 3) + "...";
+    content = content.substr(0, limit - 1).trimEnd() + "…";
   }
 
   const meta = document.createElement("meta");

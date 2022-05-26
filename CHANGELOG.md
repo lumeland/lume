@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - Use [deno_loader](https://deno.land/x/esbuild_deno_loader) plugin by default.
   - Detect the import map file automatically (from `deno.json` file).
 - `watcher.ignore` option accepts functions.
+- New value `robots` for `metas` plugin [#202].
 
 ### Removed
 - BREAKING: Removed `bundle` plugin because [`Deno.emit()` was removed in Deno](https://github.com/denoland/deno/pull/14463).
@@ -20,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Imagick plugin with custom urls [#197].
 - Improved `site.src()` and `site.dest()` on Windows.
+- Improved text truncation of `metas` plugin.
 - Ignore `.DS_Store` files by default.
 - Updated dependencies: `std`, `deno_dom`.
 
@@ -1575,6 +1577,7 @@ The first version.
 [#196]: https://github.com/lumeland/lume/issues/196
 [#197]: https://github.com/lumeland/lume/issues/197
 [#198]: https://github.com/lumeland/lume/issues/198
+[#202]: https://github.com/lumeland/lume/issues/202
 
 [1.9.1]: https://github.com/lumeland/lume/compare/v1.9.0...HEAD
 [1.9.0]: https://github.com/lumeland/lume/compare/v1.8.0...v1.9.0

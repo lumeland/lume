@@ -76,14 +76,14 @@ snapshot[`metas plugin 4`] = `
 <html><head>
   <meta property="og:type" content="website">
 <meta property="og:title" content="Custom title">
-<meta property="og:description" content="Custom description">
+<meta property="og:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
 <meta property="og:url" content="http://localhost/page-1/">
 <meta name="twitter:title" content="Custom title">
-<meta name="twitter:description" content="Custom description">
+<meta name="twitter:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
 <meta name="twitter:card" content="summary">
 <meta itemprop="name" content="Custom title">
-<meta itemprop="description" content="Custom description">
-<meta name="description" content="Custom description">
+<meta itemprop="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
+<meta name="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
 <meta name="robots" content="index, follow">
 </head>
   <body>
@@ -105,7 +105,7 @@ snapshot[`metas plugin 4`] = `
       metas: "object",
     },
     metas: {
-      description: "Custom description",
+      description: 'A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append "…" to the end. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       robots: true,
       title: "Custom title",
     },
