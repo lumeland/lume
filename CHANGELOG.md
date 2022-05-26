@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Improved `site.src()` and `site.dest()` on Windows.
 - Improved text truncation of `metas` plugin.
 - Ignore `.DS_Store` files by default.
-- Updated dependencies: `std`, `deno_dom`.
+- Updated dependencies: `std`, `deno_dom`, `parcel_css`.
 
 ## [1.9.0] - 2022-05-16
 ### Added
