@@ -3,6 +3,7 @@ import { concurrent, createDate } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
 import type {
+  Content,
   Data,
   Formats,
   IncludesLoader,
@@ -104,7 +105,7 @@ export default class Renderer {
         pages,
         async (page) => {
           try {
-            page.content = await this.#renderPage(page) as string;
+            page.content = await this.#renderPage(page);
           } catch (cause) {
             throw new Exception("Error rendering this page", { cause, page });
           }
@@ -122,9 +123,8 @@ export default class Renderer {
     }
 
     this.#preparePage(page);
-
     await this.preprocessors.run([page]);
-    page.content = await this.#renderPage(page) as string;
+    page.content = await this.#renderPage(page);
   }
 
   /** Render a template */
@@ -228,17 +228,17 @@ export default class Renderer {
   }
 
   /** Render a page */
-  async #renderPage(page: Page) {
+  async #renderPage(page: Page): Promise<Content> {
     let { data } = page;
     let { content, layout } = data;
-    let path = page.src.path + page.src.ext;
 
-    content = await this.render(content, data, path);
-
-    // If the page is an asset, just return the content (don't render the layouts)
+    // If the page is an asset, just return the content (don't render templates or layouts)
     if (this.formats.get(page.src.ext || "")?.asset) {
-      return content;
+      return content as Content;
     }
+
+    let path = page.src.path + page.src.ext;
+    content = await this.render(content, data, path);
 
     // Render the layouts recursively
     while (layout) {
@@ -267,7 +267,7 @@ export default class Renderer {
       path = layoutPath;
     }
 
-    return content;
+    return content as Content;
   }
 
   /** Get the engines assigned to an extension or configured in the data */

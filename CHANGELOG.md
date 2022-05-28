@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Changed
+- BREAKING: The asset pages (those loaded with `site.loadAssets()`) aren't rendered any more.
+  This complements the changes introduced in 1.9.0 that only disabled the layout property.
+  And it's more coherent with `site.loadAssets()` that doesn't have the engine argument.
+
 ## [1.9.1] - 2022-05-26
 ### Added
 - Improved the `esbuild` plugin:
@@ -1579,6 +1585,7 @@ The first version.
 [#198]: https://github.com/lumeland/lume/issues/198
 [#202]: https://github.com/lumeland/lume/issues/202
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.9.1...HEAD
 [1.9.1]: https://github.com/lumeland/lume/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/lumeland/lume/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/lumeland/lume/compare/v1.7.4...v1.8.0
