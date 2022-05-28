@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Updated dependencies: `std`, `esbuild`, `terser`.
+- `lume upgrade` must update `deno.json` and `import_map.json` files even if the latest version is already installed.
 
 ## [1.9.1] - 2022-05-26
 ### Added

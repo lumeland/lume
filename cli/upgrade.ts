@@ -21,16 +21,18 @@ export async function upgrade(dev = false, version?: string) {
     : dev
     ? await getLatestDevelopmentVersion()
     : await getLatestVersion();
+  const url = getVersionUrl(latest, dev);
 
   if (latest === getLumeVersion()) {
     console.log(
       version
-        ? `You're already using this of Lume:`
+        ? `You're already using this version of Lume:`
         : dev
         ? "You're using the latest version of Lume:"
         : "You're using the latest development version of Lume:",
       brightGreen(latest),
     );
+    await updateDenoConfig(url);
     console.log();
     return;
   }
@@ -41,17 +43,8 @@ export async function upgrade(dev = false, version?: string) {
       : `New version available. Updating Lume to ${brightGreen(latest)}...`,
   );
 
-  const url = await install(latest, dev);
-
-  try {
-    await Promise.all([
-      Deno.stat("deno.json"),
-      Deno.stat("import_map.json"),
-    ]);
-    await importMap(url);
-  } catch {
-    // Don't update import_map.json or deno.json
-  }
+  await install(url.href);
+  await updateDenoConfig(url);
 
   console.log();
   console.log("Update successful!");
@@ -70,25 +63,39 @@ export async function upgrade(dev = false, version?: string) {
   console.log();
 }
 
-async function install(version: string, dev = false) {
+async function updateDenoConfig(url: URL) {
+  try {
+    await Promise.all([
+      Deno.stat("deno.json"),
+      Deno.stat("import_map.json"),
+    ]);
+    await importMap(url);
+  } catch {
+    // Don't update import_map.json or deno.json
+  }
+}
+
+function getVersionUrl(version: string, dev = false): URL {
   // Prepend automatically "v" to the version if it's missing
   if (!dev && !version.startsWith("v")) {
     version = `v${version}`;
   }
 
-  const url = new URL(
+  return new URL(
     dev
       ? `https://cdn.jsdelivr.net/gh/lumeland/lume@${version}/`
       : `https://deno.land/x/lume@${version}/`,
   );
+}
 
+async function install(url: string) {
   const process = Deno.run({
     cmd: [
       Deno.execPath(),
       "run",
       "--unstable",
       "-A",
-      url.href + "install.ts",
+      url + "install.ts",
       "--upgrade",
     ],
   });
@@ -99,6 +106,4 @@ async function install(version: string, dev = false) {
   if (!status.success) {
     throw new Error("Error upgrading Lume");
   }
-
-  return url;
 }

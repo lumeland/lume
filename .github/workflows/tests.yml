@@ -34,3 +34,6 @@ jobs:
 
       - name: Run tests
         run: deno task test
+      
+      - name: Test upgrade
+        run: deno run --unstable -A --no-check ci.ts upgrade
