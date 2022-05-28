@@ -1,4 +1,4 @@
-export * from "https://cdn.jsdelivr.net/gh/lumeland/terser-deno@v5.12.1/deno/mod.js";
+export * from "https://cdn.jsdelivr.net/gh/lumeland/terser-deno@v5.12.2/deno/mod.js";
 
 /** Terser options */
 export interface TerserOptions {

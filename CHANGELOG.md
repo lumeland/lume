@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   This complements the changes introduced in 1.9.0 that only disabled the layout property.
   And it's more coherent with `site.loadAssets()` that doesn't have the engine argument.
 
+### Fixed
+- Updated dependencies: `std`, `esbuild`, `terser`.
+
 ## [1.9.1] - 2022-05-26
 ### Added
 - Improved the `esbuild` plugin:

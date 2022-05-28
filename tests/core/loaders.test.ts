@@ -36,6 +36,7 @@ Deno.test("Loaders", async (t) => {
     assert(module);
     equals(module.title, "Title from default");
     equals(module.subtitle, "Subtitle value");
+    // @ts-ignore: tag1 is not converted to array yet.
     assertEquals(module.tags, "tag1");
 
     const json = await dataLoader.load("data.json");
@@ -47,6 +48,7 @@ Deno.test("Loaders", async (t) => {
     assert(text);
     equals(text.title, "Title in the front matter");
     equals(text.content, "Hello world");
+    // @ts-ignore: tag1 is not converted to array yet.
     assertEquals(text.tags, "tag1");
 
     const dir = await dataLoader.load("_data");
