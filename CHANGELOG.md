@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   And it's more coherent with `site.loadAssets()` that doesn't have the engine argument.
 
 ### Fixed
-- Updated dependencies: `std`, `esbuild`, `terser`.
+- Updated dependencies: `std`, `esbuild`, `terser`, `postcss_autoprefixer`.
 - `lume upgrade` must update `deno.json` and `import_map.json` files even if the latest version is already installed.
 
 ## [1.9.1] - 2022-05-26
