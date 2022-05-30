@@ -98,7 +98,7 @@ async function assertPageSnapshot(
 
   // Ignore comp object
   if (data.comp) {
-    data.comp = true;
+    data.comp = {};
   }
   // Normalize date
   if (data.date instanceof Date) {
@@ -124,11 +124,10 @@ export async function assertSiteSnapshot(
   await assertSnapshot(
     context,
     {
-      formats: Array.from(site.formats.entries).map(([key, value]) => {
+      formats: Array.from(site.formats.formats()).map((format) => {
         return {
-          key,
-          ...value,
-          engine: !!value.engine,
+          ...format,
+          engine: !!format.engine,
         };
       }),
     },

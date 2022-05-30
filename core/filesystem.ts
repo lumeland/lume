@@ -2,6 +2,7 @@ import { posix } from "../deps/path.ts";
 import { createDate, documentToString, stringToDocument } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
+import type { ProxyComponents } from "../core.ts";
 
 /** Abstract class with common functions for Page and Directory classes */
 abstract class Base {
@@ -436,6 +437,9 @@ export interface Data {
 
   /** Whether render this page on demand or not */
   ondemand?: boolean;
+
+  /** The available components */
+  comp?: ProxyComponents;
 
   [index: string]: unknown;
 }

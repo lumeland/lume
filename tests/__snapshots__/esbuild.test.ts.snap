@@ -7,27 +7,27 @@ snapshot[`esbuild plugin 2`] = `
   formats: [
     {
       engine: true,
-      key: ".tmpl.ts",
+      ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
       engine: true,
-      key: ".tmpl.js",
+      ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
       engine: false,
-      key: ".tmpl.json",
+      ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
       engine: false,
-      key: ".json",
+      ext: ".json",
     },
     {
       engine: true,
-      key: ".md",
+      ext: ".md",
       pageLoader: [AsyncFunction: text],
     },
     {
@@ -35,7 +35,7 @@ snapshot[`esbuild plugin 2`] = `
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engine: true,
-      key: ".js",
+      ext: ".js",
       pageLoader: [AsyncFunction: text],
     },
     {
@@ -43,26 +43,26 @@ snapshot[`esbuild plugin 2`] = `
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engine: true,
-      key: ".ts",
+      ext: ".ts",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: text],
       engine: true,
+      ext: ".njk",
       includesPath: "_includes",
-      key: ".njk",
       pageLoader: [AsyncFunction: text],
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engine: false,
-      key: ".yaml",
+      ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engine: false,
-      key: ".yml",
+      ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
   ],

@@ -8,12 +8,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Added
+- `_components` folder can be placed in any subdirectory. Like `_data`, this makes the components available only for these directories and subdirectories.
+
 ### Changed
 - BREAKING: The asset pages (those loaded with `site.loadAssets()`) aren't rendered any more.
   This complements the changes introduced in 1.9.0 that only disabled the layout property.
   And it's more coherent with `site.loadAssets()` that doesn't have the engine argument.
 
+### Removed
+- `components.directory` option. It's always `_components`.
+
 ### Fixed
+- Internal refactors related with components loading/updating and formats.
 - Updated dependencies: `std`, `esbuild`, `terser`, `postcss_autoprefixer`.
 - `lume upgrade` must update `deno.json` and `import_map.json` files even if the latest version is already installed.
 

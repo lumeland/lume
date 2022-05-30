@@ -7,58 +7,58 @@ snapshot[`build a site with nunjucks 2`] = `
   formats: [
     {
       engine: true,
-      key: ".tmpl.ts",
+      ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
       engine: true,
-      key: ".tmpl.js",
+      ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
       engine: false,
-      key: ".tmpl.json",
+      ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
       engine: false,
-      key: ".json",
+      ext: ".json",
     },
     {
       engine: true,
-      key: ".md",
+      ext: ".md",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engine: true,
-      key: ".js",
+      ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engine: true,
-      key: ".ts",
+      ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
       engine: true,
+      ext: ".njk",
       includesPath: "_includes",
-      key: ".njk",
       pageLoader: [AsyncFunction: text],
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engine: false,
-      key: ".yaml",
+      ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engine: false,
-      key: ".yml",
+      ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
   ],
@@ -101,7 +101,7 @@ snapshot[`build a site with nunjucks 4`] = `
 </html>
 ',
   data: {
-    comp: true,
+    comp: {},
     content: '{{ comp.Button({ content: "button content" }) | safe }}
 {{ comp.icon.User({ content: "this is John", name:"John" }) | safe }}
 
@@ -142,7 +142,7 @@ snapshot[`build a site with nunjucks 5`] = `
       "green",
       "blue",
     ],
-    comp: true,
+    comp: {},
     content: "
 {{ colors | dump | safe }}
 ",
@@ -182,7 +182,7 @@ snapshot[`build a site with nunjucks 6`] = `
 </html>
 ',
   data: {
-    comp: true,
+    comp: {},
     content: "
 <h1>{{ title }}</h1>
 ",
@@ -220,7 +220,7 @@ snapshot[`build a site with nunjucks 7`] = `
 </html>
 ',
   data: {
-    comp: true,
+    comp: {},
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
@@ -274,7 +274,7 @@ snapshot[`build a site with nunjucks 8`] = `
 </html>
 ',
   data: {
-    comp: true,
+    comp: {},
     content: '<p>{% upperCase title %}</p>
 <p>{% upperCase "The title" %}</p>
 <p>{% upperCaseAsync title %}</p>
