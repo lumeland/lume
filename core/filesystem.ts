@@ -314,25 +314,17 @@ export class Directory extends Base {
   }
 
   /** Get the components of this directory and parent directories */
-  #getComponents(): Components | undefined {
+  getComponents(): Components | undefined {
     if (!this.components) {
       return;
     }
 
     return this.parent
       ? new Map([
-        ...this.parent.#getComponents()?.entries() ?? [],
+        ...this.parent.getComponents()?.entries() ?? [],
         ...this.components?.entries() ?? [],
       ])
       : this.components;
-  }
-
-  getComponents(
-    extraCode?: Map<string, Map<string, string>>,
-  ): ProxyComponents | undefined {
-    const components = this.#getComponents();
-
-    return components ? toProxy(components, extraCode) : undefined;
   }
 
   /** Return the list of pages in this directory recursively */
@@ -466,66 +458,3 @@ export interface Component {
 }
 
 export type Components = Map<string, Component | Components>;
-
-/**
- * Create and returns a proxy to use the components
- * as comp.name() instead of components.get("name").render()
- */
-function toProxy(
-  components: Components,
-  extraCode?: Map<string, Map<string, string>>,
-): ProxyComponents {
-  const node = {
-    _components: components,
-    _proxies: new Map(),
-  };
-  return new Proxy(node, {
-    get: (target, name) => {
-      if (typeof name !== "string" || name in target) {
-        return;
-      }
-
-      const key = name.toLowerCase();
-
-      if (target._proxies.has(key)) {
-        return target._proxies.get(key);
-      }
-
-      const component = target._components.get(key);
-
-      if (!component) {
-        throw new Error(`Component "${name}" not found`);
-      }
-
-      if (component instanceof Map) {
-        const proxy = toProxy(component, extraCode);
-        target._proxies.set(key, proxy);
-        return proxy;
-      }
-
-      // Save CSS & JS code for the component
-      if (extraCode) {
-        if (component.css) {
-          const code = extraCode.get("css") ?? new Map();
-          code.set(key, component.css);
-          extraCode.set("css", code);
-        }
-
-        if (component.js) {
-          const code = extraCode.get("css") ?? new Map();
-          code.set(key, component.js);
-          extraCode.set("css", code);
-        }
-      }
-
-      // Return the function to render the component
-      return (props: Record<string, unknown>) => component.render(props);
-    },
-  }) as unknown as ProxyComponents;
-}
-
-export type ComponentFunction = (props: Record<string, unknown>) => string;
-
-export interface ProxyComponents {
-  [key: string]: ComponentFunction | ProxyComponents;
-}

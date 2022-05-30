@@ -30,18 +30,20 @@ import type DataLoader from "./core/data_loader.ts";
 import type ComponentLoader from "./core/component_loader.ts";
 import type {
   Component,
-  ComponentFunction,
   Components,
   Content,
   Data,
   Dest,
   Directory,
   Page,
-  ProxyComponents,
   Src,
   StaticFile,
 } from "./core/filesystem.ts";
-import type Source from "./core/source.ts";
+import type {
+  ComponentFunction,
+  default as Source,
+  ProxyComponents,
+} from "./core/source.ts";
 import type {
   default as Renderer,
   Engine,

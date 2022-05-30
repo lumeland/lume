@@ -1,6 +1,6 @@
 import { posix } from "../deps/path.ts";
 import { concurrent, normalizePath } from "./utils.ts";
-import { Directory, Page, StaticFile } from "./filesystem.ts";
+import { Components, Directory, Page, StaticFile } from "./filesystem.ts";
 
 import type {
   ComponentLoader,
@@ -452,13 +452,76 @@ export default class Source {
     );
 
     // Setup the components
-    const components = directory.getComponents(this.extraCode);
+    const components = directory.getComponents();
 
     if (components) {
-      data[this.components.variable] = components;
+      data[this.components.variable] = toProxy(components, this.extraCode);
     }
 
     Object.assign(directory.baseData, data);
     directory.refreshCache();
   }
+}
+
+/**
+ * Create and returns a proxy to use the components
+ * as comp.name() instead of components.get("name").render()
+ */
+function toProxy(
+  components: Components,
+  extraCode?: Map<string, Map<string, string>>,
+): ProxyComponents {
+  const node = {
+    _components: components,
+    _proxies: new Map(),
+  };
+  return new Proxy(node, {
+    get: (target, name) => {
+      if (typeof name !== "string" || name in target) {
+        return;
+      }
+
+      const key = name.toLowerCase();
+
+      if (target._proxies.has(key)) {
+        return target._proxies.get(key);
+      }
+
+      const component = target._components.get(key);
+
+      if (!component) {
+        throw new Error(`Component "${name}" not found`);
+      }
+
+      if (component instanceof Map) {
+        const proxy = toProxy(component, extraCode);
+        target._proxies.set(key, proxy);
+        return proxy;
+      }
+
+      // Save CSS & JS code for the component
+      if (extraCode) {
+        if (component.css) {
+          const code = extraCode.get("css") ?? new Map();
+          code.set(key, component.css);
+          extraCode.set("css", code);
+        }
+
+        if (component.js) {
+          const code = extraCode.get("css") ?? new Map();
+          code.set(key, component.js);
+          extraCode.set("css", code);
+        }
+      }
+
+      // Return the function to render the component
+      return (props: Record<string, unknown>) => component.render(props);
+    },
+  }) as unknown as ProxyComponents;
+}
+
+export type ComponentFunction = (props: Record<string, unknown>) => string;
+
+export interface ProxyComponents {
+  [key: string]: ComponentFunction | ProxyComponents;
 }
