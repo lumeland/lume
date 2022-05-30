@@ -242,7 +242,16 @@ export default class Renderer {
 
     // Render the layouts recursively
     while (layout) {
-      const result = await this.includesLoader.load(layout, path);
+      const format = this.formats.search(layout);
+
+      if (!format || !format.pageLoader) {
+        throw new Exception(
+          "There's no handler for this layout format",
+          { layout },
+        );
+      }
+
+      const result = await this.includesLoader.load(layout, format, path);
 
       if (!result) {
         throw new Exception(
@@ -293,10 +302,10 @@ export default class Renderer {
       });
     }
 
-    const extension = this.formats.search(path);
+    const engine = this.formats.search(path)?.engine;
 
-    if (extension && extension[1].engine) {
-      return [extension[1].engine];
+    if (engine) {
+      return [engine];
     }
   }
 }

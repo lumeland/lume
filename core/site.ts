@@ -137,7 +137,7 @@ export default class Site {
 
     const pageLoader = new PageLoader({ reader });
     const dataLoader = new DataLoader({ reader, formats });
-    const includesLoader = new IncludesLoader({ reader, includes, formats });
+    const includesLoader = new IncludesLoader({ reader, includes });
     const componentLoader = new ComponentLoader({ reader, formats });
     const source = new Source({
       reader,
@@ -250,9 +250,9 @@ export default class Site {
   /**
    * Register a data loader for some extensions
    */
-  loadData(extensions: string[], loader: Loader = textLoader): this {
-    extensions.forEach((extension) => {
-      this.formats.set(extension, { dataLoader: loader });
+  loadData(extensions: string[], dataLoader: Loader = textLoader): this {
+    extensions.forEach((ext) => {
+      this.formats.set({ ext, dataLoader });
     });
 
     return this;
@@ -263,13 +263,11 @@ export default class Site {
    */
   loadPages(
     extensions: string[],
-    loader: Loader = textLoader,
+    pageLoader: Loader = textLoader,
     engine?: Engine,
   ): this {
-    extensions.forEach((extension) => {
-      this.formats.set(extension, {
-        pageLoader: loader,
-      });
+    extensions.forEach((ext) => {
+      this.formats.set({ ext, pageLoader });
     });
 
     if (engine) {
@@ -282,10 +280,11 @@ export default class Site {
   /**
    * Register an assets loader for some extensions
    */
-  loadAssets(extensions: string[], loader: Loader = textLoader): this {
-    extensions.forEach((extension) => {
-      this.formats.set(extension, {
-        pageLoader: loader,
+  loadAssets(extensions: string[], pageLoader: Loader = textLoader): this {
+    extensions.forEach((ext) => {
+      this.formats.set({
+        ext,
+        pageLoader,
         asset: true,
       });
     });
@@ -298,11 +297,11 @@ export default class Site {
    */
   loadComponents(
     extensions: string[],
-    loader: Loader = textLoader,
+    componentLoader: Loader = textLoader,
     engine: Engine,
   ): this {
-    extensions.forEach((extension) => {
-      this.formats.set(extension, { componentLoader: loader });
+    extensions.forEach((ext) => {
+      this.formats.set({ ext, componentLoader });
     });
     this.engine(extensions, engine);
     return this;
@@ -310,8 +309,8 @@ export default class Site {
 
   /** Register an import path for some extensions  */
   includes(extensions: string[], path: string): this {
-    extensions.forEach((extension) => {
-      this.formats.set(extension, { includesPath: path });
+    extensions.forEach((ext) => {
+      this.formats.set({ ext, includesPath: path });
     });
 
     // Ignore any includes folder
@@ -320,8 +319,8 @@ export default class Site {
 
   /** Register a engine for some extensions  */
   engine(extensions: string[], engine: Engine): this {
-    extensions.forEach((extension) => {
-      this.formats.set(extension, { engine });
+    extensions.forEach((ext) => {
+      this.formats.set({ ext, engine });
     });
 
     for (const [name, helper] of this.renderer.helpers) {
@@ -376,8 +375,8 @@ export default class Site {
         );
       }
 
-      from.forEach((extension) => {
-        this.formats.set(extension, { copy: to ? to : true });
+      from.forEach((ext) => {
+        this.formats.set({ ext, copy: to ? to : true });
       });
       return this;
     }

@@ -311,13 +311,11 @@ export default class Source {
     }
 
     if (entry.isFile) {
-      const formatEntry = this.formats.search(path);
+      const format = this.formats.search(path);
 
-      if (!formatEntry) {
+      if (!format) {
         return;
       }
-
-      const [, format] = formatEntry;
 
       // The file is a static file
       if (format.copy) {
@@ -334,7 +332,7 @@ export default class Source {
 
       // The file is a page (a loadable file)
       if (format.pageLoader) {
-        const page = (await this.pageLoader.load(path, formatEntry));
+        const page = (await this.pageLoader.load(path, format));
 
         if (page) {
           directory.setPage(entry.name, page);

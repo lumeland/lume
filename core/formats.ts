@@ -3,6 +3,9 @@ import { Exception } from "./errors.ts";
 import type { Engine, Loader } from "../core.ts";
 
 export interface Format {
+  /** The file extension for this format */
+  ext: string;
+
   /** The file loader used for this format */
   pageLoader?: Loader;
 
@@ -40,31 +43,32 @@ export default class Formats {
   }
 
   /** Assign a value to a extension */
-  set(extension: string, format: Format): void {
-    const existing = this.entries.get(extension);
+  set(format: Format): void {
+    const { ext } = format;
+    const existing = this.entries.get(ext);
 
     if (existing) {
-      this.entries.set(extension, { ...existing, ...format });
+      this.entries.set(ext, { ...existing, ...format });
       return;
     }
 
     // Simple extension (.ts, .js, .json)
-    if (extension.match(/^\.\w+$/)) {
-      this.entries.set(extension, format);
+    if (ext.match(/^\.\w+$/)) {
+      this.entries.set(ext, format);
       return;
     }
 
     // Chained extension (.tmpl.js, .windi.css) goes first
-    if (extension.match(/^\.\w+\.\w+$/)) {
+    if (ext.match(/^\.\w+\.\w+$/)) {
       const entries = Array.from(this.entries.entries());
-      entries.unshift([extension, format]);
+      entries.unshift([ext, format]);
       this.entries = new Map(entries);
       return;
     }
 
     throw new Exception(
-      "Invalid extension. It must start with '.'",
-      { extension },
+      "Invalid file extension. It must start with '.'",
+      { ext },
     );
   }
 
@@ -83,11 +87,11 @@ export default class Formats {
     return this.entries.has(extension);
   }
 
-  /** Search and return a [extension, format] pair for a path */
-  search(path: string): [string, Format] | undefined {
-    for (const [extension, value] of this.entries) {
-      if (path.endsWith(extension)) {
-        return [extension, value];
+  /** Search and return the associated format for a path */
+  search(path: string): Format | undefined {
+    for (const format of this.formats()) {
+      if (path.endsWith(format.ext)) {
+        return format;
       }
     }
   }

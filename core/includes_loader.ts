@@ -1,7 +1,7 @@
 import { posix } from "../deps/path.ts";
 import { Exception } from "./errors.ts";
 
-import type { Data, Formats, Reader } from "../core.ts";
+import type { Data, Format, Reader } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
@@ -9,9 +9,6 @@ export interface Options {
 
   /** The default _includes directory */
   includes: string;
-
-  /** The registered file formats */
-  formats: Formats;
 }
 
 /**
@@ -24,24 +21,16 @@ export default class IncludesLoader {
   /** Default _includes path */
   includes: string;
 
-  /** List of extensions to load files and the loader used */
-  formats: Formats;
-
   constructor(options: Options) {
     this.reader = options.reader;
-    this.formats = options.formats;
     this.includes = options.includes;
   }
 
-  async load(path: string, from?: string): Promise<[string, Data] | undefined> {
-    const entry = this.formats.search(path);
-
-    if (!entry) {
-      return;
-    }
-
-    const [, format] = entry;
-
+  async load(
+    path: string,
+    format: Format,
+    from?: string,
+  ): Promise<[string, Data] | undefined> {
     if (!format.pageLoader) {
       return;
     }

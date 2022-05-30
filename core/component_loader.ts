@@ -88,13 +88,11 @@ export default class ComponentsLoader {
     path: string,
     context: Directory,
   ): Promise<Component | undefined> {
-    const result = this.formats.search(path);
+    const format = this.formats.search(path);
 
-    if (!result) {
+    if (!format) {
       return;
     }
-
-    const [ext, format] = result;
 
     if (!format.componentLoader || !format.engine) {
       return;
@@ -105,7 +103,7 @@ export default class ComponentsLoader {
 
     return {
       path,
-      name: component.name ?? posix.basename(path, ext),
+      name: component.name ?? posix.basename(path, format.ext),
       render(data) {
         return format.engine!.renderSync(
           content,

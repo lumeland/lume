@@ -21,10 +21,8 @@ export default class PageLoader {
   /** Load an asset Page */
   async load(
     path: string,
-    formatEntry: [string, Format],
+    format: Format,
   ): Promise<Page | undefined> {
-    const [ext, format] = formatEntry;
-
     if (!format.pageLoader) {
       return;
     }
@@ -35,6 +33,7 @@ export default class PageLoader {
       return;
     }
 
+    const { ext } = format;
     // Create the page
     const page = new Page({
       path: path.slice(0, -ext.length),

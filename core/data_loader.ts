@@ -41,13 +41,11 @@ export default class DataLoader {
 
   /** Load a _data.* file */
   async #loadFile(path: string): Promise<Data | undefined> {
-    const result = this.formats.search(path);
+    const format = this.formats.search(path);
 
-    if (!result) {
+    if (!format) {
       return;
     }
-
-    const [, format] = result;
 
     if (!format.dataLoader) {
       return;
