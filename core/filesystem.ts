@@ -128,7 +128,7 @@ abstract class Base {
 
             data[key] = [
               ...new Set(
-                type === "stringArray" ? merged.map((v) => String(v)) : merged,
+                type === "stringArray" ? merged.map(String) : merged,
               ),
             ];
           }
@@ -269,11 +269,12 @@ export class Page extends Base {
   }
 }
 
-/** A directory of the src folder */
+/** A directory in the src folder */
 export class Directory extends Base {
   pages = new Map<string, Page>();
   dirs = new Map<string, Directory>();
   staticFiles = new Set<StaticFile>();
+  components?: Components;
 
   /** Create a subdirectory and return it */
   createDirectory(name: string): Directory {
@@ -297,14 +298,41 @@ export class Directory extends Base {
     }
   }
 
+  /** Remove a page from this directory */
+  unsetPage(name: string) {
+    this.pages.delete(name);
+  }
+
   /** Add a static file to this directory */
   setStaticFile(file: StaticFile) {
     this.staticFiles.add(file);
   }
 
-  /** Remove a page from this directory */
-  unsetPage(name: string) {
-    this.pages.delete(name);
+  /** Add components to this directory */
+  setComponents(components: Components) {
+    this.components = components;
+  }
+
+  /** Get the components of this directory and parent directories */
+  #getComponents(): Components | undefined {
+    if (!this.components) {
+      return;
+    }
+
+    return this.parent
+      ? new Map([
+        ...this.parent.#getComponents()?.entries() ?? [],
+        ...this.components?.entries() ?? [],
+      ])
+      : this.components;
+  }
+
+  getComponents(
+    extraCode?: Map<string, Map<string, string>>,
+  ): ProxyComponents | undefined {
+    const components = this.#getComponents();
+
+    return components ? toProxy(components, extraCode) : undefined;
   }
 
   /** Return the list of pages in this directory recursively */
@@ -342,9 +370,16 @@ export class Directory extends Base {
 }
 
 export interface StaticFile {
+  /** The path to the source file */
   src: string;
+
+  /** The path to the destination file */
   dest: string;
+
+  /** Indicates whether the file was copied after the latest change */
   saved?: boolean;
+
+  /** Indicates whether the source file was removed */
   removed?: boolean;
 }
 
@@ -411,4 +446,86 @@ export interface Data {
   ondemand?: boolean;
 
   [index: string]: unknown;
+}
+
+export interface Component {
+  /** The file path of the component */
+  path: string;
+
+  /** Name of the component (used to get it from templates) */
+  name: string;
+
+  /** The function that will be called to render the component */
+  render: (props: Record<string, unknown>) => string;
+
+  /** Optional CSS code needed to style the component (global, only inserted once) */
+  css?: string;
+
+  /** Optional JS code needed for the component interactivity (global, only inserted once) */
+  js?: string;
+}
+
+export type Components = Map<string, Component | Components>;
+
+/**
+ * Create and returns a proxy to use the components
+ * as comp.name() instead of components.get("name").render()
+ */
+function toProxy(
+  components: Components,
+  extraCode?: Map<string, Map<string, string>>,
+): ProxyComponents {
+  const node = {
+    _components: components,
+    _proxies: new Map(),
+  };
+  return new Proxy(node, {
+    get: (target, name) => {
+      if (typeof name !== "string" || name in target) {
+        return;
+      }
+
+      const key = name.toLowerCase();
+
+      if (target._proxies.has(key)) {
+        return target._proxies.get(key);
+      }
+
+      const component = target._components.get(key);
+
+      if (!component) {
+        throw new Error(`Component "${name}" not found`);
+      }
+
+      if (component instanceof Map) {
+        const proxy = toProxy(component, extraCode);
+        target._proxies.set(key, proxy);
+        return proxy;
+      }
+
+      // Save CSS & JS code for the component
+      if (extraCode) {
+        if (component.css) {
+          const code = extraCode.get("css") ?? new Map();
+          code.set(key, component.css);
+          extraCode.set("css", code);
+        }
+
+        if (component.js) {
+          const code = extraCode.get("css") ?? new Map();
+          code.set(key, component.js);
+          extraCode.set("css", code);
+        }
+      }
+
+      // Return the function to render the component
+      return (props: Record<string, unknown>) => component.render(props);
+    },
+  }) as unknown as ProxyComponents;
+}
+
+export type ComponentFunction = (props: Record<string, unknown>) => string;
+
+export interface ProxyComponents {
+  [key: string]: ComponentFunction | ProxyComponents;
 }

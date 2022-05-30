@@ -1,7 +1,13 @@
 import { posix } from "../deps/path.ts";
 import { normalizePath } from "./utils.ts";
 
-import type { Data, Formats, Reader } from "../core.ts";
+import type {
+  Component,
+  Components,
+  Directory,
+  Formats,
+  Reader,
+} from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
@@ -29,8 +35,8 @@ export default class ComponentsLoader {
   /** Load a directory of components */
   async load(
     path: string,
-    extraData: Data = {},
-  ): Promise<ComponentsTree | undefined> {
+    context: Directory,
+  ): Promise<Components | undefined> {
     path = normalizePath(path);
     const info = await this.reader.getInfo(path);
 
@@ -38,15 +44,15 @@ export default class ComponentsLoader {
       return;
     }
 
-    return this.#loadDirectory(path, extraData);
+    return this.#loadDirectory(path, context);
   }
 
   /** Load a directory of components */
   async #loadDirectory(
     path: string,
-    extraData: Data,
-  ): Promise<ComponentsTree | undefined> {
-    const components: ComponentsTree = new Map();
+    context: Directory,
+  ): Promise<Components | undefined> {
+    const components: Components = new Map();
 
     for await (const entry of this.reader.readDir(path)) {
       if (
@@ -59,7 +65,7 @@ export default class ComponentsLoader {
       const fullPath = posix.join(path, entry.name);
 
       if (entry.isDirectory) {
-        const subcomponents = await this.#loadDirectory(fullPath, extraData);
+        const subcomponents = await this.#loadDirectory(fullPath, context);
 
         if (subcomponents) {
           components.set(entry.name.toLowerCase(), subcomponents);
@@ -67,7 +73,7 @@ export default class ComponentsLoader {
         continue;
       }
 
-      const component = await this.#loadComponent(fullPath, extraData);
+      const component = await this.#loadComponent(fullPath, context);
 
       if (component) {
         components.set(component.name.toLowerCase(), component);
@@ -80,7 +86,7 @@ export default class ComponentsLoader {
   /** Load a component file */
   async #loadComponent(
     path: string,
-    extraData: Data,
+    context: Directory,
   ): Promise<Component | undefined> {
     const result = this.formats.search(path);
 
@@ -103,7 +109,7 @@ export default class ComponentsLoader {
       render(data) {
         return format.engine!.renderSync(
           content,
-          { ...extraData, ...data },
+          { ...context.data, ...data },
           path,
         );
       },
@@ -112,22 +118,3 @@ export default class ComponentsLoader {
     } as Component;
   }
 }
-
-export interface Component {
-  /** The file path of the component */
-  path: string;
-
-  /** Name of the component (used to get it from templates) */
-  name: string;
-
-  /** The function that will be called to render the component */
-  render: (props: Record<string, unknown>) => string;
-
-  /** Optional CSS code needed to style the component (global, only inserted once) */
-  css?: string;
-
-  /** Optional JS code needed for the component interactivity (global, only inserted once) */
-  js?: string;
-}
-
-export type ComponentsTree = Map<string, Component | ComponentsTree>;

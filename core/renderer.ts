@@ -1,13 +1,13 @@
 import { posix } from "../deps/path.ts";
 import { concurrent, createDate } from "./utils.ts";
 import { Exception } from "./errors.ts";
+import { Page } from "./filesystem.ts";
 
 import type {
   Content,
   Data,
   Formats,
   IncludesLoader,
-  Page,
   Processors,
 } from "../core.ts";
 
