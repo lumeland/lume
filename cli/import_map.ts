@@ -26,7 +26,7 @@ export async function importMap(url: URL) {
 
   config.importMap ||= "import_map.json";
   const tasks = config.tasks || {};
-  tasks.build = `deno run -A ${new URL("./ci.ts", url).href}`;
+  tasks.build = `deno eval "import 'lume/task.ts'" --`;
   tasks.serve = "deno task build -s";
   config.tasks = tasks;
 
