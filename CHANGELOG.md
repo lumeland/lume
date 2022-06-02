@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Internal refactors related with components and formats.
 - Updated dependencies: `std`, `esbuild`, `terser`, `postcss_autoprefixer`.
 - `lume upgrade` must update `deno.json` and `import_map.json` files even if the latest version is already installed.
+- Used `std/media_types` in the `inline` plugin with support for much more content types.
 
 ## [1.9.1] - 2022-05-26
 ### Added
@@ -1496,7 +1497,7 @@ No changes.
 ### Fixed
 - The JSX engine.
 
-## [0.1.0] - 2020-09-13
+## 0.1.0 - 2020-09-13
 The first version.
 
 [#1]: https://github.com/lumeland/lume/issues/1
@@ -1716,4 +1717,3 @@ The first version.
 [0.2.2]: https://github.com/lumeland/lume/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/lumeland/lume/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/lumeland/lume/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/lumeland/lume/releases/tag/v0.1.0

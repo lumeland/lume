@@ -1,7 +1,8 @@
 import { posix } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
-import { merge, mimes } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
+import { contentType } from "../deps/media_types.ts";
 
 import type { Element } from "../deps/dom.ts";
 import type { Page, Site } from "../core.ts";
@@ -88,17 +89,17 @@ export default function (userOptions?: Partial<Options>) {
 
       // Return the data URL
       const ext = posix.extname(path);
+      const type = contentType(ext);
 
-      if (!mimes.has(ext)) {
+      if (!type) {
         site.logger.warn("Unknown file format", {
           name: "Inline plugin",
           path,
           url,
-          available: mimes,
         });
       }
 
-      return `data:${mimes.get(ext)};base64,${encode(content)}`;
+      return `data:${type};base64,${encode(content)}`;
     }
 
     async function inlineStyles(url: string, element: Element) {

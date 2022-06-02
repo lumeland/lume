@@ -135,7 +135,7 @@ snapshot[`inline plugin 5`] = `
   background: white;
   color: #333;
 }</style>
-  <link id="el-3" rel="shortcut icon" href="data:image/svg+xml; charset=utf-8;base64,(...)">
+  <link id="el-3" rel="shortcut icon" href="data:image/svg+xml;base64,(...)">
   <link id="el-4" rel="shortcut icon" href="/favicon.svg">
   <link id="el-5" rel="shortcut icon" href="data:image/png;base64,(...)">
   <link id="el-6" rel="shortcut icon" href="/favicon2.png">
