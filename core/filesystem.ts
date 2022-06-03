@@ -309,11 +309,6 @@ export class Directory extends Base {
     this.staticFiles.add(file);
   }
 
-  /** Add components to this directory */
-  setComponents(components: Components) {
-    this.components = components;
-  }
-
   /** Get the components of this directory and parent directories */
   getComponents(): Components | undefined {
     if (!this.components) {

@@ -443,7 +443,7 @@ export default class Source {
         if (entry.isDirectory && entry.name === "_components") {
           const components = await this.componentLoader.load(path, directory);
           if (components) {
-            directory.setComponents(components);
+            directory.components = components;
           }
         }
       },
