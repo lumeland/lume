@@ -145,15 +145,35 @@ export default class Renderer {
   }
 
   /** Prepare the page before rendering
+   * - Ensure the date is defined
    * - Generate the URL
    * - Modify the dest info accordingly
-   * - Ensure the date is defined
    */
   #preparePage(page: Page) {
     const { dest, data } = page;
 
+    // Ensure the date is defined
+    if (!data.date) {
+      data.date = page.src.created ?? page.src.lastModified;
+    } else {
+      if (typeof data.date === "string" || typeof data.date === "number") {
+        data.date = createDate(data.date);
+      }
+
+      if (!(data.date instanceof Date)) {
+        throw new Exception(
+          'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
+          { page },
+        );
+      }
+    }
+
     // Generate the URL and dest info accordingly
-    let url = data.url;
+    let { url } = data;
+
+    if (url === false) {
+      return;
+    }
 
     if (typeof url === "function") {
       url = url(page);
@@ -196,22 +216,6 @@ export default class Renderer {
     }
 
     page.updateDest(dest, this.prettyUrls);
-
-    // Ensure the date is defined
-    if (!data.date) {
-      data.date = page.src.created ?? page.src.lastModified;
-    } else {
-      if (typeof data.date === "string" || typeof data.date === "number") {
-        data.date = createDate(data.date);
-      }
-
-      if (!(data.date instanceof Date)) {
-        throw new Exception(
-          'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
-          { page },
-        );
-      }
-    }
   }
 
   /** Group the pages by renderOrder */

@@ -407,7 +407,7 @@ export interface Data {
   tags?: string[];
 
   /** The url of a page */
-  url?: string | ((page: Page) => string);
+  url?: string | ((page: Page) => string) | false;
 
   /** If is `true`, the page will be visible only in `dev` mode */
   draft?: boolean;
