@@ -89,7 +89,7 @@ export default class Formats {
 
   /** Search and return the associated format for a path */
   search(path: string): Format | undefined {
-    for (const format of this.formats()) {
+    for (const format of this.entries.values()) {
       if (path.endsWith(format.ext)) {
         return format;
       }
@@ -98,18 +98,8 @@ export default class Formats {
 
   /** Delete a cached template */
   deleteCache(file: string): void {
-    for (const format of this.formats()) {
+    for (const format of this.entries.values()) {
       format.engine?.deleteCache(file);
     }
-  }
-
-  /** Return a iterator for the formats */
-  formats() {
-    return this.entries.values();
-  }
-
-  /** Return a iterator for the extensions */
-  extensions() {
-    return this.entries.keys();
   }
 }

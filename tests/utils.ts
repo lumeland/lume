@@ -124,7 +124,7 @@ export async function assertSiteSnapshot(
   await assertSnapshot(
     context,
     {
-      formats: Array.from(site.formats.formats()).map((format) => {
+      formats: Array.from(site.formats.entries.values()).map((format) => {
         return {
           ...format,
           engine: !!format.engine,

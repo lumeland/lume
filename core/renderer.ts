@@ -49,7 +49,7 @@ export default class Renderer {
   addHelper(name: string, fn: Helper, options: HelperOptions) {
     this.helpers.set(name, [fn, options]);
 
-    for (const format of this.formats.formats()) {
+    for (const format of this.formats.entries.values()) {
       format.engine?.addHelper(name, fn, options);
     }
 
