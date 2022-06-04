@@ -8,29 +8,20 @@ export default function () {
 
 export async function importMap(url: URL) {
   const config = await getDenoConfig() || {};
-  let currentMap = config.importMap;
 
-  if (!currentMap) {
-    try {
-      await Deno.stat("./import_map.json");
-      currentMap = "./import_map.json";
-    } catch (error) {
-      if (!(error instanceof Deno.errors.NotFound)) {
-        throw error;
-      }
-    }
-  }
-
-  const importMap = await getImportMap(currentMap);
+  // Configure the import map
+  const importMap = await getImportMap(config.importMap);
   importMap.imports["lume/"] = new URL("./", url).href;
-
   config.importMap ||= "import_map.json";
+
+  // Configure lume tasks
   const tasks = config.tasks || {};
   tasks.lume = `deno eval "import 'lume/task.ts'" --`;
   tasks.build = "deno task lume";
   tasks.serve = "deno task lume -s";
   config.tasks = tasks;
 
+  // Write import map file and deno.json
   await Deno.writeTextFile(
     config.importMap,
     JSON.stringify(importMap, null, 2) + "\n",

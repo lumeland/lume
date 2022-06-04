@@ -7,8 +7,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.9.2] - Unreleased
+## [Unreleased]
 ### Added
+- New `lume vendor` command, to save all external modules in the `_vendor` folder.
 - `_components` folder can be placed in any subdirectory.
   Like `_data`, this makes the components available only for these directories and subdirectories.
 - New task `lume`, to run `deno task lume`. This deprecates the `build` and `serve` tasks (they will be removed probably in `1.10.0`). The idea is all Lume commands to be executed from a single point (example `deno task lume --serve`) which makes it more portable without install anything.
@@ -1498,7 +1499,7 @@ No changes.
 ### Fixed
 - The JSX engine.
 
-## 0.1.0 - 2020-09-13
+## [0.1.0] - 2020-09-13
 The first version.
 
 [#1]: https://github.com/lumeland/lume/issues/1
@@ -1601,7 +1602,7 @@ The first version.
 [#198]: https://github.com/lumeland/lume/issues/198
 [#202]: https://github.com/lumeland/lume/issues/202
 
-[1.9.2]: https://github.com/lumeland/lume/compare/v1.9.1...HEAD
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.9.1...HEAD
 [1.9.1]: https://github.com/lumeland/lume/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/lumeland/lume/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/lumeland/lume/compare/v1.7.4...v1.8.0
@@ -1718,3 +1719,4 @@ The first version.
 [0.2.2]: https://github.com/lumeland/lume/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/lumeland/lume/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/lumeland/lume/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/lumeland/lume/releases/tag/v0.1.0

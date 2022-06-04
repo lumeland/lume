@@ -13,23 +13,28 @@ interface Options {
   output: string;
   root: string;
   config?: string;
+  remove?: boolean;
 }
 
-export default function ({ output, root, config }: Options) {
-  return vendor(output, root, config);
+export default function ({ output, root, config, remove }: Options) {
+  return vendor(root, output, config, remove);
 }
 
 /** Upgrade the Lume installation to the latest version */
-export async function vendor(output: string, root: string, config?: string) {
+export async function vendor(
+  root: string,
+  output: string,
+  config?: string,
+  remove?: boolean,
+) {
+  await removeVendor(root, output);
+
+  if (remove) {
+    return;
+  }
+
   const configFile = await getConfigFile(root, config);
   const vendor = join(root, output);
-
-  // Remove the previous vendoring if exists
-  try {
-    await Deno.remove(vendor, { recursive: true });
-  } catch {
-    // Do nothing
-  }
 
   // Run deno vendor
   const specifiers: string[] = [
@@ -87,5 +92,30 @@ async function run(output: string, urls: string[]) {
 
   if (!status.success) {
     throw new Error("Error vendoring Lume");
+  }
+}
+
+async function removeVendor(root: string, output: string) {
+  // Remove vendor directory
+  try {
+    await Deno.remove(join(root, output), { recursive: true });
+  } catch {
+    // Do nothing
+  }
+
+  // Revert the import_map.json file config
+  try {
+    await Deno.stat(join(root, "import_map.json"));
+    const denoConfig = await getDenoConfig() || {};
+
+    if (denoConfig.importMap?.startsWith(output)) {
+      denoConfig.importMap = "import_map.json";
+      await Deno.writeTextFile(
+        "deno.json",
+        JSON.stringify(denoConfig, null, 2) + "\n",
+      );
+    }
+  } catch {
+    // Do nothing
   }
 }

@@ -46,6 +46,10 @@ const vendor = new Command()
     { default: "./" },
   )
   .option(
+    "--remove [remove:boolean]",
+    "To remove an existing vendor.",
+  )
+  .option(
     "--config <config:string>",
     "The config file path.",
   )
