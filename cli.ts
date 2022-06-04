@@ -6,6 +6,7 @@ import upgradeCommand from "./cli/upgrade.ts";
 import runCommand from "./cli/run.ts";
 import buildCommand from "./cli/build.ts";
 import importMapCommand from "./cli/import_map.ts";
+import vendorCommand from "./cli/vendor.ts";
 
 const init = new Command()
   .description("Create a config file for a new site.")
@@ -30,6 +31,25 @@ const importMap = new Command()
   .description("Create or update a import map file with the Lume imports.")
   .example("lume import-map", "Create/update the file import_map.json.")
   .action(importMapCommand);
+
+const vendor = new Command()
+  .description("Vendor remote modules into _vendor local directory.")
+  .example("lume vendor", "Vendor to _vendor directory.")
+  .option(
+    "--output <output:string>",
+    "The output directory to write the vendor files to.",
+    { default: "_vendor" },
+  )
+  .option(
+    "--root <root:string>",
+    "The directory where Lume should work.",
+    { default: "./" },
+  )
+  .option(
+    "--config <config:string>",
+    "The config file path.",
+  )
+  .action(vendorCommand);
 
 const run = new Command()
   .description("Run one or more scripts from the config file.")
@@ -141,6 +161,7 @@ const lume = new Command()
   .command("init", init)
   .command("upgrade", upgrade)
   .command("import-map", importMap)
+  .command("vendor", vendor)
   .command("run <script...>", run)
   .command("completions", new CompletionsCommand());
 

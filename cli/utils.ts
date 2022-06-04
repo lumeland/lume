@@ -1,38 +1,9 @@
 import lume from "../mod.ts";
-import { exists } from "../deps/fs.ts";
-import { join, posix, resolve, toFileUrl } from "../deps/path.ts";
+import { toFileUrl } from "../deps/path.ts";
 import { dim } from "../deps/colors.ts";
-import { Exception } from "../core/errors.ts";
+import { getConfigFile } from "../core/utils.ts";
 
 import type { Site } from "../core.ts";
-
-/** Returns the _config file of a site */
-export async function getConfigFile(
-  root: string,
-  config?: string,
-): Promise<string | undefined> {
-  root = resolve(Deno.cwd(), root);
-
-  if (config) {
-    const path = join(root, config);
-
-    if (await exists(path)) {
-      return path;
-    }
-
-    throw new Exception("Config file not found", { path });
-  }
-
-  const files = ["_config.js", "_config.ts"];
-
-  for (const file of files) {
-    const path = posix.join(root, file);
-
-    if (await exists(path)) {
-      return path;
-    }
-  }
-}
 
 /** Create a site instance */
 export async function createSite(root: string, config?: string): Promise<Site> {

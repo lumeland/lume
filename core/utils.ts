@@ -1,5 +1,7 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
-import { posix, SEP, toFileUrl } from "../deps/path.ts";
+import { join, posix, resolve, SEP, toFileUrl } from "../deps/path.ts";
+import { exists } from "../deps/fs.ts";
+import { Exception } from "./errors.ts";
 
 export const baseUrl = new URL("../", import.meta.url);
 
@@ -186,6 +188,34 @@ export async function mustNotifyUpgrade(): Promise<undefined | UpgradeInfo> {
 
   const command = stable ? "lume upgrade" : "lume upgrade --dev";
   return { current, latest, command };
+}
+
+/** Returns the _config file of a site */
+export async function getConfigFile(
+  root: string = Deno.cwd(),
+  config?: string,
+): Promise<string | undefined> {
+  root = resolve(Deno.cwd(), root);
+
+  if (config) {
+    const path = join(root, config);
+
+    if (await exists(path)) {
+      return path;
+    }
+
+    throw new Exception("Config file not found", { path });
+  }
+
+  const files = ["_config.js", "_config.ts"];
+
+  for (const file of files) {
+    const path = posix.join(root, file);
+
+    if (await exists(path)) {
+      return path;
+    }
+  }
 }
 
 /** Basic options for deno.json file */
