@@ -281,8 +281,12 @@ export function checkDenoVersion(): DenoInfo | undefined {
   }
 }
 
+export function isUrl(path: string): boolean {
+  return !!path.match(/https?:\/\//);
+}
+
 export async function toUrl(path: string): Promise<URL> {
-  if (path.match(/https?:\/\//)) {
+  if (isUrl(path)) {
     return new URL(path);
   }
 
@@ -314,4 +318,21 @@ export function createDate(str: string | number): Date | undefined {
   if (str.match(/^\d+$/)) {
     return new Date(parseInt(str));
   }
+}
+
+export async function read(path: string, isBinary: true): Promise<Uint8Array>;
+export async function read(path: string, isBinary: false): Promise<string>;
+export async function read(
+  path: string,
+  isBinary: boolean,
+): Promise<string | Uint8Array> {
+  if (!isUrl(path)) {
+    return isBinary ? Deno.readFile(path) : Deno.readTextFile(path);
+  }
+
+  const response = await fetch(path);
+
+  return isBinary
+    ? new Uint8Array(await response.arrayBuffer())
+    : response.text();
 }
