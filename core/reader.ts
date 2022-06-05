@@ -16,7 +16,6 @@ export default class Reader {
   src: string;
   cache = new Map<string, Promise<Data>>();
   remoteFiles = new Map<string, string>();
-  remoteDirectories = new Set<string>();
 
   constructor(options: Options) {
     this.src = options.src;
@@ -24,15 +23,6 @@ export default class Reader {
 
   /** Register a remote file */
   remoteFile(filename: string, url: string) {
-    let directory = posix.dirname(filename);
-
-    // Register the parent directories of the file
-    while (directory !== ".") {
-      this.remoteDirectories.add(this.getFullPath(directory));
-      directory = posix.dirname(directory);
-    }
-
-    // Register the file
     this.remoteFiles.set(this.getFullPath(filename), url);
   }
 
@@ -61,29 +51,16 @@ export default class Reader {
       return await Deno.stat(fullPath);
     } catch (err) {
       if (err instanceof Deno.errors.NotFound) {
-        const remoteFile = this.remoteFiles.get(fullPath);
-        const remoteDirectory = this.remoteDirectories.has(fullPath);
+        // Is a remote file
+        if (this.remoteFiles.has(fullPath)) {
+          return createFileInfo();
+        }
 
-        // The file doesn't exist locally but remotely
-        if (remoteFile || remoteDirectory) {
-          return {
-            isFile: !!remoteFile,
-            isDirectory: !remoteFile,
-            isSymlink: false,
-            size: 0,
-            mtime: null,
-            atime: null,
-            birthtime: null,
-            dev: null,
-            ino: null,
-            mode: null,
-            nlink: null,
-            uid: null,
-            gid: null,
-            rdev: null,
-            blksize: null,
-            blocks: null,
-          };
+        // Is a remote folder
+        for (const file of this.remoteFiles.keys()) {
+          if (file.startsWith(fullPath + "/")) {
+            return createFileInfo(false);
+          }
         }
         return;
       }
@@ -95,52 +72,40 @@ export default class Reader {
   /** Reads a directory */
   async *readDir(path: string): AsyncIterable<Deno.DirEntry> {
     const fullPath = this.getFullPath(path);
-    const remotes = new Set<string>();
+    const read = new Set<string>();
 
     // Read real files
     try {
       for await (const entry of Deno.readDir(this.getFullPath(path))) {
-        remotes.add(entry.name);
+        read.add(entry.name);
         yield entry;
       }
     } catch {
       // Ignore
     }
 
-    // Read remote directories
-    for (const directory of this.remoteDirectories) {
-      if (posix.dirname(directory) === fullPath) {
-        const name = posix.basename(directory);
-
-        if (remotes.has(name)) {
-          continue;
-        }
-
-        yield {
-          name,
-          isFile: false,
-          isDirectory: true,
-          isSymlink: false,
-        };
-      }
-    }
-
     // Read remote files
     for (const file of this.remoteFiles.keys()) {
-      if (posix.dirname(file) === fullPath) {
-        const name = posix.basename(file);
-
-        if (remotes.has(name)) {
-          continue;
-        }
-
-        yield {
-          name,
-          isFile: true,
-          isDirectory: false,
-          isSymlink: false,
-        };
+      if (!file.startsWith(fullPath)) {
+        continue;
       }
+
+      const rest = file.slice(fullPath.length + 1);
+      const name = rest.split("/")[0];
+      const isFile = rest === name;
+
+      if (read.has(name)) {
+        continue;
+      }
+
+      read.add(name);
+
+      yield {
+        name,
+        isFile,
+        isDirectory: !isFile,
+        isSymlink: false,
+      };
     }
   }
 
@@ -174,3 +139,24 @@ export default class Reader {
 
 /** A function that loads and returns the file content */
 export type Loader = (path: string) => Promise<Data>;
+
+function createFileInfo(isFile = true): Deno.FileInfo {
+  return {
+    isFile,
+    isDirectory: !isFile,
+    isSymlink: false,
+    size: 0,
+    mtime: null,
+    atime: null,
+    birthtime: null,
+    dev: null,
+    ino: null,
+    mode: null,
+    nlink: null,
+    uid: null,
+    gid: null,
+    rdev: null,
+    blksize: null,
+    blocks: null,
+  };
+}
