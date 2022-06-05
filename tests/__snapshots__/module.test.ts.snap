@@ -87,6 +87,7 @@ snapshot[`Build a site with js/ts modules 4`] = `
   data: {
     content: "Async Page 1",
     date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.tmpl.js",
     num: 1,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -124,6 +125,7 @@ snapshot[`Build a site with js/ts modules 5`] = `
   data: {
     content: "Async Page 2",
     date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.tmpl.js",
     num: 2,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
@@ -161,6 +163,7 @@ snapshot[`Build a site with js/ts modules 6`] = `
   data: {
     content: "Content page 1",
     date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.tmpl.js",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -197,6 +200,7 @@ snapshot[`Build a site with js/ts modules 7`] = `
   data: {
     content: "Content page 2",
     date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.tmpl.js",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -232,6 +236,7 @@ snapshot[`Build a site with js/ts modules 8`] = `
   data: {
     content: "Content page 3",
     date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.tmpl.js",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -279,6 +284,7 @@ snapshot[`Build a site with js/ts modules 9`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.tmpl.js",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [

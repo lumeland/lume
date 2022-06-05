@@ -131,6 +131,7 @@ snapshot[`build a site with liquid 5`] = `
 <h1>{{ title }}</h1>
 ",
     date: 1970-01-01T00:00:00.000Z,
+    layout: "basic.liquid",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -166,6 +167,7 @@ snapshot[`build a site with liquid 6`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    layout: "basic.liquid",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -223,6 +225,7 @@ snapshot[`build a site with liquid 7`] = `
 {% include "./_includes/partial.liquid" %}
 ',
     date: 1970-01-01T00:00:00.000Z,
+    layout: "basic.liquid",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [

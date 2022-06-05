@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Updated dependencies: `std`, `esbuild`, `terser`, `postcss_autoprefixer`.
 - `lume upgrade` must update `deno.json` and `import_map.json` files even if the latest version is already installed.
 - Used `std/media_types` in the `inline` plugin with support for much more content types.
+- Pollution in the `page.data` property after rendering.
 
 ## [1.9.1] - 2022-05-26
 ### Added
