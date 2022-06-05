@@ -15,7 +15,7 @@ export interface Options {
 export default class Reader {
   src: string;
   cache = new Map<string, Promise<Data>>();
-  remoteFiles = new Map<string, RemoteFile>();
+  remoteFiles = new Map<string, string>();
   remoteDirectories = new Set<string>();
 
   constructor(options: Options) {
@@ -26,15 +26,14 @@ export default class Reader {
   remoteFile(filename: string, url: string) {
     let directory = posix.dirname(filename);
 
+    // Register the parent directories of the file
     while (directory !== ".") {
       this.remoteDirectories.add(this.getFullPath(directory));
       directory = posix.dirname(directory);
     }
 
-    this.remoteFiles.set(this.getFullPath(filename), {
-      url,
-      filename,
-    });
+    // Register the file
+    this.remoteFiles.set(this.getFullPath(filename), url);
   }
 
   /** Delete a file from the cache */
@@ -57,25 +56,16 @@ export default class Reader {
   /** Returns the file info of a path */
   async getInfo(path: string): Promise<Deno.FileInfo | undefined> {
     const fullPath = this.getFullPath(path);
-    const remoteFile = this.remoteFiles.get(fullPath);
-    const remoteDirectory = this.remoteDirectories.has(fullPath);
 
     try {
-      const info = await Deno.stat(this.getFullPath(path));
-
-      // The file exists locally, disable the remote file
-      if (remoteFile) {
-        remoteFile.disabled = true;
-      }
-      return info;
+      return await Deno.stat(fullPath);
     } catch (err) {
       if (err instanceof Deno.errors.NotFound) {
-        // The file doesn't exist locally, enable the remote file
-        if (remoteFile || remoteDirectory) {
-          if (remoteFile) {
-            remoteFile.disabled = false;
-          }
+        const remoteFile = this.remoteFiles.get(fullPath);
+        const remoteDirectory = this.remoteDirectories.has(fullPath);
 
+        // The file doesn't exist locally but remotely
+        if (remoteFile || remoteDirectory) {
           return {
             isFile: !!remoteFile,
             isDirectory: !remoteFile,
@@ -120,8 +110,14 @@ export default class Reader {
     // Read remote directories
     for (const directory of this.remoteDirectories) {
       if (posix.dirname(directory) === fullPath) {
+        const name = posix.basename(directory);
+
+        if (remotes.has(name)) {
+          continue;
+        }
+
         yield {
-          name: posix.basename(directory),
+          name,
           isFile: false,
           isDirectory: true,
           isSymlink: false,
@@ -130,49 +126,51 @@ export default class Reader {
     }
 
     // Read remote files
-    for (const [file, remote] of this.remoteFiles) {
+    for (const file of this.remoteFiles.keys()) {
       if (posix.dirname(file) === fullPath) {
         const name = posix.basename(file);
 
-        // Disable the remote file if it's locally in the directory
-        remote.disabled = remotes.has(name);
-
-        if (!remote.disabled) {
-          yield {
-            name,
-            isFile: true,
-            isDirectory: false,
-            isSymlink: false,
-          };
+        if (remotes.has(name)) {
+          continue;
         }
+
+        yield {
+          name,
+          isFile: true,
+          isDirectory: false,
+          isSymlink: false,
+        };
       }
     }
   }
 
   /** Read a file using a loader and return the content */
   async read(path: string, loader: Loader): Promise<Data> {
-    const fullpath = this.getFullPath(path);
-    const remote = this.remoteFiles.get(fullpath);
-    const loadPath = (!remote || remote.disabled) ? fullpath : remote.url;
+    const fullPath = this.getFullPath(path);
+    const remoteUrl = this.remoteFiles.get(fullPath);
+    let loadPath = fullPath;
+
+    // If exists as remote, check if there's a local version
+    if (remoteUrl) {
+      try {
+        await Deno.stat(fullPath);
+      } catch {
+        // The file doesn't exist locally, use the remote one
+        loadPath = remoteUrl;
+      }
+    }
 
     try {
-      if (!this.cache.has(fullpath)) {
-        this.cache.set(fullpath, loader(loadPath));
+      if (!this.cache.has(fullPath)) {
+        this.cache.set(fullPath, loader(loadPath));
       }
 
-      return await this.cache.get(fullpath)!;
+      return await this.cache.get(fullPath)!;
     } catch (cause) {
-      throw new Exception("Couldn't load this file", { cause, fullpath });
+      throw new Exception("Couldn't load this file", { cause, fullPath });
     }
   }
 }
 
 /** A function that loads and returns the file content */
 export type Loader = (path: string) => Promise<Data>;
-
-interface RemoteFile {
-  filename: string;
-  url: string;
-  disabled?: boolean;
-  content?: string;
-}
