@@ -233,7 +233,7 @@ export default class Renderer {
 
   /** Render a page */
   async #renderPage(page: Page): Promise<Content> {
-    let { data } = page;
+    let data = { ...page.data };
     let { content, layout } = data;
 
     // If the page is an asset, just return the content (don't render templates or layouts)
