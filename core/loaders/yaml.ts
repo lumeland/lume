@@ -1,12 +1,12 @@
 import { parse } from "../../deps/yaml.ts";
-import { isPlainObject } from "../utils.ts";
+import { isPlainObject, read } from "../utils.ts";
 import { Exception } from "../errors.ts";
 
 import type { Data } from "../../core.ts";
 
 /** Load and parse a YAML file */
 export default async function yaml(path: string): Promise<Data> {
-  const text = await Deno.readTextFile(path);
+  const text = await read(path, false);
   const content = parse(text);
 
   if (!content) {
