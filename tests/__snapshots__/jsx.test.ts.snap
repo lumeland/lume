@@ -86,40 +86,9 @@ snapshot[`build a site with jsx/tsx modules 4`] = `
 {
   content: "<html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
   data: {
-    children: {
-      "\$\$typeof": Symbol(react.element),
-      _owner: null,
-      key: null,
-      props: {
-        children: [
-          {
-            "\$\$typeof": Symbol(react.element),
-            _owner: null,
-            key: null,
-            props: {
-              children: "Hello world",
-            },
-            ref: null,
-            type: "h1",
-          },
-          {
-            "\$\$typeof": Symbol(react.element),
-            _owner: null,
-            key: null,
-            props: {
-              children: "This is a JSX page",
-            },
-            ref: null,
-            type: "p",
-          },
-        ],
-      },
-      ref: null,
-      toString: [Function],
-      type: Symbol(react.fragment),
-    },
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.jsx",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -142,19 +111,12 @@ snapshot[`build a site with jsx/tsx modules 5`] = `
 {
   content: "<html><head><title></title></head><body><main><div>1</div></main></body></html>",
   data: {
-    children: {
-      "\$\$typeof": Symbol(react.element),
-      _owner: null,
-      key: null,
-      props: {
-        children: 1,
-      },
-      ref: null,
+    children: Generator {
       toString: [Function],
-      type: "div",
     },
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.jsx",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -176,19 +138,12 @@ snapshot[`build a site with jsx/tsx modules 6`] = `
 {
   content: "<html><head><title></title></head><body><main><div>2</div></main></body></html>",
   data: {
-    children: {
-      "\$\$typeof": Symbol(react.element),
-      _owner: null,
-      key: null,
-      props: {
-        children: 2,
-      },
-      ref: null,
+    children: Generator {
       toString: [Function],
-      type: "div",
     },
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.jsx",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -210,53 +165,9 @@ snapshot[`build a site with jsx/tsx modules 7`] = `
 {
   content: '<html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
   data: {
-    children: {
-      "\$\$typeof": Symbol(react.element),
-      _owner: null,
-      key: null,
-      props: {
-        children: [
-          {
-            "\$\$typeof": Symbol(react.element),
-            _owner: null,
-            key: null,
-            props: {
-              children: "This is the title",
-            },
-            ref: null,
-            type: "h1",
-          },
-          {
-            "\$\$typeof": Symbol(react.element),
-            _owner: null,
-            key: null,
-            props: {
-              children: [
-                "This is a JSX page ",
-                {
-                  "\$\$typeof": Symbol(react.element),
-                  _owner: null,
-                  key: null,
-                  props: {
-                    children: "Go to home",
-                    href: "/blog/",
-                  },
-                  ref: null,
-                  type: "a",
-                },
-              ],
-            },
-            ref: null,
-            type: "p",
-          },
-        ],
-      },
-      ref: null,
-      toString: [Function],
-      type: Symbol(react.fragment),
-    },
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.jsx",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -287,6 +198,7 @@ snapshot[`build a site with jsx/tsx modules 8`] = `
 This is a **markdown** text. [Go home](/)
 ",
     date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.jsx",
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
