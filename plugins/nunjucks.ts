@@ -147,7 +147,36 @@ export default function (userOptions?: Partial<Options>) {
 
     // Create the nunjucks environment instance
     const fsLoader = new nunjucks.FileSystemLoader(site.src(options.includes));
-    const env = new nunjucks.Environment(fsLoader, options.options);
+    const { includesLoader, formats } = site;
+
+    const lumeLoader = {
+      async: true,
+      async getSource(
+        path: string,
+        callback: (err?: string, src?: { src: string; path: string }) => void,
+      ) {
+        const format = formats.search(path);
+
+        if (format) {
+          const source = await includesLoader.load(path, format);
+
+          if (source) {
+            const content = source[1].content as string;
+            callback(undefined, {
+              src: content,
+              path,
+            });
+            return;
+          }
+        }
+        callback(`Could not load ${path}`);
+      },
+    };
+
+    const env = new nunjucks.Environment(
+      [fsLoader, lumeLoader],
+      options.options,
+    );
 
     for (const [name, fn] of Object.entries(options.plugins)) {
       env.addExtension(name, fn);
