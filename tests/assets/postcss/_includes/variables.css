@@ -1,3 +1,5 @@
+@import "./components/foo.css";
+
 ::root {
   --color: #333;
   --background: #fff;

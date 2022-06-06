@@ -6,6 +6,7 @@ import {
 } from "../deps/postcss.ts";
 import { merge } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
+import { posix } from "../deps/path.ts";
 
 import type { Helper, Site } from "../core.ts";
 import type { SourceMapOptions } from "../deps/postcss.ts";
@@ -18,7 +19,7 @@ export interface Options {
   sourceMap: boolean | SourceMapOptions;
 
   /** Custom includes path for `postcss-import` */
-  includes: string | string[] | false;
+  includes: string | false;
 
   /** Plugins to use by postcss */
   plugins: unknown[];
@@ -31,7 +32,7 @@ export interface Options {
 export const defaults: Options = {
   extensions: [".css"],
   sourceMap: false,
-  includes: [],
+  includes: false,
   plugins: [
     postcssNesting(),
     autoprefixer(),
@@ -52,31 +53,11 @@ export default function (userOptions?: Partial<Options>) {
     }
 
     const plugins = [...options.plugins];
-    const { includesLoader, formats, reader } = site;
 
     if (options.includes) {
-      plugins.unshift(postcssImport({
-        path: Array.isArray(options.includes)
-          ? options.includes.map((path) => site.src(path))
-          : site.src(options.includes),
-        resolve(id: string, basedir: string) {
-          const format = formats.search(id);
+      site.includes(options.extensions, options.includes);
 
-          if (format) {
-            return includesLoader.resolve(id, format, basedir);
-          }
-        },
-        async load(file: string) {
-          const format = formats.search(file);
-
-          if (format && format.pageLoader) {
-            const content = await reader.read(file, format.pageLoader);
-            if (content) {
-              return content.content as string;
-            }
-          }
-        },
-      }));
+      plugins.unshift(configureImport(site));
     }
 
     // @ts-ignore: Argument of type 'unknown[]' is not assignable to parameter of type 'AcceptedPlugin[]'.
@@ -110,4 +91,46 @@ export default function (userOptions?: Partial<Options>) {
       return result.css;
     }
   };
+}
+
+/**
+ * Function to configure the postcssImport
+ * using the Lume reader and the includes loader
+ */
+function configureImport(site: Site) {
+  const { includesLoader, formats, reader } = site;
+
+  return postcssImport({
+    /** Resolve the import path */
+    resolve(id: string, basedir: string) {
+      /** Relative path */
+      if (id.startsWith(".")) {
+        return posix.join(basedir, id);
+      }
+
+      /** Search the path in the includes */
+      const format = formats.search(id);
+      if (format) {
+        const path = includesLoader.resolve(id, format, basedir);
+
+        if (path) {
+          return site.src(path);
+        }
+      }
+    },
+
+    /** Load the content (using the Lume reader) */
+    async load(file: string) {
+      const format = formats.search(file);
+
+      if (format && format.pageLoader) {
+        const relative = file.slice(site.src().length);
+        const content = await reader.read(relative, format.pageLoader);
+
+        if (content) {
+          return content.content as string;
+        }
+      }
+    },
+  });
 }
