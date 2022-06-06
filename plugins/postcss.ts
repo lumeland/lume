@@ -52,12 +52,30 @@ export default function (userOptions?: Partial<Options>) {
     }
 
     const plugins = [...options.plugins];
+    const { includesLoader, formats, reader } = site;
 
     if (options.includes) {
       plugins.unshift(postcssImport({
         path: Array.isArray(options.includes)
           ? options.includes.map((path) => site.src(path))
           : site.src(options.includes),
+        resolve(id: string, basedir: string) {
+          const format = formats.search(id);
+
+          if (format) {
+            return includesLoader.resolve(id, format, basedir);
+          }
+        },
+        async load(file: string) {
+          const format = formats.search(file);
+
+          if (format && format.pageLoader) {
+            const content = await reader.read(file, format.pageLoader);
+            if (content) {
+              return content.content as string;
+            }
+          }
+        },
       }));
     }
 
