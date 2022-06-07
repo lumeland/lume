@@ -137,7 +137,7 @@ export default class Source {
       const code = this.extraCode.get(type);
 
       if (code && code.size) {
-        pages.push(Page.create(path, Array.from(code).join("\n")));
+        pages.push(Page.create(path, Array.from(code.values()).join("\n")));
       }
     }
 
@@ -506,9 +506,9 @@ function toProxy(
         }
 
         if (component.js) {
-          const code = extraCode.get("css") ?? new Map();
+          const code = extraCode.get("js") ?? new Map();
           code.set(key, component.js);
-          extraCode.set("css", code);
+          extraCode.set("js", code);
         }
       }
 

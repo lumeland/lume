@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`build a site with nunjucks 1`] = `5`;
+snapshot[`build a site with nunjucks 1`] = `7`;
 
 snapshot[`build a site with nunjucks 2`] = `
 {
@@ -72,6 +72,80 @@ snapshot[`build a site with nunjucks 3`] = `
 
 snapshot[`build a site with nunjucks 4`] = `
 {
+  content: "
+button {
+  background-color: blue;
+}
+
+icon {
+  width: 48px;
+  height: 48px;
+}
+",
+  data: {
+    content: "
+button {
+  background-color: blue;
+}
+
+icon {
+  width: 48px;
+  height: 48px;
+}
+",
+    tags: [
+    ],
+    url: "/components.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/components",
+  },
+  src: {
+    ext: undefined,
+    path: "",
+  },
+}
+`;
+
+snapshot[`build a site with nunjucks 5`] = `
+{
+  content: '
+document.querySelectorAll("button").forEach(button => {
+  button.addEventListener("click", () => {
+    alert("Hello world!");
+  });
+});
+
+console.log("Hello world, from the icon/User component");
+',
+  data: {
+    content: '
+document.querySelectorAll("button").forEach(button => {
+  button.addEventListener("click", () => {
+    alert("Hello world!");
+  });
+});
+
+console.log("Hello world, from the icon/User component");
+',
+    tags: [
+    ],
+    url: "/components.js",
+  },
+  dest: {
+    ext: ".js",
+    path: "/components",
+  },
+  src: {
+    ext: undefined,
+    path: "",
+  },
+}
+`;
+
+snapshot[`build a site with nunjucks 6`] = `
+{
   content: '<!DOCTYPE html>
 
 <html lang="en">
@@ -140,7 +214,7 @@ snapshot[`build a site with nunjucks 4`] = `
 }
 `;
 
-snapshot[`build a site with nunjucks 5`] = `
+snapshot[`build a site with nunjucks 7`] = `
 {
   content: '
 ["red","green","blue"]
@@ -174,7 +248,7 @@ snapshot[`build a site with nunjucks 5`] = `
 }
 `;
 
-snapshot[`build a site with nunjucks 6`] = `
+snapshot[`build a site with nunjucks 8`] = `
 {
   content: '<!DOCTYPE html>
 
@@ -215,7 +289,7 @@ snapshot[`build a site with nunjucks 6`] = `
 }
 `;
 
-snapshot[`build a site with nunjucks 7`] = `
+snapshot[`build a site with nunjucks 9`] = `
 {
   content: '<!DOCTYPE html>
 
@@ -252,7 +326,7 @@ snapshot[`build a site with nunjucks 7`] = `
 }
 `;
 
-snapshot[`build a site with nunjucks 8`] = `
+snapshot[`build a site with nunjucks 10`] = `
 {
   content: '<!DOCTYPE html>
 
