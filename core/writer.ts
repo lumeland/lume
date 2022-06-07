@@ -1,6 +1,6 @@
 import { posix } from "../deps/path.ts";
 import { emptyDir, ensureDir } from "../deps/fs.ts";
-import { concurrent, sha1 } from "./utils.ts";
+import { concurrent, read, sha1 } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
 import type { Page, StaticFile } from "./filesystem.ts";
@@ -122,19 +122,25 @@ export default class Writer {
    * Returns a boolean indicating if the file has saved
    */
   async copyFile(file: StaticFile): Promise<boolean> {
-    const { src, dest, saved, removed } = file;
+    const { src, dest, saved, removed, remote } = file;
 
     if (saved || removed) {
       return false;
     }
 
-    const pathFrom = posix.join(this.src, src);
     const pathTo = posix.join(this.dest, dest);
 
     try {
       await ensureDir(posix.dirname(pathTo));
-      await Deno.copyFile(pathFrom, pathTo);
-      this.logger.log(`🔥 ${dest} <dim>${src}</dim>`);
+      if (remote) {
+        const content = await read(remote, true);
+        await Deno.writeFile(pathTo, content);
+        this.logger.log(`🔥 ${dest} <dim>${remote}</dim>`);
+      } else {
+        const pathFrom = posix.join(this.src, src);
+        await Deno.copyFile(pathFrom, pathTo);
+        this.logger.log(`🔥 ${dest} <dim>${src}</dim>`);
+      }
       file.saved = true;
       return true;
     } catch (err) {

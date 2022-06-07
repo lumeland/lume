@@ -44,7 +44,7 @@ export default class Reader {
   }
 
   /** Returns the file info of a path */
-  async getInfo(path: string): Promise<Deno.FileInfo | undefined> {
+  async getInfo(path: string): Promise<FileInfo | undefined> {
     const fullPath = this.getFullPath(path);
 
     try {
@@ -52,14 +52,15 @@ export default class Reader {
     } catch (err) {
       if (err instanceof Deno.errors.NotFound) {
         // Is a remote file
-        if (this.remoteFiles.has(fullPath)) {
-          return createFileInfo();
+        const remote = this.remoteFiles.get(fullPath);
+        if (remote) {
+          return createFileInfo(remote);
         }
 
         // Is a remote folder
-        for (const file of this.remoteFiles.keys()) {
+        for (const [file, remote] of this.remoteFiles) {
           if (file.startsWith(fullPath + "/")) {
-            return createFileInfo(false);
+            return createFileInfo(remote, false);
           }
         }
         return;
@@ -70,7 +71,7 @@ export default class Reader {
   }
 
   /** Reads a directory */
-  async *readDir(path: string): AsyncIterable<Deno.DirEntry> {
+  async *readDir(path: string): AsyncIterable<DirEntry> {
     const fullPath = this.getFullPath(path);
     const read = new Set<string>();
 
@@ -85,7 +86,7 @@ export default class Reader {
     }
 
     // Read remote files
-    for (const file of this.remoteFiles.keys()) {
+    for (const [file, remote] of this.remoteFiles) {
       if (!file.startsWith(fullPath)) {
         continue;
       }
@@ -101,6 +102,7 @@ export default class Reader {
       read.add(name);
 
       yield {
+        remote,
         name,
         isFile,
         isDirectory: !isFile,
@@ -140,8 +142,19 @@ export default class Reader {
 /** A function that loads and returns the file content */
 export type Loader = (path: string) => Promise<Data>;
 
-function createFileInfo(isFile = true): Deno.FileInfo {
+/** A directory entry */
+export interface DirEntry extends Deno.DirEntry {
+  remote?: string;
+}
+
+/** A file info */
+export interface FileInfo extends Deno.FileInfo {
+  remote?: string;
+}
+
+function createFileInfo(remote: string, isFile = true): FileInfo {
   return {
+    remote,
     isFile,
     isDirectory: !isFile,
     isSymlink: false,

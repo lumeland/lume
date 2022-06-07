@@ -369,6 +369,9 @@ export interface StaticFile {
 
   /** Indicates whether the source file was removed */
   removed?: boolean;
+
+  /** The remote url (if the file was downloaded) */
+  remote?: string;
 }
 
 /** The .src property for a Page or Directory */
@@ -384,6 +387,9 @@ export interface Src {
 
   /** The creation time */
   created?: Date;
+
+  /** The remote url (if the file was downloaded) */
+  remote?: string;
 }
 
 /** The .dest property for a Page */
