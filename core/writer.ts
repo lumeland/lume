@@ -122,37 +122,39 @@ export default class Writer {
    * Returns a boolean indicating if the file has saved
    */
   async copyFile(file: StaticFile): Promise<boolean> {
-    const { src, dest, saved, removed, remote } = file;
-
-    if (saved || removed) {
+    if (file.saved) {
       return false;
     }
 
-    const pathTo = posix.join(this.dest, dest);
+    file.saved = true;
+    const pathTo = posix.join(this.dest, file.dest);
+
+    // The file was removed
+    if (file.removed) {
+      try {
+        await Deno.remove(pathTo);
+        this.logger.log(`  <del>${file.dest}</del>`);
+      } catch {
+        // Ignored
+      }
+      return false;
+    }
 
     try {
       await ensureDir(posix.dirname(pathTo));
-      if (remote) {
-        const content = await read(remote, true);
+      let { src } = file;
+      if (file.remote) {
+        const content = await read(file.remote, true);
         await Deno.writeFile(pathTo, content);
-        this.logger.log(`🔥 ${dest} <dim>${remote}</dim>`);
+        src = file.remote;
       } else {
-        const pathFrom = posix.join(this.src, src);
+        const pathFrom = posix.join(this.src, file.src);
         await Deno.copyFile(pathFrom, pathTo);
-        this.logger.log(`🔥 ${dest} <dim>${src}</dim>`);
       }
-      file.saved = true;
+      this.logger.log(`🔥 ${file.dest} <dim>${src}</dim>`);
       return true;
-    } catch (err) {
-      if (err instanceof Deno.errors.NotFound) {
-        try {
-          await Deno.remove(pathTo);
-          this.logger.log(`❌ <dim>${dest}</dim>`);
-          file.removed = true;
-        } catch {
-          // Ignored
-        }
-      }
+    } catch {
+      // Ignored
     }
 
     return false;

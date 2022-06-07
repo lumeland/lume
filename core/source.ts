@@ -177,13 +177,18 @@ export default class Source {
           posix.dirname(src),
         );
 
+        // It's a static file previously copied
         for (const staticFile of directory.staticFiles) {
           if (staticFile.src === file) {
             delete staticFile.saved;
+            const info = await this.reader.getInfo(file);
+            staticFile.removed = !info;
+            staticFile.remote = info?.remote;
             return;
           }
         }
 
+        // It's a new static file
         if (typeof dest === "string") {
           directory.setStaticFile({
             src: file,
