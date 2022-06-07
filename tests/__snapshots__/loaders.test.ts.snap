@@ -81,7 +81,7 @@ snapshot[`Load the pages of a site 3`] = `
 [
   {
     dest: "/static.yml",
-    saved: true,
+    remote: undefined,
     src: "/static.yml",
   },
 ]
