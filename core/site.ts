@@ -701,4 +701,5 @@ export type SiteEventType =
   | "afterUpdate"
   | "afterRender"
   | "beforeRenderOnDemand"
-  | "beforeSave";
+  | "beforeSave"
+  | "afterStartServer";

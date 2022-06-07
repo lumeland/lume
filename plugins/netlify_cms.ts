@@ -45,7 +45,7 @@ export default function (userOptions?: Partial<Options>) {
 
     // Run the local netlify server
     if (local_backend) {
-      site.addEventListener("afterBuild", () => {
+      site.addEventListener("afterStartServer", () => {
         site.run("npx netlify-cms-proxy-server");
       });
     }

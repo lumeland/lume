@@ -99,6 +99,8 @@ export async function build(
 
       Deno.run({ cmd: [commands[Deno.build.os], `http://localhost:${port}/`] });
     }
+
+    site.dispatchEvent({ type: "afterStartServer" });
   });
 
   server.use(
