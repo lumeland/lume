@@ -168,7 +168,7 @@ export default function (userOptions?: Partial<Options>) {
       const components = baseData[site.options.components.variable] as
         | ProxyComponents
         | undefined;
-      const [content, name, options] = args;
+      const [content, name, options = {}] = args;
       delete options.__keywords;
       const props = { content, ...options };
 

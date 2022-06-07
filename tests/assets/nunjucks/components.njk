@@ -1,3 +1,7 @@
+{% comp "Button" %}
+  button without arguments
+{% endcomp %}
+
 {{ comp.Button({ content: "button content" }) | safe }}
 {{ comp.icon.User({ content: "this is John", name:"John" }) | safe }}
 

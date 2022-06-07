@@ -80,7 +80,11 @@ snapshot[`build a site with nunjucks 4`] = `
     <title></title>
   </head>
   <body>
-    <main><button class="" type="button">button content</button>
+    <main><button class="" type="button">
+  button without arguments
+</button>
+
+<button class="" type="button">button content</button>
 <icon name="John">
   this is John
 </icon>
@@ -102,7 +106,11 @@ snapshot[`build a site with nunjucks 4`] = `
 ',
   data: {
     comp: {},
-    content: '{{ comp.Button({ content: "button content" }) | safe }}
+    content: '{% comp "Button" %}
+  button without arguments
+{% endcomp %}
+
+{{ comp.Button({ content: "button content" }) | safe }}
 {{ comp.icon.User({ content: "this is John", name:"John" }) | safe }}
 
 {% comp "Button", className="my-button" %}
