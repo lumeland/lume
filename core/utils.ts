@@ -282,12 +282,16 @@ export function checkDenoVersion(): DenoInfo | undefined {
 }
 
 export function isUrl(path: string): boolean {
-  return !!path.match(/https?:\/\//);
+  return !!path.match(/^(https?|file):\/\//);
 }
 
-export async function toUrl(path: string): Promise<URL> {
+export async function toUrl(path: string, resolve = true): Promise<URL> {
   if (isUrl(path)) {
     return new URL(path);
+  }
+
+  if (!resolve) {
+    return toFileUrl(path);
   }
 
   return toFileUrl(await Deno.realPath(path));

@@ -58,7 +58,10 @@ export default class Writer {
     if (!page.content || page.data.url === false) {
       return false;
     }
-    const src = page.src.path
+
+    const src = page.src.remote
+      ? page.src.remote
+      : page.src.path
       ? page.src.path + (page.src.ext || "")
       : "(generated)";
     const dest = page.dest.path + page.dest.ext;

@@ -39,6 +39,7 @@ export default class PageLoader {
       path: path.slice(0, -ext.length),
       lastModified: info?.mtime || undefined,
       created: info?.birthtime || undefined,
+      remote: info.remote,
       ext,
     });
 
