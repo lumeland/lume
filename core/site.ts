@@ -403,6 +403,14 @@ export default class Site {
     return this;
   }
 
+  /** Define remote fallbacks for missing local files */
+  remoteFiles(files: Record<string, string>): this {
+    for (const [filename, url] of Object.entries(files)) {
+      this.reader.remoteFile(filename, url);
+    }
+    return this;
+  }
+
   /** Clear the dest directory and any cache */
   async clear(): Promise<void> {
     this.reader.clearCache();
