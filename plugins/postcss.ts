@@ -4,7 +4,7 @@ import {
   postcssImport,
   postcssNesting,
 } from "../deps/postcss.ts";
-import { merge } from "../core/utils.ts";
+import { isUrl, merge } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
 import { posix } from "../deps/path.ts";
 
@@ -103,9 +103,23 @@ function configureImport(site: Site) {
   return postcssImport({
     /** Resolve the import path */
     resolve(id: string, basedir: string) {
+      if (isUrl(id)) {
+        return id;
+      }
+
       /** Relative path */
       if (id.startsWith(".")) {
         return posix.join(basedir, id);
+      }
+
+      if (!id.startsWith("/")) {
+        const path = posix.join(basedir, id);
+        try {
+          reader.getInfo(path);
+          return path;
+        } catch {
+          // Ignore
+        }
       }
 
       /** Search the path in the includes */
