@@ -65,6 +65,7 @@ snapshot[`postcss plugin 2`] = `
       asset: true,
       engine: false,
       ext: ".css",
+      includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
   ],
@@ -78,14 +79,20 @@ snapshot[`postcss plugin 3`] = `
 
 snapshot[`postcss plugin 4`] = `
 {
-  content: "::root {
+  content: ".foo {
+  color: red;
+}
+
+::root {
   --color: #333;
   --background: #fff;
   --font-family: sans-serif;
 }
+
 .text {
   font-family: var(--font-family)
 }
+
 .text p {
     color: var(--color);
     box-shadow: 0 0 0.5em var(--background);

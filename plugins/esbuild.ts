@@ -1,5 +1,7 @@
 import { getDenoConfig, merge, toUrl } from "../core/utils.ts";
+import loader from "../core/loaders/text.ts";
 import * as esbuild from "../deps/esbuild.ts";
+import { extname } from "../deps/path.ts";
 
 import type { Site } from "../core.ts";
 
@@ -38,11 +40,37 @@ export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     site.loadAssets(options.extensions);
 
+    const reader = site.reader;
+
+    const lumeLoaderPlugin = {
+      name: "lumeLoader",
+      // deno-lint-ignore no-explicit-any
+      setup(build: any) {
+        // deno-lint-ignore no-explicit-any
+        build.onLoad({ filter: /^file:/ }, async (args: any) => {
+          const root = await toUrl(site.src(), false);
+          const path = args.path.replace(root, "");
+
+          try {
+            const content = await reader.read(path, loader);
+
+            return {
+              contents: content.content,
+              loader: getLoader(path),
+            };
+          } catch {
+            // Ignore
+          }
+        });
+      },
+    };
+    options.options.plugins?.unshift(lumeLoaderPlugin);
+
     site.addEventListener("beforeSave", () => esbuild.stop());
 
     site.process(options.extensions, async (page) => {
       const name = `${page.src.path}${page.src.ext}`;
-      const filename = await toUrl(site.src(name));
+      const filename = await toUrl(site.src(name), false);
       site.logger.log("📦", name);
 
       const buildOptions: esbuild.BuildOptions = {
@@ -72,4 +100,17 @@ export default function (userOptions?: Partial<Options>) {
       }
     });
   };
+}
+
+function getLoader(path: string) {
+  const ext = extname(path).replace(".", "").toLowerCase();
+
+  switch (ext) {
+    case "mjs":
+      return "js";
+    case "mts":
+      return "ts";
+    default:
+      return ext;
+  }
 }

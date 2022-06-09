@@ -69,7 +69,7 @@ snapshot[`relative_url plugin 3`] = `
 [
   {
     dest: "/robots.txt",
-    saved: true,
+    remote: undefined,
     src: "/statics/robots.txt",
   },
 ]

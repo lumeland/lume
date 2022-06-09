@@ -21,7 +21,12 @@ import type {
   ScriptOrFunction,
 } from "./core/scripts.ts";
 
-import type { default as Reader, Loader } from "./core/reader.ts";
+import type {
+  default as Reader,
+  DirEntry,
+  FileInfo,
+  Loader,
+} from "./core/reader.ts";
 import type Logger from "./core/logger.ts";
 import type Writer from "./core/writer.ts";
 import type IncludesLoader from "./core/includes_loader.ts";
@@ -84,6 +89,7 @@ export type {
   DataLoader,
   Dest,
   Directory,
+  DirEntry,
   Engine,
   ErrorData,
   Event,
@@ -91,6 +97,7 @@ export type {
   EventOptions,
   Events,
   Exception,
+  FileInfo,
   Format,
   Formats,
   Helper,

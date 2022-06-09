@@ -6,6 +6,7 @@ import type {
   ComponentLoader,
   Data,
   DataLoader,
+  DirEntry,
   Formats,
   PageLoader,
   Reader,
@@ -176,13 +177,18 @@ export default class Source {
           posix.dirname(src),
         );
 
+        // It's a static file previously copied
         for (const staticFile of directory.staticFiles) {
           if (staticFile.src === file) {
             delete staticFile.saved;
+            const info = await this.reader.getInfo(file);
+            staticFile.removed = !info;
+            staticFile.remote = info?.remote;
             return;
           }
         }
 
+        // It's a new static file
         if (typeof dest === "string") {
           directory.setStaticFile({
             src: file,
@@ -243,13 +249,14 @@ export default class Source {
 
   /** Reloads a file */
   async #updateFile(file: string) {
+    const info = await this.reader.getInfo(file);
     const entry = {
       name: posix.basename(file),
       isFile: true,
       isDirectory: false,
       isSymlink: false,
+      remote: info?.remote,
     };
-
     const [directory] = await this.#getOrCreateDirectory(posix.dirname(file));
     await this.#loadEntry(directory, entry);
   }
@@ -285,7 +292,7 @@ export default class Source {
   }
 
   /** Load an entry from a directory */
-  async #loadEntry(directory: Directory, entry: Deno.DirEntry) {
+  async #loadEntry(directory: Directory, entry: DirEntry) {
     if (
       entry.isSymlink || entry.name.startsWith(".") ||
       entry.name.startsWith("_")
@@ -326,6 +333,7 @@ export default class Source {
           dest: typeof format.copy === "function"
             ? format.copy(output)
             : output,
+          remote: entry.remote,
         });
         return;
       }
@@ -354,7 +362,7 @@ export default class Source {
   }
 
   /** Read the static files in a directory */
-  async #loadStaticFiles(directory: Directory, entry: Deno.DirEntry) {
+  async #loadStaticFiles(directory: Directory, entry: DirEntry) {
     const src = posix.join(directory.src.path, entry.name);
 
     if (!this.staticPaths.has(src)) {
@@ -371,7 +379,7 @@ export default class Source {
 
   async #scanStaticFiles(
     directory: Directory,
-    entry: Deno.DirEntry,
+    entry: DirEntry,
     src: string,
     dest?: string | ((file: string) => string),
   ) {
@@ -386,7 +394,7 @@ export default class Source {
 
     if (entry.isFile) {
       if (typeof dest === "string") {
-        directory.setStaticFile({ src, dest });
+        directory.setStaticFile({ src, dest, remote: entry.remote });
       } else {
         const output = posix.join(
           directory.dest.path,
@@ -395,6 +403,7 @@ export default class Source {
         directory.setStaticFile({
           src,
           dest: dest ? dest(output) : output,
+          remote: entry.remote,
         });
       }
       return;

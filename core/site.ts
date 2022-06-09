@@ -420,21 +420,22 @@ export default class Site {
     // Load source files
     await this.source.load();
 
-    // Copy static files
+    // Get static files
     this.files = this.source.getStaticFiles();
-    const staticFiles = await this.writer.copyFiles(this.files);
 
     // Get all pages to process (ignore drafts)
     const pagesToBuild = this.source.getPages(
       (page) => !page.data.draft || this.options.dev,
     );
 
-    // Build the pages
-    const pages = await this.#buildPages(pagesToBuild);
-
-    if (!pages) {
+    // Stop if the build is cancelled
+    if (await this.#buildPages(pagesToBuild) === false) {
       return;
     }
+
+    // Save the pages and copy static files in the dest folder
+    const pages = await this.writer.savePages(this.pages);
+    const staticFiles = await this.writer.copyFiles(this.files);
 
     await this.dispatchEvent({ type: "afterBuild", pages, staticFiles });
   }
@@ -456,7 +457,6 @@ export default class Site {
 
     // Copy static files
     this.files = this.source.getStaticFiles();
-    const staticFiles = await this.writer.copyFiles(this.files);
 
     // Get the selected pages to process (ignore drafts and non scoped pages)
     const pagesToBuild = this.source.getPages(
@@ -464,12 +464,13 @@ export default class Site {
       this.scopes.getFilter(files),
     );
 
-    // Rebuild the selected pages
-    const pages = await this.#buildPages(pagesToBuild);
-
-    if (!pages) {
+    if (await this.#buildPages(pagesToBuild) === false) {
       return;
     }
+
+    // Save the pages and copy static files in the dest folder
+    const pages = await this.writer.savePages(this.pages);
+    const staticFiles = await this.writer.copyFiles(this.files);
 
     await this.dispatchEvent({
       type: "afterUpdate",
@@ -482,10 +483,8 @@ export default class Site {
   /**
    * Internal function to render pages
    * The common operations of build and update
-   * Returns the list of pages that have been built
-   * or false if the process stopped
    */
-  async #buildPages(pages: Page[]): Promise<Page[] | false> {
+  async #buildPages(pages: Page[]): Promise<boolean> {
     // Render the pages into this.pages array
     this.pages = [];
     await this.renderer.renderPages(pages, this.pages);
@@ -516,12 +515,7 @@ export default class Site {
     // Run the processors to the pages
     await this.processors.run(this.pages);
 
-    if (await this.dispatchEvent({ type: "beforeSave" }) === false) {
-      return false;
-    }
-
-    // Save the pages in the dest folder
-    return this.writer.savePages(this.pages);
+    return await this.dispatchEvent({ type: "beforeSave" });
   }
 
   /** Render a single page (used for on demand rendering) */

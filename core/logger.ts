@@ -1,4 +1,11 @@
-import { bold, brightGreen, dim, red, yellow } from "../deps/colors.ts";
+import {
+  bold,
+  brightGreen,
+  dim,
+  red,
+  strikethrough,
+  yellow,
+} from "../deps/colors.ts";
 
 import type { ErrorData, Page } from "../core.ts";
 
@@ -22,6 +29,7 @@ export default class Logger {
     Green: (str: string) => bold(brightGreen(str)),
     yellow: yellow,
     Yellow: (str: string) => bold(yellow(str)),
+    del: (str: string) => strikethrough(dim(str)),
   };
 
   constructor(options: Options) {
