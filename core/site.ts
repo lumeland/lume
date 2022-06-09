@@ -593,6 +593,60 @@ export default class Site {
 
     return absolute ? this.options.location.origin + path : path;
   }
+
+  /**
+   * Get the content of a file.
+   * Resolve the path if it's needed.
+   */
+  async getContent(
+    file: string,
+    { includes = true, loader = textLoader }: ResolveOptions = {},
+  ): Promise<string | Uint8Array | undefined> {
+    // It's a page
+    const page = this.pages.find((page) => page.data.url === file);
+
+    if (page) {
+      return page.content;
+    }
+
+    // It's a static file
+    const staticFile = this.files.find((f) => f.dest === file);
+
+    if (staticFile) {
+      const content = await this.reader.read(staticFile.src, loader);
+      return content.content as Uint8Array | string;
+    }
+
+    // Search in includes
+    if (includes) {
+      const format = this.formats.search(file);
+
+      if (format) {
+        try {
+          const source = await this.includesLoader.load(file, format);
+
+          if (source) {
+            return source[1].content as string;
+          }
+        } catch {
+          // Ignore error
+        }
+      }
+    }
+
+    // Read the source files directly
+    const content = await this.reader.read(file, loader);
+    return content.content as Uint8Array | string;
+  }
+}
+
+/** The options for the resolve function */
+export interface ResolveOptions {
+  /** Whether search in the includes folder or not */
+  includes?: boolean;
+
+  /** Default loader */
+  loader?: Loader;
 }
 
 /** The options to configure the site build */

@@ -76,7 +76,7 @@ export default function (userOptions?: Partial<Options>) {
         posix.relative(site.options.location.pathname, path),
       );
 
-      const content = await getFileContent(site, url) as string | Uint8Array;
+      const content = await getFileContent(site, url);
 
       // Return the raw content
       if (!asDataUrl) {
@@ -97,6 +97,7 @@ export default function (userOptions?: Partial<Options>) {
           path,
           url,
         });
+        return;
       }
 
       return `data:${type};base64,${encode(content)}`;
@@ -193,22 +194,14 @@ async function getFileContent(
   site: Site,
   url: string,
 ): Promise<string | Uint8Array> {
-  // Is a loaded file
-  const page = site.pages.find((page) => page.data.url === url);
+  const content = await site.getContent(url, {
+    includes: false,
+    loader: binaryLoader,
+  });
 
-  if (page) {
-    return page.content as string | Uint8Array;
+  if (!content) {
+    throw new Error(`Unable to find the file "${url}"`);
   }
 
-  // Is a static file
-  const file = site.files.find((file) => file.dest === url);
-
-  if (file) {
-    const content = await site.reader.read(file.src, binaryLoader);
-    return content.content as Uint8Array;
-  }
-
-  // Is a source file
-  const content = await site.reader.read(url, binaryLoader);
-  return content.content as Uint8Array;
+  return content;
 }

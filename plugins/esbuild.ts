@@ -1,5 +1,4 @@
 import { getDenoConfig, merge, toUrl } from "../core/utils.ts";
-import loader from "../core/loaders/text.ts";
 import * as esbuild from "../deps/esbuild.ts";
 import { extname } from "../deps/path.ts";
 
@@ -40,8 +39,6 @@ export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     site.loadAssets(options.extensions);
 
-    const reader = site.reader;
-
     const lumeLoaderPlugin = {
       name: "lumeLoader",
       // deno-lint-ignore no-explicit-any
@@ -50,16 +47,13 @@ export default function (userOptions?: Partial<Options>) {
         build.onLoad({ filter: /^file:/ }, async (args: any) => {
           const root = await toUrl(site.src(), false);
           const path = args.path.replace(root, "");
+          const content = await site.getContent(path);
 
-          try {
-            const content = await reader.read(path, loader);
-
+          if (content) {
             return {
-              contents: content.content,
+              contents: content,
               loader: getLoader(path),
             };
-          } catch {
-            // Ignore
           }
         });
       },

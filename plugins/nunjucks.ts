@@ -147,7 +147,6 @@ export default function (userOptions?: Partial<Options>) {
 
     // Create the nunjucks environment instance
     const fsLoader = new nunjucks.FileSystemLoader(site.src(options.includes));
-    const { includesLoader, formats } = site;
 
     const lumeLoader = {
       async: true,
@@ -155,20 +154,15 @@ export default function (userOptions?: Partial<Options>) {
         path: string,
         callback: (err?: string, src?: { src: string; path: string }) => void,
       ) {
-        const format = formats.search(path);
+        const content = await site.getContent(path);
 
-        if (format) {
-          const source = await includesLoader.load(path, format);
-
-          if (source) {
-            const content = source[1].content as string;
-            callback(undefined, {
-              src: content,
-              path,
-            });
-            return;
-          }
+        if (content) {
+          callback(undefined, {
+            src: content as string,
+            path,
+          });
         }
+
         callback(`Could not load ${path}`);
       },
     };
