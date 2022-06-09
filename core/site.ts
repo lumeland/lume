@@ -602,6 +602,8 @@ export default class Site {
     file: string,
     { includes = true, loader = textLoader }: ResolveOptions = {},
   ): Promise<string | Uint8Array | undefined> {
+    file = normalizePath(file);
+
     // It's a page
     const page = this.pages.find((page) => page.data.url === file);
 

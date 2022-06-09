@@ -1,6 +1,6 @@
 import { getDenoConfig, merge, toUrl } from "../core/utils.ts";
 import * as esbuild from "../deps/esbuild.ts";
-import { extname } from "../deps/path.ts";
+import { extname, fromFileUrl } from "../deps/path.ts";
 
 import type { Site } from "../core.ts";
 
@@ -45,14 +45,12 @@ export default function (userOptions?: Partial<Options>) {
       setup(build: any) {
         // deno-lint-ignore no-explicit-any
         build.onLoad({ filter: /^file:/ }, async (args: any) => {
-          const root = await toUrl(site.src(), false);
-          const path = args.path.replace(root, "");
-          const content = await site.getContent(path);
+          const content = await site.getContent(fromFileUrl(args.path));
 
           if (content) {
             return {
               contents: content,
-              loader: getLoader(path),
+              loader: getLoader(args.path),
             };
           }
         });

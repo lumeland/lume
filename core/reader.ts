@@ -38,7 +38,9 @@ export default class Reader {
   }
 
   getFullPath(path: string): string {
-    const fullPath = posix.join(this.src, path);
+    const fullPath = path.startsWith(this.src)
+      ? path
+      : posix.join(this.src, path);
 
     return fullPath.endsWith("/") ? fullPath.slice(0, -1) : fullPath;
   }
