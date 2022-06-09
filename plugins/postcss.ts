@@ -102,7 +102,7 @@ function configureImport(site: Site) {
 
   return postcssImport({
     /** Resolve the import path */
-    resolve(id: string, basedir: string) {
+    async resolve(id: string, basedir: string) {
       if (isUrl(id)) {
         return id;
       }
@@ -114,11 +114,9 @@ function configureImport(site: Site) {
 
       if (!id.startsWith("/")) {
         const path = posix.join(basedir, id);
-        try {
-          reader.getInfo(path);
+        const exists = await reader.getInfo(path);
+        if (exists) {
           return path;
-        } catch {
-          // Ignore
         }
       }
 
