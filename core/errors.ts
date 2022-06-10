@@ -84,7 +84,12 @@ export function printError(error: unknown, caused = false) {
 
     for (let [key, value] of Object.entries(error.data ?? {})) {
       if (key === "page") {
-        value = (value as Page).src.path + (value as Page).src.ext;
+        const src = (value as Page).src;
+        value = src.path + src.ext;
+
+        if (src.remote) {
+          value += ` (remote: ${src.remote})`;
+        }
       }
       console.log(dim(`- ${key}:`), value);
     }
