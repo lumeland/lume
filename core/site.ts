@@ -637,8 +637,12 @@ export default class Site {
     }
 
     // Read the source files directly
-    const content = await this.reader.read(file, loader);
-    return content.content as Uint8Array | string;
+    try {
+      const content = await this.reader.read(file, loader);
+      return content.content as Uint8Array | string;
+    } catch {
+      // Ignore error
+    }
   }
 }
 
