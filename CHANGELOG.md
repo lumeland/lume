@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Error in nunjucks using the `comp` block tag without arguments.
 - Ensure `netlify_cms` local server starts only if the local serve starts.
 - Don't copy static files when `afterRender` or `beforeSave` events return `false`.
+- `merge` util override default values with `undefined` values.
 
 ## [1.9.1] - 2022-05-26
 ### Added

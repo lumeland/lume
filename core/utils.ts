@@ -62,6 +62,10 @@ export function merge<Type>(
   }
 
   for (const [key, value] of Object.entries(user)) {
+    if (value === undefined) {
+      continue;
+    }
+
     // @ts-ignore: No index signature with a parameter of type 'string' was found on type 'unknown'
     if (isPlainObject(merged[key]) && isPlainObject(value)) {
       // @ts-ignore: Type 'string' cannot be used to index type 'Type'
