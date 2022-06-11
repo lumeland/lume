@@ -98,11 +98,11 @@ export default function (userOptions?: Partial<Options>) {
       const transformations = Array.isArray(imagick) ? imagick : [imagick];
       const last = transformations[transformations.length - 1];
       let transformed = false;
-
+      let index = 0;
       for (const transformation of transformations) {
         const output = transformation === last
           ? page
-          : page.duplicate({ [options.name]: undefined });
+          : page.duplicate(index++, { [options.name]: undefined });
 
         rename(output, transformation);
 

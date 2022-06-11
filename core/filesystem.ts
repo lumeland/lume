@@ -208,10 +208,7 @@ export class Page extends Base {
     page.parent = this.parent;
     page.dest = { ...this.dest };
     page.data = { ...this.data, ...data };
-
-    if (index > 0) {
-      page.src.path += `[${index}]`;
-    }
+    page.src.path += `[${index}]`;
 
     return page;
   }
