@@ -189,9 +189,6 @@ export class Page extends Base {
   /** The parsed HTML (only for HTML documents) */
   #document?: HTMLDocument;
 
-  /** Count duplicated pages */
-  #copy = 0;
-
   /** Convenient way to create a page dynamically with a url and content */
   static create(url: string, content: Content): Page {
     const ext = posix.extname(url);
@@ -206,12 +203,16 @@ export class Page extends Base {
   }
 
   /** Duplicate this page. Optionally, you can provide new data */
-  duplicate(data = {}): Page {
+  duplicate(index: number, data = {}): Page {
     const page = new Page({ ...this.src });
     page.parent = this.parent;
     page.dest = { ...this.dest };
     page.data = { ...this.data, ...data };
-    page.src.path += `[${this.#copy++}]`;
+
+    if (index > 0) {
+      page.src.path += `[${index}]`;
+    }
+
     return page;
   }
 

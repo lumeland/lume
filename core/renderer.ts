@@ -86,11 +86,12 @@ export default class Renderer {
           page.src.path + page.src.ext,
         ) as Generator<Data, Data>;
 
+        let index = 0;
         for await (const data of generator) {
           if (!data.content) {
             data.content = null;
           }
-          const newPage = page.duplicate(data);
+          const newPage = page.duplicate(index++, data);
           this.#preparePage(newPage);
           pages.push(newPage);
           to.push(newPage);
