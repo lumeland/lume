@@ -1,4 +1,4 @@
-export { serveFile } from "https://deno.land/std@0.142.0/http/file_server.ts";
-export { Server } from "https://deno.land/std@0.142.0/http/server.ts";
+export { serveFile } from "https://deno.land/std@0.143.0/http/file_server.ts";
+export { Server } from "https://deno.land/std@0.143.0/http/server.ts";
 
-export type { ConnInfo } from "https://deno.land/std@0.142.0/http/server.ts";
+export type { ConnInfo } from "https://deno.land/std@0.143.0/http/server.ts";
