@@ -120,6 +120,10 @@ export default function liveReload() {
       return true;
     }
 
+    if (style.origin !== url.origin) {
+      return false;
+    }
+
     for (let i = 0; i < style.cssRules.length; i++) {
       const rule = style.cssRules[i];
 
