@@ -1,6 +1,6 @@
 import nunjucks from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
-import { merge } from "../core/utils.ts";
+import { merge, normalizePath } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
 import { join } from "../deps/path.ts";
 
@@ -155,8 +155,9 @@ export default function (userOptions?: Partial<Options>) {
         path: string,
         callback: (err?: string, src?: { src: string; path: string }) => void,
       ) {
-        path = path.startsWith(basePath) ? path.slice(basePath.length) : path;
-        const content = await site.getContent(path);
+        let relPath = normalizePath(path);
+        relPath = relPath.startsWith(basePath) ? relPath.slice(basePath.length) : relPath;
+        const content = await site.getContent(relPath);
 
         if (content) {
           callback(undefined, {
