@@ -1,12 +1,17 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import postcss from "../plugins/postcss.ts";
+import esbuild from "../plugins/esbuild.ts";
 
-Deno.test("render remote files", async (t) => {
+Deno.test("render remote files", {
+  sanitizeOps: false,
+  sanitizeResources: false,
+}, async (t) => {
   const site = getSite({
     src: "remote_files",
   });
   site.copy("asset.txt");
   site.use(postcss());
+  site.use(esbuild());
 
   const base = new URL("./assets/remote_files/_remotes/", import.meta.url);
 
@@ -26,6 +31,7 @@ Deno.test("render remote files", async (t) => {
     new URL("./other-remote-style.css", base).href,
   );
   site.remoteFile("_data.yml", new URL("./_data.yml", base).href);
+  site.remoteFile("_includes/hello.js", new URL("./hello.js", base).href);
 
   await build(site);
   await assertSiteSnapshot(t, site);

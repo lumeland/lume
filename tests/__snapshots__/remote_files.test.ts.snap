@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`render remote files 1`] = `4`;
+snapshot[`render remote files 1`] = `5`;
 
 snapshot[`render remote files 2`] = `
 {
@@ -31,16 +31,20 @@ snapshot[`render remote files 2`] = `
       pageLoader: [AsyncFunction: text],
     },
     {
+      asset: true,
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engine: true,
       ext: ".js",
+      pageLoader: [AsyncFunction: text],
     },
     {
+      asset: true,
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engine: true,
       ext: ".ts",
+      pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: text],
@@ -154,6 +158,35 @@ body {
 
 snapshot[`render remote files 6`] = `
 {
+  content: 'var r=Object.defineProperty;var e=(t,m)=>r(t,"name",{value:m,configurable:!0});var l="Name";function o(){console.log("hello",l)}e(o,"default");o();
+',
+  data: {
+    content: 'import hello from "./_includes/hello.js";
+
+hello();
+',
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "Remote title",
+    url: "/scripts.js",
+  },
+  dest: {
+    ext: ".js",
+    path: "/scripts",
+  },
+  src: {
+    ext: ".js",
+    path: "/scripts",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render remote files 7`] = `
+{
   content: "/* Remote style */
 body {
   color: red;
@@ -187,7 +220,7 @@ body {
 }
 `;
 
-snapshot[`render remote files 7`] = `
+snapshot[`render remote files 8`] = `
 {
   content: "body {
   color: blue;
