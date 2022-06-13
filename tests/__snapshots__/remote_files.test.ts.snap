@@ -1,0 +1,212 @@
+export const snapshot = {};
+
+snapshot[`render remote files 1`] = `4`;
+
+snapshot[`render remote files 2`] = `
+{
+  formats: [
+    {
+      engine: true,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engine: true,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engine: false,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engine: false,
+      ext: ".json",
+    },
+    {
+      engine: true,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engine: true,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engine: true,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engine: true,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engine: false,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engine: false,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      asset: true,
+      engine: false,
+      ext: ".css",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+  ],
+}
+`;
+
+snapshot[`render remote files 3`] = `
+[
+  {
+    dest: "/asset.txt",
+    remote: "file:///Users/oscarotero/www/lumeland/lume/tests/assets/remote_files/_remotes/asset.txt",
+    src: "/asset.txt",
+  },
+]
+`;
+
+snapshot[`render remote files 4`] = `
+{
+  content: "<h1>Remote layout</h1>
+<h2>Remote title</h2>
+
+&lt;p&gt;Hello world&lt;/p&gt;
+
+
+This is a local template
+
+This is a remote template
+",
+  data: {
+    content: "
+Hello world",
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "remote1.njk",
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "Remote title",
+    url: "/local1/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/local1/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/local1",
+  },
+}
+`;
+
+snapshot[`render remote files 5`] = `
+{
+  content: "/* Other remote style */
+body {
+  color: yellow;
+}
+",
+  data: {
+    content: "/* Other remote style */
+body {
+  color: yellow;
+}
+",
+    date: undefined,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "Remote title",
+    url: "/other-remote-style.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/other-remote-style",
+  },
+  src: {
+    ext: ".css",
+    path: "/other-remote-style",
+  },
+}
+`;
+
+snapshot[`render remote files 6`] = `
+{
+  content: "/* Remote style */
+body {
+  color: red;
+}
+/* Other remote style */
+body {
+  color: yellow;
+}
+",
+  data: {
+    content: '@import "remote-style.css";
+@import "./other-remote-style.css";
+',
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "Remote title",
+    url: "/styles1.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/styles1",
+  },
+  src: {
+    ext: ".css",
+    path: "/styles1",
+  },
+}
+`;
+
+snapshot[`render remote files 7`] = `
+{
+  content: "body {
+  color: blue;
+}",
+  data: {
+    content: "body {
+  color: blue;
+}",
+    date: undefined,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "Remote title",
+    url: "/styles2.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/styles2",
+  },
+  src: {
+    ext: ".css",
+    path: "/styles2",
+  },
+}
+`;
