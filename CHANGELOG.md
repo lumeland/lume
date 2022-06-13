@@ -39,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `merge` util override default values with `undefined` values.
 - CSS reload error when the styles contain a `@import` to a different origin.
 - Links to directory index files in the 404 default page.
+- Wrap the `code_highlight` plugin execution in a try/catch, to avoid exit on error.
 
 ## [1.9.1] - 2022-05-26
 ### Added

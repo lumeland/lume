@@ -44,7 +44,13 @@ export default function (userOptions?: Partial<Options>) {
 
     function codeHighlight(page: Page) {
       page.document!.querySelectorAll(options.options.cssSelector!)
-        .forEach((element) => hljs.highlightElement(element as Element));
+        .forEach((element) => {
+          try {
+            hljs.highlightElement(element as Element);
+          } catch {
+            // Ignore
+          }
+        });
     }
   };
 }
