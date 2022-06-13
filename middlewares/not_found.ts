@@ -1,4 +1,4 @@
-import { dirname, join, posix } from "../deps/path.ts";
+import { join, posix } from "../deps/path.ts";
 
 import type { Middleware } from "../core.ts";
 
