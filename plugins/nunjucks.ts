@@ -156,7 +156,9 @@ export default function (userOptions?: Partial<Options>) {
         callback: (err?: string, src?: { src: string; path: string }) => void,
       ) {
         let relPath = normalizePath(path);
-        relPath = relPath.startsWith(basePath) ? relPath.slice(basePath.length) : relPath;
+        relPath = relPath.startsWith(basePath)
+          ? relPath.slice(basePath.length)
+          : relPath;
         const content = await site.getContent(relPath);
 
         if (content) {
