@@ -114,6 +114,7 @@ p {
   src: {
     ext: ".md",
     path: "/index",
+    remote: undefined,
   },
 }
 `;
@@ -151,6 +152,7 @@ snapshot[`code_hightlight plugin 5`] = `
   src: {
     ext: ".njk",
     path: "/other",
+    remote: undefined,
   },
 }
 `;

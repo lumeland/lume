@@ -103,6 +103,7 @@ snapshot[`build a site with jsx/tsx modules 4`] = `
   src: {
     ext: ".jsx",
     path: "/index",
+    remote: undefined,
   },
 }
 `;
@@ -130,6 +131,7 @@ snapshot[`build a site with jsx/tsx modules 5`] = `
   src: {
     ext: ".jsx",
     path: "/multiple[0]",
+    remote: undefined,
   },
 }
 `;
@@ -157,6 +159,7 @@ snapshot[`build a site with jsx/tsx modules 6`] = `
   src: {
     ext: ".jsx",
     path: "/multiple[1]",
+    remote: undefined,
   },
 }
 `;
@@ -182,6 +185,7 @@ snapshot[`build a site with jsx/tsx modules 7`] = `
   src: {
     ext: ".jsx",
     path: "/with-function",
+    remote: undefined,
   },
 }
 `;
@@ -213,6 +217,7 @@ This is a **markdown** text. [Go home](/)
   src: {
     ext: ".md",
     path: "/with-markdown",
+    remote: undefined,
   },
 }
 `;

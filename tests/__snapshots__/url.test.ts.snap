@@ -104,6 +104,7 @@ snapshot[`url and htmlUrl update href 4`] = `
   src: {
     ext: ".tmpl.js",
     path: "/default-filter",
+    remote: undefined,
   },
 }
 `;
@@ -139,6 +140,7 @@ snapshot[`url and htmlUrl update href 5`] = `
   src: {
     ext: ".tmpl.js",
     path: "/renamed-filter",
+    remote: undefined,
   },
 }
 `;
@@ -247,6 +249,7 @@ snapshot[`configure url and htmlUrl names 4`] = `
   src: {
     ext: ".tmpl.js",
     path: "/default-filter",
+    remote: undefined,
   },
 }
 `;
@@ -282,6 +285,7 @@ snapshot[`configure url and htmlUrl names 5`] = `
   src: {
     ext: ".tmpl.js",
     path: "/renamed-filter",
+    remote: undefined,
   },
 }
 `;

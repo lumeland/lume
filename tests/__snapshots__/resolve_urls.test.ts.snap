@@ -105,6 +105,7 @@ First article
   src: {
     ext: ".md",
     path: "/articles/article-1",
+    remote: undefined,
   },
 }
 `;
@@ -139,6 +140,7 @@ Second article
   src: {
     ext: ".md",
     path: "/articles/article-2",
+    remote: undefined,
   },
 }
 `;
@@ -190,6 +192,7 @@ snapshot[`relative_url plugin 6`] = `
   src: {
     ext: ".md",
     path: "/index",
+    remote: undefined,
   },
 }
 `;
@@ -219,6 +222,7 @@ snapshot[`relative_url plugin 7`] = `
   src: {
     ext: ".md",
     path: "/other",
+    remote: undefined,
   },
 }
 `;
@@ -245,6 +249,7 @@ snapshot[`relative_url plugin 8`] = `
   src: {
     ext: ".md",
     path: "/tílde-and-eñe",
+    remote: undefined,
   },
 }
 `;

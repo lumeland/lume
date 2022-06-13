@@ -154,6 +154,7 @@ console.log("foo");
   src: {
     ext: ".md",
     path: "/index",
+    remote: undefined,
   },
 }
 `;

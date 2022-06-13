@@ -93,6 +93,7 @@ snapshot[`Disabled pretty URLs 4`] = `
   src: {
     ext: ".md",
     path: "/page1",
+    remote: undefined,
   },
 }
 `;
@@ -190,6 +191,7 @@ snapshot[`Pretty URLs with no-html-extension 4`] = `
   src: {
     ext: ".md",
     path: "/page1",
+    remote: undefined,
   },
 }
 `;

@@ -103,6 +103,7 @@ snapshot[`relative_url plugin 4`] = `
   src: {
     ext: ".md",
     path: "/about-us/contact",
+    remote: undefined,
   },
 }
 `;
@@ -140,6 +141,7 @@ snapshot[`relative_url plugin 5`] = `
   src: {
     ext: ".md",
     path: "/about-us/index",
+    remote: undefined,
   },
 }
 `;
@@ -177,6 +179,7 @@ snapshot[`relative_url plugin 6`] = `
   src: {
     ext: ".md",
     path: "/about-us/presentation",
+    remote: undefined,
   },
 }
 `;
@@ -222,6 +225,7 @@ snapshot[`relative_url plugin 7`] = `
   src: {
     ext: ".md",
     path: "/index",
+    remote: undefined,
   },
 }
 `;

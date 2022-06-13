@@ -5,6 +5,7 @@ import { printError } from "../core/errors.ts";
 
 import type { Page, Site, SiteOptions } from "../core.ts";
 
+const cwUrl = new URL("./", import.meta.url);
 const cwd = fromFileUrl(new URL("./", import.meta.url));
 
 export function getPath(path: string): string {
@@ -88,6 +89,8 @@ async function assertPageSnapshot(
   const src = {
     path: page.src.path,
     ext: page.src.ext,
+    // Remote base path because it's different in the test environment
+    remote: page.src.remote?.replace(cwUrl.href, ""),
   };
 
   // Normalize content for Windows
@@ -147,7 +150,14 @@ export async function assertSiteSnapshot(
   });
 
   // Test static files
-  await assertSnapshot(context, files);
+  await assertSnapshot(
+    context,
+    files.map((file) => {
+      // Remote base path because it's different in the test environment
+      file.remote = file.remote?.replace(cwUrl.href, "");
+      return file;
+    }),
+  );
 
   // Test pages
   for (const page of pages) {

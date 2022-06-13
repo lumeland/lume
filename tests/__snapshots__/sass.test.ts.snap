@@ -97,6 +97,7 @@ snapshot[`sass plugin 4`] = `
   src: {
     ext: ".scss",
     path: "/index",
+    remote: undefined,
   },
 }
 `;

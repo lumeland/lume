@@ -94,6 +94,7 @@ console.log(one() + two());
   src: {
     ext: ".js",
     path: "/main",
+    remote: undefined,
   },
 }
 `;
@@ -132,6 +133,7 @@ export function two () {
   src: {
     ext: ".njk",
     path: "/numbers.js",
+    remote: undefined,
   },
 }
 `;

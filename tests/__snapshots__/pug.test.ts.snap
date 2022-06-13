@@ -100,6 +100,7 @@ block content
   src: {
     ext: ".pug",
     path: "/extends",
+    remote: undefined,
   },
 }
 `;
@@ -138,6 +139,7 @@ block content
   src: {
     ext: ".pug",
     path: "/filter",
+    remote: undefined,
   },
 }
 `;
@@ -165,6 +167,7 @@ snapshot[`build a site with eta 6`] = `
   src: {
     ext: ".pug",
     path: "/layout",
+    remote: undefined,
   },
 }
 `;

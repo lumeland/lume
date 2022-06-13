@@ -101,6 +101,7 @@ snapshot[`terser plugin 4`] = `
   src: {
     ext: ".svg",
     path: "/favicon",
+    remote: undefined,
   },
 }
 `;

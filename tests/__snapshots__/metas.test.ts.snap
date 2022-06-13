@@ -122,6 +122,7 @@ snapshot[`metas plugin 4`] = `
   src: {
     ext: ".njk",
     path: "/page-1",
+    remote: undefined,
   },
 }
 `;

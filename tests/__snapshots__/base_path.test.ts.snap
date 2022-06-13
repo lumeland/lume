@@ -134,6 +134,7 @@ snapshot[`base_path plugin 4`] = `
   src: {
     ext: ".njk",
     path: "/index",
+    remote: undefined,
   },
 }
 `;

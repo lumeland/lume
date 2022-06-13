@@ -128,6 +128,7 @@ snapshot[`imagick plugin 4`] = `
   src: {
     ext: ".png",
     path: "/lume",
+    remote: undefined,
   },
 }
 `;
@@ -152,6 +153,7 @@ snapshot[`imagick plugin 5`] = `
   src: {
     ext: ".png",
     path: "/lume[0]",
+    remote: undefined,
   },
 }
 `;
@@ -176,6 +178,7 @@ snapshot[`imagick plugin 6`] = `
   src: {
     ext: ".png",
     path: "/lume[1]",
+    remote: undefined,
   },
 }
 `;
@@ -200,6 +203,7 @@ snapshot[`imagick plugin 7`] = `
   src: {
     ext: ".png",
     path: "/lume[2]",
+    remote: undefined,
   },
 }
 `;
@@ -224,6 +228,7 @@ snapshot[`imagick plugin 8`] = `
   src: {
     ext: ".png",
     path: "/lume[3]",
+    remote: undefined,
   },
 }
 `;

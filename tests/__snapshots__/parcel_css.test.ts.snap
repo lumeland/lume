@@ -97,6 +97,7 @@ snapshot[`parcelCSS plugin 4`] = `
   src: {
     ext: ".css",
     path: "/index",
+    remote: undefined,
   },
 }
 `;
@@ -129,6 +130,7 @@ snapshot[`parcelCSS plugin 5`] = `
   src: {
     ext: ".css",
     path: "/text",
+    remote: undefined,
   },
 }
 `;

@@ -91,6 +91,7 @@ snapshot[`slugify_urls plugin 4`] = `
   src: {
     ext: ".md",
     path: "/Chourizos ao viño",
+    remote: undefined,
   },
 }
 `;
@@ -116,6 +117,7 @@ snapshot[`slugify_urls plugin 5`] = `
   src: {
     ext: ".md",
     path: "/Page 1",
+    remote: undefined,
   },
 }
 `;
@@ -142,6 +144,7 @@ Page 3
   src: {
     ext: ".md",
     path: "/page-3",
+    remote: undefined,
   },
 }
 `;

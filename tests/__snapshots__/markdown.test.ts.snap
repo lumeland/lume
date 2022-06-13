@@ -102,6 +102,7 @@ snapshot[`Build a markdown site 4`] = `
   src: {
     ext: ".md",
     path: "/basic",
+    remote: undefined,
   },
 }
 `;
@@ -127,6 +128,7 @@ snapshot[`Build a markdown site 5`] = `
   src: {
     ext: ".md",
     path: "/with-attributes",
+    remote: undefined,
   },
 }
 `;
@@ -161,6 +163,7 @@ snapshot[`Build a markdown site 6`] = `
   src: {
     ext: ".md",
     path: "/with-code",
+    remote: undefined,
   },
 }
 `;
@@ -199,6 +202,7 @@ Other title
   src: {
     ext: ".md",
     path: "/with-deflist",
+    remote: undefined,
   },
 }
 `;
@@ -233,6 +237,7 @@ snapshot[`Build a markdown site 8`] = `
   src: {
     ext: ".njk",
     path: "/with-filter",
+    remote: undefined,
   },
 }
 `;
@@ -260,6 +265,7 @@ snapshot[`Build a markdown site 9`] = `
   src: {
     ext: ".tmpl.js",
     path: "/with-module",
+    remote: undefined,
   },
 }
 `;
@@ -305,6 +311,7 @@ Foo
   src: {
     ext: ".md",
     path: "/with-nunjucks",
+    remote: undefined,
   },
 }
 `;
