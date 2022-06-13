@@ -1,4 +1,4 @@
-import { dirname, join } from "../deps/path.ts";
+import { dirname, join, posix } from "../deps/path.ts";
 
 import type { Middleware } from "../core.ts";
 
@@ -56,11 +56,12 @@ async function getDirectoryIndex(root: string, file: string): Promise<string> {
   } catch {
     // It's not a directory, so scan the parent directory
     try {
-      for await (const info of Deno.readDir(join(root, dirname(file)))) {
+      const base = posix.dirname(file);
+      for await (const info of Deno.readDir(join(root, base))) {
         info.isDirectory
-          ? folders.push([`${info.name}/`, `📁 ${info.name}/`])
+          ? folders.push([posix.join(base, `${info.name}/`), `📁 ${info.name}/`])
           : files.push([
-            info.name === "index.html" ? "./" : info.name,
+            posix.join(base, info.name === "index.html" ? "./" : info.name),
             `📄 ${info.name}`,
           ]);
       }

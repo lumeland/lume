@@ -38,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Don't copy static files when `afterRender` or `beforeSave` events return `false`.
 - `merge` util override default values with `undefined` values.
 - CSS reload error when the styles contain a `@import` to a different origin.
+- Links to directory index files in the 404 default page.
 
 ## [1.9.1] - 2022-05-26
 ### Added
