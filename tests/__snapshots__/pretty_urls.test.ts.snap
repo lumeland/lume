@@ -75,8 +75,7 @@ snapshot[`Disabled pretty URLs 4`] = `
   content: "<h1>Welcome</h1>
 ",
   data: {
-    content: "
-# Welcome
+    content: "# Welcome
 ",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
@@ -173,8 +172,7 @@ snapshot[`Pretty URLs with no-html-extension 4`] = `
   content: "<h1>Welcome</h1>
 ",
   data: {
-    content: "
-# Welcome
+    content: "# Welcome
 ",
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],

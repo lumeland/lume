@@ -196,8 +196,7 @@ snapshot[`build a site with jsx/tsx modules 8`] = `
 <p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
 </div></main></body></html>',
   data: {
-    content: "
-# Hello world
+    content: "# Hello world
 
 This is a **markdown** text. [Go home](/)
 ",

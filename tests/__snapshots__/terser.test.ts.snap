@@ -103,8 +103,7 @@ snapshot[`terser plugin 5`] = `
 {
   content: "export function one(){return 1}export function two(){return 2}",
   data: {
-    content: "
-export function one () {
+    content: "export function one () {
   return {{ one }};
 }
 

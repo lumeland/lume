@@ -80,8 +80,7 @@ snapshot[`Build a markdown site 4`] = `
 </ul>
 ",
   data: {
-    content: "
-# Normal page
+    content: "# Normal page
 
 - List
 - Of
@@ -209,14 +208,12 @@ Other title
 
 snapshot[`Build a markdown site 8`] = `
 {
-  content: '
-<h1>Module <strong>example</strong></h1>
+  content: '<h1>Module <strong>example</strong></h1>
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
   data: {
-    content: "
-<h1>{{ title | md(true) | safe }}</h1>
+    content: "<h1>{{ title | md(true) | safe }}</h1>
 
 <div>{{ description | md | safe }}</div>
 ",

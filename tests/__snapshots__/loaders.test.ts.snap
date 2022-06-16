@@ -186,8 +186,7 @@ snapshot[`Load the pages of a site 6`] = `
       "#0000ff",
       "#00ff00",
     ],
-    content: "
-Content of Page 1
+    content: "Content of Page 1
 ",
     date: 1970-01-01T00:00:00.000Z,
     documents: [
@@ -426,8 +425,7 @@ snapshot[`Load the pages of a site 9`] = `
       "#0000ff",
       "#00ff00",
     ],
-    content: "
-Content of Page 6
+    content: "Content of Page 6
 ",
     date: 1970-01-01T00:00:00.000Z,
     documents: [

@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   but get it from `import_map.json`. This prevents issues caused by having two different Lume versions
   and make more easy to change the Lume version, because only need to edit the `import_map.json` file.
 - BREAKING: The asset pages (those loaded with `site.loadAssets()`) aren't rendered any more [#203].
+- Use `std/encoding/front_matter` to extract the front matter values.
 
 ### Removed
 - `components.directory` option. It's always `_components`.

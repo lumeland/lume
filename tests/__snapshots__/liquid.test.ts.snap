@@ -79,8 +79,7 @@ snapshot[`build a site with liquid 3`] = `
 
 snapshot[`build a site with liquid 4`] = `
 {
-  content: '
-["red","green","blue"]
+  content: '["red","green","blue"]
 ',
   data: {
     colors: [
@@ -88,8 +87,7 @@ snapshot[`build a site with liquid 4`] = `
       "green",
       "blue",
     ],
-    content: "
-{{ colors | json }}
+    content: "{{ colors | json }}
 ",
     date: 1970-01-01T00:00:00.000Z,
     layout: null,
@@ -121,15 +119,13 @@ snapshot[`build a site with liquid 5`] = `
     <title>Hello World</title>
   </head>
   <body>
-    <main>
-<h1>Hello World</h1>
+    <main><h1>Hello World</h1>
 </main>
   </body>
 </html>
 ',
   data: {
-    content: "
-<h1>{{ title }}</h1>
+    content: "<h1>{{ title }}</h1>
 ",
     date: 1970-01-01T00:00:00.000Z,
     layout: "basic.liquid",
