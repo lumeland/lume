@@ -12,5 +12,6 @@ Deno.test("render order property", async () => {
 
   const pages = site.pages;
 
+  console.log(pages.map((page) => page.data.url));
   equals(pages.length, 10 + 10 + 2);
 });

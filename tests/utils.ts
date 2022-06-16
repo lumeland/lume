@@ -121,8 +121,7 @@ export async function assertSiteSnapshot(
   const { pages, files } = site;
 
   // Test number of pages
-  const message = pages.map((page) => page.data.url).join(", ");
-  await assertSnapshot(context, pages.length, message);
+  await assertSnapshot(context, pages.length);
 
   // To-do: test site configuration
   await assertSnapshot(
