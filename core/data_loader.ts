@@ -84,7 +84,8 @@ export default class DataLoader {
       if (fileData.content && Object.keys(fileData).length === 1) {
         data[name] = fileData.content;
       } else {
-        data[name] = Object.assign(data[name] || {}, fileData);
+        const target = data[name] as Record<string, unknown> | undefined;
+        data[name] = Object.assign(target || {}, fileData);
       }
 
       return;

@@ -55,11 +55,10 @@ abstract class Base {
     }
 
     // Make data enumerable
-    const data = Object.assign(
-      Object.getOwnPropertyDescriptor(Base.prototype, "data"),
-      { enumerable: true },
-    );
-    Object.defineProperty(this, "data", data);
+    const descriptor: PropertyDescriptor =
+      Object.getOwnPropertyDescriptor(Base.prototype, "data") || {};
+    descriptor.enumerable = true;
+    Object.defineProperty(this, "data", descriptor);
   }
 
   /** Returns the parent directory */

@@ -73,7 +73,7 @@ import type {
 } from "./core/watcher.ts";
 
 /** The method that installs a plugin */
-type PluginSetup = ((options: unknown) => Plugin);
+type PluginSetup = (options: unknown) => Plugin;
 
 /** A generic Lume plugin */
 type Plugin = (site: Site) => void;
