@@ -1,0 +1,787 @@
+export const snapshot = {};
+
+snapshot[`render order property 1`] = `22`;
+
+snapshot[`render order property 2`] = `
+{
+  formats: [
+    {
+      engine: true,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engine: true,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engine: false,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engine: false,
+      ext: ".json",
+    },
+    {
+      engine: true,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engine: true,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engine: true,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engine: true,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engine: false,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engine: false,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+}
+`;
+
+snapshot[`render order property 3`] = `
+[
+]
+`;
+
+snapshot[`render order property 4`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    renderOrder: 1,
+    search: Search {},
+    tags: [
+    ],
+    title: 11,
+    url: "/articles/11/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/11/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages2[0]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 5`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    renderOrder: 1,
+    search: Search {},
+    tags: [
+    ],
+    title: 12,
+    url: "/articles/12/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/12/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages2[1]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 6`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    renderOrder: 1,
+    search: Search {},
+    tags: [
+    ],
+    title: 13,
+    url: "/articles/13/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/13/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages2[2]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 7`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    renderOrder: 1,
+    search: Search {},
+    tags: [
+    ],
+    title: 14,
+    url: "/articles/14/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/14/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages2[3]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 8`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    renderOrder: 1,
+    search: Search {},
+    tags: [
+    ],
+    title: 15,
+    url: "/articles/15/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/15/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages2[4]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 9`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    renderOrder: 1,
+    search: Search {},
+    tags: [
+    ],
+    title: 16,
+    url: "/articles/16/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/16/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages2[5]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 10`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    renderOrder: 1,
+    search: Search {},
+    tags: [
+    ],
+    title: 17,
+    url: "/articles/17/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/17/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages2[6]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 11`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    renderOrder: 1,
+    search: Search {},
+    tags: [
+    ],
+    title: 18,
+    url: "/articles/18/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/18/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages2[7]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 12`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    renderOrder: 1,
+    search: Search {},
+    tags: [
+    ],
+    title: 19,
+    url: "/articles/19/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/19/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages2[8]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 13`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    renderOrder: 1,
+    search: Search {},
+    tags: [
+    ],
+    title: 20,
+    url: "/articles/20/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/20/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages2[9]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 14`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: 1,
+    url: "/articles/1/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/1/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages[0]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 15`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: 2,
+    url: "/articles/2/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/2/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages[1]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 16`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: 3,
+    url: "/articles/3/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/3/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages[2]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 17`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: 4,
+    url: "/articles/4/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/4/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages[3]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 18`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: 5,
+    url: "/articles/5/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/5/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages[4]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 19`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: 6,
+    url: "/articles/6/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/6/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages[5]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 20`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: 7,
+    url: "/articles/7/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/7/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages[6]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 21`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: 8,
+    url: "/articles/8/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/8/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages[7]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 22`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: 9,
+    url: "/articles/9/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/9/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages[8]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 23`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: 10,
+    url: "/articles/10/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/articles/10/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pages[9]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 24`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    pagination: {
+      next: "./page-2/index.html",
+      page: 1,
+      previous: null,
+      totalPages: 2,
+      totalResults: 10,
+    },
+    results: [
+      Page {
+        data: [Getter/Setter],
+        dest: {
+          ext: ".html",
+          path: "/articles/1/index",
+        },
+        src: {
+          created: 2021-10-27T18:22:58.389Z,
+          ext: ".tmpl.ts",
+          lastModified: 2022-04-17T10:40:45.649Z,
+          path: "/pages[0]",
+          remote: undefined,
+        },
+      },
+      Page {
+        data: [Getter/Setter],
+        dest: {
+          ext: ".html",
+          path: "/articles/2/index",
+        },
+        src: {
+          created: 2021-10-27T18:22:58.389Z,
+          ext: ".tmpl.ts",
+          lastModified: 2022-04-17T10:40:45.649Z,
+          path: "/pages[1]",
+          remote: undefined,
+        },
+      },
+      Page {
+        data: [Getter/Setter],
+        dest: {
+          ext: ".html",
+          path: "/articles/3/index",
+        },
+        src: {
+          created: 2021-10-27T18:22:58.389Z,
+          ext: ".tmpl.ts",
+          lastModified: 2022-04-17T10:40:45.649Z,
+          path: "/pages[2]",
+          remote: undefined,
+        },
+      },
+      Page {
+        data: [Getter/Setter],
+        dest: {
+          ext: ".html",
+          path: "/articles/4/index",
+        },
+        src: {
+          created: 2021-10-27T18:22:58.389Z,
+          ext: ".tmpl.ts",
+          lastModified: 2022-04-17T10:40:45.649Z,
+          path: "/pages[3]",
+          remote: undefined,
+        },
+      },
+      Page {
+        data: [Getter/Setter],
+        dest: {
+          ext: ".html",
+          path: "/articles/5/index",
+        },
+        src: {
+          created: 2021-10-27T18:22:58.389Z,
+          ext: ".tmpl.ts",
+          lastModified: 2022-04-17T10:40:45.649Z,
+          path: "/pages[4]",
+          remote: undefined,
+        },
+      },
+    ],
+    search: Search {},
+    tags: [
+    ],
+    url: "/pagination/page-1/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/pagination/page-1/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pagination[0]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 25`] = `
+{
+  content: undefined,
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    pagination: {
+      next: null,
+      page: 2,
+      previous: "./page-1/index.html",
+      totalPages: 2,
+      totalResults: 10,
+    },
+    results: [
+      Page {
+        data: [Getter/Setter],
+        dest: {
+          ext: ".html",
+          path: "/articles/6/index",
+        },
+        src: {
+          created: 2021-10-27T18:22:58.389Z,
+          ext: ".tmpl.ts",
+          lastModified: 2022-04-17T10:40:45.649Z,
+          path: "/pages[5]",
+          remote: undefined,
+        },
+      },
+      Page {
+        data: [Getter/Setter],
+        dest: {
+          ext: ".html",
+          path: "/articles/7/index",
+        },
+        src: {
+          created: 2021-10-27T18:22:58.389Z,
+          ext: ".tmpl.ts",
+          lastModified: 2022-04-17T10:40:45.649Z,
+          path: "/pages[6]",
+          remote: undefined,
+        },
+      },
+      Page {
+        data: [Getter/Setter],
+        dest: {
+          ext: ".html",
+          path: "/articles/8/index",
+        },
+        src: {
+          created: 2021-10-27T18:22:58.389Z,
+          ext: ".tmpl.ts",
+          lastModified: 2022-04-17T10:40:45.649Z,
+          path: "/pages[7]",
+          remote: undefined,
+        },
+      },
+      Page {
+        data: [Getter/Setter],
+        dest: {
+          ext: ".html",
+          path: "/articles/9/index",
+        },
+        src: {
+          created: 2021-10-27T18:22:58.389Z,
+          ext: ".tmpl.ts",
+          lastModified: 2022-04-17T10:40:45.649Z,
+          path: "/pages[8]",
+          remote: undefined,
+        },
+      },
+      Page {
+        data: [Getter/Setter],
+        dest: {
+          ext: ".html",
+          path: "/articles/10/index",
+        },
+        src: {
+          created: 2021-10-27T18:22:58.389Z,
+          ext: ".tmpl.ts",
+          lastModified: 2022-04-17T10:40:45.649Z,
+          path: "/pages[9]",
+          remote: undefined,
+        },
+      },
+    ],
+    search: Search {},
+    tags: [
+    ],
+    url: "/pagination/page-2/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/pagination/page-2/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pagination[1]",
+    remote: undefined,
+  },
+}
+`;
