@@ -5,7 +5,7 @@ export default function* () {
 
   for (const page of pages) {
     yield {
-      title: page,
+      content: page,
       url: `/articles/${page}/`,
     };
   }

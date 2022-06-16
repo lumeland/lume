@@ -72,7 +72,7 @@ snapshot[`render order property 3`] = `
 
 snapshot[`render order property 4`] = `
 {
-  content: undefined,
+  content: "11",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -81,7 +81,6 @@ snapshot[`render order property 4`] = `
     search: Search {},
     tags: [
     ],
-    title: 11,
     url: "/articles/11/",
   },
   dest: {
@@ -98,7 +97,7 @@ snapshot[`render order property 4`] = `
 
 snapshot[`render order property 5`] = `
 {
-  content: undefined,
+  content: "12",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -107,7 +106,6 @@ snapshot[`render order property 5`] = `
     search: Search {},
     tags: [
     ],
-    title: 12,
     url: "/articles/12/",
   },
   dest: {
@@ -124,7 +122,7 @@ snapshot[`render order property 5`] = `
 
 snapshot[`render order property 6`] = `
 {
-  content: undefined,
+  content: "13",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -133,7 +131,6 @@ snapshot[`render order property 6`] = `
     search: Search {},
     tags: [
     ],
-    title: 13,
     url: "/articles/13/",
   },
   dest: {
@@ -150,7 +147,7 @@ snapshot[`render order property 6`] = `
 
 snapshot[`render order property 7`] = `
 {
-  content: undefined,
+  content: "14",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -159,7 +156,6 @@ snapshot[`render order property 7`] = `
     search: Search {},
     tags: [
     ],
-    title: 14,
     url: "/articles/14/",
   },
   dest: {
@@ -176,7 +172,7 @@ snapshot[`render order property 7`] = `
 
 snapshot[`render order property 8`] = `
 {
-  content: undefined,
+  content: "15",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -185,7 +181,6 @@ snapshot[`render order property 8`] = `
     search: Search {},
     tags: [
     ],
-    title: 15,
     url: "/articles/15/",
   },
   dest: {
@@ -202,7 +197,7 @@ snapshot[`render order property 8`] = `
 
 snapshot[`render order property 9`] = `
 {
-  content: undefined,
+  content: "16",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -211,7 +206,6 @@ snapshot[`render order property 9`] = `
     search: Search {},
     tags: [
     ],
-    title: 16,
     url: "/articles/16/",
   },
   dest: {
@@ -228,7 +222,7 @@ snapshot[`render order property 9`] = `
 
 snapshot[`render order property 10`] = `
 {
-  content: undefined,
+  content: "17",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -237,7 +231,6 @@ snapshot[`render order property 10`] = `
     search: Search {},
     tags: [
     ],
-    title: 17,
     url: "/articles/17/",
   },
   dest: {
@@ -254,7 +247,7 @@ snapshot[`render order property 10`] = `
 
 snapshot[`render order property 11`] = `
 {
-  content: undefined,
+  content: "18",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -263,7 +256,6 @@ snapshot[`render order property 11`] = `
     search: Search {},
     tags: [
     ],
-    title: 18,
     url: "/articles/18/",
   },
   dest: {
@@ -280,7 +272,7 @@ snapshot[`render order property 11`] = `
 
 snapshot[`render order property 12`] = `
 {
-  content: undefined,
+  content: "19",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -289,7 +281,6 @@ snapshot[`render order property 12`] = `
     search: Search {},
     tags: [
     ],
-    title: 19,
     url: "/articles/19/",
   },
   dest: {
@@ -306,7 +297,7 @@ snapshot[`render order property 12`] = `
 
 snapshot[`render order property 13`] = `
 {
-  content: undefined,
+  content: "20",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -315,7 +306,6 @@ snapshot[`render order property 13`] = `
     search: Search {},
     tags: [
     ],
-    title: 20,
     url: "/articles/20/",
   },
   dest: {
@@ -332,7 +322,7 @@ snapshot[`render order property 13`] = `
 
 snapshot[`render order property 14`] = `
 {
-  content: undefined,
+  content: "1",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -340,7 +330,6 @@ snapshot[`render order property 14`] = `
     search: Search {},
     tags: [
     ],
-    title: 1,
     url: "/articles/1/",
   },
   dest: {
@@ -357,7 +346,7 @@ snapshot[`render order property 14`] = `
 
 snapshot[`render order property 15`] = `
 {
-  content: undefined,
+  content: "2",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -365,7 +354,6 @@ snapshot[`render order property 15`] = `
     search: Search {},
     tags: [
     ],
-    title: 2,
     url: "/articles/2/",
   },
   dest: {
@@ -382,7 +370,7 @@ snapshot[`render order property 15`] = `
 
 snapshot[`render order property 16`] = `
 {
-  content: undefined,
+  content: "3",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -390,7 +378,6 @@ snapshot[`render order property 16`] = `
     search: Search {},
     tags: [
     ],
-    title: 3,
     url: "/articles/3/",
   },
   dest: {
@@ -407,7 +394,7 @@ snapshot[`render order property 16`] = `
 
 snapshot[`render order property 17`] = `
 {
-  content: undefined,
+  content: "4",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -415,7 +402,6 @@ snapshot[`render order property 17`] = `
     search: Search {},
     tags: [
     ],
-    title: 4,
     url: "/articles/4/",
   },
   dest: {
@@ -432,7 +418,7 @@ snapshot[`render order property 17`] = `
 
 snapshot[`render order property 18`] = `
 {
-  content: undefined,
+  content: "5",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -440,7 +426,6 @@ snapshot[`render order property 18`] = `
     search: Search {},
     tags: [
     ],
-    title: 5,
     url: "/articles/5/",
   },
   dest: {
@@ -457,7 +442,7 @@ snapshot[`render order property 18`] = `
 
 snapshot[`render order property 19`] = `
 {
-  content: undefined,
+  content: "6",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -465,7 +450,6 @@ snapshot[`render order property 19`] = `
     search: Search {},
     tags: [
     ],
-    title: 6,
     url: "/articles/6/",
   },
   dest: {
@@ -482,7 +466,7 @@ snapshot[`render order property 19`] = `
 
 snapshot[`render order property 20`] = `
 {
-  content: undefined,
+  content: "7",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -490,7 +474,6 @@ snapshot[`render order property 20`] = `
     search: Search {},
     tags: [
     ],
-    title: 7,
     url: "/articles/7/",
   },
   dest: {
@@ -507,7 +490,7 @@ snapshot[`render order property 20`] = `
 
 snapshot[`render order property 21`] = `
 {
-  content: undefined,
+  content: "8",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -515,7 +498,6 @@ snapshot[`render order property 21`] = `
     search: Search {},
     tags: [
     ],
-    title: 8,
     url: "/articles/8/",
   },
   dest: {
@@ -532,7 +514,7 @@ snapshot[`render order property 21`] = `
 
 snapshot[`render order property 22`] = `
 {
-  content: undefined,
+  content: "9",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -540,7 +522,6 @@ snapshot[`render order property 22`] = `
     search: Search {},
     tags: [
     ],
-    title: 9,
     url: "/articles/9/",
   },
   dest: {
@@ -557,7 +538,7 @@ snapshot[`render order property 22`] = `
 
 snapshot[`render order property 23`] = `
 {
-  content: undefined,
+  content: "10",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -565,7 +546,6 @@ snapshot[`render order property 23`] = `
     search: Search {},
     tags: [
     ],
-    title: 10,
     url: "/articles/10/",
   },
   dest: {
@@ -582,10 +562,11 @@ snapshot[`render order property 23`] = `
 
 snapshot[`render order property 24`] = `
 {
-  content: undefined,
+  content: '{"page":1,"totalPages":2,"totalResults":10,"previous":null,"next":"./page-2/index.html"}',
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    layout: "paginate.tmpl.js",
     paginate: [GeneratorFunction: paginate],
     pagination: {
       next: "./page-2/index.html",
@@ -604,7 +585,7 @@ snapshot[`render order property 24`] = `
         src: {
           created: 2021-10-27T18:22:58.389Z,
           ext: ".tmpl.ts",
-          lastModified: 2022-04-17T10:40:45.649Z,
+          lastModified: 2022-06-16T11:47:54.975Z,
           path: "/pages[0]",
           remote: undefined,
         },
@@ -618,7 +599,7 @@ snapshot[`render order property 24`] = `
         src: {
           created: 2021-10-27T18:22:58.389Z,
           ext: ".tmpl.ts",
-          lastModified: 2022-04-17T10:40:45.649Z,
+          lastModified: 2022-06-16T11:47:54.975Z,
           path: "/pages[1]",
           remote: undefined,
         },
@@ -632,7 +613,7 @@ snapshot[`render order property 24`] = `
         src: {
           created: 2021-10-27T18:22:58.389Z,
           ext: ".tmpl.ts",
-          lastModified: 2022-04-17T10:40:45.649Z,
+          lastModified: 2022-06-16T11:47:54.975Z,
           path: "/pages[2]",
           remote: undefined,
         },
@@ -646,7 +627,7 @@ snapshot[`render order property 24`] = `
         src: {
           created: 2021-10-27T18:22:58.389Z,
           ext: ".tmpl.ts",
-          lastModified: 2022-04-17T10:40:45.649Z,
+          lastModified: 2022-06-16T11:47:54.975Z,
           path: "/pages[3]",
           remote: undefined,
         },
@@ -660,7 +641,7 @@ snapshot[`render order property 24`] = `
         src: {
           created: 2021-10-27T18:22:58.389Z,
           ext: ".tmpl.ts",
-          lastModified: 2022-04-17T10:40:45.649Z,
+          lastModified: 2022-06-16T11:47:54.975Z,
           path: "/pages[4]",
           remote: undefined,
         },
@@ -685,10 +666,11 @@ snapshot[`render order property 24`] = `
 
 snapshot[`render order property 25`] = `
 {
-  content: undefined,
+  content: '{"page":2,"totalPages":2,"totalResults":10,"previous":"./page-1/index.html","next":null}',
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    layout: "paginate.tmpl.js",
     paginate: [GeneratorFunction: paginate],
     pagination: {
       next: null,
@@ -707,7 +689,7 @@ snapshot[`render order property 25`] = `
         src: {
           created: 2021-10-27T18:22:58.389Z,
           ext: ".tmpl.ts",
-          lastModified: 2022-04-17T10:40:45.649Z,
+          lastModified: 2022-06-16T11:47:54.975Z,
           path: "/pages[5]",
           remote: undefined,
         },
@@ -721,7 +703,7 @@ snapshot[`render order property 25`] = `
         src: {
           created: 2021-10-27T18:22:58.389Z,
           ext: ".tmpl.ts",
-          lastModified: 2022-04-17T10:40:45.649Z,
+          lastModified: 2022-06-16T11:47:54.975Z,
           path: "/pages[6]",
           remote: undefined,
         },
@@ -735,7 +717,7 @@ snapshot[`render order property 25`] = `
         src: {
           created: 2021-10-27T18:22:58.389Z,
           ext: ".tmpl.ts",
-          lastModified: 2022-04-17T10:40:45.649Z,
+          lastModified: 2022-06-16T11:47:54.975Z,
           path: "/pages[7]",
           remote: undefined,
         },
@@ -749,7 +731,7 @@ snapshot[`render order property 25`] = `
         src: {
           created: 2021-10-27T18:22:58.389Z,
           ext: ".tmpl.ts",
-          lastModified: 2022-04-17T10:40:45.649Z,
+          lastModified: 2022-06-16T11:47:54.975Z,
           path: "/pages[8]",
           remote: undefined,
         },
@@ -763,7 +745,7 @@ snapshot[`render order property 25`] = `
         src: {
           created: 2021-10-27T18:22:58.389Z,
           ext: ".tmpl.ts",
-          lastModified: 2022-04-17T10:40:45.649Z,
+          lastModified: 2022-06-16T11:47:54.975Z,
           path: "/pages[9]",
           remote: undefined,
         },

@@ -5,8 +5,6 @@ Deno.test("render order property", async (t) => {
     src: "render_order",
   });
 
-  site.addEventListener("afterRender", () => false);
-
   await build(site);
   await assertSiteSnapshot(t, site);
 });
