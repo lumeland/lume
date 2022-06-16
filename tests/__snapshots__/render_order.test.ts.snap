@@ -575,78 +575,7 @@ snapshot[`render order property 24`] = `
       totalPages: 2,
       totalResults: 10,
     },
-    results: [
-      Page {
-        data: [Getter/Setter],
-        dest: {
-          ext: ".html",
-          path: "/articles/1/index",
-        },
-        src: {
-          created: 2021-10-27T18:22:58.389Z,
-          ext: ".tmpl.ts",
-          lastModified: 2022-06-16T11:47:54.975Z,
-          path: "/pages[0]",
-          remote: undefined,
-        },
-      },
-      Page {
-        data: [Getter/Setter],
-        dest: {
-          ext: ".html",
-          path: "/articles/2/index",
-        },
-        src: {
-          created: 2021-10-27T18:22:58.389Z,
-          ext: ".tmpl.ts",
-          lastModified: 2022-06-16T11:47:54.975Z,
-          path: "/pages[1]",
-          remote: undefined,
-        },
-      },
-      Page {
-        data: [Getter/Setter],
-        dest: {
-          ext: ".html",
-          path: "/articles/3/index",
-        },
-        src: {
-          created: 2021-10-27T18:22:58.389Z,
-          ext: ".tmpl.ts",
-          lastModified: 2022-06-16T11:47:54.975Z,
-          path: "/pages[2]",
-          remote: undefined,
-        },
-      },
-      Page {
-        data: [Getter/Setter],
-        dest: {
-          ext: ".html",
-          path: "/articles/4/index",
-        },
-        src: {
-          created: 2021-10-27T18:22:58.389Z,
-          ext: ".tmpl.ts",
-          lastModified: 2022-06-16T11:47:54.975Z,
-          path: "/pages[3]",
-          remote: undefined,
-        },
-      },
-      Page {
-        data: [Getter/Setter],
-        dest: {
-          ext: ".html",
-          path: "/articles/5/index",
-        },
-        src: {
-          created: 2021-10-27T18:22:58.389Z,
-          ext: ".tmpl.ts",
-          lastModified: 2022-06-16T11:47:54.975Z,
-          path: "/pages[4]",
-          remote: undefined,
-        },
-      },
-    ],
+    results: 5,
     search: Search {},
     tags: [
     ],
@@ -679,78 +608,7 @@ snapshot[`render order property 25`] = `
       totalPages: 2,
       totalResults: 10,
     },
-    results: [
-      Page {
-        data: [Getter/Setter],
-        dest: {
-          ext: ".html",
-          path: "/articles/6/index",
-        },
-        src: {
-          created: 2021-10-27T18:22:58.389Z,
-          ext: ".tmpl.ts",
-          lastModified: 2022-06-16T11:47:54.975Z,
-          path: "/pages[5]",
-          remote: undefined,
-        },
-      },
-      Page {
-        data: [Getter/Setter],
-        dest: {
-          ext: ".html",
-          path: "/articles/7/index",
-        },
-        src: {
-          created: 2021-10-27T18:22:58.389Z,
-          ext: ".tmpl.ts",
-          lastModified: 2022-06-16T11:47:54.975Z,
-          path: "/pages[6]",
-          remote: undefined,
-        },
-      },
-      Page {
-        data: [Getter/Setter],
-        dest: {
-          ext: ".html",
-          path: "/articles/8/index",
-        },
-        src: {
-          created: 2021-10-27T18:22:58.389Z,
-          ext: ".tmpl.ts",
-          lastModified: 2022-06-16T11:47:54.975Z,
-          path: "/pages[7]",
-          remote: undefined,
-        },
-      },
-      Page {
-        data: [Getter/Setter],
-        dest: {
-          ext: ".html",
-          path: "/articles/9/index",
-        },
-        src: {
-          created: 2021-10-27T18:22:58.389Z,
-          ext: ".tmpl.ts",
-          lastModified: 2022-06-16T11:47:54.975Z,
-          path: "/pages[8]",
-          remote: undefined,
-        },
-      },
-      Page {
-        data: [Getter/Setter],
-        dest: {
-          ext: ".html",
-          path: "/articles/10/index",
-        },
-        src: {
-          created: 2021-10-27T18:22:58.389Z,
-          ext: ".tmpl.ts",
-          lastModified: 2022-06-16T11:47:54.975Z,
-          path: "/pages[9]",
-          remote: undefined,
-        },
-      },
-    ],
+    results: 5,
     search: Search {},
     tags: [
     ],

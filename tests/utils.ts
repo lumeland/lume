@@ -93,6 +93,11 @@ async function assertPageSnapshot(
     remote: page.src.remote?.replace(cwUrl.href, ""),
   };
 
+  // Remove pagination results details from the data
+  if (Array.isArray(page.data.results)) {
+    page.data.results = page.data.results.length;
+  }
+
   // Normalize content for Windows
   content = normalizeContent(content);
   data.content = normalizeContent(
