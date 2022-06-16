@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`render order property 1`] = `22`;
+snapshot[`render order property 1`] = `24`;
 
 snapshot[`render order property 2`] = `
 {
@@ -72,12 +72,37 @@ snapshot[`render order property 3`] = `
 
 snapshot[`render order property 4`] = `
 {
+  content: "<p>Hello world</p>
+",
+  data: {
+    content: "Hello world",
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/extra-page/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/extra-page/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/extra-page",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 5`] = `
+{
   content: "11",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
-    renderOrder: 1,
+    renderOrder: 2,
     search: Search {},
     tags: [
     ],
@@ -95,14 +120,14 @@ snapshot[`render order property 4`] = `
 }
 `;
 
-snapshot[`render order property 5`] = `
+snapshot[`render order property 6`] = `
 {
   content: "12",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
-    renderOrder: 1,
+    renderOrder: 2,
     search: Search {},
     tags: [
     ],
@@ -120,14 +145,14 @@ snapshot[`render order property 5`] = `
 }
 `;
 
-snapshot[`render order property 6`] = `
+snapshot[`render order property 7`] = `
 {
   content: "13",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
-    renderOrder: 1,
+    renderOrder: 2,
     search: Search {},
     tags: [
     ],
@@ -145,14 +170,14 @@ snapshot[`render order property 6`] = `
 }
 `;
 
-snapshot[`render order property 7`] = `
+snapshot[`render order property 8`] = `
 {
   content: "14",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
-    renderOrder: 1,
+    renderOrder: 2,
     search: Search {},
     tags: [
     ],
@@ -170,14 +195,14 @@ snapshot[`render order property 7`] = `
 }
 `;
 
-snapshot[`render order property 8`] = `
+snapshot[`render order property 9`] = `
 {
   content: "15",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
-    renderOrder: 1,
+    renderOrder: 2,
     search: Search {},
     tags: [
     ],
@@ -195,14 +220,14 @@ snapshot[`render order property 8`] = `
 }
 `;
 
-snapshot[`render order property 9`] = `
+snapshot[`render order property 10`] = `
 {
   content: "16",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
-    renderOrder: 1,
+    renderOrder: 2,
     search: Search {},
     tags: [
     ],
@@ -220,14 +245,14 @@ snapshot[`render order property 9`] = `
 }
 `;
 
-snapshot[`render order property 10`] = `
+snapshot[`render order property 11`] = `
 {
   content: "17",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
-    renderOrder: 1,
+    renderOrder: 2,
     search: Search {},
     tags: [
     ],
@@ -245,14 +270,14 @@ snapshot[`render order property 10`] = `
 }
 `;
 
-snapshot[`render order property 11`] = `
+snapshot[`render order property 12`] = `
 {
   content: "18",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
-    renderOrder: 1,
+    renderOrder: 2,
     search: Search {},
     tags: [
     ],
@@ -270,14 +295,14 @@ snapshot[`render order property 11`] = `
 }
 `;
 
-snapshot[`render order property 12`] = `
+snapshot[`render order property 13`] = `
 {
   content: "19",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
-    renderOrder: 1,
+    renderOrder: 2,
     search: Search {},
     tags: [
     ],
@@ -295,14 +320,14 @@ snapshot[`render order property 12`] = `
 }
 `;
 
-snapshot[`render order property 13`] = `
+snapshot[`render order property 14`] = `
 {
   content: "20",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     paginate: [GeneratorFunction: paginate],
-    renderOrder: 1,
+    renderOrder: 2,
     search: Search {},
     tags: [
     ],
@@ -320,7 +345,7 @@ snapshot[`render order property 13`] = `
 }
 `;
 
-snapshot[`render order property 14`] = `
+snapshot[`render order property 15`] = `
 {
   content: "1",
   data: {
@@ -344,7 +369,7 @@ snapshot[`render order property 14`] = `
 }
 `;
 
-snapshot[`render order property 15`] = `
+snapshot[`render order property 16`] = `
 {
   content: "2",
   data: {
@@ -368,7 +393,7 @@ snapshot[`render order property 15`] = `
 }
 `;
 
-snapshot[`render order property 16`] = `
+snapshot[`render order property 17`] = `
 {
   content: "3",
   data: {
@@ -392,7 +417,7 @@ snapshot[`render order property 16`] = `
 }
 `;
 
-snapshot[`render order property 17`] = `
+snapshot[`render order property 18`] = `
 {
   content: "4",
   data: {
@@ -416,7 +441,7 @@ snapshot[`render order property 17`] = `
 }
 `;
 
-snapshot[`render order property 18`] = `
+snapshot[`render order property 19`] = `
 {
   content: "5",
   data: {
@@ -440,7 +465,7 @@ snapshot[`render order property 18`] = `
 }
 `;
 
-snapshot[`render order property 19`] = `
+snapshot[`render order property 20`] = `
 {
   content: "6",
   data: {
@@ -464,7 +489,7 @@ snapshot[`render order property 19`] = `
 }
 `;
 
-snapshot[`render order property 20`] = `
+snapshot[`render order property 21`] = `
 {
   content: "7",
   data: {
@@ -488,7 +513,7 @@ snapshot[`render order property 20`] = `
 }
 `;
 
-snapshot[`render order property 21`] = `
+snapshot[`render order property 22`] = `
 {
   content: "8",
   data: {
@@ -512,7 +537,7 @@ snapshot[`render order property 21`] = `
 }
 `;
 
-snapshot[`render order property 22`] = `
+snapshot[`render order property 23`] = `
 {
   content: "9",
   data: {
@@ -536,7 +561,7 @@ snapshot[`render order property 22`] = `
 }
 `;
 
-snapshot[`render order property 23`] = `
+snapshot[`render order property 24`] = `
 {
   content: "10",
   data: {
@@ -560,9 +585,9 @@ snapshot[`render order property 23`] = `
 }
 `;
 
-snapshot[`render order property 24`] = `
+snapshot[`render order property 25`] = `
 {
-  content: '{"page":1,"totalPages":2,"totalResults":10,"previous":null,"next":"./page-2/index.html"}',
+  content: '{"page":1,"totalPages":3,"totalResults":11,"previous":null,"next":"./page-2/index.html"}',
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -572,9 +597,10 @@ snapshot[`render order property 24`] = `
       next: "./page-2/index.html",
       page: 1,
       previous: null,
-      totalPages: 2,
-      totalResults: 10,
+      totalPages: 3,
+      totalResults: 11,
     },
+    renderOrder: 1,
     results: 5,
     search: Search {},
     tags: [
@@ -593,21 +619,22 @@ snapshot[`render order property 24`] = `
 }
 `;
 
-snapshot[`render order property 25`] = `
+snapshot[`render order property 26`] = `
 {
-  content: '{"page":2,"totalPages":2,"totalResults":10,"previous":"./page-1/index.html","next":null}',
+  content: '{"page":2,"totalPages":3,"totalResults":11,"previous":"./page-1/index.html","next":"./page-3/index.html"}',
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "paginate.tmpl.js",
     paginate: [GeneratorFunction: paginate],
     pagination: {
-      next: null,
+      next: "./page-3/index.html",
       page: 2,
       previous: "./page-1/index.html",
-      totalPages: 2,
-      totalResults: 10,
+      totalPages: 3,
+      totalResults: 11,
     },
+    renderOrder: 1,
     results: 5,
     search: Search {},
     tags: [
@@ -621,6 +648,40 @@ snapshot[`render order property 25`] = `
   src: {
     ext: ".tmpl.ts",
     path: "/pagination[1]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`render order property 27`] = `
+{
+  content: '{"page":3,"totalPages":3,"totalResults":11,"previous":"./page-2/index.html","next":null}',
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "paginate.tmpl.js",
+    paginate: [GeneratorFunction: paginate],
+    pagination: {
+      next: null,
+      page: 3,
+      previous: "./page-2/index.html",
+      totalPages: 3,
+      totalResults: 11,
+    },
+    renderOrder: 1,
+    results: 1,
+    search: Search {},
+    tags: [
+    ],
+    url: "/pagination/page-3/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/pagination/page-3/index",
+  },
+  src: {
+    ext: ".tmpl.ts",
+    path: "/pagination[2]",
     remote: undefined,
   },
 }
