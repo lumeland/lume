@@ -93,8 +93,8 @@ export default class Renderer {
           }
           const newPage = page.duplicate(index++, data);
           this.#preparePage(newPage);
-          pages.push(newPage);
           to.push(newPage);
+          pages.push(newPage);
         }
       }
 
