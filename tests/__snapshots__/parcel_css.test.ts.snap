@@ -78,9 +78,7 @@ snapshot[`parcelCSS plugin 3`] = `
 
 snapshot[`parcelCSS plugin 4`] = `
 {
-  content: '{"version":3,"mappings":"AAAA,wBACA","sources":["Users/oscarotero/www/lumeland/lume/tests/assets/parcel_css/index.css"],"sourcesContent":["@import \\\\"variables.css\\\\";\\
-@import \\\\"./text.css\\\\";\\
-"],"names":[]}',
+  content: "(removed for testing)",
   data: {
     content: '{"version":3,"mappings":"AAAA,wBACA","sources":["Users/oscarotero/www/lumeland/lume/tests/assets/parcel_css/index.css"],"sourcesContent":["@import \\\\"variables.css\\\\";\\
 @import \\\\"./text.css\\\\";\\
@@ -103,16 +101,7 @@ snapshot[`parcelCSS plugin 4`] = `
 
 snapshot[`parcelCSS plugin 5`] = `
 {
-  content: '{"version":3,"mappings":"AAAA,qCAGE","sources":["Users/oscarotero/www/lumeland/lume/tests/assets/parcel_css/text.css"],"sourcesContent":[".text {\\
-  font-family: var(--font-family);\\
-\\
-  & p {\\
-    color: var(--color);\\
-    box-shadow: 0 0 0.5em var(--background);\\
-    backface-visibility: hidden;\\
-  }\\
-}\\
-"],"names":[]}',
+  content: "(removed for testing)",
   data: {
     content: '{"version":3,"mappings":"AAAA,qCAGE","sources":["Users/oscarotero/www/lumeland/lume/tests/assets/parcel_css/text.css"],"sourcesContent":[".text {\\
   font-family: var(--font-family);\\
