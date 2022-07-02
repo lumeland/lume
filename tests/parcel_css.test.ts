@@ -6,7 +6,9 @@ Deno.test("parcelCSS plugin", async (t) => {
     src: "parcel_css",
   });
 
-  site.use(parcelCss());
+  site.use(parcelCss({
+    sourceMap: true,
+  }));
 
   await build(site);
   await assertSiteSnapshot(t, site);

@@ -1,6 +1,7 @@
 import init, { transform } from "../deps/parcel_css.ts";
 import { merge } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
+import { basename } from "../deps/path.ts";
 
 import type { Site } from "../core.ts";
 import type { TransformOptions } from "../deps/parcel_css.ts";
@@ -78,6 +79,9 @@ export default function (userOptions?: Partial<Options>) {
           decoder.decode(result.map),
         );
         site.pages.push(mapFile);
+        file.content += `\n/*# sourceMappingURL=./${
+          basename(file.dest.path)
+        }.css.map */`;
       }
     }
   };

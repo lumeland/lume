@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`parcelCSS plugin 1`] = `2`;
+snapshot[`parcelCSS plugin 1`] = `4`;
 
 snapshot[`parcelCSS plugin 2`] = `
 {
@@ -78,7 +78,72 @@ snapshot[`parcelCSS plugin 3`] = `
 
 snapshot[`parcelCSS plugin 4`] = `
 {
-  content: '@import "variables.css";@import "./text.css";',
+  content: '{"version":3,"mappings":"AAAA,wBACA","sources":["Users/oscarotero/www/lumeland/lume/tests/assets/parcel_css/index.css"],"sourcesContent":["@import \\\\"variables.css\\\\";\\
+@import \\\\"./text.css\\\\";\\
+"],"names":[]}',
+  data: {
+    content: '{"version":3,"mappings":"AAAA,wBACA","sources":["Users/oscarotero/www/lumeland/lume/tests/assets/parcel_css/index.css"],"sourcesContent":["@import \\\\"variables.css\\\\";\\
+@import \\\\"./text.css\\\\";\\
+"],"names":[]}',
+    tags: [
+    ],
+    url: "/index.css.map",
+  },
+  dest: {
+    ext: ".map",
+    path: "/index.css",
+  },
+  src: {
+    ext: undefined,
+    path: "",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`parcelCSS plugin 5`] = `
+{
+  content: '{"version":3,"mappings":"AAAA,qCAGE","sources":["Users/oscarotero/www/lumeland/lume/tests/assets/parcel_css/text.css"],"sourcesContent":[".text {\\
+  font-family: var(--font-family);\\
+\\
+  & p {\\
+    color: var(--color);\\
+    box-shadow: 0 0 0.5em var(--background);\\
+    backface-visibility: hidden;\\
+  }\\
+}\\
+"],"names":[]}',
+  data: {
+    content: '{"version":3,"mappings":"AAAA,qCAGE","sources":["Users/oscarotero/www/lumeland/lume/tests/assets/parcel_css/text.css"],"sourcesContent":[".text {\\
+  font-family: var(--font-family);\\
+\\
+  & p {\\
+    color: var(--color);\\
+    box-shadow: 0 0 0.5em var(--background);\\
+    backface-visibility: hidden;\\
+  }\\
+}\\
+"],"names":[]}',
+    tags: [
+    ],
+    url: "/text.css.map",
+  },
+  dest: {
+    ext: ".map",
+    path: "/text.css",
+  },
+  src: {
+    ext: undefined,
+    path: "",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`parcelCSS plugin 6`] = `
+{
+  content: '@import "variables.css";@import "./text.css";
+/*# sourceMappingURL=./index.css.map */',
   data: {
     content: '@import "variables.css";
 @import "./text.css";
@@ -102,9 +167,10 @@ snapshot[`parcelCSS plugin 4`] = `
 }
 `;
 
-snapshot[`parcelCSS plugin 5`] = `
+snapshot[`parcelCSS plugin 7`] = `
 {
-  content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}",
+  content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}
+/*# sourceMappingURL=./text.css.map */",
   data: {
     content: ".text {
   font-family: var(--font-family);

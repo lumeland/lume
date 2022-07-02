@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.10.1] - Unreleased
+### Fixed
+- Parcel Plugin should add a source-mapping comment [#207]
+
 ## [1.10.0] - 2022-06-16
 ### Added
 - New `site.remoteFiles()` function to specify remote fallbacks for missing local files.
@@ -1614,7 +1618,9 @@ The first version.
 [#198]: https://github.com/lumeland/lume/issues/198
 [#202]: https://github.com/lumeland/lume/issues/202
 [#203]: https://github.com/lumeland/lume/issues/203
+[#207]: https://github.com/lumeland/lume/issues/207
 
+[1.10.1]: https://github.com/lumeland/lume/compare/v1.10.0...HEAD
 [1.10.0]: https://github.com/lumeland/lume/compare/v1.9.1...v1.10.0
 [1.9.1]: https://github.com/lumeland/lume/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/lumeland/lume/compare/v1.8.0...v1.9.0
