@@ -149,15 +149,11 @@ export async function assertSiteSnapshot(
 
   // Sort pages and files alphabetically
   pages.sort((a, b) => {
-    const aPath = a.src.path;
-    const bPath = b.src.path;
-    return aPath > bPath ? 1 : aPath < bPath ? -1 : 0;
+    return compare(a.src.path, b.src.path) || compare(a.dest.path, b.dest.path);
   });
 
   files.sort((a, b) => {
-    const aPath = a.src;
-    const bPath = b.src;
-    return aPath > bPath ? 1 : aPath < bPath ? -1 : 0;
+    return compare(a.src, b.src);
   });
 
   // Test static files
@@ -174,4 +170,8 @@ export async function assertSiteSnapshot(
   for (const page of pages) {
     await assertPageSnapshot(context, page);
   }
+}
+
+function compare(a: string, b: string): number {
+  return a > b ? 1 : a < b ? -1 : 0;
 }
