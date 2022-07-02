@@ -107,6 +107,7 @@ async function assertPageSnapshot(
   // Source maps
   if (page.dest.ext === ".map") {
     content = "(removed for testing)";
+    data.content = "(removed for testing)";
   }
 
   // Ignore comp object
