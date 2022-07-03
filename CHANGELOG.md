@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.10.1] - Unreleased
 ### Fixed
-- Parcel Plugin should add a source-mapping comment [#207]
+- Parcel Plugin should add a source-mapping comment [#207].
+- Updated dependencies: `std`, `deno_dom`, `parcel_css`.
 
 ## [1.10.0] - 2022-06-16
 ### Added
