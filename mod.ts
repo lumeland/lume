@@ -55,6 +55,7 @@ export default function (
     .ignore("node_modules")
     .ignore("import_map.json")
     .ignore("deno.json")
+    .ignore("deno.jsonc")
     .ignore((path) => path.endsWith("/.DS_Store"))
     .use(url(pluginOptions.url))
     .use(json(pluginOptions.json))
