@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Parcel Plugin should add a source-mapping comment [#207].
 - Updated dependencies: `std`, `deno_dom`, `parcel_css`.
+- Ignore `deno.jsonc` file by default [#209].
+- Ignored files starting with `.` or `_` in directories copied statically (with `site.copy()`).
 
 ## [1.10.0] - 2022-06-16
 ### Added
@@ -1620,6 +1622,7 @@ The first version.
 [#202]: https://github.com/lumeland/lume/issues/202
 [#203]: https://github.com/lumeland/lume/issues/203
 [#207]: https://github.com/lumeland/lume/issues/207
+[#209]: https://github.com/lumeland/lume/issues/209
 
 [1.10.1]: https://github.com/lumeland/lume/compare/v1.10.0...HEAD
 [1.10.0]: https://github.com/lumeland/lume/compare/v1.9.1...v1.10.0

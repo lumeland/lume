@@ -411,6 +411,13 @@ export default class Source {
 
     if (entry.isDirectory) {
       for await (const entry of this.reader.readDir(src)) {
+        if (
+          entry.isSymlink || entry.name.startsWith(".") ||
+          entry.name.startsWith("_")
+        ) {
+          return;
+        }
+
         await this.#scanStaticFiles(
           directory,
           entry,

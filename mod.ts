@@ -47,7 +47,7 @@ export default function (
 
   const site = new Site(options as Partial<SiteOptions>);
 
-  // Ignore the .git folder by the watcher
+  // Ignore the .git folder and .DS_Store file by the watcher
   site.options.watcher.ignore.push(".git");
   site.options.watcher.ignore.push((path) => path.endsWith("/.DS_Store"));
 
@@ -56,7 +56,6 @@ export default function (
     .ignore("import_map.json")
     .ignore("deno.json")
     .ignore("deno.jsonc")
-    .ignore((path) => path.endsWith("/.DS_Store"))
     .use(url(pluginOptions.url))
     .use(json(pluginOptions.json))
     .use(markdown(pluginOptions.markdown))
