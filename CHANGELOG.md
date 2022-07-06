@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.10.1] - Unreleased
+### Added
+- New event `beforeRender` triggered just before preprocess and render the pages, but after loading them.
+
 ### Fixed
 - Parcel Plugin should add a source-mapping comment [#207].
 - Updated dependencies: `std`, `deno_dom`, `parcel_css`, `imagick`.

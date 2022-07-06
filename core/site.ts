@@ -491,6 +491,10 @@ export default class Site {
    * The common operations of build and update
    */
   async #buildPages(pages: Page[]): Promise<boolean> {
+    if (await this.dispatchEvent({ type: "beforeRender" }) === false) {
+      return false;
+    }
+
     // Render the pages into this.pages array
     this.pages = [];
     await this.renderer.renderPages(pages, this.pages);
@@ -761,6 +765,7 @@ export type SiteEventType =
   | "afterBuild"
   | "beforeUpdate"
   | "afterUpdate"
+  | "beforeRender"
   | "afterRender"
   | "beforeRenderOnDemand"
   | "beforeSave"
