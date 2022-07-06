@@ -90,7 +90,7 @@ snapshot[`imagick plugin 3`] = `
 
 snapshot[`imagick plugin 4`] = `
 {
-  content: "Uint8Array(14355)",
+  content: "Uint8Array(14407)",
   data: {
     content: "Uint8Array(29014)",
     date: 1970-01-01T00:00:00.000Z,
@@ -135,7 +135,7 @@ snapshot[`imagick plugin 4`] = `
 
 snapshot[`imagick plugin 5`] = `
 {
-  content: "Uint8Array(899)",
+  content: "Uint8Array(951)",
   data: {
     content: "Uint8Array(29014)",
     date: 1970-01-01T00:00:00.000Z,
@@ -160,7 +160,7 @@ snapshot[`imagick plugin 5`] = `
 
 snapshot[`imagick plugin 6`] = `
 {
-  content: "Uint8Array(899)",
+  content: "Uint8Array(951)",
   data: {
     content: "Uint8Array(29014)",
     date: 1970-01-01T00:00:00.000Z,

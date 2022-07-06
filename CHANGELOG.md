@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.10.1] - Unreleased
 ### Fixed
 - Parcel Plugin should add a source-mapping comment [#207].
-- Updated dependencies: `std`, `deno_dom`, `parcel_css`.
+- Updated dependencies: `std`, `deno_dom`, `parcel_css`, `imagick`.
 - Ignore `deno.jsonc` file by default [#209].
 - Ignored files starting with `.` or `_` in directories copied statically (with `site.copy()`).
 
