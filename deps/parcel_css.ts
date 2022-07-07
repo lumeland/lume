@@ -2,7 +2,7 @@ export {
   default,
   transform,
   transformStyleAttribute,
-} from "https://unpkg.com/@parcel/css-wasm@1.10.1/index.js";
+} from "https://unpkg.com/@parcel/css-wasm@1.11.0/index.js";
 
 /**
  * Types from /index.d.ts
@@ -16,12 +16,14 @@ export interface TransformOptions {
   minify?: boolean;
   /** Whether to output a source map. */
   sourceMap?: boolean;
+  /** An input source map to extend. */
+  inputSourceMap?: string;
   /** The browser targets for the generated code. */
   targets?: Targets;
   /** Whether to enable various draft syntax. */
   drafts?: Drafts;
   /** Whether to compile this file as a CSS module. */
-  cssModules?: boolean;
+  cssModules?: boolean | CSSModulesConfig;
   /**
    * Whether to analyze dependencies (e.g. `@import` and `url()`).
    * When enabled, `@import` rules are removed, and `url()` dependencies
@@ -67,4 +69,11 @@ export interface Targets {
   opera?: number;
   safari?: number;
   samsung?: number;
+}
+
+export interface CSSModulesConfig {
+  /** The pattern to use when renaming class names and other identifiers. Default is `[hash]_[local]`. */
+  pattern: string;
+  /** Whether to rename dashed identifiers, e.g. custom properties. */
+  dashedIdents: boolean;
 }
