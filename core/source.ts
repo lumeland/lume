@@ -293,10 +293,7 @@ export default class Source {
 
   /** Load an entry from a directory */
   async #loadEntry(directory: Directory, entry: DirEntry) {
-    if (
-      entry.isSymlink || entry.name.startsWith(".") ||
-      entry.name.startsWith("_")
-    ) {
+    if (entry.isSymlink) {
       return;
     }
 
@@ -305,6 +302,11 @@ export default class Source {
     // It's a static file/folder
     if (this.staticPaths.has(path)) {
       await this.#loadStaticFiles(directory, entry);
+      return;
+    }
+
+    // Ignore .filename and _filename
+    if (entry.name.startsWith(".") || entry.name.startsWith("_")) {
       return;
     }
 
@@ -383,6 +385,17 @@ export default class Source {
     src: string,
     dest?: string | ((file: string) => string),
   ) {
+    if (entry.isSymlink) {
+      return;
+    }
+
+    // It's a static file/folder
+    if (this.staticPaths.has(src)) {
+      dest = this.staticPaths.get(src);
+    } else if (entry.name.startsWith(".") || entry.name.startsWith("_")) {
+      return;
+    }
+
     // Check if the file should be ignored
     if (this.ignored.has(src)) {
       return;
@@ -411,13 +424,6 @@ export default class Source {
 
     if (entry.isDirectory) {
       for await (const entry of this.reader.readDir(src)) {
-        if (
-          entry.isSymlink || entry.name.startsWith(".") ||
-          entry.name.startsWith("_")
-        ) {
-          return;
-        }
-
         await this.#scanStaticFiles(
           directory,
           entry,

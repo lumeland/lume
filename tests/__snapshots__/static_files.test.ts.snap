@@ -84,6 +84,11 @@ snapshot[`Copy static files 2`] = `
 snapshot[`Copy static files 3`] = `
 [
   {
+    dest: "/_headers",
+    remote: undefined,
+    src: "/_headers",
+  },
+  {
     dest: "/other/one",
     remote: undefined,
     src: "/other/one",
@@ -147,6 +152,11 @@ snapshot[`Copy static files 3`] = `
     dest: "/script/app/main.js",
     remote: undefined,
     src: "/script/2022-01-01_app/main.js",
+  },
+  {
+    dest: "/_redirects",
+    remote: undefined,
+    src: "/static/_redirects",
   },
   {
     dest: "/one.yes",

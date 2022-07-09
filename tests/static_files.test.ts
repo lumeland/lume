@@ -14,6 +14,8 @@ Deno.test("Copy static files", async (t) => {
   site.copy("posts/2022-01-01_first-post/individual-file");
   site.copy([".css", ".js"]);
   site.copy([".copy"]);
+  site.copy("_headers");
+  site.copy("static/_redirects", "_redirects");
   site.copy(
     [".copy2"],
     (file) => "/subdir" + file.replace(/\.copy2/, ".copy3"),
