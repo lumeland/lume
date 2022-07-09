@@ -36,7 +36,7 @@ async function initConfig() {
 
   if (plugins.length) {
     code.push("");
-    plugins.sort().forEach((name) => code.push(`site.use(${name}());`));
+    plugins.forEach((name) => code.push(`site.use(${name}());`));
   }
 
   code.push("");
@@ -53,7 +53,7 @@ async function initConfig() {
 function getPlugins() {
   const message = `
 ${cyan("Do you want to use plugins?")}
-Type the plugins separated by comma.
+Type the plugins separated by comma or space.
 
 All available options:
 ${
@@ -62,7 +62,7 @@ ${
     ).join("\n")
   }
 
-Example: ${dim(`postcss, terser, base_path`)}
+Example: ${dim(`postcss terser base_path`)}
 `;
   const choice = prompt(message);
   const plugins = choice ? choice.split(/[\s,]+/) : [];
@@ -79,7 +79,7 @@ Example: ${dim(`postcss, terser, base_path`)}
 
 /** Question to get the filename of the config file */
 async function getConfigFile(): Promise<string | false> {
-  const configFile = confirm(cyan("Use Typescript for the configuration file?"))
+  const configFile = confirm(cyan("Use TypeScript for the configuration file?"))
     ? "_config.ts"
     : "_config.js";
 

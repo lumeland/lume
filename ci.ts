@@ -130,7 +130,9 @@ export default async function main(args: string[]) {
     Deno.exit(1);
   }
 
-  if (!quiet) {
+  const command = args[0];
+
+  if (!quiet && command !== "upgrade" && command !== "import-map") {
     const info = await mustNotifyUpgrade();
 
     if (info) {

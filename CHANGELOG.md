@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.10.1] - Unreleased
 ### Added
 - New event `beforeRender` triggered just before preprocess and render the pages, but after loading them.
+- New `/init.ts` script to initialize Lume in a folder without install it, with `deno run -A https://deno.land/x/lume/init.ts`.
 
 ### Fixed
 - Parcel Plugin should add a source-mapping comment [#207].
@@ -17,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Ignore `deno.jsonc` file by default [#209].
 - Ignored files starting with `.` or `_` in directories copied statically (with `site.copy()`).
 - Copy static files starting with `.` or `_` if they are are explicit in the config file [#210].
+- Suppress the update notice on `lume upgrade` [#206].
 
 ## [1.10.0] - 2022-06-16
 ### Added
@@ -1625,6 +1627,7 @@ The first version.
 [#198]: https://github.com/lumeland/lume/issues/198
 [#202]: https://github.com/lumeland/lume/issues/202
 [#203]: https://github.com/lumeland/lume/issues/203
+[#206]: https://github.com/lumeland/lume/issues/206
 [#207]: https://github.com/lumeland/lume/issues/207
 [#209]: https://github.com/lumeland/lume/issues/209
 [#210]: https://github.com/lumeland/lume/issues/210
