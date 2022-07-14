@@ -42,7 +42,7 @@ export class JsxEngine implements Engine {
 
     data.children = element;
 
-    if (element) {
+    if (element && typeof element === "object") {
       element.toString = () => ReactDOMServer.renderToStaticMarkup(element);
     }
 
@@ -54,7 +54,7 @@ export class JsxEngine implements Engine {
       ? content(data, this.helpers)
       : content;
 
-    if (element) {
+    if (element && typeof element === "object") {
       element.toString = () => ReactDOMServer.renderToStaticMarkup(element);
     }
 
