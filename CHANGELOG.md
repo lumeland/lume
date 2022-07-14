@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Ignored files starting with `.` or `_` in directories copied statically (with `site.copy()`).
 - Copy static files starting with `.` or `_` if they are are explicit in the config file [#210].
 - Suppress the update notice on `lume upgrade` [#206].
+- Error when a JSX page returns a string [#214].
 
 ## [1.10.0] - 2022-06-16
 ### Added
@@ -1631,6 +1632,7 @@ The first version.
 [#207]: https://github.com/lumeland/lume/issues/207
 [#209]: https://github.com/lumeland/lume/issues/209
 [#210]: https://github.com/lumeland/lume/issues/210
+[#214]: https://github.com/lumeland/lume/issues/214
 
 [1.10.1]: https://github.com/lumeland/lume/compare/v1.10.0...HEAD
 [1.10.0]: https://github.com/lumeland/lume/compare/v1.9.1...v1.10.0
