@@ -1,4 +1,4 @@
-import { merge, getLumeVersion } from "../core/utils.ts";
+import { getLumeVersion, merge } from "../core/utils.ts";
 
 import type { Page, Site } from "../core.ts";
 import type { HTMLDocument } from "../deps/dom.ts";
@@ -114,7 +114,12 @@ export default function (userOptions?: Partial<Options>) {
       addMeta(document, "name", "theme-color", metas.color);
 
       if (metas.generator) {
-        addMeta(document, "name", "generator", metas.generator === true ? defaultGenerator : metas.generator);
+        addMeta(
+          document,
+          "name",
+          "generator",
+          metas.generator === true ? defaultGenerator : metas.generator,
+        );
       }
     }
   };
