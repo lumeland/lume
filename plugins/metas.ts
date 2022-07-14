@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { merge, getLumeVersion } from "../core/utils.ts";
 
 import type { Page, Site } from "../core.ts";
 import type { HTMLDocument } from "../deps/dom.ts";
@@ -41,12 +41,17 @@ export interface MetaData {
 
   /** Robots configuration (Boolean to enable/disable, String for a custom value) */
   robots: string | boolean;
+
+  /** Whether include the generator or not (Boolean to enable/disable, String for a custom value) */
+  generator: string | boolean;
 }
 
 const defaults: Options = {
   extensions: [".html"],
   name: "metas",
 };
+
+const defaultGenerator = `Lume ${getLumeVersion()}`;
 
 /** A plugin to insert meta tags for SEO and social media */
 export default function (userOptions?: Partial<Options>) {
@@ -107,6 +112,10 @@ export default function (userOptions?: Partial<Options>) {
 
       // Misc
       addMeta(document, "name", "theme-color", metas.color);
+
+      if (metas.generator) {
+        addMeta(document, "name", "generator", metas.generator === true ? defaultGenerator : metas.generator);
+      }
     }
   };
 }

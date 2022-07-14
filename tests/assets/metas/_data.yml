@@ -1,4 +1,4 @@
-mergeKeys:
+mergedKeys:
   metas: object
 
 metas:
@@ -14,3 +14,4 @@ metas:
   twitter: "@myUser"
   lang: gl
   color: black
+  generator: "Lume testing"

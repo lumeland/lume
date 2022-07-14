@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New event `beforeRender` triggered just before preprocess and render the pages, but after loading them.
 - New `/init.ts` script to initialize Lume in a folder without install it, with `deno run -A https://deno.land/x/lume/init.ts`.
+- New property `generator` to metas plugin [#215].
 
 ### Fixed
 - Parcel Plugin should add a source-mapping comment [#207].
@@ -1633,6 +1634,7 @@ The first version.
 [#209]: https://github.com/lumeland/lume/issues/209
 [#210]: https://github.com/lumeland/lume/issues/210
 [#214]: https://github.com/lumeland/lume/issues/214
+[#215]: https://github.com/lumeland/lume/issues/215
 
 [1.10.1]: https://github.com/lumeland/lume/compare/v1.10.0...HEAD
 [1.10.0]: https://github.com/lumeland/lume/compare/v1.9.1...v1.10.0

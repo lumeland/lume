@@ -75,16 +75,25 @@ snapshot[`metas plugin 4`] = `
   content: '<!DOCTYPE html>
 <html><head>
   <meta property="og:type" content="website">
+<meta property="og:site_name" content="My site">
+<meta property="og:locale" content="gl">
 <meta property="og:title" content="Custom title">
 <meta property="og:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
 <meta property="og:url" content="http://localhost/page-1/">
+<meta property="og:image" content="http://localhost/my-image.png">
 <meta name="twitter:title" content="Custom title">
 <meta name="twitter:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost/my-image.png">
+<meta name="twitter:site" content="@myUser">
 <meta itemprop="name" content="Custom title">
 <meta itemprop="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
+<meta itemprop="image" content="http://localhost/my-image.png">
 <meta name="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
+<meta name="keywords" content="one, two">
 <meta name="robots" content="index, follow">
+<meta name="theme-color" content="black">
+<meta name="generator" content="Lume testing">
 </head>
   <body>
     Hello world
@@ -101,13 +110,24 @@ snapshot[`metas plugin 4`] = `
 </html>
 ",
     date: 1970-01-01T00:00:00.000Z,
-    mergeKeys: {
+    mergedKeys: {
       metas: "object",
     },
     metas: {
+      color: "black",
       description: 'A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append "…" to the end. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      generator: "Lume testing",
+      icon: "/my-icon.png",
+      image: "/my-image.png",
+      keywords: [
+        "one",
+        "two",
+      ],
+      lang: "gl",
       robots: true,
+      site: "My site",
       title: "Custom title",
+      twitter: "@myUser",
     },
     paginate: [GeneratorFunction: paginate],
     search: Search {},
