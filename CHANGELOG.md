@@ -7,9 +7,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.10.1] - Unreleased
+## [1.10.1] - 2022-07-15
 ### Added
-- New event `beforeRender` triggered just before preprocess and render the pages, but after loading them.
+- New event `beforeRender` triggered after loading the pages but before preprocess and render them.
 - New `/init.ts` script to initialize Lume in a folder without install it, with `deno run -A https://deno.land/x/lume/init.ts`.
 - New property `generator` to metas plugin [#215].
 
@@ -1636,7 +1636,7 @@ The first version.
 [#214]: https://github.com/lumeland/lume/issues/214
 [#215]: https://github.com/lumeland/lume/issues/215
 
-[1.10.1]: https://github.com/lumeland/lume/compare/v1.10.0...HEAD
+[1.10.1]: https://github.com/lumeland/lume/compare/v1.10.0...v1.10.1
 [1.10.0]: https://github.com/lumeland/lume/compare/v1.9.1...v1.10.0
 [1.9.1]: https://github.com/lumeland/lume/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/lumeland/lume/compare/v1.8.0...v1.9.0
