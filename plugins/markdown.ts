@@ -19,6 +19,10 @@ export interface Options {
   /** The list of markdown-it plugins to use */
   plugins: unknown[];
 
+  /** To modify existing rules or new custom rules */
+  // deno-lint-ignore no-explicit-any
+  rules: Record<string, (...args: any[]) => any>;
+
   /** Set `true` append your plugins to the defaults */
   keepDefaultPlugins: boolean;
 }
@@ -33,6 +37,7 @@ export const defaults: Options = {
     markdownItAttrs,
     markdownItDeflist,
   ],
+  rules: {},
   keepDefaultPlugins: false,
 };
 
@@ -77,6 +82,11 @@ export default function (userOptions?: Partial<Options>) {
     options.plugins.forEach((plugin) =>
       Array.isArray(plugin) ? engine.use(...plugin) : engine.use(plugin)
     );
+
+    // Register custom rules
+    for (const [name, rule] of Object.entries(options.rules)) {
+      engine.rules[name] = rule;
+    }
 
     // Load the pages
     site.loadPages(options.extensions, loader, new MarkdownEngine(engine));
