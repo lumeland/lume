@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New option `rules` to markdown plugin [#218].
 
+### Fixed
+- Updated dependencies: `std`, `liquid`.
+
 ## [1.10.1] - 2022-07-15
 ### Added
 - New event `beforeRender` triggered after loading the pages but before preprocess and render them.
