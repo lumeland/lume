@@ -52,7 +52,7 @@ export class EtaEngine implements Engine {
     return template(data, this.engine.config);
   }
 
-  renderSync(content: string, data: Data, filename: string) {
+  renderSync(content: string, data: Data, filename: string): string {
     const template = this.getTemplate(content, filename, { async: false });
 
     data.filters = this.filters;

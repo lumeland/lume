@@ -46,11 +46,11 @@ export class PugEngine implements Engine {
     this.cache.clear();
   }
 
-  render(content: string, data?: Data, filename?: string) {
+  render(content: string, data?: Data, filename?: string): string {
     return this.renderSync(content, data, filename);
   }
 
-  renderSync(content: string, data?: Data, filename?: string) {
+  renderSync(content: string, data?: Data, filename?: string): string {
     if (!filename) {
       return this.compiler(content, this.options)(data);
     }

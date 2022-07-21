@@ -49,7 +49,7 @@ export class JsxEngine implements Engine {
     return element;
   }
 
-  renderSync(content: unknown, data: Data = {}): string {
+  renderSync(content: unknown, data: Data = {}): { toString(): string } {
     const element = typeof content === "function"
       ? content(data, this.helpers)
       : content;

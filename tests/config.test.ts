@@ -1,6 +1,8 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
 
+import type { Engine } from "../core.ts";
+
 Deno.test("default configuration", () => {
   const site = lume();
   const { options } = site;
@@ -157,12 +159,16 @@ Deno.test("pages configuration", () => {
   }
 
   const loader = () => Promise.resolve({});
-  const engine = {
-    deleteCache: () => {},
-    render: () => {},
-    renderSync: () => "",
-    addHelper: () => {},
-  };
+  const engine = new class implements Engine {
+    deleteCache() {}
+    render() {
+      return "";
+    }
+    renderSync() {
+      return "";
+    }
+    addHelper() {}
+  }();
 
   const newExts = [".ext1", ".ext2"];
 

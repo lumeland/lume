@@ -329,7 +329,7 @@ function isGenerator(content: unknown) {
 }
 
 /** An interface used by all template engines */
-export interface Engine {
+export interface Engine<T = string | { toString(): string }> {
   /** Delete a cached template */
   deleteCache(file: string): void;
 
@@ -338,14 +338,14 @@ export interface Engine {
     content: unknown,
     data?: Data,
     filename?: string,
-  ): unknown | Promise<unknown>;
+  ): T | Promise<T>;
 
   /** Render a template synchronous (used to render components) */
   renderSync(
     content: unknown,
     data?: Data,
     filename?: string,
-  ): string;
+  ): T;
 
   /** Add a helper to the template engine */
   addHelper(
