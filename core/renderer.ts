@@ -59,7 +59,7 @@ export default class Renderer {
   /** Render the provided pages */
   async renderPages(from: Page[], to: Page[]) {
     for (const group of this.#groupPages(from)) {
-      const pages = [];
+      const pages: Page[] = [];
       const generators = [];
 
       // Split regular pages and generators
@@ -71,14 +71,17 @@ export default class Renderer {
           continue;
         }
 
-        to.push(page);
-
         if (!page.data.ondemand) {
           pages.push(page);
         }
       }
 
+      // Preprocess the pages and add them to site.pages
+      await this.preprocessors.run(pages);
+      to.push(...pages);
+
       // Auto-generate pages and join them with the others
+      const generatedPages: Page[] = [];
       for (const page of generators) {
         const generator = await this.render(
           page.data.content,
@@ -93,17 +96,17 @@ export default class Renderer {
           }
           const newPage = page.duplicate(index++, data);
           this.#preparePage(newPage);
-          to.push(newPage);
-          pages.push(newPage);
+          generatedPages.push(newPage);
         }
       }
 
-      // Preprocess the pages
-      await this.preprocessors.run(pages);
+      // Preprocess the pages and add them to site.pages
+      await this.preprocessors.run(generatedPages);
+      to.push(...generatedPages);
 
       // Render pages
       await concurrent(
-        pages,
+        pages.concat(generatedPages),
         async (page) => {
           try {
             page.content = await this.#renderPage(page);

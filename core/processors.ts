@@ -37,7 +37,7 @@ export default class Processors {
               (exts === "*" || (page.src.ext && exts.includes(page.src.ext)) ||
                 exts.includes(page.dest.ext))
             ) {
-              await process(page);
+              await process(page, pages);
             }
           } catch (cause) {
             throw new Exception("Error processing page", {
@@ -53,4 +53,4 @@ export default class Processors {
 }
 
 /** A (pre)processor */
-export type Processor = (page: Page) => void;
+export type Processor = (page: Page, pages: Page[]) => void;

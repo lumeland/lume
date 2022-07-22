@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.10.2] - Unreleased
 ### Added
 - New option `rules` to markdown plugin [#218].
+- A second argument to processors with the array of all pages. This allows to dynamically add or remove pages from a preprocessor.
 
 ### Fixed
 - Updated dependencies: `std`, `liquid`.
