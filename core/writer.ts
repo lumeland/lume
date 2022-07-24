@@ -56,7 +56,13 @@ export default class Writer {
   async savePage(page: Page): Promise<boolean> {
     // Ignore empty files or with url === false
     if (!page.content || page.data.url === false) {
-      this.logger.warn(`Skipped page ${page.data.url} (source file is empty)`);
+      this.logger.warn(
+        `Skipped page ${page.data.url} (${
+          page.data.url === false
+            ? "page url is set to `false`"
+            : "source file is empty"
+        })`,
+      );
       return false;
     }
 
