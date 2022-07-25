@@ -1,6 +1,7 @@
 import { assertEquals as equals } from "../deps/assert.ts";
 import { getImportMap, isPlainObject, merge, sha1 } from "../core/utils.ts";
 import { getPath } from "./utils.ts";
+import { React } from "../deps/react.ts";
 
 Deno.test("merge options", () => {
   interface Options {
@@ -68,6 +69,9 @@ Deno.test("isPlainObject", () => {
   equals(isPlainObject(new Map()), false);
   equals(isPlainObject(new Set()), false);
   equals(isPlainObject(Symbol.for("foo")), false);
+  equals(isPlainObject(new class {}()), false);
+  equals(isPlainObject(new Object()), true);
+  equals(isPlainObject(React.createElement("div")), false);
 });
 
 Deno.test("sha1 function", async () => {

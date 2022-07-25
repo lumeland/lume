@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Updated dependencies: `std`, `liquid`.
+- Improved `isPlainObject()` util function.
 
 ## [1.10.1] - 2022-07-15
 ### Added
