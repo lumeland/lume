@@ -268,7 +268,7 @@ function compileValue(value: string): unknown {
   const quoted = !!value.match(/^('|")(.*)\1$/);
 
   if (quoted) {
-    value = value.slice(1, -2);
+    value = value.slice(1, -1);
   }
 
   if (value.includes("|")) {
