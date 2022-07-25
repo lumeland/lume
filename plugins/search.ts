@@ -265,11 +265,20 @@ function compileValue(value: string): unknown {
   }
 
   // Remove quotes
-  value = value.replace(/^('|")(.*)\1$/, "$2");
+  const quoted = !!value.match(/^('|")(.*)\1$/);
+
+  if (quoted) {
+    value = value.slice(1, -2);
+  }
 
   if (value.includes("|")) {
     return value.split("|").map((val) => compileValue(val));
   }
+
+  if (quoted) {
+    return value;
+  }
+
   if (value.toLowerCase() === "true") {
     return true;
   }
@@ -281,6 +290,9 @@ function compileValue(value: string): unknown {
   }
   if (value.toLowerCase() === "null") {
     return null;
+  }
+  if (value.match(/^\d+$/)) {
+    return Number(value);
   }
   if (typeof value === "number" && isFinite(value)) {
     return Number(value);
