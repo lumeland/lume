@@ -85,8 +85,7 @@ const objectConstructor = {}.constructor;
 
 /** Check if the argument passed is a plain object */
 export function isPlainObject(obj: unknown) {
-  return typeof obj === "object" && obj !== null && !Array.isArray(obj) &&
-    obj.toString() === "[object Object]" &&
+  return typeof obj === "object" && obj !== null &&
     obj.constructor === objectConstructor &&
     // @ts-ignore: Check if the argument passed is a React element
     obj["$$typeof"] !== reactElement;
