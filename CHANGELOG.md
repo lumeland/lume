@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New option `rules` to markdown plugin [#218].
 - A second argument to processors with the array of all pages. This allows to dynamically add or remove pages from a preprocessor.
 
+### Changed
+- Preprocessors assigned to page generators are executed **before** the new pages are generated (previously they were executed after generating them). This shouldn't be a breaking change, unless you're doing something very weird.
+
 ### Fixed
 - Updated dependencies: `std`, `liquid`.
 - Improved `isPlainObject()` util function.

@@ -60,7 +60,7 @@ export default class Renderer {
   async renderPages(from: Page[], to: Page[]) {
     for (const group of this.#groupPages(from)) {
       const pages: Page[] = [];
-      const generators = [];
+      const generators: Page[] = [];
 
       // Split regular pages and generators
       for (const page of group) {
@@ -80,7 +80,9 @@ export default class Renderer {
       await this.preprocessors.run(pages);
       to.push(...pages);
 
-      // Auto-generate pages and join them with the others
+      // Preprocess the generators and generate the new pages
+      await this.preprocessors.run(generators);
+
       const generatedPages: Page[] = [];
       for (const page of generators) {
         const generator = await this.render(
@@ -100,8 +102,7 @@ export default class Renderer {
         }
       }
 
-      // Preprocess the pages and add them to site.pages
-      await this.preprocessors.run(generatedPages);
+      // Add the generated pages to site.pages
       to.push(...generatedPages);
 
       // Render pages
