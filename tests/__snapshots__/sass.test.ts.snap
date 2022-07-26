@@ -110,11 +110,11 @@ snapshot[`sass plugin 5`] = `
     content: "(removed for testing)",
     tags: [
     ],
-    url: "/index.css.map",
+    url: "/index2.css.map",
   },
   dest: {
     ext: ".map",
-    path: "/index.css",
+    path: "/index2.css",
   },
   src: {
     ext: undefined,
@@ -154,7 +154,7 @@ snapshot[`sass plugin 6`] = `
 snapshot[`sass plugin 7`] = `
 {
   content: "body{color:blue}
-/*# sourceMappingURL=index.css.map */",
+/*# sourceMappingURL=index2.css.map */",
   data: {
     content: '@import "sass/colors"
 
@@ -166,15 +166,15 @@ body
     search: Search {},
     tags: [
     ],
-    url: "/index.css",
+    url: "/index2.css",
   },
   dest: {
     ext: ".css",
-    path: "/index",
+    path: "/index2",
   },
   src: {
     ext: ".sass",
-    path: "/index",
+    path: "/index2",
     remote: undefined,
   },
 }
