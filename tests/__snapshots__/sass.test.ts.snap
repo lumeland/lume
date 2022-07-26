@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`sass plugin 1`] = `1`;
+snapshot[`sass plugin 1`] = `4`;
 
 snapshot[`sass plugin 2`] = `
 {
@@ -67,6 +67,12 @@ snapshot[`sass plugin 2`] = `
       ext: ".scss",
       pageLoader: [AsyncFunction: text],
     },
+    {
+      asset: true,
+      engine: false,
+      ext: ".sass",
+      pageLoader: [AsyncFunction: text],
+    },
   ],
 }
 `;
@@ -78,7 +84,50 @@ snapshot[`sass plugin 3`] = `
 
 snapshot[`sass plugin 4`] = `
 {
-  content: "body{font:100% Helvetica,sans-serif;color:#333}",
+  content: "(removed for testing)",
+  data: {
+    content: "(removed for testing)",
+    tags: [
+    ],
+    url: "/index.css.map",
+  },
+  dest: {
+    ext: ".map",
+    path: "/index.css",
+  },
+  src: {
+    ext: undefined,
+    path: "",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`sass plugin 5`] = `
+{
+  content: "(removed for testing)",
+  data: {
+    content: "(removed for testing)",
+    tags: [
+    ],
+    url: "/index.css.map",
+  },
+  dest: {
+    ext: ".map",
+    path: "/index.css",
+  },
+  src: {
+    ext: undefined,
+    path: "",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`sass plugin 6`] = `
+{
+  content: "body{font:100% Helvetica,sans-serif;color:#333}
+/*# sourceMappingURL=index.css.map */",
   data: {
     content: '@import "./_includes/sass/colors";
 @import "sass/button";
@@ -96,6 +145,35 @@ snapshot[`sass plugin 4`] = `
   },
   src: {
     ext: ".scss",
+    path: "/index",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`sass plugin 7`] = `
+{
+  content: "body{color:blue}
+/*# sourceMappingURL=index.css.map */",
+  data: {
+    content: '@import "sass/colors"
+
+body
+  color: \$primary-color
+',
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/index.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/index",
+  },
+  src: {
+    ext: ".sass",
     path: "/index",
     remote: undefined,
   },

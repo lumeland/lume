@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - Preprocessors assigned to page generators are executed **before** the new pages are generated (previously they were executed after generating them). This shouldn't be a breaking change, unless you're doing something very weird.
+- Changed SASS library to [binyamin/deno-sass](https://gitlab.com/binyamin/deno-sass), that uses [dart-sass](https://github.com/sass/dart-sass).
 
 ### Fixed
 - Updated dependencies: `std`, `liquid`.

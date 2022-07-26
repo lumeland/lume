@@ -6,7 +6,9 @@ Deno.test("sass plugin", async (t) => {
     src: "sass",
   });
 
-  site.use(sass());
+  site.use(sass({
+    sourceMap: true,
+  }));
 
   await build(site);
   await assertSiteSnapshot(t, site);
