@@ -14,7 +14,7 @@ export interface Options {
  */
 export default class Reader {
   src: string;
-  cache = new Map<string, Promise<Data>>();
+  cache = new Map<string, Promise<Data> | Data>();
   remoteFiles = new Map<string, string>();
 
   constructor(options: Options) {
