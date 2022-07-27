@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Changed SASS library to [binyamin/deno-sass](https://gitlab.com/binyamin/deno-sass), that uses [dart-sass](https://github.com/sass/dart-sass).
 
 ### Fixed
-- Updated dependencies: `std`, `liquid`.
+- Updated dependencies: `std`, `liquid`, `deno_dom`, `esbuild`.
 - Improved `isPlainObject()` util function.
 - Search improvements:
   - Numeric arguments passed to `search.pages()` are converted to numbers.
