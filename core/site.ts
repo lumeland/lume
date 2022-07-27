@@ -525,7 +525,7 @@ export default class Site {
           `Skipped page ${page.data.url} (${
             page.data.ondemand
               ? "page is build only on demand"
-              : "source file is empty"
+              : "file content is empty"
           })`,
         );
       }

@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New option `rules` to markdown plugin [#218].
 - A second argument to processors with the array of all pages. This allows to dynamically add or remove pages from a preprocessor.
 - New function `Reader.saveCache()` to cache a file manually.
+- Warning when empty files are skipped [#221], [#180]
 
 ### Changed
 - Preprocessors assigned to page generators are executed **before** the new pages are generated (previously they were executed after generating them). This shouldn't be a breaking change, unless you're doing something very weird.
@@ -1631,6 +1632,7 @@ The first version.
 [#169]: https://github.com/lumeland/lume/issues/169
 [#170]: https://github.com/lumeland/lume/issues/170
 [#175]: https://github.com/lumeland/lume/issues/175
+[#180]: https://github.com/lumeland/lume/issues/180
 [#181]: https://github.com/lumeland/lume/issues/181
 [#182]: https://github.com/lumeland/lume/issues/182
 [#184]: https://github.com/lumeland/lume/issues/184
@@ -1654,6 +1656,7 @@ The first version.
 [#214]: https://github.com/lumeland/lume/issues/214
 [#215]: https://github.com/lumeland/lume/issues/215
 [#218]: https://github.com/lumeland/lume/issues/218
+[#221]: https://github.com/lumeland/lume/issues/221
 
 [1.10.2]: https://github.com/lumeland/lume/compare/v1.10.1...HEAD
 [1.10.1]: https://github.com/lumeland/lume/compare/v1.10.0...v1.10.1

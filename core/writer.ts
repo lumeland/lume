@@ -60,7 +60,7 @@ export default class Writer {
         `Skipped page ${page.data.url} (${
           page.data.url === false
             ? "page url is set to `false`"
-            : "source file is empty"
+            : "file content is empty"
         })`,
       );
       return false;
