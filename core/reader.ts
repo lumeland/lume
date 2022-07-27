@@ -26,6 +26,12 @@ export default class Reader {
     this.remoteFiles.set(this.getFullPath(filename), url);
   }
 
+  /** Cache a file */
+  saveCache(path: string, data: Promise<Data> | Data) {
+    const fullPath = this.getFullPath(path);
+    this.cache.set(fullPath, data);
+  }
+
   /** Delete a file from the cache */
   deleteCache(path: string) {
     const fullPath = this.getFullPath(path);
