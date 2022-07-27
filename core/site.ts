@@ -518,9 +518,19 @@ export default class Site {
     }
 
     // Remove empty pages and ondemand pages
-    this.pages = this.pages.filter((page) =>
-      !!page.content && !page.data.ondemand
-    );
+    this.pages = this.pages.filter((page) => {
+      const shouldSkip = !page.content || page.data.ondemand;
+      if (shouldSkip) {
+        this.logger.warn(
+          `Skipped page ${page.data.url} (${
+            page.data.ondemand
+              ? "page is build only on demand"
+              : "source file is empty"
+          })`,
+        );
+      }
+      return !shouldSkip;
+    });
 
     // Run the processors to the pages
     await this.processors.run(this.pages);
