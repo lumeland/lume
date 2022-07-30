@@ -524,8 +524,8 @@ export default class Site {
         this.logger.warn(
           `Skipped page ${page.data.url} (${
             page.data.ondemand
-              ? "page is build only on demand"
-              : "source file is empty"
+              ? "page is built only on demand"
+              : "output content is empty"
           })`,
         );
       }
