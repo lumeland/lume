@@ -180,14 +180,6 @@ export default class Renderer {
       return;
     }
 
-    // Check that `url` is of a valid type
-    if (!["string", "function", "undefined"].includes(typeof url)) {
-      throw new Exception(
-        `The url variable must be either a string, function, or 'undefined'. The provided url is of type: ${typeof url}.`,
-        { page, url },
-      );
-    }
-
     if (typeof url === "function") {
       url = url(page);
     }
@@ -210,6 +202,13 @@ export default class Renderer {
         dest.ext = posix.extname(url);
         dest.path = dest.ext ? url.slice(0, -dest.ext.length) : url;
       }
+    } else if (url !== undefined) {
+      // If the user has provided a value which hasn't yielded a string then it is an invalid url.
+      throw new Exception(
+        `If a url is specified, it should either be a string, or a function which returns a string. The provided url is of type: ${typeof url}.`,
+        { page, url },
+      );
+      // If the user hasn't provided a value, generate a url using Site settings.
     } else if (!this.formats.get(page.src.ext || "")?.asset) {
       // Handle subextensions, like styles.css.njk
       const subext = posix.extname(page.dest.path);
