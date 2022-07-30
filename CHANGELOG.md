@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - Numeric arguments passed to `search.pages()` are converted to numbers.
     For example `search.pages("foo=34")`, the `34` value is converted to number (previously it was a string, returning empty values)
   - Values with quotes are treated as strings. For example: `search.pages("foo='34'")`, the `34` value is a string.
+- If a HTML document is missing `<!DOCTYPE html>`, it's automatically added to the document with `documentToString` [#223].
 
 ## [1.10.1] - 2022-07-15
 ### Added
