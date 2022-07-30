@@ -114,7 +114,7 @@ export function documentToString(document: HTMLDocument) {
   const { doctype, documentElement } = document;
 
   if (!doctype) {
-    return documentElement?.outerHTML || "";
+    return `<!DOCTYPE html>\n${documentElement?.outerHTML || ""}`;
   }
 
   return `<!DOCTYPE ${doctype.name}` +

@@ -1,5 +1,12 @@
 import { assertEquals as equals } from "../deps/assert.ts";
-import { getImportMap, isPlainObject, merge, sha1 } from "../core/utils.ts";
+import {
+  documentToString,
+  getImportMap,
+  isPlainObject,
+  merge,
+  sha1,
+  stringToDocument,
+} from "../core/utils.ts";
 import { getPath } from "./utils.ts";
 import { React } from "../deps/react.ts";
 
@@ -109,4 +116,19 @@ Deno.test("merge import map", async () => {
       },
     },
   });
+});
+
+Deno.test("documentToString function should add doctype, if missing", () => {
+  const documentWithoutDoctype = stringToDocument(
+    `<html><head></head><body></body></html>`,
+  );
+  const documentWithDoctype = stringToDocument(
+    `<!DOCTYPE html><html><head></head><body></body></html>`,
+  );
+
+  const expected = `<!DOCTYPE html>
+<html><head></head><body></body></html>`;
+
+  equals(documentToString(documentWithoutDoctype), expected);
+  equals(documentToString(documentWithDoctype), expected);
 });
