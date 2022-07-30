@@ -180,6 +180,14 @@ export default class Renderer {
       return;
     }
 
+    // Check that `url` is of a valid type
+    if (!["string", "function", "undefined"].includes(typeof url)) {
+      throw new Exception(
+        `The url variable must be either a string, function, or 'undefined'. The provided url is of type: ${typeof url}.`,
+        { page, url },
+      );
+    }
+
     if (typeof url === "function") {
       url = url(page);
     }
