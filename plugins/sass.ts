@@ -69,15 +69,16 @@ export default function (userOptions?: Partial<Options>) {
           posix.basename(page.dest.path)
         }.css.map */`;
 
-        // Add a `file` property to the sourcemap
+        // Add a `file` and `sourceRoot` properties to the sourcemap
+        const sourceRoot = toFileUrl(site.options.cwd).href;
+        output.sourceMap.sourceRoot = sourceRoot;
         output.sourceMap.file = page.dest.path + page.dest.ext;
-        const base = toFileUrl(posix.dirname(filename)).href;
 
         // sass source-maps use file URLs (eg. "file:///foo/bar"), but
         // relative paths (eg. "../bar") look better in the dev-tools.
         // Also, the sass CLI tool produces relative paths.
         output.sourceMap.sources = output.sourceMap.sources.map(
-          (fileUrl: string) => posix.relative(base, fileUrl),
+          (fileUrl: string) => posix.relative(sourceRoot, fileUrl),
         );
 
         site.pages.push(Page.create(
