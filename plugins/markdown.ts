@@ -59,8 +59,11 @@ export class MarkdownEngine implements Engine {
     return this.renderSync(content, data, filename);
   }
 
-  renderSync(content: string, data?: Data, filename?: string): string {
-    return this.engine.render(content, { filename, data });
+  renderSync(content: unknown, data?: Data, filename?: string): string {
+    if (typeof content !== "string") {
+      content = String(content);
+    }
+    return this.engine.render(content as string, { filename, data });
   }
 
   addHelper() {}
