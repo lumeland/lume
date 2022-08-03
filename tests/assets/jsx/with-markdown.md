@@ -3,6 +3,6 @@ layout: layout.jsx
 title: Markdown combined with JSX
 ---
 
-# Hello world
+# Hello world{.foo}
 
 This is a **markdown** text. [Go home](/)

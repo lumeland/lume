@@ -1,3 +1,4 @@
+import { encode } from "../deps/base64.ts";
 import { React, ReactDOMServer } from "../deps/react.ts";
 import loader from "../core/loaders/module.ts";
 import { merge } from "../core/utils.ts";
@@ -27,7 +28,20 @@ export class JsxEngine implements Engine {
 
   deleteCache() {}
 
+  // deno-lint-ignore no-explicit-any
+  async parseJSX(content: string, data: Data = {}): Promise<any> {
+    const datakeys = Object.keys(data).join(",");
+    const fn =
+      `export default function ({${datakeys}}, helpers) { return <>${content}</> }`;
+    const url = `data:text/jsx;base64,${encode(fn)}`;
+    return (await import(url)).default;
+  }
+
   async render(content: unknown, data: Data = {}) {
+    if (typeof content === "string") {
+      content = await this.parseJSX(content, data);
+    }
+
     if (!data.children && data.content) {
       data.children = React.createElement("div", {
         dangerouslySetInnerHTML: { __html: data.content },
