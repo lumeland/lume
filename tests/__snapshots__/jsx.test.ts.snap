@@ -113,9 +113,6 @@ snapshot[`build a site with jsx/tsx modules 5`] = `
 {
   content: "<html><head><title></title></head><body><main><div>1</div></main></body></html>",
   data: {
-    children: Generator {
-      toString: [Function],
-    },
     comp: {},
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -142,9 +139,6 @@ snapshot[`build a site with jsx/tsx modules 6`] = `
 {
   content: "<html><head><title></title></head><body><main><div>2</div></main></body></html>",
   data: {
-    children: Generator {
-      toString: [Function],
-    },
     comp: {},
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -169,7 +163,11 @@ snapshot[`build a site with jsx/tsx modules 6`] = `
 
 snapshot[`build a site with jsx/tsx modules 7`] = `
 {
-  content: '<html><head><title>Markdown combined with JSX</title></head><body><main># Hello <strong class="foo">world</strong>This is a **markdown** text. [Go home](/)<button type="foo">Hello</button><img src="foo"/></main></body></html>',
+  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1>Hello <strong class="foo">world</strong></h1>
+<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+<p><button type="foo">Hello</button></p>
+<img src="foo"/>
+</div></main></body></html>',
   data: {
     comp: {},
     content: '# Hello <strong className="foo">world</strong>
