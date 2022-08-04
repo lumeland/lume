@@ -30,9 +30,13 @@ export class JsxEngine implements Engine {
 
   // deno-lint-ignore no-explicit-any
   async parseJSX(content: string, data: Data = {}): Promise<any> {
-    const datakeys = Object.keys(data).join(",");
+    // Destructure arguments
+    const destructure = `{${Object.keys(data).join(",")}}`;
+    // Keep the line breaks (\n -> {"\n"})
+    content = content.replaceAll(/(\n\r?)/g, '{"\\n"}');
+
     const fn =
-      `export default function ({${datakeys}}, helpers) { return <>${content}</> }`;
+      `export default async function (${destructure}, helpers) { return <>${content}</> }`;
     const url = `data:text/jsx;base64,${encode(fn)}`;
     return (await import(url)).default;
   }
@@ -42,19 +46,17 @@ export class JsxEngine implements Engine {
       content = await this.parseJSX(content, data);
     }
 
-    if (!data.children && data.content) {
-      data.children = React.createElement("div", {
+    const children = typeof data.content === "string"
+      ? React.createElement("div", {
         dangerouslySetInnerHTML: { __html: data.content },
-      });
-    }
+      })
+      : data.content;
 
     const element = typeof content === "object" && React.isValidElement(content)
       ? content
       : (typeof content === "function"
-        ? await content(data, this.helpers)
+        ? await content({ ...data, children }, this.helpers)
         : content) as React.ReactElement;
-
-    data.children = element;
 
     if (element && typeof element === "object") {
       element.toString = () => ReactDOMServer.renderToStaticMarkup(element);
