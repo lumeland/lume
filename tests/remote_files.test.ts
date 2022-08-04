@@ -5,6 +5,7 @@ import esbuild from "../plugins/esbuild.ts";
 Deno.test("render remote files", {
   sanitizeOps: false,
   sanitizeResources: false,
+  ignore: true,
 }, async (t) => {
   const site = getSite({
     src: "remote_files",
