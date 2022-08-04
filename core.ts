@@ -72,6 +72,12 @@ import type {
   WatchEventType,
 } from "./core/watcher.ts";
 
+// Plugins types
+import type { PaginationInfo, Paginator } from "./plugins/paginate.ts";
+import type { Transformation, Transformations } from "./plugins/imagick.ts";
+import type { MetaData } from "./plugins/metas.ts";
+import type { Search } from "./plugins/search.ts";
+
 /** The method that installs a plugin */
 type PluginSetup = (options: unknown) => Plugin;
 
@@ -138,3 +144,36 @@ export type {
   WatchEventType,
   Writer,
 };
+
+export interface PageData extends Data {
+  /** The title of the page */
+  title?: string;
+
+  /** The page url */
+  url: string;
+
+  /** The available components */
+  // deno-lint-ignore no-explicit-any
+  comp?: any;
+
+  /** Plugin Paginator: The paginator helper */
+  paginate?: Paginator<Page>;
+
+  /** Plugin Pagination: The pagination info */
+  pagination?: PaginationInfo;
+
+  /** Plugin Pagination: The pagination result */
+  results?: Page[];
+
+  /** Plugin Imagick: Image transformations */
+  imagick?: Transformation | Transformations;
+
+  /** Plugin Metas: Meta elements */
+  metas?: MetaData;
+
+  /** Plugin NetlifyCMS: CMS configuration */
+  netlify_cms?: Record<string, unknown>;
+
+  /** Plugin Search: The searcher helper */
+  search?: Search;
+}
