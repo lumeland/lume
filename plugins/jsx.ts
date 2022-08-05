@@ -17,6 +17,9 @@ export const defaults: Options = {
   extensions: [".jsx", ".tsx"],
 };
 
+// JSX children type
+export type Children = React.ReactNode | React.ReactNode[];
+
 // Ensure React is available in the global scope
 // so no need to import it in every file
 window.React ||= React;

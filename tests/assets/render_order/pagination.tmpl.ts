@@ -1,12 +1,9 @@
-import { Paginator } from "../../../plugins/paginate.ts";
-import { Search } from "../../../plugins/search.ts";
+import type { PageData } from "../../../core.ts";
 
 export const layout = "paginate.tmpl.js";
 export const renderOrder = 1;
 
-export default function* (
-  { search, paginate }: { search: Search; paginate: Paginator },
-) {
+export default function* ({ search, paginate }: PageData) {
   const result = search.pages();
   const pages = paginate(result, {
     size: 5,

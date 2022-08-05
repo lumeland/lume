@@ -19,7 +19,7 @@ export default function () {
   };
 }
 
-export function attributes(values: unknown, ...validNames: string[]) {
+export function attributes(values: unknown, ...validNames: string[]): string {
   const attributes = new Map();
 
   handleAttributes(attributes, values, validNames);
@@ -27,7 +27,7 @@ export function attributes(values: unknown, ...validNames: string[]) {
   return joinAttributes(attributes);
 }
 
-export function className(...names: unknown[]) {
+export function className(...names: unknown[]): string {
   const classes = new Set<string>();
 
   names.forEach((name) => handleClass(classes, name));

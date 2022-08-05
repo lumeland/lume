@@ -77,6 +77,7 @@ import type { PaginationInfo, Paginator } from "./plugins/paginate.ts";
 import type { Transformation, Transformations } from "./plugins/imagick.ts";
 import type { MetaData } from "./plugins/metas.ts";
 import type { Search } from "./plugins/search.ts";
+import type { Children } from "./plugins/jsx.ts";
 
 /** The method that installs a plugin */
 type PluginSetup = (options: unknown) => Plugin;
@@ -152,28 +153,98 @@ export interface PageData extends Data {
   /** The page url */
   url: string;
 
-  /** The available components */
+  /**
+   * The available components
+   * @see https://lume.land/docs/core/components/
+   */
   // deno-lint-ignore no-explicit-any
   comp?: any;
 
-  /** Plugin Paginator: The paginator helper */
-  paginate?: Paginator<Page>;
+  /**
+   * The paginator helper
+   * @see https://lume.land/plugins/paginate/
+   */
+  paginate: Paginator<Page>;
 
-  /** Plugin Pagination: The pagination info */
+  /**
+   * The pagination info
+   * @see https://lume.land/plugins/paginate/
+   */
   pagination?: PaginationInfo;
 
-  /** Plugin Pagination: The pagination result */
+  /**
+   * The pagination result
+   * @see https://lume.land/plugins/paginate/
+   */
   results?: Page[];
 
-  /** Plugin Imagick: Image transformations */
+  /**
+   * Image transformations
+   * @see https://lume.land/plugins/imagick/
+   */
   imagick?: Transformation | Transformations;
 
-  /** Plugin Metas: Meta elements */
+  /**
+   * Meta elements
+   * @see https://lume.land/plugins/metas/
+   */
   metas?: MetaData;
 
-  /** Plugin NetlifyCMS: CMS configuration */
+  /**
+   * Netlify CMS configuration
+   * @see https://lume.land/plugins/netlify_cms/
+   */
   netlify_cms?: Record<string, unknown>;
 
-  /** Plugin Search: The searcher helper */
-  search?: Search;
+  /**
+   * The searcher helper
+   * @see https://lume.land/plugins/search/
+   */
+  search: Search;
+
+  /**
+   * The JSX children elements
+   * @see https://lume.land/plugins/jsx/
+   */
+  children?: Children;
+}
+
+export interface PageHelpers {
+  /** @see https://lume.land/plugins/attributes/ */
+  attr: Helper;
+
+  /** @see https://lume.land/plugins/attributes/ */
+  class: Helper;
+
+  /** @see https://lume.land/plugins/date/ */
+  date: Helper;
+
+  /** @see https://lume.land/plugins/liquid/ */
+  liquid: Helper;
+
+  /** @see https://lume.land/plugins/markdown/ */
+  md: Helper;
+
+  /** @see https://lume.land/plugins/nunjucks/ */
+  njk: Helper;
+
+  /** @see https://lume.land/plugins/postcss/ */
+  postcss: Helper;
+
+  /** @see https://lume.land/plugins/pug/ */
+  pug: Helper;
+
+  /** @see https://lume.land/plugins/slugify_urls/ */
+  slugify: Helper;
+
+  /** @see https://lume.land/plugins/terser/#the-terser-filter */
+  terser: Helper;
+
+  /** @see https://lume.land/plugins/url/#url-filter */
+  url: Helper;
+
+  /** @see https://lume.land/plugins/url/#htmlurl-filter */
+  htmlUrl: Helper;
+
+  [key: string]: Helper | undefined;
 }
