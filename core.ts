@@ -151,7 +151,7 @@ export interface PageData extends Data {
   title?: string;
 
   /** The page url */
-  url: string;
+  url: string | false;
 
   /**
    * The available components
