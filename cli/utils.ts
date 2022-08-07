@@ -46,3 +46,9 @@ export const pluginNames = [
   "svgo",
   "terser",
 ];
+
+export function log(...lines: (string | undefined)[]) {
+  console.log("----------------------------------------");
+  lines.forEach((line) => line && console.log(line));
+  console.log("----------------------------------------");
+}

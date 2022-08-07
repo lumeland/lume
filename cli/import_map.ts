@@ -1,5 +1,7 @@
-import { brightGreen } from "../deps/colors.ts";
+import { brightGreen, red } from "../deps/colors.ts";
+import { exists } from "../deps/fs.ts";
 import { baseUrl, getDenoConfig, getImportMap } from "../core/utils.ts";
+import { log } from "./utils.ts";
 
 /** Generate import_map.json and deno.json files */
 export default function () {
@@ -26,8 +28,17 @@ export async function importMap(url: URL) {
     config.importMap,
     JSON.stringify(importMap, null, 2) + "\n",
   );
-  await Deno.writeTextFile("deno.json", JSON.stringify(config, null, 2) + "\n");
 
-  console.log(brightGreen("Deno configuration file saved:"), "deno.json");
+  if (await exists("deno.jsonc")) {
+    log(
+      red("deno.jsonc needs to be manually updated:"),
+      JSON.stringify({ importMap: config.importMap, tasks: config.tasks }, null, 2),
+    );
+  } else {
+    await Deno.writeTextFile("deno.json", JSON.stringify(config, null, 2) + "\n");
+
+    console.log(brightGreen("Deno configuration file saved:"), "deno.json");
+  }
+
   console.log(brightGreen("Import map file saved:"), config.importMap);
 }
