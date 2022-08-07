@@ -96,7 +96,7 @@ Deno.test("load deno.jsonc", async () => {
   const config = await getDenoConfig();
 
   equals(config?.tasks, { foo: "echo bar" });
-})
+});
 
 Deno.test("import map", async () => {
   const map = await getImportMap();

@@ -32,10 +32,17 @@ export async function importMap(url: URL) {
   if (await exists("deno.jsonc")) {
     log(
       red("deno.jsonc needs to be manually updated:"),
-      JSON.stringify({ importMap: config.importMap, tasks: config.tasks }, null, 2),
+      JSON.stringify(
+        { importMap: config.importMap, tasks: config.tasks },
+        null,
+        2,
+      ),
     );
   } else {
-    await Deno.writeTextFile("deno.json", JSON.stringify(config, null, 2) + "\n");
+    await Deno.writeTextFile(
+      "deno.json",
+      JSON.stringify(config, null, 2) + "\n",
+    );
 
     console.log(brightGreen("Deno configuration file saved:"), "deno.json");
   }
