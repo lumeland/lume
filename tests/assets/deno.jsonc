@@ -1,0 +1,6 @@
+{
+  // A comment for spicing tests up
+  "tasks": {
+    "foo": "echo bar"
+  }
+}

@@ -1,6 +1,7 @@
 import { assertEquals as equals } from "../deps/assert.ts";
 import {
   documentToString,
+  getDenoConfig,
   getImportMap,
   isPlainObject,
   merge,
@@ -89,6 +90,13 @@ Deno.test("sha1 function", async () => {
   equals(await sha1(data), expected);
   equals(await sha1(dataUint8), expected);
 });
+
+Deno.test("load deno.jsonc", async () => {
+  Deno.chdir(getPath("assets"));
+  const config = await getDenoConfig();
+
+  equals(config?.tasks, { foo: "echo bar" });
+})
 
 Deno.test("import map", async () => {
   const map = await getImportMap();
