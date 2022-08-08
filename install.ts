@@ -17,7 +17,6 @@ const process = Deno.run({
   cmd: [
     Deno.execPath(),
     "install",
-    "--unstable",
     "-Af",
     `--no-check`,
     "--name=lume",

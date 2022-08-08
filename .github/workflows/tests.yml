@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+
       - name: Setup Deno environment
         uses: denoland/setup-deno@v1
         with:
@@ -34,6 +34,6 @@ jobs:
 
       - name: Run tests
         run: deno task test
-      
+
       - name: Test upgrade
-        run: deno run --unstable -A --no-check ci.ts upgrade
+        run: deno run -A --no-check ci.ts upgrade

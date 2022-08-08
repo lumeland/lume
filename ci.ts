@@ -13,7 +13,7 @@ import {
 
 /**
  * This file works as a proxy to the actual Lume CLI to fix the following issues:
- * - Add defaults flags to Deno (--unstable, -A, --no-check)
+ * - Add defaults flags to Deno ( -A, --no-check)
  * - Adds user provided flags to Deno (for example --compact)
  * - Detect and set the lume --quiet flag in Deno.
  * - Detect and use the deno.json file automatically.
@@ -30,7 +30,6 @@ export async function getArgs(
   const sep = args.indexOf("--");
   const lumeArgs = sep === -1 ? args : args.slice(0, sep);
   const denoArgs = [
-    "--unstable",
     "-A",
     `--no-check`,
   ];

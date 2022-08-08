@@ -1,7 +1,7 @@
 {
   "deno.enable": true,
   "deno.lint": true,
-  "deno.unstable": true,
+  "deno.unstable": false,
   "deno.suggest.imports.hosts": {
     "https://deno.land": true,
     "https://esm.sh": false
