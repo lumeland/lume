@@ -68,7 +68,7 @@ async function updateDenoConfig(url: URL) {
     await Promise.any([
       Deno.stat("deno.json"),
       Deno.stat("deno.jsonc"),
-    ])
+    ]);
     await Promise.all([
       Deno.stat("import_map.json"),
     ]);
