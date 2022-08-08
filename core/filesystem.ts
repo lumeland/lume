@@ -421,7 +421,7 @@ export interface Data {
   /** To configure the render order of a page */
   renderOrder?: number;
 
-  /** The content of a page */
+  /** The raw content of a page */
   content?: unknown;
 
   /** The layout used to render a page */

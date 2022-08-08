@@ -1,5 +1,13 @@
 import { assertEquals as equals } from "../deps/assert.ts";
-import { getImportMap, isPlainObject, merge, sha1 } from "../core/utils.ts";
+import {
+  documentToString,
+  getDenoConfig,
+  getImportMap,
+  isPlainObject,
+  merge,
+  sha1,
+  stringToDocument,
+} from "../core/utils.ts";
 import { getPath } from "./utils.ts";
 import { React } from "../deps/react.ts";
 
@@ -83,6 +91,13 @@ Deno.test("sha1 function", async () => {
   equals(await sha1(dataUint8), expected);
 });
 
+Deno.test("load deno.jsonc", async () => {
+  Deno.chdir(getPath("assets"));
+  const config = await getDenoConfig();
+
+  equals(config?.tasks, { foo: "echo bar" });
+});
+
 Deno.test("import map", async () => {
   const map = await getImportMap();
 
@@ -109,4 +124,19 @@ Deno.test("merge import map", async () => {
       },
     },
   });
+});
+
+Deno.test("documentToString function should add doctype, if missing", () => {
+  const documentWithoutDoctype = stringToDocument(
+    `<html><head></head><body></body></html>`,
+  );
+  const documentWithDoctype = stringToDocument(
+    `<!DOCTYPE html><html><head></head><body></body></html>`,
+  );
+
+  const expected = `<!DOCTYPE html>
+<html><head></head><body></body></html>`;
+
+  equals(documentToString(documentWithoutDoctype), expected);
+  equals(documentToString(documentWithDoctype), expected);
 });

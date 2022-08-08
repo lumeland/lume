@@ -1,6 +1,7 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
 import { join, posix, resolve, SEP, toFileUrl } from "../deps/path.ts";
 import { exists } from "../deps/fs.ts";
+import { parse } from "../deps/jsonc.ts";
 import { Exception } from "./errors.ts";
 
 export const baseUrl = new URL("../", import.meta.url);
@@ -114,7 +115,7 @@ export function documentToString(document: HTMLDocument) {
   const { doctype, documentElement } = document;
 
   if (!doctype) {
-    return documentElement?.outerHTML || "";
+    return `<!DOCTYPE html>\n${documentElement?.outerHTML || ""}`;
   }
 
   return `<!DOCTYPE ${doctype.name}` +
@@ -232,15 +233,17 @@ export interface DenoConfig {
 }
 
 export async function getDenoConfig(): Promise<DenoConfig | undefined> {
-  try {
-    const content = await Deno.readTextFile("deno.json");
-    return JSON.parse(content) as DenoConfig;
-  } catch (err) {
-    if (err instanceof Deno.errors.NotFound) {
-      return;
-    }
+  for (const configFile of ["deno.json", "deno.jsonc"]) {
+    try {
+      const content = await Deno.readTextFile(configFile);
+      return parse(content) as DenoConfig;
+    } catch (err) {
+      if (err instanceof Deno.errors.NotFound) {
+        continue;
+      }
 
-    throw err;
+      throw err;
+    }
   }
 }
 

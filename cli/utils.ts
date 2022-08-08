@@ -1,6 +1,6 @@
 import lume from "../mod.ts";
 import { toFileUrl } from "../deps/path.ts";
-import { dim } from "../deps/colors.ts";
+import { dim, red } from "../deps/colors.ts";
 import { getConfigFile } from "../core/utils.ts";
 
 import type { Site } from "../core.ts";
@@ -46,3 +46,16 @@ export const pluginNames = [
   "svgo",
   "terser",
 ];
+
+export function log(...lines: (string | undefined)[]) {
+  console.log("----------------------------------------");
+  lines.forEach((line) => line && console.log(line));
+  console.log("----------------------------------------");
+}
+
+export function promptConfigUpdate(data: unknown) {
+  log(
+    red("deno.jsonc needs to be manually updated:"),
+    JSON.stringify(data, null, 2),
+  );
+}

@@ -19,12 +19,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Changed SASS library to [binyamin/deno-sass](https://gitlab.com/binyamin/deno-sass), that uses [dart-sass](https://github.com/sass/dart-sass).
 
 ### Fixed
-- Updated dependencies: `std`, `liquid`, `deno_dom`, `esbuild`.
+- Updated dependencies: `std`, `liquid`, `deno_dom`, `esbuild`, `parcel_css`, `cliffy`.
 - Improved `isPlainObject()` util function.
 - Search improvements:
   - Numeric arguments passed to `search.pages()` are converted to numbers.
     For example `search.pages("foo=34")`, the `34` value is converted to number (previously it was a string, returning empty values)
   - Values with quotes are treated as strings. For example: `search.pages("foo='34'")`, the `34` value is a string.
+- If a HTML document is missing `<!DOCTYPE html>`, it's automatically added to the document with `documentToString` [#223].
 
 ## [1.10.1] - 2022-07-15
 ### Added

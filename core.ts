@@ -72,6 +72,13 @@ import type {
   WatchEventType,
 } from "./core/watcher.ts";
 
+// Plugins types
+import type { PaginationInfo, Paginator } from "./plugins/paginate.ts";
+import type { Transformation, Transformations } from "./plugins/imagick.ts";
+import type { MetaData } from "./plugins/metas.ts";
+import type { Search } from "./plugins/search.ts";
+import type { Children } from "./plugins/jsx.ts";
+
 /** The method that installs a plugin */
 type PluginSetup = (options: unknown) => Plugin;
 
@@ -138,3 +145,106 @@ export type {
   WatchEventType,
   Writer,
 };
+
+export interface PageData extends Data {
+  /** The title of the page */
+  title?: string;
+
+  /** The page url */
+  url: string | false;
+
+  /**
+   * The available components
+   * @see https://lume.land/docs/core/components/
+   */
+  // deno-lint-ignore no-explicit-any
+  comp?: any;
+
+  /**
+   * The paginator helper
+   * @see https://lume.land/plugins/paginate/
+   */
+  paginate: Paginator<Page>;
+
+  /**
+   * The pagination info
+   * @see https://lume.land/plugins/paginate/
+   */
+  pagination?: PaginationInfo;
+
+  /**
+   * The pagination result
+   * @see https://lume.land/plugins/paginate/
+   */
+  results?: Page[];
+
+  /**
+   * Image transformations
+   * @see https://lume.land/plugins/imagick/
+   */
+  imagick?: Transformation | Transformations;
+
+  /**
+   * Meta elements
+   * @see https://lume.land/plugins/metas/
+   */
+  metas?: MetaData;
+
+  /**
+   * Netlify CMS configuration
+   * @see https://lume.land/plugins/netlify_cms/
+   */
+  netlify_cms?: Record<string, unknown>;
+
+  /**
+   * The searcher helper
+   * @see https://lume.land/plugins/search/
+   */
+  search: Search;
+
+  /**
+   * The JSX children elements
+   * @see https://lume.land/plugins/jsx/
+   */
+  children?: Children;
+}
+
+export interface PageHelpers {
+  /** @see https://lume.land/plugins/attributes/ */
+  attr: Helper;
+
+  /** @see https://lume.land/plugins/attributes/ */
+  class: Helper;
+
+  /** @see https://lume.land/plugins/date/ */
+  date: Helper;
+
+  /** @see https://lume.land/plugins/liquid/ */
+  liquid: Helper;
+
+  /** @see https://lume.land/plugins/markdown/ */
+  md: Helper;
+
+  /** @see https://lume.land/plugins/nunjucks/ */
+  njk: Helper;
+
+  /** @see https://lume.land/plugins/postcss/ */
+  postcss: Helper;
+
+  /** @see https://lume.land/plugins/pug/ */
+  pug: Helper;
+
+  /** @see https://lume.land/plugins/slugify_urls/ */
+  slugify: Helper;
+
+  /** @see https://lume.land/plugins/terser/#the-terser-filter */
+  terser: Helper;
+
+  /** @see https://lume.land/plugins/url/#url-filter */
+  url: Helper;
+
+  /** @see https://lume.land/plugins/url/#htmlurl-filter */
+  htmlUrl: Helper;
+
+  [key: string]: Helper | undefined;
+}

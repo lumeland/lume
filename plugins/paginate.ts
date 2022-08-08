@@ -11,36 +11,39 @@ export interface PaginateOptions {
   url: (page: number) => string;
 }
 
-export type Paginator = (
-  results: unknown[],
+export type Paginator<T> = (
+  results: T[],
   userOptions?: Partial<PaginateOptions>,
-) => Generator<PaginateResult, void, unknown>;
+) => Generator<PaginateResult<T>, void, unknown>;
+
+/** Pagination info */
+export interface PaginationInfo {
+  /** The current page number */
+  page: number;
+
+  /** The total number of pages */
+  totalPages: number;
+
+  /** The total number of elements */
+  totalResults: number;
+
+  /** The url of the previous page */
+  previous: string | null;
+
+  /** The url of the next page */
+  next: string | null;
+}
 
 /** The paginate result */
-export interface PaginateResult {
+export interface PaginateResult<T> {
   /** The page url */
   url: string;
 
-  /** The page elements */
-  results: unknown[];
+  /** The elements in this page */
+  results: T[];
 
   /** The pagination info */
-  pagination: {
-    /** The current page number */
-    page: number;
-
-    /** The total number of pages */
-    totalPages: number;
-
-    /** The total number of elements */
-    totalResults: number;
-
-    /** The url of the previous page */
-    previous: string | null;
-
-    /** The url of the next page */
-    next: string | null;
-  };
+  pagination: PaginationInfo;
 }
 
 export interface Options {
@@ -75,9 +78,9 @@ export default function (userOptions?: Partial<Options>) {
 }
 
 /** Create a paginator function */
-export function createPaginator(defaults: PaginateOptions): Paginator {
-  return function* paginate(
-    results: unknown[],
+export function createPaginator<T>(defaults: PaginateOptions): Paginator<T> {
+  return function* paginate<T>(
+    results: T[],
     userOptions: Partial<PaginateOptions> = {},
   ) {
     const options = merge(defaults, userOptions);
@@ -101,7 +104,7 @@ export function createPaginator(defaults: PaginateOptions): Paginator {
       yield data;
     }
 
-    function createPageData(page: number): PaginateResult {
+    function createPageData(page: number): PaginateResult<T> {
       return {
         url: options.url(page),
         results: [],

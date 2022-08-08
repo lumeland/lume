@@ -10,6 +10,7 @@ import {
   mustNotifyUpgrade,
   toUrl,
 } from "./core/utils.ts";
+import { log } from "./cli/utils.ts";
 
 /**
  * This file works as a proxy to the actual Lume CLI to fix the following issues:
@@ -53,10 +54,6 @@ export async function getArgs(
 
   // Detect and use the deno.json file automatically
   const options = await getDenoConfig();
-
-  if (options) {
-    denoArgs.push(`--config=deno.json`);
-  }
 
   // Add the import-map option to Deno if it's missing
   const importMapArg = parsedArgs["import-map"] || options?.importMap;
@@ -172,15 +169,9 @@ function warn(...lines: (string | undefined)[]) {
   const syncWarn = args.includes("--serve") || args.includes("-s") ||
     args.includes("--watch") || args.includes("-w");
 
-  function log() {
-    console.log("----------------------------------------");
-    lines.forEach((line) => line && console.log(line));
-    console.log("----------------------------------------");
-  }
-
   if (syncWarn) {
-    log();
+    log(...lines);
   } else {
-    addEventListener("unload", log);
+    addEventListener("unload", () => log(...lines));
   }
 }

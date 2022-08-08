@@ -8,6 +8,8 @@ import {
   toUrl,
 } from "../core/utils.ts";
 import { join } from "../deps/path.ts";
+import { exists } from "../deps/fs.ts";
+import { promptConfigUpdate } from "./utils.ts";
 
 interface Options {
   output: string;
@@ -67,14 +69,18 @@ export async function vendor(
 
   // Update deno.json file
   denoConfig.importMap = importMapFile;
-  await Deno.writeTextFile(
-    join(root, "deno.json"),
-    JSON.stringify(denoConfig, null, 2) + "\n",
-  );
+  if (await exists("deno.jsonc")) {
+    promptConfigUpdate({ importMap: denoConfig.importMap });
+  } else {
+    await Deno.writeTextFile(
+      join(root, "deno.json"),
+      JSON.stringify(denoConfig, null, 2) + "\n",
+    );
 
-  console.log(brightGreen("Lume vendored to:"), output);
-  console.log(brightGreen("Deno configuration file saved:"), "deno.json");
-  console.log(brightGreen("Import map file saved:"), denoConfig.importMap);
+    console.log(brightGreen("Lume vendored to:"), output);
+    console.log(brightGreen("Deno configuration file saved:"), "deno.json");
+    console.log(brightGreen("Import map file saved:"), denoConfig.importMap);
+  }
 }
 
 async function run(output: string, urls: string[]) {
