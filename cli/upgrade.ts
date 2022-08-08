@@ -65,8 +65,11 @@ export async function upgrade(dev = false, version?: string) {
 
 async function updateDenoConfig(url: URL) {
   try {
-    await Promise.all([
+    await Promise.any([
       Deno.stat("deno.json"),
+      Deno.stat("deno.jsonc"),
+    ])
+    await Promise.all([
       Deno.stat("import_map.json"),
     ]);
     await importMap(url);
