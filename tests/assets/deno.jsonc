@@ -1,6 +1,5 @@
 {
-  // A comment for spicing tests up
   "tasks": {
-    "foo": "echo bar"
+    "foo": "echo bar", // A trailing command and a comment for spicing tests up
   }
 }
