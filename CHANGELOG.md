@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - A second argument to processors with the array of all pages. This allows to dynamically add or remove pages from a preprocessor.
 - New function `Reader.saveCache()` to cache a file manually.
 - Warning when empty files are skipped [#221], [#180]
+- Added partial support for `deno.jsonc` files [#229].
+- New interfaces `PageData` and `PageHelpers` for better user TypeScript experience [#228].
 
 ### Changed
 - Preprocessors assigned to page generators are executed **before** the new pages are generated (previously they were executed after generating them). This shouldn't be a breaking change, unless you're doing something very weird.
@@ -1658,6 +1660,9 @@ The first version.
 [#215]: https://github.com/lumeland/lume/issues/215
 [#218]: https://github.com/lumeland/lume/issues/218
 [#221]: https://github.com/lumeland/lume/issues/221
+[#223]: https://github.com/lumeland/lume/issues/223
+[#228]: https://github.com/lumeland/lume/issues/228
+[#229]: https://github.com/lumeland/lume/issues/229
 
 [1.10.2]: https://github.com/lumeland/lume/compare/v1.10.1...HEAD
 [1.10.1]: https://github.com/lumeland/lume/compare/v1.10.0...v1.10.1
