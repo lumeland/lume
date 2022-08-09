@@ -2,6 +2,7 @@ import { encode } from "../deps/base64.ts";
 import { React, ReactDOMServer } from "../deps/react.ts";
 import loader from "../core/loaders/module.ts";
 import { merge } from "../core/utils.ts";
+import { dirname, toFileUrl } from "../deps/path.ts";
 
 import type { Data, Engine, Helper, Site } from "../core.ts";
 
@@ -28,25 +29,18 @@ window.React ||= React;
 /** Template engine to render JSX files */
 export class JsxEngine implements Engine {
   helpers: Record<string, Helper> = {};
+  baseUrl: URL;
+
+  constructor(basePath: string) {
+    this.baseUrl = toFileUrl(basePath);
+  }
 
   deleteCache() {}
 
-  // deno-lint-ignore no-explicit-any
-  async parseJSX(content: string, data: Data = {}): Promise<any> {
-    // Destructure arguments
-    const destructure = `{${Object.keys(data).join(",")}}`;
-    // Keep the line breaks (\n -> {"\n"})
-    content = content.replaceAll(/(\n\r?)/g, '{"\\n"}');
-
-    const fn =
-      `export default async function (${destructure}, helpers) { return <>${content}</> }`;
-    const url = `data:text/jsx;base64,${encode(fn)}`;
-    return (await import(url)).default;
-  }
-
-  async render(content: unknown, data: Data = {}) {
+  async render(content: unknown, data: Data = {}, filename?: string) {
     if (typeof content === "string") {
-      content = await this.parseJSX(content, data);
+      const basedir = filename ? "." + dirname(filename) : "./";
+      content = await parseJSX(new URL(basedir, this.baseUrl), content, data);
     }
 
     const children = typeof data.content === "string"
@@ -93,9 +87,45 @@ export default function (userOptions?: Partial<Options>) {
     : options.extensions;
 
   return (site: Site) => {
-    const engine = new JsxEngine();
+    const engine = new JsxEngine(site.src());
 
     site.loadPages(extensions.pages, loader, engine);
     site.loadComponents(extensions.components, loader, engine);
   };
+}
+
+export async function parseJSX(
+  baseUrl: URL,
+  content: string,
+  data: Data = {},
+  // deno-lint-ignore no-explicit-any
+): Promise<any> {
+  // Collect imports
+  const imports: string[] = [];
+
+  content = content.replaceAll(
+    /import\s+[\w\W]+?\s+from\s+("[^"]+"|'[^']+');?/g,
+    (code, path) => {
+      // Resolve relative urls
+      const quote = path.slice(0, 1);
+      let url = path.slice(1, -1);
+      if (url.startsWith(".")) {
+        url = new URL(url, baseUrl).href;
+        code = code.replace(path, quote + url + quote);
+      }
+      imports.push(code);
+      return "";
+    },
+  ).trim();
+
+  // Destructure arguments
+  const destructure = `{${Object.keys(data).join(",")}}`;
+  // Keep the line breaks (\n -> {"\n"})
+  content = content.replaceAll(/(\n\r?)/g, '{"\\n"}');
+
+  const fn = `${
+    imports.join("\n")
+  }\nexport default async function (${destructure}, helpers) { return <>${content}</> }`;
+  const url = `data:text/jsx;base64,${encode(fn)}`;
+  return (await import(url)).default;
 }
