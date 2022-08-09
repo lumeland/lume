@@ -19,6 +19,11 @@ const upgrade = new Command()
     "--version <version:string>",
     "The version to upgrade to.",
   )
+  .option(
+    "-g, --global [global:boolean]",
+    "To install lume globally (with deno install).",
+    { default: true },
+  )
   .example("lume upgrade", "Upgrades to the latest stable version.")
   .example("lume upgrade --dev", "Upgrades to the latest development version.")
   .option(

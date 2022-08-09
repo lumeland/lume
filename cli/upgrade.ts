@@ -7,15 +7,16 @@ import { brightGreen, gray } from "../deps/colors.ts";
 import { importMap } from "./import_map.ts";
 
 interface Options {
+  global?: boolean;
   dev?: boolean;
   version?: string;
 }
-export default function ({ dev, version }: Options) {
-  return upgrade(dev, version);
+export default function ({ global, dev, version }: Options) {
+  return upgrade(global, dev, version);
 }
 
 /** Upgrade the Lume installation to the latest version */
-export async function upgrade(dev = false, version?: string) {
+export async function upgrade(global = false, dev = false, version?: string) {
   const latest = version
     ? version
     : dev
@@ -43,7 +44,9 @@ export async function upgrade(dev = false, version?: string) {
       : `New version available. Updating Lume to ${brightGreen(latest)}...`,
   );
 
-  await install(url.href);
+  if (global) {
+    await install(url.href);
+  }
   await updateDenoConfig(url);
 
   console.log();
