@@ -13,8 +13,8 @@ export interface Options {
 }
 
 const denoConfig = await getDenoConfig();
-const importMapURL = denoConfig?.importMap
-  ? await toUrl(denoConfig.importMap)
+const importMapURL = denoConfig?.config?.importMap
+  ? await toUrl(denoConfig.config.importMap)
   : undefined;
 
 // Default options

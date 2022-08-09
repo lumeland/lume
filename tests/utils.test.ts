@@ -95,7 +95,7 @@ Deno.test("load deno.jsonc", async () => {
   Deno.chdir(getPath("assets"));
   const config = await getDenoConfig();
 
-  equals(config?.tasks, { foo: "echo bar" });
+  equals(config?.config?.tasks, { foo: "echo bar" });
 });
 
 Deno.test("import map", async () => {

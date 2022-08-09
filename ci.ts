@@ -55,8 +55,13 @@ export async function getArgs(
   // Detect and use the deno.json file automatically
   const options = await getDenoConfig();
 
+  if (options) {
+    // To-do: For some reason, this is required in some cases. Needs research.
+    denoArgs.push(`--config=${options.file}`);
+  }
+
   // Add the import-map option to Deno if it's missing
-  const importMapArg = parsedArgs["import-map"] || options?.importMap;
+  const importMapArg = parsedArgs["import-map"] || options?.config.importMap;
   const shouldWarn = !quiet &&
     !["import-map", "upgrade", "init"].includes(lumeArgs[0]);
 

@@ -1,5 +1,4 @@
 import { brightGreen } from "../deps/colors.ts";
-import { exists } from "../deps/fs.ts";
 import { baseUrl, getDenoConfig, getImportMap } from "../core/utils.ts";
 import { promptConfigUpdate } from "./utils.ts";
 
@@ -9,7 +8,8 @@ export default function () {
 }
 
 export async function importMap(url: URL) {
-  const config = await getDenoConfig() || {};
+  const denoConfig = await getDenoConfig();
+  const config = denoConfig?.config || {};
 
   // Configure the import map
   const importMap = await getImportMap(config.importMap);
@@ -29,7 +29,7 @@ export async function importMap(url: URL) {
     JSON.stringify(importMap, null, 2) + "\n",
   );
 
-  if (await exists("deno.jsonc")) {
+  if (denoConfig?.file === "deno.jsonc") {
     promptConfigUpdate({ importMap: config.importMap, tasks: config.tasks });
   } else {
     await Deno.writeTextFile(

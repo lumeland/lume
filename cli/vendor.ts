@@ -8,7 +8,6 @@ import {
   toUrl,
 } from "../core/utils.ts";
 import { join } from "../deps/path.ts";
-import { exists } from "../deps/fs.ts";
 import { promptConfigUpdate } from "./utils.ts";
 
 interface Options {
@@ -49,7 +48,8 @@ export async function vendor(
 
   // Write the import map
   const importMapFile = join(vendor, "import_map.json");
-  const denoConfig = await getDenoConfig() || {};
+  const denoConfigInfo = await getDenoConfig();
+  const denoConfig = denoConfigInfo?.config || {};
   const currentMap = await getImportMap(denoConfig.importMap);
   const vendorMap = await loadImportMap(await toUrl(importMapFile));
 
@@ -69,7 +69,7 @@ export async function vendor(
 
   // Update deno.json file
   denoConfig.importMap = importMapFile;
-  if (await exists("deno.jsonc")) {
+  if (denoConfigInfo?.file === "deno.jsonc") {
     promptConfigUpdate({ importMap: denoConfig.importMap });
   } else {
     await Deno.writeTextFile(
@@ -112,13 +112,14 @@ async function removeVendor(root: string, output: string) {
   // Revert the import_map.json file config
   try {
     await Deno.stat(join(root, "import_map.json"));
-    const denoConfig = await getDenoConfig() || {};
+    const denoConfig = await getDenoConfig();
+    const config = denoConfig?.config || {};
 
-    if (denoConfig.importMap?.startsWith(output)) {
-      denoConfig.importMap = "import_map.json";
+    if (config.importMap?.startsWith(output)) {
+      config.importMap = "import_map.json";
       await Deno.writeTextFile(
         "deno.json",
-        JSON.stringify(denoConfig, null, 2) + "\n",
+        JSON.stringify(config, null, 2) + "\n",
       );
     }
   } catch {

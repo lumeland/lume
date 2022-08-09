@@ -232,11 +232,14 @@ export interface DenoConfig {
   [key: string]: unknown;
 }
 
-export async function getDenoConfig(): Promise<DenoConfig | undefined> {
-  for (const configFile of ["deno.json", "deno.jsonc"]) {
+/** Return the file name and the content of the deno config file */
+export async function getDenoConfig(): Promise<
+  { file: string; config: DenoConfig } | undefined
+> {
+  for (const file of ["deno.json", "deno.jsonc"]) {
     try {
-      const content = await Deno.readTextFile(configFile);
-      return parse(content) as DenoConfig;
+      const content = await Deno.readTextFile(file);
+      return { file, config: parse(content) as DenoConfig };
     } catch (err) {
       if (err instanceof Deno.errors.NotFound) {
         continue;
