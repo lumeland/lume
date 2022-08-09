@@ -166,8 +166,7 @@ snapshot[`build a site with jsx/tsx modules 7`] = `
   content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1>Hello <strong class="foo">world</strong></h1>
 <p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
 <p><button type="foo">Hello</button></p>
-<img src="foo"/>
-</div></main></body></html>',
+<img src="foo"/></div></main></body></html>',
   data: {
     comp: {},
     content: '# Hello <strong className="foo">world</strong>
