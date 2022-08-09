@@ -19,7 +19,7 @@ export default function redirects(options: Options): Middleware {
 
   return async (request, next) => {
     const url = new URL(request.url);
-    const redirect = redirects.get(url.pathname);
+    const redirect = redirects.get(url.pathname) || redirects.get(url.href);
 
     if (!redirect) {
       return await next(request);

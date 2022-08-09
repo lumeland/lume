@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Added partial support for `deno.jsonc` files [#229].
 - New interfaces `PageData` and `PageHelpers` for better user TypeScript experience [#228].
 - New argument `--global` to `lume upgrade` to upgrade Lume globally (with `deno install` or locally (only updating the `import_map.json` file). For backward compatibility, this argument is `true` by default. To upgrade locally, run `lume upgrade --global=false`.
+- `redirect` middleware can detect also full urls, not only pathnames.
 
 ### Changed
 - Preprocessors assigned to page generators are executed **before** the new pages are generated (previously they were executed after generating them). This shouldn't be a breaking change, unless you're doing something very weird.
