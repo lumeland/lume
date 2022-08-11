@@ -44,6 +44,8 @@ export interface PaginateResult<T> {
 
   /** The pagination info */
   pagination: PaginationInfo;
+
+  [key: string]: unknown;
 }
 
 export interface Options {
