@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.10.3] - Unreleased
 ### Fixed
 - Improved `PaginateResult` type to support Index Signature `unknown`.
+- Fixed `expired` middleware to remove the charset from the `Content-Type` header [#233].
 
 ## [1.10.2] - 2022-08-11
 ### Added
@@ -1671,7 +1672,9 @@ The first version.
 [#227]: https://github.com/lumeland/lume/issues/227
 [#228]: https://github.com/lumeland/lume/issues/228
 [#229]: https://github.com/lumeland/lume/issues/229
+[#233]: https://github.com/lumeland/lume/issues/233
 
+[1.10.3]: https://github.com/lumeland/lume/compare/v1.10.2...HEAD
 [1.10.2]: https://github.com/lumeland/lume/compare/v1.10.1...v1.10.2
 [1.10.1]: https://github.com/lumeland/lume/compare/v1.10.0...v1.10.1
 [1.10.0]: https://github.com/lumeland/lume/compare/v1.9.1...v1.10.0

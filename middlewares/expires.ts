@@ -31,7 +31,7 @@ export default function expires(userOptions?: Partial<Options>): Middleware {
   return async (request, next) => {
     const response = await next(request);
     const { headers } = response;
-    const type = headers.get("Content-Type");
+    const type = headers.get("Content-Type")?.split(";").shift()?.trim();
     const duration = (type && type in options.durations)
       ? options.durations[type]
       : options.defaultDuration;
