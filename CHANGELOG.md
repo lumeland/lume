@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.10.2] - Unreleased
+## [1.10.2] - 2022-08-11
 ### Added
 - New option `rules` to markdown plugin [#218].
 - A second argument to processors with the array of all pages. This allows to dynamically add or remove pages from a preprocessor.
@@ -21,14 +21,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - Preprocessors assigned to page generators are executed **before** the new pages are generated (previously they were executed after generating them). This shouldn't be a breaking change, unless you're doing something very weird.
-- Changed SASS library to [binyamin/deno-sass](https://gitlab.com/binyamin/deno-sass), that uses [dart-sass](https://github.com/sass/dart-sass).
+- Changed SASS library to [binyamin/deno-sass](https://gitlab.com/binyamin/deno-sass), that uses [dart-sass](https://github.com/sass/dart-sass) and improved source map support [#227].
 
 ### Fixed
 - Updated dependencies: `std`, `liquid`, `deno_dom`, `esbuild`, `parcel_css`, `cliffy`, `postcss`.
 - Improved `isPlainObject()` util function.
 - Search improvements:
   - Numeric arguments passed to `search.pages()` are converted to numbers.
-    For example `search.pages("foo=34")`, the `34` value is converted to number (previously it was a string, returning empty values)
+    For example `search.pages("foo=34")`, the `34` value is converted to number (previously it was a string)
   - Values with quotes are treated as strings. For example: `search.pages("foo='34'")`, the `34` value is a string.
 - If a HTML document is missing `<!DOCTYPE html>`, it's automatically added to the document with `documentToString` [#223].
 
@@ -1664,10 +1664,11 @@ The first version.
 [#218]: https://github.com/lumeland/lume/issues/218
 [#221]: https://github.com/lumeland/lume/issues/221
 [#223]: https://github.com/lumeland/lume/issues/223
+[#227]: https://github.com/lumeland/lume/issues/227
 [#228]: https://github.com/lumeland/lume/issues/228
 [#229]: https://github.com/lumeland/lume/issues/229
 
-[1.10.2]: https://github.com/lumeland/lume/compare/v1.10.1...HEAD
+[1.10.2]: https://github.com/lumeland/lume/compare/v1.10.1...v1.10.2
 [1.10.1]: https://github.com/lumeland/lume/compare/v1.10.0...v1.10.1
 [1.10.0]: https://github.com/lumeland/lume/compare/v1.9.1...v1.10.0
 [1.9.1]: https://github.com/lumeland/lume/compare/v1.9.0...v1.9.1
