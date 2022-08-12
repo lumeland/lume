@@ -11,7 +11,7 @@ export interface PaginateOptions {
   url: (page: number) => string;
 }
 
-export type Paginator<T> = (
+export type Paginator = <T>(
   results: T[],
   userOptions?: Partial<PaginateOptions>,
 ) => Generator<PaginateResult<T>, void, unknown>;
@@ -80,7 +80,7 @@ export default function (userOptions?: Partial<Options>) {
 }
 
 /** Create a paginator function */
-export function createPaginator<T>(defaults: PaginateOptions): Paginator<T> {
+export function createPaginator(defaults: PaginateOptions): Paginator {
   return function* paginate<T>(
     results: T[],
     userOptions: Partial<PaginateOptions> = {},

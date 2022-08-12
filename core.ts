@@ -164,7 +164,7 @@ export interface PageData extends Data {
    * The paginator helper
    * @see https://lume.land/plugins/paginate/
    */
-  paginate: Paginator<Page>;
+  paginate: Paginator;
 
   /**
    * The pagination info
