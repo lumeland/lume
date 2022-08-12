@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.10.3] - Unreleased
+## [1.10.3] - 2022-08-12
 ### Fixed
 - Improved `PaginateResult` type to support Index Signature `unknown`.
 - Improved `Paginator` type generic.
@@ -1675,7 +1675,7 @@ The first version.
 [#229]: https://github.com/lumeland/lume/issues/229
 [#233]: https://github.com/lumeland/lume/issues/233
 
-[1.10.3]: https://github.com/lumeland/lume/compare/v1.10.2...HEAD
+[1.10.3]: https://github.com/lumeland/lume/compare/v1.10.2...v1.10.3
 [1.10.2]: https://github.com/lumeland/lume/compare/v1.10.1...v1.10.2
 [1.10.1]: https://github.com/lumeland/lume/compare/v1.10.0...v1.10.1
 [1.10.0]: https://github.com/lumeland/lume/compare/v1.9.1...v1.10.0
