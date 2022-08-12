@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Improved `PaginateResult` type to support Index Signature `unknown`.
 - Improved `Paginator` type generic.
 - Fixed `expired` middleware to remove the charset from the `Content-Type` header [#233].
+- Updated `std` dependencies.
 
 ## [1.10.2] - 2022-08-11
 ### Added
