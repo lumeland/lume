@@ -438,6 +438,9 @@ export interface Data {
 
   /** The available components */
   comp?: ProxyComponents;
+  
+  /** The page object */
+  page?: Page;
 
   [index: string]: unknown;
 }
