@@ -85,7 +85,7 @@ const reactElement = Symbol.for("react.element");
 const objectConstructor = {}.constructor;
 
 /** Check if the argument passed is a plain object */
-export function isPlainObject(obj: unknown) {
+export function isPlainObject(obj: unknown): obj is Record<string, unknown> {
   return typeof obj === "object" && obj !== null &&
     obj.constructor === objectConstructor &&
     // @ts-ignore: Check if the argument passed is a React element
