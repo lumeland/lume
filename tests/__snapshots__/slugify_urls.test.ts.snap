@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`slugify_urls plugin 1`] = `3`;
+snapshot[`slugify_urls plugin 1`] = `5`;
 
 snapshot[`slugify_urls plugin 2`] = `
 {
@@ -123,6 +123,54 @@ snapshot[`slugify_urls plugin 5`] = `
 `;
 
 snapshot[`slugify_urls plugin 6`] = `
+{
+  content: "Filloas con nocilla",
+  data: {
+    content: "Filloas con nocilla",
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/filloas-con-nocilla/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/filloas-con-nocilla/index",
+  },
+  src: {
+    ext: ".tmpl.js",
+    path: "/generator[0]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`slugify_urls plugin 7`] = `
+{
+  content: "Foo",
+  data: {
+    content: "Foo",
+    date: 1970-01-01T00:00:00.000Z,
+    paginate: [GeneratorFunction: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/803nfon-sfodij/-/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/803nfon-sfodij/-/index",
+  },
+  src: {
+    ext: ".tmpl.js",
+    path: "/generator[1]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`slugify_urls plugin 8`] = `
 {
   content: "<p>Page 3</p>
 ",

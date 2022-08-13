@@ -80,9 +80,6 @@ export default class Renderer {
       await this.preprocessors.run(pages);
       to.push(...pages);
 
-      // Preprocess the generators and generate the new pages
-      await this.preprocessors.run(generators);
-
       const generatedPages: Page[] = [];
       for (const page of generators) {
         const generator = await this.render(
@@ -102,7 +99,8 @@ export default class Renderer {
         }
       }
 
-      // Add the generated pages to site.pages
+      // Preprocess the generators and add them to site.pages
+      await this.preprocessors.run(generatedPages);
       to.push(...generatedPages);
 
       // Render pages
