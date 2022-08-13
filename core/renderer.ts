@@ -64,7 +64,7 @@ export default class Renderer {
 
       // Split regular pages and generators
       for (const page of group) {
-        this.#preparePage(page);
+        this.preparePage(page);
 
         if (isGenerator(page.data.content)) {
           generators.push(page);
@@ -94,7 +94,7 @@ export default class Renderer {
             data.content = null;
           }
           const newPage = page.duplicate(index++, data);
-          this.#preparePage(newPage);
+          this.preparePage(newPage);
           generatedPages.push(newPage);
         }
       }
@@ -125,7 +125,7 @@ export default class Renderer {
       });
     }
 
-    this.#preparePage(page);
+    this.preparePage(page);
     await this.preprocessors.run([page]);
     page.content = await this.#renderPage(page);
   }
@@ -152,7 +152,7 @@ export default class Renderer {
    * - Generate the URL
    * - Modify the dest info accordingly
    */
-  #preparePage(page: Page) {
+  preparePage(page: Page) {
     const { dest, data } = page;
 
     // Ensure the date is defined
