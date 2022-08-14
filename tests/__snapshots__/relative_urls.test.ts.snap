@@ -90,6 +90,7 @@ snapshot[`relative_url plugin 4`] = `
 - [Presentation](/about-us/presentation)
 ",
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -128,6 +129,7 @@ snapshot[`relative_url plugin 5`] = `
 - [Presentation](/about-us/presentation)
 ",
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -166,6 +168,7 @@ snapshot[`relative_url plugin 6`] = `
 - [Presentation](/about-us/presentation)
 ",
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -212,6 +215,7 @@ snapshot[`relative_url plugin 7`] = `
 - [Ignored](//ignored.com)
 ",
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [

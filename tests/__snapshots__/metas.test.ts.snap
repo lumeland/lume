@@ -129,6 +129,7 @@ snapshot[`metas plugin 4`] = `
       title: "Custom title",
       twitter: "@myUser",
     },
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [

@@ -100,6 +100,10 @@ abstract class Base {
     const parentData: Data = this.parent?.data || {};
     const data: Data = { ...parentData, ...pageData };
 
+    if (this instanceof Page) {
+      data.page = this;
+    }
+
     // Merge special keys
     const mergedKeys: Record<string, string> = {
       tags: "stringArray",
@@ -206,7 +210,11 @@ export class Page extends Base {
     const page = new Page({ ...this.src });
     page.parent = this.parent;
     page.dest = { ...this.dest };
-    page.data = { ...this.data, ...data };
+
+    const pageData = { ...this.data, ...data };
+    delete pageData.page;
+
+    page.data = pageData;
     page.src.path += `[${index}]`;
 
     return page;

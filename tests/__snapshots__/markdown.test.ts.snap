@@ -87,6 +87,7 @@ snapshot[`Build a markdown site 4`] = `
 - Elements
 ",
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -114,6 +115,7 @@ snapshot[`Build a markdown site 5`] = `
     content: "[link](#foo){target=_blank}
 ",
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -149,6 +151,7 @@ snapshot[`Build a markdown site 6`] = `
 \`\`\`
 ",
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -188,6 +191,7 @@ Other title
 : And other description
 ",
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -220,6 +224,7 @@ snapshot[`Build a markdown site 8`] = `
     date: 1970-01-01T00:00:00.000Z,
     description: "Welcome to this [page](/)
 ",
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -247,6 +252,7 @@ snapshot[`Build a markdown site 9`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -294,6 +300,7 @@ Foo
       three: "tres",
       two: "dous",
     },
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [

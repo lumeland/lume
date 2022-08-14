@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.10.4] - Unreleased
 ### Added
 - New variable `page` available inside the template engines, containing the current page object [#240].
 
@@ -1690,7 +1690,7 @@ The first version.
 [#239]: https://github.com/lumeland/lume/issues/239
 [#240]: https://github.com/lumeland/lume/issues/240
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.10.3...HEAD
+[1.10.4]: https://github.com/lumeland/lume/compare/v1.10.3...HEAD
 [1.10.3]: https://github.com/lumeland/lume/compare/v1.10.2...v1.10.3
 [1.10.2]: https://github.com/lumeland/lume/compare/v1.10.1...v1.10.2
 [1.10.1]: https://github.com/lumeland/lume/compare/v1.10.0...v1.10.1

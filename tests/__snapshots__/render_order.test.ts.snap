@@ -78,6 +78,7 @@ snapshot[`render order property 4`] = `
     content: "Hello world
 ",
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -102,6 +103,7 @@ snapshot[`render order property 5`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     renderOrder: 2,
     search: Search {},
@@ -127,6 +129,7 @@ snapshot[`render order property 6`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     renderOrder: 2,
     search: Search {},
@@ -152,6 +155,7 @@ snapshot[`render order property 7`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     renderOrder: 2,
     search: Search {},
@@ -177,6 +181,7 @@ snapshot[`render order property 8`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     renderOrder: 2,
     search: Search {},
@@ -202,6 +207,7 @@ snapshot[`render order property 9`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     renderOrder: 2,
     search: Search {},
@@ -227,6 +233,7 @@ snapshot[`render order property 10`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     renderOrder: 2,
     search: Search {},
@@ -252,6 +259,7 @@ snapshot[`render order property 11`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     renderOrder: 2,
     search: Search {},
@@ -277,6 +285,7 @@ snapshot[`render order property 12`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     renderOrder: 2,
     search: Search {},
@@ -302,6 +311,7 @@ snapshot[`render order property 13`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     renderOrder: 2,
     search: Search {},
@@ -327,6 +337,7 @@ snapshot[`render order property 14`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     renderOrder: 2,
     search: Search {},
@@ -352,6 +363,7 @@ snapshot[`render order property 15`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -376,6 +388,7 @@ snapshot[`render order property 16`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -400,6 +413,7 @@ snapshot[`render order property 17`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -424,6 +438,7 @@ snapshot[`render order property 18`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -448,6 +463,7 @@ snapshot[`render order property 19`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -472,6 +488,7 @@ snapshot[`render order property 20`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -496,6 +513,7 @@ snapshot[`render order property 21`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -520,6 +538,7 @@ snapshot[`render order property 22`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -544,6 +563,7 @@ snapshot[`render order property 23`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -568,6 +588,7 @@ snapshot[`render order property 24`] = `
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -593,6 +614,7 @@ snapshot[`render order property 25`] = `
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "paginate.tmpl.js",
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     pagination: {
       next: "./page-2/index.html",
@@ -627,6 +649,7 @@ snapshot[`render order property 26`] = `
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "paginate.tmpl.js",
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     pagination: {
       next: "./page-3/index.html",
@@ -661,6 +684,7 @@ snapshot[`render order property 27`] = `
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "paginate.tmpl.js",
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     pagination: {
       next: null,

@@ -98,6 +98,9 @@ async function assertPageSnapshot(
     page.data.results = page.data.results.length;
   }
 
+  // Remove page reference
+  page.data.page = undefined;
+
   // Normalize content for Windows
   content = normalizeContent(content);
   data.content = normalizeContent(

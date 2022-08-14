@@ -87,6 +87,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
 });
 ',
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [

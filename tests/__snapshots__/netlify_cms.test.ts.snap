@@ -89,6 +89,7 @@ public_folder: /img
 site_url: 'https://example.com/'
 local_backend: false
 ",
+    page: undefined,
     tags: [
     ],
     url: "/admin/config.yml",
@@ -134,6 +135,7 @@ snapshot[`code_hightlight plugin 5`] = `
         </body>
         </html>
         ',
+    page: undefined,
     tags: [
     ],
     url: "/admin/",

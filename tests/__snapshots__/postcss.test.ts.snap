@@ -105,6 +105,7 @@ snapshot[`postcss plugin 4`] = `
 @import "./text.css";
 ',
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -147,6 +148,7 @@ snapshot[`postcss plugin 5`] = `
 }
 ",
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -251,6 +253,7 @@ snapshot[`postcss plugin without includes 4`] = `
 @import "./text.css";
 ',
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -293,6 +296,7 @@ snapshot[`postcss plugin without includes 5`] = `
 }
 ",
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [

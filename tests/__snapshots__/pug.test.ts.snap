@@ -86,6 +86,7 @@ block content
   h1 Home
 ",
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -125,6 +126,7 @@ block content
     - Option 2
 ",
     date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
@@ -153,6 +155,7 @@ snapshot[`build a site with eta 6`] = `
 ",
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout2.pug",
+    page: undefined,
     paginate: [GeneratorFunction: paginate],
     search: Search {},
     tags: [
