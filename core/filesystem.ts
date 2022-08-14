@@ -96,13 +96,12 @@ abstract class Base {
     }
 
     // Merge the data of the parent directories
-    const pageData: Data = this.#data || {};
+    const pageData: Data = this instanceof Page
+      ? { page: this, ...this.baseData }
+      : this.baseData;
+
     const parentData: Data = this.parent?.data || {};
     const data: Data = { ...parentData, ...pageData };
-
-    if (this instanceof Page) {
-      data.page = this;
-    }
 
     // Merge special keys
     const mergedKeys: Record<string, string> = {

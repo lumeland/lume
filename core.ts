@@ -153,6 +153,9 @@ export interface PageData extends Data {
   /** The page url */
   url: string | false;
 
+  /** The page reference */
+  page: Page;
+
   /**
    * The available components
    * @see https://lume.land/docs/core/components/

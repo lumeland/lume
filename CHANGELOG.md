@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.10.4] - Unreleased
 ### Added
-- New variable `page` available inside the template engines, containing the current page object [#240].
+- New variable `page.data.page` pointing to the page instance [#240].
 
 ### Changed
 - Make `Renderer.preparePage()` public, so it can be used by some plugins.

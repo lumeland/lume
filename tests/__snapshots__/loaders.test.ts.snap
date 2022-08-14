@@ -345,7 +345,7 @@ snapshot[`Load the pages of a site 7`] = `
 
 snapshot[`Load the pages of a site 8`] = `
 {
-  content: "Content of Page 4 in Overrided site name",
+  content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
   data: {
     colors: [
       "#ff0000",
