@@ -419,7 +419,7 @@ export interface Data {
   /** The url of a page */
   url?: string | ((page: Page) => string) | false;
 
-  /** If is `true`, the page will be visible only in `dev` mode */
+  /** Mark the page as a draft */
   draft?: boolean;
 
   /** The date creation of the page */

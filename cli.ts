@@ -145,10 +145,6 @@ const lume = new Command()
     "Enable quiet mode (show less info).",
   )
   .option(
-    "-d, --dev [dev:boolean]",
-    "Enable development mode (view draft pages).",
-  )
-  .option(
     "-s, --serve [serve:boolean]",
     "Start a live-reloading web server and watch changes.",
   )

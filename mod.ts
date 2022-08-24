@@ -75,8 +75,8 @@ function getOptionsFromCli(): Partial<Options> {
       "location",
       "port",
     ],
-    boolean: ["quiet", "dev", "serve", "open"],
-    alias: { dev: "d", serve: "s", port: "p", open: "o" },
+    boolean: ["quiet", "serve", "open"],
+    alias: { serve: "s", port: "p", open: "o" },
     ["--"]: true,
   });
 
@@ -102,10 +102,6 @@ function getOptionsFromCli(): Partial<Options> {
 
   if (options.quiet) {
     overrides.quiet = options.quiet;
-  }
-
-  if (options.dev) {
-    overrides.dev = options.dev;
   }
 
   if (options.port) {

@@ -45,7 +45,6 @@ const defaults: SiteOptions = {
   includes: "_includes",
   location: new URL("http://localhost"),
   quiet: false,
-  dev: false,
   prettyUrls: true,
   server: {
     port: 3000,
@@ -429,10 +428,8 @@ export default class Site {
     // Get static files
     this.files = this.source.getStaticFiles();
 
-    // Get all pages to process (ignore drafts)
-    const pagesToBuild = this.source.getPages(
-      (page) => !page.data.draft || this.options.dev,
-    );
+    // Get all pages to process
+    const pagesToBuild = this.source.getPages();
 
     // Stop if the build is cancelled
     if (await this.#buildPages(pagesToBuild) === false) {
@@ -464,9 +461,8 @@ export default class Site {
     // Copy static files
     this.files = this.source.getStaticFiles();
 
-    // Get the selected pages to process (ignore drafts and non scoped pages)
+    // Get the selected pages to process (ignore non scoped pages)
     const pagesToBuild = this.source.getPages(
-      (page) => !page.data.draft || this.options.dev,
       this.scopes.getFilter(files),
     );
 
@@ -680,9 +676,6 @@ export interface SiteOptions {
 
   /** The default includes path */
   includes: string;
-
-  /** Set `true` to enable the `dev` mode */
-  dev: boolean;
 
   /** The site location (used to generate final urls) */
   location: URL;
