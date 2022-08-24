@@ -20,6 +20,9 @@ export interface Options {
   replace: {
     [index: string]: string;
   };
+
+  /** Words to remove */
+  stopWords: string[];
 }
 
 // Default options
@@ -38,6 +41,7 @@ export const defaults: Options = {
     "æ": "ae",
     "œ": "oe",
   },
+  stopWords: [],
 };
 
 /** A plugin to slugify all URLs, replacing non-URL-safe characters */
@@ -70,7 +74,7 @@ export default function (userOptions?: Partial<Options>) {
 export function createSlugifier(
   options: Options = defaults,
 ): (string: string) => string {
-  const { lowercase, alphanumeric, separator, replace } = options;
+  const { lowercase, alphanumeric, separator, replace, stopWords } = options;
 
   return function (string) {
     if (lowercase) {
@@ -95,8 +99,18 @@ export function createSlugifier(
       string = string.toLowerCase();
     }
 
-    return string
-      .replaceAll(/(?<=^|[/.])-+(?=[^/.-])|(?<=[^/.-])-+(?=$|[/.])/g, "")
-      .replaceAll(/-+/g, separator);
+    // remove stop words
+    string = string.trim().split(/-+/).filter((word) =>
+      stopWords.indexOf(word) === -1
+    ).join("-");
+
+    // clean url
+    string = string.replaceAll(
+      /(?<=^|[/.])-+(?=[^/.-])|(?<=[^/.-])-+(?=$|[/.])/g,
+      "",
+    );
+
+    // replace dash with separator
+    return string.replaceAll("-", separator);
   };
 }
