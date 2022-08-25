@@ -83,7 +83,7 @@ Deno.test("Engines", async (t) => {
 
     const result2 = await renderer.render("content", {
       foo: "bar",
-      templateEngine: "foo,upper",
+      templateEngine: ["foo", "upper"],
     }, "foo.not_found");
     equals(result2, "CONTENTBAR");
 
