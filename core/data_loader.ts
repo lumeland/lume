@@ -1,4 +1,5 @@
 import { posix } from "../deps/path.ts";
+import { isPlainObject } from "./utils.ts";
 
 import type { Data, Formats, Reader } from "../core.ts";
 
@@ -85,7 +86,11 @@ export default class DataLoader {
         data[name] = fileData.content;
       } else {
         const target = data[name] as Record<string, unknown> | undefined;
-        data[name] = Object.assign(target || {}, fileData);
+        if (isPlainObject(fileData) || target) {
+          data[name] = Object.assign(target || {}, fileData);
+        } else {
+          data[name] = fileData;
+        }
       }
 
       return;
