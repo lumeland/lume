@@ -88,7 +88,7 @@ snapshot[`Build a markdown site 4`] = `
 ",
     date: 1970-01-01T00:00:00.000Z,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -116,7 +116,7 @@ snapshot[`Build a markdown site 5`] = `
 ",
     date: 1970-01-01T00:00:00.000Z,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -152,7 +152,7 @@ snapshot[`Build a markdown site 6`] = `
 ",
     date: 1970-01-01T00:00:00.000Z,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -192,7 +192,7 @@ Other title
 ",
     date: 1970-01-01T00:00:00.000Z,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -225,7 +225,7 @@ snapshot[`Build a markdown site 8`] = `
     description: "Welcome to this [page](/)
 ",
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -253,7 +253,7 @@ snapshot[`Build a markdown site 9`] = `
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -301,7 +301,7 @@ Foo
       two: "dous",
     },
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],

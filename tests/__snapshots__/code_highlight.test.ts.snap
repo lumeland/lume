@@ -102,7 +102,7 @@ p {
 ",
     date: 1970-01-01T00:00:00.000Z,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -141,7 +141,7 @@ snapshot[`code_hightlight plugin 5`] = `
 </html>',
     date: 1970-01-01T00:00:00.000Z,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],

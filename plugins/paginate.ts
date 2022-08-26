@@ -14,7 +14,7 @@ export interface PaginateOptions {
 export type Paginator = <T>(
   results: T[],
   userOptions?: Partial<PaginateOptions>,
-) => Generator<PaginateResult<T>, void, unknown>;
+) => PaginateResult<T>[];
 
 /** Pagination info */
 export interface PaginationInfo {
@@ -81,7 +81,7 @@ export default function (userOptions?: Partial<Options>) {
 
 /** Create a paginator function */
 export function createPaginator(defaults: PaginateOptions): Paginator {
-  return function* paginate<T>(
+  return function paginate<T>(
     results: T[],
     userOptions: Partial<PaginateOptions> = {},
   ) {
@@ -89,22 +89,18 @@ export function createPaginator(defaults: PaginateOptions): Paginator {
     const totalResults = results.length;
     const totalPages = Math.ceil(results.length / options.size);
 
-    let page = 1;
-    let data = createPageData(page);
+    const result: PaginateResult<T>[] = [];
+    let page = 0;
 
-    for (const result of results) {
-      data.results.push(result);
-
-      if (data.results.length >= options.size) {
-        yield data;
-
-        data = createPageData(++page);
-      }
+    while (++page <= totalPages) {
+      const data = createPageData(page);
+      const from = (page - 1) * options.size;
+      const to = from + options.size;
+      data.results = results.slice(from, to);
+      result.push(data);
     }
 
-    if (data.results.length) {
-      yield data;
-    }
+    return result;
 
     function createPageData(page: number): PaginateResult<T> {
       return {

@@ -104,7 +104,7 @@ snapshot[`build a site with eta 4`] = `
     layout: "layout.eta",
     name: "Timothy",
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],

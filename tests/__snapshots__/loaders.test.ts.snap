@@ -112,7 +112,7 @@ snapshot[`Load the pages of a site 4`] = `
       title: "Default title",
     },
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     site: "Default site name",
     tags: [
@@ -157,7 +157,7 @@ snapshot[`Load the pages of a site 5`] = `
       title: "Default title",
     },
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     site: "Default site name",
     tags: [
@@ -243,7 +243,7 @@ snapshot[`Load the pages of a site 6`] = `
       "Laura",
     ],
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     site: "Folder overrided site name",
     tags: [
@@ -321,7 +321,7 @@ snapshot[`Load the pages of a site 7`] = `
       "Laura",
     ],
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     site: "Folder overrided site name",
     tags: [
@@ -398,7 +398,7 @@ snapshot[`Load the pages of a site 8`] = `
       "Laura",
     ],
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     site: "Overrided site name",
     tags: [
@@ -477,7 +477,7 @@ snapshot[`Load the pages of a site 9`] = `
       "Laura",
     ],
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     site: "Folder overrided site name",
     tags: [
@@ -555,7 +555,7 @@ snapshot[`Load the pages of a site 10`] = `
       "Laura",
     ],
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     site: "Folder overrided site name",
     tags: [
@@ -632,7 +632,7 @@ snapshot[`Load the pages of a site 11`] = `
       "Laura",
     ],
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     site: "Folder overrided site name",
     tags: [
@@ -689,7 +689,7 @@ snapshot[`Load the pages of a site 12`] = `
       title: "Default title",
     },
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     site: "Default site name",
     tags: [

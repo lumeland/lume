@@ -116,7 +116,7 @@ snapshot[`imagick plugin 4`] = `
       },
     ],
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -142,7 +142,7 @@ snapshot[`imagick plugin 5`] = `
     date: 1970-01-01T00:00:00.000Z,
     imagick: undefined,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -168,7 +168,7 @@ snapshot[`imagick plugin 6`] = `
     date: 1970-01-01T00:00:00.000Z,
     imagick: undefined,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -194,7 +194,7 @@ snapshot[`imagick plugin 7`] = `
     date: 1970-01-01T00:00:00.000Z,
     imagick: undefined,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -220,7 +220,7 @@ snapshot[`imagick plugin 8`] = `
     date: 1970-01-01T00:00:00.000Z,
     imagick: undefined,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],

@@ -202,7 +202,7 @@ snapshot[`build a site with nunjucks 6`] = `
     date: 1970-01-01T00:00:00.000Z,
     layout: "basic.njk",
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -236,7 +236,7 @@ snapshot[`build a site with nunjucks 7`] = `
     date: 1970-01-01T00:00:00.000Z,
     layout: null,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -276,7 +276,7 @@ snapshot[`build a site with nunjucks 8`] = `
     date: 1970-01-01T00:00:00.000Z,
     layout: "./_includes/basic.njk",
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -315,7 +315,7 @@ snapshot[`build a site with nunjucks 9`] = `
     date: 1970-01-01T00:00:00.000Z,
     layout: "basic.njk",
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -384,7 +384,7 @@ snapshot[`build a site with nunjucks 10`] = `
     date: 1970-01-01T00:00:00.000Z,
     layout: "basic.njk",
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],

@@ -93,7 +93,7 @@ First article
 [Go to index](/index.md)",
     date: 1970-01-01T00:00:00.000Z,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -129,7 +129,7 @@ Second article
 [Go to index](/index.md)",
     date: 1970-01-01T00:00:00.000Z,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -182,7 +182,7 @@ snapshot[`relative_url plugin 6`] = `
 ",
     date: 1970-01-01T00:00:00.000Z,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -213,7 +213,7 @@ snapshot[`relative_url plugin 7`] = `
 ",
     date: 1970-01-01T00:00:00.000Z,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],
@@ -241,7 +241,7 @@ snapshot[`relative_url plugin 8`] = `
 ",
     date: 1970-01-01T00:00:00.000Z,
     page: undefined,
-    paginate: [GeneratorFunction: paginate],
+    paginate: [Function: paginate],
     search: Search {},
     tags: [
     ],

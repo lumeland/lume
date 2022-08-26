@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New `stopWords` option to `slugify_urls` plugin [#243].
 
+### Changed
+- The paginate helper returns an array with the pages instead of a generator.
+  This makes it more easy to work with, like inspect and modify the values [#241].
+
 ## [1.10.4] - 2022-08-14
 ### Added
 - New variable `page.data.page` pointing to the page instance [#240].
@@ -1693,6 +1697,7 @@ The first version.
 [#234]: https://github.com/lumeland/lume/issues/234
 [#239]: https://github.com/lumeland/lume/issues/239
 [#240]: https://github.com/lumeland/lume/issues/240
+[#241]: https://github.com/lumeland/lume/issues/241
 [#243]: https://github.com/lumeland/lume/issues/243
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.10.4...HEAD
