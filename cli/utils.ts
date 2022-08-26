@@ -33,6 +33,7 @@ export const pluginNames = [
   "liquid",
   "metas",
   "modify_urls",
+  "multilanguage",
   "netlify_cms",
   "on_demand",
   "parcel_css",

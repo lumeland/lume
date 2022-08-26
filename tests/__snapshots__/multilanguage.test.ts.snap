@@ -1,0 +1,323 @@
+export const snapshot = {};
+
+snapshot[`metas plugin 1`] = `6`;
+
+snapshot[`metas plugin 2`] = `
+{
+  formats: [
+    {
+      engine: true,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engine: true,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engine: false,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engine: false,
+      ext: ".json",
+    },
+    {
+      engine: true,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engine: true,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engine: true,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engine: true,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engine: false,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engine: false,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+}
+`;
+
+snapshot[`metas plugin 3`] = `
+[
+]
+`;
+
+snapshot[`metas plugin 4`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="gl" href="/gl/">
+</head><body><p>Hello world</p>
+</body></html>',
+  data: {
+    alternates: [
+      "en",
+      "gl",
+    ],
+    content: "Hello world
+",
+    date: 1970-01-01T00:00:00.000Z,
+    lang: "en",
+    mergeLanguages: [Function: mergeLanguages],
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "Hello world",
+    url: "/en/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/en/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/index[en]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`metas plugin 5`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="en" href="/en/">
+</head><body><p>Ola mundo</p>
+</body></html>',
+  data: {
+    alternates: [
+      "en",
+      "gl",
+    ],
+    content: "Ola mundo",
+    date: 1970-01-01T00:00:00.000Z,
+    lang: "gl",
+    mergeLanguages: [Function: mergeLanguages],
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "Ola mundo",
+    url: "/gl/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/gl/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/index[gl]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`metas plugin 6`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="fr" href="/other-page-french.html">
+</head><body><p>Other page</p></body></html>',
+  data: {
+    alternates: [
+      "en",
+      "fr",
+    ],
+    content: "<p>Other page</p>",
+    date: 1970-01-01T00:00:00.000Z,
+    en: {
+      title: "Other",
+      url: "/other-page-english/",
+    },
+    lang: "en",
+    mergeLanguages: [Function: mergeLanguages],
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "Other",
+    url: "/other-page-english/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/other-page-english/index",
+  },
+  src: {
+    ext: ".njk",
+    path: "/other[en]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`metas plugin 7`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="fr"><head><link rel="alternate" hreflang="en" href="/other-page-english/">
+</head><body><p>Other page</p></body></html>',
+  data: {
+    alternates: [
+      "en",
+      "fr",
+    ],
+    content: "<p>Other page</p>",
+    date: 1970-01-01T00:00:00.000Z,
+    fr: {
+      url: "/other-page-french.html",
+    },
+    lang: "fr",
+    mergeLanguages: [Function: mergeLanguages],
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "Autre",
+    url: "/other-page-french.html",
+  },
+  dest: {
+    ext: ".html",
+    path: "/other-page-french",
+  },
+  src: {
+    ext: ".njk",
+    path: "/other[fr]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`metas plugin 8`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="gl" href="/pagination/page-1/">
+</head><body><nav>
+
+  <a href="/pagination/page-1/" hreflang="gl" class="alternate"></a>
+
+  <a href="/pagination/page-1/" hreflang="en" class="alternate"></a>
+
+</nav>
+
+  <li>Hello world</li>
+
+  <li>Other</li>
+
+</body></html>',
+  data: {
+    alternates: [
+      "gl",
+      "en",
+    ],
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    lang: "en",
+    layout: "layout.njk",
+    mergeLanguages: [Function: mergeLanguages],
+    page: undefined,
+    paginate: [Function: paginate],
+    pagination: {
+      next: null,
+      page: 1,
+      previous: null,
+      totalPages: 1,
+      totalResults: 2,
+    },
+    results: 2,
+    search: Search {},
+    tags: [
+    ],
+    url: "/pagination/page-1/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/pagination/page-1/index",
+  },
+  src: {
+    ext: ".tmpl.js",
+    path: "/pagination[0][en]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`metas plugin 9`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="en" href="/pagination/page-1/">
+</head><body><nav>
+
+  <a href="/pagination/page-1/" hreflang="gl" class="alternate"></a>
+
+  <a href="/pagination/page-1/" hreflang="en" class="alternate"></a>
+
+</nav>
+
+  <li>Ola mundo</li>
+
+</body></html>',
+  data: {
+    alternates: [
+      "gl",
+      "en",
+    ],
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    lang: "gl",
+    layout: "layout.njk",
+    mergeLanguages: [Function: mergeLanguages],
+    page: undefined,
+    paginate: [Function: paginate],
+    pagination: {
+      next: null,
+      page: 1,
+      previous: null,
+      totalPages: 1,
+      totalResults: 1,
+    },
+    results: 1,
+    search: Search {},
+    tags: [
+    ],
+    url: "/pagination/page-1/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/pagination/page-1/index",
+  },
+  src: {
+    ext: ".tmpl.js",
+    path: "/pagination[0][gl]",
+    remote: undefined,
+  },
+}
+`;

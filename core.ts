@@ -147,6 +147,9 @@ export type {
 };
 
 export interface PageData extends Data {
+  /** The language(s) of the page */
+  lang?: string | string[];
+
   /** The title of the page */
   title?: string;
 
@@ -204,6 +207,18 @@ export interface PageData extends Data {
    * @see https://lume.land/plugins/search/
    */
   search: Search;
+
+  /**
+   * The mergeLanguages helper
+   */
+  mergeLanguages: (
+    pages: Record<string, Record<string, unknown>[]>,
+  ) => unknown[];
+
+  /**
+   * Alternate pages (for languages)
+   */
+  alternates: Record<string, Page>;
 
   /**
    * The JSX children elements

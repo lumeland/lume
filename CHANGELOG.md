@@ -9,12 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
+- New plugin `multilanguage`, to create pages of different languages [#205].
 - New `stopWords` option to the `slugify_urls` plugin [#243].
 - New `each` option to the `paginate` plugin.
 
 ### Changed
 - The paginate helper returns an array with the pages instead of a generator.
   This makes it more easy to work with, like inspect and modify the values [#241].
+
+### Removed
+- `/plugins.ts` module. It makes no sense.
 
 ## [1.10.4] - 2022-08-14
 ### Added
@@ -1682,6 +1686,7 @@ The first version.
 [#198]: https://github.com/lumeland/lume/issues/198
 [#202]: https://github.com/lumeland/lume/issues/202
 [#203]: https://github.com/lumeland/lume/issues/203
+[#205]: https://github.com/lumeland/lume/issues/205
 [#206]: https://github.com/lumeland/lume/issues/206
 [#207]: https://github.com/lumeland/lume/issues/207
 [#209]: https://github.com/lumeland/lume/issues/209

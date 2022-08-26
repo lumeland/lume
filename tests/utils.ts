@@ -98,6 +98,12 @@ async function assertPageSnapshot(
     page.data.results = page.data.results.length;
   }
 
+  if (page.data.alternates) {
+    page.data.alternates = Object.keys(
+      page.data.alternates as Record<string, Page>,
+    );
+  }
+
   // Remove page reference
   page.data.page = undefined;
 
