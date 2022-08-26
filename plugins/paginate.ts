@@ -9,6 +9,9 @@ export interface PaginateOptions {
 
   /** The function to generate the url of the pages */
   url: (page: number) => string;
+
+  /** Function to modify or add extra data to each page */
+  each?: (page: PaginateResult<unknown>) => void;
 }
 
 export type Paginator = <T>(
@@ -97,6 +100,11 @@ export function createPaginator(defaults: PaginateOptions): Paginator {
       const from = (page - 1) * options.size;
       const to = from + options.size;
       data.results = results.slice(from, to);
+
+      if (options.each) {
+        options.each(data);
+      }
+
       result.push(data);
     }
 

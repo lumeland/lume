@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
-- New `stopWords` option to `slugify_urls` plugin [#243].
+- New `stopWords` option to the `slugify_urls` plugin [#243].
+- New `each` option to the `paginate` plugin.
 
 ### Changed
 - The paginate helper returns an array with the pages instead of a generator.
