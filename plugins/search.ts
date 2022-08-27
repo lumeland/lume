@@ -1,6 +1,6 @@
 import { merge } from "../core/utils.ts";
 
-import type { Page, Site } from "../core.ts";
+import type { Data, Page, Site } from "../core.ts";
 
 export interface Options {
   /** The helper name */
@@ -17,6 +17,10 @@ export default function (userOptions?: Partial<Options>) {
 
   return (site: Site) => {
     site.data(options.name, new Search(site));
+    site.filter(
+      "data",
+      (pages: Page[]): Data[] => pages.map((page) => page.data),
+    );
   };
 }
 
