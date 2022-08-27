@@ -22,6 +22,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 - `/plugins.ts` module. It makes no sense.
 
+### Fixed
+- Updated dependencies: `std`, `deno_dom`, `liquid`, `parcel_css`, `prism`.
+
 ## [1.10.4] - 2022-08-14
 ### Added
 - New variable `page.data.page` pointing to the page instance [#240].

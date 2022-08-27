@@ -1,5 +1,5 @@
-export { default } from "https://esm.sh/prismjs@1.28.0";
-const prismPath = "https://esm.sh/prismjs@1.28.0";
+export { default } from "https://esm.sh/prismjs@1.29.0/";
+const prismPath = "https://esm.sh/prismjs@1.29.0/";
 
 // https://github.com/PrismJS/prism/blob/master/plugins/autoloader/prism-autoloader.js
 const dependencies: Record<string, string | string[]> = {
@@ -24,6 +24,8 @@ const dependencies: Record<string, string | string[]> = {
     "clike",
     "cpp",
   ],
+  "cilkc": "c",
+  "cilkcpp": "cpp",
   "coffeescript": "javascript",
   "crystal": "ruby",
   "css-extras": "css",
@@ -49,6 +51,7 @@ const dependencies: Record<string, string | string[]> = {
   "gml": "clike",
   "glsl": "c",
   "go": "clike",
+  "gradle": "clike",
   "groovy": "clike",
   "haml": "ruby",
   "handlebars": "markup-templating",
@@ -130,6 +133,11 @@ const dependencies: Record<string, string | string[]> = {
   "sparql": "turtle",
   "sqf": "clike",
   "squirrel": "clike",
+  "stata": [
+    "mata",
+    "java",
+    "python",
+  ],
   "t4-cs": [
     "t4-templating",
     "csharp",
@@ -167,10 +175,13 @@ const aliases: Record<string, string> = {
   "js": "javascript",
   "g4": "antlr4",
   "ino": "arduino",
+  "arm-asm": "armasm",
+  "art": "arturo",
   "adoc": "asciidoc",
   "avs": "avisynth",
   "avdl": "avro-idl",
   "gawk": "awk",
+  "sh": "bash",
   "shell": "bash",
   "shortcode": "bbcode",
   "rbnf": "bnf",
@@ -178,6 +189,9 @@ const aliases: Record<string, string> = {
   "cs": "csharp",
   "dotnet": "csharp",
   "cfc": "cfscript",
+  "cilk-c": "cilkc",
+  "cilk-cpp": "cilkcpp",
+  "cilk": "cilkcpp",
   "coffee": "coffeescript",
   "conc": "concurnas",
   "jinja2": "django",
@@ -188,9 +202,12 @@ const aliases: Record<string, string> = {
   "xlsx": "excel-formula",
   "xls": "excel-formula",
   "gamemakerlanguage": "gml",
+  "po": "gettext",
   "gni": "gn",
+  "ld": "linker-script",
   "go-mod": "go-module",
   "hbs": "handlebars",
+  "mustache": "handlebars",
   "hs": "haskell",
   "idr": "idris",
   "gitignore": "ignore",
@@ -215,6 +232,7 @@ const aliases: Record<string, string> = {
   "objectpascal": "pascal",
   "px": "pcaxis",
   "pcode": "peoplecode",
+  "plantuml": "plant-uml",
   "pq": "powerquery",
   "mscript": "powerquery",
   "pbfasm": "purebasic",
@@ -233,6 +251,7 @@ const aliases: Record<string, string> = {
   "sol": "solidity",
   "sln": "solution-file",
   "rq": "sparql",
+  "sclang": "supercollider",
   "t4": "t4-cs",
   "trickle": "tremor",
   "troy": "tremor",
