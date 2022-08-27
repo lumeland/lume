@@ -1,0 +1,1060 @@
+export const snapshot = {};
+
+snapshot[`relations plugin 1`] = `7`;
+
+snapshot[`relations plugin 2`] = `
+{
+  formats: [
+    {
+      engine: true,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engine: true,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engine: false,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engine: false,
+      ext: ".json",
+    },
+    {
+      engine: true,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engine: true,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engine: true,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engine: true,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engine: false,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engine: false,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+}
+`;
+
+snapshot[`relations plugin 3`] = `
+[
+]
+`;
+
+snapshot[`relations plugin 4`] = `
+{
+  content: "<h1>Category 1</h1>
+
+<div><p>This is the first category</p>
+</div>
+
+<h2>Posts</h2>
+<ul>
+
+  <li><p>Second post with category 1 and comment 2</p></li>
+
+</ul>
+",
+  data: {
+    content: "This is the first category
+",
+    date: 1970-01-01T00:00:00.000Z,
+    id: 1,
+    layout: "categories.njk",
+    page: undefined,
+    paginate: [Function: paginate],
+    post: [
+      <ref *2> {
+        category: {
+          content: "This is the first category
+",
+          date: 1970-01-01T00:00:00.000Z,
+          id: 1,
+          layout: "categories.njk",
+          page: undefined,
+          paginate: [Function: paginate],
+          post: [Circular *1],
+          search: Search {},
+          tags: [
+          ],
+          title: "Category 1",
+          type: "category",
+          url: "/categories/category-1/",
+        },
+        category_id: 1,
+        comment: [
+          {
+            content: "This is the second comment
+",
+            date: 2022-08-27T14:33:34.652Z,
+            id: 2,
+            page: Page {
+              data: [Getter/Setter],
+              dest: {
+                ext: ".html",
+                path: "/comments/comment-2/index",
+              },
+              src: {
+                created: 2022-08-27T14:33:34.652Z,
+                ext: ".md",
+                lastModified: 2022-08-27T14:45:38.577Z,
+                path: "/comments/comment-2",
+                remote: undefined,
+              },
+            },
+            paginate: [Function: paginate],
+            post: [
+              [Circular *2],
+            ],
+            search: Search {},
+            tags: [
+            ],
+            type: "comment",
+            url: "/comments/comment-2/",
+          },
+        ],
+        comment_id: [
+          2,
+        ],
+        content: "Second post with category 1 and comment 2
+",
+        date: 2022-08-27T14:31:46.225Z,
+        id: "second-post",
+        layout: "posts.njk",
+        page: Page {
+          data: [Getter/Setter],
+          dest: {
+            ext: ".html",
+            path: "/posts/post-2/index",
+          },
+          src: {
+            created: 2022-08-27T14:31:46.225Z,
+            ext: ".md",
+            lastModified: 2022-08-27T14:43:43.848Z,
+            path: "/posts/post-2",
+            remote: undefined,
+          },
+        },
+        paginate: [Function: paginate],
+        search: Search {},
+        tags: [
+        ],
+        type: "post",
+        url: "/posts/post-2/",
+      },
+    ],
+    search: Search {},
+    tags: [
+    ],
+    title: "Category 1",
+    type: "category",
+    url: "/categories/category-1/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/categories/category-1/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/categories/category-1",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`relations plugin 5`] = `
+{
+  content: "<h1>Category 2</h1>
+
+<div><p>This is the second category</p>
+</div>
+
+<h2>Posts</h2>
+<ul>
+
+  <li><p>First post with category 2 and comments 1 and 3</p></li>
+
+</ul>
+",
+  data: {
+    content: "This is the second category
+",
+    date: 1970-01-01T00:00:00.000Z,
+    id: 2,
+    layout: "categories.njk",
+    page: undefined,
+    paginate: [Function: paginate],
+    post: [
+      <ref *2> {
+        category: {
+          content: "This is the second category
+",
+          date: 1970-01-01T00:00:00.000Z,
+          id: 2,
+          layout: "categories.njk",
+          page: undefined,
+          paginate: [Function: paginate],
+          post: [Circular *1],
+          search: Search {},
+          tags: [
+          ],
+          title: "Category 2",
+          type: "category",
+          url: "/categories/category-2/",
+        },
+        category_id: 2,
+        comment: [
+          {
+            content: "This is the first comment
+",
+            date: 2022-08-27T14:33:10.689Z,
+            id: 1,
+            page: Page {
+              data: [Getter/Setter],
+              dest: {
+                ext: ".html",
+                path: "/comments/comment-1/index",
+              },
+              src: {
+                created: 2022-08-27T14:33:10.689Z,
+                ext: ".md",
+                lastModified: 2022-08-27T14:45:38.577Z,
+                path: "/comments/comment-1",
+                remote: undefined,
+              },
+            },
+            paginate: [Function: paginate],
+            post: [
+              [Circular *2],
+            ],
+            search: Search {},
+            tags: [
+            ],
+            type: "comment",
+            url: "/comments/comment-1/",
+          },
+          {
+            content: "This is the third comment
+",
+            date: 2022-08-27T14:33:54.202Z,
+            id: 3,
+            page: Page {
+              data: [Getter/Setter],
+              dest: {
+                ext: ".html",
+                path: "/comments/comment-3/index",
+              },
+              src: {
+                created: 2022-08-27T14:33:54.202Z,
+                ext: ".md",
+                lastModified: 2022-08-27T14:45:38.577Z,
+                path: "/comments/comment-3",
+                remote: undefined,
+              },
+            },
+            paginate: [Function: paginate],
+            post: [
+              [Circular *2],
+            ],
+            search: Search {},
+            tags: [
+            ],
+            type: "comment",
+            url: "/comments/comment-3/",
+          },
+        ],
+        comment_id: [
+          1,
+          3,
+        ],
+        content: "First post with category 2 and comments 1 and 3
+",
+        date: 2022-08-27T14:29:26.261Z,
+        id: "first-post",
+        layout: "posts.njk",
+        page: Page {
+          data: [Getter/Setter],
+          dest: {
+            ext: ".html",
+            path: "/posts/post-1/index",
+          },
+          src: {
+            created: 2022-08-27T14:29:26.261Z,
+            ext: ".md",
+            lastModified: 2022-08-27T14:43:53.961Z,
+            path: "/posts/post-1",
+            remote: undefined,
+          },
+        },
+        paginate: [Function: paginate],
+        search: Search {},
+        tags: [
+        ],
+        type: "post",
+        url: "/posts/post-1/",
+      },
+    ],
+    search: Search {},
+    tags: [
+    ],
+    title: "Category 2",
+    type: "category",
+    url: "/categories/category-2/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/categories/category-2/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/categories/category-2",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`relations plugin 6`] = `
+{
+  content: "<p>This is the first comment</p>
+",
+  data: {
+    content: "This is the first comment
+",
+    date: 1970-01-01T00:00:00.000Z,
+    id: 1,
+    page: undefined,
+    paginate: [Function: paginate],
+    post: [
+      <ref *1> {
+        category: {
+          content: "This is the second category
+",
+          date: 1970-01-01T00:00:00.000Z,
+          id: 2,
+          layout: "categories.njk",
+          page: undefined,
+          paginate: [Function: paginate],
+          post: [
+            [Circular *1],
+          ],
+          search: Search {},
+          tags: [
+          ],
+          title: "Category 2",
+          type: "category",
+          url: "/categories/category-2/",
+        },
+        category_id: 2,
+        comment: [
+          {
+            content: "This is the first comment
+",
+            date: 1970-01-01T00:00:00.000Z,
+            id: 1,
+            page: undefined,
+            paginate: [Function: paginate],
+            post: [Circular *2],
+            search: Search {},
+            tags: [
+            ],
+            type: "comment",
+            url: "/comments/comment-1/",
+          },
+          {
+            content: "This is the third comment
+",
+            date: 2022-08-27T14:33:54.202Z,
+            id: 3,
+            page: Page {
+              data: [Getter/Setter],
+              dest: {
+                ext: ".html",
+                path: "/comments/comment-3/index",
+              },
+              src: {
+                created: 2022-08-27T14:33:54.202Z,
+                ext: ".md",
+                lastModified: 2022-08-27T14:45:38.577Z,
+                path: "/comments/comment-3",
+                remote: undefined,
+              },
+            },
+            paginate: [Function: paginate],
+            post: [
+              [Circular *1],
+            ],
+            search: Search {},
+            tags: [
+            ],
+            type: "comment",
+            url: "/comments/comment-3/",
+          },
+        ],
+        comment_id: [
+          1,
+          3,
+        ],
+        content: "First post with category 2 and comments 1 and 3
+",
+        date: 2022-08-27T14:29:26.261Z,
+        id: "first-post",
+        layout: "posts.njk",
+        page: Page {
+          data: [Getter/Setter],
+          dest: {
+            ext: ".html",
+            path: "/posts/post-1/index",
+          },
+          src: {
+            created: 2022-08-27T14:29:26.261Z,
+            ext: ".md",
+            lastModified: 2022-08-27T14:43:53.961Z,
+            path: "/posts/post-1",
+            remote: undefined,
+          },
+        },
+        paginate: [Function: paginate],
+        search: Search {},
+        tags: [
+        ],
+        type: "post",
+        url: "/posts/post-1/",
+      },
+    ],
+    search: Search {},
+    tags: [
+    ],
+    type: "comment",
+    url: "/comments/comment-1/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/comments/comment-1/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/comments/comment-1",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`relations plugin 7`] = `
+{
+  content: "<p>This is the second comment</p>
+",
+  data: {
+    content: "This is the second comment
+",
+    date: 1970-01-01T00:00:00.000Z,
+    id: 2,
+    page: undefined,
+    paginate: [Function: paginate],
+    post: [
+      <ref *1> {
+        category: {
+          content: "This is the first category
+",
+          date: 1970-01-01T00:00:00.000Z,
+          id: 1,
+          layout: "categories.njk",
+          page: undefined,
+          paginate: [Function: paginate],
+          post: [
+            [Circular *1],
+          ],
+          search: Search {},
+          tags: [
+          ],
+          title: "Category 1",
+          type: "category",
+          url: "/categories/category-1/",
+        },
+        category_id: 1,
+        comment: [
+          {
+            content: "This is the second comment
+",
+            date: 1970-01-01T00:00:00.000Z,
+            id: 2,
+            page: undefined,
+            paginate: [Function: paginate],
+            post: [Circular *2],
+            search: Search {},
+            tags: [
+            ],
+            type: "comment",
+            url: "/comments/comment-2/",
+          },
+        ],
+        comment_id: [
+          2,
+        ],
+        content: "Second post with category 1 and comment 2
+",
+        date: 2022-08-27T14:31:46.225Z,
+        id: "second-post",
+        layout: "posts.njk",
+        page: Page {
+          data: [Getter/Setter],
+          dest: {
+            ext: ".html",
+            path: "/posts/post-2/index",
+          },
+          src: {
+            created: 2022-08-27T14:31:46.225Z,
+            ext: ".md",
+            lastModified: 2022-08-27T14:43:43.848Z,
+            path: "/posts/post-2",
+            remote: undefined,
+          },
+        },
+        paginate: [Function: paginate],
+        search: Search {},
+        tags: [
+        ],
+        type: "post",
+        url: "/posts/post-2/",
+      },
+    ],
+    search: Search {},
+    tags: [
+    ],
+    type: "comment",
+    url: "/comments/comment-2/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/comments/comment-2/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/comments/comment-2",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`relations plugin 8`] = `
+{
+  content: "<p>This is the third comment</p>
+",
+  data: {
+    content: "This is the third comment
+",
+    date: 1970-01-01T00:00:00.000Z,
+    id: 3,
+    page: undefined,
+    paginate: [Function: paginate],
+    post: [
+      <ref *1> {
+        category: {
+          content: "This is the second category
+",
+          date: 1970-01-01T00:00:00.000Z,
+          id: 2,
+          layout: "categories.njk",
+          page: undefined,
+          paginate: [Function: paginate],
+          post: [
+            [Circular *1],
+          ],
+          search: Search {},
+          tags: [
+          ],
+          title: "Category 2",
+          type: "category",
+          url: "/categories/category-2/",
+        },
+        category_id: 2,
+        comment: [
+          {
+            content: "This is the first comment
+",
+            date: 1970-01-01T00:00:00.000Z,
+            id: 1,
+            page: undefined,
+            paginate: [Function: paginate],
+            post: [
+              [Circular *1],
+            ],
+            search: Search {},
+            tags: [
+            ],
+            type: "comment",
+            url: "/comments/comment-1/",
+          },
+          {
+            content: "This is the third comment
+",
+            date: 1970-01-01T00:00:00.000Z,
+            id: 3,
+            page: undefined,
+            paginate: [Function: paginate],
+            post: [Circular *2],
+            search: Search {},
+            tags: [
+            ],
+            type: "comment",
+            url: "/comments/comment-3/",
+          },
+        ],
+        comment_id: [
+          1,
+          3,
+        ],
+        content: "First post with category 2 and comments 1 and 3
+",
+        date: 2022-08-27T14:29:26.261Z,
+        id: "first-post",
+        layout: "posts.njk",
+        page: Page {
+          data: [Getter/Setter],
+          dest: {
+            ext: ".html",
+            path: "/posts/post-1/index",
+          },
+          src: {
+            created: 2022-08-27T14:29:26.261Z,
+            ext: ".md",
+            lastModified: 2022-08-27T14:43:53.961Z,
+            path: "/posts/post-1",
+            remote: undefined,
+          },
+        },
+        paginate: [Function: paginate],
+        search: Search {},
+        tags: [
+        ],
+        type: "post",
+        url: "/posts/post-1/",
+      },
+    ],
+    search: Search {},
+    tags: [
+    ],
+    type: "comment",
+    url: "/comments/comment-3/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/comments/comment-3/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/comments/comment-3",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`relations plugin 9`] = `
+{
+  content: '<div><p>First post with category 2 and comments 1 and 3</p>
+</div>
+
+  
+<h2>Category:</h2>
+<a href="/categories/category-2/">Category 2</a>
+<p>This is the second category</p>
+
+
+<ul>
+
+  <li><p>This is the first comment</p></li>
+
+  <li><p>This is the third comment</p></li>
+
+</ul>',
+  data: {
+    category: <ref *1> {
+      content: "This is the second category
+",
+      date: 1970-01-01T00:00:00.000Z,
+      id: 2,
+      layout: "categories.njk",
+      page: undefined,
+      paginate: [Function: paginate],
+      post: [
+        <ref *2> {
+          category: [Circular *1],
+          category_id: 2,
+          comment: [
+            {
+              content: "This is the first comment
+",
+              date: 1970-01-01T00:00:00.000Z,
+              id: 1,
+              page: undefined,
+              paginate: [Function: paginate],
+              post: [
+                [Circular *2],
+              ],
+              search: Search {},
+              tags: [
+              ],
+              type: "comment",
+              url: "/comments/comment-1/",
+            },
+            {
+              content: "This is the third comment
+",
+              date: 1970-01-01T00:00:00.000Z,
+              id: 3,
+              page: undefined,
+              paginate: [Function: paginate],
+              post: [
+                [Circular *2],
+              ],
+              search: Search {},
+              tags: [
+              ],
+              type: "comment",
+              url: "/comments/comment-3/",
+            },
+          ],
+          comment_id: [
+            1,
+            3,
+          ],
+          content: "First post with category 2 and comments 1 and 3
+",
+          date: 1970-01-01T00:00:00.000Z,
+          id: "first-post",
+          layout: "posts.njk",
+          page: undefined,
+          paginate: [Function: paginate],
+          search: Search {},
+          tags: [
+          ],
+          type: "post",
+          url: "/posts/post-1/",
+        },
+      ],
+      search: Search {},
+      tags: [
+      ],
+      title: "Category 2",
+      type: "category",
+      url: "/categories/category-2/",
+    },
+    category_id: 2,
+    comment: [
+      {
+        content: "This is the first comment
+",
+        date: 1970-01-01T00:00:00.000Z,
+        id: 1,
+        page: undefined,
+        paginate: [Function: paginate],
+        post: [
+          <ref *2> {
+            category: <ref *1> {
+              content: "This is the second category
+",
+              date: 1970-01-01T00:00:00.000Z,
+              id: 2,
+              layout: "categories.njk",
+              page: undefined,
+              paginate: [Function: paginate],
+              post: [
+                [Circular *2],
+              ],
+              search: Search {},
+              tags: [
+              ],
+              title: "Category 2",
+              type: "category",
+              url: "/categories/category-2/",
+            },
+            category_id: 2,
+            comment: [Circular *3],
+            comment_id: [
+              1,
+              3,
+            ],
+            content: "First post with category 2 and comments 1 and 3
+",
+            date: 1970-01-01T00:00:00.000Z,
+            id: "first-post",
+            layout: "posts.njk",
+            page: undefined,
+            paginate: [Function: paginate],
+            search: Search {},
+            tags: [
+            ],
+            type: "post",
+            url: "/posts/post-1/",
+          },
+        ],
+        search: Search {},
+        tags: [
+        ],
+        type: "comment",
+        url: "/comments/comment-1/",
+      },
+      {
+        content: "This is the third comment
+",
+        date: 1970-01-01T00:00:00.000Z,
+        id: 3,
+        page: undefined,
+        paginate: [Function: paginate],
+        post: [
+          <ref *2> {
+            category: <ref *1> {
+              content: "This is the second category
+",
+              date: 1970-01-01T00:00:00.000Z,
+              id: 2,
+              layout: "categories.njk",
+              page: undefined,
+              paginate: [Function: paginate],
+              post: [
+                [Circular *2],
+              ],
+              search: Search {},
+              tags: [
+              ],
+              title: "Category 2",
+              type: "category",
+              url: "/categories/category-2/",
+            },
+            category_id: 2,
+            comment: [Circular *3],
+            comment_id: [
+              1,
+              3,
+            ],
+            content: "First post with category 2 and comments 1 and 3
+",
+            date: 1970-01-01T00:00:00.000Z,
+            id: "first-post",
+            layout: "posts.njk",
+            page: undefined,
+            paginate: [Function: paginate],
+            search: Search {},
+            tags: [
+            ],
+            type: "post",
+            url: "/posts/post-1/",
+          },
+        ],
+        search: Search {},
+        tags: [
+        ],
+        type: "comment",
+        url: "/comments/comment-3/",
+      },
+    ],
+    comment_id: [
+      1,
+      3,
+    ],
+    content: "First post with category 2 and comments 1 and 3
+",
+    date: 1970-01-01T00:00:00.000Z,
+    id: "first-post",
+    layout: "posts.njk",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    type: "post",
+    url: "/posts/post-1/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/posts/post-1/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/posts/post-1",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`relations plugin 10`] = `
+{
+  content: '<div><p>Second post with category 1 and comment 2</p>
+</div>
+
+  
+<h2>Category:</h2>
+<a href="/categories/category-1/">Category 1</a>
+<p>This is the first category</p>
+
+
+<ul>
+
+  <li><p>This is the second comment</p></li>
+
+</ul>',
+  data: {
+    category: <ref *1> {
+      content: "This is the first category
+",
+      date: 1970-01-01T00:00:00.000Z,
+      id: 1,
+      layout: "categories.njk",
+      page: undefined,
+      paginate: [Function: paginate],
+      post: [
+        <ref *2> {
+          category: [Circular *1],
+          category_id: 1,
+          comment: [
+            {
+              content: "This is the second comment
+",
+              date: 1970-01-01T00:00:00.000Z,
+              id: 2,
+              page: undefined,
+              paginate: [Function: paginate],
+              post: [
+                [Circular *2],
+              ],
+              search: Search {},
+              tags: [
+              ],
+              type: "comment",
+              url: "/comments/comment-2/",
+            },
+          ],
+          comment_id: [
+            2,
+          ],
+          content: "Second post with category 1 and comment 2
+",
+          date: 1970-01-01T00:00:00.000Z,
+          id: "second-post",
+          layout: "posts.njk",
+          page: undefined,
+          paginate: [Function: paginate],
+          search: Search {},
+          tags: [
+          ],
+          type: "post",
+          url: "/posts/post-2/",
+        },
+      ],
+      search: Search {},
+      tags: [
+      ],
+      title: "Category 1",
+      type: "category",
+      url: "/categories/category-1/",
+    },
+    category_id: 1,
+    comment: [
+      {
+        content: "This is the second comment
+",
+        date: 1970-01-01T00:00:00.000Z,
+        id: 2,
+        page: undefined,
+        paginate: [Function: paginate],
+        post: [
+          <ref *2> {
+            category: <ref *1> {
+              content: "This is the first category
+",
+              date: 1970-01-01T00:00:00.000Z,
+              id: 1,
+              layout: "categories.njk",
+              page: undefined,
+              paginate: [Function: paginate],
+              post: [
+                [Circular *2],
+              ],
+              search: Search {},
+              tags: [
+              ],
+              title: "Category 1",
+              type: "category",
+              url: "/categories/category-1/",
+            },
+            category_id: 1,
+            comment: [Circular *3],
+            comment_id: [
+              2,
+            ],
+            content: "Second post with category 1 and comment 2
+",
+            date: 1970-01-01T00:00:00.000Z,
+            id: "second-post",
+            layout: "posts.njk",
+            page: undefined,
+            paginate: [Function: paginate],
+            search: Search {},
+            tags: [
+            ],
+            type: "post",
+            url: "/posts/post-2/",
+          },
+        ],
+        search: Search {},
+        tags: [
+        ],
+        type: "comment",
+        url: "/comments/comment-2/",
+      },
+    ],
+    comment_id: [
+      2,
+    ],
+    content: "Second post with category 1 and comment 2
+",
+    date: 1970-01-01T00:00:00.000Z,
+    id: "second-post",
+    layout: "posts.njk",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    type: "post",
+    url: "/posts/post-2/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/posts/post-2/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/posts/post-2",
+    remote: undefined,
+  },
+}
+`;

@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - New plugin `multilanguage`, to create pages of different languages [#205].
+- New plugin `relations`, to create automatic relations between pages,
+  similar to relational database (using id, type and foreign keys).
 - New `stopWords` option to the `slugify_urls` plugin [#243].
 - New `each` option to the `paginate` plugin.
 

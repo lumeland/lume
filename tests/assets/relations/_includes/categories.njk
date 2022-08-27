@@ -1,0 +1,10 @@
+<h1>{{ title }}</h1>
+
+<div>{{ content | safe }}</div>
+
+<h2>Posts</h2>
+<ul>
+{% for item in post %}
+  <li>{{ item.content | md | safe }}</li>
+{% endfor %}
+</ul>

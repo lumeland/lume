@@ -40,6 +40,7 @@ export const pluginNames = [
   "postcss",
   "prism",
   "pug",
+  "relations",
   "relative_urls",
   "resolve_urls",
   "sass",
