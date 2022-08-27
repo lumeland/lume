@@ -99,7 +99,6 @@ local_backend: false
     path: "/admin/config",
   },
   src: {
-    ext: undefined,
     path: "",
     remote: undefined,
   },
@@ -145,7 +144,6 @@ snapshot[`code_hightlight plugin 5`] = `
     path: "/admin/index",
   },
   src: {
-    ext: undefined,
     path: "",
     remote: undefined,
   },

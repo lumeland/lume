@@ -103,7 +103,6 @@ icon {
     path: "/components",
   },
   src: {
-    ext: undefined,
     path: "",
     remote: undefined,
   },
@@ -141,7 +140,6 @@ console.log("Hello world, from the icon/User component");
     path: "/components",
   },
   src: {
-    ext: undefined,
     path: "",
     remote: undefined,
   },

@@ -84,49 +84,9 @@ async function assertPageSnapshot(
   context: Deno.TestContext,
   page: Page,
 ) {
-  let { content, data } = page;
-  const { dest } = page;
-  const src = {
-    path: page.src.path,
-    ext: page.src.ext,
-    // Remote base path because it's different in the test environment
-    remote: page.src.remote?.replace(cwUrl.href, ""),
-  };
+  let { data } = page;
+  const { dest, src, content } = page;
 
-  // Remove pagination results details from the data
-  if (Array.isArray(page.data.results)) {
-    page.data.results = page.data.results.length;
-  }
-
-  if (page.data.alternates) {
-    page.data.alternates = Object.keys(
-      page.data.alternates as Record<string, Page>,
-    );
-  }
-
-  // Remove page reference
-  page.data.page = undefined;
-
-  // Normalize content for Windows
-  content = normalizeContent(content);
-  data.content = normalizeContent(
-    data.content as string | Uint8Array | undefined,
-  );
-
-  // Source maps
-  if (page.dest.ext === ".map") {
-    content = "(removed for testing)";
-    data.content = "(removed for testing)";
-  }
-
-  // Ignore comp object
-  if (data.comp) {
-    data.comp = {};
-  }
-  // Normalize date
-  if (data.date instanceof Date) {
-    data.date = new Date(0);
-  }
   // Sort data alphabetically
   const entries = Object.entries(data).sort((a, b) => a[0].localeCompare(b[0]));
   data = Object.fromEntries(entries);
@@ -163,6 +123,47 @@ export async function assertSiteSnapshot(
 
   files.sort((a, b) => {
     return compare(a.src, b.src);
+  });
+
+  // Normalize some dynamic data
+  pages.forEach((page) => {
+    // Normalize data
+    if (page.data.date instanceof Date) {
+      page.data.date = new Date(0);
+    }
+    // Ignore comp object
+    if (page.data.comp) {
+      page.data.comp = {};
+    }
+    // Remove page reference
+    page.data.page = undefined;
+
+    // Remove pagination results details from the data
+    if (Array.isArray(page.data.results)) {
+      page.data.results = page.data.results.length;
+    }
+    // Remove alternates values (added by multilanguage plugin)
+    if (page.data.alternates) {
+      page.data.alternates = Object.keys(
+        page.data.alternates as Record<string, Page>,
+      );
+    }
+    // Remote base path because it's different in the test environment
+    page.src.remote = page.src.remote?.replace(cwUrl.href, "");
+    delete page.src.created;
+    delete page.src.lastModified;
+
+    // Normalize content for Windows
+    page.content = normalizeContent(page.content);
+    page.data.content = normalizeContent(
+      page.data.content as string | Uint8Array | undefined,
+    );
+
+    // Source maps
+    if (page.dest.ext === ".map") {
+      page.content = "(removed for testing)";
+      page.data.content = "(removed for testing)";
+    }
   });
 
   // Test static files

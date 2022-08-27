@@ -97,7 +97,6 @@ snapshot[`sass plugin 4`] = `
     path: "/index.css",
   },
   src: {
-    ext: undefined,
     path: "",
     remote: undefined,
   },
@@ -119,7 +118,6 @@ snapshot[`sass plugin 5`] = `
     path: "/index2.css",
   },
   src: {
-    ext: undefined,
     path: "",
     remote: undefined,
   },
