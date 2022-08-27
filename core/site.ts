@@ -519,6 +519,10 @@ export default class Site {
 
     // Remove empty pages and ondemand pages
     this.pages = this.pages.filter((page) => {
+      if (page.data.url === false) {
+        return false;
+      }
+
       const shouldSkip = !page.content || page.data.ondemand;
       if (shouldSkip) {
         this.logger.warn(
