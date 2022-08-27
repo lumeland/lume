@@ -21,15 +21,15 @@ const upgrade = new Command()
   )
   .option(
     "-g, --global [global:boolean]",
-    "To install lume globally (with deno install).",
-    { default: true },
+    "To upgrade lume globally (with deno install).",
+    { default: false },
   )
-  .example("lume upgrade", "Upgrades to the latest stable version.")
-  .example("lume upgrade --dev", "Upgrades to the latest development version.")
   .option(
     "-d, --dev [dev:boolean]",
     "Install the latest development version (last Git commit).",
   )
+  .example("lume upgrade -g", "Upgrades to the latest stable version.")
+  .example("lume upgrade --dev", "Upgrades to the latest development version.")
   .action(upgradeCommand);
 
 const importMap = new Command()

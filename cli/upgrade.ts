@@ -33,7 +33,7 @@ export async function upgrade(global = false, dev = false, version?: string) {
         : "You're using the latest development version of Lume:",
       brightGreen(latest),
     );
-    await updateDenoConfig(url);
+    await updateDenoConfig(url, global);
     console.log();
     return;
   }
@@ -47,7 +47,7 @@ export async function upgrade(global = false, dev = false, version?: string) {
   if (global) {
     await install(url.href);
   }
-  await updateDenoConfig(url);
+  await updateDenoConfig(url, global);
 
   console.log();
   console.log("Update successful!");
@@ -66,13 +66,15 @@ export async function upgrade(global = false, dev = false, version?: string) {
   console.log();
 }
 
-async function updateDenoConfig(url: URL) {
+async function updateDenoConfig(url: URL, global: boolean) {
   try {
-    await Promise.any([
-      Deno.stat("deno.json"),
-      Deno.stat("deno.jsonc"),
-    ]);
-    await Deno.stat("import_map.json");
+    if (global) {
+      await Promise.any([
+        Deno.stat("deno.json"),
+        Deno.stat("deno.jsonc"),
+      ]);
+      await Deno.stat("import_map.json");
+    }
     await importMap(url);
   } catch {
     // Don't update import_map.json or deno.json

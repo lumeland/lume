@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 - The paginate helper returns an array with the pages instead of a generator.
   This makes it more easy to work with, like inspect and modify the values [#241].
+- `lume upgrade` upgrades lume locally by default (editing the import_map.json file).
+  Run `lume upgrade --global` to update it globally (with `deno install`).
 
 ### Removed
 - `/plugins.ts` module. It makes no sense.

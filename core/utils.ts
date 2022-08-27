@@ -193,7 +193,18 @@ export async function mustNotifyUpgrade(): Promise<undefined | UpgradeInfo> {
     return;
   }
 
-  const command = stable ? "lume upgrade" : "lume upgrade --dev";
+  let global = "";
+  try {
+    await Promise.any([
+      Deno.stat("deno.json"),
+      Deno.stat("deno.jsonc"),
+    ]);
+    await Deno.stat("import_map.json");
+  } catch {
+    global = " --global";
+  }
+
+  const command = (stable ? "lume upgrade" : "lume upgrade --dev") + global;
   return { current, latest, command };
 }
 
