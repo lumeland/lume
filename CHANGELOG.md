@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `/plugins.ts` module. It makes no sense.
 
 ### Fixed
-- Updated dependencies: `std`, `deno_dom`, `liquid`, `parcel_css`, `prism`.
+- Updated dependencies: `std`, `deno_dom`, `liquid`, `parcel_css`, `prism`, `autoprefixer`.
 
 ## [1.10.4] - 2022-08-14
 ### Added
