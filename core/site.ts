@@ -409,8 +409,8 @@ export default class Site {
     return this;
   }
 
-  /** Preload in the cache the content of a file */
-  preloadFile(filename: string, data: Data): this {
+  /** Save into the cache the content of a file */
+  cacheFile(filename: string, data: Data): this {
     this.reader.saveCache(filename, data);
     return this;
   }
