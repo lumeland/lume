@@ -92,19 +92,16 @@ export default class Watcher {
       let paths = event.paths.map(normalizePath);
 
       // Filter ignored paths
-      paths = paths.filter((path) => {
-        if (path.endsWith(".DS_Store")) { // macOS file
-          return false;
-        }
-
-        return ignore
+      paths = paths.filter((path) =>
+        ignore
           ? !ignore.some((ignore) =>
             typeof ignore === "string"
-              ? path.startsWith(normalizePath(join(root, ignore, "/")))
+              ? (path.startsWith(normalizePath(join(root, ignore, "/"))) ||
+                path === normalizePath(join(root, ignore)))
               : ignore(path)
           )
-          : true;
-      });
+          : true
+      );
 
       if (!paths.length) {
         continue;

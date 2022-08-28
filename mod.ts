@@ -47,7 +47,7 @@ export default function (
 
   const site = new Site(options as Partial<SiteOptions>);
 
-  // Ignore the .git folder and .DS_Store file by the watcher
+  // Ignore the .git folder and .DS_Store (macOS) files by the watcher
   site.options.watcher.ignore.push(".git");
   site.options.watcher.ignore.push((path) => path.endsWith("/.DS_Store"));
 

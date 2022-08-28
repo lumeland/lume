@@ -196,11 +196,19 @@ export default class Site {
   }
 
   /**
+   * Returns the full path to the root directory.
+   * Use the arguments to return a subpath
+   */
+  root(...path: string[]): string {
+    return normalizePath(join(this.options.cwd, ...path));
+  }
+
+  /**
    * Returns the full path to the src directory.
    * Use the arguments to return a subpath
    */
   src(...path: string[]): string {
-    return normalizePath(join(this.options.cwd, this.options.src, ...path));
+    return this.root(this.options.src, ...path);
   }
 
   /**
@@ -208,7 +216,7 @@ export default class Site {
    * Use the arguments to return a subpath
    */
   dest(...path: string[]): string {
-    return normalizePath(join(this.options.cwd, this.options.dest, ...path));
+    return this.root(this.options.dest, ...path);
   }
 
   /** Add a listener to an event */

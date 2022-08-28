@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `relations`, to create automatic relations between pages,
   similar to relational database (using id, type and foreign keys).
 - New function `site.cacheFile()`.
+- New function `site.root()`, similar to `site.src()` and `site.dest()` but returns the path relative to the cwd.
 - New property `site.onDemandPages` with an array of pages that must be generated on demand.
 - New filter `data`, provided by the `search` plugin, to return the `Data` objects of the pages, instead the full `Page` instance.
 - New `stopWords` option to the `slugify_urls` plugin [#243].
@@ -30,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Updated dependencies: `std`, `deno_dom`, `liquid`, `parcel_css`, `prism`, `autoprefixer`.
 - Added the `content-type` headers of pages generated on demand.
+- File paths added to `watcher.ignore` were not checked correctly.
 
 ## [1.10.4] - 2022-08-14
 ### Added

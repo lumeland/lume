@@ -14,8 +14,8 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
-  routesPath: "_routes.json",
-  preloadPath: "_preload.ts",
+  routesPath: "/_routes.json",
+  preloadPath: "/_preload.ts",
 };
 
 /** A plugin to generate pages on demand in the server side */
@@ -23,8 +23,8 @@ export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    const routesFile = site.src(options.routesPath);
-    const preloadFile = site.src(options.preloadPath);
+    const routesFile = site.root(options.routesPath);
+    const preloadFile = site.root(options.preloadPath);
     const collector = new JsonRouterCollector(routesFile, preloadFile);
 
     // Collect and save the routes automatically
@@ -33,8 +33,9 @@ export default function (userOptions?: Partial<Options>) {
       await collector.saveRoutes(site.logger);
     });
 
-    // Ignore the routes file by the watcher
-    site.options.watcher.ignore.push(routesFile);
+    // Ignore the routes files by the watcher
+    site.options.watcher.ignore.push(options.routesPath);
+    site.options.watcher.ignore.push(options.preloadPath);
 
     // Add the ondemand middleware
     site.options.server.middlewares ||= [];
