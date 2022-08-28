@@ -43,6 +43,7 @@ export default class Reader {
     this.cache.clear();
   }
 
+  /** Resolve the full path of a path */
   getFullPath(path: string): string {
     const fullPath = path.startsWith(this.src)
       ? path

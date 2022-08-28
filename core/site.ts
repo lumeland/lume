@@ -409,6 +409,12 @@ export default class Site {
     return this;
   }
 
+  /** Preload in the cache the content of a file */
+  preloadFile(filename: string, data: Data): this {
+    this.reader.saveCache(filename, data);
+    return this;
+  }
+
   /** Clear the dest directory and any cache */
   async clear(): Promise<void> {
     this.reader.clearCache();
