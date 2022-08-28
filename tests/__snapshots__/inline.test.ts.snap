@@ -133,10 +133,10 @@ snapshot[`inline plugin 5`] = `
   <meta charset="UTF-8">
   <title>Inline test</title>
   <link id="el-1" rel="stylesheet" href="styles.css">
-  <style>body {
+  <style id="el-2" nonce="1234">@media print { body {
   background: white;
   color: #333;
-}</style>
+} }</style>
   <link id="el-3" rel="shortcut icon" href="data:image/svg+xml;base64,(...)">
   <link id="el-4" rel="shortcut icon" href="/favicon.svg">
   <link id="el-5" rel="shortcut icon" href="data:image/png;base64,(...)">
@@ -169,7 +169,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
   <meta charset="UTF-8">
   <title>Inline test</title>
   <link id="el-1" rel="stylesheet" href="styles.css">
-  <link id="el-2" rel="stylesheet" href="styles.css" inline>
+  <link id="el-2" nonce="1234" media="print" rel="stylesheet" href="styles.css" inline>
   <link id="el-3" rel="shortcut icon" href="/favicon.svg" inline>
   <link id="el-4" rel="shortcut icon" href="/favicon.svg">
   <link id="el-5" rel="shortcut icon" href="/favicon2.png" inline>

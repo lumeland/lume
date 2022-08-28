@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `multilanguage`, to create pages of different languages [#205].
 - New plugin `relations`, to create automatic relations between pages,
   similar to relational database (using id, type and foreign keys).
+- Enabled the plugin `on_demand`, allowing to generate pages dynamically on Deno Deploy.
 - New function `site.cacheFile()`.
 - New function `site.root()`, similar to `site.src()` and `site.dest()` but returns the path relative to the cwd.
 - New property `site.onDemandPages` with an array of pages that must be generated on demand.
@@ -32,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Updated dependencies: `std`, `deno_dom`, `liquid`, `parcel_css`, `prism`, `autoprefixer`.
 - Added the `content-type` headers of pages generated on demand.
 - File paths added to `watcher.ignore` were not checked correctly.
+- `inline` plugin does not respect additional style tag attributes [#246].
 
 ## [1.10.4] - 2022-08-14
 ### Added
@@ -1718,6 +1720,7 @@ The first version.
 [#240]: https://github.com/lumeland/lume/issues/240
 [#241]: https://github.com/lumeland/lume/issues/241
 [#243]: https://github.com/lumeland/lume/issues/243
+[#246]: https://github.com/lumeland/lume/issues/246
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.10.4...HEAD
 [1.10.4]: https://github.com/lumeland/lume/compare/v1.10.3...v1.10.4

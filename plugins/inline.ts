@@ -106,9 +106,20 @@ export default function (userOptions?: Partial<Options>) {
     async function inlineStyles(url: string, element: Element) {
       const path = posix.resolve(url, element.getAttribute("href")!);
       const style = element.ownerDocument!.createElement("style");
+      const sharedProps = ["id", "class", "nonce", "title"];
+
+      for (const prop of sharedProps) {
+        if (element.hasAttribute(prop)) {
+          style.setAttribute(prop, element.getAttribute(prop));
+        }
+      }
 
       try {
-        style.innerHTML = await getContent(path);
+        let content = await getContent(path);
+        if (element.hasAttribute("media")) {
+          content = `@media ${element.getAttribute("media")} { ${content} }`;
+        }
+        style.innerHTML = content;
         element.replaceWith(style);
       } catch (cause) {
         site.logger.warn("Unable to inline the file", {
