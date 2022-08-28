@@ -57,7 +57,7 @@ export default class Renderer {
   }
 
   /** Render the provided pages */
-  async renderPages(from: Page[], to: Page[]) {
+  async renderPages(from: Page[], to: Page[], onDemand: Page[]): Promise<void> {
     for (const group of this.#groupPages(from)) {
       const pages: Page[] = [];
       const generators: Page[] = [];
@@ -71,9 +71,11 @@ export default class Renderer {
           continue;
         }
 
-        if (!page.data.ondemand) {
-          pages.push(page);
+        if (page.data.ondemand) {
+          onDemand.push(page);
+          continue;
         }
+        pages.push(page);
       }
 
       // Preprocess the pages and add them to site.pages

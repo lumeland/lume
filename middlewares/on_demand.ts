@@ -3,16 +3,18 @@ import { contentType } from "../deps/media_types.ts";
 
 import type { Middleware, Site } from "../core.ts";
 
-export type Router = (url: URL) => Promise<string | undefined>;
+export type Router = (url: URL) => string | undefined;
 
 export interface Options {
-  router: Router;
   site: Site;
+  router?: Router;
 }
 
 /** Render pages on demand */
 export default function onDemand(options: Options): Middleware {
-  const { router, site } = options;
+  const site = options.site;
+  const router = options.router ||
+    createDefaultRouter(site.src("_routes.json"));
 
   return async (request, next) => {
     const response = await next(request);
@@ -22,7 +24,7 @@ export default function onDemand(options: Options): Middleware {
     }
 
     const url = new URL(request.url);
-    const file = await router(url);
+    const file = router(url);
 
     if (!file) {
       return response;
@@ -57,5 +59,26 @@ export default function onDemand(options: Options): Middleware {
     }
 
     return pageResponse;
+  };
+}
+
+function createDefaultRouter(file: string): Router {
+  const routes: Record<string, string> = JSON.parse(
+    Deno.readTextFileSync(file),
+  );
+  return getRouter(new Map(Object.entries(routes)));
+}
+
+export function getRouter(routes: Map<string, string>): Router {
+  return function match(url: URL): string | undefined {
+    const { pathname } = url;
+    const path = routes.get(pathname);
+
+    // Handle urls like /example as /example/
+    if (!path && !pathname.endsWith("/")) {
+      return routes.get(pathname + "/");
+    }
+
+    return path;
   };
 }

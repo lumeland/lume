@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `relations`, to create automatic relations between pages,
   similar to relational database (using id, type and foreign keys).
 - New function `site.cacheFile()`.
+- New property `site.onDemandPages` with an array of pages that must be generated on demand.
 - New filter `data`, provided by the `search` plugin, to return the `Data` objects of the pages, instead the full `Page` instance.
 - New `stopWords` option to the `slugify_urls` plugin [#243].
 - New `each` option to the `paginate` plugin.
