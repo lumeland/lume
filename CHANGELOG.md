@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Updated dependencies: `std`, `deno_dom`, `liquid`, `parcel_css`, `prism`, `autoprefixer`.
+- Added the `content-type` headers of pages generated on demand.
 
 ## [1.10.4] - 2022-08-14
 ### Added

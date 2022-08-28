@@ -1,4 +1,5 @@
 import { posix } from "../deps/path.ts";
+import { contentType } from "../deps/media_types.ts";
 
 import type { Middleware, Site } from "../core.ts";
 
@@ -44,9 +45,17 @@ export default function onDemand(options: Options): Middleware {
       });
     }
 
-    return new Response(
+    const pageResponse = new Response(
       page.content,
       { status: 200 },
     );
+
+    const type = contentType(page.dest.ext);
+
+    if (type) {
+      pageResponse.headers.set("content-type", type);
+    }
+
+    return pageResponse;
   };
 }
