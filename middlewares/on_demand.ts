@@ -13,14 +13,17 @@ export interface Options {
 /** Render pages on demand */
 export default function onDemand(options: Options): Middleware {
   const site = options.site;
-  const router = options.router ||
-    createDefaultRouter(site.src("_routes.json"));
+  let router = options.router;
 
   return async (request, next) => {
     const response = await next(request);
 
     if (response.status !== 404) {
       return response;
+    }
+
+    if (!router) {
+      router = await createDefaultRouter(site.src("_routes.json"));
     }
 
     const url = new URL(request.url);
@@ -62,9 +65,9 @@ export default function onDemand(options: Options): Middleware {
   };
 }
 
-function createDefaultRouter(file: string): Router {
+async function createDefaultRouter(file: string): Promise<Router> {
   const routes: Record<string, string> = JSON.parse(
-    Deno.readTextFileSync(file),
+    await Deno.readTextFile(file),
   );
   return getRouter(new Map(Object.entries(routes)));
 }
