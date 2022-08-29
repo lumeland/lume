@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.11.0] - Unreleased
 ### Added
 - New plugin `multilanguage`, to create pages of different languages [#205].
 - New plugin `relations`, to create automatic relations between pages,
@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New `each` option to the `paginate` plugin.
 
 ### Changed
+- The minimum Deno version supported is `1.24.0`.
 - The paginate helper returns an array with the pages instead of a generator.
   This makes it more easy to work with, like inspect and modify the values [#241].
 - `lume upgrade` upgrades lume locally by default (editing the import_map.json file).
@@ -28,6 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 - `/plugins.ts` module. It makes no sense.
+- The ability to pass arguments to Deno after `--`. Example `lume -s -- --compact`.
+  Use a deno task to customize how Lume is executed by Deno.
 
 ### Fixed
 - Updated dependencies: `std`, `deno_dom`, `liquid`, `parcel_css`, `prism`, `autoprefixer`.
@@ -1722,7 +1725,7 @@ The first version.
 [#243]: https://github.com/lumeland/lume/issues/243
 [#246]: https://github.com/lumeland/lume/issues/246
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.10.4...HEAD
+[1.11.0]: https://github.com/lumeland/lume/compare/v1.10.4...HEAD
 [1.10.4]: https://github.com/lumeland/lume/compare/v1.10.3...v1.10.4
 [1.10.3]: https://github.com/lumeland/lume/compare/v1.10.2...v1.10.3
 [1.10.2]: https://github.com/lumeland/lume/compare/v1.10.1...v1.10.2

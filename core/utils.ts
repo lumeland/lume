@@ -296,7 +296,7 @@ export interface DenoInfo {
 }
 
 export function checkDenoVersion(): DenoInfo | undefined {
-  const minimum = "1.20.1";
+  const minimum = "1.24.0";
   const current = Deno.version.deno;
 
   if (current < minimum) {
