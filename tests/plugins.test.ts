@@ -20,6 +20,7 @@ Deno.test("Plugins list in init", () => {
     "metas",
     "modify_urls",
     "multilanguage",
+    "nano_jsx",
     "netlify_cms",
     "on_demand",
     "parcel_css",
