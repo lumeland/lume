@@ -1,0 +1,262 @@
+export const snapshot = {};
+
+snapshot[`build a site with jsx/tsx modules using Nano JSX 1`] = `6`;
+
+snapshot[`build a site with jsx/tsx modules using Nano JSX 2`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".jsx",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".tsx",
+      pageLoader: [AsyncFunction: module],
+    },
+  ],
+}
+`;
+
+snapshot[`build a site with jsx/tsx modules using Nano JSX 3`] = `
+[
+]
+`;
+
+snapshot[`build a site with jsx/tsx modules using Nano JSX 4`] = `
+{
+  content: "[object Object]",
+  data: {
+    comp: {},
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.jsx",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "This is the title",
+    url: "/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/index",
+  },
+  src: {
+    ext: ".jsx",
+    path: "/index",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`build a site with jsx/tsx modules using Nano JSX 5`] = `
+{
+  content: "[object Object]",
+  data: {
+    children: Generator {},
+    comp: {},
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.jsx",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/page/1/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page/1/index",
+  },
+  src: {
+    ext: ".jsx",
+    path: "/multiple[0]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`build a site with jsx/tsx modules using Nano JSX 6`] = `
+{
+  content: "[object Object]",
+  data: {
+    children: Generator {},
+    comp: {},
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.jsx",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/page/2/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page/2/index",
+  },
+  src: {
+    ext: ".jsx",
+    path: "/multiple[1]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`build a site with jsx/tsx modules using Nano JSX 7`] = `
+{
+  content: "[object Object]",
+  data: {
+    comp: {},
+    content: '# Hello <strong className="foo">world</strong>
+
+This is a **markdown** text. [Go home](/)
+
+<comp.Button type="foo" />
+
+<img src="foo" />
+',
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.jsx",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    templateEngine: "jsx,md",
+    title: "Markdown combined with JSX",
+    url: "/pseudo-mdx/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/pseudo-mdx/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/pseudo-mdx",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`build a site with jsx/tsx modules using Nano JSX 8`] = `
+{
+  content: "[object Object]",
+  data: {
+    comp: {},
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.jsx",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "This is the title",
+    url: "/with-function/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/with-function/index",
+  },
+  src: {
+    ext: ".jsx",
+    path: "/with-function",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`build a site with jsx/tsx modules using Nano JSX 9`] = `
+{
+  content: "[object Object]",
+  data: {
+    comp: {},
+    content: "# Hello world{.foo}
+
+This is a **markdown** text. [Go home](/)
+",
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.jsx",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "Markdown combined with JSX",
+    url: "/with-markdown/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/with-markdown/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/with-markdown",
+    remote: undefined,
+  },
+}
+`;
