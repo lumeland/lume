@@ -3,6 +3,7 @@ import { join, posix, resolve, SEP, toFileUrl } from "../deps/path.ts";
 import { exists } from "../deps/fs.ts";
 import { parse } from "../deps/jsonc.ts";
 import { Exception } from "./errors.ts";
+import { encode } from "../deps/base64.ts";
 
 export const baseUrl = new URL("../", import.meta.url);
 
@@ -362,4 +363,42 @@ export async function read(
   return isBinary
     ? new Uint8Array(await response.arrayBuffer())
     : response.text();
+}
+
+/** Parse a string as JSX */
+export async function parseJSX(
+  baseUrl: URL,
+  content: string,
+  data: Record<string, unknown> = {},
+  start = "",
+  // deno-lint-ignore no-explicit-any
+): Promise<any> {
+  // Collect imports
+  const imports: string[] = [];
+
+  content = content.replaceAll(
+    /import\s+[\w\W]+?\s+from\s+("[^"]+"|'[^']+');?/g,
+    (code, path) => {
+      // Resolve relative urls
+      const quote = path.slice(0, 1);
+      let url = path.slice(1, -1);
+      if (url.startsWith(".")) {
+        url = new URL(url, baseUrl).href;
+        code = code.replace(path, quote + url + quote);
+      }
+      imports.push(code);
+      return "";
+    },
+  ).trim();
+
+  // Destructure arguments
+  const destructure = `{${Object.keys(data).join(",")}}`;
+  // Keep the line breaks (\n -> {"\n"})
+  content = content.replaceAll(/(\n\r?)/g, '{"\\n"}');
+
+  const code = `${start}
+  ${imports.join("\n")}
+  export default async function (${destructure}, helpers) { return <>${content}</> }`;
+  const url = `data:text/jsx;base64,${encode(code)}`;
+  return (await import(url)).default;
 }

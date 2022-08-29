@@ -1,6 +1,7 @@
 import { h, isValidElement, renderToString } from "../deps/preact.ts";
 import loader from "../core/loaders/module.ts";
-import { merge } from "../core/utils.ts";
+import { merge, parseJSX } from "../core/utils.ts";
+import { dirname, toFileUrl } from "../deps/path.ts";
 
 import type { Data, Engine, Helper, Site } from "../core.ts";
 import type { ComponentChildren } from "../deps/preact.ts";
@@ -24,15 +25,24 @@ export type Children = ComponentChildren;
 /** Template engine to render JSX files using Preact */
 export class PreactJsxEngine implements Engine {
   helpers: Record<string, Helper> = {};
+  baseUrl: URL;
+
+  constructor(basePath: string) {
+    this.baseUrl = toFileUrl(basePath);
+  }
 
   deleteCache() {}
 
-  async render(content: unknown, data: Data = {}) {
+  async render(content: unknown, data: Data = {}, filename?: string) {
     // The content is a string, so we have to convert to a Preact element
     if (typeof content === "string") {
-      content = h("div", {
-        dangerouslySetInnerHTML: { __html: data.content as string },
-      });
+      const basedir = filename ? "." + dirname(filename) : "./";
+      content = await parseJSX(
+        new URL(basedir, this.baseUrl),
+        content,
+        data,
+        "/** @jsxImportSource https://esm.sh/preact@10.10.6 */",
+      );
     }
 
     // Create the children property and ensure it's a Preact element
@@ -80,7 +90,7 @@ export default function (userOptions?: Partial<Options>) {
     : options.extensions;
 
   return (site: Site) => {
-    const engine = new PreactJsxEngine();
+    const engine = new PreactJsxEngine(site.src());
 
     site.loadPages(extensions.pages, loader, engine);
     site.loadComponents(extensions.components, loader, engine);

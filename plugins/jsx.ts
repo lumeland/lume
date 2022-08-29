@@ -1,7 +1,6 @@
-import { encode } from "../deps/base64.ts";
 import { React, ReactDOMServer } from "../deps/react.ts";
 import loader from "../core/loaders/module.ts";
-import { merge } from "../core/utils.ts";
+import { merge, parseJSX } from "../core/utils.ts";
 import { dirname, toFileUrl } from "../deps/path.ts";
 
 import type { Data, Engine, Helper, Site } from "../core.ts";
@@ -94,40 +93,4 @@ export default function (userOptions?: Partial<Options>) {
     site.loadPages(extensions.pages, loader, engine);
     site.loadComponents(extensions.components, loader, engine);
   };
-}
-
-export async function parseJSX(
-  baseUrl: URL,
-  content: string,
-  data: Data = {},
-  // deno-lint-ignore no-explicit-any
-): Promise<any> {
-  // Collect imports
-  const imports: string[] = [];
-
-  content = content.replaceAll(
-    /import\s+[\w\W]+?\s+from\s+("[^"]+"|'[^']+');?/g,
-    (code, path) => {
-      // Resolve relative urls
-      const quote = path.slice(0, 1);
-      let url = path.slice(1, -1);
-      if (url.startsWith(".")) {
-        url = new URL(url, baseUrl).href;
-        code = code.replace(path, quote + url + quote);
-      }
-      imports.push(code);
-      return "";
-    },
-  ).trim();
-
-  // Destructure arguments
-  const destructure = `{${Object.keys(data).join(",")}}`;
-  // Keep the line breaks (\n -> {"\n"})
-  content = content.replaceAll(/(\n\r?)/g, '{"\\n"}');
-
-  const fn = `${
-    imports.join("\n")
-  }\nexport default async function (${destructure}, helpers) { return <>${content}</> }`;
-  const url = `data:text/jsx;base64,${encode(fn)}`;
-  return (await import(url)).default;
 }
