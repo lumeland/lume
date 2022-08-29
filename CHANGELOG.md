@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `multilanguage`, to create pages of different languages [#205].
 - New plugin `relations`, to create automatic relations between pages,
   similar to relational database (using id, type and foreign keys).
-- New plugin `nano_jsx`, to use NanoJSX instead of React.
+- New plugin `jsx_preact`, to use Preact instead of React.
 - Enabled the plugin `on_demand`, allowing to generate pages dynamically on Deno Deploy.
 - New function `site.cacheFile()`.
 - New function `site.root()`, similar to `site.src()` and `site.dest()` but returns the path relative to the cwd.

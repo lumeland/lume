@@ -1,8 +1,8 @@
 export const snapshot = {};
 
-snapshot[`build a site with jsx/tsx modules using Nano JSX 1`] = `6`;
+snapshot[`build a site with jsx/tsx modules using Preact 1`] = `6`;
 
-snapshot[`build a site with jsx/tsx modules using Nano JSX 2`] = `
+snapshot[`build a site with jsx/tsx modules using Preact 2`] = `
 {
   formats: [
     {
@@ -77,14 +77,14 @@ snapshot[`build a site with jsx/tsx modules using Nano JSX 2`] = `
 }
 `;
 
-snapshot[`build a site with jsx/tsx modules using Nano JSX 3`] = `
+snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
 [
 ]
 `;
 
-snapshot[`build a site with jsx/tsx modules using Nano JSX 4`] = `
+snapshot[`build a site with jsx/tsx modules using Preact 4`] = `
 {
-  content: "[object Object]",
+  content: "<html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
   data: {
     comp: {},
     content: undefined,
@@ -110,11 +110,10 @@ snapshot[`build a site with jsx/tsx modules using Nano JSX 4`] = `
 }
 `;
 
-snapshot[`build a site with jsx/tsx modules using Nano JSX 5`] = `
+snapshot[`build a site with jsx/tsx modules using Preact 5`] = `
 {
-  content: "[object Object]",
+  content: "<html><head><title></title></head><body><main><div>1</div></main></body></html>",
   data: {
-    children: Generator {},
     comp: {},
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -138,11 +137,10 @@ snapshot[`build a site with jsx/tsx modules using Nano JSX 5`] = `
 }
 `;
 
-snapshot[`build a site with jsx/tsx modules using Nano JSX 6`] = `
+snapshot[`build a site with jsx/tsx modules using Preact 6`] = `
 {
-  content: "[object Object]",
+  content: "<html><head><title></title></head><body><main><div>2</div></main></body></html>",
   data: {
-    children: Generator {},
     comp: {},
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -166,9 +164,13 @@ snapshot[`build a site with jsx/tsx modules using Nano JSX 6`] = `
 }
 `;
 
-snapshot[`build a site with jsx/tsx modules using Nano JSX 7`] = `
+snapshot[`build a site with jsx/tsx modules using Preact 7`] = `
 {
-  content: "[object Object]",
+  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><div># Hello <strong className="foo">world</strong>
+<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+<p>&lt;comp.Button type=&quot;foo&quot; /&gt;</p>
+<img src="foo" />
+</div></div></main></body></html>',
   data: {
     comp: {},
     content: '# Hello <strong className="foo">world</strong>
@@ -202,9 +204,9 @@ This is a **markdown** text. [Go home](/)
 }
 `;
 
-snapshot[`build a site with jsx/tsx modules using Nano JSX 8`] = `
+snapshot[`build a site with jsx/tsx modules using Preact 8`] = `
 {
-  content: "[object Object]",
+  content: '<html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
   data: {
     comp: {},
     content: undefined,
@@ -230,9 +232,11 @@ snapshot[`build a site with jsx/tsx modules using Nano JSX 8`] = `
 }
 `;
 
-snapshot[`build a site with jsx/tsx modules using Nano JSX 9`] = `
+snapshot[`build a site with jsx/tsx modules using Preact 9`] = `
 {
-  content: "[object Object]",
+  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1 class="foo">Hello world</h1>
+<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+</div></main></body></html>',
   data: {
     comp: {},
     content: "# Hello world{.foo}

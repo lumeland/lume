@@ -38,11 +38,13 @@ export class JsxEngine implements Engine {
   deleteCache() {}
 
   async render(content: unknown, data: Data = {}, filename?: string) {
+    // The content is a string, so we have to convert to a React element
     if (typeof content === "string") {
       const basedir = filename ? "." + dirname(filename) : "./";
       content = await parseJSX(new URL(basedir, this.baseUrl), content, data);
     }
 
+    // Create the children property and ensure it's a React element
     const children = typeof data.content === "string"
       ? React.createElement("div", {
         dangerouslySetInnerHTML: { __html: data.content },

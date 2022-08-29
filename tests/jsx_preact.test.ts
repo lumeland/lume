@@ -1,9 +1,9 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
-import jsx from "../plugins/nano_jsx.ts";
+import jsx from "../plugins/jsx_preact.ts";
 
-Deno.test("build a site with jsx/tsx modules using Nano JSX", async (t) => {
+Deno.test("build a site with jsx/tsx modules using Preact", async (t) => {
   const site = getSite({
-    src: "nano_jsx",
+    src: "jsx_preact",
     location: new URL("https://example.com/blog"),
   });
 
