@@ -13,8 +13,7 @@ import { log } from "./cli/utils.ts";
 
 /**
  * This file works as a proxy to the actual Lume CLI to fix the following issues:
- * - Add defaults flags to Deno (--unstable, -A, --no-check)
- * - Adds user provided flags to Deno (for example --compact)
+ * - Add defaults flags to Deno (--unstable, -A)
  * - Detect and set the lume --quiet flag in Deno.
  * - Detect and use the deno.json file automatically.
  * - Add the import-map option to Deno if it's missing
