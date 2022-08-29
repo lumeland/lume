@@ -50,7 +50,7 @@ export default class Renderer {
     this.helpers.set(name, [fn, options]);
 
     for (const format of this.formats.entries.values()) {
-      format.engine?.addHelper(name, fn, options);
+      format.engines?.forEach((engine) => engine.addHelper(name, fn, options));
     }
 
     return this;
@@ -304,25 +304,21 @@ export default class Renderer {
         ? templateEngine
         : templateEngine.split(",");
 
-      return templateEngine.map((name) => {
+      return templateEngine.reduce((engines, name) => {
         const format = this.formats.get(`.${name.trim()}`);
 
-        if (format?.engine) {
-          return format.engine;
+        if (format?.engines) {
+          return engines.concat(format.engines);
         }
 
         throw new Exception(
           "Invalid value for templateEngine",
           { path, templateEngine },
         );
-      });
+      }, [] as Engine[]);
     }
 
-    const engine = this.formats.search(path)?.engine;
-
-    if (engine) {
-      return [engine];
-    }
+    return this.formats.search(path)?.engines;
   }
 }
 

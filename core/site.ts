@@ -328,14 +328,14 @@ export default class Site {
     return this.ignore(path);
   }
 
-  /** Register a engine for some extensions  */
-  engine(extensions: string[], engine: Engine): this {
+  /** Register the engines for some extensions  */
+  engine(extensions: string[], ...engines: Engine[]): this {
     extensions.forEach((ext) => {
-      this.formats.set({ ext, engine });
+      this.formats.set({ ext, engines });
     });
 
     for (const [name, helper] of this.renderer.helpers) {
-      engine.addHelper(name, ...helper);
+      engines.forEach((engine) => engine.addHelper(name, ...helper));
     }
 
     return this;

@@ -16,10 +16,10 @@ export interface Format {
   componentLoader?: Loader;
 
   /**
-   * The template engine used to render this format
+   * The template engines used to render this format
    * Used to render the page and components
    */
-  engine?: Engine;
+  engines?: Engine[];
 
   /**
    * This is used to distinguish between pages that output html files (like index.njk -> index.html)
@@ -99,7 +99,7 @@ export default class Formats {
   /** Delete a cached template */
   deleteCache(file: string): void {
     for (const format of this.entries.values()) {
-      format.engine?.deleteCache(file);
+      format.engines?.forEach((engine) => engine.deleteCache(file));
     }
   }
 }

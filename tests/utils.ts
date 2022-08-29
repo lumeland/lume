@@ -110,7 +110,7 @@ export async function assertSiteSnapshot(
       formats: Array.from(site.formats.entries.values()).map((format) => {
         return {
           ...format,
-          engine: !!format.engine,
+          engines: format.engines?.length,
         };
       }),
     },

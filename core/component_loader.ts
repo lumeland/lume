@@ -94,7 +94,7 @@ export default class ComponentsLoader {
       return;
     }
 
-    if (!format.componentLoader || !format.engine) {
+    if (!format.componentLoader || !format.engines?.length) {
       return;
     }
 
@@ -105,10 +105,10 @@ export default class ComponentsLoader {
       path,
       name: component.name ?? posix.basename(path, format.ext),
       render(data) {
-        return format.engine!.renderSync(
+        return format.engines!.reduce(
+          (content, engine) =>
+            engine.renderSync(content, { ...context.data, ...data }, path),
           content,
-          { ...context.data, ...data },
-          path,
         );
       },
       css: component.css,

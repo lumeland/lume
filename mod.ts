@@ -36,7 +36,7 @@ interface Options
   components?: Partial<ComponentsOptions>;
 }
 
-export default function lume (
+export default function lume(
   options: Options = {},
   pluginOptions: PluginOptions = {},
   cliOptions = true,
