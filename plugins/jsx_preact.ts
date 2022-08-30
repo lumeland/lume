@@ -1,4 +1,8 @@
-import { h, isValidElement, renderToString } from "../deps/preact.ts";
+import {
+  importSource,
+  isValidElement,
+  renderToString,
+} from "../deps/preact.ts";
 import loader from "../core/loaders/module.ts";
 import { merge, parseJSX } from "../core/utils.ts";
 import { dirname, toFileUrl } from "../deps/path.ts";
@@ -33,24 +37,34 @@ export class PreactJsxEngine implements Engine {
 
   deleteCache() {}
 
+  // deno-lint-ignore no-explicit-any
+  parseJSX(content: string, data: Data = {}, filename?: string): Promise<any> {
+    const baseUrl = new URL(
+      filename ? "." + dirname(filename) : "./",
+      this.baseUrl,
+    );
+    return parseJSX(
+      baseUrl,
+      content,
+      data,
+      `/** @jsxImportSource ${importSource} */`,
+    );
+  }
+
   async render(content: unknown, data: Data = {}, filename?: string) {
     // The content is a string, so we have to convert to a Preact element
     if (typeof content === "string") {
-      const basedir = filename ? "." + dirname(filename) : "./";
-      content = await parseJSX(
-        new URL(basedir, this.baseUrl),
-        content,
-        data,
-        "/** @jsxImportSource https://esm.sh/preact@10.10.6 */",
-      );
+      content = await this.parseJSX(content, data, filename);
     }
 
-    // Create the children property and ensure it's a Preact element
-    const children = typeof data.content === "string"
-      ? h("div", {
-        dangerouslySetInnerHTML: { __html: data.content as string },
-      })
-      : data.content;
+    // Create the children property
+    let children = data.content;
+
+    // If the children is a string, convert it to a Preact element
+    if (typeof children === "string") {
+      const fn = await this.parseJSX(children, data, filename);
+      children = await fn({ ...data }, this.helpers);
+    }
 
     const element = typeof content === "object" && isValidElement(content)
       ? content

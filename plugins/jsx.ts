@@ -36,19 +36,29 @@ export class JsxEngine implements Engine {
 
   deleteCache() {}
 
+  // deno-lint-ignore no-explicit-any
+  parseJSX(content: string, data: Data = {}, filename?: string): Promise<any> {
+    const baseUrl = new URL(
+      filename ? "." + dirname(filename) : "./",
+      this.baseUrl,
+    );
+    return parseJSX(baseUrl, content, data);
+  }
+
   async render(content: unknown, data: Data = {}, filename?: string) {
     // The content is a string, so we have to convert to a React element
     if (typeof content === "string") {
-      const basedir = filename ? "." + dirname(filename) : "./";
-      content = await parseJSX(new URL(basedir, this.baseUrl), content, data);
+      content = await this.parseJSX(content, data, filename);
     }
 
-    // Create the children property and ensure it's a React element
-    const children = typeof data.content === "string"
-      ? React.createElement("div", {
-        dangerouslySetInnerHTML: { __html: data.content },
-      })
-      : data.content;
+    // Create the children property
+    let children = data.content;
+
+    // If the children is a string, convert it to a Preact element
+    if (typeof children === "string") {
+      const fn = content = await this.parseJSX(children, data, filename);
+      children = await fn({ ...data }, this.helpers);
+    }
 
     const element = typeof content === "object" && React.isValidElement(content)
       ? content

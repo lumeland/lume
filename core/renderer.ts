@@ -84,9 +84,13 @@ export default class Renderer {
 
       const generatedPages: Page[] = [];
       for (const page of generators) {
+        const data = { ...page.data };
+        const { content } = data;
+        delete data.content;
+
         const generator = await this.render(
-          page.data.content,
-          page.data,
+          content,
+          data,
           page.src.path + page.src.ext,
         ) as Generator<Data, Data>;
 
@@ -247,6 +251,8 @@ export default class Renderer {
   async #renderPage(page: Page): Promise<Content> {
     let data = { ...page.data };
     let { content, layout } = data;
+
+    delete data.content;
 
     // If the page is an asset, just return the content (don't render templates or layouts)
     if (this.formats.get(page.src.ext || "")?.asset) {
