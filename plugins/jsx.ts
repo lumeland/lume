@@ -1,7 +1,7 @@
 import { React, ReactDOMServer } from "../deps/react.ts";
 import loader from "../core/loaders/module.ts";
 import { merge, parseJSX } from "../core/utils.ts";
-import { dirname, toFileUrl } from "../deps/path.ts";
+import { dirname, join, toFileUrl } from "../deps/path.ts";
 
 import type { Data, Engine, Helper, Site } from "../core.ts";
 
@@ -28,20 +28,20 @@ window.React ||= React;
 /** Template engine to render JSX files */
 export class JsxEngine implements Engine {
   helpers: Record<string, Helper> = {};
-  baseUrl: URL;
+  basePath: string;
 
   constructor(basePath: string) {
-    this.baseUrl = toFileUrl(basePath);
+    this.basePath = basePath;
   }
 
   deleteCache() {}
 
   // deno-lint-ignore no-explicit-any
   parseJSX(content: string, data: Data = {}, filename?: string): Promise<any> {
-    const baseUrl = new URL(
-      filename ? "." + dirname(filename) : "./",
-      this.baseUrl,
-    );
+    const baseUrl = filename
+      ? toFileUrl(join(this.basePath, dirname(filename)))
+      : toFileUrl(this.basePath);
+
     return parseJSX(baseUrl, content, data);
   }
 
@@ -98,7 +98,7 @@ export default function (userOptions?: Partial<Options>) {
     : options.extensions;
 
   return (site: Site) => {
-    const engine = new JsxEngine(site.src());
+    const engine = new JsxEngine(site.src("/"));
 
     site.loadPages(extensions.pages, loader, engine);
     site.loadComponents(extensions.components, loader, engine);

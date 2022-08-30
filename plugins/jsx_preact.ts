@@ -5,7 +5,7 @@ import {
 } from "../deps/preact.ts";
 import loader from "../core/loaders/module.ts";
 import { merge, parseJSX } from "../core/utils.ts";
-import { dirname, toFileUrl } from "../deps/path.ts";
+import { dirname, join, toFileUrl } from "../deps/path.ts";
 
 import type { Data, Engine, Helper, Site } from "../core.ts";
 import type { ComponentChildren } from "../deps/preact.ts";
@@ -29,26 +29,23 @@ export type Children = ComponentChildren;
 /** Template engine to render JSX files using Preact */
 export class PreactJsxEngine implements Engine {
   helpers: Record<string, Helper> = {};
-  baseUrl: URL;
+  basePath: string;
 
   constructor(basePath: string) {
-    this.baseUrl = toFileUrl(basePath);
+    this.basePath = basePath;
   }
 
   deleteCache() {}
 
   // deno-lint-ignore no-explicit-any
   parseJSX(content: string, data: Data = {}, filename?: string): Promise<any> {
-    const baseUrl = new URL(
-      filename ? "." + dirname(filename) : "./",
-      this.baseUrl,
-    );
-    return parseJSX(
-      baseUrl,
-      content,
-      data,
-      `/** @jsxImportSource ${importSource} */`,
-    );
+    const baseUrl = filename
+      ? toFileUrl(join(this.basePath, dirname(filename)))
+      : toFileUrl(this.basePath);
+
+    const jsxSource = `/** @jsxImportSource ${importSource} */`;
+
+    return parseJSX(baseUrl, content, data, jsxSource);
   }
 
   async render(content: unknown, data: Data = {}, filename?: string) {
