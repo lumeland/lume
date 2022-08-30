@@ -56,7 +56,7 @@ export class JsxEngine implements Engine {
 
     // If the children is a string, convert it to a Preact element
     if (typeof children === "string") {
-      const fn = content = await this.parseJSX(children, data, filename);
+      const fn = await this.parseJSX(children, data, filename);
       children = await fn({ ...data }, this.helpers);
     }
 
