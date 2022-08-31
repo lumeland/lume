@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New filter `data`, provided by the `search` plugin, to return the `Data` objects of the pages, instead the full `Page` instance.
 - New `stopWords` option to the `slugify_urls` plugin [#243].
 - New `each` option to the `paginate` plugin.
+- New middleware `basic_auth` [#249].
 
 ### Changed
 - The minimum Deno version supported is `1.24.0`.
@@ -1725,6 +1726,7 @@ The first version.
 [#241]: https://github.com/lumeland/lume/issues/241
 [#243]: https://github.com/lumeland/lume/issues/243
 [#246]: https://github.com/lumeland/lume/issues/246
+[#249]: https://github.com/lumeland/lume/issues/249
 
 [1.11.0]: https://github.com/lumeland/lume/compare/v1.10.4...HEAD
 [1.10.4]: https://github.com/lumeland/lume/compare/v1.10.3...v1.10.4
