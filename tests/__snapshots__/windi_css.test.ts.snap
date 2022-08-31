@@ -1,0 +1,689 @@
+export const snapshot = {};
+
+snapshot[`Windi CSS plugin 1`] = `6`;
+
+snapshot[`Windi CSS plugin 2`] = `
+{
+  formats: [
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".windi.css",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".css",
+      pageLoader: [AsyncFunction: text],
+    },
+  ],
+}
+`;
+
+snapshot[`Windi CSS plugin 3`] = `
+[
+]
+`;
+
+snapshot[`Windi CSS plugin 4`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windi demo</title>
+  <link rel="stylesheet" href="/windi.css">
+</head>
+<body>
+  <div class="bg-purple-500">
+  <p>This is page 1</p>
+
+  <a href="page2.html" class="btn-green">Go to page 2</a>
+</div>
+
+</body></html>',
+  data: {
+    content: '<div class="bg-purple-500">
+  <p>This is page 1</p>
+
+  <a href="page2.html" class="btn-green">Go to page 2</a>
+</div>',
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.njk",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/index",
+  },
+  src: {
+    ext: ".njk",
+    path: "/index",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Windi CSS plugin 5`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windi demo</title>
+  <link rel="stylesheet" href="/windi.css">
+</head>
+<body>
+  <p class="text-sky-100">This is page 1</p>
+
+</body></html>',
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.njk",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/page/1.html",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page/1",
+  },
+  src: {
+    ext: ".tmpl.js",
+    path: "/multi[0]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Windi CSS plugin 6`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windi demo</title>
+  <link rel="stylesheet" href="/windi.css">
+</head>
+<body>
+  <p class="text-sky-200">This is page 2</p>
+
+</body></html>',
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.njk",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/page/2.html",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page/2",
+  },
+  src: {
+    ext: ".tmpl.js",
+    path: "/multi[1]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Windi CSS plugin 7`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windi demo</title>
+  <link rel="stylesheet" href="/windi.css">
+</head>
+<body>
+  <div class="bg-purple-600">
+  <p>This is page 2</p>
+</div>
+
+</body></html>',
+  data: {
+    content: '<div class="bg-purple-600">
+  <p>This is page 2</p>
+</div>',
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.njk",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/page2/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page2/index",
+  },
+  src: {
+    ext: ".njk",
+    path: "/page2",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Windi CSS plugin 8`] = `
+{
+  content: ".btn {
+  border-radius: 0.25rem;
+  font-weight: 700;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.btn-blue {
+  --tw-bg-opacity: 1;
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+  padding-top: 1rem;
+}
+.btn-blue:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(29, 78, 216, var(--tw-bg-opacity));
+}",
+  data: {
+    content: ".btn {
+  @apply font-bold py-2 px-4 rounded;
+}
+.btn-blue {
+  @apply bg-blue-500 hover:bg-blue-700 text-white;
+  padding-top: 1rem;
+}",
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/styles.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/styles",
+  },
+  src: {
+    ext: ".windi.css",
+    path: "/styles",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Windi CSS plugin 9`] = `
+{
+  content: "body {
+  background: blue;
+}
+.btn-green {
+  --tw-bg-opacity: 1;
+  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+.btn-green:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
+}
+.bg-purple-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(139, 92, 246, var(--tw-bg-opacity));
+}
+.bg-purple-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(124, 58, 237, var(--tw-bg-opacity));
+}
+.text-sky-100 {
+  --tw-text-opacity: 1;
+  color: rgba(224, 242, 254, var(--tw-text-opacity));
+}
+.text-sky-200 {
+  --tw-text-opacity: 1;
+  color: rgba(186, 230, 253, var(--tw-text-opacity));
+}",
+  data: {
+    content: "body {
+  background: blue;
+}",
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/windi.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/windi",
+  },
+  src: {
+    ext: ".css",
+    path: "/windi",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Windi CSS plugin (inline) 1`] = `6`;
+
+snapshot[`Windi CSS plugin (inline) 2`] = `
+{
+  formats: [
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".windi.css",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".css",
+      pageLoader: [AsyncFunction: text],
+    },
+  ],
+}
+`;
+
+snapshot[`Windi CSS plugin (inline) 3`] = `
+[
+]
+`;
+
+snapshot[`Windi CSS plugin (inline) 4`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windi demo</title>
+  <link rel="stylesheet" href="/windi.css">
+<style>.btn-green {
+  --tw-bg-opacity: 1;
+  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+.btn-green:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
+}
+.bg-purple-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(139, 92, 246, var(--tw-bg-opacity));
+}</style></head>
+<body>
+  <div class="bg-purple-500">
+  <p>This is page 1</p>
+
+  <a href="page2.html" class="btn-green">Go to page 2</a>
+</div>
+
+</body></html>',
+  data: {
+    content: '<div class="bg-purple-500">
+  <p>This is page 1</p>
+
+  <a href="page2.html" class="btn-green">Go to page 2</a>
+</div>',
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.njk",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/index",
+  },
+  src: {
+    ext: ".njk",
+    path: "/index",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Windi CSS plugin (inline) 5`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windi demo</title>
+  <link rel="stylesheet" href="/windi.css">
+<style>.text-sky-100 {
+  --tw-text-opacity: 1;
+  color: rgba(224, 242, 254, var(--tw-text-opacity));
+}</style></head>
+<body>
+  <p class="text-sky-100">This is page 1</p>
+
+</body></html>',
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.njk",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/page/1.html",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page/1",
+  },
+  src: {
+    ext: ".tmpl.js",
+    path: "/multi[0]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Windi CSS plugin (inline) 6`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windi demo</title>
+  <link rel="stylesheet" href="/windi.css">
+<style>.text-sky-200 {
+  --tw-text-opacity: 1;
+  color: rgba(186, 230, 253, var(--tw-text-opacity));
+}</style></head>
+<body>
+  <p class="text-sky-200">This is page 2</p>
+
+</body></html>',
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.njk",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/page/2.html",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page/2",
+  },
+  src: {
+    ext: ".tmpl.js",
+    path: "/multi[1]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Windi CSS plugin (inline) 7`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windi demo</title>
+  <link rel="stylesheet" href="/windi.css">
+<style>.bg-purple-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(124, 58, 237, var(--tw-bg-opacity));
+}</style></head>
+<body>
+  <div class="bg-purple-600">
+  <p>This is page 2</p>
+</div>
+
+</body></html>',
+  data: {
+    content: '<div class="bg-purple-600">
+  <p>This is page 2</p>
+</div>',
+    date: 1970-01-01T00:00:00.000Z,
+    layout: "layout.njk",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/page2/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page2/index",
+  },
+  src: {
+    ext: ".njk",
+    path: "/page2",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Windi CSS plugin (inline) 8`] = `
+{
+  content: ".btn {
+  border-radius: 0.25rem;
+  font-weight: 700;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.btn-blue {
+  --tw-bg-opacity: 1;
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+  padding-top: 1rem;
+}
+.btn-blue:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(29, 78, 216, var(--tw-bg-opacity));
+}",
+  data: {
+    content: ".btn {
+  @apply font-bold py-2 px-4 rounded;
+}
+.btn-blue {
+  @apply bg-blue-500 hover:bg-blue-700 text-white;
+  padding-top: 1rem;
+}",
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/styles.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/styles",
+  },
+  src: {
+    ext: ".windi.css",
+    path: "/styles",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Windi CSS plugin (inline) 9`] = `
+{
+  content: "body {
+  background: blue;
+}",
+  data: {
+    content: "body {
+  background: blue;
+}",
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/windi.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/windi",
+  },
+  src: {
+    ext: ".css",
+    path: "/windi",
+    remote: undefined,
+  },
+}
+`;

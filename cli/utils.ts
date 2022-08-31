@@ -49,6 +49,7 @@ export const pluginNames = [
   "slugify_urls",
   "svgo",
   "terser",
+  "windi_css",
 ];
 
 export function log(...lines: (string | undefined)[]) {

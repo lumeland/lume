@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `relations`, to create automatic relations between pages,
   similar to relational database (using id, type and foreign keys).
 - New plugin `jsx_preact`, to use Preact instead of React.
+- New plugin `windi_css`, to use Windi CSS framework [#247].
 - Enabled the plugin `on_demand`, allowing to generate pages dynamically on Deno Deploy.
 - New function `site.cacheFile()`.
 - New function `site.root()`, similar to `site.src()` and `site.dest()` but returns the path relative to the cwd.
@@ -1727,6 +1728,7 @@ The first version.
 [#241]: https://github.com/lumeland/lume/issues/241
 [#243]: https://github.com/lumeland/lume/issues/243
 [#246]: https://github.com/lumeland/lume/issues/246
+[#247]: https://github.com/lumeland/lume/issues/247
 [#248]: https://github.com/lumeland/lume/issues/248
 [#249]: https://github.com/lumeland/lume/issues/249
 
