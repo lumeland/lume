@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.11.0] - Unreleased
 ### Added
+- New plugin `minify_html` [#248].
 - New plugin `multilanguage`, to create pages of different languages [#205].
 - New plugin `relations`, to create automatic relations between pages,
   similar to relational database (using id, type and foreign keys).
@@ -1726,6 +1727,7 @@ The first version.
 [#241]: https://github.com/lumeland/lume/issues/241
 [#243]: https://github.com/lumeland/lume/issues/243
 [#246]: https://github.com/lumeland/lume/issues/246
+[#248]: https://github.com/lumeland/lume/issues/248
 [#249]: https://github.com/lumeland/lume/issues/249
 
 [1.11.0]: https://github.com/lumeland/lume/compare/v1.10.4...HEAD

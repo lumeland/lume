@@ -32,6 +32,7 @@ export const pluginNames = [
   "jsx",
   "liquid",
   "metas",
+  "minify_html",
   "modify_urls",
   "multilanguage",
   "nano_jsx",

@@ -18,6 +18,7 @@ Deno.test("Plugins list in init", () => {
     "jsx",
     "liquid",
     "metas",
+    "minify_html",
     "modify_urls",
     "multilanguage",
     "nano_jsx",
