@@ -1,10 +1,10 @@
 // deno-lint-ignore-file no-explicit-any
-export { default as Processor } from "https://esm.sh/windicss@3.4.0";
+export { default as Processor } from "https://esm.sh/windicss@3.5.6/";
 export {
   CSSParser,
   HTMLParser,
-} from "https://esm.sh/windicss@3.4.0/utils/parser";
-export { StyleSheet } from "https://esm.sh/windicss@3.4.0/utils/style";
+} from "https://esm.sh/windicss@3.5.6//utils/parser";
+export { StyleSheet } from "https://esm.sh/windicss@3.5.6//utils/style";
 
 export interface Config {
   presets?: Config[];
