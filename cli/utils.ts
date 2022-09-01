@@ -61,6 +61,7 @@ export function log(...lines: (string | undefined)[]) {
 export function promptConfigUpdate(data: unknown) {
   log(
     red("deno.jsonc needs to be manually updated:"),
+    dim("Use deno.json to update it automatically"),
     JSON.stringify(data, null, 2),
   );
 }
