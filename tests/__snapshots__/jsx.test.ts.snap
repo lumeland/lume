@@ -166,11 +166,11 @@ snapshot[`build a site with jsx/tsx modules 6`] = `
 
 snapshot[`build a site with jsx/tsx modules 7`] = `
 {
-  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><h1>Hello <strong class="foo">world</strong></h1>
+  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1>Hello <strong class="foo">world</strong></h1>
 <p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
 <p><button type="foo">Hello</button></p>
 <img src="foo"/>
-<div class="hello">Hello world</div></main></body></html>',
+<div class="hello">Hello world</div></div></main></body></html>',
   data: {
     comp: {},
     content: 'import Hello from "./_includes/hello.jsx";
@@ -238,8 +238,9 @@ snapshot[`build a site with jsx/tsx modules 8`] = `
 
 snapshot[`build a site with jsx/tsx modules 9`] = `
 {
-  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><h1 class="foo">Hello world</h1>
-<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p></main></body></html>',
+  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1 class="foo">Hello world</h1>
+<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+</div></main></body></html>',
   data: {
     comp: {},
     content: "# Hello world{.foo}

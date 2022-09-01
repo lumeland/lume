@@ -166,11 +166,11 @@ snapshot[`build a site with jsx/tsx modules using Preact 6`] = `
 
 snapshot[`build a site with jsx/tsx modules using Preact 7`] = `
 {
-  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><h1>Hello <strong class="foo">world</strong></h1>
+  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1>Hello <strong class="foo">world</strong></h1>
 <p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
 <p><button type="foo">Hello</button></p>
 <img src="foo" />
-<div class="hello">Hello world</div></main></body></html>',
+<div class="hello">Hello world</div></div></main></body></html>',
   data: {
     comp: {},
     content: 'import Hello from "./_includes/hello.jsx";
@@ -238,13 +238,24 @@ snapshot[`build a site with jsx/tsx modules using Preact 8`] = `
 
 snapshot[`build a site with jsx/tsx modules using Preact 9`] = `
 {
-  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><h1 class="foo">Hello world</h1>
-<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p></main></body></html>',
+  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1 class="foo">Hello world</h1>
+<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+<pre><code class="language-css">body {
+  color: blue;
+}
+</code></pre>
+</div></main></body></html>',
   data: {
     comp: {},
     content: "# Hello world{.foo}
 
 This is a **markdown** text. [Go home](/)
+
+\`\`\`css
+body {
+  color: blue;
+}
+\`\`\`
 ",
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.jsx",
