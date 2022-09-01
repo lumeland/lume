@@ -16,6 +16,22 @@ Deno.test("Components", async (t) => {
   site.use(pug());
   site.use(jsx());
 
+  site.component("custom", {
+    name: "button",
+    render: ({ text }): string => {
+      return `<button class="custom">${text}</button>`;
+    },
+  });
+
+  site.component("custom.header", {
+    name: "title",
+    render: ({ text }): string => {
+      return `<h1 class="custom">${text}</h1>`;
+    },
+  });
+
+  assert(site.globalComponents.get("custom"));
+
   await build(site);
 
   await t.step("Components are accessed from comp", () => {
@@ -114,6 +130,22 @@ Deno.test("Components", async (t) => {
     assertEquals(
       result.toString().trim(),
       `<div><button class="button_jsx">Inner button</button></div>`,
+    );
+  });
+
+  await t.step("Custom components", () => {
+    // @ts-ignore: Button component must exist
+    const button = site.source.root?.data.comp?.custom.button;
+    // @ts-ignore: Title component must exist
+    const title = site.source.root?.data.comp?.custom.header.title;
+
+    assertEquals(
+      button({ text: "Hello world" }),
+      `<button class="custom">Hello world</button>`,
+    );
+    assertEquals(
+      title({ text: "Hello world" }),
+      `<h1 class="custom">Hello world</h1>`,
     );
   });
 });

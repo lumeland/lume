@@ -16,6 +16,7 @@ import type {
 export interface Options {
   formats: Formats;
   globalData: Data;
+  globalComponents: Components;
   dataLoader: DataLoader;
   pageLoader: PageLoader;
   componentLoader: ComponentLoader;
@@ -40,6 +41,9 @@ export default class Source {
 
   /** Global data to be assigned to the root folder */
   globalData: Data;
+
+  /** Global components to be assigned to the root folder */
+  globalComponents: Components;
 
   /** To load all _data files */
   dataLoader: DataLoader;
@@ -87,6 +91,7 @@ export default class Source {
     this.formats = options.formats;
     this.components = options.components;
     this.globalData = options.globalData;
+    this.globalComponents = options.globalComponents;
   }
 
   addIgnoredPath(path: string) {
@@ -438,9 +443,10 @@ export default class Source {
   async #loadDirectory(directory: Directory) {
     const data: Data = {};
 
-    // Assign the global data to the root directory
+    // Assign the global data and components to the root directory
     if (directory.src.path === "/") {
       Object.assign(data, this.globalData);
+      directory.components = this.globalComponents;
     }
 
     await concurrent(
@@ -463,10 +469,7 @@ export default class Source {
 
         // Load the _components files
         if (entry.isDirectory && entry.name === "_components") {
-          const components = await this.componentLoader.load(path, directory);
-          if (components) {
-            directory.components = components;
-          }
+          await this.componentLoader.load(path, directory);
         }
       },
     );
@@ -474,7 +477,7 @@ export default class Source {
     // Setup the components
     const components = directory.getComponents();
 
-    if (components) {
+    if (components?.size) {
       data[this.components.variable] = toProxy(components, this.extraCode);
     }
 

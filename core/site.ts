@@ -19,6 +19,8 @@ import Writer from "./writer.ts";
 import textLoader from "./loaders/text.ts";
 
 import type {
+  Component,
+  Components,
   Data,
   Engine,
   Event,
@@ -118,6 +120,9 @@ export default class Site {
   /** Global data shared by all pages */
   globalData: Data = {};
 
+  /** Global components shared by all templates */
+  globalComponents: Components = new Map();
+
   /** The generated pages are stored here */
   pages: Page[] = [];
 
@@ -150,6 +155,7 @@ export default class Site {
       formats,
       components,
       globalData: this.globalData,
+      globalComponents: this.globalComponents,
     });
 
     // To render pages
@@ -364,9 +370,26 @@ export default class Site {
     return this;
   }
 
-  /** Register extra data accessible by layouts */
+  /** Register extra data accessible by the layouts */
   data(name: string, data: unknown): this {
     this.globalData[name] = data;
+    return this;
+  }
+
+  /** Register an extra component accesible by the layouts */
+  component(context: string, component: Component): this {
+    const pieces = context.split(".");
+    let components = this.globalComponents;
+
+    while (pieces.length) {
+      const name = pieces.shift()!;
+      if (!components.get(name)) {
+        components.set(name, new Map());
+      }
+      components = components.get(name) as Components;
+    }
+
+    components.set(component.name, component);
     return this;
   }
 

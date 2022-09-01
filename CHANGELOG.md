@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `windi_css`, to use Windi CSS framework [#247].
 - Enabled the plugin `on_demand`, allowing to generate pages dynamically on Deno Deploy.
 - New function `site.cacheFile()`.
+- New function `site.component()` to register components directly [#250].
 - New function `site.root()`, similar to `site.src()` and `site.dest()` but returns the path relative to the cwd.
 - New property `site.onDemandPages` with an array of pages that must be generated on demand.
 - New filter `data`, provided by the `search` plugin, to return the `Data` objects of the pages, instead the full `Page` instance.
@@ -1731,6 +1732,7 @@ The first version.
 [#247]: https://github.com/lumeland/lume/issues/247
 [#248]: https://github.com/lumeland/lume/issues/248
 [#249]: https://github.com/lumeland/lume/issues/249
+[#250]: https://github.com/lumeland/lume/issues/250
 
 [1.11.0]: https://github.com/lumeland/lume/compare/v1.10.4...HEAD
 [1.10.4]: https://github.com/lumeland/lume/compare/v1.10.3...v1.10.4

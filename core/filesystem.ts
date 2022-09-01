@@ -279,7 +279,7 @@ export class Directory extends Base {
   pages = new Map<string, Page>();
   dirs = new Map<string, Directory>();
   staticFiles = new Set<StaticFile>();
-  components?: Components;
+  components: Components = new Map();
 
   /** Create a subdirectory and return it */
   createDirectory(name: string): Directory {
@@ -453,9 +453,6 @@ export interface Data {
 }
 
 export interface Component {
-  /** The file path of the component */
-  path: string;
-
   /** Name of the component (used to get it from templates) */
   name: string;
 

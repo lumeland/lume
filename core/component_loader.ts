@@ -35,8 +35,8 @@ export default class ComponentsLoader {
   /** Load a directory of components */
   async load(
     path: string,
-    context: Directory,
-  ): Promise<Components | undefined> {
+    directory: Directory,
+  ): Promise<void> {
     path = normalizePath(path);
     const info = await this.reader.getInfo(path);
 
@@ -44,16 +44,15 @@ export default class ComponentsLoader {
       return;
     }
 
-    return this.#loadDirectory(path, context);
+    await this.#loadDirectory(path, directory, directory.components);
   }
 
   /** Load a directory of components */
   async #loadDirectory(
     path: string,
-    context: Directory,
-  ): Promise<Components | undefined> {
-    const components: Components = new Map();
-
+    directory: Directory,
+    components: Components,
+  ): Promise<void> {
     for await (const entry of this.reader.readDir(path)) {
       if (
         entry.isSymlink ||
@@ -62,25 +61,23 @@ export default class ComponentsLoader {
         continue;
       }
 
-      const fullPath = posix.join(path, entry.name);
+      const subPath = posix.join(path, entry.name);
 
       if (entry.isDirectory) {
-        const subcomponents = await this.#loadDirectory(fullPath, context);
+        const name = entry.name.toLowerCase();
+        const subComponents = (components.get(name) || new Map()) as Components;
+        components.set(name, subComponents);
 
-        if (subcomponents) {
-          components.set(entry.name.toLowerCase(), subcomponents);
-        }
+        await this.#loadDirectory(subPath, directory, subComponents);
         continue;
       }
 
-      const component = await this.#loadComponent(fullPath, context);
+      const component = await this.#loadComponent(subPath, directory);
 
       if (component) {
         components.set(component.name.toLowerCase(), component);
       }
     }
-
-    return components.size ? components : undefined;
   }
 
   /** Load a component file */
@@ -102,7 +99,6 @@ export default class ComponentsLoader {
     const { content } = component;
 
     return {
-      path,
       name: component.name ?? posix.basename(path, format.ext),
       render(data) {
         return format.engines!.reduce(
