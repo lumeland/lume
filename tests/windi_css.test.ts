@@ -6,27 +6,7 @@ Deno.test("Windi CSS plugin", async (t) => {
     src: "windi_css",
   });
 
-  site.loadAssets([".css"]);
   site.use(windiCSS({
-    config: {
-      shortcuts: {
-        "btn-green": "text-white bg-green-500 hover:bg-green-700",
-      },
-    },
-  }));
-
-  await build(site);
-  await assertSiteSnapshot(t, site);
-});
-
-Deno.test("Windi CSS plugin (inline)", async (t) => {
-  const site = getSite({
-    src: "windi_css",
-  });
-
-  site.loadAssets([".css"]);
-  site.use(windiCSS({
-    cssFile: false,
     config: {
       shortcuts: {
         "btn-green": "text-white bg-green-500 hover:bg-green-700",

@@ -36,8 +36,8 @@ export interface Options {
 
 const defaults: Options = {
   minify: false,
+  cssFile: false,
   mode: "interpret",
-  cssFile: "/windi.css",
   config: {},
 };
 
