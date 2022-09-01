@@ -1,4 +1,5 @@
 import {
+  h,
   importSource,
   isValidElement,
   renderToString,
@@ -59,8 +60,9 @@ export class PreactJsxEngine implements Engine {
 
     // If the children is a string, convert it to a Preact element
     if (typeof children === "string") {
-      const fn = await this.parseJSX(children, data, filename);
-      children = await fn({ ...data }, this.helpers);
+      children = h("div", {
+        dangerouslySetInnerHTML: { __html: children },
+      });
     }
 
     const element = typeof content === "object" && isValidElement(content)

@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.11.1] - 2022-09-02
+### Fixed
+- `jsx` and `jsx_preact` plugins when the children is a string.
+
 ## [1.11.0] - 2022-09-01
 ### Added
 - New plugin `minify_html` [#248].
@@ -1734,6 +1738,7 @@ The first version.
 [#249]: https://github.com/lumeland/lume/issues/249
 [#250]: https://github.com/lumeland/lume/issues/250
 
+[1.11.1]: https://github.com/lumeland/lume/compare/v1.11.0...v1.11.1
 [1.11.0]: https://github.com/lumeland/lume/compare/v1.10.4...v1.11.0
 [1.10.4]: https://github.com/lumeland/lume/compare/v1.10.3...v1.10.4
 [1.10.3]: https://github.com/lumeland/lume/compare/v1.10.2...v1.10.3

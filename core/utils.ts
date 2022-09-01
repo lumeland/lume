@@ -393,6 +393,8 @@ export async function parseJSX(
 
   // Destructure arguments
   const destructure = `{${Object.keys(data).join(",")}}`;
+  // Keep the curly brakets ({ -> {"{"})
+  content = content.replaceAll(/[{}]/g, (char) => `{"${char}"}`);
   // Keep the line breaks (\n -> {"\n"})
   content = content.replaceAll(/(\n\r?)/g, '{"\\n"}');
 

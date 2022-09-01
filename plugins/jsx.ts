@@ -54,10 +54,11 @@ export class JsxEngine implements Engine {
     // Create the children property
     let children = data.content;
 
-    // If the children is a string, convert it to a Preact element
+    // If the children is a string, convert it to a React element
     if (typeof children === "string") {
-      const fn = await this.parseJSX(children, data, filename);
-      children = await fn({ ...data }, this.helpers);
+      children = React.createElement("div", {
+        dangerouslySetInnerHTML: { __html: children },
+      });
     }
 
     const element = typeof content === "object" && React.isValidElement(content)
