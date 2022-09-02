@@ -1,1 +1,1 @@
-export * from "https://deno.land/std@0.153.0/encoding/yaml.ts";
+export * from "https://deno.land/std@0.154.0/encoding/yaml.ts";
