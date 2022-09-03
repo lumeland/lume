@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.11.2] - Unreleased
 ### Fixed
-- Updated deps: `std`.
+- Updated deps: `std`, `parcel_css`.
 
 ## [1.11.1] - 2022-09-02
 ### Fixed
