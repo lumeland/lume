@@ -126,7 +126,7 @@ snapshot[`sass plugin 5`] = `
 
 snapshot[`sass plugin 6`] = `
 {
-  content: "body{font:100% Helvetica,sans-serif;color:#333}
+  content: "html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}
 /*# sourceMappingURL=index.css.map */",
   data: {
     content: '@import "./_includes/sass/colors";

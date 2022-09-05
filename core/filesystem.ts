@@ -219,6 +219,7 @@ export class Page extends Base {
     return page;
   }
 
+  /** Update the destination file. It also update the data.url accordingly */
   updateDest(
     dest: Partial<Dest>,
     prettyUrl: boolean | "no-html-extension" = false,
