@@ -115,6 +115,11 @@ export default class Renderer {
         pages.concat(generatedPages),
         async (page) => {
           try {
+            // If the page is an asset, just return the content without rendering
+            if (this.formats.get(page.src.ext || "")?.asset) {
+              page.content = page.data.content as Content;
+              return;
+            }
             const content = await this.#renderPage(page);
             renderedPages.push([page, content]);
           } catch (cause) {
@@ -150,7 +155,13 @@ export default class Renderer {
 
     this.preparePage(page);
     await this.preprocessors.run([page]);
-    page.content = await this.#renderPage(page);
+
+    if (this.formats.get(page.src.ext || "")?.asset) {
+      page.content = page.data.content as Content;
+    } else {
+      const content = await this.#renderPage(page);
+      page.content = await this.#renderLayout(page, content);
+    }
   }
 
   /** Render a template */
@@ -268,12 +279,6 @@ export default class Renderer {
   async #renderPage(page: Page): Promise<Content> {
     const data = { ...page.data };
     const { content } = data;
-
-    // If the page is an asset, just return the content (don't render templates or layouts)
-    if (this.formats.get(page.src.ext || "")?.asset) {
-      return content as Content;
-    }
-
     delete data.content;
 
     return await this.render<Content>(
