@@ -88,11 +88,11 @@ export default class Renderer {
         const { content } = data;
         delete data.content;
 
-        const generator = await this.render(
+        const generator = await this.render<Generator<Data, Data>>(
           content,
           data,
           page.src.path + page.src.ext,
-        ) as Generator<Data, Data>;
+        );
 
         let index = 0;
         for await (const data of generator) {
@@ -109,14 +109,31 @@ export default class Renderer {
       await this.preprocessors.run(generatedPages);
       to.push(...generatedPages);
 
-      // Render pages
+      // Render the pages content
+      const renderedPages: [Page, Content][] = [];
       await concurrent(
         pages.concat(generatedPages),
         async (page) => {
           try {
-            page.content = await this.#renderPage(page);
+            const content = await this.#renderPage(page);
+            renderedPages.push([page, content]);
           } catch (cause) {
             throw new Exception("Error rendering this page", { cause, page });
+          }
+        },
+      );
+
+      // Render the pages layouts
+      await concurrent(
+        renderedPages,
+        async ([page, content]) => {
+          try {
+            page.content = await this.#renderLayout(page, content);
+          } catch (cause) {
+            throw new Exception("Error rendering the layout of this page", {
+              cause,
+              page,
+            });
           }
         },
       );
@@ -137,11 +154,11 @@ export default class Renderer {
   }
 
   /** Render a template */
-  async render(
+  async render<T>(
     content: unknown,
     data: Data,
     filename: string,
-  ): Promise<unknown> {
+  ): Promise<T> {
     const engines = this.#getEngine(filename, data);
 
     if (engines) {
@@ -150,7 +167,7 @@ export default class Renderer {
       }
     }
 
-    return content;
+    return content as T;
   }
 
   /** Prepare the page before rendering
@@ -249,18 +266,28 @@ export default class Renderer {
 
   /** Render a page */
   async #renderPage(page: Page): Promise<Content> {
-    let data = { ...page.data };
-    let { content, layout } = data;
-
-    delete data.content;
+    const data = { ...page.data };
+    const { content } = data;
 
     // If the page is an asset, just return the content (don't render templates or layouts)
     if (this.formats.get(page.src.ext || "")?.asset) {
       return content as Content;
     }
 
+    delete data.content;
+
+    return await this.render<Content>(
+      content,
+      data,
+      page.src.path + page.src.ext,
+    );
+  }
+
+  /** Render the page layout */
+  async #renderLayout(page: Page, content: Content): Promise<Content> {
+    let data = { ...page.data };
     let path = page.src.path + page.src.ext;
-    content = await this.render(content, data, path);
+    let layout = data.layout;
 
     // Render the layouts recursively
     while (layout) {
@@ -293,12 +320,16 @@ export default class Renderer {
         content,
       };
 
-      content = await this.render(layoutData.content, data, layoutPath);
+      content = await this.render<Content>(
+        layoutData.content,
+        data,
+        layoutPath,
+      );
       layout = layoutData.layout;
       path = layoutPath;
     }
 
-    return content as Content;
+    return content;
   }
 
   /** Get the engines assigned to an extension or configured in the data */
