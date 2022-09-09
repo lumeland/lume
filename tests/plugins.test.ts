@@ -1,7 +1,7 @@
 import { assertEquals as equals } from "../deps/assert.ts";
 import { pluginNames } from "../cli/utils.ts";
 
-const totalPlugins = Array.from(Deno.readDirSync("plugins")).length;
+const totalPlugins = Array.from(Deno.readDirSync("plugins")).length - 1;
 
 Deno.test("Plugins list in init", () => {
   equals(pluginNames.length, totalPlugins - 8);
@@ -16,6 +16,7 @@ Deno.test("Plugins list in init", () => {
     "imagick",
     "inline",
     "jsx",
+    "lightningcss",
     "liquid",
     "metas",
     "minify_html",
@@ -24,7 +25,6 @@ Deno.test("Plugins list in init", () => {
     "nano_jsx",
     "netlify_cms",
     "on_demand",
-    "parcel_css",
     "postcss",
     "prism",
     "pug",

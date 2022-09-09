@@ -1,12 +1,12 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
-import parcelCss from "../plugins/parcel_css.ts";
+import lightningcss from "../plugins/lightningcss.ts";
 
-Deno.test("parcelCSS plugin", async (t) => {
+Deno.test("lightningcss plugin", async (t) => {
   const site = getSite({
-    src: "parcel_css",
+    src: "lightningcss",
   });
 
-  site.use(parcelCss({
+  site.use(lightningcss({
     sourceMap: true,
   }));
 

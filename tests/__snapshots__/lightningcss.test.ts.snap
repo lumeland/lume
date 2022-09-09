@@ -1,8 +1,8 @@
 export const snapshot = {};
 
-snapshot[`parcelCSS plugin 1`] = `4`;
+snapshot[`lightningcss plugin 1`] = `4`;
 
-snapshot[`parcelCSS plugin 2`] = `
+snapshot[`lightningcss plugin 2`] = `
 {
   formats: [
     {
@@ -71,12 +71,12 @@ snapshot[`parcelCSS plugin 2`] = `
 }
 `;
 
-snapshot[`parcelCSS plugin 3`] = `
+snapshot[`lightningcss plugin 3`] = `
 [
 ]
 `;
 
-snapshot[`parcelCSS plugin 4`] = `
+snapshot[`lightningcss plugin 4`] = `
 {
   content: "(removed for testing)",
   data: {
@@ -97,7 +97,7 @@ snapshot[`parcelCSS plugin 4`] = `
 }
 `;
 
-snapshot[`parcelCSS plugin 5`] = `
+snapshot[`lightningcss plugin 5`] = `
 {
   content: "(removed for testing)",
   data: {
@@ -118,7 +118,7 @@ snapshot[`parcelCSS plugin 5`] = `
 }
 `;
 
-snapshot[`parcelCSS plugin 6`] = `
+snapshot[`lightningcss plugin 6`] = `
 {
   content: '@import "variables.css";@import "./text.css";
 /*# sourceMappingURL=./index.css.map */',
@@ -146,7 +146,7 @@ snapshot[`parcelCSS plugin 6`] = `
 }
 `;
 
-snapshot[`parcelCSS plugin 7`] = `
+snapshot[`lightningcss plugin 7`] = `
 {
   content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}
 /*# sourceMappingURL=./text.css.map */",
