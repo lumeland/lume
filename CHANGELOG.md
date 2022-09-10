@@ -11,9 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 - Pages are rendered in two separated steps: page rendering and layout rendering. This allows to modify the page data before render the layouts (for example adding a TOC).
 - Renamed `parcel_css` plugin to `lightningcss`. For backward compatibility, `parcel_css` is keept as an alias of `lightningcss`, but will be removed in Lume 1.12.0.
+- Some improvements in `esbuild` plugin:
+  - The `esbuild_deno_loader` was removed because it wasn't updated and didn't work well.
+    It has been replaced by a new loader, more simple and reliable.
+  - Detect automatically the JSX configuration from the `deno.json` file.
+    Now it works fine with jsx transformers.
 
 ### Fixed
-- Updated deps: `std`, `parcel_css`, `cliffy`.
+- Updated deps: `esbuild`, `std`, `parcel_css`, `cliffy`.
 - The list of available plugins on `lume init`.
 
 ## [1.11.1] - 2022-09-02

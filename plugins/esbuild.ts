@@ -1,27 +1,24 @@
-import { getDenoConfig, merge, toUrl } from "../core/utils.ts";
-import * as esbuild from "../deps/esbuild.ts";
-import { extname, fromFileUrl } from "../deps/path.ts";
+import { getDenoConfig, merge, read, toUrl } from "../core/utils.ts";
+import { build, BuildOptions, stop } from "../deps/esbuild.ts";
+import { extname, toFileUrl } from "../deps/path.ts";
 
-import type { Site } from "../core.ts";
+import type { DenoConfig, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
   /** The options for esbuild */
-  options: esbuild.BuildOptions;
+  options: BuildOptions;
 }
 
 const denoConfig = await getDenoConfig();
-const importMapURL = denoConfig?.config?.importMap
-  ? await toUrl(denoConfig.config.importMap)
-  : undefined;
 
 // Default options
 const defaults: Options = {
   extensions: [".ts", ".js"],
   options: {
-    plugins: [esbuild.denoPlugin({ importMapURL })],
+    plugins: [],
     bundle: true,
     format: "esm",
     minify: true,
@@ -36,36 +33,87 @@ const defaults: Options = {
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
+  // Configure jsx automatically
+  if (
+    options.extensions.includes(".tsx") || options.extensions.includes(".jsx")
+  ) {
+    options.options = {
+      ...buildJsxConfig(denoConfig?.config),
+      ...options.options,
+    };
+  }
+
   return (site: Site) => {
     site.loadAssets(options.extensions);
+
+    const prefix = toFileUrl(site.src()).href;
 
     const lumeLoaderPlugin = {
       name: "lumeLoader",
       // deno-lint-ignore no-explicit-any
       setup(build: any) {
-        // deno-lint-ignore no-explicit-any
-        build.onLoad({ filter: /^file:/ }, async (args: any) => {
-          const content = await site.getContent(fromFileUrl(args.path));
+        build.onResolve({ filter: /.*/ }, (args: ResolveArguments) => {
+          let { path } = args;
+          const { importer } = args;
 
-          if (content) {
-            return {
-              contents: content,
-              loader: getLoader(args.path),
-            };
+          // Absolute url
+          if (path.match(/^(https?):\/\//)) {
+            return { path, namespace: "deno" };
           }
+
+          // Resolve the relative url
+          if (
+            importer.match(/^(https?|file):\/\//) && path.match(/^[./]/)
+          ) {
+            path = new URL(path, importer).href;
+          }
+
+          // Resolve the import map
+          path = import.meta.resolve(path);
+
+          return {
+            path,
+            namespace: "deno",
+          };
+        });
+
+        build.onLoad({ filter: /.*/ }, async (args: LoadArguments) => {
+          const { path, namespace } = args;
+
+          // Read files from Lume
+          if (namespace === "deno") {
+            if (path.startsWith(prefix)) {
+              const file = path.replace(prefix, "");
+              const content = await site.getContent(file);
+
+              if (content) {
+                return {
+                  contents: content,
+                  loader: getLoader(path),
+                };
+              }
+            }
+          }
+
+          // Read other files from the filesystem/url
+          const content = await read(path, false);
+          return {
+            contents: content,
+            loader: getLoader(path),
+          };
         });
       },
     };
     options.options.plugins?.unshift(lumeLoaderPlugin);
 
-    site.addEventListener("beforeSave", () => esbuild.stop());
+    site.addEventListener("beforeSave", () => stop());
 
     site.process(options.extensions, async (page) => {
       const name = `${page.src.path}${page.src.ext}`;
       const filename = await toUrl(site.src(name), false);
       site.logger.log("📦", name);
 
-      const buildOptions: esbuild.BuildOptions = {
+      const buildOptions: BuildOptions = {
         ...options.options,
         write: false,
         incremental: false,
@@ -74,7 +122,7 @@ export default function (userOptions?: Partial<Options>) {
         entryPoints: [filename.href],
       };
 
-      const { outputFiles, warnings, errors } = await esbuild.build(
+      const { outputFiles, warnings, errors } = await build(
         buildOptions,
       );
 
@@ -95,14 +143,48 @@ export default function (userOptions?: Partial<Options>) {
 }
 
 function getLoader(path: string) {
-  const ext = extname(path).replace(".", "").toLowerCase();
+  const ext = extname(path).toLowerCase();
 
   switch (ext) {
-    case "mjs":
-      return "js";
-    case "mts":
+    case ".ts":
+    case ".mts":
       return "ts";
+    case ".tsx":
+      return "tsx";
+    case ".jsx":
+      return "jsx";
     default:
-      return ext;
+      return "js";
+  }
+}
+
+interface LoadArguments {
+  path: string;
+  namespace: string;
+  suffix: string;
+  pluginData: unknown;
+}
+
+interface ResolveArguments {
+  path: string;
+  importer: string;
+  namespace: string;
+  resolveDir: string;
+  kind: string;
+  pluginData: unknown;
+}
+
+function buildJsxConfig(config?: DenoConfig): BuildOptions | undefined {
+  if (!config) {
+    return;
+  }
+
+  const { compilerOptions } = config;
+
+  if (compilerOptions?.jsxImportSource) {
+    return {
+      jsx: "automatic",
+      jsxImportSource: compilerOptions.jsxImportSource,
+    };
   }
 }

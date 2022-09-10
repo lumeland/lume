@@ -1,3 +1,4 @@
+import type { DenoConfig, ImportMap } from "./core/utils.ts";
 import type {
   ComponentsOptions,
   default as Site,
@@ -94,6 +95,7 @@ export type {
   Content,
   Data,
   DataLoader,
+  DenoConfig,
   Dest,
   Directory,
   DirEntry,
@@ -109,6 +111,7 @@ export type {
   Formats,
   Helper,
   HelperOptions,
+  ImportMap,
   IncludesLoader,
   Loader,
   Logger,

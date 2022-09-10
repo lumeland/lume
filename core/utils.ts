@@ -8,9 +8,20 @@ import { encode } from "../deps/base64.ts";
 export const baseUrl = new URL("../", import.meta.url);
 
 // TODO: Remove this once Deno.ImportMap is available
-interface ImportMap {
+export interface ImportMap {
   imports: Record<string, string>;
   scopes?: Record<string, Record<string, string>>;
+}
+
+/** Basic options for deno.json file */
+export interface DenoConfig {
+  importMap?: string;
+  tasks?: Record<string, string>;
+  compilerOptions?: {
+    jsx?: "jsx" | "react-jsx";
+    jsxImportSource?: string;
+  };
+  [key: string]: unknown;
 }
 
 /** Run a callback concurrently with all the elements of an Iterable */
@@ -235,13 +246,6 @@ export async function getConfigFile(
       return path;
     }
   }
-}
-
-/** Basic options for deno.json file */
-export interface DenoConfig {
-  importMap?: string;
-  tasks?: Record<string, string>;
-  [key: string]: unknown;
 }
 
 /** Return the file name and the content of the deno config file */
