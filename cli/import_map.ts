@@ -1,5 +1,5 @@
 import { brightGreen } from "../deps/colors.ts";
-import { baseUrl, getDenoConfig, getImportMap } from "../core/utils.ts";
+import { getDenoConfig, getImportMap } from "../core/utils.ts";
 import { initPlugins, promptConfigUpdate } from "./utils.ts";
 
 interface Options {
@@ -8,7 +8,7 @@ interface Options {
 
 /** Generate import_map.json and deno.json files */
 export default function ({ plugins }: Options = {}) {
-  return importMap(baseUrl, plugins || []);
+  return importMap(new URL(import.meta.resolve("../")), plugins || []);
 }
 
 export async function importMap(url: URL, plugins: string[]) {
