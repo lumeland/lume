@@ -5,8 +5,6 @@ import { parse } from "../deps/jsonc.ts";
 import { Exception } from "./errors.ts";
 import { encode } from "../deps/base64.ts";
 
-export const baseUrl = new URL("../", import.meta.url);
-
 /** Import map file */
 export interface ImportMap {
   imports: Record<string, string>;
@@ -151,7 +149,9 @@ export function stringToDocument(string: string): HTMLDocument {
 }
 
 /** Return the current installed version */
-export function getLumeVersion(url = baseUrl): string {
+export function getLumeVersion(
+  url = new URL(import.meta.resolve("../")),
+): string {
   const { pathname } = url;
   return pathname.match(/@([^/]+)/)?.[1] ?? `local (${pathname})`;
 }
@@ -277,7 +277,7 @@ export async function loadImportMap(url: URL): Promise<ImportMap> {
 export async function getImportMap(mapFile?: string): Promise<ImportMap> {
   const map: ImportMap = {
     imports: {
-      "lume/": new URL("./", baseUrl).href,
+      "lume/": import.meta.resolve("../"),
     },
   };
 

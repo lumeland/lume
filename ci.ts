@@ -134,7 +134,7 @@ export default async function main(args: string[]) {
       Deno.execPath(),
       "run",
       ...denoArgs,
-      new URL("./cli.ts", import.meta.url).href,
+      import.meta.resolve("./cli.ts"),
       ...lumeArgs,
     ],
   });

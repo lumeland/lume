@@ -21,7 +21,7 @@ const process = Deno.run({
     "-Af",
     `--no-check`,
     "--name=lume",
-    new URL("./ci.ts", import.meta.url).href,
+    import.meta.resolve("./cli.ts"),
   ],
 });
 

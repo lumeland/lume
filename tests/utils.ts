@@ -5,8 +5,8 @@ import { printError } from "../core/errors.ts";
 
 import type { Page, Site, SiteOptions } from "../core.ts";
 
-const cwUrl = new URL("./", import.meta.url);
-const cwd = fromFileUrl(new URL("./", import.meta.url));
+const cwUrl = import.meta.resolve("./");
+const cwd = fromFileUrl(import.meta.resolve("./"));
 
 export function getPath(path: string): string {
   return join(cwd, path);
@@ -149,7 +149,7 @@ export async function assertSiteSnapshot(
       );
     }
     // Remote base path because it's different in the test environment
-    page.src.remote = page.src.remote?.replace(cwUrl.href, "");
+    page.src.remote = page.src.remote?.replace(cwUrl, "");
     delete page.src.created;
     delete page.src.lastModified;
 
@@ -171,7 +171,7 @@ export async function assertSiteSnapshot(
     context,
     files.map((file) => {
       // Remote base path because it's different in the test environment
-      file.remote = file.remote?.replace(cwUrl.href, "");
+      file.remote = file.remote?.replace(cwUrl, "");
       return file;
     }),
   );

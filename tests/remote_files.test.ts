@@ -14,7 +14,7 @@ Deno.test("render remote files", {
   site.use(postcss());
   site.use(esbuild());
 
-  const base = new URL("./assets/remote_files/_remotes/", import.meta.url);
+  const base = import.meta.resolve("./assets/remote_files/_remotes/");
 
   site.remoteFile("_includes/remote1.njk", new URL("./remote1.njk", base).href);
   site.remoteFile(
