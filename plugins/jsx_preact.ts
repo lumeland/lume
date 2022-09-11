@@ -105,6 +105,9 @@ export class PreactJsxEngine implements Engine {
 /** Configure this plugin on "lume init" */
 export function init(importMap: ImportMap, denoConfig: DenoConfig) {
   importMap.imports["preact/jsx-runtime"] = import.meta.resolve(
+    "../deps/preact_runtime.ts",
+  );
+  importMap.imports["preact"] = import.meta.resolve(
     "../deps/preact.ts",
   );
   denoConfig.compilerOptions ||= {};

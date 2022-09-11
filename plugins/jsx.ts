@@ -101,6 +101,9 @@ export class JsxEngine implements Engine {
 /** Configure this plugin on "lume init" */
 export function init(importMap: ImportMap, denoConfig: DenoConfig) {
   importMap.imports["react/jsx-runtime"] = import.meta.resolve(
+    "../deps/react_runtime.ts",
+  );
+  importMap.imports["react"] = import.meta.resolve(
     "../deps/react.ts",
   );
   denoConfig.compilerOptions ||= {};

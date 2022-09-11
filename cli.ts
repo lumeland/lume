@@ -35,6 +35,10 @@ const upgrade = new Command()
 const importMap = new Command()
   .description("Create or update a import map file with the Lume imports.")
   .example("lume import-map", "Create/update the file import_map.json.")
+  .option(
+    "--plugins <output:string[]>",
+    "Name of the plugins installed, in order to configure the import_map.json and deno.json files",
+  )
   .action(importMapCommand);
 
 const vendor = new Command()
