@@ -8,12 +8,12 @@ export default function () {
 }
 
 export async function init() {
-  await initConfig();
-  await importMap();
+  const plugins = await initConfig();
+  await importMap({ plugins });
 }
 
 /** (Re)configure lume config file */
-async function initConfig() {
+async function initConfig(): Promise<string[] | undefined> {
   const configFile = await getConfigFile();
 
   if (!configFile) {
@@ -47,6 +47,7 @@ async function initConfig() {
   await Deno.writeTextFile(configFile, code.join("\n"));
   console.log();
   console.log(brightGreen("Lume configuration file saved:"), configFile);
+  return plugins;
 }
 
 /** Question to get the list of plugins to install in the config file */

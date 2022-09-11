@@ -52,6 +52,12 @@ export const pluginNames = [
   "windi_css",
 ];
 
+/** A list of the available plugins with init configurations */
+export const initPlugins = [
+  "jsx",
+  "jsx_preact",
+];
+
 export function log(...lines: (string | undefined)[]) {
   console.log("----------------------------------------");
   lines.forEach((line) => line && console.log(line));

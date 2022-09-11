@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.11.2] - Unreleased
+### Added
+- `lume init` configures JSX automatically on install `jsx` or `jsx_preact` plugins.
+
 ### Changed
 - Pages are rendered in two separated steps: page rendering and layout rendering. This allows to modify the page data before render the layouts (for example adding a TOC).
 - Renamed `parcel_css` plugin to `lightningcss`. For backward compatibility, `parcel_css` is keept as an alias of `lightningcss`, but will be removed in Lume 1.12.0.

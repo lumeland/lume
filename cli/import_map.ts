@@ -1,13 +1,17 @@
 import { brightGreen } from "../deps/colors.ts";
 import { baseUrl, getDenoConfig, getImportMap } from "../core/utils.ts";
-import { promptConfigUpdate } from "./utils.ts";
+import { initPlugins, promptConfigUpdate } from "./utils.ts";
 
-/** Generate import_map.json and deno.json files */
-export default function () {
-  return importMap(baseUrl);
+interface Options {
+  plugins?: string[];
 }
 
-export async function importMap(url: URL) {
+/** Generate import_map.json and deno.json files */
+export default function ({ plugins }: Options = {}) {
+  return importMap(baseUrl, plugins || []);
+}
+
+export async function importMap(url: URL, plugins: string[]) {
   const denoConfig = await getDenoConfig();
   const config = denoConfig?.config || {};
 
@@ -22,6 +26,14 @@ export async function importMap(url: URL) {
   tasks.build = "deno task lume";
   tasks.serve = "deno task lume -s";
   config.tasks = tasks;
+
+  // Transform the import map and deno config by the plugins
+  await Promise.all(plugins.map(async (name) => {
+    if (initPlugins.includes(name)) {
+      const { init } = await import(`../plugins/${name}.ts`);
+      init(importMap, config);
+    }
+  }));
 
   // Write import map file and deno.json
   await Deno.writeTextFile(
