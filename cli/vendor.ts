@@ -1,6 +1,5 @@
 import { brightGreen } from "../deps/colors.ts";
 import {
-  baseUrl,
   getConfigFile,
   getDenoConfig,
   getImportMap,
@@ -39,9 +38,9 @@ export async function vendor(
 
   // Run deno vendor
   const specifiers: string[] = [
-    new URL("./ci.ts", baseUrl).href,
-    new URL("./cli.ts", baseUrl).href,
-    configFile ? configFile : new URL("./mod.ts", baseUrl).href,
+    import.meta.resolve("../ci.ts"),
+    import.meta.resolve("../cli.ts"),
+    configFile ? configFile : import.meta.resolve("../mod.ts"),
   ];
 
   await run(output, specifiers);
