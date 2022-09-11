@@ -7,7 +7,7 @@ import { encode } from "../deps/base64.ts";
 
 export const baseUrl = new URL("../", import.meta.url);
 
-// TODO: Remove this once Deno.ImportMap is available
+/** Import map file */
 export interface ImportMap {
   imports: Record<string, string>;
   scopes?: Record<string, Record<string, string>>;
