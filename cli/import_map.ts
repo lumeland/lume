@@ -11,7 +11,7 @@ export default function ({ plugins }: Options = {}) {
   return importMap(new URL(import.meta.resolve("../")), plugins || []);
 }
 
-export async function importMap(url: URL, plugins: string[]) {
+export async function importMap(url: URL, plugins: string[] = []) {
   const denoConfig = await getDenoConfig();
   const config = denoConfig?.config || {};
 

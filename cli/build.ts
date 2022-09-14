@@ -1,4 +1,4 @@
-import { createSite } from "./utils.ts";
+import { checkUpgrade, createSite } from "./utils.ts";
 import { brightGreen, dim } from "../deps/colors.ts";
 import Server from "../core/server.ts";
 import Watcher from "../core/watcher.ts";
@@ -40,6 +40,8 @@ export async function build(
     console.log(
       `🍾 ${brightGreen("Site built into")} ${dim(site.options.dest)}`,
     );
+
+    await checkUpgrade();
   }
 
   if (!serve && !watch) {

@@ -6,7 +6,6 @@ import {
   getImportMap,
   getLumeVersion,
   loadImportMap,
-  mustNotifyUpgrade,
   toUrl,
 } from "./core/utils.ts";
 import { log } from "./cli/utils.ts";
@@ -113,19 +112,6 @@ export default async function main(args: string[]) {
       `Run ${cyan(denoInfo.command)} and try again`,
     );
     Deno.exit(1);
-  }
-
-  const command = args[0];
-
-  if (!quiet && command !== "upgrade" && command !== "import-map") {
-    const info = await mustNotifyUpgrade();
-
-    if (info) {
-      warn(
-        `Update available ${dim(info.current)}  → ${green(info.latest)}`,
-        `Run ${cyan(info.command)} to update`,
-      );
-    }
   }
 
   const [lumeArgs, denoArgs] = await getArgs(args, quiet);

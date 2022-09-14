@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.11.3] - Unreleased
+### Added
+- Support relative urls to images for the `metas` plugin [#255].
+
+### Changed
+- Upgrade notification is shown only on build.
+
 ## [1.11.2] - 2022-09-12
 ### Added
 - `lume init` configures JSX automatically on install `jsx` or `jsx_preact` plugins.
@@ -1754,7 +1761,9 @@ The first version.
 [#248]: https://github.com/lumeland/lume/issues/248
 [#249]: https://github.com/lumeland/lume/issues/249
 [#250]: https://github.com/lumeland/lume/issues/250
+[#255]: https://github.com/lumeland/lume/issues/255
 
+[1.11.3]: https://github.com/lumeland/lume/compare/v1.11.2...HEAD
 [1.11.2]: https://github.com/lumeland/lume/compare/v1.11.1...v1.11.2
 [1.11.1]: https://github.com/lumeland/lume/compare/v1.11.0...v1.11.1
 [1.11.0]: https://github.com/lumeland/lume/compare/v1.10.4...v1.11.0
