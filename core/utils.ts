@@ -229,22 +229,6 @@ export async function getImportMap(mapFile?: string): Promise<ImportMap> {
 
 export type SpecifierMap = Record<string, string>;
 
-/** Check the compatibility with the current Deno version */
-export interface DenoInfo {
-  current: string;
-  minimum: string;
-  command: string;
-}
-
-export function checkDenoVersion(): DenoInfo | undefined {
-  const minimum = "1.24.0";
-  const current = Deno.version.deno;
-
-  if (current < minimum) {
-    return { current, minimum, command: "deno upgrade" };
-  }
-}
-
 export function isUrl(path: string): boolean {
   return !!path.match(/^(https?|file):\/\//);
 }

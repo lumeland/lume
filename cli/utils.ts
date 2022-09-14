@@ -72,6 +72,22 @@ export function promptConfigUpdate(data: unknown) {
   );
 }
 
+/** Check the compatibility with the current Deno version */
+export function checkDenoVersion(): void {
+  const minimum = "1.24.0";
+  const current = Deno.version.deno;
+
+  if (current < minimum) {
+    console.log("----------------------------------------");
+    console.error(red("Your Deno version is not compatible with Lume"));
+    console.log(`Lume needs Deno ${green(minimum)} or greater`);
+    console.log(`Your current version is ${red(current)}`);
+    console.log(`Run ${cyan("deno upgrade")} and try again`);
+    console.log("----------------------------------------");
+    Deno.exit(1);
+  }
+}
+
 /** Check if the current version is outdated */
 export async function checkUpgrade(): Promise<void> {
   const current = getLumeVersion();

@@ -1,14 +1,13 @@
 import { encode } from "./deps/base64.ts";
-import { cyan, dim, green, red } from "./deps/colors.ts";
+import { cyan, dim, red } from "./deps/colors.ts";
 import {
-  checkDenoVersion,
   getDenoConfig,
   getImportMap,
   getLumeVersion,
   loadImportMap,
   toUrl,
 } from "./core/utils.ts";
-import { log } from "./cli/utils.ts";
+import { checkDenoVersion, log } from "./cli/utils.ts";
 
 /**
  * This file works as a proxy to the actual Lume CLI to fix the following issues:
@@ -101,18 +100,9 @@ export async function getArgs(
 
 /** Runs the Lume CLI */
 export default async function main(args: string[]) {
-  const denoInfo = checkDenoVersion();
   const quiet = args.includes("--quiet");
 
-  if (denoInfo) {
-    warn(
-      red("Error running Lume"),
-      `Lume needs Deno ${green(denoInfo.minimum)} or greater`,
-      `Your current version is ${red(denoInfo.current)}`,
-      `Run ${cyan(denoInfo.command)} and try again`,
-    );
-    Deno.exit(1);
-  }
+  checkDenoVersion();
 
   const [lumeArgs, denoArgs] = await getArgs(args, quiet);
   const process = Deno.run({
