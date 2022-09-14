@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`metas plugin 1`] = `1`;
+snapshot[`metas plugin 1`] = `2`;
 
 snapshot[`metas plugin 2`] = `
 {
@@ -143,6 +143,84 @@ snapshot[`metas plugin 4`] = `
   src: {
     ext: ".njk",
     path: "/page-1",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`metas plugin 5`] = `
+{
+  content: '<!DOCTYPE html>
+<html><head>
+  <meta property="og:type" content="website">
+<meta property="og:site_name" content="My site">
+<meta property="og:locale" content="gl">
+<meta property="og:title" content="Relative paths">
+<meta property="og:description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
+<meta property="og:url" content="http://localhost/page-2/">
+<meta property="og:image" content="http://localhost/page-2/my-image.png">
+<meta name="twitter:title" content="Relative paths">
+<meta name="twitter:description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost/page-2/my-image.png">
+<meta name="twitter:site" content="@myUser">
+<meta itemprop="name" content="Relative paths">
+<meta itemprop="description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
+<meta itemprop="image" content="http://localhost/page-2/my-image.png">
+<meta name="description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
+<meta name="keywords" content="one, two">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="black">
+<meta name="generator" content="Lume testing">
+</head>
+  <body>
+    Hello world
+  
+
+</body></html>',
+  data: {
+    content: "<html>
+  <head>
+  </head>
+  <body>
+    Hello world
+  </body>
+</html>
+",
+    date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      metas: "object",
+    },
+    metas: {
+      color: "black",
+      description: "Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL",
+      generator: "Lume testing",
+      icon: "./my-icon.png",
+      image: "./my-image.png",
+      keywords: [
+        "one",
+        "two",
+      ],
+      lang: "gl",
+      robots: false,
+      site: "My site",
+      title: "Relative paths",
+      twitter: "@myUser",
+    },
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/page-2/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page-2/index",
+  },
+  src: {
+    ext: ".njk",
+    path: "/page-2",
     remote: undefined,
   },
 }
