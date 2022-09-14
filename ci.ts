@@ -16,7 +16,6 @@ import { checkDenoVersion, log } from "./cli/utils.ts";
  * - Detect and use the deno.json file automatically.
  * - Add the import-map option to Deno if it's missing
  * - Check whether the import_map.json file has the Lume imports.
- * - Check whether the Lume version is the latest.
  */
 
 /** Returns the Lume & Deno arguments */

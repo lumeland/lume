@@ -8,11 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.11.3] - Unreleased
-### Added
-- Support relative urls to images for the `metas` plugin [#255].
-
-### Changed
-- Upgrade notification is shown only on build.
+### Fixed
+- Relative urls to images for the `metas` plugin [#255].
+- Upgrade notification must be shown only on build.
+- Upgrade command in the upgrade notification.
 
 ## [1.11.2] - 2022-09-12
 ### Added

@@ -115,7 +115,7 @@ export async function checkUpgrade(): Promise<void> {
     return;
   }
 
-  let global = "";
+  let global = false;
   try {
     await Promise.any([
       Deno.stat("deno.json"),
@@ -123,10 +123,12 @@ export async function checkUpgrade(): Promise<void> {
     ]);
     await Deno.stat("import_map.json");
   } catch {
-    global = " --global";
+    global = true;
   }
 
-  const command = (stable ? "lume upgrade" : "lume upgrade --dev") + global;
+  const command = global
+    ? (stable ? "lume upgrade --global" : "lume upgrade --dev --global")
+    : (stable ? "deno task lume upgrade" : "deno task lume upgrade --dev");
 
   log(
     `Update available ${dim(current)}  → ${green(latest)}`,
