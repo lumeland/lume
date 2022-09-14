@@ -69,8 +69,8 @@ export default function (userOptions?: Partial<Options>) {
 
       const { document } = page;
       const url = site.url(page.data.url as string, true);
-      const icon = metas.icon ? site.url(metas.icon, true) : undefined;
-      const image = metas.image ? site.url(metas.image, true) : undefined;
+      const icon = metas.icon ? site.url(new URL(metas.icon, url).href, true) : undefined;
+      const image = metas.image ? site.url(new URL(metas.image, url).href, true) : undefined;
 
       // Open graph
       addMeta(document, "property", "og:type", "website");
