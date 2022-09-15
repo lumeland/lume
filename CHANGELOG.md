@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.11.3] - Unreleased
+### Changed
+- Improved the live reload performance. Now the browser refresh faster and all changes are detected. In previous versions the browser didn't reload always if many pages were updated at the same time.
+
 ### Fixed
 - Relative urls to images for the `metas` plugin [#255].
 - Upgrade notification must be shown only on build.

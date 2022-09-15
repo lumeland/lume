@@ -1,7 +1,7 @@
 import { checkUpgrade, createSite } from "./utils.ts";
 import { brightGreen, dim } from "../deps/colors.ts";
 import Server from "../core/server.ts";
-import Watcher from "../core/watcher.ts";
+import FSWatcher, { SiteWatcher } from "../core/watcher.ts";
 import { printError } from "../core/errors.ts";
 import logger from "../middlewares/logger.ts";
 import noCache from "../middlewares/no_cache.ts";
@@ -49,7 +49,7 @@ export async function build(
   }
 
   // Start the watcher
-  const watcher = new Watcher({
+  const watcher = new FSWatcher({
     root: site.src(),
     ignore: site.options.watcher.ignore,
     debounce: site.options.watcher.debounce,
@@ -107,7 +107,7 @@ export async function build(
 
   server.use(
     logger(),
-    reload({ root: site.dest() }),
+    reload({ watcher: new SiteWatcher(site) }),
     noCache(),
     notFound({
       root: site.dest(),
