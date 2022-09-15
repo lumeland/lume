@@ -32,6 +32,9 @@ export interface Options {
    * @see https://windicss.org/guide/configuration.html
    */
   config: Config;
+
+  /** To generate and insert preflight styles */
+  preflight: boolean;
 }
 
 const defaults: Options = {
@@ -39,6 +42,7 @@ const defaults: Options = {
   cssFile: false,
   mode: "interpret",
   config: {},
+  preflight: true,
 };
 
 /**
@@ -186,7 +190,10 @@ export function windi(page: Page, processor: Processor, options: Options) {
       $style.innerText = translatedSheet.build(options.minify);
     });
 
-  if (!options.config.preflight) return stylesheet;
+  if (!options.preflight) {
+    return stylesheet;
+  }
+
   const preflightSheet = processor.preflight(content);
   return stylesheet.extend(preflightSheet);
 }

@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.11.3] - Unreleased
+### Added
+- Missing option `preflight` to `windi_css` plugin (enabled by default).
+
 ### Changed
 - Improved the live reload performance. Now the browser refresh faster and all changes are detected. In previous versions the browser didn't reload always if many pages were updated at the same time.
 
