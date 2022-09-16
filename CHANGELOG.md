@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Relative urls to images for the `metas` plugin [#255].
 - Upgrade notification must be shown only on build.
 - Upgrade command in the upgrade notification.
-- Upgrade dependencies: `cliffy`, `postcss_autoprefixer`, `deno_dom`, `lightningcss`.
+- Upgrade dependencies: `std`, `cliffy`, `postcss_autoprefixer`, `deno_dom`, `lightningcss`.
 
 ## [1.11.2] - 2022-09-12
 ### Added
