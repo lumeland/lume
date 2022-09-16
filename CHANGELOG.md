@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.11.3] - Unreleased
+## [1.11.3] - 2022-09-16
 ### Added
 - Missing option `preflight` to `windi_css` plugin (enabled by default).
 
@@ -1769,7 +1769,7 @@ The first version.
 [#250]: https://github.com/lumeland/lume/issues/250
 [#255]: https://github.com/lumeland/lume/issues/255
 
-[1.11.3]: https://github.com/lumeland/lume/compare/v1.11.2...HEAD
+[1.11.3]: https://github.com/lumeland/lume/compare/v1.11.2...v1.11.3
 [1.11.2]: https://github.com/lumeland/lume/compare/v1.11.1...v1.11.2
 [1.11.1]: https://github.com/lumeland/lume/compare/v1.11.0...v1.11.1
 [1.11.0]: https://github.com/lumeland/lume/compare/v1.10.4...v1.11.0
