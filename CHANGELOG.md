@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.11.5] - Unreleased
+### Added
+- New option `--exit` to force the exit after build the site.
+  Example: `deno task build --exit`. This prevents that possible processes and resource leaks to block the event loop from finishing.
+
 ## [1.11.4] - 2022-09-18
 ### Fixed
 - Markdown `rules` configuration [#259].
@@ -1774,6 +1779,7 @@ The first version.
 [#255]: https://github.com/lumeland/lume/issues/255
 [#259]: https://github.com/lumeland/lume/issues/259
 
+[1.11.5]: https://github.com/lumeland/lume/compare/v1.11.4...HEAD
 [1.11.4]: https://github.com/lumeland/lume/compare/v1.11.3...v1.11.4
 [1.11.3]: https://github.com/lumeland/lume/compare/v1.11.2...v1.11.3
 [1.11.2]: https://github.com/lumeland/lume/compare/v1.11.1...v1.11.2

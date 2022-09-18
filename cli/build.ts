@@ -13,10 +13,11 @@ interface Options {
   config?: string;
   serve?: boolean;
   watch?: boolean;
+  exit?: boolean;
 }
 
-export default function ({ root, config, serve, watch }: Options) {
-  return build(root, config, serve, watch);
+export default function ({ root, config, serve, watch, exit }: Options) {
+  return build(root, config, serve, watch, exit);
 }
 
 /** Build the website and optionally watch changes and serve the site */
@@ -25,6 +26,7 @@ export async function build(
   config: string | undefined,
   serve?: boolean,
   watch?: boolean,
+  exit?: boolean,
 ) {
   const site = await createSite(root, config);
   const quiet = site.options.quiet;
@@ -45,6 +47,10 @@ export async function build(
   }
 
   if (!serve && !watch) {
+    if (exit) {
+      Deno.exit(0);
+    }
+
     return;
   }
 
