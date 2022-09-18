@@ -16,17 +16,11 @@ export function getPath(path: string): string {
 export function getSite(
   options: Partial<SiteOptions> = {},
   pluginOptions = {},
-  preventSave = true,
 ): Site {
   options.cwd = getPath("assets");
   options.quiet = true;
 
   const site = lume(options, pluginOptions, false);
-
-  // Don't save the site to disk
-  if (preventSave) {
-    site.addEventListener("beforeSave", () => false);
-  }
 
   return site;
 }
@@ -44,6 +38,9 @@ export function getPage(site: Site, path: string) {
 
 /** Build a site and print errors */
 export async function build(site: Site) {
+  // Don't save the site to disk
+  site.addEventListener("beforeSave", () => false);
+
   try {
     await site.build();
   } catch (error) {

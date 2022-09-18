@@ -3,7 +3,7 @@ import {
   assertStrictEquals as equals,
   assertStringIncludes as contains,
 } from "../deps/assert.ts";
-import { getSite } from "./utils.ts";
+import { build, getSite } from "./utils.ts";
 import { SiteEvent } from "../core.ts";
 
 Deno.test("build a simple site", async () => {
@@ -11,7 +11,7 @@ Deno.test("build a simple site", async () => {
     src: "simple",
   });
 
-  await site.build();
+  await build(site);
 
   const { pages } = site;
 
@@ -35,7 +35,6 @@ Deno.test("build/update events", async () => {
       src: "empty",
     },
     {},
-    false,
   );
 
   const events: string[] = [];

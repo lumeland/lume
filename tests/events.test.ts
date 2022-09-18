@@ -7,7 +7,6 @@ Deno.test("build events", async () => {
       src: "empty",
     },
     {},
-    false,
   );
 
   let times = 0;
