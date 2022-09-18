@@ -17,6 +17,7 @@ export interface Mark {
   file?: string;
   line?: number;
   column?: number;
+  code?: string;
 }
 
 /**
@@ -152,16 +153,20 @@ function getCode(mark: Mark): string | undefined {
   }
 
   try {
-    const path = mark.file.startsWith("file://")
-      ? fromFileUrl(mark.file)
-      : mark.file;
-
-    if (!path.startsWith(cwd)) {
-      return;
-    }
     const { line, column } = mark;
+    let content = mark.code;
+    if (content === undefined) {
+      const path = mark.file.startsWith("file://")
+        ? fromFileUrl(mark.file)
+        : mark.file;
+
+      if (!path.startsWith(cwd)) {
+        return;
+      }
+      content = Deno.readTextFileSync(path);
+    }
     const code: string[] = [];
-    const lines = Deno.readTextFileSync(path).split("\n");
+    const lines = content.split("\n");
 
     if (lines[line - 2]) {
       code.push(`    ${dim(`| ${line - 1} |`)} ${lines[line - 2]}`);
