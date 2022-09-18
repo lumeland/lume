@@ -88,7 +88,7 @@ export default function (userOptions?: Partial<Options>) {
 
     // Register custom rules
     for (const [name, rule] of Object.entries(options.rules)) {
-      engine.rules[name] = rule;
+      engine.renderer.rules[name] = rule;
     }
 
     // Load the pages
