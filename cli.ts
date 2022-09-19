@@ -170,10 +170,6 @@ const lume = new Command()
     "-w, --watch [watch:boolean]",
     "Build and watch changes.",
   )
-  .option(
-    "--exit [exit:boolean]",
-    "Force the exit after build the site (close all open processes).",
-  )
   .action(buildCommand)
   .command("init", init)
   .command("upgrade", upgrade)

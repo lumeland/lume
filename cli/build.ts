@@ -13,11 +13,10 @@ interface Options {
   config?: string;
   serve?: boolean;
   watch?: boolean;
-  exit?: boolean;
 }
 
-export default function ({ root, config, serve, watch, exit }: Options) {
-  return build(root, config, serve, watch, exit);
+export default function ({ root, config, serve, watch }: Options) {
+  return build(root, config, serve, watch);
 }
 
 /** Build the website and optionally watch changes and serve the site */
@@ -26,7 +25,6 @@ export async function build(
   config: string | undefined,
   serve?: boolean,
   watch?: boolean,
-  exit?: boolean,
 ) {
   const site = await createSite(root, config);
   const quiet = site.options.quiet;
@@ -47,10 +45,16 @@ export async function build(
   }
 
   if (!serve && !watch) {
-    if (exit) {
+    // Prevent possible timers to keep the process alive forever (wait preventively 10 seconds)
+    const id = setTimeout(() => {
+      console.log(
+        "After waiting 10 seconds, there are some timers that avoid ending the process.",
+      );
+      console.log("They have been forcibly closed.");
       Deno.exit(0);
-    }
+    }, 10000);
 
+    Deno.unrefTimer(id);
     return;
   }
 

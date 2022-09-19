@@ -8,9 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.11.5] - Unreleased
-### Added
-- New option `--exit` to force the exit after build the site.
-  Example: `deno task build --exit`. This prevents that possible processes and resource leaks to block the event loop from finishing.
+### Changed
+- In the build mode, in order to prevent some timers to keep the process alive indefinitely and after waiting 10 seconds, exit from the Deno process with a `Deno.exit(0)`.
+
+### Fixed
+- New type `DeepPartial` to fix some plugins options with nested objects.
 
 ## [1.11.4] - 2022-09-18
 ### Fixed
