@@ -2,10 +2,10 @@ export * from "https://unpkg.com/svgo@2.8.0/dist/svgo.browser.js";
 
 /** SVGO options */
 export interface SvgoOptions {
-  multipass: boolean;
-  plugins: unknown[];
-  datauri: "base64" | "enc" | "unenc";
-  js2svg: {
+  multipass?: boolean;
+  plugins?: unknown[];
+  datauri?: "base64" | "enc" | "unenc";
+  js2svg?: {
     doctypeStart?: string;
     doctypeEnd?: string;
     procInstStart?: string;

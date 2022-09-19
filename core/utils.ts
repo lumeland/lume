@@ -58,14 +58,21 @@ export async function sha1(message: string | Uint8Array): Promise<string> {
   return decoder.decode(hash);
 }
 
+/** Helper to create optional properties recursively */
+// deno-lint-ignore ban-types
+export type DeepPartial<T> = T extends object ? {
+    [P in keyof T]?: DeepPartial<T[P]>;
+  }
+  : T;
+
 /**
  * Merge two objects recursively.
  * It's used to merge user options with default options.
  */
 export function merge<Type>(
   defaults: Type,
-  user?: Partial<Type>,
-) {
+  user?: Partial<Type> | DeepPartial<Type>,
+): Type {
   const merged = { ...defaults };
 
   if (!user) {

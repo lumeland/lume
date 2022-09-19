@@ -7,6 +7,7 @@ import { join } from "../deps/path.ts";
 import type {
   ComponentFunction,
   Data,
+  DeepPartial,
   Engine,
   Helper,
   HelperOptions,
@@ -26,7 +27,7 @@ export interface Options {
   includes: string;
 
   /** Options passed to Nunjucks */
-  options: Partial<NunjucksOptions>;
+  options: NunjucksOptions;
 
   /** Plugins loaded by Nunjucks */
   plugins: {
@@ -135,7 +136,7 @@ export class NunjucksEngine implements Engine {
 }
 
 /** Register the plugin to use Nunjucks as a template engine */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },

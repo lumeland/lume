@@ -3,7 +3,7 @@ import { merge } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
 
 import type { Options as MinifyOptions } from "../deps/minify_html.ts";
-import type { Page, Site } from "../core.ts";
+import type { DeepPartial, Page, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to. */
@@ -34,7 +34,7 @@ export const defaults: Options = {
 await init();
 
 /** A plugin to minify HTML, CSS & JavaScript files */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   const options = merge(defaults, userOptions);
 
   const { extensions } = options;

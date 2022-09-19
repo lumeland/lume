@@ -1,4 +1,4 @@
-import type { DenoConfig, ImportMap } from "./core/utils.ts";
+import type { DeepPartial, DenoConfig, ImportMap } from "./core/utils.ts";
 import type {
   ComponentsOptions,
   default as Site,
@@ -95,6 +95,7 @@ export type {
   Content,
   Data,
   DataLoader,
+  DeepPartial,
   DenoConfig,
   Dest,
   Directory,

@@ -3,7 +3,14 @@ import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Data, Engine, Helper, HelperOptions, Site } from "../core.ts";
+import type {
+  Data,
+  DeepPartial,
+  Engine,
+  Helper,
+  HelperOptions,
+  Site,
+} from "../core.ts";
 import type { LiquidOptions } from "../deps/liquid.ts";
 
 export interface Options {
@@ -17,7 +24,7 @@ export interface Options {
   includes: string;
 
   /** Options passed to Liquidjs library */
-  options: Partial<LiquidOptions>;
+  options: LiquidOptions;
 }
 
 // Default options
@@ -89,7 +96,7 @@ export class LiquidEngine implements Engine {
 }
 
 /** Register the plugin to add support for Liquid files */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   return function (site: Site) {
     const options = merge(
       { ...defaults, includes: site.options.includes },

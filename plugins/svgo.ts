@@ -1,7 +1,7 @@
 import { optimize } from "../deps/svgo.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Page, Site } from "../core.ts";
+import type { DeepPartial, Page, Site } from "../core.ts";
 import type { SvgoOptions } from "../deps/svgo.ts";
 
 export interface Options {
@@ -9,7 +9,7 @@ export interface Options {
   extensions: string[];
 
   /** Options passed to SVGO */
-  options: Partial<SvgoOptions>;
+  options: SvgoOptions;
 }
 
 // Default options
@@ -19,7 +19,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to load all SVG files and minify them using SVGO */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

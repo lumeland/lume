@@ -1,7 +1,7 @@
 import hljs, { HighlightOptions, LanguageFn } from "../deps/highlight.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Page, Site } from "../core.ts";
+import type { DeepPartial, Page, Site } from "../core.ts";
 import type { Element } from "../deps/dom.ts";
 
 export interface Options {
@@ -12,7 +12,7 @@ export interface Options {
   languages?: Record<string, LanguageFn>;
 
   /** Options passed to highlight.js */
-  options: Partial<HighlightOptions>;
+  options: HighlightOptions;
 }
 
 // Default options
@@ -29,7 +29,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to syntax-highlight code using the highlight.js library */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   const options = merge(defaults, userOptions);
   hljs.configure(options.options);
 
@@ -43,7 +43,7 @@ export default function (userOptions?: Partial<Options>) {
     site.process(options.extensions, codeHighlight);
 
     function codeHighlight(page: Page) {
-      page.document!.querySelectorAll(options.options.cssSelector!)
+      page.document!.querySelectorAll(options.options.cssSelector)
         .forEach((element) => {
           try {
             hljs.highlightElement(element as Element);

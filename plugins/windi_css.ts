@@ -9,7 +9,7 @@ import {
 } from "../deps/windi_css.ts";
 
 import type { Element, HTMLDocument } from "../deps/dom.ts";
-import type { Site } from "../core.ts";
+import type { DeepPartial, Site } from "../core.ts";
 
 export interface Options {
   /** Whether minify the css code or not */
@@ -54,7 +54,7 @@ const defaults: Options = {
  * the output css file must be manually included in your document's
  * head e.g. <link rel="stylesheet" href="/windi.css">
  */
-export default function (userOptions: Partial<Options> = {}) {
+export default function (userOptions: DeepPartial<Options> = {}) {
   const options = merge(defaults, userOptions) as Options;
 
   return (site: Site) => {

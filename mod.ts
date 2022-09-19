@@ -11,12 +11,8 @@ import paginate, { Options as PaginateOptions } from "./plugins/paginate.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { merge } from "./core/utils.ts";
 
-import type {
-  ComponentsOptions,
-  ServerOptions,
-  SiteOptions,
-  WatcherOptions,
-} from "./core/site.ts";
+import type { DeepPartial } from "./core/utils.ts";
+import type { SiteOptions } from "./core/site.ts";
 
 interface PluginOptions {
   url?: Partial<UrlOptions>;
@@ -29,15 +25,8 @@ interface PluginOptions {
   yaml?: Partial<YamlOptions>;
 }
 
-interface Options
-  extends Omit<Partial<SiteOptions>, "server" | "watcher" | "components"> {
-  server?: Partial<ServerOptions>;
-  watcher?: Partial<WatcherOptions>;
-  components?: Partial<ComponentsOptions>;
-}
-
 export default function lume(
-  options: Options = {},
+  options: DeepPartial<SiteOptions> = {},
   pluginOptions: PluginOptions = {},
   cliOptions = true,
 ): Site {
@@ -66,7 +55,7 @@ export default function lume(
     .use(yaml(pluginOptions.yaml));
 }
 
-function getOptionsFromCli(): Partial<Options> {
+function getOptionsFromCli(): DeepPartial<SiteOptions> {
   const options = parse(Deno.args, {
     string: [
       "root",
@@ -80,7 +69,7 @@ function getOptionsFromCli(): Partial<Options> {
     ["--"]: true,
   });
 
-  const overrides: Partial<Options> = {};
+  const overrides: DeepPartial<SiteOptions> = {};
 
   if (options.root) {
     overrides.cwd = posix.resolve(Deno.cwd(), options.root);

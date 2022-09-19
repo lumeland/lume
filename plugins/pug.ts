@@ -3,7 +3,14 @@ import { join } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Data, Engine, Helper, HelperOptions, Site } from "../core.ts";
+import type {
+  Data,
+  DeepPartial,
+  Engine,
+  Helper,
+  HelperOptions,
+  Site,
+} from "../core.ts";
 import type { Options as PugOptions } from "../deps/pug.ts";
 
 export interface Options {
@@ -17,7 +24,7 @@ export interface Options {
   includes: string;
 
   /** Options passed to Pug */
-  options: Partial<PugOptions>;
+  options: PugOptions;
 }
 
 // Default options
@@ -86,7 +93,7 @@ export class PugEngine implements Engine {
 }
 
 /** Register the plugin to use Pug as a template engine */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },

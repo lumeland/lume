@@ -4,7 +4,7 @@ import { merge } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
 import { Page } from "../core/filesystem.ts";
 
-import type { Helper, Site } from "../core.ts";
+import type { DeepPartial, Helper, Site } from "../core.ts";
 import type { TerserOptions } from "../deps/terser.ts";
 
 export interface Options {
@@ -15,7 +15,7 @@ export interface Options {
   sourceMap: boolean;
 
   /** Options passed to `terser` */
-  options: Partial<TerserOptions>;
+  options: TerserOptions;
 }
 
 // Default options
@@ -30,7 +30,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to load all JavaScript files and minify them using Terser */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

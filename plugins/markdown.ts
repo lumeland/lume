@@ -7,14 +7,14 @@ import {
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Data, Engine, Helper, Site } from "../core.ts";
+import type { Data, DeepPartial, Engine, Helper, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
   /** Options passed to markdown-it library */
-  options: Partial<MarkdownItOptions>;
+  options: MarkdownItOptions;
 
   /** The list of markdown-it plugins to use */
   plugins: unknown[];
@@ -70,7 +70,7 @@ export class MarkdownEngine implements Engine {
 }
 
 /** Register the plugin to support Markdown */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   const options = merge(defaults, userOptions);
 
   if (options.keepDefaultPlugins && userOptions?.plugins?.length) {

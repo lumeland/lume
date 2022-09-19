@@ -3,7 +3,7 @@ import { merge } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
 import { basename } from "../deps/path.ts";
 
-import type { Site } from "../core.ts";
+import type { DeepPartial, Site } from "../core.ts";
 import type { TransformOptions } from "../deps/lightningcss.ts";
 
 export interface Options {
@@ -43,7 +43,7 @@ export const defaults: Options = {
 await init();
 
 /** A plugin to load all CSS files and process them using parcelCSS */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   return (site: Site) => {
     const options = merge(defaults, userOptions);
 
