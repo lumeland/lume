@@ -9,9 +9,9 @@ Deno.test("Katex plugin", async (t) => {
   site.use(katex({
     options: {
       macros: {
-        "\\f": "#1f(#2)"
-      }
-    }
+        "\\f": "#1f(#2)",
+      },
+    },
   }));
 
   await build(site);
