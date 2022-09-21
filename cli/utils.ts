@@ -31,6 +31,7 @@ export const pluginNames = [
   "inline",
   "jsx",
   "jsx_preact",
+  "katex",
   "lightningcss",
   "liquid",
   "metas",

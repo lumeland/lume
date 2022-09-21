@@ -1,40 +1,60 @@
 import { katex, KatexOptions } from "../deps/katex.ts";
-import { Page, Site } from "../core.ts";
 import { merge } from "../core/utils.ts";
+import { Exception } from "../core/errors.ts";
+
+import type { Element } from "../deps/dom.ts";
+import type { DeepPartial, Page, Site } from "../core.ts";
 
 interface Options {
   extensions: string[];
-  querySelector: string;
-  katexOptions: KatexOptions;
+  cssSelector: string;
+  options: KatexOptions;
 }
 
 const defaultOptions: Options = {
   extensions: [".html"],
-  querySelector: "code.language-math",
-  katexOptions: {
+  cssSelector: ".language-math",
+  options: {
     strict: true,
     displayMode: true,
     throwOnError: true,
   },
 };
 
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   const options = merge(defaultOptions, userOptions);
   return (site: Site) => {
     site.process(options.extensions, (page: Page) => {
-      page.document!.querySelectorAll(options.querySelector)
-        .forEach((element) => {
+      const { document } = page;
+
+      if (!document) {
+        return;
+      }
+
+      document.querySelectorAll(options.cssSelector)
+        .forEach((node) => {
+          const element = node as Element;
+
           try {
             const rendered = katex.renderToString(
               element.textContent,
-              options.katexOptions,
+              options.options,
             );
-            const div = page.document!.createElement("div");
+            const div = document.createElement("div");
             div.innerHTML = rendered.trim();
+
             // we've selected the <code> element, we want to also replace the parent <pre>
-            element.parentElement!._replaceWith(div.firstChild);
-          } catch (e) {
-            throw Error(`katex render failed: ${e}`);
+            const parent = element.parentElement;
+            if (parent && parent.tagName === "PRE") {
+              parent.replaceWith(div.firstChild);
+            } else {
+              element.replaceWith(div.firstChild);
+            }
+          } catch (cause) {
+            throw new Exception("Katex failed to render", {
+              page,
+              cause,
+            });
           }
         });
     });
