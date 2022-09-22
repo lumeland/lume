@@ -15,7 +15,7 @@ Deno.test("Pagefind plugin", async (t) => {
   await assertSiteSnapshot(t, site);
 });
 
-Deno.test("Pagefind download", async (t) => {
+Deno.test("Pagefind download", async () => {
   const dest = fromFileUrl(import.meta.resolve("./_binary/pagefind"));
   const binary = await downloadBinary(dest, true);
 
