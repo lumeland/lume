@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.12.0] - Unreleased
 ### Added
 - New plugin `katex` [#260].
+- New plugin `pagefind` [#253].
 
 ### Changed
 - In the build mode, in order to prevent some timers to keep the process alive indefinitely and after waiting 10 seconds, exit from the Deno process with a `Deno.exit(0)`.
@@ -1781,6 +1782,7 @@ The first version.
 [#248]: https://github.com/lumeland/lume/issues/248
 [#249]: https://github.com/lumeland/lume/issues/249
 [#250]: https://github.com/lumeland/lume/issues/250
+[#253]: https://github.com/lumeland/lume/issues/253
 [#255]: https://github.com/lumeland/lume/issues/255
 [#259]: https://github.com/lumeland/lume/issues/259
 [#260]: https://github.com/lumeland/lume/issues/260

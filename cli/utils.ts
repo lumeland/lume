@@ -40,6 +40,7 @@ export const pluginNames = [
   "multilanguage",
   "netlify_cms",
   "on_demand",
+  "pagefind",
   "postcss",
   "prism",
   "pug",

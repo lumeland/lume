@@ -26,6 +26,7 @@ Deno.test("Plugins list in init", () => {
     "multilanguage",
     "netlify_cms",
     "on_demand",
+    "pagefind",
     "postcss",
     "prism",
     "pug",
