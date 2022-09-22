@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - New type `DeepPartial` to fix some plugins options with nested objects.
+- Updated deps: `std`, `esbuild`, `lightningcss`.
 
 ## [1.11.4] - 2022-09-18
 ### Fixed

@@ -2,7 +2,7 @@ export {
   default,
   transform,
   transformStyleAttribute,
-} from "https://unpkg.com/lightningcss-wasm@1.15.1/index.js";
+} from "https://unpkg.com/lightningcss-wasm@1.16.0/index.js";
 
 /**
  * Types from /index.d.ts
