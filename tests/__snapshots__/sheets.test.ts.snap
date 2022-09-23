@@ -92,7 +92,7 @@ snapshot[`Sheets plugin 4`] = `
   <table>
     <tr>
       
-        <th>Date</th>
+        <th>Day</th>
       
         <th>Benny 
 Ashley</th>
@@ -117,7 +117,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Thu Oct 01 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>1</td>
         
           <td>true</td>
         
@@ -139,7 +139,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Fri Oct 02 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>2</td>
         
           <td>true</td>
         
@@ -161,7 +161,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Sat Oct 03 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>3</td>
         
           <td>false</td>
         
@@ -183,7 +183,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Sun Oct 04 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>4</td>
         
           <td>false</td>
         
@@ -205,7 +205,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Mon Oct 05 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>5</td>
         
           <td>false</td>
         
@@ -227,7 +227,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Tue Oct 06 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>6</td>
         
           <td>false</td>
         
@@ -249,7 +249,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Wed Oct 07 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>7</td>
         
           <td>false</td>
         
@@ -271,7 +271,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Thu Oct 08 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>8</td>
         
           <td>false</td>
         
@@ -293,7 +293,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Fri Oct 09 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>9</td>
         
           <td>false</td>
         
@@ -315,7 +315,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Sat Oct 10 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>0</td>
         
           <td>false</td>
         
@@ -337,7 +337,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Sun Oct 11 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>11</td>
         
           <td>false</td>
         
@@ -359,7 +359,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Mon Oct 12 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>12</td>
         
           <td>false</td>
         
@@ -381,7 +381,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Tue Oct 13 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>13</td>
         
           <td>false</td>
         
@@ -403,7 +403,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Wed Oct 14 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>14</td>
         
           <td>false</td>
         
@@ -425,7 +425,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Thu Oct 15 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>15</td>
         
           <td>false</td>
         
@@ -447,7 +447,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Fri Oct 16 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>16</td>
         
           <td>false</td>
         
@@ -469,7 +469,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Sat Oct 17 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>17</td>
         
           <td>false</td>
         
@@ -491,7 +491,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Sun Oct 18 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>18</td>
         
           <td>false</td>
         
@@ -513,7 +513,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Mon Oct 19 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>19</td>
         
           <td>false</td>
         
@@ -535,7 +535,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Tue Oct 20 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>20</td>
         
           <td>false</td>
         
@@ -557,7 +557,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Wed Oct 21 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>21</td>
         
           <td>false</td>
         
@@ -579,7 +579,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Thu Oct 22 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>22</td>
         
           <td>false</td>
         
@@ -601,7 +601,7 @@ Daniels</th>
     
       <tr>
         
-          <td>Fri Oct 23 2020 00:00:00 GMT+0000 (GMT)</td>
+          <td>23</td>
         
           <td>false</td>
         
@@ -653,7 +653,7 @@ Daniels</th>
         "Benny 
 Ashley": true,
         "Berlinda Fong": true,
-        Date: 2020-10-01T00:00:00.000Z,
+        Day: 1,
         "Jimmy Cooney": true,
         "Linda Smith": true,
         "Sue 
@@ -666,7 +666,7 @@ Daniels": true,
         "Benny 
 Ashley": true,
         "Berlinda Fong": false,
-        Date: 2020-10-02T00:00:00.000Z,
+        Day: 2,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -679,7 +679,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-03T00:00:00.000Z,
+        Day: 3,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -692,7 +692,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-04T00:00:00.000Z,
+        Day: 4,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -705,7 +705,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-05T00:00:00.000Z,
+        Day: 5,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -718,7 +718,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-06T00:00:00.000Z,
+        Day: 6,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -731,7 +731,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-07T00:00:00.000Z,
+        Day: 7,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -744,7 +744,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-08T00:00:00.000Z,
+        Day: 8,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -757,7 +757,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-09T00:00:00.000Z,
+        Day: 9,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -770,7 +770,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-10T00:00:00.000Z,
+        Day: 0,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -783,7 +783,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-11T00:00:00.000Z,
+        Day: 11,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -796,7 +796,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-12T00:00:00.000Z,
+        Day: 12,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -809,7 +809,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-13T00:00:00.000Z,
+        Day: 13,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -822,7 +822,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-14T00:00:00.000Z,
+        Day: 14,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -835,7 +835,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-15T00:00:00.000Z,
+        Day: 15,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -848,7 +848,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-16T00:00:00.000Z,
+        Day: 16,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -861,7 +861,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-17T00:00:00.000Z,
+        Day: 17,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -874,7 +874,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-18T00:00:00.000Z,
+        Day: 18,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -887,7 +887,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-19T00:00:00.000Z,
+        Day: 19,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -900,7 +900,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-20T00:00:00.000Z,
+        Day: 20,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -913,7 +913,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-21T00:00:00.000Z,
+        Day: 21,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -926,7 +926,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-22T00:00:00.000Z,
+        Day: 22,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -939,7 +939,7 @@ Daniels": false,
         "Benny 
 Ashley": false,
         "Berlinda Fong": false,
-        Date: 2020-10-23T00:00:00.000Z,
+        Day: 23,
         "Jimmy Cooney": false,
         "Linda Smith": false,
         "Sue 
@@ -952,7 +952,7 @@ Daniels": false,
         "Benny 
 Ashley": 2,
         "Berlinda Fong": 1,
-        Date: "Total",
+        Day: "Total",
         "Jimmy Cooney": 1,
         "Linda Smith": 1,
         "Sue 
