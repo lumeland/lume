@@ -1,0 +1,1001 @@
+export const snapshot = {};
+
+snapshot[`Sheets plugin 1`] = `1`;
+
+snapshot[`Sheets plugin 2`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: loader],
+      engines: undefined,
+      ext: ".xlsx",
+    },
+    {
+      dataLoader: [AsyncFunction: loader],
+      engines: undefined,
+      ext: ".numbers",
+    },
+    {
+      dataLoader: [AsyncFunction: loader],
+      engines: undefined,
+      ext: ".csv",
+    },
+  ],
+}
+`;
+
+snapshot[`Sheets plugin 3`] = `
+[
+]
+`;
+
+snapshot[`Sheets plugin 4`] = `
+{
+  content: "<body>
+
+  <table>
+    <tr>
+      
+        <th>Date</th>
+      
+        <th>Benny 
+Ashley</th>
+      
+        <th>Tom Brooks</th>
+      
+        <th>Jimmy Cooney</th>
+      
+        <th>Sue 
+Daniels</th>
+      
+        <th>Berlinda Fong</th>
+      
+        <th>Terry Jones</th>
+      
+        <th>Angelina Little</th>
+      
+        <th>Linda Smith</th>
+      
+    </tr>
+
+    
+      <tr>
+        
+          <td>Thu Oct 01 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>true</td>
+        
+          <td>true</td>
+        
+          <td>true</td>
+        
+          <td>true</td>
+        
+          <td>true</td>
+        
+          <td>true</td>
+        
+          <td>false</td>
+        
+          <td>true</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Fri Oct 02 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>true</td>
+        
+          <td>true</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Sat Oct 03 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Sun Oct 04 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Mon Oct 05 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Tue Oct 06 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Wed Oct 07 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Thu Oct 08 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Fri Oct 09 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Sat Oct 10 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Sun Oct 11 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Mon Oct 12 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Tue Oct 13 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Wed Oct 14 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Thu Oct 15 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Fri Oct 16 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Sat Oct 17 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Sun Oct 18 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Mon Oct 19 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Tue Oct 20 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Wed Oct 21 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Thu Oct 22 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Fri Oct 23 2020 00:00:00 GMT+0000 (GMT)</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+          <td>false</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>Total</td>
+        
+          <td>2</td>
+        
+          <td>2</td>
+        
+          <td>1</td>
+        
+          <td>1</td>
+        
+          <td>1</td>
+        
+          <td>1</td>
+        
+          <td>0</td>
+        
+          <td>1</td>
+        
+      </tr>
+    
+  </table>
+</body>
+",
+  data: {
+    attendance_numbers: [
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": true,
+        "Berlinda Fong": true,
+        Date: 2020-10-01T00:00:00.000Z,
+        "Jimmy Cooney": true,
+        "Linda Smith": true,
+        "Sue 
+Daniels": true,
+        "Terry Jones": true,
+        "Tom Brooks": true,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": true,
+        "Berlinda Fong": false,
+        Date: 2020-10-02T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": true,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-03T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-04T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-05T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-06T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-07T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-08T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-09T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-10T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-11T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-12T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-13T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-14T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-15T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-16T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-17T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-18T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-19T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-20T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-21T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-22T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": false,
+        "Benny 
+Ashley": false,
+        "Berlinda Fong": false,
+        Date: 2020-10-23T00:00:00.000Z,
+        "Jimmy Cooney": false,
+        "Linda Smith": false,
+        "Sue 
+Daniels": false,
+        "Terry Jones": false,
+        "Tom Brooks": false,
+      },
+      {
+        "Angelina Little": 0,
+        "Benny 
+Ashley": 2,
+        "Berlinda Fong": 1,
+        Date: "Total",
+        "Jimmy Cooney": 1,
+        "Linda Smith": 1,
+        "Sue 
+Daniels": 1,
+        "Terry Jones": 1,
+        "Tom Brooks": 2,
+      },
+    ],
+    content: "<body>
+
+  <table>
+    <tr>
+      {% for key, column in attendance_numbers[0] %}
+        <th>{{ key }}</th>
+      {% endfor %}
+    </tr>
+
+    {% for row in attendance_numbers %}
+      <tr>
+        {% for key, column in row %}
+          <td>{{ column }}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+</body>
+",
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/index",
+  },
+  src: {
+    ext: ".njk",
+    path: "/index",
+    remote: undefined,
+  },
+}
+`;

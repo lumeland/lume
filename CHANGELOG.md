@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New plugin `katex` [#260].
 - New plugin `pagefind` [#253].
+- New plugin `sheets` [#252].
 
 ### Changed
 - In the build mode, in order to prevent some timers to keep the process alive indefinitely and after waiting 10 seconds, exit from the Deno process with a `Deno.exit(0)`.

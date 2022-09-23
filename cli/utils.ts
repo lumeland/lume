@@ -48,6 +48,7 @@ export const pluginNames = [
   "relative_urls",
   "resolve_urls",
   "sass",
+  "sheets",
   "slugify_urls",
   "svgo",
   "terser",
