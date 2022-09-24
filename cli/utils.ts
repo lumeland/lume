@@ -1,18 +1,28 @@
 import lume from "../mod.ts";
 import { toFileUrl } from "../deps/path.ts";
 import { cyan, dim, green, red } from "../deps/colors.ts";
-import { getConfigFile, getLumeVersion } from "../core/utils.ts";
+import { getConfigFile, getLumeVersion, isUrl } from "../core/utils.ts";
 
 import type { Site } from "../core.ts";
 
 /** Create a site instance */
 export async function createSite(root: string, config?: string): Promise<Site> {
-  const path = await getConfigFile(root, config);
+  let url: string | undefined;
 
-  if (path) {
-    console.log(`Loading config file ${dim(path)}`);
+  if (config && isUrl(config)) {
+    url = config;
+  } else {
+    const path = await getConfigFile(root, config);
+
+    if (path) {
+      url = toFileUrl(path).href;
+    }
+  }
+
+  if (url) {
+    console.log(`Loading config file ${dim(url)}`);
     console.log();
-    const mod = await import(toFileUrl(path).href);
+    const mod = await import(url);
     return mod.default;
   }
 
