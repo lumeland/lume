@@ -99,6 +99,16 @@ export default function (userOptions?: DeepPartial<Options>) {
             ),
           );
 
+          // Insert before other styles to allow overriding
+          const first = document.head.querySelector(
+            "link[rel=stylesheet],style",
+          );
+          if (first) {
+            document.head.insertBefore(styles, first);
+          } else {
+            document.head.append(styles);
+          }
+
           const script = document.createElement("script");
           script.setAttribute("type", "text/javascript");
           script.setAttribute(
@@ -122,7 +132,7 @@ export default function (userOptions?: DeepPartial<Options>) {
             `window.addEventListener('DOMContentLoaded', () => { new PagefindUI(${
               JSON.stringify(uiSettings)
             }); });`;
-          document.head.append(styles, script, init);
+          document.head.append(script, init);
         }
       });
     }
