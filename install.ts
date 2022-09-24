@@ -11,7 +11,7 @@ const process = Deno.run({
     "-Af",
     `--no-check`,
     "--name=lume",
-    import.meta.resolve("./cli.ts"),
+    import.meta.resolve("./ci.ts"),
   ],
 });
 
