@@ -56,6 +56,7 @@ export const pluginNames = [
   "pug",
   "relations",
   "relative_urls",
+  "remark",
   "resolve_urls",
   "sass",
   "sheets",

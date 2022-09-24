@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `katex` [#260].
 - New plugin `pagefind` [#253].
 - New plugin `sheets` [#252].
+- New plugin `remark` to use this library as markdown renderer [#267].
 - Allow to load remote configuration files.
   For example: `lume --config="https://example.com/_config.ts`.
 
@@ -1786,10 +1787,12 @@ The first version.
 [#248]: https://github.com/lumeland/lume/issues/248
 [#249]: https://github.com/lumeland/lume/issues/249
 [#250]: https://github.com/lumeland/lume/issues/250
+[#252]: https://github.com/lumeland/lume/issues/252
 [#253]: https://github.com/lumeland/lume/issues/253
 [#255]: https://github.com/lumeland/lume/issues/255
 [#259]: https://github.com/lumeland/lume/issues/259
 [#260]: https://github.com/lumeland/lume/issues/260
+[#267]: https://github.com/lumeland/lume/issues/267
 
 [1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...HEAD
 [1.11.4]: https://github.com/lumeland/lume/compare/v1.11.3...v1.11.4

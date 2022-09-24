@@ -1,0 +1,359 @@
+export const snapshot = {};
+
+snapshot[`Build a markdown site 1`] = `8`;
+
+snapshot[`Build a markdown site 2`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+}
+`;
+
+snapshot[`Build a markdown site 3`] = `
+[
+]
+`;
+
+snapshot[`Build a markdown site 4`] = `
+{
+  content: "<h1>Normal page</h1>
+<ul>
+<li>List</li>
+<li>Of</li>
+<li>Elements</li>
+</ul>",
+  data: {
+    content: "# Normal page
+
+- List
+- Of
+- Elements
+",
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "Basic page",
+    url: "/basic/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/basic/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/basic",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Build a markdown site 5`] = `
+{
+  content: \`<p>Here is a footnote reference,<sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref aria-describedby="footnote-label">1</a></sup> and another.<sup><a href="#user-content-fn-longnote" id="user-content-fnref-longnote" data-footnote-ref aria-describedby="footnote-label">2</a></sup></p>
+<p>belong to the previous footnote.</p>
+<section data-footnotes class="footnotes"><h2 id="footnote-label" class="sr-only">Footnotes</h2>
+<ol>
+<li id="user-content-fn-1">
+<p>Here is the footnote. <a href="#user-content-fnref-1" data-footnote-backref class="data-footnote-backref" aria-label="Back to content">↩</a></p>
+</li>
+<li id="user-content-fn-longnote">
+<p>Here's one with multiple blocks.</p>
+<p>Subsequent paragraphs are indented to show that they <a href="#user-content-fnref-longnote" data-footnote-backref class="data-footnote-backref" aria-label="Back to content">↩</a></p>
+</li>
+</ol>
+</section>\`,
+  data: {
+    content: "Here is a footnote reference,[^1] and another.[^longnote]
+
+[^1]: Here is the footnote.
+
+[^longnote]: Here's one with multiple blocks.
+
+    Subsequent paragraphs are indented to show that they
+
+belong to the previous footnote.
+",
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/footnote/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/footnote/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/footnote",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Build a markdown site 6`] = `
+{
+  content: '<p><a href="#foo">link</a>{target=_blank}</p>',
+  data: {
+    content: "[link](#foo){target=_blank}
+",
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/with-attributes/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/with-attributes/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/with-attributes",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Build a markdown site 7`] = `
+{
+  content: '<pre><code class="language-html">&#x3C;p>Example&#x3C;/p>
+</code></pre>
+<pre><code>&#x3C;p>Example without color highlight&#x3C;/p>
+</code></pre>',
+  data: {
+    content: "\`\`\`html
+<p>Example</p>
+\`\`\`
+
+\`\`\`
+<p>Example without color highlight</p>
+\`\`\`
+",
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/with-code/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/with-code/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/with-code",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Build a markdown site 8`] = `
+{
+  content: "<!-- deno-fmt-ignore-file -->
+<p>This is a definition title
+: And this the description
+: Other description</p>
+<p>Other title
+: And other description</p>",
+  data: {
+    content: "<!-- deno-fmt-ignore-file -->
+This is a definition title
+: And this the description
+: Other description
+
+Other title
+: And other description
+",
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/with-deflist/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/with-deflist/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/with-deflist",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Build a markdown site 9`] = `
+{
+  content: '<h1><p>Module <strong>example</strong></p></h1>
+
+<div><p>Welcome to this <a href="/">page</a></p></div>
+',
+  data: {
+    content: "<h1>{{ title | md(true) | safe }}</h1>
+
+<div>{{ description | md | safe }}</div>
+",
+    date: 1970-01-01T00:00:00.000Z,
+    description: "Welcome to this [page](/)
+",
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "Module **example**",
+    url: "/with-filter/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/with-filter/index",
+  },
+  src: {
+    ext: ".njk",
+    path: "/with-filter",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Build a markdown site 10`] = `
+{
+  content: '<h1>Module example</h1>
+<p><a href="/">Back to home</a></p>',
+  data: {
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    templateEngine: "tmpl.js,md",
+    title: "Module example",
+    url: "/with-module/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/with-module/index",
+  },
+  src: {
+    ext: ".tmpl.js",
+    path: "/with-module",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Build a markdown site 11`] = `
+{
+  content: '<!-- deno-fmt-ignore-file -->
+<h1></h1>
+<p>Foo</p>
+<ul>
+<li>one: <a href="/items/un.html">un</a></li>
+<li>two: <a href="/items/dous.html">dous</a></li>
+<li>three: <a href="/items/tres.html">tres</a></li>
+</ul>',
+  data: {
+    content: "<!-- deno-fmt-ignore-file -->
+# {{ title }}
+
+Foo
+
+{% for title, no in myData %}
+- {{ title }}: [{{ no }}](/items/{{ no }}.html)
+{%- endfor %}
+",
+    date: 1970-01-01T00:00:00.000Z,
+    myData: {
+      one: "un",
+      three: "tres",
+      two: "dous",
+    },
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    templateEngine: "njk,md",
+    url: "/with-nunjucks/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/with-nunjucks/index",
+  },
+  src: {
+    ext: ".md",
+    path: "/with-nunjucks",
+    remote: undefined,
+  },
+}
+`;
