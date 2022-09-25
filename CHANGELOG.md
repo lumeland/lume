@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - In the build mode, in order to prevent some timers to keep the process alive indefinitely and after waiting 10 seconds, exit from the Deno process with a `Deno.exit(0)`.
+- `site.pages`, `site.files` and `site.onDemandPages` are readonly properties.
+  This allows to use their reference anywhere.
 
 ### Fixed
 - New type `DeepPartial` to fix some plugins options with nested objects.
