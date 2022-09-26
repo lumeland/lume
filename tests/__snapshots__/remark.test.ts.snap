@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`Build a markdown site 1`] = `8`;
+snapshot[`Build a markdown site 1`] = `7`;
 
 snapshot[`Build a markdown site 2`] = `
 {
@@ -108,52 +108,6 @@ snapshot[`Build a markdown site 4`] = `
 
 snapshot[`Build a markdown site 5`] = `
 {
-  content: \`<p>Here is a footnote reference,<sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref aria-describedby="footnote-label">1</a></sup> and another.<sup><a href="#user-content-fn-longnote" id="user-content-fnref-longnote" data-footnote-ref aria-describedby="footnote-label">2</a></sup></p>
-<p>belong to the previous footnote.</p>
-<section data-footnotes class="footnotes"><h2 id="footnote-label" class="sr-only">Footnotes</h2>
-<ol>
-<li id="user-content-fn-1">
-<p>Here is the footnote. <a href="#user-content-fnref-1" data-footnote-backref class="data-footnote-backref" aria-label="Back to content">↩</a></p>
-</li>
-<li id="user-content-fn-longnote">
-<p>Here's one with multiple blocks.</p>
-<p>Subsequent paragraphs are indented to show that they <a href="#user-content-fnref-longnote" data-footnote-backref class="data-footnote-backref" aria-label="Back to content">↩</a></p>
-</li>
-</ol>
-</section>\`,
-  data: {
-    content: "Here is a footnote reference,[^1] and another.[^longnote]
-
-[^1]: Here is the footnote.
-
-[^longnote]: Here's one with multiple blocks.
-
-    Subsequent paragraphs are indented to show that they
-
-belong to the previous footnote.
-",
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/footnote/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/footnote/index",
-  },
-  src: {
-    ext: ".md",
-    path: "/footnote",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`Build a markdown site 6`] = `
-{
   content: '<p><a href="#foo">link</a>{target=_blank}</p>',
   data: {
     content: "[link](#foo){target=_blank}
@@ -178,7 +132,7 @@ snapshot[`Build a markdown site 6`] = `
 }
 `;
 
-snapshot[`Build a markdown site 7`] = `
+snapshot[`Build a markdown site 6`] = `
 {
   content: '<pre><code class="language-html">&#x3C;p>Example&#x3C;/p>
 </code></pre>
@@ -213,7 +167,7 @@ snapshot[`Build a markdown site 7`] = `
 }
 `;
 
-snapshot[`Build a markdown site 8`] = `
+snapshot[`Build a markdown site 7`] = `
 {
   content: "<!-- deno-fmt-ignore-file -->
 <p>This is a definition title
@@ -250,7 +204,7 @@ Other title
 }
 `;
 
-snapshot[`Build a markdown site 9`] = `
+snapshot[`Build a markdown site 8`] = `
 {
   content: '<h1><p>Module <strong>example</strong></p></h1>
 
@@ -284,7 +238,7 @@ snapshot[`Build a markdown site 9`] = `
 }
 `;
 
-snapshot[`Build a markdown site 10`] = `
+snapshot[`Build a markdown site 9`] = `
 {
   content: '<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>',
@@ -312,7 +266,7 @@ snapshot[`Build a markdown site 10`] = `
 }
 `;
 
-snapshot[`Build a markdown site 11`] = `
+snapshot[`Build a markdown site 10`] = `
 {
   content: '<!-- deno-fmt-ignore-file -->
 <h1></h1>

@@ -4,7 +4,7 @@ import remark from "../plugins/remark.ts";
 Deno.test("Build a markdown site", async (t) => {
   const site = getSite({
     dev: true,
-    src: "markdown",
+    src: "remark",
   });
 
   site.use(remark());
