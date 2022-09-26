@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `site.pages`, `site.files` and `site.onDemandPages` are readonly properties.
   This allows to use their reference anywhere.
 
+### Removed
+- BREAKING CHANGE: `parcel_css` plugin was removed (it was a temporary alias to the `lightningcss` plugin).
+
 ### Fixed
 - New type `DeepPartial` to fix some plugins options with nested objects.
 - Updated deps: `std`, `esbuild`, `lightningcss`, `sass`, `postcss_autoprefixer`.
