@@ -28,6 +28,8 @@ export default class Processors {
 
   /** Apply the processors to the provided pages */
   async run(pages: Page[]): Promise<void> {
+    const removed: Page[] = [];
+
     for (const [process, exts] of this.processors) {
       await concurrent(
         pages,
@@ -37,7 +39,9 @@ export default class Processors {
               (exts === "*" || (page.src.ext && exts.includes(page.src.ext)) ||
                 exts.includes(page.dest.ext))
             ) {
-              await process(page, pages);
+              if (await process(page, pages) === false) {
+                removed.push(page);
+              }
             }
           } catch (cause) {
             throw new Exception("Error processing page", {
@@ -49,8 +53,16 @@ export default class Processors {
         },
       );
     }
+
+    // Remove the pages that have been removed by the processors
+    for (const page of removed) {
+      pages.splice(pages.indexOf(page), 1);
+    }
   }
 }
 
 /** A (pre)processor */
-export type Processor = (page: Page, pages: Page[]) => void;
+export type Processor = (
+  page: Page,
+  pages: Page[],
+) => void | false | Promise<void | false>;

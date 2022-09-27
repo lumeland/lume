@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   This allows to use their reference anywhere.
 - Lume throws and exception if the `import_map.json` file doesn't contain the `lume/` import.
   (Previously it only showed a warning).
+- When a processor returns `false`, the page is removed from the output.
 
 ### Removed
 - BREAKING CHANGE: `parcel_css` plugin was removed (it was a temporary alias to the `lightningcss` plugin).
@@ -35,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Updated deps: `std`, `esbuild`, `lightningcss`, `sass`, `postcss_autoprefixer`.
 - When Lume edit the `import_map.json` file (after running `upgrade` or `import-map` commands), any specifier using a lume url is updated.
   Previously, only the `lume/` specifier was updated.
+- `Procesor` return type.
 
 ## [1.11.4] - 2022-09-18
 ### Fixed

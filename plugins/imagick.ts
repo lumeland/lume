@@ -84,7 +84,7 @@ export default function (userOptions?: Partial<Options>) {
       site.options.watcher.ignore.push(cacheFolder);
     }
 
-    async function imagick(page: Page) {
+    async function imagick(page: Page, pages: Page[]) {
       const imagick = page.data[options.name] as
         | Transformation
         | Transformations
@@ -96,13 +96,10 @@ export default function (userOptions?: Partial<Options>) {
 
       const content = page.content as Uint8Array;
       const transformations = Array.isArray(imagick) ? imagick : [imagick];
-      const last = transformations[transformations.length - 1];
       let transformed = false;
       let index = 0;
       for (const transformation of transformations) {
-        const output = transformation === last
-          ? page
-          : page.duplicate(index++, { [options.name]: undefined });
+        const output = page.duplicate(index++, { [options.name]: undefined });
 
         rename(output, transformation);
 
@@ -122,13 +119,16 @@ export default function (userOptions?: Partial<Options>) {
         }
 
         if (output !== page) {
-          site.pages.push(output);
+          pages.push(output);
         }
       }
 
       if (transformed) {
         site.logger.log("🎨", `${page.src.path}${page.src.ext}`);
       }
+
+      // Remove the original page
+      return false;
     }
   };
 }
@@ -172,11 +172,13 @@ function transform(
 }
 
 function rename(page: Page, transformation: Transformation): void {
-  if (transformation.format) {
-    page.updateDest({ ext: "." + transformation.format });
+  const { format, suffix } = transformation;
+
+  if (format) {
+    page.updateDest({ ext: "." + format });
   }
 
-  if (transformation.suffix) {
-    page.updateDest({ path: page.dest.path + transformation.suffix });
+  if (suffix) {
+    page.updateDest({ path: page.dest.path + suffix });
   }
 }
