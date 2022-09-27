@@ -27,7 +27,7 @@ export async function vendor(
     return;
   }
 
-  const configFile = await getConfigFile(Deno.cwd(), config);
+  const configFile = await getConfigFile(config);
   const oldDenoConfig = await readDenoConfig();
 
   // Run deno vendor
