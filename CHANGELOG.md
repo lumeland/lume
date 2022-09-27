@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - When Lume edit the `import_map.json` file (after running `upgrade` or `import-map` commands), any specifier using a lume url is updated.
   Previously, only the `lume/` specifier was updated.
 - `Procesor` return type.
+- Repeated suffixes added to the images by the `Imagick` plugin [#269].
 
 ## [1.11.4] - 2022-09-18
 ### Fixed
@@ -1808,6 +1809,7 @@ The first version.
 [#259]: https://github.com/lumeland/lume/issues/259
 [#260]: https://github.com/lumeland/lume/issues/260
 [#267]: https://github.com/lumeland/lume/issues/267
+[#269]: https://github.com/lumeland/lume/issues/269
 
 [1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...HEAD
 [1.11.4]: https://github.com/lumeland/lume/compare/v1.11.3...v1.11.4
