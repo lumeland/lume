@@ -50,11 +50,6 @@ const vendor = new Command()
     { default: "_vendor" },
   )
   .option(
-    "--root <root:string>",
-    "The directory where Lume should work.",
-    { default: "./" },
-  )
-  .option(
     "--remove [remove:boolean]",
     "To remove an existing vendor.",
   )

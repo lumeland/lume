@@ -1,13 +1,6 @@
 import { encode } from "./deps/base64.ts";
-import { cyan, dim, red } from "./deps/colors.ts";
-import {
-  getDenoConfig,
-  getImportMap,
-  getLumeVersion,
-  loadImportMap,
-  toUrl,
-} from "./core/utils.ts";
-import { checkDenoVersion, log } from "./cli/utils.ts";
+import { ImportMap, readDenoConfig } from "./core/utils.ts";
+import { checkDenoVersion } from "./cli/utils.ts";
 
 /**
  * This file works as a proxy to the actual Lume CLI to fix the following issues:
@@ -15,7 +8,6 @@ import { checkDenoVersion, log } from "./cli/utils.ts";
  * - Detect and set the lume --quiet flag in Deno.
  * - Detect and use the deno.json file automatically.
  * - Add the import-map option to Deno if it's missing
- * - Check whether the import_map.json file has the Lume imports.
  */
 
 /** Returns the Lume & Deno arguments */
@@ -33,65 +25,25 @@ export async function getArgs(
   }
 
   // Detect and use the deno.json file automatically
-  const options = await getDenoConfig();
+  const denoConfig = await readDenoConfig();
+  const { file, config } = denoConfig || {};
 
-  if (options) {
+  if (file) {
     // To-do: For some reason, this is required in some cases. Needs research.
-    denoArgs.push(`--config=${options.file}`);
+    denoArgs.push(`--config=${file}`);
   }
 
-  // Add the import-map option to Deno if it's missing
-  const importMapOption = options?.config.importMap;
-  const shouldWarn = !quiet &&
-    !["import-map", "upgrade", "init"].includes(lumeArgs[0]);
-
-  // There's a import map file
-  if (importMapOption) {
-    const importMapUrl = await toUrl(importMapOption);
-    const importMap = await loadImportMap(importMapUrl);
-
-    if (!importMap.imports["lume/"]) {
-      // The import map doesn't include Lume imports
-      shouldWarn && warn(
-        red("Error:"),
-        `The import map file ${
-          dim(importMapOption)
-        } does not include Lume imports.`,
-        (importMapOption === "import_map.json")
-          ? `Run ${cyan("lume import-map")} to update import_map.json.`
-          : "",
-      );
-    } else {
-      // Check whether the import_map.json file has the same lume version as the installed version.
-      const cliVersion = getLumeVersion();
-      const mapValue = importMap.imports["lume/"];
-      const mapVersion = getLumeVersion(
-        mapValue.startsWith("./")
-          ? new URL(mapValue, importMapUrl)
-          : new URL(mapValue),
-      );
-
-      if (cliVersion !== mapVersion) {
-        shouldWarn && warn(
-          red("Different lume versions mixed:"),
-          `The import map file ${dim(importMapOption)} imports Lume ${
-            dim(mapVersion)
-          }`,
-          `but CLI version is ${dim(cliVersion)}.`,
-          (importMapOption === "import_map.json")
-            ? `Run ${
-              cyan("lume import-map")
-            } to update import_map.json with your CLI version.`
-            : undefined,
-        );
-      }
-    }
-  } else {
-    // There's no import map file, so we generate one automatically
-    const importMap = `data:application/json;base64,${
-      encode(JSON.stringify(await getImportMap()))
+  // There's no import map file, so we generate one automatically
+  if (!config?.importMap) {
+    const importMap: ImportMap = {
+      imports: {
+        "lume/": import.meta.resolve("./"),
+      },
+    };
+    const dataUrl = `data:application/json;base64,${
+      encode(JSON.stringify(importMap))
     }`;
-    denoArgs.push(`--import-map=${importMap}`);
+    denoArgs.push(`--import-map=${dataUrl}`);
   }
 
   return [lumeArgs, denoArgs];
@@ -125,16 +77,4 @@ export default async function main(args: string[]) {
 // Run the current command
 if (import.meta.main) {
   main(Deno.args);
-}
-
-function warn(...lines: (string | undefined)[]) {
-  const { args } = Deno;
-  const syncWarn = args.includes("--serve") || args.includes("-s") ||
-    args.includes("--watch") || args.includes("-w");
-
-  if (syncWarn) {
-    log(...lines);
-  } else {
-    addEventListener("unload", () => log(...lines));
-  }
 }

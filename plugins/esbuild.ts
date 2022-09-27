@@ -1,4 +1,4 @@
-import { getDenoConfig, merge, read, toUrl } from "../core/utils.ts";
+import { merge, read, readDenoConfig } from "../core/utils.ts";
 import { build, BuildOptions, stop } from "../deps/esbuild.ts";
 import { extname, toFileUrl } from "../deps/path.ts";
 
@@ -12,7 +12,7 @@ export interface Options {
   options: BuildOptions;
 }
 
-const denoConfig = await getDenoConfig();
+const denoConfig = await readDenoConfig();
 
 // Default options
 const defaults: Options = {
@@ -110,7 +110,7 @@ export default function (userOptions?: Partial<Options>) {
 
     site.process(options.extensions, async (page) => {
       const name = `${page.src.path}${page.src.ext}`;
-      const filename = await toUrl(site.src(name), false);
+      const filename = toFileUrl(site.src(name)).href;
       site.logger.log("📦", name);
 
       const buildOptions: BuildOptions = {
@@ -119,7 +119,7 @@ export default function (userOptions?: Partial<Options>) {
         incremental: false,
         watch: false,
         metafile: false,
-        entryPoints: [filename.href],
+        entryPoints: [filename],
       };
 
       const { outputFiles, warnings, errors } = await build(

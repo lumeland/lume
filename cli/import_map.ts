@@ -1,6 +1,5 @@
-import { brightGreen } from "../deps/colors.ts";
-import { getDenoConfig, getImportMap } from "../core/utils.ts";
-import { initPlugins, promptConfigUpdate } from "./utils.ts";
+import { readDenoConfig, writeDenoConfig } from "../core/utils.ts";
+import { initPlugins } from "./utils.ts";
 
 interface Options {
   plugins?: string[];
@@ -12,13 +11,15 @@ export default function ({ plugins }: Options = {}) {
 }
 
 export async function importMap(url: URL, plugins: string[] = []) {
-  const denoConfig = await getDenoConfig();
+  const denoConfig = await readDenoConfig();
+
   const config = denoConfig?.config || {};
+  const importMap = denoConfig?.importMap || { imports: {} };
+  const file = denoConfig?.file || "deno.json";
 
   // Configure the import map
-  const importMap = await getImportMap(config.importMap);
   importMap.imports["lume/"] = new URL("./", url).href;
-  config.importMap ||= "import_map.json";
+  config.importMap ||= "./import_map.json";
 
   // Configure lume tasks
   const tasks = config.tasks || {};
@@ -35,22 +36,6 @@ export async function importMap(url: URL, plugins: string[] = []) {
     }
   }));
 
-  // Write import map file and deno.json
-  await Deno.writeTextFile(
-    config.importMap,
-    JSON.stringify(importMap, null, 2) + "\n",
-  );
-
-  if (denoConfig?.file === "deno.jsonc") {
-    promptConfigUpdate({ importMap: config.importMap, tasks: config.tasks });
-  } else {
-    await Deno.writeTextFile(
-      "deno.json",
-      JSON.stringify(config, null, 2) + "\n",
-    );
-
-    console.log(brightGreen("Deno configuration file saved:"), "deno.json");
-  }
-
-  console.log(brightGreen("Import map file saved:"), config.importMap);
+  // Write the configuration
+  await writeDenoConfig({ file, importMap, config });
 }

@@ -2,5 +2,6 @@
   // deno-fmt-ignore
   "tasks": {
     "foo": "echo bar", // A trailing comma and a comment for spicing tests up
-  }
+  },
+  "importMap": "./import_map.json"
 }

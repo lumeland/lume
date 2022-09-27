@@ -1,13 +1,5 @@
 {
   "imports": {
-    "lume/": "https://lume.land/",
-    "std/": "https://deno.land/std@0.121.0/",
-    "/": "./"
-  },
-  "scopes": {
-    "foo/": {
-      "std/": "https://deno.land/std@0.121.0/foo/",
-      "/": "./foo/"
-    }
+    "std/": "https://deno.land/std@0.121.0/"
   }
 }

@@ -20,9 +20,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - In the build mode, in order to prevent some timers to keep the process alive indefinitely and after waiting 10 seconds, exit from the Deno process with a `Deno.exit(0)`.
 - `site.pages`, `site.files` and `site.onDemandPages` are readonly properties.
   This allows to use their reference anywhere.
+- Lume throws and exception if the `import_map.json` file doesn't contain the `lume/` import.
+  (Previously it only showed a warning).
 
 ### Removed
 - BREAKING CHANGE: `parcel_css` plugin was removed (it was a temporary alias to the `lightningcss` plugin).
+- Removed `--root` option to the `deno vendor` command.
+- Warning when different versions of Lume are being used.
 
 ### Fixed
 - New type `DeepPartial` to fix some plugins options with nested objects.

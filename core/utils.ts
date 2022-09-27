@@ -1,5 +1,6 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
-import { join, posix, resolve, SEP, toFileUrl } from "../deps/path.ts";
+import { brightGreen, brightYellow } from "../deps/colors.ts";
+import { dirname, extname, join, posix, resolve, SEP } from "../deps/path.ts";
 import { exists } from "../deps/fs.ts";
 import { parse } from "../deps/jsonc.ts";
 import { Exception } from "./errors.ts";
@@ -191,14 +192,30 @@ export async function getConfigFile(
   }
 }
 
-/** Return the file name and the content of the deno config file */
-export async function getDenoConfig(): Promise<
-  { file: string; config: DenoConfig } | undefined
-> {
+export interface DenoConfigResult {
+  file: string;
+  config: DenoConfig;
+  importMap?: ImportMap;
+}
+
+/** Detect and returns the Deno configuration */
+export async function readDenoConfig(
+  importMapFile?: string,
+): Promise<DenoConfigResult | undefined> {
   for (const file of ["deno.json", "deno.jsonc"]) {
     try {
       const content = await Deno.readTextFile(file);
-      return { file, config: parse(content) as DenoConfig };
+      const config = parse(content) as DenoConfig;
+      importMapFile ||= config.importMap;
+      if (importMapFile) {
+        config.importMap = importMapFile;
+        const importMap: ImportMap = isUrl(importMapFile)
+          ? await (await fetch(importMapFile)).json()
+          : await JSON.parse(await Deno.readTextFile(importMapFile));
+
+        return { file, config, importMap };
+      }
+      return { file, config };
     } catch (err) {
       if (err instanceof Deno.errors.NotFound) {
         continue;
@@ -209,47 +226,39 @@ export async function getDenoConfig(): Promise<
   }
 }
 
-export async function loadImportMap(url: URL): Promise<ImportMap> {
-  return await (await fetch(url)).json() as ImportMap;
-}
+/** Update the Deno configuration */
+export async function writeDenoConfig(options: DenoConfigResult) {
+  const { file, config, importMap } = options;
 
-/**
- * Return a data url with the import map of Lume
- * Optionally merge it with a custom import map from the user
- */
-export async function getImportMap(mapFile?: string): Promise<ImportMap> {
-  const map: ImportMap = {
-    imports: {
-      "lume/": import.meta.resolve("../"),
-    },
-  };
-
-  if (mapFile) {
-    const importMap = await loadImportMap(await toUrl(mapFile));
-
-    map.imports = { ...importMap.imports, ...map.imports };
-    map.scopes = importMap.scopes;
+  if (importMap && !config.importMap) {
+    config.importMap = "./import_map.json";
   }
 
-  return map;
-}
+  if (config.importMap) {
+    const importMapFile = join(dirname(file), config.importMap);
+    console.log(importMapFile);
 
-export type SpecifierMap = Record<string, string>;
+    await Deno.writeTextFile(
+      importMapFile,
+      JSON.stringify(importMap, null, 2) + "\n",
+    );
+    console.log(brightGreen("Import map file saved:"), importMapFile);
+  }
+
+  if (extname(file) === ".jsonc") {
+    console.log(
+      brightYellow("deno.jsonc needs to be manually updated:"),
+      "Use deno.json to update it automatically",
+      JSON.stringify(config, null, 2),
+    );
+  } else {
+    await Deno.writeTextFile(file, JSON.stringify(config, null, 2) + "\n");
+    console.log(brightGreen("Deno configuration file saved:"), file);
+  }
+}
 
 export function isUrl(path: string): boolean {
   return !!path.match(/^(https?|file):\/\//);
-}
-
-export async function toUrl(path: string, resolve = true): Promise<URL> {
-  if (isUrl(path)) {
-    return new URL(path);
-  }
-
-  if (!resolve) {
-    return toFileUrl(path);
-  }
-
-  return toFileUrl(await Deno.realPath(path));
 }
 
 export function createDate(str: string | number): Date | undefined {
