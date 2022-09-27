@@ -25,7 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 - BREAKING CHANGE: `parcel_css` plugin was removed (it was a temporary alias to the `lightningcss` plugin).
-- Removed `--root` option to the `deno vendor` command.
+- Removed the `--root` option to the CLI interface
+  (used by `run`, `vendor` and the main `lume` command).
 - Warning when different versions of Lume are being used.
 
 ### Fixed

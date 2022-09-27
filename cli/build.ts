@@ -9,24 +9,22 @@ import notFound from "../middlewares/not_found.ts";
 import reload from "../middlewares/reload.ts";
 
 interface Options {
-  root: string;
   config?: string;
   serve?: boolean;
   watch?: boolean;
 }
 
-export default function ({ root, config, serve, watch }: Options) {
-  return build(root, config, serve, watch);
+export default function ({ config, serve, watch }: Options) {
+  return build(config, serve, watch);
 }
 
 /** Build the website and optionally watch changes and serve the site */
 export async function build(
-  root: string,
   config: string | undefined,
   serve?: boolean,
   watch?: boolean,
 ) {
-  const site = await createSite(root, config);
+  const site = await createSite(config);
   const quiet = site.options.quiet;
 
   if (!quiet) {

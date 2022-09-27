@@ -74,11 +74,6 @@ const run = new Command()
     "Runs the `build` and `deploy` scripts.",
   )
   .option(
-    "--root <root:string>",
-    "The directory where Lume should work.",
-    { default: "./" },
-  )
-  .option(
     "--config <config:string>",
     "The config file path.",
   )
@@ -115,11 +110,6 @@ const lume = new Command()
   .example("lume upgrade", "Upgrades Lume to the latest version.")
   .example("lume run <script>", "Runs a custom script.")
   .example("lume [COMMAND] --help", "Shows the help for a command.")
-  .option(
-    "--root <root:string>",
-    "The directory where Lume should work.",
-    { default: "./" },
-  )
   .option(
     "--config <config:string>",
     "The config file path.",

@@ -1,6 +1,6 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
 import { brightGreen, brightYellow } from "../deps/colors.ts";
-import { dirname, extname, join, posix, resolve, SEP } from "../deps/path.ts";
+import { dirname, extname, join, posix, SEP } from "../deps/path.ts";
 import { exists } from "../deps/fs.ts";
 import { parse } from "../deps/jsonc.ts";
 import { Exception } from "./errors.ts";
@@ -166,14 +166,9 @@ export function getLumeVersion(
 
 /** Returns the _config file of a site */
 export async function getConfigFile(
-  root: string = Deno.cwd(),
-  config?: string,
+  path?: string,
 ): Promise<string | undefined> {
-  root = resolve(Deno.cwd(), root);
-
-  if (config) {
-    const path = join(root, config);
-
+  if (path) {
     if (await exists(path)) {
       return path;
     }
@@ -181,11 +176,9 @@ export async function getConfigFile(
     throw new Exception("Config file not found", { path });
   }
 
-  const files = ["_config.js", "_config.ts"];
+  const paths = ["_config.js", "_config.ts"];
 
-  for (const file of files) {
-    const path = posix.join(root, file);
-
+  for (const path of paths) {
     if (await exists(path)) {
       return path;
     }

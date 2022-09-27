@@ -1,5 +1,4 @@
 import { parse } from "./deps/flags.ts";
-import { posix } from "./deps/path.ts";
 import Site from "./core/site.ts";
 import url, { Options as UrlOptions } from "./plugins/url.ts";
 import json, { Options as JsonOptions } from "./plugins/json.ts";
@@ -58,7 +57,6 @@ export default function lume(
 function getOptionsFromCli(): DeepPartial<SiteOptions> {
   const options = parse(Deno.args, {
     string: [
-      "root",
       "src",
       "dest",
       "location",
@@ -70,10 +68,6 @@ function getOptionsFromCli(): DeepPartial<SiteOptions> {
   });
 
   const overrides: DeepPartial<SiteOptions> = {};
-
-  if (options.root) {
-    overrides.cwd = posix.resolve(Deno.cwd(), options.root);
-  }
 
   if (options.src) {
     overrides.src = options.src;

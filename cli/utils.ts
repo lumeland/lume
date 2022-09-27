@@ -6,13 +6,13 @@ import { getConfigFile, getLumeVersion, isUrl } from "../core/utils.ts";
 import type { Site } from "../core.ts";
 
 /** Create a site instance */
-export async function createSite(root: string, config?: string): Promise<Site> {
+export async function createSite(config?: string): Promise<Site> {
   let url: string | undefined;
 
   if (config && isUrl(config)) {
     url = config;
   } else {
-    const path = await getConfigFile(root, config);
+    const path = await getConfigFile(config);
 
     if (path) {
       url = toFileUrl(path).href;
