@@ -1,7 +1,6 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
 import { brightGreen, brightYellow } from "../deps/colors.ts";
 import { dirname, extname, join, posix, SEP } from "../deps/path.ts";
-import { exists } from "../deps/fs.ts";
 import { parse } from "../deps/jsonc.ts";
 import { Exception } from "./errors.ts";
 import { encode } from "../deps/base64.ts";
@@ -169,18 +168,20 @@ export async function getConfigFile(
   path?: string,
 ): Promise<string | undefined> {
   if (path) {
-    if (await exists(path)) {
-      return path;
+    try {
+      return await Deno.realPath(path);
+    } catch (cause) {
+      throw new Exception("Config file not found", { path, cause });
     }
-
-    throw new Exception("Config file not found", { path });
   }
 
   const paths = ["_config.js", "_config.ts"];
 
   for (const path of paths) {
-    if (await exists(path)) {
-      return path;
+    try {
+      return await Deno.realPath(path);
+    } catch {
+      // Ignore
     }
   }
 }

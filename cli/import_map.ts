@@ -18,8 +18,17 @@ export async function importMap(url: URL, plugins: string[] = []) {
   const file = denoConfig?.file || "deno.json";
 
   // Configure the import map
-  importMap.imports["lume/"] = new URL("./", url).href;
   config.importMap ||= "./import_map.json";
+
+  const oldUrl = importMap.imports["lume/"];
+  const newUrl = new URL("./", url).href;
+  importMap.imports["lume/"] = newUrl;
+
+  for (const [specifier, url] of Object.entries(importMap.imports)) {
+    if (url.startsWith(oldUrl)) {
+      importMap.imports[specifier] = url.replace(oldUrl, newUrl);
+    }
+  }
 
   // Configure lume tasks
   const tasks = config.tasks || {};
