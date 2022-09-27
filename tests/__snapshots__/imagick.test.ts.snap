@@ -90,52 +90,6 @@ snapshot[`imagick plugin 3`] = `
 
 snapshot[`imagick plugin 4`] = `
 {
-  content: "Uint8Array(14407)",
-  data: {
-    content: "Uint8Array(29014)",
-    date: 1970-01-01T00:00:00.000Z,
-    imagick: [
-      {
-        blur: 10,
-        resize: 20,
-        suffix: "-small",
-      },
-      {
-        blur: 10,
-        resize: 20,
-        suffix: "-big",
-      },
-      {
-        format: "jpg",
-      },
-      {
-        format: "webp",
-      },
-      {
-        format: "png",
-      },
-    ],
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/lume.png",
-  },
-  dest: {
-    ext: ".png",
-    path: "/lume",
-  },
-  src: {
-    ext: ".png",
-    path: "/lume",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`imagick plugin 5`] = `
-{
   content: "Uint8Array(951)",
   data: {
     content: "Uint8Array(29014)",
@@ -160,7 +114,7 @@ snapshot[`imagick plugin 5`] = `
 }
 `;
 
-snapshot[`imagick plugin 6`] = `
+snapshot[`imagick plugin 5`] = `
 {
   content: "Uint8Array(951)",
   data: {
@@ -186,7 +140,7 @@ snapshot[`imagick plugin 6`] = `
 }
 `;
 
-snapshot[`imagick plugin 7`] = `
+snapshot[`imagick plugin 6`] = `
 {
   content: "Uint8Array(1231)",
   data: {
@@ -212,7 +166,7 @@ snapshot[`imagick plugin 7`] = `
 }
 `;
 
-snapshot[`imagick plugin 8`] = `
+snapshot[`imagick plugin 7`] = `
 {
   content: "Uint8Array(8648)",
   data: {
@@ -233,6 +187,32 @@ snapshot[`imagick plugin 8`] = `
   src: {
     ext: ".png",
     path: "/lume[3]",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`imagick plugin 8`] = `
+{
+  content: "Uint8Array(14407)",
+  data: {
+    content: "Uint8Array(29014)",
+    date: 1970-01-01T00:00:00.000Z,
+    imagick: undefined,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/lume.png",
+  },
+  dest: {
+    ext: ".png",
+    path: "/lume",
+  },
+  src: {
+    ext: ".png",
+    path: "/lume[4]",
     remote: undefined,
   },
 }
