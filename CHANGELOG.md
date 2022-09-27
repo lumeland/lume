@@ -25,9 +25,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 - BREAKING CHANGE: `parcel_css` plugin was removed (it was a temporary alias to the `lightningcss` plugin).
-- Removed the `--root` option to the CLI interface
-  (used by `run`, `vendor` and the main `lume` command).
+- The `--root` option in the CLI interface.
 - Warning when different versions of Lume are being used.
+- Removed the `lume vendor` command temporarily because it doesn't work in all cases.
+  I'll consider reintroduce it again when the support for `npm:` modules is implemented.
 
 ### Fixed
 - New type `DeepPartial` to fix some plugins options with nested objects.
