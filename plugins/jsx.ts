@@ -1,7 +1,6 @@
 import { React, ReactDOMServer } from "../deps/react.ts";
 import loader from "../core/loaders/module.ts";
-import { merge, parseJSX } from "../core/utils.ts";
-import { dirname, join, toFileUrl } from "../deps/path.ts";
+import { merge } from "../core/utils.ts";
 
 import type {
   Data,
@@ -43,19 +42,12 @@ export class JsxEngine implements Engine {
 
   deleteCache() {}
 
-  // deno-lint-ignore no-explicit-any
-  parseJSX(content: string, data: Data = {}, filename?: string): Promise<any> {
-    const baseUrl = filename
-      ? toFileUrl(join(this.basePath, dirname(filename)))
-      : toFileUrl(this.basePath);
-
-    return parseJSX(baseUrl, content, data);
-  }
-
-  async render(content: unknown, data: Data = {}, filename?: string) {
+  async render(content: unknown, data: Data = {}) {
     // The content is a string, so we have to convert to a React element
     if (typeof content === "string") {
-      content = await this.parseJSX(content, data, filename);
+      content = React.createElement("div", {
+        dangerouslySetInnerHTML: { __html: content },
+      });
     }
 
     // Create the children property

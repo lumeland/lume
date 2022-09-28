@@ -1,5 +1,5 @@
 import { assertEquals as equals } from "../deps/assert.ts";
-import { pluginNames } from "../cli/utils.ts";
+import { pluginNames } from "../core/utils.ts";
 
 const totalPlugins = Array.from(Deno.readDirSync("plugins")).length;
 

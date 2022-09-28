@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`build a site with jsx/tsx modules using Preact 1`] = `6`;
+snapshot[`build a site with jsx/tsx modules using Preact 1`] = `5`;
 
 snapshot[`build a site with jsx/tsx modules using Preact 2`] = `
 {
@@ -166,50 +166,6 @@ snapshot[`build a site with jsx/tsx modules using Preact 6`] = `
 
 snapshot[`build a site with jsx/tsx modules using Preact 7`] = `
 {
-  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1>Hello <strong class="foo">world</strong></h1>
-<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
-<p><button type="foo">Hello</button></p>
-<img src="foo" />
-<div class="hello">Hello world</div></div></main></body></html>',
-  data: {
-    comp: {},
-    content: 'import Hello from "./_includes/hello.jsx";
-
-# Hello <strong className="foo">world</strong>
-
-This is a **markdown** text. [Go home](/)
-
-<comp.Button type="foo" />
-
-<img src="foo" />
-
-<Hello>Hello world</Hello>
-',
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.jsx",
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [
-    ],
-    templateEngine: "jsx,md",
-    title: "Markdown combined with JSX",
-    url: "/pseudo-mdx/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/pseudo-mdx/index",
-  },
-  src: {
-    ext: ".md",
-    path: "/pseudo-mdx",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`build a site with jsx/tsx modules using Preact 8`] = `
-{
   content: '<html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
   data: {
     comp: {},
@@ -236,7 +192,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 8`] = `
 }
 `;
 
-snapshot[`build a site with jsx/tsx modules using Preact 9`] = `
+snapshot[`build a site with jsx/tsx modules using Preact 8`] = `
 {
   content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1 class="foo">Hello world</h1>
 <p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>

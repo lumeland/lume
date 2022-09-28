@@ -1,12 +1,6 @@
-import {
-  h,
-  importSource,
-  isValidElement,
-  renderToString,
-} from "../deps/preact.ts";
+import { preact, renderToString } from "../deps/preact.ts";
 import loader from "../core/loaders/module.ts";
-import { merge, parseJSX } from "../core/utils.ts";
-import { dirname, join, toFileUrl } from "../deps/path.ts";
+import { merge } from "../core/utils.ts";
 
 import type {
   Data,
@@ -16,7 +10,6 @@ import type {
   ImportMap,
   Site,
 } from "../core.ts";
-import type { ComponentChildren } from "../deps/preact.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -32,7 +25,7 @@ export const defaults: Options = {
 };
 
 // JSX children type
-export type Children = ComponentChildren;
+export type Children = preact.ComponentChildren;
 
 /** Template engine to render JSX files using Preact */
 export class PreactJsxEngine implements Engine {
@@ -45,21 +38,12 @@ export class PreactJsxEngine implements Engine {
 
   deleteCache() {}
 
-  // deno-lint-ignore no-explicit-any
-  parseJSX(content: string, data: Data = {}, filename?: string): Promise<any> {
-    const baseUrl = filename
-      ? toFileUrl(join(this.basePath, dirname(filename)))
-      : toFileUrl(this.basePath);
-
-    const jsxSource = `/** @jsxImportSource ${importSource} */`;
-
-    return parseJSX(baseUrl, content, data, jsxSource);
-  }
-
-  async render(content: unknown, data: Data = {}, filename?: string) {
-    // The content is a string, so we have to convert to a Preact element
+  async render(content: unknown, data: Data = {}) {
+    // The content is a string, so we have to convert it to a Preact element
     if (typeof content === "string") {
-      content = await this.parseJSX(content, data, filename);
+      content = preact.h("div", {
+        dangerouslySetInnerHTML: { __html: content },
+      });
     }
 
     // Create the children property
@@ -67,16 +51,17 @@ export class PreactJsxEngine implements Engine {
 
     // If the children is a string, convert it to a Preact element
     if (typeof children === "string") {
-      children = h("div", {
+      children = preact.h("div", {
         dangerouslySetInnerHTML: { __html: children },
       });
     }
 
-    const element = typeof content === "object" && isValidElement(content)
-      ? content
-      : (typeof content === "function"
-        ? await content({ ...data, children }, this.helpers)
-        : content) as preact.VNode;
+    const element =
+      typeof content === "object" && preact.isValidElement(content)
+        ? content
+        : (typeof content === "function"
+          ? await content({ ...data, children }, this.helpers)
+          : content) as preact.VNode;
 
     if (element && typeof element === "object") {
       element.toString = () => renderToString(element);
@@ -91,7 +76,7 @@ export class PreactJsxEngine implements Engine {
       : content;
 
     if (element && typeof element === "object") {
-      element.toString = () => renderToString(element);
+      element.toString = () => preact.renderToString(element);
     }
 
     return element;
