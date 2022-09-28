@@ -88,7 +88,7 @@ export function promptConfigUpdate(data: unknown) {
 
 /** Check the compatibility with the current Deno version */
 export function checkDenoVersion(): void {
-  const minimum = "1.24.0";
+  const minimum = "1.25.4";
   const current = Deno.version.deno;
 
   if (current < minimum) {
