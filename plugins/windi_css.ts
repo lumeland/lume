@@ -158,7 +158,8 @@ export function windi(page: Page, processor: Processor, options: Options) {
   if (options.config.attributify) {
     const attrs: { [key: string]: string | string[] } = parser
       .parseAttrs()
-      .reduceRight((a: { [key: string]: string | string[] }, b) => {
+      // deno-lint-ignore no-explicit-any
+      .reduceRight((a: { [key: string]: string | string[] }, b: any) => {
         if (b.key === "class" || b.key === "className") return a;
         if (b.key in a) {
           a[b.key] = Array.isArray(a[b.key])
