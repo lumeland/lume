@@ -1,4 +1,4 @@
-import hljs from "https://unpkg.com/@highlightjs/cdn-assets@11.6.0/es/highlight.min.js";
+import hljs from "npm:highlight.js@11.6.0";
 
 import type { Element } from "./dom.ts";
 

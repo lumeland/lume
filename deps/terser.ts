@@ -1,4 +1,4 @@
-export * from "https://cdn.jsdelivr.net/gh/lumeland/terser-deno@v5.13.1/deno/mod.js";
+export { minify } from "npm:terser@5.13.1";
 
 /** Terser options */
 export interface TerserOptions {

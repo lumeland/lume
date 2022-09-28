@@ -1,1 +1,1 @@
-export * from "https://cdn.jsdelivr.net/gh/lumeland/pug@v0.1.4/mod.ts";
+export * from "npm:pug@3.0.2";

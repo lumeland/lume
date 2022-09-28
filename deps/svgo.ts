@@ -1,4 +1,4 @@
-export * from "https://unpkg.com/svgo@2.8.0/dist/svgo.browser.js";
+export { optimize } from "npm:svgo@2.8.0";
 
 /** SVGO options */
 export interface SvgoOptions {
