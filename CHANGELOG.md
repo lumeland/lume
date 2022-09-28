@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   For example: `lume --config="https://example.com/_config.ts`.
 
 ### Changed
+- Minimum version of Deno is 1.25.4.
 - In the build mode, in order to prevent some timers to keep the process alive indefinitely and after waiting 10 seconds, exit from the Deno process with a `Deno.exit(0)`.
 - `site.pages`, `site.files` and `site.onDemandPages` are readonly properties.
   This allows to use their reference anywhere.
@@ -24,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   (Previously it only showed a warning).
 - When a processor returns `false`, the page is removed from the output.
 - Moved some dependencies to `npm:` imports.
+- Removed `cli/utils.ts` file and move all utils to `core/utils.ts`.
 
 ### Removed
 - BREAKING CHANGE: `parcel_css` plugin was removed (it was a temporary alias to the `lightningcss` plugin).
@@ -39,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   Previously, only the `lume/` specifier was updated.
 - `Procesor` return type.
 - Repeated suffixes added to the images by the `Imagick` plugin [#269].
+- Correct typo in invalid date error message [#271]
 
 ## [1.11.4] - 2022-09-18
 ### Fixed
@@ -1811,6 +1814,7 @@ The first version.
 [#260]: https://github.com/lumeland/lume/issues/260
 [#267]: https://github.com/lumeland/lume/issues/267
 [#269]: https://github.com/lumeland/lume/issues/269
+[#271]: https://github.com/lumeland/lume/issues/271
 
 [1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...HEAD
 [1.11.4]: https://github.com/lumeland/lume/compare/v1.11.3...v1.11.4

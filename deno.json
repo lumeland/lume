@@ -2,7 +2,11 @@
   "tasks": {
     "test": "TZ=Z deno test --unstable -A --no-check",
     "test:update": "deno task test -- --update",
-    "install": "deno run --unstable -A install.ts",
-    "changelog": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.1.0/bin.ts"
-  }
+    "install": "deno run -A install.ts",
+    "changelog": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.1.0/bin.ts",
+    "lume": "deno eval \"import 'lume/task.ts'\" --",
+    "build": "deno task lume",
+    "serve": "deno task lume -s"
+  },
+  "importMap": "./import_map.json"
 }

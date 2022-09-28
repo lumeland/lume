@@ -1,6 +1,5 @@
 import { encode } from "./deps/base64.ts";
-import { ImportMap, readDenoConfig } from "./core/utils.ts";
-import { checkDenoVersion } from "./cli/utils.ts";
+import { checkDenoVersion, ImportMap, readDenoConfig } from "./core/utils.ts";
 
 /**
  * This file works as a proxy to the actual Lume CLI to fix the following issues:

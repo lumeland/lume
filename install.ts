@@ -1,5 +1,5 @@
 import { brightGreen, gray, red } from "./deps/colors.ts";
-import { checkDenoVersion } from "./cli/utils.ts";
+import { checkDenoVersion } from "./core/utils.ts";
 
 checkDenoVersion();
 

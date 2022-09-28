@@ -1,4 +1,4 @@
-import { checkUpgrade, createSite } from "./utils.ts";
+import { checkUpgrade } from "../core/utils.ts";
 import { brightGreen, dim } from "../deps/colors.ts";
 import Server from "../core/server.ts";
 import FSWatcher, { SiteWatcher } from "../core/watcher.ts";
@@ -7,6 +7,7 @@ import logger from "../middlewares/logger.ts";
 import noCache from "../middlewares/no_cache.ts";
 import notFound from "../middlewares/not_found.ts";
 import reload from "../middlewares/reload.ts";
+import { createSite } from "./run.ts";
 
 interface Options {
   config?: string;

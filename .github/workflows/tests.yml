@@ -30,10 +30,10 @@ jobs:
         run: deno lint
 
       - name: Test installation
-        run: deno run --unstable -A install.ts
+        run: deno run -A install.ts
 
       - name: Run tests
         run: deno task test
 
       - name: Test upgrade
-        run: deno run --unstable -A ci.ts upgrade
+        run: deno run -A ci.ts upgrade

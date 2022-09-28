@@ -1,5 +1,4 @@
-import { readDenoConfig, writeDenoConfig } from "../core/utils.ts";
-import { initPlugins } from "./utils.ts";
+import { initPlugins, readDenoConfig, writeDenoConfig } from "../core/utils.ts";
 
 interface Options {
   plugins?: string[];

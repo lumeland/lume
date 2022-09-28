@@ -1,4 +1,9 @@
-import { createSite } from "./utils.ts";
+import lume from "../mod.ts";
+import { toFileUrl } from "../deps/path.ts";
+import { dim } from "../deps/colors.ts";
+import { getConfigFile, isUrl } from "../core/utils.ts";
+
+import type { Site } from "../core.ts";
 
 interface Options {
   config?: string;
@@ -24,4 +29,28 @@ export async function run(
       break;
     }
   }
+}
+
+/** Create a site instance */
+export async function createSite(config?: string): Promise<Site> {
+  let url: string | undefined;
+
+  if (config && isUrl(config)) {
+    url = config;
+  } else {
+    const path = await getConfigFile(config);
+
+    if (path) {
+      url = toFileUrl(path).href;
+    }
+  }
+
+  if (url) {
+    console.log(`Loading config file ${dim(url)}`);
+    console.log();
+    const mod = await import(url);
+    return mod.default;
+  }
+
+  return lume();
 }

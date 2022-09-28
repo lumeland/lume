@@ -1,5 +1,5 @@
 import { brightGreen, cyan, dim, red } from "../deps/colors.ts";
-import { pluginNames } from "./utils.ts";
+import { pluginNames } from "../core/utils.ts";
 import importMap from "./import_map.ts";
 
 /** Generate a _config.js file */

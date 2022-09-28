@@ -1,5 +1,8 @@
-import { getLatestDevelopmentVersion, getLatestVersion } from "./utils.ts";
-import { getLumeVersion } from "../core/utils.ts";
+import {
+  getLatestDevelopmentVersion,
+  getLatestVersion,
+  getLumeVersion,
+} from "../core/utils.ts";
 import { brightGreen, gray } from "../deps/colors.ts";
 import { importMap } from "./import_map.ts";
 
