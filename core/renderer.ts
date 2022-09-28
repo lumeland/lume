@@ -199,7 +199,7 @@ export default class Renderer {
 
       if (!(data.date instanceof Date)) {
         throw new Exception(
-          'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
+          'Invalid date. Use "yyyy-mm-dd" or "yyyy-mm-dd hh:mm:ss" formats',
           { page },
         );
       }
