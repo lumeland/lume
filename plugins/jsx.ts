@@ -66,8 +66,11 @@ export class JsxEngine implements Engine {
         ? await content({ ...data, children }, this.helpers)
         : content) as React.ReactElement;
 
-    if (element && typeof element === "object") {
-      element.toString = () => ReactDOMServer.renderToStaticMarkup(element);
+    if (React.isValidElement(element)) {
+      return {
+        ...element,
+        toString: () => ReactDOMServer.renderToStaticMarkup(element),
+      };
     }
 
     return element;
@@ -78,8 +81,11 @@ export class JsxEngine implements Engine {
       ? content(data, this.helpers)
       : content;
 
-    if (element && typeof element === "object") {
-      element.toString = () => ReactDOMServer.renderToStaticMarkup(element);
+    if (React.isValidElement(element)) {
+      return {
+        ...element,
+        toString: () => ReactDOMServer.renderToStaticMarkup(element),
+      };
     }
 
     return element;
