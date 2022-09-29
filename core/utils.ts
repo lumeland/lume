@@ -9,7 +9,6 @@ import {
 } from "../deps/colors.ts";
 import { dirname, extname, join, posix, SEP } from "../deps/path.ts";
 import { parse } from "../deps/jsonc.ts";
-import { Exception } from "./errors.ts";
 
 /** A list of the available optional plugins */
 export const pluginNames = [
@@ -313,8 +312,8 @@ export async function getConfigFile(
   if (path) {
     try {
       return await Deno.realPath(path);
-    } catch (cause) {
-      throw new Exception("Config file not found", { path, cause });
+    } catch {
+      throw new Error(`Config file not found (${path})`);
     }
   }
 
