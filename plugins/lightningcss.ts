@@ -1,7 +1,6 @@
 import init, { transform } from "../deps/lightningcss.ts";
-import { merge } from "../core/utils.ts";
+import { merge, normalizeSourceMap } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
-import { basename } from "../deps/path.ts";
 
 import type { DeepPartial, Site } from "../core.ts";
 import type { TransformOptions } from "../deps/lightningcss.ts";
@@ -10,8 +9,6 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  sourceMap: boolean;
-
   /** Options passed to parcel_css */
   options: Omit<TransformOptions, "filename" | "code">;
 }
@@ -19,7 +16,6 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".css"],
-  sourceMap: false,
   options: {
     minify: true,
     drafts: {
@@ -53,10 +49,6 @@ export default function (userOptions?: DeepPartial<Options>) {
     function parcelCSS(file: Page) {
       const from = site.src(file.src.path + file.src.ext);
 
-      if (options.sourceMap) {
-        options.options.sourceMap = options.sourceMap;
-      }
-
       // Process the code with parcelCSS
       const content = typeof file.content === "string"
         ? new TextEncoder().encode(file.content)
@@ -65,6 +57,8 @@ export default function (userOptions?: DeepPartial<Options>) {
       const transformOptions: TransformOptions = {
         filename: from,
         code: content,
+        sourceMap: !!file.data.sourceMap,
+        inputSourceMap: JSON.stringify(file.data.sourceMap),
         ...options.options,
       };
 
@@ -72,17 +66,10 @@ export default function (userOptions?: DeepPartial<Options>) {
       const decoder = new TextDecoder();
 
       file.content = decoder.decode(result.code);
-
-      if (result.map) {
-        const mapFile = Page.create(
-          file.dest.path + ".css.map",
-          decoder.decode(result.map),
-        );
-        site.pages.push(mapFile);
-        file.content += `\n/*# sourceMappingURL=./${
-          basename(file.dest.path)
-        }.css.map */`;
-      }
+      file.data.sourceMap = normalizeSourceMap(
+        site.root(),
+        JSON.parse(decoder.decode(result.map)),
+      );
     }
   };
 }

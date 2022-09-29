@@ -1,4 +1,9 @@
-import type { DeepPartial, DenoConfig, ImportMap } from "./core/utils.ts";
+import type {
+  DeepPartial,
+  DenoConfig,
+  ImportMap,
+  SourceMap,
+} from "./core/utils.ts";
 import type {
   ComponentsOptions,
   default as Site,
@@ -141,6 +146,7 @@ export type {
   SiteEventType,
   SiteOptions,
   Source,
+  SourceMap,
   Src,
   StaticFile,
   Watcher,
@@ -211,6 +217,11 @@ export interface PageData extends Data {
    * @see https://lume.land/plugins/search/
    */
   search: Search;
+
+  /**
+   * The source map data (if it's an asset)
+   */
+  sourceMap?: SourceMap;
 
   /**
    * The mergeLanguages helper

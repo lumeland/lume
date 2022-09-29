@@ -1,8 +1,13 @@
-import { merge, read, readDenoConfig } from "../core/utils.ts";
+import {
+  merge,
+  normalizeSourceMap,
+  read,
+  readDenoConfig,
+} from "../core/utils.ts";
 import { build, BuildOptions, stop } from "../deps/esbuild.ts";
 import { extname, toFileUrl } from "../deps/path.ts";
 
-import type { DenoConfig, Site } from "../core.ts";
+import type { DenoConfig, Site, SourceMap } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -120,6 +125,8 @@ export default function (userOptions?: Partial<Options>) {
         watch: false,
         metafile: false,
         entryPoints: [filename],
+        sourcemap: "external",
+        outfile: `${page.dest.path}.js`,
       };
 
       const { outputFiles, warnings, errors } = await build(
@@ -134,10 +141,17 @@ export default function (userOptions?: Partial<Options>) {
         site.logger.warn("esbuild warnings", { warnings });
       }
 
-      if (outputFiles?.length) {
-        page.content = outputFiles[0].text;
+      const root = site.root();
+      outputFiles?.forEach(({ path, text }) => {
+        if (path.endsWith(".map")) {
+          const sourceMap: SourceMap = JSON.parse(text);
+          page.data.sourceMap = normalizeSourceMap(root, sourceMap);
+          return;
+        }
+
+        page.content = text;
         page.updateDest({ ext: ".js" });
-      }
+      });
     });
   };
 }

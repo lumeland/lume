@@ -9,6 +9,7 @@ import {
 } from "../deps/colors.ts";
 import { dirname, extname, join, posix, SEP } from "../deps/path.ts";
 import { parse } from "../deps/jsonc.ts";
+import { toFileUrl } from "https://deno.land/std@0.158.0/path/win32.ts";
 
 /** A list of the available optional plugins */
 export const pluginNames = [
@@ -267,6 +268,37 @@ export function normalizePath(path: string) {
   }
 
   return posix.join("/", path);
+}
+
+export interface SourceMap {
+  version: number;
+  file?: string;
+  sources: string[];
+  sourceRoot?: string;
+  sourcesContent?: string[];
+  names: string[];
+  mappings: string;
+}
+
+export function normalizeSourceMap(
+  root: string,
+  sourceMap: SourceMap,
+): SourceMap {
+  sourceMap.sources = sourceMap.sources.map((source) => {
+    if (source.startsWith("deno:")) { // esbuild
+      source = source.substring(5);
+    }
+    if (isUrl(source)) {
+      return source;
+    }
+    source = normalizePath(source);
+    return source.startsWith(root)
+      ? toFileUrl(source).href
+      : toFileUrl(join(root, source)).href;
+  });
+  sourceMap.sourcesContent = [];
+
+  return sourceMap;
 }
 
 /** Convert an HTMLDocument instance to a string */

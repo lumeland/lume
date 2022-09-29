@@ -4,19 +4,16 @@ import {
   postcssImport,
   postcssNesting,
 } from "../deps/postcss.ts";
-import { isUrl, merge } from "../core/utils.ts";
+import { isUrl, merge, normalizeSourceMap } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
 import { posix } from "../deps/path.ts";
 
-import type { Helper, Site } from "../core.ts";
+import type { Helper, Site, SourceMap } from "../core.ts";
 import type { SourceMapOptions } from "../deps/postcss.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
-
-  /** Set `true` to generate source map files */
-  sourceMap: boolean | SourceMapOptions;
 
   /** Custom includes path for `postcss-import` */
   includes: string | false;
@@ -31,7 +28,6 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".css"],
-  sourceMap: false,
   includes: false,
   plugins: [
     postcssNesting(),
@@ -70,20 +66,20 @@ export default function (userOptions?: Partial<Options>) {
     async function postCss(file: Page) {
       const from = site.src(file.src.path + file.src.ext);
       const to = site.dest(file.dest.path + file.dest.ext);
-      const map = options.sourceMap;
+      const map: SourceMapOptions = {
+        inline: false,
+        prev: file.data.sourceMap as SourceMap,
+        annotation: false,
+      };
 
       // Process the code with PostCSS
       const result = await runner.process(file.content!, { from, to, map });
 
       file.content = result.css;
-
-      if (result.map) {
-        const mapFile = Page.create(
-          file.dest.path + ".css.map",
-          result.map.toString(),
-        );
-        site.pages.push(mapFile);
-      }
+      file.data.sourceMap = normalizeSourceMap(
+        site.root(),
+        result.map.toJSON() as unknown as SourceMap,
+      );
     }
 
     async function filter(code: string) {

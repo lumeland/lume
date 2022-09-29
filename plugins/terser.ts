@@ -1,18 +1,14 @@
 import { minify } from "../deps/terser.ts";
-import { posix } from "../deps/path.ts";
-import { merge } from "../core/utils.ts";
+import { merge, normalizeSourceMap } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
 import { Page } from "../core/filesystem.ts";
 
-import type { DeepPartial, Helper, Site } from "../core.ts";
+import type { DeepPartial, Helper, Site, SourceMap } from "../core.ts";
 import type { TerserOptions } from "../deps/terser.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
-
-  /** Set `true` to generate source map files */
-  sourceMap: boolean;
 
   /** Options passed to `terser` */
   options: TerserOptions;
@@ -21,7 +17,6 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".js"],
-  sourceMap: false,
   options: {
     module: true,
     compress: true,
@@ -39,25 +34,23 @@ export default function (userOptions?: DeepPartial<Options>) {
     site.filter("terser", filter as Helper, true);
 
     async function terser(file: Page) {
-      const filename = file.dest.path + file.dest.ext;
+      const filename = site.src(file.src.path + file.src.ext);
       const content = file.content;
-      const terserOptions = { ...options.options };
-
-      if (options.sourceMap) {
-        terserOptions.sourceMap = {
-          filename,
-          url: posix.basename(filename) + ".map",
-        };
-      }
+      const terserOptions = {
+        ...options.options,
+        sourceMap: {
+          content: JSON.stringify(file.data.sourceMap),
+          filename: filename,
+        },
+      };
 
       try {
         const output = await minify({ [filename]: content }, terserOptions);
         file.content = output.code;
-
-        if (output.map) {
-          const mapFile = Page.create(file.dest.path + ".js.map", output.map);
-          site.pages.push(mapFile);
-        }
+        file.data.sourceMap = normalizeSourceMap(
+          site.root(),
+          JSON.parse(output.map) as SourceMap,
+        );
       } catch (cause) {
         throw new Exception(
           "Error processing the file",
