@@ -1,6 +1,6 @@
-import { isUrl, merge, normalizePath } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
-import { basename, posix, toFileUrl } from "../deps/path.ts";
+import { basename, toFileUrl } from "../deps/path.ts";
 
 import type { Site, SourceMap } from "../core.ts";
 
