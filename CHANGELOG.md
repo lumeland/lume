@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `pagefind` [#253].
 - New plugin `sheets` [#252].
 - New plugin `remark` to use this library as markdown renderer [#267].
+- New plugin `source_maps` to generate the source maps of processed assets (CSS and JS) [#274].
 - Allow to load remote configuration files.
   For example: `lume --config="https://example.com/_config.ts`.
 
@@ -33,6 +34,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Warning when different versions of Lume are being used.
 - Removed the `lume vendor` command temporarily because it doesn't work in all cases.
   I'll consider reintroduce it again when the support for `npm:` modules is implemented.
+- All `sourceMap` option of plugins like `esbuild`, `sass`, `postcss`, etc.
+  Use the new `source_maps` plugin to configure the source maps generation in an unique place.
 
 ### Fixed
 - New type `DeepPartial` to fix some plugins options with nested objects.
@@ -1815,6 +1818,7 @@ The first version.
 [#267]: https://github.com/lumeland/lume/issues/267
 [#269]: https://github.com/lumeland/lume/issues/269
 [#271]: https://github.com/lumeland/lume/issues/271
+[#274]: https://github.com/lumeland/lume/issues/274
 
 [1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...HEAD
 [1.11.4]: https://github.com/lumeland/lume/compare/v1.11.3...v1.11.4
