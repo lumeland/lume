@@ -1,7 +1,8 @@
 import { posix } from "../deps/path.ts";
-import { concurrent, createDate } from "./utils.ts";
+import { concurrent, getGitDate } from "./utils.ts";
 import { Exception } from "./errors.ts";
 import { Page } from "./filesystem.ts";
+import { parseISO } from "../deps/date.ts";
 
 import type {
   Content,
@@ -187,17 +188,40 @@ export default class Renderer {
    * - Modify the dest info accordingly
    */
   preparePage(page: Page) {
-    const { dest, data } = page;
+    const { src, dest, data } = page;
 
     // Ensure the date is defined
     if (!data.date) {
-      data.date = page.src.created ?? page.src.lastModified;
+      data.date = src.created ?? src.lastModified;
     } else {
-      if (typeof data.date === "string" || typeof data.date === "number") {
-        data.date = createDate(data.date);
+      if (typeof data.date === "number") {
+        data.date = new Date(data.date);
+      } else if (typeof data.date === "string") {
+        const date = data.date as string;
+
+        switch (date.toLowerCase()) {
+          case "git last modified":
+            data.date = getGitDate(
+              "modified",
+              this.includesLoader.reader.getFullPath(
+                src.path + src.ext,
+              ),
+            );
+            break;
+          case "git created":
+            data.date = getGitDate(
+              "created",
+              this.includesLoader.reader.getFullPath(
+                src.path + src.ext,
+              ),
+            );
+            break;
+          default:
+            data.date = parseISO(data.date, {});
+        }
       }
 
-      if (!(data.date instanceof Date)) {
+      if (!(data.date instanceof Date) || isNaN(data.date.getTime())) {
         throw new Exception(
           'Invalid date. Use "yyyy-mm-dd" or "yyyy-mm-dd hh:mm:ss" formats',
           { page },

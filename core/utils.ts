@@ -398,30 +398,28 @@ export function isUrl(path: string): boolean {
   return !!path.match(/^(https?|file):\/\//);
 }
 
-export function createDate(str: string | number): Date | undefined {
-  if (typeof str === "number") {
-    return new Date(str);
+/**
+ * Returns the result of a git command as Date
+ * Thanks to https://github.com/11ty/eleventy/blob/8dd2a1012de92c5ee1eab7c37e6bf1b36183927e/src/Util/DateGitLastUpdated.js
+ */
+export function getGitDate(
+  type: "created" | "modified",
+  file: string,
+): Date | undefined {
+  const args = type === "created"
+    ? ["log", "--diff-filter=A", "--follow", "-1", "--format=%at", file]
+    : ["log", "-1", "--format=%at", file];
+
+  const { code, stdout } = Deno.spawnSync("git", { args });
+
+  if (code !== 0) {
+    return;
   }
 
-  const datetime = str.match(
-    /^(\d{4})-(\d\d)-(\d\d)(?:-(\d\d)-(\d\d)(?:-(\d\d))?)?$/,
-  );
+  const timestamp = parseInt(new TextDecoder().decode(stdout)) * 1000;
 
-  if (datetime) {
-    const [, year, month, day, hour, minute, second] = datetime;
-
-    return new Date(Date.UTC(
-      parseInt(year),
-      parseInt(month) - 1,
-      parseInt(day),
-      hour ? parseInt(hour) : 0,
-      minute ? parseInt(minute) : 0,
-      second ? parseInt(second) : 0,
-    ));
-  }
-
-  if (str.match(/^\d+$/)) {
-    return new Date(parseInt(str));
+  if (timestamp) {
+    return new Date(timestamp);
   }
 }
 

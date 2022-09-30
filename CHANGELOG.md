@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Allow to load remote configuration files.
   For example: `lume --config="https://example.com/_config.ts`.
 - The plugin `imagick` accepts an array of formats [#268].
+- The `date` field of the pages accepts more formats [#272]:
+  - Any IS0 8601 representation
+  - `git created` to get the date of the file's first commit.
+  - `git last modified` to get the date of the latest's first commit.
 
 ### Changed
 - Minimum version of Deno is 1.25.4.
@@ -1821,6 +1825,7 @@ The first version.
 [#268]: https://github.com/lumeland/lume/issues/268
 [#269]: https://github.com/lumeland/lume/issues/269
 [#271]: https://github.com/lumeland/lume/issues/271
+[#272]: https://github.com/lumeland/lume/issues/272
 [#274]: https://github.com/lumeland/lume/issues/274
 [#276]: https://github.com/lumeland/lume/issues/276
 

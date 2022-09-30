@@ -1,5 +1,5 @@
 import { posix } from "../deps/path.ts";
-import { createDate, documentToString, stringToDocument } from "./utils.ts";
+import { documentToString, stringToDocument } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
 import type { ProxyComponents } from "../core.ts";
@@ -468,3 +468,26 @@ export interface Component {
 }
 
 export type Components = Map<string, Component | Components>;
+
+export function createDate(str: string): Date | undefined {
+  const datetime = str.match(
+    /^(\d{4})-(\d\d)-(\d\d)(?:-(\d\d)-(\d\d)(?:-(\d\d))?)?$/,
+  );
+
+  if (datetime) {
+    const [, year, month, day, hour, minute, second] = datetime;
+
+    return new Date(Date.UTC(
+      parseInt(year),
+      parseInt(month) - 1,
+      parseInt(day),
+      hour ? parseInt(hour) : 0,
+      minute ? parseInt(minute) : 0,
+      second ? parseInt(second) : 0,
+    ));
+  }
+
+  if (str.match(/^\d+$/)) {
+    return new Date(parseInt(str));
+  }
+}
