@@ -98,7 +98,7 @@ snapshot[`sass plugin 4`] = `
       mappings: "AAEA,KACE,uBACA,+BCJF,GACE,MCDc,KCMhB,KACE,+BACA,MAJc",
       names: [
       ],
-      sourceRoot: "",
+      sourceRoot: undefined,
       sources: [
         "third.scss",
         "fourth.scss",
@@ -141,7 +141,7 @@ body
       mappings: "AAEA,KACE,MCHc",
       names: [
       ],
-      sourceRoot: "",
+      sourceRoot: undefined,
       sources: [
         "index2.sass",
         "colors.scss",

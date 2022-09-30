@@ -100,6 +100,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
         "h1",
         "toUppercase",
       ],
+      sourceRoot: undefined,
       sources: [
         "to_uppercase.ts",
         "main.ts",

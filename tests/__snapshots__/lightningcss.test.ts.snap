@@ -92,7 +92,7 @@ snapshot[`lightningcss plugin 4`] = `
       mappings: "AAAA,wBACA",
       names: [
       ],
-      sourceRoot: null,
+      sourceRoot: undefined,
       sources: [
         "index.css",
       ],
@@ -142,7 +142,7 @@ snapshot[`lightningcss plugin 5`] = `
       mappings: "AAAA,qCAGE",
       names: [
       ],
-      sourceRoot: null,
+      sourceRoot: undefined,
       sources: [
         "text.css",
       ],

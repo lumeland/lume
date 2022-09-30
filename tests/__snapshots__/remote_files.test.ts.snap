@@ -145,6 +145,7 @@ body {
       mappings: "AAAA,uBAAuB;AACvB;EACE,aAAa;AACf",
       names: [
       ],
+      sourceRoot: undefined,
       sources: [
         "other-remote-style.css",
       ],
@@ -197,6 +198,7 @@ hello();
         "__name",
         "hello_default",
       ],
+      sourceRoot: undefined,
       sources: [
         "name.js",
         "hello.js",
@@ -259,6 +261,7 @@ body {
       mappings: "AAAA,iBAAiB;AACjB;EACE,UAAU;AACZ;ACHA,uBAAuB;AACvB;EACE,aAAa;AACf",
       names: [
       ],
+      sourceRoot: undefined,
       sources: [
         "remote-style.css",
         "other-remote-style.css",
@@ -311,6 +314,7 @@ snapshot[`render remote files 8`] = `
       mappings: "AAAA;EACE,WAAW;AACb",
       names: [
       ],
+      sourceRoot: undefined,
       sources: [
         "styles2.css",
       ],

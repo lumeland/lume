@@ -93,6 +93,7 @@ console.log(one() + two());
         "console",
         "log",
       ],
+      sourceRoot: undefined,
       sources: [
         "main.js",
       ],
@@ -143,6 +144,7 @@ export function two () {
         "one",
         "two",
       ],
+      sourceRoot: undefined,
       sources: [
         "numbers.js.njk",
       ],

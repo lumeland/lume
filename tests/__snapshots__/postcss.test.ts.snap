@@ -113,6 +113,7 @@ snapshot[`postcss plugin 4`] = `
       mappings: "AAAA;EACE,UAAU;AACZ;;ACAA;EACE,aAAa;EACb,kBAAkB;EAClB,yBAAyB;AAC3B;;ACNA;EACE;AAOF;;AALE;IACE,mBAAmB;IACnB,uCAAuC;IACvC,mCAA2B;YAA3B,2BAA2B;EAC7B",
       names: [
       ],
+      sourceRoot: undefined,
       sources: [
         "foo.css",
         "variables.css",
@@ -190,6 +191,7 @@ snapshot[`postcss plugin 5`] = `
       mappings: "AAAA;EACE;AAOF;AALE;IACE,mBAAmB;IACnB,uCAAuC;IACvC,mCAA2B;YAA3B,2BAA2B;EAC7B",
       names: [
       ],
+      sourceRoot: undefined,
       sources: [
         "text.css",
       ],
@@ -317,6 +319,7 @@ snapshot[`postcss plugin without includes 4`] = `
       mappings: "AAAA,uBAAuB;AACvB,oBAAoB",
       names: [
       ],
+      sourceRoot: undefined,
       sources: [
         "index.css",
       ],
@@ -375,6 +378,7 @@ snapshot[`postcss plugin without includes 5`] = `
       mappings: "AAAA;EACE;AAOF;AALE;IACE,mBAAmB;IACnB,uCAAuC;IACvC,mCAA2B;YAA3B,2BAA2B;EAC7B",
       names: [
       ],
+      sourceRoot: undefined,
       sources: [
         "text.css",
       ],
