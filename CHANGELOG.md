@@ -44,7 +44,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   Previously, only the `lume/` specifier was updated.
 - `Procesor` return type.
 - Repeated suffixes added to the images by the `Imagick` plugin [#269].
-- Correct typo in invalid date error message [#271]
+- Correct typo in invalid date error message [#271].
+- `inline` plugin creates empy `class` and `id` attributes to SVGs [#276].
 
 ## [1.11.4] - 2022-09-18
 ### Fixed
@@ -1819,6 +1820,7 @@ The first version.
 [#269]: https://github.com/lumeland/lume/issues/269
 [#271]: https://github.com/lumeland/lume/issues/271
 [#274]: https://github.com/lumeland/lume/issues/274
+[#276]: https://github.com/lumeland/lume/issues/276
 
 [1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...HEAD
 [1.11.4]: https://github.com/lumeland/lume/compare/v1.11.3...v1.11.4

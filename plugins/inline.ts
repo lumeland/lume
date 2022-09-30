@@ -159,11 +159,11 @@ export default function (userOptions?: Partial<Options>) {
           const svg = div.firstElementChild;
 
           if (svg) {
-            if (!svg.className) {
+            if (!svg.className && element.className) {
               svg.className = element.className;
             }
 
-            if (!svg.id) {
+            if (!svg.id && element.id) {
               svg.id = element.id;
             }
 
