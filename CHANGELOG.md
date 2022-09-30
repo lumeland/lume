@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `source_maps` to generate the source maps of processed assets (CSS and JS) [#274].
 - Allow to load remote configuration files.
   For example: `lume --config="https://example.com/_config.ts`.
+- The plugin `imagick` accepts an array of formats [#268].
 
 ### Changed
 - Minimum version of Deno is 1.25.4.
@@ -1817,6 +1818,7 @@ The first version.
 [#259]: https://github.com/lumeland/lume/issues/259
 [#260]: https://github.com/lumeland/lume/issues/260
 [#267]: https://github.com/lumeland/lume/issues/267
+[#268]: https://github.com/lumeland/lume/issues/268
 [#269]: https://github.com/lumeland/lume/issues/269
 [#271]: https://github.com/lumeland/lume/issues/271
 [#274]: https://github.com/lumeland/lume/issues/274

@@ -5,6 +5,5 @@ imagick:
   - suffix: -big
     resize: 20
     blur: 10
-  - format: jpg
-  - format: webp
+  - format: [jpg, webp]
   - format: png

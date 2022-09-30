@@ -58,12 +58,13 @@ export const defaults: Options = {
 
 export interface Transformation {
   suffix?: string;
-  format?: MagickFormat;
+  format?: MagickFormat | MagickFormat[];
   // deno-lint-ignore no-explicit-any
   [key: string]: any;
 }
-
-export type Transformations = Transformation[];
+interface SingleTransformation extends Transformation {
+  format?: MagickFormat;
+}
 
 /** A plugin to transform images in Lume */
 export default function (userOptions?: Partial<Options>) {
@@ -87,7 +88,7 @@ export default function (userOptions?: Partial<Options>) {
     async function imagick(page: Page, pages: Page[]) {
       const imagick = page.data[options.name] as
         | Transformation
-        | Transformations
+        | Transformation[]
         | undefined;
 
       if (!imagick) {
@@ -95,7 +96,7 @@ export default function (userOptions?: Partial<Options>) {
       }
 
       const content = page.content as Uint8Array;
-      const transformations = Array.isArray(imagick) ? imagick : [imagick];
+      const transformations = getTransformations(imagick);
       let transformed = false;
       let index = 0;
       for (const transformation of transformations) {
@@ -181,4 +182,29 @@ function rename(page: Page, transformation: Transformation): void {
   if (suffix) {
     page.updateDest({ path: page.dest.path + suffix });
   }
+}
+
+function getTransformations(
+  input: Transformation | Transformation[],
+): SingleTransformation[] {
+  if (Array.isArray(input)) {
+    const singles: SingleTransformation[] = [];
+
+    for (const transformation of input) {
+      if (Array.isArray(transformation.format)) {
+        transformation.format.forEach((format) => {
+          singles.push({ ...transformation, format });
+        });
+      } else {
+        singles.push(transformation as SingleTransformation);
+      }
+    }
+    return singles;
+  }
+
+  if (Array.isArray(input.format)) {
+    return input.format.map((format) => ({ ...input, format }));
+  }
+
+  return [input as SingleTransformation];
 }
