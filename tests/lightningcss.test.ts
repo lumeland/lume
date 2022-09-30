@@ -6,9 +6,7 @@ Deno.test("lightningcss plugin", async (t) => {
     src: "lightningcss",
   });
 
-  site.use(lightningcss({
-    sourceMap: true,
-  }));
+  site.use(lightningcss());
 
   await build(site);
   await assertSiteSnapshot(t, site);

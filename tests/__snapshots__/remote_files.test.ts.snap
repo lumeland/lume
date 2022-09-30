@@ -140,6 +140,23 @@ body {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    sourceMap: {
+      file: "other-remote-style.css",
+      mappings: "AAAA,uBAAuB;AACvB;EACE,aAAa;AACf",
+      names: [
+      ],
+      sources: [
+        "other-remote-style.css",
+      ],
+      sourcesContent: [
+        "/* Other remote style */
+body {
+  color: yellow;
+}
+",
+      ],
+      version: 3,
+    },
     tags: [
     ],
     title: "Remote title",
@@ -170,6 +187,37 @@ hello();
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    sourceMap: {
+      file: undefined,
+      mappings: "+EAAA,IAAOA,EAAQ,OCEA,SAARC,GAAoB,CACzB,QAAQ,IAAI,QAASC,CAAI,CAC3B,CAFOC,EAAAF,EAAA,WCAPG,EAAM",
+      names: [
+        "name_default",
+        "hello_default",
+        "name_default",
+        "__name",
+        "hello_default",
+      ],
+      sources: [
+        "name.js",
+        "hello.js",
+        "scripts.js",
+      ],
+      sourcesContent: [
+        'export default "Name";
+',
+        'import name from "./name.js";
+
+export default function () {
+  console.log("hello", name);
+}
+',
+        'import hello from "./_includes/hello.js";
+
+hello();
+',
+      ],
+      version: 3,
+    },
     tags: [
     ],
     title: "Remote title",
@@ -206,6 +254,28 @@ body {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    sourceMap: {
+      file: "styles1.css",
+      mappings: "AAAA,iBAAiB;AACjB;EACE,UAAU;AACZ;ACHA,uBAAuB;AACvB;EACE,aAAa;AACf",
+      names: [
+      ],
+      sources: [
+        "remote-style.css",
+        "other-remote-style.css",
+      ],
+      sourcesContent: [
+        "/* Remote style */
+body {
+  color: red;
+}",
+        "/* Other remote style */
+body {
+  color: yellow;
+}
+",
+      ],
+      version: 3,
+    },
     tags: [
     ],
     title: "Remote title",
@@ -236,6 +306,21 @@ snapshot[`render remote files 8`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    sourceMap: {
+      file: "styles2.css",
+      mappings: "AAAA;EACE,WAAW;AACb",
+      names: [
+      ],
+      sources: [
+        "styles2.css",
+      ],
+      sourcesContent: [
+        "body {
+  color: blue;
+}",
+      ],
+      version: 3,
+    },
     tags: [
     ],
     title: "Remote title",

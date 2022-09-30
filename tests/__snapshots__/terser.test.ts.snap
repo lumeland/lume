@@ -84,6 +84,20 @@ console.log(one() + two());
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    sourceMap: {
+      file: "main.js",
+      mappings: "cAASA,SAAKC,MAAW,eAEzBC,QAAQC,IAAIH,IAAQC",
+      names: [
+        "one",
+        "two",
+        "console",
+        "log",
+      ],
+      sources: [
+        "main.js",
+      ],
+      version: 3,
+    },
     tags: [
     ],
     url: "/main.js",
@@ -122,6 +136,18 @@ export function two () {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    sourceMap: {
+      file: "numbers.js.njk",
+      mappings: "OAAO,SAASA,MACd,OAAO,SAGF,SAASC,MACd,OAAO",
+      names: [
+        "one",
+        "two",
+      ],
+      sources: [
+        "numbers.js.njk",
+      ],
+      version: 3,
+    },
     tags: [
     ],
     two: 2,

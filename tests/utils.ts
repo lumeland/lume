@@ -1,6 +1,6 @@
 import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
-import { fromFileUrl, join } from "../deps/path.ts";
+import { basename, fromFileUrl, join } from "../deps/path.ts";
 import { printError } from "../core/errors.ts";
 
 import type { Page, Site, SiteOptions } from "../core.ts";
@@ -134,6 +134,16 @@ export async function assertSiteSnapshot(
     }
     // Remove page reference
     page.data.page = undefined;
+
+    // Normalize source maps
+    if (page.data.sourceMap) {
+      // deno-lint-ignore no-explicit-any
+      const sourceMap = page.data.sourceMap as any;
+      sourceMap.file = sourceMap.file ? basename(sourceMap.file) : undefined;
+      sourceMap.sources = sourceMap.sources.map((source: string) =>
+        basename(source)
+      );
+    }
 
     // Remove pagination results details from the data
     if (Array.isArray(page.data.results)) {

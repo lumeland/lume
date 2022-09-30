@@ -108,6 +108,40 @@ snapshot[`postcss plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    sourceMap: {
+      file: "index.css",
+      mappings: "AAAA;EACE,UAAU;AACZ;;ACAA;EACE,aAAa;EACb,kBAAkB;EAClB,yBAAyB;AAC3B;;ACNA;EACE;AAOF;;AALE;IACE,mBAAmB;IACnB,uCAAuC;IACvC,mCAA2B;YAA3B,2BAA2B;EAC7B",
+      names: [
+      ],
+      sources: [
+        "foo.css",
+        "variables.css",
+        "text.css",
+      ],
+      sourcesContent: [
+        ".foo {
+  color: red;
+}",
+        '@import "./components/foo.css";
+
+::root {
+  --color: #333;
+  --background: #fff;
+  --font-family: sans-serif;
+}',
+        ".text {
+  font-family: var(--font-family);
+
+  & p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    backface-visibility: hidden;
+  }
+}
+",
+      ],
+      version: 3,
+    },
     tags: [
     ],
     url: "/index.css",
@@ -151,6 +185,28 @@ snapshot[`postcss plugin 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    sourceMap: {
+      file: "text.css",
+      mappings: "AAAA;EACE;AAOF;AALE;IACE,mBAAmB;IACnB,uCAAuC;IACvC,mCAA2B;YAA3B,2BAA2B;EAC7B",
+      names: [
+      ],
+      sources: [
+        "text.css",
+      ],
+      sourcesContent: [
+        ".text {
+  font-family: var(--font-family);
+
+  & p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    backface-visibility: hidden;
+  }
+}
+",
+      ],
+      version: 3,
+    },
     tags: [
     ],
     url: "/text.css",
@@ -256,6 +312,21 @@ snapshot[`postcss plugin without includes 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    sourceMap: {
+      file: "index.css",
+      mappings: "AAAA,uBAAuB;AACvB,oBAAoB",
+      names: [
+      ],
+      sources: [
+        "index.css",
+      ],
+      sourcesContent: [
+        '@import "variables.css";
+@import "./text.css";
+',
+      ],
+      version: 3,
+    },
     tags: [
     ],
     url: "/index.css",
@@ -299,6 +370,28 @@ snapshot[`postcss plugin without includes 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    sourceMap: {
+      file: "text.css",
+      mappings: "AAAA;EACE;AAOF;AALE;IACE,mBAAmB;IACnB,uCAAuC;IACvC,mCAA2B;YAA3B,2BAA2B;EAC7B",
+      names: [
+      ],
+      sources: [
+        "text.css",
+      ],
+      sourcesContent: [
+        ".text {
+  font-family: var(--font-family);
+
+  & p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    backface-visibility: hidden;
+  }
+}
+",
+      ],
+      version: 3,
+    },
     tags: [
     ],
     url: "/text.css",

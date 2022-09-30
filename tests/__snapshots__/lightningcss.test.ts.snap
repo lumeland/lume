@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`lightningcss plugin 1`] = `4`;
+snapshot[`lightningcss plugin 1`] = `2`;
 
 snapshot[`lightningcss plugin 2`] = `
 {
@@ -78,50 +78,7 @@ snapshot[`lightningcss plugin 3`] = `
 
 snapshot[`lightningcss plugin 4`] = `
 {
-  content: "(removed for testing)",
-  data: {
-    content: "(removed for testing)",
-    page: undefined,
-    tags: [
-    ],
-    url: "/index.css.map",
-  },
-  dest: {
-    ext: ".map",
-    path: "/index.css",
-  },
-  src: {
-    path: "",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`lightningcss plugin 5`] = `
-{
-  content: "(removed for testing)",
-  data: {
-    content: "(removed for testing)",
-    page: undefined,
-    tags: [
-    ],
-    url: "/text.css.map",
-  },
-  dest: {
-    ext: ".map",
-    path: "/text.css",
-  },
-  src: {
-    path: "",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`lightningcss plugin 6`] = `
-{
-  content: '@import "variables.css";@import "./text.css";
-/*# sourceMappingURL=./index.css.map */',
+  content: '@import "variables.css";@import "./text.css";',
   data: {
     content: '@import "variables.css";
 @import "./text.css";
@@ -130,6 +87,22 @@ snapshot[`lightningcss plugin 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    sourceMap: {
+      file: undefined,
+      mappings: "AAAA,wBACA",
+      names: [
+      ],
+      sourceRoot: null,
+      sources: [
+        "index.css",
+      ],
+      sourcesContent: [
+        '@import "variables.css";
+@import "./text.css";
+',
+      ],
+      version: 3,
+    },
     tags: [
     ],
     url: "/index.css",
@@ -146,10 +119,9 @@ snapshot[`lightningcss plugin 6`] = `
 }
 `;
 
-snapshot[`lightningcss plugin 7`] = `
+snapshot[`lightningcss plugin 5`] = `
 {
-  content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}
-/*# sourceMappingURL=./text.css.map */",
+  content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}",
   data: {
     content: ".text {
   font-family: var(--font-family);
@@ -165,6 +137,29 @@ snapshot[`lightningcss plugin 7`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    sourceMap: {
+      file: undefined,
+      mappings: "AAAA,qCAGE",
+      names: [
+      ],
+      sourceRoot: null,
+      sources: [
+        "text.css",
+      ],
+      sourcesContent: [
+        ".text {
+  font-family: var(--font-family);
+
+  & p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    backface-visibility: hidden;
+  }
+}
+",
+      ],
+      version: 3,
+    },
     tags: [
     ],
     url: "/text.css",

@@ -37,6 +37,7 @@ Deno.test("Plugins list in init", () => {
     "sass",
     "sheets",
     "slugify_urls",
+    "source_maps",
     "svgo",
     "terser",
     "windi_css",
