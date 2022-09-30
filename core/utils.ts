@@ -407,16 +407,17 @@ export function getGitDate(
   file: string,
 ): Date | undefined {
   const args = type === "created"
-    ? ["log", "--diff-filter=A", "--follow", "-1", "--format=%at", file]
-    : ["log", "-1", "--format=%at", file];
+    ? ["log", "--diff-filter=A", "--follow", "--format=%at", "--", file]
+    : ["log", "-1", "--format=%at", "--", file];
 
   const { code, stdout } = Deno.spawnSync("git", { args });
 
   if (code !== 0) {
     return;
   }
-
-  const timestamp = parseInt(new TextDecoder().decode(stdout)) * 1000;
+  const str = new TextDecoder().decode(stdout);
+  console.log({ str });
+  const timestamp = parseInt(str) * 1000;
 
   if (timestamp) {
     return new Date(timestamp);
