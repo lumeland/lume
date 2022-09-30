@@ -1,4 +1,5 @@
 import { isUrl, merge, normalizePath, read } from "../core/utils.ts";
+import { encode } from "../deps/base64.ts";
 import { Page } from "../core/filesystem.ts";
 import { basename, join, toFileUrl } from "../deps/path.ts";
 
@@ -51,8 +52,13 @@ export default function (userOptions?: Partial<Options>) {
         url.replace(sourceMap.sourceRoot!, "")
       );
 
+      // Inline the source map in the output file
       if (options.inline) {
-        throw new Error("Inline source maps are not supported yet");
+        const url = `data:application/json;charset=utf-8;base64,${
+          encode(JSON.stringify(sourceMap))
+        }`;
+        file.content += `\n/*# sourceMappingURL=${url} */`;
+        return;
       }
 
       // Create a source map file
