@@ -3,7 +3,7 @@ import lume from "../mod.ts";
 import { basename, fromFileUrl, join } from "../deps/path.ts";
 import { printError } from "../core/errors.ts";
 
-import type { Page, Site, SiteOptions } from "../core.ts";
+import type { Page, Site, SiteOptions, SourceMap } from "../core.ts";
 
 const cwUrl = import.meta.resolve("./");
 const cwd = fromFileUrl(import.meta.resolve("./"));
@@ -137,12 +137,7 @@ export async function assertSiteSnapshot(
 
     // Normalize source maps
     if (page.data.sourceMap) {
-      // deno-lint-ignore no-explicit-any
-      const sourceMap = page.data.sourceMap as any;
-      sourceMap.file = sourceMap.file ? basename(sourceMap.file) : undefined;
-      sourceMap.sources = sourceMap.sources.map((source: string) =>
-        basename(source)
-      );
+      normalizeSourceMap(page.data.sourceMap as SourceMap);
     }
 
     // Remove pagination results details from the data
@@ -168,8 +163,10 @@ export async function assertSiteSnapshot(
 
     // Source maps
     if (page.dest.ext === ".map") {
-      page.content = "(removed for testing)";
-      page.data.content = "(removed for testing)";
+      const map = JSON.parse(page.content as string);
+      normalizeSourceMap(map);
+      page.content = JSON.stringify(map);
+      page.data.content = JSON.stringify(map);
     }
   });
 
@@ -191,4 +188,14 @@ export async function assertSiteSnapshot(
 
 function compare(a: string, b: string): number {
   return a > b ? 1 : a < b ? -1 : 0;
+}
+
+function normalizeSourceMap(sourceMap: SourceMap) {
+  sourceMap.sourceRoot = sourceMap.sourceRoot
+    ? basename(sourceMap.sourceRoot)
+    : undefined;
+  sourceMap.file = sourceMap.file ? basename(sourceMap.file) : undefined;
+  sourceMap.sources = sourceMap.sources.map((source: string) =>
+    basename(source)
+  );
 }

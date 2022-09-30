@@ -1,9 +1,4 @@
-import type {
-  DeepPartial,
-  DenoConfig,
-  ImportMap,
-  SourceMap,
-} from "./core/utils.ts";
+import type { DeepPartial, DenoConfig, ImportMap } from "./core/utils.ts";
 import type {
   ComponentsOptions,
   default as Site,
@@ -84,6 +79,7 @@ import type { Transformation, Transformations } from "./plugins/imagick.ts";
 import type { MetaData } from "./plugins/metas.ts";
 import type { Search } from "./plugins/search.ts";
 import type { Children } from "./plugins/jsx.ts";
+import type { SourceMap } from "./plugins/source_maps.ts";
 
 /** The method that installs a plugin */
 type PluginSetup = (options: unknown) => Plugin;

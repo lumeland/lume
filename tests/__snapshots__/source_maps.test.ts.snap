@@ -1,0 +1,399 @@
+export const snapshot = {};
+
+snapshot[`Source maps from CSS files 1`] = `4`;
+
+snapshot[`Source maps from CSS files 2`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".scss",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".sass",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".css",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+  ],
+}
+`;
+
+snapshot[`Source maps from CSS files 3`] = `
+[
+]
+`;
+
+snapshot[`Source maps from CSS files 4`] = `
+{
+  content: '{"version":3,"sourceRoot":"assets","mappings":"ACEA,2DCFA,cEMA","sources":["index.scss","third.scss","fourth.scss","colors.scss","button.scss"],"sourcesContent":["html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}","","","",""],"names":[],"file":"index.css.map"}',
+  data: {
+    content: '{"version":3,"sourceRoot":"assets","mappings":"ACEA,2DCFA,cEMA","sources":["index.scss","third.scss","fourth.scss","colors.scss","button.scss"],"sourcesContent":["html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}","","","",""],"names":[],"file":"index.css.map"}',
+    page: undefined,
+    sourceMap: undefined,
+    tags: [
+    ],
+    url: "/index.css.map",
+  },
+  dest: {
+    ext: ".map",
+    path: "/index.css",
+  },
+  src: {
+    path: "",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Source maps from CSS files 5`] = `
+{
+  content: '{"version":3,"sourceRoot":"assets","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["",""],"names":[],"file":"index2.css.map"}',
+  data: {
+    content: '{"version":3,"sourceRoot":"assets","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["",""],"names":[],"file":"index2.css.map"}',
+    page: undefined,
+    sourceMap: undefined,
+    tags: [
+    ],
+    url: "/index2.css.map",
+  },
+  dest: {
+    ext: ".map",
+    path: "/index2.css",
+  },
+  src: {
+    path: "",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Source maps from CSS files 6`] = `
+{
+  content: "html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:#00f}body{color:#333;font:100% Helvetica,sans-serif}
+/*# sourceMappingURL=./index.css.map */",
+  data: {
+    content: '@import "./_includes/sass/colors";
+@import "sass/button";
+',
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    sourceMap: undefined,
+    tags: [
+    ],
+    url: "/index.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/index",
+  },
+  src: {
+    ext: ".scss",
+    path: "/index",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Source maps from CSS files 7`] = `
+{
+  content: "body{color:#00f}
+/*# sourceMappingURL=./index2.css.map */",
+  data: {
+    content: '@import "sass/colors"
+
+body
+  color: \$primary-color
+',
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    sourceMap: undefined,
+    tags: [
+    ],
+    url: "/index2.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/index2",
+  },
+  src: {
+    ext: ".sass",
+    path: "/index2",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Source maps from Js files 1`] = `4`;
+
+snapshot[`Source maps from Js files 2`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      asset: true,
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      asset: true,
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+}
+`;
+
+snapshot[`Source maps from Js files 3`] = `
+[
+]
+`;
+
+snapshot[`Source maps from Js files 4`] = `
+{
+  content: '{"version":3,"sources":["to_uppercase.ts","main.ts"],"names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,wCADUF,gBAAA,gCCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC","file":"main.js.map","sourcesContent":["export default function toUppercase(text: string) {\\
+  return text.toUpperCase();\\
+}\\
+","/// <reference lib=\\\\"dom\\\\" />\\
+import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
+\\
+document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
+  h1.innerHTML = toUppercase(h1.innerHTML);\\
+});\\
+"],"sourceRoot":"assets"}',
+  data: {
+    content: '{"version":3,"sources":["to_uppercase.ts","main.ts"],"names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,wCADUF,gBAAA,gCCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC","file":"main.js.map","sourcesContent":["export default function toUppercase(text: string) {\\
+  return text.toUpperCase();\\
+}\\
+","/// <reference lib=\\\\"dom\\\\" />\\
+import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
+\\
+document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
+  h1.innerHTML = toUppercase(h1.innerHTML);\\
+});\\
+"],"sourceRoot":"assets"}',
+    page: undefined,
+    sourceMap: undefined,
+    tags: [
+    ],
+    url: "/main.js.map",
+  },
+  dest: {
+    ext: ".map",
+    path: "/main.js",
+  },
+  src: {
+    path: "",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Source maps from Js files 5`] = `
+{
+  content: '{"version":3,"sources":["to_uppercase.ts"],"names":["toUppercase","text","toUpperCase","n"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,wCADUF,gBAAA,uCAAAG","file":"to_uppercase.js.map","sourcesContent":["export default function toUppercase(text: string) {\\
+  return text.toUpperCase();\\
+}\\
+"],"sourceRoot":"assets"}',
+  data: {
+    content: '{"version":3,"sources":["to_uppercase.ts"],"names":["toUppercase","text","toUpperCase","n"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,wCADUF,gBAAA,uCAAAG","file":"to_uppercase.js.map","sourcesContent":["export default function toUppercase(text: string) {\\
+  return text.toUpperCase();\\
+}\\
+"],"sourceRoot":"assets"}',
+    page: undefined,
+    sourceMap: undefined,
+    tags: [
+    ],
+    url: "/modules/to_uppercase.js.map",
+  },
+  dest: {
+    ext: ".map",
+    path: "/modules/to_uppercase.js",
+  },
+  src: {
+    path: "",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Source maps from Js files 6`] = `
+{
+  content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll("h1")?.forEach((r=>{r.innerHTML=e(r.innerHTML)}));
+/*# sourceMappingURL=./main.js.map */',
+  data: {
+    content: '/// <reference lib="dom" />
+import toUppercase from "./modules/to_uppercase.ts";
+
+document.querySelectorAll("h1")?.forEach((h1) => {
+  h1.innerHTML = toUppercase(h1.innerHTML);
+});
+',
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    sourceMap: undefined,
+    tags: [
+    ],
+    url: "/main.js",
+  },
+  dest: {
+    ext: ".js",
+    path: "/main",
+  },
+  src: {
+    ext: ".ts",
+    path: "/main",
+    remote: undefined,
+  },
+}
+`;
+
+snapshot[`Source maps from Js files 7`] = `
+{
+  content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0});export{e as default};
+/*# sourceMappingURL=./to_uppercase.js.map */',
+  data: {
+    content: "export default function toUppercase(text: string) {
+  return text.toUpperCase();
+}
+",
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    sourceMap: undefined,
+    tags: [
+    ],
+    url: "/modules/to_uppercase.js",
+  },
+  dest: {
+    ext: ".js",
+    path: "/modules/to_uppercase",
+  },
+  src: {
+    ext: ".ts",
+    path: "/modules/to_uppercase",
+    remote: undefined,
+  },
+}
+`;
