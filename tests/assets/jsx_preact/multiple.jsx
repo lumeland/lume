@@ -1,4 +1,4 @@
-/** @jsxImportSource https://esm.sh/preact@10.10.6 */
+/** @jsxImportSource npm:preact@10.10.6 */
 
 import { assert } from "../../../deps/assert.ts";
 export const layout = "layout.jsx";

@@ -64,7 +64,7 @@ export default function (userOptions?: Partial<Options>) {
   };
 }
 
-/** Utilities to use by other plugins that generate source maps */
+/** Utilities to use by other plugins to manage source maps */
 export const dynamicSourcesSymbol = Symbol.for("dynamicSources");
 
 /** SourceMap with a property to store dynamic sources */
