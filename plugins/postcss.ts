@@ -64,7 +64,9 @@ export default function (userOptions?: Partial<Options>) {
     site.filter("postcss", filter as Helper, true);
 
     async function postCss(file: Page) {
-      const from = site.src(file.src.path + file.src.ext);
+      const from = file.src.path
+        ? site.src(file.src.path + file.src.ext)
+        : site.src(file.dest.path + file.dest.ext);
       const to = site.dest(file.dest.path + file.dest.ext);
       const map: SourceMapOptions = {
         inline: false,
@@ -73,13 +75,20 @@ export default function (userOptions?: Partial<Options>) {
       };
 
       // Process the code with PostCSS
-      const result = await runner.process(file.content!, { from, to, map });
+      const code = file.content as string;
+      const result = await runner.process(code, { from, to, map });
 
       file.content = result.css;
-      file.data.sourceMap = normalizeSourceMap(
-        site.root(),
-        result.map.toJSON() as unknown as SourceMap,
-      );
+
+      if (map) {
+        const sourceMap = normalizeSourceMap(
+          site.root(),
+          result.map.toJSON() as unknown as SourceMap,
+          file.src.path ? undefined : { file: from, content: code },
+        );
+
+        file.data.sourceMap = sourceMap;
+      }
     }
 
     async function filter(code: string) {

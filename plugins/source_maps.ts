@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { dynamicSourcesSymbol, merge, read } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
 import { basename, toFileUrl } from "../deps/path.ts";
 
@@ -22,7 +22,7 @@ export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process("*", (file: Page, files: Page[]) => {
+    site.process("*", async (file: Page, files: Page[]) => {
       const sourceMap = file.data.sourceMap as SourceMap | undefined;
       file.data.sourceMap = undefined;
 
@@ -30,18 +30,26 @@ export default function (userOptions?: Partial<Options>) {
         return;
       }
 
+      // Add the content of the source files
+      try {
+        if (options.sourceContent) {
+          sourceMap.sourcesContent = await Promise.all(
+            sourceMap.sources.map((url: string) => {
+              const content = sourceMap[dynamicSourcesSymbol]?.[url];
+
+              return content ? content : read(url, false);
+            }),
+          );
+        }
+      } catch (err) {
+        console.error(err);
+      }
+
       // Relative paths (eg. "../bar") look better in the dev-tools.
       sourceMap.sourceRoot = toFileUrl(site.root()).href;
       sourceMap.sources = sourceMap.sources.map((url: string) =>
         url.replace(sourceMap.sourceRoot!, "")
       );
-
-      // Add the content of the source files
-      if (options.sourceContent) {
-        sourceMap.sourcesContent = sourceMap.sources.map((url: string) =>
-          Deno.readTextFileSync(site.root(url))
-        );
-      }
 
       if (options.inline) {
         throw new Error("Inline source maps are not supported yet");

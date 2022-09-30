@@ -35,6 +35,12 @@ const defaults: Options = {
   },
 };
 
+const contentSymbol = Symbol.for("contentSymbol");
+
+interface LumeBuildOptions extends BuildOptions {
+  [contentSymbol]: string;
+}
+
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
@@ -57,6 +63,7 @@ export default function (userOptions?: Partial<Options>) {
       name: "lumeLoader",
       // deno-lint-ignore no-explicit-any
       setup(build: any) {
+        const { initialOptions } = build;
         build.onResolve({ filter: /.*/ }, (args: ResolveArguments) => {
           let { path } = args;
           const { importer } = args;
@@ -84,6 +91,17 @@ export default function (userOptions?: Partial<Options>) {
 
         build.onLoad({ filter: /.*/ }, async (args: LoadArguments) => {
           const { path, namespace } = args;
+
+          // It's the entry point file
+          if (
+            path === initialOptions.entryPoints[0] &&
+            initialOptions[contentSymbol]
+          ) {
+            return {
+              contents: initialOptions[contentSymbol],
+              loader: getLoader(path),
+            };
+          }
 
           // Read files from Lume
           if (namespace === "deno") {
@@ -114,11 +132,11 @@ export default function (userOptions?: Partial<Options>) {
     site.addEventListener("beforeSave", () => stop());
 
     site.process(options.extensions, async (page) => {
-      const name = `${page.src.path}${page.src.ext}`;
-      const filename = toFileUrl(site.src(name)).href;
-      site.logger.log("📦", name);
-
-      const buildOptions: BuildOptions = {
+      const filename = page.src.path
+        ? toFileUrl(site.src(page.src.path + page.src.ext)).href
+        : toFileUrl(site.src(page.dest.path + page.dest.ext)).href;
+      const code = page.content as string;
+      const buildOptions: LumeBuildOptions = {
         ...options.options,
         write: false,
         incremental: false,
@@ -127,6 +145,7 @@ export default function (userOptions?: Partial<Options>) {
         entryPoints: [filename],
         sourcemap: "external",
         outfile: `${page.dest.path}.js`,
+        [contentSymbol]: code,
       };
 
       const { outputFiles, warnings, errors } = await build(
@@ -141,11 +160,14 @@ export default function (userOptions?: Partial<Options>) {
         site.logger.warn("esbuild warnings", { warnings });
       }
 
-      const root = site.root();
       outputFiles?.forEach(({ path, text }) => {
         if (path.endsWith(".map")) {
           const sourceMap: SourceMap = JSON.parse(text);
-          page.data.sourceMap = normalizeSourceMap(root, sourceMap);
+          page.data.sourceMap = normalizeSourceMap(
+            site.root(),
+            sourceMap,
+            page.src.path ? undefined : { file: filename, content: code },
+          );
           return;
         }
 

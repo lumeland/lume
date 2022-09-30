@@ -270,6 +270,7 @@ export function normalizePath(path: string) {
   return posix.join("/", path);
 }
 
+export const dynamicSourcesSymbol = Symbol.for("dynamicSources");
 export interface SourceMap {
   version: number;
   file?: string;
@@ -278,25 +279,41 @@ export interface SourceMap {
   sourcesContent?: string[];
   names: string[];
   mappings: string;
+  [dynamicSourcesSymbol]?: Record<string, string>;
+}
+export interface DynamicSource {
+  file: string;
+  content: string;
 }
 
 export function normalizeSourceMap(
   root: string,
   sourceMap: SourceMap,
+  dynamicSource?: DynamicSource,
 ): SourceMap {
-  sourceMap.sources = sourceMap.sources.map((source) => {
+  function normalizeSource(source: string): string {
     if (source.startsWith("deno:")) { // esbuild
       source = source.substring(5);
     }
     if (isUrl(source)) {
       return source;
     }
+
     source = normalizePath(source);
+
     return source.startsWith(root)
       ? toFileUrl(source).href
       : toFileUrl(join(root, source)).href;
-  });
-  sourceMap.sourcesContent = [];
+  }
+
+  sourceMap.sources = sourceMap.sources.map(normalizeSource);
+
+  if (dynamicSource) {
+    const sources = sourceMap[dynamicSourcesSymbol] || {};
+    const file = normalizeSource(dynamicSource.file);
+    sources[file] = dynamicSource.content;
+    sourceMap[dynamicSourcesSymbol] = sources;
+  }
 
   return sourceMap;
 }
