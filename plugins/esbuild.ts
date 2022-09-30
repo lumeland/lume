@@ -1,13 +1,9 @@
-import {
-  merge,
-  normalizeSourceMap,
-  read,
-  readDenoConfig,
-} from "../core/utils.ts";
+import { merge, read, readDenoConfig } from "../core/utils.ts";
 import { build, BuildOptions, stop } from "../deps/esbuild.ts";
 import { extname, toFileUrl } from "../deps/path.ts";
+import { prepareAsset, saveAsset } from "./source_maps.ts";
 
-import type { DenoConfig, Site, SourceMap } from "../core.ts";
+import type { DenoConfig, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -132,20 +128,18 @@ export default function (userOptions?: Partial<Options>) {
     site.addEventListener("beforeSave", () => stop());
 
     site.process(options.extensions, async (page) => {
-      const filename = page.src.path
-        ? toFileUrl(site.src(page.src.path + page.src.ext)).href
-        : toFileUrl(site.src(page.dest.path + page.dest.ext)).href;
-      const code = page.content as string;
+      const { content, filename } = prepareAsset(site, page);
+
       const buildOptions: LumeBuildOptions = {
         ...options.options,
         write: false,
         incremental: false,
         watch: false,
         metafile: false,
-        entryPoints: [filename],
+        entryPoints: [toFileUrl(filename).href],
         sourcemap: "external",
         outfile: `${page.dest.path}.js`,
-        [contentSymbol]: code,
+        [contentSymbol]: content,
       };
 
       const { outputFiles, warnings, errors } = await build(
@@ -160,20 +154,9 @@ export default function (userOptions?: Partial<Options>) {
         site.logger.warn("esbuild warnings", { warnings });
       }
 
-      outputFiles?.forEach(({ path, text }) => {
-        if (path.endsWith(".map")) {
-          const sourceMap: SourceMap = JSON.parse(text);
-          page.data.sourceMap = normalizeSourceMap(
-            site.root(),
-            sourceMap,
-            page.src.path ? undefined : { file: filename, content: code },
-          );
-          return;
-        }
-
-        page.content = text;
-        page.updateDest({ ext: ".js" });
-      });
+      const [mapFile, jsFile] = outputFiles!;
+      saveAsset(site, page, jsFile.text, mapFile.text);
+      page.updateDest({ ext: ".js" });
     });
   };
 }

@@ -1,9 +1,10 @@
-import { merge, normalizeSourceMap } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 import denosass from "../deps/denosass.ts";
 import { posix, toFileUrl } from "../deps/path.ts";
 import { Page } from "../core/filesystem.ts";
+import { prepareAsset, saveAsset } from "./source_maps.ts";
 
-import type { Site, SourceMap } from "../core.ts";
+import type { Site } from "../core.ts";
 
 type SassOptions = Omit<denosass.StringOptions<"sync">, "url" | "syntax">;
 
@@ -44,8 +45,8 @@ export default function (userOptions?: Partial<Options>) {
     site.process(options.extensions, sass);
 
     function sass(page: Page) {
-      const code = page.content as string;
-      const filename = site.src(page.src.path + page.src.ext);
+      const { content, filename } = prepareAsset(site, page);
+
       const sassOptions: denosass.StringOptions<"sync"> = {
         ...options.options,
         sourceMap: true,
@@ -55,13 +56,9 @@ export default function (userOptions?: Partial<Options>) {
         url: toFileUrl(filename),
       };
 
-      const output = denosass.compileString(code, sassOptions);
+      const output = denosass.compileString(content, sassOptions);
 
-      page.data.sourceMap = normalizeSourceMap(
-        site.root(),
-        output.sourceMap as SourceMap,
-      );
-      page.content = output.css;
+      saveAsset(site, page, output.css, output.sourceMap);
       page.updateDest({ ext: ".css" });
     }
   };

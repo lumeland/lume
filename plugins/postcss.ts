@@ -4,9 +4,10 @@ import {
   postcssImport,
   postcssNesting,
 } from "../deps/postcss.ts";
-import { isUrl, merge, normalizeSourceMap } from "../core/utils.ts";
+import { isUrl, merge } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
 import { posix } from "../deps/path.ts";
+import { prepareAsset, saveAsset } from "./source_maps.ts";
 
 import type { Helper, Site, SourceMap } from "../core.ts";
 import type { SourceMapOptions } from "../deps/postcss.ts";
@@ -64,31 +65,23 @@ export default function (userOptions?: Partial<Options>) {
     site.filter("postcss", filter as Helper, true);
 
     async function postCss(file: Page) {
-      const from = file.src.path
-        ? site.src(file.src.path + file.src.ext)
-        : site.src(file.dest.path + file.dest.ext);
+      const { content, filename, sourceMap } = prepareAsset(site, file);
       const to = site.dest(file.dest.path + file.dest.ext);
       const map: SourceMapOptions = {
         inline: false,
-        prev: file.data.sourceMap as SourceMap,
+        prev: sourceMap,
         annotation: false,
       };
 
       // Process the code with PostCSS
-      const code = file.content as string;
-      const result = await runner.process(code, { from, to, map });
+      const result = await runner.process(content, { from: filename, to, map });
 
-      file.content = result.css;
-
-      if (map) {
-        const sourceMap = normalizeSourceMap(
-          site.root(),
-          result.map.toJSON() as unknown as SourceMap,
-          file.src.path ? undefined : { file: from, content: code },
-        );
-
-        file.data.sourceMap = sourceMap;
-      }
+      saveAsset(
+        site,
+        file,
+        result.css,
+        result.map.toJSON() as unknown as SourceMap,
+      );
     }
 
     async function filter(code: string) {

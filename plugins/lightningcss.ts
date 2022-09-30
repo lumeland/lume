@@ -1,6 +1,7 @@
 import init, { transform } from "../deps/lightningcss.ts";
-import { merge, normalizeSourceMap } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
+import { prepareAsset, saveAsset } from "./source_maps.ts";
 
 import type { DeepPartial, Site } from "../core.ts";
 import type { TransformOptions } from "../deps/lightningcss.ts";
@@ -47,28 +48,26 @@ export default function (userOptions?: DeepPartial<Options>) {
     site.process(options.extensions, parcelCSS);
 
     function parcelCSS(file: Page) {
-      const from = site.src(file.src.path + file.src.ext);
+      const { content, filename, sourceMap } = prepareAsset(site, file);
 
       // Process the code with parcelCSS
-      const content = typeof file.content === "string"
-        ? new TextEncoder().encode(file.content)
-        : file.content as Uint8Array;
-
+      const code = new TextEncoder().encode(content);
       const transformOptions: TransformOptions = {
-        filename: from,
-        code: content,
-        sourceMap: !!file.data.sourceMap,
-        inputSourceMap: JSON.stringify(file.data.sourceMap),
+        filename,
+        code,
+        sourceMap: true,
+        inputSourceMap: JSON.stringify(sourceMap),
         ...options.options,
       };
 
       const result = transform(transformOptions);
       const decoder = new TextDecoder();
 
-      file.content = decoder.decode(result.code);
-      file.data.sourceMap = normalizeSourceMap(
-        site.root(),
-        JSON.parse(decoder.decode(result.map)),
+      saveAsset(
+        site,
+        file,
+        decoder.decode(result.code),
+        decoder.decode(result.map),
       );
     }
   };

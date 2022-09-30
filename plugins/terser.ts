@@ -1,9 +1,10 @@
 import { minify } from "../deps/terser.ts";
-import { merge, normalizeSourceMap } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
 import { Page } from "../core/filesystem.ts";
+import { prepareAsset, saveAsset } from "./source_maps.ts";
 
-import type { DeepPartial, Helper, Site, SourceMap } from "../core.ts";
+import type { DeepPartial, Helper, Site } from "../core.ts";
 import type { TerserOptions } from "../deps/terser.ts";
 
 export interface Options {
@@ -33,28 +34,24 @@ export default function (userOptions?: DeepPartial<Options>) {
     site.process(options.extensions, terser);
     site.filter("terser", filter as Helper, true);
 
-    async function terser(file: Page) {
-      const filename = site.src(file.src.path + file.src.ext);
-      const content = file.content;
+    async function terser(page: Page) {
+      const { content, filename, sourceMap } = prepareAsset(site, page);
+
       const terserOptions = {
         ...options.options,
         sourceMap: {
-          content: JSON.stringify(file.data.sourceMap),
+          content: JSON.stringify(sourceMap),
           filename: filename,
         },
       };
 
       try {
         const output = await minify({ [filename]: content }, terserOptions);
-        file.content = output.code;
-        file.data.sourceMap = normalizeSourceMap(
-          site.root(),
-          JSON.parse(output.map) as SourceMap,
-        );
+        saveAsset(site, page, output.code, output.map);
       } catch (cause) {
         throw new Exception(
           "Error processing the file",
-          { name: "Plugin Terser", cause, page: file, content },
+          { name: "Plugin Terser", cause, page, content },
         );
       }
     }
