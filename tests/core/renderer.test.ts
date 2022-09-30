@@ -1,5 +1,6 @@
 import { assert, assertStrictEquals as equals } from "../../deps/assert.ts";
 import { getSite } from "../utils.ts";
+import { getGitDate } from "../../core/utils.ts";
 import { Page } from "../../core/filesystem.ts";
 
 Deno.test("Prepare page (Renderer)", async (t) => {
@@ -101,12 +102,11 @@ Deno.test("Prepare page (Renderer)", async (t) => {
     page.data.date = "git created";
     renderer.preparePage(page);
     assert(page.data.date instanceof Date);
-    // equals(page.data.date.getFullYear(), 2021);
-    // equals(page.data.date.getMonth(), 8);
-    // equals(page.data.date.getDate(), 12);
-    // equals(page.data.date.getHours(), 15);
-    // equals(page.data.date.getMinutes(), 58);
-    // equals(page.data.date.getSeconds(), 11);
+    const gitDate = getGitDate(
+      "created",
+      site.src(page.src.path + page.src.ext),
+    );
+    assert(gitDate?.getTime() === page.data.date.getTime());
   });
 
   await t.step("Calculate git last modified", () => {
@@ -118,11 +118,10 @@ Deno.test("Prepare page (Renderer)", async (t) => {
     page.data.date = "git last modified";
     renderer.preparePage(page);
     assert(page.data.date instanceof Date);
-    // equals(page.data.date.getFullYear(), 2021);
-    // equals(page.data.date.getMonth(), 8);
-    // equals(page.data.date.getDate(), 12);
-    // equals(page.data.date.getHours(), 15);
-    // equals(page.data.date.getMinutes(), 58);
-    // equals(page.data.date.getSeconds(), 11);
+    const gitDate = getGitDate(
+      "modified",
+      site.src(page.src.path + page.src.ext),
+    );
+    assert(gitDate?.getTime() === page.data.date.getTime());
   });
 });
