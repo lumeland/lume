@@ -35,14 +35,19 @@ export default function (userOptions?: DeepPartial<Options>) {
     site.filter("terser", filter as Helper, true);
 
     async function terser(page: Page) {
-      const { content, filename, sourceMap } = prepareAsset(site, page);
+      const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
+        site,
+        page,
+      );
 
       const terserOptions = {
         ...options.options,
-        sourceMap: {
-          content: JSON.stringify(sourceMap),
-          filename: filename,
-        },
+        sourceMap: enableSourceMap
+          ? {
+            content: JSON.stringify(sourceMap),
+            filename: filename,
+          }
+          : undefined,
       };
 
       try {

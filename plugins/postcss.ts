@@ -65,13 +65,18 @@ export default function (userOptions?: Partial<Options>) {
     site.filter("postcss", filter as Helper, true);
 
     async function postCss(file: Page) {
-      const { content, filename, sourceMap } = prepareAsset(site, file);
+      const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
+        site,
+        file,
+      );
       const to = site.dest(file.dest.path + file.dest.ext);
-      const map: SourceMapOptions = {
-        inline: false,
-        prev: sourceMap,
-        annotation: false,
-      };
+      const map: SourceMapOptions | undefined = enableSourceMap
+        ? {
+          inline: false,
+          prev: sourceMap,
+          annotation: false,
+        }
+        : undefined;
 
       // Process the code with PostCSS
       const result = await runner.process(content, { from: filename, to, map });
@@ -80,7 +85,7 @@ export default function (userOptions?: Partial<Options>) {
         site,
         file,
         result.css,
-        result.map.toJSON() as unknown as SourceMap,
+        result.map?.toJSON() as unknown as SourceMap,
       );
     }
 

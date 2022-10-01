@@ -45,11 +45,11 @@ export default function (userOptions?: Partial<Options>) {
     site.process(options.extensions, sass);
 
     function sass(page: Page) {
-      const { content, filename } = prepareAsset(site, page);
+      const { content, filename, enableSourceMap } = prepareAsset(site, page);
 
       const sassOptions: denosass.StringOptions<"sync"> = {
         ...options.options,
-        sourceMap: true,
+        sourceMap: enableSourceMap,
         loadPaths: [...includes, posix.dirname(filename)],
         style: options.format,
         syntax: page.src.ext === ".sass" ? "indented" : "scss",

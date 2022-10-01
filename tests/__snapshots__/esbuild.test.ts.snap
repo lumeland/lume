@@ -90,36 +90,6 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    sourceMap: {
-      file: undefined,
-      mappings: "+EAAe,SAARA,EAA6BC,EAAc,CAChD,OAAOA,EAAK,YAAY,CAC1B,CAFwBC,EAAAF,EAAA,eCGxB,SAAS,iBAAiB,IAAI,GAAG,QAASG,GAAO,CAC/CA,EAAG,UAAYC,EAAYD,EAAG,SAAS,CACzC,CAAC",
-      names: [
-        "toUppercase",
-        "text",
-        "__name",
-        "h1",
-        "toUppercase",
-      ],
-      sourceRoot: undefined,
-      sources: [
-        "to_uppercase.ts",
-        "main.ts",
-      ],
-      sourcesContent: [
-        "export default function toUppercase(text: string) {
-  return text.toUpperCase();
-}
-",
-        '/// <reference lib="dom" />
-import toUppercase from "./modules/to_uppercase.ts";
-
-document.querySelectorAll("h1")?.forEach((h1) => {
-  h1.innerHTML = toUppercase(h1.innerHTML);
-});
-',
-      ],
-      version: 3,
-    },
     tags: [
     ],
     url: "/main.js",

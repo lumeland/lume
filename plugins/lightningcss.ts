@@ -48,14 +48,17 @@ export default function (userOptions?: DeepPartial<Options>) {
     site.process(options.extensions, parcelCSS);
 
     function parcelCSS(file: Page) {
-      const { content, filename, sourceMap } = prepareAsset(site, file);
+      const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
+        site,
+        file,
+      );
 
       // Process the code with parcelCSS
       const code = new TextEncoder().encode(content);
       const transformOptions: TransformOptions = {
         filename,
         code,
-        sourceMap: true,
+        sourceMap: enableSourceMap,
         inputSourceMap: JSON.stringify(sourceMap),
         ...options.options,
       };
@@ -67,7 +70,7 @@ export default function (userOptions?: DeepPartial<Options>) {
         site,
         file,
         decoder.decode(result.code),
-        decoder.decode(result.map),
+        enableSourceMap ? decoder.decode(result.map) : undefined,
       );
     }
   };

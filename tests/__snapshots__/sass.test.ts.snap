@@ -93,20 +93,6 @@ snapshot[`sass plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    sourceMap: {
-      file: undefined,
-      mappings: "AAEA,KACE,uBACA,+BCJF,GACE,MCDc,KCMhB,KACE,+BACA,MAJc",
-      names: [
-      ],
-      sourceRoot: undefined,
-      sources: [
-        "third.scss",
-        "fourth.scss",
-        "colors.scss",
-        "button.scss",
-      ],
-      version: 3,
-    },
     tags: [
     ],
     url: "/index.css",
@@ -136,18 +122,6 @@ body
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    sourceMap: {
-      file: undefined,
-      mappings: "AAEA,KACE,MCHc",
-      names: [
-      ],
-      sourceRoot: undefined,
-      sources: [
-        "index2.sass",
-        "colors.scss",
-      ],
-      version: 3,
-    },
     tags: [
     ],
     url: "/index2.css",

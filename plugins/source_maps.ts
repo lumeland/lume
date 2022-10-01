@@ -23,6 +23,8 @@ export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
+    site._data.enableSourceMap = true;
+
     site.process("*", async (file: Page, files: Page[]) => {
       const sourceMap = file.data.sourceMap as SourceMap | undefined;
       file.data.sourceMap = undefined;
@@ -89,16 +91,20 @@ export interface PrepareResult {
   content: string;
   sourceMap?: SourceMap;
   filename: string;
+  enableSourceMap: boolean;
 }
 
 /** Return the required info to process a file */
 export function prepareAsset(site: Site, page: Page): PrepareResult {
+  const enableSourceMap = !!site._data.enableSourceMap;
   const content = page.content as string;
-  const sourceMap = page.data.sourceMap as SourceMap | undefined;
+  const sourceMap = enableSourceMap
+    ? page.data.sourceMap as SourceMap | undefined
+    : undefined;
   const filename = page.src.path
     ? site.src(page.src.path + page.src.ext)
     : site.src(page.dest.path + page.dest.ext);
-  return { content, sourceMap, filename };
+  return { content, sourceMap, filename, enableSourceMap };
 }
 
 /** Save the process result */
@@ -106,8 +112,18 @@ export function saveAsset(
   site: Site,
   page: Page,
   content: string,
-  sourceMap: SourceMap | string,
+  sourceMap?: SourceMap | string,
 ) {
+  if (!site._data.enableSourceMap) {
+    sourceMap = undefined;
+  }
+
+  // There's no source map
+  if (!sourceMap) {
+    page.content = content;
+    return;
+  }
+
   const root = site.root();
 
   // Ensure the sourceMap is an object

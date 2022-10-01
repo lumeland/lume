@@ -133,7 +133,7 @@ export default function (userOptions?: Partial<Options>) {
     site.addEventListener("beforeSave", () => stop());
 
     site.process(options.extensions, async (page) => {
-      const { content, filename } = prepareAsset(site, page);
+      const { content, filename, enableSourceMap } = prepareAsset(site, page);
 
       const buildOptions: LumeBuildOptions = {
         ...options.options,
@@ -142,7 +142,7 @@ export default function (userOptions?: Partial<Options>) {
         watch: false,
         metafile: false,
         entryPoints: [toFileUrl(filename).href],
-        sourcemap: "external",
+        sourcemap: enableSourceMap ? "external" : undefined,
         outfile: `${page.dest.path}.js`,
         [contentSymbol]: content,
       };
@@ -159,8 +159,18 @@ export default function (userOptions?: Partial<Options>) {
         site.logger.warn("esbuild warnings", { warnings });
       }
 
-      const [mapFile, jsFile] = outputFiles!;
-      saveAsset(site, page, jsFile.text, mapFile.text);
+      // deno-lint-ignore no-explicit-any
+      let mapFile: any, jsFile: any;
+
+      outputFiles?.forEach((file) => {
+        if (file.path.endsWith(".map")) {
+          mapFile = file;
+        } else {
+          jsFile = file;
+        }
+      });
+
+      saveAsset(site, page, jsFile?.text, mapFile?.text);
       page.updateDest({ ext: ".js" });
     });
   };

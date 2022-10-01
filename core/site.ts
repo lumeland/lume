@@ -72,6 +72,9 @@ const defaults: SiteOptions = {
 export default class Site {
   options: SiteOptions;
 
+  /** Internal data. Used to save arbitrary data by plugins and processors */
+  _data: Record<string, unknown> = {};
+
   /** To read the files from the filesystem */
   reader: Reader;
 
