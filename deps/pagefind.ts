@@ -1,20 +1,31 @@
 import dbin from "https://deno.land/x/dbin@v0.2.0/mod.ts";
 
+export interface DownloadOptions {
+  /** Filename of the Pagefind binary file */
+  path: string;
+
+  /** Whether download the extended version, with support for Chinese and Japanese languages */
+  extended: boolean;
+
+  /** The version of Pagefind to download */
+  version: string;
+}
+
 export default async function downloadBinary(
-  dest: string,
-  extended: boolean,
+  options: DownloadOptions,
 ): Promise<string> {
+  const { path, extended, version } = options;
   const prefix = extended ? "_extended" : "";
 
   return await dbin({
     pattern:
       `https://github.com/CloudCannon/pagefind/releases/download/{version}/pagefind${prefix}-{version}-{target}.tar.gz`,
-    version: "v0.8.1",
+    version,
     targets: [
       { name: "x86_64-unknown-linux-musl", os: "linux" },
       { name: "x86_64-apple-darwin", os: "darwin" },
       { name: "x86_64-pc-windows-msvc", os: "windows" },
     ],
-    dest,
+    dest: path,
   });
 }

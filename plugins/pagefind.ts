@@ -1,6 +1,6 @@
 import { merge } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
-import downloadBinary from "../deps/pagefind.ts";
+import downloadBinary, { DownloadOptions } from "../deps/pagefind.ts";
 
 import type { DeepPartial, Site } from "../core.ts";
 
@@ -42,11 +42,8 @@ export interface IndexingOptions {
 }
 
 export interface Options {
-  /** Filename of the Pagefind binary file */
-  binary: string;
-
-  /** Whether download the extended version, with support for Chinese and Japanese languages */
-  extended: boolean;
+  /** The options to download the binary file */
+  binary: DownloadOptions;
 
   /** Options for the UI interface or false to disable it */
   ui: UIOptions | false;
@@ -56,8 +53,11 @@ export interface Options {
 }
 
 const defaults: Options = {
-  binary: "./_bin/pagefind",
-  extended: false,
+  binary: {
+    path: "./_bin/pagefind",
+    extended: false,
+    version: "v0.8.1",
+  },
   ui: {
     containerId: "search",
     showImages: false,
@@ -138,7 +138,7 @@ export default function (userOptions?: DeepPartial<Options>) {
     }
 
     site.addEventListener("afterBuild", async () => {
-      const binary = await downloadBinary(options.binary, options.extended);
+      const binary = await downloadBinary(options.binary);
       const cmd = buildCommand(
         binary,
         options.indexing,

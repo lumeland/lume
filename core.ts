@@ -1,4 +1,9 @@
-import type { DeepPartial, DenoConfig, ImportMap } from "./core/utils.ts";
+import type {
+  DeepPartial,
+  DenoConfig,
+  DenoConfigResult,
+  ImportMap,
+} from "./core/utils.ts";
 import type {
   ComponentsOptions,
   default as Site,
@@ -75,7 +80,7 @@ import type {
 
 // Plugins types
 import type { PaginationInfo, Paginator } from "./plugins/paginate.ts";
-import type { Transformation, Transformations } from "./plugins/imagick.ts";
+import type { Transformation } from "./plugins/imagick.ts";
 import type { MetaData } from "./plugins/metas.ts";
 import type { Search } from "./plugins/search.ts";
 import type { Children } from "./plugins/jsx.ts";
@@ -98,6 +103,7 @@ export type {
   DataLoader,
   DeepPartial,
   DenoConfig,
+  DenoConfigResult,
   Dest,
   Directory,
   DirEntry,
@@ -194,7 +200,7 @@ export interface PageData extends Data {
    * Image transformations
    * @see https://lume.land/plugins/imagick/
    */
-  imagick?: Transformation | Transformations;
+  imagick?: Transformation | Transformation[];
 
   /**
    * Meta elements

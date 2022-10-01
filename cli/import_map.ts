@@ -1,5 +1,7 @@
 import { initPlugins, readDenoConfig, writeDenoConfig } from "../core/utils.ts";
 
+import { DenoConfigResult } from "../core.ts";
+
 interface Options {
   plugins?: string[];
 }
@@ -10,11 +12,14 @@ export default function ({ plugins }: Options = {}) {
 }
 
 export async function importMap(url: URL, plugins: string[] = []) {
-  const denoConfig = await readDenoConfig();
+  const denoConfig: DenoConfigResult = await readDenoConfig() || {
+    config: {},
+    file: "deno.json",
+  };
 
-  const config = denoConfig?.config || {};
-  const importMap = denoConfig?.importMap || { imports: {} };
-  const file = denoConfig?.file || "deno.json";
+  denoConfig.importMap ??= { imports: {} };
+
+  const { config, importMap, file } = denoConfig;
 
   // Configure the import map
   config.importMap ||= "./import_map.json";
@@ -40,7 +45,7 @@ export async function importMap(url: URL, plugins: string[] = []) {
   await Promise.all(plugins.map(async (name) => {
     if (initPlugins.includes(name)) {
       const { init } = await import(`../plugins/${name}.ts`);
-      init(importMap, config);
+      init(denoConfig);
     }
   }));
 

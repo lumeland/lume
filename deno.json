@@ -7,6 +7,5 @@
     "lume": "deno eval \"import 'lume/task.ts'\" --",
     "build": "deno task lume",
     "serve": "deno task lume -s"
-  },
-  "importMap": "./import_map.json"
+  }
 }

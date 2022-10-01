@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - In the build mode, in order to prevent some timers to keep the process alive indefinitely and after waiting 10 seconds, exit from the Deno process with a `Deno.exit(0)`.
 - `site.pages`, `site.files` and `site.onDemandPages` are readonly properties.
   This allows to use their reference anywhere.
-- Lume throws and exception if the `import_map.json` file doesn't contain the `lume/` import.
+- Lume throws an exception if the `import_map.json` file doesn't contain the `lume/` import.
   (Previously it only showed a warning).
 - When a processor returns `false`, the page is removed from the output.
 - Moved some dependencies to `npm:` imports.

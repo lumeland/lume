@@ -16,18 +16,20 @@ Deno.test("Pagefind plugin", async (t) => {
 });
 
 Deno.test("Pagefind download", async () => {
-  const dest = fromFileUrl(import.meta.resolve("./_binary/pagefind"));
-  const binary = await downloadBinary(dest, true);
+  const path = fromFileUrl(import.meta.resolve("./_binary/pagefind"));
+  const binary = await downloadBinary({
+    path,
+    extended: true,
+    version: "v0.8.1",
+  });
 
   if (Deno.build.os === "windows") {
-    assertStrictEquals(binary, dest + ".exe");
+    assertStrictEquals(binary, path + ".exe");
   } else {
-    assertStrictEquals(binary, dest);
+    assertStrictEquals(binary, path);
   }
-  const process = Deno.run({
-    cmd: [binary, "--version"],
-  });
-  const status = await process.status();
-  assertStrictEquals(status.code, 0);
-  process.close();
+  const { code, stdout } = Deno.spawnSync(binary, { args: ["--version"] });
+
+  assertStrictEquals(code, 0);
+  assertStrictEquals(new TextDecoder().decode(stdout).trim(), "pagefind 0.8.1");
 });

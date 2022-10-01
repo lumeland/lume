@@ -2,14 +2,7 @@ import { preact, renderToString } from "../deps/preact.ts";
 import loader from "../core/loaders/module.ts";
 import { merge } from "../core/utils.ts";
 
-import type {
-  Data,
-  DenoConfig,
-  Engine,
-  Helper,
-  ImportMap,
-  Site,
-} from "../core.ts";
+import type { Data, DenoConfigResult, Engine, Helper, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -88,16 +81,10 @@ export class PreactJsxEngine implements Engine {
 }
 
 /** Configure this plugin on "lume init" */
-export function init(importMap: ImportMap, denoConfig: DenoConfig) {
-  importMap.imports["preact/jsx-runtime"] = import.meta.resolve(
-    "../deps/preact_runtime.ts",
-  );
-  importMap.imports["preact"] = import.meta.resolve(
-    "../deps/preact.ts",
-  );
-  denoConfig.compilerOptions ||= {};
-  denoConfig.compilerOptions.jsx = "react-jsx";
-  denoConfig.compilerOptions.jsxImportSource = "preact";
+export function init(denoConfig: DenoConfigResult) {
+  denoConfig.config.compilerOptions ||= {};
+  denoConfig.config.compilerOptions.jsx = "react-jsx";
+  denoConfig.config.compilerOptions.jsxImportSource = "npm:preact";
 }
 
 /** Register the plugin to support JSX and TSX files */
