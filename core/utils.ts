@@ -1,12 +1,5 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
-import {
-  brightGreen,
-  brightYellow,
-  cyan,
-  dim,
-  green,
-  red,
-} from "../deps/colors.ts";
+import { brightGreen, cyan, dim, green, red } from "../deps/colors.ts";
 import { dirname, extname, join, posix, SEP } from "../deps/path.ts";
 import { parse } from "../deps/jsonc.ts";
 
@@ -58,14 +51,6 @@ export function log(...lines: (string | undefined)[]) {
   console.log("----------------------------------------");
   lines.forEach((line) => line && console.log(line));
   console.log("----------------------------------------");
-}
-
-export function promptConfigUpdate(data: unknown) {
-  log(
-    red("deno.jsonc needs to be manually updated:"),
-    dim("Use deno.json to update it automatically"),
-    JSON.stringify(data, null, 2),
-  );
 }
 
 /** Check the compatibility with the current Deno version */
@@ -383,15 +368,21 @@ export async function writeDenoConfig(options: DenoConfigResult) {
   }
 
   if (extname(file) === ".jsonc") {
-    console.log(
-      brightYellow("deno.jsonc needs to be manually updated:"),
-      "Use deno.json to update it automatically",
-      JSON.stringify(config, null, 2),
+    const save = confirm(
+      "Saving the deno.jsonc file will overwrite the comments. Continue?",
     );
-  } else {
-    await Deno.writeTextFile(file, JSON.stringify(config, null, 2) + "\n");
-    console.log(brightGreen("Deno configuration file saved:"), file);
+
+    if (!save) {
+      console.log(
+        "You have to update your deno.jsonc file manually with the following content:",
+      );
+      console.log(dim(JSON.stringify(config, null, 2)));
+      console.log("Use deno.json to update it automatically without asking.");
+      return;
+    }
   }
+  await Deno.writeTextFile(file, JSON.stringify(config, null, 2) + "\n");
+  console.log(brightGreen("Deno configuration file saved:"), file);
 }
 
 export function isUrl(path: string): boolean {

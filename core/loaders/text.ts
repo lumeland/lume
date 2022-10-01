@@ -7,7 +7,8 @@ import type { Data } from "../../core.ts";
 export default async function text(path: string): Promise<Data> {
   const content = await read(path, false);
 
-  if (test(content)) {
+  // Temporary fix: https://github.com/denoland/deno_std/issues/2595
+  if (test(content) && content.startsWith("---")) {
     const { attrs = {}, body } = extract<Data>(content);
     attrs.content = body;
 
