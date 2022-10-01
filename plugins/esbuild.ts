@@ -79,6 +79,11 @@ export default function (userOptions?: Partial<Options>) {
           // Resolve the import map
           path = import.meta.resolve(path);
 
+          // It's a npm package
+          if (path.startsWith("npm:")) {
+            path = path.replace(/^npm:/, "https://esm.sh/");
+          }
+
           return {
             path,
             namespace: "deno",
