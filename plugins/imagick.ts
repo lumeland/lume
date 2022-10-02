@@ -59,6 +59,7 @@ export const defaults: Options = {
 export interface Transformation {
   suffix?: string;
   format?: MagickFormat | MagickFormat[];
+  matches?: RegExp | string;
   // deno-lint-ignore no-explicit-any
   [key: string]: any;
 }
@@ -100,6 +101,13 @@ export default function (userOptions?: Partial<Options>) {
       let transformed = false;
       let index = 0;
       for (const transformation of transformations) {
+        if (transformation.matches) {
+          const regex = new RegExp(transformation.matches);
+          if (!regex.test(page.data.url as string)) {
+            continue;
+          }
+        }
+
         const output = page.duplicate(index++, { [options.name]: undefined });
 
         rename(output, transformation);
@@ -146,6 +154,7 @@ function transform(
     for (const [name, args] of Object.entries(transformation)) {
       switch (name) {
         case "suffix":
+        case "matches":
           break;
 
         case "format":

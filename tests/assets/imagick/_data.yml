@@ -5,5 +5,9 @@ imagick:
   - suffix: -big
     resize: 20
     blur: 10
+    matches: \.png$
   - format: [jpg, webp]
   - format: png
+  - format: jpg
+    suffix: -never
+    matches: \.jpg$
