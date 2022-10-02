@@ -16,7 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New plugin `source_maps` to generate the source maps of processed assets (CSS and JS) [#274].
 - Allow to load remote configuration files.
   For example: `lume --config="https://example.com/_config.ts`.
-- The plugin `imagick` accepts an array of formats [#268].
+- Improvements to the plugin `imagick`:
+  - It accepts an array of formats [#268].
+  - New `matches` property to apply transformations conditionally [#279].
 - The `date` field of the pages accepts more formats [#272]:
   - Any IS0 8601 representation
   - `git created` to get the date of the file's first commit.
@@ -1828,6 +1830,7 @@ The first version.
 [#272]: https://github.com/lumeland/lume/issues/272
 [#274]: https://github.com/lumeland/lume/issues/274
 [#276]: https://github.com/lumeland/lume/issues/276
+[#279]: https://github.com/lumeland/lume/issues/279
 
 [1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...HEAD
 [1.11.4]: https://github.com/lumeland/lume/compare/v1.11.3...v1.11.4
