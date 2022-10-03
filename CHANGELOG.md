@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.12.0] - Unreleased
+## [1.12.0] - 2022-10-03
 ### Added
 - New plugin `katex` [#260].
 - New plugin `pagefind` [#253].
@@ -1832,7 +1832,7 @@ The first version.
 [#276]: https://github.com/lumeland/lume/issues/276
 [#279]: https://github.com/lumeland/lume/issues/279
 
-[1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...HEAD
+[1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...v1.12.0
 [1.11.4]: https://github.com/lumeland/lume/compare/v1.11.3...v1.11.4
 [1.11.3]: https://github.com/lumeland/lume/compare/v1.11.2...v1.11.3
 [1.11.2]: https://github.com/lumeland/lume/compare/v1.11.1...v1.11.2
