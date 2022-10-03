@@ -5,7 +5,7 @@ import { Exception } from "../core/errors.ts";
 import type { Element } from "../deps/dom.ts";
 import type { DeepPartial, Page, Site } from "../core.ts";
 
-interface Options {
+export interface Options {
   extensions: string[];
   cssSelector: string;
   options: KatexOptions;
