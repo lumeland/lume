@@ -206,7 +206,7 @@ export default class Renderer {
               this.includesLoader.reader.getFullPath(
                 src.path + src.ext,
               ),
-            );
+            ) || src.lastModified;
             break;
           case "git created":
             data.date = getGitDate(
@@ -214,7 +214,7 @@ export default class Renderer {
               this.includesLoader.reader.getFullPath(
                 src.path + src.ext,
               ),
-            );
+            ) || src.created;
             break;
           default:
             data.date = parseISO(data.date, {});
