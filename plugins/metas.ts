@@ -9,7 +9,7 @@ export interface Options {
 
   /** The key name for the transformations definitions */
   name: string;
-  
+
   /** Use page title as meta title */
   usePageTitle: boolean;
 }
@@ -52,6 +52,7 @@ export interface MetaData {
 const defaults: Options = {
   extensions: [".html"],
   name: "metas",
+  usePageTitle: false,
 };
 
 const defaultGenerator = `Lume ${getLumeVersion()}`;
@@ -69,9 +70,9 @@ export default function (userOptions?: Partial<Options>) {
       if (!metas || !page.document) {
         return;
       }
-      
-      if (!metas.title && options.usePageTitle && page.title) {
-        metas.title = page.title;
+
+      if (!metas.title && options.usePageTitle && page.data.title) {
+        metas.title = page.data.title as string;
       }
 
       const { document } = page;
