@@ -14,9 +14,6 @@ export interface Options {
 
   /** The foreign keys per type (type => foreign_key) */
   foreignKeys: Record<string, string>;
-
-  /** Whether expose the whole page or only its data */
-  onlyData: boolean;
 }
 
 // Default options
@@ -25,7 +22,6 @@ export const defaults: Options = {
   idKey: "id",
   typeKey: "type",
   foreignKeys: {},
-  onlyData: true,
 };
 
 export default function (userOptions?: Partial<Options>) {
@@ -58,7 +54,7 @@ export default function (userOptions?: Partial<Options>) {
 
         // Page2 has a foreign key to page1
         const directRelation = relate(
-          options.onlyData ? data1 : page1,
+          data1,
           data2,
           foreignKey1,
           id1,
@@ -68,7 +64,7 @@ export default function (userOptions?: Partial<Options>) {
         // If it was related, do the opposite relation
         if (directRelation && type2) {
           saveMultipleRelation(
-            options.onlyData ? data2 : page2,
+            data2,
             data1,
             type2,
           );
@@ -77,7 +73,7 @@ export default function (userOptions?: Partial<Options>) {
 
         // Page1 has a foreign key to page2
         const reverseRelation = relate(
-          options.onlyData ? data2 : page2,
+          data2,
           data1,
           foreignKey2,
           id2,
@@ -87,50 +83,56 @@ export default function (userOptions?: Partial<Options>) {
         // If it was related, do the opposite relation
         if (reverseRelation && type1) {
           saveMultipleRelation(
-            options.onlyData ? data1 : page1,
+            data1,
             data2,
             type1,
           );
         }
       }
+
+      function relate(
+        rel: Data,
+        data: Data,
+        foreignKey?: string,
+        id?: string,
+        type?: string,
+      ): boolean {
+        if (foreignKey && type && id && data[foreignKey]) {
+          const relId = data[foreignKey] as string | string[];
+
+          // The foreign key contain an array
+          if (Array.isArray(relId)) {
+            if (relId.includes(id)) {
+              saveMultipleRelation(rel, data, type);
+              return true;
+            }
+            return false;
+          }
+
+          // The foreign key is a single value
+          if (relId == id) {
+            data[type] = rel;
+            return true;
+          }
+        }
+
+        return false;
+      }
+
+      function saveMultipleRelation(rel: Data, data: Data, type: string) {
+        const relData = (data[type] || []) as Data[];
+
+        if (!relData.includes(rel)) {
+          relData.push(rel);
+          data[type] = relData;
+          // Sort by id
+          relData.sort((a, b) => {
+            const idA = a[options.idKey] as string;
+            const idB = b[options.idKey] as string;
+            return idA < idB ? -1 : 1;
+          });
+        }
+      }
     }
   };
-}
-
-function relate(
-  rel: Page | Data,
-  data: Data,
-  foreignKey?: string,
-  id?: string,
-  type?: string,
-): boolean {
-  if (foreignKey && type && id && data[foreignKey]) {
-    const relId = data[foreignKey] as string | string[];
-
-    // The foreign key contain an array
-    if (Array.isArray(relId)) {
-      if (relId.includes(id)) {
-        saveMultipleRelation(rel, data, type);
-        return true;
-      }
-      return false;
-    }
-
-    // The foreign key is a single value
-    if (relId == id) {
-      data[type] = rel;
-      return true;
-    }
-  }
-
-  return false;
-}
-
-function saveMultipleRelation(rel: Page | Data, data: Data, type: string) {
-  const relData = (data[type] || []) as (Page | Data)[];
-
-  if (!relData.includes(rel)) {
-    relData.push(rel);
-    data[type] = relData;
-  }
 }
