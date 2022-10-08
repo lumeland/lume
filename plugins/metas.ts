@@ -66,6 +66,10 @@ export default function (userOptions?: Partial<Options>) {
       if (!metas || !page.document) {
         return;
       }
+      
+      if (page.title && !metas.title) {
+        metas.title = page.title;
+      }
 
       const { document } = page;
       const url = site.url(page.data.url as string, true);
