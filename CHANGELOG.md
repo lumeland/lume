@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.12.1] - Unreleased
 ### Fixed
 - Export the `Options` interface for `katex` plugin.
+- `git created` and `git last modified` date values use the creation or modification time as fallback when the page wasn't added to the git history.
 
 ## [1.12.0] - 2022-10-03
 ### Added
