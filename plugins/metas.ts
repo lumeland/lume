@@ -10,8 +10,10 @@ export interface Options {
   /** The key name for the transformations definitions */
   name: string;
 
-  /** Use page title as meta title */
-  usePageTitle: boolean;
+  /** Use page data as meta data if metas*/
+  defaultPageData?: {
+    [K in keyof MetaData]: string;
+  };
 }
 
 export interface MetaData {
@@ -52,7 +54,6 @@ export interface MetaData {
 const defaults: Options = {
   extensions: [".html"],
   name: "metas",
-  usePageTitle: false,
 };
 
 const defaultGenerator = `Lume ${getLumeVersion()}`;
@@ -71,8 +72,14 @@ export default function (userOptions?: Partial<Options>) {
         return;
       }
 
-      if (!metas.title && options.usePageTitle && page.data.title) {
-        metas.title = page.data.title as string;
+      if (options.defaultPageData) {
+        for (const [pageKey, k] of Object.entries(options.defaultPageData)) {
+          const metaKey = k as keyof MetaData;
+
+          if (!metas[metaKey] && page.data[pageKey]) {
+            updateDefaultMeta(metas, metaKey, page.data[pageKey]);
+          }
+        }
       }
 
       const { document } = page;
@@ -158,4 +165,12 @@ function addMeta(
   meta.setAttribute("content", content);
   document.head.appendChild(meta);
   document.head.appendChild(document.createTextNode("\n"));
+}
+
+function updateDefaultMeta<T extends keyof MetaData>(
+  metas: MetaData,
+  key: T,
+  val: unknown,
+) {
+  metas[key] = val as MetaData[T];
 }
