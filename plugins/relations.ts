@@ -33,74 +33,104 @@ export default function (userOptions?: Partial<Options>) {
 
   return (site: Site) => {
     site.preprocess(options.extensions, index);
-  };
 
-  function index(page: Page, pages: Page[]) {
-    const { data } = page;
+    function index(page1: Page, pages: Page[]) {
+      const data1 = page1.data;
+      const id1 = data1[options.idKey] as string | undefined;
+      const type1 = data1[options.typeKey] as string | undefined;
+      const foreignKey1 = type1 ? options.foreignKeys[type1] : undefined;
 
-    // Save external pages by foreign key
-    for (
-      const [relType, relForeignKey] of Object.entries(options.foreignKeys)
-    ) {
-      const id = data[relForeignKey];
-      if (Array.isArray(id)) {
-        data[relType] = id.map((id) => getPage(pages, relType, id));
-      } else if (id) {
-        data[relType] = getPage(pages, relType, data[relForeignKey]);
-      }
-    }
+      // Index the current page with the other pages
+      pages.forEach(indexPage);
 
-    // Direct relation: Get the type and foreing key of this page
-    const type = data[options.typeKey] as string | undefined;
-    const foreignKey = type ? options.foreignKeys[type] : undefined;
-    const id = data[options.idKey];
+      // Index the current page with previously generated pages (if any)
+      site.pages.forEach(indexPage);
 
-    if (!type || !foreignKey || !id) {
-      return;
-    }
-
-    // Reverse relation: Search pages related with this page
-    const relations: Record<string, (Page | Data)[]> = {};
-
-    pages.forEach((page) => {
-      const relId = page.data[foreignKey];
-      const relType = page.data[options.typeKey] as string | undefined;
-
-      if (!relId || !relType) {
-        return;
-      }
-
-      if (Array.isArray(relId)) {
-        if (!relId.includes(id)) {
+      function indexPage(page2: Page) {
+        if (page1 === page2) {
           return;
         }
-      } else if (relId != id) {
-        return;
-      }
 
-      if (!relations[relType]) {
-        relations[relType] = [];
-      }
-      relations[relType].push(options.onlyData ? page?.data : page);
-    });
+        const data2 = page2.data;
+        const id2 = data2[options.idKey] as string | undefined;
+        const type2 = data2[options.typeKey] as string | undefined;
+        const foreignKey2 = type2 ? options.foreignKeys[type2] : undefined;
 
-    for (const [name, pages] of Object.entries(relations)) {
-      data[name] = pages;
+        // Page2 has a foreign key to page1
+        const directRelation = relate(
+          options.onlyData ? data1 : page1,
+          data2,
+          foreignKey1,
+          id1,
+          type1,
+        );
+
+        // If it was related, do the opposite relation
+        if (directRelation && type2) {
+          saveMultipleRelation(
+            options.onlyData ? data2 : page2,
+            data1,
+            type2,
+          );
+          return;
+        }
+
+        // Page1 has a foreign key to page2
+        const reverseRelation = relate(
+          options.onlyData ? data2 : page2,
+          data1,
+          foreignKey2,
+          id2,
+          type2,
+        );
+
+        // If it was related, do the opposite relation
+        if (reverseRelation && type1) {
+          saveMultipleRelation(
+            options.onlyData ? data1 : page1,
+            data2,
+            type1,
+          );
+        }
+      }
+    }
+  };
+}
+
+function relate(
+  rel: Page | Data,
+  data: Data,
+  foreignKey?: string,
+  id?: string,
+  type?: string,
+): boolean {
+  if (foreignKey && type && id && data[foreignKey]) {
+    const relId = data[foreignKey] as string | string[];
+
+    // The foreign key contain an array
+    if (Array.isArray(relId)) {
+      if (relId.includes(id)) {
+        saveMultipleRelation(rel, data, type);
+        return true;
+      }
+      return false;
+    }
+
+    // The foreign key is a single value
+    if (relId == id) {
+      data[type] = rel;
+      return true;
     }
   }
 
-  function getPage(
-    pages: Page[],
-    type: string,
-    id: unknown,
-  ): Page | Data | undefined {
-    const page = pages.find((page) =>
-      page.data[options.typeKey] === type && page.data[options.idKey] == id
-    );
-    if (!page) {
-      console.log(`Page not found: type=${type} id=${id}`);
-    }
+  return false;
+}
 
-    return options.onlyData ? page?.data : page;
+function saveMultipleRelation(rel: Page | Data, data: Data, type: string) {
+  const relData = (data[type] || []) as (Page | Data)[];
+
+  if (!relData.includes(rel)) {
+    relData.push(rel);
+    data[type] = relData;
   }
 }
