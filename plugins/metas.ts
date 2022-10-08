@@ -9,6 +9,9 @@ export interface Options {
 
   /** The key name for the transformations definitions */
   name: string;
+  
+  /** Use page title as meta title */
+  usePageTitle: boolean;
 }
 
 export interface MetaData {
@@ -67,7 +70,7 @@ export default function (userOptions?: Partial<Options>) {
         return;
       }
       
-      if (page.title && !metas.title) {
+      if (!metas.title && options.usePageTitle && page.title) {
         metas.title = page.title;
       }
 
