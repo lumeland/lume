@@ -10,7 +10,7 @@ export interface Options {
   /** The key name for the transformations definitions */
   name: string;
 
-  /** Use page data as meta data if metas*/
+  /** Use page data as meta data if metas not exists*/
   defaultPageData?: {
     [K in keyof MetaData]: string;
   };
