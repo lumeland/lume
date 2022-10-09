@@ -32,13 +32,22 @@ export async function build(
     console.log();
   }
 
+  performance.mark("start");
   await site.build();
+  performance.mark("end");
 
   if (!quiet) {
     console.log();
     console.log(
       `🍾 ${brightGreen("Site built into")} ${dim(site.options.dest)}`,
     );
+    const duration = performance.measure("duration", "start", "end").duration /
+      1000;
+    const total = site.pages.length + site.files.length;
+    console.log(
+      dim(`  ${total} files generated in ${duration.toFixed(2)} seconds`),
+    );
+    console.log();
 
     await checkUpgrade();
   }
@@ -67,7 +76,6 @@ export async function build(
   watcher.addEventListener("change", (event) => {
     const files = event.files!;
 
-    console.log();
     console.log("Changes detected:");
     files.forEach((file) => console.log("-", dim(file)));
     console.log();
@@ -91,7 +99,6 @@ export async function build(
   server.addEventListener("start", () => {
     const ipAddr = localIp();
 
-    console.log();
     console.log("  Server started at:");
     console.log(brightGreen(`  http://localhost:${port}/`), "(local)");
 

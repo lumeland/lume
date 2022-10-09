@@ -485,6 +485,7 @@ export default class Site {
     // Save the pages and copy static files in the dest folder
     const pages = await this.writer.savePages(this.pages);
     const staticFiles = await this.writer.copyFiles(this.files);
+    this.logger.log();
 
     await this.dispatchEvent({ type: "afterBuild", pages, staticFiles });
   }
@@ -520,6 +521,10 @@ export default class Site {
     // Save the pages and copy static files in the dest folder
     const pages = await this.writer.savePages(this.pages);
     const staticFiles = await this.writer.copyFiles(this.files);
+
+    if (pages.length || staticFiles.length) {
+      this.logger.log();
+    }
 
     await this.dispatchEvent({
       type: "afterUpdate",
