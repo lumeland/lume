@@ -162,15 +162,16 @@ export interface FileInfo extends Deno.FileInfo {
 }
 
 function createFileInfo(remote: string, isFile = true): FileInfo {
+  const now = new Date();
   return {
     remote,
     isFile,
     isDirectory: !isFile,
     isSymlink: false,
     size: 0,
-    mtime: null,
-    atime: null,
-    birthtime: null,
+    mtime: now,
+    atime: now,
+    birthtime: now,
     dev: null,
     ino: null,
     mode: null,

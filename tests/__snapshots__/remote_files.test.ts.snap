@@ -136,7 +136,7 @@ body {
   color: yellow;
 }
 ",
-    date: undefined,
+    date: 1970-01-01T00:00:00.000Z,
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -232,7 +232,7 @@ snapshot[`render remote files 8`] = `
     content: "body {
   color: blue;
 }",
-    date: undefined,
+    date: 1970-01-01T00:00:00.000Z,
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
