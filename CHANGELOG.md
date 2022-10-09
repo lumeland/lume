@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.12.1] - Unreleased
+### Changed
+- Don't show `pagefind` output if everything is OK.
+
 ### Fixed
 - Export the `Options` interface for `katex` plugin.
 - `git created` and `git last modified` date values use the creation or modification time as fallback when the page wasn't added to the git history.

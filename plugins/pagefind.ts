@@ -139,25 +139,31 @@ export default function (userOptions?: DeepPartial<Options>) {
 
     site.addEventListener("afterBuild", async () => {
       const binary = await downloadBinary(options.binary);
-      const cmd = buildCommand(
-        binary,
+      const args = buildArguments(
         options.indexing,
         site.dest(),
       );
-      const process = Deno.run({ cmd });
-      await process.status();
-      process.close();
+      const { code, stdout, stderr } = await Deno.spawn(binary, { args });
+      if (code !== 0) {
+        throw new Error(
+          `Pagefind exited with code ${code}
+
+${stdout}
+
+${stderr}`,
+        );
+      } else if (options.indexing.verbose) {
+        console.log(stdout);
+      }
     });
   };
 }
 
-function buildCommand(
-  binary: string,
+function buildArguments(
   options: Options["indexing"],
   source: string,
 ): string[] {
   const args = [
-    binary,
     "--source",
     source,
     "--bundle-dir",
