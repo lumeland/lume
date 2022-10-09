@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.12.1] - Unreleased
+### Added
+- Show build duration and number of generated files [#283]
+
 ### Changed
 - Don't show `pagefind` output if everything is OK.
 
@@ -1844,6 +1847,7 @@ The first version.
 [#274]: https://github.com/lumeland/lume/issues/274
 [#276]: https://github.com/lumeland/lume/issues/276
 [#279]: https://github.com/lumeland/lume/issues/279
+[#283]: https://github.com/lumeland/lume/issues/283
 [#285]: https://github.com/lumeland/lume/issues/285
 [#288]: https://github.com/lumeland/lume/issues/288
 
