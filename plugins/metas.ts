@@ -73,7 +73,8 @@ export default function (userOptions?: Partial<Options>) {
       }
 
       const getMetaValue = <T extends keyof MetaData>(key: T) => {
-        if (key in metas) {
+        // null means we should use defaultPageData
+        if (key in metas && metas[key] !== null) {
           return metas[key];
         }
         if (options.defaultPageData && key in options.defaultPageData) {
