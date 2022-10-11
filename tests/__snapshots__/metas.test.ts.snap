@@ -246,10 +246,13 @@ snapshot[`metas plugin 6`] = `
 <meta name="theme-color" content="black">
 <meta name="generator" content="Lume testing">
 </head><body><p>This is page excerpt will be used as meta description.</p>
-<!--more--></body></html>',
+<!--more-->
+</body></html>',
   data: {
     content: "This is page excerpt will be used as meta description.
-<!--more-->",
+
+<!--more-->
+",
     cover: "./use-cover-as-meta-image.png",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -542,13 +545,17 @@ snapshot[`metas plugin use defaultPageData 6`] = `
 <meta name="theme-color" content="black">
 <meta name="generator" content="Lume testing">
 </head><body><p>This is page excerpt will be used as meta description.</p>
-<!--more--></body></html>',
+<!--more-->
+</body></html>',
   data: {
     content: "This is page excerpt will be used as meta description.
-<!--more-->",
+
+<!--more-->
+",
     cover: "./use-cover-as-meta-image.png",
     date: 1970-01-01T00:00:00.000Z,
     excerpt: "This is page excerpt will be used as meta description.
+
 ",
     mergedKeys: {
       metas: "object",
