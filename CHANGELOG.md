@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.12.1] - Unreleased
 ### Added
-- Show build duration and number of generated files [#283]
+- Show build duration and number of generated files [#283].
+- New option `defaultPageData` to the `metas` plugin [#286].
 
 ### Changed
 - Don't show `pagefind` output if everything is OK.
@@ -1849,6 +1850,7 @@ The first version.
 [#279]: https://github.com/lumeland/lume/issues/279
 [#283]: https://github.com/lumeland/lume/issues/283
 [#285]: https://github.com/lumeland/lume/issues/285
+[#286]: https://github.com/lumeland/lume/issues/286
 [#288]: https://github.com/lumeland/lume/issues/288
 
 [1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...HEAD
