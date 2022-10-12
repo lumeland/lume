@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - Show build duration and number of generated files [#283].
 - New option `defaultPageData` to the `metas` plugin [#286].
+- Support for CJK characters by the `slugify_url` plugin [#291], [#292].
 
 ### Changed
 - Don't show `pagefind` output if everything is OK.
@@ -1852,6 +1853,8 @@ The first version.
 [#285]: https://github.com/lumeland/lume/issues/285
 [#286]: https://github.com/lumeland/lume/issues/286
 [#288]: https://github.com/lumeland/lume/issues/288
+[#291]: https://github.com/lumeland/lume/issues/291
+[#292]: https://github.com/lumeland/lume/issues/292
 
 [1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...HEAD
 [1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...v1.12.0
