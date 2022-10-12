@@ -44,3 +44,14 @@ Deno.test("slugify forbidden characters and words", () => {
   equals(slugify("  forks   and   knives   "), "forks-knives");
   equals(slugify("went down the road"), "went-down-road");
 });
+
+Deno.test("slugify support unicode characters", () => {
+  const slugify = createSlugifier({
+    ...defaults,
+  });
+
+  equals(
+    slugify("Lume 支持中文，中文标点。？、【】｛｝！￥（）"),
+    "lume-zhichizhongwen-zhongwenbiaodian",
+  );
+});

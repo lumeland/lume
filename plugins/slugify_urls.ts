@@ -1,3 +1,4 @@
+import { unidecode } from "../deps/unidecode.ts";
 import { posix } from "../deps/path.ts";
 import { merge } from "../core/utils.ts";
 
@@ -88,11 +89,12 @@ export function createSlugifier(
 
       if (alphanumeric) {
         char = char.normalize("NFKD").replaceAll(/[\u0300-\u036F]/g, "");
+        char = unidecode(char).trim();
       }
 
-      char = /[\p{L}\u0300-\u036F]/u.test(char) ? char : "-";
+      char = /[\p{L}\u0300-\u036F]+/u.test(char) ? char : "-";
 
-      return alphanumeric && /[^\w-]/.test(char) ? "" : char;
+      return alphanumeric && /[^\w-]+/.test(char) ? "" : char;
     });
 
     if (lowercase) {
