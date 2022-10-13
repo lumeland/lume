@@ -539,7 +539,7 @@ export default class Site {
    * The common operations of build and update
    */
   async #buildPages(pages: Page[]): Promise<boolean> {
-    if (await this.dispatchEvent({ type: "beforeRender" }) === false) {
+    if (await this.dispatchEvent({ type: "beforeRender", pages }) === false) {
       return false;
     }
 
@@ -814,7 +814,7 @@ export interface SiteEvent extends Event {
   page?: Page;
 
   /**
-   * Available only in "afterBuild" and "afterUpdate"
+   * Available only in "afterBuild", "beforeRender" and "afterUpdate"
    * contains the list of pages that have been saved
    */
   pages?: Page[];

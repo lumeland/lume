@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Show build duration and number of generated files [#283].
 - New option `defaultPageData` to the `metas` plugin [#286].
 - Support for CJK characters by the `slugify_url` plugin [#291], [#292].
+- `beforeRender` event has the `pages` property with the list of pages that will be rendered.
 
 ### Changed
 - Don't show `pagefind` output if everything is OK.
