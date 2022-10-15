@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.12.1] - Unreleased
+## [1.12.1] - 2022-10-15
 ### Added
 - Show build duration and number of generated files [#283].
 - New option `defaultPageData` to the `metas` plugin [#286].
@@ -1859,7 +1859,7 @@ The first version.
 [#292]: https://github.com/lumeland/lume/issues/292
 [#293]: https://github.com/lumeland/lume/issues/293
 
-[1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...HEAD
+[1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...v1.12.1
 [1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...v1.12.0
 [1.11.4]: https://github.com/lumeland/lume/compare/v1.11.3...v1.11.4
 [1.11.3]: https://github.com/lumeland/lume/compare/v1.11.2...v1.11.3
