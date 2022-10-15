@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - Don't show `pagefind` output if everything is OK.
+- `deno task lume` uses stdin evaluation. This allows to add more Deno flags to configure permissions, lock files, etc [#293].
 
 ### Fixed
 - Export the `Options` interface for `katex` plugin.
@@ -1856,6 +1857,7 @@ The first version.
 [#288]: https://github.com/lumeland/lume/issues/288
 [#291]: https://github.com/lumeland/lume/issues/291
 [#292]: https://github.com/lumeland/lume/issues/292
+[#293]: https://github.com/lumeland/lume/issues/293
 
 [1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...HEAD
 [1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...v1.12.0

@@ -36,7 +36,7 @@ export async function importMap(url: URL, plugins: string[] = []) {
 
   // Configure lume tasks
   const tasks = config.tasks || {};
-  tasks.lume = `deno eval "import 'lume/task.ts'" --`;
+  tasks.lume = `echo "import 'lume/cli.ts'" | deno run --unstable -A -`;
   tasks.build = "deno task lume";
   tasks.serve = "deno task lume -s";
   config.tasks = tasks;
