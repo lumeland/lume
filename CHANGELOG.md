@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## Unreleased
+
+### Fixed
+- Removed typo in `jsx_preact`, allowing `comp` function to execute properly.
+
 ## [1.12.1] - 2022-10-15
 ### Added
 - Show build duration and number of generated files [#283].

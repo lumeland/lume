@@ -69,7 +69,7 @@ export class PreactJsxEngine implements Engine {
       : content;
 
     if (element && typeof element === "object") {
-      element.toString = () => preact.renderToString(element);
+      element.toString = () => renderToString(element);
     }
 
     return element;
