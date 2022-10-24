@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Added
+- New method `Server.stop()` to close the local server [#296].
+
 ### Fixed
 - Removed typo in `jsx_preact`, allowing `comp` function to execute properly.
 - The data cascade merging was refactored and simplified.
@@ -1863,6 +1866,7 @@ The first version.
 [#291]: https://github.com/lumeland/lume/issues/291
 [#292]: https://github.com/lumeland/lume/issues/292
 [#293]: https://github.com/lumeland/lume/issues/293
+[#296]: https://github.com/lumeland/lume/issues/296
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.12.1...HEAD
 [1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...v1.12.1

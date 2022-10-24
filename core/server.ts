@@ -42,6 +42,7 @@ export default class Server {
   events: Events<ServerEvent> = new Events<ServerEvent>();
   options: Options;
   middlewares: Middleware[] = [];
+  #server?: HttpServer;
 
   constructor(options: Options) {
     this.options = options;
@@ -72,14 +73,26 @@ export default class Server {
   async start() {
     const { port } = this.options;
 
-    const server = new HttpServer({
+    this.#server = new HttpServer({
       port: port,
       handler: (request, connInfo) => this.handle(request, connInfo),
     });
 
     this.dispatchEvent({ type: "start" });
 
-    await server.listenAndServe();
+    await this.#server.listenAndServe();
+  }
+
+  /** Stops the server */
+  stop() {
+    try {
+      this.#server?.close();
+    } catch (error) {
+      this.dispatchEvent({
+        type: "error",
+        error,
+      });
+    }
   }
 
   /** Handle a http request event */
