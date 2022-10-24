@@ -12,6 +12,12 @@ abstract class Base {
   /** The destination info */
   dest: Dest;
 
+  /**
+   * Used to save the merged data:
+   * the base data with the parent data
+   */
+  data: Data = {};
+
   /** The parent directory */
   #parent?: Directory;
 
@@ -20,18 +26,12 @@ abstract class Base {
    * For directories, the content of _data or _data.* files
    * For pages, the front matter or exported variables.
    */
-  #data: Data = {};
+  #baseData: Data = {};
 
   /**
    * Internal data. Used to save arbitrary data by plugins and processors
    */
   #_data = {};
-
-  /**
-   * Used to save the merged data:
-   * the base data with the parent data
-   */
-  #cache?: Data;
 
   constructor(src?: Src) {
     this.src = src || { path: "" };
@@ -50,15 +50,19 @@ abstract class Base {
 
       if (date) {
         this.dest.path = this.dest.path.replace(found, "");
-        this.#data.date = date;
+        this.baseData.date = date;
       }
     }
+  }
 
-    // Make data enumerable
-    const descriptor: PropertyDescriptor =
-      Object.getOwnPropertyDescriptor(Base.prototype, "data") || {};
-    descriptor.enumerable = true;
-    Object.defineProperty(this, "data", descriptor);
+  /** Returns the base data */
+  get baseData(): Data {
+    return this.#baseData;
+  }
+
+  /** Set new base data */
+  set baseData(data: Data) {
+    this.#baseData = data;
   }
 
   /** Returns the parent directory */
@@ -75,40 +79,6 @@ abstract class Base {
     this.#parent = parent;
   }
 
-  /** Returns the front matter for pages, _data for directories */
-  get baseData(): Data {
-    return this.#data;
-  }
-
-  /** Set front matter for pages, _data for directories */
-  set baseData(data: Data) {
-    this.#data = data;
-    this.refreshCache();
-  }
-
-  /**
-   * Merge the data of parent directories recursively
-   * and return the merged data
-   */
-  get data(): Data {
-    if (this.#cache) {
-      return this.#cache;
-    }
-    const baseData = this instanceof Page
-      ? { ...this.baseData, page: this }
-      : this.baseData;
-
-    const data = mergeData(baseData, this.parent?.data || {});
-
-    return this.#cache = data;
-  }
-
-  /** Replace the data of this object with the given data */
-  set data(data: Data) {
-    this.#cache = undefined;
-    this.#data = data;
-  }
-
   /**
    * The property _data is to store internal data,
    * used by plugins, processors, etc to save arbitrary values
@@ -119,15 +89,6 @@ abstract class Base {
 
   get _data() {
     return this.#_data;
-  }
-
-  /** Clean the cache of the merged data */
-  refreshCache(): boolean {
-    if (this.#cache) {
-      this.#cache = undefined;
-      return true;
-    }
-    return false;
   }
 }
 
@@ -145,7 +106,7 @@ export class Page extends Base {
     const path = ext ? url.slice(0, -ext.length) : url;
 
     const page = new Page();
-    page.data = { url, content };
+    page.data = mergeData({ url, content, page });
     page.content = content;
     page.updateDest({ path, ext });
 
@@ -277,13 +238,17 @@ export class Directory extends Base {
   }
 
   /** Return the list of pages in this directory recursively */
-  *getPages(): Iterable<Page> {
+  *getPages(parentData?: Data): Iterable<Page> {
+    const data = mergeData(this.baseData, parentData);
+    this.data = data;
+
     for (const page of this.pages.values()) {
+      page.data = mergeData({ ...page.baseData, page }, data);
       yield page;
     }
 
     for (const dir of this.dirs.values()) {
-      yield* dir.getPages();
+      yield* dir.getPages(data);
     }
   }
 
@@ -296,17 +261,6 @@ export class Directory extends Base {
     for (const dir of this.dirs.values()) {
       yield* dir.getStaticFiles();
     }
-  }
-
-  /** Refresh the data cache in this directory recursively (used for rebuild) */
-  refreshCache(): boolean {
-    if (super.refreshCache()) {
-      this.pages.forEach((page) => page.refreshCache());
-      this.dirs.forEach((dir) => dir.refreshCache());
-      return true;
-    }
-
-    return false;
   }
 }
 

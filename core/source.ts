@@ -482,7 +482,6 @@ export default class Source {
     }
 
     Object.assign(directory.baseData, data);
-    directory.refreshCache();
   }
 }
 
