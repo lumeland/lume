@@ -94,63 +94,11 @@ abstract class Base {
     if (this.#cache) {
       return this.#cache;
     }
-
-    // Merge the data of the parent directories
-    const pageData: Data = this instanceof Page
-      ? { page: this, ...this.baseData }
+    const baseData = this instanceof Page
+      ? { ...this.baseData, page: this }
       : this.baseData;
 
-    const parentData: Data = this.parent?.data || {};
-    const data: Data = { ...parentData, ...pageData };
-
-    // Merge special keys
-    const mergedKeys: Record<string, string> = {
-      tags: "stringArray",
-      ...parentData.mergedKeys,
-      ...pageData.mergedKeys,
-    };
-
-    for (const [key, type] of Object.entries(mergedKeys)) {
-      switch (type) {
-        case "stringArray":
-        case "array":
-          {
-            const pageValue: unknown[] = Array.isArray(pageData[key])
-              ? pageData[key] as unknown[]
-              : (key in pageData)
-              ? [pageData[key]]
-              : [];
-
-            const parentValue: unknown[] = Array.isArray(parentData[key])
-              ? parentData[key] as unknown[]
-              : (key in parentData)
-              ? [parentData[key]]
-              : [];
-
-            const merged = [...parentValue, ...pageValue];
-
-            data[key] = [
-              ...new Set(
-                type === "stringArray" ? merged.map(String) : merged,
-              ),
-            ];
-          }
-          break;
-
-        case "object":
-          {
-            const pageValue = pageData[key] as
-              | Record<string, unknown>
-              | undefined;
-            const parentValue = parentData[key] as
-              | Record<string, unknown>
-              | undefined;
-
-            data[key] = { ...parentValue, ...pageValue };
-          }
-          break;
-      }
-    }
+    const data = mergeData(baseData, this.parent?.data || {});
 
     return this.#cache = data;
   }
@@ -490,4 +438,60 @@ export function createDate(str: string): Date | undefined {
   if (str.match(/^\d+$/)) {
     return new Date(parseInt(str));
   }
+}
+
+/** Merge the cascade data */
+export function mergeData(baseData: Data, parentData: Data = {}): Data {
+  const data: Data = { ...parentData, ...baseData };
+
+  // Merge special keys
+  const mergedKeys: Record<string, string> = {
+    tags: "stringArray",
+    ...parentData.mergedKeys,
+    ...baseData.mergedKeys,
+  };
+
+  for (const [key, type] of Object.entries(mergedKeys)) {
+    switch (type) {
+      case "stringArray":
+      case "array":
+        {
+          const baseValue: unknown[] = Array.isArray(baseData[key])
+            ? baseData[key] as unknown[]
+            : (key in baseData)
+            ? [baseData[key]]
+            : [];
+
+          const parentValue: unknown[] = Array.isArray(parentData[key])
+            ? parentData[key] as unknown[]
+            : (key in parentData)
+            ? [parentData[key]]
+            : [];
+
+          const merged = [...parentValue, ...baseValue];
+
+          data[key] = [
+            ...new Set(
+              type === "stringArray" ? merged.map(String) : merged,
+            ),
+          ];
+        }
+        break;
+
+      case "object":
+        {
+          const baseValue = baseData[key] as
+            | Record<string, unknown>
+            | undefined;
+          const parentValue = parentData[key] as
+            | Record<string, unknown>
+            | undefined;
+
+          data[key] = { ...parentValue, ...baseValue };
+        }
+        break;
+    }
+  }
+
+  return data;
 }
