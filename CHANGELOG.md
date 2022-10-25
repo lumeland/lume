@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New method `Server.stop()` to close the local server [#296].
 - The `src` property of pages and folders includes now the `slug` value [#278].
+- New option `returnPageData` to `search` plugin [#251].
 
 ### Fixed
 - Removed typo in `jsx_preact`, allowing `comp` function to execute properly.
@@ -1847,6 +1848,7 @@ The first version.
 [#248]: https://github.com/lumeland/lume/issues/248
 [#249]: https://github.com/lumeland/lume/issues/249
 [#250]: https://github.com/lumeland/lume/issues/250
+[#251]: https://github.com/lumeland/lume/issues/251
 [#252]: https://github.com/lumeland/lume/issues/252
 [#253]: https://github.com/lumeland/lume/issues/253
 [#255]: https://github.com/lumeland/lume/issues/255

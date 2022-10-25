@@ -5,10 +5,14 @@ import type { Data, Page, Site } from "../core.ts";
 export interface Options {
   /** The helper name */
   name: string;
+
+  /** To return only the `page.data` value */
+  returnPageData: boolean;
 }
 
 export const defaults: Options = {
   name: "search",
+  returnPageData: false,
 };
 
 /** Register the plugin to enable the `search` helpers */
@@ -16,11 +20,8 @@ export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.data(options.name, new Search(site));
-    site.filter(
-      "data",
-      (pages: Page[]): Data[] => pages.map((page) => page.data),
-    );
+    site.data(options.name, new Search(site, options.returnPageData));
+    site.filter("data", data);
   };
 }
 
@@ -31,9 +32,11 @@ type Condition = [string, string, unknown];
 export class Search {
   #site: Site;
   #cache = new Map<string, Page[]>();
+  #returnPageData: boolean;
 
-  constructor(site: Site) {
+  constructor(site: Site, returnPageData: boolean) {
     this.#site = site;
+    this.#returnPageData = returnPageData;
 
     site.addEventListener("beforeUpdate", () => this.#cache.clear());
   }
@@ -49,7 +52,8 @@ export class Search {
 
   /** Search pages */
   pages(query?: Query, sort?: Query, limit?: number) {
-    const result = this.#searchPages(query, sort);
+    const pages = this.#searchPages(query, sort);
+    const result = this.#returnPageData ? data(pages) : pages;
 
     if (!limit) {
       return result;
@@ -67,7 +71,7 @@ export class Search {
   values(key: string, query?: Query) {
     const values = new Set();
 
-    this.pages(query).forEach((page) => {
+    this.#searchPages(query).forEach((page) => {
       const value = page.data[key];
 
       if (Array.isArray(value)) {
@@ -87,18 +91,26 @@ export class Search {
 
   /** Return the next page of a search */
   nextPage(url: string, query?: Query, sort?: Query) {
-    const pages = this.pages(query, sort);
+    const pages = this.#searchPages(query, sort);
     const index = pages.findIndex((page) => page.data.url === url);
 
-    return (index === -1) ? undefined : pages[index + 1];
+    return (index === -1)
+      ? undefined
+      : this.#returnPageData
+      ? pages[index + 1].data
+      : pages[index + 1];
   }
 
   /** Return the previous page of a search */
   previousPage(url: string, query?: Query, sort?: Query) {
-    const pages = this.pages(query, sort);
+    const pages = this.#searchPages(query, sort);
     const index = pages.findIndex((page) => page.data.url === url);
 
-    return (index <= 0) ? undefined : pages[index - 1];
+    return (index <= 0)
+      ? undefined
+      : this.#returnPageData
+      ? pages[index - 1].data
+      : pages[index - 1];
   }
 
   #searchPages(query?: Query, sort: Query = "date"): Page[] {
@@ -120,6 +132,10 @@ export class Search {
     this.#cache.set(id, result);
     return [...result];
   }
+}
+
+function data(pages: Page[]): Data[] {
+  return pages.map((page) => page.data);
 }
 
 /**
