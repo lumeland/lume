@@ -120,6 +120,7 @@ snapshot[`postcss plugin 4`] = `
     ext: ".css",
     path: "/index",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
@@ -163,6 +164,7 @@ snapshot[`postcss plugin 5`] = `
     ext: ".css",
     path: "/text",
     remote: undefined,
+    slug: "text",
   },
 }
 `;
@@ -268,6 +270,7 @@ snapshot[`postcss plugin without includes 4`] = `
     ext: ".css",
     path: "/index",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
@@ -311,6 +314,7 @@ snapshot[`postcss plugin without includes 5`] = `
     ext: ".css",
     path: "/text",
     remote: undefined,
+    slug: "text",
   },
 }
 `;

@@ -105,6 +105,7 @@ snapshot[`sass plugin 4`] = `
     ext: ".scss",
     path: "/index",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
@@ -134,6 +135,7 @@ body
     ext: ".sass",
     path: "/index2",
     remote: undefined,
+    slug: "index2",
   },
 }
 `;

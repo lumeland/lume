@@ -101,6 +101,7 @@ local_backend: false
   src: {
     path: "",
     remote: undefined,
+    slug: "config",
   },
 }
 `;
@@ -146,6 +147,7 @@ snapshot[`code_hightlight plugin 5`] = `
   src: {
     path: "",
     remote: undefined,
+    slug: "index",
   },
 }
 `;

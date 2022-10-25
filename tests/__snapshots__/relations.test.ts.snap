@@ -162,6 +162,7 @@ snapshot[`relations plugin 4`] = `
     ext: ".md",
     path: "/categories/category-1",
     remote: undefined,
+    slug: "category-1",
   },
 }
 `;
@@ -273,6 +274,7 @@ snapshot[`relations plugin 5`] = `
     ext: ".md",
     path: "/categories/category-2",
     remote: undefined,
+    slug: "category-2",
   },
 }
 `;
@@ -374,6 +376,7 @@ snapshot[`relations plugin 6`] = `
     ext: ".md",
     path: "/comments/comment-1",
     remote: undefined,
+    slug: "comment-1",
   },
 }
 `;
@@ -460,6 +463,7 @@ snapshot[`relations plugin 7`] = `
     ext: ".md",
     path: "/comments/comment-2",
     remote: undefined,
+    slug: "comment-2",
   },
 }
 `;
@@ -561,6 +565,7 @@ snapshot[`relations plugin 8`] = `
     ext: ".md",
     path: "/comments/comment-3",
     remote: undefined,
+    slug: "comment-3",
   },
 }
 `;
@@ -793,6 +798,7 @@ snapshot[`relations plugin 9`] = `
     ext: ".md",
     path: "/posts/post-1",
     remote: undefined,
+    slug: "post-1",
   },
 }
 `;
@@ -951,6 +957,7 @@ snapshot[`relations plugin 10`] = `
     ext: ".md",
     path: "/posts/post-2",
     remote: undefined,
+    slug: "post-2",
   },
 }
 `;

@@ -106,6 +106,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 4`] = `
     ext: ".jsx",
     path: "/index",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
@@ -133,6 +134,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 5`] = `
     ext: ".jsx",
     path: "/multiple[0]",
     remote: undefined,
+    slug: "multiple",
   },
 }
 `;
@@ -160,6 +162,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 6`] = `
     ext: ".jsx",
     path: "/multiple[1]",
     remote: undefined,
+    slug: "multiple",
   },
 }
 `;
@@ -188,6 +191,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 7`] = `
     ext: ".njk",
     path: "/with-comp",
     remote: undefined,
+    slug: "with-comp",
   },
 }
 `;
@@ -216,6 +220,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 8`] = `
     ext: ".jsx",
     path: "/with-function",
     remote: undefined,
+    slug: "with-function",
   },
 }
 `;
@@ -259,6 +264,7 @@ body {
     ext: ".md",
     path: "/with-markdown",
     remote: undefined,
+    slug: "with-markdown",
   },
 }
 `;

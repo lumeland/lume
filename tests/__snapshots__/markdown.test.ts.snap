@@ -103,6 +103,7 @@ snapshot[`Build a markdown site 4`] = `
     ext: ".md",
     path: "/basic",
     remote: undefined,
+    slug: "basic",
   },
 }
 `;
@@ -149,6 +150,7 @@ belong to the previous footnote.
     ext: ".md",
     path: "/footnote",
     remote: undefined,
+    slug: "footnote",
   },
 }
 `;
@@ -176,6 +178,7 @@ snapshot[`Build a markdown site 6`] = `
     ext: ".md",
     path: "/with-attributes",
     remote: undefined,
+    slug: "with-attributes",
   },
 }
 `;
@@ -212,6 +215,7 @@ snapshot[`Build a markdown site 7`] = `
     ext: ".md",
     path: "/with-code",
     remote: undefined,
+    slug: "with-code",
   },
 }
 `;
@@ -252,6 +256,7 @@ Other title
     ext: ".md",
     path: "/with-deflist",
     remote: undefined,
+    slug: "with-deflist",
   },
 }
 `;
@@ -286,6 +291,7 @@ snapshot[`Build a markdown site 9`] = `
     ext: ".njk",
     path: "/with-filter",
     remote: undefined,
+    slug: "with-filter",
   },
 }
 `;
@@ -315,6 +321,7 @@ snapshot[`Build a markdown site 10`] = `
     ext: ".tmpl.js",
     path: "/with-module",
     remote: undefined,
+    slug: "with-module",
   },
 }
 `;
@@ -362,6 +369,7 @@ Foo
     ext: ".md",
     path: "/with-nunjucks",
     remote: undefined,
+    slug: "with-nunjucks",
   },
 }
 `;

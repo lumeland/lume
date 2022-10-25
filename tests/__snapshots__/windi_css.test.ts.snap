@@ -196,6 +196,7 @@ p {
     ext: ".njk",
     path: "/index",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
@@ -298,6 +299,7 @@ p {
     ext: ".tmpl.js",
     path: "/multi[0]",
     remote: undefined,
+    slug: "multi",
   },
 }
 `;
@@ -400,6 +402,7 @@ p {
     ext: ".tmpl.js",
     path: "/multi[1]",
     remote: undefined,
+    slug: "multi",
   },
 }
 `;
@@ -506,6 +509,7 @@ p {
     ext: ".njk",
     path: "/page2",
     remote: undefined,
+    slug: "page2",
   },
 }
 `;
@@ -555,6 +559,7 @@ snapshot[`Windi CSS plugin 8`] = `
     ext: ".windi.css",
     path: "/styles",
     remote: undefined,
+    slug: "styles",
   },
 }
 `;

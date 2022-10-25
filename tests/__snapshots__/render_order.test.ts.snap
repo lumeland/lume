@@ -93,6 +93,7 @@ snapshot[`render order property 4`] = `
     ext: ".md",
     path: "/extra-page",
     remote: undefined,
+    slug: "extra-page",
   },
 }
 `;
@@ -119,6 +120,7 @@ snapshot[`render order property 5`] = `
     ext: ".tmpl.ts",
     path: "/pages2[0]",
     remote: undefined,
+    slug: "pages2",
   },
 }
 `;
@@ -145,6 +147,7 @@ snapshot[`render order property 6`] = `
     ext: ".tmpl.ts",
     path: "/pages2[1]",
     remote: undefined,
+    slug: "pages2",
   },
 }
 `;
@@ -171,6 +174,7 @@ snapshot[`render order property 7`] = `
     ext: ".tmpl.ts",
     path: "/pages2[2]",
     remote: undefined,
+    slug: "pages2",
   },
 }
 `;
@@ -197,6 +201,7 @@ snapshot[`render order property 8`] = `
     ext: ".tmpl.ts",
     path: "/pages2[3]",
     remote: undefined,
+    slug: "pages2",
   },
 }
 `;
@@ -223,6 +228,7 @@ snapshot[`render order property 9`] = `
     ext: ".tmpl.ts",
     path: "/pages2[4]",
     remote: undefined,
+    slug: "pages2",
   },
 }
 `;
@@ -249,6 +255,7 @@ snapshot[`render order property 10`] = `
     ext: ".tmpl.ts",
     path: "/pages2[5]",
     remote: undefined,
+    slug: "pages2",
   },
 }
 `;
@@ -275,6 +282,7 @@ snapshot[`render order property 11`] = `
     ext: ".tmpl.ts",
     path: "/pages2[6]",
     remote: undefined,
+    slug: "pages2",
   },
 }
 `;
@@ -301,6 +309,7 @@ snapshot[`render order property 12`] = `
     ext: ".tmpl.ts",
     path: "/pages2[7]",
     remote: undefined,
+    slug: "pages2",
   },
 }
 `;
@@ -327,6 +336,7 @@ snapshot[`render order property 13`] = `
     ext: ".tmpl.ts",
     path: "/pages2[8]",
     remote: undefined,
+    slug: "pages2",
   },
 }
 `;
@@ -353,6 +363,7 @@ snapshot[`render order property 14`] = `
     ext: ".tmpl.ts",
     path: "/pages2[9]",
     remote: undefined,
+    slug: "pages2",
   },
 }
 `;
@@ -378,6 +389,7 @@ snapshot[`render order property 15`] = `
     ext: ".tmpl.ts",
     path: "/pages[0]",
     remote: undefined,
+    slug: "pages",
   },
 }
 `;
@@ -403,6 +415,7 @@ snapshot[`render order property 16`] = `
     ext: ".tmpl.ts",
     path: "/pages[1]",
     remote: undefined,
+    slug: "pages",
   },
 }
 `;
@@ -428,6 +441,7 @@ snapshot[`render order property 17`] = `
     ext: ".tmpl.ts",
     path: "/pages[2]",
     remote: undefined,
+    slug: "pages",
   },
 }
 `;
@@ -453,6 +467,7 @@ snapshot[`render order property 18`] = `
     ext: ".tmpl.ts",
     path: "/pages[3]",
     remote: undefined,
+    slug: "pages",
   },
 }
 `;
@@ -478,6 +493,7 @@ snapshot[`render order property 19`] = `
     ext: ".tmpl.ts",
     path: "/pages[4]",
     remote: undefined,
+    slug: "pages",
   },
 }
 `;
@@ -503,6 +519,7 @@ snapshot[`render order property 20`] = `
     ext: ".tmpl.ts",
     path: "/pages[5]",
     remote: undefined,
+    slug: "pages",
   },
 }
 `;
@@ -528,6 +545,7 @@ snapshot[`render order property 21`] = `
     ext: ".tmpl.ts",
     path: "/pages[6]",
     remote: undefined,
+    slug: "pages",
   },
 }
 `;
@@ -553,6 +571,7 @@ snapshot[`render order property 22`] = `
     ext: ".tmpl.ts",
     path: "/pages[7]",
     remote: undefined,
+    slug: "pages",
   },
 }
 `;
@@ -578,6 +597,7 @@ snapshot[`render order property 23`] = `
     ext: ".tmpl.ts",
     path: "/pages[8]",
     remote: undefined,
+    slug: "pages",
   },
 }
 `;
@@ -603,6 +623,7 @@ snapshot[`render order property 24`] = `
     ext: ".tmpl.ts",
     path: "/pages[9]",
     remote: undefined,
+    slug: "pages",
   },
 }
 `;
@@ -638,6 +659,7 @@ snapshot[`render order property 25`] = `
     ext: ".tmpl.ts",
     path: "/pagination[0]",
     remote: undefined,
+    slug: "pagination",
   },
 }
 `;
@@ -673,6 +695,7 @@ snapshot[`render order property 26`] = `
     ext: ".tmpl.ts",
     path: "/pagination[1]",
     remote: undefined,
+    slug: "pagination",
   },
 }
 `;
@@ -708,6 +731,7 @@ snapshot[`render order property 27`] = `
     ext: ".tmpl.ts",
     path: "/pagination[2]",
     remote: undefined,
+    slug: "pagination",
   },
 }
 `;

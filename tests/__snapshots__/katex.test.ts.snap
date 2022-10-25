@@ -123,6 +123,7 @@ c = \\\\pm\\\\sqrt{a^2 + b^2}
     ext: ".md",
     path: "/index",
     remote: undefined,
+    slug: "index",
   },
 }
 `;

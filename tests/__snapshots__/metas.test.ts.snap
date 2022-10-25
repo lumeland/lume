@@ -144,6 +144,7 @@ snapshot[`metas plugin 4`] = `
     ext: ".njk",
     path: "/page-1",
     remote: undefined,
+    slug: "page-1",
   },
 }
 `;
@@ -222,6 +223,7 @@ snapshot[`metas plugin 5`] = `
     ext: ".njk",
     path: "/page-2",
     remote: undefined,
+    slug: "page-2",
   },
 }
 `;
@@ -291,6 +293,7 @@ snapshot[`metas plugin 6`] = `
     ext: ".md",
     path: "/page-3",
     remote: undefined,
+    slug: "page-3",
   },
 }
 `;
@@ -439,6 +442,7 @@ snapshot[`metas plugin use defaultPageData 4`] = `
     ext: ".njk",
     path: "/page-1",
     remote: undefined,
+    slug: "page-1",
   },
 }
 `;
@@ -517,6 +521,7 @@ snapshot[`metas plugin use defaultPageData 5`] = `
     ext: ".njk",
     path: "/page-2",
     remote: undefined,
+    slug: "page-2",
   },
 }
 `;
@@ -593,6 +598,7 @@ snapshot[`metas plugin use defaultPageData 6`] = `
     ext: ".md",
     path: "/page-3",
     remote: undefined,
+    slug: "page-3",
   },
 }
 `;

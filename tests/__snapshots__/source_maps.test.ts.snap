@@ -107,6 +107,7 @@ snapshot[`Source maps from CSS files 4`] = `
   src: {
     path: "",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
@@ -129,6 +130,7 @@ snapshot[`Source maps from CSS files 5`] = `
   src: {
     path: "",
     remote: undefined,
+    slug: "index2",
   },
 }
 `;
@@ -158,6 +160,7 @@ snapshot[`Source maps from CSS files 6`] = `
     ext: ".scss",
     path: "/index",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
@@ -189,6 +192,7 @@ body
     ext: ".sass",
     path: "/index2",
     remote: undefined,
+    slug: "index2",
   },
 }
 `;
@@ -303,6 +307,7 @@ document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
   src: {
     path: "",
     remote: undefined,
+    slug: "main",
   },
 }
 `;
@@ -331,6 +336,7 @@ snapshot[`Source maps from Js files 5`] = `
   src: {
     path: "",
     remote: undefined,
+    slug: "to_uppercase",
   },
 }
 `;
@@ -364,6 +370,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     ext: ".ts",
     path: "/main",
     remote: undefined,
+    slug: "main",
   },
 }
 `;
@@ -394,6 +401,7 @@ snapshot[`Source maps from Js files 7`] = `
     ext: ".ts",
     path: "/modules/to_uppercase",
     remote: undefined,
+    slug: "to_uppercase",
   },
 }
 `;

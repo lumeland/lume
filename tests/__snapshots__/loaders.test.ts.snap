@@ -128,6 +128,7 @@ snapshot[`Load the pages of a site 4`] = `
     ext: ".png",
     path: "/favicon",
     remote: undefined,
+    slug: "favicon",
   },
 }
 `;
@@ -174,6 +175,7 @@ snapshot[`Load the pages of a site 5`] = `
     ext: ".yaml",
     path: "/page5",
     remote: undefined,
+    slug: "page5",
   },
 }
 `;
@@ -262,6 +264,7 @@ snapshot[`Load the pages of a site 6`] = `
     ext: ".md",
     path: "/pages/1_page1",
     remote: undefined,
+    slug: "page1",
   },
 }
 `;
@@ -339,6 +342,7 @@ snapshot[`Load the pages of a site 7`] = `
     ext: ".tmpl.json",
     path: "/pages/2020-06-21_page2",
     remote: undefined,
+    slug: "page2",
   },
 }
 `;
@@ -416,6 +420,7 @@ snapshot[`Load the pages of a site 8`] = `
     ext: ".tmpl.ts",
     path: "/pages/2021-01-02-18-32_page4",
     remote: undefined,
+    slug: "page4",
   },
 }
 `;
@@ -496,6 +501,7 @@ snapshot[`Load the pages of a site 9`] = `
     ext: ".md",
     path: "/pages/2021-12-29_page6",
     remote: undefined,
+    slug: "page6",
   },
 }
 `;
@@ -573,6 +579,7 @@ snapshot[`Load the pages of a site 10`] = `
     ext: ".tmpl.js",
     path: "/pages/page3",
     remote: undefined,
+    slug: "page3",
   },
 }
 `;
@@ -652,6 +659,7 @@ snapshot[`Load the pages of a site 11`] = `
     ext: ".tmpl.js",
     path: "/pages/subpage/page7",
     remote: undefined,
+    slug: "page7",
   },
 }
 `;
@@ -705,6 +713,7 @@ snapshot[`Load the pages of a site 12`] = `
     ext: ".css",
     path: "/styles",
     remote: undefined,
+    slug: "styles",
   },
 }
 `;

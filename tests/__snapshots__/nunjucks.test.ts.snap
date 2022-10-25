@@ -105,6 +105,7 @@ icon {
   src: {
     path: "",
     remote: undefined,
+    slug: "components",
   },
 }
 `;
@@ -142,6 +143,7 @@ console.log("Hello world, from the icon/User component");
   src: {
     path: "",
     remote: undefined,
+    slug: "components",
   },
 }
 `;
@@ -214,6 +216,7 @@ snapshot[`build a site with nunjucks 6`] = `
     ext: ".njk",
     path: "/components",
     remote: undefined,
+    slug: "components",
   },
 }
 `;
@@ -248,6 +251,7 @@ snapshot[`build a site with nunjucks 7`] = `
     ext: ".njk",
     path: "/data.json",
     remote: undefined,
+    slug: "data",
   },
 }
 `;
@@ -289,6 +293,7 @@ snapshot[`build a site with nunjucks 8`] = `
     ext: ".njk",
     path: "/index",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
@@ -328,6 +333,7 @@ snapshot[`build a site with nunjucks 9`] = `
     ext: ".tmpl.js",
     path: "/njk-filter",
     remote: undefined,
+    slug: "njk-filter",
   },
 }
 `;
@@ -397,6 +403,7 @@ snapshot[`build a site with nunjucks 10`] = `
     ext: ".njk",
     path: "/with-helpers",
     remote: undefined,
+    slug: "with-helpers",
   },
 }
 `;

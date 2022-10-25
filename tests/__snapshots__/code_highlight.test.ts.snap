@@ -116,6 +116,7 @@ p {
     ext: ".md",
     path: "/index",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
@@ -155,6 +156,7 @@ snapshot[`code_hightlight plugin 5`] = `
     ext: ".njk",
     path: "/other",
     remote: undefined,
+    slug: "other",
   },
 }
 `;

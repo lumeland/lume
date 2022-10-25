@@ -110,6 +110,7 @@ This is the first page
     ext: ".md",
     path: "/index",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
@@ -154,6 +155,7 @@ This is the second page
     ext: ".md",
     path: "/page2",
     remote: undefined,
+    slug: "page2",
   },
 }
 `;

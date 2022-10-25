@@ -156,6 +156,7 @@ console.log("foo");
     ext: ".md",
     path: "/index",
     remote: undefined,
+    slug: "index",
   },
 }
 `;

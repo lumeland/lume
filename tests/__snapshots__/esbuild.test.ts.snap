@@ -102,6 +102,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     ext: ".ts",
     path: "/main",
     remote: undefined,
+    slug: "main",
   },
 }
 `;

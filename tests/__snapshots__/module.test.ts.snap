@@ -106,6 +106,7 @@ snapshot[`Build a site with js/ts modules 4`] = `
     ext: ".tmpl.js",
     path: "/multiple-async[0]",
     remote: undefined,
+    slug: "multiple-async",
   },
 }
 `;
@@ -146,6 +147,7 @@ snapshot[`Build a site with js/ts modules 5`] = `
     ext: ".tmpl.js",
     path: "/multiple-async[1]",
     remote: undefined,
+    slug: "multiple-async",
   },
 }
 `;
@@ -185,6 +187,7 @@ snapshot[`Build a site with js/ts modules 6`] = `
     ext: ".tmpl.js",
     path: "/multiple[0]",
     remote: undefined,
+    slug: "multiple",
   },
 }
 `;
@@ -223,6 +226,7 @@ snapshot[`Build a site with js/ts modules 7`] = `
     ext: ".tmpl.js",
     path: "/multiple[1]",
     remote: undefined,
+    slug: "multiple",
   },
 }
 `;
@@ -261,6 +265,7 @@ snapshot[`Build a site with js/ts modules 8`] = `
     ext: ".tmpl.js",
     path: "/multiple[2]",
     remote: undefined,
+    slug: "multiple",
   },
 }
 `;
@@ -311,6 +316,7 @@ snapshot[`Build a site with js/ts modules 9`] = `
     ext: ".tmpl.js",
     path: "/simple",
     remote: undefined,
+    slug: "simple",
   },
 }
 `;

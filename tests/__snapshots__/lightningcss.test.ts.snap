@@ -99,6 +99,7 @@ snapshot[`lightningcss plugin 4`] = `
     ext: ".css",
     path: "/index",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
@@ -133,6 +134,7 @@ snapshot[`lightningcss plugin 5`] = `
     ext: ".css",
     path: "/text",
     remote: undefined,
+    slug: "text",
   },
 }
 `;

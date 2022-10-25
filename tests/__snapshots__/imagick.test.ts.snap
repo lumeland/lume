@@ -110,6 +110,7 @@ snapshot[`imagick plugin 4`] = `
     ext: ".png",
     path: "/lume[0]",
     remote: undefined,
+    slug: "lume",
   },
 }
 `;
@@ -136,6 +137,7 @@ snapshot[`imagick plugin 5`] = `
     ext: ".png",
     path: "/lume[1]",
     remote: undefined,
+    slug: "lume",
   },
 }
 `;
@@ -162,6 +164,7 @@ snapshot[`imagick plugin 6`] = `
     ext: ".png",
     path: "/lume[2]",
     remote: undefined,
+    slug: "lume",
   },
 }
 `;
@@ -188,6 +191,7 @@ snapshot[`imagick plugin 7`] = `
     ext: ".png",
     path: "/lume[3]",
     remote: undefined,
+    slug: "lume",
   },
 }
 `;
@@ -214,6 +218,7 @@ snapshot[`imagick plugin 8`] = `
     ext: ".png",
     path: "/lume[4]",
     remote: undefined,
+    slug: "lume",
   },
 }
 `;

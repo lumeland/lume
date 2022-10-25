@@ -33,23 +33,27 @@ abstract class Base {
    */
   #_data = {};
 
-  constructor(src?: Src) {
-    this.src = src || { path: "" };
+  constructor(src?: Partial<Src>) {
+    this.src = { path: "", slug: "", ...src };
     this.dest = {
       path: this.src.path,
       ext: this.src.ext || "",
     };
 
-    // Detect the date of the page/directory in the filename
-    const basename = posix.basename(this.src.path);
-    const dateInPath = basename.match(/^([^_]+)?_/);
+    if (this.src.path && !this.src.slug) {
+      this.src.slug = posix.basename(this.src.path).replace(/\.[\w.]+$/, "");
+    }
 
-    if (dateInPath) {
-      const [found, dateStr] = dateInPath;
+    // Detect the date of the page/directory in the filename
+    const dateInSlug = this.src.slug.match(/^([^_]+)?_/);
+
+    if (dateInSlug) {
+      const [found, dateStr] = dateInSlug;
       const date = createDate(dateStr);
 
       if (date) {
         this.dest.path = this.dest.path.replace(found, "");
+        this.src.slug = this.src.slug.replace(found, "");
         this.baseData.date = date;
       }
     }
@@ -104,8 +108,9 @@ export class Page extends Base {
   static create(url: string, content: Content): Page {
     const ext = posix.extname(url);
     const path = ext ? url.slice(0, -ext.length) : url;
+    const slug = posix.basename(url).replace(/\.[\w.]+$/, "");
 
-    const page = new Page();
+    const page = new Page({ slug });
     page.data = mergeData({ url, content, page });
     page.content = content;
     page.updateDest({ path, ext });
@@ -192,11 +197,11 @@ export class Directory extends Base {
   components: Components = new Map();
 
   /** Create a subdirectory and return it */
-  createDirectory(name: string): Directory {
-    const path = posix.join(this.src.path, name);
-    const directory = new Directory({ path });
+  createDirectory(slug: string): Directory {
+    const path = posix.join(this.src.path, slug);
+    const directory = new Directory({ path, slug });
     directory.parent = this;
-    this.dirs.set(name, directory);
+    this.dirs.set(slug, directory);
 
     return directory;
   }
@@ -283,6 +288,9 @@ export interface StaticFile {
 
 /** The .src property for a Page or Directory */
 export interface Src {
+  /** The slug name of the file or directory */
+  slug: string;
+
   /** The path to the file (without extension) */
   path: string;
 

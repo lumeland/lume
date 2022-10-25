@@ -119,6 +119,7 @@ This is a remote template
     ext: ".md",
     path: "/local1",
     remote: undefined,
+    slug: "local1",
   },
 }
 `;
@@ -153,6 +154,7 @@ body {
     ext: ".css",
     path: "/other-remote-style",
     remote: "assets/remote_files/_remotes/other-remote-style.css",
+    slug: "other-remote-style",
   },
 }
 `;
@@ -183,6 +185,7 @@ hello();
     ext: ".js",
     path: "/scripts",
     remote: undefined,
+    slug: "scripts",
   },
 }
 `;
@@ -219,6 +222,7 @@ body {
     ext: ".css",
     path: "/styles1",
     remote: undefined,
+    slug: "styles1",
   },
 }
 `;
@@ -249,6 +253,7 @@ snapshot[`render remote files 8`] = `
     ext: ".css",
     path: "/styles2",
     remote: "assets/remote_files/_remotes/styles2.css",
+    slug: "styles2",
   },
 }
 `;

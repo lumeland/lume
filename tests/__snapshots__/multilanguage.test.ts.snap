@@ -102,6 +102,7 @@ snapshot[`metas plugin 4`] = `
     ext: ".md",
     path: "/index[en]",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
@@ -137,6 +138,7 @@ snapshot[`metas plugin 5`] = `
     ext: ".md",
     path: "/index[gl]",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
@@ -175,6 +177,7 @@ snapshot[`metas plugin 6`] = `
     ext: ".njk",
     path: "/other[en]",
     remote: undefined,
+    slug: "other",
   },
 }
 `;
@@ -212,6 +215,7 @@ snapshot[`metas plugin 7`] = `
     ext: ".njk",
     path: "/other[fr]",
     remote: undefined,
+    slug: "other",
   },
 }
 `;
@@ -266,6 +270,7 @@ snapshot[`metas plugin 8`] = `
     ext: ".tmpl.js",
     path: "/pagination[0][en]",
     remote: undefined,
+    slug: "pagination",
   },
 }
 `;
@@ -318,6 +323,7 @@ snapshot[`metas plugin 9`] = `
     ext: ".tmpl.js",
     path: "/pagination[0][gl]",
     remote: undefined,
+    slug: "pagination",
   },
 }
 `;

@@ -105,6 +105,7 @@ snapshot[`relative_url plugin 4`] = `
     ext: ".md",
     path: "/about-us/contact",
     remote: undefined,
+    slug: "contact",
   },
 }
 `;
@@ -144,6 +145,7 @@ snapshot[`relative_url plugin 5`] = `
     ext: ".md",
     path: "/about-us/index",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
@@ -183,6 +185,7 @@ snapshot[`relative_url plugin 6`] = `
     ext: ".md",
     path: "/about-us/presentation",
     remote: undefined,
+    slug: "presentation",
   },
 }
 `;
@@ -230,6 +233,7 @@ snapshot[`relative_url plugin 7`] = `
     ext: ".md",
     path: "/index",
     remote: undefined,
+    slug: "index",
   },
 }
 `;
