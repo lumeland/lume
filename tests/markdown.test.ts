@@ -1,5 +1,5 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
-import footnotePlugin from "https://jspm.dev/markdown-it-footnote@3.0.3";
+import footnotePlugin from "npm:markdown-it-footnote@3.0.3";
 
 Deno.test("Build a markdown site", async (t) => {
   const site = getSite({
