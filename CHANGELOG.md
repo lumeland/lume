@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New method `Server.stop()` to close the local server [#296].
 - The `src` property of pages and folders includes now the `slug` value [#278].
 - New option `returnPageData` to `search` plugin [#251].
+- New middleware `www` [#280].
 
 ### Changed
 - The file names starting with `[number]_` no longer are parsed as dates.
@@ -1868,6 +1869,7 @@ The first version.
 [#276]: https://github.com/lumeland/lume/issues/276
 [#278]: https://github.com/lumeland/lume/issues/278
 [#279]: https://github.com/lumeland/lume/issues/279
+[#280]: https://github.com/lumeland/lume/issues/280
 [#283]: https://github.com/lumeland/lume/issues/283
 [#284]: https://github.com/lumeland/lume/issues/284
 [#285]: https://github.com/lumeland/lume/issues/285
