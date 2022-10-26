@@ -34,6 +34,7 @@ export const pluginNames = [
   "resolve_urls",
   "sass",
   "sheets",
+  "sitemap",
   "slugify_urls",
   "source_maps",
   "svgo",
