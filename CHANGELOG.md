@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.13.0] - Unreleased
 ### Added
 - New method `Server.stop()` to close the local server [#296].
 - The `src` property of pages and folders includes now the `slug` value [#278].
@@ -1878,7 +1878,7 @@ The first version.
 [#293]: https://github.com/lumeland/lume/issues/293
 [#296]: https://github.com/lumeland/lume/issues/296
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.12.1...HEAD
+[1.13.0]: https://github.com/lumeland/lume/compare/v1.12.1...HEAD
 [1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...v1.12.1
 [1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...v1.12.0
 [1.11.4]: https://github.com/lumeland/lume/compare/v1.11.3...v1.11.4
