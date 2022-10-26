@@ -2,6 +2,7 @@ import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
 import { basename, fromFileUrl, join } from "../deps/path.ts";
 import { printError } from "../core/errors.ts";
+import { DeepPartial } from "../core/utils.ts";
 
 import type { Page, Site, SiteOptions, SourceMap } from "../core.ts";
 
@@ -14,7 +15,7 @@ export function getPath(path: string): string {
 
 /** Create a new lume site using the "assets" path as cwd */
 export function getSite(
-  options: Partial<SiteOptions> = {},
+  options: DeepPartial<SiteOptions> = {},
   pluginOptions = {},
 ): Site {
   options.cwd = getPath("assets");

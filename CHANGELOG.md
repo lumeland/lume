@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The `src` property of pages and folders includes now the `slug` value [#278].
 - New option `returnPageData` to `search` plugin [#251].
 - New middleware `www` [#280].
+- New `sitemap` plugin [#287].
 
 ### Changed
 - The file names starting with `[number]_` no longer are parsed as dates.
@@ -1874,6 +1875,7 @@ The first version.
 [#284]: https://github.com/lumeland/lume/issues/284
 [#285]: https://github.com/lumeland/lume/issues/285
 [#286]: https://github.com/lumeland/lume/issues/286
+[#287]: https://github.com/lumeland/lume/issues/287
 [#288]: https://github.com/lumeland/lume/issues/288
 [#291]: https://github.com/lumeland/lume/issues/291
 [#292]: https://github.com/lumeland/lume/issues/292
