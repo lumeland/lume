@@ -16,7 +16,7 @@ Deno.test("Load the pages of a site", async (t) => {
   await assertSiteSnapshot(t, site);
 
   // Shared data
-  const page1 = getPage(site, "/pages/1_page1");
+  const page1 = getPage(site, "/pages/page1");
   const page2 = getPage(site, "/pages/2020-06-21_page2");
 
   assert(page1.data.colors === page2.data.colors);

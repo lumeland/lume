@@ -396,10 +396,6 @@ export function createDate(str: string): Date | undefined {
       second ? parseInt(second) : 0,
     ));
   }
-
-  if (str.match(/^\d+$/)) {
-    return new Date(parseInt(str));
-  }
 }
 
 /** Merge the cascade data */

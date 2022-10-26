@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The `src` property of pages and folders includes now the `slug` value [#278].
 - New option `returnPageData` to `search` plugin [#251].
 
+### Changed
+- The file names starting with `[number]_` no longer are parsed as dates.
+  For example `14455_full.jpg`. In previous versions, Lume interpret `14455` as a timestamp to create a Date and remove the prefix to output the file as `full.jpg` [#284].
+
 ### Fixed
 - Removed typo in `jsx_preact`, allowing `comp` function to execute properly.
 - The data cascade merging was refactored and simplified.
@@ -1865,6 +1869,7 @@ The first version.
 [#278]: https://github.com/lumeland/lume/issues/278
 [#279]: https://github.com/lumeland/lume/issues/279
 [#283]: https://github.com/lumeland/lume/issues/283
+[#284]: https://github.com/lumeland/lume/issues/284
 [#285]: https://github.com/lumeland/lume/issues/285
 [#286]: https://github.com/lumeland/lume/issues/286
 [#288]: https://github.com/lumeland/lume/issues/288
