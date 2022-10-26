@@ -1,4 +1,4 @@
-export * from "npm:liquidjs@9.42.0";
+export * from "npm:liquidjs@9.42.1";
 
 export interface LiquidOptions {
   /** A directory or an array of directories from where to resolve layout and include templates, and the filename passed to `.renderFile()`. If it's an array, the files are looked up in the order they occur in the array. Defaults to `["."]` */
