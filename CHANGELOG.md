@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 - The file names starting with `[number]_` no longer are parsed as dates.
   For example `14455_full.jpg`. In previous versions, Lume interpret `14455` as a timestamp to create a Date and remove the prefix to output the file as `full.jpg` [#284].
+- The plugin `search` ignores the page 404 [#299].
 
 ### Fixed
 - Removed typo in `jsx_preact`, allowing `comp` function to execute properly.
@@ -1881,6 +1882,7 @@ The first version.
 [#292]: https://github.com/lumeland/lume/issues/292
 [#293]: https://github.com/lumeland/lume/issues/293
 [#296]: https://github.com/lumeland/lume/issues/296
+[#299]: https://github.com/lumeland/lume/issues/299
 
 [1.13.0]: https://github.com/lumeland/lume/compare/v1.12.1...HEAD
 [1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...v1.12.1
