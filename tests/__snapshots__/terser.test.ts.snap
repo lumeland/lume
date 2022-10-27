@@ -93,6 +93,7 @@ console.log(one() + two());
     path: "/main",
   },
   src: {
+    asset: true,
     ext: ".js",
     path: "/main",
     remote: undefined,
@@ -133,6 +134,7 @@ export function two () {
     path: "/numbers",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/numbers.js",
     remote: undefined,

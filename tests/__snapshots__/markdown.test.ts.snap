@@ -100,6 +100,7 @@ snapshot[`Build a markdown site 4`] = `
     path: "/basic/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/basic",
     remote: undefined,
@@ -147,6 +148,7 @@ belong to the previous footnote.
     path: "/footnote/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/footnote",
     remote: undefined,
@@ -175,6 +177,7 @@ snapshot[`Build a markdown site 6`] = `
     path: "/with-attributes/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/with-attributes",
     remote: undefined,
@@ -212,6 +215,7 @@ snapshot[`Build a markdown site 7`] = `
     path: "/with-code/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/with-code",
     remote: undefined,
@@ -253,6 +257,7 @@ Other title
     path: "/with-deflist/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/with-deflist",
     remote: undefined,
@@ -288,6 +293,7 @@ snapshot[`Build a markdown site 9`] = `
     path: "/with-filter/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/with-filter",
     remote: undefined,
@@ -318,6 +324,7 @@ snapshot[`Build a markdown site 10`] = `
     path: "/with-module/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/with-module",
     remote: undefined,
@@ -366,6 +373,7 @@ Foo
     path: "/with-nunjucks/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/with-nunjucks",
     remote: undefined,

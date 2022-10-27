@@ -113,6 +113,7 @@ p {
     path: "/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/index",
     remote: undefined,
@@ -153,6 +154,7 @@ snapshot[`code_hightlight plugin 5`] = `
     path: "/other/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/other",
     remote: undefined,

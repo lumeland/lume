@@ -96,6 +96,7 @@ snapshot[`lightningcss plugin 4`] = `
     path: "/index",
   },
   src: {
+    asset: true,
     ext: ".css",
     path: "/index",
     remote: undefined,
@@ -131,6 +132,7 @@ snapshot[`lightningcss plugin 5`] = `
     path: "/text",
   },
   src: {
+    asset: true,
     ext: ".css",
     path: "/text",
     remote: undefined,

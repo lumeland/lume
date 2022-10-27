@@ -159,6 +159,7 @@ snapshot[`relations plugin 4`] = `
     path: "/categories/category-1/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/categories/category-1",
     remote: undefined,
@@ -271,6 +272,7 @@ snapshot[`relations plugin 5`] = `
     path: "/categories/category-2/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/categories/category-2",
     remote: undefined,
@@ -373,6 +375,7 @@ snapshot[`relations plugin 6`] = `
     path: "/comments/comment-1/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/comments/comment-1",
     remote: undefined,
@@ -460,6 +463,7 @@ snapshot[`relations plugin 7`] = `
     path: "/comments/comment-2/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/comments/comment-2",
     remote: undefined,
@@ -562,6 +566,7 @@ snapshot[`relations plugin 8`] = `
     path: "/comments/comment-3/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/comments/comment-3",
     remote: undefined,
@@ -795,6 +800,7 @@ snapshot[`relations plugin 9`] = `
     path: "/posts/post-1/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/posts/post-1",
     remote: undefined,
@@ -954,6 +960,7 @@ snapshot[`relations plugin 10`] = `
     path: "/posts/post-2/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/posts/post-2",
     remote: undefined,

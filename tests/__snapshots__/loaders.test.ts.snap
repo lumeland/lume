@@ -125,6 +125,7 @@ snapshot[`Load the pages of a site 4`] = `
     path: "/favicon",
   },
   src: {
+    asset: true,
     ext: ".png",
     path: "/favicon",
     remote: undefined,
@@ -172,6 +173,7 @@ snapshot[`Load the pages of a site 5`] = `
     path: "/page5/index",
   },
   src: {
+    asset: undefined,
     ext: ".yaml",
     path: "/page5",
     remote: undefined,
@@ -250,6 +252,7 @@ snapshot[`Load the pages of a site 6`] = `
     path: "/overrided-page2/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.json",
     path: "/pages/2020-06-21_page2",
     remote: undefined,
@@ -328,6 +331,7 @@ snapshot[`Load the pages of a site 7`] = `
     path: "/pages/page4/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages/2021-01-02-18-32_page4",
     remote: undefined,
@@ -409,6 +413,7 @@ snapshot[`Load the pages of a site 8`] = `
     path: "/pages/page6/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/pages/2021-12-29_page6",
     remote: undefined,
@@ -498,6 +503,7 @@ snapshot[`Load the pages of a site 9`] = `
     path: "/pages/page1/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/pages/page1",
     remote: undefined,
@@ -576,6 +582,7 @@ snapshot[`Load the pages of a site 10`] = `
     path: "/page_3",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/pages/page3",
     remote: undefined,
@@ -656,6 +663,7 @@ snapshot[`Load the pages of a site 11`] = `
     path: "/pages/subpage/page7/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/pages/subpage/page7",
     remote: undefined,
@@ -710,6 +718,7 @@ snapshot[`Load the pages of a site 12`] = `
     path: "/styles",
   },
   src: {
+    asset: true,
     ext: ".css",
     path: "/styles",
     remote: undefined,

@@ -99,6 +99,7 @@ snapshot[`metas plugin 4`] = `
     path: "/en/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/index[en]",
     remote: undefined,
@@ -135,6 +136,7 @@ snapshot[`metas plugin 5`] = `
     path: "/gl/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/index[gl]",
     remote: undefined,
@@ -174,6 +176,7 @@ snapshot[`metas plugin 6`] = `
     path: "/other-page-english/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/other[en]",
     remote: undefined,
@@ -212,6 +215,7 @@ snapshot[`metas plugin 7`] = `
     path: "/other-page-french",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/other[fr]",
     remote: undefined,
@@ -267,6 +271,7 @@ snapshot[`metas plugin 8`] = `
     path: "/pagination/page-1/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/pagination[0][en]",
     remote: undefined,
@@ -320,6 +325,7 @@ snapshot[`metas plugin 9`] = `
     path: "/pagination/page-1/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/pagination[0][gl]",
     remote: undefined,

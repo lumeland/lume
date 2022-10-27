@@ -105,6 +105,7 @@ snapshot[`Source maps from CSS files 4`] = `
     path: "/index.css",
   },
   src: {
+    asset: true,
     path: "",
     remote: undefined,
     slug: "index",
@@ -128,6 +129,7 @@ snapshot[`Source maps from CSS files 5`] = `
     path: "/index2.css",
   },
   src: {
+    asset: true,
     path: "",
     remote: undefined,
     slug: "index2",
@@ -157,6 +159,7 @@ snapshot[`Source maps from CSS files 6`] = `
     path: "/index",
   },
   src: {
+    asset: true,
     ext: ".scss",
     path: "/index",
     remote: undefined,
@@ -189,6 +192,7 @@ body
     path: "/index2",
   },
   src: {
+    asset: true,
     ext: ".sass",
     path: "/index2",
     remote: undefined,
@@ -305,6 +309,7 @@ document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
     path: "/main.js",
   },
   src: {
+    asset: true,
     path: "",
     remote: undefined,
     slug: "main",
@@ -334,6 +339,7 @@ snapshot[`Source maps from Js files 5`] = `
     path: "/modules/to_uppercase.js",
   },
   src: {
+    asset: true,
     path: "",
     remote: undefined,
     slug: "to_uppercase",
@@ -367,6 +373,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     path: "/main",
   },
   src: {
+    asset: true,
     ext: ".ts",
     path: "/main",
     remote: undefined,
@@ -398,6 +405,7 @@ snapshot[`Source maps from Js files 7`] = `
     path: "/modules/to_uppercase",
   },
   src: {
+    asset: true,
     ext: ".ts",
     path: "/modules/to_uppercase",
     remote: undefined,

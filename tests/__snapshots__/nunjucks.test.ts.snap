@@ -103,6 +103,7 @@ icon {
     path: "/components",
   },
   src: {
+    asset: true,
     path: "",
     remote: undefined,
     slug: "components",
@@ -141,6 +142,7 @@ console.log("Hello world, from the icon/User component");
     path: "/components",
   },
   src: {
+    asset: true,
     path: "",
     remote: undefined,
     slug: "components",
@@ -213,6 +215,7 @@ snapshot[`build a site with nunjucks 6`] = `
     path: "/components/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/components",
     remote: undefined,
@@ -248,6 +251,7 @@ snapshot[`build a site with nunjucks 7`] = `
     path: "/data",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/data.json",
     remote: undefined,
@@ -290,6 +294,7 @@ snapshot[`build a site with nunjucks 8`] = `
     path: "/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/index",
     remote: undefined,
@@ -330,6 +335,7 @@ snapshot[`build a site with nunjucks 9`] = `
     path: "/njk-filter/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/njk-filter",
     remote: undefined,
@@ -400,6 +406,7 @@ snapshot[`build a site with nunjucks 10`] = `
     path: "/with-helpers/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/with-helpers",
     remote: undefined,

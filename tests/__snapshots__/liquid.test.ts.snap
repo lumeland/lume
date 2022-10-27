@@ -103,6 +103,7 @@ snapshot[`build a site with liquid 4`] = `
     path: "/data",
   },
   src: {
+    asset: undefined,
     ext: ".liquid",
     path: "/data.json",
     remote: undefined,
@@ -144,6 +145,7 @@ snapshot[`build a site with liquid 5`] = `
     path: "/index",
   },
   src: {
+    asset: undefined,
     ext: ".liquid",
     path: "/index",
     remote: undefined,
@@ -183,6 +185,7 @@ snapshot[`build a site with liquid 6`] = `
     path: "/liquid-filter/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/liquid-filter",
     remote: undefined,
@@ -244,6 +247,7 @@ snapshot[`build a site with liquid 7`] = `
     path: "/with-helpers/index",
   },
   src: {
+    asset: undefined,
     ext: ".liquid",
     path: "/with-helpers",
     remote: undefined,

@@ -116,6 +116,7 @@ This is a remote template
     path: "/local1/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/local1",
     remote: undefined,
@@ -151,6 +152,7 @@ body {
     path: "/other-remote-style",
   },
   src: {
+    asset: true,
     ext: ".css",
     path: "/other-remote-style",
     remote: "assets/remote_files/_remotes/other-remote-style.css",
@@ -182,6 +184,7 @@ hello();
     path: "/scripts",
   },
   src: {
+    asset: true,
     ext: ".js",
     path: "/scripts",
     remote: undefined,
@@ -219,6 +222,7 @@ body {
     path: "/styles1",
   },
   src: {
+    asset: true,
     ext: ".css",
     path: "/styles1",
     remote: undefined,
@@ -250,6 +254,7 @@ snapshot[`render remote files 8`] = `
     path: "/styles2",
   },
   src: {
+    asset: true,
     ext: ".css",
     path: "/styles2",
     remote: "assets/remote_files/_remotes/styles2.css",

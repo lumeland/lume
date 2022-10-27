@@ -33,7 +33,8 @@ export default class PageLoader {
       return;
     }
 
-    const { ext } = format;
+    const { ext, asset } = format;
+
     // Create the page
     const page = new Page({
       path: path.slice(0, -ext.length),
@@ -41,6 +42,7 @@ export default class PageLoader {
       created: info?.birthtime || undefined,
       remote: info.remote,
       ext,
+      asset,
     });
 
     // Load the data

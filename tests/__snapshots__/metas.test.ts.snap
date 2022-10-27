@@ -141,6 +141,7 @@ snapshot[`metas plugin 4`] = `
     path: "/page-1/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/page-1",
     remote: undefined,
@@ -220,6 +221,7 @@ snapshot[`metas plugin 5`] = `
     path: "/page-2/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/page-2",
     remote: undefined,
@@ -290,6 +292,7 @@ snapshot[`metas plugin 6`] = `
     path: "/page-3/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/page-3",
     remote: undefined,
@@ -439,6 +442,7 @@ snapshot[`metas plugin use defaultPageData 4`] = `
     path: "/page-1/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/page-1",
     remote: undefined,
@@ -518,6 +522,7 @@ snapshot[`metas plugin use defaultPageData 5`] = `
     path: "/page-2/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/page-2",
     remote: undefined,
@@ -595,6 +600,7 @@ snapshot[`metas plugin use defaultPageData 6`] = `
     path: "/page-3/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/page-3",
     remote: undefined,

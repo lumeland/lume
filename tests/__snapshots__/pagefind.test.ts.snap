@@ -107,6 +107,7 @@ This is the first page
     path: "/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/index",
     remote: undefined,
@@ -152,6 +153,7 @@ This is the second page
     path: "/page2/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/page2",
     remote: undefined,

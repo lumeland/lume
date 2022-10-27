@@ -103,6 +103,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 4`] = `
     path: "/index",
   },
   src: {
+    asset: undefined,
     ext: ".jsx",
     path: "/index",
     remote: undefined,
@@ -131,6 +132,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 5`] = `
     path: "/page/1/index",
   },
   src: {
+    asset: undefined,
     ext: ".jsx",
     path: "/multiple[0]",
     remote: undefined,
@@ -159,6 +161,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 6`] = `
     path: "/page/2/index",
   },
   src: {
+    asset: undefined,
     ext: ".jsx",
     path: "/multiple[1]",
     remote: undefined,
@@ -188,6 +191,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 7`] = `
     path: "/with-comp/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/with-comp",
     remote: undefined,
@@ -217,6 +221,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 8`] = `
     path: "/with-function/index",
   },
   src: {
+    asset: undefined,
     ext: ".jsx",
     path: "/with-function",
     remote: undefined,
@@ -261,6 +266,7 @@ body {
     path: "/with-markdown/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/with-markdown",
     remote: undefined,

@@ -103,6 +103,7 @@ snapshot[`Build a site with js/ts modules 4`] = `
     path: "/async/1/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/multiple-async[0]",
     remote: undefined,
@@ -144,6 +145,7 @@ snapshot[`Build a site with js/ts modules 5`] = `
     path: "/async/2/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/multiple-async[1]",
     remote: undefined,
@@ -184,6 +186,7 @@ snapshot[`Build a site with js/ts modules 6`] = `
     path: "/multiple/1",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/multiple[0]",
     remote: undefined,
@@ -223,6 +226,7 @@ snapshot[`Build a site with js/ts modules 7`] = `
     path: "/multiple/2",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/multiple[1]",
     remote: undefined,
@@ -262,6 +266,7 @@ snapshot[`Build a site with js/ts modules 8`] = `
     path: "/multiple/3",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/multiple[2]",
     remote: undefined,
@@ -313,6 +318,7 @@ snapshot[`Build a site with js/ts modules 9`] = `
     path: "/simple-page-new-permalink",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/simple",
     remote: undefined,

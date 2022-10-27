@@ -993,6 +993,7 @@ Daniels": 1,
     path: "/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/index",
     remote: undefined,

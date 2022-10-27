@@ -104,6 +104,7 @@ First article
     path: "/articles/first-article/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/articles/article-1",
     remote: undefined,
@@ -141,6 +142,7 @@ Second article
     path: "/drafts/second-article/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/articles/article-2",
     remote: undefined,
@@ -195,6 +197,7 @@ snapshot[`relative_url plugin 6`] = `
     path: "/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/index",
     remote: undefined,
@@ -227,6 +230,7 @@ snapshot[`relative_url plugin 7`] = `
     path: "/other/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/other",
     remote: undefined,
@@ -256,6 +260,7 @@ snapshot[`relative_url plugin 8`] = `
     path: "/tilde-and-ene/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/tílde-and-eñe",
     remote: undefined,

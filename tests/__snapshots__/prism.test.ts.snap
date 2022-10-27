@@ -153,6 +153,7 @@ console.log("foo");
     path: "/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/index",
     remote: undefined,

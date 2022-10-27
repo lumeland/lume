@@ -90,6 +90,7 @@ snapshot[`render order property 4`] = `
     path: "/extra-page/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/extra-page",
     remote: undefined,
@@ -117,6 +118,7 @@ snapshot[`render order property 5`] = `
     path: "/articles/11/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages2[0]",
     remote: undefined,
@@ -144,6 +146,7 @@ snapshot[`render order property 6`] = `
     path: "/articles/12/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages2[1]",
     remote: undefined,
@@ -171,6 +174,7 @@ snapshot[`render order property 7`] = `
     path: "/articles/13/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages2[2]",
     remote: undefined,
@@ -198,6 +202,7 @@ snapshot[`render order property 8`] = `
     path: "/articles/14/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages2[3]",
     remote: undefined,
@@ -225,6 +230,7 @@ snapshot[`render order property 9`] = `
     path: "/articles/15/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages2[4]",
     remote: undefined,
@@ -252,6 +258,7 @@ snapshot[`render order property 10`] = `
     path: "/articles/16/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages2[5]",
     remote: undefined,
@@ -279,6 +286,7 @@ snapshot[`render order property 11`] = `
     path: "/articles/17/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages2[6]",
     remote: undefined,
@@ -306,6 +314,7 @@ snapshot[`render order property 12`] = `
     path: "/articles/18/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages2[7]",
     remote: undefined,
@@ -333,6 +342,7 @@ snapshot[`render order property 13`] = `
     path: "/articles/19/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages2[8]",
     remote: undefined,
@@ -360,6 +370,7 @@ snapshot[`render order property 14`] = `
     path: "/articles/20/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages2[9]",
     remote: undefined,
@@ -386,6 +397,7 @@ snapshot[`render order property 15`] = `
     path: "/articles/1/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages[0]",
     remote: undefined,
@@ -412,6 +424,7 @@ snapshot[`render order property 16`] = `
     path: "/articles/2/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages[1]",
     remote: undefined,
@@ -438,6 +451,7 @@ snapshot[`render order property 17`] = `
     path: "/articles/3/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages[2]",
     remote: undefined,
@@ -464,6 +478,7 @@ snapshot[`render order property 18`] = `
     path: "/articles/4/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages[3]",
     remote: undefined,
@@ -490,6 +505,7 @@ snapshot[`render order property 19`] = `
     path: "/articles/5/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages[4]",
     remote: undefined,
@@ -516,6 +532,7 @@ snapshot[`render order property 20`] = `
     path: "/articles/6/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages[5]",
     remote: undefined,
@@ -542,6 +559,7 @@ snapshot[`render order property 21`] = `
     path: "/articles/7/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages[6]",
     remote: undefined,
@@ -568,6 +586,7 @@ snapshot[`render order property 22`] = `
     path: "/articles/8/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages[7]",
     remote: undefined,
@@ -594,6 +613,7 @@ snapshot[`render order property 23`] = `
     path: "/articles/9/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages[8]",
     remote: undefined,
@@ -620,6 +640,7 @@ snapshot[`render order property 24`] = `
     path: "/articles/10/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pages[9]",
     remote: undefined,
@@ -656,6 +677,7 @@ snapshot[`render order property 25`] = `
     path: "/pagination/page-1/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pagination[0]",
     remote: undefined,
@@ -692,6 +714,7 @@ snapshot[`render order property 26`] = `
     path: "/pagination/page-2/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pagination[1]",
     remote: undefined,
@@ -728,6 +751,7 @@ snapshot[`render order property 27`] = `
     path: "/pagination/page-3/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.ts",
     path: "/pagination[2]",
     remote: undefined,

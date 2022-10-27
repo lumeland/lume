@@ -116,6 +116,7 @@ snapshot[`build a site with eta 4`] = `
     path: "/index",
   },
   src: {
+    asset: undefined,
     ext: ".eta",
     path: "/index",
     remote: undefined,

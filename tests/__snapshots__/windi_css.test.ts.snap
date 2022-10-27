@@ -193,6 +193,7 @@ p {
     path: "/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/index",
     remote: undefined,
@@ -296,6 +297,7 @@ p {
     path: "/page/1",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/multi[0]",
     remote: undefined,
@@ -399,6 +401,7 @@ p {
     path: "/page/2",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/multi[1]",
     remote: undefined,
@@ -506,6 +509,7 @@ p {
     path: "/page2/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/page2",
     remote: undefined,
@@ -556,6 +560,7 @@ snapshot[`Windi CSS plugin 8`] = `
     path: "/styles",
   },
   src: {
+    asset: true,
     ext: ".windi.css",
     path: "/styles",
     remote: undefined,

@@ -99,6 +99,7 @@ block content
     path: "/extends/index",
   },
   src: {
+    asset: undefined,
     ext: ".pug",
     path: "/extends",
     remote: undefined,
@@ -140,6 +141,7 @@ block content
     path: "/article",
   },
   src: {
+    asset: undefined,
     ext: ".pug",
     path: "/filter",
     remote: undefined,
@@ -170,6 +172,7 @@ snapshot[`build a site with eta 6`] = `
     path: "/layout/index",
   },
   src: {
+    asset: undefined,
     ext: ".pug",
     path: "/layout",
     remote: undefined,

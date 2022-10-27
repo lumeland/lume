@@ -265,22 +265,14 @@ export default class Renderer {
         { page, url },
       );
       // If the user hasn't provided a value, generate a url using Site settings.
-    } else if (!this.formats.get(page.src.ext || "")?.asset) {
-      // Handle subextensions, like styles.css.njk
-      const subext = posix.extname(page.dest.path);
-
-      if (subext) {
-        dest.path = page.dest.path.slice(0, -subext.length);
-        dest.ext = subext;
-      } else {
-        // Add automatically .html extension
-        if (
-          this.prettyUrls === true && posix.basename(dest.path) !== "index"
-        ) {
-          dest.path = posix.join(dest.path, "index");
-        }
-        dest.ext = ".html";
+    } else if (!page.src.asset && !page.dest.ext) {
+      // Add automatically .html extension
+      if (
+        this.prettyUrls === true && posix.basename(dest.path) !== "index"
+      ) {
+        dest.path = posix.join(dest.path, "index");
       }
+      dest.ext = ".html";
     }
 
     page.updateDest(dest, this.prettyUrls);

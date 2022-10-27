@@ -34,7 +34,7 @@ abstract class Base {
   #_data = {};
 
   constructor(src?: Partial<Src>) {
-    this.src = { path: "", slug: "", ...src };
+    this.src = { path: "", slug: "", asset: true, ...src };
     this.dest = {
       path: this.src.path,
       ext: this.src.ext || "",
@@ -243,17 +243,25 @@ export class Directory extends Base {
   }
 
   /** Return the list of pages in this directory recursively */
-  *getPages(parentData?: Data): Iterable<Page> {
+  *getPages(parentData?: Data, parentPath = "/"): Iterable<Page> {
     const data = mergeData(this.baseData, parentData);
+    const path = posix.join(parentPath, this.src.slug);
+
     this.data = data;
 
     for (const page of this.pages.values()) {
       page.data = mergeData({ ...page.baseData, page }, data);
+      page.dest = {
+        path: posix.join(path, page.src.slug),
+        ext: posix.extname(page.src.path) ||
+          (page.src.asset ? page.src.ext || "" : ""),
+      };
+
       yield page;
     }
 
     for (const dir of this.dirs.values()) {
-      yield* dir.getPages(data);
+      yield* dir.getPages(data, path);
     }
   }
 
@@ -290,6 +298,9 @@ export interface StaticFile {
 export interface Src {
   /** The slug name of the file or directory */
   slug: string;
+
+  /** If the page was loaded as asset or not */
+  asset: boolean;
 
   /** The path to the file (without extension) */
   path: string;

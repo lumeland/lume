@@ -90,6 +90,7 @@ snapshot[`slugify_urls plugin 4`] = `
     path: "/chourizos-ao-vino/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/Chourizos ao viño",
     remote: undefined,
@@ -118,6 +119,7 @@ snapshot[`slugify_urls plugin 5`] = `
     path: "/page-1/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/Page 1",
     remote: undefined,
@@ -144,6 +146,7 @@ snapshot[`slugify_urls plugin 6`] = `
     path: "/filloas-con-nocilla/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/generator[0]",
     remote: undefined,
@@ -170,6 +173,7 @@ snapshot[`slugify_urls plugin 7`] = `
     path: "/803nfon-sfodij/-/index",
   },
   src: {
+    asset: undefined,
     ext: ".tmpl.js",
     path: "/generator[1]",
     remote: undefined,
@@ -198,6 +202,7 @@ snapshot[`slugify_urls plugin 8`] = `
     path: "/paxina-numero/tres/index",
   },
   src: {
+    asset: undefined,
     ext: ".md",
     path: "/page-3",
     remote: undefined,

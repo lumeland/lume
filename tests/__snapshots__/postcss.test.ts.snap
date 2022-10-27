@@ -117,6 +117,7 @@ snapshot[`postcss plugin 4`] = `
     path: "/index",
   },
   src: {
+    asset: true,
     ext: ".css",
     path: "/index",
     remote: undefined,
@@ -161,6 +162,7 @@ snapshot[`postcss plugin 5`] = `
     path: "/text",
   },
   src: {
+    asset: true,
     ext: ".css",
     path: "/text",
     remote: undefined,
@@ -267,6 +269,7 @@ snapshot[`postcss plugin without includes 4`] = `
     path: "/index",
   },
   src: {
+    asset: true,
     ext: ".css",
     path: "/index",
     remote: undefined,
@@ -311,6 +314,7 @@ snapshot[`postcss plugin without includes 5`] = `
     path: "/text",
   },
   src: {
+    asset: true,
     ext: ".css",
     path: "/text",
     remote: undefined,

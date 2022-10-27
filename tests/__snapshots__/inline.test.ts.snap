@@ -119,6 +119,7 @@ snapshot[`inline plugin 4`] = `
     path: "/favicon",
   },
   src: {
+    asset: true,
     ext: ".svg",
     path: "/favicon",
     remote: undefined,
@@ -207,6 +208,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
     path: "/index",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/index",
     remote: undefined,
@@ -237,6 +239,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
     path: "/script",
   },
   src: {
+    asset: true,
     ext: ".js",
     path: "/script",
     remote: undefined,
@@ -269,6 +272,7 @@ snapshot[`inline plugin 7`] = `
     path: "/styles",
   },
   src: {
+    asset: undefined,
     ext: ".njk",
     path: "/styles.css",
     remote: undefined,

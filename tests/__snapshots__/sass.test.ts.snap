@@ -102,6 +102,7 @@ snapshot[`sass plugin 4`] = `
     path: "/index",
   },
   src: {
+    asset: true,
     ext: ".scss",
     path: "/index",
     remote: undefined,
@@ -132,6 +133,7 @@ body
     path: "/index2",
   },
   src: {
+    asset: true,
     ext: ".sass",
     path: "/index2",
     remote: undefined,

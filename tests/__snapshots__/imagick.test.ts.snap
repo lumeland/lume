@@ -107,6 +107,7 @@ snapshot[`imagick plugin 4`] = `
     path: "/lume-small",
   },
   src: {
+    asset: true,
     ext: ".png",
     path: "/lume[0]",
     remote: undefined,
@@ -134,6 +135,7 @@ snapshot[`imagick plugin 5`] = `
     path: "/lume-big",
   },
   src: {
+    asset: true,
     ext: ".png",
     path: "/lume[1]",
     remote: undefined,
@@ -161,6 +163,7 @@ snapshot[`imagick plugin 6`] = `
     path: "/lume",
   },
   src: {
+    asset: true,
     ext: ".png",
     path: "/lume[2]",
     remote: undefined,
@@ -188,6 +191,7 @@ snapshot[`imagick plugin 7`] = `
     path: "/lume",
   },
   src: {
+    asset: true,
     ext: ".png",
     path: "/lume[3]",
     remote: undefined,
@@ -215,6 +219,7 @@ snapshot[`imagick plugin 8`] = `
     path: "/lume",
   },
   src: {
+    asset: true,
     ext: ".png",
     path: "/lume[4]",
     remote: undefined,
