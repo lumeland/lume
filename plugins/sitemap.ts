@@ -60,9 +60,7 @@ export default function (userOptions?: Partial<Options>) {
 
     function getSitemapContent(site: Site) {
       const search = new Search(site, true);
-      // Ignore the 404 page
-      const query = `${options.query} url!="${site.options.server.page404}"`;
-      const sitemap = search.pages(query, options.sort) as Data[];
+      const sitemap = search.pages(options.query, options.sort) as Data[];
 
       // deno-fmt-ignore
       return `

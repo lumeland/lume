@@ -124,8 +124,8 @@ export class Search {
       return [...this.#cache.get(id)!];
     }
 
-    const filter = buildFilter(query);
-    const result = filter ? this.#site.pages.filter(filter) : this.#site.pages;
+    const filter = buildFilter(query, this.#site.options.server.page404);
+    const result = this.#site.pages.filter(filter);
 
     result.sort(buildSort(sort));
 
@@ -144,7 +144,7 @@ function data(pages: Page[]): Data[] {
  * example: "title=foo level<3"
  * returns: (page) => page.data.title === "foo" && page.data.level < 3
  */
-export function buildFilter(query?: string): (page: Page) => boolean {
+export function buildFilter(query = "", page404 = ""): (page: Page) => boolean {
   // (?:(fieldName)(operator))?(value|"value"|'value')
   const matches = query
     ? query.matchAll(
@@ -152,8 +152,12 @@ export function buildFilter(query?: string): (page: Page) => boolean {
     )
     : [];
 
-  // Always return html pages
-  const conditions: Condition[] = [["dest.ext", "=", ".html"]];
+  const conditions: Condition[] = [
+    // Always return html pages
+    ["dest.ext", "=", ".html"],
+    // Exclude the 404 page
+    ["data.url", "!=", page404],
+  ];
 
   for (const match of matches) {
     let [, key, operator, value] = match;
