@@ -225,6 +225,7 @@ export class Directory extends Base {
 
   /** Add a static file to this directory */
   setStaticFile(file: StaticFile) {
+    file.parent = this;
     this.staticFiles.add(file);
   }
 
@@ -244,11 +245,13 @@ export class Directory extends Base {
 
   /** Return the list of pages in this directory recursively */
   *getPages(parentData?: Data, parentPath = "/"): Iterable<Page> {
+    // Data cascade from the parent directory
     const data = mergeData(this.baseData, parentData);
     const path = posix.join(parentPath, this.src.slug);
 
     this.data = data;
 
+    // Apply data cascade and dest path to the pages
     for (const page of this.pages.values()) {
       page.data = mergeData({ ...page.baseData, page }, data);
       page.dest = {
@@ -260,6 +263,7 @@ export class Directory extends Base {
       yield page;
     }
 
+    // Recursively get the pages of the subdirectories
     for (const dir of this.dirs.values()) {
       yield* dir.getPages(data, path);
     }
@@ -283,6 +287,9 @@ export interface StaticFile {
 
   /** The path to the destination file */
   dest: string;
+
+  /** The parent directory where the StaticFile was located */
+  parent?: Directory;
 
   /** Indicates whether the file was copied after the latest change */
   saved?: boolean;

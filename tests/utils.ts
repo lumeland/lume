@@ -123,7 +123,7 @@ export async function assertSiteSnapshot(
     return compare(a.src, b.src);
   });
 
-  // Normalize some dynamic data
+  // Normalize some dynamic data of the pages
   pages.forEach((page) => {
     // Normalize data
     if (page.data.date instanceof Date) {
@@ -169,6 +169,13 @@ export async function assertSiteSnapshot(
       page.content = JSON.stringify(map);
       page.data.content = JSON.stringify(map);
     }
+  });
+
+  // Normalize some dynamic data of the files
+  files.forEach((file) => {
+    // Change parent reference
+    // @ts-ignore: Just for testing
+    file.parent = file.parent?.src.path;
   });
 
   // Test static files

@@ -80,6 +80,7 @@ snapshot[`render remote files 3`] = `
 [
   {
     dest: "/asset.txt",
+    parent: "/",
     remote: "assets/remote_files/_remotes/asset.txt",
     src: "/asset.txt",
   },
