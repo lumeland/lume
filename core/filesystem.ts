@@ -291,6 +291,9 @@ export interface StaticFile {
   /** The parent directory where the StaticFile was located */
   parent?: Directory;
 
+  /** The filename from the parent Directory */
+  filename: string;
+
   /** Indicates whether the file was copied after the latest change */
   saved?: boolean;
 

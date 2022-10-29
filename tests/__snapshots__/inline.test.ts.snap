@@ -83,6 +83,7 @@ snapshot[`inline plugin 3`] = `
 [
   {
     dest: "/favicon2.png",
+    filename: "favicon.png",
     parent: "/",
     remote: undefined,
     src: "/favicon.png",

@@ -197,6 +197,7 @@ export default class Source {
         if (typeof dest === "string") {
           directory.setStaticFile({
             src: file,
+            filename: file.slice(directory.src.path.length),
             dest: posix.join(dest, file.slice(src.length)),
           });
         } else {
@@ -206,6 +207,7 @@ export default class Source {
           );
           directory.setStaticFile({
             src: file,
+            filename: file.slice(directory.src.path.length),
             dest: dest ? dest(output) : output,
           });
         }
@@ -337,6 +339,7 @@ export default class Source {
 
         directory.setStaticFile({
           src: path,
+          filename: entry.name,
           dest: typeof format.copy === "function"
             ? format.copy(output)
             : output,
@@ -371,11 +374,13 @@ export default class Source {
   /** Read the static files in a directory */
   async #loadStaticFiles(directory: Directory, entry: DirEntry) {
     const src = posix.join(directory.src.path, entry.name);
+    const filename = entry.name;
 
     await this.#scanStaticFiles(
       directory,
       entry,
       src,
+      filename,
       this.staticPaths.get(src),
     );
   }
@@ -384,6 +389,7 @@ export default class Source {
     directory: Directory,
     entry: DirEntry,
     src: string,
+    filename: string,
     dest?: string | ((file: string) => string),
   ) {
     if (entry.isSymlink) {
@@ -408,7 +414,7 @@ export default class Source {
 
     if (entry.isFile) {
       if (typeof dest === "string") {
-        directory.setStaticFile({ src, dest, remote: entry.remote });
+        directory.setStaticFile({ src, dest, filename, remote: entry.remote });
       } else {
         const output = posix.join(
           directory.dest.path,
@@ -416,6 +422,7 @@ export default class Source {
         );
         directory.setStaticFile({
           src,
+          filename,
           dest: dest ? dest(output) : output,
           remote: entry.remote,
         });
@@ -429,6 +436,7 @@ export default class Source {
           directory,
           entry,
           posix.join(src, entry.name),
+          posix.join(filename, entry.name),
           typeof dest === "string" ? posix.join(dest, entry.name) : dest,
         );
       }
