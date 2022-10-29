@@ -372,10 +372,6 @@ export default class Source {
   async #loadStaticFiles(directory: Directory, entry: DirEntry) {
     const src = posix.join(directory.src.path, entry.name);
 
-    if (!this.staticPaths.has(src)) {
-      return;
-    }
-
     await this.#scanStaticFiles(
       directory,
       entry,
