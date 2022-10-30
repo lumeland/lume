@@ -308,7 +308,13 @@ export default class Source {
 
     // It's a static file/folder
     if (this.staticPaths.has(path)) {
-      await this.#loadStaticFiles(directory, entry);
+      await this.#scanStaticFiles(
+        directory,
+        entry,
+        path,
+        entry.name,
+        this.staticPaths.get(path),
+      );
       return;
     }
 
@@ -371,20 +377,7 @@ export default class Source {
     }
   }
 
-  /** Read the static files in a directory */
-  async #loadStaticFiles(directory: Directory, entry: DirEntry) {
-    const src = posix.join(directory.src.path, entry.name);
-    const filename = entry.name;
-
-    await this.#scanStaticFiles(
-      directory,
-      entry,
-      src,
-      filename,
-      this.staticPaths.get(src),
-    );
-  }
-
+  /** Scan the static files in a directory */
   async #scanStaticFiles(
     directory: Directory,
     entry: DirEntry,
