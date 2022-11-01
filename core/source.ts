@@ -34,7 +34,7 @@ export interface Options {
  */
 export default class Source {
   /** The root of the src directory */
-  root?: Directory;
+  root = new Directory({ path: "/" });
 
   /** Filesystem reader to scan folders */
   reader: Reader;
@@ -115,7 +115,7 @@ export default class Source {
       return [];
     }
 
-    return [...this.#getPages(this.root)].filter((page) =>
+    return [...this.#getPages(this.root, this.globalData)].filter((page) =>
       filters.every((filter) => filter(page))
     );
   }
@@ -129,6 +129,13 @@ export default class Source {
     // Data cascade from the parent directory
     const data = mergeData(directory.baseData, parentData);
     const path = posix.join(parentPath, directory.src.slug);
+
+    // Setup the components
+    const components = directory.getComponents();
+
+    if (components?.size) {
+      data[this.components.variable] = toProxy(components, this.extraCode);
+    }
 
     directory.data = data;
 
@@ -207,11 +214,9 @@ export default class Source {
 
   /** Load all sources */
   async load() {
-    const [root] = await this.#getOrCreateDirectory("/");
-
-    return concurrent(
-      this.reader.readDir(root.src.path),
-      (entry) => this.#loadEntry(root, entry),
+    return await concurrent(
+      this.reader.readDir(this.root.src.path),
+      (entry) => this.#loadEntry(this.root, entry),
     );
   }
 
@@ -228,64 +233,38 @@ export default class Source {
       return;
     }
 
-    // Check if it's a static file
-    for (const entry of this.staticPaths) {
-      const [src, dest] = entry;
+    // Get the closest directory of the file
+    const path = posix.dirname(file);
+    const directory = this.#getClosestLoadedDirectory(path);
 
-      if (file === src || file.startsWith(src + "/")) {
-        const [directory] = await this.#getOrCreateDirectory(
-          posix.dirname(src),
-        );
-
-        // It's a static file previously copied
-        for (const staticFile of directory.staticFiles) {
-          if (staticFile.src === file) {
-            delete staticFile.saved;
-            const info = await this.reader.getInfo(file);
-            staticFile.removed = !info;
-            staticFile.remote = info?.remote;
-            return;
-          }
-        }
-
-        // It's a new static file
-        if (typeof dest === "string") {
-          directory.setStaticFile({
-            src: file,
-            filename: file.slice(directory.src.path.length),
-            dest: posix.join(dest, file.slice(src.length)),
-          });
-        } else {
-          directory.setStaticFile({
-            src: file,
-            filename: file.slice(directory.src.path.length),
-            dest: dest,
-          });
-        }
-
-        return;
-      }
-    }
-
-    // It's a _data or _component file
-    const match = file.match(/(.*)\/(_data\/|_components\/|_data\.\w+$)/);
-
-    if (match) {
-      const [directory, created] = await this.#getOrCreateDirectory(match[1]);
-
-      if (!created) {
-        await this.#loadDirectory(directory);
-      }
+    // The parent directory is already loaded, so we only need to update this entry
+    if (directory.src.path === path) {
+      const info = await this.reader.getInfo(file);
+      const entry = {
+        name: posix.basename(file),
+        isFile: true,
+        isDirectory: false,
+        isSymlink: false,
+        remote: info?.remote,
+      };
+      await this.#loadEntry(directory, entry, file);
       return;
     }
 
-    // Any path segment starting with _ or .
-    if (file.includes("/_") || file.includes("/.")) {
-      return;
-    }
-
-    // Default
-    return await this.#updateFile(file);
+    // The parent directory is not loaded, so we need to load it and its children
+    const entryName = file.slice(directory.src.path.length).split("/")[0];
+    const info = await this.reader.getInfo(
+      posix.join(directory.src.path, entryName),
+    );
+    const entry = {
+      name: entryName,
+      isFile: false,
+      isDirectory: true,
+      isSymlink: false,
+      remote: info?.remote,
+    };
+    await this.#loadEntry(directory, entry, file);
+    return;
   }
 
   /** Return the File or Directory of a path */
@@ -305,57 +284,50 @@ export default class Source {
     return result;
   }
 
-  /** Reloads a file */
-  async #updateFile(file: string) {
-    const info = await this.reader.getInfo(file);
-    const entry = {
-      name: posix.basename(file),
-      isFile: true,
-      isDirectory: false,
-      isSymlink: false,
-      remote: info?.remote,
-    };
-    const [directory] = await this.#getOrCreateDirectory(posix.dirname(file));
-    await this.#loadEntry(directory, entry);
-  }
-
-  /** Get an existing directory or create it if it doesn't exist */
-  async #getOrCreateDirectory(path: string): Promise<[Directory, boolean]> {
-    let dir: Directory;
-    let created = false;
-
-    if (this.root) {
-      dir = this.root;
-    } else {
-      dir = this.root = new Directory({ path: "/" });
-      await this.#loadDirectory(dir);
-    }
+  /** Returns the closest loaded directory */
+  #getClosestLoadedDirectory(path: string): Directory {
+    let directory = this.root;
 
     for (const name of path.split("/")) {
       if (!name) {
         continue;
       }
 
-      if (dir.dirs.has(name)) {
-        dir = dir.dirs.get(name)!;
-        continue;
+      if (directory.dirs.has(name)) {
+        directory = directory.dirs.get(name)!;
+      } else {
+        return directory;
       }
-
-      dir = dir.createDirectory(name);
-      await this.#loadDirectory(dir);
-      created = true;
     }
 
-    return [dir, created];
+    return directory;
   }
 
   /** Load an entry from a directory */
-  async #loadEntry(directory: Directory, entry: DirEntry) {
+  async #loadEntry(directory: Directory, entry: DirEntry, file?: string) {
     if (entry.isSymlink) {
       return;
     }
 
     const path = posix.join(directory.src.path, entry.name);
+
+    // Used on update mode to only reload changed files
+    if (file && file !== path && !file.startsWith(path + "/")) {
+      return;
+    }
+
+    // Load the _data files
+    if (entry.name === "_data" || /^_data\.\w+$/.test(entry.name)) {
+      const dataFile = await this.dataLoader.load(path);
+      Object.assign(directory.baseData, dataFile);
+      return;
+    }
+
+    // Load the _components files
+    if (entry.isDirectory && entry.name === "_components") {
+      await this.componentLoader.load(path, directory);
+      return;
+    }
 
     if (this.staticPaths.has(path)) {
       // It's a static file
@@ -425,8 +397,10 @@ export default class Source {
       return;
     }
 
+    // Load recursively the directory
     if (entry.isDirectory) {
-      const [subDirectory] = await this.#getOrCreateDirectory(path);
+      const subDirectory = directory.createDirectory(entry.name);
+
       await concurrent(
         this.reader.readDir(subDirectory.src.path),
         (entry) => this.#loadEntry(subDirectory, entry),
@@ -484,51 +458,6 @@ export default class Source {
         );
       }
     }
-  }
-
-  /** Load the _data and _components inside a directory */
-  async #loadDirectory(directory: Directory) {
-    const data: Data = {};
-
-    // Assign the global data and components to the root directory
-    if (directory.src.path === "/") {
-      Object.assign(data, this.globalData);
-      directory.components = this.globalComponents;
-    }
-
-    await concurrent(
-      this.reader.readDir(directory.src.path),
-      async (entry) => {
-        const path = posix.join(directory.src.path, entry.name);
-
-        if (this.ignored.has(path)) {
-          return;
-        }
-        if (this.filters.some((filter) => filter(path))) {
-          return;
-        }
-
-        // Load the _data files
-        if (entry.name === "_data" || /^_data\.\w+$/.test(entry.name)) {
-          const dataFile = await this.dataLoader.load(path);
-          Object.assign(data, dataFile);
-        }
-
-        // Load the _components files
-        if (entry.isDirectory && entry.name === "_components") {
-          await this.componentLoader.load(path, directory);
-        }
-      },
-    );
-
-    // Setup the components
-    const components = directory.getComponents();
-
-    if (components?.size) {
-      data[this.components.variable] = toProxy(components, this.extraCode);
-    }
-
-    Object.assign(directory.baseData, data);
   }
 }
 
