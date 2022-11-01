@@ -242,28 +242,6 @@ export class Directory extends Base {
       ])
       : this.components;
   }
-
-  /** Return the list of static files in this directory recursively */
-  *getStaticFiles(parentPath = "/"): Iterable<StaticFile> {
-    const path = posix.join(parentPath, this.src.slug);
-
-    for (const file of this.staticFiles) {
-      if (typeof file.dest === "string") {
-        file.url = file.dest;
-      } else {
-        file.url = posix.join(path, file.filename);
-
-        if (typeof file.dest === "function") {
-          file.url = file.dest(file.url);
-        }
-      }
-      yield file;
-    }
-
-    for (const dir of this.dirs.values()) {
-      yield* dir.getStaticFiles(path);
-    }
-  }
 }
 
 export interface StaticFile {
