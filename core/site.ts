@@ -467,18 +467,20 @@ export default class Site {
     // Load source files
     await this.source.load();
 
-    // Get static files
-    this.files.splice(0, this.files.length, ...this.source.getStaticFiles());
-
-    // Get all pages to process (ignore drafts)
-    const pagesToBuild = this.source.getPages(
+    // Get the site content
+    const [_pages, _staticFiles] = this.source.getContent(
       this.globalData,
       this.globalComponents,
-      (page) => !page.data.draft || this.options.dev,
+      [
+        (page) => !page.data.draft || this.options.dev,
+      ],
     );
 
+    // Save static files into site.files
+    this.files.splice(0, this.files.length, ..._staticFiles);
+
     // Stop if the build is cancelled
-    if (await this.#buildPages(pagesToBuild) === false) {
+    if (await this.#buildPages(_pages) === false) {
       return;
     }
 
@@ -505,18 +507,20 @@ export default class Site {
       await this.source.update(file);
     }
 
-    // Copy static files
-    this.files.splice(0, this.files.length, ...this.source.getStaticFiles());
-
-    // Get the selected pages to process (ignore drafts and non scoped pages)
-    const pagesToBuild = this.source.getPages(
+    // Get the site content
+    const [_pages, _staticFiles] = this.source.getContent(
       this.globalData,
       this.globalComponents,
-      (page) => !page.data.draft || this.options.dev,
-      this.scopes.getFilter(files),
+      [
+        (page) => !page.data.draft || this.options.dev,
+        this.scopes.getFilter(files),
+      ],
     );
 
-    if (await this.#buildPages(pagesToBuild) === false) {
+    // Build the pages and save static files into site.files
+    this.files.splice(0, this.files.length, ..._staticFiles);
+
+    if (await this.#buildPages(_pages) === false) {
       return;
     }
 
