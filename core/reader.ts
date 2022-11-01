@@ -35,7 +35,17 @@ export default class Reader {
   /** Delete a file from the cache */
   deleteCache(path: string) {
     const fullPath = this.getFullPath(path);
-    this.cache.delete(fullPath);
+
+    if (this.cache.has(fullPath)) {
+      this.cache.delete(fullPath);
+    } else {
+      // Probably a directory?
+      for (const file of this.cache.keys()) {
+        if (file.startsWith(fullPath + "/")) {
+          this.cache.delete(file);
+        }
+      }
+    }
   }
 
   /** Delete all the cache */

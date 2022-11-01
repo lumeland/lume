@@ -234,8 +234,16 @@ export default class Source {
     // The parent directory is already loaded, so we only need to update this entry
     if (directory.src.path === path) {
       const info = await this.reader.getInfo(file);
+      const name = posix.basename(file);
+
+      // Removed
+      if (!info) {
+        this.#unloadEntry(directory, name);
+        return;
+      }
+
       const entry = {
-        name: posix.basename(file),
+        name: name,
         isFile: true,
         isDirectory: false,
         isSymlink: false,
@@ -250,12 +258,16 @@ export default class Source {
     const info = await this.reader.getInfo(
       posix.join(directory.src.path, entryName),
     );
+    // Removed
+    if (!info) {
+      return;
+    }
     const entry = {
       name: entryName,
       isFile: false,
       isDirectory: true,
       isSymlink: false,
-      remote: info?.remote,
+      remote: info.remote,
     };
     await this.#loadEntry(directory, entry, file);
     return;
@@ -295,6 +307,20 @@ export default class Source {
     }
 
     return directory;
+  }
+
+  /** Remove an entry from a directory */
+  #unloadEntry(directory: Directory, name: string) {
+    if (name === "_components") {
+      directory.components.clear();
+      return;
+    }
+    if (name === "_data") {
+      directory.baseData = {};
+      return;
+    }
+    directory.dirs.delete(name);
+    directory.pages.delete(name);
   }
 
   /** Load an entry from a directory */
