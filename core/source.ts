@@ -115,9 +115,39 @@ export default class Source {
       return [];
     }
 
-    return [...this.root.getPages()].filter((page) =>
+    return [...this.#getPages(this.root!)].filter((page) =>
       filters.every((filter) => filter(page))
     );
+  }
+
+  /** Return the list of pages in a directory recursively */
+  *#getPages(
+    directory: Directory,
+    parentData?: Data,
+    parentPath = "/",
+  ): Iterable<Page> {
+    // Data cascade from the parent directory
+    const data = mergeData(directory.baseData, parentData);
+    const path = posix.join(parentPath, directory.src.slug);
+
+    directory.data = data;
+
+    // Apply data cascade and dest path to the pages
+    for (const page of directory.pages.values()) {
+      page.data = mergeData({ ...page.baseData, page }, data);
+      page.dest = {
+        path: posix.join(path, page.src.slug),
+        ext: posix.extname(page.src.path) ||
+          (page.src.asset ? page.src.ext || "" : ""),
+      };
+
+      yield page;
+    }
+
+    // Recursively get the pages of the subdirectories
+    for (const dir of directory.dirs.values()) {
+      yield* this.#getPages(dir, data, path);
+    }
   }
 
   /** Returns all static files found */
@@ -431,7 +461,7 @@ export default class Source {
     }
   }
 
-  /** Load the _data and components inside a directory */
+  /** Load the _data and _components inside a directory */
   async #loadDirectory(directory: Directory) {
     const data: Data = {};
 
@@ -538,4 +568,60 @@ export type ComponentFunction = (props: Record<string, unknown>) => string;
 
 export interface ProxyComponents {
   [key: string]: ComponentFunction | ProxyComponents;
+}
+
+/** Merge the cascade data */
+export function mergeData(baseData: Data, parentData: Data = {}): Data {
+  const data: Data = { ...parentData, ...baseData };
+
+  // Merge special keys
+  const mergedKeys: Record<string, string> = {
+    tags: "stringArray",
+    ...parentData.mergedKeys,
+    ...baseData.mergedKeys,
+  };
+
+  for (const [key, type] of Object.entries(mergedKeys)) {
+    switch (type) {
+      case "stringArray":
+      case "array":
+        {
+          const baseValue: unknown[] = Array.isArray(baseData[key])
+            ? baseData[key] as unknown[]
+            : (key in baseData)
+            ? [baseData[key]]
+            : [];
+
+          const parentValue: unknown[] = Array.isArray(parentData[key])
+            ? parentData[key] as unknown[]
+            : (key in parentData)
+            ? [parentData[key]]
+            : [];
+
+          const merged = [...parentValue, ...baseValue];
+
+          data[key] = [
+            ...new Set(
+              type === "stringArray" ? merged.map(String) : merged,
+            ),
+          ];
+        }
+        break;
+
+      case "object":
+        {
+          const baseValue = baseData[key] as
+            | Record<string, unknown>
+            | undefined;
+          const parentValue = parentData[key] as
+            | Record<string, unknown>
+            | undefined;
+
+          data[key] = { ...parentValue, ...baseValue };
+        }
+        break;
+    }
+  }
+
+  return data;
 }

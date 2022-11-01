@@ -96,8 +96,6 @@ snapshot[`Source maps from CSS files 4`] = `
     content: '{"version":3,"sourceRoot":"assets","mappings":"ACEA,2DCFA,cEMA","sources":["index.scss","third.scss","fourth.scss","colors.scss","button.scss"],"sourcesContent":["html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}","","","",""],"names":[],"file":"index.css.map"}',
     page: undefined,
     sourceMap: undefined,
-    tags: [
-    ],
     url: "/index.css.map",
   },
   dest: {
@@ -120,8 +118,6 @@ snapshot[`Source maps from CSS files 5`] = `
     content: '{"version":3,"sourceRoot":"assets","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["",""],"names":[],"file":"index2.css.map"}',
     page: undefined,
     sourceMap: undefined,
-    tags: [
-    ],
     url: "/index2.css.map",
   },
   dest: {
@@ -300,8 +296,6 @@ document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
 "],"sourceRoot":"assets"}',
     page: undefined,
     sourceMap: undefined,
-    tags: [
-    ],
     url: "/main.js.map",
   },
   dest: {
@@ -330,8 +324,6 @@ snapshot[`Source maps from Js files 5`] = `
 "],"sourceRoot":"assets"}',
     page: undefined,
     sourceMap: undefined,
-    tags: [
-    ],
     url: "/modules/to_uppercase.js.map",
   },
   dest: {

@@ -94,8 +94,6 @@ icon {
 }
 ",
     page: undefined,
-    tags: [
-    ],
     url: "/components.css",
   },
   dest: {
@@ -133,8 +131,6 @@ document.querySelectorAll("button").forEach(button => {
 console.log("Hello world, from the icon/User component");
 ',
     page: undefined,
-    tags: [
-    ],
     url: "/components.js",
   },
   dest: {

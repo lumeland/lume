@@ -82,8 +82,6 @@ Allow: /
 
 Sitemap: http://localhost/sitemap.xml",
     page: undefined,
-    tags: [
-    ],
     url: "/robots.txt",
   },
   dest: {
@@ -141,8 +139,6 @@ snapshot[`Sitemap plugin 5`] = `
   </url>
 </urlset>',
     page: undefined,
-    tags: [
-    ],
     url: "/sitemap.xml",
   },
   dest: {

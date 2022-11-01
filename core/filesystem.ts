@@ -111,7 +111,7 @@ export class Page extends Base {
     const slug = posix.basename(url).replace(/\.[\w.]+$/, "");
 
     const page = new Page({ slug });
-    page.data = mergeData({ url, content, page });
+    page.data = { url, content, page };
     page.content = content;
     page.updateDest({ path, ext });
 
@@ -241,32 +241,6 @@ export class Directory extends Base {
         ...this.components?.entries() ?? [],
       ])
       : this.components;
-  }
-
-  /** Return the list of pages in this directory recursively */
-  *getPages(parentData?: Data, parentPath = "/"): Iterable<Page> {
-    // Data cascade from the parent directory
-    const data = mergeData(this.baseData, parentData);
-    const path = posix.join(parentPath, this.src.slug);
-
-    this.data = data;
-
-    // Apply data cascade and dest path to the pages
-    for (const page of this.pages.values()) {
-      page.data = mergeData({ ...page.baseData, page }, data);
-      page.dest = {
-        path: posix.join(path, page.src.slug),
-        ext: posix.extname(page.src.path) ||
-          (page.src.asset ? page.src.ext || "" : ""),
-      };
-
-      yield page;
-    }
-
-    // Recursively get the pages of the subdirectories
-    for (const dir of this.dirs.values()) {
-      yield* dir.getPages(data, path);
-    }
   }
 
   /** Return the list of static files in this directory recursively */
@@ -431,60 +405,4 @@ export function createDate(str: string): Date | undefined {
       second ? parseInt(second) : 0,
     ));
   }
-}
-
-/** Merge the cascade data */
-export function mergeData(baseData: Data, parentData: Data = {}): Data {
-  const data: Data = { ...parentData, ...baseData };
-
-  // Merge special keys
-  const mergedKeys: Record<string, string> = {
-    tags: "stringArray",
-    ...parentData.mergedKeys,
-    ...baseData.mergedKeys,
-  };
-
-  for (const [key, type] of Object.entries(mergedKeys)) {
-    switch (type) {
-      case "stringArray":
-      case "array":
-        {
-          const baseValue: unknown[] = Array.isArray(baseData[key])
-            ? baseData[key] as unknown[]
-            : (key in baseData)
-            ? [baseData[key]]
-            : [];
-
-          const parentValue: unknown[] = Array.isArray(parentData[key])
-            ? parentData[key] as unknown[]
-            : (key in parentData)
-            ? [parentData[key]]
-            : [];
-
-          const merged = [...parentValue, ...baseValue];
-
-          data[key] = [
-            ...new Set(
-              type === "stringArray" ? merged.map(String) : merged,
-            ),
-          ];
-        }
-        break;
-
-      case "object":
-        {
-          const baseValue = baseData[key] as
-            | Record<string, unknown>
-            | undefined;
-          const parentValue = parentData[key] as
-            | Record<string, unknown>
-            | undefined;
-
-          data[key] = { ...parentValue, ...baseValue };
-        }
-        break;
-    }
-  }
-
-  return data;
 }

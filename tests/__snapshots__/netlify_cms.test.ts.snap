@@ -90,8 +90,6 @@ site_url: 'https://example.com/'
 local_backend: false
 ",
     page: undefined,
-    tags: [
-    ],
     url: "/admin/config.yml",
   },
   dest: {
@@ -137,8 +135,6 @@ snapshot[`code_hightlight plugin 5`] = `
         </html>
         ',
     page: undefined,
-    tags: [
-    ],
     url: "/admin/",
   },
   dest: {
