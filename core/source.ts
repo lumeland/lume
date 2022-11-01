@@ -15,8 +15,6 @@ import type {
 
 export interface Options {
   formats: Formats;
-  globalData: Data;
-  globalComponents: Components;
   dataLoader: DataLoader;
   pageLoader: PageLoader;
   componentLoader: ComponentLoader;
@@ -38,12 +36,6 @@ export default class Source {
 
   /** Filesystem reader to scan folders */
   reader: Reader;
-
-  /** Global data to be assigned to the root folder */
-  globalData: Data;
-
-  /** Global components to be assigned to the root folder */
-  globalComponents: Components;
 
   /** To load all _data files */
   dataLoader: DataLoader;
@@ -90,8 +82,6 @@ export default class Source {
     this.reader = options.reader;
     this.formats = options.formats;
     this.components = options.components;
-    this.globalData = options.globalData;
-    this.globalComponents = options.globalComponents;
   }
 
   addIgnoredPath(path: string) {
@@ -110,20 +100,21 @@ export default class Source {
   }
 
   /** Returns all pages found */
-  getPages(...filters: ((page: Page) => boolean)[]): Page[] {
-    if (!this.root) {
-      return [];
-    }
-
-    return [...this.#getPages(this.root, this.globalData)].filter((page) =>
-      filters.every((filter) => filter(page))
-    );
+  getPages(
+    globalData: Data,
+    globalComponents: Components,
+    ...filters: ((page: Page) => boolean)[]
+  ): Page[] {
+    return [...this.#getPages(this.root, globalData, globalComponents)].filter((
+      page,
+    ) => filters.every((filter) => filter(page)));
   }
 
   /** Return the list of pages in a directory recursively */
   *#getPages(
     directory: Directory,
     parentData?: Data,
+    parentComponents?: Components,
     parentPath = "/",
   ): Iterable<Page> {
     // Data cascade from the parent directory
@@ -131,7 +122,7 @@ export default class Source {
     const path = posix.join(parentPath, directory.src.slug);
 
     // Setup the components
-    const components = directory.getComponents();
+    const components = mergeComponents(directory.components, parentComponents);
 
     if (components?.size) {
       data[this.components.variable] = toProxy(components, this.extraCode);
@@ -153,16 +144,12 @@ export default class Source {
 
     // Recursively get the pages of the subdirectories
     for (const dir of directory.dirs.values()) {
-      yield* this.#getPages(dir, data, path);
+      yield* this.#getPages(dir, data, components, path);
     }
   }
 
   /** Returns all static files found */
   getStaticFiles(...filters: ((file: StaticFile) => boolean)[]): StaticFile[] {
-    if (!this.root) {
-      return [];
-    }
-
     return [...this.#getStaticFiles(this.root)].filter((page) =>
       filters.every((filter) => filter(page))
     );
@@ -578,4 +565,28 @@ export function mergeData(baseData: Data, parentData: Data = {}): Data {
   }
 
   return data;
+}
+
+/** Merge the cascade components */
+export function mergeComponents(
+  baseComponents: Components,
+  parentComponents: Components = new Map(),
+): Components {
+  const components = new Map(parentComponents);
+
+  for (const [key, value] of baseComponents) {
+    if (components.has(key)) {
+      const parentValue = components.get(key);
+
+      if (parentValue instanceof Map && value instanceof Map) {
+        components.set(key, mergeComponents(value, parentValue));
+      } else {
+        components.set(key, value);
+      }
+    } else {
+      components.set(key, value);
+    }
+  }
+
+  return components;
 }

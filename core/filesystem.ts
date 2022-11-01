@@ -228,20 +228,6 @@ export class Directory extends Base {
     file.parent = this;
     this.staticFiles.add(file);
   }
-
-  /** Get the components of this directory and parent directories */
-  getComponents(): Components | undefined {
-    if (!this.components) {
-      return;
-    }
-
-    return this.parent
-      ? new Map([
-        ...this.parent.getComponents()?.entries() ?? [],
-        ...this.components?.entries() ?? [],
-      ])
-      : this.components;
-  }
 }
 
 export interface StaticFile {

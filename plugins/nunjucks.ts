@@ -194,10 +194,10 @@ export default function (userOptions?: DeepPartial<Options>) {
 
     // Register the component helper
     engine.addHelper("comp", (...args) => {
-      const baseData = site.source.root!.baseData || {};
-      const components = baseData[site.options.components.variable] as
-        | ProxyComponents
-        | undefined;
+      const components = site.source.root
+        .data[site.options.components.variable] as
+          | ProxyComponents
+          | undefined;
       const [content, name, options = {}] = args;
       delete options.__keywords;
       const props = { content, ...options };

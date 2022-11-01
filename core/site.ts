@@ -157,8 +157,6 @@ export default class Site {
       componentLoader,
       formats,
       components,
-      globalData: this.globalData,
-      globalComponents: this.globalComponents,
     });
 
     // To render pages
@@ -474,6 +472,8 @@ export default class Site {
 
     // Get all pages to process (ignore drafts)
     const pagesToBuild = this.source.getPages(
+      this.globalData,
+      this.globalComponents,
       (page) => !page.data.draft || this.options.dev,
     );
 
@@ -510,6 +510,8 @@ export default class Site {
 
     // Get the selected pages to process (ignore drafts and non scoped pages)
     const pagesToBuild = this.source.getPages(
+      this.globalData,
+      this.globalComponents,
       (page) => !page.data.draft || this.options.dev,
       this.scopes.getFilter(files),
     );
