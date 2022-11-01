@@ -87,6 +87,7 @@ snapshot[`inline plugin 3`] = `
     parent: "/",
     remote: undefined,
     src: "/favicon.png",
+    url: "/favicon2.png",
   },
 ]
 `;

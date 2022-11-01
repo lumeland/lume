@@ -270,13 +270,24 @@ export class Directory extends Base {
   }
 
   /** Return the list of static files in this directory recursively */
-  *getStaticFiles(): Iterable<StaticFile> {
+  *getStaticFiles(parentPath = "/"): Iterable<StaticFile> {
+    const path = posix.join(parentPath, this.src.slug);
+
     for (const file of this.staticFiles) {
+      if (typeof file.dest === "string") {
+        file.url = file.dest;
+      } else {
+        file.url = posix.join(path, file.filename);
+
+        if (typeof file.dest === "function") {
+          file.url = file.dest(file.url);
+        }
+      }
       yield file;
     }
 
     for (const dir of this.dirs.values()) {
-      yield* dir.getStaticFiles();
+      yield* dir.getStaticFiles(path);
     }
   }
 }
@@ -285,8 +296,11 @@ export interface StaticFile {
   /** The path to the source file */
   src: string;
 
-  /** The path to the destination file */
-  dest: string;
+  /** The configuration path to the destination file */
+  dest?: string | ((path: string) => string);
+
+  /** The final url destination */
+  url?: string;
 
   /** The parent directory where the StaticFile was located */
   parent?: Directory;

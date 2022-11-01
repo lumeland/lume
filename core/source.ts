@@ -173,7 +173,7 @@ export default class Source {
       return;
     }
 
-    // It's a static file
+    // Check if it's a static file
     for (const entry of this.staticPaths) {
       const [src, dest] = entry;
 
@@ -201,14 +201,10 @@ export default class Source {
             dest: posix.join(dest, file.slice(src.length)),
           });
         } else {
-          const output = posix.join(
-            directory.dest.path,
-            file.slice(directory.src.path.length),
-          );
           directory.setStaticFile({
             src: file,
             filename: file.slice(directory.src.path.length),
-            dest: dest ? dest(output) : output,
+            dest: dest,
           });
         }
 
@@ -306,8 +302,19 @@ export default class Source {
 
     const path = posix.join(directory.src.path, entry.name);
 
-    // It's a static file/folder
     if (this.staticPaths.has(path)) {
+      // It's a static file
+      if (entry.isFile) {
+        directory.setStaticFile({
+          src: path,
+          filename: entry.name,
+          dest: this.staticPaths.get(path),
+          remote: entry.remote,
+        });
+        return;
+      }
+
+      // It's a static folder, scan it
       await this.#scanStaticFiles(
         directory,
         entry,
@@ -341,14 +348,10 @@ export default class Source {
 
       // The file is a static file
       if (format.copy) {
-        const output = posix.join(directory.dest.path, entry.name);
-
         directory.setStaticFile({
           src: path,
           filename: entry.name,
-          dest: typeof format.copy === "function"
-            ? format.copy(output)
-            : output,
+          dest: typeof format.copy === "function" ? format.copy : undefined,
           remote: entry.remote,
         });
         return;
@@ -406,20 +409,12 @@ export default class Source {
     }
 
     if (entry.isFile) {
-      if (typeof dest === "string") {
-        directory.setStaticFile({ src, dest, filename, remote: entry.remote });
-      } else {
-        const output = posix.join(
-          directory.dest.path,
-          src.slice(directory.src.path.length),
-        );
-        directory.setStaticFile({
-          src,
-          filename,
-          dest: dest ? dest(output) : output,
-          remote: entry.remote,
-        });
-      }
+      directory.setStaticFile({
+        src,
+        filename,
+        dest,
+        remote: entry.remote,
+      });
       return;
     }
 

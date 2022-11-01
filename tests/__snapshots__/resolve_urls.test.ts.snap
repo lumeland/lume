@@ -73,6 +73,7 @@ snapshot[`relative_url plugin 3`] = `
     parent: "/",
     remote: undefined,
     src: "/statics/robots.txt",
+    url: "/robots.txt",
   },
 ]
 `;
