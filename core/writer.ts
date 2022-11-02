@@ -137,13 +137,13 @@ export default class Writer {
     }
 
     file.saved = true;
-    const pathTo = posix.join(this.dest, file.dest);
+    const pathTo = posix.join(this.dest, file.url!);
 
     // The file was removed
     if (file.removed) {
       try {
         await Deno.remove(pathTo);
-        this.logger.log(`  <del>${file.dest}</del>`);
+        this.logger.log(`  <del>${file.url}</del>`);
       } catch {
         // Ignored
       }
@@ -161,7 +161,7 @@ export default class Writer {
         const pathFrom = posix.join(this.src, file.src);
         await Deno.copyFile(pathFrom, pathTo);
       }
-      this.logger.log(`🔥 ${file.dest} <dim>${src}</dim>`);
+      this.logger.log(`🔥 ${file.url} <dim>${src}</dim>`);
       return true;
     } catch {
       // Ignored
