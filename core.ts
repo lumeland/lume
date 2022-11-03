@@ -38,9 +38,11 @@ import type Writer from "./core/writer.ts";
 import type IncludesLoader from "./core/includes_loader.ts";
 import type { default as PageLoader } from "./core/page_loader.ts";
 import type DataLoader from "./core/data_loader.ts";
-import type ComponentLoader from "./core/component_loader.ts";
 import type {
   Component,
+  default as ComponentLoader,
+} from "./core/component_loader.ts";
+import type {
   Components,
   Content,
   Data,

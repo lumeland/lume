@@ -2,7 +2,7 @@ import { posix } from "../deps/path.ts";
 import { documentToString, stringToDocument } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
-import type { ProxyComponents } from "../core.ts";
+import type { Component, ProxyComponents } from "../core.ts";
 
 /** Abstract class with common functions for Page and Directory classes */
 abstract class Base {
@@ -334,20 +334,6 @@ export interface Data {
   page?: Page;
 
   [index: string]: unknown;
-}
-
-export interface Component {
-  /** Name of the component (used to get it from templates) */
-  name: string;
-
-  /** The function that will be called to render the component */
-  render: (props: Record<string, unknown>) => string;
-
-  /** Optional CSS code needed to style the component (global, only inserted once) */
-  css?: string;
-
-  /** Optional JS code needed for the component interactivity (global, only inserted once) */
-  js?: string;
 }
 
 export type Components = Map<string, Component | Components>;

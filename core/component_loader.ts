@@ -1,13 +1,7 @@
 import { posix } from "../deps/path.ts";
 import { normalizePath } from "./utils.ts";
 
-import type {
-  Component,
-  Components,
-  Directory,
-  Formats,
-  Reader,
-} from "../core.ts";
+import type { Components, Directory, Formats, Reader } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
@@ -111,4 +105,18 @@ export default class ComponentsLoader {
       js: component.js,
     } as Component;
   }
+}
+
+export interface Component {
+  /** Name of the component (used to get it from templates) */
+  name: string;
+
+  /** The function that will be called to render the component */
+  render: (props: Record<string, unknown>) => string;
+
+  /** Optional CSS code needed to style the component (global, only inserted once) */
+  css?: string;
+
+  /** Optional JS code needed for the component interactivity (global, only inserted once) */
+  js?: string;
 }
