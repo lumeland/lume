@@ -1,0 +1,17 @@
+name: 🚀 Feature Request Lume Framework
+description: I have a suggestion and may want to implement it 😎 !
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do you have an idea to improve Lume? That's cool!
+        Before submitting your idea, please take a look at the existing issues if there is already
+        something related to your idea.
+  - type: textarea
+    attributes:
+      label: 'Enter your suggestions in details:'
+      placeholder: |
+       Your great idea!
+    validations:
+      required: true
