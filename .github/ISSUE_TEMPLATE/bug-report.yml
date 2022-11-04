@@ -1,0 +1,38 @@
+name: 🐛 Bug Report From Lume
+description: Report an issue if something isn't working as expected 🤔.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for wanting to report a problem you found on L.
+        Please fill out the template below. If you're not sure about something, do the best you can.
+        the best you can. If you are reporting a visual issue, it will be much easier for us to resolve it if you attach a file.
+        if you also attach a screenshot.
+  - type: input
+    attributes:
+      label: Version
+  - type: input
+    attributes:
+      label: Platform
+  - type: textarea
+    attributes:
+      label: What steps will reproduce the bug?
+      description: Enter details about your bug.
+  - type: textarea
+    attributes:
+      label: How often does it reproduce? Is there a required condition?
+  - type: textarea
+    attributes:
+      label: What is the expected behavior?
+      description: If possible please provide textual output instead of screenshots.
+  - type: textarea
+    attributes:
+      label: What do you see instead?
+      description: If possible please provide textual output instead of screenshots.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: Tell us anything else you think we should know.
