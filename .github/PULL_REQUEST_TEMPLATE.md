@@ -13,5 +13,7 @@
 
 ### Check List
 
-- [ ] Have you read the [CODE OF CONDUCT](https://github.com/lumeland/lume/blob/master/CODE_OF_CONDUCT.md)
-- [ ] Have you read the document [CONTRIBUTING](https://github.com/lumeland/lume/blob/master/CONTRIBUTING.md)
+- [ ] Have you read the
+      [CODE OF CONDUCT](https://github.com/lumeland/lume/blob/master/CODE_OF_CONDUCT.md)
+- [ ] Have you read the document
+      [CONTRIBUTING](https://github.com/lumeland/lume/blob/master/CONTRIBUTING.md)
