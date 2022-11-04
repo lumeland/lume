@@ -1,6 +1,7 @@
 import { merge } from "../core/utils.ts";
+import { Directory } from "../core/filesystem.ts";
 
-import type { Data, Page, Site } from "../core.ts";
+import { Data, Page, Site } from "../core.ts";
 
 export interface Options {
   /** The helper name */
@@ -42,11 +43,25 @@ export class Search {
   }
 
   /** Return the data in the scope of a path (file or folder) */
-  data(path = "/") {
-    const file = this.#site.source.getFileOrDirectory(path);
+  data(path = "/"): Data | undefined {
+    let result: Directory | Page | undefined = this.#site.source.root;
+    const pieces = path.split("/");
 
-    if (file) {
-      return file.data;
+    for (const name of pieces) {
+      if (!name) {
+        continue;
+      }
+
+      if (result instanceof Directory) {
+        result = result.dirs.get(name) || result.pages.get(name);
+        continue;
+      }
+
+      return undefined;
+    }
+
+    if (result) {
+      return result.data;
     }
   }
 

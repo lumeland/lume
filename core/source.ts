@@ -279,23 +279,6 @@ export default class Source {
     return;
   }
 
-  /** Return the File or Directory of a path */
-  getFileOrDirectory(path: string): Directory | Page | undefined {
-    let result: Directory | Page | undefined = this.root;
-
-    path.split("/").forEach((name) => {
-      if (!name || !result) {
-        return;
-      }
-
-      if (result instanceof Directory) {
-        result = result.dirs.get(name) || result.pages.get(name);
-      }
-    });
-
-    return result;
-  }
-
   /** Returns the closest loaded directory */
   #getClosestLoadedDirectory(path: string): Directory {
     let directory = this.root;
