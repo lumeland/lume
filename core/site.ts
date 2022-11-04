@@ -604,10 +604,15 @@ export default class Site {
   /** Render a single page (used for on demand rendering) */
   async renderPage(file: string): Promise<Page | undefined> {
     // Load the page
-    await this.source.update(file);
+    await this.source.update(file, true);
 
     // Returns the page
-    const page = this.source.getFileOrDirectory(file) as Page | undefined;
+    const [pages] = this.source.getContent(
+      this.globalData,
+      this.globalComponents,
+      [(page) => page.src.path + page.src.ext === file],
+    );
+    const page = pages[0];
 
     if (!page) {
       return;

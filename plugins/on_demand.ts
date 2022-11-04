@@ -68,7 +68,7 @@ export class JsonRouterCollector {
     pages.forEach((page) => {
       this.routes.set(
         page.data.url as string,
-        "." + page.src.path + page.src.ext,
+        page.src.path + page.src.ext,
       );
     });
   }
@@ -116,7 +116,7 @@ function generatePreloadCode(paths: Set<string>): string {
   const caches: string[] = [];
 
   Array.from(paths).map((path, index) => {
-    imports.push(`import * as $${index} from "${path}";`);
+    imports.push(`import * as $${index} from ".${path}";`);
     caches.push(`  site.cacheFile("${path}", toData($${index}));`);
   });
 

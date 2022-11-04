@@ -215,7 +215,7 @@ export default class Source {
   }
 
   /** Update a file */
-  async update(file: string): Promise<void> {
+  async update(file: string, onDemand = false): Promise<void> {
     // Check if the file should be ignored
     for (const path of this.ignored) {
       if (file === path || file.startsWith(path + "/")) {
@@ -249,7 +249,7 @@ export default class Source {
         isSymlink: false,
         remote: info?.remote,
       };
-      await this.#loadEntry(directory, entry, file);
+      await this.#loadEntry(directory, entry, (path) => file === path);
       return;
     }
 
@@ -269,7 +269,13 @@ export default class Source {
       isSymlink: false,
       remote: info.remote,
     };
-    await this.#loadEntry(directory, entry, file);
+    await this.#loadEntry(
+      directory,
+      entry,
+      (path, entry) =>
+        file === path || file.startsWith(path + "/") ||
+        (onDemand && (entryIsData(entry) || entryIsComponents(entry))),
+    );
     return;
   }
 
@@ -324,27 +330,31 @@ export default class Source {
   }
 
   /** Load an entry from a directory */
-  async #loadEntry(directory: Directory, entry: DirEntry, file?: string) {
+  async #loadEntry(
+    directory: Directory,
+    entry: DirEntry,
+    filter?: (path: string, entry: DirEntry) => boolean,
+  ) {
     if (entry.isSymlink) {
       return;
     }
 
     const path = posix.join(directory.src.path, entry.name);
 
-    // Used on update mode to only reload changed files
-    if (file && file !== path && !file.startsWith(path + "/")) {
+    // Used on reload or update only some paths
+    if (filter && !filter(path, entry)) {
       return;
     }
 
     // Load the _data files
-    if (entry.name === "_data" || /^_data\.\w+$/.test(entry.name)) {
+    if (entryIsData(entry)) {
       const dataFile = await this.dataLoader.load(path);
       Object.assign(directory.baseData, dataFile);
       return;
     }
 
     // Load the _components files
-    if (entry.isDirectory && entry.name === "_components") {
+    if (entryIsComponents(entry)) {
       await this.componentLoader.load(path, directory);
       return;
     }
@@ -622,4 +632,15 @@ export function mergeComponents(
   }
 
   return components;
+}
+
+/** Check if the entry is a _data file/directory */
+function entryIsData(entry: DirEntry): boolean {
+  return (entry.isDirectory && entry.name === "_data") ||
+    /^_data\.\w+$/.test(entry.name);
+}
+
+/** Check if the entry is a _components folder */
+function entryIsComponents(entry: DirEntry): boolean {
+  return entry.isDirectory && entry.name === "_components";
 }
