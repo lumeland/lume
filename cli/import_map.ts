@@ -1,6 +1,6 @@
 import { initPlugins, readDenoConfig, writeDenoConfig } from "../core/utils.ts";
 
-import { DenoConfigResult } from "../core.ts";
+import type { DenoConfigResult } from "../core.ts";
 
 interface Options {
   plugins?: string[];
