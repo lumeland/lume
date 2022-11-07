@@ -44,6 +44,7 @@ const defaults: SiteOptions = {
   cwd: Deno.cwd(),
   src: "./",
   dest: "./_site",
+  emptyDest: true,
   includes: "_includes",
   location: new URL("http://localhost"),
   quiet: false,
@@ -462,7 +463,9 @@ export default class Site {
       return;
     }
 
-    await this.clear();
+    if (this.options.emptyDest) {
+      await this.clear();
+    }
 
     // Load source files
     await this.source.load();
@@ -745,6 +748,9 @@ export interface SiteOptions {
 
   /** The path of the built destination */
   dest: string;
+
+  /** Whether the empty folder should be emptied before the build */
+  emptyDest?: boolean;
 
   /** The default includes path */
   includes: string;

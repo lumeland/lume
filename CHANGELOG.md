@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.13.0] - Unreleased
 ### Added
 - New method `Server.stop()` to close the local server [#296].
+- New option `emptyDest` to configure whether the dest folder must be emptied before build [#308].
 - The `src` property of pages and folders includes now the `slug` value [#278].
 - New option `returnPageData` to `search` plugin [#251].
 - New middleware `www` [#280].
@@ -22,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - For better compatibility, `postcss` and its plugins are loaded from `npm:` specifier.
 
 ### Fixed
-- Removed typo in `jsx_preact`, allowing `comp` function to execute properly.
+- Removed typo in `jsx_preact`, allowing `comp` function to execute properly [#295].
 - The data cascade merging was refactored and simplified.
 - Types of Nunjucks.
 - Updated dependencies: `std`, `esbuild`, `pagefind`, `liquid`, `preact`, `cliffy`, `nunjucks`, `lightningcss`.
@@ -1883,8 +1884,10 @@ The first version.
 [#291]: https://github.com/lumeland/lume/issues/291
 [#292]: https://github.com/lumeland/lume/issues/292
 [#293]: https://github.com/lumeland/lume/issues/293
+[#295]: https://github.com/lumeland/lume/issues/295
 [#296]: https://github.com/lumeland/lume/issues/296
 [#299]: https://github.com/lumeland/lume/issues/299
+[#308]: https://github.com/lumeland/lume/issues/308
 
 [1.13.0]: https://github.com/lumeland/lume/compare/v1.12.1...HEAD
 [1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...v1.12.1
