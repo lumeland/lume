@@ -130,8 +130,7 @@ snapshot[`postcss plugin 5`] = `
 {
   content: ".text {
   font-family: var(--font-family)
-}
-.text p {
+}.text p {
     color: var(--color);
     box-shadow: 0 0 0.5em var(--background);
     -webkit-backface-visibility: hidden;
@@ -282,8 +281,7 @@ snapshot[`postcss plugin without includes 5`] = `
 {
   content: ".text {
   font-family: var(--font-family)
-}
-.text p {
+}.text p {
     color: var(--color);
     box-shadow: 0 0 0.5em var(--background);
     -webkit-backface-visibility: hidden;
