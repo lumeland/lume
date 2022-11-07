@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The data cascade merging was refactored and simplified.
 - Types of Nunjucks.
 - Updated dependencies: `std`, `esbuild`, `pagefind`, `liquid`, `preact`, `cliffy`, `nunjucks`, `lightningcss`.
+- The requirement of the `--unstable` flag for `init`.
 
 ## [1.12.1] - 2022-10-15
 ### Added
