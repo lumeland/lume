@@ -23,7 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Removed typo in `jsx_preact`, allowing `comp` function to execute properly.
 - The data cascade merging was refactored and simplified.
-- Updated dependencies: `std`, `esbuild`, `pagefind`, `liquid`, `preact`, `cliffy`.
+- Types of Nunjucks.
+- Updated dependencies: `std`, `esbuild`, `pagefind`, `liquid`, `preact`, `cliffy`, `nunjucks`, `lightningcss`.
 
 ## [1.12.1] - 2022-10-15
 ### Added

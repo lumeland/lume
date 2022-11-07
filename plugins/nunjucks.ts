@@ -14,7 +14,6 @@ import type {
   ProxyComponents,
   Site,
 } from "../core.ts";
-import type { NunjucksOptions } from "../deps/nunjucks.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -27,11 +26,11 @@ export interface Options {
   includes: string;
 
   /** Options passed to Nunjucks */
-  options: NunjucksOptions;
+  options: nunjucks.ConfigureOptions;
 
   /** Plugins loaded by Nunjucks */
   plugins: {
-    [index: string]: unknown;
+    [index: string]: nunjucks.Extension;
   };
 }
 
@@ -108,6 +107,7 @@ export class NunjucksEngine implements Engine {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
+        // @ts-ignore: The type definition of nunjucks is wrong
         nunjucks.compile(content, this.env, join(this.basePath, filename)),
       );
     }
@@ -154,7 +154,7 @@ export default function (userOptions?: DeepPartial<Options>) {
       async: true,
       async getSource(
         path: string,
-        callback: (err?: string, src?: { src: string; path: string }) => void,
+        callback: nunjucks.Callback<Error, nunjucks.LoaderSource>,
       ) {
         let relPath = normalizePath(path);
         relPath = relPath.startsWith(basePath)
@@ -163,19 +163,20 @@ export default function (userOptions?: DeepPartial<Options>) {
         const content = await site.getContent(relPath);
 
         if (content) {
-          callback(undefined, {
+          callback(null, {
             src: content as string,
             path,
+            noCache: false,
           });
           return;
         }
 
-        callback(`Could not load ${path}`);
+        callback(new Error(`Could not load ${path}`), null);
       },
     };
 
     const env = new nunjucks.Environment(
-      [fsLoader, lumeLoader],
+      [fsLoader, lumeLoader as unknown as nunjucks.ILoader],
       options.options,
     );
 
