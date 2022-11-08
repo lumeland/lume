@@ -1,7 +1,6 @@
 import {
   assertEquals,
   assertStrictEquals as equals,
-  assertStringIncludes as contains,
 } from "../deps/assert.ts";
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import { SiteEvent } from "../core.ts";
