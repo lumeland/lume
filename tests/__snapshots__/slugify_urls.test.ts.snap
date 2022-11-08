@@ -81,6 +81,7 @@ snapshot[`slugify_urls plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "Chourizos ao viño",
     tags: [
     ],
     url: "/chourizos-ao-vino/",
@@ -110,6 +111,7 @@ snapshot[`slugify_urls plugin 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "Page 1",
     tags: [
     ],
     url: "/page-1/",
@@ -137,6 +139,7 @@ snapshot[`slugify_urls plugin 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "generator",
     tags: [
     ],
     url: "/filloas-con-nocilla/",
@@ -164,6 +167,7 @@ snapshot[`slugify_urls plugin 7`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "generator",
     tags: [
     ],
     url: "/803nfon-sfodij/-/",
@@ -193,6 +197,7 @@ snapshot[`slugify_urls plugin 8`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "page-3",
     tags: [
     ],
     url: "/paxina-numero/tres/",

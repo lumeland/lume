@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New method `Server.stop()` to close the local server [#296].
 - New option `emptyDest` to configure whether the dest folder must be emptied before build [#308].
 - The `src` property of pages and folders includes now the `slug` value [#278].
+- New property `data.slug` property to configure the slug of pages and directories [#278].
 - New option `returnPageData` to `search` plugin [#251].
 - New middleware `www` [#280].
 - New `sitemap` plugin [#287].

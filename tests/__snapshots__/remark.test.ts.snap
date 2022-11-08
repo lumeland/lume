@@ -89,6 +89,7 @@ snapshot[`Build a markdown site 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "basic",
     tags: [
     ],
     title: "Basic page",
@@ -118,6 +119,7 @@ snapshot[`Build a markdown site 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "with-attributes",
     tags: [
     ],
     url: "/with-attributes/",
@@ -155,6 +157,7 @@ snapshot[`Build a markdown site 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "with-code",
     tags: [
     ],
     url: "/with-code/",
@@ -194,6 +197,7 @@ Other title
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "with-deflist",
     tags: [
     ],
     url: "/with-deflist/",
@@ -229,6 +233,7 @@ snapshot[`Build a markdown site 8`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "with-filter",
     tags: [
     ],
     title: "Module **example**",
@@ -258,6 +263,7 @@ snapshot[`Build a markdown site 9`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "with-module",
     tags: [
     ],
     templateEngine: "tmpl.js,md",
@@ -307,6 +313,7 @@ Foo
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "with-nunjucks",
     tags: [
     ],
     templateEngine: "njk,md",

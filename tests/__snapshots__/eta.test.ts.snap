@@ -106,6 +106,7 @@ snapshot[`build a site with eta 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "index",
     tags: [
     ],
     title: "Eta example",

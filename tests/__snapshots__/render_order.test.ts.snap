@@ -81,6 +81,7 @@ snapshot[`render order property 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "extra-page",
     tags: [
     ],
     url: "/extra-page/",
@@ -109,6 +110,7 @@ snapshot[`render order property 5`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
+    slug: "pages2",
     tags: [
     ],
     url: "/articles/11/",
@@ -137,6 +139,7 @@ snapshot[`render order property 6`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
+    slug: "pages2",
     tags: [
     ],
     url: "/articles/12/",
@@ -165,6 +168,7 @@ snapshot[`render order property 7`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
+    slug: "pages2",
     tags: [
     ],
     url: "/articles/13/",
@@ -193,6 +197,7 @@ snapshot[`render order property 8`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
+    slug: "pages2",
     tags: [
     ],
     url: "/articles/14/",
@@ -221,6 +226,7 @@ snapshot[`render order property 9`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
+    slug: "pages2",
     tags: [
     ],
     url: "/articles/15/",
@@ -249,6 +255,7 @@ snapshot[`render order property 10`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
+    slug: "pages2",
     tags: [
     ],
     url: "/articles/16/",
@@ -277,6 +284,7 @@ snapshot[`render order property 11`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
+    slug: "pages2",
     tags: [
     ],
     url: "/articles/17/",
@@ -305,6 +313,7 @@ snapshot[`render order property 12`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
+    slug: "pages2",
     tags: [
     ],
     url: "/articles/18/",
@@ -333,6 +342,7 @@ snapshot[`render order property 13`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
+    slug: "pages2",
     tags: [
     ],
     url: "/articles/19/",
@@ -361,6 +371,7 @@ snapshot[`render order property 14`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
+    slug: "pages2",
     tags: [
     ],
     url: "/articles/20/",
@@ -388,6 +399,7 @@ snapshot[`render order property 15`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "pages",
     tags: [
     ],
     url: "/articles/1/",
@@ -415,6 +427,7 @@ snapshot[`render order property 16`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "pages",
     tags: [
     ],
     url: "/articles/2/",
@@ -442,6 +455,7 @@ snapshot[`render order property 17`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "pages",
     tags: [
     ],
     url: "/articles/3/",
@@ -469,6 +483,7 @@ snapshot[`render order property 18`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "pages",
     tags: [
     ],
     url: "/articles/4/",
@@ -496,6 +511,7 @@ snapshot[`render order property 19`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "pages",
     tags: [
     ],
     url: "/articles/5/",
@@ -523,6 +539,7 @@ snapshot[`render order property 20`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "pages",
     tags: [
     ],
     url: "/articles/6/",
@@ -550,6 +567,7 @@ snapshot[`render order property 21`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "pages",
     tags: [
     ],
     url: "/articles/7/",
@@ -577,6 +595,7 @@ snapshot[`render order property 22`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "pages",
     tags: [
     ],
     url: "/articles/8/",
@@ -604,6 +623,7 @@ snapshot[`render order property 23`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "pages",
     tags: [
     ],
     url: "/articles/9/",
@@ -631,6 +651,7 @@ snapshot[`render order property 24`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "pages",
     tags: [
     ],
     url: "/articles/10/",
@@ -668,6 +689,7 @@ snapshot[`render order property 25`] = `
     renderOrder: 1,
     results: 5,
     search: Search {},
+    slug: "pagination",
     tags: [
     ],
     url: "/pagination/page-1/",
@@ -705,6 +727,7 @@ snapshot[`render order property 26`] = `
     renderOrder: 1,
     results: 5,
     search: Search {},
+    slug: "pagination",
     tags: [
     ],
     url: "/pagination/page-2/",
@@ -742,6 +765,7 @@ snapshot[`render order property 27`] = `
     renderOrder: 1,
     results: 1,
     search: Search {},
+    slug: "pagination",
     tags: [
     ],
     url: "/pagination/page-3/",

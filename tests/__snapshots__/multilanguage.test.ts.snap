@@ -89,6 +89,7 @@ snapshot[`metas plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "index",
     tags: [
     ],
     title: "Hello world",
@@ -126,6 +127,7 @@ snapshot[`metas plugin 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "index",
     tags: [
     ],
     title: "Ola mundo",
@@ -166,6 +168,7 @@ snapshot[`metas plugin 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "other",
     tags: [
     ],
     title: "Other",
@@ -205,6 +208,7 @@ snapshot[`metas plugin 7`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "other",
     tags: [
     ],
     title: "Autre",
@@ -262,6 +266,7 @@ snapshot[`metas plugin 8`] = `
     },
     results: 2,
     search: Search {},
+    slug: "pagination",
     tags: [
     ],
     url: "/pagination/page-1/",
@@ -316,6 +321,7 @@ snapshot[`metas plugin 9`] = `
     },
     results: 1,
     search: Search {},
+    slug: "pagination",
     tags: [
     ],
     url: "/pagination/page-1/",

@@ -103,6 +103,7 @@ snapshot[`relations plugin 4`] = `
           post: [Circular *1],
           renderOrder: -2,
           search: Search {},
+          slug: "category-1",
           tags: [
           ],
           title: "Category 1",
@@ -123,6 +124,7 @@ snapshot[`relations plugin 4`] = `
             ],
             renderOrder: -1,
             search: Search {},
+            slug: "comment-2",
             tags: [
             ],
             type: "comment",
@@ -140,6 +142,7 @@ snapshot[`relations plugin 4`] = `
         page: undefined,
         paginate: [Function: paginate],
         search: Search {},
+        slug: "post-2",
         tags: [
         ],
         type: "post",
@@ -148,6 +151,7 @@ snapshot[`relations plugin 4`] = `
     ],
     renderOrder: -2,
     search: Search {},
+    slug: "category-1",
     tags: [
     ],
     title: "Category 1",
@@ -200,6 +204,7 @@ snapshot[`relations plugin 5`] = `
           paginate: [Function: paginate],
           post: [Circular *1],
           search: Search {},
+          slug: "category-2",
           tags: [
           ],
           title: "Category 2",
@@ -219,6 +224,7 @@ snapshot[`relations plugin 5`] = `
               [Circular *2],
             ],
             search: Search {},
+            slug: "comment-1",
             tags: [
             ],
             type: "comment",
@@ -235,6 +241,7 @@ snapshot[`relations plugin 5`] = `
               [Circular *2],
             ],
             search: Search {},
+            slug: "comment-3",
             tags: [
             ],
             type: "comment",
@@ -254,6 +261,7 @@ snapshot[`relations plugin 5`] = `
         paginate: [Function: paginate],
         renderOrder: 1,
         search: Search {},
+        slug: "post-1",
         tags: [
         ],
         type: "post",
@@ -261,6 +269,7 @@ snapshot[`relations plugin 5`] = `
       },
     ],
     search: Search {},
+    slug: "category-2",
     tags: [
     ],
     title: "Category 2",
@@ -306,6 +315,7 @@ snapshot[`relations plugin 6`] = `
             [Circular *1],
           ],
           search: Search {},
+          slug: "category-2",
           tags: [
           ],
           title: "Category 2",
@@ -323,6 +333,7 @@ snapshot[`relations plugin 6`] = `
             paginate: [Function: paginate],
             post: [Circular *2],
             search: Search {},
+            slug: "comment-1",
             tags: [
             ],
             type: "comment",
@@ -339,6 +350,7 @@ snapshot[`relations plugin 6`] = `
               [Circular *1],
             ],
             search: Search {},
+            slug: "comment-3",
             tags: [
             ],
             type: "comment",
@@ -358,6 +370,7 @@ snapshot[`relations plugin 6`] = `
         paginate: [Function: paginate],
         renderOrder: 1,
         search: Search {},
+        slug: "post-1",
         tags: [
         ],
         type: "post",
@@ -365,6 +378,7 @@ snapshot[`relations plugin 6`] = `
       },
     ],
     search: Search {},
+    slug: "comment-1",
     tags: [
     ],
     type: "comment",
@@ -410,6 +424,7 @@ snapshot[`relations plugin 7`] = `
           ],
           renderOrder: -2,
           search: Search {},
+          slug: "category-1",
           tags: [
           ],
           title: "Category 1",
@@ -428,6 +443,7 @@ snapshot[`relations plugin 7`] = `
             post: [Circular *2],
             renderOrder: -1,
             search: Search {},
+            slug: "comment-2",
             tags: [
             ],
             type: "comment",
@@ -445,6 +461,7 @@ snapshot[`relations plugin 7`] = `
         page: undefined,
         paginate: [Function: paginate],
         search: Search {},
+        slug: "post-2",
         tags: [
         ],
         type: "post",
@@ -453,6 +470,7 @@ snapshot[`relations plugin 7`] = `
     ],
     renderOrder: -1,
     search: Search {},
+    slug: "comment-2",
     tags: [
     ],
     type: "comment",
@@ -497,6 +515,7 @@ snapshot[`relations plugin 8`] = `
             [Circular *1],
           ],
           search: Search {},
+          slug: "category-2",
           tags: [
           ],
           title: "Category 2",
@@ -516,6 +535,7 @@ snapshot[`relations plugin 8`] = `
               [Circular *1],
             ],
             search: Search {},
+            slug: "comment-1",
             tags: [
             ],
             type: "comment",
@@ -530,6 +550,7 @@ snapshot[`relations plugin 8`] = `
             paginate: [Function: paginate],
             post: [Circular *2],
             search: Search {},
+            slug: "comment-3",
             tags: [
             ],
             type: "comment",
@@ -549,6 +570,7 @@ snapshot[`relations plugin 8`] = `
         paginate: [Function: paginate],
         renderOrder: 1,
         search: Search {},
+        slug: "post-1",
         tags: [
         ],
         type: "post",
@@ -556,6 +578,7 @@ snapshot[`relations plugin 8`] = `
       },
     ],
     search: Search {},
+    slug: "comment-3",
     tags: [
     ],
     type: "comment",
@@ -618,6 +641,7 @@ snapshot[`relations plugin 9`] = `
                 [Circular *2],
               ],
               search: Search {},
+              slug: "comment-1",
               tags: [
               ],
               type: "comment",
@@ -634,6 +658,7 @@ snapshot[`relations plugin 9`] = `
                 [Circular *2],
               ],
               search: Search {},
+              slug: "comment-3",
               tags: [
               ],
               type: "comment",
@@ -653,6 +678,7 @@ snapshot[`relations plugin 9`] = `
           paginate: [Function: paginate],
           renderOrder: 1,
           search: Search {},
+          slug: "post-1",
           tags: [
           ],
           type: "post",
@@ -660,6 +686,7 @@ snapshot[`relations plugin 9`] = `
         },
       ],
       search: Search {},
+      slug: "category-2",
       tags: [
       ],
       title: "Category 2",
@@ -689,6 +716,7 @@ snapshot[`relations plugin 9`] = `
                 [Circular *2],
               ],
               search: Search {},
+              slug: "category-2",
               tags: [
               ],
               title: "Category 2",
@@ -710,6 +738,7 @@ snapshot[`relations plugin 9`] = `
             paginate: [Function: paginate],
             renderOrder: 1,
             search: Search {},
+            slug: "post-1",
             tags: [
             ],
             type: "post",
@@ -717,6 +746,7 @@ snapshot[`relations plugin 9`] = `
           },
         ],
         search: Search {},
+        slug: "comment-1",
         tags: [
         ],
         type: "comment",
@@ -743,6 +773,7 @@ snapshot[`relations plugin 9`] = `
                 [Circular *2],
               ],
               search: Search {},
+              slug: "category-2",
               tags: [
               ],
               title: "Category 2",
@@ -764,6 +795,7 @@ snapshot[`relations plugin 9`] = `
             paginate: [Function: paginate],
             renderOrder: 1,
             search: Search {},
+            slug: "post-1",
             tags: [
             ],
             type: "post",
@@ -771,6 +803,7 @@ snapshot[`relations plugin 9`] = `
           },
         ],
         search: Search {},
+        slug: "comment-3",
         tags: [
         ],
         type: "comment",
@@ -790,6 +823,7 @@ snapshot[`relations plugin 9`] = `
     paginate: [Function: paginate],
     renderOrder: 1,
     search: Search {},
+    slug: "post-1",
     tags: [
     ],
     type: "post",
@@ -851,6 +885,7 @@ snapshot[`relations plugin 10`] = `
               ],
               renderOrder: -1,
               search: Search {},
+              slug: "comment-2",
               tags: [
               ],
               type: "comment",
@@ -868,6 +903,7 @@ snapshot[`relations plugin 10`] = `
           page: undefined,
           paginate: [Function: paginate],
           search: Search {},
+          slug: "post-2",
           tags: [
           ],
           type: "post",
@@ -876,6 +912,7 @@ snapshot[`relations plugin 10`] = `
       ],
       renderOrder: -2,
       search: Search {},
+      slug: "category-1",
       tags: [
       ],
       title: "Category 1",
@@ -906,6 +943,7 @@ snapshot[`relations plugin 10`] = `
               ],
               renderOrder: -2,
               search: Search {},
+              slug: "category-1",
               tags: [
               ],
               title: "Category 1",
@@ -925,6 +963,7 @@ snapshot[`relations plugin 10`] = `
             page: undefined,
             paginate: [Function: paginate],
             search: Search {},
+            slug: "post-2",
             tags: [
             ],
             type: "post",
@@ -933,6 +972,7 @@ snapshot[`relations plugin 10`] = `
         ],
         renderOrder: -1,
         search: Search {},
+        slug: "comment-2",
         tags: [
         ],
         type: "comment",
@@ -950,6 +990,7 @@ snapshot[`relations plugin 10`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "post-2",
     tags: [
     ],
     type: "post",

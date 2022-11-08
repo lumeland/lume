@@ -3,26 +3,16 @@ import {
   assertStrictEquals as equals,
   assertStringIncludes as contains,
 } from "../deps/assert.ts";
-import { build, getSite } from "./utils.ts";
+import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import { SiteEvent } from "../core.ts";
 
-Deno.test("build a simple site", async () => {
+Deno.test("build a simple site", async (t) => {
   const site = getSite({
     src: "simple",
   });
 
   await build(site);
-
-  const { pages } = site;
-
-  // Test the generated pages
-  equals(pages.length, 1);
-  equals(pages[0].src.path, "/page1");
-  equals(pages[0].src.ext, ".md");
-  equals(pages[0].dest.path, "/page1/index");
-  equals(pages[0].dest.ext, ".html");
-  equals(pages[0].data.url, "/page1/");
-  contains(pages[0].content as string, "<h1>Welcome</h1>");
+  await assertSiteSnapshot(t, site);
 
   // Test the enumerated properties
   const page = site.pages[0];

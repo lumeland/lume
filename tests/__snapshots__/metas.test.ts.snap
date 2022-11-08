@@ -132,6 +132,7 @@ snapshot[`metas plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "page-1",
     tags: [
     ],
     url: "/page-1/",
@@ -212,6 +213,7 @@ snapshot[`metas plugin 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "page-2",
     tags: [
     ],
     url: "/page-2/",
@@ -282,6 +284,7 @@ snapshot[`metas plugin 6`] = `
     paginate: [Function: paginate],
     robots: "this robots will be overrided",
     search: Search {},
+    slug: "page-3",
     tags: [
     ],
     title: "Title from page data",
@@ -433,6 +436,7 @@ snapshot[`metas plugin use defaultPageData 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "page-1",
     tags: [
     ],
     url: "/page-1/",
@@ -513,6 +517,7 @@ snapshot[`metas plugin use defaultPageData 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "page-2",
     tags: [
     ],
     url: "/page-2/",
@@ -590,6 +595,7 @@ snapshot[`metas plugin use defaultPageData 6`] = `
     paginate: [Function: paginate],
     robots: "this robots will be overrided",
     search: Search {},
+    slug: "page-3",
     tags: [
     ],
     title: "Title from page data",

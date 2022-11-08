@@ -116,6 +116,7 @@ snapshot[`minify_html plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "index",
     tags: [
     ],
     url: "/",

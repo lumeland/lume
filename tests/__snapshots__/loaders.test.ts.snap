@@ -118,6 +118,7 @@ snapshot[`Load the pages of a site 4`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Default site name",
+    slug: "favicon",
     tags: [
       "pages",
     ],
@@ -165,6 +166,7 @@ snapshot[`Load the pages of a site 5`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Default site name",
+    slug: "page5",
     tags: [
       "pages",
     ],
@@ -243,6 +245,7 @@ snapshot[`Load the pages of a site 6`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Folder overrided site name",
+    slug: "page2",
     tags: [
       "pages",
       "sub-pages",
@@ -322,6 +325,7 @@ snapshot[`Load the pages of a site 7`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Overrided site name",
+    slug: "page4",
     tags: [
       "pages",
       "sub-pages",
@@ -403,6 +407,7 @@ snapshot[`Load the pages of a site 8`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Folder overrided site name",
+    slug: "page6",
     tags: [
       "pages",
       "sub-pages",
@@ -493,6 +498,7 @@ snapshot[`Load the pages of a site 9`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Folder overrided site name",
+    slug: "page1",
     tags: [
       "pages",
       "sub-pages",
@@ -573,6 +579,7 @@ snapshot[`Load the pages of a site 10`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Folder overrided site name",
+    slug: "page3",
     tags: [
       "pages",
       "sub-pages",
@@ -652,6 +659,7 @@ snapshot[`Load the pages of a site 11`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Folder overrided site name",
+    slug: "page7",
     tags: [
       "pages",
       "sub-pages",
@@ -711,6 +719,7 @@ snapshot[`Load the pages of a site 12`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Default site name",
+    slug: "styles",
     tags: [
       "pages",
     ],

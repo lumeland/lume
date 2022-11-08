@@ -98,6 +98,7 @@ First article
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "article-1",
     tags: [
     ],
     url: "/articles/first-article/",
@@ -136,6 +137,7 @@ Second article
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "article-2",
     tags: [
     ],
     url: "/drafts/second-article/",
@@ -191,6 +193,7 @@ snapshot[`relative_url plugin 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "index",
     tags: [
     ],
     url: "/",
@@ -224,6 +227,7 @@ snapshot[`relative_url plugin 7`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "other",
     tags: [
     ],
     url: "/other/",
@@ -254,6 +258,7 @@ snapshot[`relative_url plugin 8`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "tílde-and-eñe",
     tags: [
     ],
     url: "/tilde-and-ene/",

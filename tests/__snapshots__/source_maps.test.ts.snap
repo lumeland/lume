@@ -145,6 +145,7 @@ snapshot[`Source maps from CSS files 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "index",
     sourceMap: undefined,
     tags: [
     ],
@@ -178,6 +179,7 @@ body
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "index2",
     sourceMap: undefined,
     tags: [
     ],
@@ -355,6 +357,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "main",
     sourceMap: undefined,
     tags: [
     ],
@@ -387,6 +390,7 @@ snapshot[`Source maps from Js files 7`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "to_uppercase",
     sourceMap: undefined,
     tags: [
     ],

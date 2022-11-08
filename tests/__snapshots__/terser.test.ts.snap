@@ -84,6 +84,7 @@ console.log(one() + two());
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "main",
     tags: [
     ],
     url: "/main.js",
@@ -124,6 +125,7 @@ export function two () {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "numbers",
     tags: [
     ],
     two: 2,

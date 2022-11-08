@@ -122,22 +122,29 @@ export default class Source {
   /** Return the list of pages and static files recursively */
   #getContent(
     directory: Directory,
-    parentData?: Data,
-    parentComponents?: Components,
+    parentData: Data,
+    parentComponents: Components,
     parentPath = "/",
   ): [Page[], StaticFile[]] {
     const pages: Page[] = [];
     const staticFiles: StaticFile[] = [];
 
     // Data cascade from the parent directory
-    const data = mergeData(directory.baseData, parentData);
-    const path = posix.join(parentPath, directory.src.slug);
+    const data = mergeData(parentData, directory.baseData);
+    data.slug = getSlug(directory);
+    const path = posix.join(parentPath, data.slug);
 
     // Setup the components
-    const components = mergeComponents(directory.components, parentComponents);
+    if (directory.components.size) {
+      const components = mergeComponents(
+        directory.components,
+        parentComponents,
+      );
+      parentComponents = components;
 
-    if (components?.size) {
-      data[this.components.variable] = toProxy(components, this.extraCode);
+      if (components?.size) {
+        data[this.components.variable] = toProxy(components, this.extraCode);
+      }
     }
 
     directory.data = data;
@@ -145,9 +152,10 @@ export default class Source {
     // Apply data cascade and dest path to the pages
     pages.push(
       ...[...directory.pages.values()].map((page) => {
-        page.data = mergeData({ ...page.baseData, page }, data);
+        page.data = mergeData(data, { ...page.baseData, page });
+        page.data.slug = getSlug(page);
         page.dest = {
-          path: posix.join(path, page.src.slug),
+          path: posix.join(path, page.data.slug),
           ext: posix.extname(page.src.path) ||
             (page.src.asset ? page.src.ext || "" : ""),
         };
@@ -176,7 +184,7 @@ export default class Source {
       const [dirPages, dirStaticFiles] = this.#getContent(
         subdirectory,
         data,
-        components,
+        parentComponents,
         path,
       );
 
@@ -538,7 +546,7 @@ export interface ProxyComponents {
 }
 
 /** Merge the cascade data */
-export function mergeData(baseData: Data, parentData: Data = {}): Data {
+export function mergeData(parentData: Data, baseData: Data): Data {
   const data: Data = { ...parentData, ...baseData };
 
   // Merge special keys
@@ -626,4 +634,9 @@ function entryIsData(entry: DirEntry): boolean {
 /** Check if the entry is a _components folder */
 function entryIsComponents(entry: DirEntry): boolean {
   return entry.isDirectory && entry.name === "_components";
+}
+
+/** Get the slug of a page/directory */
+function getSlug(entry: Page | Directory): string {
+  return entry.baseData.slug || entry.src.slug;
 }

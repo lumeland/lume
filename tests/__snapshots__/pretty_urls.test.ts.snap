@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`Disabled pretty URLs 1`] = `1`;
+snapshot[`Disabled pretty URLs 1`] = `2`;
 
 snapshot[`Disabled pretty URLs 2`] = `
 {
@@ -81,6 +81,38 @@ snapshot[`Disabled pretty URLs 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "page2",
+    tags: [
+    ],
+    title: "Second page",
+    url: "/page2.html",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page2",
+  },
+  src: {
+    asset: undefined,
+    ext: ".md",
+    path: "/foo",
+    remote: undefined,
+    slug: "foo",
+  },
+}
+`;
+
+snapshot[`Disabled pretty URLs 5`] = `
+{
+  content: "<h1>Welcome</h1>
+",
+  data: {
+    content: "# Welcome
+",
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    slug: "page1",
     tags: [
     ],
     title: "First page",
@@ -100,7 +132,7 @@ snapshot[`Disabled pretty URLs 4`] = `
 }
 `;
 
-snapshot[`Pretty URLs with no-html-extension 1`] = `1`;
+snapshot[`Pretty URLs with no-html-extension 1`] = `2`;
 
 snapshot[`Pretty URLs with no-html-extension 2`] = `
 {
@@ -181,6 +213,38 @@ snapshot[`Pretty URLs with no-html-extension 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "page2",
+    tags: [
+    ],
+    title: "Second page",
+    url: "/page2",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page2",
+  },
+  src: {
+    asset: undefined,
+    ext: ".md",
+    path: "/foo",
+    remote: undefined,
+    slug: "foo",
+  },
+}
+`;
+
+snapshot[`Pretty URLs with no-html-extension 5`] = `
+{
+  content: "<h1>Welcome</h1>
+",
+  data: {
+    content: "# Welcome
+",
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    slug: "page1",
     tags: [
     ],
     title: "First page",

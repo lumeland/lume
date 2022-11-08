@@ -109,6 +109,7 @@ This is a remote template
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "local1",
     tags: [
     ],
     title: "Remote title",
@@ -145,6 +146,7 @@ body {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "other-remote-style",
     tags: [
     ],
     title: "Remote title",
@@ -177,6 +179,7 @@ hello();
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "scripts",
     tags: [
     ],
     title: "Remote title",
@@ -215,6 +218,7 @@ body {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "styles1",
     tags: [
     ],
     title: "Remote title",
@@ -247,6 +251,7 @@ snapshot[`render remote files 8`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "styles2",
     tags: [
     ],
     title: "Remote title",

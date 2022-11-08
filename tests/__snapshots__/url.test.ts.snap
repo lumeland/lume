@@ -93,6 +93,7 @@ snapshot[`url and htmlUrl update href 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "default-filter",
     tags: [
     ],
     title: "Default Filter",
@@ -132,6 +133,7 @@ snapshot[`url and htmlUrl update href 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "renamed-filter",
     tags: [
     ],
     title: "Renamed Filter",
@@ -244,6 +246,7 @@ snapshot[`configure url and htmlUrl names 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "default-filter",
     tags: [
     ],
     title: "Default Filter",
@@ -283,6 +286,7 @@ snapshot[`configure url and htmlUrl names 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "renamed-filter",
     tags: [
     ],
     title: "Renamed Filter",

@@ -303,6 +303,9 @@ export interface Data {
   /** The url of a page */
   url?: string | ((page: Page) => string) | false;
 
+  /** The slug of the page/directory */
+  slug?: string;
+
   /** If is `true`, the page will be visible only in `dev` mode */
   draft?: boolean;
 

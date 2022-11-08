@@ -93,6 +93,7 @@ snapshot[`sass plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "index",
     tags: [
     ],
     url: "/index.css",
@@ -124,6 +125,7 @@ body
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
+    slug: "index2",
     tags: [
     ],
     url: "/index2.css",
