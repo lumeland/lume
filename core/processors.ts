@@ -35,10 +35,7 @@ export default class Processors {
         pages,
         async (page) => {
           try {
-            if (
-              (exts === "*" || (page.src.ext && exts.includes(page.src.ext)) ||
-                exts.includes(page.dest.ext))
-            ) {
+            if (exts === "*" || pageMatches(exts, page)) {
               if (await process(page, pages) === false) {
                 removed.push(page);
               }
@@ -66,3 +63,21 @@ export type Processor = (
   page: Page,
   pages: Page[],
 ) => void | false | Promise<void | false>;
+
+function pageMatches(exts: string[], page: Page): boolean {
+  if (page.src.ext && exts.includes(page.src.ext)) {
+    return true;
+  }
+
+  if (page.isHtml && exts.includes(".html")) {
+    return true;
+  }
+
+  const url = page.data.url;
+
+  if (typeof url === "string" && exts.some((ext) => url.endsWith(ext))) {
+    return true;
+  }
+
+  return false;
+}
