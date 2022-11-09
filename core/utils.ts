@@ -390,6 +390,22 @@ export function isUrl(path: string): boolean {
   return !!path.match(/^(https?|file):\/\//);
 }
 
+export function replaceExtension(
+  path: string | false,
+  ext: string,
+): string | false {
+  if (!path) {
+    return false;
+  }
+  return path.replace(/\.\w+$/, ext);
+}
+
+export function getPathAndExtension(path: string): [string, string] {
+  const extension = extname(path);
+  const pathWithoutExtension = path.slice(0, -extension.length);
+  return [pathWithoutExtension, extension];
+}
+
 export async function read(path: string, isBinary: true): Promise<Uint8Array>;
 export async function read(path: string, isBinary: false): Promise<string>;
 export async function read(

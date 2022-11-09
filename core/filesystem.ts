@@ -2,7 +2,7 @@ import { posix } from "../deps/path.ts";
 import { documentToString, stringToDocument } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
-import type { Component, ProxyComponents } from "../core.ts";
+import type { Component, PageData, ProxyComponents } from "../core.ts";
 
 /** Abstract class with common functions for Page and Directory classes */
 abstract class Base {
@@ -13,7 +13,7 @@ abstract class Base {
    * Used to save the merged data:
    * the base data with the parent data
    */
-  data: Data = {};
+  data: PageData = {} as PageData;
 
   /** The parent directory */
   #parent?: Directory;
@@ -94,14 +94,15 @@ export class Page extends Base {
 
   /** Convenient way to create a page dynamically with a url and content */
   static create(url: string, content: Content): Page {
-    const ext = posix.extname(url);
-    const path = ext ? url.slice(0, -ext.length) : url;
     const slug = posix.basename(url).replace(/\.[\w.]+$/, "");
-
     const page = new Page({ slug });
-    page.data = { url, content, page };
+
+    if (url.endsWith("/index.html")) {
+      url = url.slice(0, -10);
+    }
+
+    page.data = { url, content, page } as PageData;
     page.content = content;
-    page.updateDest({ path, ext });
 
     return page;
   }
@@ -334,7 +335,8 @@ export interface Data {
   /** The page object */
   page?: Page;
 
-  [index: string]: unknown;
+  // deno-lint-ignore no-explicit-any
+  [index: string]: any;
 }
 
 export type Components = Map<string, Component | Components>;

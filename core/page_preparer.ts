@@ -3,7 +3,7 @@ import { posix } from "../deps/path.ts";
 import { Exception } from "./errors.ts";
 import { Page } from "./filesystem.ts";
 
-import type { Data, Directory } from "../core.ts";
+import type { Data, Directory, PageData } from "../core.ts";
 
 export interface Options {
   /** The full path of the src folder */
@@ -23,12 +23,6 @@ export default class pagePreparer {
   constructor(options: Options) {
     this.src = options.src;
     this.prettyUrls = options.prettyUrls;
-  }
-
-  /** Prepare a page */
-  prepare(page: Page): void {
-    page.data.date = this.getDate(page);
-    page.data.url = this.getUrl(page);
   }
 
   /** Returns the final URL assigned to a page */
@@ -134,7 +128,7 @@ export default class pagePreparer {
   }
 
   /** Return the data associated with a page or folder */
-  getData(entry: Page | Directory, parentData: Data): Data {
+  getData(entry: Page | Directory, parentData: Data): PageData {
     const data = mergeData(parentData, entry.baseData);
 
     /** Get the slug of a page/directory */
@@ -144,7 +138,7 @@ export default class pagePreparer {
       data.page = entry;
     }
 
-    return data;
+    return data as PageData;
   }
 }
 

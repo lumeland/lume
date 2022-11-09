@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { getPathAndExtension, merge } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
 import { Exception } from "../core/errors.ts";
 import { ImageMagick, initializeImageMagick } from "../deps/imagick.ts";
@@ -184,14 +184,23 @@ function transform(
 
 function rename(page: Page, transformation: Transformation): void {
   const { format, suffix } = transformation;
+  const url = page.data.url;
+
+  if (!url) {
+    return;
+  }
+
+  let [path, ext] = getPathAndExtension(url);
 
   if (format) {
-    page.updateDest({ ext: "." + format });
+    ext = `.${format}`;
   }
 
   if (suffix) {
-    page.updateDest({ path: page.dest.path + suffix });
+    path += suffix;
   }
+
+  page.data.url = path + ext;
 }
 
 function getTransformations(

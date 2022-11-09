@@ -1,7 +1,7 @@
 import { Page } from "../core/filesystem.ts";
 import { isPlainObject, merge } from "../core/utils.ts";
 
-import type { Data, Plugin } from "../core.ts";
+import type { PageData, Plugin } from "../core.ts";
 
 export interface Options {
   /** The list of extensions used for this plugin */
@@ -36,11 +36,12 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
       }
 
       // Create a Data for each language
-      const languageData: Record<string, { data: Data; customUrl: boolean }> =
-        {};
+      const languageData: Record<
+        string,
+        { data: PageData; customUrl: boolean }
+      > = {};
       languages.forEach((key) => {
-        // deno-lint-ignore no-explicit-any
-        const data: Record<string, any> = { ...page.data };
+        const data: PageData = { ...page.data };
 
         // This language has a custom url (like url.en = "/english-url/")
         const customUrl = data[`url.${key}`] || data[key]?.url;
@@ -163,16 +164,20 @@ function mergeLanguages(
 /**
  * Remove the entries from all "langs" except the "lang" value
  */
-function filterLanguage(langs: string[], lang: string, data: Data): Data {
+function filterLanguage(
+  langs: string[],
+  lang: string,
+  data: PageData,
+): PageData {
   for (let [name, value] of Object.entries(data)) {
     if (isPlainObject(value)) {
       data[name] = value = filterLanguage(langs, lang, {
-        ...value as Record<string, unknown>,
+        ...value as PageData,
       });
     } else if (Array.isArray(value)) {
       data[name] = value = value.map((item) => {
         return isPlainObject(item)
-          ? filterLanguage(langs, lang, { ...item as Record<string, unknown> })
+          ? filterLanguage(langs, lang, { ...item as PageData })
           : item;
       });
     }

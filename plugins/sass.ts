@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { merge, replaceExtension } from "../core/utils.ts";
 import denosass from "../deps/denosass.ts";
 import { posix, toFileUrl } from "../deps/path.ts";
 import { Page } from "../core/filesystem.ts";
@@ -59,7 +59,7 @@ export default function (userOptions?: Partial<Options>) {
       const output = denosass.compileString(content, sassOptions);
 
       saveAsset(site, page, output.css, output.sourceMap);
-      page.updateDest({ ext: ".css" });
+      page.data.url = replaceExtension(page.data.url, ".css");
     }
   };
 }

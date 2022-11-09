@@ -87,6 +87,7 @@ async function assertPageSnapshot(
 
   // Sort data alphabetically
   const entries = Object.entries(data).sort((a, b) => a[0].localeCompare(b[0]));
+  // @ts-ignore: just for testing
   data = Object.fromEntries(entries);
 
   await assertSnapshot(context, { src, dest, data, content });
@@ -133,7 +134,8 @@ export async function assertSiteSnapshot(
     if (page.data.comp) {
       page.data.comp = {};
     }
-    // Remove page reference
+
+    // @ts-ignore: Remove page reference
     page.data.page = undefined;
 
     // Normalize source maps
@@ -143,10 +145,12 @@ export async function assertSiteSnapshot(
 
     // Remove pagination results details from the data
     if (Array.isArray(page.data.results)) {
+      // @ts-ignore: Remove pagination
       page.data.results = page.data.results.length;
     }
     // Remove alternates values (added by multilanguage plugin)
     if (page.data.alternates) {
+      // @ts-ignore: Remove alternates
       page.data.alternates = Object.keys(
         page.data.alternates as Record<string, Page>,
       );

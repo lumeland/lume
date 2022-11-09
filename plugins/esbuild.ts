@@ -1,4 +1,9 @@
-import { merge, read, readDenoConfig } from "../core/utils.ts";
+import {
+  merge,
+  read,
+  readDenoConfig,
+  replaceExtension,
+} from "../core/utils.ts";
 import { build, BuildOptions, stop } from "../deps/esbuild.ts";
 import { extname, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
@@ -171,7 +176,7 @@ export default function (userOptions?: Partial<Options>) {
       });
 
       saveAsset(site, page, jsFile?.text, mapFile?.text);
-      page.updateDest({ ext: ".js" });
+      page.data.url = replaceExtension(page.data.url, ".js");
     });
   };
 }
