@@ -23,6 +23,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The plugin `search` ignores the page 404 [#299].
 - For better compatibility, `postcss` and its plugins are loaded from `npm:` specifier.
 
+### Removed
+- `react_runtime` and `preact_runtime` dependencies.
+
 ### Fixed
 - Removed typo in `jsx_preact`, allowing `comp` function to execute properly [#295].
 - The data cascade merging was refactored and simplified.

@@ -1,7 +1,4 @@
-import {
-  assertEquals,
-  assertStrictEquals as equals,
-} from "../deps/assert.ts";
+import { assertEquals, assertStrictEquals as equals } from "../deps/assert.ts";
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import { SiteEvent } from "../core.ts";
 
