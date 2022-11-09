@@ -390,31 +390,6 @@ export function isUrl(path: string): boolean {
   return !!path.match(/^(https?|file):\/\//);
 }
 
-/**
- * Returns the result of a git command as Date
- * Thanks to https://github.com/11ty/eleventy/blob/8dd2a1012de92c5ee1eab7c37e6bf1b36183927e/src/Util/DateGitLastUpdated.js
- */
-export function getGitDate(
-  type: "created" | "modified",
-  file: string,
-): Date | undefined {
-  const args = type === "created"
-    ? ["log", "--diff-filter=A", "--follow", "-1", "--format=%at", "--", file]
-    : ["log", "-1", "--format=%at", "--", file];
-
-  const { code, stdout } = Deno.spawnSync("git", { args });
-
-  if (code !== 0) {
-    return;
-  }
-  const str = new TextDecoder().decode(stdout);
-  const timestamp = parseInt(str) * 1000;
-
-  if (timestamp) {
-    return new Date(timestamp);
-  }
-}
-
 export async function read(path: string, isBinary: true): Promise<Uint8Array>;
 export async function read(path: string, isBinary: false): Promise<string>;
 export async function read(

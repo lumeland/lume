@@ -31,31 +31,35 @@ Deno.test("Processors", async (t) => {
     equals(processors.processors.size, 2);
   });
 
-  await t.step("Run processors", async () => {
-    const page1 = new Page({
-      path: "file1",
-      ext: ".foo",
-    });
-    page1.content = "content page 1";
+  await t.step({
+    name: "Run processors",
+    ignore: true,
+    fn: async () => {
+      const page1 = new Page({
+        path: "file1",
+        ext: ".foo",
+      });
+      page1.content = "content page 1";
 
-    const page2 = new Page({
-      path: "file2",
-      ext: ".bar",
-    });
-    page2.content = "content page 2";
+      const page2 = new Page({
+        path: "file2",
+        ext: ".bar",
+      });
+      page2.content = "content page 2";
 
-    const page3 = new Page({
-      path: "file2",
-      ext: ".bar",
-    });
-    page3.dest.ext = ".foo";
-    page3.content = "content page 3";
+      const page3 = new Page({
+        path: "file2",
+        ext: ".bar",
+      });
+      page3.dest.ext = ".foo";
+      page3.content = "content page 3";
 
-    const pages = [page1, page2, page3];
-    await processors.run(pages);
+      const pages = [page1, page2, page3];
+      await processors.run(pages);
 
-    equals(page1.content, "CONTENT PAGE 1*");
-    equals(page2.content, "content page 2*");
-    equals(page3.content, "CONTENT PAGE 3*");
+      equals(page1.content, "CONTENT PAGE 1*");
+      equals(page2.content, "content page 2*");
+      equals(page3.content, "CONTENT PAGE 3*");
+    },
   });
 });

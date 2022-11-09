@@ -9,6 +9,7 @@ import type {
   DirEntry,
   Formats,
   PageLoader,
+  PagePreparer,
   Reader,
   ScopeFilter,
 } from "../core.ts";
@@ -17,6 +18,7 @@ export interface Options {
   formats: Formats;
   dataLoader: DataLoader;
   pageLoader: PageLoader;
+  pagePreparer: PagePreparer;
   componentLoader: ComponentLoader;
   reader: Reader;
   components: {
@@ -42,6 +44,9 @@ export default class Source {
 
   /** To load all pages */
   pageLoader: PageLoader;
+
+  /** To prepare the pages */
+  pagePreparer: PagePreparer;
 
   /** To load all components */
   componentLoader: ComponentLoader;
@@ -77,6 +82,7 @@ export default class Source {
 
   constructor(options: Options) {
     this.pageLoader = options.pageLoader;
+    this.pagePreparer = options.pagePreparer;
     this.dataLoader = options.dataLoader;
     this.componentLoader = options.componentLoader;
     this.reader = options.reader;
@@ -130,9 +136,8 @@ export default class Source {
     const staticFiles: StaticFile[] = [];
 
     // Data cascade from the parent directory
-    const data = mergeData(parentData, directory.baseData);
-    data.slug = getSlug(directory);
-    const path = posix.join(parentPath, data.slug);
+    const data = this.pagePreparer.getData(directory, parentData);
+    const path = posix.join(parentPath, data.slug!);
 
     // Setup the components
     if (directory.components.size) {
@@ -152,13 +157,9 @@ export default class Source {
     // Apply data cascade and dest path to the pages
     pages.push(
       ...[...directory.pages.values()].map((page) => {
-        page.data = mergeData(data, { ...page.baseData, page });
-        page.data.slug = getSlug(page);
-        page.dest = {
-          path: posix.join(path, page.data.slug),
-          ext: posix.extname(page.src.path) ||
-            (page.src.asset ? page.src.ext || "" : ""),
-        };
+        page.data = this.pagePreparer.getData(page, data);
+        page.data.url = this.pagePreparer.getUrl(page, path);
+        page.data.date = this.pagePreparer.getDate(page);
         return page;
       }),
     );
@@ -545,62 +546,6 @@ export interface ProxyComponents {
   [key: string]: ComponentFunction | ProxyComponents;
 }
 
-/** Merge the cascade data */
-export function mergeData(parentData: Data, baseData: Data): Data {
-  const data: Data = { ...parentData, ...baseData };
-
-  // Merge special keys
-  const mergedKeys: Record<string, string> = {
-    tags: "stringArray",
-    ...parentData.mergedKeys,
-    ...baseData.mergedKeys,
-  };
-
-  for (const [key, type] of Object.entries(mergedKeys)) {
-    switch (type) {
-      case "stringArray":
-      case "array":
-        {
-          const baseValue: unknown[] = Array.isArray(baseData[key])
-            ? baseData[key] as unknown[]
-            : (key in baseData)
-            ? [baseData[key]]
-            : [];
-
-          const parentValue: unknown[] = Array.isArray(parentData[key])
-            ? parentData[key] as unknown[]
-            : (key in parentData)
-            ? [parentData[key]]
-            : [];
-
-          const merged = [...parentValue, ...baseValue];
-
-          data[key] = [
-            ...new Set(
-              type === "stringArray" ? merged.map(String) : merged,
-            ),
-          ];
-        }
-        break;
-
-      case "object":
-        {
-          const baseValue = baseData[key] as
-            | Record<string, unknown>
-            | undefined;
-          const parentValue = parentData[key] as
-            | Record<string, unknown>
-            | undefined;
-
-          data[key] = { ...parentValue, ...baseValue };
-        }
-        break;
-    }
-  }
-
-  return data;
-}
-
 /** Merge the cascade components */
 export function mergeComponents(
   baseComponents: Components,
@@ -634,9 +579,4 @@ function entryIsData(entry: DirEntry): boolean {
 /** Check if the entry is a _components folder */
 function entryIsComponents(entry: DirEntry): boolean {
   return entry.isDirectory && entry.name === "_components";
-}
-
-/** Get the slug of a page/directory */
-function getSlug(entry: Page | Directory): string {
-  return entry.baseData.slug || entry.src.slug;
 }

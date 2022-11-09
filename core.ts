@@ -34,6 +34,7 @@ import type {
   Loader,
 } from "./core/reader.ts";
 import type Logger from "./core/logger.ts";
+import type PagePreparer from "./core/page_preparer.ts";
 import type Writer from "./core/writer.ts";
 import type IncludesLoader from "./core/includes_loader.ts";
 import type { default as PageLoader } from "./core/page_loader.ts";
@@ -128,6 +129,7 @@ export type {
   Middleware,
   Page,
   PageLoader,
+  PagePreparer,
   Plugin,
   PluginSetup,
   Processor,

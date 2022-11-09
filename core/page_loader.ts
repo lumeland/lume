@@ -48,7 +48,6 @@ export default class PageLoader {
     // Load the data
     const data = await this.reader.read(path, format.pageLoader);
     Object.assign(page.baseData, data);
-
     return page;
   }
 }

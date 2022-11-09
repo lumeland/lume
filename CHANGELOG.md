@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 - `react_runtime` and `preact_runtime` dependencies.
+- `no-html-extension` option for `prettyUrl` configuration. Use the `no_html_extension` plugin.
 
 ### Fixed
 - Removed typo in `jsx_preact`, allowing `comp` function to execute properly [#295].

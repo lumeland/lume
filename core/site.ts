@@ -4,6 +4,7 @@ import { Exception } from "./errors.ts";
 
 import Reader from "./reader.ts";
 import PageLoader from "./page_loader.ts";
+import PagePreparer from "./page_preparer.ts";
 import ComponentLoader from "./component_loader.ts";
 import DataLoader from "./data_loader.ts";
 import IncludesLoader from "./includes_loader.ts";
@@ -85,6 +86,9 @@ export default class Site {
   /** To load all pages */
   pageLoader: PageLoader;
 
+  /** To prepare the pages before rendering */
+  pagePreparer: PagePreparer;
+
   /** To load all _data files */
   dataLoader: DataLoader;
 
@@ -148,12 +152,14 @@ export default class Site {
     const formats = new Formats();
 
     const pageLoader = new PageLoader({ reader });
+    const pagePreparer = new PagePreparer({ src, prettyUrls });
     const dataLoader = new DataLoader({ reader, formats });
     const includesLoader = new IncludesLoader({ reader, includes });
     const componentLoader = new ComponentLoader({ reader, formats });
     const source = new Source({
       reader,
       pageLoader,
+      pagePreparer,
       dataLoader,
       componentLoader,
       formats,
@@ -168,6 +174,7 @@ export default class Site {
       includesLoader,
       prettyUrls,
       preprocessors,
+      pagePreparer,
       formats,
     });
 
@@ -181,6 +188,7 @@ export default class Site {
     this.reader = reader;
     this.formats = formats;
     this.pageLoader = pageLoader;
+    this.pagePreparer = pagePreparer;
     this.componentLoader = componentLoader;
     this.dataLoader = dataLoader;
     this.includesLoader = includesLoader;
@@ -762,7 +770,7 @@ export interface SiteOptions {
   location: URL;
 
   /** Set true to generate pretty urls (`/about-me/`) */
-  prettyUrls: boolean | "no-html-extension";
+  prettyUrls: boolean;
 
   /** Set `true` to skip logs */
   quiet: boolean;

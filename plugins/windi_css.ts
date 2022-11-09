@@ -68,7 +68,8 @@ export default function (userOptions: DeepPartial<Options> = {}) {
       const parser = new CSSParser(page.content as string, processor);
 
       page.content = parser.parse().build(options.minify);
-      page.updateDest({ ext: ".css" });
+      const url = page.data.url as string;
+      page.data.url = url.replace(/\.windi\.css$/, ".css");
     });
 
     // Process html files

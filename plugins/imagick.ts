@@ -109,6 +109,7 @@ export default function (userOptions?: Partial<Options>) {
         }
 
         const output = page.duplicate(index++, { [options.name]: undefined });
+        output.data = site.pagePreparer.getData(output, page.data);
 
         rename(output, transformation);
 

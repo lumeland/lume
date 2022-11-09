@@ -12,7 +12,7 @@ Deno.test("build a simple site", async (t) => {
 
   // Test the enumerated properties
   const page = site.pages[0];
-  assertEquals(Object.keys(page), ["src", "dest", "data"]);
+  assertEquals(Object.keys(page), ["src", "data"]);
 });
 
 Deno.test("build/update events", async () => {

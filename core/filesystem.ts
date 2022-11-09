@@ -9,9 +9,6 @@ abstract class Base {
   /** The src info */
   src: Src;
 
-  /** The destination info */
-  dest: Dest;
-
   /**
    * Used to save the merged data:
    * the base data with the parent data
@@ -35,10 +32,6 @@ abstract class Base {
 
   constructor(src?: Partial<Src>) {
     this.src = { path: "", slug: "", asset: true, ...src };
-    this.dest = {
-      path: this.src.path,
-      ext: this.src.ext || "",
-    };
 
     if (this.src.path && !this.src.slug) {
       this.src.slug = posix.basename(this.src.path).replace(/\.[\w.]+$/, "");
@@ -52,7 +45,6 @@ abstract class Base {
       const date = createDate(dateStr);
 
       if (date) {
-        this.dest.path = this.dest.path.replace(found, "");
         this.src.slug = this.src.slug.replace(found, "");
         this.baseData.date = date;
       }
@@ -76,10 +68,6 @@ abstract class Base {
 
   /** Set the parent directory */
   set parent(parent: Directory | undefined) {
-    this.dest.path = posix.join(
-      parent?.dest.path || "/",
-      posix.basename(this.dest.path),
-    );
     this.#parent = parent;
   }
 
@@ -119,39 +107,48 @@ export class Page extends Base {
   }
 
   /** Duplicate this page. Optionally, you can provide new data */
-  duplicate(index: number | string, data = {}): Page {
+  duplicate(index: number | string, baseData: Data = {}): Page {
     const page = new Page({ ...this.src });
     page.parent = this.parent;
-    page.dest = { ...this.dest };
-
-    const pageData = { ...this.data, ...data };
-    delete pageData.page;
-
-    page.data = pageData;
+    page.baseData = baseData;
     page.src.path += `[${index}]`;
 
     return page;
   }
 
-  /** Update the destination file. It also update the data.url accordingly */
-  updateDest(
-    dest: Partial<Dest>,
-    prettyUrl: boolean | "no-html-extension" = false,
-  ): void {
-    this.dest = { ...this.dest, ...dest };
-    const { path, ext } = this.dest;
-
-    if (ext === ".html") {
-      if (posix.basename(path) === "index") {
-        this.data.url = path.slice(0, -5);
-      } else if (prettyUrl === "no-html-extension") {
-        this.data.url = path;
-      } else {
-        this.data.url = path + ext;
-      }
-    } else {
-      this.data.url = path + ext;
+  /** Returns if the page is HTML */
+  get isHtml(): boolean {
+    const { url } = this.data;
+    if (typeof url === "string") {
+      return url.endsWith(".html") || url.endsWith("/");
     }
+    return !!this.#document || !this.src.asset;
+  }
+
+  /** Update the destination file. It also update the data.url accordingly */
+  updateDest(dest: Partial<Dest>): void {
+    const newDest = { ...this.dest, ...dest };
+
+    if (newDest.ext === ".html" && posix.basename(newDest.path) === "index") {
+      this.data.url = newDest.path.slice(0, -5);
+    } else {
+      this.data.url = newDest.path + newDest.ext;
+    }
+  }
+
+  get dest(): Dest {
+    const url = this.data.url as string;
+    const ext = posix.extname(url);
+    const dest: Dest = {
+      path: ext ? url.slice(0, -ext.length) : url,
+      ext,
+    };
+
+    if (url.endsWith("/")) {
+      dest.path += "index";
+      dest.ext = ".html";
+    }
+    return dest;
   }
 
   /** The content of this page */
@@ -178,9 +175,11 @@ export class Page extends Base {
   }
 
   get document(): HTMLDocument | undefined {
+    const url = this.data.url as string;
+
     if (
       !this.#document && this.#content &&
-      (this.dest.ext === ".html" || this.dest.ext === ".htm")
+      (url.endsWith(".html") || url.endsWith("/"))
     ) {
       this.#document = stringToDocument(this.#content.toString());
     }
@@ -210,11 +209,10 @@ export class Directory extends Base {
   setPage(name: string, page: Page) {
     const oldPage = this.pages.get(name);
     page.parent = this;
-    page.dest.path = posix.join(this.dest.path, posix.basename(page.dest.path));
     this.pages.set(name, page);
 
     if (oldPage) {
-      page.dest.hash = oldPage.dest.hash;
+      page._data.hash = oldPage._data.hash;
     }
   }
 

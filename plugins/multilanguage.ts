@@ -73,13 +73,13 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
         const newPage = page.duplicate(l);
         newPage.data = data;
 
-        if (!customUrl) {
-          // Prepend the language in the url (like /en/about-us/)
-          newPage.updateDest({
-            path: `/${l}${newPage.dest.path}`,
-          });
+        if (customUrl) {
+          newPage.data.url = site.pagePreparer.getUrl(
+            newPage,
+            page.data.url as string,
+          );
         } else {
-          site.renderer.preparePage(newPage);
+          newPage.data.url = `/${l}${newPage.data.url}`;
         }
 
         alternates[l] = newPage;
