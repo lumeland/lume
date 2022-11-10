@@ -51,7 +51,7 @@ Deno.test("Processors", async (t) => {
         path: "file2",
         ext: ".bar",
       });
-      page3.dest.ext = ".foo";
+      page3.data.url = "file2.foo";
       page3.content = "content page 3";
 
       const pages = [page1, page2, page3];

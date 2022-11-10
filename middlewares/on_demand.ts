@@ -55,7 +55,7 @@ export default function onDemand(options: Options): Middleware {
       { status: 200 },
     );
 
-    const type = contentType(page.dest.ext);
+    const type = contentType(posix.extname(page.outputPath));
 
     if (type) {
       pageResponse.headers.set("content-type", type);

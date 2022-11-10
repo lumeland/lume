@@ -159,8 +159,8 @@ export class SiteWatcher implements Watcher {
     await this.dispatchEvent({ type: "start" });
     this.site.addEventListener("afterUpdate", (event) => {
       const files = new Set([
-        ...event.pages!.map((page) => page.dest.path + page.dest.ext),
-        ...event.staticFiles!.map((file) => file.dest),
+        ...event.pages!.map((page) => page.outputPath),
+        ...event.staticFiles!.map((file) => file.url!),
       ]);
       this.dispatchEvent({ type: "change", files });
     });

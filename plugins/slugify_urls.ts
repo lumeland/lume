@@ -1,5 +1,4 @@
 import { unidecode } from "../deps/unidecode.ts";
-import { posix } from "../deps/path.ts";
 import { merge } from "../core/utils.ts";
 
 import type { Helper, Page, Site } from "../core.ts";
@@ -56,19 +55,9 @@ export default function (userOptions?: Partial<Options>) {
   };
 
   function slugifyUrls(page: Page) {
-    const { dest } = page;
-    const path = slugify(dest.path);
-
-    if (path === dest.path) {
-      return;
+    if (typeof page.data.url === "string") {
+      page.data.url = slugify(page.data.url);
     }
-
-    dest.path = path;
-
-    page.data.url =
-      (dest.ext === ".html" && posix.basename(dest.path) === "index")
-        ? dest.path.slice(0, -5)
-        : dest.path + dest.ext;
   }
 }
 

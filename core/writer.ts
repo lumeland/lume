@@ -71,8 +71,8 @@ export default class Writer {
       : page.src.path
       ? page.src.path + (page.src.ext || "")
       : "(generated)";
-    const dest = page.dest.path + page.dest.ext;
-    const id = dest.toLowerCase();
+    const { outputPath } = page;
+    const id = outputPath.toLowerCase();
     const hash = await sha1(page.content);
     const previous = this.#outputs.get(id);
     this.#outputs.set(id, [this.#saveCount, src, hash]);
@@ -86,7 +86,7 @@ export default class Writer {
           {
             page,
             previousPage,
-            destination: dest,
+            outputPath,
           },
         );
       }
@@ -97,9 +97,9 @@ export default class Writer {
       }
     }
 
-    this.logger.log(`🔥 ${dest.replace(/index\.html?$/, "")} <dim>${src}</dim>`);
+    this.logger.log(`🔥 ${page.data.url} <dim>${src}</dim>`);
 
-    const filename = posix.join(this.dest, dest);
+    const filename = posix.join(this.dest, outputPath);
     await ensureDir(posix.dirname(filename));
 
     page.content instanceof Uint8Array

@@ -148,7 +148,7 @@ export default function (userOptions?: Partial<Options>) {
         metafile: false,
         entryPoints: [toFileUrl(filename).href],
         sourcemap: enableSourceMap ? "external" : undefined,
-        outfile: `${page.dest.path}.js`,
+        outfile: replaceExtension(page.outputPath, ".js") as string,
         [contentSymbol]: content,
       };
 

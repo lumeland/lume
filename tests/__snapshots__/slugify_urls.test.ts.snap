@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`slugify_urls plugin 1`] = `5`;
+snapshot[`slugify_urls plugin 1`] = `6`;
 
 snapshot[`slugify_urls plugin 2`] = `
 {
@@ -212,6 +212,35 @@ snapshot[`slugify_urls plugin 8`] = `
     path: "/page-3",
     remote: undefined,
     slug: "page-3",
+  },
+}
+`;
+
+snapshot[`slugify_urls plugin 9`] = `
+{
+  content: "<p>Page 4</p>
+",
+  data: {
+    content: "Page 4",
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    slug: "page-4",
+    tags: [
+    ],
+    url: "/paxina-4.html",
+  },
+  dest: {
+    ext: ".html",
+    path: "/paxina-4",
+  },
+  src: {
+    asset: undefined,
+    ext: ".md",
+    path: "/page-4",
+    remote: undefined,
+    slug: "page-4",
   },
 }
 `;

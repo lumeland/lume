@@ -126,7 +126,19 @@ export class Page extends Base {
     return !!this.#document || !this.src.asset;
   }
 
-  /** Update the destination file. It also update the data.url accordingly */
+  /** Returns the output path of this page */
+  get outputPath(): string {
+    const url = this.data.url as string;
+    if (url.endsWith("/")) {
+      return posix.join(url, "index.html");
+    }
+    return url;
+  }
+
+  /**
+   * Update the destination file. It also update the data.url accordingly
+   * @deprecated Use `page.data.url` to change the url
+   */
   updateDest(dest: Partial<Dest>): void {
     const newDest = { ...this.dest, ...dest };
 
@@ -137,19 +149,14 @@ export class Page extends Base {
     }
   }
 
+  /** @deprecated Use `page.data.url` or `page.outputPath`. */
   get dest(): Dest {
-    const url = this.data.url as string;
+    const url = this.outputPath;
     const ext = posix.extname(url);
-    const dest: Dest = {
+    return {
       path: ext ? url.slice(0, -ext.length) : url,
       ext,
     };
-
-    if (url.endsWith("/")) {
-      dest.path += "index";
-      dest.ext = ".html";
-    }
-    return dest;
   }
 
   /** The content of this page */
