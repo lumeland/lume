@@ -82,10 +82,10 @@ snapshot[`Load the pages of a site 3`] = `
   {
     dest: undefined,
     filename: "static.yml",
+    outputPath: "/static.yml",
     parent: "/",
     remote: undefined,
     src: "/static.yml",
-    url: "/static.yml",
   },
 ]
 `;

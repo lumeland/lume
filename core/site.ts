@@ -663,8 +663,8 @@ export default class Site {
         // It's a static file
         const file = this.files.find((file) => file.src === path);
 
-        if (file?.url) {
-          path = file.url;
+        if (file?.outputPath) {
+          path = file.outputPath;
         } else {
           throw new Error(`Source file not found: ${path}`);
         }

@@ -117,7 +117,8 @@ export async function assertSiteSnapshot(
 
   // Sort pages and files alphabetically
   pages.sort((a, b) => {
-    return compare(a.src.path, b.src.path) || compare(a.outputPath, b.outputPath);
+    return compare(a.src.path, b.src.path) ||
+      compare(a.outputPath, b.outputPath);
   });
 
   files.sort((a, b) => {

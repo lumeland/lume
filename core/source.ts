@@ -168,12 +168,12 @@ export default class Source {
     staticFiles.push(
       ...[...directory.staticFiles.values()].map((file) => {
         if (typeof file.dest === "string") {
-          file.url = file.dest;
+          file.outputPath = file.dest;
         } else {
-          file.url = posix.join(path, file.filename);
+          file.outputPath = posix.join(path, file.filename);
 
           if (typeof file.dest === "function") {
-            file.url = file.dest(file.url);
+            file.outputPath = file.dest(file.outputPath);
           }
         }
         return file;

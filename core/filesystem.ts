@@ -244,7 +244,7 @@ export interface StaticFile {
   dest?: string | ((path: string) => string);
 
   /** The final url destination */
-  url?: string;
+  outputPath?: string;
 
   /** The parent directory where the StaticFile was located */
   parent?: Directory;

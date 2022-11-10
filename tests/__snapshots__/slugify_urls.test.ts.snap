@@ -221,7 +221,8 @@ snapshot[`slugify_urls plugin 9`] = `
   content: "<p>Page 4</p>
 ",
   data: {
-    content: "Page 4",
+    content: "Page 4
+",
     date: 1970-01-01T00:00:00.000Z,
     page: undefined,
     paginate: [Function: paginate],

@@ -12,7 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New method `Server.stop()` to close the local server [#296].
 - New option `emptyDest` to configure whether the dest folder must be emptied before build [#308].
 - The `src` property of pages and folders includes now the `slug` value [#278].
-- New property `data.slug` property to configure the slug of pages and directories [#278].
+- New property `Page.data.slug` property to configure the slug of pages and directories [#278].
+- New `Page.isHtml` property that returns whether the page is HTML.
+- New `Page.outputPath` property that returns the output path of the page (formely `page.dest.path + page.dest.ext).
 - New option `returnPageData` to `search` plugin [#251].
 - New middleware `www` [#280].
 - New `sitemap` plugin [#287].
@@ -22,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   For example `14455_full.jpg`. In previous versions, Lume interpret `14455` as a timestamp to create a Date and remove the prefix to output the file as `full.jpg` [#284].
 - The plugin `search` ignores the page 404 [#299].
 - For better compatibility, `postcss` and its plugins are loaded from `npm:` specifier.
+- The `Page.dest` and `Page.updateDest` properties are deprecated.
+  If you want to change the destination of a page, simply update the `Page.data.url` value.
 
 ### Removed
 - `react_runtime` and `preact_runtime` dependencies.

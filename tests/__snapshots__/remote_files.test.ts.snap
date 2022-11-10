@@ -81,10 +81,10 @@ snapshot[`render remote files 3`] = `
   {
     dest: undefined,
     filename: "asset.txt",
+    outputPath: "/asset.txt",
     parent: "/",
     remote: "assets/remote_files/_remotes/asset.txt",
     src: "/asset.txt",
-    url: "/asset.txt",
   },
 ]
 `;
