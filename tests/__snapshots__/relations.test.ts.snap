@@ -110,7 +110,7 @@ snapshot[`relations plugin 4`] = `
           type: "category",
           url: "/categories/category-1/",
         },
-        category_id: 1,
+        category_id: "category-1",
         comment: [
           {
             content: "This is the second comment
@@ -211,7 +211,7 @@ snapshot[`relations plugin 5`] = `
           type: "category",
           url: "/categories/category-2/",
         },
-        category_id: 2,
+        category_id: "category-2",
         comment: [
           {
             content: "This is the first comment
@@ -322,7 +322,7 @@ snapshot[`relations plugin 6`] = `
           type: "category",
           url: "/categories/category-2/",
         },
-        category_id: 2,
+        category_id: "category-2",
         comment: [
           {
             content: "This is the first comment
@@ -431,7 +431,7 @@ snapshot[`relations plugin 7`] = `
           type: "category",
           url: "/categories/category-1/",
         },
-        category_id: 1,
+        category_id: "category-1",
         comment: [
           {
             content: "This is the second comment
@@ -522,7 +522,7 @@ snapshot[`relations plugin 8`] = `
           type: "category",
           url: "/categories/category-2/",
         },
-        category_id: 2,
+        category_id: "category-2",
         comment: [
           {
             content: "This is the first comment
@@ -628,7 +628,7 @@ snapshot[`relations plugin 9`] = `
       post: [
         <ref *2> {
           category: [Circular *1],
-          category_id: 2,
+          category_id: "category-2",
           comment: [
             {
               content: "This is the first comment
@@ -693,7 +693,7 @@ snapshot[`relations plugin 9`] = `
       type: "category",
       url: "/categories/category-2/",
     },
-    category_id: 2,
+    category_id: "category-2",
     comment: [
       {
         content: "This is the first comment
@@ -723,7 +723,7 @@ snapshot[`relations plugin 9`] = `
               type: "category",
               url: "/categories/category-2/",
             },
-            category_id: 2,
+            category_id: "category-2",
             comment: [Circular *3],
             comment_id: [
               1,
@@ -780,7 +780,7 @@ snapshot[`relations plugin 9`] = `
               type: "category",
               url: "/categories/category-2/",
             },
-            category_id: 2,
+            category_id: "category-2",
             comment: [Circular *3],
             comment_id: [
               1,
@@ -871,7 +871,7 @@ snapshot[`relations plugin 10`] = `
       post: [
         <ref *2> {
           category: [Circular *1],
-          category_id: 1,
+          category_id: "category-1",
           comment: [
             {
               content: "This is the second comment
@@ -919,7 +919,7 @@ snapshot[`relations plugin 10`] = `
       type: "category",
       url: "/categories/category-1/",
     },
-    category_id: 1,
+    category_id: "category-1",
     comment: [
       {
         content: "This is the second comment
@@ -950,7 +950,7 @@ snapshot[`relations plugin 10`] = `
               type: "category",
               url: "/categories/category-1/",
             },
-            category_id: 1,
+            category_id: "category-1",
             comment: [Circular *3],
             comment_id: [
               2,

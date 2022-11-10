@@ -1,6 +1,6 @@
 ---
 id: first-post
-category_id: 2
+category_id: category-2
 comment_id: [1, 3]
 renderOrder: 1
 ---

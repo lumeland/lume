@@ -1,6 +1,6 @@
 ---
 id: second-post
-category_id: 1
+category_id: category-1
 comment_id: [2]
 ---
 

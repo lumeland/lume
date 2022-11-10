@@ -13,7 +13,7 @@ export interface Options {
   typeKey: string;
 
   /** The foreign keys per type (type => foreign_key) */
-  foreignKeys: Record<string, string>;
+  foreignKeys: Record<string, string | [string, string]>;
 }
 
 // Default options
@@ -32,9 +32,7 @@ export default function (userOptions?: Partial<Options>) {
 
     function index(page1: Page, pages: Page[]) {
       const data1 = page1.data;
-      const id1 = data1[options.idKey] as string | undefined;
-      const type1 = data1[options.typeKey] as string | undefined;
-      const foreignKey1 = type1 ? options.foreignKeys[type1] : undefined;
+      const [type1, foreignKey1, id1] = getForeignKey(data1);
 
       // Index the current page with the other pages
       pages.forEach(indexPage);
@@ -48,9 +46,7 @@ export default function (userOptions?: Partial<Options>) {
         }
 
         const data2 = page2.data;
-        const id2 = data2[options.idKey] as string | undefined;
-        const type2 = data2[options.typeKey] as string | undefined;
-        const foreignKey2 = type2 ? options.foreignKeys[type2] : undefined;
+        const [type2, foreignKey2, id2] = getForeignKey(data2);
 
         // Page2 has a foreign key to page1
         const directRelation = relate(
@@ -135,4 +131,24 @@ export default function (userOptions?: Partial<Options>) {
       }
     }
   };
+
+  function getForeignKey(data: Data): [string?, string?, string?] {
+    const type = data[options.typeKey];
+    if (!type) {
+      return [undefined, undefined, undefined];
+    }
+
+    const foreignKey = options.foreignKeys[type];
+    if (!foreignKey) {
+      return [type, undefined, undefined];
+    }
+
+    if (Array.isArray(foreignKey)) {
+      const [fk, id] = foreignKey;
+
+      return [type, fk, data[id]];
+    }
+
+    return [type, foreignKey, data[options.idKey]];
+  }
 }

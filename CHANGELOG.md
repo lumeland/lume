@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New option `returnPageData` to `search` plugin [#251].
 - New middleware `www` [#280].
 - New `sitemap` plugin [#287].
+- The plugin `relations` allows to customize the id key per type.
 
 ### Changed
 - The file names starting with `[number]_` no longer are parsed as dates.
@@ -29,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 - `react_runtime` and `preact_runtime` dependencies.
-- `no-html-extension` option for `prettyUrl` configuration. Use the `no_html_extension` plugin.
+- `no-html-extension` option for `prettyUrl` configuration. To have the same functionality, disable the pretty urls and use the `modify_urls` plugin to remove the `.html` extension to the links.
 
 ### Fixed
 - Removed typo in `jsx_preact`, allowing `comp` function to execute properly [#295].
