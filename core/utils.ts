@@ -402,9 +402,14 @@ export function replaceExtension(
 }
 
 export function getPathAndExtension(path: string): [string, string] {
-  const extension = extname(path);
+  const extension = getExtension(path);
   const pathWithoutExtension = path.slice(0, -extension.length);
   return [pathWithoutExtension, extension];
+}
+
+export function getExtension(path: string): string {
+  const match = path.match(/\.\w+$/);
+  return match ? match[0] : "";
 }
 
 export async function read(path: string, isBinary: true): Promise<Uint8Array>;

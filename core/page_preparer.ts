@@ -2,6 +2,7 @@ import { parseISO } from "../deps/date.ts";
 import { posix } from "../deps/path.ts";
 import { Exception } from "./errors.ts";
 import { Page } from "./filesystem.ts";
+import { getExtension } from "./utils.ts";
 
 import type { Data, Directory, PageData } from "../core.ts";
 
@@ -61,7 +62,7 @@ export default class pagePreparer {
     // Calculate the URL from the path
     if (parentPath && data.slug) {
       const url = posix.join(parentPath, data.slug);
-      const ext = posix.extname(page.src.path);
+      const ext = getExtension(page.src.path);
 
       if (ext) {
         return url + ext;

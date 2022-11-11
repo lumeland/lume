@@ -1,5 +1,5 @@
 import { posix } from "../deps/path.ts";
-import { documentToString, stringToDocument } from "./utils.ts";
+import { documentToString, getExtension, stringToDocument } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
 import type { Component, PageData, ProxyComponents } from "../core.ts";
@@ -152,7 +152,7 @@ export class Page extends Base {
   /** @deprecated Use `page.data.url` or `page.outputPath`. */
   get dest(): Dest {
     const url = this.outputPath;
-    const ext = posix.extname(url);
+    const ext = getExtension(url);
     return {
       path: ext ? url.slice(0, -ext.length) : url,
       ext,
