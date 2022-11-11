@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.13.0] - Unreleased
 ### Added
-- New `sitemap` plugin [#287].
 - New `mdx` plugin.
+- New `sitemap` plugin [#287].
 - New method `Server.stop()` to close the local server [#296].
 - New option `emptyDest` to configure whether the dest folder must be emptied before build [#308].
 - The `src` property of pages and folders includes now the `slug` value [#278].
@@ -25,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The file names starting with `[number]_` no longer are parsed as dates.
   For example `14455_full.jpg`. In previous versions, Lume interpret `14455` as a timestamp to create a Date and remove the prefix to output the file as `full.jpg` [#284].
 - The plugin `search` ignores the page 404 [#299].
-- For better compatibility, `postcss` and its plugins are loaded from `npm:` specifier.
+- For better compatibility, `postcss` and its plugins are loaded from `npm:` specifiers.
 - The `Page.dest` and `Page.updateDest` properties are deprecated.
   If you want to change the destination of a page, simply update the `Page.data.url` value.
 

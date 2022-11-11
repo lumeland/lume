@@ -302,5 +302,5 @@ async function loadLanguage(
     }
   }
 
-  await import(`${prismPath}/components/prism-${language}.js`);
+  await import(`${prismPath}components/prism-${language}.js`);
 }
