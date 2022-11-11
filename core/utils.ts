@@ -18,6 +18,7 @@ export const pluginNames = [
   "katex",
   "lightningcss",
   "liquid",
+  "mdx",
   "metas",
   "minify_html",
   "modify_urls",

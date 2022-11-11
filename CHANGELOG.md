@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.13.0] - Unreleased
 ### Added
+- New `sitemap` plugin [#287].
+- New `mdx` plugin.
 - New method `Server.stop()` to close the local server [#296].
 - New option `emptyDest` to configure whether the dest folder must be emptied before build [#308].
 - The `src` property of pages and folders includes now the `slug` value [#278].
@@ -17,7 +19,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New `Page.outputPath` property that returns the output path of the page (formely `page.dest.path + page.dest.ext).
 - New option `returnPageData` to `search` plugin [#251].
 - New middleware `www` [#280].
-- New `sitemap` plugin [#287].
 - The plugin `relations` allows to customize the id key per type.
 
 ### Changed

@@ -1,8 +1,8 @@
 /// <reference lib="dom" />
 import Title from "./modules/title.tsx";
 import { salute } from "./modules/utils.ts";
-import React from "https://deno.land/x/react_deno@17.0.2/react.ts";
-import ReactDOM from "https://deno.land/x/react_deno@17.0.2/dom.ts";
+import React from "npm:react";
+import ReactDOM from "npm:react-dom";
 
 const content = salute("Oscar");
 
