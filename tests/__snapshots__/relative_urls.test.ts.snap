@@ -93,7 +93,6 @@ snapshot[`relative_url plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "contact",
     tags: [
     ],
     url: "/about-us/contact/",
@@ -135,7 +134,6 @@ snapshot[`relative_url plugin 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "index",
     tags: [
     ],
     url: "/about-us/",
@@ -177,7 +175,6 @@ snapshot[`relative_url plugin 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "presentation",
     tags: [
     ],
     url: "/about-us/presentation/",
@@ -227,7 +224,6 @@ snapshot[`relative_url plugin 7`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "index",
     tags: [
     ],
     url: "/",

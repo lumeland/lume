@@ -108,7 +108,6 @@ snapshot[`postcss plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "index",
     tags: [
     ],
     url: "/index.css",
@@ -153,7 +152,6 @@ snapshot[`postcss plugin 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "text",
     tags: [
     ],
     url: "/text.css",
@@ -261,7 +259,6 @@ snapshot[`postcss plugin without includes 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "index",
     tags: [
     ],
     url: "/index.css",
@@ -306,7 +303,6 @@ snapshot[`postcss plugin without includes 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "text",
     tags: [
     ],
     url: "/text.css",

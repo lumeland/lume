@@ -182,7 +182,6 @@ snapshot[`Sitemap plugin 6`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Default site name",
-    slug: "page5",
     tags: [
       "pages",
     ],
@@ -261,7 +260,6 @@ snapshot[`Sitemap plugin 7`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Folder overrided site name",
-    slug: "page2",
     tags: [
       "pages",
       "sub-pages",
@@ -341,7 +339,6 @@ snapshot[`Sitemap plugin 8`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Overrided site name",
-    slug: "page4",
     tags: [
       "pages",
       "sub-pages",
@@ -423,7 +420,6 @@ snapshot[`Sitemap plugin 9`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Folder overrided site name",
-    slug: "page6",
     tags: [
       "pages",
       "sub-pages",
@@ -504,7 +500,6 @@ snapshot[`Sitemap plugin 10`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Folder overrided site name",
-    slug: "page3",
     tags: [
       "pages",
       "sub-pages",
@@ -584,7 +579,6 @@ snapshot[`Sitemap plugin 11`] = `
     paginate: [Function: paginate],
     search: Search {},
     site: "Folder overrided site name",
-    slug: "page7",
     tags: [
       "pages",
       "sub-pages",

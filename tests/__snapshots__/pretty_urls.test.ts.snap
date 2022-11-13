@@ -81,7 +81,6 @@ snapshot[`Disabled pretty URLs 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "page2",
     tags: [
     ],
     title: "Second page",
@@ -112,7 +111,6 @@ snapshot[`Disabled pretty URLs 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "page1",
     tags: [
     ],
     title: "First page",

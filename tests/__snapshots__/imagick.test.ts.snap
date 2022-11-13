@@ -98,7 +98,6 @@ snapshot[`imagick plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "lume",
     tags: [
     ],
     url: "/lume-small.png",
@@ -127,7 +126,6 @@ snapshot[`imagick plugin 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "lume",
     tags: [
     ],
     url: "/lume-big.png",
@@ -156,7 +154,6 @@ snapshot[`imagick plugin 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "lume",
     tags: [
     ],
     url: "/lume.jpg",
@@ -185,7 +182,6 @@ snapshot[`imagick plugin 7`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "lume",
     tags: [
     ],
     url: "/lume.webp",
@@ -214,7 +210,6 @@ snapshot[`imagick plugin 8`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "lume",
     tags: [
     ],
     url: "/lume.png",

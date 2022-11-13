@@ -87,7 +87,6 @@ snapshot[`lightningcss plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "index",
     tags: [
     ],
     url: "/index.css",
@@ -124,7 +123,6 @@ snapshot[`lightningcss plugin 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "text",
     tags: [
     ],
     url: "/text.css",

@@ -111,7 +111,6 @@ c = \\\\pm\\\\sqrt{a^2 + b^2}
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "index",
     tags: [
     ],
     url: "/",

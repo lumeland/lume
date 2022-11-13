@@ -81,15 +81,14 @@ snapshot[`build a simple site 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "page2",
     tags: [
     ],
     title: "Second page",
-    url: "/page2/",
+    url: "/page2.html",
   },
   dest: {
     ext: ".html",
-    path: "/page2/index",
+    path: "/page2",
   },
   src: {
     asset: undefined,
@@ -112,7 +111,6 @@ snapshot[`build a simple site 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "page1",
     tags: [
     ],
     title: "First page",

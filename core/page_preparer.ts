@@ -59,34 +59,34 @@ export default class pagePreparer {
       );
     }
 
-    // Calculate the URL from the path
-    if (parentPath && data.slug) {
-      const url = posix.join(parentPath, data.slug);
-      const ext = getExtension(page.src.path);
-
-      if (ext) {
-        return url + ext;
-      }
-
-      if (page.src.asset) {
-        return url + page.src.ext;
-      }
-
-      if (this.prettyUrls) {
-        if (posix.basename(url) === "index") {
-          return posix.join(posix.dirname(url), "/");
-        }
-        return posix.join(url, "/");
-      }
-
-      return `${url}.html`;
+    // If the user has provided a value which hasn't yielded a string then it is an invalid url.
+    if (url !== undefined) {
+      throw new Exception(
+        `If a url is specified, it should either be a string, or a function which returns a string. The provided url is of type: ${typeof url}.`,
+        { page, url },
+      );
     }
 
-    // If the user has provided a value which hasn't yielded a string then it is an invalid url.
-    throw new Exception(
-      `If a url is specified, it should either be a string, or a function which returns a string. The provided url is of type: ${typeof url}.`,
-      { page, url },
-    );
+    // Calculate the URL from the path
+    url = posix.join(parentPath, page.src.slug);
+    const ext = getExtension(page.src.path);
+
+    if (ext) {
+      return url + ext;
+    }
+
+    if (page.src.asset) {
+      return url + page.src.ext;
+    }
+
+    if (this.prettyUrls) {
+      if (posix.basename(url) === "index") {
+        return posix.join(posix.dirname(url), "/");
+      }
+      return posix.join(url, "/");
+    }
+
+    return `${url}.html`;
   }
 
   /** Returns the date assigned to a page */
@@ -131,9 +131,6 @@ export default class pagePreparer {
   /** Return the data associated with a page or folder */
   getData(entry: Page | Directory, parentData: Data): PageData {
     const data = mergeData(parentData, entry.baseData);
-
-    /** Get the slug of a page/directory */
-    data.slug = entry.baseData.slug || entry.src.slug;
 
     if (entry instanceof Page) {
       data.page = entry;

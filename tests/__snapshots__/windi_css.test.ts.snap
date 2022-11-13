@@ -184,7 +184,6 @@ p {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "index",
     tags: [
     ],
     url: "/",
@@ -289,7 +288,6 @@ p {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "multi",
     tags: [
     ],
     url: "/page/1.html",
@@ -394,7 +392,6 @@ p {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "multi",
     tags: [
     ],
     url: "/page/2.html",
@@ -503,7 +500,6 @@ p {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "page2",
     tags: [
     ],
     url: "/page2/",
@@ -555,7 +551,6 @@ snapshot[`Windi CSS plugin 8`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "styles",
     tags: [
     ],
     url: "/styles.css",

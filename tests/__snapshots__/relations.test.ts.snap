@@ -86,7 +86,6 @@ snapshot[`relations plugin 4`] = `
     content: "This is the first category
 ",
     date: 1970-01-01T00:00:00.000Z,
-    id: 1,
     layout: "categories.njk",
     page: undefined,
     paginate: [Function: paginate],
@@ -96,7 +95,6 @@ snapshot[`relations plugin 4`] = `
           content: "This is the first category
 ",
           date: 1970-01-01T00:00:00.000Z,
-          id: 1,
           layout: "categories.njk",
           page: undefined,
           paginate: [Function: paginate],
@@ -124,7 +122,6 @@ snapshot[`relations plugin 4`] = `
             ],
             renderOrder: -1,
             search: Search {},
-            slug: "comment-2",
             tags: [
             ],
             type: "comment",
@@ -142,7 +139,6 @@ snapshot[`relations plugin 4`] = `
         page: undefined,
         paginate: [Function: paginate],
         search: Search {},
-        slug: "post-2",
         tags: [
         ],
         type: "post",
@@ -188,7 +184,6 @@ snapshot[`relations plugin 5`] = `
     content: "This is the second category
 ",
     date: 1970-01-01T00:00:00.000Z,
-    id: 2,
     layout: "categories.njk",
     page: undefined,
     paginate: [Function: paginate],
@@ -198,7 +193,6 @@ snapshot[`relations plugin 5`] = `
           content: "This is the second category
 ",
           date: 1970-01-01T00:00:00.000Z,
-          id: 2,
           layout: "categories.njk",
           page: undefined,
           paginate: [Function: paginate],
@@ -224,7 +218,6 @@ snapshot[`relations plugin 5`] = `
               [Circular *2],
             ],
             search: Search {},
-            slug: "comment-1",
             tags: [
             ],
             type: "comment",
@@ -241,7 +234,6 @@ snapshot[`relations plugin 5`] = `
               [Circular *2],
             ],
             search: Search {},
-            slug: "comment-3",
             tags: [
             ],
             type: "comment",
@@ -261,7 +253,6 @@ snapshot[`relations plugin 5`] = `
         paginate: [Function: paginate],
         renderOrder: 1,
         search: Search {},
-        slug: "post-1",
         tags: [
         ],
         type: "post",
@@ -307,7 +298,6 @@ snapshot[`relations plugin 6`] = `
           content: "This is the second category
 ",
           date: 1970-01-01T00:00:00.000Z,
-          id: 2,
           layout: "categories.njk",
           page: undefined,
           paginate: [Function: paginate],
@@ -333,7 +323,6 @@ snapshot[`relations plugin 6`] = `
             paginate: [Function: paginate],
             post: [Circular *2],
             search: Search {},
-            slug: "comment-1",
             tags: [
             ],
             type: "comment",
@@ -350,7 +339,6 @@ snapshot[`relations plugin 6`] = `
               [Circular *1],
             ],
             search: Search {},
-            slug: "comment-3",
             tags: [
             ],
             type: "comment",
@@ -370,7 +358,6 @@ snapshot[`relations plugin 6`] = `
         paginate: [Function: paginate],
         renderOrder: 1,
         search: Search {},
-        slug: "post-1",
         tags: [
         ],
         type: "post",
@@ -378,7 +365,6 @@ snapshot[`relations plugin 6`] = `
       },
     ],
     search: Search {},
-    slug: "comment-1",
     tags: [
     ],
     type: "comment",
@@ -415,7 +401,6 @@ snapshot[`relations plugin 7`] = `
           content: "This is the first category
 ",
           date: 1970-01-01T00:00:00.000Z,
-          id: 1,
           layout: "categories.njk",
           page: undefined,
           paginate: [Function: paginate],
@@ -443,7 +428,6 @@ snapshot[`relations plugin 7`] = `
             post: [Circular *2],
             renderOrder: -1,
             search: Search {},
-            slug: "comment-2",
             tags: [
             ],
             type: "comment",
@@ -461,7 +445,6 @@ snapshot[`relations plugin 7`] = `
         page: undefined,
         paginate: [Function: paginate],
         search: Search {},
-        slug: "post-2",
         tags: [
         ],
         type: "post",
@@ -470,7 +453,6 @@ snapshot[`relations plugin 7`] = `
     ],
     renderOrder: -1,
     search: Search {},
-    slug: "comment-2",
     tags: [
     ],
     type: "comment",
@@ -507,7 +489,6 @@ snapshot[`relations plugin 8`] = `
           content: "This is the second category
 ",
           date: 1970-01-01T00:00:00.000Z,
-          id: 2,
           layout: "categories.njk",
           page: undefined,
           paginate: [Function: paginate],
@@ -535,7 +516,6 @@ snapshot[`relations plugin 8`] = `
               [Circular *1],
             ],
             search: Search {},
-            slug: "comment-1",
             tags: [
             ],
             type: "comment",
@@ -550,7 +530,6 @@ snapshot[`relations plugin 8`] = `
             paginate: [Function: paginate],
             post: [Circular *2],
             search: Search {},
-            slug: "comment-3",
             tags: [
             ],
             type: "comment",
@@ -570,7 +549,6 @@ snapshot[`relations plugin 8`] = `
         paginate: [Function: paginate],
         renderOrder: 1,
         search: Search {},
-        slug: "post-1",
         tags: [
         ],
         type: "post",
@@ -578,7 +556,6 @@ snapshot[`relations plugin 8`] = `
       },
     ],
     search: Search {},
-    slug: "comment-3",
     tags: [
     ],
     type: "comment",
@@ -621,7 +598,6 @@ snapshot[`relations plugin 9`] = `
       content: "This is the second category
 ",
       date: 1970-01-01T00:00:00.000Z,
-      id: 2,
       layout: "categories.njk",
       page: undefined,
       paginate: [Function: paginate],
@@ -641,7 +617,6 @@ snapshot[`relations plugin 9`] = `
                 [Circular *2],
               ],
               search: Search {},
-              slug: "comment-1",
               tags: [
               ],
               type: "comment",
@@ -658,7 +633,6 @@ snapshot[`relations plugin 9`] = `
                 [Circular *2],
               ],
               search: Search {},
-              slug: "comment-3",
               tags: [
               ],
               type: "comment",
@@ -678,7 +652,6 @@ snapshot[`relations plugin 9`] = `
           paginate: [Function: paginate],
           renderOrder: 1,
           search: Search {},
-          slug: "post-1",
           tags: [
           ],
           type: "post",
@@ -708,7 +681,6 @@ snapshot[`relations plugin 9`] = `
               content: "This is the second category
 ",
               date: 1970-01-01T00:00:00.000Z,
-              id: 2,
               layout: "categories.njk",
               page: undefined,
               paginate: [Function: paginate],
@@ -738,7 +710,6 @@ snapshot[`relations plugin 9`] = `
             paginate: [Function: paginate],
             renderOrder: 1,
             search: Search {},
-            slug: "post-1",
             tags: [
             ],
             type: "post",
@@ -746,7 +717,6 @@ snapshot[`relations plugin 9`] = `
           },
         ],
         search: Search {},
-        slug: "comment-1",
         tags: [
         ],
         type: "comment",
@@ -765,7 +735,6 @@ snapshot[`relations plugin 9`] = `
               content: "This is the second category
 ",
               date: 1970-01-01T00:00:00.000Z,
-              id: 2,
               layout: "categories.njk",
               page: undefined,
               paginate: [Function: paginate],
@@ -795,7 +764,6 @@ snapshot[`relations plugin 9`] = `
             paginate: [Function: paginate],
             renderOrder: 1,
             search: Search {},
-            slug: "post-1",
             tags: [
             ],
             type: "post",
@@ -803,7 +771,6 @@ snapshot[`relations plugin 9`] = `
           },
         ],
         search: Search {},
-        slug: "comment-3",
         tags: [
         ],
         type: "comment",
@@ -823,7 +790,6 @@ snapshot[`relations plugin 9`] = `
     paginate: [Function: paginate],
     renderOrder: 1,
     search: Search {},
-    slug: "post-1",
     tags: [
     ],
     type: "post",
@@ -864,7 +830,6 @@ snapshot[`relations plugin 10`] = `
       content: "This is the first category
 ",
       date: 1970-01-01T00:00:00.000Z,
-      id: 1,
       layout: "categories.njk",
       page: undefined,
       paginate: [Function: paginate],
@@ -885,7 +850,6 @@ snapshot[`relations plugin 10`] = `
               ],
               renderOrder: -1,
               search: Search {},
-              slug: "comment-2",
               tags: [
               ],
               type: "comment",
@@ -903,7 +867,6 @@ snapshot[`relations plugin 10`] = `
           page: undefined,
           paginate: [Function: paginate],
           search: Search {},
-          slug: "post-2",
           tags: [
           ],
           type: "post",
@@ -934,7 +897,6 @@ snapshot[`relations plugin 10`] = `
               content: "This is the first category
 ",
               date: 1970-01-01T00:00:00.000Z,
-              id: 1,
               layout: "categories.njk",
               page: undefined,
               paginate: [Function: paginate],
@@ -963,7 +925,6 @@ snapshot[`relations plugin 10`] = `
             page: undefined,
             paginate: [Function: paginate],
             search: Search {},
-            slug: "post-2",
             tags: [
             ],
             type: "post",
@@ -972,7 +933,6 @@ snapshot[`relations plugin 10`] = `
         ],
         renderOrder: -1,
         search: Search {},
-        slug: "comment-2",
         tags: [
         ],
         type: "comment",
@@ -990,7 +950,6 @@ snapshot[`relations plugin 10`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "post-2",
     tags: [
     ],
     type: "post",

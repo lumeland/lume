@@ -144,7 +144,6 @@ console.log("foo");
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "index",
     tags: [
     ],
     url: "/",

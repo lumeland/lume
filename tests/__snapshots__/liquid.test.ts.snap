@@ -94,7 +94,6 @@ snapshot[`build a site with liquid 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "data",
     tags: [
     ],
     url: "/data.json",
@@ -136,7 +135,6 @@ snapshot[`build a site with liquid 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "index",
     tags: [
     ],
     title: "Hello World",
@@ -177,7 +175,6 @@ snapshot[`build a site with liquid 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "liquid-filter",
     tags: [
     ],
     title: "liquid filter example",
@@ -240,7 +237,6 @@ snapshot[`build a site with liquid 7`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "with-helpers",
     tags: [
     ],
     title: "The title",

@@ -137,7 +137,7 @@ export default class Source {
 
     // Data cascade from the parent directory
     const data = this.pagePreparer.getData(directory, parentData);
-    const path = posix.join(parentPath, data.slug!);
+    const path = posix.join(parentPath, directory.src.slug);
 
     // Setup the components
     if (directory.components.size) {

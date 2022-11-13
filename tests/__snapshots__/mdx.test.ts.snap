@@ -110,7 +110,6 @@ This is a markdown file with the title **{ title }**.
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "index",
     tags: [
     ],
     title: "Hello world",

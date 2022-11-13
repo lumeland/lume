@@ -91,7 +91,6 @@ snapshot[`terser plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "favicon",
     tags: [
     ],
     url: "/favicon.svg",

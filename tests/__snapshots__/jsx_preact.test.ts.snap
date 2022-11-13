@@ -93,7 +93,6 @@ snapshot[`build a site with jsx/tsx modules using Preact 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "index",
     tags: [
     ],
     title: "This is the title",
@@ -124,7 +123,6 @@ snapshot[`build a site with jsx/tsx modules using Preact 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "multiple",
     tags: [
     ],
     url: "/page/1/",
@@ -154,7 +152,6 @@ snapshot[`build a site with jsx/tsx modules using Preact 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "multiple",
     tags: [
     ],
     url: "/page/2/",
@@ -185,7 +182,6 @@ snapshot[`build a site with jsx/tsx modules using Preact 7`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "with-comp",
     tags: [
     ],
     url: "/with-comp/",
@@ -215,7 +211,6 @@ snapshot[`build a site with jsx/tsx modules using Preact 8`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "with-function",
     tags: [
     ],
     title: "This is the title",
@@ -261,7 +256,6 @@ body {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "with-markdown",
     tags: [
     ],
     title: "Markdown combined with JSX",

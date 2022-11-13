@@ -89,7 +89,6 @@ block content
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "extends",
     tags: [
     ],
     title: "Pug example",
@@ -132,7 +131,6 @@ block content
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "filter",
     tags: [
     ],
     title: "Markdown content",
@@ -164,7 +162,6 @@ snapshot[`build a site with eta 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "layout",
     tags: [
     ],
     title: "Pug example",

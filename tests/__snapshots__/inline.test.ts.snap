@@ -113,7 +113,6 @@ snapshot[`inline plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "favicon",
     tags: [
     ],
     url: "/favicon.svg",
@@ -203,7 +202,6 @@ const a = 1, _b = 1 < a, _c = a > 4;
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "index",
     tags: [
     ],
     url: "/",
@@ -235,7 +233,6 @@ const a = 1, _b = 1 < a, _c = a > 4;
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "script",
     tags: [
     ],
     url: "/script.js",
@@ -269,7 +266,6 @@ snapshot[`inline plugin 7`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "styles",
     tags: [
     ],
     url: "/styles.css",

@@ -1,6 +1,6 @@
 ---
 title: Second page
-slug: page2
+url: /page2.html
 ---
 
 # Welcome

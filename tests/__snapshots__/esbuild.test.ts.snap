@@ -90,7 +90,6 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "main",
     tags: [
     ],
     url: "/main.js",

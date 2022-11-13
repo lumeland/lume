@@ -97,7 +97,6 @@ This is the first page
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "index",
     tags: [
     ],
     title: "First page",
@@ -144,7 +143,6 @@ This is the second page
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "page2",
     tags: [
     ],
     title: "Second page",

@@ -104,7 +104,6 @@ p {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "index",
     tags: [
     ],
     url: "/",
@@ -146,7 +145,6 @@ snapshot[`code_hightlight plugin 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    slug: "other",
     tags: [
     ],
     url: "/other/",
