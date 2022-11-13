@@ -14,7 +14,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New method `Server.stop()` to close the local server [#296].
 - New option `emptyDest` to configure whether the dest folder must be emptied before build [#308].
 - The `src` property of pages and folders includes now the `slug` value [#278].
-- New property `Page.data.slug` property to configure the slug of pages and directories [#278].
 - New `Page.isHtml` property that returns whether the page is HTML.
 - New `Page.outputPath` property that returns the output path of the page (formely `page.dest.path + page.dest.ext).
 - New option `returnPageData` to the `search` plugin [#251].
