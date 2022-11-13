@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New property `Page.data.slug` property to configure the slug of pages and directories [#278].
 - New `Page.isHtml` property that returns whether the page is HTML.
 - New `Page.outputPath` property that returns the output path of the page (formely `page.dest.path + page.dest.ext).
-- New option `returnPageData` to `search` plugin [#251].
+- New option `returnPageData` to the `search` plugin [#251].
 - New middleware `www` [#280].
 - The plugin `relations` allows to customize the id key per type.
 
