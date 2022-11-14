@@ -234,8 +234,8 @@ snapshot[`multilanguage plugin 8`] = `
   data: {
     alternates: [
       "en",
-      "it",
       "gl",
+      "it",
     ],
     content: "Pagina 1
 ",
@@ -273,8 +273,8 @@ snapshot[`multilanguage plugin 9`] = `
   data: {
     alternates: [
       "en",
-      "it",
       "gl",
+      "it",
     ],
     content: "Page 1
 ",
@@ -312,8 +312,8 @@ snapshot[`multilanguage plugin 10`] = `
   data: {
     alternates: [
       "en",
-      "it",
       "gl",
+      "it",
     ],
     content: "Páxina 1
 ",
@@ -362,8 +362,8 @@ snapshot[`multilanguage plugin 11`] = `
 </body></html>',
   data: {
     alternates: [
-      "gl",
       "en",
+      "gl",
     ],
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -418,8 +418,8 @@ snapshot[`multilanguage plugin 12`] = `
 </body></html>',
   data: {
     alternates: [
-      "gl",
       "en",
+      "gl",
     ],
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,

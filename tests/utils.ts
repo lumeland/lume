@@ -154,7 +154,7 @@ export async function assertSiteSnapshot(
       // @ts-ignore: Remove alternates
       page.data.alternates = Object.keys(
         page.data.alternates as Record<string, Page>,
-      );
+      ).sort();
     }
     // Remote base path because it's different in the test environment
     page.src.remote = page.src.remote?.replace(cwUrl, "");
