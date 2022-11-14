@@ -1,7 +1,7 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import multilanguage from "../plugins/multilanguage.ts";
 
-Deno.test("metas plugin", async (t) => {
+Deno.test("multilanguage plugin", async (t) => {
   const site = getSite({
     src: "multilanguage",
   });

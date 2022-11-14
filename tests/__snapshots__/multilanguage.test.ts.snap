@@ -1,8 +1,8 @@
 export const snapshot = {};
 
-snapshot[`metas plugin 1`] = `6`;
+snapshot[`multilanguage plugin 1`] = `9`;
 
-snapshot[`metas plugin 2`] = `
+snapshot[`multilanguage plugin 2`] = `
 {
   formats: [
     {
@@ -65,12 +65,12 @@ snapshot[`metas plugin 2`] = `
 }
 `;
 
-snapshot[`metas plugin 3`] = `
+snapshot[`multilanguage plugin 3`] = `
 [
 ]
 `;
 
-snapshot[`metas plugin 4`] = `
+snapshot[`multilanguage plugin 4`] = `
 {
   content: '<!DOCTYPE html>
 <html lang="en"><head><link rel="alternate" hreflang="gl" href="/gl/">
@@ -108,7 +108,7 @@ snapshot[`metas plugin 4`] = `
 }
 `;
 
-snapshot[`metas plugin 5`] = `
+snapshot[`multilanguage plugin 5`] = `
 {
   content: '<!DOCTYPE html>
 <html lang="gl"><head><link rel="alternate" hreflang="en" href="/en/">
@@ -145,7 +145,7 @@ snapshot[`metas plugin 5`] = `
 }
 `;
 
-snapshot[`metas plugin 6`] = `
+snapshot[`multilanguage plugin 6`] = `
 {
   content: '<!DOCTYPE html>
 <html lang="en"><head><link rel="alternate" hreflang="fr" href="/other-page-french.html">
@@ -185,7 +185,7 @@ snapshot[`metas plugin 6`] = `
 }
 `;
 
-snapshot[`metas plugin 7`] = `
+snapshot[`multilanguage plugin 7`] = `
 {
   content: '<!DOCTYPE html>
 <html lang="fr"><head><link rel="alternate" hreflang="en" href="/other-page-english/">
@@ -224,7 +224,124 @@ snapshot[`metas plugin 7`] = `
 }
 `;
 
-snapshot[`metas plugin 8`] = `
+snapshot[`multilanguage plugin 8`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="it"><head><link rel="alternate" hreflang="en" href="/en/pages/page1/">
+<link rel="alternate" hreflang="gl" href="/gl/pages/page1/">
+</head><body><p>Pagina 1</p>
+</body></html>',
+  data: {
+    alternates: [
+      "en",
+      "it",
+      "gl",
+    ],
+    content: "Pagina 1
+",
+    date: 1970-01-01T00:00:00.000Z,
+    lang: "it",
+    mergeLanguages: [Function: mergeLanguages],
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/custom-italian-url/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/custom-italian-url/index",
+  },
+  src: {
+    asset: undefined,
+    ext: ".md",
+    path: "/pages/page1",
+    remote: undefined,
+    slug: "page1",
+  },
+}
+`;
+
+snapshot[`multilanguage plugin 9`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="it" href="/custom-italian-url/">
+<link rel="alternate" hreflang="gl" href="/gl/pages/page1/">
+</head><body><p>Page 1</p>
+</body></html>',
+  data: {
+    alternates: [
+      "en",
+      "it",
+      "gl",
+    ],
+    content: "Page 1
+",
+    date: 1970-01-01T00:00:00.000Z,
+    lang: "en",
+    mergeLanguages: [Function: mergeLanguages],
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/en/pages/page1/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/en/pages/page1/index",
+  },
+  src: {
+    asset: undefined,
+    ext: ".md",
+    path: "/pages/page1_en",
+    remote: undefined,
+    slug: "page1_en",
+  },
+}
+`;
+
+snapshot[`multilanguage plugin 10`] = `
+{
+  content: '<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="en" href="/en/pages/page1/">
+<link rel="alternate" hreflang="it" href="/custom-italian-url/">
+</head><body><p>Páxina 1</p>
+</body></html>',
+  data: {
+    alternates: [
+      "en",
+      "it",
+      "gl",
+    ],
+    content: "Páxina 1
+",
+    date: 1970-01-01T00:00:00.000Z,
+    lang: "gl",
+    mergeLanguages: [Function: mergeLanguages],
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/gl/pages/page1/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/gl/pages/page1/index",
+  },
+  src: {
+    asset: undefined,
+    ext: ".md",
+    path: "/pages/page1_gl",
+    remote: undefined,
+    slug: "page1_gl",
+  },
+}
+`;
+
+snapshot[`multilanguage plugin 11`] = `
 {
   content: '<!DOCTYPE html>
 <html lang="en"><head><link rel="alternate" hreflang="gl" href="/pagination/page-1/">
@@ -239,6 +356,8 @@ snapshot[`metas plugin 8`] = `
   <li>Hello world</li>
 
   <li>Other</li>
+
+  <li></li>
 
 </body></html>',
   data: {
@@ -258,9 +377,9 @@ snapshot[`metas plugin 8`] = `
       page: 1,
       previous: null,
       totalPages: 1,
-      totalResults: 2,
+      totalResults: 3,
     },
-    results: 2,
+    results: 3,
     search: Search {},
     tags: [
     ],
@@ -280,7 +399,7 @@ snapshot[`metas plugin 8`] = `
 }
 `;
 
-snapshot[`metas plugin 9`] = `
+snapshot[`multilanguage plugin 12`] = `
 {
   content: '<!DOCTYPE html>
 <html lang="gl"><head><link rel="alternate" hreflang="en" href="/pagination/page-1/">
@@ -293,6 +412,8 @@ snapshot[`metas plugin 9`] = `
 </nav>
 
   <li>Ola mundo</li>
+
+  <li></li>
 
 </body></html>',
   data: {
@@ -312,9 +433,9 @@ snapshot[`metas plugin 9`] = `
       page: 1,
       previous: null,
       totalPages: 1,
-      totalResults: 1,
+      totalResults: 2,
     },
-    results: 1,
+    results: 2,
     search: Search {},
     tags: [
     ],

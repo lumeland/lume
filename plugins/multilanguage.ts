@@ -91,6 +91,41 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
       pages.splice(pages.indexOf(page), 1, ...newPages);
     });
 
+    // Preprocessor to detect language versions of pages
+    site.preprocess("*", (page) => {
+      const { data } = page;
+
+      if (data.alternates || typeof data.lang !== "string") {
+        return;
+      }
+
+      const baseSlug = parseSlug(page, data.lang);
+
+      if (baseSlug) {
+        const alternates: Alternates = {};
+
+        // Search pages in the same directory with the same slug
+        page.parent?.pages.forEach((page) => {
+          const { data } = page;
+
+          if (typeof data.lang !== "string") {
+            return;
+          }
+
+          if (
+            parseSlug(page, data.lang) === baseSlug ||
+            page.src.path.endsWith(`/${baseSlug}`)
+          ) {
+            alternates[data.lang] = page;
+            page.data.alternates = alternates;
+            if (page.data.url) {
+              page.data.url = getUrl(page.data.url, data.lang);
+            }
+          }
+        });
+      }
+    });
+
     // Include automatically the <link rel="alternate"> elements
     // with the other languages
     site.process(options.extensions, (page) => {
@@ -198,4 +233,23 @@ function filterLanguage(
   }
 
   return data;
+}
+
+function parseSlug(page: Page, lang: string): string | undefined {
+  if (!page.src.slug.endsWith("_" + lang)) {
+    return;
+  }
+
+  return page.src.slug.slice(0, -lang.length - 1);
+}
+
+function getUrl(url: string, lang: string): string {
+  if (url.endsWith(`_${lang}/`)) {
+    return `/${lang}${url.slice(0, -lang.length - 2)}/`;
+  }
+  if (url.endsWith(`_${lang}.html`)) {
+    return `/${lang}${url.slice(0, -lang.length - 6)}.html`;
+  }
+
+  return url;
 }

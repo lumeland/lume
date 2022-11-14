@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New option `returnPageData` to the `search` plugin [#251].
 - New middleware `www` [#280].
 - The plugin `relations` allows to customize the id key per type.
+- The `multilanguage` plugin detects two different pages as language versions of the same page if the source file ends by `_[lang]`.
+  For example `/about-me.md` (default language), `/about-me_pt.md` and `/about-me_it.md`.
 
 ### Changed
 - The file names starting with `[number]_` no longer are parsed as dates.
