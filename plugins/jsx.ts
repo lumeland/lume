@@ -9,9 +9,9 @@ export interface Options {
   extensions:
     | string[]
     | {
-        pages: string[];
-        components: string[];
-      };
+      pages: string[];
+      components: string[];
+    };
 }
 
 // Default options
@@ -55,12 +55,11 @@ export class JsxEngine implements Engine {
       });
     }
 
-    const element =
-      typeof content === "object" && React.isValidElement(content)
-        ? content
-        : ((typeof content === "function"
-            ? await content({ ...data, children }, this.helpers)
-            : content) as React.ReactElement);
+    const element = typeof content === "object" && React.isValidElement(content)
+      ? content
+      : ((typeof content === "function"
+        ? await content({ ...data, children }, this.helpers)
+        : content) as React.ReactElement);
 
     if (React.isValidElement(element)) {
       return {
@@ -73,8 +72,9 @@ export class JsxEngine implements Engine {
   }
 
   renderSync(content: unknown, data: Data = {}): { toString(): string } {
-    const element =
-      typeof content === "function" ? content(data, this.helpers) : content;
+    const element = typeof content === "function"
+      ? content(data, this.helpers)
+      : content;
 
     if (React.isValidElement(element)) {
       return {
