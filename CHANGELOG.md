@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - For better compatibility, `postcss` and its plugins are loaded from `npm:` specifiers.
 - The `Page.dest` and `Page.updateDest` properties are deprecated.
   If you want to change the destination of a page, simply update the `Page.data.url` value.
+- JSX plugin now provides a jsx-runtime import to type `SX.IntrinsicElements`.
 
 ### Removed
 - `react_runtime` and `preact_runtime` dependencies.
