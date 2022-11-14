@@ -6,10 +6,12 @@ import type { Data, DenoConfigResult, Engine, Helper, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[] | {
-    pages: string[];
-    components: string[];
-  };
+  extensions:
+    | string[]
+    | {
+        pages: string[];
+        components: string[];
+      };
 }
 
 // Default options
@@ -53,11 +55,12 @@ export class JsxEngine implements Engine {
       });
     }
 
-    const element = typeof content === "object" && React.isValidElement(content)
-      ? content
-      : (typeof content === "function"
-        ? await content({ ...data, children }, this.helpers)
-        : content) as React.ReactElement;
+    const element =
+      typeof content === "object" && React.isValidElement(content)
+        ? content
+        : ((typeof content === "function"
+            ? await content({ ...data, children }, this.helpers)
+            : content) as React.ReactElement);
 
     if (React.isValidElement(element)) {
       return {
@@ -70,9 +73,8 @@ export class JsxEngine implements Engine {
   }
 
   renderSync(content: unknown, data: Data = {}): { toString(): string } {
-    const element = typeof content === "function"
-      ? content(data, this.helpers)
-      : content;
+    const element =
+      typeof content === "function" ? content(data, this.helpers) : content;
 
     if (React.isValidElement(element)) {
       return {
@@ -93,7 +95,12 @@ export class JsxEngine implements Engine {
 export function init(denoConfig: DenoConfigResult) {
   denoConfig.config.compilerOptions ||= {};
   denoConfig.config.compilerOptions.jsx = "react-jsx";
-  denoConfig.config.compilerOptions.jsxImportSource = "npm:react";
+  denoConfig.config.compilerOptions.jsxImportSource = "react";
+
+  // Add jsx-runtime import to import_map.
+  denoConfig.importMap ||= { imports: {} };
+  denoConfig.importMap.imports["react/jsx-runtime"] =
+    "https://esm.sh/react@18.2.0/jsx-runtime";
 }
 
 /** Register the plugin to support JSX and TSX files */
