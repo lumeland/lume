@@ -117,11 +117,18 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
             page.src.path.endsWith(`/${baseSlug}`)
           ) {
             alternates[data.lang] = page;
-            page.data.alternates = alternates;
             if (page.data.url) {
               page.data.url = getUrl(page.data.url, data.lang);
             }
           }
+
+          // Sort altenate pages by language
+          const sorted = Object.fromEntries(
+            Object.entries(alternates).sort((a, b) => a[0].localeCompare(b[0])),
+          );
+          Object.values(sorted).forEach((page) =>
+            page.data.alternates = sorted
+          );
         });
       }
     });

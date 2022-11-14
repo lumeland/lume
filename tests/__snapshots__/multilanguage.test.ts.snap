@@ -266,8 +266,8 @@ snapshot[`multilanguage plugin 8`] = `
 snapshot[`multilanguage plugin 9`] = `
 {
   content: '<!DOCTYPE html>
-<html lang="en"><head><link rel="alternate" hreflang="it" href="/custom-italian-url/">
-<link rel="alternate" hreflang="gl" href="/gl/pages/page1/">
+<html lang="en"><head><link rel="alternate" hreflang="gl" href="/gl/pages/page1/">
+<link rel="alternate" hreflang="it" href="/custom-italian-url/">
 </head><body><p>Page 1</p>
 </body></html>',
   data: {
