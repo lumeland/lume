@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.13.0] - Unreleased
+## [1.13.0] - 2022-11-16
 ### Added
 - New `mdx` plugin.
 - New `sitemap` plugin [#287].
@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New option `returnPageData` to the `search` plugin [#251].
 - New middleware `www` [#280].
 - The plugin `relations` allows to customize the id key per type.
-- The `multilanguage` plugin detects two different pages as language versions of the same page if the source file ends by `_[lang]`.
+- The `multilanguage` plugin detects two different pages as language versions of the same page if the source file ends by `_[lang]` [#301].
   For example `/about-me.md` (default language), `/about-me_pt.md` and `/about-me_it.md`.
 
 ### Changed
@@ -1901,9 +1901,10 @@ The first version.
 [#295]: https://github.com/lumeland/lume/issues/295
 [#296]: https://github.com/lumeland/lume/issues/296
 [#299]: https://github.com/lumeland/lume/issues/299
+[#301]: https://github.com/lumeland/lume/issues/301
 [#308]: https://github.com/lumeland/lume/issues/308
 
-[1.13.0]: https://github.com/lumeland/lume/compare/v1.12.1...HEAD
+[1.13.0]: https://github.com/lumeland/lume/compare/v1.12.1...v1.13.0
 [1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...v1.12.1
 [1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...v1.12.0
 [1.11.4]: https://github.com/lumeland/lume/compare/v1.11.3...v1.11.4
