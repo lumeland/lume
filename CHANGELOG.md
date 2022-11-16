@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The plugin `relations` allows to customize the id key per type.
 - The `multilanguage` plugin detects two different pages as language versions of the same page if the source file ends by `_[lang]` [#301].
   For example `/about-me.md` (default language), `/about-me_pt.md` and `/about-me_it.md`.
+- New option `excludeSelectors` to `pagefind` plugin.
 
 ### Changed
 - The file names starting with `[number]_` no longer are parsed as dates.

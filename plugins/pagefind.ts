@@ -39,6 +39,9 @@ export interface IndexingOptions {
 
   /** Prints extra logging while indexing the site. */
   verbose: boolean;
+
+  /** Extra element selectors that Pagefind should ignore when indexing */
+  excludeSelectors: string[];
 }
 
 export interface Options {
@@ -56,7 +59,7 @@ const defaults: Options = {
   binary: {
     path: "./_bin/pagefind",
     extended: false,
-    version: "v0.9.3",
+    version: "v0.10.0",
   },
   ui: {
     containerId: "search",
@@ -70,6 +73,7 @@ const defaults: Options = {
     glob: "**/*.html",
     forceLanguage: false,
     verbose: false,
+    excludeSelectors: [],
   },
 };
 
@@ -176,6 +180,10 @@ function buildArguments(
 
   if (options.forceLanguage) {
     args.push("--force-language", options.forceLanguage);
+  }
+
+  if (options.excludeSelectors.length > 0) {
+    args.push("--exclude-selectors", options.excludeSelectors.join(","));
   }
 
   if (options.verbose) {
