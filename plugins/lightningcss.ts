@@ -1,4 +1,4 @@
-import init, { transform } from "../deps/lightningcss.ts";
+import { init, transform } from "../deps/lightningcss.ts";
 import { merge } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
@@ -70,7 +70,7 @@ export default function (userOptions?: DeepPartial<Options>) {
         site,
         file,
         decoder.decode(result.code),
-        enableSourceMap ? decoder.decode(result.map) : undefined,
+        enableSourceMap ? decoder.decode(result.map!) : undefined,
       );
     }
   };

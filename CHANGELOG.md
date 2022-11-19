@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Updated the dependencies: `std`.
 - Updated `highlight.js` types.
+- Import `lightningcss` from npm.
 
 ## [1.13.0] - 2022-11-16
 ### Added
