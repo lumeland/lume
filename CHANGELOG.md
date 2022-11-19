@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.13.1] - Unreleased
 ### Fixed
-- Updated the dependencies: `std`, `minify_html`.
+- Updated the dependencies: `std`, `minify_html`, `sheetjs`.
 - Updated `highlight.js` types.
 - Updated `liquid` types.
 - Import `lightningcss` from npm.
