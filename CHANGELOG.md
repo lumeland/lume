@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Updated the dependencies: `std`, `minify_html`, `sheetjs`.
 - Updated `highlight.js` types.
 - Updated `liquid` types.
+- Updated `terser` types.
 - Import `lightningcss` from npm.
 - Load a fixed version of `prism` to avoid deno.lock errors.
 

@@ -5,14 +5,14 @@ import { Page } from "../core/filesystem.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 
 import type { DeepPartial, Helper, Site } from "../core.ts";
-import type { TerserOptions } from "../deps/terser.ts";
+import type { MinifyOptions } from "../deps/terser.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
   /** Options passed to `terser` */
-  options: TerserOptions;
+  options: MinifyOptions;
 }
 
 // Default options
@@ -52,7 +52,7 @@ export default function (userOptions?: DeepPartial<Options>) {
 
       try {
         const output = await minify({ [filename]: content }, terserOptions);
-        saveAsset(site, page, output.code, output.map);
+        saveAsset(site, page, output.code!, output.map);
       } catch (cause) {
         throw new Exception(
           "Error processing the file",
