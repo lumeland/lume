@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Updated `highlight.js` types.
 - Updated `liquid` types.
 - Import `lightningcss` from npm.
+- Load a fixed version of `prism` to avoid deno.lock errors.
 
 ## [1.13.0] - 2022-11-16
 ### Added

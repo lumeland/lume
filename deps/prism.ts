@@ -1,5 +1,5 @@
-export { default } from "https://esm.sh/prismjs@1.29.0/";
-const prismPath = "https://esm.sh/prismjs@1.29.0/";
+export { default } from "https://esm.sh/v99/prismjs@1.29.0";
+const prismPath = "https://esm.sh/v99/prismjs@1.29.0/";
 
 // https://github.com/PrismJS/prism/blob/master/plugins/autoloader/prism-autoloader.js
 const dependencies: Record<string, string | string[]> = {
