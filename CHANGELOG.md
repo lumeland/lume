@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.13.1] - Unreleased
+### Fixed
+- Updated the dependencies: `std`.
+
 ## [1.13.0] - 2022-11-16
 ### Added
 - New `mdx` plugin.
@@ -1905,6 +1909,7 @@ The first version.
 [#301]: https://github.com/lumeland/lume/issues/301
 [#308]: https://github.com/lumeland/lume/issues/308
 
+[1.13.1]: https://github.com/lumeland/lume/compare/v1.13.0...HEAD
 [1.13.0]: https://github.com/lumeland/lume/compare/v1.12.1...v1.13.0
 [1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...v1.12.1
 [1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...v1.12.0
