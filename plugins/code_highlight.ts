@@ -1,8 +1,7 @@
-import hljs, { HighlightOptions, LanguageFn } from "../deps/highlight.ts";
+import hljs, { HLJSOptions, LanguageFn } from "../deps/highlight.ts";
 import { merge } from "../core/utils.ts";
 
 import type { DeepPartial, Page, Site } from "../core.ts";
-import type { Element } from "../deps/dom.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -12,7 +11,7 @@ export interface Options {
   languages?: Record<string, LanguageFn>;
 
   /** Options passed to highlight.js */
-  options: HighlightOptions;
+  options: Omit<HLJSOptions, "__emitter">;
 }
 
 // Default options
@@ -24,7 +23,7 @@ export const defaults: Options = {
     languageDetectRe: /\blanguage-([\w-]+)\b/i,
     classPrefix: "hljs-",
     cssSelector: "pre code",
-    languages: null,
+    languages: undefined,
   },
 };
 
@@ -46,7 +45,8 @@ export default function (userOptions?: DeepPartial<Options>) {
       page.document!.querySelectorAll(options.options.cssSelector)
         .forEach((element) => {
           try {
-            hljs.highlightElement(element as Element);
+            // deno-lint-ignore no-explicit-any
+            hljs.highlightElement(element as any);
           } catch {
             // Ignore
           }

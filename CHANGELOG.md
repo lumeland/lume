@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.13.1] - Unreleased
 ### Fixed
 - Updated the dependencies: `std`.
+- Updated `highlight.js` types.
 
 ## [1.13.0] - 2022-11-16
 ### Added
