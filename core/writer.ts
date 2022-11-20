@@ -54,8 +54,8 @@ export default class Writer {
    * Returns a boolean indicating if the page has saved
    */
   async savePage(page: Page): Promise<boolean> {
-    // Ignore empty files or with url === false
-    if (page.data.url === false) {
+    // Ignore empty files or without output path
+    if (!page.outputPath) {
       return false;
     }
     // Ignore empty pages

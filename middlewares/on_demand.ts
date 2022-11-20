@@ -35,7 +35,7 @@ export default function onDemand(options: Options): Middleware {
 
     const page = await site.renderPage(file);
 
-    if (!page) {
+    if (!page || !page.outputPath) {
       return response;
     }
 

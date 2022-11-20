@@ -93,7 +93,7 @@ export default function (userOptions: DeepPartial<Options> = {}) {
         let stylesheet = new StyleSheet();
 
         const pages = site.pages
-          .filter((page) => page.isHtml);
+          .filter((page) => page.outputPath?.endsWith(".html"));
 
         // Create & merge stylesheets for all pages
         stylesheet = pages

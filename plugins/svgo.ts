@@ -27,7 +27,7 @@ export default function (userOptions?: DeepPartial<Options>) {
     site.process(options.extensions, svg);
 
     async function svg(page: Page) {
-      const path = site.src(page.outputPath);
+      const path = site.src(page.outputPath!);
       const result = await optimize(page.content, {
         path,
         ...options.options,

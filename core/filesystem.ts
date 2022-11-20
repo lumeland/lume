@@ -117,22 +117,15 @@ export class Page extends Base {
     return page;
   }
 
-  /** Returns if the page is HTML */
-  get isHtml(): boolean {
-    const { url } = this.data;
-    if (typeof url === "string") {
-      return url.endsWith(".html") || url.endsWith("/");
-    }
-    return !!this.#document || !this.src.asset;
-  }
-
   /** Returns the output path of this page */
-  get outputPath(): string {
-    const url = this.data.url as string;
-    if (url.endsWith("/")) {
-      return posix.join(url, "index.html");
+  get outputPath(): string | undefined {
+    const url = this.data.url;
+
+    if (!url) {
+      return undefined;
     }
-    return url;
+
+    return url.endsWith("/") ? url + "index.html" : url;
   }
 
   /**
@@ -152,6 +145,9 @@ export class Page extends Base {
   /** @deprecated Use `page.data.url` or `page.outputPath`. */
   get dest(): Dest {
     const url = this.outputPath;
+    if (!url) {
+      return { path: "", ext: "" };
+    }
     const ext = getExtension(url);
     return {
       path: ext ? url.slice(0, -ext.length) : url,

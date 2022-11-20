@@ -103,7 +103,7 @@ export function prepareAsset(site: Site, page: Page): PrepareResult {
     : undefined;
   const filename = page.src.path
     ? site.src(page.src.path + page.src.ext)
-    : site.src(page.outputPath);
+    : site.src(page.outputPath!);
   return { content, sourceMap, filename, enableSourceMap };
 }
 
@@ -158,7 +158,7 @@ export function saveAsset(
   // If it's a dynamic source (not from the file system), store it in the source map
   if (!page.src.path) {
     const sources = sourceMap[dynamicSourcesSymbol] || {};
-    const file = normalizeSource(site.src(page.outputPath));
+    const file = normalizeSource(site.src(page.outputPath!));
     sourceMap[dynamicSourcesSymbol] = sources;
 
     if (!sources[file]) {

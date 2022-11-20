@@ -118,7 +118,7 @@ export async function assertSiteSnapshot(
   // Sort pages and files alphabetically
   pages.sort((a, b) => {
     return compare(a.src.path, b.src.path) ||
-      compare(a.outputPath, b.outputPath);
+      compare(a.outputPath!, b.outputPath!);
   });
 
   files.sort((a, b) => {
@@ -168,7 +168,7 @@ export async function assertSiteSnapshot(
     );
 
     // Source maps
-    if (page.outputPath.endsWith(".map")) {
+    if (page.outputPath?.endsWith(".map")) {
       const map = JSON.parse(page.content as string);
       normalizeSourceMap(map);
       page.content = JSON.stringify(map);

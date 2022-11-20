@@ -169,7 +169,7 @@ export function buildFilter(query = "", page404 = ""): (page: Page) => boolean {
 
   const conditions: Condition[] = [
     // Always return html pages
-    ["isHtml", "=", true],
+    ["outputPath", "$=", ".html"],
 
     // Exclude the 404 page
     ["data.url", "!=", page404],

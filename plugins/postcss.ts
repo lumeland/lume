@@ -69,7 +69,7 @@ export default function (userOptions?: Partial<Options>) {
         site,
         file,
       );
-      const to = site.dest(file.outputPath);
+      const to = site.dest(file.outputPath!);
       const map: SourceMapOptions | undefined = enableSourceMap
         ? {
           inline: false,

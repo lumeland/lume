@@ -69,11 +69,7 @@ function pageMatches(exts: string[], page: Page): boolean {
     return true;
   }
 
-  if (page.isHtml && exts.includes(".html")) {
-    return true;
-  }
-
-  const url = page.data.url;
+  const url = page.outputPath;
 
   if (typeof url === "string" && exts.some((ext) => url.endsWith(ext))) {
     return true;
