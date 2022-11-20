@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Updated `terser` types.
 - Import `lightningcss` from npm.
 - Load a fixed version of `prism` to avoid deno.lock errors.
+- Live reload: use `wss://` protocol under `https://` [#316].
 
 ## [1.13.0] - 2022-11-16
 ### Added
@@ -1913,6 +1914,7 @@ The first version.
 [#299]: https://github.com/lumeland/lume/issues/299
 [#301]: https://github.com/lumeland/lume/issues/301
 [#308]: https://github.com/lumeland/lume/issues/308
+[#316]: https://github.com/lumeland/lume/issues/316
 
 [1.13.1]: https://github.com/lumeland/lume/compare/v1.13.0...HEAD
 [1.13.0]: https://github.com/lumeland/lume/compare/v1.12.1...v1.13.0
