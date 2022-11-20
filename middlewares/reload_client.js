@@ -6,7 +6,9 @@ export default function liveReload() {
     if (ws && ws.readyState !== 3) {
       return;
     }
-    const protocol = document.location.protocol === "https:" ? "wss://" : "ws://";
+    const protocol = document.location.protocol === "https:"
+      ? "wss://"
+      : "ws://";
     ws = new WebSocket(protocol + document.location.host);
     ws.onopen = () => {
       console.log("Lume live reloading is ready. Listening for changes...");
