@@ -7,9 +7,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.13.1] - Unreleased
+## [1.13.1] - 2022-11-22
 ### Removed
-- `Page.isHtml` property added in v1.13.0.
+- The `Page.isHtml` property added in v1.13.0.
 
 ### Fixed
 - Updated the dependencies: `std`, `minify_html`, `sheetjs`.
@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Import `lightningcss` from npm.
 - Load a fixed version of `prism` to avoid deno.lock errors.
 - Live reload: use `wss://` protocol under `https://` [#316].
+- Some Nunjucks template caches not cleaned after changes in watch mode.
 
 ## [1.13.0] - 2022-11-16
 ### Added
@@ -1919,7 +1920,7 @@ The first version.
 [#308]: https://github.com/lumeland/lume/issues/308
 [#316]: https://github.com/lumeland/lume/issues/316
 
-[1.13.1]: https://github.com/lumeland/lume/compare/v1.13.0...HEAD
+[1.13.1]: https://github.com/lumeland/lume/compare/v1.13.0...v1.13.1
 [1.13.0]: https://github.com/lumeland/lume/compare/v1.12.1...v1.13.0
 [1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...v1.12.1
 [1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...v1.12.0

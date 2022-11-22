@@ -66,6 +66,14 @@ export class NunjucksEngine implements Engine {
     if (name) {
       delete fsLoader.cache[name];
     }
+
+    // Relative paths
+    fsLoader.searchPaths.forEach((path: string) => {
+      if (filename.startsWith(path)) {
+        const name = filename.slice(path.length + 1);
+        delete fsLoader.cache[name];
+      }
+    });
   }
 
   render(content: string, data?: Data, filename?: string) {
