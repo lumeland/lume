@@ -70,7 +70,7 @@ export class NunjucksEngine implements Engine {
     // Relative paths
     fsLoader.searchPaths.forEach((path: string) => {
       if (filename.startsWith(path)) {
-        const name = filename.slice(path.length + 1);
+        const name = filename.slice(path.length + 1).replaceAll("\\", "/");
         delete fsLoader.cache[name];
       }
     });
