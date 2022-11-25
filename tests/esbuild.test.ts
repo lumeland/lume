@@ -18,3 +18,26 @@ Deno.test(
     await assertSiteSnapshot(t, site);
   },
 );
+
+// Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
+Deno.test(
+  "esbuild plugin with splitting as true",
+  { sanitizeOps: false, sanitizeResources: false },
+  async (t) => {
+    const site = getSite({
+      src: "esbuild",
+    });
+
+    // Test ignore with a function filter
+    site.ignore((path) => path === "/modules" || path.startsWith("/modules/"));
+    site.use(esbuild({
+      options: {
+        splitting: true,
+        outdir: "foo",
+      },
+    }));
+
+    await build(site);
+    await assertSiteSnapshot(t, site);
+  },
+);

@@ -4,9 +4,10 @@ import {
   readDenoConfig,
   replaceExtension,
 } from "../core/utils.ts";
-import { build, BuildOptions, stop } from "../deps/esbuild.ts";
+import { build, BuildOptions, OutputFile, stop } from "../deps/esbuild.ts";
 import { extname, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
+import { Page } from "../core/filesystem.ts";
 
 import type { DenoConfig, Site } from "../core.ts";
 
@@ -132,11 +133,20 @@ export default function (userOptions?: Partial<Options>) {
     };
     options.options.plugins?.unshift(lumeLoaderPlugin);
 
-    site.addEventListener("beforeSave", () => stop());
+    /** Run esbuild and returns the output files */
+    async function runEsbuild(
+      pages: Page[],
+      extraOptions: BuildOptions = {},
+    ): Promise<[OutputFile[], boolean]> {
+      let enableAllSourceMaps = false;
 
-    site.process(options.extensions, async (page) => {
-      const { content, filename, enableSourceMap } = prepareAsset(site, page);
-      const entryPoint = toFileUrl(filename).href;
+      const pageContent = Object.fromEntries(pages.map((page) => {
+        const { content, filename, enableSourceMap } = prepareAsset(site, page);
+        if (enableSourceMap) {
+          enableAllSourceMaps = true;
+        }
+        return [toFileUrl(filename).href, content];
+      }));
 
       const buildOptions: LumeBuildOptions = {
         ...options.options,
@@ -144,10 +154,10 @@ export default function (userOptions?: Partial<Options>) {
         incremental: false,
         watch: false,
         metafile: false,
-        entryPoints: [entryPoint],
-        sourcemap: enableSourceMap ? "external" : undefined,
-        outfile: replaceExtension(page.outputPath!, ".js") as string,
-        [contentSymbol]: { [entryPoint]: content },
+        entryPoints: Object.keys(pageContent),
+        sourcemap: enableAllSourceMaps ? "external" : undefined,
+        ...extraOptions,
+        [contentSymbol]: pageContent,
       };
 
       const { outputFiles, warnings, errors } = await build(
@@ -162,20 +172,65 @@ export default function (userOptions?: Partial<Options>) {
         site.logger.warn("esbuild warnings", { warnings });
       }
 
-      // deno-lint-ignore no-explicit-any
-      let mapFile: any, jsFile: any;
+      return [outputFiles || [], enableAllSourceMaps];
+    }
 
-      outputFiles?.forEach((file) => {
-        if (file.path.endsWith(".map")) {
-          mapFile = file;
-        } else {
-          jsFile = file;
+    site.addEventListener("beforeSave", () => stop());
+
+    // Splitting mode needs to run esbuild with all pages
+    if (options.options.splitting) {
+      site.addEventListener("afterRender", async (event) => {
+        const pages = event.pages!;
+        const removed: Page[] = pages.filter((page) =>
+          pageMatches(options.extensions, page)
+        );
+        const [outputFiles, enableSourceMap] = await runEsbuild(removed);
+        const basePath = site.src(options.options.outdir!);
+        const newPages: Page[] = [];
+
+        outputFiles?.forEach((file) => {
+          if (file.path.endsWith(".map")) {
+            return;
+          }
+
+          const url = file.path.replace(basePath, "");
+          const page = Page.create(url, "");
+          const map = enableSourceMap
+            ? outputFiles.find((f) => f.path === `${file.path}.map`)
+            : undefined;
+
+          saveAsset(site, page, file.text, map?.text);
+          newPages.push(page);
+        });
+
+        for (const page of removed) {
+          pages.splice(pages.indexOf(page), 1);
         }
-      });
 
-      saveAsset(site, page, jsFile?.text, mapFile?.text);
-      page.data.url = replaceExtension(page.data.url, ".js");
-    });
+        pages.push(...newPages);
+      });
+    } else {
+      // Normal mode runs esbuild for each page
+      site.process(options.extensions, async (page) => {
+        const [outputFiles] = await runEsbuild([page], {
+          outfile: replaceExtension(page.outputPath!, ".js") as string,
+        });
+
+        let mapFile: OutputFile | undefined;
+        let jsFile: OutputFile | undefined;
+
+        outputFiles?.forEach((file) => {
+          if (file.path.endsWith(".map")) {
+            mapFile = file;
+          } else {
+            jsFile = file;
+          }
+        });
+
+        saveAsset(site, page, jsFile?.text!, mapFile?.text);
+        page.data.url = replaceExtension(page.data.url, ".js");
+      });
+    }
   };
 }
 
@@ -224,4 +279,18 @@ function buildJsxConfig(config?: DenoConfig): BuildOptions | undefined {
       jsxImportSource: compilerOptions.jsxImportSource,
     };
   }
+}
+
+function pageMatches(exts: string[], page: Page): boolean {
+  if (page.src.ext && exts.includes(page.src.ext)) {
+    return true;
+  }
+
+  const url = page.outputPath;
+
+  if (typeof url === "string" && exts.some((ext) => url.endsWith(ext))) {
+    return true;
+  }
+
+  return false;
 }

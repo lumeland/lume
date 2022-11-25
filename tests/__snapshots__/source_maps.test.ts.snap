@@ -197,7 +197,7 @@ body
 }
 `;
 
-snapshot[`Source maps from Js files 1`] = `4`;
+snapshot[`Source maps from Js files 1`] = `6`;
 
 snapshot[`Source maps from Js files 2`] = `
 {
@@ -341,6 +341,46 @@ snapshot[`Source maps from Js files 5`] = `
 
 snapshot[`Source maps from Js files 6`] = `
 {
+  content: '{"version":3,"sources":["to_uppercase.ts","other.ts"],"names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,wCADUF,gBAAA,gCCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC","file":"other.js.map","sourcesContent":["export default function toUppercase(text: string) {\\
+  return text.toUpperCase();\\
+}\\
+","/// <reference lib=\\\\"dom\\\\" />\\
+import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
+\\
+document.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\
+  el.innerHTML = toUppercase(el.innerHTML);\\
+});\\
+"],"sourceRoot":"assets"}',
+  data: {
+    content: '{"version":3,"sources":["to_uppercase.ts","other.ts"],"names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,wCADUF,gBAAA,gCCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC","file":"other.js.map","sourcesContent":["export default function toUppercase(text: string) {\\
+  return text.toUpperCase();\\
+}\\
+","/// <reference lib=\\\\"dom\\\\" />\\
+import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
+\\
+document.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\
+  el.innerHTML = toUppercase(el.innerHTML);\\
+});\\
+"],"sourceRoot":"assets"}',
+    page: undefined,
+    sourceMap: undefined,
+    url: "/other.js.map",
+  },
+  dest: {
+    ext: ".map",
+    path: "/other.js",
+  },
+  src: {
+    asset: true,
+    path: "",
+    remote: undefined,
+    slug: "other",
+  },
+}
+`;
+
+snapshot[`Source maps from Js files 7`] = `
+{
   content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll("h1")?.forEach((r=>{r.innerHTML=e(r.innerHTML)}));
 /*# sourceMappingURL=./main.js.map */',
   data: {
@@ -374,7 +414,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
 }
 `;
 
-snapshot[`Source maps from Js files 7`] = `
+snapshot[`Source maps from Js files 8`] = `
 {
   content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0});export{e as default};
 /*# sourceMappingURL=./to_uppercase.js.map */',
@@ -402,6 +442,41 @@ snapshot[`Source maps from Js files 7`] = `
     path: "/modules/to_uppercase",
     remote: undefined,
     slug: "to_uppercase",
+  },
+}
+`;
+
+snapshot[`Source maps from Js files 9`] = `
+{
+  content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll(".other")?.forEach((r=>{r.innerHTML=e(r.innerHTML)}));
+/*# sourceMappingURL=./other.js.map */',
+  data: {
+    content: '/// <reference lib="dom" />
+import toUppercase from "./modules/to_uppercase.ts";
+
+document.querySelectorAll(".other")?.forEach((el) => {
+  el.innerHTML = toUppercase(el.innerHTML);
+});
+',
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    sourceMap: undefined,
+    tags: [
+    ],
+    url: "/other.js",
+  },
+  dest: {
+    ext: ".js",
+    path: "/other",
+  },
+  src: {
+    asset: true,
+    ext: ".ts",
+    path: "/other",
+    remote: undefined,
+    slug: "other",
   },
 }
 `;

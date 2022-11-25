@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`esbuild plugin 1`] = `1`;
+snapshot[`esbuild plugin 1`] = `2`;
 
 snapshot[`esbuild plugin 2`] = `
 {
@@ -104,6 +104,180 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     path: "/main",
     remote: undefined,
     slug: "main",
+  },
+}
+`;
+
+snapshot[`esbuild plugin 5`] = `
+{
+  content: 'var n=Object.defineProperty;var t=(e,o)=>n(e,"name",{value:o,configurable:!0});function r(e){return e.toUpperCase()}t(r,"toUppercase");document.querySelectorAll(".other")?.forEach(e=>{e.innerHTML=r(e.innerHTML)});
+',
+  data: {
+    content: '/// <reference lib="dom" />
+import toUppercase from "./modules/to_uppercase.ts";
+
+document.querySelectorAll(".other")?.forEach((el) => {
+  el.innerHTML = toUppercase(el.innerHTML);
+});
+',
+    date: 1970-01-01T00:00:00.000Z,
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/other.js",
+  },
+  dest: {
+    ext: ".js",
+    path: "/other",
+  },
+  src: {
+    asset: true,
+    ext: ".ts",
+    path: "/other",
+    remote: undefined,
+    slug: "other",
+  },
+}
+`;
+
+snapshot[`esbuild plugin with splitting as true 1`] = `3`;
+
+snapshot[`esbuild plugin with splitting as true 2`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      asset: true,
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      asset: true,
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+}
+`;
+
+snapshot[`esbuild plugin with splitting as true 3`] = `
+[
+]
+`;
+
+snapshot[`esbuild plugin with splitting as true 4`] = `
+{
+  content: 'var p=Object.defineProperty;var t=(e,r)=>p(e,"name",{value:r,configurable:!0});function n(e){return e.toUpperCase()}t(n,"toUppercase");export{n as a};
+',
+  data: {
+    content: "",
+    page: undefined,
+    url: "/Users/oscarotero/www/lumeland/lume/foo/chunk-2VHBQMOH.js",
+  },
+  dest: {
+    ext: ".js",
+    path: "/Users/oscarotero/www/lumeland/lume/foo/chunk-2VHBQMOH",
+  },
+  src: {
+    asset: true,
+    path: "",
+    remote: undefined,
+    slug: "chunk-2VHBQMOH",
+  },
+}
+`;
+
+snapshot[`esbuild plugin with splitting as true 5`] = `
+{
+  content: 'import{a as r}from"./chunk-2VHBQMOH.js";document.querySelectorAll("h1")?.forEach(e=>{e.innerHTML=r(e.innerHTML)});
+',
+  data: {
+    content: "",
+    page: undefined,
+    url: "/Users/oscarotero/www/lumeland/lume/foo/main.js",
+  },
+  dest: {
+    ext: ".js",
+    path: "/Users/oscarotero/www/lumeland/lume/foo/main",
+  },
+  src: {
+    asset: true,
+    path: "",
+    remote: undefined,
+    slug: "main",
+  },
+}
+`;
+
+snapshot[`esbuild plugin with splitting as true 6`] = `
+{
+  content: 'import{a as e}from"./chunk-2VHBQMOH.js";document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
+',
+  data: {
+    content: "",
+    page: undefined,
+    url: "/Users/oscarotero/www/lumeland/lume/foo/other.js",
+  },
+  dest: {
+    ext: ".js",
+    path: "/Users/oscarotero/www/lumeland/lume/foo/other",
+  },
+  src: {
+    asset: true,
+    path: "",
+    remote: undefined,
+    slug: "other",
   },
 }
 `;

@@ -579,10 +579,6 @@ export default class Site {
       }
     }
 
-    if (await this.events.dispatchEvent({ type: "afterRender" }) === false) {
-      return false;
-    }
-
     // Remove empty pages and ondemand pages
     this.pages.splice(
       0,
@@ -605,6 +601,15 @@ export default class Site {
         return !shouldSkip;
       }),
     );
+
+    if (
+      await this.events.dispatchEvent({
+        type: "afterRender",
+        pages: this.pages,
+      }) === false
+    ) {
+      return false;
+    }
 
     // Run the processors to the pages
     await this.processors.run(this.pages);
@@ -839,7 +844,7 @@ export interface SiteEvent extends Event {
   page?: Page;
 
   /**
-   * Available only in "afterBuild", "beforeRender" and "afterUpdate"
+   * Available only in "afterBuild", "beforeRender", "afterRender" and "afterUpdate"
    * contains the list of pages that have been saved
    */
   pages?: Page[];

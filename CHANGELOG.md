@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.13.2] - Unreleased
+### Added
+- Property `pages` to `afterRender` event, with all rendered pages.
+- `splitting` support for the `esbuild` plugin [#323].
+
 ### Changed
 - Relative urls from page generators [#324].
 
@@ -1927,6 +1931,7 @@ The first version.
 [#301]: https://github.com/lumeland/lume/issues/301
 [#308]: https://github.com/lumeland/lume/issues/308
 [#316]: https://github.com/lumeland/lume/issues/316
+[#323]: https://github.com/lumeland/lume/issues/323
 [#324]: https://github.com/lumeland/lume/issues/324
 
 [1.13.2]: https://github.com/lumeland/lume/compare/v1.13.1...HEAD
