@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Nunjucks cache in Windows.
+- Updated dependencies: `std`, `esbuild`, `deno_dom`.
 
 ## [1.13.1] - 2022-11-22
 ### Removed
