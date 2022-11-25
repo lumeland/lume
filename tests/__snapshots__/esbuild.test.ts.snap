@@ -223,11 +223,11 @@ snapshot[`esbuild plugin with splitting as true 4`] = `
   data: {
     content: "",
     page: undefined,
-    url: "/foo/chunk-2VHBQMOH.js",
+    url: "/foo/chunk.js",
   },
   dest: {
     ext: ".js",
-    path: "/foo/chunk-2VHBQMOH",
+    path: "/foo/chunk",
   },
   src: {
     asset: true,
@@ -240,7 +240,7 @@ snapshot[`esbuild plugin with splitting as true 4`] = `
 
 snapshot[`esbuild plugin with splitting as true 5`] = `
 {
-  content: 'import{a as r}from"./chunk-2VHBQMOH.js";document.querySelectorAll("h1")?.forEach(e=>{e.innerHTML=r(e.innerHTML)});
+  content: 'import{a as r}from"./chunk.js";document.querySelectorAll("h1")?.forEach(e=>{e.innerHTML=r(e.innerHTML)});
 ',
   data: {
     content: "",
@@ -262,7 +262,7 @@ snapshot[`esbuild plugin with splitting as true 5`] = `
 
 snapshot[`esbuild plugin with splitting as true 6`] = `
 {
-  content: 'import{a as e}from"./chunk-2VHBQMOH.js";document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
+  content: 'import{a as e}from"./chunk.js";document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
 ',
   data: {
     content: "",
