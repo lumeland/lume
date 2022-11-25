@@ -1,5 +1,6 @@
 import {
   merge,
+  normalizePath,
   read,
   readDenoConfig,
   replaceExtension,
@@ -193,7 +194,7 @@ export default function (userOptions?: Partial<Options>) {
             return;
           }
 
-          const url = file.path.replace(basePath, "");
+          const url = normalizePath(file.path.replace(basePath, ""));
           const page = Page.create(url, "");
           const map = enableSourceMap
             ? outputFiles.find((f) => f.path === `${file.path}.map`)
