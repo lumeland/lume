@@ -39,7 +39,7 @@ const defaults: Options = {
 const contentSymbol = Symbol.for("contentSymbol");
 
 interface LumeBuildOptions extends BuildOptions {
-  [contentSymbol]: string;
+  [contentSymbol]: Record<string, string>;
 }
 
 export default function (userOptions?: Partial<Options>) {
@@ -98,13 +98,10 @@ export default function (userOptions?: Partial<Options>) {
         build.onLoad({ filter: /.*/ }, async (args: LoadArguments) => {
           const { path, namespace } = args;
 
-          // It's the entry point file
-          if (
-            path === initialOptions.entryPoints[0] &&
-            initialOptions[contentSymbol]
-          ) {
+          // It's one of the entry point files
+          if (initialOptions[contentSymbol][path]) {
             return {
-              contents: initialOptions[contentSymbol],
+              contents: initialOptions[contentSymbol][path],
               loader: getLoader(path),
             };
           }
@@ -139,6 +136,7 @@ export default function (userOptions?: Partial<Options>) {
 
     site.process(options.extensions, async (page) => {
       const { content, filename, enableSourceMap } = prepareAsset(site, page);
+      const entryPoint = toFileUrl(filename).href;
 
       const buildOptions: LumeBuildOptions = {
         ...options.options,
@@ -146,10 +144,10 @@ export default function (userOptions?: Partial<Options>) {
         incremental: false,
         watch: false,
         metafile: false,
-        entryPoints: [toFileUrl(filename).href],
+        entryPoints: [entryPoint],
         sourcemap: enableSourceMap ? "external" : undefined,
         outfile: replaceExtension(page.outputPath!, ".js") as string,
-        [contentSymbol]: content,
+        [contentSymbol]: { [entryPoint]: content },
       };
 
       const { outputFiles, warnings, errors } = await build(
