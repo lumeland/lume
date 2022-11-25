@@ -223,11 +223,11 @@ snapshot[`esbuild plugin with splitting as true 4`] = `
   data: {
     content: "",
     page: undefined,
-    url: "/Users/oscarotero/www/lumeland/lume/foo/chunk-2VHBQMOH.js",
+    url: "/foo/chunk-2VHBQMOH.js",
   },
   dest: {
     ext: ".js",
-    path: "/Users/oscarotero/www/lumeland/lume/foo/chunk-2VHBQMOH",
+    path: "/foo/chunk-2VHBQMOH",
   },
   src: {
     asset: true,
@@ -245,11 +245,11 @@ snapshot[`esbuild plugin with splitting as true 5`] = `
   data: {
     content: "",
     page: undefined,
-    url: "/Users/oscarotero/www/lumeland/lume/foo/main.js",
+    url: "/foo/main.js",
   },
   dest: {
     ext: ".js",
-    path: "/Users/oscarotero/www/lumeland/lume/foo/main",
+    path: "/foo/main",
   },
   src: {
     asset: true,
@@ -267,11 +267,11 @@ snapshot[`esbuild plugin with splitting as true 6`] = `
   data: {
     content: "",
     page: undefined,
-    url: "/Users/oscarotero/www/lumeland/lume/foo/other.js",
+    url: "/foo/other.js",
   },
   dest: {
     ext: ".js",
-    path: "/Users/oscarotero/www/lumeland/lume/foo/other",
+    path: "/foo/other",
   },
   src: {
     asset: true,

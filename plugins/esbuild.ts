@@ -179,13 +179,13 @@ export default function (userOptions?: Partial<Options>) {
 
     // Splitting mode needs to run esbuild with all pages
     if (options.options.splitting) {
+      const basePath = options.options.absWorkingDir || Deno.cwd();
       site.addEventListener("afterRender", async (event) => {
         const pages = event.pages!;
         const removed: Page[] = pages.filter((page) =>
           pageMatches(options.extensions, page)
         );
         const [outputFiles, enableSourceMap] = await runEsbuild(removed);
-        const basePath = site.src(options.options.outdir!);
         const newPages: Page[] = [];
 
         outputFiles?.forEach((file) => {
