@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.13.2] - Unreleased
+### Changed
+- Relative urls from page generators [#324].
+
+### Fixed
+- Nunjucks cache in Windows.
+
 ## [1.13.1] - 2022-11-22
 ### Removed
 - The `Page.isHtml` property added in v1.13.0.
@@ -1919,7 +1926,9 @@ The first version.
 [#301]: https://github.com/lumeland/lume/issues/301
 [#308]: https://github.com/lumeland/lume/issues/308
 [#316]: https://github.com/lumeland/lume/issues/316
+[#324]: https://github.com/lumeland/lume/issues/324
 
+[1.13.2]: https://github.com/lumeland/lume/compare/v1.13.1...HEAD
 [1.13.1]: https://github.com/lumeland/lume/compare/v1.13.0...v1.13.1
 [1.13.0]: https://github.com/lumeland/lume/compare/v1.12.1...v1.13.0
 [1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...v1.12.1

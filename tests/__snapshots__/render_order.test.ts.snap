@@ -670,11 +670,11 @@ snapshot[`render order property 25`] = `
     search: Search {},
     tags: [
     ],
-    url: "/pagination/page-1/",
+    url: "/page-1/",
   },
   dest: {
     ext: ".html",
-    path: "/pagination/page-1/index",
+    path: "/page-1/index",
   },
   src: {
     asset: undefined,
@@ -707,11 +707,11 @@ snapshot[`render order property 26`] = `
     search: Search {},
     tags: [
     ],
-    url: "/pagination/page-2/",
+    url: "/page-2/",
   },
   dest: {
     ext: ".html",
-    path: "/pagination/page-2/index",
+    path: "/page-2/index",
   },
   src: {
     asset: undefined,
@@ -744,11 +744,11 @@ snapshot[`render order property 27`] = `
     search: Search {},
     tags: [
     ],
-    url: "/pagination/page-3/",
+    url: "/page-3/",
   },
   dest: {
     ext: ".html",
-    path: "/pagination/page-3/index",
+    path: "/page-3/index",
   },
   src: {
     asset: undefined,

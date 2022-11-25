@@ -1,6 +1,7 @@
 import { concurrent } from "./utils.ts";
 import { Exception } from "./errors.ts";
 import { Page } from "./filesystem.ts";
+import { posix } from "../deps/path.ts";
 
 import type {
   Content,
@@ -99,7 +100,7 @@ export default class Renderer {
 
         let index = 0;
         const basePath: string | false = typeof page.data.url === "string"
-          ? page.data.url
+          ? posix.dirname(page.data.url)
           : false;
 
         for await (const data of generator) {
