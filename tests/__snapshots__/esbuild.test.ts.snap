@@ -233,7 +233,7 @@ snapshot[`esbuild plugin with splitting as true 4`] = `
     asset: true,
     path: "",
     remote: undefined,
-    slug: "chunk-2VHBQMOH",
+    slug: "chunk",
   },
 }
 `;
