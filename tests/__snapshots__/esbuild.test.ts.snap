@@ -243,17 +243,29 @@ snapshot[`esbuild plugin with splitting as true 5`] = `
   content: 'import{a as r}from"./chunk.js";document.querySelectorAll("h1")?.forEach(e=>{e.innerHTML=r(e.innerHTML)});
 ',
   data: {
-    content: "",
+    content: '/// <reference lib="dom" />
+import toUppercase from "./modules/to_uppercase.ts";
+
+document.querySelectorAll("h1")?.forEach((h1) => {
+  h1.innerHTML = toUppercase(h1.innerHTML);
+});
+',
+    date: 1970-01-01T00:00:00.000Z,
     page: undefined,
-    url: "/foo/main.js",
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/main.ts",
   },
   dest: {
-    ext: ".js",
-    path: "/foo/main",
+    ext: ".ts",
+    path: "/main",
   },
   src: {
     asset: true,
-    path: "",
+    ext: ".ts",
+    path: "/main",
     remote: undefined,
     slug: "main",
   },
@@ -265,17 +277,29 @@ snapshot[`esbuild plugin with splitting as true 6`] = `
   content: 'import{a as e}from"./chunk.js";document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
 ',
   data: {
-    content: "",
+    content: '/// <reference lib="dom" />
+import toUppercase from "./modules/to_uppercase.ts";
+
+document.querySelectorAll(".other")?.forEach((el) => {
+  el.innerHTML = toUppercase(el.innerHTML);
+});
+',
+    date: 1970-01-01T00:00:00.000Z,
     page: undefined,
-    url: "/foo/other.js",
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    url: "/other.ts",
   },
   dest: {
-    ext: ".js",
-    path: "/foo/other",
+    ext: ".ts",
+    path: "/other",
   },
   src: {
     asset: true,
-    path: "",
+    ext: ".ts",
+    path: "/other",
     remote: undefined,
     slug: "other",
   },

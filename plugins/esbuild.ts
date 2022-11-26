@@ -6,7 +6,7 @@ import {
   replaceExtension,
 } from "../core/utils.ts";
 import { build, BuildOptions, OutputFile, stop } from "../deps/esbuild.ts";
-import { extname, toFileUrl } from "../deps/path.ts";
+import { extname, posix, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/filesystem.ts";
 
@@ -178,8 +178,9 @@ export default function (userOptions?: Partial<Options>) {
 
     site.addEventListener("beforeSave", () => stop());
 
-    // Splitting mode needs to run esbuild with all pages
+    // Splitting mode needs to run esbuild with all pages at the same time
     if (options.options.splitting) {
+      // Define default options for splitting mode
       options.options.absWorkingDir ||= site.src();
       options.options.outdir ||= "./";
       options.options.outbase ||= ".";
@@ -187,32 +188,44 @@ export default function (userOptions?: Partial<Options>) {
 
       site.addEventListener("afterRender", async (event) => {
         const pages = event.pages!;
-        const removed: Page[] = pages.filter((page) =>
+        const esbuildPages: Page[] = pages.filter((page) =>
           pageMatches(options.extensions, page)
         );
-        const [outputFiles, enableSourceMap] = await runEsbuild(removed);
-        const newPages: Page[] = [];
+        const [outputFiles, enableSourceMap] = await runEsbuild(esbuildPages);
 
+        // Save the output code
         outputFiles?.forEach((file) => {
           if (file.path.endsWith(".map")) {
             return;
           }
 
+          // Search the entry point of this output file
           const url = normalizePath(file.path.replace(basePath, ""));
-          const page = Page.create(url, "");
+          const urlWithoutExt = pathWithoutExtension(url);
+          const entryPoint = esbuildPages.find((page) => {
+            const outdir = posix.join(
+              "/",
+              options.options.outdir || ".",
+              pathWithoutExtension(page.data.url as string),
+            );
+            return outdir === urlWithoutExt;
+          });
+
+          // Get the associated source map
           const map = enableSourceMap
             ? outputFiles.find((f) => f.path === `${file.path}.map`)
             : undefined;
 
-          saveAsset(site, page, file.text, map?.text);
-          newPages.push(page);
+          // The page is an entry point
+          if (entryPoint) {
+            saveAsset(site, entryPoint, file.text, map?.text);
+          } else {
+            // The page is a chunk
+            const page = Page.create(url, "");
+            saveAsset(site, page, file.text, map?.text);
+            pages.push(page);
+          }
         });
-
-        for (const page of removed) {
-          pages.splice(pages.indexOf(page), 1);
-        }
-
-        pages.push(...newPages);
       });
     } else {
       // Normal mode runs esbuild for each page
@@ -298,4 +311,7 @@ function pageMatches(exts: string[], page: Page): boolean {
   }
 
   return false;
+}
+function pathWithoutExtension(path: string): string {
+  return path.replace(/\.\w+$/, "");
 }
