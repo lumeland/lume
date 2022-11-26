@@ -146,7 +146,7 @@ export default function (userOptions?: Partial<Options>) {
         if (enableSourceMap) {
           enableAllSourceMaps = true;
         }
-        return [toFileUrl(filename).href, content];
+        return [filename, content];
       }));
 
       const buildOptions: LumeBuildOptions = {
@@ -180,7 +180,11 @@ export default function (userOptions?: Partial<Options>) {
 
     // Splitting mode needs to run esbuild with all pages
     if (options.options.splitting) {
-      const basePath = options.options.absWorkingDir || Deno.cwd();
+      options.options.absWorkingDir ||= site.src();
+      options.options.outdir ||= "./";
+      options.options.outbase ||= ".";
+      const basePath = options.options.absWorkingDir;
+
       site.addEventListener("afterRender", async (event) => {
         const pages = event.pages!;
         const removed: Page[] = pages.filter((page) =>
