@@ -6,7 +6,7 @@ import {
   replaceExtension,
 } from "../core/utils.ts";
 import { build, BuildOptions, OutputFile, stop } from "../deps/esbuild.ts";
-import { extname, posix, toFileUrl } from "../deps/path.ts";
+import { extname, posix, toFileUrl, fromFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/filesystem.ts";
 
@@ -72,7 +72,7 @@ export default function (userOptions?: Partial<Options>) {
           const { importer } = args;
 
           // Absolute url
-          if (path.match(/^(https?):\/\//)) {
+          if (path.match(/^(https?|file):\/\//)) {
             return { path, namespace: "deno" };
           }
 
@@ -89,6 +89,9 @@ export default function (userOptions?: Partial<Options>) {
           // It's a npm package
           if (path.startsWith("npm:")) {
             path = path.replace(/^npm:/, "https://esm.sh/");
+          } else if (!path.match(/^(https?|file):\/\//)) {
+            // Ensure the path is a url
+            path = toFileUrl(path).href;
           }
 
           return {
@@ -101,7 +104,7 @@ export default function (userOptions?: Partial<Options>) {
           let { path, namespace } = args;
 
           if (path.startsWith("file://")) {
-            path = posix.fromFileUrl(path);
+            path = normalizePath(fromFileUrl(path));
           }
 
           // It's one of the entry point files
@@ -204,7 +207,7 @@ export default function (userOptions?: Partial<Options>) {
           }
 
           // Search the entry point of this output file
-          const url = normalizePath(file.path.replace(basePath, ""));
+          const url = normalizePath(normalizePath(file.path).replace(basePath, ""));
           const urlWithoutExt = pathWithoutExtension(url);
           const entryPoint = esbuildPages.find((page) => {
             const outdir = posix.join(
@@ -212,6 +215,7 @@ export default function (userOptions?: Partial<Options>) {
               options.options.outdir || ".",
               pathWithoutExtension(page.data.url as string),
             );
+
             return outdir === urlWithoutExt;
           });
 
