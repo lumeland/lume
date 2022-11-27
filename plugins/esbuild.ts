@@ -98,7 +98,11 @@ export default function (userOptions?: Partial<Options>) {
         });
 
         build.onLoad({ filter: /.*/ }, async (args: LoadArguments) => {
-          const { path, namespace } = args;
+          let { path, namespace } = args;
+
+          if (path.startsWith("file://")) {
+            path = posix.fromFileUrl(path);
+          }
 
           // It's one of the entry point files
           if (initialOptions[contentSymbol][path]) {
