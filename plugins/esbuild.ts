@@ -73,7 +73,10 @@ export default function (userOptions?: Partial<Options>) {
 
           // Absolute url
           if (path.match(/^(https?|file):\/\//)) {
-            return { path, namespace: "deno" };
+            return {
+              path: import.meta.resolve(path),
+              namespace: "deno",
+            };
           }
 
           // Resolve the relative url
@@ -82,9 +85,6 @@ export default function (userOptions?: Partial<Options>) {
           ) {
             path = new URL(path, importer).href;
           }
-
-          // Resolve the import map
-          path = import.meta.resolve(path);
 
           // It's a npm package
           if (path.startsWith("npm:")) {
@@ -95,17 +95,13 @@ export default function (userOptions?: Partial<Options>) {
           }
 
           return {
-            path,
+            path: import.meta.resolve(path),
             namespace: "deno",
           };
         });
 
         build.onLoad({ filter: /.*/ }, async (args: LoadArguments) => {
           let { path, namespace } = args;
-
-          if (path.startsWith("file://")) {
-            path = normalizePath(fromFileUrl(path));
-          }
 
           // It's one of the entry point files
           if (initialOptions[contentSymbol][path]) {
@@ -130,6 +126,11 @@ export default function (userOptions?: Partial<Options>) {
             }
           }
 
+          // Convert file:// urls to paths
+          if (path.startsWith("file://")) {
+            path = normalizePath(fromFileUrl(path));
+          }
+
           // Read other files from the filesystem/url
           const content = await read(path, false);
           return {
@@ -147,14 +148,17 @@ export default function (userOptions?: Partial<Options>) {
       extraOptions: BuildOptions = {},
     ): Promise<[OutputFile[], boolean]> {
       let enableAllSourceMaps = false;
+      const entryContent: Record<string, string> = {};
+      const entryPoints: string[] = [];
 
-      const pageContent = Object.fromEntries(pages.map((page) => {
+      pages.forEach((page) => {
         const { content, filename, enableSourceMap } = prepareAsset(site, page);
         if (enableSourceMap) {
           enableAllSourceMaps = true;
         }
-        return [filename, content];
-      }));
+        entryPoints.push(filename);
+        entryContent[toFileUrl(filename).href] = content;
+      });
 
       const buildOptions: LumeBuildOptions = {
         ...options.options,
@@ -162,10 +166,10 @@ export default function (userOptions?: Partial<Options>) {
         incremental: false,
         watch: false,
         metafile: false,
-        entryPoints: Object.keys(pageContent),
+        entryPoints,
         sourcemap: enableAllSourceMaps ? "external" : undefined,
         ...extraOptions,
-        [contentSymbol]: pageContent,
+        [contentSymbol]: entryContent,
       };
 
       const { outputFiles, warnings, errors } = await build(
