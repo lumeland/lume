@@ -11,7 +11,11 @@ import type {
   HelperOptions,
   Site,
 } from "../core.ts";
-import type { LiquidOptions } from "../deps/liquid.ts";
+import type {
+  LiquidOptions,
+  TagImplOptions,
+  Template,
+} from "../deps/liquid.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -36,13 +40,11 @@ export const defaults: Options = {
 
 /** Template engine to render Liquid files */
 export class LiquidEngine implements Engine {
-  // deno-lint-ignore no-explicit-any
-  liquid: any;
-  cache = new Map<string, unknown>();
+  liquid: Liquid;
+  cache = new Map<string, Template[]>();
   basePath: string;
 
-  // deno-lint-ignore no-explicit-any
-  constructor(liquid: any, basePath: string) {
+  constructor(liquid: Liquid, basePath: string) {
     this.liquid = liquid;
     this.basePath = basePath;
   }
@@ -69,7 +71,7 @@ export class LiquidEngine implements Engine {
     return this.liquid.renderSync(template, data);
   }
 
-  getTemplate(content: string, filename: string) {
+  getTemplate(content: string, filename: string): Template[] {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
@@ -136,14 +138,13 @@ export default function (userOptions?: DeepPartial<Options>) {
  * Create a custom tag
  * https://liquidjs.com/tutorials/register-filters-tags.html#Register-Tags
  */
-function createCustomTag(fn: Helper) {
+function createCustomTag(fn: Helper): TagImplOptions {
   return {
-    parse(tagToken: unknown) {
-      // @ts-ignore: No types for Liquid
+    parse(tagToken) {
       this.str = tagToken.args;
     },
 
-    async render(ctx: unknown): Promise<unknown> {
+    async render(ctx) {
       // @ts-ignore: No types for Liquid
       const str = await this.liquid.evalValue(this.str, ctx);
       return fn(str);
