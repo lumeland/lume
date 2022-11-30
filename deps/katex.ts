@@ -1,4 +1,4 @@
-export { default as katex } from "npm:katex@0.16.2";
+export { default as katex } from "npm:katex@0.16.3";
 
 interface TrustContext {
   command: string;

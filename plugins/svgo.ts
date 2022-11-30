@@ -2,14 +2,14 @@ import { optimize } from "../deps/svgo.ts";
 import { merge } from "../core/utils.ts";
 
 import type { DeepPartial, Page, Site } from "../core.ts";
-import type { SvgoOptions } from "../deps/svgo.ts";
+import type { Config } from "../deps/svgo.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
   /** Options passed to SVGO */
-  options: SvgoOptions;
+  options: Config;
 }
 
 // Default options
@@ -26,9 +26,9 @@ export default function (userOptions?: DeepPartial<Options>) {
     site.loadAssets(options.extensions);
     site.process(options.extensions, svg);
 
-    async function svg(page: Page) {
+    function svg(page: Page) {
       const path = site.src(page.outputPath!);
-      const result = await optimize(page.content, {
+      const result = optimize(page.content as string, {
         path,
         ...options.options,
       }) as { data: string };

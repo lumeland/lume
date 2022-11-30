@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Nunjucks cache in Windows.
-- Updated dependencies: `std`, `esbuild`, `deno_dom`, `pagefind`.
+- Updated dependencies: `std`, `esbuild`, `deno_dom`, `pagefind`, `lightningcss`, `markdown-it`, `postcss`, `preact`, `svgo`, `terser`.
 
 ## [1.13.1] - 2022-11-22
 ### Removed

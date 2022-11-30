@@ -273,7 +273,7 @@ snapshot[`Source maps from Js files 3`] = `
 
 snapshot[`Source maps from Js files 4`] = `
 {
-  content: '{"version":3,"sources":["to_uppercase.ts","main.ts"],"names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,wCADUF,gBAAA,gCCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC","file":"main.js.map","sourcesContent":["export default function toUppercase(text: string) {\\
+  content: '{"version":3,"file":"main.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"sources":["to_uppercase.ts","main.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
 ","/// <reference lib=\\\\"dom\\\\" />\\
@@ -282,9 +282,9 @@ import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
 document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
   h1.innerHTML = toUppercase(h1.innerHTML);\\
 });\\
-"],"sourceRoot":"assets"}',
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"assets"}',
   data: {
-    content: '{"version":3,"sources":["to_uppercase.ts","main.ts"],"names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,wCADUF,gBAAA,gCCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC","file":"main.js.map","sourcesContent":["export default function toUppercase(text: string) {\\
+    content: '{"version":3,"file":"main.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"sources":["to_uppercase.ts","main.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
 ","/// <reference lib=\\\\"dom\\\\" />\\
@@ -293,7 +293,7 @@ import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
 document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
   h1.innerHTML = toUppercase(h1.innerHTML);\\
 });\\
-"],"sourceRoot":"assets"}',
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"assets"}',
     page: undefined,
     sourceMap: undefined,
     url: "/main.js.map",
@@ -313,15 +313,15 @@ document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
 
 snapshot[`Source maps from Js files 5`] = `
 {
-  content: '{"version":3,"sources":["to_uppercase.ts"],"names":["toUppercase","text","toUpperCase","n"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,wCADUF,gBAAA,uCAAAG","file":"to_uppercase.js.map","sourcesContent":["export default function toUppercase(text: string) {\\
+  content: '{"version":3,"file":"to_uppercase.js.map","names":["toUppercase","text","toUpperCase","n"],"sources":["to_uppercase.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
-"],"sourceRoot":"assets"}',
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,yBAAAG","sourceRoot":"assets"}',
   data: {
-    content: '{"version":3,"sources":["to_uppercase.ts"],"names":["toUppercase","text","toUpperCase","n"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,wCADUF,gBAAA,uCAAAG","file":"to_uppercase.js.map","sourcesContent":["export default function toUppercase(text: string) {\\
+    content: '{"version":3,"file":"to_uppercase.js.map","names":["toUppercase","text","toUpperCase","n"],"sources":["to_uppercase.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
-"],"sourceRoot":"assets"}',
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,yBAAAG","sourceRoot":"assets"}',
     page: undefined,
     sourceMap: undefined,
     url: "/modules/to_uppercase.js.map",
@@ -341,7 +341,7 @@ snapshot[`Source maps from Js files 5`] = `
 
 snapshot[`Source maps from Js files 6`] = `
 {
-  content: '{"version":3,"sources":["to_uppercase.ts","other.ts"],"names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,wCADUF,gBAAA,gCCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC","file":"other.js.map","sourcesContent":["export default function toUppercase(text: string) {\\
+  content: '{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
 ","/// <reference lib=\\\\"dom\\\\" />\\
@@ -350,9 +350,9 @@ import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
 document.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\
   el.innerHTML = toUppercase(el.innerHTML);\\
 });\\
-"],"sourceRoot":"assets"}',
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"assets"}',
   data: {
-    content: '{"version":3,"sources":["to_uppercase.ts","other.ts"],"names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,wCADUF,gBAAA,gCCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC","file":"other.js.map","sourcesContent":["export default function toUppercase(text: string) {\\
+    content: '{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
 ","/// <reference lib=\\\\"dom\\\\" />\\
@@ -361,7 +361,7 @@ import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
 document.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\
   el.innerHTML = toUppercase(el.innerHTML);\\
 });\\
-"],"sourceRoot":"assets"}',
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"assets"}',
     page: undefined,
     sourceMap: undefined,
     url: "/other.js.map",
