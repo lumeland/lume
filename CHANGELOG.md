@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.13.2] - Unreleased
+## [1.13.2] - 2022-11-30
 ### Added
 - Property `pages` to `afterRender` event, with all rendered pages.
 - `splitting` support for the `esbuild` plugin [#323].
@@ -1937,7 +1937,7 @@ The first version.
 [#324]: https://github.com/lumeland/lume/issues/324
 [#328]: https://github.com/lumeland/lume/issues/328
 
-[1.13.2]: https://github.com/lumeland/lume/compare/v1.13.1...HEAD
+[1.13.2]: https://github.com/lumeland/lume/compare/v1.13.1...v1.13.2
 [1.13.1]: https://github.com/lumeland/lume/compare/v1.13.0...v1.13.1
 [1.13.0]: https://github.com/lumeland/lume/compare/v1.12.1...v1.13.0
 [1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...v1.12.1
