@@ -101,51 +101,19 @@ export default function (userOptions?: Partial<Options>) {
  * using the Lume reader and the includes loader
  */
 function configureImport(site: Site) {
-  const { includesLoader, formats, reader } = site;
-
   return postcssImport({
     /** Resolve the import path */
-    async resolve(id: string, basedir: string) {
+    resolve(id: string, basedir: string) {
       if (isUrl(id)) {
         return id;
       }
 
-      /** Relative path */
-      if (id.startsWith(".")) {
-        return posix.join(basedir, id);
-      }
-
-      if (!id.startsWith("/")) {
-        const path = posix.join(basedir, id);
-        const exists = await reader.getInfo(path);
-        if (exists) {
-          return path;
-        }
-      }
-
-      /** Search the path in the includes */
-      const format = formats.search(id);
-      if (format) {
-        const path = includesLoader.resolve(id, format, basedir);
-
-        if (path) {
-          return site.src(path);
-        }
-      }
+      return posix.join(id.startsWith(".") ? basedir : "/", id);
     },
 
     /** Load the content (using the Lume reader) */
     async load(file: string) {
-      const format = formats.search(file);
-
-      if (format && format.pageLoader) {
-        const relative = file.slice(site.src().length);
-        const content = await reader.read(relative, format.pageLoader);
-
-        if (content) {
-          return content.content as string;
-        }
-      }
+      return await site.getContent(file);
     },
   });
 }
