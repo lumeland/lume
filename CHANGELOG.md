@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - Property `pages` to `afterRender` event, with all rendered pages.
 - `splitting` support for the `esbuild` plugin [#323].
+- Filters are available as a global variable in Pug [#320], [#328].
 
 ### Changed
 - Relative urls from page generators [#324].
@@ -1931,8 +1932,10 @@ The first version.
 [#301]: https://github.com/lumeland/lume/issues/301
 [#308]: https://github.com/lumeland/lume/issues/308
 [#316]: https://github.com/lumeland/lume/issues/316
+[#320]: https://github.com/lumeland/lume/issues/320
 [#323]: https://github.com/lumeland/lume/issues/323
 [#324]: https://github.com/lumeland/lume/issues/324
+[#328]: https://github.com/lumeland/lume/issues/328
 
 [1.13.2]: https://github.com/lumeland/lume/compare/v1.13.1...HEAD
 [1.13.1]: https://github.com/lumeland/lume/compare/v1.13.0...v1.13.1
