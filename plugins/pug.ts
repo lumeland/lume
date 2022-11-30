@@ -59,11 +59,12 @@ export class PugEngine implements Engine {
   }
 
   renderSync(content: string, data?: Data, filename?: string): string {
-    const dataWithFilters = { 
+    const dataWithFilters = {
       ...data,
       filters: {
-        ...data?.filters, ...this.filters
-      }
+        ...data?.filters,
+        ...this.filters,
+      },
     };
 
     if (!filename) {
