@@ -22,8 +22,10 @@ export default async function downloadBinary(
       `https://github.com/CloudCannon/pagefind/releases/download/{version}/pagefind${prefix}-{version}-{target}.tar.gz`,
     version,
     targets: [
-      { name: "x86_64-unknown-linux-musl", os: "linux" },
-      { name: "x86_64-apple-darwin", os: "darwin" },
+      { name: "x86_64-unknown-linux-musl", os: "linux", arch: "x86_64" },
+      { name: "x86_64-apple-darwin", os: "darwin", arch: "x86_64" },
+      { name: "aarch64-unknown-linux-musl", os: "linux", arch: "aarch64" },
+      { name: "aarch64-apple-darwin", os: "darwin", arch: "aarch64" },
       { name: "x86_64-pc-windows-msvc", os: "windows" },
     ],
     dest: path,
