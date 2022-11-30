@@ -40,6 +40,7 @@ type Compiler = typeof compile;
 export class PugEngine implements Engine {
   options: PugOptions;
   compiler: Compiler;
+  filters: Record<string, Helper> = {};
   cache = new Map<string, (data?: Data) => string>();
   basePath: string;
 
@@ -58,8 +59,16 @@ export class PugEngine implements Engine {
   }
 
   renderSync(content: string, data?: Data, filename?: string): string {
+    const dataWithFilters = {
+      ...data,
+      filters: {
+        ...data?.filters,
+        ...this.filters,
+      },
+    };
+
     if (!filename) {
-      return this.compiler(content, this.options)(data);
+      return this.compiler(content, this.options)(dataWithFilters);
     }
     if (!this.cache.has(filename)) {
       this.cache.set(
@@ -71,7 +80,7 @@ export class PugEngine implements Engine {
       );
     }
 
-    return this.cache.get(filename)!(data);
+    return this.cache.get(filename)!(dataWithFilters);
   }
 
   addHelper(name: string, fn: Helper, options: HelperOptions) {
@@ -79,13 +88,14 @@ export class PugEngine implements Engine {
       case "filter": {
         this.options.filters ||= {};
 
-        const filter = (text: string, opt: Record<string, unknown>) => {
+        const filter: Helper = (text: string, opt: Record<string, unknown>) => {
           delete opt.filename;
           const args = Object.values(opt);
           return fn(text, ...args);
         };
 
-        this.options.filters[name] = filter as Helper;
+        this.filters[name] = fn;
+        this.options.filters[name] = filter;
         return;
       }
     }
