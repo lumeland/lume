@@ -20,7 +20,7 @@ Deno.test("Pagefind download", async () => {
   const binary = await downloadBinary({
     path,
     extended: true,
-    version: "v0.10.2",
+    version: Deno.build.os === "windows" ? "v0.10.1" : "v0.10.2",
   });
 
   if (Deno.build.os === "windows") {
