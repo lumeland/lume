@@ -24,6 +24,9 @@ export interface Options {
 
   /** Optional pragma to add to the code evaluation */
   pragma?: string;
+
+  /** Components to add/override */
+  components?: Record<string, unknown>;
 }
 
 // Default options
@@ -77,7 +80,9 @@ export default async function (${destructure}) {
     const module = (await import(url)).default;
     const mdxContext = (await module(data)).default;
 
-    const body = mdxContext({ components: { comp: data?.comp } });
+    const body = mdxContext({
+      components: { comp: data?.comp, ...this.options.components },
+    });
     return this.jsxEngine.renderSync(body);
   }
 

@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Added
+- New `components` option to MDX plugin.
+
 ### Fixed
 - Updated dependencies: `pagefind`.
 - MDX renderer must return a JSX object instead of a string.
