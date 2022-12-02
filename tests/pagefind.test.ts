@@ -20,7 +20,7 @@ Deno.test("Pagefind download", async () => {
   const binary = await downloadBinary({
     path,
     extended: true,
-    version: "v0.10.1",
+    version: "v0.10.3",
   });
 
   if (Deno.build.os === "windows") {
@@ -33,6 +33,6 @@ Deno.test("Pagefind download", async () => {
   assertStrictEquals(code, 0);
   assertStrictEquals(
     new TextDecoder().decode(stdout).trim(),
-    "pagefind 0.10.1",
+    "pagefind 0.10.3",
   );
 });

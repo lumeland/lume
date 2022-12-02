@@ -56,7 +56,6 @@ export default function (userOptions?: Partial<Options>) {
           id1,
           type1,
         );
-
         // If it was related, do the opposite relation
         if (directRelation && type2) {
           saveMultipleRelation(

@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Fixed
+- Updated dependencies: `pagefind`.
+
 ## [1.13.2] - 2022-11-30
 ### Added
 - Property `pages` to `afterRender` event, with all rendered pages.
@@ -1937,6 +1941,7 @@ The first version.
 [#324]: https://github.com/lumeland/lume/issues/324
 [#328]: https://github.com/lumeland/lume/issues/328
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.13.2...HEAD
 [1.13.2]: https://github.com/lumeland/lume/compare/v1.13.1...v1.13.2
 [1.13.1]: https://github.com/lumeland/lume/compare/v1.13.0...v1.13.1
 [1.13.0]: https://github.com/lumeland/lume/compare/v1.12.1...v1.13.0

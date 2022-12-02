@@ -59,7 +59,7 @@ const defaults: Options = {
   binary: {
     path: "./_bin/pagefind",
     extended: false,
-    version: Deno.build.os === "windows" ? "v0.10.1" : "v0.10.2",
+    version: "v0.10.3",
   },
   ui: {
     containerId: "search",
