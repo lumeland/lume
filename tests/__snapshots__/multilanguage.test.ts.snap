@@ -247,6 +247,7 @@ snapshot[`multilanguage plugin 8`] = `
     search: Search {},
     tags: [
     ],
+    title: "page-it",
     url: "/custom-italian-url/",
   },
   dest: {
@@ -286,6 +287,7 @@ snapshot[`multilanguage plugin 9`] = `
     search: Search {},
     tags: [
     ],
+    title: "page-en",
     url: "/en/pages/page1/",
   },
   dest: {
@@ -325,6 +327,7 @@ snapshot[`multilanguage plugin 10`] = `
     search: Search {},
     tags: [
     ],
+    title: "page-gl",
     url: "/gl/pages/page1/",
   },
   dest: {
@@ -355,9 +358,9 @@ snapshot[`multilanguage plugin 11`] = `
 
   <li>Hello world</li>
 
-  <li>Other</li>
+  <li>page-en</li>
 
-  <li></li>
+  <li>Other</li>
 
 </body></html>',
   data: {
@@ -413,7 +416,7 @@ snapshot[`multilanguage plugin 12`] = `
 
   <li>Ola mundo</li>
 
-  <li></li>
+  <li>page-gl</li>
 
 </body></html>',
   data: {
