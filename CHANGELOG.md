@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - New `components` option to MDX plugin.
 
 ### Fixed
-- Updated dependencies: `pagefind`.
+- Updated dependencies: `pagefind`, `std`, `terser`, `postcss-import`, `lightningcss`.
 - MDX renderer must return a JSX object instead of a string.
 
 ## [1.13.2] - 2022-11-30
