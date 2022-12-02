@@ -34,7 +34,7 @@ export const defaults: Options = {
 };
 
 /** Template engine to render Markdown files with Remark */
-export class MDXEngine implements Engine {
+export class MDXEngine implements Engine<string | { toString(): string }> {
   baseUrl: string;
   options: Options;
   jsxEngine: Engine;
@@ -51,7 +51,7 @@ export class MDXEngine implements Engine {
     content: string,
     data?: Data,
     filename?: string,
-  ): Promise<string> {
+  ) {
     const baseUrl = toFileUrl(join(this.baseUrl, filename!)).href;
 
     const result = await compile(content, {
@@ -78,7 +78,7 @@ export default async function (${destructure}) {
     const mdxContext = (await module(data)).default;
 
     const body = mdxContext({ components: { comp: data?.comp } });
-    return this.jsxEngine.renderSync(body).toString();
+    return this.jsxEngine.renderSync(body);
   }
 
   renderSync(content: string) {

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Fixed
 - Updated dependencies: `pagefind`.
+- MDX renderer must return a JSX object instead of a string.
 
 ## [1.13.2] - 2022-11-30
 ### Added
