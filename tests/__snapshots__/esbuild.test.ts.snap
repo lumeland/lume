@@ -256,11 +256,11 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     search: Search {},
     tags: [
     ],
-    url: "/main.ts",
+    url: "/foo/main.js",
   },
   dest: {
-    ext: ".ts",
-    path: "/main",
+    ext: ".js",
+    path: "/foo/main",
   },
   src: {
     asset: true,
@@ -290,11 +290,11 @@ document.querySelectorAll(".other")?.forEach((el) => {
     search: Search {},
     tags: [
     ],
-    url: "/other.ts",
+    url: "/foo/other.js",
   },
   dest: {
-    ext: ".ts",
-    path: "/other",
+    ext: ".js",
+    path: "/foo/other",
   },
   src: {
     asset: true,

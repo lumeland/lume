@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Updated dependencies: `pagefind`, `std`, `terser`, `postcss-import`, `lightningcss`.
 - MDX renderer must return a JSX object instead of a string.
+- URL of the pages processed by `esbuild` when `splitting` is enabled [#323].
 
 ## [1.13.2] - 2022-11-30
 ### Added

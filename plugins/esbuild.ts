@@ -232,6 +232,7 @@ export default function (userOptions?: Partial<Options>) {
 
           // The page is an entry point
           if (entryPoint) {
+            entryPoint.data.url = url; // Update the url to .js extension
             saveAsset(site, entryPoint, file.text, map?.text);
           } else {
             // The page is a chunk
