@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New `components` option to MDX plugin.
 
+### Removed
+- `languages` option of `prism` plugin. Now you need to import the languages from `npm`.
+
 ### Fixed
 - Updated dependencies: `pagefind`, `std`, `terser`, `postcss-import`, `lightningcss`.
 - MDX renderer must return a JSX object instead of a string.
