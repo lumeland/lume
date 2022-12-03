@@ -8,24 +8,7 @@ Deno.test("metas plugin", async (t) => {
   });
 
   site.use(metas());
-
-  await build(site);
-  await assertSiteSnapshot(t, site);
-});
-
-Deno.test("metas plugin use defaultPageData", async (t) => {
-  const site = getSite({
-    src: "metas",
-  });
-
-  site.use(metas({
-    defaultPageData: {
-      title: "title",
-      robots: "robots",
-      image: "cover",
-      description: "excerpt",
-    },
-  })).preprocess([".md"], (page: Page) => {
+  site.preprocess([".md"], (page: Page) => {
     page.data.excerpt ??= (page.data.content as string).split("<!--more-->")[0];
   });
 

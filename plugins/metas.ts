@@ -10,7 +10,10 @@ export interface Options {
   /** The key name for the transformations definitions */
   name: string;
 
-  /** Use page data as meta data if the correspond metas value does not exists*/
+  /**
+   * Use page data as meta data if the correspond metas value does not exists
+   * @deprecated Use "=key" syntax instead
+   */
   defaultPageData?: {
     [K in keyof MetaData]?: string;
   };
@@ -63,6 +66,11 @@ export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
+    // Configure the merged keys
+    const mergedKeys = site.globalData.mergedKeys || {};
+    mergedKeys[options.name] = "object";
+    site.data("mergedKeys", mergedKeys);
+
     site.process(options.extensions, metas);
 
     function metas(page: Page) {
@@ -73,15 +81,32 @@ export default function (userOptions?: Partial<Options>) {
       }
 
       const getMetaValue = <T extends keyof MetaData>(key: T) => {
-        // null means we should use defaultPageData
-        if (key in metas && metas[key] !== null && metas[key] !== undefined) {
-          return metas[key];
-        }
-        if (options.defaultPageData && key in options.defaultPageData) {
-          const pageKey = options.defaultPageData[key];
-          if (pageKey) {
-            return page.data[pageKey] as MetaData[T];
+        const value = metas[key];
+
+        // Get the value from the page data
+        if (typeof value === "string" && value.startsWith("=")) {
+          const key = value.slice(1);
+
+          if (!key.includes(".")) {
+            return page.data[key];
           }
+
+          const keys = key.split(".");
+          let val = page.data;
+          for (const key of keys) {
+            val = val[key];
+          }
+          return val;
+        } else if (value === undefined || value === null) {
+          // Get the value from the default page data
+          if (options.defaultPageData && key in options.defaultPageData) {
+            const pageKey = options.defaultPageData[key];
+            if (pageKey) {
+              return page.data[pageKey] as MetaData[T];
+            }
+          }
+        } else {
+          return value;
         }
       };
 

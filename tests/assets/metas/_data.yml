@@ -1,10 +1,7 @@
-mergedKeys:
-  metas: object
-
 metas:
   site: My site
   title: My title
-  description: My description
+  description: =excerpt
   image: /my-image.png
   icon: /my-icon.png
   robots: false

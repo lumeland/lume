@@ -236,322 +236,21 @@ snapshot[`metas plugin 6`] = `
 <html><head><meta property="og:type" content="website">
 <meta property="og:site_name" content="My site">
 <meta property="og:locale" content="gl">
-<meta property="og:title" content="My title">
-<meta property="og:url" content="http://localhost/page-3/">
-<meta property="og:image" content="http://localhost/my-icon.png">
-<meta name="twitter:title" content="My title">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://localhost/my-icon.png">
-<meta name="twitter:site" content="@myUser">
-<meta itemprop="name" content="My title">
-<meta itemprop="image" content="http://localhost/my-icon.png">
-<meta name="keywords" content="one, two">
-<meta name="robots" content="noindex, nofollow, noarchive">
-<meta name="theme-color" content="black">
-<meta name="generator" content="Lume testing">
-</head><body><p>This is page excerpt will be used as meta description.</p>
-<!--more-->
-</body></html>',
-  data: {
-    content: "This is page excerpt will be used as meta description.
-
-<!--more-->
-",
-    cover: "./use-cover-as-meta-image.png",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      metas: "object",
-    },
-    metas: {
-      color: "black",
-      description: null,
-      generator: "Lume testing",
-      icon: "/my-icon.png",
-      image: null,
-      keywords: [
-        "one",
-        "two",
-      ],
-      lang: "gl",
-      robots: false,
-      site: "My site",
-      title: "My title",
-      twitter: "@myUser",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    robots: "this robots will be overrided",
-    search: Search {},
-    tags: [
-    ],
-    title: "Title from page data",
-    url: "/page-3/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/page-3/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/page-3",
-    remote: undefined,
-    slug: "page-3",
-  },
-}
-`;
-
-snapshot[`metas plugin use defaultPageData 1`] = `3`;
-
-snapshot[`metas plugin use defaultPageData 2`] = `
-{
-  formats: [
-    {
-      engines: 1,
-      ext: ".tmpl.ts",
-      pageLoader: [AsyncFunction: module],
-    },
-    {
-      engines: 1,
-      ext: ".tmpl.js",
-      pageLoader: [AsyncFunction: module],
-    },
-    {
-      engines: undefined,
-      ext: ".tmpl.json",
-      pageLoader: [AsyncFunction: json],
-    },
-    {
-      dataLoader: [AsyncFunction: json],
-      engines: undefined,
-      ext: ".json",
-    },
-    {
-      engines: 1,
-      ext: ".md",
-      pageLoader: [AsyncFunction: text],
-    },
-    {
-      componentLoader: [AsyncFunction: module],
-      dataLoader: [AsyncFunction: module],
-      engines: 1,
-      ext: ".js",
-    },
-    {
-      componentLoader: [AsyncFunction: module],
-      dataLoader: [AsyncFunction: module],
-      engines: 1,
-      ext: ".ts",
-    },
-    {
-      componentLoader: [AsyncFunction: text],
-      engines: 1,
-      ext: ".njk",
-      includesPath: "_includes",
-      pageLoader: [AsyncFunction: text],
-    },
-    {
-      dataLoader: [AsyncFunction: yaml],
-      engines: undefined,
-      ext: ".yaml",
-      pageLoader: [AsyncFunction: yaml],
-    },
-    {
-      dataLoader: [AsyncFunction: yaml],
-      engines: undefined,
-      ext: ".yml",
-      pageLoader: [AsyncFunction: yaml],
-    },
-  ],
-}
-`;
-
-snapshot[`metas plugin use defaultPageData 3`] = `
-[
-]
-`;
-
-snapshot[`metas plugin use defaultPageData 4`] = `
-{
-  content: '<!DOCTYPE html>
-<html><head>
-  <meta property="og:type" content="website">
-<meta property="og:site_name" content="My site">
-<meta property="og:locale" content="gl">
-<meta property="og:title" content="Custom title">
-<meta property="og:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
-<meta property="og:url" content="http://localhost/page-1/">
-<meta property="og:image" content="http://localhost/my-image.png">
-<meta name="twitter:title" content="Custom title">
-<meta name="twitter:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://localhost/my-image.png">
-<meta name="twitter:site" content="@myUser">
-<meta itemprop="name" content="Custom title">
-<meta itemprop="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
-<meta itemprop="image" content="http://localhost/my-image.png">
-<meta name="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
-<meta name="keywords" content="one, two">
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="black">
-<meta name="generator" content="Lume testing">
-</head>
-  <body>
-    Hello world
-  
-
-</body></html>',
-  data: {
-    content: "<html>
-  <head>
-  </head>
-  <body>
-    Hello world
-  </body>
-</html>
-",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      metas: "object",
-    },
-    metas: {
-      color: "black",
-      description: 'A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append "…" to the end. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      generator: "Lume testing",
-      icon: "/my-icon.png",
-      image: "/my-image.png",
-      keywords: [
-        "one",
-        "two",
-      ],
-      lang: "gl",
-      robots: true,
-      site: "My site",
-      title: "Custom title",
-      twitter: "@myUser",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/page-1/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/page-1/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".njk",
-    path: "/page-1",
-    remote: undefined,
-    slug: "page-1",
-  },
-}
-`;
-
-snapshot[`metas plugin use defaultPageData 5`] = `
-{
-  content: '<!DOCTYPE html>
-<html><head>
-  <meta property="og:type" content="website">
-<meta property="og:site_name" content="My site">
-<meta property="og:locale" content="gl">
-<meta property="og:title" content="Relative paths">
-<meta property="og:description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
-<meta property="og:url" content="http://localhost/page-2/">
-<meta property="og:image" content="http://localhost/page-2/my-image.png">
-<meta name="twitter:title" content="Relative paths">
-<meta name="twitter:description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://localhost/page-2/my-image.png">
-<meta name="twitter:site" content="@myUser">
-<meta itemprop="name" content="Relative paths">
-<meta itemprop="description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
-<meta itemprop="image" content="http://localhost/page-2/my-image.png">
-<meta name="description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
-<meta name="keywords" content="one, two">
-<meta name="robots" content="noindex, nofollow, noarchive">
-<meta name="theme-color" content="black">
-<meta name="generator" content="Lume testing">
-</head>
-  <body>
-    Hello world
-  
-
-</body></html>',
-  data: {
-    content: "<html>
-  <head>
-  </head>
-  <body>
-    Hello world
-  </body>
-</html>
-",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      metas: "object",
-    },
-    metas: {
-      color: "black",
-      description: "Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL",
-      generator: "Lume testing",
-      icon: "./my-icon.png",
-      image: "./my-image.png",
-      keywords: [
-        "one",
-        "two",
-      ],
-      lang: "gl",
-      robots: false,
-      site: "My site",
-      title: "Relative paths",
-      twitter: "@myUser",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/page-2/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/page-2/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".njk",
-    path: "/page-2",
-    remote: undefined,
-    slug: "page-2",
-  },
-}
-`;
-
-snapshot[`metas plugin use defaultPageData 6`] = `
-{
-  content: '<!DOCTYPE html>
-<html><head><meta property="og:type" content="website">
-<meta property="og:site_name" content="My site">
-<meta property="og:locale" content="gl">
-<meta property="og:title" content="My title">
+<meta property="og:title" content="Title from page data">
 <meta property="og:description" content="This is page excerpt will be used as meta description.">
 <meta property="og:url" content="http://localhost/page-3/">
 <meta property="og:image" content="http://localhost/page-3/use-cover-as-meta-image.png">
-<meta name="twitter:title" content="My title">
+<meta name="twitter:title" content="Title from page data">
 <meta name="twitter:description" content="This is page excerpt will be used as meta description.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://localhost/page-3/use-cover-as-meta-image.png">
 <meta name="twitter:site" content="@myUser">
-<meta itemprop="name" content="My title">
+<meta itemprop="name" content="Title from page data">
 <meta itemprop="description" content="This is page excerpt will be used as meta description.">
 <meta itemprop="image" content="http://localhost/page-3/use-cover-as-meta-image.png">
 <meta name="description" content="This is page excerpt will be used as meta description.">
 <meta name="keywords" content="one, two">
-<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="robots" content="this robots will be overrided">
 <meta name="theme-color" content="black">
 <meta name="generator" content="Lume testing">
 </head><body><p>This is page excerpt will be used as meta description.</p>
@@ -567,23 +266,26 @@ snapshot[`metas plugin use defaultPageData 6`] = `
     excerpt: "This is page excerpt will be used as meta description.
 
 ",
+    header: {
+      title: "Title from page data",
+    },
     mergedKeys: {
       metas: "object",
     },
     metas: {
       color: "black",
-      description: null,
+      description: "=excerpt",
       generator: "Lume testing",
       icon: "/my-icon.png",
-      image: null,
+      image: "=cover",
       keywords: [
         "one",
         "two",
       ],
       lang: "gl",
-      robots: false,
+      robots: "=robots",
       site: "My site",
-      title: "My title",
+      title: "=header.title",
       twitter: "@myUser",
     },
     page: undefined,
@@ -592,7 +294,6 @@ snapshot[`metas plugin use defaultPageData 6`] = `
     search: Search {},
     tags: [
     ],
-    title: "Title from page data",
     url: "/page-3/",
   },
   dest: {

@@ -10,6 +10,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - New `components` option to MDX plugin.
+- A couple of improvements to `metas` plugin:
+  - It's no longer needed to manually define the `mergedKeys` _data value.
+    The plugin does it.
+  - The `defaultPageData` option is deprecated [#321].
+    Use data aliases instead, that also supports subkeys. For example:
+
+    ```yml
+    title: This is the title
+    intro:
+      text: Page description
+    metas:
+      title: "=title" # Alias to the title value
+      description: "=intro.text" # Alias to the intro.text value
+    ```
 
 ### Removed
 - `languages` option of `prism` plugin. Now you need to import the languages from `npm`.
@@ -1945,6 +1959,7 @@ The first version.
 [#308]: https://github.com/lumeland/lume/issues/308
 [#316]: https://github.com/lumeland/lume/issues/316
 [#320]: https://github.com/lumeland/lume/issues/320
+[#321]: https://github.com/lumeland/lume/issues/321
 [#323]: https://github.com/lumeland/lume/issues/323
 [#324]: https://github.com/lumeland/lume/issues/324
 [#328]: https://github.com/lumeland/lume/issues/328
