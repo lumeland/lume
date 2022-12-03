@@ -86,6 +86,9 @@ snapshot[`multilanguage plugin 4`] = `
     date: 1970-01-01T00:00:00.000Z,
     lang: "en",
     mergeLanguages: [Function: mergeLanguages],
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -123,6 +126,9 @@ snapshot[`multilanguage plugin 5`] = `
     date: 1970-01-01T00:00:00.000Z,
     lang: "gl",
     mergeLanguages: [Function: mergeLanguages],
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -163,6 +169,9 @@ snapshot[`multilanguage plugin 6`] = `
     },
     lang: "en",
     mergeLanguages: [Function: mergeLanguages],
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -202,6 +211,9 @@ snapshot[`multilanguage plugin 7`] = `
     },
     lang: "fr",
     mergeLanguages: [Function: mergeLanguages],
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -242,6 +254,9 @@ snapshot[`multilanguage plugin 8`] = `
     date: 1970-01-01T00:00:00.000Z,
     lang: "it",
     mergeLanguages: [Function: mergeLanguages],
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -282,6 +297,9 @@ snapshot[`multilanguage plugin 9`] = `
     date: 1970-01-01T00:00:00.000Z,
     lang: "en",
     mergeLanguages: [Function: mergeLanguages],
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -322,6 +340,9 @@ snapshot[`multilanguage plugin 10`] = `
     date: 1970-01-01T00:00:00.000Z,
     lang: "gl",
     mergeLanguages: [Function: mergeLanguages],
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -373,6 +394,9 @@ snapshot[`multilanguage plugin 11`] = `
     lang: "en",
     layout: "layout.njk",
     mergeLanguages: [Function: mergeLanguages],
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     pagination: {
@@ -429,6 +453,9 @@ snapshot[`multilanguage plugin 12`] = `
     lang: "gl",
     layout: "layout.njk",
     mergeLanguages: [Function: mergeLanguages],
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     pagination: {

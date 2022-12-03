@@ -102,6 +102,9 @@ snapshot[`build a site with eta 4`] = `
 <%~ await includeFile("./_includes/footer", { name }) %>\`,
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.eta",
+    mergedKeys: {
+      tags: "stringArray",
+    },
     name: "Timothy",
     page: undefined,
     paginate: [Function: paginate],

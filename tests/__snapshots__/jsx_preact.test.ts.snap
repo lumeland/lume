@@ -90,6 +90,9 @@ snapshot[`build a site with jsx/tsx modules using Preact 4`] = `
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.jsx",
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -120,6 +123,9 @@ snapshot[`build a site with jsx/tsx modules using Preact 5`] = `
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.jsx",
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -149,6 +155,9 @@ snapshot[`build a site with jsx/tsx modules using Preact 6`] = `
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.jsx",
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -179,6 +188,9 @@ snapshot[`build a site with jsx/tsx modules using Preact 7`] = `
     content: "{{ comp.button('primary') | safe }}
 ",
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -208,6 +220,9 @@ snapshot[`build a site with jsx/tsx modules using Preact 8`] = `
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.jsx",
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -253,6 +268,9 @@ body {
 ",
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.jsx",
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},

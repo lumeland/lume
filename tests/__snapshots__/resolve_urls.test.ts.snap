@@ -95,6 +95,9 @@ First article
 [Go to other](../other.md)
 [Go to index](/index.md)",
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -133,6 +136,9 @@ Second article
 [Go to other](../other.md)
 [Go to index](/index.md)",
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -188,6 +194,9 @@ snapshot[`relative_url plugin 6`] = `
 [url](tílde-and-eñe.md)
 ",
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -221,6 +230,9 @@ snapshot[`relative_url plugin 7`] = `
 [See robots.txt](statics/robots.txt)
 ",
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -251,6 +263,9 @@ snapshot[`relative_url plugin 8`] = `
     content: "Tilde and eñe
 ",
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},

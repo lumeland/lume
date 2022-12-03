@@ -981,6 +981,9 @@ Daniels": 1,
 </body>
 ",
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},

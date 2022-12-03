@@ -78,6 +78,9 @@ snapshot[`slugify_urls plugin 4`] = `
     content: "Page 2
 ",
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -107,6 +110,9 @@ snapshot[`slugify_urls plugin 5`] = `
     content: "Page 1
 ",
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -134,6 +140,9 @@ snapshot[`slugify_urls plugin 6`] = `
   data: {
     content: "Filloas con nocilla",
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -161,6 +170,9 @@ snapshot[`slugify_urls plugin 7`] = `
   data: {
     content: "Foo",
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -190,6 +202,9 @@ snapshot[`slugify_urls plugin 8`] = `
     content: "Page 3
 ",
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -219,6 +234,9 @@ snapshot[`slugify_urls plugin 9`] = `
     content: "Page 4
 ",
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},

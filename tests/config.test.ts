@@ -294,12 +294,13 @@ Deno.test("extra data", () => {
   const site = lume();
   const { globalData } = site;
 
-  equals(Object.keys(globalData).length, 2);
-  equals(Object.keys(globalData)[0], "paginate");
-  equals(Object.keys(globalData)[1], "search");
+  equals(Object.keys(globalData).length, 3);
+  equals(Object.keys(globalData)[0], "mergedKeys");
+  equals(Object.keys(globalData)[1], "paginate");
+  equals(Object.keys(globalData)[2], "search");
 
   site.data("name", "lume");
-  equals(Object.keys(globalData).length, 3);
+  equals(Object.keys(globalData).length, 4);
   equals(globalData.name, "lume");
 });
 

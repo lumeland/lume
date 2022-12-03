@@ -87,6 +87,9 @@ snapshot[`relations plugin 4`] = `
 ",
     date: 1970-01-01T00:00:00.000Z,
     layout: "categories.njk",
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     post: [
@@ -96,6 +99,9 @@ snapshot[`relations plugin 4`] = `
 ",
           date: 1970-01-01T00:00:00.000Z,
           layout: "categories.njk",
+          mergedKeys: {
+            tags: "stringArray",
+          },
           page: undefined,
           paginate: [Function: paginate],
           post: [Circular *1],
@@ -115,6 +121,9 @@ snapshot[`relations plugin 4`] = `
 ",
             date: 1970-01-01T00:00:00.000Z,
             id: 2,
+            mergedKeys: {
+              tags: "stringArray",
+            },
             page: undefined,
             paginate: [Function: paginate],
             post: [
@@ -136,6 +145,9 @@ snapshot[`relations plugin 4`] = `
         date: 1970-01-01T00:00:00.000Z,
         id: "second-post",
         layout: "posts.njk",
+        mergedKeys: {
+          tags: "stringArray",
+        },
         page: undefined,
         paginate: [Function: paginate],
         search: Search {},
@@ -185,6 +197,9 @@ snapshot[`relations plugin 5`] = `
 ",
     date: 1970-01-01T00:00:00.000Z,
     layout: "categories.njk",
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     post: [
@@ -194,6 +209,9 @@ snapshot[`relations plugin 5`] = `
 ",
           date: 1970-01-01T00:00:00.000Z,
           layout: "categories.njk",
+          mergedKeys: {
+            tags: "stringArray",
+          },
           page: undefined,
           paginate: [Function: paginate],
           post: [Circular *1],
@@ -212,6 +230,9 @@ snapshot[`relations plugin 5`] = `
 ",
             date: 1970-01-01T00:00:00.000Z,
             id: 1,
+            mergedKeys: {
+              tags: "stringArray",
+            },
             page: undefined,
             paginate: [Function: paginate],
             post: [
@@ -228,6 +249,9 @@ snapshot[`relations plugin 5`] = `
 ",
             date: 1970-01-01T00:00:00.000Z,
             id: 3,
+            mergedKeys: {
+              tags: "stringArray",
+            },
             page: undefined,
             paginate: [Function: paginate],
             post: [
@@ -249,6 +273,9 @@ snapshot[`relations plugin 5`] = `
         date: 1970-01-01T00:00:00.000Z,
         id: "first-post",
         layout: "posts.njk",
+        mergedKeys: {
+          tags: "stringArray",
+        },
         page: undefined,
         paginate: [Function: paginate],
         renderOrder: 1,
@@ -290,6 +317,9 @@ snapshot[`relations plugin 6`] = `
 ",
     date: 1970-01-01T00:00:00.000Z,
     id: 1,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     post: [
@@ -299,6 +329,9 @@ snapshot[`relations plugin 6`] = `
 ",
           date: 1970-01-01T00:00:00.000Z,
           layout: "categories.njk",
+          mergedKeys: {
+            tags: "stringArray",
+          },
           page: undefined,
           paginate: [Function: paginate],
           post: [
@@ -319,6 +352,9 @@ snapshot[`relations plugin 6`] = `
 ",
             date: 1970-01-01T00:00:00.000Z,
             id: 1,
+            mergedKeys: {
+              tags: "stringArray",
+            },
             page: undefined,
             paginate: [Function: paginate],
             post: [Circular *2],
@@ -333,6 +369,9 @@ snapshot[`relations plugin 6`] = `
 ",
             date: 1970-01-01T00:00:00.000Z,
             id: 3,
+            mergedKeys: {
+              tags: "stringArray",
+            },
             page: undefined,
             paginate: [Function: paginate],
             post: [
@@ -354,6 +393,9 @@ snapshot[`relations plugin 6`] = `
         date: 1970-01-01T00:00:00.000Z,
         id: "first-post",
         layout: "posts.njk",
+        mergedKeys: {
+          tags: "stringArray",
+        },
         page: undefined,
         paginate: [Function: paginate],
         renderOrder: 1,
@@ -393,6 +435,9 @@ snapshot[`relations plugin 7`] = `
 ",
     date: 1970-01-01T00:00:00.000Z,
     id: 2,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     post: [
@@ -402,6 +447,9 @@ snapshot[`relations plugin 7`] = `
 ",
           date: 1970-01-01T00:00:00.000Z,
           layout: "categories.njk",
+          mergedKeys: {
+            tags: "stringArray",
+          },
           page: undefined,
           paginate: [Function: paginate],
           post: [
@@ -423,6 +471,9 @@ snapshot[`relations plugin 7`] = `
 ",
             date: 1970-01-01T00:00:00.000Z,
             id: 2,
+            mergedKeys: {
+              tags: "stringArray",
+            },
             page: undefined,
             paginate: [Function: paginate],
             post: [Circular *2],
@@ -442,6 +493,9 @@ snapshot[`relations plugin 7`] = `
         date: 1970-01-01T00:00:00.000Z,
         id: "second-post",
         layout: "posts.njk",
+        mergedKeys: {
+          tags: "stringArray",
+        },
         page: undefined,
         paginate: [Function: paginate],
         search: Search {},
@@ -481,6 +535,9 @@ snapshot[`relations plugin 8`] = `
 ",
     date: 1970-01-01T00:00:00.000Z,
     id: 3,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     post: [
@@ -490,6 +547,9 @@ snapshot[`relations plugin 8`] = `
 ",
           date: 1970-01-01T00:00:00.000Z,
           layout: "categories.njk",
+          mergedKeys: {
+            tags: "stringArray",
+          },
           page: undefined,
           paginate: [Function: paginate],
           post: [
@@ -510,6 +570,9 @@ snapshot[`relations plugin 8`] = `
 ",
             date: 1970-01-01T00:00:00.000Z,
             id: 1,
+            mergedKeys: {
+              tags: "stringArray",
+            },
             page: undefined,
             paginate: [Function: paginate],
             post: [
@@ -526,6 +589,9 @@ snapshot[`relations plugin 8`] = `
 ",
             date: 1970-01-01T00:00:00.000Z,
             id: 3,
+            mergedKeys: {
+              tags: "stringArray",
+            },
             page: undefined,
             paginate: [Function: paginate],
             post: [Circular *2],
@@ -545,6 +611,9 @@ snapshot[`relations plugin 8`] = `
         date: 1970-01-01T00:00:00.000Z,
         id: "first-post",
         layout: "posts.njk",
+        mergedKeys: {
+          tags: "stringArray",
+        },
         page: undefined,
         paginate: [Function: paginate],
         renderOrder: 1,
@@ -599,6 +668,9 @@ snapshot[`relations plugin 9`] = `
 ",
       date: 1970-01-01T00:00:00.000Z,
       layout: "categories.njk",
+      mergedKeys: {
+        tags: "stringArray",
+      },
       page: undefined,
       paginate: [Function: paginate],
       post: [
@@ -611,6 +683,9 @@ snapshot[`relations plugin 9`] = `
 ",
               date: 1970-01-01T00:00:00.000Z,
               id: 1,
+              mergedKeys: {
+                tags: "stringArray",
+              },
               page: undefined,
               paginate: [Function: paginate],
               post: [
@@ -627,6 +702,9 @@ snapshot[`relations plugin 9`] = `
 ",
               date: 1970-01-01T00:00:00.000Z,
               id: 3,
+              mergedKeys: {
+                tags: "stringArray",
+              },
               page: undefined,
               paginate: [Function: paginate],
               post: [
@@ -648,6 +726,9 @@ snapshot[`relations plugin 9`] = `
           date: 1970-01-01T00:00:00.000Z,
           id: "first-post",
           layout: "posts.njk",
+          mergedKeys: {
+            tags: "stringArray",
+          },
           page: undefined,
           paginate: [Function: paginate],
           renderOrder: 1,
@@ -673,6 +754,9 @@ snapshot[`relations plugin 9`] = `
 ",
         date: 1970-01-01T00:00:00.000Z,
         id: 1,
+        mergedKeys: {
+          tags: "stringArray",
+        },
         page: undefined,
         paginate: [Function: paginate],
         post: [
@@ -682,6 +766,9 @@ snapshot[`relations plugin 9`] = `
 ",
               date: 1970-01-01T00:00:00.000Z,
               layout: "categories.njk",
+              mergedKeys: {
+                tags: "stringArray",
+              },
               page: undefined,
               paginate: [Function: paginate],
               post: [
@@ -706,6 +793,9 @@ snapshot[`relations plugin 9`] = `
             date: 1970-01-01T00:00:00.000Z,
             id: "first-post",
             layout: "posts.njk",
+            mergedKeys: {
+              tags: "stringArray",
+            },
             page: undefined,
             paginate: [Function: paginate],
             renderOrder: 1,
@@ -727,6 +817,9 @@ snapshot[`relations plugin 9`] = `
 ",
         date: 1970-01-01T00:00:00.000Z,
         id: 3,
+        mergedKeys: {
+          tags: "stringArray",
+        },
         page: undefined,
         paginate: [Function: paginate],
         post: [
@@ -736,6 +829,9 @@ snapshot[`relations plugin 9`] = `
 ",
               date: 1970-01-01T00:00:00.000Z,
               layout: "categories.njk",
+              mergedKeys: {
+                tags: "stringArray",
+              },
               page: undefined,
               paginate: [Function: paginate],
               post: [
@@ -760,6 +856,9 @@ snapshot[`relations plugin 9`] = `
             date: 1970-01-01T00:00:00.000Z,
             id: "first-post",
             layout: "posts.njk",
+            mergedKeys: {
+              tags: "stringArray",
+            },
             page: undefined,
             paginate: [Function: paginate],
             renderOrder: 1,
@@ -786,6 +885,9 @@ snapshot[`relations plugin 9`] = `
     date: 1970-01-01T00:00:00.000Z,
     id: "first-post",
     layout: "posts.njk",
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     renderOrder: 1,
@@ -831,6 +933,9 @@ snapshot[`relations plugin 10`] = `
 ",
       date: 1970-01-01T00:00:00.000Z,
       layout: "categories.njk",
+      mergedKeys: {
+        tags: "stringArray",
+      },
       page: undefined,
       paginate: [Function: paginate],
       post: [
@@ -843,6 +948,9 @@ snapshot[`relations plugin 10`] = `
 ",
               date: 1970-01-01T00:00:00.000Z,
               id: 2,
+              mergedKeys: {
+                tags: "stringArray",
+              },
               page: undefined,
               paginate: [Function: paginate],
               post: [
@@ -864,6 +972,9 @@ snapshot[`relations plugin 10`] = `
           date: 1970-01-01T00:00:00.000Z,
           id: "second-post",
           layout: "posts.njk",
+          mergedKeys: {
+            tags: "stringArray",
+          },
           page: undefined,
           paginate: [Function: paginate],
           search: Search {},
@@ -889,6 +1000,9 @@ snapshot[`relations plugin 10`] = `
 ",
         date: 1970-01-01T00:00:00.000Z,
         id: 2,
+        mergedKeys: {
+          tags: "stringArray",
+        },
         page: undefined,
         paginate: [Function: paginate],
         post: [
@@ -898,6 +1012,9 @@ snapshot[`relations plugin 10`] = `
 ",
               date: 1970-01-01T00:00:00.000Z,
               layout: "categories.njk",
+              mergedKeys: {
+                tags: "stringArray",
+              },
               page: undefined,
               paginate: [Function: paginate],
               post: [
@@ -922,6 +1039,9 @@ snapshot[`relations plugin 10`] = `
             date: 1970-01-01T00:00:00.000Z,
             id: "second-post",
             layout: "posts.njk",
+            mergedKeys: {
+              tags: "stringArray",
+            },
             page: undefined,
             paginate: [Function: paginate],
             search: Search {},
@@ -947,6 +1067,9 @@ snapshot[`relations plugin 10`] = `
     date: 1970-01-01T00:00:00.000Z,
     id: "second-post",
     layout: "posts.njk",
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},

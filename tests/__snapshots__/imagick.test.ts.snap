@@ -95,6 +95,9 @@ snapshot[`imagick plugin 4`] = `
     content: "Uint8Array(29014)",
     date: 1970-01-01T00:00:00.000Z,
     imagick: undefined,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -123,6 +126,9 @@ snapshot[`imagick plugin 5`] = `
     content: "Uint8Array(29014)",
     date: 1970-01-01T00:00:00.000Z,
     imagick: undefined,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -151,6 +157,9 @@ snapshot[`imagick plugin 6`] = `
     content: "Uint8Array(29014)",
     date: 1970-01-01T00:00:00.000Z,
     imagick: undefined,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -179,6 +188,9 @@ snapshot[`imagick plugin 7`] = `
     content: "Uint8Array(29014)",
     date: 1970-01-01T00:00:00.000Z,
     imagick: undefined,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -207,6 +219,9 @@ snapshot[`imagick plugin 8`] = `
     content: "Uint8Array(29014)",
     date: 1970-01-01T00:00:00.000Z,
     imagick: undefined,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},

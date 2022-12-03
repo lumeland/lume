@@ -146,7 +146,6 @@ export function mergeData(parentData: Data, baseData: Data): Data {
 
   // Merge special keys
   const mergedKeys: Record<string, string> = {
-    tags: "stringArray",
     ...parentData.mergedKeys,
     ...baseData.mergedKeys,
   };

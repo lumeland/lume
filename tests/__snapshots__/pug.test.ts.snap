@@ -86,6 +86,9 @@ block content
   h1 Home
 ",
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -131,6 +134,9 @@ block content
   != filters.md(dynamicMd)
 ',
     date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
@@ -162,6 +168,9 @@ snapshot[`build a site with pug 6`] = `
 ",
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout2.pug",
+    mergedKeys: {
+      tags: "stringArray",
+    },
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
