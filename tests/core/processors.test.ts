@@ -1,4 +1,4 @@
-import { assertStrictEquals as equals } from "../../deps/assert.ts";
+import { assertEquals as equals } from "../../deps/assert.ts";
 import Processors from "../../core/processors.ts";
 import { Page } from "../../core/filesystem.ts";
 
@@ -14,19 +14,19 @@ Deno.test("Processors", async (t) => {
       page.content = content.toUpperCase();
     };
 
-    processors.set(ext, fn);
+    processors.set(ext, fn, false);
 
     equals(processors.processors.size, 1);
     const entry = Array.from(processors.processors)[0];
     equals(entry[0], fn);
-    equals(entry[1], ext);
+    equals(entry[1], { extensions: ext, multiple: false });
 
     const asterisk = (page: Page) => {
       const content = page.content as string;
       page.content = content + "*";
     };
 
-    processors.set("*", asterisk);
+    processors.set("*", asterisk, false);
 
     equals(processors.processors.size, 2);
   });

@@ -3,15 +3,28 @@ import { Exception } from "./errors.ts";
 
 import type { Page } from "../core.ts";
 
+export type Extensions = string[] | "*";
+
+interface ProcessorOptions {
+  extensions: Extensions;
+  multiple: boolean;
+}
+
 /**
  * Class to store and run the (pre)processors
  */
 export default class Processors {
   /** Processors and the assigned extensions */
-  processors = new Map<Processor, string[] | "*">();
+  processors = new Map<Processor | MultiProcessor, ProcessorOptions>();
 
   /** Assign a processor to some extensions */
-  set(extensions: string[] | "*", processor: Processor) {
+  set(extensions: Extensions, processor: Processor, multiple: false): void;
+  set(extensions: Extensions, processor: MultiProcessor, multiple: true): void;
+  set(
+    extensions: Extensions,
+    processor: Processor | MultiProcessor,
+    multiple = false,
+  ): void {
     if (Array.isArray(extensions)) {
       extensions.forEach((extension) => {
         if (extension.charAt(0) !== ".") {
@@ -23,32 +36,41 @@ export default class Processors {
       });
     }
 
-    this.processors.set(processor, extensions);
+    this.processors.set(processor, { extensions, multiple });
   }
 
   /** Apply the processors to the provided pages */
   async run(pages: Page[]): Promise<void> {
     const removed: Page[] = [];
 
-    for (const [process, exts] of this.processors) {
-      await concurrent(
-        pages,
-        async (page) => {
-          try {
-            if (exts === "*" || pageMatches(exts, page)) {
-              if (await process(page, pages) === false) {
-                removed.push(page);
+    for (const [process, { extensions, multiple }] of this.processors) {
+      if (multiple) {
+        const filtered = pages.filter((page) => () =>
+          pageMatches(extensions, page)
+        );
+        if (await (process as MultiProcessor)(filtered, pages) === false) {
+          removed.push(...filtered);
+        }
+      } else {
+        await concurrent(
+          pages,
+          async (page) => {
+            try {
+              if (pageMatches(extensions, page)) {
+                if (await (process as Processor)(page, pages) === false) {
+                  removed.push(page);
+                }
               }
+            } catch (cause) {
+              throw new Exception("Error processing page", {
+                cause,
+                page,
+                processor: process.name,
+              });
             }
-          } catch (cause) {
-            throw new Exception("Error processing page", {
-              cause,
-              page,
-              processor: process.name,
-            });
-          }
-        },
-      );
+          },
+        );
+      }
     }
 
     // Remove the pages that have been removed by the processors
@@ -61,10 +83,19 @@ export default class Processors {
 /** A (pre)processor */
 export type Processor = (
   page: Page,
-  pages: Page[],
+  allpages: Page[],
 ) => void | false | Promise<void | false>;
 
-function pageMatches(exts: string[], page: Page): boolean {
+export type MultiProcessor = (
+  page: Page[],
+  allpages: Page[],
+) => void | false | Promise<void | false>;
+
+function pageMatches(exts: Extensions, page: Page): boolean {
+  if (exts === "*") {
+    return true;
+  }
+
   if (page.src.ext && exts.includes(page.src.ext)) {
     return true;
   }

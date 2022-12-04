@@ -64,7 +64,12 @@ import type {
   Helper,
   HelperOptions,
 } from "./core/renderer.ts";
-import type { default as Processors, Processor } from "./core/processors.ts";
+import type {
+  default as Processors,
+  Extensions,
+  MultiProcessor,
+  Processor,
+} from "./core/processors.ts";
 import type { default as Scopes, ScopeFilter } from "./core/scopes.ts";
 import type { ErrorData, Exception } from "./core/errors.ts";
 import type { default as Formats, Format } from "./core/formats.ts";
@@ -117,6 +122,7 @@ export type {
   EventOptions,
   Events,
   Exception,
+  Extensions,
   FileInfo,
   Format,
   Formats,
@@ -127,6 +133,7 @@ export type {
   Loader,
   Logger,
   Middleware,
+  MultiProcessor,
   Page,
   PageLoader,
   PagePreparer,

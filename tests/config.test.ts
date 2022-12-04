@@ -1,4 +1,4 @@
-import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
+import { assert, assertEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
 
 import type { Engine } from "../core.ts";
@@ -213,25 +213,25 @@ Deno.test("preprocessor configuration", () => {
 
   equals(processors.size, 0);
 
-  const processor = () => Promise.resolve({});
+  const processor = () => Promise.resolve();
   const ext1 = [".ext1"];
 
   site.preprocess(ext1, processor);
   equals(processors.size, 1);
   equals(processors.has(processor), true);
-  equals(processors.get(processor), ext1);
+  equals(processors.get(processor), { extensions: ext1, multiple: false });
 
   const ext2 = [".ext2"];
   site.preprocess(ext2, processor);
   equals(processors.size, 1);
   equals(processors.has(processor), true);
-  equals(processors.get(processor), ext2);
+  equals(processors.get(processor), { extensions: ext2, multiple: false });
 
-  const processor2 = () => Promise.resolve({});
+  const processor2 = () => Promise.resolve();
   site.preprocess(ext2, processor2);
   equals(processors.size, 2);
   equals(processors.has(processor2), true);
-  equals(processors.get(processor2), ext2);
+  equals(processors.get(processor2), { extensions: ext2, multiple: false });
 });
 
 Deno.test("processor configuration", () => {
@@ -240,25 +240,25 @@ Deno.test("processor configuration", () => {
 
   equals(processors.size, 0);
 
-  const processor = () => Promise.resolve({});
+  const processor = () => Promise.resolve();
   const ext1 = [".ext1"];
 
   site.process(ext1, processor);
   equals(processors.size, 1);
   equals(processors.has(processor), true);
-  equals(processors.get(processor), ext1);
+  equals(processors.get(processor), { extensions: ext1, multiple: false });
 
   const ext2 = [".ext2"];
   site.process(ext2, processor);
   equals(processors.size, 1);
   equals(processors.has(processor), true);
-  equals(processors.get(processor), ext2);
+  equals(processors.get(processor), { extensions: ext2, multiple: false });
 
-  const processor2 = () => Promise.resolve({});
+  const processor2 = () => Promise.resolve();
   site.process(ext2, processor2);
   equals(processors.size, 2);
   equals(processors.has(processor2), true);
-  equals(processors.get(processor2), ext2);
+  equals(processors.get(processor2), { extensions: ext2, multiple: false });
 });
 
 Deno.test("helpers configuration", () => {

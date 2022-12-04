@@ -197,12 +197,8 @@ export default function (userOptions?: Partial<Options>) {
       options.options.outbase ||= ".";
       const basePath = options.options.absWorkingDir;
 
-      site.addEventListener("afterRender", async (event) => {
-        const pages = event.pages!;
-        const esbuildPages: Page[] = pages.filter((page) =>
-          pageMatches(options.extensions, page)
-        );
-        const [outputFiles, enableSourceMap] = await runEsbuild(esbuildPages);
+      site.processAll(options.extensions, async (pages, allPages) => {
+        const [outputFiles, enableSourceMap] = await runEsbuild(pages);
 
         // Save the output code
         outputFiles?.forEach((file) => {
@@ -215,7 +211,7 @@ export default function (userOptions?: Partial<Options>) {
             normalizePath(file.path).replace(basePath, ""),
           );
           const urlWithoutExt = pathWithoutExtension(url);
-          const entryPoint = esbuildPages.find((page) => {
+          const entryPoint = pages.find((page) => {
             const outdir = posix.join(
               "/",
               options.options.outdir || ".",
@@ -238,7 +234,7 @@ export default function (userOptions?: Partial<Options>) {
             // The page is a chunk
             const page = Page.create(url, "");
             saveAsset(site, page, file.text, map?.text);
-            pages.push(page);
+            allPages.push(page);
           }
         });
       });
@@ -314,19 +310,6 @@ function buildJsxConfig(config?: DenoConfig): BuildOptions | undefined {
   }
 }
 
-function pageMatches(exts: string[], page: Page): boolean {
-  if (page.src.ext && exts.includes(page.src.ext)) {
-    return true;
-  }
-
-  const url = page.outputPath;
-
-  if (typeof url === "string" && exts.some((ext) => url.endsWith(ext))) {
-    return true;
-  }
-
-  return false;
-}
 function pathWithoutExtension(path: string): string {
   return path.replace(/\.\w+$/, "");
 }

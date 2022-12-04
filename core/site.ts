@@ -27,10 +27,12 @@ import type {
   Event,
   EventListener,
   EventOptions,
+  Extensions,
   Helper,
   HelperOptions,
   Loader,
   Middleware,
+  MultiProcessor,
   Page,
   Plugin,
   Processor,
@@ -358,14 +360,20 @@ export default class Site {
   }
 
   /** Register a preprocessor for some extensions */
-  preprocess(extensions: string[] | "*", preprocessor: Processor): this {
-    this.preprocessors.set(extensions, preprocessor);
+  preprocess(extensions: Extensions, preprocessor: Processor): this {
+    this.preprocessors.set(extensions, preprocessor, false);
     return this;
   }
 
   /** Register a processor for some extensions */
-  process(extensions: string[] | "*", processor: Processor): this {
-    this.processors.set(extensions, processor);
+  process(extensions: Extensions, processor: Processor): this {
+    this.processors.set(extensions, processor, false);
+    return this;
+  }
+
+  /** Register a multiprocessor for some extensions */
+  processAll(extensions: Extensions, processor: MultiProcessor): this {
+    this.processors.set(extensions, processor, true);
     return this;
   }
 
