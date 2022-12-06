@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - New `components` option to MDX plugin.
+- New plugin `filter_pages` [#254].
 - New functions `site.processAll()` and `site.preprocessAll()` to (pre)process all pages at the same time [#327].
 - A couple of improvements to `metas` plugin:
   - It's no longer needed to manually define the `mergedKeys` _data value.
@@ -1932,6 +1933,7 @@ The first version.
 [#251]: https://github.com/lumeland/lume/issues/251
 [#252]: https://github.com/lumeland/lume/issues/252
 [#253]: https://github.com/lumeland/lume/issues/253
+[#254]: https://github.com/lumeland/lume/issues/254
 [#255]: https://github.com/lumeland/lume/issues/255
 [#259]: https://github.com/lumeland/lume/issues/259
 [#260]: https://github.com/lumeland/lume/issues/260
