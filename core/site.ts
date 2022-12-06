@@ -365,6 +365,12 @@ export default class Site {
     return this;
   }
 
+  /** Register a multipreprocessor for some extensions */
+  preprocessAll(extensions: Extensions, processor: MultiProcessor): this {
+    this.preprocessors.set(extensions, processor, true);
+    return this;
+  }
+
   /** Register a processor for some extensions */
   process(extensions: Extensions, processor: Processor): this {
     this.processors.set(extensions, processor, false);

@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - New `components` option to MDX plugin.
-- New function `site.processAll()` to process all pages at the same time [#327].
+- New functions `site.processAll()` and `site.preprocessAll()` to (pre)process all pages at the same time [#327].
 - A couple of improvements to `metas` plugin:
   - It's no longer needed to manually define the `mergedKeys` _data value.
     The plugin does it.
