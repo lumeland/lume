@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - New `components` option to MDX plugin.
 - New plugin `filter_pages` [#254].
+- Added `translations` option for `pagefind` plugin.
 - New functions `site.processAll()` and `site.preprocessAll()` to (pre)process all pages at the same time [#327].
 - A couple of improvements to `metas` plugin:
   - It's no longer needed to manually define the `mergedKeys` _data value.
