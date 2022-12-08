@@ -4,6 +4,30 @@ import downloadBinary, { DownloadOptions } from "../deps/pagefind.ts";
 
 import type { DeepPartial, Site } from "../core.ts";
 
+export interface TranslationsOptions {
+  /** English default: "Search" */
+  placeholder: string;
+  /** English default: "Clear" */
+  clear_search: string;
+  /** English default: "Load more results" */
+  load_more: string;
+  /** English default: "Search this site" */
+  search_label: string;
+  /** English default: "Filters" */
+  filters_label: string;
+  /** English default: "No results for [SEARCH_TERM]" */
+  zero_results: string;
+  /** English default: "[COUNT] results for [SEARCH_TERM]" */
+  many_results: string;
+  /** English default: "[COUNT] result for [SEARCH_TERM]" */
+  one_result: string;
+  /** English default: "No results for [SEARCH_TERM]. Showing results for [DIFFERENT_TERM] instead" */
+  alt_search: string;
+  /** English default: "No results for [SEARCH_TERM]. Try one of the following searches:" */
+  search_suggestion: string;
+  /** English default: "Searching for [SEARCH_TERM]..." */
+  searching: string;
+}
 export interface UIOptions {
   /** The container id to insert the search */
   containerId: string;
@@ -22,6 +46,13 @@ export interface UIOptions {
    * Pass false to omit this and inherit from your site styles.
    */
   resetStyles: boolean;
+
+  /**
+   * A set of custom ui strings to use instead of the automatically detected language strings.
+   * See https://github.com/CloudCannon/pagefind/blob/main/pagefind_ui/translations/en.json for all available keys and initial values.
+   * The items in square brackets such as SEARCH_TERM will be substituted dynamically when the text is used.
+   */
+  translations?: TranslationsOptions;
 }
 
 export interface IndexingOptions {
@@ -129,6 +160,7 @@ export default function (userOptions?: DeepPartial<Options>) {
             resetStyles: ui.resetStyles,
             bundlePath: site.url(posix.join(indexing.bundleDirectory, "/")),
             baseUrl: site.url("/"),
+            translations: ui.translations,
           };
           const init = document.createElement("script");
           init.setAttribute("type", "text/javascript");
