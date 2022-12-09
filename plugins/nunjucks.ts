@@ -192,6 +192,10 @@ export default function (userOptions?: DeepPartial<Options>) {
       env.addExtension(name, fn);
     }
 
+    site.hooks.addNunjucksPlugin = (name, fn) => {
+      env.addExtension(name, fn);
+    };
+
     const engine = new NunjucksEngine(env, site.src());
 
     site.loadPages(extensions.pages, loader, engine);

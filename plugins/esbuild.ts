@@ -142,6 +142,10 @@ export default function (userOptions?: Partial<Options>) {
     };
     options.options.plugins?.unshift(lumeLoaderPlugin);
 
+    site.hooks.addEsbuildPlugin = (plugin) => {
+      options.options.plugins?.push(plugin);
+    };
+
     /** Run esbuild and returns the output files */
     async function runEsbuild(
       pages: Page[],
