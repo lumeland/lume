@@ -86,10 +86,20 @@ export default function (userOptions?: DeepPartial<Options>) {
       Array.isArray(plugin) ? engine.use(...plugin) : engine.use(plugin)
     );
 
+    // Hook to add markdown-it plugins
+    site.hooks.addMarkdownItPlugin = (plugin, options) => {
+      engine.use(plugin, options);
+    };
+
     // Register custom rules
     for (const [name, rule] of Object.entries(options.rules)) {
       engine.renderer.rules[name] = rule;
     }
+
+    // Hook to add custom rules
+    site.hooks.addMarkdownItRule = (name, rule) => {
+      engine.renderer.rules[name] = rule;
+    };
 
     // Load the pages
     site.loadPages(options.extensions, loader, new MarkdownEngine(engine));

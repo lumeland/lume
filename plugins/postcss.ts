@@ -60,6 +60,10 @@ export default function (userOptions?: Partial<Options>) {
     // @ts-ignore: Argument of type 'unknown[]' is not assignable to parameter of type 'AcceptedPlugin[]'.
     const runner = postcss(plugins);
 
+    site.hooks.addPostcssPlugin = (plugin) => {
+      runner.use(plugin);
+    };
+
     site.loadAssets(options.extensions);
     site.process(options.extensions, postCss);
     site.filter("postcss", filter as Helper, true);

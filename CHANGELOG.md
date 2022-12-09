@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
+- Implemented `hooks` [#329].
+  - `addMarkdownItPlugin(plugin, options)`
+  - `addMarkdownItRule(name, rule)`
+  - `addPostcssPlugin(plugin)`
 - New `components` option to MDX plugin.
 - New plugin `filter_pages` [#254].
 - Added `translations` option for `pagefind` plugin.
@@ -1969,6 +1973,7 @@ The first version.
 [#324]: https://github.com/lumeland/lume/issues/324
 [#327]: https://github.com/lumeland/lume/issues/327
 [#328]: https://github.com/lumeland/lume/issues/328
+[#329]: https://github.com/lumeland/lume/issues/329
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.13.2...HEAD
 [1.13.2]: https://github.com/lumeland/lume/compare/v1.13.1...v1.13.2

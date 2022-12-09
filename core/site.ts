@@ -133,6 +133,10 @@ export default class Site {
   /** Global components shared by all templates */
   globalComponents: Components = new Map();
 
+  /** Hooks installed by the plugins */
+  // deno-lint-ignore no-explicit-any
+  hooks: Record<string, (...args: any[]) => void> = {};
+
   /** The generated pages are stored here */
   readonly pages: Page[] = [];
 
