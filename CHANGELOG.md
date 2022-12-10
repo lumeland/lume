@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - `addMarkdownItPlugin(plugin, options)`
   - `addMarkdownItRule(name, rule)`
   - `addPostcssPlugin(plugin)`
+  - `addEsbuildPlugin(plugin)`
+  - `addNunjucksPlugin(name, fn)`
 - New `components` option to MDX plugin.
 - New plugin `filter_pages` [#254].
 - Added `translations` option for `pagefind` plugin.
