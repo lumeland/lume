@@ -72,7 +72,8 @@ snapshot[`slugify_urls plugin 3`] = `
 
 snapshot[`slugify_urls plugin 4`] = `
 {
-  content: "<p>Page 2</p>
+  content: "<!DOCTYPE html>
+<p>Page 2</p>
 ",
   data: {
     content: "Page 2
@@ -104,7 +105,8 @@ snapshot[`slugify_urls plugin 4`] = `
 
 snapshot[`slugify_urls plugin 5`] = `
 {
-  content: "<p>Page 1</p>
+  content: "<!DOCTYPE html>
+<p>Page 1</p>
 ",
   data: {
     content: "Page 1
@@ -136,7 +138,8 @@ snapshot[`slugify_urls plugin 5`] = `
 
 snapshot[`slugify_urls plugin 6`] = `
 {
-  content: "Filloas con nocilla",
+  content: "<!DOCTYPE html>
+Filloas con nocilla",
   data: {
     content: "Filloas con nocilla",
     date: 1970-01-01T00:00:00.000Z,
@@ -166,7 +169,8 @@ snapshot[`slugify_urls plugin 6`] = `
 
 snapshot[`slugify_urls plugin 7`] = `
 {
-  content: "Foo",
+  content: "<!DOCTYPE html>
+Foo",
   data: {
     content: "Foo",
     date: 1970-01-01T00:00:00.000Z,
@@ -196,7 +200,8 @@ snapshot[`slugify_urls plugin 7`] = `
 
 snapshot[`slugify_urls plugin 8`] = `
 {
-  content: "<p>Page 3</p>
+  content: "<!DOCTYPE html>
+<p>Page 3</p>
 ",
   data: {
     content: "Page 3
@@ -228,7 +233,8 @@ snapshot[`slugify_urls plugin 8`] = `
 
 snapshot[`slugify_urls plugin 9`] = `
 {
-  content: "<p>Page 4</p>
+  content: "<!DOCTYPE html>
+<p>Page 4</p>
 ",
   data: {
     content: "Page 4

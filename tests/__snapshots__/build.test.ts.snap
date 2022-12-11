@@ -72,7 +72,8 @@ snapshot[`build a simple site 3`] = `
 
 snapshot[`build a simple site 4`] = `
 {
-  content: "<h1>Welcome</h1>
+  content: "<!DOCTYPE html>
+<h1>Welcome</h1>
 ",
   data: {
     content: "# Welcome
@@ -105,7 +106,8 @@ snapshot[`build a simple site 4`] = `
 
 snapshot[`build a simple site 5`] = `
 {
-  content: "<h1>Welcome</h1>
+  content: "<!DOCTYPE html>
+<h1>Welcome</h1>
 ",
   data: {
     content: "# Welcome

@@ -89,7 +89,8 @@ snapshot[`Build a mdx site 3`] = `
 
 snapshot[`Build a mdx site 4`] = `
 {
-  content: '<header><h1>Hello world</h1><p>This is a description</p></header>
+  content: '<!DOCTYPE html>
+<header><h1>Hello world</h1><p>This is a description</p></header>
 <h2>Hello world</h2>
 <p>This is a markdown file with the title <strong>Hello world</strong>.</p>
 <img src="https://via.placeholder.com/350x150" alt="foo" />',

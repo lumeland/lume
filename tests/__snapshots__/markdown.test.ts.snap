@@ -72,7 +72,8 @@ snapshot[`Build a markdown site 3`] = `
 
 snapshot[`Build a markdown site 4`] = `
 {
-  content: "<h1>Normal page</h1>
+  content: "<!DOCTYPE html>
+<h1>Normal page</h1>
 <ul>
 <li>List</li>
 <li>Of</li>
@@ -114,7 +115,8 @@ snapshot[`Build a markdown site 4`] = `
 
 snapshot[`Build a markdown site 5`] = `
 {
-  content: \`<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+  content: \`<!DOCTYPE html>
+<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
 <p>belong to the previous footnote.</p>
 <h4 class="mt-3">Footnotes</h4>
 <section class="footnotes">
@@ -165,7 +167,8 @@ belong to the previous footnote.
 
 snapshot[`Build a markdown site 6`] = `
 {
-  content: '<p><a href="#foo" target="_blank">link</a></p>
+  content: '<!DOCTYPE html>
+<p><a href="#foo" target="_blank">link</a></p>
 ',
   data: {
     content: "[link](#foo){target=_blank}
@@ -197,7 +200,8 @@ snapshot[`Build a markdown site 6`] = `
 
 snapshot[`Build a markdown site 7`] = `
 {
-  content: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
+  content: '<!DOCTYPE html>
+<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
 </code></pre>
 <pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
 </code></pre>
@@ -238,7 +242,8 @@ snapshot[`Build a markdown site 7`] = `
 
 snapshot[`Build a markdown site 8`] = `
 {
-  content: "<!-- deno-fmt-ignore-file -->
+  content: "<!DOCTYPE html>
+<!-- deno-fmt-ignore-file -->
 <dl>
 <dt>This is a definition title</dt>
 <dd>And this the description</dd>
@@ -283,7 +288,8 @@ Other title
 
 snapshot[`Build a markdown site 9`] = `
 {
-  content: '<h1>Module <strong>example</strong></h1>
+  content: '<!DOCTYPE html>
+<h1>Module <strong>example</strong></h1>
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
@@ -322,7 +328,8 @@ snapshot[`Build a markdown site 9`] = `
 
 snapshot[`Build a markdown site 10`] = `
 {
-  content: '<h1>Module example</h1>
+  content: '<!DOCTYPE html>
+<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>
 ',
   data: {
@@ -356,7 +363,8 @@ snapshot[`Build a markdown site 10`] = `
 
 snapshot[`Build a markdown site 11`] = `
 {
-  content: '<!-- deno-fmt-ignore-file -->
+  content: '<!DOCTYPE html>
+<!-- deno-fmt-ignore-file -->
 <h1></h1>
 <p>Foo</p>
 <ul>
@@ -478,7 +486,8 @@ snapshot[`Build a markdown with hooks 3`] = `
 
 snapshot[`Build a markdown with hooks 4`] = `
 {
-  content: "<h1>Normal page</h1>
+  content: "<!DOCTYPE html>
+<h1>Normal page</h1>
 <ul>
 <li>List</li>
 <li>Of</li>
@@ -520,7 +529,8 @@ snapshot[`Build a markdown with hooks 4`] = `
 
 snapshot[`Build a markdown with hooks 5`] = `
 {
-  content: \`<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+  content: \`<!DOCTYPE html>
+<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
 <p>belong to the previous footnote.</p>
 <h4 class="mt-3">Footnotes</h4>
 <section class="footnotes">
@@ -571,7 +581,8 @@ belong to the previous footnote.
 
 snapshot[`Build a markdown with hooks 6`] = `
 {
-  content: '<p><a href="#foo" target="_blank">link</a></p>
+  content: '<!DOCTYPE html>
+<p><a href="#foo" target="_blank">link</a></p>
 ',
   data: {
     content: "[link](#foo){target=_blank}
@@ -603,7 +614,8 @@ snapshot[`Build a markdown with hooks 6`] = `
 
 snapshot[`Build a markdown with hooks 7`] = `
 {
-  content: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
+  content: '<!DOCTYPE html>
+<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
 </code></pre>
 <pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
 </code></pre>
@@ -644,7 +656,8 @@ snapshot[`Build a markdown with hooks 7`] = `
 
 snapshot[`Build a markdown with hooks 8`] = `
 {
-  content: "<!-- deno-fmt-ignore-file -->
+  content: "<!DOCTYPE html>
+<!-- deno-fmt-ignore-file -->
 <dl>
 <dt>This is a definition title</dt>
 <dd>And this the description</dd>
@@ -689,7 +702,8 @@ Other title
 
 snapshot[`Build a markdown with hooks 9`] = `
 {
-  content: '<h1>Module <strong>example</strong></h1>
+  content: '<!DOCTYPE html>
+<h1>Module <strong>example</strong></h1>
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
@@ -728,7 +742,8 @@ snapshot[`Build a markdown with hooks 9`] = `
 
 snapshot[`Build a markdown with hooks 10`] = `
 {
-  content: '<h1>Module example</h1>
+  content: '<!DOCTYPE html>
+<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>
 ',
   data: {
@@ -762,7 +777,8 @@ snapshot[`Build a markdown with hooks 10`] = `
 
 snapshot[`Build a markdown with hooks 11`] = `
 {
-  content: '<!-- deno-fmt-ignore-file -->
+  content: '<!DOCTYPE html>
+<!-- deno-fmt-ignore-file -->
 <h1></h1>
 <p>Foo</p>
 <ul>

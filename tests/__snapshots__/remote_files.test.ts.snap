@@ -91,7 +91,8 @@ snapshot[`render remote files 3`] = `
 
 snapshot[`render remote files 4`] = `
 {
-  content: "<h1>Remote layout</h1>
+  content: "<!DOCTYPE html>
+<h1>Remote layout</h1>
 <h2>Remote title</h2>
 
 &lt;p&gt;Hello world&lt;/p&gt;

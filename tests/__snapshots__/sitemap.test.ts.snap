@@ -156,7 +156,8 @@ snapshot[`Sitemap plugin 5`] = `
 
 snapshot[`Sitemap plugin 6`] = `
 {
-  content: "Content of Page 5",
+  content: "<!DOCTYPE html>
+Content of Page 5",
   data: {
     content: "Content of Page 5",
     date: 1970-01-01T00:00:00.000Z,
@@ -204,7 +205,8 @@ snapshot[`Sitemap plugin 6`] = `
 
 snapshot[`Sitemap plugin 7`] = `
 {
-  content: "Content of Page 2",
+  content: "<!DOCTYPE html>
+Content of Page 2",
   data: {
     colors: [
       "#ff0000",
@@ -283,7 +285,8 @@ snapshot[`Sitemap plugin 7`] = `
 
 snapshot[`Sitemap plugin 8`] = `
 {
-  content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
+  content: "<!DOCTYPE html>
+Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
   data: {
     colors: [
       "#ff0000",
@@ -362,7 +365,8 @@ snapshot[`Sitemap plugin 8`] = `
 
 snapshot[`Sitemap plugin 9`] = `
 {
-  content: "<p>Content of Page 6</p>
+  content: "<!DOCTYPE html>
+<p>Content of Page 6</p>
 ",
   data: {
     colors: [
@@ -523,7 +527,8 @@ snapshot[`Sitemap plugin 10`] = `
 
 snapshot[`Sitemap plugin 11`] = `
 {
-  content: "Content of Page 7",
+  content: "<!DOCTYPE html>
+Content of Page 7",
   data: {
     colors: [
       "#ff0000",

@@ -72,7 +72,8 @@ snapshot[`Build a markdown site 3`] = `
 
 snapshot[`Build a markdown site 4`] = `
 {
-  content: "<h1>Normal page</h1>
+  content: "<!DOCTYPE html>
+<h1>Normal page</h1>
 <ul>
 <li>List</li>
 <li>Of</li>
@@ -113,7 +114,8 @@ snapshot[`Build a markdown site 4`] = `
 
 snapshot[`Build a markdown site 5`] = `
 {
-  content: '<p><a href="#foo">link</a>{target=_blank}</p>',
+  content: '<!DOCTYPE html>
+<p><a href="#foo">link</a>{target=_blank}</p>',
   data: {
     content: "[link](#foo){target=_blank}
 ",
@@ -144,7 +146,8 @@ snapshot[`Build a markdown site 5`] = `
 
 snapshot[`Build a markdown site 6`] = `
 {
-  content: '<pre><code class="language-html">&#x3C;p>Example&#x3C;/p>
+  content: '<!DOCTYPE html>
+<pre><code class="language-html">&#x3C;p>Example&#x3C;/p>
 </code></pre>
 <pre><code>&#x3C;p>Example without color highlight&#x3C;/p>
 </code></pre>',
@@ -184,7 +187,8 @@ snapshot[`Build a markdown site 6`] = `
 
 snapshot[`Build a markdown site 7`] = `
 {
-  content: "<!-- deno-fmt-ignore-file -->
+  content: "<!DOCTYPE html>
+<!-- deno-fmt-ignore-file -->
 <p>This is a definition title
 : And this the description
 : Other description</p>
@@ -226,7 +230,8 @@ Other title
 
 snapshot[`Build a markdown site 8`] = `
 {
-  content: '<h1><p>Module <strong>example</strong></p></h1>
+  content: '<!DOCTYPE html>
+<h1><p>Module <strong>example</strong></p></h1>
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
@@ -265,7 +270,8 @@ snapshot[`Build a markdown site 8`] = `
 
 snapshot[`Build a markdown site 9`] = `
 {
-  content: '<h1>Module example</h1>
+  content: '<!DOCTYPE html>
+<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>',
   data: {
     content: undefined,
@@ -298,7 +304,8 @@ snapshot[`Build a markdown site 9`] = `
 
 snapshot[`Build a markdown site 10`] = `
 {
-  content: '<!-- deno-fmt-ignore-file -->
+  content: '<!DOCTYPE html>
+<!-- deno-fmt-ignore-file -->
 <h1></h1>
 <p>Foo</p>
 <ul>

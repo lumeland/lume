@@ -87,7 +87,8 @@ snapshot[`Sheets plugin 3`] = `
 
 snapshot[`Sheets plugin 4`] = `
 {
-  content: "<body>
+  content: "<!DOCTYPE html>
+<body>
 
   <table>
     <tr>

@@ -72,7 +72,8 @@ snapshot[`render order property 3`] = `
 
 snapshot[`render order property 4`] = `
 {
-  content: "<p>Hello world</p>
+  content: "<!DOCTYPE html>
+<p>Hello world</p>
 ",
   data: {
     content: "Hello world
@@ -104,7 +105,8 @@ snapshot[`render order property 4`] = `
 
 snapshot[`render order property 5`] = `
 {
-  content: "11",
+  content: "<!DOCTYPE html>
+11",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -135,7 +137,8 @@ snapshot[`render order property 5`] = `
 
 snapshot[`render order property 6`] = `
 {
-  content: "12",
+  content: "<!DOCTYPE html>
+12",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -166,7 +169,8 @@ snapshot[`render order property 6`] = `
 
 snapshot[`render order property 7`] = `
 {
-  content: "13",
+  content: "<!DOCTYPE html>
+13",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -197,7 +201,8 @@ snapshot[`render order property 7`] = `
 
 snapshot[`render order property 8`] = `
 {
-  content: "14",
+  content: "<!DOCTYPE html>
+14",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -228,7 +233,8 @@ snapshot[`render order property 8`] = `
 
 snapshot[`render order property 9`] = `
 {
-  content: "15",
+  content: "<!DOCTYPE html>
+15",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -259,7 +265,8 @@ snapshot[`render order property 9`] = `
 
 snapshot[`render order property 10`] = `
 {
-  content: "16",
+  content: "<!DOCTYPE html>
+16",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -290,7 +297,8 @@ snapshot[`render order property 10`] = `
 
 snapshot[`render order property 11`] = `
 {
-  content: "17",
+  content: "<!DOCTYPE html>
+17",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -321,7 +329,8 @@ snapshot[`render order property 11`] = `
 
 snapshot[`render order property 12`] = `
 {
-  content: "18",
+  content: "<!DOCTYPE html>
+18",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -352,7 +361,8 @@ snapshot[`render order property 12`] = `
 
 snapshot[`render order property 13`] = `
 {
-  content: "19",
+  content: "<!DOCTYPE html>
+19",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -383,7 +393,8 @@ snapshot[`render order property 13`] = `
 
 snapshot[`render order property 14`] = `
 {
-  content: "20",
+  content: "<!DOCTYPE html>
+20",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -414,7 +425,8 @@ snapshot[`render order property 14`] = `
 
 snapshot[`render order property 15`] = `
 {
-  content: "1",
+  content: "<!DOCTYPE html>
+1",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -444,7 +456,8 @@ snapshot[`render order property 15`] = `
 
 snapshot[`render order property 16`] = `
 {
-  content: "2",
+  content: "<!DOCTYPE html>
+2",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -474,7 +487,8 @@ snapshot[`render order property 16`] = `
 
 snapshot[`render order property 17`] = `
 {
-  content: "3",
+  content: "<!DOCTYPE html>
+3",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -504,7 +518,8 @@ snapshot[`render order property 17`] = `
 
 snapshot[`render order property 18`] = `
 {
-  content: "4",
+  content: "<!DOCTYPE html>
+4",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -534,7 +549,8 @@ snapshot[`render order property 18`] = `
 
 snapshot[`render order property 19`] = `
 {
-  content: "5",
+  content: "<!DOCTYPE html>
+5",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -564,7 +580,8 @@ snapshot[`render order property 19`] = `
 
 snapshot[`render order property 20`] = `
 {
-  content: "6",
+  content: "<!DOCTYPE html>
+6",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -594,7 +611,8 @@ snapshot[`render order property 20`] = `
 
 snapshot[`render order property 21`] = `
 {
-  content: "7",
+  content: "<!DOCTYPE html>
+7",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -624,7 +642,8 @@ snapshot[`render order property 21`] = `
 
 snapshot[`render order property 22`] = `
 {
-  content: "8",
+  content: "<!DOCTYPE html>
+8",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -654,7 +673,8 @@ snapshot[`render order property 22`] = `
 
 snapshot[`render order property 23`] = `
 {
-  content: "9",
+  content: "<!DOCTYPE html>
+9",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -684,7 +704,8 @@ snapshot[`render order property 23`] = `
 
 snapshot[`render order property 24`] = `
 {
-  content: "10",
+  content: "<!DOCTYPE html>
+10",
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -714,7 +735,8 @@ snapshot[`render order property 24`] = `
 
 snapshot[`render order property 25`] = `
 {
-  content: '{"page":1,"totalPages":3,"totalResults":11,"previous":null,"next":"./page-2/index.html"}',
+  content: '<!DOCTYPE html>
+{"page":1,"totalPages":3,"totalResults":11,"previous":null,"next":"./page-2/index.html"}',
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -754,7 +776,8 @@ snapshot[`render order property 25`] = `
 
 snapshot[`render order property 26`] = `
 {
-  content: '{"page":2,"totalPages":3,"totalResults":11,"previous":"./page-1/index.html","next":"./page-3/index.html"}',
+  content: '<!DOCTYPE html>
+{"page":2,"totalPages":3,"totalResults":11,"previous":"./page-1/index.html","next":"./page-3/index.html"}',
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -794,7 +817,8 @@ snapshot[`render order property 26`] = `
 
 snapshot[`render order property 27`] = `
 {
-  content: '{"page":3,"totalPages":3,"totalResults":11,"previous":"./page-2/index.html","next":null}',
+  content: '<!DOCTYPE html>
+{"page":3,"totalPages":3,"totalResults":11,"previous":"./page-2/index.html","next":null}',
   data: {
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,

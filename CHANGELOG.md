@@ -34,6 +34,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
       description: "=intro.text" # Alias to the intro.text value
     ```
 
+### Changed
+- The `<!DOCTYPE html>` declaration is added automatically to HTML pages if the Doctype is missing [#334].
+
 ### Removed
 - `languages` option of `prism` plugin. Now you need to import the languages from `npm`.
 
@@ -1976,6 +1979,7 @@ The first version.
 [#327]: https://github.com/lumeland/lume/issues/327
 [#328]: https://github.com/lumeland/lume/issues/328
 [#329]: https://github.com/lumeland/lume/issues/329
+[#334]: https://github.com/lumeland/lume/issues/334
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.13.2...HEAD
 [1.13.2]: https://github.com/lumeland/lume/compare/v1.13.1...v1.13.2
