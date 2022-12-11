@@ -146,6 +146,18 @@ export default class Renderer {
         async ([page, content]) => {
           try {
             page.content = await this.#renderLayout(page, content);
+
+            // Ensure all HTML pages have the DOCTYPE declaration
+            if (
+              page.outputPath?.endsWith(".html") &&
+              typeof page.content === "string"
+            ) {
+              const trim = page.content.trim();
+
+              if (trim && !trim.match(/^<!DOCTYPE\s/i)) {
+                page.content = `<!DOCTYPE html>\n${page.content}`;
+              }
+            }
           } catch (cause) {
             throw new Exception("Error rendering the layout of this page", {
               cause,

@@ -620,17 +620,6 @@ export default class Site {
       }),
     );
 
-    // Ensure all HTML pages have a doctype
-    for (const page of this.pages) {
-      if (
-        page.outputPath?.endsWith(".html") &&
-        typeof page.content === "string" &&
-        !page.content.trimStart().match(/^<!DOCTYPE\s/i)
-      ) {
-        page.content = `<!DOCTYPE html>\n${page.content}`;
-      }
-    }
-
     if (
       await this.events.dispatchEvent({
         type: "afterRender",
