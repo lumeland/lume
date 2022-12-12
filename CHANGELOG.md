@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.14.0] - 2022-12-12
 ### Added
 - Implemented `hooks` [#329].
   - `addMarkdownItPlugin(plugin, options)`
@@ -1981,7 +1981,7 @@ The first version.
 [#329]: https://github.com/lumeland/lume/issues/329
 [#334]: https://github.com/lumeland/lume/issues/334
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.13.2...HEAD
+[1.14.0]: https://github.com/lumeland/lume/compare/v1.13.2...v1.14.0
 [1.13.2]: https://github.com/lumeland/lume/compare/v1.13.1...v1.13.2
 [1.13.1]: https://github.com/lumeland/lume/compare/v1.13.0...v1.13.1
 [1.13.0]: https://github.com/lumeland/lume/compare/v1.12.1...v1.13.0
