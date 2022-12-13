@@ -1,4 +1,4 @@
-import { Liquid } from "../deps/liquid.ts";
+import { Liquid, Tag, toPromise, Value } from "../deps/liquid.ts";
 import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
@@ -12,9 +12,12 @@ import type {
   Site,
 } from "../core.ts";
 import type {
+  Context,
+  Emitter,
   LiquidOptions,
-  TagImplOptions,
+  TagToken,
   Template,
+  TopLevelToken,
 } from "../deps/liquid.ts";
 
 export interface Options {
@@ -138,16 +141,22 @@ export default function (userOptions?: DeepPartial<Options>) {
  * Create a custom tag
  * https://liquidjs.com/tutorials/register-filters-tags.html#Register-Tags
  */
-function createCustomTag(fn: Helper): TagImplOptions {
-  return {
-    parse(tagToken) {
-      this.str = tagToken.args;
-    },
+function createCustomTag(fn: Helper): Tag {
+  return class extends Tag {
+    #value: Value;
 
-    async render(ctx) {
-      // @ts-ignore: No types for Liquid
-      const str = await this.liquid.evalValue(this.str, ctx);
-      return fn(str);
-    },
+    constructor(
+      token: TagToken,
+      remainTokens: TopLevelToken[],
+      liquid: Liquid,
+    ) {
+      super(token, remainTokens, liquid);
+      this.#value = new Value(token.args, liquid);
+    }
+
+    async render(ctx: Context, emitter: Emitter) {
+      const str = await toPromise(this.#value.value(ctx, false));
+      emitter.write(await fn(str));
+    }
   };
 }

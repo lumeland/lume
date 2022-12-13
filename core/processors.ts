@@ -45,9 +45,7 @@ export default class Processors {
 
     for (const [process, { extensions, multiple }] of this.processors) {
       if (multiple) {
-        const filtered = pages.filter((page) => () =>
-          pageMatches(extensions, page)
-        );
+        const filtered = pages.filter((page) => pageMatches(extensions, page));
         if (await (process as MultiProcessor)(filtered, pages) === false) {
           removed.push(...filtered);
         }
