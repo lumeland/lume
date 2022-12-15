@@ -58,7 +58,7 @@ export function log(...lines: (string | undefined)[]) {
 
 /** Check the compatibility with the current Deno version */
 export function checkDenoVersion(): void {
-  const minimum = "1.25.4";
+  const minimum = "1.29.0";
   const current = Deno.version.deno;
 
   if (current < minimum) {
