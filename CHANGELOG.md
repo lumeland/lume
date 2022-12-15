@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.14.2] - 2022-12-15
 ### Fixed
 - `Deno.spawn` was removed in Deno 1.29 [#338].
+- Updated dependencies: `std`, `esbuild`, `mdx`.
 
 ## [1.14.1] - 2022-12-13
 ### Fixed

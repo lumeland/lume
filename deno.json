@@ -1,4 +1,5 @@
 {
+  "lock": false,
   "tasks": {
     "test": "TZ=Z deno test --unstable -A --no-check",
     "test:update": "deno task test -- --update",
