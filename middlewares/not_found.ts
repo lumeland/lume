@@ -59,7 +59,10 @@ async function getDirectoryIndex(root: string, file: string): Promise<string> {
       const base = posix.dirname(file);
       for await (const info of Deno.readDir(join(root, base))) {
         info.isDirectory
-          ? folders.push([posix.join(base, `${info.name}/`), `📁 ${info.name}/`])
+          ? folders.push([
+            posix.join(base, `${info.name}/`),
+            `📁 ${info.name}/`,
+          ])
           : files.push([
             posix.join(base, info.name === "index.html" ? "./" : info.name),
             `📄 ${info.name}`,

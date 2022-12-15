@@ -179,7 +179,8 @@ export default function (userOptions?: DeepPartial<Options>) {
         options.indexing,
         site.dest(),
       );
-      const { code, stdout, stderr } = await Deno.spawn(binary, { args });
+      const { code, stdout, stderr } = await new Deno.Command(binary, { args })
+        .output();
       if (code !== 0) {
         throw new Error(
           `Pagefind exited with code ${code}
