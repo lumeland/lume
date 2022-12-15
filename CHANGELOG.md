@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Fixed
+- Updated dependencies: `pagefind`.
+
 ## [1.14.2] - 2022-12-15
 ### Fixed
 - `Deno.spawn` was removed in Deno 1.29 [#338].
@@ -1993,6 +1997,7 @@ The first version.
 [#334]: https://github.com/lumeland/lume/issues/334
 [#338]: https://github.com/lumeland/lume/issues/338
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.14.2...HEAD
 [1.14.2]: https://github.com/lumeland/lume/compare/v1.14.1...v1.14.2
 [1.14.1]: https://github.com/lumeland/lume/compare/v1.14.0...v1.14.1
 [1.14.0]: https://github.com/lumeland/lume/compare/v1.13.2...v1.14.0
