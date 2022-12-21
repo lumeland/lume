@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Changed
+- `denosass` library has been replaced with [@lumeland/sass](https://www.npmjs.com/package/@lumeland/sass) NPM package
+  (the same code as official NPM Sass package, but with a couple of tweaks to make it work on Deno).
+
 ### Fixed
 - Updated dependencies: `pagefind`.
 

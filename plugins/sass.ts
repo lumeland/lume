@@ -1,12 +1,12 @@
 import { merge, replaceExtension } from "../core/utils.ts";
-import denosass from "../deps/denosass.ts";
+import Sass from "../deps/sass.ts";
 import { posix, toFileUrl } from "../deps/path.ts";
 import { Page } from "../core/filesystem.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 
 import type { Site } from "../core.ts";
 
-type SassOptions = Omit<denosass.StringOptions<"sync">, "url" | "syntax">;
+type SassOptions = Omit<Sass.StringOptions<"sync">, "url" | "syntax">;
 
 export interface Options {
   /** Extensions processed by this plugin */
@@ -47,7 +47,7 @@ export default function (userOptions?: Partial<Options>) {
     function sass(page: Page) {
       const { content, filename, enableSourceMap } = prepareAsset(site, page);
 
-      const sassOptions: denosass.StringOptions<"sync"> = {
+      const sassOptions: Sass.StringOptions<"sync"> = {
         ...options.options,
         sourceMap: enableSourceMap,
         loadPaths: [...includes, posix.dirname(filename)],
@@ -56,8 +56,9 @@ export default function (userOptions?: Partial<Options>) {
         url: toFileUrl(filename),
       };
 
-      const output = denosass.compileString(content, sassOptions);
+      const output = Sass.compileString(content, sassOptions);
 
+      // @ts-ignore: sourceMap is not in the type definition
       saveAsset(site, page, output.css, output.sourceMap);
       page.data.url = replaceExtension(page.data.url, ".css");
     }
