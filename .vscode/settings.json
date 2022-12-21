@@ -1,4 +1,5 @@
 {
+  "editor.inlayHints.enabled": "off",
   "deno.enable": true,
   "deno.unstable": true,
   "deno.suggest.imports.hosts": {
