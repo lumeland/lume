@@ -69,14 +69,12 @@ async function saveArchetype(archetype: Archetype) {
     );
   }
 
-  if (path.endsWith(".md")) {
-    const { content: body, ...frontmatter } = content;
+  const { content: body, ...frontmatter } = content;
 
-    return await saveFile(
-      path,
-      `---\n${stringify(frontmatter)}---\n${body}`,
-    );
-  }
+  return await saveFile(
+    path,
+    `---\n${stringify(frontmatter)}---\n${body}`,
+  );
 }
 
 async function saveFile(path: string, content: string | Uint8Array) {
