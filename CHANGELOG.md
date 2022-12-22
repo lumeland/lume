@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - Archetypes, that allows to create templates used when creating new content [#337].
+- Third argument to `site.data()` to customize the data path [#339].
 
 ### Changed
 - `denosass` library has been replaced with [@lumeland/sass](https://www.npmjs.com/package/@lumeland/sass) NPM package
@@ -2004,6 +2005,7 @@ The first version.
 [#334]: https://github.com/lumeland/lume/issues/334
 [#337]: https://github.com/lumeland/lume/issues/337
 [#338]: https://github.com/lumeland/lume/issues/338
+[#339]: https://github.com/lumeland/lume/issues/339
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.14.2...HEAD
 [1.14.2]: https://github.com/lumeland/lume/compare/v1.14.1...v1.14.2

@@ -128,7 +128,7 @@ export default class Site {
   writer: Writer;
 
   /** Global data shared by all pages */
-  globalData: Data = {};
+  globalData = new Map<string, Data>();
 
   /** Global components shared by all templates */
   globalComponents: Components = new Map();
@@ -399,8 +399,10 @@ export default class Site {
   }
 
   /** Register extra data accessible by the layouts */
-  data(name: string, data: unknown): this {
-    this.globalData[name] = data;
+  data(name: string, value: unknown, path = "/"): this {
+    const data = this.globalData.get(path) || {};
+    data[name] = value;
+    this.globalData.set(path, data);
     return this;
   }
 

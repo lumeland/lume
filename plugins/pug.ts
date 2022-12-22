@@ -125,7 +125,7 @@ export default function (userOptions?: DeepPartial<Options>) {
     site.filter("pug", filter as Helper, true);
 
     function filter(string: string, data?: Data) {
-      return engine.render(string, { ...site.globalData, ...data });
+      return engine.render(string, { ...site.globalData.get("/"), ...data });
     }
   };
 }

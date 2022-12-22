@@ -11,6 +11,9 @@ Deno.test("Load the pages of a site", async (t) => {
   site.loadAssets([".png"], binaryLoader);
   site.copy("static.yml");
   site.loadAssets([".css"]);
+  site.data("tags", "pages");
+  site.data("tags", "sub-pages", "/pages");
+  site.data("title", "Page 7", "/pages/subpage/page7.tmpl.js");
 
   await build(site);
   await assertSiteSnapshot(t, site);

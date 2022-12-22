@@ -184,7 +184,6 @@ Content of Page 5",
     search: Search {},
     site: "Default site name",
     tags: [
-      "pages",
     ],
     title: "Page 5",
     url: "/page5/",
@@ -263,7 +262,6 @@ Content of Page 2",
     search: Search {},
     site: "Folder overrided site name",
     tags: [
-      "pages",
       "sub-pages",
     ],
     title: "Page 2",
@@ -343,7 +341,6 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
     search: Search {},
     site: "Overrided site name",
     tags: [
-      "pages",
       "sub-pages",
     ],
     title: "Page 4",
@@ -425,7 +422,6 @@ snapshot[`Sitemap plugin 9`] = `
     search: Search {},
     site: "Folder overrided site name",
     tags: [
-      "pages",
       "sub-pages",
       "page6",
     ],
@@ -505,7 +501,6 @@ snapshot[`Sitemap plugin 10`] = `
     search: Search {},
     site: "Folder overrided site name",
     tags: [
-      "pages",
       "sub-pages",
     ],
     title: "Page 3",
@@ -585,12 +580,10 @@ Content of Page 7",
     search: Search {},
     site: "Folder overrided site name",
     tags: [
-      "pages",
       "sub-pages",
       "sub-sub-pages",
       "page7",
     ],
-    title: "Page 7",
     url: "/pages/subpage/page7/",
   },
   dest: {

@@ -107,14 +107,16 @@ export default class Source {
 
   /** Return the site content */
   getContent(
-    parentData: Data,
+    globalData: Map<string, Data>,
     parentComponents: Components,
     pageFilters: ((page: Page) => boolean)[],
   ): [Page[], StaticFile[]] {
     const [pages, staticFiles] = this.#getContent(
       this.root,
-      parentData,
+      {},
       parentComponents,
+      "/",
+      globalData,
     );
 
     return [
@@ -130,13 +132,14 @@ export default class Source {
     directory: Directory,
     parentData: Data,
     parentComponents: Components,
-    parentPath = "/",
+    parentPath: string,
+    globalData: Map<string, Data>,
   ): [Page[], StaticFile[]] {
     const pages: Page[] = [];
     const staticFiles: StaticFile[] = [];
 
     // Data cascade from the parent directory
-    const data = this.pagePreparer.getData(directory, parentData);
+    const data = this.pagePreparer.getData(directory, parentData, globalData);
     const path = posix.join(parentPath, directory.src.slug);
 
     // Setup the components
@@ -157,7 +160,7 @@ export default class Source {
     // Apply data cascade and dest path to the pages
     pages.push(
       ...[...directory.pages.values()].map((page) => {
-        page.data = this.pagePreparer.getData(page, data);
+        page.data = this.pagePreparer.getData(page, data, globalData);
         page.data.url = this.pagePreparer.getUrl(page, path);
         page.data.date = this.pagePreparer.getDate(page);
         return page;
@@ -187,6 +190,7 @@ export default class Source {
         data,
         parentComponents,
         path,
+        globalData,
       );
 
       pages.push(...dirPages);

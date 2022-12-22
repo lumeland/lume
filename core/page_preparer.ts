@@ -129,7 +129,17 @@ export default class pagePreparer {
   }
 
   /** Return the data associated with a page or folder */
-  getData(entry: Page | Directory, parentData: Data): PageData {
+  getData(
+    entry: Page | Directory,
+    parentData: Data,
+    globalData?: Map<string, Data>,
+  ): PageData {
+    const global = globalData?.get(entry.src.path + (entry.src.ext || ""));
+
+    if (global) {
+      parentData = mergeData(parentData, global);
+    }
+
     const data = mergeData(parentData, entry.baseData);
 
     if (entry instanceof Page) {

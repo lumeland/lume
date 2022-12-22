@@ -1,5 +1,4 @@
 site: Default site name
-tags: pages
 
 mergedKeys:
   tags: stringArray

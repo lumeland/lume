@@ -67,7 +67,7 @@ export default function (userOptions?: Partial<Options>) {
 
   return (site: Site) => {
     // Configure the merged keys
-    const mergedKeys = site.globalData.mergedKeys || {};
+    const mergedKeys = site.globalData.get("/")?.mergedKeys || {};
     mergedKeys[options.name] = "object";
     site.data("mergedKeys", mergedKeys);
 
