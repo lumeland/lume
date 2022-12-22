@@ -6,6 +6,7 @@ import upgradeCommand from "./cli/upgrade.ts";
 import runCommand from "./cli/run.ts";
 import buildCommand from "./cli/build.ts";
 import importMapCommand from "./cli/import_map.ts";
+import newCommand from "./cli/new.ts";
 
 const init = new Command()
   .description("Create a config file for a new site.")
@@ -39,6 +40,15 @@ const importMap = new Command()
     "Name of the plugins installed, in order to configure the import_map.json and deno.json files",
   )
   .action(importMapCommand);
+
+const newFromArchetype = new Command()
+  .description("Create a new page from a archetype.")
+  .example(
+    "lume new post 'Post title'",
+    "Create a new post file using the _archetypes/post.ts archetype.",
+  )
+  // @ts-ignore: todo: fix this
+  .action(newCommand);
 
 const run = new Command()
   .description("Run one or more scripts from the config file.")
@@ -137,6 +147,7 @@ const lume = new Command()
     "Build and watch changes.",
   )
   .action(buildCommand)
+  .command("new <archetype> <arguments...>", newFromArchetype)
   .command("init", init)
   .command("upgrade", upgrade)
   .command("import-map", importMap)

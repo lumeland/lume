@@ -1,4 +1,4 @@
-import { concurrent } from "./utils.ts";
+import { concurrent, isGenerator } from "./utils.ts";
 import { Exception } from "./errors.ts";
 import { Page } from "./filesystem.ts";
 import { posix } from "../deps/path.ts";
@@ -304,19 +304,6 @@ export default class Renderer {
 
     return this.formats.search(path)?.engines;
   }
-}
-
-/**
- * Check if the content of a page is a generator.
- * Used to generate multiple pages
- */
-function isGenerator(content: unknown) {
-  if (typeof content !== "function") {
-    return false;
-  }
-
-  const name = content.constructor.name;
-  return (name === "GeneratorFunction" || name === "AsyncGeneratorFunction");
 }
 
 /** An interface used by all template engines */

@@ -294,3 +294,9 @@ export interface PageHelpers {
 
   [key: string]: Helper | undefined;
 }
+
+/** Definition used to create a new Page */
+export interface Archetype {
+  path: string;
+  content: string | Record<string, unknown> | Uint8Array;
+}
