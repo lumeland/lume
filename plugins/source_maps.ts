@@ -1,7 +1,7 @@
 import { isUrl, merge, normalizePath, read } from "../core/utils.ts";
 import { encode } from "../deps/base64.ts";
 import { Page } from "../core/filesystem.ts";
-import { basename, join, toFileUrl } from "../deps/path.ts";
+import { basename, fromFileUrl, join, toFileUrl } from "../deps/path.ts";
 
 import type { Site } from "../core.ts";
 
@@ -136,6 +136,11 @@ export function saveAsset(
     if (source.startsWith("deno:")) { // esbuild
       source = source.substring(5);
     }
+
+    if (source.startsWith("file:")) {
+      return fromFileUrl(source);
+    }
+
     if (isUrl(source)) {
       return source;
     }
