@@ -143,8 +143,8 @@ export function saveAsset(
     source = normalizePath(source);
 
     return source.startsWith(root)
-      ? toFileUrl(source).href
-      : toFileUrl(join(root, source)).href;
+      ? toFileUrl(decodeURIComponent(source)).href
+      : toFileUrl(decodeURIComponent(join(root, source))).href;
   }
 
   sourceMap.sources = sourceMap.sources.map(normalizeSource);
