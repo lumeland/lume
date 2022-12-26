@@ -11,10 +11,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - Archetypes, that allows to create templates used when creating new content [#337].
 - Third argument to `site.data()` to customize the data path [#339].
+- Improved the `relations` plugin:
+  - You can configure the key used to save the relations with `relationKey`.
+  - You can configure the key used to save the multiple relations with `pluralRelationKey`.
 
 ### Changed
 - `denosass` library has been replaced with [@lumeland/sass](https://www.npmjs.com/package/@lumeland/sass) NPM package
   (the same code as official NPM Sass package, but with a couple of tweaks to make it work on Deno).
+- BREAKING: The plugin `relations` accepts an object instead of an array to configure the foreign keys:
+  ```ts
+  //Before:
+  foreignKeys: {
+    post: ["post_id", "id"]
+  }
+  // Before
+  foreignKeys: {
+    post: { foreignKey: "post_id", idKey: "id" },
+  }
+  ```
 
 ### Fixed
 - Updated dependencies: `pagefind`.

@@ -2,6 +2,13 @@ import { merge } from "../core/utils.ts";
 
 import type { Data, Page, Site } from "../core.ts";
 
+interface ForeignKeyOptions {
+  foreignKey: string;
+  relationKey?: string;
+  pluralRelationKey?: string;
+  idKey?: string;
+}
+
 export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
@@ -13,7 +20,7 @@ export interface Options {
   typeKey: string;
 
   /** The foreign keys per type (type => foreign_key) */
-  foreignKeys: Record<string, string | [string, string]>;
+  foreignKeys: Record<string, string | ForeignKeyOptions>;
 }
 
 // Default options
@@ -32,7 +39,8 @@ export default function (userOptions?: Partial<Options>) {
 
     function index(page1: Page, pages: Page[]) {
       const data1 = page1.data;
-      const [type1, foreignKey1, id1] = getForeignKey(data1);
+      const [type1, foreignKey1, id1, relationType1, pluralRelationKey1] =
+        getForeignKey(data1);
 
       // Index the current page with the other pages
       pages.forEach(indexPage);
@@ -46,7 +54,8 @@ export default function (userOptions?: Partial<Options>) {
         }
 
         const data2 = page2.data;
-        const [type2, foreignKey2, id2] = getForeignKey(data2);
+        const [type2, foreignKey2, id2, relationType2, pluralRelationKey2] =
+          getForeignKey(data2);
 
         // Page2 has a foreign key to page1
         const directRelation = relate(
@@ -55,13 +64,15 @@ export default function (userOptions?: Partial<Options>) {
           foreignKey1,
           id1,
           type1,
+          relationType1,
+          pluralRelationKey1,
         );
         // If it was related, do the opposite relation
-        if (directRelation && type2) {
+        if (directRelation && pluralRelationKey2) {
           saveMultipleRelation(
             data2,
             data1,
-            type2,
+            pluralRelationKey2,
           );
           return;
         }
@@ -73,14 +84,16 @@ export default function (userOptions?: Partial<Options>) {
           foreignKey2,
           id2,
           type2,
+          relationType2,
+          pluralRelationKey2,
         );
 
         // If it was related, do the opposite relation
-        if (reverseRelation && type1) {
+        if (reverseRelation && pluralRelationKey1) {
           saveMultipleRelation(
             data1,
             data2,
-            type1,
+            pluralRelationKey1,
           );
         }
       }
@@ -91,6 +104,8 @@ export default function (userOptions?: Partial<Options>) {
         foreignKey?: string,
         id?: string,
         type?: string,
+        relationKey?: string,
+        pluralRelationKey?: string,
       ): boolean {
         if (foreignKey && type && id && data[foreignKey]) {
           const relId = data[foreignKey] as string | string[];
@@ -98,7 +113,7 @@ export default function (userOptions?: Partial<Options>) {
           // The foreign key contain an array
           if (Array.isArray(relId)) {
             if (relId.includes(id)) {
-              saveMultipleRelation(rel, data, type);
+              saveMultipleRelation(rel, data, pluralRelationKey || type);
               return true;
             }
             return false;
@@ -106,7 +121,7 @@ export default function (userOptions?: Partial<Options>) {
 
           // The foreign key is a single value
           if (relId == id) {
-            data[type] = rel;
+            data[relationKey || type] = rel;
             return true;
           }
         }
@@ -131,23 +146,29 @@ export default function (userOptions?: Partial<Options>) {
     }
   };
 
-  function getForeignKey(data: Data): [string?, string?, string?] {
+  function getForeignKey(
+    data: Data,
+  ): [string?, string?, string?, string?, string?] {
     const type = data[options.typeKey];
     if (!type) {
-      return [undefined, undefined, undefined];
+      return [];
     }
 
     const foreignKey = options.foreignKeys[type];
     if (!foreignKey) {
-      return [type, undefined, undefined];
+      return [type, undefined, undefined, type, type];
     }
 
-    if (Array.isArray(foreignKey)) {
-      const [fk, id] = foreignKey;
-
-      return [type, fk, data[id]];
+    if (typeof foreignKey === "string") {
+      return [type, foreignKey, data[options.idKey], type, type];
     }
 
-    return [type, foreignKey, data[options.idKey]];
+    return [
+      type,
+      foreignKey.foreignKey,
+      data[foreignKey.idKey || options.idKey],
+      foreignKey.relationKey || type,
+      foreignKey.pluralRelationKey || foreignKey.relationKey || type,
+    ];
   }
 }

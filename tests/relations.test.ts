@@ -9,8 +9,8 @@ Deno.test("relations plugin", async (t) => {
   site.use(relations({
     foreignKeys: {
       post: "post_id",
-      category: ["category_id", "slug"],
-      comment: "comment_id",
+      category: { foreignKey: "category_id", idKey: "slug" },
+      comment: { foreignKey: "comment_id", pluralRelationKey: "comments" },
     },
   }));
 
