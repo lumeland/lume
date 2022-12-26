@@ -31,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   ```
 
 ### Fixed
-- Updated dependencies: `pagefind`.
+- Updated dependencies: `pagefind`, `std`, `cliffy`, `esbuild`, `liquidjs`.
 - Source map with paths with spaces [#341].
 
 ## [1.14.2] - 2022-12-15
