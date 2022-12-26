@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Updated dependencies: `pagefind`.
+- Source map with paths with spaces [#341].
 
 ## [1.14.2] - 2022-12-15
 ### Fixed
@@ -2006,6 +2007,7 @@ The first version.
 [#337]: https://github.com/lumeland/lume/issues/337
 [#338]: https://github.com/lumeland/lume/issues/338
 [#339]: https://github.com/lumeland/lume/issues/339
+[#341]: https://github.com/lumeland/lume/issues/341
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.14.2...HEAD
 [1.14.2]: https://github.com/lumeland/lume/compare/v1.14.1...v1.14.2
