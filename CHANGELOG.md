@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Updated dependencies: `pagefind`, `std`, `cliffy`, `esbuild`, `liquidjs`.
 - Source map with paths with spaces [#341].
+- HTML charset on `reload` and `not_found` middlewares [#342].
 
 ## [1.14.2] - 2022-12-15
 ### Fixed
@@ -2022,6 +2023,7 @@ The first version.
 [#338]: https://github.com/lumeland/lume/issues/338
 [#339]: https://github.com/lumeland/lume/issues/339
 [#341]: https://github.com/lumeland/lume/issues/341
+[#342]: https://github.com/lumeland/lume/issues/342
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.14.2...HEAD
 [1.14.2]: https://github.com/lumeland/lume/compare/v1.14.1...v1.14.2
