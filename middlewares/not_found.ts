@@ -21,7 +21,7 @@ export default function notFound(options: Options): Middleware {
 
     if (response.status === 404) {
       const { headers, status } = response;
-      headers.set("content-type", "text/html");
+      headers.set("content-type", "text/html; charset=utf-8");
 
       try {
         const body = await Deno.readFile(join(root, page404));

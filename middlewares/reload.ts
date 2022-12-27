@@ -64,7 +64,7 @@ export default function reload(options: Options): Middleware {
 
       const { status, statusText } = response;
       const headers = new Headers();
-      headers.set("content-type", "text/html");
+      headers.set("content-type", "text/html; charset=utf-8");
 
       return new Response(body, { status, statusText, headers });
     }
