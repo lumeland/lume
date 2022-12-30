@@ -19,7 +19,6 @@ export async function run(
   scripts: string[],
 ) {
   const site = await createSite(config);
-  console.log();
 
   for (const script of scripts) {
     const success = await site.run(script);

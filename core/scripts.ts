@@ -74,7 +74,9 @@ export default class Scripts {
 
   /** Run a function */
   async #runFunction(fn: () => unknown) {
-    this.logger.log(`⚡️ <dim>${fn.name}()</dim>`);
+    if (fn.name) {
+      this.logger.log(`⚡️ <dim>${fn.name}()</dim>`);
+    }
     const result = await fn();
     return result !== false;
   }
