@@ -9,7 +9,7 @@ interface Options {
   config?: string;
 }
 
-export default function ({ config }: Options, scripts: string[]) {
+export default function ({ config }: Options, ...scripts: string[]) {
   return run(config, scripts);
 }
 
