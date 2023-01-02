@@ -40,6 +40,7 @@ export const pluginNames = [
   "slugify_urls",
   "source_maps",
   "svgo",
+  "tailwindcss",
   "terser",
   "windi_css",
 ];

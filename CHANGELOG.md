@@ -15,7 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Improved the `relations` plugin:
   - You can configure the key used to save the relations with `relationKey`.
   - You can configure the key used to save the multiple relations with `pluralRelationKey`.
-- New hook `postcss` to modify the `Processor` instance in a low level.
+- New hook `postcss` to modify the `Processor` instance in a low level way.
+- You can change the `type:og` in lume and default is website.
 
 ### Changed
 - `denosass` library has been replaced with [@lumeland/sass](https://www.npmjs.com/package/@lumeland/sass) NPM package

@@ -20,6 +20,9 @@ export interface Options {
 }
 
 export interface MetaData {
+  /** The type of the site default is website */
+  type: string;
+
   /** The name of the site */
   site: string;
 
@@ -119,6 +122,7 @@ export default function (userOptions?: Partial<Options>) {
         ? new URL(site.url(metaImage), url).href
         : undefined;
 
+      const type = getMetaValue("type");
       const site_name = getMetaValue("site");
       const lang = getMetaValue("lang");
       const title = getMetaValue("title");
@@ -130,7 +134,7 @@ export default function (userOptions?: Partial<Options>) {
       const generator = getMetaValue("generator");
 
       // Open graph
-      addMeta(document, "property", "og:type", "website");
+      addMeta(document, "property", "og:type", type || "website");
       addMeta(document, "property", "og:site_name", site_name);
       addMeta(document, "property", "og:locale", lang);
       addMeta(document, "property", "og:title", title, 65);
