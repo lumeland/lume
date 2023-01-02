@@ -27,8 +27,9 @@ export default function (userOptions?: Partial<Options>) {
     }
 
     site.processAll(options.extensions, (pages) => {
-      // Get the content of all HTML pages
-      const content = pages.map((page) => ({ raw: page.content as string }));
+      // Get the content of all HTML pages (sorted by path)
+      const content = pages.sort((a, b) => a.src.path.localeCompare(b.src.path))
+        .map((page) => ({ raw: page.content as string }));
 
       // Create Tailwind plugin
       // @ts-ignore: This expression is not callable.
