@@ -1,17 +1,11 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
 import date from "../plugins/date.ts";
-import { modulePath } from "../deps/date.ts";
 import { build, getDepVersion, getSite } from "./utils.ts";
-import gl from "https://deno.land/x/date_fns@v2.22.1/locale/gl/index.js";
-import pt from "https://deno.land/x/date_fns@v2.22.1/locale/pt/index.js";
+import gl from "npm:date-fns/locale/gl/index.js";
+import pt from "npm:date-fns/locale/pt/index.js";
 
 const date0 = new Date(0);
-
-Deno.test("date_fn version", async () => {
-  const version = await getDepVersion("date.ts", "date_fns");
-  equals(`https://deno.land/x/date_fns@${version}`, modulePath);
-});
 
 Deno.test("date plugin", async () => {
   const site = lume();
@@ -23,8 +17,6 @@ Deno.test("date plugin", async () => {
 
   const { helpers } = site.renderer;
 
-  assert(!helpers.has("date"));
-  await site.dispatchEvent({ type: "beforeBuild" });
   assert(helpers.has("date"));
 
   const [format] = helpers.get("date")!;
@@ -80,22 +72,4 @@ Deno.test("date plugin with custom name", async () => {
   const [format] = helpers.get("dateify")!;
 
   equals(format(date0, "HUMAN_DATE"), "1 de xaneiro 1970");
-});
-
-Deno.test("date plugin load locales automatically", async () => {
-  const site = getSite({
-    src: "simple",
-  });
-
-  site.use(date({
-    locales: ["gl", "pt"],
-  }));
-
-  await build(site);
-
-  const { helpers } = site.renderer;
-
-  const [format] = helpers.get("date")!;
-  equals(format(date0, "HUMAN_DATE"), "1 de xaneiro 1970");
-  equals(format(date0, "HUMAN_DATE", "pt"), "1 de janeiro de 1970");
 });

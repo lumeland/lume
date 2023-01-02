@@ -21,7 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 - `denosass` library has been replaced with [@lumeland/sass](https://www.npmjs.com/package/@lumeland/sass) NPM package
   (the same code as official NPM Sass package, but with a couple of tweaks to make it work on Deno).
-- BREAKING: The plugin `relations` accepts an object instead of an array to configure the foreign keys:
+- BREAKING: The plugin `relations` accepts an object instead of an array
+  to configure the foreign keys:
   ```ts
   //Before:
   foreignKeys: {
@@ -31,6 +32,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   foreignKeys: {
     post: { foreignKey: "post_id", idKey: "id" },
   }
+  ```
+- BREAKING: The plugin `date` loads `date-fns` dependency from `npm:`.
+  The locales must be loaded from npm. For example:
+  ```ts
+  import gl from "npm:date-fns/locale/gl/index.js";
+  import pt from "npm:date-fns/locale/pt/index.js";
+
+  //...
+  site.use(date({
+    locales: { gl, pt }
+  }))
   ```
 
 ### Fixed
