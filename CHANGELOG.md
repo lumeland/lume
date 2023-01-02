@@ -10,10 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - Archetypes, that allows to create templates used when creating new content [#337].
+- New plugin `tailwindcss` [#344].
 - Third argument to `site.data()` to customize the data path [#339].
 - Improved the `relations` plugin:
   - You can configure the key used to save the relations with `relationKey`.
   - You can configure the key used to save the multiple relations with `pluralRelationKey`.
+- New hook `postcss` to modify the `Processor` instance in a low level.
 
 ### Changed
 - `denosass` library has been replaced with [@lumeland/sass](https://www.npmjs.com/package/@lumeland/sass) NPM package
@@ -2025,6 +2027,7 @@ The first version.
 [#339]: https://github.com/lumeland/lume/issues/339
 [#341]: https://github.com/lumeland/lume/issues/341
 [#342]: https://github.com/lumeland/lume/issues/342
+[#344]: https://github.com/lumeland/lume/issues/344
 [#346]: https://github.com/lumeland/lume/issues/346
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.14.2...HEAD

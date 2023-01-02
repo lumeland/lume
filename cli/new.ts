@@ -21,6 +21,7 @@ export async function create(
   name: string,
   args: string[],
 ) {
+  // deno-lint-ignore no-explicit-any
   let fn: any;
   const site = await createSite(config);
 

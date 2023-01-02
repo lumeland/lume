@@ -63,6 +63,7 @@ export default function (userOptions?: Partial<Options>) {
     site.hooks.addPostcssPlugin = (plugin) => {
       runner.use(plugin);
     };
+    site.hooks.postcss = (callback) => callback(runner);
 
     site.loadAssets(options.extensions);
     site.process(options.extensions, postCss);
