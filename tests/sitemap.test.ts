@@ -4,6 +4,7 @@ import sitemap from "../plugins/sitemap.ts";
 Deno.test("Sitemap plugin", async (t) => {
   const site = getSite({
     src: "normal",
+    location: new URL("https://example.com/"),
     server: {
       page404: "/page5/",
     },

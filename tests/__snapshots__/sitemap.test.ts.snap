@@ -75,12 +75,12 @@ snapshot[`Sitemap plugin 4`] = `
   content: "User-agent: *
 Allow: /
 
-Sitemap: http://localhost/sitemap.xml",
+Sitemap: https://example.com/sitemap.xml",
   data: {
     content: "User-agent: *
 Allow: /
 
-Sitemap: http://localhost/sitemap.xml",
+Sitemap: https://example.com/sitemap.xml",
     page: undefined,
     url: "/robots.txt",
   },
@@ -102,19 +102,19 @@ snapshot[`Sitemap plugin 5`] = `
   content: '<?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost/overrided-page2/</loc>
+    <loc>https://example.com/overrided-page2/</loc>
     <lastmod>2020-06-21T00:00:00.000Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/pages/page4/</loc>
+    <loc>https://example.com/pages/page4/</loc>
     <lastmod>2021-01-02T18:32:00.000Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/pages/page6/</loc>
+    <loc>https://example.com/pages/page6/</loc>
     <lastmod>2022-01-01T00:00:00.000Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/pages/subpage/page7/</loc>
+    <loc>https://example.com/pages/subpage/page7/</loc>
     <lastmod>2022-01-01T00:00:00.000Z</lastmod>
   </url>
 </urlset>',
@@ -122,19 +122,19 @@ snapshot[`Sitemap plugin 5`] = `
     content: '<?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost/overrided-page2/</loc>
+    <loc>https://example.com/overrided-page2/</loc>
     <lastmod>2020-06-21T00:00:00.000Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/pages/page4/</loc>
+    <loc>https://example.com/pages/page4/</loc>
     <lastmod>2021-01-02T18:32:00.000Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/pages/page6/</loc>
+    <loc>https://example.com/pages/page6/</loc>
     <lastmod>2022-01-01T00:00:00.000Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost/pages/subpage/page7/</loc>
+    <loc>https://example.com/pages/subpage/page7/</loc>
     <lastmod>2022-01-01T00:00:00.000Z</lastmod>
   </url>
 </urlset>',
