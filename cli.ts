@@ -147,7 +147,7 @@ const lume = new Command()
     "Build and watch changes.",
   )
   .action(buildCommand)
-  .command("new <archetype> <arguments...>", newFromArchetype)
+  .command("new <archetype> [arguments...]", newFromArchetype)
   .command("init", init)
   .command("upgrade", upgrade)
   .command("import-map", importMap)

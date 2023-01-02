@@ -3,29 +3,45 @@ import { dirname, join, toFileUrl } from "../deps/path.ts";
 import { ensureDir } from "../deps/fs.ts";
 import { cyan, yellow } from "../deps/colors.ts";
 import { isGenerator, isUrl } from "../core/utils.ts";
+import { createSite } from "./run.ts";
 
-import type { Archetype } from "../core.ts";
+import type { Archetype, Site } from "../core.ts";
 
-export default function (_options: unknown, name: string, ...args: string[]) {
-  return create(name, args);
+interface Options {
+  config?: string;
+}
+
+export default function ({ config }: Options, name: string, ...args: string[]) {
+  return create(config, name, args);
 }
 
 /** Run an archetype */
-export async function create(name: string, args: string[]) {
-  const mod = name.startsWith(".")
-    ? await import(toFileUrl(join(Deno.cwd(), name)).href)
-    : isUrl(name)
-    ? await import(name)
-    : await Promise.any([
-      import(toFileUrl(join(Deno.cwd(), `_archetypes/${name}.ts`)).href),
-      import(toFileUrl(join(Deno.cwd(), `_archetypes/${name}.js`)).href),
-    ]);
+export async function create(
+  config: string | undefined,
+  name: string,
+  args: string[],
+) {
+  let fn: any;
+  const site = await createSite(config);
 
-  if (!mod || typeof mod.default !== "function") {
-    throw new Error(`Archetype "${name}" not found.`);
+  try {
+    const mod = name.startsWith(".")
+      ? await import(toFileUrl(join(Deno.cwd(), name)).href)
+      : isUrl(name)
+      ? await import(name)
+      : await Promise.any([
+        import(toFileUrl(site.src(`_archetypes/${name}.ts`)).href),
+        import(toFileUrl(site.src(`_archetypes/${name}.js`)).href),
+      ]);
+
+    if (mod?.default) {
+      fn = mod.default;
+    }
+  } catch (cause) {
+    throw new Error(`Archetype "${name}" not found or is errored.`, {
+      cause,
+    });
   }
-
-  const fn = mod.default;
 
   if (typeof fn !== "function") {
     throw new Error(`Archetype "${name}" is not a function.`);
@@ -33,15 +49,15 @@ export async function create(name: string, args: string[]) {
 
   if (isGenerator(fn)) {
     for await (const archetype of fn(...args) as Generator<Archetype>) {
-      await saveArchetype(archetype);
+      await saveArchetype(site, archetype);
     }
   } else {
     const archetype = fn(...args) as Archetype;
-    await saveArchetype(archetype);
+    await saveArchetype(site, archetype);
   }
 }
 
-async function saveArchetype(archetype: Archetype) {
+async function saveArchetype(site: Site, archetype: Archetype) {
   const { path, content } = archetype;
 
   if (!path) {
@@ -52,19 +68,19 @@ async function saveArchetype(archetype: Archetype) {
   }
 
   if (typeof content === "string" || content instanceof Uint8Array) {
-    return await saveFile(path, content);
+    return await saveFile(site.src(path), content);
   }
 
   if (path.endsWith(".json")) {
     return await saveFile(
-      path,
+      site.src(path),
       JSON.stringify(content, null, 2),
     );
   }
 
   if (path.endsWith(".yaml") || path.endsWith(".yml")) {
     return await saveFile(
-      path,
+      site.src(path),
       stringify(content),
     );
   }
@@ -72,7 +88,7 @@ async function saveArchetype(archetype: Archetype) {
   const { content: body, ...frontmatter } = content;
 
   return await saveFile(
-    path,
+    site.src(path),
     `---\n${stringify(frontmatter)}---\n${body}`,
   );
 }
