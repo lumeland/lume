@@ -1,13 +1,12 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
 import date from "../plugins/date.ts";
-import { build, getDepVersion, getSite } from "./utils.ts";
 import gl from "npm:date-fns/locale/gl/index.js";
 import pt from "npm:date-fns/locale/pt/index.js";
 
 const date0 = new Date(0);
 
-Deno.test("date plugin", async () => {
+Deno.test("date plugin", () => {
   const site = lume();
   site.use(date({
     formats: {

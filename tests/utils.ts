@@ -50,20 +50,6 @@ export async function build(site: Site) {
   }
 }
 
-/** Get the version of a dependency */
-export async function getDepVersion(
-  file: string,
-  name: string,
-): Promise<string | undefined> {
-  const filepath = join(cwd, `../deps/${file}`);
-  const content = await Deno.readTextFile(filepath);
-  const match = content.match(`${name}@([^\/]+)`);
-
-  if (match) {
-    return match[1];
-  }
-}
-
 function normalizeContent(
   content: string | Uint8Array | undefined,
 ): string | undefined {
