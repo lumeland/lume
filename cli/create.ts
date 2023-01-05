@@ -75,14 +75,14 @@ async function saveArchetype(site: Site, archetype: Archetype) {
   if (path.endsWith(".json")) {
     return await saveFile(
       site.src(path),
-      JSON.stringify(content, null, 2),
+      JSON.stringify(content, null, 2) + "\n",
     );
   }
 
   if (path.endsWith(".yaml") || path.endsWith(".yml")) {
     return await saveFile(
       site.src(path),
-      stringify(content),
+      stringify(content) + "\n",
     );
   }
 
@@ -90,7 +90,7 @@ async function saveArchetype(site: Site, archetype: Archetype) {
 
   return await saveFile(
     site.src(path),
-    `---\n${stringify(frontmatter)}---\n${body}`,
+    `---\n${stringify(frontmatter)}---\n${body || ""}\n`,
   );
 }
 
