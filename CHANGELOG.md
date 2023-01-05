@@ -50,6 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Source map with paths with spaces [#341].
 - HTML charset on `reload` and `not_found` middlewares [#342].
 - `lume run` wasn't receiving the argument name properly [#346].
+- Reload the Deno cache after upgrading Lume [#340], [#343]
 
 ## [1.14.2] - 2022-12-15
 ### Fixed
@@ -2038,8 +2039,10 @@ The first version.
 [#337]: https://github.com/lumeland/lume/issues/337
 [#338]: https://github.com/lumeland/lume/issues/338
 [#339]: https://github.com/lumeland/lume/issues/339
+[#340]: https://github.com/lumeland/lume/issues/340
 [#341]: https://github.com/lumeland/lume/issues/341
 [#342]: https://github.com/lumeland/lume/issues/342
+[#343]: https://github.com/lumeland/lume/issues/343
 [#344]: https://github.com/lumeland/lume/issues/344
 [#346]: https://github.com/lumeland/lume/issues/346
 

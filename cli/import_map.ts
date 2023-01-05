@@ -1,4 +1,9 @@
-import { initPlugins, readDenoConfig, writeDenoConfig } from "../core/utils.ts";
+import {
+  getConfigFile,
+  initPlugins,
+  readDenoConfig,
+  writeDenoConfig,
+} from "../core/utils.ts";
 
 import type { DenoConfigResult } from "../core/utils.ts";
 
@@ -51,4 +56,20 @@ export async function importMap(url: URL, plugins: string[] = []) {
 
   // Write the configuration
   await writeDenoConfig({ file, importMap, config });
+
+  // Hack to fix: https://github.com/denoland/deno/issues/16901
+  const configFile = await getConfigFile();
+
+  if (configFile) {
+    console.log("Reloading Deno cache...");
+
+    await new Deno.Command("deno", {
+      args: [
+        "cache",
+        "--unstable",
+        "--reload",
+        configFile,
+      ],
+    }).output();
+  }
 }
