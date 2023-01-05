@@ -46,7 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   ```
 
 ### Fixed
-- Updated dependencies: `pagefind`, `std`, `cliffy`, `esbuild`, `liquidjs`, `date-fns`.
+- Updated dependencies: `pagefind`, `std`, `cliffy`, `esbuild`, `liquidjs`, `date-fns`, `lightningcss`.
 - Source map with paths with spaces [#341].
 - HTML charset on `reload` and `not_found` middlewares [#342].
 - `lume run` wasn't receiving the argument name properly [#346].
