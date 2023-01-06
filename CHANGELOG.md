@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - You can configure the key used to save the relations with `relationKey`.
   - You can configure the key used to save the multiple relations with `pluralRelationKey`.
 - New hook `postcss` to modify the `Processor` instance in a low level way.
-- You can change the `type:og` in lume and default is website.
+- You can change the `type:og` in lume and default is website [#348].
 
 ### Changed
 - `denosass` library has been replaced with [@lumeland/sass](https://www.npmjs.com/package/@lumeland/sass) NPM package
@@ -44,6 +44,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
     locales: { gl, pt }
   }))
   ```
+
+### Removed
+- The `task.ts` file, used in the previous version of deno task.
 
 ### Fixed
 - Updated dependencies: `pagefind`, `std`, `cliffy`, `esbuild`, `liquidjs`, `date-fns`, `lightningcss`.
@@ -2045,6 +2048,7 @@ The first version.
 [#343]: https://github.com/lumeland/lume/issues/343
 [#344]: https://github.com/lumeland/lume/issues/344
 [#346]: https://github.com/lumeland/lume/issues/346
+[#348]: https://github.com/lumeland/lume/issues/348
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.14.2...HEAD
 [1.14.2]: https://github.com/lumeland/lume/compare/v1.14.1...v1.14.2
