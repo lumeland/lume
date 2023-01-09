@@ -49,7 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The `task.ts` file, used in the previous version of deno task.
 
 ### Fixed
-- Updated dependencies: `pagefind`, `std`, `cliffy`, `esbuild`, `liquidjs`, `date-fns`, `lightningcss`.
+- Updated dependencies: `pagefind`, `std`, `cliffy`, `esbuild`, `liquidjs`, `date-fns`, `lightningcss`, `postcss`.
 - Source map with paths with spaces [#341].
 - HTML charset on `reload` and `not_found` middlewares [#342].
 - `lume run` wasn't receiving the argument name properly [#346].
