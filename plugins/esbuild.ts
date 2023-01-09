@@ -1,4 +1,5 @@
 import {
+  isUrl,
   merge,
   normalizePath,
   read,
@@ -68,11 +69,10 @@ export default function (userOptions?: Partial<Options>) {
       setup(build: any) {
         const { initialOptions } = build;
         build.onResolve({ filter: /.*/ }, (args: ResolveArguments) => {
-          let { path } = args;
-          const { importer } = args;
+          const { path, importer } = args;
 
           // Absolute url
-          if (path.match(/^(https?|file):\/\//)) {
+          if (isUrl(path)) {
             return {
               path: import.meta.resolve(path),
               namespace: "deno",
@@ -80,18 +80,28 @@ export default function (userOptions?: Partial<Options>) {
           }
 
           // Resolve the relative url
-          if (
-            importer.match(/^(https?|file):\/\//) && path.match(/^[./]/)
-          ) {
-            path = new URL(path, importer).href;
+          if (isUrl(importer) && path.match(/^[./]/)) {
+            return {
+              path: import.meta.resolve(new URL(path, importer).href),
+              namespace: "deno",
+            };
           }
 
           // It's a npm package
           if (path.startsWith("npm:")) {
-            path = path.replace(/^npm:/, "https://esm.sh/");
-          } else if (!path.match(/^(https?|file):\/\//)) {
-            // Ensure the path is a url
-            path = toFileUrl(path).href;
+            return {
+              path: path.replace(/^npm:/, "https://esm.sh/"),
+              namespace: "deno",
+            };
+          }
+
+          if (!isUrl(path)) {
+            const resolved = import.meta.resolve(path);
+
+            return {
+              path: isUrl(resolved) ? resolved : toFileUrl(resolved).href,
+              namespace: "deno",
+            };
           }
 
           return {

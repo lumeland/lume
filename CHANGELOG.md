@@ -53,7 +53,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Source map with paths with spaces [#341].
 - HTML charset on `reload` and `not_found` middlewares [#342].
 - `lume run` wasn't receiving the argument name properly [#346].
-- Reload the Deno cache after upgrading Lume [#340], [#343]
+- Reload the Deno cache after upgrading Lume [#340], [#343].
+- `esbuild` loading for some specifiers defined in the import map.
 
 ## [1.14.2] - 2022-12-15
 ### Fixed
