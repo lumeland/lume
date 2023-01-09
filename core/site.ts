@@ -127,8 +127,8 @@ export default class Site {
   /** To write the generated pages in the dest folder */
   writer: Writer;
 
-  /** Global data shared by all pages */
-  globalData = new Map<string, Data>();
+  /** Data assigned with site.data() */
+  scopedData = new Map<string, Data>([["/", {}]]);
 
   /** Global components shared by all templates */
   globalComponents: Components = new Map();
@@ -215,6 +215,10 @@ export default class Site {
 
     // Ignore the dest folder by the watcher
     this.options.watcher.ignore.push(this.options.dest);
+  }
+
+  get globalData(): Data {
+    return this.scopedData.get("/")!;
   }
 
   /**
@@ -399,10 +403,10 @@ export default class Site {
   }
 
   /** Register extra data accessible by the layouts */
-  data(name: string, value: unknown, path = "/"): this {
-    const data = this.globalData.get(path) || {};
+  data(name: string, value: unknown, scope = "/"): this {
+    const data = this.scopedData.get(scope) || {};
     data[name] = value;
-    this.globalData.set(path, data);
+    this.scopedData.set(scope, data);
     return this;
   }
 
@@ -500,7 +504,7 @@ export default class Site {
 
     // Get the site content
     const [_pages, _staticFiles] = this.source.getContent(
-      this.globalData,
+      this.scopedData,
       this.globalComponents,
       [
         (page) => !page.data.draft || this.options.dev,
@@ -540,7 +544,7 @@ export default class Site {
 
     // Get the site content
     const [_pages, _staticFiles] = this.source.getContent(
-      this.globalData,
+      this.scopedData,
       this.globalComponents,
       [
         (page) => !page.data.draft || this.options.dev,
@@ -644,7 +648,7 @@ export default class Site {
 
     // Returns the page
     const [pages] = this.source.getContent(
-      this.globalData,
+      this.scopedData,
       this.globalComponents,
       [(page) => page.src.path + page.src.ext === file],
     );
