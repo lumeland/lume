@@ -132,7 +132,7 @@ export default function (userOptions?: DeepPartial<Options>) {
     site.filter("liquid", filter as Helper, true);
 
     function filter(string: string, data?: Data) {
-      return engine.render(string, { ...site.globalData.get("/"), ...data });
+      return engine.render(string, { ...site.scopedData.get("/"), ...data });
     }
   };
 }

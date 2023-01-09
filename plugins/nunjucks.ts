@@ -243,7 +243,7 @@ export default function (userOptions?: DeepPartial<Options>) {
     });
 
     function filter(string: string, data?: Data) {
-      return engine.render(string, { ...site.globalData.get("/"), ...data });
+      return engine.render(string, { ...site.scopedData.get("/"), ...data });
     }
   };
 }

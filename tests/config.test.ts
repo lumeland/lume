@@ -292,9 +292,9 @@ Deno.test("helpers configuration", () => {
 
 Deno.test("extra data", () => {
   const site = lume();
-  const globalData = site.globalData.get("/") || {};
+  const globalData = site.scopedData.get("/") || {};
 
-  equals(site.globalData.size, 1);
+  equals(site.scopedData.size, 1);
   equals(Object.keys(globalData).length, 3);
   equals(Object.keys(globalData)[0], "mergedKeys");
   equals(Object.keys(globalData)[1], "paginate");
