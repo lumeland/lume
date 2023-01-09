@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.15.0] - 2023-01-09
 ### Added
 - Archetypes, that allows to create templates used when creating new content [#337].
 - New plugin `tailwindcss` [#344].
@@ -2051,7 +2051,7 @@ The first version.
 [#346]: https://github.com/lumeland/lume/issues/346
 [#348]: https://github.com/lumeland/lume/issues/348
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.14.2...HEAD
+[1.15.0]: https://github.com/lumeland/lume/compare/v1.14.2...v1.15.0
 [1.14.2]: https://github.com/lumeland/lume/compare/v1.14.1...v1.14.2
 [1.14.1]: https://github.com/lumeland/lume/compare/v1.14.0...v1.14.1
 [1.14.0]: https://github.com/lumeland/lume/compare/v1.13.2...v1.14.0
