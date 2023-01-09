@@ -1,4 +1,5 @@
 import {
+  isAbsolutePath,
   isUrl,
   merge,
   normalizePath,
@@ -96,10 +97,8 @@ export default function (userOptions?: Partial<Options>) {
           }
 
           if (!isUrl(path)) {
-            const resolved = import.meta.resolve(path);
-
             return {
-              path: isUrl(resolved) ? resolved : toFileUrl(resolved).href,
+              path: isAbsolutePath(path) ? toFileUrl(path).href : import.meta.resolve(path),
               namespace: "deno",
             };
           }

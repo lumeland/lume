@@ -392,6 +392,11 @@ export async function writeDenoConfig(options: DenoConfigResult) {
 export function isUrl(path: string): boolean {
   return !!path.match(/^(https?|file):\/\//);
 }
+export function isAbsolutePath(path: string): boolean {
+  return SEP !== "/"
+    ? /^\w:[\/\\]/.test(path)
+    : path.startsWith("/");
+}
 
 export function replaceExtension(
   path: string | false,
