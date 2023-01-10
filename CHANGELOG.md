@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.15.0] - 2023-01-09
+## [1.15.0] - 2023-01-10
 ### Added
 - Archetypes, that allows to create templates used when creating new content [#337].
 - New plugin `tailwindcss` [#344].
