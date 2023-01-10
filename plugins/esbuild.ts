@@ -98,7 +98,9 @@ export default function (userOptions?: Partial<Options>) {
 
           if (!isUrl(path)) {
             return {
-              path: isAbsolutePath(path) ? toFileUrl(path).href : import.meta.resolve(path),
+              path: isAbsolutePath(path)
+                ? toFileUrl(path).href
+                : import.meta.resolve(path),
               namespace: "deno",
             };
           }
