@@ -63,13 +63,17 @@ export async function importMap(url: URL, plugins: string[] = []) {
   if (configFile) {
     console.log("Reloading Deno cache...");
 
-    await new Deno.Command("deno", {
-      args: [
+    const process = Deno.run({
+      cmd: [
+        Deno.execPath(),
         "cache",
         "--unstable",
         "--reload",
         configFile,
       ],
-    }).output();
+    });
+
+    await process.status();
+    process.close();
   }
 }
