@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [1.15.1] - Unreleased
 ### Fixed
 - `--unstable` flag requirement for `lume init`.
+- Error with `npm` specifiers in `lume init` [#359].
 
 ## [1.15.0] - 2023-01-10
 ### Added
@@ -2054,6 +2055,7 @@ The first version.
 [#344]: https://github.com/lumeland/lume/issues/344
 [#346]: https://github.com/lumeland/lume/issues/346
 [#348]: https://github.com/lumeland/lume/issues/348
+[#359]: https://github.com/lumeland/lume/issues/359
 
 [1.15.1]: https://github.com/lumeland/lume/compare/v1.15.0...HEAD
 [1.15.0]: https://github.com/lumeland/lume/compare/v1.14.2...v1.15.0
