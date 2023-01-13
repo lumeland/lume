@@ -1,1 +1,1 @@
-export * from "https://deno.land/std@0.171.0/encoding/hex.ts";
+export * from "https://deno.land/std@0.172.0/encoding/hex.ts";

@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - `--unstable` flag requirement for `lume init`.
 - Error with `npm` specifiers in `lume init` [#359].
+- Updated dependencies: `std`, `esbuild`, `eta`.
 
 ## [1.15.0] - 2023-01-10
 ### Added
