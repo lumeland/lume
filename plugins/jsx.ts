@@ -2,7 +2,7 @@ import { React, ReactDOMServer } from "../deps/react.ts";
 import loader from "../core/loaders/module.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Data, DenoConfigResult, Engine, Helper, Site } from "../core.ts";
+import type { Data, Engine, Helper, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -89,18 +89,6 @@ export class JsxEngine implements Engine {
   addHelper(name: string, fn: Helper) {
     this.helpers[name] = fn;
   }
-}
-
-/** Configure this plugin on "lume init" */
-export function init(denoConfig: DenoConfigResult) {
-  denoConfig.config.compilerOptions ||= {};
-  denoConfig.config.compilerOptions.jsx = "react-jsx";
-  denoConfig.config.compilerOptions.jsxImportSource = "react";
-
-  // Add jsx-runtime import to import_map.
-  denoConfig.importMap ||= { imports: {} };
-  denoConfig.importMap.imports["react/jsx-runtime"] =
-    "https://esm.sh/react@18.2.0/jsx-runtime";
 }
 
 /** Register the plugin to support JSX and TSX files */

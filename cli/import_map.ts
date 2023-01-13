@@ -47,9 +47,10 @@ export async function importMap(url: URL, plugins: string[] = []) {
   config.tasks = tasks;
 
   // Transform the import map and deno config by the plugins
-  await Promise.all(plugins.map(async (name) => {
-    if (initPlugins.includes(name)) {
-      const { init } = await import(`../plugins/${name}.ts`);
+  await Promise.all(plugins.map((name) => {
+    const init = initPlugins[name];
+
+    if (init) {
       init(denoConfig);
     }
   }));

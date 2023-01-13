@@ -46,10 +46,26 @@ export const pluginNames = [
 ];
 
 /** A list of the available plugins with init configurations */
-export const initPlugins = [
-  "jsx",
-  "jsx_preact",
-];
+export const initPlugins: Record<
+  string,
+  (denoConfig: DenoConfigResult) => void
+> = {
+  jsx(denoConfig) {
+    denoConfig.config.compilerOptions ||= {};
+    denoConfig.config.compilerOptions.jsx = "react-jsx";
+    denoConfig.config.compilerOptions.jsxImportSource = "react";
+
+    // Add jsx-runtime import to import_map.
+    denoConfig.importMap ||= { imports: {} };
+    denoConfig.importMap.imports["react/jsx-runtime"] =
+      "https://esm.sh/react@18.2.0/jsx-runtime";
+  },
+  jsx_preact(denoConfig) {
+    denoConfig.config.compilerOptions ||= {};
+    denoConfig.config.compilerOptions.jsx = "react-jsx";
+    denoConfig.config.compilerOptions.jsxImportSource = "npm:preact";
+  },
+};
 
 export function log(...lines: (string | undefined)[]) {
   console.log("----------------------------------------");
