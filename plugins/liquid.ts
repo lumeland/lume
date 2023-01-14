@@ -1,4 +1,13 @@
-import { Liquid, Tag, toPromise, Value } from "../deps/liquid.ts";
+import {
+  evalToken,
+  Liquid,
+  Tag,
+  Tokenizer,
+  TokenKind,
+  toPromise,
+  Value,
+  ValueToken,
+} from "../deps/liquid.ts";
 import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
@@ -94,6 +103,8 @@ export class LiquidEngine implements Engine {
         // Tag with body not supported yet
         if (!options.body) {
           this.liquid.registerTag(name, createCustomTag(fn));
+        } else {
+          this.liquid.registerTag(name, createCustomTagWithBody(fn));
         }
         break;
     }
@@ -157,6 +168,57 @@ function createCustomTag(fn: Helper): Tag {
     async render(ctx: Context, emitter: Emitter) {
       const str = await toPromise(this.#value.value(ctx, false));
       emitter.write(await fn(str));
+    }
+  };
+}
+
+/**
+ * Create a custom tag with body
+ * https://liquidjs.com/tutorials/register-filters-tags.html#Register-Tags
+ */
+function createCustomTagWithBody(fn: Helper): Tag {
+  return class extends Tag {
+    args: ValueToken[] = [];
+    templates: Template[] = [];
+
+    constructor(
+      token: TagToken,
+      remainTokens: TopLevelToken[],
+      liquid: Liquid,
+    ) {
+      super(token, remainTokens, liquid);
+      const tokenizer = new Tokenizer(
+        token.args,
+        this.liquid.options.operators,
+      );
+      const name = token.name;
+
+      while (!tokenizer.end()) {
+        const value = tokenizer.readValue();
+        if (value) this.args.push(value);
+        tokenizer.readTo(",");
+      }
+
+      while (remainTokens.length) {
+        const token = remainTokens.shift()!;
+        if (token.kind === TokenKind.Tag && token.name === `end${name}`) {
+          return;
+        }
+        this.templates.push(liquid.parser.parseToken(token, remainTokens));
+      }
+      throw new Error(`tag ${token.getText()} not closed`);
+    }
+
+    async render(ctx: Context, emitter: Emitter) {
+      const r = this.liquid.renderer;
+      const str = await toPromise(r.renderTemplates(this.templates, ctx));
+      const args = [str];
+
+      for (const arg of this.args) {
+        args.push(await toPromise(evalToken(arg, ctx)));
+      }
+
+      emitter.write(await fn(...args));
     }
   };
 }

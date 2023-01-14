@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.15.1] - Unreleased
+### Added
+- Support for `body` filters to Liquid.
+
 ### Fixed
 - `--unstable` flag requirement for `lume init`.
 - Error with `npm` specifiers in `lume init` [#359].
