@@ -352,7 +352,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - JSX plugin can render text files (like markdown). This allows to emulate mdx (combining jsx and md template engines for the same file).
 
 ### Changed
-- Preprocessors assigned to page generators are executed **before** the new pages are generated (previously they were executed after generating them). This shouldn't be a breaking change, unless you're doing something very weird.
+- Preprocessors assigned to page generators are executed **before** the new pages are generated (previously they were executed after generating them). This shouldn't be a BREAKING CHANGE, unless you're doing something very weird.
 - Changed SASS library to [binyamin/deno-sass](https://gitlab.com/binyamin/deno-sass), that uses [dart-sass](https://github.com/sass/dart-sass) and improved source map support [#227].
 
 ### Fixed
