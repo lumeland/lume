@@ -5,7 +5,9 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
-and this project adheres to [Semantic Versioning](https://semver.org/).
+and this project try to adheres to [Semantic Versioning](https://semver.org/),
+but not always is possible (due the use of unstable features from Deno).
+Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
 ## [1.15.1] - Unreleased
 ### Added
