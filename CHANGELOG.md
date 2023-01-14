@@ -9,7 +9,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.15.1] - Unreleased
+## [1.15.1] - 2023-01-14
 ### Added
 - Support for `body` filters to Liquid.
 
@@ -2063,7 +2063,7 @@ The first version.
 [#348]: https://github.com/lumeland/lume/issues/348
 [#359]: https://github.com/lumeland/lume/issues/359
 
-[1.15.1]: https://github.com/lumeland/lume/compare/v1.15.0...HEAD
+[1.15.1]: https://github.com/lumeland/lume/compare/v1.15.0...v1.15.1
 [1.15.0]: https://github.com/lumeland/lume/compare/v1.14.2...v1.15.0
 [1.14.2]: https://github.com/lumeland/lume/compare/v1.14.1...v1.14.2
 [1.14.1]: https://github.com/lumeland/lume/compare/v1.14.0...v1.14.1
