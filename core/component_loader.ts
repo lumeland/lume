@@ -89,15 +89,26 @@ export default class ComponentsLoader {
       return;
     }
 
-    const component = await this.reader.read(path, format.componentLoader);
+    const component = await this.reader.read(
+      path,
+      format.componentLoader,
+    ) as ComponentFile;
+
+    function getData(data: Record<string, unknown>) {
+      if (component.inheritData === false) {
+        return { ...data };
+      }
+
+      return { ...context.data, ...data };
+    }
+
     const { content } = component;
 
     return {
       name: component.name ?? posix.basename(path, format.ext),
       render(data) {
         return format.engines!.reduce(
-          (content, engine) =>
-            engine.renderSync(content, { ...context.data, ...data }, path),
+          (content, engine) => engine.renderSync(content, getData(data), path),
           content,
         );
       },
@@ -119,4 +130,21 @@ export interface Component {
 
   /** Optional JS code needed for the component interactivity (global, only inserted once) */
   js?: string;
+}
+
+export interface ComponentFile {
+  /** Name of the component (used to get it from templates) */
+  name?: string;
+
+  /** The content of the component */
+  content: unknown;
+
+  /** Optional CSS code needed to style the component (global, only inserted once) */
+  css?: string;
+
+  /** Optional JS code needed for the component interactivity (global, only inserted once) */
+  js?: string;
+
+  /** If false, the data from the parent directory will not be inherited */
+  inheritData?: boolean;
 }

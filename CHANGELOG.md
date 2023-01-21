@@ -9,6 +9,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
+## [Unreleased]
+### Added
+- Property `inheritData` for components #364.
+
 ## [1.15.1] - 2023-01-14
 ### Added
 - Support for `body` filters to Liquid.

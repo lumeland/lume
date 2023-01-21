@@ -58,11 +58,23 @@ Deno.test("Components", async (t) => {
   await t.step("Nunjucks components", () => {
     const comp = site.source.root?.data.comp?.button_njk;
 
-    // @ts-ignore: TODO: fix
     const result = comp({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_njk">Hello world</button>`,
+    );
+  });
+
+  await t.step("Inherit and not inherit data for components", () => {
+    const { inherit, not_inherit } = site.source.root?.data.comp;
+
+    assertEquals(
+      inherit().trim(),
+      `<p>Inherit: Hello from _data.yml</p>`,
+    );
+    assertEquals(
+      not_inherit().trim(),
+      `<p>Not inherit: </p>`,
     );
   });
 
