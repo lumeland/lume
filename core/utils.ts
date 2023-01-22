@@ -378,8 +378,6 @@ export async function writeDenoConfig(options: DenoConfigResult) {
 
   if (config.importMap) {
     const importMapFile = join(dirname(file), config.importMap);
-    console.log(importMapFile);
-
     await Deno.writeTextFile(
       importMapFile,
       JSON.stringify(importMap, null, 2) + "\n",
