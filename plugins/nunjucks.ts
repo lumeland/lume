@@ -1,6 +1,6 @@
 import nunjucks from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
-import { merge, normalizePath } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
 import { join } from "../deps/path.ts";
 
@@ -156,7 +156,6 @@ export default function (userOptions?: DeepPartial<Options>) {
 
     // Create the nunjucks environment instance
     const fsLoader = new nunjucks.FileSystemLoader(site.src(options.includes));
-    const basePath = site.src();
 
     const lumeLoader = {
       async: true,
@@ -164,11 +163,7 @@ export default function (userOptions?: DeepPartial<Options>) {
         path: string,
         callback: nunjucks.Callback<Error, nunjucks.LoaderSource>,
       ) {
-        let relPath = normalizePath(path);
-        relPath = relPath.startsWith(basePath)
-          ? relPath.slice(basePath.length)
-          : relPath;
-        const content = await site.getContent(relPath);
+        const content = await site.getContent(path);
 
         if (content) {
           callback(null, {
