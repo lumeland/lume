@@ -27,8 +27,6 @@ export async function importMap(url: URL, plugins: string[] = []) {
   const { config, importMap, file } = denoConfig;
 
   // Configure the import map
-  config.importMap ||= "./import_map.json";
-
   const oldUrl = importMap.imports["lume/"];
   const newUrl = new URL("./", url).href;
   importMap.imports["lume/"] = newUrl;

@@ -341,23 +341,24 @@ export interface DenoConfigResult {
 }
 
 /** Detect and returns the Deno configuration */
-export async function readDenoConfig(
-  importMapFile?: string,
-): Promise<DenoConfigResult | undefined> {
+export async function readDenoConfig(): Promise<DenoConfigResult | undefined> {
   for (const file of ["deno.json", "deno.jsonc"]) {
     try {
       const content = await Deno.readTextFile(file);
       const config = parse(content) as DenoConfig;
-      importMapFile ||= config.importMap;
-      if (importMapFile) {
-        config.importMap = importMapFile;
-        const importMap: ImportMap = isUrl(importMapFile)
-          ? await (await fetch(importMapFile)).json()
-          : await JSON.parse(await Deno.readTextFile(importMapFile));
+      let importMap: ImportMap | undefined;
 
-        return { file, config, importMap };
+      if (config.importMap) {
+        importMap = isUrl(config.importMap)
+          ? await (await fetch(config.importMap)).json()
+          : await JSON.parse(await Deno.readTextFile(config.importMap));
+      } else if (config.imports) {
+        importMap = {
+          imports: config.imports as Record<string, string>,
+          scopes: config.scopes as Record<string, Record<string, string>>,
+        };
       }
-      return { file, config };
+      return { file, config, importMap };
     } catch (err) {
       if (err instanceof Deno.errors.NotFound) {
         continue;
@@ -373,7 +374,8 @@ export async function writeDenoConfig(options: DenoConfigResult) {
   const { file, config, importMap } = options;
 
   if (importMap && !config.importMap) {
-    config.importMap = "./import_map.json";
+    config.imports = importMap.imports;
+    config.scopes = importMap.scopes;
   }
 
   if (config.importMap) {

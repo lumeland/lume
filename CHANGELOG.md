@@ -12,6 +12,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [Unreleased]
 ### Added
 - Property `inheritData` for components #364.
+- Support for import maps in the deno.json file.
 
 ## [1.15.1] - 2023-01-14
 ### Added
