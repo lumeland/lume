@@ -11,8 +11,11 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [Unreleased]
 ### Added
-- Property `inheritData` for components #364.
+- Property `inheritData` for components [#364].
 - Support for import maps in the deno.json file.
+
+### Fixed
+- Updated dependencies: `std`, `esbuild`, `eta`, `postcss-nesting`, `terser`, `pagefind`.
 
 ## [1.15.1] - 2023-01-14
 ### Added
@@ -2067,7 +2070,9 @@ The first version.
 [#346]: https://github.com/lumeland/lume/issues/346
 [#348]: https://github.com/lumeland/lume/issues/348
 [#359]: https://github.com/lumeland/lume/issues/359
+[#364]: https://github.com/lumeland/lume/issues/364
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.15.1...HEAD
 [1.15.1]: https://github.com/lumeland/lume/compare/v1.15.0...v1.15.1
 [1.15.0]: https://github.com/lumeland/lume/compare/v1.14.2...v1.15.0
 [1.14.2]: https://github.com/lumeland/lume/compare/v1.14.1...v1.14.2

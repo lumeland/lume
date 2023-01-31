@@ -35,7 +35,6 @@ const defaults: Options = {
     keepNames: true,
     platform: "browser",
     target: "esnext",
-    incremental: true,
     treeShaking: true,
   },
 };
@@ -178,8 +177,6 @@ export default function (userOptions?: Partial<Options>) {
       const buildOptions: LumeBuildOptions = {
         ...options.options,
         write: false,
-        incremental: false,
-        watch: false,
         metafile: false,
         entryPoints,
         sourcemap: enableAllSourceMaps ? "external" : undefined,
