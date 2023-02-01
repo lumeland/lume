@@ -35,33 +35,7 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
         return;
       }
 
-      // Create a Data for each language
-      const languageData: Record<
-        string,
-        { data: PageData; customUrl: boolean }
-      > = {};
-      languages.forEach((key) => {
-        const data: PageData = { ...page.data };
-
-        // This language has a custom url (like url.en = "/english-url/")
-        const customUrl = data[`url.${key}`] || data[key]?.url;
-
-        // Remove all entries of other languages
-        for (const [name, value] of Object.entries(data)) {
-          if (languages.includes(name)) {
-            if (name === key) {
-              Object.assign(data, value);
-            } else {
-              delete data[name];
-            }
-          }
-        }
-        languageData[key] = {
-          data: filterLanguage(languages, key, data),
-          customUrl,
-        };
-      });
-
+      const languageData = getLanguageData(languages, page);
       const alternates: Alternates = {};
 
       // Create a new page per language
@@ -102,23 +76,45 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
       const baseSlug = parseSlug(page, data.lang);
 
       if (baseSlug) {
+        const pages: Record<string, Page> = {};
         const alternates: Alternates = {};
 
         // Search pages in the same directory with the same slug
         page.parent?.pages.forEach((page) => {
-          const { data } = page;
+          const lang = page.data.lang;
 
-          if (typeof data.lang !== "string") {
+          if (typeof lang !== "string") {
             return;
           }
 
           if (
-            parseSlug(page, data.lang) === baseSlug ||
+            parseSlug(page, lang) === baseSlug ||
             page.src.path.endsWith(`/${baseSlug}`)
           ) {
-            alternates[data.lang] = page;
-            if (page.data.url) {
-              page.data.url = getUrl(page.data.url, data.lang);
+            pages[lang] = page;
+          }
+        });
+
+        const langs = Object.keys(pages);
+
+        if (langs.length > 1) {
+          for (const [lang, page] of Object.entries(pages)) {
+            const languageData = getLanguageData(langs, page, lang);
+            const pageData = languageData[lang];
+
+            if (pageData) {
+              page.data = pageData.data;
+
+              if (pageData.customUrl) {
+                page.data.url = site.pagePreparer.getUrl(
+                  page,
+                  page.data.url as string,
+                );
+              } else if (page.data.url) {
+                page.data.url = getUrl(page.data.url, lang);
+              }
+
+              alternates[lang] = page;
             }
           }
 
@@ -129,7 +125,7 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
           Object.values(sorted).forEach((page) =>
             page.data.alternates = sorted
           );
-        });
+        }
       }
     });
 
@@ -203,6 +199,51 @@ function mergeLanguages(
   return result;
 }
 
+interface TranslatedPage {
+  data: PageData;
+  customUrl: boolean;
+}
+
+/**
+ * Returns the data of a page grouped by language
+ */
+function getLanguageData(
+  languages: string[],
+  page: Page,
+  filter?: string,
+): Record<string, TranslatedPage> {
+  // Create a Data for each language
+  const languageData: Record<string, TranslatedPage> = {};
+
+  languages.forEach((key) => {
+    if (filter && key !== filter) {
+      return;
+    }
+
+    const data: PageData = { ...page.data };
+
+    // This language has a custom url (like url.en = "/english-url/")
+    const customUrl = data[`url.${key}`] || data[key]?.url;
+
+    // Remove all entries of other languages
+    for (const [name, value] of Object.entries(data)) {
+      if (languages.includes(name)) {
+        if (name === key) {
+          Object.assign(data, value);
+        }
+
+        delete data[name];
+      }
+    }
+    languageData[key] = {
+      data: filterLanguage(languages, key, data),
+      customUrl,
+    };
+  });
+
+  return languageData;
+}
+
 /**
  * Remove the entries from all "langs" except the "lang" value
  */
@@ -251,6 +292,9 @@ function parseSlug(page: Page, lang: string): string | undefined {
 }
 
 function getUrl(url: string, lang: string): string {
+  if (url.endsWith(`/index_${lang}/`)) {
+    return `/${lang}${url.slice(0, -lang.length - 8)}/`;
+  }
   if (url.endsWith(`_${lang}/`)) {
     return `/${lang}${url.slice(0, -lang.length - 2)}/`;
   }

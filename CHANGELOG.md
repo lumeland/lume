@@ -14,6 +14,11 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Property `inheritData` for components [#364].
 - Support for import maps in the deno.json file.
 
+### Changed
+- Improved the `multilanguage` plugin:
+  - Languages versions stored in different files are better handled.
+  - Removed the root key of the page language.
+
 ### Fixed
 - Updated dependencies: `std`, `esbuild`, `eta`, `postcss-nesting`, `terser`, `pagefind`.
 

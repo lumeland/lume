@@ -163,10 +163,6 @@ snapshot[`multilanguage plugin 6`] = `
     ],
     content: "<p>Other page</p>",
     date: 1970-01-01T00:00:00.000Z,
-    en: {
-      title: "Other",
-      url: "/other-page-english/",
-    },
     lang: "en",
     mergeLanguages: [Function: mergeLanguages],
     mergedKeys: {
@@ -206,9 +202,6 @@ snapshot[`multilanguage plugin 7`] = `
     ],
     content: "<p>Other page</p>",
     date: 1970-01-01T00:00:00.000Z,
-    fr: {
-      url: "/other-page-french.html",
-    },
     lang: "fr",
     mergeLanguages: [Function: mergeLanguages],
     mergedKeys: {
