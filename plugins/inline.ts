@@ -167,6 +167,36 @@ export default function (userOptions?: Partial<Options>) {
               svg.id = element.id;
             }
 
+            const width = parseInt(element.getAttribute("width") || "0");
+            const height = parseInt(element.getAttribute("height") || "0");
+            const viewBox = svg.getAttribute("viewBox")?.split(" ");
+
+            if (width && height) {
+              svg.setAttribute("width", width);
+              svg.setAttribute("height", height);
+            } else if (width) {
+              svg.setAttribute("width", width);
+              if (viewBox?.length === 4) {
+                const ratio = width / parseInt(viewBox[2]);
+                svg.setAttribute("height", parseInt(viewBox[3]) * ratio);
+              }
+            } else if (height) {
+              svg.setAttribute("height", height);
+              if (viewBox?.length === 4) {
+                const ratio = height / parseInt(viewBox[3]);
+                svg.setAttribute("width", parseInt(viewBox[2]) * ratio);
+              }
+            }
+
+            // Width and height attributes
+            if (element.getAttribute("width")) {
+              svg.setAttribute("width", element.getAttribute("width")!);
+            }
+
+            if (element.getAttribute("height")) {
+              svg.setAttribute("height", element.getAttribute("height")!);
+            }
+
             element.replaceWith(svg);
           }
           return;
