@@ -12,6 +12,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.15.3] - Unreleased
 ### Fixed
 - `inline` plugin: handle `width` and `height` attributes of inlined SVG files.
+- Updated dependencies: `std`, `preact`, `sass`, `terser`, `esbuild`.
 
 ## [1.15.2] - 2023-02-02
 ### Added
