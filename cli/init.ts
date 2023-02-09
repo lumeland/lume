@@ -1,9 +1,9 @@
-import { brightGreen, cyan, dim, red } from "../deps/colors.ts";
+import { brightGreen, cyan, dim } from "../deps/colors.ts";
 import { pluginNames } from "../core/utils.ts";
 import importMap from "./import_map.ts";
-
+import inquirer from "../deps/inquirer.ts";
 /** Generate a _config.js file */
-export default function () {
+export default (): Promise<void> => {
   return init();
 }
 
@@ -25,7 +25,7 @@ async function initConfig(): Promise<string[] | undefined> {
   // Generate the code for the config file
   const code = [`import lume from "lume/mod.ts";`];
 
-  const plugins = getPlugins();
+  const plugins = await getPlugins();
   plugins.forEach((name) =>
     code.push(
       `import ${name} from "lume/plugins/${name}.ts";`,
@@ -51,32 +51,49 @@ async function initConfig(): Promise<string[] | undefined> {
 }
 
 /** Question to get the list of plugins to install in the config file */
-function getPlugins() {
-  const message = `
-${cyan("Do you want to use plugins?")}
-Type the plugins separated by comma or space.
+async function getPlugins(): Promise<string[]> {
+  if (!confirm(cyan("Do you want to use plugins?"))) return [];
 
-All available options:
-${
-    pluginNames.map((plugin) =>
-      `- ${dim(plugin)} https://lume.land/plugins/${plugin}/`
-    ).join("\n")
+  console.log(`${dim("Use ⭥ to navigate between plugins and 'space' to toggle y/n.")}`)
+  console.log("All available options:")
+
+  // deno-lint-ignore no-explicit-any
+  const tableOptions: any[] = [];
+  for (const opt of pluginNames) {
+    tableOptions.push(opt)
+    tableOptions.push(new inquirer.Separator());
   }
 
-Example: ${dim(`postcss terser base_path`)}
-`;
-  const choice = prompt(message);
-  const plugins = choice ? choice.split(/[\s,]+/) : [];
+  const pluginPrompt = await inquirer.prompt({
+    name: "plugins",
+    type: "checkbox",
+    message: "Please choose your plugins",
+    choices: tableOptions
+  })
 
-  // Validate the plugins
-  return plugins.filter((plugin) => {
-    if (pluginNames.includes(plugin)) {
-      return true;
-    }
-    console.log(red(`Ignored not valid plugin ${plugin}.`));
-    return false;
-  });
+
+  return pluginPrompt.plugins
+
+
+
+
 }
+
+
+
+// const choice = prompt(message);
+// const plugins = choice ? choice.split(/[\s,]+/) : [];
+
+// Validate the plugins
+// return plugins.filter((plugin) => {
+//   if (pluginNames.includes(plugin)) {
+//     return true;
+//   }
+//   console.log(red(`Ignored not valid plugin ${plugin}.`));
+//   return false;
+// });
+
+
 
 /** Question to get the filename of the config file */
 async function getConfigFile(): Promise<string | false> {
@@ -87,8 +104,8 @@ async function getConfigFile(): Promise<string | false> {
   try {
     await Deno.lstat(configFile);
     return confirm(
-        cyan(`The file "${configFile}" already exist. Override?`),
-      )
+      cyan(`The file "${configFile}" already exist.Override ? `),
+    )
       ? configFile
       : false;
   } catch (err) {
