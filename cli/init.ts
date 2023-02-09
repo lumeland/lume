@@ -50,7 +50,10 @@ async function initConfig(): Promise<string[] | undefined> {
   return plugins;
 }
 
-/** Question to get the list of plugins to install in the config file */
+/**
+ * Question to get the list of plugins to install in the config file
+ * @returns Promise<string[]>
+ */
 async function getPlugins(): Promise<string[]> {
   if (!confirm(cyan("Do you want to use plugins?"))) return [];
 
@@ -78,21 +81,6 @@ async function getPlugins(): Promise<string[]> {
 
 
 }
-
-
-
-// const choice = prompt(message);
-// const plugins = choice ? choice.split(/[\s,]+/) : [];
-
-// Validate the plugins
-// return plugins.filter((plugin) => {
-//   if (pluginNames.includes(plugin)) {
-//     return true;
-//   }
-//   console.log(red(`Ignored not valid plugin ${plugin}.`));
-//   return false;
-// });
-
 
 
 /** Question to get the filename of the config file */
