@@ -1,7 +1,7 @@
 import { brightGreen, cyan, dim } from "../deps/colors.ts";
 import { pluginNames } from "../core/utils.ts";
 import importMap from "./import_map.ts";
-import inquirer from "../deps/inquirer.ts";
+import { prompt, Input, Checkbox } from "../deps/cliffy.ts"
 /** Generate a _config.js file */
 export default (): Promise<void> => {
   return init();
@@ -23,12 +23,12 @@ async function initConfig(): Promise<string[] | undefined> {
   }
 
   // Generate the code for the config file
-  const code = [`import lume from "lume/mod.ts";`];
+  const code = [`import lume from "https://deno.land/x/lume/mod.ts";`];
 
   const plugins = await getPlugins();
   plugins.forEach((name) =>
     code.push(
-      `import ${name} from "lume/plugins/${name}.ts";`,
+      `import ${name} from "https://deno.land/x/lume/plugins/${name}.ts";`,
     )
   );
   code.push("");
@@ -57,25 +57,17 @@ async function initConfig(): Promise<string[] | undefined> {
 async function getPlugins(): Promise<string[]> {
   if (!confirm(cyan("Do you want to use plugins?"))) return [];
 
-  console.log(`${dim("Use ⭥ to navigate between plugins and 'space' to toggle y/n.")}`)
-  console.log("All available options:")
+  // console.log(`${dim("Use ⭥ to navigate between plugins and 'space' to toggle y/n.")}`)
 
-  // deno-lint-ignore no-explicit-any
-  const tableOptions: any[] = [];
-  for (const opt of pluginNames) {
-    tableOptions.push(opt)
-    tableOptions.push(new inquirer.Separator());
-  }
-
-  const pluginPrompt = await inquirer.prompt({
+  const pluginsPrompt = await prompt([{ 
     name: "plugins",
-    type: "checkbox",
-    message: "Please choose your plugins",
-    choices: tableOptions
-  })
+    message: "All available options:",
+    type: Checkbox, 
+    options: pluginNames
+  }])
 
 
-  return pluginPrompt.plugins
+  return pluginsPrompt.plugins ?? [];
 
 
 
