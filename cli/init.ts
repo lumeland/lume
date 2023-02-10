@@ -59,19 +59,15 @@ async function getPlugins(): Promise<string[]> {
 
   // console.log(`${dim("Use ⭥ to navigate between plugins and 'space' to toggle y/n.")}`)
 
-  const pluginsPrompt = await prompt([{ 
+  const pluginsPrompt = await prompt([{
     name: "plugins",
     message: "All available options:",
-    type: Checkbox, 
+    type: Checkbox,
     options: pluginNames
   }])
 
 
   return pluginsPrompt.plugins ?? [];
-
-
-
-
 }
 
 
