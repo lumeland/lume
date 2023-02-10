@@ -205,6 +205,8 @@ snapshot[`Build a markdown site 7`] = `
 </code></pre>
 <pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
 </code></pre>
+<pre><code>Indented code
+</code></pre>
 ',
   data: {
     content: "\`\`\`html
@@ -214,6 +216,8 @@ snapshot[`Build a markdown site 7`] = `
 \`\`\`
 <p>Example without color highlight</p>
 \`\`\`
+
+    Indented code
 ",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -619,6 +623,8 @@ snapshot[`Build a markdown with hooks 7`] = `
 </code></pre>
 <pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
 </code></pre>
+<pre><code>Indented code
+</code></pre>
 ',
   data: {
     content: "\`\`\`html
@@ -628,6 +634,8 @@ snapshot[`Build a markdown with hooks 7`] = `
 \`\`\`
 <p>Example without color highlight</p>
 \`\`\`
+
+    Indented code
 ",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
