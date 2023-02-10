@@ -10,6 +10,9 @@ but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
 ## [1.15.3] - Unreleased
+### Added
+- New hook `markdownIt` to modify the `MarkdownIt` instance directly.
+
 ### Fixed
 - `inline` plugin: handle `width` and `height` attributes of inlined SVG files.
 - Updated dependencies: `std`, `preact`, `sass`, `terser`, `esbuild`.

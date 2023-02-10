@@ -101,6 +101,8 @@ export default function (userOptions?: DeepPartial<Options>) {
       engine.renderer.rules[name] = rule;
     };
 
+    site.hooks.markdownIt = (callback) => callback(engine);
+
     // Load the pages
     site.loadPages(options.extensions, loader, new MarkdownEngine(engine));
 
