@@ -1,7 +1,7 @@
-import { brightGreen, cyan, dim } from "../deps/colors.ts";
+import { brightGreen, cyan } from "../deps/colors.ts";
 import { pluginNames } from "../core/utils.ts";
 import importMap from "./import_map.ts";
-import { Checkbox, Input, prompt } from "../deps/cliffy.ts";
+import { Checkbox, prompt } from "../deps/cliffy.ts";
 /** Generate a _config.js file */
 export default (): Promise<void> => {
   return init();
