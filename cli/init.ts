@@ -23,12 +23,12 @@ async function initConfig(): Promise<string[] | undefined> {
   }
 
   // Generate the code for the config file
-  const code = [`import lume from "https://deno.land/x/lume/mod.ts";`];
+  const code = [`import lume from "lume/mod.ts";`];
 
   const plugins = await getPlugins();
   plugins.forEach((name) =>
     code.push(
-      `import ${name} from "https://deno.land/x/lume/plugins/${name}.ts";`,
+      `import ${name} from "lume/plugins/${name}.ts";`,
     )
   );
   code.push("");
