@@ -1,11 +1,12 @@
-import { brightGreen, cyan } from "../deps/colors.ts";
+import { brightGreen } from "../deps/colors.ts";
 import { pluginNames } from "../core/utils.ts";
 import importMap from "./import_map.ts";
-import { Checkbox, prompt } from "../deps/cliffy.ts";
+import { Checkbox, Confirm, Select } from "../deps/cliffy.ts";
+
 /** Generate a _config.js file */
-export default (): Promise<void> => {
+export default function (): Promise<void> {
   return init();
-};
+}
 
 export async function init() {
   const plugins = await initConfig();
@@ -22,10 +23,11 @@ async function initConfig(): Promise<string[] | undefined> {
     return;
   }
 
+  const plugins = await getPlugins();
+
   // Generate the code for the config file
   const code = [`import lume from "lume/mod.ts";`];
 
-  const plugins = await getPlugins();
   plugins.forEach((name) =>
     code.push(
       `import ${name} from "lume/plugins/${name}.ts";`,
@@ -55,36 +57,50 @@ async function initConfig(): Promise<string[] | undefined> {
  * @returns Promise<string[]>
  */
 async function getPlugins(): Promise<string[]> {
-  if (!confirm(cyan("Do you want to use plugins?"))) return [];
+  const usePlugins = await Confirm.prompt({
+    message: "Do you want to use plugins?",
+    default: false,
+    hint: "See all available plugins at https://lume.land/plugins/",
+  });
 
-  // console.log(`${dim("Use ⭥ to navigate between plugins and 'space' to toggle y/n.")}`)
+  if (!usePlugins) {
+    return [];
+  }
 
-  const pluginsPrompt = await prompt([{
-    name: "plugins",
-    message: "All available options:",
-    type: Checkbox,
+  return Checkbox.prompt({
+    message: "Select the plugins to use:",
     options: pluginNames,
-  }]);
-
-  return pluginsPrompt.plugins ?? [];
+    hint: "Use Arrow keys and Space to select. Enter to submit",
+  });
 }
 
 /** Question to get the filename of the config file */
 async function getConfigFile(): Promise<string | false> {
-  const configFile = confirm(cyan("Use TypeScript for the configuration file?"))
-    ? "_config.ts"
-    : "_config.js";
+  const file = await Select.prompt({
+    message: "Use TypeScript or JavaScript for the configuration file?",
+    options: [
+      {
+        name: "_config.ts",
+        value: "_config.ts",
+      },
+      {
+        name: "_config.js",
+        value: "_config.js",
+      },
+    ],
+  });
 
   try {
-    await Deno.lstat(configFile);
-    return confirm(
-        cyan(`The file "${configFile}" already exist.Override ? `),
-      )
-      ? configFile
-      : false;
+    await Deno.lstat(file);
+    const override = await Confirm.prompt({
+      message: `The file "${file}" already exist. Override?`,
+      default: false,
+    });
+
+    return override ? file : false;
   } catch (err) {
     if (err instanceof Deno.errors.NotFound) {
-      return configFile;
+      return file;
     }
 
     throw err;
