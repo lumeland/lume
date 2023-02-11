@@ -13,6 +13,9 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Added
 - New hook `markdownIt` to modify the `MarkdownIt` instance directly.
 
+### Changed
+- Improved TUI for `init` script [#358], [#374].
+
 ### Fixed
 - `inline` plugin: handle `width` and `height` attributes of inlined SVG files.
 - Updated dependencies: `std`, `preact`, `sass`, `terser`, `esbuild`, `imagemagick`, `mdx`.
@@ -2082,8 +2085,10 @@ The first version.
 [#344]: https://github.com/lumeland/lume/issues/344
 [#346]: https://github.com/lumeland/lume/issues/346
 [#348]: https://github.com/lumeland/lume/issues/348
+[#358]: https://github.com/lumeland/lume/issues/358
 [#359]: https://github.com/lumeland/lume/issues/359
 [#364]: https://github.com/lumeland/lume/issues/364
+[#374]: https://github.com/lumeland/lume/issues/374
 
 [1.15.3]: https://github.com/lumeland/lume/compare/v1.15.2...HEAD
 [1.15.2]: https://github.com/lumeland/lume/compare/v1.15.1...v1.15.2
