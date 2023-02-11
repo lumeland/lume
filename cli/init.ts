@@ -1,11 +1,11 @@
 import { brightGreen, cyan, dim } from "../deps/colors.ts";
 import { pluginNames } from "../core/utils.ts";
 import importMap from "./import_map.ts";
-import { prompt, Input, Checkbox } from "../deps/cliffy.ts"
+import { Checkbox, Input, prompt } from "../deps/cliffy.ts";
 /** Generate a _config.js file */
 export default (): Promise<void> => {
   return init();
-}
+};
 
 export async function init() {
   const plugins = await initConfig();
@@ -63,13 +63,11 @@ async function getPlugins(): Promise<string[]> {
     name: "plugins",
     message: "All available options:",
     type: Checkbox,
-    options: pluginNames
-  }])
-
+    options: pluginNames,
+  }]);
 
   return pluginsPrompt.plugins ?? [];
 }
-
 
 /** Question to get the filename of the config file */
 async function getConfigFile(): Promise<string | false> {
@@ -80,8 +78,8 @@ async function getConfigFile(): Promise<string | false> {
   try {
     await Deno.lstat(configFile);
     return confirm(
-      cyan(`The file "${configFile}" already exist.Override ? `),
-    )
+        cyan(`The file "${configFile}" already exist.Override ? `),
+      )
       ? configFile
       : false;
   } catch (err) {
