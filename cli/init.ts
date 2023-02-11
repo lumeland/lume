@@ -57,18 +57,27 @@ async function initConfig(): Promise<string[] | undefined> {
  * @returns Promise<string[]>
  */
 async function getPlugins(): Promise<string[]> {
-  const usePlugins = await Confirm.prompt({
-    message: "Do you want to use plugins?",
-    default: false,
+  const usePlugins = await Select.prompt({
+    message: "Do you want to install some plugins now?",
+    options: [
+      {
+        name: "Yes",
+        value: "yes",
+      },
+      {
+        name: "Maybe later",
+        value: "no",
+      },
+    ],
     hint: "See all available plugins at https://lume.land/plugins/",
   });
 
-  if (!usePlugins) {
+  if (usePlugins === "no") {
     return [];
   }
 
   return Checkbox.prompt({
-    message: "Select the plugins to use:",
+    message: "Select the plugins to install",
     options: pluginNames,
     hint: "Use Arrow keys and Space to select. Enter to submit",
   });
