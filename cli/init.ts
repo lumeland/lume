@@ -86,14 +86,14 @@ async function getPlugins(): Promise<string[]> {
 /** Question to get the filename of the config file */
 async function getConfigFile(): Promise<string | false> {
   const file = await Select.prompt({
-    message: "Use TypeScript or JavaScript for the configuration file?",
+    message: "Choose the configuration file format",
     options: [
       {
-        name: "_config.ts",
+        name: "_config.ts (TypeScript)",
         value: "_config.ts",
       },
       {
-        name: "_config.js",
+        name: "_config.js (JavaScript)",
         value: "_config.js",
       },
     ],
