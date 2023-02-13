@@ -1,5 +1,6 @@
 import { brightGreen, gray, red } from "./deps/colors.ts";
 import { checkDenoVersion } from "./core/utils.ts";
+import { outdent } from "./deps/outdent.ts";
 
 checkDenoVersion();
 
@@ -34,26 +35,24 @@ if (!status.success) {
 }
 
 if (Deno.args[0] !== "--upgrade") {
-  console.log();
-  console.log("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥");
-  console.log();
-  console.log(brightGreen(" Lume installed successfully!"));
-  console.log();
-  console.log("    BENVIDO - WELCOME! 🎉🎉");
-  console.log();
-  console.log(gray("-------------------------------"));
-  console.log();
-  console.log(`Run ${brightGreen("lume --help")} for usage information`);
-  console.log(
-    `See ${gray("https://lume.land")} for online documentation`,
-  );
-  console.log(
-    `See ${
-      gray("https://discord.gg/YbTmpACHWB")
-    } to propose new ideas and get help at Discord`,
-  );
-  console.log(
-    `See ${gray("https://opencollective.com/lume")} to provide some support`,
-  );
-  console.log();
+  const message = outdent`
+
+    🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+    ${brightGreen(" Lume installed successfully!")}
+
+        BENVIDO - WELCOME! 🎉🎉
+
+    ${gray("-------------------------------")}
+
+    Run ${brightGreen("lume --help")} for usage information
+    See ${gray("https://lume.land")} for online documentation
+    See ${
+    gray("https://discord.gg/YbTmpACHWB")
+  } to propose new ideas and get help at Discord
+    See ${gray("https://opencollective.com/lume")} to provide some support
+
+  `;
+
+  console.log(message);
 }
