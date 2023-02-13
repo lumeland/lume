@@ -1,5 +1,7 @@
+type Files = string[];
+
 export default function liveReload() {
-  let ws;
+  let ws: WebSocket | undefined;
   let wasClosed = false;
 
   function socket() {
@@ -50,7 +52,7 @@ export default function liveReload() {
 
   socket();
 
-  function refresh(files) {
+  function refresh(files: string[]) {
     let path = decodeURI(document.location.pathname);
 
     if (!path.endsWith(".html")) {
@@ -69,7 +71,7 @@ export default function liveReload() {
 
     for (const file of files) {
       const url = createUrl(file);
-      const format = url.pathname.split(".").pop().toLowerCase();
+      const format = url.pathname.split(".").pop()?.toLowerCase();
 
       switch (format) {
         case "css":
@@ -117,7 +119,7 @@ export default function liveReload() {
     }
   }
 
-  function styleIsImported(url, style) {
+  function styleIsImported(url: URL, style: CSSStyleSheet) {
     if (style.href === url.href) {
       return true;
     }
@@ -133,7 +135,7 @@ export default function liveReload() {
         continue;
       }
 
-      if (!rule.styleSheet.href.startsWith(url.origin)) {
+      if (!rule.styleSheet.href?.startsWith(url.origin)) {
         continue;
       }
 
@@ -145,16 +147,16 @@ export default function liveReload() {
     return false;
   }
 
-  function reloadSource(element) {
+  function reloadSource(element: HTMLImageElement) {
     const src = new URL(element.src);
-    src.searchParams.set("_cache", Date.now());
+    src.searchParams.set("_cache", Date.now().toString());
     element.src = src.href;
   }
 
-  function reloadStylesheet(element) {
+  function reloadStylesheet(element: Element | ProcessingInstruction) {
     const url = new URL(element.href);
 
-    url.searchParams.set("_cache", Date.now());
+    url.searchParams.set("_cache", Date.now().toString());
 
     const newElement = element.cloneNode();
     newElement.href = url.href;
@@ -162,11 +164,11 @@ export default function liveReload() {
     setTimeout(() => element.remove(), 500);
   }
 
-  function save(data) {
-    sessionStorage.setItem("lume-reload", JSON.stringify(data));
+  function save(files: Files) {
+    sessionStorage.setItem("lume-reload", JSON.stringify(files));
   }
 
-  function read() {
+  function read(): Files | undefined {
     const data = sessionStorage.getItem("lume-reload");
     sessionStorage.removeItem("lume-reload");
 
@@ -175,7 +177,7 @@ export default function liveReload() {
     }
   }
 
-  function createUrl(href) {
+  function createUrl(href: string) {
     // Remove search and hash
     const url = new URL(href, document.location.href);
     url.search = "";
@@ -184,7 +186,7 @@ export default function liveReload() {
     return url;
   }
 
-  function isSame(currentUrl, href) {
+  function isSame(currentUrl: URL, href: string) {
     const newUrl = createUrl(href);
 
     if (currentUrl.origin !== newUrl.origin) {

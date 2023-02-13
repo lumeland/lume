@@ -5,5 +5,8 @@
     "test:update": "deno task test -- --update",
     "install": "deno run -A install.ts",
     "changelog": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.1.0/bin.ts"
+  },
+  "compilerOptions": {
+    "lib": ["dom", "deno.ns"]
   }
 }
