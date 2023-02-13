@@ -20,17 +20,17 @@ const status = await process.status();
 process.close();
 
 if (!status.success) {
-  console.log();
-  console.error(red("Error installing Lume"));
-  console.log(
-    `You can report an issue at ${
-      gray("https://github.com/lumeland/lume/issues/new")
-    }`,
-  );
-  console.log(
-    `Or get help at Discord: ${gray("https://discord.gg/YbTmpACHWB")}`,
-  );
-  console.log();
+  const message = outdent`
+
+    ${red("Error installing Lume")}
+    You can report an issue at ${
+    gray("https://github.com/lumeland/lume/issues/new")
+  }
+    Or get help at Discord: ${gray("https://discord.gg/YbTmpACHWB")}
+
+  `;
+
+  console.error(message);
   Deno.exit(1);
 }
 
