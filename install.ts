@@ -10,7 +10,7 @@ const process = Deno.run({
     "install",
     "--unstable",
     "-Af",
-    `--no-check`,
+    "--no-check",
     "--name=lume",
     import.meta.resolve("./ci.ts"),
   ],
