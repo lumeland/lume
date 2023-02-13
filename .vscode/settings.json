@@ -2,6 +2,7 @@
   "editor.inlayHints.enabled": "off",
   "deno.enable": true,
   "deno.unstable": true,
+  "deno.config": "./deno.json",
   "deno.suggest.imports.hosts": {
     "https://deno.land": true
   }
