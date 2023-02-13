@@ -19,14 +19,22 @@ const process = Deno.run({
 const status = await process.status();
 process.close();
 
+const links = {
+  help: brightGreen("lume --help"),
+  issues: gray("https://github.com/lumeland/lume/issues/new"),
+  website: gray("https://lume.land"),
+  discord: gray("https://discord.gg/YbTmpACHWB"),
+  opencollective: gray("https://opencollective.com/lume"),
+} as const;
+
 if (!status.success) {
+  const { issues, discord } = links;
+
   const message = outdent`
 
     ${red("Error installing Lume")}
-    You can report an issue at ${
-    gray("https://github.com/lumeland/lume/issues/new")
-  }
-    Or get help at Discord: ${gray("https://discord.gg/YbTmpACHWB")}
+    You can report an issue at ${issues}
+    Or get help at Discord: ${discord}
 
   `;
 
@@ -35,6 +43,8 @@ if (!status.success) {
 }
 
 if (Deno.args[0] !== "--upgrade") {
+  const { help, website, discord, opencollective } = links;
+
   const message = outdent`
 
     🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
@@ -45,12 +55,10 @@ if (Deno.args[0] !== "--upgrade") {
 
     ${gray("-------------------------------")}
 
-    Run ${brightGreen("lume --help")} for usage information
-    See ${gray("https://lume.land")} for online documentation
-    See ${
-    gray("https://discord.gg/YbTmpACHWB")
-  } to propose new ideas and get help at Discord
-    See ${gray("https://opencollective.com/lume")} to provide some support
+    Run ${help} for usage information
+    See ${website} for online documentation
+    See ${discord} to propose new ideas and get help at Discord
+    See ${opencollective} to provide some support
 
   `;
 
