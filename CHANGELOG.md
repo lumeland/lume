@@ -12,6 +12,9 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.15.3] - Unreleased
 ### Added
 - New hook `markdownIt` to modify the `MarkdownIt` instance directly.
+- New option `lastmod` to the sitemap plugin [#369].
+  It accepts a `string` with the key of the variable (by default is `date`),
+  or a custom function to get the date from the page data.
 
 ### Changed
 - Improved TUI for `init` script [#358], [#374].
@@ -2088,6 +2091,7 @@ The first version.
 [#358]: https://github.com/lumeland/lume/issues/358
 [#359]: https://github.com/lumeland/lume/issues/359
 [#364]: https://github.com/lumeland/lume/issues/364
+[#369]: https://github.com/lumeland/lume/issues/369
 [#374]: https://github.com/lumeland/lume/issues/374
 
 [1.15.3]: https://github.com/lumeland/lume/compare/v1.15.2...HEAD

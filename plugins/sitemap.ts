@@ -13,6 +13,9 @@ export interface Options {
 
   /** The values to sort the sitemap */
   sort: string;
+
+  /** The key to use for the lastmod field or a custom function */
+  lastmod?: string | ((data: Data) => Date);
 }
 
 // Default options
@@ -20,6 +23,7 @@ export const defaults: Options = {
   filename: "/sitemap.xml",
   query: "",
   sort: "url=asc",
+  lastmod: "date",
 };
 
 /** A plugin to generate a sitemap.xml from page files after build */
@@ -60,19 +64,29 @@ export default function (userOptions?: Partial<Options>) {
 
     function getSitemapContent(site: Site) {
       const search = new Search(site, true);
-      const sitemap = search.pages(options.query, options.sort) as Data[];
+      const sitemap = search.pages(options.query, options.sort)
+        .map((data: Data) => getPageData(data));
 
       // deno-fmt-ignore
       return `
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${sitemap.map((data: Data) =>
+  ${sitemap.map(({ url, lastmod }) =>
   `<url>
-    <loc>${site.url(data.url as string, true)}</loc>
-    ${data.date ? `<lastmod>${data.date.toISOString()}</lastmod>` : ""}
+    <loc>${url}</loc>
+    ${lastmod ? `<lastmod>${lastmod.toISOString()}</lastmod>` : ""}
   </url>
   `).join("").trim()}
 </urlset>`.trim();
+    }
+
+    function getPageData(data: Data): { url: string; lastmod?: Date } {
+      const url = site.url(data.url as string, true);
+      const lastmod = typeof options.lastmod === "function"
+        ? options.lastmod(data)
+        : data[options.lastmod as string];
+
+      return { url, lastmod };
     }
   };
 }
