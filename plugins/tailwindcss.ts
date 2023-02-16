@@ -1,5 +1,5 @@
 import tailwind, { Config } from "../deps/tailwindcss.ts";
-import { merge } from "../core/utils.ts";
+import { getExtension, merge } from "../core/utils.ts";
 
 import type { Site } from "../core.ts";
 
@@ -29,7 +29,10 @@ export default function (userOptions?: Partial<Options>) {
     site.processAll(options.extensions, (pages) => {
       // Get the content of all HTML pages (sorted by path)
       const content = pages.sort((a, b) => a.src.path.localeCompare(b.src.path))
-        .map((page) => ({ raw: page.content as string }));
+        .map((page) => ({
+          raw: page.content as string,
+          extension: getExtension(page.outputPath || "").substring(1),
+        }));
 
       // Create Tailwind plugin
       // @ts-ignore: This expression is not callable.
