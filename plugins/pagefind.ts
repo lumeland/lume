@@ -53,6 +53,12 @@ export interface UIOptions {
    * The items in square brackets such as SEARCH_TERM will be substituted dynamically when the text is used.
    */
   translations?: TranslationsOptions;
+
+  /**
+   * A function that Pagefind UI calls before performing a search.
+   * This can be used to normalize search terms to match your content.
+   */
+  processTerm?: (term: string) => string;
 }
 
 export interface IndexingOptions {
@@ -90,7 +96,7 @@ const defaults: Options = {
   binary: {
     path: "./_bin/pagefind",
     extended: false,
-    version: "v0.10.7",
+    version: "v0.11.0",
   },
   ui: {
     containerId: "search",
@@ -161,6 +167,7 @@ export default function (userOptions?: DeepPartial<Options>) {
             bundlePath: site.url(posix.join(indexing.bundleDirectory, "/")),
             baseUrl: site.url("/"),
             translations: ui.translations,
+            processTerm: ui.processTerm ? ui.processTerm.toString() : undefined,
           };
           const init = document.createElement("script");
           init.setAttribute("type", "text/javascript");

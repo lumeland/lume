@@ -15,13 +15,14 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - New option `lastmod` to the sitemap plugin [#369].
   It accepts a `string` with the key of the variable (by default is `date`),
   or a custom function to get the date from the page data.
+- New option `ui.processTerm` to `pagefind` plugin.
 
 ### Changed
 - Improved TUI for `init` script [#358], [#374].
 
 ### Fixed
 - `inline` plugin: handle `width` and `height` attributes of inlined SVG files.
-- Updated dependencies: `std`, `preact`, `sass`, `terser`, `esbuild`, `imagemagick`, `mdx`, `lighningcss`, `liquid`, `postcss-nesting`.
+- Updated dependencies: `std`, `preact`, `sass`, `terser`, `esbuild`, `imagemagick`, `mdx`, `lighningcss`, `liquid`, `postcss-nesting`, `pagefind`.
 
 ## [1.15.2] - 2023-02-02
 ### Added
