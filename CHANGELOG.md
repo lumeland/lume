@@ -9,7 +9,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.15.3] - Unreleased
+## [1.15.3] - 2023-02-20
 ### Added
 - New hook `markdownIt` to modify the `MarkdownIt` instance directly.
 - New option `lastmod` to the sitemap plugin [#369].
@@ -2095,7 +2095,7 @@ The first version.
 [#369]: https://github.com/lumeland/lume/issues/369
 [#374]: https://github.com/lumeland/lume/issues/374
 
-[1.15.3]: https://github.com/lumeland/lume/compare/v1.15.2...HEAD
+[1.15.3]: https://github.com/lumeland/lume/compare/v1.15.2...v1.15.3
 [1.15.2]: https://github.com/lumeland/lume/compare/v1.15.1...v1.15.2
 [1.15.1]: https://github.com/lumeland/lume/compare/v1.15.0...v1.15.1
 [1.15.0]: https://github.com/lumeland/lume/compare/v1.14.2...v1.15.0
