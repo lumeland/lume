@@ -31,6 +31,11 @@ snapshot[`postcss plugin 2`] = `
       pageLoader: [AsyncFunction: text],
     },
     {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engines: 1,
@@ -208,6 +213,11 @@ snapshot[`postcss plugin without includes 2`] = `
       pageLoader: [AsyncFunction: text],
     },
     {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engines: 1,
@@ -363,6 +373,11 @@ snapshot[`postcss plugin with hooks 2`] = `
     {
       engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {

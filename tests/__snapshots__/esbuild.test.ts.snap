@@ -31,6 +31,11 @@ snapshot[`esbuild plugin 2`] = `
       pageLoader: [AsyncFunction: text],
     },
     {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
       asset: true,
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
@@ -176,6 +181,11 @@ snapshot[`esbuild plugin with splitting as true 2`] = `
     {
       engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {

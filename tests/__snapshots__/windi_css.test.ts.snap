@@ -37,6 +37,11 @@ snapshot[`Windi CSS plugin 2`] = `
       pageLoader: [AsyncFunction: text],
     },
     {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engines: 1,
