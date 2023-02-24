@@ -16,10 +16,12 @@ export default async function downloadBinary(
 ): Promise<string> {
   const { path, extended, version } = options;
   const prefix = extended ? "_extended" : "";
+  const isPrerelease = /v\d+\.\d+\.\d+-.+$/.test(version);
+  const repository = isPrerelease ? "pagefind-beta" : "pagefind";
 
   return await dbin({
     pattern:
-      `https://github.com/CloudCannon/pagefind/releases/download/{version}/pagefind${prefix}-{version}-{target}.tar.gz`,
+      `https://github.com/CloudCannon/${repository}/releases/download/{version}/pagefind${prefix}-{version}-{target}.tar.gz`,
     version,
     targets: [
       { name: "x86_64-unknown-linux-musl", os: "linux", arch: "x86_64" },
