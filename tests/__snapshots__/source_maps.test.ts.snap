@@ -31,6 +31,11 @@ snapshot[`Source maps from CSS files 2`] = `
       pageLoader: [AsyncFunction: text],
     },
     {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engines: 1,
@@ -231,6 +236,11 @@ snapshot[`Source maps from Js files 2`] = `
     {
       engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {

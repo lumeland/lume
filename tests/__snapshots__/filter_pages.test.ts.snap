@@ -31,6 +31,11 @@ snapshot[`Filter pages (allow all) 2`] = `
       pageLoader: [AsyncFunction: text],
     },
     {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engines: 1,
@@ -373,6 +378,11 @@ snapshot[`Filter pages (allow only /multiple/*) 2`] = `
     {
       engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {

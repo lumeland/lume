@@ -29,7 +29,7 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
-  extensions: [".md"],
+  extensions: [".md", ".markdown"],
   options: {
     html: true,
   },
