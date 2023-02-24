@@ -12,6 +12,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.15.4] - Unreleased
 ### Added
 - Added support for using prerelease versions of Pagefind [#388].
+- Support `.markdown` file extension for Markdown [#386], [#387].
 
 ## [1.15.3] - 2023-02-20
 ### Added
@@ -2098,6 +2099,8 @@ The first version.
 [#364]: https://github.com/lumeland/lume/issues/364
 [#369]: https://github.com/lumeland/lume/issues/369
 [#374]: https://github.com/lumeland/lume/issues/374
+[#386]: https://github.com/lumeland/lume/issues/386
+[#387]: https://github.com/lumeland/lume/issues/387
 [#388]: https://github.com/lumeland/lume/issues/388
 
 [1.15.4]: https://github.com/lumeland/lume/compare/v1.15.3...HEAD
