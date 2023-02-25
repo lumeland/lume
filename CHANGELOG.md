@@ -14,6 +14,9 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Added support for using prerelease versions of Pagefind [#388].
 - Support `.markdown` file extension for Markdown [#386], [#387].
 
+### Fixed
+- Updated dependencies: `std`, `esbuild`, `liquid`, `preact`, `terser`.
+
 ## [1.15.3] - 2023-02-20
 ### Added
 - New hook `markdownIt` to modify the `MarkdownIt` instance directly.
