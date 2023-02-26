@@ -1,5 +1,5 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
-import { brightGreen, cyan, dim, green, red } from "../deps/colors.ts";
+import { brightGreen, cyan, dim, gray, green, red } from "../deps/colors.ts";
 import { dirname, extname, join, posix, SEP } from "../deps/path.ts";
 import { parse } from "../deps/jsonc.ts";
 
@@ -389,7 +389,7 @@ export async function writeDenoConfig(options: DenoConfigResult) {
     }
   }
   await Deno.writeTextFile(file, JSON.stringify(config, null, 2) + "\n");
-  console.log(brightGreen("Deno configuration file saved:"), file);
+  console.log("Deno configuration file saved:", gray(file));
 }
 
 export function isUrl(path: string): boolean {

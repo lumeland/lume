@@ -11,6 +11,7 @@ export default function (): Promise<void> {
 
 export async function init() {
   const plugins = await initConfig();
+  if (!plugins) return;
   await importMap({ plugins });
   welcome();
 }
@@ -20,8 +21,7 @@ async function initConfig(): Promise<string[] | undefined> {
   const configFile = await getConfigFile();
 
   if (!configFile) {
-    console.log();
-    console.log("No config file created");
+    console.log(gray("Lume init cancelled."));
     return;
   }
 
@@ -50,7 +50,7 @@ async function initConfig(): Promise<string[] | undefined> {
   // Write the code to the file
   await Deno.writeTextFile(configFile, code.join("\n"));
   console.log();
-  console.log(brightGreen("Lume configuration file saved:"), configFile);
+  console.log("Lume configuration file saved:", gray(configFile));
   return plugins;
 }
 
@@ -121,7 +121,8 @@ async function getConfigFile(): Promise<string | false> {
 /** Show a welcome message */
 function welcome() {
   const links = {
-    help: brightGreen("deno task lume --help"),
+    page: brightGreen("echo 'Hello world' > index.md"),
+    serve: brightGreen("deno task serve"),
     repo: gray("https://github.com/lumeland/lume"),
     website: gray("https://lume.land"),
     discord: gray("https://discord.gg/YbTmpACHWB"),
@@ -132,17 +133,18 @@ function welcome() {
 
       🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-      ${brightGreen(" Lume installed successfully!")}
+      ${brightGreen(" Lume configured successfully!")}
 
           BENVIDO - WELCOME! 🎉🎉
 
-      ${gray("-------------------------------")}
+      🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-      Run ${links.help} for usage information
+      Run ${links.page} to create your first page
+      Run ${links.serve} to start a local server
       See ${links.website} for online documentation
       See ${links.discord} to propose new ideas and get help at Discord
       See ${links.repo} to view the source code and report issues
-      See ${links.opencollective} to provide some support
+      See ${links.opencollective} to support Lume development
   
     `;
 
