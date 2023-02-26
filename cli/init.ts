@@ -1,7 +1,8 @@
-import { brightGreen } from "../deps/colors.ts";
+import { brightGreen, gray } from "../deps/colors.ts";
 import { pluginNames } from "../core/utils.ts";
 import importMap from "./import_map.ts";
 import { Checkbox, Confirm, Select } from "../deps/cliffy.ts";
+import { outdent } from "../deps/outdent.ts";
 
 /** Generate a _config.js file */
 export default function (): Promise<void> {
@@ -11,6 +12,7 @@ export default function (): Promise<void> {
 export async function init() {
   const plugins = await initConfig();
   await importMap({ plugins });
+  welcome();
 }
 
 /** (Re)configure lume config file */
@@ -114,4 +116,35 @@ async function getConfigFile(): Promise<string | false> {
 
     throw err;
   }
+}
+
+/** Show a welcome message */
+function welcome() {
+  const links = {
+    help: brightGreen("deno task lume --help"),
+    repo: gray("https://github.com/lumeland/lume"),
+    website: gray("https://lume.land"),
+    discord: gray("https://discord.gg/YbTmpACHWB"),
+    opencollective: gray("https://opencollective.com/lume"),
+  } as const;
+
+  const message = outdent`
+
+      🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+      ${brightGreen(" Lume installed successfully!")}
+
+          BENVIDO - WELCOME! 🎉🎉
+
+      ${gray("-------------------------------")}
+
+      Run ${links.help} for usage information
+      See ${links.website} for online documentation
+      See ${links.discord} to propose new ideas and get help at Discord
+      See ${links.repo} to view the source code and report issues
+      See ${links.opencollective} to provide some support
+  
+    `;
+
+  console.log(message);
 }

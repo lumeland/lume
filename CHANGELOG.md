@@ -14,6 +14,10 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Added support for using prerelease versions of Pagefind [#388].
 - Support `.markdown` file extension for Markdown [#386], [#387].
 
+### Changed
+- Removed global installation in benefit of Deno tasks.
+  If you want to have the `lume` command, install [Lume CLI](https://github.com/lumeland/cli).
+
 ### Fixed
 - Updated dependencies: `std`, `esbuild`, `liquid`, `preact`, `terser`.
 
