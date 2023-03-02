@@ -13,7 +13,7 @@ import { merge } from "./core/utils.ts";
 import type { DeepPartial } from "./core/utils.ts";
 import type { SiteOptions } from "./core/site.ts";
 
-interface PluginOptions {
+export interface PluginOptions {
   url?: Partial<UrlOptions>;
   json?: Partial<JsonOptions>;
   markdown?: Partial<MarkdownOptions>;
@@ -57,12 +57,7 @@ export default function lume(
 
 function getOptionsFromCli(): DeepPartial<SiteOptions> {
   const options = parse(Deno.args, {
-    string: [
-      "src",
-      "dest",
-      "location",
-      "port",
-    ],
+    string: ["src", "dest", "location", "port"],
     boolean: ["quiet", "dev", "serve", "open"],
     alias: { dev: "d", serve: "s", port: "p", open: "o" },
     ["--"]: true,
