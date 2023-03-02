@@ -18,9 +18,7 @@
 - [ ] Have you read the document
       [CONTRIBUTING](https://github.com/lumeland/lume/blob/master/CONTRIBUTING.md)
   - [ ] One pull request per feature. If you want to do more than one thing,
-      send multiple pull request.
+        send multiple pull request.
   - [ ] Write tests.
-  - [ ] Run deno `fmt` to fix
-      the code format before commit.
-  - [ ] Document any change in the
-      `CHANGELOG.md`.
+  - [ ] Run deno `fmt` to fix the code format before commit.
+  - [ ] Document any change in the `CHANGELOG.md`.
