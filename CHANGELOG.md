@@ -13,7 +13,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Added
 - Added support for using prerelease versions of Pagefind [#388].
 - Support `.markdown` file extension for Markdown [#386], [#387].
-- Expose the `PluginOptions` interface #390.
+- Expose the `PluginOptions` interface [#390].
 
 ### Changed
 - Removed global installation in benefit of Deno tasks.
@@ -2110,6 +2110,7 @@ The first version.
 [#386]: https://github.com/lumeland/lume/issues/386
 [#387]: https://github.com/lumeland/lume/issues/387
 [#388]: https://github.com/lumeland/lume/issues/388
+[#390]: https://github.com/lumeland/lume/issues/390
 
 [1.15.4]: https://github.com/lumeland/lume/compare/v1.15.3...HEAD
 [1.15.3]: https://github.com/lumeland/lume/compare/v1.15.2...v1.15.3
