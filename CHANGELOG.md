@@ -13,13 +13,14 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Added
 - Added support for using prerelease versions of Pagefind [#388].
 - Support `.markdown` file extension for Markdown [#386], [#387].
+- Expose the `PluginOptions` interface #390.
 
 ### Changed
 - Removed global installation in benefit of Deno tasks.
   If you want to have the `lume` command, install [Lume CLI](https://github.com/lumeland/cli).
 
 ### Fixed
-- Updated dependencies: `std`, `esbuild`, `liquid`, `preact`, `terser`.
+- Updated dependencies: `std`, `esbuild`, `liquid`, `preact`, `terser`, `eta`.
 
 ## [1.15.3] - 2023-02-20
 ### Added
