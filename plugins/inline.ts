@@ -6,6 +6,7 @@ import { contentType } from "../deps/media_types.ts";
 
 import type { Element } from "../deps/dom.ts";
 import type { Page, Site } from "../core.ts";
+import type { HTMLTemplateElement } from "../deps/dom.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -38,7 +39,18 @@ export default function (userOptions?: Partial<Options>) {
     const selector = `[${options.attribute}]`;
 
     async function inline(page: Page) {
-      for (const element of page.document!.querySelectorAll(selector)) {
+      const templateElements = [...page.document!.querySelectorAll("template")]
+        .flatMap((template) => {
+          return (template as HTMLTemplateElement).content.querySelectorAll(
+            selector,
+          );
+        });
+      for (
+        const element of [
+          ...page.document!.querySelectorAll(selector),
+          ...templateElements,
+        ]
+      ) {
         await runInline(page.data.url as string, element as Element);
         (element as Element).removeAttribute(options.attribute);
       }

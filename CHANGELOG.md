@@ -15,6 +15,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Added support for using prerelease versions of Pagefind [#388].
 - Support `.markdown` file extension for Markdown [#386], [#387].
 - Expose the `PluginOptions` interface [#390].
+- Run the `inline` plugin on elements within a `<template>` element.
 
 ### Changed
 - Removed global installation in benefit of Deno tasks.
