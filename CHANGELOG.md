@@ -11,6 +11,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [1.15.4] - Unreleased
 ### Added
+- New middleware `serve_folder` to include additional folders to the server [#383].
 - Added support for using prerelease versions of Pagefind [#388].
 - Support `.markdown` file extension for Markdown [#386], [#387].
 - Expose the `PluginOptions` interface [#390].
@@ -2107,6 +2108,7 @@ The first version.
 [#364]: https://github.com/lumeland/lume/issues/364
 [#369]: https://github.com/lumeland/lume/issues/369
 [#374]: https://github.com/lumeland/lume/issues/374
+[#383]: https://github.com/lumeland/lume/issues/383
 [#386]: https://github.com/lumeland/lume/issues/386
 [#387]: https://github.com/lumeland/lume/issues/387
 [#388]: https://github.com/lumeland/lume/issues/388
