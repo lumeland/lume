@@ -109,9 +109,14 @@ export async function build(
     console.log();
 
     if (open) {
-      const commands = {
+      const commands: Record<typeof Deno.build.os, string> = {
         darwin: "open",
         linux: "xdg-open",
+        freebsd: "xdg-open",
+        netbsd: "xdg-open",
+        aix: "xdg-open",
+        solaris: "xdg-open",
+        illumos: "xdg-open",
         windows: "explorer",
       };
 

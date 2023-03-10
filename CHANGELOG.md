@@ -22,6 +22,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
   If you want to have the `lume` command, install [Lume CLI](https://github.com/lumeland/cli).
 
 ### Fixed
+- `--open` flag: Include all platforms supported by Deno.
 - Updated dependencies: `std`, `esbuild`, `liquid`, `preact`, `terser`, `eta`.
 
 ## [1.15.3] - 2023-02-20
