@@ -37,15 +37,22 @@ abstract class Base {
       this.src.slug = posix.basename(this.src.path).replace(/\.[\w.]+$/, "");
     }
 
-    // Detect the date of the page/directory in the filename
-    const dateInSlug = this.src.slug.match(/^([^_]+)?_/);
+    /**
+     * Detect date/datetime of page/directory in the filename
+     *
+     * Filenames can be prepended with a date (yyyy-mm-dd) or datetime
+     * (yyyy-mm-dd-hh-ii-ss) followed by an underscore (_) or hyphen (-).
+     */
+    const filenameRegex =
+      /^(?<year>\d{4})-(?<month>\d\d)-(?<day>\d\d)(?:-(?<hour>\d\d)-(?<minute>\d\d)(?:-(?<second>\d\d))?)?(?:_|-)(?<slug>.*)/;
+    const fileNameParts = filenameRegex.exec(this.src.slug)?.groups;
 
-    if (dateInSlug) {
-      const [found, dateStr] = dateInSlug;
-      const date = createDate(dateStr);
+    if (fileNameParts) {
+      const { year, month, day, hour, minute, second, slug } = fileNameParts;
+      const date = createDate({ year, month, day, hour, minute, second });
 
       if (date) {
-        this.src.slug = this.src.slug.replace(found, "");
+        this.src.slug = slug;
         this.baseData.date = date;
       }
     }
@@ -341,21 +348,20 @@ export interface Data {
 
 export type Components = Map<string, Component | Components>;
 
-export function createDate(str: string): Date | undefined {
-  const datetime = str.match(
-    /^(\d{4})-(\d\d)-(\d\d)(?:-(\d\d)-(\d\d)(?:-(\d\d))?)?$/,
-  );
-
-  if (datetime) {
-    const [, year, month, day, hour, minute, second] = datetime;
-
-    return new Date(Date.UTC(
-      parseInt(year),
-      parseInt(month) - 1,
-      parseInt(day),
-      hour ? parseInt(hour) : 0,
-      minute ? parseInt(minute) : 0,
-      second ? parseInt(second) : 0,
-    ));
-  }
+export function createDate({ year, month, day, hour, minute, second }: {
+  year: string;
+  month: string;
+  day: string;
+  hour?: string;
+  minute?: string;
+  second?: string;
+}) {
+  return new Date(Date.UTC(
+    parseInt(year),
+    parseInt(month) - 1,
+    parseInt(day),
+    hour ? parseInt(hour) : 0,
+    minute ? parseInt(minute) : 0,
+    second ? parseInt(second) : 0,
+  ));
 }
