@@ -14,12 +14,16 @@ export interface Options {
 
   /** Attribute used to select the elements this plugin applies to */
   attribute: string;
+
+  /** List of extra attributes to copy if replacing the element */
+  copyAttributes: (string | RegExp)[];
 }
 
 // Default options
 export const defaults: Options = {
   extensions: [".html"],
   attribute: "inline",
+  copyAttributes: [/^data-/],
 };
 
 const cache = new Map();
@@ -115,16 +119,26 @@ export default function (userOptions?: Partial<Options>) {
       return `data:${type};base64,${encode(content)}`;
     }
 
+    function migrateAttributes(
+      from: Element,
+      to: Element,
+      attributes: string[],
+    ) {
+      for (const { name, value } of from.attributes) {
+        const shouldCopy = [...attributes, ...options.copyAttributes].some(
+          (attr) => attr instanceof RegExp ? attr.test(name) : attr === name,
+        );
+        if (shouldCopy && !to.hasAttribute(name)) {
+          to.setAttribute(name, value);
+        }
+      }
+    }
+
     async function inlineStyles(url: string, element: Element) {
       const path = posix.resolve(url, element.getAttribute("href")!);
       const style = element.ownerDocument!.createElement("style");
-      const sharedProps = ["id", "class", "nonce", "title"];
 
-      for (const prop of sharedProps) {
-        if (element.hasAttribute(prop)) {
-          style.setAttribute(prop, element.getAttribute(prop));
-        }
-      }
+      migrateAttributes(element, style, ["id", "class", "nonce", "title"]);
 
       try {
         let content = await getContent(path);
@@ -171,14 +185,6 @@ export default function (userOptions?: Partial<Options>) {
           const svg = div.firstElementChild;
 
           if (svg) {
-            if (!svg.className && element.className) {
-              svg.className = element.className;
-            }
-
-            if (!svg.id && element.id) {
-              svg.id = element.id;
-            }
-
             const width = parseInt(element.getAttribute("width") || "0");
             const height = parseInt(element.getAttribute("height") || "0");
             const viewBox = svg.getAttribute("viewBox")?.split(" ");
@@ -200,14 +206,8 @@ export default function (userOptions?: Partial<Options>) {
               }
             }
 
-            // Width and height attributes
-            if (element.getAttribute("width")) {
-              svg.setAttribute("width", element.getAttribute("width")!);
-            }
-
-            if (element.getAttribute("height")) {
-              svg.setAttribute("height", element.getAttribute("height")!);
-            }
+            migrateAttributes(element, svg, ["id", "class", "width", "height"]);
+            svg.removeAttribute("src");
 
             element.replaceWith(svg);
           }

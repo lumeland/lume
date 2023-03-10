@@ -18,6 +18,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Support `.markdown` file extension for Markdown [#386], [#387].
 - Expose the `PluginOptions` interface [#390].
 - Run the `inline` plugin on elements within a `<template>` element.
+- Add `copyAttributes` option to the `inline` plugin to support custom attributes.
 - Allow filename dates to be followed by either an underscore or hyphen [#395].
 
 ### Changed
