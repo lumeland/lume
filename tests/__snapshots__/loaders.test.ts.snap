@@ -427,7 +427,7 @@ snapshot[`Load the pages of a site 8`] = `
   src: {
     asset: undefined,
     ext: ".md",
-    path: "/pages/2021-12-29_page6",
+    path: "/pages/2021-12-29-page6",
     remote: undefined,
     slug: "page6",
   },
