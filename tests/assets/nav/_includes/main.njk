@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>{{ title }}</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        {% for item in nav.breadcrumb(url) %}
+        <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <h1>{{ title }}</h1>
+
+    <nav>
+      <ul>
+      {% for item in nav.menu().children %}
+        <li>
+          {% include "./step.njk" %}
+        </li>
+      {% endfor %}
+      </ul>
+    </nav>
+  </body>
+</html>

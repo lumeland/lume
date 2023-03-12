@@ -24,6 +24,7 @@ export const pluginNames = [
   "minify_html",
   "modify_urls",
   "multilanguage",
+  "nav",
   "netlify_cms",
   "on_demand",
   "pagefind",

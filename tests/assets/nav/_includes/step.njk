@@ -1,0 +1,15 @@
+{% if item.url %}
+<a href="{{ item.url }}">{{ item.title }}</a>
+{% else %}
+<strong>{{ item.title }}</strong>
+{% endif %}
+
+{% if item.children %}
+<ul>
+  {% for item in item.children %}
+  <li>
+    {% include "./step.njk" %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}

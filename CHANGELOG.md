@@ -11,6 +11,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [1.15.4] - Unreleased
 ### Added
+- New plugin `nav` to create menus using the url hierarchical structure.
+  It also can create breadcrumbs [#351], [#353].
 - New middleware `serve_folder` to include additional folders to the server [#383].
 - Added support for using prerelease versions of Pagefind [#388].
 - Support `.markdown` file extension for Markdown [#386], [#387].
@@ -2105,6 +2107,8 @@ The first version.
 [#344]: https://github.com/lumeland/lume/issues/344
 [#346]: https://github.com/lumeland/lume/issues/346
 [#348]: https://github.com/lumeland/lume/issues/348
+[#351]: https://github.com/lumeland/lume/issues/351
+[#353]: https://github.com/lumeland/lume/issues/353
 [#358]: https://github.com/lumeland/lume/issues/358
 [#359]: https://github.com/lumeland/lume/issues/359
 [#364]: https://github.com/lumeland/lume/issues/364
