@@ -147,7 +147,9 @@ function convert(temp: TempNavData, parent?: NavData): NavData {
   };
 
   data.children = temp.children
-    ? Object.values(temp.children).map((child) => convert(child, data))
+    ? Object.values(temp.children)
+      .map((child) => convert(child, data))
+      .sort((a, b) => a.title < b.title ? -1 : 1)
     : undefined;
 
   return data;
