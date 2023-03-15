@@ -96,7 +96,7 @@ const defaults: Options = {
   binary: {
     path: "./_bin/pagefind",
     extended: false,
-    version: "v0.11.0",
+    version: "v0.12.0",
   },
   ui: {
     containerId: "search",
