@@ -1,1 +1,1 @@
-export { default } from "npm:@lumeland/sass@1.58.0";
+export { default } from "npm:sass@1.59.3";
