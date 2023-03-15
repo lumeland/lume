@@ -9,7 +9,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.15.4] - Unreleased
+## [1.16.0] - Unreleased
 ### Added
 - New plugin `nav` to create menus using the url hierarchical structure.
   It also can create breadcrumbs [#351], [#353].
