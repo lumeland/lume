@@ -207,7 +207,6 @@ export default function (userOptions?: Partial<Options>) {
             }
 
             migrateAttributes(element, svg, ["id", "class", "width", "height"]);
-            svg.removeAttribute("src");
 
             element.replaceWith(svg);
           }
