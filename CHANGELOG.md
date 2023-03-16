@@ -14,11 +14,23 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - New plugin `nav` to create menus using the url hierarchical structure.
   It also can create breadcrumbs [#351], [#353].
 - New middleware `serve_folder` to include additional folders to the server [#383].
+- BREAKING: `multilanguage` plugin has changed significally:
+  - It requires to specify the available languages in the configuration. For example:
+    ```js
+    site.use(multilanguage({
+      languages: ["en", "gl"],
+    }))
+    ```
+  - The `page.data.alternates` object contains has now the signature `Record<string, PageData>`.
+    Previously it had the `Page` object (`Record<string, Page>`).
+  - Different pages can be defined of translated versions of the same page with the new `id` variable.
+  - `mergeLanguages` helper has been removed. Use `alternateId` value to relate pages.
 - Added support for using prerelease versions of Pagefind [#388].
 - Support `.markdown` file extension for Markdown [#386], [#387].
 - Expose the `PluginOptions` interface [#390].
 - Run the `inline` plugin on elements within a `<template>` element.
-- Add `copyAttributes` option to the `inline` plugin to support custom attributes.
+- Added `copyAttributes` option to the `inline` plugin to support custom attributes.
+- Added `foreignKeys[n].filter` option to the `relations` plugin.
 - Allow filename dates to be followed by either an underscore or hyphen [#395].
 
 ### Changed

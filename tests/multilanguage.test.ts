@@ -6,7 +6,9 @@ Deno.test("multilanguage plugin", async (t) => {
     src: "multilanguage",
   });
 
-  site.use(multilanguage());
+  site.use(multilanguage({
+    languages: ["en", "fr", "it", "gl"],
+  }));
 
   await build(site);
   await assertSiteSnapshot(t, site);

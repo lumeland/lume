@@ -89,8 +89,8 @@ snapshot[`multilanguage plugin 4`] = `
     content: "Hello world
 ",
     date: 1970-01-01T00:00:00.000Z,
+    id: "/index",
     lang: "en",
-    mergeLanguages: [Function: mergeLanguages],
     mergedKeys: {
       tags: "stringArray",
     },
@@ -120,17 +120,18 @@ snapshot[`multilanguage plugin 5`] = `
 {
   content: '<!DOCTYPE html>
 <html lang="gl"><head><link rel="alternate" hreflang="en" href="/en/">
-</head><body><p>Ola mundo</p>
+</head><body><p>Hello world</p>
 </body></html>',
   data: {
     alternates: [
       "en",
       "gl",
     ],
-    content: "Ola mundo",
+    content: "Hello world
+",
     date: 1970-01-01T00:00:00.000Z,
+    id: "/index",
     lang: "gl",
-    mergeLanguages: [Function: mergeLanguages],
     mergedKeys: {
       tags: "stringArray",
     },
@@ -168,8 +169,8 @@ snapshot[`multilanguage plugin 6`] = `
     ],
     content: "<p>Other page</p>",
     date: 1970-01-01T00:00:00.000Z,
+    id: "/other",
     lang: "en",
-    mergeLanguages: [Function: mergeLanguages],
     mergedKeys: {
       tags: "stringArray",
     },
@@ -207,8 +208,8 @@ snapshot[`multilanguage plugin 7`] = `
     ],
     content: "<p>Other page</p>",
     date: 1970-01-01T00:00:00.000Z,
+    id: "/other",
     lang: "fr",
-    mergeLanguages: [Function: mergeLanguages],
     mergedKeys: {
       tags: "stringArray",
     },
@@ -237,8 +238,8 @@ snapshot[`multilanguage plugin 7`] = `
 snapshot[`multilanguage plugin 8`] = `
 {
   content: '<!DOCTYPE html>
-<html lang="it"><head><link rel="alternate" hreflang="en" href="/en/pages/page1/">
-<link rel="alternate" hreflang="gl" href="/gl/pages/page1/">
+<html lang="it"><head><link rel="alternate" hreflang="en" href="/pages/page1_en/">
+<link rel="alternate" hreflang="gl" href="/pages/page1_gl/">
 </head><body><p>Pagina 1</p>
 </body></html>',
   data: {
@@ -250,8 +251,8 @@ snapshot[`multilanguage plugin 8`] = `
     content: "Pagina 1
 ",
     date: 1970-01-01T00:00:00.000Z,
+    id: "/pages/page1",
     lang: "it",
-    mergeLanguages: [Function: mergeLanguages],
     mergedKeys: {
       tags: "stringArray",
     },
@@ -280,8 +281,8 @@ snapshot[`multilanguage plugin 8`] = `
 snapshot[`multilanguage plugin 9`] = `
 {
   content: '<!DOCTYPE html>
-<html lang="en"><head><link rel="alternate" hreflang="gl" href="/gl/pages/page1/">
-<link rel="alternate" hreflang="it" href="/custom-italian-url/">
+<html lang="en"><head><link rel="alternate" hreflang="it" href="/custom-italian-url/">
+<link rel="alternate" hreflang="gl" href="/pages/page1_gl/">
 </head><body><p>Page 1</p>
 </body></html>',
   data: {
@@ -293,8 +294,8 @@ snapshot[`multilanguage plugin 9`] = `
     content: "Page 1
 ",
     date: 1970-01-01T00:00:00.000Z,
+    id: "/pages/page1",
     lang: "en",
-    mergeLanguages: [Function: mergeLanguages],
     mergedKeys: {
       tags: "stringArray",
     },
@@ -304,11 +305,11 @@ snapshot[`multilanguage plugin 9`] = `
     tags: [
     ],
     title: "page-en",
-    url: "/en/pages/page1/",
+    url: "/pages/page1_en/",
   },
   dest: {
     ext: ".html",
-    path: "/en/pages/page1/index",
+    path: "/pages/page1_en/index",
   },
   src: {
     asset: undefined,
@@ -323,7 +324,7 @@ snapshot[`multilanguage plugin 9`] = `
 snapshot[`multilanguage plugin 10`] = `
 {
   content: '<!DOCTYPE html>
-<html lang="gl"><head><link rel="alternate" hreflang="en" href="/en/pages/page1/">
+<html lang="gl"><head><link rel="alternate" hreflang="en" href="/pages/page1_en/">
 <link rel="alternate" hreflang="it" href="/custom-italian-url/">
 </head><body><p>Páxina 1</p>
 </body></html>',
@@ -336,8 +337,8 @@ snapshot[`multilanguage plugin 10`] = `
     content: "Páxina 1
 ",
     date: 1970-01-01T00:00:00.000Z,
+    id: "/pages/page1",
     lang: "gl",
-    mergeLanguages: [Function: mergeLanguages],
     mergedKeys: {
       tags: "stringArray",
     },
@@ -347,11 +348,11 @@ snapshot[`multilanguage plugin 10`] = `
     tags: [
     ],
     title: "page-gl",
-    url: "/gl/pages/page1/",
+    url: "/pages/page1_gl/",
   },
   dest: {
     ext: ".html",
-    path: "/gl/pages/page1/index",
+    path: "/pages/page1_gl/index",
   },
   src: {
     asset: undefined,
@@ -365,74 +366,8 @@ snapshot[`multilanguage plugin 10`] = `
 
 snapshot[`multilanguage plugin 11`] = `
 {
-  content: '<!DOCTYPE html>
-<html lang="en"><head><link rel="alternate" hreflang="gl" href="/pagination/page-1/">
-</head><body><nav>
-
-  <a href="/pagination/page-1/" hreflang="gl" class="alternate"></a>
-
-  <a href="/pagination/page-1/" hreflang="en" class="alternate"></a>
-
-</nav>
-
-  <li>Hello world</li>
-
-  <li>page-en</li>
-
-  <li>Other</li>
-
-</body></html>',
-  data: {
-    alternates: [
-      "en",
-      "gl",
-    ],
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    lang: "en",
-    layout: "layout.njk",
-    mergeLanguages: [Function: mergeLanguages],
-    mergedKeys: {
-      tags: "stringArray",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    pagination: {
-      next: null,
-      page: 1,
-      previous: null,
-      totalPages: 1,
-      totalResults: 3,
-    },
-    results: 3,
-    search: Search {},
-    tags: [
-    ],
-    url: "/pagination/page-1/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/pagination/page-1/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.js",
-    path: "/pagination[0][en]",
-    remote: undefined,
-    slug: "pagination",
-  },
-}
-`;
-
-snapshot[`multilanguage plugin 12`] = `
-{
-  content: '<!DOCTYPE html>
-<html lang="gl"><head><link rel="alternate" hreflang="en" href="/pagination/page-1/">
-</head><body><nav>
-
-  <a href="/pagination/page-1/" hreflang="gl" class="alternate"></a>
-
-  <a href="/pagination/page-1/" hreflang="en" class="alternate"></a>
+  content: "<!DOCTYPE html>
+<html><head></head><body><nav>
 
 </nav>
 
@@ -440,17 +375,14 @@ snapshot[`multilanguage plugin 12`] = `
 
   <li>page-gl</li>
 
-</body></html>',
+</body></html>",
   data: {
     alternates: [
-      "en",
-      "gl",
     ],
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
-    lang: "gl",
+    id: "page-1",
     layout: "layout.njk",
-    mergeLanguages: [Function: mergeLanguages],
     mergedKeys: {
       tags: "stringArray",
     },
@@ -467,16 +399,69 @@ snapshot[`multilanguage plugin 12`] = `
     search: Search {},
     tags: [
     ],
-    url: "/pagination/page-1/",
+    url: "/page-1/",
   },
   dest: {
     ext: ".html",
-    path: "/pagination/page-1/index",
+    path: "/page-1/index",
   },
   src: {
     asset: undefined,
     ext: ".tmpl.js",
-    path: "/pagination[0][gl]",
+    path: "/pagination[0]",
+    remote: undefined,
+    slug: "pagination",
+  },
+}
+`;
+
+snapshot[`multilanguage plugin 12`] = `
+{
+  content: "<!DOCTYPE html>
+<html><head></head><body><nav>
+
+</nav>
+
+  <li>Hello world</li>
+
+  <li>Other</li>
+
+  <li>page-en</li>
+
+</body></html>",
+  data: {
+    alternates: [
+    ],
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    id: "page-1",
+    layout: "layout.njk",
+    mergedKeys: {
+      tags: "stringArray",
+    },
+    page: undefined,
+    paginate: [Function: paginate],
+    pagination: {
+      next: null,
+      page: 1,
+      previous: null,
+      totalPages: 1,
+      totalResults: 3,
+    },
+    results: 3,
+    search: Search {},
+    tags: [
+    ],
+    url: "/page-1/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page-1/index",
+  },
+  src: {
+    asset: undefined,
+    ext: ".tmpl.js",
+    path: "/pagination[1]",
     remote: undefined,
     slug: "pagination",
   },

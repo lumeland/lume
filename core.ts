@@ -246,7 +246,7 @@ export interface PageData extends Data {
   /**
    * Alternate pages (for languages)
    */
-  alternates: Record<string, Page>;
+  alternates: Record<string, PageData>;
 
   /**
    * The JSX children elements

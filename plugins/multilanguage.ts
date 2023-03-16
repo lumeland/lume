@@ -1,5 +1,6 @@
 import { Page } from "../core/filesystem.ts";
 import { isPlainObject, merge } from "../core/utils.ts";
+import { posix } from "../deps/path.ts";
 
 import type { PageData, Plugin } from "../core.ts";
 
@@ -7,124 +8,143 @@ export interface Options {
   /** The list of extensions used for this plugin */
   extensions: string[];
 
-  /** The helper name */
-  name: string;
+  /** Available languages */
+  languages: string[];
 }
 
 // Default options
 export const defaults: Options = {
   extensions: [".html"],
-  name: "mergeLanguages",
+  languages: [],
 };
 
-type Alternates = Record<string, Page>;
+type Alternates = Record<string, PageData>;
 
 export default function multilanguage(userOptions?: Partial<Options>): Plugin {
   const options = merge(defaults, userOptions);
 
   return (site) => {
-    // Register the helper
-    site.data(options.name, mergeLanguages);
-
     // Preprocessor to create new pages dynamically for each language
     site.preprocess(options.extensions, (page, pages) => {
-      // The "lang" variable of the pages must be an array
-      const languages = page.data.lang as string | string[] | undefined;
+      const { data } = page;
+      const languages = data.lang as string | string[] | undefined;
 
+      // The "lang" variable of the pages must be an array
       if (!Array.isArray(languages)) {
         return;
       }
 
-      const languageData = getLanguageData(languages, page);
-      const alternates: Alternates = {};
-
       // Create a new page per language
       const newPages: Page[] = [];
+      const id: string = data.id || page.src.path;
+      const basePath: string = typeof page.data.url === "string"
+        ? posix.dirname(page.data.url)
+        : "";
 
-      for (const [l, { data, customUrl }] of Object.entries(languageData)) {
-        data.alternates = alternates;
-        data.lang = l;
+      for (const lang of languages) {
+        const newData: PageData = { ...data, lang, id };
+        const newPage = page.duplicate(lang);
+        newPage.data = newData;
+        newPages.push(newPage);
 
-        const newPage = page.duplicate(l);
-        newPage.data = data;
+        // Fix the url
+        const customUrl = newData[`url.${lang}`] || newData[lang]?.url;
 
         if (customUrl) {
-          newPage.data.url = site.pagePreparer.getUrl(
+          newData.url = customUrl;
+          newData.url = site.pagePreparer.getUrl(
             newPage,
-            page.data.url as string,
+            basePath,
           );
-        } else {
-          newPage.data.url = `/${l}${newPage.data.url}`;
+        } else if (newData.url) {
+          newData.url = `/${lang}${newData.url}`;
         }
-
-        alternates[l] = newPage;
-        newPages.push(newPage);
       }
 
-      // Replace the current page with the multiple languages
+      // Replace the current page with the multiple language versions
       pages.splice(pages.indexOf(page), 1, ...newPages);
     });
 
     // Preprocessor to detect language versions of pages
-    site.preprocess("*", (page) => {
+    site.preprocess(options.extensions, (page) => {
       const { data } = page;
 
-      if (data.alternates || typeof data.lang !== "string") {
+      if (data.id || typeof data.lang !== "string") {
         return;
       }
 
-      const baseSlug = parseSlug(page, data.lang);
+      const id = parseSlug(page, data.lang);
 
-      if (baseSlug) {
-        const pages: Record<string, Page> = {};
-        const alternates: Alternates = {};
+      if (!id) {
+        return;
+      }
 
-        // Search pages in the same directory with the same slug
-        page.parent?.pages.forEach((page) => {
-          const lang = page.data.lang;
+      // Search pages in the same directory with the same slug
+      page.parent?.pages.forEach((page) => {
+        const pageData = page.data;
 
-          if (typeof lang !== "string") {
-            return;
+        if (typeof pageData.lang !== "string" || pageData.id) {
+          return;
+        }
+
+        if (
+          parseSlug(page, pageData.lang) === id ||
+          page.src.path === id
+        ) {
+          pageData.id = id;
+        }
+      });
+    });
+
+    // Preprocessor to process the multilanguage data
+    site.preprocess(options.extensions, (page) => {
+      const lang = page.data.lang;
+
+      if (typeof lang !== "string") {
+        return;
+      }
+
+      const data = filterLanguage(
+        options.languages,
+        lang,
+        page.data,
+      ) as PageData;
+
+      for (const key of options.languages) {
+        if (key in data) {
+          if (key === lang) {
+            Object.assign(data, data[key]);
           }
+          delete data[key];
+        }
+      }
 
-          if (
-            parseSlug(page, lang) === baseSlug ||
-            page.src.path.endsWith(`/${baseSlug}`)
-          ) {
-            pages[lang] = page;
+      page.data = data;
+    });
+
+    // Preprocessor to build the alternates object
+    site.preprocess(options.extensions, (page, pages) => {
+      const { data } = page;
+      const id = data.id as string | number | undefined;
+
+      if (data.alternates || !id) {
+        return;
+      }
+
+      const alternates: Alternates = {};
+      const alternatePages = pages.filter((page) => page.data.id == id);
+
+      if (alternatePages.length > 1) {
+        for (const page of alternatePages) {
+          const lang = page.data.lang as string;
+
+          if (lang) {
+            alternates[lang] = page.data;
           }
-        });
+        }
 
-        const langs = Object.keys(pages);
-
-        if (langs.length > 1) {
-          for (const [lang, page] of Object.entries(pages)) {
-            const languageData = getLanguageData(langs, page, lang);
-            const pageData = languageData[lang];
-
-            if (pageData) {
-              page.data = pageData.data;
-
-              if (pageData.customUrl) {
-                page.data.url = site.pagePreparer.getUrl(
-                  page,
-                  page.data.url as string,
-                );
-              } else if (page.data.url) {
-                page.data.url = getUrl(page.data.url, lang);
-              }
-
-              alternates[lang] = page;
-            }
-          }
-
-          // Sort altenate pages by language
-          const sorted = Object.fromEntries(
-            Object.entries(alternates).sort((a, b) => a[0].localeCompare(b[0])),
-          );
-          Object.values(sorted).forEach((page) =>
-            page.data.alternates = sorted
-          );
+        for (const page of alternatePages) {
+          page.data.alternates = alternates;
         }
       }
     });
@@ -148,14 +168,14 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
       }
 
       // Insert the <link> elements automatically
-      for (const [altLang, altPage] of Object.entries(alternates)) {
+      for (const [altLang, data] of Object.entries(alternates)) {
         if (altLang === lang) {
           continue;
         }
         const meta = document.createElement("link");
         meta.setAttribute("rel", "alternate");
         meta.setAttribute("hreflang", altLang);
-        meta.setAttribute("href", altPage.data.url);
+        meta.setAttribute("href", data.url);
         document.head.appendChild(meta);
         document.head.appendChild(document.createTextNode("\n"));
       }
@@ -164,131 +184,49 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
 }
 
 /**
- * Manage multiple paginations from different languages.
- * Example:
- * ```ts
- * const pagination = paginateLanguages({
- *   en: paginate(englishPages),
- *   gl: paginate(galicianPages),
- * })
- * ```
- */
-function mergeLanguages(
-  pages: Record<string, Record<string, unknown>[]>,
-): unknown[] {
-  const result: unknown[] = [];
-  const limit = Math.max(...Object.values(pages).map((v) => v.length));
-  let index = 0;
-
-  while (index < limit) {
-    const page: Record<string, unknown> = {};
-
-    for (const [lang, pageResults] of Object.entries(pages)) {
-      const pageResult = pageResults[index];
-
-      if (pageResult) {
-        for (const [key, value] of Object.entries(pageResult)) {
-          page[`${key}.${lang}`] = value;
-        }
-      }
-    }
-    result.push(page);
-    index++;
-  }
-
-  return result;
-}
-
-interface TranslatedPage {
-  data: PageData;
-  customUrl: boolean;
-}
-
-/**
- * Returns the data of a page grouped by language
- */
-function getLanguageData(
-  languages: string[],
-  page: Page,
-  filter?: string,
-): Record<string, TranslatedPage> {
-  // Create a Data for each language
-  const languageData: Record<string, TranslatedPage> = {};
-
-  languages.forEach((key) => {
-    if (filter && key !== filter) {
-      return;
-    }
-
-    const data: PageData = { ...page.data };
-
-    // This language has a custom url (like url.en = "/english-url/")
-    const customUrl = data[`url.${key}`] || data[key]?.url;
-
-    // Remove all entries of other languages
-    for (const [name, value] of Object.entries(data)) {
-      if (languages.includes(name)) {
-        if (name === key) {
-          Object.assign(data, value);
-        }
-
-        delete data[name];
-      }
-    }
-    languageData[key] = {
-      data: filterLanguage(languages, key, data),
-      customUrl,
-    };
-  });
-
-  return languageData;
-}
-
-/**
  * Remove the entries from all "langs" except the "lang" value
  */
 function filterLanguage(
   langs: string[],
   lang: string,
-  data: PageData,
-): PageData {
-  for (let [name, value] of Object.entries(data)) {
-    if (isPlainObject(value)) {
-      data[name] = value = filterLanguage(langs, lang, {
-        ...value as PageData,
-      });
-    } else if (Array.isArray(value)) {
-      data[name] = value = value.map((item) => {
-        return isPlainObject(item)
-          ? filterLanguage(langs, lang, { ...item as PageData })
-          : item;
-      });
-    }
+  data: Record<string, unknown>,
+): Record<string, unknown> {
+  const result: Record<string, unknown> = {};
 
+  for (const [name, value] of Object.entries(data)) {
     const parts = name.match(/^(.*)\.([^.]+)$/);
 
     if (parts) {
       const [, key, l] = parts;
 
-      if (langs.includes(l)) {
-        if (lang === l) {
-          data[key] = value;
-        }
-
-        delete data[name];
+      if (lang === l) {
+        result[key] = value;
+        continue;
+      } else if (langs.includes(l)) {
+        continue;
       }
+    }
+
+    if (isPlainObject(value)) {
+      result[name] = filterLanguage(langs, lang, value);
+    } else if (Array.isArray(value)) {
+      result[name] = value.map((item) => {
+        return isPlainObject(item) ? filterLanguage(langs, lang, item) : item;
+      });
+    } else {
+      result[name] = value;
     }
   }
 
-  return data;
+  return result;
 }
 
 function parseSlug(page: Page, lang: string): string | undefined {
-  if (!page.src.slug.endsWith("_" + lang)) {
+  if (!page.src.path.endsWith("_" + lang)) {
     return;
   }
 
-  return page.src.slug.slice(0, -lang.length - 1);
+  return page.src.path.slice(0, -lang.length - 1);
 }
 
 function getUrl(url: string, lang: string): string {
