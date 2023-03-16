@@ -2,11 +2,14 @@ import { merge } from "../core/utils.ts";
 
 import type { Data, Page, Site } from "../core.ts";
 
+type RelationFilter = (data1: Data, data2: Data) => boolean;
+
 interface ForeignKeyOptions {
   foreignKey: string;
   relationKey?: string;
   pluralRelationKey?: string;
   idKey?: string;
+  filter?: RelationFilter;
 }
 
 export interface Options {
@@ -39,8 +42,14 @@ export default function (userOptions?: Partial<Options>) {
 
     function index(page1: Page, pages: Page[]) {
       const data1 = page1.data;
-      const [type1, foreignKey1, id1, relationType1, pluralRelationKey1] =
-        getForeignKey(data1);
+      const [
+        type1,
+        foreignKey1,
+        id1,
+        relationType1,
+        pluralRelationKey1,
+        filter1,
+      ] = getRelationInfo(data1);
 
       // Index the current page with the other pages
       pages.forEach(indexPage);
@@ -54,8 +63,23 @@ export default function (userOptions?: Partial<Options>) {
         }
 
         const data2 = page2.data;
-        const [type2, foreignKey2, id2, relationType2, pluralRelationKey2] =
-          getForeignKey(data2);
+
+        if (filter1 && !filter1(data1, page2.data)) {
+          return;
+        }
+
+        const [
+          type2,
+          foreignKey2,
+          id2,
+          relationType2,
+          pluralRelationKey2,
+          filter2,
+        ] = getRelationInfo(data2);
+
+        if (filter2 && !filter2(data2, page1.data)) {
+          return;
+        }
 
         // Page2 has a foreign key to page1
         const directRelation = relate(
@@ -146,9 +170,9 @@ export default function (userOptions?: Partial<Options>) {
     }
   };
 
-  function getForeignKey(
+  function getRelationInfo(
     data: Data,
-  ): [string?, string?, string?, string?, string?] {
+  ): [string?, string?, string?, string?, string?, RelationFilter?] {
     const type = data[options.typeKey];
     if (!type) {
       return [];
@@ -169,6 +193,7 @@ export default function (userOptions?: Partial<Options>) {
       data[foreignKey.idKey || options.idKey],
       foreignKey.relationKey || type,
       foreignKey.pluralRelationKey || foreignKey.relationKey || type,
+      foreignKey.filter,
     ];
   }
 }
