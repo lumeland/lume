@@ -115,11 +115,14 @@ export class Page extends Base {
   }
 
   /** Duplicate this page. Optionally, you can provide new data */
-  duplicate(index: number | string, baseData: Data = {}): Page {
+  duplicate(index?: number, baseData: Data = {}): Page {
     const page = new Page({ ...this.src });
     page.parent = this.parent;
     page.baseData = baseData;
-    page.src.path += `[${index}]`;
+
+    if (index) {
+      page.src.path += `[${index}]`;
+    }
 
     return page;
   }
