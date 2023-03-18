@@ -11,7 +11,7 @@ export interface PaginateOptions {
   url: (page: number) => string;
 
   /** Function to modify or add extra data to each page */
-  each?: (page: PaginateResult<unknown>) => void;
+  each?: (data: PaginateResult<unknown>, page: number) => void;
 }
 
 export type Paginator = <T>(
@@ -102,7 +102,7 @@ export function createPaginator(defaults: PaginateOptions): Paginator {
       data.results = results.slice(from, to);
 
       if (options.each) {
-        options.each(data);
+        options.each(data, page);
       }
 
       result.push(data);
