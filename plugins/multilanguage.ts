@@ -129,19 +129,14 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
       const alternates: Alternates = {};
       const alternatePages = pages.filter((page) => page.data.id == id);
 
-      if (alternatePages.length > 1) {
-        for (const page of alternatePages) {
-          const lang = page.data.lang as string;
+      options.languages.forEach((lang) => {
+        const page = alternatePages.find((page) => page.data.lang === lang);
 
-          if (lang) {
-            alternates[lang] = page.data;
-          }
-        }
-
-        for (const page of alternatePages) {
+        if (page) {
+          alternates[lang] = page.data;
           page.data.alternates = alternates;
         }
-      }
+      });
     });
 
     // Include automatically the <link rel="alternate"> elements

@@ -120,7 +120,7 @@ export class Page extends Base {
     page.parent = this.parent;
     page.baseData = baseData;
 
-    if (index) {
+    if (index !== undefined) {
       page.src.path += `[${index}]`;
     }
 

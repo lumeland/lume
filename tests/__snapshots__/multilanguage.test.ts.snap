@@ -369,9 +369,9 @@ snapshot[`multilanguage plugin 11`] = `
 <html lang="gl"><head><link rel="alternate" hreflang="en" href="/en/page-1/">
 </head><body><nav>
 
-  <a href="/gl/page-1/" hreflang="gl" class="alternate"></a>
-
   <a href="/en/page-1/" hreflang="en" class="alternate"></a>
+
+  <a href="/gl/page-1/" hreflang="gl" class="alternate"></a>
 
 </nav>
 
@@ -415,7 +415,7 @@ snapshot[`multilanguage plugin 11`] = `
   src: {
     asset: undefined,
     ext: ".tmpl.js",
-    path: "/pagination",
+    path: "/pagination[0]",
     remote: undefined,
     slug: "pagination",
   },
@@ -428,9 +428,9 @@ snapshot[`multilanguage plugin 12`] = `
 <html lang="en"><head><link rel="alternate" hreflang="gl" href="/gl/page-1/">
 </head><body><nav>
 
-  <a href="/gl/page-1/" hreflang="gl" class="alternate"></a>
-
   <a href="/en/page-1/" hreflang="en" class="alternate"></a>
+
+  <a href="/gl/page-1/" hreflang="gl" class="alternate"></a>
 
 </nav>
 
