@@ -1,7 +1,8 @@
 ---
 title: page-it
 lang: it
-url: /custom-italian-url/
+id: page1
+url: /pagina-1/
 ---
 
 Pagina 1

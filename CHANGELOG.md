@@ -26,6 +26,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
   - Different pages can be defined of translated versions of the same page with the new `id` variable.
   - `mergeLanguages` helper has been removed. Use `alternateId` value to relate pages.
 - Added support for using prerelease versions of Pagefind [#388].
+- `paginate` plugin: The second argument of `each` function contains the page number.
 - Support `.markdown` file extension for Markdown [#386], [#387].
 - Expose the `PluginOptions` interface [#390].
 - Run the `inline` plugin on elements within a `<template>` element.
@@ -2133,8 +2134,9 @@ The first version.
 [#387]: https://github.com/lumeland/lume/issues/387
 [#388]: https://github.com/lumeland/lume/issues/388
 [#390]: https://github.com/lumeland/lume/issues/390
+[#395]: https://github.com/lumeland/lume/issues/395
 
-[1.15.4]: https://github.com/lumeland/lume/compare/v1.15.3...HEAD
+[1.16.0]: https://github.com/lumeland/lume/compare/v1.15.3...HEAD
 [1.15.3]: https://github.com/lumeland/lume/compare/v1.15.2...v1.15.3
 [1.15.2]: https://github.com/lumeland/lume/compare/v1.15.1...v1.15.2
 [1.15.1]: https://github.com/lumeland/lume/compare/v1.15.0...v1.15.1

@@ -10,6 +10,9 @@ export interface Options {
 
   /** Available languages */
   languages: string[];
+
+  /** A prefix-free language */
+  defaultLanguage?: string;
 }
 
 // Default options
@@ -24,7 +27,7 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
   const options = merge(defaults, userOptions);
 
   return (site) => {
-    // Preprocessor to create new pages dynamically for each language
+    // Preprocessor to setup multilanguage pages
     site.preprocess(options.extensions, (page, pages) => {
       const { data } = page;
       const languages = data.lang as string | string[] | undefined;
@@ -36,14 +39,14 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
 
       // Create a new page per language
       const newPages: Page[] = [];
-      const id: string = data.id || page.src.path;
+      const id: string = data.id || page.src.path.slice(1);
       const basePath: string = typeof page.data.url === "string"
         ? posix.dirname(page.data.url)
         : "";
 
       for (const lang of languages) {
         const newData: PageData = { ...data, lang, id };
-        const newPage = page.duplicate(lang);
+        const newPage = page.duplicate();
         newPage.data = newData;
         newPages.push(newPage);
 
@@ -65,35 +68,27 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
       pages.splice(pages.indexOf(page), 1, ...newPages);
     });
 
-    // Preprocessor to detect language versions of pages
+    // Preprocessor to (un)prefix all urls with the language code
     site.preprocess(options.extensions, (page) => {
-      const { data } = page;
+      const { lang } = page.data;
 
-      if (data.id || typeof data.lang !== "string") {
+      if (typeof lang !== "string") {
         return;
       }
 
-      const id = parseSlug(page, data.lang);
+      const url = page.data.url as string | undefined;
 
-      if (!id) {
+      if (!url) {
         return;
       }
 
-      // Search pages in the same directory with the same slug
-      page.parent?.pages.forEach((page) => {
-        const pageData = page.data;
-
-        if (typeof pageData.lang !== "string" || pageData.id) {
-          return;
-        }
-
-        if (
-          parseSlug(page, pageData.lang) === id ||
-          page.src.path === id
-        ) {
-          pageData.id = id;
-        }
-      });
+      if (!url.startsWith(`/${lang}/`) && lang !== options.defaultLanguage) {
+        page.data.url = `/${lang}${url}`;
+      } else if (
+        url.startsWith(`/${lang}/`) && lang === options.defaultLanguage
+      ) {
+        page.data.url = url.slice(lang.length + 1);
+      }
     });
 
     // Preprocessor to process the multilanguage data
@@ -207,6 +202,10 @@ function filterLanguage(
       }
     }
 
+    if (name in result) {
+      continue;
+    }
+
     if (isPlainObject(value)) {
       result[name] = filterLanguage(langs, lang, value);
     } else if (Array.isArray(value)) {
@@ -219,26 +218,4 @@ function filterLanguage(
   }
 
   return result;
-}
-
-function parseSlug(page: Page, lang: string): string | undefined {
-  if (!page.src.path.endsWith("_" + lang)) {
-    return;
-  }
-
-  return page.src.path.slice(0, -lang.length - 1);
-}
-
-function getUrl(url: string, lang: string): string {
-  if (url.endsWith(`/index_${lang}/`)) {
-    return `/${lang}${url.slice(0, -lang.length - 8)}/`;
-  }
-  if (url.endsWith(`_${lang}/`)) {
-    return `/${lang}${url.slice(0, -lang.length - 2)}/`;
-  }
-  if (url.endsWith(`_${lang}.html`)) {
-    return `/${lang}${url.slice(0, -lang.length - 6)}.html`;
-  }
-
-  return url;
 }

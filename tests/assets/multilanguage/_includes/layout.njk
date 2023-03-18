@@ -1,6 +1,6 @@
 <nav>
 {% for lang, item in alternates %}
-  <a href="{{ item.data.url }}" hreflang={{ lang }} class="alternate">{{ item.data.title }}</a>
+  <a href="{{ item.url }}" hreflang={{ lang }} class="alternate">{{ item.title }}</a>
 {% endfor %}
 </nav
 
