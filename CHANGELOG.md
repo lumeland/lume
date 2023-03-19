@@ -43,6 +43,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Fixed
 - `--open` flag: Include all platforms supported by Deno.
 - Updated dependencies: `std`, `esbuild`, `liquid`, `preact`, `terser`, `eta`, `pagefind`, `sass`, `autoprefixer`.
+- `reload` middleware doesn't keep the response header.
 
 ## [1.15.3] - 2023-02-20
 ### Added
