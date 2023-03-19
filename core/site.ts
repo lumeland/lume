@@ -454,7 +454,9 @@ export default class Site {
   }
 
   /** Copy the remaining files */
-  copyRemainingFiles(filter: (path: string) => string | boolean): this {
+  copyRemainingFiles(
+    filter: (path: string) => string | boolean = () => true,
+  ): this {
     this.source.copyRemainingFiles = filter;
     return this;
   }
