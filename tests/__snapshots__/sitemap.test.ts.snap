@@ -82,6 +82,7 @@ Allow: /
 
 Sitemap: https://example.com/sitemap.xml",
   data: {
+    children: false,
     content: "User-agent: *
 Allow: /
 
@@ -124,6 +125,7 @@ snapshot[`Sitemap plugin 5`] = `
   </url>
 </urlset>',
   data: {
+    children: false,
     content: '<?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
@@ -164,7 +166,7 @@ snapshot[`Sitemap plugin 6`] = `
   content: "<!DOCTYPE html>
 Content of Page 5",
   data: {
-    children: "Content of Page 5",
+    children: true,
     content: "Content of Page 5",
     date: 1970-01-01T00:00:00.000Z,
     imagick: [
@@ -213,7 +215,7 @@ snapshot[`Sitemap plugin 7`] = `
   content: "<!DOCTYPE html>
 Content of Page 2",
   data: {
-    children: "Content of Page 2",
+    children: true,
     colors: [
       "#ff0000",
       "#0000ff",
@@ -293,7 +295,7 @@ snapshot[`Sitemap plugin 8`] = `
   content: "<!DOCTYPE html>
 Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
   data: {
-    children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
+    children: true,
     colors: [
       "#ff0000",
       "#0000ff",
@@ -374,8 +376,7 @@ snapshot[`Sitemap plugin 9`] = `
 <p>Content of Page 6</p>
 ",
   data: {
-    children: "<p>Content of Page 6</p>
-",
+    children: true,
     colors: [
       "#ff0000",
       "#0000ff",
@@ -456,7 +457,7 @@ snapshot[`Sitemap plugin 10`] = `
 {
   content: "Content of Page 3",
   data: {
-    children: "Content of Page 3",
+    children: true,
     colors: [
       "#ff0000",
       "#0000ff",
@@ -536,7 +537,7 @@ snapshot[`Sitemap plugin 11`] = `
   content: "<!DOCTYPE html>
 Content of Page 7",
   data: {
-    children: "Content of Page 7",
+    children: true,
     colors: [
       "#ff0000",
       "#0000ff",

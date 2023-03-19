@@ -106,6 +106,7 @@ snapshot[`postcss plugin 4`] = `
   }
 ",
   data: {
+    children: false,
     content: '@import "variables.css";
 @import "./text.css";
 ',
@@ -147,6 +148,7 @@ snapshot[`postcss plugin 5`] = `
   }
 ",
   data: {
+    children: false,
     content: ".text {
   font-family: var(--font-family);
 
@@ -269,6 +271,7 @@ snapshot[`postcss plugin without includes 4`] = `
 @import "./text.css";
 ',
   data: {
+    children: false,
     content: '@import "variables.css";
 @import "./text.css";
 ',
@@ -310,6 +313,7 @@ snapshot[`postcss plugin without includes 5`] = `
   }
 ",
   data: {
+    children: false,
     content: ".text {
   font-family: var(--font-family);
 
@@ -431,6 +435,7 @@ snapshot[`postcss plugin with hooks 4`] = `
 {
   content: ".foo{color:red}::root{--color:#333;--background:#fff;--font-family:sans-serif}.text{font-family:var(--font-family)}.text p{-webkit-backface-visibility:hidden;backface-visibility:hidden;box-shadow:0 0 .5em var(--background);color:var(--color)}",
   data: {
+    children: false,
     content: '@import "variables.css";
 @import "./text.css";
 ',
@@ -463,6 +468,7 @@ snapshot[`postcss plugin with hooks 5`] = `
 {
   content: ".text{font-family:var(--font-family)}.text p{-webkit-backface-visibility:hidden;backface-visibility:hidden;box-shadow:0 0 .5em var(--background);color:var(--color)}",
   data: {
+    children: false,
     content: ".text {
   font-family: var(--font-family);
 

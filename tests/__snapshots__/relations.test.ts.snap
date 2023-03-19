@@ -89,8 +89,7 @@ snapshot[`relations plugin 4`] = `
 </ul>
 ",
   data: {
-    children: "<p>This is the first category</p>
-",
+    children: true,
     content: "This is the first category
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -103,8 +102,7 @@ snapshot[`relations plugin 4`] = `
     post: [
       <ref *2> {
         category: {
-          children: "<p>This is the first category</p>
-",
+          children: true,
           content: "This is the first category
 ",
           date: 1970-01-01T00:00:00.000Z,
@@ -125,15 +123,13 @@ snapshot[`relations plugin 4`] = `
           url: "/categories/category-1/",
         },
         category_id: "category-1",
-        children: "<p>Second post with category 1 and comment 2</p>
-",
+        children: true,
         comment_id: [
           2,
         ],
         comments: [
           {
-            children: "<p>This is the second comment</p>
-",
+            children: true,
             content: "This is the second comment
 ",
             date: 1970-01-01T00:00:00.000Z,
@@ -208,8 +204,7 @@ snapshot[`relations plugin 5`] = `
 </ul>
 ",
   data: {
-    children: "<p>This is the second category</p>
-",
+    children: true,
     content: "This is the second category
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -222,8 +217,7 @@ snapshot[`relations plugin 5`] = `
     post: [
       <ref *2> {
         category: {
-          children: "<p>This is the second category</p>
-",
+          children: true,
           content: "This is the second category
 ",
           date: 1970-01-01T00:00:00.000Z,
@@ -243,16 +237,14 @@ snapshot[`relations plugin 5`] = `
           url: "/categories/category-2/",
         },
         category_id: "category-2",
-        children: "<p>First post with category 2 and comments 1 and 3</p>
-",
+        children: true,
         comment_id: [
           1,
           3,
         ],
         comments: [
           {
-            children: "<p>This is the first comment</p>
-",
+            children: true,
             content: "This is the first comment
 ",
             date: 1970-01-01T00:00:00.000Z,
@@ -272,8 +264,7 @@ snapshot[`relations plugin 5`] = `
             url: "/comments/comment-1/",
           },
           {
-            children: "<p>This is the third comment</p>
-",
+            children: true,
             content: "This is the third comment
 ",
             date: 1970-01-01T00:00:00.000Z,
@@ -339,8 +330,7 @@ snapshot[`relations plugin 6`] = `
 <p>This is the first comment</p>
 ",
   data: {
-    children: "<p>This is the first comment</p>
-",
+    children: true,
     content: "This is the first comment
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -353,8 +343,7 @@ snapshot[`relations plugin 6`] = `
     post: [
       <ref *1> {
         category: {
-          children: "<p>This is the second category</p>
-",
+          children: true,
           content: "This is the second category
 ",
           date: 1970-01-01T00:00:00.000Z,
@@ -376,16 +365,14 @@ snapshot[`relations plugin 6`] = `
           url: "/categories/category-2/",
         },
         category_id: "category-2",
-        children: "<p>First post with category 2 and comments 1 and 3</p>
-",
+        children: true,
         comment_id: [
           1,
           3,
         ],
         comments: [
           {
-            children: "<p>This is the first comment</p>
-",
+            children: true,
             content: "This is the first comment
 ",
             date: 1970-01-01T00:00:00.000Z,
@@ -403,8 +390,7 @@ snapshot[`relations plugin 6`] = `
             url: "/comments/comment-1/",
           },
           {
-            children: "<p>This is the third comment</p>
-",
+            children: true,
             content: "This is the third comment
 ",
             date: 1970-01-01T00:00:00.000Z,
@@ -468,8 +454,7 @@ snapshot[`relations plugin 7`] = `
 <p>This is the second comment</p>
 ",
   data: {
-    children: "<p>This is the second comment</p>
-",
+    children: true,
     content: "This is the second comment
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -482,8 +467,7 @@ snapshot[`relations plugin 7`] = `
     post: [
       <ref *1> {
         category: {
-          children: "<p>This is the first category</p>
-",
+          children: true,
           content: "This is the first category
 ",
           date: 1970-01-01T00:00:00.000Z,
@@ -506,15 +490,13 @@ snapshot[`relations plugin 7`] = `
           url: "/categories/category-1/",
         },
         category_id: "category-1",
-        children: "<p>Second post with category 1 and comment 2</p>
-",
+        children: true,
         comment_id: [
           2,
         ],
         comments: [
           {
-            children: "<p>This is the second comment</p>
-",
+            children: true,
             content: "This is the second comment
 ",
             date: 1970-01-01T00:00:00.000Z,
@@ -577,8 +559,7 @@ snapshot[`relations plugin 8`] = `
 <p>This is the third comment</p>
 ",
   data: {
-    children: "<p>This is the third comment</p>
-",
+    children: true,
     content: "This is the third comment
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -591,8 +572,7 @@ snapshot[`relations plugin 8`] = `
     post: [
       <ref *1> {
         category: {
-          children: "<p>This is the second category</p>
-",
+          children: true,
           content: "This is the second category
 ",
           date: 1970-01-01T00:00:00.000Z,
@@ -614,16 +594,14 @@ snapshot[`relations plugin 8`] = `
           url: "/categories/category-2/",
         },
         category_id: "category-2",
-        children: "<p>First post with category 2 and comments 1 and 3</p>
-",
+        children: true,
         comment_id: [
           1,
           3,
         ],
         comments: [
           {
-            children: "<p>This is the first comment</p>
-",
+            children: true,
             content: "This is the first comment
 ",
             date: 1970-01-01T00:00:00.000Z,
@@ -643,8 +621,7 @@ snapshot[`relations plugin 8`] = `
             url: "/comments/comment-1/",
           },
           {
-            children: "<p>This is the third comment</p>
-",
+            children: true,
             content: "This is the third comment
 ",
             date: 1970-01-01T00:00:00.000Z,
@@ -717,8 +694,7 @@ snapshot[`relations plugin 9`] = `
 </ul>',
   data: {
     category: <ref *1> {
-      children: "<p>This is the second category</p>
-",
+      children: true,
       content: "This is the second category
 ",
       date: 1970-01-01T00:00:00.000Z,
@@ -732,16 +708,14 @@ snapshot[`relations plugin 9`] = `
         <ref *2> {
           category: [Circular *1],
           category_id: "category-2",
-          children: "<p>First post with category 2 and comments 1 and 3</p>
-",
+          children: true,
           comment_id: [
             1,
             3,
           ],
           comments: [
             {
-              children: "<p>This is the first comment</p>
-",
+              children: true,
               content: "This is the first comment
 ",
               date: 1970-01-01T00:00:00.000Z,
@@ -761,8 +735,7 @@ snapshot[`relations plugin 9`] = `
               url: "/comments/comment-1/",
             },
             {
-              children: "<p>This is the third comment</p>
-",
+              children: true,
               content: "This is the third comment
 ",
               date: 1970-01-01T00:00:00.000Z,
@@ -809,16 +782,14 @@ snapshot[`relations plugin 9`] = `
       url: "/categories/category-2/",
     },
     category_id: "category-2",
-    children: "<p>First post with category 2 and comments 1 and 3</p>
-",
+    children: true,
     comment_id: [
       1,
       3,
     ],
     comments: [
       {
-        children: "<p>This is the first comment</p>
-",
+        children: true,
         content: "This is the first comment
 ",
         date: 1970-01-01T00:00:00.000Z,
@@ -831,8 +802,7 @@ snapshot[`relations plugin 9`] = `
         post: [
           <ref *2> {
             category: <ref *1> {
-              children: "<p>This is the second category</p>
-",
+              children: true,
               content: "This is the second category
 ",
               date: 1970-01-01T00:00:00.000Z,
@@ -854,8 +824,7 @@ snapshot[`relations plugin 9`] = `
               url: "/categories/category-2/",
             },
             category_id: "category-2",
-            children: "<p>First post with category 2 and comments 1 and 3</p>
-",
+            children: true,
             comment_id: [
               1,
               3,
@@ -886,8 +855,7 @@ snapshot[`relations plugin 9`] = `
         url: "/comments/comment-1/",
       },
       {
-        children: "<p>This is the third comment</p>
-",
+        children: true,
         content: "This is the third comment
 ",
         date: 1970-01-01T00:00:00.000Z,
@@ -900,8 +868,7 @@ snapshot[`relations plugin 9`] = `
         post: [
           <ref *2> {
             category: <ref *1> {
-              children: "<p>This is the second category</p>
-",
+              children: true,
               content: "This is the second category
 ",
               date: 1970-01-01T00:00:00.000Z,
@@ -923,8 +890,7 @@ snapshot[`relations plugin 9`] = `
               url: "/categories/category-2/",
             },
             category_id: "category-2",
-            children: "<p>First post with category 2 and comments 1 and 3</p>
-",
+            children: true,
             comment_id: [
               1,
               3,
@@ -1003,8 +969,7 @@ snapshot[`relations plugin 10`] = `
 </ul>',
   data: {
     category: <ref *1> {
-      children: "<p>This is the first category</p>
-",
+      children: true,
       content: "This is the first category
 ",
       date: 1970-01-01T00:00:00.000Z,
@@ -1018,15 +983,13 @@ snapshot[`relations plugin 10`] = `
         <ref *2> {
           category: [Circular *1],
           category_id: "category-1",
-          children: "<p>Second post with category 1 and comment 2</p>
-",
+          children: true,
           comment_id: [
             2,
           ],
           comments: [
             {
-              children: "<p>This is the second comment</p>
-",
+              children: true,
               content: "This is the second comment
 ",
               date: 1970-01-01T00:00:00.000Z,
@@ -1074,15 +1037,13 @@ snapshot[`relations plugin 10`] = `
       url: "/categories/category-1/",
     },
     category_id: "category-1",
-    children: "<p>Second post with category 1 and comment 2</p>
-",
+    children: true,
     comment_id: [
       2,
     ],
     comments: [
       {
-        children: "<p>This is the second comment</p>
-",
+        children: true,
         content: "This is the second comment
 ",
         date: 1970-01-01T00:00:00.000Z,
@@ -1095,8 +1056,7 @@ snapshot[`relations plugin 10`] = `
         post: [
           <ref *2> {
             category: <ref *1> {
-              children: "<p>This is the first category</p>
-",
+              children: true,
               content: "This is the first category
 ",
               date: 1970-01-01T00:00:00.000Z,
@@ -1119,8 +1079,7 @@ snapshot[`relations plugin 10`] = `
               url: "/categories/category-1/",
             },
             category_id: "category-1",
-            children: "<p>Second post with category 1 and comment 2</p>
-",
+            children: true,
             comment_id: [
               2,
             ],

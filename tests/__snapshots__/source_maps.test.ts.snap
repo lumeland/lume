@@ -98,6 +98,7 @@ snapshot[`Source maps from CSS files 4`] = `
 {
   content: '{"version":3,"sourceRoot":"assets","mappings":"ACEA,2DCFA,cEMA","sources":["index.scss","third.scss","fourth.scss","colors.scss","button.scss"],"sourcesContent":["html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}","","","",""],"names":[],"file":"index.css.map"}',
   data: {
+    children: false,
     content: '{"version":3,"sourceRoot":"assets","mappings":"ACEA,2DCFA,cEMA","sources":["index.scss","third.scss","fourth.scss","colors.scss","button.scss"],"sourcesContent":["html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}","","","",""],"names":[],"file":"index.css.map"}',
     page: undefined,
     sourceMap: undefined,
@@ -120,6 +121,7 @@ snapshot[`Source maps from CSS files 5`] = `
 {
   content: '{"version":3,"sourceRoot":"assets","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["",""],"names":[],"file":"index2.css.map"}',
   data: {
+    children: false,
     content: '{"version":3,"sourceRoot":"assets","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["",""],"names":[],"file":"index2.css.map"}',
     page: undefined,
     sourceMap: undefined,
@@ -143,6 +145,7 @@ snapshot[`Source maps from CSS files 6`] = `
   content: "html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:#00f}body{color:#333;font:100% Helvetica,sans-serif}
 /*# sourceMappingURL=./index.css.map */",
   data: {
+    children: false,
     content: '@import "./_includes/sass/colors";
 @import "sass/button";
 ',
@@ -177,6 +180,7 @@ snapshot[`Source maps from CSS files 7`] = `
   content: "body{color:#00f}
 /*# sourceMappingURL=./index2.css.map */",
   data: {
+    children: false,
     content: '@import "sass/colors"
 
 body
@@ -300,6 +304,7 @@ document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
 });\\
 "],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"assets"}',
   data: {
+    children: false,
     content: '{"version":3,"file":"main.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"sources":["to_uppercase.ts","main.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
@@ -334,6 +339,7 @@ snapshot[`Source maps from Js files 5`] = `
 }\\
 "],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,yBAAAG","sourceRoot":"assets"}',
   data: {
+    children: false,
     content: '{"version":3,"file":"to_uppercase.js.map","names":["toUppercase","text","toUpperCase","n"],"sources":["to_uppercase.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
@@ -368,6 +374,7 @@ document.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\
 });\\
 "],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"assets"}',
   data: {
+    children: false,
     content: '{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
@@ -400,6 +407,7 @@ snapshot[`Source maps from Js files 7`] = `
   content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll("h1")?.forEach((r=>{r.innerHTML=e(r.innerHTML)}));
 /*# sourceMappingURL=./main.js.map */',
   data: {
+    children: false,
     content: '/// <reference lib="dom" />
 import toUppercase from "./modules/to_uppercase.ts";
 
@@ -438,6 +446,7 @@ snapshot[`Source maps from Js files 8`] = `
   content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0});export{e as default};
 /*# sourceMappingURL=./to_uppercase.js.map */',
   data: {
+    children: false,
     content: "export default function toUppercase(text: string) {
   return text.toUpperCase();
 }
@@ -473,6 +482,7 @@ snapshot[`Source maps from Js files 9`] = `
   content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll(".other")?.forEach((r=>{r.innerHTML=e(r.innerHTML)}));
 /*# sourceMappingURL=./other.js.map */',
   data: {
+    children: false,
     content: '/// <reference lib="dom" />
 import toUppercase from "./modules/to_uppercase.ts";
 

@@ -85,6 +85,7 @@ snapshot[`lightningcss plugin 4`] = `
 {
   content: '@import "variables.css";@import "./text.css";',
   data: {
+    children: false,
     content: '@import "variables.css";
 @import "./text.css";
 ',
@@ -117,6 +118,7 @@ snapshot[`lightningcss plugin 5`] = `
 {
   content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}",
   data: {
+    children: false,
     content: ".text {
   font-family: var(--font-family);
 

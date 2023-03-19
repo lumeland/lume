@@ -125,6 +125,9 @@ export async function assertSiteSnapshot(
     // @ts-ignore: Remove page reference
     page.data.page = undefined;
 
+    // Remove children reference becase it's different in the test environment
+    page.data.children = !!page.data.children;
+
     // Normalize source maps
     if (page.data.sourceMap) {
       normalizeSourceMap(page.data.sourceMap as SourceMap);

@@ -84,6 +84,7 @@ snapshot[`esbuild plugin 4`] = `
   content: 'var n=Object.defineProperty;var t=(e,o)=>n(e,"name",{value:o,configurable:!0});function r(e){return e.toUpperCase()}t(r,"toUppercase");document.querySelectorAll("h1")?.forEach(e=>{e.innerHTML=r(e.innerHTML)});
 ',
   data: {
+    children: false,
     content: '/// <reference lib="dom" />
 import toUppercase from "./modules/to_uppercase.ts";
 
@@ -121,6 +122,7 @@ snapshot[`esbuild plugin 5`] = `
   content: 'var n=Object.defineProperty;var t=(e,o)=>n(e,"name",{value:o,configurable:!0});function r(e){return e.toUpperCase()}t(r,"toUppercase");document.querySelectorAll(".other")?.forEach(e=>{e.innerHTML=r(e.innerHTML)});
 ',
   data: {
+    children: false,
     content: '/// <reference lib="dom" />
 import toUppercase from "./modules/to_uppercase.ts";
 
@@ -237,6 +239,7 @@ snapshot[`esbuild plugin with splitting as true 4`] = `
   content: 'var p=Object.defineProperty;var t=(e,r)=>p(e,"name",{value:r,configurable:!0});function n(e){return e.toUpperCase()}t(n,"toUppercase");export{n as a};
 ',
   data: {
+    children: false,
     content: "",
     page: undefined,
     url: "/foo/chunk.js",
@@ -259,6 +262,7 @@ snapshot[`esbuild plugin with splitting as true 5`] = `
   content: 'import{a as r}from"./chunk.js";document.querySelectorAll("h1")?.forEach(e=>{e.innerHTML=r(e.innerHTML)});
 ',
   data: {
+    children: false,
     content: '/// <reference lib="dom" />
 import toUppercase from "./modules/to_uppercase.ts";
 
@@ -296,6 +300,7 @@ snapshot[`esbuild plugin with splitting as true 6`] = `
   content: 'import{a as e}from"./chunk.js";document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
 ',
   data: {
+    children: false,
     content: '/// <reference lib="dom" />
 import toUppercase from "./modules/to_uppercase.ts";
 

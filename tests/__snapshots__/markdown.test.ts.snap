@@ -86,13 +86,7 @@ snapshot[`Build a markdown site 4`] = `
 </ul>
 ",
   data: {
-    children: "<h1>Normal page</h1>
-<ul>
-<li>List</li>
-<li>Of</li>
-<li>Elements</li>
-</ul>
-",
+    children: true,
     content: "# Normal page
 
 - List
@@ -142,19 +136,7 @@ snapshot[`Build a markdown site 5`] = `
 </section>
 \`,
   data: {
-    children: \`<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<p>belong to the previous footnote.</p>
-<h4 class="mt-3">Footnotes</h4>
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks.</p>
-<p>Subsequent paragraphs are indented to show that they <a href="#fnref2" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
-\`,
+    children: true,
     content: "Here is a footnote reference,[^1] and another.[^longnote]
 
 [^1]: Here is the footnote.
@@ -196,8 +178,7 @@ snapshot[`Build a markdown site 6`] = `
 <p><a href="#foo" target="_blank">link</a></p>
 ',
   data: {
-    children: '<p><a href="#foo" target="_blank">link</a></p>
-',
+    children: true,
     content: "[link](#foo){target=_blank}
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -236,13 +217,7 @@ snapshot[`Build a markdown site 7`] = `
 </code></pre>
 ',
   data: {
-    children: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
-</code></pre>
-<pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
-</code></pre>
-<pre><code>Indented code
-</code></pre>
-',
+    children: true,
     content: "\`\`\`html
 <p>Example</p>
 \`\`\`
@@ -291,15 +266,7 @@ snapshot[`Build a markdown site 8`] = `
 </dl>
 ",
   data: {
-    children: "<!-- deno-fmt-ignore-file -->
-<dl>
-<dt>This is a definition title</dt>
-<dd>And this the description</dd>
-<dd>Other description</dd>
-<dt>Other title</dt>
-<dd>And other description</dd>
-</dl>
-",
+    children: true,
     content: "<!-- deno-fmt-ignore-file -->
 This is a definition title
 : And this the description
@@ -341,10 +308,7 @@ snapshot[`Build a markdown site 9`] = `
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
   data: {
-    children: '<h1>Module <strong>example</strong></h1>
-
-<div><p>Welcome to this <a href="/">page</a></p></div>
-',
+    children: true,
     content: "<h1>{{ title | md(true) | safe }}</h1>
 
 <div>{{ description | md | safe }}</div>
@@ -384,9 +348,7 @@ snapshot[`Build a markdown site 10`] = `
 <p><a href="/">Back to home</a></p>
 ',
   data: {
-    children: '<h1>Module example</h1>
-<p><a href="/">Back to home</a></p>
-',
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -428,15 +390,7 @@ snapshot[`Build a markdown site 11`] = `
 </ul>
 ',
   data: {
-    children: '<!-- deno-fmt-ignore-file -->
-<h1></h1>
-<p>Foo</p>
-<ul>
-<li>one: <a href="/items/un.html">un</a></li>
-<li>two: <a href="/items/dous.html">dous</a></li>
-<li>three: <a href="/items/tres.html">tres</a></li>
-</ul>
-',
+    children: true,
     content: "<!-- deno-fmt-ignore-file -->
 # {{ title }}
 
@@ -563,13 +517,7 @@ snapshot[`Build a markdown with hooks 4`] = `
 </ul>
 ",
   data: {
-    children: "<h1>Normal page</h1>
-<ul>
-<li>List</li>
-<li>Of</li>
-<li>Elements</li>
-</ul>
-",
+    children: true,
     content: "# Normal page
 
 - List
@@ -619,19 +567,7 @@ snapshot[`Build a markdown with hooks 5`] = `
 </section>
 \`,
   data: {
-    children: \`<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<p>belong to the previous footnote.</p>
-<h4 class="mt-3">Footnotes</h4>
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks.</p>
-<p>Subsequent paragraphs are indented to show that they <a href="#fnref2" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
-\`,
+    children: true,
     content: "Here is a footnote reference,[^1] and another.[^longnote]
 
 [^1]: Here is the footnote.
@@ -673,8 +609,7 @@ snapshot[`Build a markdown with hooks 6`] = `
 <p><a href="#foo" target="_blank">link</a></p>
 ',
   data: {
-    children: '<p><a href="#foo" target="_blank">link</a></p>
-',
+    children: true,
     content: "[link](#foo){target=_blank}
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -713,13 +648,7 @@ snapshot[`Build a markdown with hooks 7`] = `
 </code></pre>
 ',
   data: {
-    children: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
-</code></pre>
-<pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
-</code></pre>
-<pre><code>Indented code
-</code></pre>
-',
+    children: true,
     content: "\`\`\`html
 <p>Example</p>
 \`\`\`
@@ -768,15 +697,7 @@ snapshot[`Build a markdown with hooks 8`] = `
 </dl>
 ",
   data: {
-    children: "<!-- deno-fmt-ignore-file -->
-<dl>
-<dt>This is a definition title</dt>
-<dd>And this the description</dd>
-<dd>Other description</dd>
-<dt>Other title</dt>
-<dd>And other description</dd>
-</dl>
-",
+    children: true,
     content: "<!-- deno-fmt-ignore-file -->
 This is a definition title
 : And this the description
@@ -818,10 +739,7 @@ snapshot[`Build a markdown with hooks 9`] = `
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
   data: {
-    children: '<h1>Module <strong>example</strong></h1>
-
-<div><p>Welcome to this <a href="/">page</a></p></div>
-',
+    children: true,
     content: "<h1>{{ title | md(true) | safe }}</h1>
 
 <div>{{ description | md | safe }}</div>
@@ -861,9 +779,7 @@ snapshot[`Build a markdown with hooks 10`] = `
 <p><a href="/">Back to home</a></p>
 ',
   data: {
-    children: '<h1>Module example</h1>
-<p><a href="/">Back to home</a></p>
-',
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -905,15 +821,7 @@ snapshot[`Build a markdown with hooks 11`] = `
 </ul>
 ',
   data: {
-    children: '<!-- deno-fmt-ignore-file -->
-<h1></h1>
-<p>Foo</p>
-<ul>
-<li>one: <a href="/items/un.html">un</a></li>
-<li>two: <a href="/items/dous.html">dous</a></li>
-<li>three: <a href="/items/tres.html">tres</a></li>
-</ul>
-',
+    children: true,
     content: "<!-- deno-fmt-ignore-file -->
 # {{ title }}
 

@@ -91,6 +91,7 @@ snapshot[`sass plugin 4`] = `
 {
   content: "html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}",
   data: {
+    children: false,
     content: '@import "./_includes/sass/colors";
 @import "sass/button";
 ',
@@ -123,6 +124,7 @@ snapshot[`sass plugin 5`] = `
 {
   content: "body{color:blue}",
   data: {
+    children: false,
     content: '@import "sass/colors"
 
 body

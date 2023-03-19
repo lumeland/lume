@@ -108,8 +108,7 @@ This is a local template
 This is a remote template
 ",
   data: {
-    children: "<p>Hello world</p>
-",
+    children: true,
     content: "Hello world
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -147,6 +146,7 @@ body {
 }
 ",
   data: {
+    children: false,
     content: "/* Other remote style */
 body {
   color: yellow;
@@ -183,6 +183,7 @@ snapshot[`render remote files 6`] = `
   content: 'var r=Object.defineProperty;var e=(t,m)=>r(t,"name",{value:m,configurable:!0});var l="Name";function o(){console.log("hello",l)}e(o,"default");o();
 ',
   data: {
+    children: false,
     content: 'import hello from "./_includes/hello.js";
 
 hello();
@@ -225,6 +226,7 @@ body {
 }
 ",
   data: {
+    children: false,
     content: '@import "remote-style.css";
 @import "./other-remote-style.css";
 ',
@@ -260,6 +262,7 @@ snapshot[`render remote files 8`] = `
   color: blue;
 }",
   data: {
+    children: false,
     content: "body {
   color: blue;
 }",

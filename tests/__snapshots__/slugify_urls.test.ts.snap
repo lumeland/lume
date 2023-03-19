@@ -81,8 +81,7 @@ snapshot[`slugify_urls plugin 4`] = `
 <p>Page 2</p>
 ",
   data: {
-    children: "<p>Page 2</p>
-",
+    children: true,
     content: "Page 2
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -116,8 +115,7 @@ snapshot[`slugify_urls plugin 5`] = `
 <p>Page 1</p>
 ",
   data: {
-    children: "<p>Page 1</p>
-",
+    children: true,
     content: "Page 1
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -150,7 +148,7 @@ snapshot[`slugify_urls plugin 6`] = `
   content: "<!DOCTYPE html>
 Filloas con nocilla",
   data: {
-    children: "Filloas con nocilla",
+    children: true,
     content: "Filloas con nocilla",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -182,7 +180,7 @@ snapshot[`slugify_urls plugin 7`] = `
   content: "<!DOCTYPE html>
 Foo",
   data: {
-    children: "Foo",
+    children: true,
     content: "Foo",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -215,8 +213,7 @@ snapshot[`slugify_urls plugin 8`] = `
 <p>Page 3</p>
 ",
   data: {
-    children: "<p>Page 3</p>
-",
+    children: true,
     content: "Page 3
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -250,8 +247,7 @@ snapshot[`slugify_urls plugin 9`] = `
 <p>Page 4</p>
 ",
   data: {
-    children: "<p>Page 4</p>
-",
+    children: true,
     content: "Page 4
 ",
     date: 1970-01-01T00:00:00.000Z,

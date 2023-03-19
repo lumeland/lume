@@ -179,11 +179,7 @@ p {
 
 </body></html>\`,
   data: {
-    children: '<div class="bg-purple-500">
-  <p>This is page 1</p>
-
-  <a href="page2.html" class="btn-green">Go to page 2</a>
-</div>',
+    children: true,
     content: '<div class="bg-purple-500">
   <p>This is page 1</p>
 
@@ -295,7 +291,7 @@ p {
 
 </body></html>\`,
   data: {
-    children: '<p class="text-sky-100">This is page 1</p>',
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.njk",
@@ -403,7 +399,7 @@ p {
 
 </body></html>\`,
   data: {
-    children: '<p class="text-sky-200">This is page 2</p>',
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.njk",
@@ -513,9 +509,7 @@ p {
 
 </body></html>\`,
   data: {
-    children: '<div class="bg-purple-600">
-  <p>This is page 2</p>
-</div>',
+    children: true,
     content: '<div class="bg-purple-600">
   <p>This is page 2</p>
 </div>',
@@ -567,6 +561,7 @@ snapshot[`Windi CSS plugin 8`] = `
   background-color: rgba(29, 78, 216, var(--tw-bg-opacity));
 }",
   data: {
+    children: false,
     content: ".btn {
   @apply font-bold py-2 px-4 rounded;
 }

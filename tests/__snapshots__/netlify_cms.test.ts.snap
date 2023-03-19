@@ -86,6 +86,7 @@ site_url: 'https://example.com/'
 local_backend: false
 ",
   data: {
+    children: false,
     content: "backend:
   name: git-gateway
   branch: master
@@ -126,6 +127,7 @@ snapshot[`code_hightlight plugin 5`] = `
         </html>
         ',
   data: {
+    children: false,
     content: '
         <!DOCTYPE html>
         <html lang="en">

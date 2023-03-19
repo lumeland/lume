@@ -90,7 +90,7 @@ snapshot[`Build a site with js/ts modules 4`] = `
   </html>
   ',
   data: {
-    children: "Async Page 1",
+    children: true,
     content: "Async Page 1",
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.tmpl.js",
@@ -136,7 +136,7 @@ snapshot[`Build a site with js/ts modules 5`] = `
   </html>
   ',
   data: {
-    children: "Async Page 2",
+    children: true,
     content: "Async Page 2",
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.tmpl.js",
@@ -182,7 +182,7 @@ snapshot[`Build a site with js/ts modules 6`] = `
   </html>
   ',
   data: {
-    children: "Content page 1",
+    children: true,
     content: "Content page 1",
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.tmpl.js",
@@ -227,7 +227,7 @@ snapshot[`Build a site with js/ts modules 7`] = `
   </html>
   ',
   data: {
-    children: "Content page 2",
+    children: true,
     content: "Content page 2",
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.tmpl.js",
@@ -271,7 +271,7 @@ snapshot[`Build a site with js/ts modules 8`] = `
   </html>
   ',
   data: {
-    children: "Content page 3",
+    children: true,
     content: "Content page 3",
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.tmpl.js",
@@ -327,19 +327,7 @@ snapshot[`Build a site with js/ts modules 9`] = `
   </html>
   ',
   data: {
-    children: '
-    <h1>Module example</h1>
-    <nav>
-      <a class="home" href="https://example.com/blog/">Back to home</a>
-    </nav>
-    <div>
-      
-<p>This is a simple page.</p>
-<a class="link-1" href="/blog/">Go to home page</a>
-<a class="link-2" href="/blog/simple-page-new-permalink.html">Go to simple page</a>
-
-    </div>
-  ',
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.tmpl.js",

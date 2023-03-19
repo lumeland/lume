@@ -108,35 +108,7 @@ snapshot[`Prism plugin 4`] = `
 </code></pre>
 </body></html>',
   data: {
-    children: '<h1>Hello world</h1>
-<pre><code class="language-css">body {
-  background: red;
-}
-</code></pre>
-<pre><code class="language-less">@width: 10px;
-@height: @width + 10px;
-
-#header {
-  width: @width;
-  height: @height;
-}
-</code></pre>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-  &lt;meta charset=&quot;UTF-8&quot;&gt;
-  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
-  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-  &lt;title&gt;Document&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<pre><code class="language-js">console.log(&quot;foo&quot;);
-</code></pre>
-',
+    children: true,
     content: '# Hello world
 
 \`\`\`css

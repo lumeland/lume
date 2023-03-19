@@ -92,41 +92,7 @@ snapshot[`build a site with jsx/tsx modules 4`] = `
   content: "<!DOCTYPE html>
 <html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
   data: {
-    children: {
-      "\$\$typeof": Symbol(react.element),
-      _owner: null,
-      _store: {},
-      key: null,
-      props: {
-        children: [
-          {
-            "\$\$typeof": Symbol(react.element),
-            _owner: null,
-            _store: {},
-            key: null,
-            props: {
-              children: "Hello world",
-            },
-            ref: null,
-            type: "h1",
-          },
-          {
-            "\$\$typeof": Symbol(react.element),
-            _owner: null,
-            _store: {},
-            key: null,
-            props: {
-              children: "This is a JSX page",
-            },
-            ref: null,
-            type: "p",
-          },
-        ],
-      },
-      ref: null,
-      toString: [Function: toString],
-      type: Symbol(react.fragment),
-    },
+    children: true,
     comp: {},
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -161,18 +127,7 @@ snapshot[`build a site with jsx/tsx modules 5`] = `
   content: "<!DOCTYPE html>
 <html><head><title></title></head><body><main><div>1</div></main></body></html>",
   data: {
-    children: {
-      "\$\$typeof": Symbol(react.element),
-      _owner: null,
-      _store: {},
-      key: null,
-      props: {
-        children: 1,
-      },
-      ref: null,
-      toString: [Function: toString],
-      type: "div",
-    },
+    children: true,
     comp: {},
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -206,18 +161,7 @@ snapshot[`build a site with jsx/tsx modules 6`] = `
   content: "<!DOCTYPE html>
 <html><head><title></title></head><body><main><div>2</div></main></body></html>",
   data: {
-    children: {
-      "\$\$typeof": Symbol(react.element),
-      _owner: null,
-      _store: {},
-      key: null,
-      props: {
-        children: 2,
-      },
-      ref: null,
-      toString: [Function: toString],
-      type: "div",
-    },
+    children: true,
     comp: {},
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -251,55 +195,7 @@ snapshot[`build a site with jsx/tsx modules 7`] = `
   content: '<!DOCTYPE html>
 <html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
   data: {
-    children: {
-      "\$\$typeof": Symbol(react.element),
-      _owner: null,
-      _store: {},
-      key: null,
-      props: {
-        children: [
-          {
-            "\$\$typeof": Symbol(react.element),
-            _owner: null,
-            _store: {},
-            key: null,
-            props: {
-              children: "This is the title",
-            },
-            ref: null,
-            type: "h1",
-          },
-          {
-            "\$\$typeof": Symbol(react.element),
-            _owner: null,
-            _store: {},
-            key: null,
-            props: {
-              children: [
-                "This is a JSX page ",
-                {
-                  "\$\$typeof": Symbol(react.element),
-                  _owner: null,
-                  _store: {},
-                  key: null,
-                  props: {
-                    children: "Go to home",
-                    href: "/blog/",
-                  },
-                  ref: null,
-                  type: "a",
-                },
-              ],
-            },
-            ref: null,
-            type: "p",
-          },
-        ],
-      },
-      ref: null,
-      toString: [Function: toString],
-      type: Symbol(react.fragment),
-    },
+    children: true,
     comp: {},
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
@@ -336,9 +232,7 @@ snapshot[`build a site with jsx/tsx modules 8`] = `
 <p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
 </div></main></body></html>',
   data: {
-    children: '<h1 class="foo">Hello world</h1>
-<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
-',
+    children: true,
     comp: {},
     content: "# Hello world{.foo}
 

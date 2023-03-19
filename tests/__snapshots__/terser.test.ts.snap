@@ -81,6 +81,7 @@ snapshot[`terser plugin 4`] = `
 {
   content: 'import{one as o,two as m}from"./numbers.js";console.log(o()+m());',
   data: {
+    children: false,
     content: 'import { one, two } from "./numbers.js";
 
 console.log(one() + two());
@@ -114,19 +115,7 @@ snapshot[`terser plugin 5`] = `
 {
   content: "export function one(){return 1}export function two(){return 2}",
   data: {
-    children: "export function one () {
-  return 1;
-}
-
-export function two () {
-  return 2;
-}
-/*
-Commented code
-export function two () {
-  return 2;
-}
-*/",
+    children: true,
     content: "export function one () {
   return {{ one }};
 }

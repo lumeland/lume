@@ -81,8 +81,7 @@ snapshot[`build a simple site 4`] = `
 <h1>Welcome</h1>
 ",
   data: {
-    children: "<h1>Welcome</h1>
-",
+    children: true,
     content: "# Welcome
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -117,8 +116,7 @@ snapshot[`build a simple site 5`] = `
 <h1>Welcome</h1>
 ",
   data: {
-    children: "<h1>Welcome</h1>
-",
+    children: true,
     content: "# Welcome
 ",
     date: 1970-01-01T00:00:00.000Z,

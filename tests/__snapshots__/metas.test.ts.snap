@@ -106,14 +106,7 @@ snapshot[`metas plugin 4`] = `
 
 </body></html>',
   data: {
-    children: "<html>
-  <head>
-  </head>
-  <body>
-    Hello world
-  </body>
-</html>
-",
+    children: true,
     content: "<html>
   <head>
   </head>
@@ -195,14 +188,7 @@ snapshot[`metas plugin 5`] = `
 
 </body></html>',
   data: {
-    children: "<html>
-  <head>
-  </head>
-  <body>
-    Hello world
-  </body>
-</html>
-",
+    children: true,
     content: "<html>
   <head>
   </head>
@@ -280,9 +266,7 @@ snapshot[`metas plugin 6`] = `
 <!--more-->
 </body></html>',
   data: {
-    children: "<p>This is page excerpt will be used as meta description.</p>
-<!--more-->
-",
+    children: true,
     content: "This is page excerpt will be used as meta description.
 
 <!--more-->

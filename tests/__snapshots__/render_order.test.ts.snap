@@ -81,8 +81,7 @@ snapshot[`render order property 4`] = `
 <p>Hello world</p>
 ",
   data: {
-    children: "<p>Hello world</p>
-",
+    children: true,
     content: "Hello world
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -115,7 +114,7 @@ snapshot[`render order property 5`] = `
   content: "<!DOCTYPE html>
 11",
   data: {
-    children: 11,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -148,7 +147,7 @@ snapshot[`render order property 6`] = `
   content: "<!DOCTYPE html>
 12",
   data: {
-    children: 12,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -181,7 +180,7 @@ snapshot[`render order property 7`] = `
   content: "<!DOCTYPE html>
 13",
   data: {
-    children: 13,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -214,7 +213,7 @@ snapshot[`render order property 8`] = `
   content: "<!DOCTYPE html>
 14",
   data: {
-    children: 14,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -247,7 +246,7 @@ snapshot[`render order property 9`] = `
   content: "<!DOCTYPE html>
 15",
   data: {
-    children: 15,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -280,7 +279,7 @@ snapshot[`render order property 10`] = `
   content: "<!DOCTYPE html>
 16",
   data: {
-    children: 16,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -313,7 +312,7 @@ snapshot[`render order property 11`] = `
   content: "<!DOCTYPE html>
 17",
   data: {
-    children: 17,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -346,7 +345,7 @@ snapshot[`render order property 12`] = `
   content: "<!DOCTYPE html>
 18",
   data: {
-    children: 18,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -379,7 +378,7 @@ snapshot[`render order property 13`] = `
   content: "<!DOCTYPE html>
 19",
   data: {
-    children: 19,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -412,7 +411,7 @@ snapshot[`render order property 14`] = `
   content: "<!DOCTYPE html>
 20",
   data: {
-    children: 20,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -445,7 +444,7 @@ snapshot[`render order property 15`] = `
   content: "<!DOCTYPE html>
 1",
   data: {
-    children: 1,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -477,7 +476,7 @@ snapshot[`render order property 16`] = `
   content: "<!DOCTYPE html>
 2",
   data: {
-    children: 2,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -509,7 +508,7 @@ snapshot[`render order property 17`] = `
   content: "<!DOCTYPE html>
 3",
   data: {
-    children: 3,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -541,7 +540,7 @@ snapshot[`render order property 18`] = `
   content: "<!DOCTYPE html>
 4",
   data: {
-    children: 4,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -573,7 +572,7 @@ snapshot[`render order property 19`] = `
   content: "<!DOCTYPE html>
 5",
   data: {
-    children: 5,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -605,7 +604,7 @@ snapshot[`render order property 20`] = `
   content: "<!DOCTYPE html>
 6",
   data: {
-    children: 6,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -637,7 +636,7 @@ snapshot[`render order property 21`] = `
   content: "<!DOCTYPE html>
 7",
   data: {
-    children: 7,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -669,7 +668,7 @@ snapshot[`render order property 22`] = `
   content: "<!DOCTYPE html>
 8",
   data: {
-    children: 8,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -701,7 +700,7 @@ snapshot[`render order property 23`] = `
   content: "<!DOCTYPE html>
 9",
   data: {
-    children: 9,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -733,7 +732,7 @@ snapshot[`render order property 24`] = `
   content: "<!DOCTYPE html>
 10",
   data: {
-    children: 10,
+    children: true,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -765,7 +764,7 @@ snapshot[`render order property 25`] = `
   content: '<!DOCTYPE html>
 {"page":1,"totalPages":3,"totalResults":11,"previous":null,"next":"./page-2/index.html"}',
   data: {
-    children: null,
+    children: false,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "paginate.tmpl.js",
@@ -807,7 +806,7 @@ snapshot[`render order property 26`] = `
   content: '<!DOCTYPE html>
 {"page":2,"totalPages":3,"totalResults":11,"previous":"./page-1/index.html","next":"./page-3/index.html"}',
   data: {
-    children: null,
+    children: false,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "paginate.tmpl.js",
@@ -849,7 +848,7 @@ snapshot[`render order property 27`] = `
   content: '<!DOCTYPE html>
 {"page":3,"totalPages":3,"totalResults":11,"previous":"./page-2/index.html","next":null}',
   data: {
-    children: null,
+    children: false,
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "paginate.tmpl.js",

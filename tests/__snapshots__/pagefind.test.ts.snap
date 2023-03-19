@@ -93,9 +93,7 @@ snapshot[`Pagefind plugin 4`] = `
 
 </body></html>\`,
   data: {
-    children: "<h1>Hello world</h1>
-<p>This is the first page</p>
-",
+    children: true,
     content: "# Hello world
 
 This is the first page
@@ -145,9 +143,7 @@ snapshot[`Pagefind plugin 5`] = `
 
 </body></html>\`,
   data: {
-    children: "<h1>Other page</h1>
-<p>This is the second page</p>
-",
+    children: true,
     content: "# Other page
 
 This is the second page
