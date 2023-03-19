@@ -62,9 +62,7 @@ export default function reload(options: Options): Middleware {
       body +=
         `<script type="module" id="lume-live-reload">${reloadClient}; liveReload();</script>`;
 
-      const { status, statusText } = response;
-      const headers = new Headers();
-      headers.set("content-type", "text/html; charset=utf-8");
+      const { status, statusText, headers } = response;
 
       return new Response(body, { status, statusText, headers });
     }
