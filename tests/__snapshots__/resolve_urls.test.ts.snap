@@ -92,6 +92,12 @@ snapshot[`relative_url plugin 4`] = `
 <a href="/">Go to index</a></p>
 </body></html>',
   data: {
+    children: '<!-- deno-fmt-ignore-file -->
+<p>First article</p>
+<p><a href="./article-2.md">Go to second</a>
+<a href="../other.md">Go to other</a>
+<a href="/index.md">Go to index</a></p>
+',
     content: "<!-- deno-fmt-ignore-file -->
 
 First article
@@ -133,6 +139,12 @@ snapshot[`relative_url plugin 5`] = `
 <a href="/">Go to index</a></p>
 </body></html>',
   data: {
+    children: '<!-- deno-fmt-ignore-file -->
+<p>Second article</p>
+<p><a href="article-1.md">Go to first</a>
+<a href="../other.md">Go to other</a>
+<a href="/index.md">Go to index</a></p>
+',
     content: "<!-- deno-fmt-ignore-file -->
 
 Second article
@@ -183,6 +195,21 @@ snapshot[`relative_url plugin 6`] = `
 <a href="/tilde-and-ene/">url</a></p>
 </body></html>',
   data: {
+    children: '<!-- deno-fmt-ignore-file -->
+<p><a href="/bar">url</a>
+<a href="foo">url</a>
+<a href="./foo">url</a>
+<a href="../foo">url</a>
+<a href="#foo">url</a>
+<a href="?foo=bar">url</a>
+<a href="~/other.md">url</a>
+<a href="other.md">url</a>
+<a href="https://domain.com">url</a>
+<a href="other.md?tab=1">url</a>
+<a href="other.md#tab-1">url</a>
+<a href="~/statics/robots.txt">url</a>
+<a href="t%C3%ADlde-and-e%C3%B1e.md">url</a></p>
+',
     content: "<!-- deno-fmt-ignore-file -->
 [url](/bar)
 [url](foo)
@@ -230,6 +257,9 @@ snapshot[`relative_url plugin 7`] = `
 <p><a href="/robots.txt">See robots.txt</a></p>
 </body></html>',
   data: {
+    children: '<p>Other page</p>
+<p><a href="statics/robots.txt">See robots.txt</a></p>
+',
     content: "Other page
 
 [See robots.txt](statics/robots.txt)
@@ -265,6 +295,8 @@ snapshot[`relative_url plugin 8`] = `
 <html><head></head><body><p>Tilde and eñe</p>
 </body></html>",
   data: {
+    children: "<p>Tilde and eñe</p>
+",
     content: "Tilde and eñe
 ",
     date: 1970-01-01T00:00:00.000Z,

@@ -157,6 +157,7 @@ snapshot[`nav plugin 4`] = `
   </body>
 </html>',
   data: {
+    children: "",
     content: "",
     date: 1970-01-01T00:00:00.000Z,
     layout: "main.njk",
@@ -270,6 +271,7 @@ snapshot[`nav plugin 5`] = `
   </body>
 </html>',
   data: {
+    children: "",
     content: "",
     date: 1970-01-01T00:00:00.000Z,
     layout: "main.njk",
@@ -383,6 +385,7 @@ snapshot[`nav plugin 6`] = `
   </body>
 </html>',
   data: {
+    children: "",
     content: "",
     date: 1970-01-01T00:00:00.000Z,
     layout: "main.njk",
@@ -498,6 +501,7 @@ snapshot[`nav plugin 7`] = `
   </body>
 </html>',
   data: {
+    children: "",
     content: "",
     date: 1970-01-01T00:00:00.000Z,
     layout: "main.njk",
@@ -613,6 +617,7 @@ snapshot[`nav plugin 8`] = `
   </body>
 </html>',
   data: {
+    children: "",
     content: "",
     date: 1970-01-01T00:00:00.000Z,
     layout: "main.njk",
@@ -722,6 +727,7 @@ snapshot[`nav plugin 9`] = `
   </body>
 </html>',
   data: {
+    children: "",
     content: "",
     date: 1970-01-01T00:00:00.000Z,
     layout: "main.njk",

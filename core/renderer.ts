@@ -122,7 +122,7 @@ export default class Renderer {
       to.push(...generatedPages);
 
       // Render the pages content
-      const renderedPages: [Page, Content][] = [];
+      const renderedPages: Page[] = [];
       await concurrent(
         pages.concat(generatedPages),
         async (page) => {
@@ -132,8 +132,8 @@ export default class Renderer {
               page.content = page.data.content as Content;
               return;
             }
-            const content = await this.#renderPage(page);
-            renderedPages.push([page, content]);
+            page.data.children = await this.#renderPage(page);
+            renderedPages.push(page);
           } catch (cause) {
             throw new Exception("Error rendering this page", { cause, page });
           }
@@ -143,9 +143,9 @@ export default class Renderer {
       // Render the pages layouts
       await concurrent(
         renderedPages,
-        async ([page, content]) => {
+        async (page) => {
           try {
-            page.content = await this.#renderLayout(page, content);
+            page.content = await this.#renderLayout(page, page.data.children);
 
             // Ensure all HTML pages have the DOCTYPE declaration
             if (

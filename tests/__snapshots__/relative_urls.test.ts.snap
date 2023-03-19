@@ -87,6 +87,14 @@ snapshot[`relative_url plugin 4`] = `
 </ul>
 </body></html>',
   data: {
+    children: '<p>Contact</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+',
     content: "Contact
 
 - [Index](/)
@@ -131,6 +139,14 @@ snapshot[`relative_url plugin 5`] = `
 </ul>
 </body></html>',
   data: {
+    children: '<p>About us</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+',
     content: "About us
 
 - [Index](/)
@@ -175,6 +191,14 @@ snapshot[`relative_url plugin 6`] = `
 </ul>
 </body></html>',
   data: {
+    children: '<p>Presentation</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+',
     content: "Presentation
 
 - [Index](/)
@@ -223,6 +247,18 @@ snapshot[`relative_url plugin 7`] = `
 </ul>
 </body></html>',
   data: {
+    children: '<p>Index</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="about-us">About us</a></li>
+<li><a href="./about-us/contact">Contact</a></li>
+<li><a href="about-us/presentation">Presentation</a></li>
+<li><a href="?ignored=true">Ignored</a></li>
+<li><a href="#ignored">Ignored</a></li>
+<li><a href="https://ignored.com">Ignored</a></li>
+<li><a href="//ignored.com">Ignored</a></li>
+</ul>
+',
     content: "Index
 
 - [Index](/)

@@ -15,6 +15,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
   It also can create breadcrumbs [#351], [#353].
 - New middleware `serve_folder` to include additional folders to the server [#383].
 - New function `site.copyRemainingFiles()`.
+- New property `page.data.children` to store the rendered page content [#357], [#398].
 - BREAKING: `multilanguage` plugin has changed significally:
   - It requires to specify the available languages in the configuration. For example:
     ```js
@@ -2125,6 +2126,7 @@ The first version.
 [#348]: https://github.com/lumeland/lume/issues/348
 [#351]: https://github.com/lumeland/lume/issues/351
 [#353]: https://github.com/lumeland/lume/issues/353
+[#357]: https://github.com/lumeland/lume/issues/357
 [#358]: https://github.com/lumeland/lume/issues/358
 [#359]: https://github.com/lumeland/lume/issues/359
 [#364]: https://github.com/lumeland/lume/issues/364
@@ -2136,6 +2138,7 @@ The first version.
 [#388]: https://github.com/lumeland/lume/issues/388
 [#390]: https://github.com/lumeland/lume/issues/390
 [#395]: https://github.com/lumeland/lume/issues/395
+[#398]: https://github.com/lumeland/lume/issues/398
 
 [1.16.0]: https://github.com/lumeland/lume/compare/v1.15.3...HEAD
 [1.15.3]: https://github.com/lumeland/lume/compare/v1.15.2...v1.15.3

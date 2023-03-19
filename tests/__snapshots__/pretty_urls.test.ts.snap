@@ -81,6 +81,8 @@ snapshot[`Disabled pretty URLs 4`] = `
 <h1>Welcome</h1>
 ",
   data: {
+    children: "<h1>Welcome</h1>
+",
     content: "# Welcome
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -115,6 +117,8 @@ snapshot[`Disabled pretty URLs 5`] = `
 <h1>Welcome</h1>
 ",
   data: {
+    children: "<h1>Welcome</h1>
+",
     content: "# Welcome
 ",
     date: 1970-01-01T00:00:00.000Z,

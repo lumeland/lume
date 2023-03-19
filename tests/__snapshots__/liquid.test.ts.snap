@@ -87,6 +87,8 @@ snapshot[`build a site with liquid 4`] = `
   content: '["red","green","blue"]
 ',
   data: {
+    children: '["red","green","blue"]
+',
     colors: [
       "red",
       "green",
@@ -136,6 +138,8 @@ snapshot[`build a site with liquid 5`] = `
 </html>
 ',
   data: {
+    children: "<h1>Hello World</h1>
+",
     content: "<h1>{{ title }}</h1>
 ",
     date: 1970-01-01T00:00:00.000Z,
@@ -180,6 +184,7 @@ snapshot[`build a site with liquid 6`] = `
 </html>
 ',
   data: {
+    children: "<h1>LIQUID FILTER EXAMPLE</h1>",
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     layout: "basic.liquid",
@@ -241,6 +246,25 @@ snapshot[`build a site with liquid 7`] = `
 </html>
 ',
   data: {
+    children: "<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<div>hello (async)</div>
+
+<ul>
+  <li>This is a partial</li>
+  <li>async helper in a partial (async)</li>
+</ul>
+<ul>
+  <li>This is a partial</li>
+  <li>async helper in a partial (async)</li>
+</ul>
+",
     content: '<p>{% upperCase title %}</p>
 <p>{% upperCase "The title" %}</p>
 <p>{% upperCaseAsync title %}</p>

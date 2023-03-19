@@ -202,6 +202,35 @@ const a = 1, _b = 1 < a, _c = a > 4;
 
 </body></html>',
   data: {
+    children: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inline test</title>
+  <link id="el-1" rel="stylesheet" href="styles.css">
+  <link id="el-2" nonce="1234" media="print" rel="stylesheet" href="styles.css" data-custom="attr" inline>
+  <link id="el-3" rel="shortcut icon" href="/favicon.svg" inline>
+  <link id="el-4" rel="shortcut icon" href="/favicon.svg">
+  <link id="el-5" rel="shortcut icon" href="/favicon2.png" inline>
+  <link id="el-6" rel="shortcut icon" href="/favicon2.png">
+</head>
+<body>
+  <img id="el-7" class="has-svg" src="./favicon.svg" custom="value" inline>
+  <img src="./favicon.svg" inline>
+  <img id="el-8" class="has-svg" src="./favicon.svg">
+  <img id="el-9" class="has-png" src="./favicon2.png" inline>
+  <img id="el-10" class="has-png" src="./favicon2.png">
+  <img src="./favicon.svg" width="123" inline>
+  <img src="./favicon.svg" width="200" height="200" inline>
+  <script id="el-11" src="./script.js"></script>
+  <script id="el-12" src="./script.js" inline></script>
+  <script id="el-13" src="./script.js" type="module" @attr="custom" inline></script>
+  <template>
+    <img id="el-14" class="has-svg" src="./favicon.svg" inline>
+  </template>
+</body>
+</html>
+',
     content: '<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -297,6 +326,10 @@ snapshot[`inline plugin 7`] = `
   color: #333;
 }",
   data: {
+    children: "body {
+  background: white;
+  color: #333;
+}",
     content: "body {
   background: white;
   color: #333;

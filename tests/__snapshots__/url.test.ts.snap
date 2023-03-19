@@ -93,6 +93,21 @@ snapshot[`url and htmlUrl update href 4`] = `
     </html>
   ',
   data: {
+    children: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Default Filter</title>
+        </head>
+        <body>
+            <a id="url" href="https://example.com/test/url/">Url</a>
+            <a id="htmlUrl" href="https://example.com/test/htmlUrl/">htmlUrl</a>
+            <template>
+              <h1>Template content</h1>
+            </template>
+        </body>
+    </html>
+  ',
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -135,6 +150,18 @@ snapshot[`url and htmlUrl update href 5`] = `
     </html>
   ',
   data: {
+    children: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Renamed Filter</title>
+        </head>
+        <body>
+            <a id="urlify" href="undefined">Urlify</a>
+            undefined
+        </body>
+    </html>
+  ',
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -255,6 +282,21 @@ snapshot[`configure url and htmlUrl names 4`] = `
     </html>
   ',
   data: {
+    children: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Default Filter</title>
+        </head>
+        <body>
+            <a id="url" href="undefined">Url</a>
+            undefined
+            <template>
+              <h1>Template content</h1>
+            </template>
+        </body>
+    </html>
+  ',
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -297,6 +339,18 @@ snapshot[`configure url and htmlUrl names 5`] = `
     </html>
   ',
   data: {
+    children: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Renamed Filter</title>
+        </head>
+        <body>
+            <a id="urlify" href="https://example.com/urlify/">Urlify</a>
+            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>
+        </body>
+    </html>
+  ',
     content: undefined,
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {

@@ -108,6 +108,8 @@ This is a local template
 This is a remote template
 ",
   data: {
+    children: "<p>Hello world</p>
+",
     content: "Hello world
 ",
     date: 1970-01-01T00:00:00.000Z,
