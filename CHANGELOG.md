@@ -14,6 +14,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - New plugin `nav` to create menus using the url hierarchical structure.
   It also can create breadcrumbs [#351], [#353].
 - New middleware `serve_folder` to include additional folders to the server [#383].
+- New function `site.copyRemainingFiles()`.
 - BREAKING: `multilanguage` plugin has changed significally:
   - It requires to specify the available languages in the configuration. For example:
     ```js
