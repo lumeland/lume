@@ -21,12 +21,17 @@ export const defaults: Options = {
   languages: [],
 };
 
-type Alternates = Record<string, PageData>;
-
 export default function multilanguage(userOptions?: Partial<Options>): Plugin {
   const options = merge(defaults, userOptions);
 
   return (site) => {
+    // Configure the merged keys
+    const mergedKeys = site.scopedData.get("/")?.mergedKeys || {};
+    options.languages.forEach((lang) => {
+      mergedKeys[lang] = "object";
+    });
+    site.data("mergedKeys", mergedKeys);
+
     // Preprocessor to setup multilanguage pages
     site.preprocess(options.extensions, (page, pages) => {
       const { data } = page;
@@ -126,14 +131,14 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
         return;
       }
 
-      const alternates: Alternates = {};
+      const alternates: PageData[] = [];
       const alternatePages = pages.filter((page) => page.data.id == id);
 
       options.languages.forEach((lang) => {
         const page = alternatePages.find((page) => page.data.lang === lang);
 
         if (page) {
-          alternates[lang] = page.data;
+          alternates.push(page.data);
           page.data.alternates = alternates;
         }
       });
@@ -143,9 +148,7 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
     // with the other languages
     site.process(options.extensions, (page) => {
       const { document } = page;
-      const alternates = page.data.alternates as
-        | Alternates
-        | undefined;
+      const alternates = page.data.alternates;
       const lang = page.data.lang as string | undefined;
 
       if (!document || !alternates || !lang) {
@@ -158,13 +161,13 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
       }
 
       // Insert the <link> elements automatically
-      for (const [altLang, data] of Object.entries(alternates)) {
-        if (altLang === lang) {
+      for (const data of alternates) {
+        if (data.lang === lang) {
           continue;
         }
         const meta = document.createElement("link");
         meta.setAttribute("rel", "alternate");
-        meta.setAttribute("hreflang", altLang);
+        meta.setAttribute("hreflang", data.lang);
         meta.setAttribute("href", data.url);
         document.head.appendChild(meta);
         document.head.appendChild(document.createTextNode("\n"));

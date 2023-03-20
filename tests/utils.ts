@@ -4,7 +4,7 @@ import { basename, fromFileUrl, join } from "../deps/path.ts";
 import { printError } from "../core/errors.ts";
 import { DeepPartial } from "../core/utils.ts";
 
-import type { Data, Page, Site, SiteOptions, SourceMap } from "../core.ts";
+import type { Page, Site, SiteOptions, SourceMap } from "../core.ts";
 
 const cwUrl = import.meta.resolve("./");
 const cwd = fromFileUrl(import.meta.resolve("./"));
@@ -141,9 +141,8 @@ export async function assertSiteSnapshot(
     // Remove alternates values (added by multilanguage plugin)
     if (page.data.alternates) {
       // @ts-ignore: Remove alternates
-      page.data.alternates = Object.keys(
-        page.data.alternates as Record<string, Data>,
-      ).sort();
+      page.data.alternates = page.data.alternates.map((data) => data.lang)
+        .sort();
     }
     // Remote base path because it's different in the test environment
     page.src.remote = page.src.remote?.replace(cwUrl, "");

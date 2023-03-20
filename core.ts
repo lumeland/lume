@@ -237,16 +237,9 @@ export interface PageData extends Data {
   sourceMap?: SourceMap;
 
   /**
-   * The mergeLanguages helper
-   */
-  mergeLanguages: (
-    pages: Record<string, Record<string, unknown>[]>,
-  ) => unknown[];
-
-  /**
    * Alternate pages (for languages)
    */
-  alternates: Record<string, PageData>;
+  alternates?: PageData[];
 
   /**
    * The JSX children elements

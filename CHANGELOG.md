@@ -23,10 +23,10 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
       languages: ["en", "gl"],
     }))
     ```
-  - The `page.data.alternates` object has changed the signature to `Record<string, PageData>`.
-    Previously it had the `Page` object (`Record<string, Page>`).
+  - The `page.data.alternates` object has changed the signature to `PageData[]`.
+    Previously it was `Record<string, Page>`.
   - Different pages can be defined of translated versions of the same page with the new `id` variable.
-  - `mergeLanguages` helper has been removed. Use `alternateId` value to relate pages.
+  - `mergeLanguages` helper has been removed. Use the `id` value to relate pages.
 - Added support for using prerelease versions of Pagefind [#388].
 - `paginate` plugin: The second argument of `each` function contains the page number.
 - Support `.markdown` file extension for Markdown [#386], [#387].
