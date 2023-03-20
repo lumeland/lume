@@ -5,6 +5,9 @@ import type { Data, Site } from "../core.ts";
 export interface Options {
   /** The helper name */
   name: string;
+
+  /** The default order for the children */
+  order?: string;
 }
 
 export const defaults: Options = {
@@ -52,13 +55,14 @@ export class Nav {
       breadcrumb.unshift(nav);
       nav = nav.parent;
     }
+
     return breadcrumb;
   }
 
   /* Build the entire navigation tree */
   #buildNav(): NavData {
     const nav: TempNavData = {
-      title: "index",
+      slug: "",
     };
 
     const page404 = this.#site.options.server.page404;
@@ -81,10 +85,6 @@ export class Nav {
 
       while (part) {
         if (part === "index.html") {
-          if (page.data.title) {
-            current.title = page.data.title;
-          }
-          current.url = page.data.url as string;
           current.data = page.data;
           break;
         }
@@ -95,7 +95,7 @@ export class Nav {
 
         if (!current.children[part]) {
           current = current.children[part] = {
-            title: part,
+            slug: part,
             parent: current,
           };
         } else {
@@ -109,21 +109,22 @@ export class Nav {
   }
 }
 
+export interface TempNavData {
+  slug: string;
+  data?: Data;
+  children?: Record<string, TempNavData>;
+  parent?: TempNavData;
+}
+
 export interface NavData {
-  title: string;
-  url?: string;
+  slug: string;
   data?: Data;
   children?: NavData[];
   parent?: NavData;
 }
 
-interface TempNavData extends Omit<NavData, "children" | "parent"> {
-  children?: Record<string, TempNavData>;
-  parent?: TempNavData;
-}
-
 function searchData(url: string, menu: NavData): NavData | undefined {
-  if (menu.url === url) {
+  if (menu.data?.url === url) {
     return menu;
   }
 
@@ -138,18 +139,22 @@ function searchData(url: string, menu: NavData): NavData | undefined {
 }
 
 // Convert TempNavData to NavData
-function convert(temp: TempNavData, parent?: NavData): NavData {
+function convert(temp: TempNavData, parent?: NavData, order?: string): NavData {
   const data: NavData = {
-    title: temp.title,
-    url: temp.url,
+    slug: temp.slug,
     data: temp.data,
     parent,
   };
 
   data.children = temp.children
     ? Object.values(temp.children)
-      .map((child) => convert(child, data))
-      .sort((a, b) => a.title < b.title ? -1 : 1)
+      .map((child) => convert(child, data, order))
+      .sort((a, b) => {
+        if (!order) {
+          return a.slug < b.slug ? -1 : 1;
+        }
+        return a.data?.[order] < b.data?.[order] ? -1 : 1;
+      })
     : undefined;
 
   return data;

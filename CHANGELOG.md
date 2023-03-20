@@ -11,7 +11,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [1.16.0] - Unreleased
 ### Added
-- New plugin `nav` to create menus using the url hierarchical structure.
+- New plugin `nav` to create menus using the URL hierarchical structure.
   It also can create breadcrumbs [#351], [#353].
 - New middleware `serve_folder` to include additional folders to the server [#383].
 - New function `site.copyRemainingFiles()`.
@@ -23,7 +23,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
       languages: ["en", "gl"],
     }))
     ```
-  - The `page.data.alternates` object contains has now the signature `Record<string, PageData>`.
+  - The `page.data.alternates` object has changed the signature to `Record<string, PageData>`.
     Previously it had the `Page` object (`Record<string, Page>`).
   - Different pages can be defined of translated versions of the same page with the new `id` variable.
   - `mergeLanguages` helper has been removed. Use `alternateId` value to relate pages.
