@@ -9,7 +9,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.16.0] - Unreleased
+## [1.16.0] - 2023-03-21
 ### Added
 - New plugin `nav` to create menus using the URL hierarchical structure.
   It also can create breadcrumbs [#351], [#353].
@@ -2141,7 +2141,7 @@ The first version.
 [#395]: https://github.com/lumeland/lume/issues/395
 [#398]: https://github.com/lumeland/lume/issues/398
 
-[1.16.0]: https://github.com/lumeland/lume/compare/v1.15.3...HEAD
+[1.16.0]: https://github.com/lumeland/lume/compare/v1.15.3...v1.16.0
 [1.15.3]: https://github.com/lumeland/lume/compare/v1.15.2...v1.15.3
 [1.15.2]: https://github.com/lumeland/lume/compare/v1.15.1...v1.15.2
 [1.15.1]: https://github.com/lumeland/lume/compare/v1.15.0...v1.15.1
