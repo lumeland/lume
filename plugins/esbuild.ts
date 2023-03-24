@@ -3,12 +3,17 @@ import {
   isUrl,
   merge,
   normalizePath,
-  read,
   readDenoConfig,
   replaceExtension,
 } from "../core/utils.ts";
 import { build, BuildOptions, OutputFile, stop } from "../deps/esbuild.ts";
-import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
+import {
+  dirname,
+  extname,
+  fromFileUrl,
+  posix,
+  toFileUrl,
+} from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/filesystem.ts";
 
@@ -69,7 +74,7 @@ export default function (userOptions?: Partial<Options>) {
       setup(build: any) {
         const { initialOptions } = build;
         build.onResolve({ filter: /.*/ }, (args: ResolveArguments) => {
-          const { path, importer } = args;
+          const { path, importer, resolveDir } = args;
 
           // Absolute url
           if (isUrl(path)) {
@@ -81,8 +86,24 @@ export default function (userOptions?: Partial<Options>) {
 
           // Resolve the relative url
           if (isUrl(importer) && path.match(/^[./]/)) {
+            const url = new URL(importer);
+
+            if (resolveDir) {
+              url.pathname = posix.join(resolveDir, "/");
+            }
+
             return {
-              path: import.meta.resolve(new URL(path, importer).href),
+              path: import.meta.resolve(new URL(path, url).href),
+              namespace: "deno",
+            };
+          }
+
+          // Requires from a npm package
+          if (
+            importer.startsWith("https://unpkg.com/") && !path.match(/^[./]/)
+          ) {
+            return {
+              path: `https://unpkg.com/${path}`,
               namespace: "deno",
             };
           }
@@ -90,7 +111,7 @@ export default function (userOptions?: Partial<Options>) {
           // It's a npm package
           if (path.startsWith("npm:")) {
             return {
-              path: path.replace(/^npm:/, "https://esm.sh/"),
+              path: path.replace(/^npm:/, "https://unpkg.com/"),
               namespace: "deno",
             };
           }
@@ -142,10 +163,11 @@ export default function (userOptions?: Partial<Options>) {
           }
 
           // Read other files from the filesystem/url
-          const content = await read(path, false);
+          const [resolveDir, content] = await readFile(path, false);
           return {
             contents: content,
             loader: getLoader(path),
+            resolveDir,
           };
         });
       },
@@ -324,4 +346,29 @@ function buildJsxConfig(config?: DenoConfig): BuildOptions | undefined {
 
 function pathWithoutExtension(path: string): string {
   return path.replace(/\.\w+$/, "");
+}
+
+const cache = new Map<string, [string, string | Uint8Array]>();
+
+export async function readFile(
+  path: string,
+  isBinary: boolean,
+): Promise<[string, string | Uint8Array]> {
+  if (!isUrl(path)) {
+    const content = isBinary
+      ? await Deno.readFile(path)
+      : await Deno.readTextFile(path);
+    return [dirname(path), content];
+  }
+
+  if (!cache.has(path)) {
+    const response = await fetch(path);
+    const content = isBinary
+      ? new Uint8Array(await response.arrayBuffer())
+      : await response.text();
+    const resolveDir = dirname(new URL(response.url).pathname);
+    cache.set(path, [resolveDir, content]);
+  }
+
+  return cache.get(path)!;
 }
