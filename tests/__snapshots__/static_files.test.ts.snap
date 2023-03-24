@@ -78,7 +78,7 @@ snapshot[`Copy static files 2`] = `
       ext: ".copy",
     },
     {
-      copy: [Function],
+      copy: [Function (anonymous)],
       engines: undefined,
       ext: ".copy2",
     },
@@ -113,7 +113,7 @@ snapshot[`Copy static files 3`] = `
     src: "/other/two",
   },
   {
-    dest: [Function],
+    dest: [Function (anonymous)],
     filename: "assets/inner/inner2/styles.scss",
     outputPath: "/posts/first-post/assets/inner/inner2/styles.css",
     parent: "/posts/2022-01-01_first-post",
@@ -121,7 +121,7 @@ snapshot[`Copy static files 3`] = `
     src: "/posts/2022-01-01_first-post/assets/inner/inner2/styles.scss",
   },
   {
-    dest: [Function],
+    dest: [Function (anonymous)],
     filename: "assets/inner/styles1.scss",
     outputPath: "/posts/first-post/assets/inner/styles1.css",
     parent: "/posts/2022-01-01_first-post",
@@ -129,7 +129,7 @@ snapshot[`Copy static files 3`] = `
     src: "/posts/2022-01-01_first-post/assets/inner/styles1.scss",
   },
   {
-    dest: [Function],
+    dest: [Function (anonymous)],
     filename: "assets/styles.scss",
     outputPath: "/posts/first-post/assets/styles.css",
     parent: "/posts/2022-01-01_first-post",
@@ -137,7 +137,7 @@ snapshot[`Copy static files 3`] = `
     src: "/posts/2022-01-01_first-post/assets/styles.scss",
   },
   {
-    dest: [Function],
+    dest: [Function (anonymous)],
     filename: "callback.copy2",
     outputPath: "/subdir/posts/first-post/callback.copy3",
     parent: "/posts/2022-01-01_first-post",
@@ -153,7 +153,7 @@ snapshot[`Copy static files 3`] = `
     src: "/posts/2022-01-01_first-post/individual-file",
   },
   {
-    dest: [Function],
+    dest: [Function (anonymous)],
     filename: "callback1.copy2",
     outputPath: "/subdir/posts/first-post/inner/callback1.copy3",
     parent: "/posts/2022-01-01_first-post/inner",
@@ -161,7 +161,7 @@ snapshot[`Copy static files 3`] = `
     src: "/posts/2022-01-01_first-post/inner/callback1.copy2",
   },
   {
-    dest: [Function],
+    dest: [Function (anonymous)],
     filename: "callback2.copy2",
     outputPath: "/subdir/posts/first-post/inner/inner2/callback2.copy3",
     parent: "/posts/2022-01-01_first-post/inner/inner2",
