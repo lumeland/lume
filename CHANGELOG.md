@@ -10,8 +10,8 @@ but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
 ## [1.16.1] - Unreleased
-### Changed
-- `esbuild` use unpkg.com to fetch NPM packages.
+### Fixed
+- Support for dev mode in the `esbuild` plugin.
 
 ## [1.16.0] - 2023-03-21
 ### Added

@@ -63,6 +63,9 @@ export default function (userOptions?: Partial<Options>) {
     };
   }
 
+  // To serve packages in ?env mode
+  const isDev = !!options.options.jsxDev;
+
   return (site: Site) => {
     site.loadAssets(options.extensions);
 
@@ -100,10 +103,10 @@ export default function (userOptions?: Partial<Options>) {
 
           // Requires from a npm package
           if (
-            importer.startsWith("https://unpkg.com/") && !path.match(/^[./]/)
+            importer.startsWith("https://esm.sh/") && !path.match(/^[./]/)
           ) {
             return {
-              path: `https://unpkg.com/${path}`,
+              path: `https://esm.sh/${path}`,
               namespace: "deno",
             };
           }
@@ -111,7 +114,7 @@ export default function (userOptions?: Partial<Options>) {
           // It's a npm package
           if (path.startsWith("npm:")) {
             return {
-              path: path.replace(/^npm:/, "https://unpkg.com/"),
+              path: path.replace(/^npm:/, "https://esm.sh/"),
               namespace: "deno",
             };
           }
@@ -163,7 +166,7 @@ export default function (userOptions?: Partial<Options>) {
           }
 
           // Read other files from the filesystem/url
-          const [resolveDir, content] = await readFile(path, false);
+          const [resolveDir, content] = await readFile(path, false, isDev);
           return {
             contents: content,
             loader: getLoader(path),
@@ -348,11 +351,18 @@ function pathWithoutExtension(path: string): string {
   return path.replace(/\.\w+$/, "");
 }
 
+function addDevMode(path: string): URL {
+  const url = new URL(path);
+  url.searchParams.set("dev", "true");
+  return url;
+}
+
 const cache = new Map<string, [string, string | Uint8Array]>();
 
 export async function readFile(
   path: string,
   isBinary: boolean,
+  isDev: boolean,
 ): Promise<[string, string | Uint8Array]> {
   if (!isUrl(path)) {
     const content = isBinary
@@ -362,7 +372,7 @@ export async function readFile(
   }
 
   if (!cache.has(path)) {
-    const response = await fetch(path);
+    const response = await fetch(isDev ? addDevMode(path) : path);
     const content = isBinary
       ? new Uint8Array(await response.arrayBuffer())
       : await response.text();
