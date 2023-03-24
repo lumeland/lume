@@ -23,8 +23,16 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
+  /** Global options for esm.sh CDN used to fetch NPM packages */
+  esmOptions: EsmOptions;
+
   /** The options for esbuild */
   options: BuildOptions;
+}
+
+export interface EsmOptions {
+  dev?: boolean;
+  exports?: Record<string, string[] | string>;
 }
 
 const denoConfig = await readDenoConfig();
@@ -32,6 +40,7 @@ const denoConfig = await readDenoConfig();
 // Default options
 const defaults: Options = {
   extensions: [".ts", ".js"],
+  esmOptions: {},
   options: {
     plugins: [],
     bundle: true,
@@ -62,9 +71,6 @@ export default function (userOptions?: Partial<Options>) {
       ...options.options,
     };
   }
-
-  // To serve packages in ?env mode
-  const isDev = !!options.options.jsxDev;
 
   return (site: Site) => {
     site.loadAssets(options.extensions);
@@ -166,7 +172,11 @@ export default function (userOptions?: Partial<Options>) {
           }
 
           // Read other files from the filesystem/url
-          const [resolveDir, content] = await readFile(path, false, isDev);
+          const [resolveDir, content] = await readFile(
+            path,
+            false,
+            options.esmOptions,
+          );
           return {
             contents: content,
             loader: getLoader(path),
@@ -351,9 +361,31 @@ function pathWithoutExtension(path: string): string {
   return path.replace(/\.\w+$/, "");
 }
 
-function addDevMode(path: string): URL {
+function addEsmOptions(path: string, options: EsmOptions): URL {
   const url = new URL(path);
-  url.searchParams.set("dev", "true");
+
+  if (url.hostname !== "esm.sh") {
+    return url;
+  }
+
+  if (options.dev) {
+    url.searchParams.set("dev", "true");
+  }
+
+  if (options.exports) {
+    const match = url.pathname.match(/^\/(v\d+\/)?((@[^/]+\/)?[^/]+)/);
+    if (match) {
+      const [, , name] = match;
+      const names = options.exports[name];
+      if (names) {
+        url.searchParams.set(
+          "cjs-exports",
+          Array.isArray(names) ? names.join(",") : names,
+        );
+      }
+    }
+  }
+
   return url;
 }
 
@@ -362,7 +394,7 @@ const cache = new Map<string, [string, string | Uint8Array]>();
 export async function readFile(
   path: string,
   isBinary: boolean,
-  isDev: boolean,
+  esmOptions: EsmOptions,
 ): Promise<[string, string | Uint8Array]> {
   if (!isUrl(path)) {
     const content = isBinary
@@ -372,7 +404,7 @@ export async function readFile(
   }
 
   if (!cache.has(path)) {
-    const response = await fetch(isDev ? addDevMode(path) : path);
+    const response = await fetch(addEsmOptions(path, esmOptions));
     const content = isBinary
       ? new Uint8Array(await response.arrayBuffer())
       : await response.text();
