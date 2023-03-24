@@ -23,16 +23,25 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /** Global options for esm.sh CDN used to fetch NPM packages */
-  esmOptions: EsmOptions;
+  /**
+   * Global options for esm.sh CDN used to fetch NPM packages
+   * @see https://esm.sh/#docs
+   */
+  esm: EsmOptions;
 
   /** The options for esbuild */
   options: BuildOptions;
 }
 
 export interface EsmOptions {
+  /** To include the ?dev option to all packages */
   dev?: boolean;
-  exports?: Record<string, string[] | string>;
+
+  /** Configure the cjs-exports option for each package */
+  cjsExports?: Record<string, string[] | string>;
+
+  /** Configure the deps for each package */
+  deps?: Record<string, string[] | string>;
 }
 
 const denoConfig = await readDenoConfig();
@@ -40,7 +49,7 @@ const denoConfig = await readDenoConfig();
 // Default options
 const defaults: Options = {
   extensions: [".ts", ".js"],
-  esmOptions: {},
+  esm: {},
   options: {
     plugins: [],
     bundle: true,
@@ -175,7 +184,7 @@ export default function (userOptions?: Partial<Options>) {
           const [resolveDir, content] = await readFile(
             path,
             false,
-            options.esmOptions,
+            options.esm,
           );
           return {
             contents: content,
@@ -361,28 +370,40 @@ function pathWithoutExtension(path: string): string {
   return path.replace(/\.\w+$/, "");
 }
 
-function addEsmOptions(path: string, options: EsmOptions): URL {
+function addEsmOptions(path: string, esm: EsmOptions): URL {
   const url = new URL(path);
 
   if (url.hostname !== "esm.sh") {
     return url;
   }
 
-  if (options.dev) {
+  if (esm.dev) {
     url.searchParams.set("dev", "true");
   }
 
-  if (options.exports) {
-    const match = url.pathname.match(/^\/(v\d+\/)?((@[^/]+\/)?[^/]+)/);
-    if (match) {
-      const [, , name] = match;
-      const names = options.exports[name];
-      if (names) {
-        url.searchParams.set(
-          "cjs-exports",
-          Array.isArray(names) ? names.join(",") : names,
-        );
-      }
+  const match = url.pathname.match(/^\/(v\d+\/)?((@[^/]+\/)?[^/]+)/);
+
+  if (match) {
+    const [, , name] = match;
+
+    // cjs exports
+    const cjs_exports = esm.cjsExports?.[name];
+
+    if (cjs_exports) {
+      url.searchParams.set(
+        "cjs-exports",
+        Array.isArray(cjs_exports) ? cjs_exports.join(",") : cjs_exports,
+      );
+    }
+
+    // deps
+    const deps = esm.deps?.[name];
+
+    if (deps) {
+      url.searchParams.set(
+        "deps",
+        Array.isArray(deps) ? deps.join(",") : deps,
+      );
     }
   }
 
@@ -394,7 +415,7 @@ const cache = new Map<string, [string, string | Uint8Array]>();
 export async function readFile(
   path: string,
   isBinary: boolean,
-  esmOptions: EsmOptions,
+  esm: EsmOptions,
 ): Promise<[string, string | Uint8Array]> {
   if (!isUrl(path)) {
     const content = isBinary
@@ -404,7 +425,7 @@ export async function readFile(
   }
 
   if (!cache.has(path)) {
-    const response = await fetch(addEsmOptions(path, esmOptions));
+    const response = await fetch(addEsmOptions(path, esm));
     const content = isBinary
       ? new Uint8Array(await response.arrayBuffer())
       : await response.text();

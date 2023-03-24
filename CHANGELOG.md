@@ -11,7 +11,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [1.16.1] - Unreleased
 ### Added
-- `esmOptions` to `esbuild` plugin #400, #401.
+- `esm` option to `esbuild` plugin #400, #401.
 
 ## [1.16.0] - 2023-03-21
 ### Added
