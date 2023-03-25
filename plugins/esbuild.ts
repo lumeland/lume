@@ -92,7 +92,7 @@ export default function (userOptions?: Partial<Options>) {
       setup(build: any) {
         const { initialOptions } = build;
         build.onResolve({ filter: /.*/ }, (args: ResolveArguments) => {
-          const { path, importer, resolveDir } = args;
+          const { path, importer } = args;
 
           // Absolute url
           if (isUrl(path)) {
@@ -104,24 +104,8 @@ export default function (userOptions?: Partial<Options>) {
 
           // Resolve the relative url
           if (isUrl(importer) && path.match(/^[./]/)) {
-            const url = new URL(importer);
-
-            if (resolveDir) {
-              url.pathname = posix.join(resolveDir, "/");
-            }
-
             return {
-              path: import.meta.resolve(new URL(path, url).href),
-              namespace: "deno",
-            };
-          }
-
-          // Requires from a npm package
-          if (
-            importer.startsWith("https://esm.sh/") && !path.match(/^[./]/)
-          ) {
-            return {
-              path: `https://esm.sh/${path}`,
+              path: import.meta.resolve(new URL(path, importer).href),
               namespace: "deno",
             };
           }
@@ -181,15 +165,10 @@ export default function (userOptions?: Partial<Options>) {
           }
 
           // Read other files from the filesystem/url
-          const [resolveDir, content] = await readFile(
-            path,
-            false,
-            options.esm,
-          );
+          const content = await readFile(path, false, options.esm);
           return {
             contents: content,
             loader: getLoader(path),
-            resolveDir,
           };
         });
       },
@@ -410,18 +389,18 @@ function addEsmOptions(path: string, esm: EsmOptions): URL {
   return url;
 }
 
-const cache = new Map<string, [string, string | Uint8Array]>();
+const cache = new Map<string, string | Uint8Array>();
 
 export async function readFile(
   path: string,
   isBinary: boolean,
   esm: EsmOptions,
-): Promise<[string, string | Uint8Array]> {
+): Promise<string | Uint8Array> {
   if (!isUrl(path)) {
     const content = isBinary
       ? await Deno.readFile(path)
       : await Deno.readTextFile(path);
-    return [dirname(path), content];
+    return content;
   }
 
   if (!cache.has(path)) {
@@ -429,8 +408,7 @@ export async function readFile(
     const content = isBinary
       ? new Uint8Array(await response.arrayBuffer())
       : await response.text();
-    const resolveDir = dirname(new URL(response.url).pathname);
-    cache.set(path, [resolveDir, content]);
+    cache.set(path, content);
   }
 
   return cache.get(path)!;
