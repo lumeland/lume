@@ -7,13 +7,7 @@ import {
   replaceExtension,
 } from "../core/utils.ts";
 import { build, BuildOptions, OutputFile, stop } from "../deps/esbuild.ts";
-import {
-  dirname,
-  extname,
-  fromFileUrl,
-  posix,
-  toFileUrl,
-} from "../deps/path.ts";
+import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/filesystem.ts";
 
@@ -112,8 +106,37 @@ export default function (userOptions?: Partial<Options>) {
 
           // It's a npm package
           if (path.startsWith("npm:")) {
+            const name = path.replace(/^npm:/, "");
+            const url = new URL(`https://esm.sh/${name}`);
+
+            if (options.esm.dev) {
+              url.searchParams.set("dev", "true");
+            }
+
+            // cjs exports
+            const cjs_exports = options.esm.cjsExports?.[name];
+
+            if (cjs_exports) {
+              url.searchParams.set(
+                "cjs-exports",
+                Array.isArray(cjs_exports)
+                  ? cjs_exports.join(",")
+                  : cjs_exports,
+              );
+            }
+
+            // deps
+            const deps = options.esm.deps?.[name];
+
+            if (deps) {
+              url.searchParams.set(
+                "deps",
+                Array.isArray(deps) ? deps.join(",") : deps,
+              );
+            }
+
             return {
-              path: path.replace(/^npm:/, "https://esm.sh/"),
+              path: url.href,
               namespace: "deno",
             };
           }
@@ -165,7 +188,7 @@ export default function (userOptions?: Partial<Options>) {
           }
 
           // Read other files from the filesystem/url
-          const content = await readFile(path, false, options.esm);
+          const content = await readFile(path);
           return {
             contents: content,
             loader: getLoader(path),
@@ -349,65 +372,16 @@ function pathWithoutExtension(path: string): string {
   return path.replace(/\.\w+$/, "");
 }
 
-function addEsmOptions(path: string, esm: EsmOptions): URL {
-  const url = new URL(path);
-
-  if (url.hostname !== "esm.sh") {
-    return url;
-  }
-
-  if (esm.dev) {
-    url.searchParams.set("dev", "true");
-  }
-
-  const match = url.pathname.match(/^\/(v\d+\/)?((@[^/]+\/)?[^/]+)/);
-
-  if (match) {
-    const [, , name] = match;
-
-    // cjs exports
-    const cjs_exports = esm.cjsExports?.[name];
-
-    if (cjs_exports) {
-      url.searchParams.set(
-        "cjs-exports",
-        Array.isArray(cjs_exports) ? cjs_exports.join(",") : cjs_exports,
-      );
-    }
-
-    // deps
-    const deps = esm.deps?.[name];
-
-    if (deps) {
-      url.searchParams.set(
-        "deps",
-        Array.isArray(deps) ? deps.join(",") : deps,
-      );
-    }
-  }
-
-  return url;
-}
-
 const cache = new Map<string, string | Uint8Array>();
 
-export async function readFile(
-  path: string,
-  isBinary: boolean,
-  esm: EsmOptions,
-): Promise<string | Uint8Array> {
+export async function readFile(path: string): Promise<string | Uint8Array> {
   if (!isUrl(path)) {
-    const content = isBinary
-      ? await Deno.readFile(path)
-      : await Deno.readTextFile(path);
-    return content;
+    return await Deno.readTextFile(path);
   }
 
   if (!cache.has(path)) {
-    const response = await fetch(addEsmOptions(path, esm));
-    const content = isBinary
-      ? new Uint8Array(await response.arrayBuffer())
-      : await response.text();
+    const response = await fetch(path);
+    const content = await response.text();
     cache.set(path, content);
   }
 
