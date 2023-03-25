@@ -11,7 +11,10 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [1.16.1] - Unreleased
 ### Added
-- `esm` option to `esbuild` plugin #400, #401.
+- `esm` option to `esbuild` plugin [#400], [#401].
+
+### Fixed
+- Return type in Preact engine [#403].
 
 ## [1.16.0] - 2023-03-21
 ### Added
@@ -2144,6 +2147,9 @@ The first version.
 [#390]: https://github.com/lumeland/lume/issues/390
 [#395]: https://github.com/lumeland/lume/issues/395
 [#398]: https://github.com/lumeland/lume/issues/398
+[#400]: https://github.com/lumeland/lume/issues/400
+[#401]: https://github.com/lumeland/lume/issues/401
+[#403]: https://github.com/lumeland/lume/issues/403
 
 [1.16.1]: https://github.com/lumeland/lume/compare/v1.16.0...HEAD
 [1.16.0]: https://github.com/lumeland/lume/compare/v1.15.3...v1.16.0
