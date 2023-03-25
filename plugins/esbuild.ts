@@ -75,6 +75,13 @@ export default function (userOptions?: Partial<Options>) {
     };
   }
 
+  // Sync the jsxDev option with esm.dev
+  if (options.esm.dev) {
+    options.options.jsxDev = true;
+  } else if (options.options.jsxDev) {
+    options.esm.dev = true;
+  }
+
   return (site: Site) => {
     site.loadAssets(options.extensions);
 
