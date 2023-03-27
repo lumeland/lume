@@ -12,6 +12,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.16.1] - Unreleased
 ### Added
 - `esm` option to `esbuild` plugin [#400], [#401].
+- `query` and `sort` arguments to `nav.menu()` and `nav.breadcrumb()`.
 
 ### Fixed
 - Return type in Preact engine [#403].

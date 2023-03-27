@@ -23,5 +23,15 @@
       {% endfor %}
       </ul>
     </nav>
+
+    <nav>
+      <ul>
+      {% for item in nav.menu("/", "menu=true").children %}
+        <li>
+          {% include "./step.njk" %}
+        </li>
+      {% endfor %}
+      </ul>
+    </nav>
   </body>
 </html>

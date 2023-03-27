@@ -1,6 +1,7 @@
 import { merge } from "../core/utils.ts";
+import { Search } from "./search.ts";
 
-import type { Data, Site } from "../core.ts";
+import type { Data, Page, Site } from "../core.ts";
 
 export interface Options {
   /** The helper name */
@@ -25,30 +26,31 @@ export default function (userOptions?: Partial<Options>) {
 
 /** Search helper */
 export class Nav {
-  #site: Site;
-  #nav?: NavData;
+  #cache = new Map<string, NavData>();
+  #search: Search;
 
   constructor(site: Site) {
-    this.#site = site;
-    site.addEventListener("beforeUpdate", () => this.#nav = undefined);
+    site.addEventListener("beforeUpdate", () => this.#cache.clear());
+    this.#search = new Search(site, false);
   }
 
-  menu(): NavData;
-  menu(url: string): NavData | undefined;
-  menu(url?: string): NavData | undefined {
-    if (!this.#nav) {
-      this.#nav = this.#buildNav();
+  menu(url?: "/", query?: string, sort?: string): NavData;
+  menu(url: string, query?: string, sort?: string): NavData | undefined;
+  menu(url = "/", query?: string, sort?: string): NavData | undefined {
+    const id = JSON.stringify([query, sort]);
+    let nav = this.#cache.get(id);
+
+    if (!nav) {
+      nav = this.#buildNav(query, sort);
+      this.#cache.set(id, nav);
     }
 
-    if (url) {
-      return searchData(url, this.#nav);
-    }
-
-    return this.#nav;
+    const parts = url.split("/").filter((part) => part !== "");
+    return searchData(parts, nav);
   }
 
-  breadcrumb(url: string): NavData[] {
-    let nav = this.menu(url);
+  breadcrumb(url: string, query?: string, sort?: string): NavData[] {
+    let nav = this.menu(url, query, sort);
     const breadcrumb: NavData[] = [];
 
     while (nav) {
@@ -60,17 +62,12 @@ export class Nav {
   }
 
   /* Build the entire navigation tree */
-  #buildNav(): NavData {
+  #buildNav(query?: string, sort?: string): NavData {
     const nav: TempNavData = {
       slug: "",
     };
 
-    const page404 = this.#site.options.server.page404;
-
-    const pages = this.#site.pages.filter((page) =>
-      page.outputPath?.endsWith(".html") &&
-      page.data.url != page404
-    );
+    const pages = this.#search.pages(query, sort) as Page[];
 
     for (const page of pages) {
       const url = page.outputPath;
@@ -123,16 +120,17 @@ export interface NavData {
   parent?: NavData;
 }
 
-function searchData(url: string, menu: NavData): NavData | undefined {
-  if (menu.data?.url === url) {
+function searchData(parts: string[], menu: NavData): NavData | undefined {
+  const part = parts.shift();
+
+  if (!part) {
     return menu;
   }
 
   if (menu.children?.length) {
     for (const child of menu.children) {
-      const result = searchData(url, child);
-      if (result) {
-        return result;
+      if (child.slug === part) {
+        return searchData(parts, child);
       }
     }
   }
