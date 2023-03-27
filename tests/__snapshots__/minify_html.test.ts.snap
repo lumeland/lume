@@ -66,12 +66,6 @@ snapshot[`minify_html plugin 2`] = `
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
-    {
-      asset: true,
-      engines: undefined,
-      ext: ".html",
-      pageLoader: [AsyncFunction: text],
-    },
   ],
 }
 `;
