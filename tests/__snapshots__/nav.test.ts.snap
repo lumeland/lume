@@ -154,6 +154,56 @@ snapshot[`nav plugin 4`] = `
       
       </ul>
     </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
   </body>
 </html>',
   data: {
@@ -268,6 +318,56 @@ snapshot[`nav plugin 5`] = `
       
       </ul>
     </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
   </body>
 </html>',
   data: {
@@ -275,6 +375,7 @@ snapshot[`nav plugin 5`] = `
     content: "",
     date: 1970-01-01T00:00:00.000Z,
     layout: "main.njk",
+    menu: true,
     mergedKeys: {
       tags: "stringArray",
     },
@@ -360,6 +461,56 @@ snapshot[`nav plugin 6`] = `
 
 
   </li>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
   
   <li>
     
@@ -498,6 +649,56 @@ snapshot[`nav plugin 7`] = `
       
       </ul>
     </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
   </body>
 </html>',
   data: {
@@ -614,6 +815,56 @@ snapshot[`nav plugin 8`] = `
       
       </ul>
     </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
   </body>
 </html>',
   data: {
@@ -621,6 +872,7 @@ snapshot[`nav plugin 8`] = `
     content: "",
     date: 1970-01-01T00:00:00.000Z,
     layout: "main.njk",
+    menu: true,
     mergedKeys: {
       tags: "stringArray",
     },
@@ -702,6 +954,56 @@ snapshot[`nav plugin 9`] = `
 
 
   </li>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
   
   <li>
     
