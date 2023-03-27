@@ -48,7 +48,6 @@ export default function (userOptions?: DeepPartial<Options>) {
   }
 
   return (site: Site) => {
-    site.loadAssets(options.extensions);
     site.process(options.extensions, minifyHtml);
 
     const encoder = new TextEncoder();
