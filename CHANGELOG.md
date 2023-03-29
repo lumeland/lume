@@ -17,7 +17,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Fixed
 - Return type in Preact engine [#403].
 - `minify_html` plugin configure the site to load the `.html` files as assets.
-- Updated dependencies: `std`, `terser`, `sass`, `esbuild`, `liquid`.
+- Updated dependencies: `std`, `terser`, `sass`, `esbuild`, `liquid`, `preact`.
 
 ## [1.16.0] - 2023-03-21
 ### Added
