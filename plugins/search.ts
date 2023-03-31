@@ -160,10 +160,10 @@ function data(pages: Page[]): Data[] {
  * returns: (page) => page.data.title === "foo" && page.data.level < 3
  */
 export function buildFilter(query = "", page404 = ""): (page: Page) => boolean {
-  // (?:(fieldName)(operator))?(value|"value"|'value')
+  // (?:(not)?(fieldName)(operator))?(value|"value"|'value')
   const matches = query
     ? query.matchAll(
-      /(?:([\w.-]+)([!^$*]?=|[<>]=?))?([^'"\s][^\s=<>]*|"[^"]+"|'[^']+')/g,
+      /(?:(!)?([\w.-]+)([!^$*]?=|[<>]=?))?([^'"\s][^\s=<>]*|"[^"]+"|'[^']+')/g,
     )
     : [];
 
@@ -176,11 +176,15 @@ export function buildFilter(query = "", page404 = ""): (page: Page) => boolean {
   ];
 
   for (const match of matches) {
-    let [, key, operator, value] = match;
+    let [, not, key, operator, value] = match;
 
     if (!key) {
       key = "tags";
       operator = "*=";
+    }
+
+    if (not) {
+      operator = "!" + operator;
     }
 
     conditions.push([`data.${key}`, operator, compileValue(value)]);
@@ -244,6 +248,14 @@ function compileCondition(
       case ">=":
         return `page.${key}?.getTime() ${operator} ${name}.getTime()`;
 
+      case "!<":
+      case "!<=":
+      case "!>":
+      case "!>=":
+        return `!(page.${key}?.getTime() ${
+          operator.substring(1)
+        } ${name}.getTime())`;
+
       default:
         throw new Error(`Operator ${operator} not valid for Date values`);
     }
@@ -260,11 +272,26 @@ function compileCondition(
       case "^=":
         return `${name}.some((i) => page.${key}?.startsWith(i))`;
 
+      case "!^=":
+        return `!${name}.some((i) => page.${key}?.startsWith(i))`;
+
       case "$=":
         return `${name}.some((i) => page.${key}?.endsWith(i))`;
 
+      case "!$=":
+        return `!${name}.some((i) => page.${key}?.endsWith(i))`;
+
       case "*=":
         return `${name}.some((i) => page.${key}?.includes(i))`;
+
+      case "!*=":
+        return `${name}.some((i) => page.${key}?.includes(i))`;
+
+      case "!<":
+      case "!<=":
+      case "!>":
+      case "!>=":
+        return `!${name}.some((i) => page.${key} ${operator.substring(1)} i)`;
 
       default: // < <= > >=
         return `${name}.some((i) => page.${key} ${operator} i)`;
@@ -281,11 +308,26 @@ function compileCondition(
     case "^=":
       return `page.${key}?.startsWith(${name})`;
 
+    case "!^=":
+      return `!page.${key}?.startsWith(${name})`;
+
     case "$=":
       return `page.${key}?.endsWith(${name})`;
 
+    case "!$=":
+      return `!page.${key}?.endsWith(${name})`;
+
     case "*=":
       return `page.${key}?.includes(${name})`;
+
+    case "!*=":
+      return `!page.${key}?.includes(${name})`;
+
+    case "!<":
+    case "!<=":
+    case "!>":
+    case "!>=":
+      return `!(page.${key} ${operator.substring(1)} ${name})`;
 
     default: // < <= > >=
       return `page.${key} ${operator} ${name}`;

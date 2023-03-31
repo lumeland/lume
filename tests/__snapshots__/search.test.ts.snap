@@ -18,7 +18,11 @@ snapshot[`Search by Lower or equals than 1`] = `"(page) => page.outputPath?.ends
 
 snapshot[`Search by Not Equal 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo !== value2"`;
 
+snapshot[`Search by Not Equal alt 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo !== value2"`;
+
 snapshot[`Search by Starts With 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo?.startsWith(value2)"`;
+
+snapshot[`Search by NOT Starts With 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && !page.data?.foo?.startsWith(value2)"`;
 
 snapshot[`Search by Ends With 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo?.endsWith(value2)"`;
 

@@ -55,8 +55,20 @@ Deno.test("Search by Not Equal", async (t) => {
   await assertSnapshot(t, filter.toString());
 });
 
+Deno.test("Search by Not Equal alt", async (t) => {
+  const filter = buildFilter("!foo=bar");
+
+  await assertSnapshot(t, filter.toString());
+});
+
 Deno.test("Search by Starts With", async (t) => {
   const filter = buildFilter("foo^=bar");
+
+  await assertSnapshot(t, filter.toString());
+});
+
+Deno.test("Search by NOT Starts With", async (t) => {
+  const filter = buildFilter("!foo^=bar");
 
   await assertSnapshot(t, filter.toString());
 });
