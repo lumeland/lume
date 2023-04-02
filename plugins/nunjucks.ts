@@ -2,7 +2,7 @@ import nunjucks from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
-import { join } from "../deps/path.ts";
+import { basename, join } from "../deps/path.ts";
 
 import type {
   ComponentFunction,
@@ -57,22 +57,16 @@ export class NunjucksEngine implements Engine {
 
   deleteCache(file: string): void {
     this.cache.delete(file);
+    const filename = basename(file);
 
     // Remove the internal cache of nunjucks
-    const fsLoader = this.env.loaders[0];
-    const filename = join(this.basePath, file);
-    const name = fsLoader.pathsToNames[filename];
-
-    if (name) {
-      delete fsLoader.cache[name];
-    }
-
-    // Relative paths
-    fsLoader.searchPaths.forEach((path: string) => {
-      if (filename.startsWith(path)) {
-        const name = filename.slice(path.length + 1).replaceAll("\\", "/");
-        delete fsLoader.cache[name];
-      }
+    // deno-lint-ignore no-explicit-any
+    this.env.loaders.forEach((fsLoader: any) => {
+      Object.keys(fsLoader.cache).forEach((key) => {
+        if (key.endsWith(filename)) {
+          delete fsLoader.cache[key];
+        }
+      });
     });
   }
 
