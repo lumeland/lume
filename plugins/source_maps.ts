@@ -59,14 +59,14 @@ export default function (userOptions?: Partial<Options>) {
         const url = `data:application/json;charset=utf-8;base64,${
           encode(JSON.stringify(sourceMap))
         }`;
-        file.content += `\n/*# sourceMappingURL=${url} */`;
+        file.content += addSourceMap(file.outputPath!, url);
         return;
       }
 
       // Create a source map file
       const url = file.outputPath + ".map";
       sourceMap.file = url;
-      file.content += `\n/*# sourceMappingURL=./${basename(url)} */`;
+      file.content += addSourceMap(file.outputPath!, `./${basename(url)}`);
       files.push(Page.create(url, JSON.stringify(sourceMap)));
     });
   };
@@ -169,4 +169,13 @@ export function saveAsset(
   // Store the new content and source map
   page.data.sourceMap = sourceMap;
   page.content = content;
+}
+
+function addSourceMap(url: string, sourceMap: string): string {
+  if (url.endsWith(".js")) {
+    return `\n//# sourceMappingURL=${sourceMap}`;
+  }
+
+  // It's CSS
+  return `\n/*# sourceMappingURL=${sourceMap} */`;
 }

@@ -405,7 +405,7 @@ document.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\
 snapshot[`Source maps from Js files 7`] = `
 {
   content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll("h1")?.forEach((r=>{r.innerHTML=e(r.innerHTML)}));
-/*# sourceMappingURL=./main.js.map */',
+//# sourceMappingURL=./main.js.map',
   data: {
     children: false,
     content: '/// <reference lib="dom" />
@@ -444,7 +444,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
 snapshot[`Source maps from Js files 8`] = `
 {
   content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0});export{e as default};
-/*# sourceMappingURL=./to_uppercase.js.map */',
+//# sourceMappingURL=./to_uppercase.js.map',
   data: {
     children: false,
     content: "export default function toUppercase(text: string) {
@@ -480,7 +480,7 @@ snapshot[`Source maps from Js files 8`] = `
 snapshot[`Source maps from Js files 9`] = `
 {
   content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll(".other")?.forEach((r=>{r.innerHTML=e(r.innerHTML)}));
-/*# sourceMappingURL=./other.js.map */',
+//# sourceMappingURL=./other.js.map',
   data: {
     children: false,
     content: '/// <reference lib="dom" />
