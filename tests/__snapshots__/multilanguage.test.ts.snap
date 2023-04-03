@@ -169,7 +169,7 @@ snapshot[`multilanguage plugin 5`] = `
 snapshot[`multilanguage plugin 6`] = `
 {
   content: '<!DOCTYPE html>
-<html lang="en"><head><link rel="alternate" hreflang="fr" href="/other-page-french.html">
+<html lang="en"><head><link rel="alternate" hreflang="fr" href="/fr/other-page-french.html">
 </head><body><p>Other page</p></body></html>',
   data: {
     alternates: [
@@ -194,11 +194,11 @@ snapshot[`multilanguage plugin 6`] = `
     tags: [
     ],
     title: "Other",
-    url: "/other-page-english/",
+    url: "/en/other-page-english/",
   },
   dest: {
     ext: ".html",
-    path: "/other-page-english/index",
+    path: "/en/other-page-english/index",
   },
   src: {
     asset: undefined,
@@ -213,7 +213,7 @@ snapshot[`multilanguage plugin 6`] = `
 snapshot[`multilanguage plugin 7`] = `
 {
   content: '<!DOCTYPE html>
-<html lang="fr"><head><link rel="alternate" hreflang="en" href="/other-page-english/">
+<html lang="fr"><head><link rel="alternate" hreflang="en" href="/en/other-page-english/">
 </head><body><p>Other page</p></body></html>',
   data: {
     alternates: [
@@ -238,11 +238,11 @@ snapshot[`multilanguage plugin 7`] = `
     tags: [
     ],
     title: "Autre",
-    url: "/other-page-french.html",
+    url: "/fr/other-page-french.html",
   },
   dest: {
     ext: ".html",
-    path: "/other-page-french",
+    path: "/fr/other-page-french",
   },
   src: {
     asset: undefined,
@@ -476,9 +476,9 @@ snapshot[`multilanguage plugin 12`] = `
 
   <li>Hello world</li>
 
-  <li>page-en</li>
-
   <li>Other</li>
+
+  <li>page-en</li>
 
 </body></html>',
   data: {
