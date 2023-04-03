@@ -9,7 +9,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.16.2] - Unreleased
+## [1.16.2] - 2023-04-03
 ### Added
 - Not operator for `search` plugin [#406].
   For example the negation of `level>2` is `level!>2`.
@@ -2167,7 +2167,7 @@ The first version.
 [#406]: https://github.com/lumeland/lume/issues/406
 [#407]: https://github.com/lumeland/lume/issues/407
 
-[1.16.2]: https://github.com/lumeland/lume/compare/v1.16.1...HEAD
+[1.16.2]: https://github.com/lumeland/lume/compare/v1.16.1...v1.16.2
 [1.16.1]: https://github.com/lumeland/lume/compare/v1.16.0...v1.16.1
 [1.16.0]: https://github.com/lumeland/lume/compare/v1.15.3...v1.16.0
 [1.15.3]: https://github.com/lumeland/lume/compare/v1.15.2...v1.15.3
