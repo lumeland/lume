@@ -18,6 +18,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Fixed
 - JavaScript source maps on Chrome/Safari [#407]
 - Nunjucks cache for the imported templates.
+- The `multilanguage` plugin doesn't prefix the custom URLs with the language code.
 
 ## [1.16.1] - 2023-03-29
 ### Added

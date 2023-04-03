@@ -73,29 +73,6 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
       pages.splice(pages.indexOf(page), 1, ...newPages);
     });
 
-    // Preprocessor to (un)prefix all urls with the language code
-    site.preprocess(options.extensions, (page) => {
-      const { lang } = page.data;
-
-      if (typeof lang !== "string") {
-        return;
-      }
-
-      const url = page.data.url as string | undefined;
-
-      if (!url) {
-        return;
-      }
-
-      if (!url.startsWith(`/${lang}/`) && lang !== options.defaultLanguage) {
-        page.data.url = `/${lang}${url}`;
-      } else if (
-        url.startsWith(`/${lang}/`) && lang === options.defaultLanguage
-      ) {
-        page.data.url = url.slice(lang.length + 1);
-      }
-    });
-
     // Preprocessor to process the multilanguage data
     site.preprocess(options.extensions, (page) => {
       const lang = page.data.lang;
@@ -120,6 +97,29 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
       }
 
       page.data = data;
+    });
+
+    // Preprocessor to (un)prefix all urls with the language code
+    site.preprocess(options.extensions, (page) => {
+      const { lang } = page.data;
+
+      if (typeof lang !== "string") {
+        return;
+      }
+
+      const url = page.data.url as string | undefined;
+
+      if (!url) {
+        return;
+      }
+
+      if (!url.startsWith(`/${lang}/`) && lang !== options.defaultLanguage) {
+        page.data.url = `/${lang}${url}`;
+      } else if (
+        url.startsWith(`/${lang}/`) && lang === options.defaultLanguage
+      ) {
+        page.data.url = url.slice(lang.length + 1);
+      }
     });
 
     // Preprocessor to build the alternates object
