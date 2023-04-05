@@ -10,14 +10,16 @@ export interface Options {
   sort: string;
   link: string;
   title: string;
+  buildDate: Date;
 }
 
 export const defaults: Options = {
   filename: "/feed.rss",
   query: "",
   sort: "url=asc",
-  link: "http://127.0.0.1:3000/",
+  link: "http://127.0.0.1:3000",
   title: "My RSS Feed",
+  buildDate: new Date(),
 };
 
 export default (userOptions?: Partial<Options>) => {
@@ -61,7 +63,7 @@ export default (userOptions?: Partial<Options>) => {
             title: options.title,
             link: options.link,
             description: "",
-            lastBuildDate: new Date().toISOString(),
+            lastBuildDate: options.buildDate.toISOString(),
             language: "us",
             generator: "https://lume.land",
             item: items,

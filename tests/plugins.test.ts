@@ -37,6 +37,7 @@ Deno.test("Plugins list in init", () => {
     "relative_urls",
     "remark",
     "resolve_urls",
+    "rss",
     "sass",
     "sheets",
     "sitemap",
