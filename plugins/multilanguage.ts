@@ -162,9 +162,6 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
 
       // Insert the <link> elements automatically
       for (const data of alternates) {
-        if (data.lang === lang) {
-          continue;
-        }
         const meta = document.createElement("link");
         meta.setAttribute("rel", "alternate");
         meta.setAttribute("hreflang", data.lang);
