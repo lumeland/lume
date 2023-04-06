@@ -11,6 +11,8 @@ export interface Options {
   link: string;
   title: string;
   buildDate: Date;
+  description: string;
+  language: string;
 }
 
 export const defaults: Options = {
@@ -20,6 +22,8 @@ export const defaults: Options = {
   link: "http://127.0.0.1:3000",
   title: "My RSS Feed",
   buildDate: new Date(),
+  description: "",
+  language: "en",
 };
 
 export default (userOptions?: Partial<Options>) => {
@@ -40,11 +44,12 @@ export default (userOptions?: Partial<Options>) => {
       const items = pages.map((page: Data) => ({
         title: page.title,
         link: `${options.link}${page.url}`,
-        pubDate: page.date?.toISOString(),
-        description: page.excerpt,
-        content: {
-          "#text": page.content,
+        guid: {
+          "@isPermaLink": false,
+          "#text": `${options.link}${page.url}`
         },
+        pubDate: page.date?.toUTCString(),
+        description: page.excerpt,
       }));
       const feed = {
         xml: {
@@ -62,9 +67,14 @@ export default (userOptions?: Partial<Options>) => {
           channel: {
             title: options.title,
             link: options.link,
-            description: "",
-            lastBuildDate: options.buildDate.toISOString(),
-            language: "us",
+            "atom:link": {
+              "@href": `${options.link}${options.filename}`,
+              "@rel": "self",
+              "@type": "application/rss+xml",
+            },
+            description: options.description,
+            lastBuildDate: options.buildDate.toUTCString(),
+            language: options.language,
             generator: "https://lume.land",
             item: items,
           },

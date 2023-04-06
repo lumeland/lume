@@ -82,41 +82,38 @@ snapshot[`RSS plugin 4`] = `
   <channel>
     <title>My RSS Feed</title>
     <link>http://127.0.0.1:3000</link>
+    <atom:link href="http://127.0.0.1:3000/feed.rss" rel="self" type="application/rss+xml"/>
     <description></description>
-    <lastBuildDate>2020-01-01T00:00:00.000Z</lastBuildDate>
-    <language>us</language>
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
+    <language>en</language>
     <generator>https://lume.land</generator>
     <item>
       <title>Page 2</title>
       <link>http://127.0.0.1:3000/overrided-page2/</link>
-      <pubDate>2020-06-21T00:00:00.000Z</pubDate>
+      <guid isPermaLink="false">http://127.0.0.1:3000/overrided-page2/</guid>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 GMT</pubDate>
       <description/>
-      <content>Content of Page 2</content>
     </item>
     <item>
       <title>Page 4</title>
       <link>http://127.0.0.1:3000/pages/page4/</link>
-      <pubDate>2021-01-02T18:32:00.000Z</pubDate>
+      <guid isPermaLink="false">http://127.0.0.1:3000/pages/page4/</guid>
+      <pubDate>Sat, 02 Jan 2021 18:32:00 GMT</pubDate>
       <description/>
-      <content>
-      </content>
     </item>
     <item>
       <title>Page 6</title>
       <link>http://127.0.0.1:3000/pages/page6/</link>
-      <pubDate>2022-01-01T00:00:00.000Z</pubDate>
+      <guid isPermaLink="false">http://127.0.0.1:3000/pages/page6/</guid>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
       <description/>
-      <content>
-        Content of Page 6
-        
-      </content>
     </item>
     <item>
       <title/>
       <link>http://127.0.0.1:3000/pages/subpage/page7/</link>
-      <pubDate>2022-01-01T00:00:00.000Z</pubDate>
+      <guid isPermaLink="false">http://127.0.0.1:3000/pages/subpage/page7/</guid>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
       <description/>
-      <content>Content of Page 7</content>
     </item>
   </channel>
 </rss>',
@@ -127,41 +124,38 @@ snapshot[`RSS plugin 4`] = `
   <channel>
     <title>My RSS Feed</title>
     <link>http://127.0.0.1:3000</link>
+    <atom:link href="http://127.0.0.1:3000/feed.rss" rel="self" type="application/rss+xml"/>
     <description></description>
-    <lastBuildDate>2020-01-01T00:00:00.000Z</lastBuildDate>
-    <language>us</language>
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
+    <language>en</language>
     <generator>https://lume.land</generator>
     <item>
       <title>Page 2</title>
       <link>http://127.0.0.1:3000/overrided-page2/</link>
-      <pubDate>2020-06-21T00:00:00.000Z</pubDate>
+      <guid isPermaLink="false">http://127.0.0.1:3000/overrided-page2/</guid>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 GMT</pubDate>
       <description/>
-      <content>Content of Page 2</content>
     </item>
     <item>
       <title>Page 4</title>
       <link>http://127.0.0.1:3000/pages/page4/</link>
-      <pubDate>2021-01-02T18:32:00.000Z</pubDate>
+      <guid isPermaLink="false">http://127.0.0.1:3000/pages/page4/</guid>
+      <pubDate>Sat, 02 Jan 2021 18:32:00 GMT</pubDate>
       <description/>
-      <content>
-      </content>
     </item>
     <item>
       <title>Page 6</title>
       <link>http://127.0.0.1:3000/pages/page6/</link>
-      <pubDate>2022-01-01T00:00:00.000Z</pubDate>
+      <guid isPermaLink="false">http://127.0.0.1:3000/pages/page6/</guid>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
       <description/>
-      <content>
-        Content of Page 6
-        
-      </content>
     </item>
     <item>
       <title/>
       <link>http://127.0.0.1:3000/pages/subpage/page7/</link>
-      <pubDate>2022-01-01T00:00:00.000Z</pubDate>
+      <guid isPermaLink="false">http://127.0.0.1:3000/pages/subpage/page7/</guid>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
       <description/>
-      <content>Content of Page 7</content>
     </item>
   </channel>
 </rss>',
