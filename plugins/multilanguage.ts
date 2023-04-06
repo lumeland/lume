@@ -168,7 +168,7 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
         const meta = document.createElement("link");
         meta.setAttribute("rel", "alternate");
         meta.setAttribute("hreflang", data.lang);
-        meta.setAttribute("href", data.url);
+        meta.setAttribute("href", site.url(data.url as string, true));
         document.head.appendChild(meta);
         document.head.appendChild(document.createTextNode("\n"));
       }
