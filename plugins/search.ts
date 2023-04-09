@@ -181,6 +181,11 @@ export function buildFilter(query = "", page404 = ""): (page: Page) => boolean {
     if (!key) {
       key = "tags";
       operator = "*=";
+
+      if (value?.startsWith("!")) {
+        not = not ? "" : "!";
+        value = value.slice(1);
+      }
     }
 
     if (not) {
