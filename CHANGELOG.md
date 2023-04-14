@@ -20,7 +20,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Moved the `nunjucks` dependency to `npm:` import.
 - `metas` plugin:
   Remove multiple spaces, line breaks and HTML tags.
-- Updated dependencies: `sass`, `deno_dom`, `nunjucks`.
+- Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`.
 
 ## [1.16.2] - 2023-04-03
 ### Added
