@@ -192,12 +192,12 @@ export default function (userOptions?: DeepPartial<Options>) {
         throw new Error(
           `Pagefind exited with code ${code}
 
-${stdout}
+${decode(stdout)}
 
-${stderr}`,
+${decode(stderr)}`,
         );
       } else if (options.indexing.verbose) {
-        console.log(stdout);
+        console.log(decode(stdout));
       }
     });
   };
@@ -231,4 +231,8 @@ function buildArguments(
   }
 
   return args;
+}
+
+function decode(raw: Uint8Array): string {
+  return (new TextDecoder()).decode(raw);
 }
