@@ -13,7 +13,7 @@ Deno.test("RSS plugin", async (t) => {
   site.use(
     rss({
       buildDate: new Date("2020-01-01"),
-    })
+    }),
   );
   site.ignore("static.yml");
 

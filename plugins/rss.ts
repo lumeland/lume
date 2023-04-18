@@ -1,4 +1,4 @@
-import { stringify, $XML } from "../deps/xml.ts";
+import { $XML, stringify } from "../deps/xml.ts";
 import { Page } from "../core/filesystem.ts";
 import { Search } from "../plugins/search.ts";
 
@@ -46,13 +46,13 @@ export default (userOptions?: Partial<Options>) => {
         link: `${options.link}${page.url}`,
         guid: {
           "@isPermaLink": false,
-          "#text": `${options.link}${page.url}`
+          "#text": `${options.link}${page.url}`,
         },
+        description: page.excerpt,
         "content:encoded": {
           "#text": page.content,
         },
         pubDate: page.date?.toUTCString(),
-        description: page.excerpt,
       }));
       const feed = {
         [$XML]: { cdata: [["rss", "channel", "item", "content:encoded"]] },
