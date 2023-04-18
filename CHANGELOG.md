@@ -9,6 +9,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
+## [1.16.2] - 2023-04-18
+### Added
+- RSS Plugin
+
 ## [1.16.2] - 2023-04-03
 ### Added
 - Not operator for `search` plugin [#406].
