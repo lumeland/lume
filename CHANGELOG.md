@@ -9,6 +9,19 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
+## [1.16.3] - Unreleased
+### Added
+- Support for negative tags in `search` plugin. For example:
+  `search.pages("tag1 !tag2")`.
+
+### Fixed
+- `multilanguage` plugin:
+  The generated `hreflang` links must have the absolute URL and include the current page.
+- Moved the `nunjucks` dependency to `npm:` import.
+- `metas` plugin:
+  Remove multiple spaces, line breaks and HTML tags.
+- Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`.
+
 ## [1.16.2] - 2023-04-18
 ### Added
 - RSS Plugin

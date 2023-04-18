@@ -2,6 +2,8 @@ export const snapshot = {};
 
 snapshot[`Search by Tags 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.tags?.includes(value2) && page.data?.tags?.includes(value3)"`;
 
+snapshot[`Search by NOT Tags 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.tags?.includes(value2) && !page.data?.tags?.includes(value3)"`;
+
 snapshot[`Search by Equal 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo === value2"`;
 
 snapshot[`Search by Equal undefined 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo === value2"`;

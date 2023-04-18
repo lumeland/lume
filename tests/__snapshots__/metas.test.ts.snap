@@ -122,7 +122,10 @@ snapshot[`metas plugin 4`] = `
     },
     metas: {
       color: "black",
-      description: 'A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append "…" to the end. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      description: '<strong>A very long custom description</strong> with a lot of text
+that will be truncated to a maximum of 155 characters and then append "…" to the end.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+',
       generator: "Lume testing",
       icon: "/my-icon.png",
       image: "/my-image.png",
