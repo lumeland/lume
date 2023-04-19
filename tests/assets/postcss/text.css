@@ -4,6 +4,6 @@
   & p {
     color: var(--color);
     box-shadow: 0 0 0.5em var(--background);
-    backface-visibility: hidden;
+    backdrop-filter: blur(2px);
   }
 }

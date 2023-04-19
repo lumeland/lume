@@ -196,7 +196,10 @@ function addMeta(
   if (!content) {
     return;
   }
-  content = content.trim();
+  content = content
+    .replaceAll(/<[^>]*>/g, "")
+    .replaceAll(/\s+/g, " ")
+    .trim();
 
   if (limit && content.length > limit) {
     content = content.substr(0, limit - 1).trimEnd() + "…";

@@ -7,6 +7,12 @@ Deno.test("Search by Tags", async (t) => {
   await assertSnapshot(t, filter.toString());
 });
 
+Deno.test("Search by NOT Tags", async (t) => {
+  const filter = buildFilter("foo !bar");
+
+  await assertSnapshot(t, filter.toString());
+});
+
 Deno.test("Search by Equal", async (t) => {
   const filter = buildFilter("foo=bar");
 
