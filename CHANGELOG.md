@@ -20,6 +20,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Moved the `nunjucks` dependency to `npm:` import.
 - `metas` plugin:
   Remove multiple spaces, line breaks and HTML tags.
+- `pagefind` plugin:
+  Fix the output string to be a string decoded from raw byte data.
 - Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`.
 
 ## [1.16.2] - 2023-04-03
