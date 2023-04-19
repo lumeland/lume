@@ -1,1 +1,1 @@
-export * from "https://deno.land/std@0.183.0/encoding/base64.ts";
+export * from "https://deno.land/std@0.184.0/encoding/base64.ts";

@@ -20,7 +20,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Moved the `nunjucks` dependency to `npm:` import.
 - `metas` plugin:
   Remove multiple spaces, line breaks and HTML tags.
-- Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`.
+- Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`, `katex`, `lightningcss`, `postcss`, `terser`.
 
 ## [1.16.2] - 2023-04-03
 ### Added
@@ -2181,6 +2181,7 @@ The first version.
 [#406]: https://github.com/lumeland/lume/issues/406
 [#407]: https://github.com/lumeland/lume/issues/407
 
+[1.16.3]: https://github.com/lumeland/lume/compare/v1.16.2...HEAD
 [1.16.2]: https://github.com/lumeland/lume/compare/v1.16.1...v1.16.2
 [1.16.1]: https://github.com/lumeland/lume/compare/v1.16.0...v1.16.1
 [1.16.0]: https://github.com/lumeland/lume/compare/v1.15.3...v1.16.0
