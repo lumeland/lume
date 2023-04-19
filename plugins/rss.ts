@@ -8,22 +8,22 @@ export interface Options {
   filename: string;
   query: string;
   sort: string;
-  link: string;
   title: string;
   buildDate: Date;
   description: string;
   language: string;
+  generator: string;
 }
 
 export const defaults: Options = {
   filename: "/feed.rss",
   query: "",
   sort: "url=asc",
-  link: "http://127.0.0.1:3000",
   title: "My RSS Feed",
   buildDate: new Date(),
   description: "",
   language: "en",
+  generator: "https://lume.land",
 };
 
 export default (userOptions?: Partial<Options>) => {
@@ -43,10 +43,10 @@ export default (userOptions?: Partial<Options>) => {
       const pages = search.pages(options.query, options.sort);
       const items = pages.map((page: Data) => ({
         title: page.title,
-        link: `${options.link}${page.url}`,
+        link: site.url(page.url, true),
         guid: {
           "@isPermaLink": false,
-          "#text": `${options.link}${page.url}`,
+          "#text": site.url(page.url, true),
         },
         description: page.excerpt,
         "content:encoded": {
@@ -70,16 +70,16 @@ export default (userOptions?: Partial<Options>) => {
           "@version": "2.0",
           channel: {
             title: options.title,
-            link: options.link,
+            link: site.url("", true),
             "atom:link": {
-              "@href": `${options.link}${options.filename}`,
+              "@href": site.url(options.filename, true),
               "@rel": "self",
               "@type": "application/rss+xml",
             },
             description: options.description,
             lastBuildDate: options.buildDate.toUTCString(),
             language: options.language,
-            generator: "https://lume.land",
+            generator: options.generator,
             item: items,
           },
         },
