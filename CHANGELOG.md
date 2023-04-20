@@ -11,6 +11,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [1.16.3] - Unreleased
 ### Added
+- RSS Plugin
 - Support for negative tags in `search` plugin. For example:
   `search.pages("tag1 !tag2")`.
 
@@ -22,11 +23,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
   Remove multiple spaces, line breaks and HTML tags.
 - `pagefind` plugin:
   Fix the output string to be a string decoded from raw byte data.
+- Duplicate pages on reload files inside `_data/` folders.
 - Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`, `katex`, `lightningcss`, `postcss`, `terser`.
-
-## [1.16.2] - 2023-04-18
-### Added
-- RSS Plugin
 
 ## [1.16.2] - 2023-04-03
 ### Added

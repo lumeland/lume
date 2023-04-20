@@ -244,13 +244,18 @@ export default class Source {
     }
 
     // Get the closest directory of the file
-    const path = posix.dirname(file);
+    const inData = /\/_data\//.test(file);
+    const path = inData
+      ? file.split(/\/_data(\/|$)/)[0]
+      : posix.dirname(file);
     const directory = this.#getClosestLoadedDirectory(path);
 
     // The parent directory is already loaded, so we only need to update this entry
     if (directory.src.path === path) {
       const info = await this.reader.getInfo(file);
-      const name = posix.basename(file);
+      const name = inData
+        ? "_data"
+        : posix.basename(file);
 
       // Removed
       if (!info) {
@@ -260,12 +265,13 @@ export default class Source {
 
       const entry = {
         name: name,
-        isFile: true,
-        isDirectory: false,
+        isFile: !inData,
+        isDirectory: inData,
         isSymlink: false,
         remote: info?.remote,
       };
-      await this.#loadEntry(directory, entry, (path) => file === path);
+
+      await this.#loadEntry(directory, entry, (path) => inData || file === path);
       return;
     }
 
