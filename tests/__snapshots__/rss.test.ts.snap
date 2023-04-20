@@ -1,0 +1,642 @@
+export const snapshot = {};
+
+snapshot[`RSS plugin 1`] = `7`;
+
+snapshot[`RSS plugin 2`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+}
+`;
+
+snapshot[`RSS plugin 3`] = `
+[
+]
+`;
+
+snapshot[`RSS plugin 4`] = `
+{
+  content: '<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+  <channel>
+    <title>My RSS Feed</title>
+    <link>https://example.com/</link>
+    <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
+    <description></description>
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
+    <language>en</language>
+    <generator>https://lume.land</generator>
+    <item>
+      <title>Page 6</title>
+      <link>https://example.com/pages/page6/</link>
+      <guid isPermaLink="false">https://example.com/pages/page6/</guid>
+      <description/>
+      <content:encoded>
+        <![CDATA[<p>Content of Page 6</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title/>
+      <link>https://example.com/pages/subpage/page7/</link>
+      <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Page 4</title>
+      <link>https://example.com/pages/page4/</link>
+      <guid isPermaLink="false">https://example.com/pages/page4/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts]]></content:encoded>
+      <pubDate>Sat, 02 Jan 2021 18:32:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Page 2</title>
+      <link>https://example.com/overrided-page2/</link>
+      <guid isPermaLink="false">https://example.com/overrided-page2/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 2]]></content:encoded>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>',
+  data: {
+    children: false,
+    content: '<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+  <channel>
+    <title>My RSS Feed</title>
+    <link>https://example.com/</link>
+    <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
+    <description></description>
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
+    <language>en</language>
+    <generator>https://lume.land</generator>
+    <item>
+      <title>Page 6</title>
+      <link>https://example.com/pages/page6/</link>
+      <guid isPermaLink="false">https://example.com/pages/page6/</guid>
+      <description/>
+      <content:encoded>
+        <![CDATA[<p>Content of Page 6</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title/>
+      <link>https://example.com/pages/subpage/page7/</link>
+      <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Page 4</title>
+      <link>https://example.com/pages/page4/</link>
+      <guid isPermaLink="false">https://example.com/pages/page4/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts]]></content:encoded>
+      <pubDate>Sat, 02 Jan 2021 18:32:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Page 2</title>
+      <link>https://example.com/overrided-page2/</link>
+      <guid isPermaLink="false">https://example.com/overrided-page2/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 2]]></content:encoded>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>',
+    page: undefined,
+    url: "/feed.rss",
+  },
+  dest: {
+    ext: ".rss",
+    path: "/feed",
+  },
+  src: {
+    asset: true,
+    path: "",
+    remote: undefined,
+    slug: "feed",
+  },
+}
+`;
+
+snapshot[`RSS plugin 5`] = `
+{
+  content: "<!DOCTYPE html>
+Content of Page 5",
+  data: {
+    children: true,
+    content: "Content of Page 5",
+    date: 1970-01-01T00:00:00.000Z,
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Default title",
+    },
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    site: "Default site name",
+    tags: [
+    ],
+    title: "Page 5",
+    url: "/page5/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/page5/index",
+  },
+  src: {
+    asset: undefined,
+    ext: ".yaml",
+    path: "/page5",
+    remote: undefined,
+    slug: "page5",
+  },
+}
+`;
+
+snapshot[`RSS plugin 6`] = `
+{
+  content: "<!DOCTYPE html>
+Content of Page 2",
+  data: {
+    children: true,
+    colors: [
+      "#ff0000",
+      "#0000ff",
+      "#00ff00",
+    ],
+    content: "Content of Page 2",
+    date: 1970-01-01T00:00:00.000Z,
+    documents: [
+      {
+        title: "Document 1",
+      },
+      {
+        title: "Document 2",
+      },
+      {
+        title: "Document 3",
+      },
+    ],
+    drinks: {
+      alcoholic: [
+        "gin-tonic",
+        "gin-soda",
+      ],
+      others: [
+        "coffee",
+        "tea",
+      ],
+    },
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Default title",
+    },
+    names: [
+      "Oscar",
+      "Laura",
+    ],
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    site: "Folder overrided site name",
+    tags: [
+      "sub-pages",
+    ],
+    title: "Page 2",
+    url: "/overrided-page2/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/overrided-page2/index",
+  },
+  src: {
+    asset: undefined,
+    ext: ".tmpl.json",
+    path: "/pages/2020-06-21_page2",
+    remote: undefined,
+    slug: "page2",
+  },
+}
+`;
+
+snapshot[`RSS plugin 7`] = `
+{
+  content: "<!DOCTYPE html>
+Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
+  data: {
+    children: true,
+    colors: [
+      "#ff0000",
+      "#0000ff",
+      "#00ff00",
+    ],
+    content: undefined,
+    date: 1970-01-01T00:00:00.000Z,
+    documents: [
+      {
+        title: "Document 1",
+      },
+      {
+        title: "Document 2",
+      },
+      {
+        title: "Document 3",
+      },
+    ],
+    drinks: {
+      alcoholic: [
+        "gin-tonic",
+        "gin-soda",
+      ],
+      others: [
+        "coffee",
+        "tea",
+      ],
+    },
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Default title",
+    },
+    names: [
+      "Oscar",
+      "Laura",
+    ],
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    site: "Overrided site name",
+    tags: [
+      "sub-pages",
+    ],
+    title: "Page 4",
+    url: "/pages/page4/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/pages/page4/index",
+  },
+  src: {
+    asset: undefined,
+    ext: ".tmpl.ts",
+    path: "/pages/2021-01-02-18-32_page4",
+    remote: undefined,
+    slug: "page4",
+  },
+}
+`;
+
+snapshot[`RSS plugin 8`] = `
+{
+  content: "<!DOCTYPE html>
+<p>Content of Page 6</p>
+",
+  data: {
+    children: true,
+    colors: [
+      "#ff0000",
+      "#0000ff",
+      "#00ff00",
+    ],
+    content: "Content of Page 6
+",
+    date: 1970-01-01T00:00:00.000Z,
+    documents: [
+      {
+        title: "Document 1",
+      },
+      {
+        title: "Document 2",
+      },
+      {
+        title: "Document 3",
+      },
+    ],
+    drinks: {
+      alcoholic: [
+        "gin-tonic",
+        "gin-soda",
+      ],
+      others: [
+        "coffee",
+        "tea",
+      ],
+    },
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Default title",
+    },
+    names: [
+      "Oscar",
+      "Laura",
+    ],
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    site: "Folder overrided site name",
+    tags: [
+      "sub-pages",
+      "page6",
+    ],
+    title: "Page 6",
+    url: "/pages/page6/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/pages/page6/index",
+  },
+  src: {
+    asset: undefined,
+    ext: ".md",
+    path: "/pages/2021-12-29-page6",
+    remote: undefined,
+    slug: "page6",
+  },
+}
+`;
+
+snapshot[`RSS plugin 9`] = `
+{
+  content: "Content of Page 3",
+  data: {
+    children: true,
+    colors: [
+      "#ff0000",
+      "#0000ff",
+      "#00ff00",
+    ],
+    content: "Content of Page 3",
+    date: 1970-01-01T00:00:00.000Z,
+    documents: [
+      {
+        title: "Document 1",
+      },
+      {
+        title: "Document 2",
+      },
+      {
+        title: "Document 3",
+      },
+    ],
+    drinks: {
+      alcoholic: [
+        "gin-tonic",
+        "gin-soda",
+      ],
+      others: [
+        "coffee",
+        "tea",
+      ],
+    },
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Default title",
+    },
+    names: [
+      "Oscar",
+      "Laura",
+    ],
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    site: "Folder overrided site name",
+    tags: [
+      "sub-pages",
+    ],
+    title: "Page 3",
+    url: "/page_3",
+  },
+  dest: {
+    ext: "",
+    path: "/page_3",
+  },
+  src: {
+    asset: undefined,
+    ext: ".tmpl.js",
+    path: "/pages/page3",
+    remote: undefined,
+    slug: "page3",
+  },
+}
+`;
+
+snapshot[`RSS plugin 10`] = `
+{
+  content: "<!DOCTYPE html>
+Content of Page 7",
+  data: {
+    children: true,
+    colors: [
+      "#ff0000",
+      "#0000ff",
+      "#00ff00",
+    ],
+    content: "Content of Page 7",
+    date: 1970-01-01T00:00:00.000Z,
+    documents: [
+      {
+        title: "Document 1",
+      },
+      {
+        title: "Document 2",
+      },
+      {
+        title: "Document 3",
+      },
+    ],
+    drinks: {
+      alcoholic: [
+        "gin-tonic",
+        "gin-soda",
+      ],
+      others: [
+        "coffee",
+        "tea",
+      ],
+    },
+    imagick: [
+      {
+        resize: [
+          400,
+          300,
+        ],
+        suffix: "-small",
+      },
+    ],
+    mergedKeys: {
+      imagick: "array",
+      metas: "object",
+      tags: "stringArray",
+    },
+    metas: {
+      description: "Default description",
+      title: "Default title",
+    },
+    names: [
+      "Oscar",
+      "Laura",
+    ],
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    site: "Folder overrided site name",
+    tags: [
+      "sub-pages",
+      "sub-sub-pages",
+      "page7",
+    ],
+    url: "/pages/subpage/page7/",
+  },
+  dest: {
+    ext: ".html",
+    path: "/pages/subpage/page7/index",
+  },
+  src: {
+    asset: undefined,
+    ext: ".tmpl.js",
+    path: "/pages/subpage/page7",
+    remote: undefined,
+    slug: "page7",
+  },
+}
+`;

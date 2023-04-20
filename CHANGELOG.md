@@ -24,6 +24,10 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
   Fix the output string to be a string decoded from raw byte data.
 - Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`, `katex`, `lightningcss`, `postcss`, `terser`.
 
+## [1.16.2] - 2023-04-18
+### Added
+- RSS Plugin
+
 ## [1.16.2] - 2023-04-03
 ### Added
 - Not operator for `search` plugin [#406].
