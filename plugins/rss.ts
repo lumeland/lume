@@ -13,17 +13,25 @@ export interface Options {
   description: string;
   language: string;
   generator: string;
+  data: {
+    title: string;
+    description: string;
+  };
 }
 
 export const defaults: Options = {
   filename: "/feed.rss",
   query: "",
-  sort: "url=asc",
+  sort: "date=desc",
   title: "My RSS Feed",
   buildDate: new Date(),
   description: "",
   language: "en",
   generator: "https://lume.land",
+  data: {
+    title: "title",
+    description: "description",
+  },
 };
 
 export default (userOptions?: Partial<Options>) => {
@@ -41,18 +49,16 @@ export default (userOptions?: Partial<Options>) => {
     const getFeedContent = (site: Site) => {
       const search = new Search(site, true);
       const pages = search.pages(options.query, options.sort);
-      const items = pages.map((page: Data) => ({
-        title: page.title,
-        link: site.url(page.url, true),
+      const items = pages.map((data: Data) => ({
+        title: data[options.data.title],
+        link: site.url(String(data.url), true),
         guid: {
           "@isPermaLink": false,
-          "#text": site.url(page.url, true),
+          "#text": site.url(String(data.url), true),
         },
-        description: page.excerpt,
-        "content:encoded": {
-          "#text": page.content,
-        },
-        pubDate: page.date?.toUTCString(),
+        description: data[options.data.description],
+        "content:encoded": data.children?.toString(),
+        pubDate: data.date?.toUTCString(),
       }));
       const feed = {
         [$XML]: { cdata: [["rss", "channel", "item", "content:encoded"]] },

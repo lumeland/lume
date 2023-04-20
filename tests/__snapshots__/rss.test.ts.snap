@@ -81,39 +81,46 @@ snapshot[`RSS plugin 4`] = `
 <rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
   <channel>
     <title>My RSS Feed</title>
-    <link>http://127.0.0.1:3000</link>
-    <atom:link href="http://127.0.0.1:3000/feed.rss" rel="self" type="application/rss+xml"/>
+    <link>https://example.com/</link>
+    <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
     <description></description>
     <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
     <language>en</language>
     <generator>https://lume.land</generator>
     <item>
-      <title>Page 2</title>
-      <link>http://127.0.0.1:3000/overrided-page2/</link>
-      <guid isPermaLink="false">http://127.0.0.1:3000/overrided-page2/</guid>
-      <pubDate>Sun, 21 Jun 2020 00:00:00 GMT</pubDate>
-      <description/>
-    </item>
-    <item>
-      <title>Page 4</title>
-      <link>http://127.0.0.1:3000/pages/page4/</link>
-      <guid isPermaLink="false">http://127.0.0.1:3000/pages/page4/</guid>
-      <pubDate>Sat, 02 Jan 2021 18:32:00 GMT</pubDate>
-      <description/>
-    </item>
-    <item>
       <title>Page 6</title>
-      <link>http://127.0.0.1:3000/pages/page6/</link>
-      <guid isPermaLink="false">http://127.0.0.1:3000/pages/page6/</guid>
-      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
+      <link>https://example.com/pages/page6/</link>
+      <guid isPermaLink="false">https://example.com/pages/page6/</guid>
       <description/>
+      <content:encoded>
+        <![CDATA[<p>Content of Page 6</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title/>
-      <link>http://127.0.0.1:3000/pages/subpage/page7/</link>
-      <guid isPermaLink="false">http://127.0.0.1:3000/pages/subpage/page7/</guid>
-      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
+      <link>https://example.com/pages/subpage/page7/</link>
+      <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
       <description/>
+      <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Page 4</title>
+      <link>https://example.com/pages/page4/</link>
+      <guid isPermaLink="false">https://example.com/pages/page4/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts]]></content:encoded>
+      <pubDate>Sat, 02 Jan 2021 18:32:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Page 2</title>
+      <link>https://example.com/overrided-page2/</link>
+      <guid isPermaLink="false">https://example.com/overrided-page2/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 2]]></content:encoded>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 GMT</pubDate>
     </item>
   </channel>
 </rss>',
@@ -123,39 +130,46 @@ snapshot[`RSS plugin 4`] = `
 <rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
   <channel>
     <title>My RSS Feed</title>
-    <link>http://127.0.0.1:3000</link>
-    <atom:link href="http://127.0.0.1:3000/feed.rss" rel="self" type="application/rss+xml"/>
+    <link>https://example.com/</link>
+    <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
     <description></description>
     <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
     <language>en</language>
     <generator>https://lume.land</generator>
     <item>
-      <title>Page 2</title>
-      <link>http://127.0.0.1:3000/overrided-page2/</link>
-      <guid isPermaLink="false">http://127.0.0.1:3000/overrided-page2/</guid>
-      <pubDate>Sun, 21 Jun 2020 00:00:00 GMT</pubDate>
-      <description/>
-    </item>
-    <item>
-      <title>Page 4</title>
-      <link>http://127.0.0.1:3000/pages/page4/</link>
-      <guid isPermaLink="false">http://127.0.0.1:3000/pages/page4/</guid>
-      <pubDate>Sat, 02 Jan 2021 18:32:00 GMT</pubDate>
-      <description/>
-    </item>
-    <item>
       <title>Page 6</title>
-      <link>http://127.0.0.1:3000/pages/page6/</link>
-      <guid isPermaLink="false">http://127.0.0.1:3000/pages/page6/</guid>
-      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
+      <link>https://example.com/pages/page6/</link>
+      <guid isPermaLink="false">https://example.com/pages/page6/</guid>
       <description/>
+      <content:encoded>
+        <![CDATA[<p>Content of Page 6</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title/>
-      <link>http://127.0.0.1:3000/pages/subpage/page7/</link>
-      <guid isPermaLink="false">http://127.0.0.1:3000/pages/subpage/page7/</guid>
-      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
+      <link>https://example.com/pages/subpage/page7/</link>
+      <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
       <description/>
+      <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Page 4</title>
+      <link>https://example.com/pages/page4/</link>
+      <guid isPermaLink="false">https://example.com/pages/page4/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts]]></content:encoded>
+      <pubDate>Sat, 02 Jan 2021 18:32:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Page 2</title>
+      <link>https://example.com/overrided-page2/</link>
+      <guid isPermaLink="false">https://example.com/overrided-page2/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 2]]></content:encoded>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 GMT</pubDate>
     </item>
   </channel>
 </rss>',
