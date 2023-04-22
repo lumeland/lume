@@ -4,7 +4,6 @@ import { Exception } from "./errors.ts";
 
 import Reader from "./reader.ts";
 import PageLoader from "./page_loader.ts";
-import PagePreparer from "./page_preparer.ts";
 import ComponentLoader from "./component_loader.ts";
 import DataLoader from "./data_loader.ts";
 import IncludesLoader from "./includes_loader.ts";
@@ -88,9 +87,6 @@ export default class Site {
   /** To load all pages */
   pageLoader: PageLoader;
 
-  /** To prepare the pages before rendering */
-  pagePreparer: PagePreparer;
-
   /** To load all _data files */
   dataLoader: DataLoader;
 
@@ -158,18 +154,18 @@ export default class Site {
     const formats = new Formats();
 
     const pageLoader = new PageLoader({ reader });
-    const pagePreparer = new PagePreparer({ src, prettyUrls });
     const dataLoader = new DataLoader({ reader, formats });
     const includesLoader = new IncludesLoader({ reader, includes });
     const componentLoader = new ComponentLoader({ reader, formats });
     const source = new Source({
       reader,
       pageLoader,
-      pagePreparer,
       dataLoader,
       componentLoader,
       formats,
       components,
+      scopedData: this.scopedData,
+      prettyUrls,
     });
 
     // To render pages
@@ -180,7 +176,6 @@ export default class Site {
       includesLoader,
       prettyUrls,
       preprocessors,
-      pagePreparer,
       formats,
     });
 
@@ -194,7 +189,6 @@ export default class Site {
     this.reader = reader;
     this.formats = formats;
     this.pageLoader = pageLoader;
-    this.pagePreparer = pagePreparer;
     this.componentLoader = componentLoader;
     this.dataLoader = dataLoader;
     this.includesLoader = includesLoader;
@@ -511,8 +505,7 @@ export default class Site {
     await this.source.load();
 
     // Get the site content
-    const [_pages, _staticFiles] = this.source.getContent(
-      this.scopedData,
+    const [_pages, _staticFiles] = await this.source.build(
       this.globalComponents,
       [
         (page) => !page.data.draft || this.options.dev,
@@ -745,11 +738,10 @@ export default class Site {
     }
 
     // It's a static file
-    const staticFile = this.files.find((f) => f.dest === file);
+    const staticFile = this.files.find((f) => f.outputPath === file);
 
     if (staticFile) {
-      const content = await this.reader.read(staticFile.src, loader);
-      return content.content as Uint8Array | string;
+      return staticFile.entry.getContent();
     }
 
     // Search in includes
@@ -771,8 +763,10 @@ export default class Site {
 
     // Read the source files directly
     try {
-      const content = await this.reader.read(file, loader);
-      return content.content as Uint8Array | string;
+      const entry = this.reader.fs.entries.get(file);
+      if (entry) {
+        return await entry.getContent();
+      }
     } catch {
       // Ignore error
     }

@@ -1,6 +1,7 @@
 import { Page } from "./filesystem.ts";
 
 import type { Format, Reader } from "../core.ts";
+import type { Entry } from "./fs.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
@@ -20,14 +21,14 @@ export default class PageLoader {
 
   /** Load an asset Page */
   async load(
-    path: string,
+    entry: Entry,
     format: Format,
   ): Promise<Page | undefined> {
     if (!format.pageLoader) {
       return;
     }
 
-    const info = await this.reader.getInfo(path);
+    const info = entry.getInfo();
 
     if (!info) {
       return;
@@ -37,16 +38,16 @@ export default class PageLoader {
 
     // Create the page
     const page = new Page({
-      path: path.slice(0, -ext.length),
+      path: entry.path.slice(0, -ext.length),
       lastModified: info?.mtime || undefined,
       created: info?.birthtime || undefined,
-      remote: info.remote,
+      remote: entry.url,
       ext,
       asset,
     });
 
     // Load the data
-    const data = await this.reader.read(path, format.pageLoader);
+    const data = await entry.getContent(format.pageLoader);
     Object.assign(page.baseData, data);
     return page;
   }

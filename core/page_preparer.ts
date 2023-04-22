@@ -151,13 +151,13 @@ export default class pagePreparer {
 }
 
 /** Merge the cascade data */
-export function mergeData(parentData: Data, baseData: Data): Data {
-  const data: Data = { ...parentData, ...baseData };
+export function mergeData(parent: Data, current: Data): Data {
+  const data: Data = { ...parent, ...current };
 
   // Merge special keys
   const mergedKeys: Record<string, string> = {
-    ...parentData.mergedKeys,
-    ...baseData.mergedKeys,
+    ...parent.mergedKeys,
+    ...current.mergedKeys,
   };
 
   for (const [key, type] of Object.entries(mergedKeys)) {
@@ -165,16 +165,16 @@ export function mergeData(parentData: Data, baseData: Data): Data {
       case "stringArray":
       case "array":
         {
-          const baseValue: unknown[] = Array.isArray(baseData[key])
-            ? baseData[key] as unknown[]
-            : (key in baseData)
-            ? [baseData[key]]
+          const baseValue: unknown[] = Array.isArray(current[key])
+            ? current[key] as unknown[]
+            : (key in current)
+            ? [current[key]]
             : [];
 
-          const parentValue: unknown[] = Array.isArray(parentData[key])
-            ? parentData[key] as unknown[]
-            : (key in parentData)
-            ? [parentData[key]]
+          const parentValue: unknown[] = Array.isArray(parent[key])
+            ? parent[key] as unknown[]
+            : (key in parent)
+            ? [parent[key]]
             : [];
 
           const merged = [...parentValue, ...baseValue];
@@ -189,14 +189,14 @@ export function mergeData(parentData: Data, baseData: Data): Data {
 
       case "object":
         {
-          const baseValue = baseData[key] as
+          const currentValue = current[key] as
             | Record<string, unknown>
             | undefined;
-          const parentValue = parentData[key] as
+          const parentValue = parent[key] as
             | Record<string, unknown>
             | undefined;
 
-          data[key] = { ...parentValue, ...baseValue };
+          data[key] = { ...parentValue, ...currentValue };
         }
         break;
     }

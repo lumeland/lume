@@ -1,7 +1,6 @@
-import { posix } from "../deps/path.ts";
-import { normalizePath } from "./utils.ts";
+import { Entry } from "./fs.ts";
 
-import type { Components, Directory, Formats, Reader } from "../core.ts";
+import type { Data, Formats, Reader } from "../core.ts";
 
 export interface Options {
   /** The reader instance used to read the files */
@@ -28,45 +27,25 @@ export default class ComponentsLoader {
 
   /** Load a directory of components */
   async load(
-    path: string,
-    directory: Directory,
-  ): Promise<void> {
-    path = normalizePath(path);
-    const info = await this.reader.getInfo(path);
-
-    if (!info?.isDirectory) {
-      return;
-    }
-
-    await this.#loadDirectory(path, directory, directory.components);
-  }
-
-  /** Load a directory of components */
-  async #loadDirectory(
-    path: string,
-    directory: Directory,
+    dirEntry: Entry,
+    data: Data,
     components: Components,
   ): Promise<void> {
-    for await (const entry of this.reader.readDir(path)) {
-      if (
-        entry.isSymlink ||
-        entry.name.startsWith(".") || entry.name.startsWith("_")
-      ) {
+    for await (const entry of dirEntry.children.values()) {
+      if (entry.name.startsWith(".") || entry.name.startsWith("_")) {
         continue;
       }
 
-      const subPath = posix.join(path, entry.name);
-
-      if (entry.isDirectory) {
+      if (entry.type === "directory") {
         const name = entry.name.toLowerCase();
         const subComponents = (components.get(name) || new Map()) as Components;
         components.set(name, subComponents);
 
-        await this.#loadDirectory(subPath, directory, subComponents);
+        await this.load(entry, data, subComponents);
         continue;
       }
 
-      const component = await this.#loadComponent(subPath, directory);
+      const component = await this.#loadComponent(entry, data);
 
       if (component) {
         components.set(component.name.toLowerCase(), component);
@@ -76,10 +55,10 @@ export default class ComponentsLoader {
 
   /** Load a component file */
   async #loadComponent(
-    path: string,
-    context: Directory,
+    entry: Entry,
+    inheritData: Data,
   ): Promise<Component | undefined> {
-    const format = this.formats.search(path);
+    const format = this.formats.search(entry.name);
 
     if (!format) {
       return;
@@ -89,8 +68,7 @@ export default class ComponentsLoader {
       return;
     }
 
-    const component = await this.reader.read(
-      path,
+    const component = await entry.getContent(
       format.componentLoader,
     ) as ComponentFile;
 
@@ -99,16 +77,17 @@ export default class ComponentsLoader {
         return { ...data };
       }
 
-      return { ...context.data, ...data };
+      return { ...inheritData, ...data };
     }
 
     const { content } = component;
 
     return {
-      name: component.name ?? posix.basename(path, format.ext),
+      name: component.name ?? entry.name.slice(0, -format.ext.length),
       render(data) {
         return format.engines!.reduce(
-          (content, engine) => engine.renderSync(content, getData(data), path),
+          (content, engine) =>
+            engine.renderSync(content, getData(data), entry.path),
           content,
         );
       },
@@ -117,6 +96,8 @@ export default class ComponentsLoader {
     } as Component;
   }
 }
+
+export type Components = Map<string, Component | Components>;
 
 export interface Component {
   /** Name of the component (used to get it from templates) */

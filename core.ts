@@ -41,14 +41,13 @@ import type { default as PageLoader } from "./core/page_loader.ts";
 import type DataLoader from "./core/data_loader.ts";
 import type {
   Component,
+  Components,
   default as ComponentLoader,
 } from "./core/component_loader.ts";
 import type {
-  Components,
   Content,
   Data,
   Dest,
-  Directory,
   Page,
   Src,
   StaticFile,
@@ -113,7 +112,6 @@ export type {
   DenoConfig,
   DenoConfigResult,
   Dest,
-  Directory,
   DirEntry,
   Engine,
   ErrorData,

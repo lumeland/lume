@@ -1,5 +1,6 @@
 import { Exception } from "./errors.ts";
 import { posix } from "../deps/path.ts";
+import FS from "./fs.ts";
 
 import type { Data } from "../core.ts";
 
@@ -13,23 +14,41 @@ export interface Options {
  * It's used to avoid reading the same file multiple times
  */
 export default class Reader {
+  fs: FS;
   src: string;
   cache = new Map<string, Promise<Data> | Data>();
   remoteFiles = new Map<string, string>();
 
   constructor(options: Options) {
+    this.fs = new FS({
+      root: options.src,
+      filter(entry) {
+        return !entry.name.startsWith(".");
+      },
+    });
     this.src = options.src;
+  }
+
+  /** Scan the filesystem and remote files */
+  scan() {
+    this.fs.init();
   }
 
   /** Register a remote file */
   remoteFile(filename: string, url: string) {
-    this.remoteFiles.set(this.getFullPath(filename), url);
+    this.fs.remoteFiles.set(this.fs.normalize(filename), url);
+    // this.remoteFiles.set(this.getFullPath(filename), url);
   }
 
   /** Cache a file */
   saveCache(path: string, data: Promise<Data> | Data) {
-    const fullPath = this.getFullPath(path);
-    this.cache.set(fullPath, data);
+    const entry = this.fs.entries.get(this.fs.normalize(path));
+
+    if (entry) {
+      entry.setContent(data);
+    }
+    // const fullPath = this.getFullPath(path);
+    // this.cache.set(fullPath, data);
   }
 
   /** Delete a file from the cache */
@@ -64,6 +83,8 @@ export default class Reader {
 
   /** Returns the file info of a path */
   async getInfo(path: string): Promise<FileInfo | undefined> {
+    return this.fs.info(path);
+
     const fullPath = this.getFullPath(path);
 
     try {
@@ -182,7 +203,7 @@ function createFileInfo(remote: string, isFile = true): FileInfo {
     mtime: now,
     atime: now,
     birthtime: now,
-    dev: null,
+    dev: 0,
     ino: null,
     mode: null,
     nlink: null,

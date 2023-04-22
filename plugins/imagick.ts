@@ -108,8 +108,8 @@ export default function (userOptions?: Partial<Options>) {
           }
         }
 
-        const output = page.duplicate(index++, { [options.name]: undefined });
-        output.data = site.pagePreparer.getData(output, page.data);
+        const output = page.duplicate(index++);
+        output.data = { ...page.data, [options.name]: undefined };
 
         rename(output, transformation);
 

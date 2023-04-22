@@ -1,6 +1,7 @@
 import { posix } from "../deps/path.ts";
 import { isPlainObject } from "./utils.ts";
 
+import type { Entry } from "./fs.ts";
 import type { Data, Formats, Reader } from "../core.ts";
 
 export interface Options {
@@ -26,23 +27,17 @@ export default class DataLoader {
     this.formats = options.formats;
   }
 
-  async load(path: string): Promise<Data | undefined> {
-    const info = await this.reader.getInfo(path);
-
-    if (!info) {
-      return;
+  load(entry: Entry): Promise<Data | undefined> {
+    if (entry.type === "directory") {
+      return this.#loadDirectory(entry);
     }
 
-    if (info.isDirectory) {
-      return this.#loadDirectory(path);
-    }
-
-    return this.#loadFile(path);
+    return this.#loadFile(entry);
   }
 
   /** Load a _data.* file */
-  async #loadFile(path: string): Promise<Data | undefined> {
-    const format = this.formats.search(path);
+  async #loadFile(entry: Entry): Promise<Data | undefined> {
+    const format = this.formats.search(entry.path);
 
     if (!format) {
       return;
@@ -52,15 +47,15 @@ export default class DataLoader {
       return;
     }
 
-    return await this.reader.read(path, format.dataLoader);
+    return await entry.getContent(format.dataLoader);
   }
 
   /** Load a _data directory */
-  async #loadDirectory(path: string): Promise<Data> {
+  async #loadDirectory(entry: Entry): Promise<Data> {
     const data: Data = {};
 
-    for await (const entry of this.reader.readDir(path)) {
-      await this.loadEntry(path, entry, data);
+    for await (const child of Object.values(entry.children || {})) {
+      await this.loadEntry(child, data);
     }
 
     return data;
@@ -70,17 +65,14 @@ export default class DataLoader {
    * Load a data entry inside a _data directory
    * and append the data to the data object
    */
-  async loadEntry(path: string, entry: Deno.DirEntry, data: Data) {
-    if (
-      entry.isSymlink ||
-      entry.name.startsWith(".") || entry.name.startsWith("_")
-    ) {
+  async loadEntry(entry: Entry, data: Data) {
+    if (entry.name.startsWith(".") || entry.name.startsWith("_")) {
       return;
     }
 
-    if (entry.isFile) {
+    if (entry.type === "file") {
       const name = posix.basename(entry.name, posix.extname(entry.name));
-      const fileData = await this.#loadFile(posix.join(path, entry.name)) || {};
+      const fileData = await this.#loadFile(entry) || {};
 
       if (fileData.content && Object.keys(fileData).length === 1) {
         data[name] = fileData.content;
@@ -96,10 +88,8 @@ export default class DataLoader {
       return;
     }
 
-    if (entry.isDirectory) {
-      data[entry.name] = await this.#loadDirectory(
-        posix.join(path, entry.name),
-      );
+    if (entry.type === "directory") {
+      data[entry.name] = await this.#loadDirectory(entry);
     }
   }
 }

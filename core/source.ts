@@ -1,15 +1,19 @@
 import { posix } from "../deps/path.ts";
-import { concurrent, normalizePath } from "./utils.ts";
-import { Components, Directory, Page, StaticFile } from "./filesystem.ts";
+import { getExtension, normalizePath } from "./utils.ts";
+import { Page, StaticFile } from "./filesystem.ts";
+import { parseISO } from "../deps/date.ts";
+import { Exception } from "./errors.ts";
+
+import type { Components } from "../core.ts";
+import type { Entry } from "./fs.ts";
 
 import type {
   ComponentLoader,
   Data,
   DataLoader,
-  DirEntry,
   Formats,
+  PageData,
   PageLoader,
-  PagePreparer,
   Reader,
   ScopeFilter,
 } from "../core.ts";
@@ -18,9 +22,10 @@ export interface Options {
   formats: Formats;
   dataLoader: DataLoader;
   pageLoader: PageLoader;
-  pagePreparer: PagePreparer;
   componentLoader: ComponentLoader;
+  scopedData: Map<string, Data>;
   reader: Reader;
+  prettyUrls: boolean;
   components: {
     variable: string;
     cssFile: string;
@@ -33,9 +38,6 @@ export interface Options {
  * with the data, pages, assets and static files
  */
 export default class Source {
-  /** The root of the src directory */
-  root = new Directory({ path: "/" });
-
   /** Filesystem reader to scan folders */
   reader: Reader;
 
@@ -44,9 +46,6 @@ export default class Source {
 
   /** To load all pages */
   pageLoader: PageLoader;
-
-  /** To prepare the pages */
-  pagePreparer: PagePreparer;
 
   /** To load all components */
   componentLoader: ComponentLoader;
@@ -59,6 +58,10 @@ export default class Source {
 
   /** The path filters to ignore */
   filters: ScopeFilter[] = [];
+
+  scopedData: Map<string, Data>;
+
+  prettyUrls: boolean;
 
   /** List of static files and folders to copy */
   staticPaths = new Map<
@@ -85,12 +88,13 @@ export default class Source {
 
   constructor(options: Options) {
     this.pageLoader = options.pageLoader;
-    this.pagePreparer = options.pagePreparer;
     this.dataLoader = options.dataLoader;
     this.componentLoader = options.componentLoader;
     this.reader = options.reader;
     this.formats = options.formats;
     this.components = options.components;
+    this.scopedData = options.scopedData;
+    this.prettyUrls = options.prettyUrls;
   }
 
   addIgnoredPath(path: string) {
@@ -108,96 +112,172 @@ export default class Source {
     );
   }
 
-  /** Return the site content */
-  getContent(
-    globalData: Map<string, Data>,
-    parentComponents: Components,
+  async build(
+    globalComponents: Components,
     pageFilters: ((page: Page) => boolean)[],
-  ): [Page[], StaticFile[]] {
-    const [pages, staticFiles] = this.#getContent(
-      this.root,
-      {},
-      parentComponents,
-      "/",
-      globalData,
-    );
-
-    return [
-      pages.filter((
-        page,
-      ) => pageFilters.every((filter) => filter(page))),
-      staticFiles,
-    ];
-  }
-
-  /** Return the list of pages and static files recursively */
-  #getContent(
-    directory: Directory,
-    parentData: Data,
-    parentComponents: Components,
-    parentPath: string,
-    globalData: Map<string, Data>,
-  ): [Page[], StaticFile[]] {
+  ): Promise<[Page[], StaticFile[]]> {
     const pages: Page[] = [];
     const staticFiles: StaticFile[] = [];
 
-    // Data cascade from the parent directory
-    const data = this.pagePreparer.getData(directory, parentData, globalData);
-    const path = posix.join(parentPath, directory.src.slug);
+    await this.#build(
+      this.reader.fs.entries.get("/")!,
+      "",
+      globalComponents,
+      {},
+      pages,
+      staticFiles,
+    );
 
-    // Setup the components
-    if (directory.components.size) {
-      const components = mergeComponents(
-        directory.components,
-        parentComponents,
-      );
-      parentComponents = components;
+    return [pages, staticFiles];
+  }
 
-      if (components?.size) {
-        data[this.components.variable] = toProxy(components, this.extraCode);
+  async #build(
+    dir: Entry,
+    path: string,
+    parentComponents: Components,
+    parentData: Data,
+    pages: Page[],
+    staticFiles: StaticFile[],
+  ) {
+    // Parse the date/time in the folder name
+    const [name, date] = parseDate(dir.name);
+    path = `${path}/${name}`;
+
+    // Load the _data files
+    const currentData: Data = date ? { date } : {};
+
+    for (const entry of dir.children.values()) {
+      if (
+        (entry.type === "file" && entry.name.startsWith("_data.")) ||
+        (entry.type === "directory" && entry.name === "_data")
+      ) {
+        Object.assign(currentData, await this.dataLoader.load(entry));
       }
     }
 
-    directory.data = data;
-
-    // Apply data cascade and dest path to the pages
-    pages.push(
-      ...[...directory.pages.values()].map((page) => {
-        page.data = this.pagePreparer.getData(page, data, globalData);
-        page.data.url = this.pagePreparer.getUrl(page, path);
-        page.data.date = this.pagePreparer.getDate(page);
-        return page;
-      }),
+    const dirData = mergeData(
+      this.scopedData.get(dir.path) || {},
+      parentData,
+      currentData,
     );
 
-    // Resolve url for the static files
-    staticFiles.push(
-      ...[...directory.staticFiles.values()].map((file) => {
-        if (typeof file.dest === "string") {
-          file.outputPath = file.dest;
-        } else {
-          file.outputPath = posix.join(path, file.filename);
+    // Load _components files
+    for (const entry of dir.children.values()) {
+      if (entry.type === "directory" && entry.name === "_components") {
+        const components = new Map(parentComponents);
+        this.componentLoader.load(entry, dirData, components);
+        dirData[this.components.variable] = toProxy(components, this.extraCode);
+        break;
+      }
+    }
 
-          if (typeof file.dest === "function") {
-            file.outputPath = file.dest(file.outputPath);
-          }
+    // Load the pages and static files
+    for (const entry of dir.children.values()) {
+      // Static files
+      if (this.staticPaths.has(entry.path)) {
+        const dest = this.staticPaths.get(entry.path);
+
+        if (entry.type === "file") {
+          staticFiles.push({
+            entry,
+            outputPath: getOutputPath(entry, path, dest),
+          });
+          continue;
         }
-        return file;
-      }),
-    );
 
-    // Recursively get the pages of the subdirectories
-    for (const subdirectory of directory.dirs.values()) {
-      const [dirPages, dirStaticFiles] = this.#getContent(
-        subdirectory,
-        data,
-        parentComponents,
-        path,
-        globalData,
-      );
+        staticFiles.push(...this.#getStaticFiles(entry, path, dest));
+        continue;
+      }
 
-      pages.push(...dirPages);
-      staticFiles.push(...dirStaticFiles);
+      // Ignore .filename and _filename
+      if (entry.name.startsWith(".") || entry.name.startsWith("_")) {
+        continue;
+      }
+
+      // Check if the file should be ignored
+      if (this.ignored.has(entry.path)) {
+        continue;
+      }
+
+      if (this.filters.some((filter) => filter(entry.path))) {
+        continue;
+      }
+
+      if (entry.type === "file") {
+        const format = this.formats.search(entry.path);
+
+        // Unknown file format
+        if (!format) {
+          // Remaining files
+          if (this.copyRemainingFiles) {
+            const dest = this.copyRemainingFiles(entry.path);
+
+            if (dest) {
+              staticFiles.push({
+                entry,
+                outputPath: getOutputPath(
+                  entry,
+                  path,
+                  typeof dest === "string" ? dest : undefined,
+                ),
+              });
+            }
+          }
+          continue;
+        }
+
+        // The file is a static file
+        if (format.copy) {
+          staticFiles.push({
+            entry,
+            outputPath: getOutputPath(entry, path),
+          });
+          continue;
+        }
+
+        // The file is a page
+        if (format.pageLoader) {
+          const info = entry.getInfo();
+          const { ext, asset } = format;
+          const [slug, date] = parseDate(entry.name);
+
+          // Create the page
+          const page = new Page({
+            path: entry.path.slice(0, -ext.length),
+            lastModified: info?.mtime || undefined,
+            created: info?.birthtime || undefined,
+            remote: entry.src,
+            ext,
+            asset,
+            slug: slug.slice(0, -ext.length),
+          });
+
+          // Load and merge the page data
+          page.data = mergeData(
+            dirData,
+            date ? { date } : {},
+            await entry.getContent(format.pageLoader),
+          ) as PageData;
+
+          // Calculate the page URL
+          page.data.url = getUrl(page, this.prettyUrls, path);
+
+          pages.push(page);
+          continue;
+        }
+      }
+
+      // Load recursively the directory
+      if (entry.type === "directory") {
+        await this.#build(
+          entry,
+          path,
+          parentComponents,
+          dirData,
+          pages,
+          staticFiles,
+        );
+      }
     }
 
     return [pages, staticFiles];
@@ -224,287 +304,45 @@ export default class Source {
 
   /** Load all sources */
   async load() {
-    return await concurrent(
-      this.reader.readDir(this.root.src.path),
-      (entry) => this.#loadEntry(this.root, entry),
-    );
-  }
-
-  /** Update a file */
-  async update(file: string, onDemand = false): Promise<void> {
-    // Check if the file should be ignored
-    for (const path of this.ignored) {
-      if (file === path || file.startsWith(path + "/")) {
-        return;
-      }
-    }
-
-    if (this.filters.some((filter) => filter(file))) {
-      return;
-    }
-
-    // Get the closest directory of the file
-    const inData = /\/_data\//.test(file);
-    const path = inData ? file.split(/\/_data(\/|$)/)[0] : posix.dirname(file);
-    const directory = this.#getClosestLoadedDirectory(path);
-
-    // The parent directory is already loaded, so we only need to update this entry
-    if (directory.src.path === path) {
-      const info = await this.reader.getInfo(file);
-      const name = inData ? "_data" : posix.basename(file);
-
-      // Removed
-      if (!info) {
-        this.#unloadEntry(directory, name);
-        return;
-      }
-
-      const entry = {
-        name: name,
-        isFile: !inData,
-        isDirectory: inData,
-        isSymlink: false,
-        remote: info?.remote,
-      };
-
-      await this.#loadEntry(
-        directory,
-        entry,
-        (path) => inData || file === path,
-      );
-      return;
-    }
-
-    // The parent directory is not loaded, so we need to load it and its children
-    const entryName = file.slice(directory.src.path.length).split("/")[0];
-    const info = await this.reader.getInfo(
-      posix.join(directory.src.path, entryName),
-    );
-    // Removed
-    if (!info) {
-      return;
-    }
-    const entry = {
-      name: entryName,
-      isFile: false,
-      isDirectory: true,
-      isSymlink: false,
-      remote: info.remote,
-    };
-    await this.#loadEntry(
-      directory,
-      entry,
-      (path, entry) =>
-        file === path || file.startsWith(path + "/") ||
-        (onDemand && (entryIsData(entry) || entryIsComponents(entry))),
-    );
-    return;
-  }
-
-  /** Returns the closest loaded directory */
-  #getClosestLoadedDirectory(path: string): Directory {
-    let directory = this.root;
-
-    for (const name of path.split("/")) {
-      if (!name) {
-        continue;
-      }
-
-      if (directory.dirs.has(name)) {
-        directory = directory.dirs.get(name)!;
-      } else {
-        return directory;
-      }
-    }
-
-    return directory;
-  }
-
-  /** Remove an entry from a directory */
-  #unloadEntry(directory: Directory, name: string) {
-    if (name === "_components") {
-      directory.components.clear();
-      return;
-    }
-    if (name === "_data") {
-      directory.baseData = {};
-      return;
-    }
-    directory.dirs.delete(name);
-    directory.pages.delete(name);
-  }
-
-  /** Load an entry from a directory */
-  async #loadEntry(
-    directory: Directory,
-    entry: DirEntry,
-    filter?: (path: string, entry: DirEntry) => boolean,
-  ) {
-    if (entry.isSymlink) {
-      return;
-    }
-
-    const path = posix.join(directory.src.path, entry.name);
-
-    // Used on reload or update only some paths
-    if (filter && !filter(path, entry)) {
-      return;
-    }
-
-    // Load the _data files
-    if (entryIsData(entry)) {
-      const dataFile = await this.dataLoader.load(path);
-      Object.assign(directory.baseData, dataFile);
-      return;
-    }
-
-    // Load the _components files
-    if (entryIsComponents(entry)) {
-      await this.componentLoader.load(path, directory);
-      return;
-    }
-
-    if (this.staticPaths.has(path)) {
-      // It's a static file
-      if (entry.isFile) {
-        directory.setStaticFile({
-          src: path,
-          filename: entry.name,
-          dest: this.staticPaths.get(path),
-          remote: entry.remote,
-        });
-        return;
-      }
-
-      // It's a static folder, scan it
-      await this.#scanStaticFiles(
-        directory,
-        entry,
-        path,
-        entry.name,
-        this.staticPaths.get(path),
-      );
-      return;
-    }
-
-    // Ignore .filename and _filename
-    if (entry.name.startsWith(".") || entry.name.startsWith("_")) {
-      return;
-    }
-
-    // Check if the file should be ignored
-    if (this.ignored.has(path)) {
-      return;
-    }
-
-    if (this.filters.some((filter) => filter(path))) {
-      return;
-    }
-
-    if (entry.isFile) {
-      const format = this.formats.search(path);
-
-      if (!format) {
-        // Remaining files
-        if (this.copyRemainingFiles) {
-          const dest = this.copyRemainingFiles(path);
-
-          if (dest) {
-            directory.setStaticFile({
-              src: path,
-              filename: entry.name,
-              dest: typeof dest === "string" ? dest : path,
-              remote: entry.remote,
-            });
-          }
-        }
-        return;
-      }
-
-      // The file is a static file
-      if (format.copy) {
-        directory.setStaticFile({
-          src: path,
-          filename: entry.name,
-          dest: typeof format.copy === "function" ? format.copy : undefined,
-          remote: entry.remote,
-        });
-        return;
-      }
-
-      // The file is a page (a loadable file)
-      if (format.pageLoader) {
-        const page = await this.pageLoader.load(path, format);
-
-        if (page) {
-          directory.setPage(entry.name, page);
-        } else {
-          directory.unsetPage(entry.name);
-        }
-
-        return;
-      }
-    }
-
-    // Load recursively the directory
-    if (entry.isDirectory) {
-      const subDirectory = directory.createDirectory(entry.name);
-
-      await concurrent(
-        this.reader.readDir(subDirectory.src.path),
-        (entry) => this.#loadEntry(subDirectory, entry),
-      );
-      return;
-    }
+    this.reader.scan();
   }
 
   /** Scan the static files in a directory */
-  async #scanStaticFiles(
-    directory: Directory,
-    entry: DirEntry,
-    src: string,
-    filename: string,
+  *#getStaticFiles(
+    dirEntry: Entry,
+    path: string,
     dest?: string | ((file: string) => string),
-  ) {
-    if (entry.isSymlink) {
-      return;
-    }
+  ): Generator<StaticFile> {
+    for (const entry of dirEntry.children.values()) {
+      if (entry.type === "file") {
+        if (entry.name.startsWith(".") || entry.name.startsWith("_")) {
+          continue;
+        }
 
-    // It's a static file/folder
-    if (this.staticPaths.has(src)) {
-      dest = this.staticPaths.get(src);
-    } else if (entry.name.startsWith(".") || entry.name.startsWith("_")) {
-      return;
-    }
+        // Check if the file should be ignored
+        if (this.ignored.has(path)) {
+          continue;
+        }
 
-    // Check if the file should be ignored
-    if (this.ignored.has(src)) {
-      return;
-    }
+        if (this.filters.some((filter) => filter(path))) {
+          continue;
+        }
 
-    if (this.filters.some((filter) => filter(src))) {
-      return;
-    }
+        const entryDest = typeof dest === "string"
+          ? posix.join(dest, entry.name)
+          : dest;
 
-    if (entry.isFile) {
-      directory.setStaticFile({
-        src,
-        filename,
-        dest,
-        remote: entry.remote,
-      });
-      return;
-    }
-
-    if (entry.isDirectory) {
-      for await (const entry of this.reader.readDir(src)) {
-        await this.#scanStaticFiles(
-          directory,
+        yield {
           entry,
-          posix.join(src, entry.name),
-          posix.join(filename, entry.name),
-          typeof dest === "string" ? posix.join(dest, entry.name) : dest,
-        );
+          outputPath: getOutputPath(entry, path, entryDest),
+        };
+      }
+
+      if (entry.type === "directory") {
+        const entryDest = typeof dest === "string"
+          ? posix.join(dest, entry.name)
+          : dest;
+        yield* this.#getStaticFiles(entry, path, entryDest);
       }
     }
   }
@@ -575,17 +413,17 @@ export interface ProxyComponents {
 
 /** Merge the cascade components */
 export function mergeComponents(
-  baseComponents: Components,
-  parentComponents: Components = new Map(),
+  current: Components,
+  previous: Components = new Map(),
 ): Components {
-  const components = new Map(parentComponents);
+  const components = new Map(previous);
 
-  for (const [key, value] of baseComponents) {
+  for (const [key, value] of current) {
     if (components.has(key)) {
-      const parentValue = components.get(key);
+      const previousValue = components.get(key);
 
-      if (parentValue instanceof Map && value instanceof Map) {
-        components.set(key, mergeComponents(value, parentValue));
+      if (previousValue instanceof Map && value instanceof Map) {
+        components.set(key, mergeComponents(value, previousValue));
       } else {
         components.set(key, value);
       }
@@ -597,13 +435,237 @@ export function mergeComponents(
   return components;
 }
 
-/** Check if the entry is a _data file/directory */
-function entryIsData(entry: DirEntry): boolean {
-  return (entry.isDirectory && entry.name === "_data") ||
-    /^_data\.\w+$/.test(entry.name);
+/** Merge the cascade data */
+export function mergeData(...datas: Data[]): Data {
+  return datas.reduce((previous, current) => {
+    const data: Data = { ...previous, ...current };
+
+    // Merge special keys
+    const mergedKeys: Record<string, string> = {
+      ...previous.mergedKeys,
+      ...current.mergedKeys,
+    };
+
+    for (const [key, type] of Object.entries(mergedKeys)) {
+      switch (type) {
+        case "stringArray":
+        case "array":
+          {
+            const currentValue: unknown[] = Array.isArray(current[key])
+              ? current[key] as unknown[]
+              : (key in current)
+              ? [current[key]]
+              : [];
+
+            const previousValue: unknown[] = Array.isArray(previous[key])
+              ? previous[key] as unknown[]
+              : (key in previous)
+              ? [previous[key]]
+              : [];
+
+            const merged = [...previousValue, ...currentValue];
+
+            data[key] = [
+              ...new Set(
+                type === "stringArray" ? merged.map(String) : merged,
+              ),
+            ];
+          }
+          break;
+
+        case "object":
+          {
+            const currentValue = current[key] as
+              | Record<string, unknown>
+              | undefined;
+            const previousValue = previous[key] as
+              | Record<string, unknown>
+              | undefined;
+
+            data[key] = { ...previousValue, ...currentValue };
+          }
+          break;
+      }
+    }
+
+    return data;
+  });
 }
 
-/** Check if the entry is a _components folder */
-function entryIsComponents(entry: DirEntry): boolean {
-  return entry.isDirectory && entry.name === "_components";
+/**
+ * Parse a date/datetime
+ *
+ * Filenames can be prepended with a date (yyyy-mm-dd) or datetime
+ * (yyyy-mm-dd-hh-ii-ss) followed by an underscore (_) or hyphen (-).
+ */
+export function parseDate(slug: string): [string, Date | undefined] {
+  const filenameRegex =
+    /^(?<year>\d{4})-(?<month>\d\d)-(?<day>\d\d)(?:-(?<hour>\d\d)-(?<minute>\d\d)(?:-(?<second>\d\d))?)?(?:_|-)(?<slug>.*)/;
+  const fileNameParts = filenameRegex.exec(slug)?.groups;
+
+  if (fileNameParts) {
+    const { year, month, day, hour, minute, second, slug } = fileNameParts;
+    const date = new Date(Date.UTC(
+      parseInt(year),
+      parseInt(month) - 1,
+      parseInt(day),
+      hour ? parseInt(hour) : 0,
+      minute ? parseInt(minute) : 0,
+      second ? parseInt(second) : 0,
+    ));
+
+    if (date) {
+      return [slug, date];
+    }
+  }
+
+  return [slug, undefined];
+}
+
+/** Returns the Date instance of a file */
+export function getDate(entry: Entry, date: unknown): Date {
+  if (date instanceof Date) {
+    return date;
+  }
+
+  if (typeof date === "number") {
+    return new Date(date);
+  }
+
+  const info = entry.getInfo();
+
+  if (typeof date === "string") {
+    switch (date.toLowerCase()) {
+      case "git last modified":
+        return getGitDate("modified", entry.src) || info.mtime || new Date();
+      case "git created":
+        return getGitDate("created", entry.src) || info.birthtime || new Date();
+    }
+
+    const parsed = parseISO(date);
+
+    if (!isNaN(parsed.getTime())) {
+      return parsed;
+    }
+
+    throw new Error(`Invalid date: ${date} (${entry.src})`);
+  }
+
+  return info.birthtime || info.mtime || new Date();
+}
+
+/**
+ * Returns the result of a git command as Date
+ * Thanks to https://github.com/11ty/eleventy/blob/8dd2a1012de92c5ee1eab7c37e6bf1b36183927e/src/Util/DateGitLastUpdated.js
+ */
+export function getGitDate(
+  type: "created" | "modified",
+  file: string,
+): Date | undefined {
+  const args = type === "created"
+    ? ["log", "--diff-filter=A", "--follow", "-1", "--format=%at", "--", file]
+    : ["log", "-1", "--format=%at", "--", file];
+
+  const { code, stdout } = new Deno.Command("git", { args }).outputSync();
+
+  if (code !== 0) {
+    return;
+  }
+  const str = new TextDecoder().decode(stdout);
+  const timestamp = parseInt(str) * 1000;
+
+  if (timestamp) {
+    return new Date(timestamp);
+  }
+}
+
+/** Returns the final URL assigned to a page */
+export function getUrl(
+  page: Page,
+  prettyUrls: boolean,
+  parentPath: string,
+): string | false {
+  const { data } = page;
+  let url = data.url as
+    | string
+    | ((page: Page) => string | false)
+    | false
+    | undefined;
+
+  if (url === false) {
+    return false;
+  }
+
+  if (typeof url === "function") {
+    url = url(page);
+  }
+
+  if (typeof url === "string") {
+    // Relative URL
+    if (url.startsWith("./") || url.startsWith("../")) {
+      return normalizeUrl(posix.join(parentPath, url));
+    }
+
+    if (url.startsWith("/")) {
+      return normalizeUrl(url);
+    }
+
+    throw new Exception(
+      `The url variable must start with "/", "./" or "../"`,
+      { page, url },
+    );
+  }
+
+  // If the user has provided a value which hasn't yielded a string then it is an invalid url.
+  if (url !== undefined) {
+    throw new Exception(
+      `If a url is specified, it should either be a string, or a function which returns a string. The provided url is of type: ${typeof url}.`,
+      { page, url },
+    );
+  }
+
+  // Calculate the URL from the path
+  url = posix.join(parentPath, page.src.slug);
+  const ext = getExtension(page.src.path);
+
+  if (ext) {
+    return url + ext;
+  }
+
+  if (page.src.asset) {
+    return url + page.src.ext;
+  }
+
+  if (prettyUrls) {
+    if (posix.basename(url) === "index") {
+      return posix.join(posix.dirname(url), "/");
+    }
+    return posix.join(url, "/");
+  }
+
+  return `${url}.html`;
+}
+
+/** Remove the /index.html part if exist */
+export function normalizeUrl(url: string): string {
+  if (url.endsWith("/index.html")) {
+    return url.slice(0, -10);
+  }
+  return url;
+}
+
+export function getOutputPath(
+  entry: Entry,
+  path: string,
+  dest?: string | ((path: string) => string),
+): string {
+  if (typeof dest === "function") {
+    return dest(entry.path);
+  }
+
+  if (typeof dest === "string") {
+    return dest;
+  }
+
+  return posix.join(path, entry.name);
 }
