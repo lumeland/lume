@@ -2,6 +2,7 @@ import { concurrent, isGenerator } from "./utils.ts";
 import { Exception } from "./errors.ts";
 import { Page } from "./filesystem.ts";
 import { posix } from "../deps/path.ts";
+import { getDate, getUrl, mergeData } from "./source.ts";
 
 import type {
   Content,
@@ -13,7 +14,7 @@ import type {
 
 export interface Options {
   includesLoader: IncludesLoader;
-  prettyUrls: boolean | "no-html-extension";
+  prettyUrls: boolean;
   preprocessors: Processors;
   formats: Formats;
 }
@@ -27,7 +28,7 @@ export default class Renderer {
   includesLoader: IncludesLoader;
 
   /** To convert the urls to pretty /example.html => /example/ */
-  prettyUrls: boolean | "no-html-extension";
+  prettyUrls: boolean;
 
   /** All preprocessors */
   preprocessors: Processors;
@@ -101,12 +102,12 @@ export default class Renderer {
           if (!data.content) {
             data.content = null;
           }
-          const newPage = page.duplicate(index++, data);
-          // newPage.data = this.pagePreparer.getData(newPage, page.data);
-          // newPage.data.url = basePath
-          //   ? this.pagePreparer.getUrl(newPage, basePath)
-          //   : false;
-          // newPage.data.date = this.pagePreparer.getDate(newPage);
+          const newPage = page.duplicate(index++);
+          newPage.data = mergeData(page.data, data);
+          newPage.data.url = basePath
+            ? getUrl(newPage, this.prettyUrls, basePath)
+            : false;
+          newPage.data.date = getDate(newPage);
           generatedPages.push(newPage);
         }
       }

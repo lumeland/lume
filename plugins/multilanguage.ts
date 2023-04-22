@@ -1,6 +1,7 @@
 import { Page } from "../core/filesystem.ts";
 import { isPlainObject, merge } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
+import { getUrl } from "../core/source.ts";
 
 import type { PageData, Plugin } from "../core.ts";
 
@@ -60,10 +61,7 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
 
         if (customUrl) {
           newData.url = customUrl;
-          newData.url = site.pagePreparer.getUrl(
-            newPage,
-            basePath,
-          );
+          newData.url = getUrl(newPage, site.options.prettyUrls, basePath);
         } else if (newData.url) {
           newData.url = `/${lang}${newData.url}`;
         }

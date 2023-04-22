@@ -33,11 +33,10 @@ import type {
   FileInfo,
   Loader,
 } from "./core/reader.ts";
+import type { default as FS, Entry } from "./core/fs.ts";
 import type Logger from "./core/logger.ts";
-import type PagePreparer from "./core/page_preparer.ts";
 import type Writer from "./core/writer.ts";
 import type IncludesLoader from "./core/includes_loader.ts";
-import type { default as PageLoader } from "./core/page_loader.ts";
 import type DataLoader from "./core/data_loader.ts";
 import type {
   Component,
@@ -114,6 +113,7 @@ export type {
   Dest,
   DirEntry,
   Engine,
+  Entry,
   ErrorData,
   Event,
   EventListener,
@@ -124,6 +124,7 @@ export type {
   FileInfo,
   Format,
   Formats,
+  FS,
   Helper,
   HelperOptions,
   ImportMap,
@@ -133,8 +134,6 @@ export type {
   Middleware,
   MultiProcessor,
   Page,
-  PageLoader,
-  PagePreparer,
   Plugin,
   PluginSetup,
   Processor,

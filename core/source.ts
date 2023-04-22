@@ -4,27 +4,24 @@ import { Page, StaticFile } from "./filesystem.ts";
 import { parseISO } from "../deps/date.ts";
 import { Exception } from "./errors.ts";
 
-import type { Components } from "../core.ts";
-import type { Entry } from "./fs.ts";
-
 import type {
   ComponentLoader,
+  Components,
   Data,
   DataLoader,
+  Entry,
   Formats,
+  FS,
   PageData,
-  PageLoader,
-  Reader,
   ScopeFilter,
 } from "../core.ts";
 
 export interface Options {
   formats: Formats;
   dataLoader: DataLoader;
-  pageLoader: PageLoader;
   componentLoader: ComponentLoader;
   scopedData: Map<string, Data>;
-  reader: Reader;
+  fs: FS;
   prettyUrls: boolean;
   components: {
     variable: string;
@@ -39,13 +36,10 @@ export interface Options {
  */
 export default class Source {
   /** Filesystem reader to scan folders */
-  reader: Reader;
+  fs: FS;
 
   /** To load all _data files */
   dataLoader: DataLoader;
-
-  /** To load all pages */
-  pageLoader: PageLoader;
 
   /** To load all components */
   componentLoader: ComponentLoader;
@@ -87,10 +81,9 @@ export default class Source {
   };
 
   constructor(options: Options) {
-    this.pageLoader = options.pageLoader;
     this.dataLoader = options.dataLoader;
     this.componentLoader = options.componentLoader;
-    this.reader = options.reader;
+    this.fs = options.fs;
     this.formats = options.formats;
     this.components = options.components;
     this.scopedData = options.scopedData;
@@ -120,7 +113,7 @@ export default class Source {
     const staticFiles: StaticFile[] = [];
 
     await this.#build(
-      this.reader.fs.entries.get("/")!,
+      this.fs.entries.get("/")!,
       "",
       globalComponents,
       {},
@@ -128,7 +121,12 @@ export default class Source {
       staticFiles,
     );
 
-    return [pages, staticFiles];
+    return [
+      pages.filter((
+        page,
+      ) => pageFilters.every((filter) => filter(page))),
+      staticFiles,
+    ];
   }
 
   async #build(
@@ -262,6 +260,9 @@ export default class Source {
           // Calculate the page URL
           page.data.url = getUrl(page, this.prettyUrls, path);
 
+          // Calculate the date
+          page.data.date = getDate(page.data.date, entry);
+
           pages.push(page);
           continue;
         }
@@ -300,11 +301,6 @@ export default class Source {
     }
 
     return pages;
-  }
-
-  /** Load all sources */
-  async load() {
-    this.reader.scan();
   }
 
   /** Scan the static files in a directory */
@@ -436,7 +432,7 @@ export function mergeComponents(
 }
 
 /** Merge the cascade data */
-export function mergeData(...datas: Data[]): Data {
+export function mergeData(...datas: Data[]): PageData {
   return datas.reduce((previous, current) => {
     const data: Data = { ...previous, ...current };
 
@@ -489,7 +485,7 @@ export function mergeData(...datas: Data[]): Data {
     }
 
     return data;
-  });
+  }) as PageData;
 }
 
 /**
@@ -523,7 +519,7 @@ export function parseDate(slug: string): [string, Date | undefined] {
 }
 
 /** Returns the Date instance of a file */
-export function getDate(entry: Entry, date: unknown): Date {
+export function getDate(date: unknown, entry?: Entry): Date {
   if (date instanceof Date) {
     return date;
   }
@@ -532,14 +528,17 @@ export function getDate(entry: Entry, date: unknown): Date {
     return new Date(date);
   }
 
-  const info = entry.getInfo();
+  const info = entry?.getInfo();
 
   if (typeof date === "string") {
-    switch (date.toLowerCase()) {
-      case "git last modified":
-        return getGitDate("modified", entry.src) || info.mtime || new Date();
-      case "git created":
-        return getGitDate("created", entry.src) || info.birthtime || new Date();
+    if (entry && info) {
+      switch (date.toLowerCase()) {
+        case "git last modified":
+          return getGitDate("modified", entry.src) || info.mtime || new Date();
+        case "git created":
+          return getGitDate("created", entry.src) || info.birthtime ||
+            new Date();
+      }
     }
 
     const parsed = parseISO(date);
@@ -548,10 +547,10 @@ export function getDate(entry: Entry, date: unknown): Date {
       return parsed;
     }
 
-    throw new Error(`Invalid date: ${date} (${entry.src})`);
+    throw new Error(`Invalid date: ${date} (${entry?.src})`);
   }
 
-  return info.birthtime || info.mtime || new Date();
+  return info?.birthtime || info?.mtime || new Date();
 }
 
 /**

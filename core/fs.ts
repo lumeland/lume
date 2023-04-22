@@ -5,7 +5,7 @@ type EntryType = "file" | "directory";
 
 export interface Options {
   root: string;
-  filter?: (entry: Entry) => boolean;
+  ignore?: (string | ((entry: Entry) => boolean))[];
 }
 
 export class Entry {
@@ -83,7 +83,7 @@ export default class FS {
     const entry = this.entries.get(path);
 
     if (entry) {
-      entry.update();
+      entry.removeCache();
 
       // It was removed
       try {
@@ -104,6 +104,19 @@ export default class FS {
     });
   }
 
+  #isValid(entry: Entry) {
+    const { ignore } = this.options;
+
+    return ignore
+      ? !ignore.some((ignore) =>
+        typeof ignore === "string"
+          ? (entry.path.startsWith(posix.join(ignore, "/")) ||
+            entry.path === ignore)
+          : ignore(entry)
+      )
+      : true;
+  }
+
   #walkFs(dir: Entry) {
     const prefix = dir.path === "/" ? "" : dir.path;
     const dirPath = `${this.options.root}${prefix}`;
@@ -121,7 +134,7 @@ export default class FS {
         this.options.root + path,
       );
 
-      if (this.options.filter && !this.options.filter(entry)) {
+      if (!this.#isValid(entry)) {
         continue;
       }
 
@@ -166,7 +179,7 @@ export default class FS {
         this.options.root + path,
       );
 
-      if (this.options.filter && !this.options.filter(parent)) {
+      if (!this.#isValid(parent)) {
         break;
       }
 

@@ -1,11 +1,11 @@
 import { posix } from "../deps/path.ts";
 import { Exception } from "./errors.ts";
 
-import type { Data, Format, Reader } from "../core.ts";
+import type { Data, Format, FS } from "../core.ts";
 
 export interface Options {
-  /** The reader instance used to read the files */
-  reader: Reader;
+  /** The filesystem instance used to read the files */
+  fs: FS;
 
   /** The default _includes directory */
   includes: string;
@@ -16,13 +16,13 @@ export interface Options {
  */
 export default class IncludesLoader {
   /** The filesystem reader */
-  reader: Reader;
+  fs: FS;
 
   /** Default _includes path */
   includes: string;
 
   constructor(options: Options) {
-    this.reader = options.reader;
+    this.fs = options.fs;
     this.includes = options.includes;
   }
 
@@ -55,9 +55,12 @@ export default class IncludesLoader {
       return;
     }
 
-    return [
-      finalPath,
-      await this.reader.read(finalPath, format.pageLoader),
-    ];
+    const entry = this.fs.entries.get(finalPath);
+
+    if (!entry) {
+      return;
+    }
+
+    return [finalPath, await entry.getContent(format.pageLoader)];
   }
 }

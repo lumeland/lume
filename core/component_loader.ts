@@ -1,11 +1,8 @@
 import { Entry } from "./fs.ts";
 
-import type { Data, Formats, Reader } from "../core.ts";
+import type { Data, Formats } from "../core.ts";
 
 export interface Options {
-  /** The reader instance used to read the files */
-  reader: Reader;
-
   /** The registered file formats */
   formats: Formats;
 }
@@ -14,14 +11,10 @@ export interface Options {
  * Class to load components from the _components folder.
  */
 export default class ComponentsLoader {
-  /** The filesystem reader */
-  reader: Reader;
-
   /** List of loaders and engines used by extensions */
   formats: Formats;
 
   constructor(options: Options) {
-    this.reader = options.reader;
     this.formats = options.formats;
   }
 

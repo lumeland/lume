@@ -2,8 +2,7 @@ import { join, posix } from "../deps/path.ts";
 import { merge, normalizePath } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
-import Reader from "./reader.ts";
-import PageLoader from "./page_loader.ts";
+import FS from "./fs.ts";
 import ComponentLoader from "./component_loader.ts";
 import DataLoader from "./data_loader.ts";
 import IncludesLoader from "./includes_loader.ts";
@@ -79,13 +78,10 @@ export default class Site {
   _data: Record<string, unknown> = {};
 
   /** To read the files from the filesystem */
-  reader: Reader;
+  fs: FS;
 
   /** Info about how to handle different file formats */
   formats: Formats;
-
-  /** To load all pages */
-  pageLoader: PageLoader;
 
   /** To load all _data files */
   dataLoader: DataLoader;
@@ -150,16 +146,20 @@ export default class Site {
     const { quiet, includes, cwd, prettyUrls, components } = this.options;
 
     // To load source files
-    const reader = new Reader({ src });
+    const fs = new FS({
+      root: src,
+      ignore: [
+        posix.join("/", this.options.dest),
+        (entry) => entry.name.startsWith("."),
+      ],
+    });
     const formats = new Formats();
 
-    const pageLoader = new PageLoader({ reader });
-    const dataLoader = new DataLoader({ reader, formats });
-    const includesLoader = new IncludesLoader({ reader, includes });
-    const componentLoader = new ComponentLoader({ reader, formats });
+    const dataLoader = new DataLoader({ formats });
+    const includesLoader = new IncludesLoader({ fs, includes });
+    const componentLoader = new ComponentLoader({ formats });
     const source = new Source({
-      reader,
-      pageLoader,
+      fs,
       dataLoader,
       componentLoader,
       formats,
@@ -186,9 +186,8 @@ export default class Site {
     const writer = new Writer({ src, dest, logger });
 
     // Save everything in the site instance
-    this.reader = reader;
+    this.fs = fs;
     this.formats = formats;
-    this.pageLoader = pageLoader;
     this.componentLoader = componentLoader;
     this.dataLoader = dataLoader;
     this.includesLoader = includesLoader;
@@ -475,19 +474,20 @@ export default class Site {
 
   /** Define a remote fallback for a missing local file */
   remoteFile(filename: string, url: string): this {
-    this.reader.remoteFile(filename, url);
+    this.fs.remoteFiles.set(posix.join("/", filename), url);
     return this;
   }
 
   /** Save into the cache the content of a file */
   cacheFile(filename: string, data: Data): this {
-    this.reader.saveCache(filename, data);
+    const entry = this.fs.addEntry({ path: filename, type: "file" });
+    entry.setContent(data);
+
     return this;
   }
 
   /** Clear the dest directory and any cache */
   async clear(): Promise<void> {
-    this.reader.clearCache();
     await this.writer.clear();
   }
 
@@ -502,7 +502,7 @@ export default class Site {
     }
 
     // Load source files
-    await this.source.load();
+    this.fs.init();
 
     // Get the site content
     const [_pages, _staticFiles] = await this.source.build(
@@ -537,15 +537,12 @@ export default class Site {
     // Reload the changed files
     for (const file of files) {
       // Delete the file from the cache
-      this.reader.deleteCache(file);
+      this.fs.update(file);
       this.formats.deleteCache(file);
-
-      await this.source.update(file);
     }
 
     // Get the site content
-    const [_pages, _staticFiles] = this.source.getContent(
-      this.scopedData,
+    const [_pages, _staticFiles] = await this.source.build(
       this.globalComponents,
       [
         (page) => !page.data.draft || this.options.dev,
@@ -645,14 +642,16 @@ export default class Site {
   /** Render a single page (used for on demand rendering) */
   async renderPage(file: string): Promise<Page | undefined> {
     // Load the page
-    await this.source.update(file, true);
+    this.fs.init();
 
-    // Returns the page
-    const [pages] = this.source.getContent(
-      this.scopedData,
+    // Get the site content
+    const [pages] = await this.source.build(
       this.globalComponents,
-      [(page) => page.src.path + page.src.ext === file],
+      [
+        (page) => page.src.path + page.src.ext === file,
+      ],
     );
+
     const page = pages[0];
 
     if (!page) {
@@ -691,9 +690,9 @@ export default class Site {
         path = page.data.url as string;
       } else {
         // It's a static file
-        const file = this.files.find((file) => file.src === path);
+        const file = this.files.find((file) => file.entry.src === path);
 
-        if (file?.outputPath) {
+        if (file) {
           path = file.outputPath;
         } else {
           throw new Error(`Source file not found: ${path}`);
@@ -719,10 +718,7 @@ export default class Site {
    * Get the content of a file.
    * Resolve the path if it's needed.
    */
-  async getContent(
-    file: string,
-    { includes = true, loader = textLoader }: ResolveOptions = {},
-  ): Promise<string | Uint8Array | undefined> {
+  async getContent(file: string): Promise<string | Uint8Array | undefined> {
     file = normalizePath(file);
     const basePath = this.src();
 
@@ -745,25 +741,23 @@ export default class Site {
     }
 
     // Search in includes
-    if (includes) {
-      const format = this.formats.search(file);
+    const format = this.formats.search(file);
 
-      if (format) {
-        try {
-          const source = await this.includesLoader.load(file, format);
+    if (format) {
+      try {
+        const source = await this.includesLoader.load(file, format);
 
-          if (source) {
-            return source[1].content as string;
-          }
-        } catch {
-          // Ignore error
+        if (source) {
+          return source[1].content as string;
         }
+      } catch {
+        // Ignore error
       }
     }
 
     // Read the source files directly
     try {
-      const entry = this.reader.fs.entries.get(file);
+      const entry = this.fs.entries.get(file);
       if (entry) {
         return await entry.getContent();
       }

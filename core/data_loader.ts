@@ -2,12 +2,9 @@ import { posix } from "../deps/path.ts";
 import { isPlainObject } from "./utils.ts";
 
 import type { Entry } from "./fs.ts";
-import type { Data, Formats, Reader } from "../core.ts";
+import type { Data, Formats } from "../core.ts";
 
 export interface Options {
-  /** The reader instance used to read the files */
-  reader: Reader;
-
   /** The registered file formats */
   formats: Formats;
 }
@@ -16,14 +13,10 @@ export interface Options {
  * Class to load data files.
  */
 export default class DataLoader {
-  /** The filesystem reader */
-  reader: Reader;
-
   /** List of extensions to load data files and the loader used */
   formats: Formats;
 
   constructor(options: Options) {
-    this.reader = options.reader;
     this.formats = options.formats;
   }
 
@@ -39,11 +32,7 @@ export default class DataLoader {
   async #loadFile(entry: Entry): Promise<Data | undefined> {
     const format = this.formats.search(entry.path);
 
-    if (!format) {
-      return;
-    }
-
-    if (!format.dataLoader) {
+    if (!format?.dataLoader) {
       return;
     }
 
