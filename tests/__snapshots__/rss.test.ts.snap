@@ -93,7 +93,7 @@ snapshot[`RSS plugin 4`] = `
       <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
       <description/>
       <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
-      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
+      <pubDate>Sun, 02 Jan 2022 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Page 6</title>
@@ -142,7 +142,7 @@ snapshot[`RSS plugin 4`] = `
       <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
       <description/>
       <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
-      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
+      <pubDate>Sun, 02 Jan 2022 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Page 6</title>
