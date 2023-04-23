@@ -148,6 +148,7 @@ export async function assertSiteSnapshot(
     page.src.remote = page.src.remote?.replace(cwUrl, "");
     delete page.src.created;
     delete page.src.lastModified;
+    delete page.src.entry;
 
     // Normalize content for Windows
     page.content = normalizeContent(page.content);

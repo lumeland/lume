@@ -164,4 +164,17 @@ export default class Writer {
     await emptyDir(this.dest);
     this.#outputs.clear();
   }
+
+  async removeFiles(files: string[]) {
+    await concurrent(
+      files,
+      async (file) => {
+        try {
+          await Deno.remove(posix.join(this.dest, file));
+        } catch {
+          // Ignored
+        }
+      },
+    );
+  }
 }

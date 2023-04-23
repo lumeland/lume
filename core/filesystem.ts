@@ -176,6 +176,9 @@ export interface Src {
 
   /** The remote url (if the file was downloaded) */
   remote?: string;
+
+  /** The original entry instance */
+  entry?: Entry;
 }
 
 /** The .dest property for a Page */

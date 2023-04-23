@@ -266,6 +266,7 @@ export default class Source {
             ext,
             asset,
             slug: slug.replace(/\.[\w.]+$/, ""),
+            entry,
           });
 
           // Load and merge the page data

@@ -79,7 +79,7 @@ export default class FS {
     return path.endsWith("/") ? path.slice(0, -1) : path;
   }
 
-  update(path: string) {
+  update(path: string): Entry {
     const entry = this.entries.get(path) ||
       this.addEntry({ path, type: "file" });
     entry.removeCache();
@@ -92,6 +92,8 @@ export default class FS {
         this.removeEntry(entry);
       }
     }
+
+    return entry;
   }
 
   #isValid(entry: Entry) {

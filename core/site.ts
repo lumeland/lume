@@ -537,8 +537,17 @@ export default class Site {
     // Reload the changed files
     for (const file of files) {
       // Delete the file from the cache
-      this.fs.update(file);
       this.formats.deleteCache(file);
+      const entry = this.fs.update(file);
+
+      // Remove pages or static files depending on this entry
+      const pages = this.pages.filter((page) => page.src.entry === entry).map((
+        page,
+      ) => page.outputPath) as string[];
+      const files = this.files.filter((file) => file.entry === entry).map((
+        file,
+      ) => file.outputPath) as string[];
+      this.writer.removeFiles([...pages, ...files]);
     }
 
     // Get the site content
