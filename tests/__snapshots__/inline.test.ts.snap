@@ -87,12 +87,10 @@ snapshot[`inline plugin 2`] = `
 snapshot[`inline plugin 3`] = `
 [
   {
-    dest: "/favicon2.png",
-    filename: "favicon.png",
+    entry: "/favicon.png",
+    flags: [
+    ],
     outputPath: "/favicon2.png",
-    parent: "/",
-    remote: undefined,
-    src: "/favicon.png",
   },
 ]
 `;

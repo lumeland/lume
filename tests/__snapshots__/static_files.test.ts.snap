@@ -89,156 +89,112 @@ snapshot[`Copy static files 2`] = `
 snapshot[`Copy static files 3`] = `
 [
   {
-    dest: undefined,
-    filename: "_headers",
+    entry: "/_headers",
+    flags: [
+    ],
     outputPath: "/_headers",
-    parent: "/",
-    remote: undefined,
-    src: "/_headers",
   },
   {
-    dest: undefined,
-    filename: "other/one",
+    entry: "/other/one",
+    flags: [
+    ],
     outputPath: "/other/one",
-    parent: "/",
-    remote: undefined,
-    src: "/other/one",
   },
   {
-    dest: undefined,
-    filename: "other/two",
+    entry: "/other/two",
+    flags: [
+    ],
     outputPath: "/other/two",
-    parent: "/",
-    remote: undefined,
-    src: "/other/two",
   },
   {
-    dest: [Function (anonymous)],
-    filename: "assets/inner/inner2/styles.scss",
+    entry: "/posts/2022-01-01_first-post/assets/inner/inner2/styles.scss",
+    flags: [
+    ],
     outputPath: "/posts/first-post/assets/inner/inner2/styles.css",
-    parent: "/posts/2022-01-01_first-post",
-    remote: undefined,
-    src: "/posts/2022-01-01_first-post/assets/inner/inner2/styles.scss",
   },
   {
-    dest: [Function (anonymous)],
-    filename: "assets/inner/styles1.scss",
+    entry: "/posts/2022-01-01_first-post/assets/inner/styles1.scss",
+    flags: [
+    ],
     outputPath: "/posts/first-post/assets/inner/styles1.css",
-    parent: "/posts/2022-01-01_first-post",
-    remote: undefined,
-    src: "/posts/2022-01-01_first-post/assets/inner/styles1.scss",
   },
   {
-    dest: [Function (anonymous)],
-    filename: "assets/styles.scss",
+    entry: "/posts/2022-01-01_first-post/assets/styles.scss",
+    flags: [
+    ],
     outputPath: "/posts/first-post/assets/styles.css",
-    parent: "/posts/2022-01-01_first-post",
-    remote: undefined,
-    src: "/posts/2022-01-01_first-post/assets/styles.scss",
   },
   {
-    dest: [Function (anonymous)],
-    filename: "callback.copy2",
+    entry: "/posts/2022-01-01_first-post/callback.copy2",
+    flags: [
+    ],
     outputPath: "/subdir/posts/first-post/callback.copy3",
-    parent: "/posts/2022-01-01_first-post",
-    remote: undefined,
-    src: "/posts/2022-01-01_first-post/callback.copy2",
   },
   {
-    dest: undefined,
-    filename: "individual-file",
+    entry: "/posts/2022-01-01_first-post/individual-file",
+    flags: [
+    ],
     outputPath: "/posts/first-post/individual-file",
-    parent: "/posts/2022-01-01_first-post",
-    remote: undefined,
-    src: "/posts/2022-01-01_first-post/individual-file",
   },
   {
-    dest: [Function (anonymous)],
-    filename: "callback1.copy2",
+    entry: "/posts/2022-01-01_first-post/inner/callback1.copy2",
+    flags: [
+    ],
     outputPath: "/subdir/posts/first-post/inner/callback1.copy3",
-    parent: "/posts/2022-01-01_first-post/inner",
-    remote: undefined,
-    src: "/posts/2022-01-01_first-post/inner/callback1.copy2",
   },
   {
-    dest: [Function (anonymous)],
-    filename: "callback2.copy2",
+    entry: "/posts/2022-01-01_first-post/inner/inner2/callback2.copy2",
+    flags: [
+    ],
     outputPath: "/subdir/posts/first-post/inner/inner2/callback2.copy3",
-    parent: "/posts/2022-01-01_first-post/inner/inner2",
-    remote: undefined,
-    src: "/posts/2022-01-01_first-post/inner/inner2/callback2.copy2",
   },
   {
-    dest: undefined,
-    filename: "to-copy2.copy",
+    entry: "/posts/2022-01-01_first-post/inner/inner2/to-copy2.copy",
+    flags: [
+    ],
     outputPath: "/posts/first-post/inner/inner2/to-copy2.copy",
-    parent: "/posts/2022-01-01_first-post/inner/inner2",
-    remote: undefined,
-    src: "/posts/2022-01-01_first-post/inner/inner2/to-copy2.copy",
   },
   {
-    dest: undefined,
-    filename: "to-copy1.copy",
+    entry: "/posts/2022-01-01_first-post/inner/to-copy1.copy",
+    flags: [
+    ],
     outputPath: "/posts/first-post/inner/to-copy1.copy",
-    parent: "/posts/2022-01-01_first-post/inner",
-    remote: undefined,
-    src: "/posts/2022-01-01_first-post/inner/to-copy1.copy",
   },
   {
-    dest: undefined,
-    filename: "to-copy.copy",
+    entry: "/posts/2022-01-01_first-post/to-copy.copy",
+    flags: [
+    ],
     outputPath: "/posts/first-post/to-copy.copy",
-    parent: "/posts/2022-01-01_first-post",
-    remote: undefined,
-    src: "/posts/2022-01-01_first-post/to-copy.copy",
   },
   {
-    dest: undefined,
-    filename: "main.js",
+    entry: "/script/2022-01-01_app/main.js",
+    flags: [
+    ],
     outputPath: "/script/app/main.js",
-    parent: "/script/2022-01-01_app",
-    remote: undefined,
-    src: "/script/2022-01-01_app/main.js",
   },
   {
-    dest: "/_redirects",
-    filename: "static/_redirects",
-    outputPath: "/_redirects",
-    parent: "/",
-    remote: undefined,
-    src: "/static/_redirects",
-  },
-  {
-    dest: "/one.yes",
-    filename: "static/one.yes",
+    entry: "/static/one.yes",
+    flags: [
+    ],
     outputPath: "/one.yes",
-    parent: "/",
-    remote: undefined,
-    src: "/static/one.yes",
   },
   {
-    dest: "/two.yes",
-    filename: "static/two.yes",
+    entry: "/static/two.yes",
+    flags: [
+    ],
     outputPath: "/two.yes",
-    parent: "/",
-    remote: undefined,
-    src: "/static/two.yes",
   },
   {
-    dest: undefined,
-    filename: "styles.css",
+    entry: "/styles.css",
+    flags: [
+    ],
     outputPath: "/styles.css",
-    parent: "/",
-    remote: undefined,
-    src: "/styles.css",
   },
   {
-    dest: undefined,
-    filename: "main.css",
+    entry: "/styles/main.css",
+    flags: [
+    ],
     outputPath: "/styles/main.css",
-    parent: "/styles",
-    remote: undefined,
-    src: "/styles/main.css",
   },
 ]
 `;

@@ -1,5 +1,5 @@
 import { join, posix } from "../deps/path.ts";
-import { merge, normalizePath } from "./utils.ts";
+import { isPlainObject, merge, normalizePath } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
 import FS from "./fs.ts";
@@ -690,7 +690,7 @@ export default class Site {
         path = page.data.url as string;
       } else {
         // It's a static file
-        const file = this.files.find((file) => file.entry.src === path);
+        const file = this.files.find((file) => file.entry.path === path);
 
         if (file) {
           path = file.outputPath;
@@ -737,7 +737,7 @@ export default class Site {
     const staticFile = this.files.find((f) => f.outputPath === file);
 
     if (staticFile) {
-      return staticFile.entry.getContent();
+      return await staticFile.entry.getContent();
     }
 
     // Search in includes
@@ -759,7 +759,11 @@ export default class Site {
     try {
       const entry = this.fs.entries.get(file);
       if (entry) {
-        return await entry.getContent();
+        const content = await entry.getContent();
+
+        return isPlainObject(content) && "content" in content
+          ? content.content as string | Uint8Array
+          : content;
       }
     } catch {
       // Ignore error

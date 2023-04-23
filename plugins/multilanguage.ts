@@ -52,8 +52,7 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
 
       for (const lang of languages) {
         const newData: PageData = { ...data, lang, id };
-        const newPage = page.duplicate();
-        newPage.data = newData;
+        const newPage = page.duplicate(undefined, newData);
         newPages.push(newPage);
 
         // Fix the url

@@ -52,9 +52,9 @@ export default function (userOptions?: Partial<Options>) {
 
     // Build the admin page
     site.addEventListener("afterRender", () => {
-      const root = site.source.root!;
-      const config: Record<string, unknown> | undefined = root
-        .data[options.configKey] as Record<string, unknown> | undefined;
+      const config = site.source.rootData?.[options.configKey] as
+        | Record<string, unknown>
+        | undefined;
 
       if (!config) {
         throw new Exception("Missing configuration for Netlify CMS", {

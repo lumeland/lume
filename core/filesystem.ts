@@ -58,12 +58,15 @@ export class Page {
   }
 
   /** Duplicate this page. */
-  duplicate(index?: number): Page {
+  duplicate(index?: number, data: Data = {}): Page {
     const page = new Page({ ...this.src });
 
     if (index !== undefined) {
       page.src.path += `[${index}]`;
     }
+
+    page.data = data as PageData;
+    page.data.page = page;
 
     return page;
   }

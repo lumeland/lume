@@ -43,7 +43,7 @@ export default class DataLoader {
   async #loadDirectory(entry: Entry): Promise<Data> {
     const data: Data = {};
 
-    for await (const child of Object.values(entry.children || {})) {
+    for await (const child of entry.children.values()) {
       await this.loadEntry(child, data);
     }
 

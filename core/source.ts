@@ -80,6 +80,8 @@ export default class Source {
     variable: string;
   };
 
+  rootData: Data | undefined;
+
   constructor(options: Options) {
     this.dataLoader = options.dataLoader;
     this.componentLoader = options.componentLoader;
@@ -162,11 +164,19 @@ export default class Source {
     // Load _components files
     for (const entry of dir.children.values()) {
       if (entry.type === "directory" && entry.name === "_components") {
-        const components = new Map(parentComponents);
-        this.componentLoader.load(entry, dirData, components);
-        dirData[this.components.variable] = toProxy(components, this.extraCode);
+        parentComponents = new Map(parentComponents);
+        await this.componentLoader.load(entry, dirData, parentComponents);
+        dirData[this.components.variable] = toProxy(
+          parentComponents,
+          this.extraCode,
+        );
         break;
       }
+    }
+
+    // Store the root data to be used by other plugins
+    if (path === "/") {
+      this.rootData = dirData;
     }
 
     // Load the pages and static files
@@ -183,7 +193,11 @@ export default class Source {
           continue;
         }
 
-        staticFiles.push(...this.#getStaticFiles(entry, path, dest));
+        staticFiles.push(...this.#getStaticFiles(
+          entry,
+          typeof dest === "string" ? dest : posix.join(path, entry.name),
+          typeof dest === "function" ? dest : undefined,
+        ));
         continue;
       }
 
@@ -228,7 +242,11 @@ export default class Source {
         if (format.copy) {
           staticFiles.push({
             entry,
-            outputPath: getOutputPath(entry, path),
+            outputPath: getOutputPath(
+              entry,
+              path,
+              typeof format.copy === "function" ? format.copy : undefined,
+            ),
           });
           continue;
         }
@@ -244,24 +262,23 @@ export default class Source {
             path: entry.path.slice(0, -ext.length),
             lastModified: info?.mtime || undefined,
             created: info?.birthtime || undefined,
-            remote: entry.src,
+            remote: entry.flags.has("remote") ? entry.src : undefined,
             ext,
             asset,
-            slug: slug.slice(0, -ext.length),
+            slug: slug.replace(/\.[\w.]+$/, ""),
           });
 
           // Load and merge the page data
           page.data = mergeData(
             dirData,
             date ? { date } : {},
+            this.scopedData.get(entry.path) || {},
             await entry.getContent(format.pageLoader),
           ) as PageData;
 
-          // Calculate the page URL
           page.data.url = getUrl(page, this.prettyUrls, path);
-
-          // Calculate the date
           page.data.date = getDate(page.data.date, entry);
+          page.data.page = page;
 
           pages.push(page);
           continue;
@@ -306,8 +323,8 @@ export default class Source {
   /** Scan the static files in a directory */
   *#getStaticFiles(
     dirEntry: Entry,
-    path: string,
-    dest?: string | ((file: string) => string),
+    destPath: string,
+    destFn?: (file: string) => string,
   ): Generator<StaticFile> {
     for (const entry of dirEntry.children.values()) {
       if (entry.type === "file") {
@@ -316,29 +333,24 @@ export default class Source {
         }
 
         // Check if the file should be ignored
-        if (this.ignored.has(path)) {
+        if (this.ignored.has(entry.path)) {
           continue;
         }
 
-        if (this.filters.some((filter) => filter(path))) {
+        if (this.filters.some((filter) => filter(entry.path))) {
           continue;
         }
 
-        const entryDest = typeof dest === "string"
-          ? posix.join(dest, entry.name)
-          : dest;
-
-        yield {
-          entry,
-          outputPath: getOutputPath(entry, path, entryDest),
-        };
+        const outputPath = getOutputPath(entry, destPath, destFn);
+        yield { entry, outputPath };
       }
 
       if (entry.type === "directory") {
-        const entryDest = typeof dest === "string"
-          ? posix.join(dest, entry.name)
-          : dest;
-        yield* this.#getStaticFiles(entry, path, entryDest);
+        yield* this.#getStaticFiles(
+          entry,
+          posix.join(destPath, entry.name),
+          destFn,
+        );
       }
     }
   }
@@ -659,7 +671,7 @@ export function getOutputPath(
   dest?: string | ((path: string) => string),
 ): string {
   if (typeof dest === "function") {
-    return dest(entry.path);
+    return dest(posix.join(path, entry.name));
   }
 
   if (typeof dest === "string") {

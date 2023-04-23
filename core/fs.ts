@@ -80,28 +80,18 @@ export default class FS {
   }
 
   update(path: string) {
-    const entry = this.entries.get(path);
+    const entry = this.entries.get(path) ||
+      this.addEntry({ path, type: "file" });
+    entry.removeCache();
 
-    if (entry) {
-      entry.removeCache();
-
-      // It was removed
-      try {
-        entry.getInfo();
-      } catch {
-        this.entries.delete(path);
-        const parent = this.entries.get(posix.dirname(path))!;
-        parent.children.delete(path);
+    // Remove if it doesn't exist
+    try {
+      entry.getInfo();
+    } catch (error) {
+      if (error instanceof Deno.errors.NotFound) {
+        this.removeEntry(entry);
       }
-
-      return;
     }
-
-    // It was added
-    this.addEntry({
-      path,
-      type: "file",
-    });
   }
 
   #isValid(entry: Entry) {
@@ -198,6 +188,12 @@ export default class FS {
     children.set(name, entry);
     this.entries.set(entry.path, entry);
     return entry;
+  }
+
+  removeEntry(entry: Entry) {
+    this.entries.delete(entry.path);
+    const parent = this.entries.get(posix.dirname(entry.path))!;
+    parent.children.delete(entry.name);
   }
 }
 

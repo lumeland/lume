@@ -108,7 +108,7 @@ export async function assertSiteSnapshot(
   });
 
   files.sort((a, b) => {
-    return compare(a.src, b.src);
+    return compare(a.entry.path, b.entry.path);
   });
 
   // Normalize some dynamic data of the pages
@@ -166,20 +166,14 @@ export async function assertSiteSnapshot(
 
   // Normalize some dynamic data of the files
   files.forEach((file) => {
-    // Change parent reference
     // @ts-ignore: Just for testing
-    file.parent = file.parent?.src.path;
+    file.flags = [...file.entry.flags];
+    // @ts-ignore: Just for testing
+    file.entry = file.entry.path;
   });
 
   // Test static files
-  await assertSnapshot(
-    context,
-    files.map((file) => {
-      // Remote base path because it's different in the test environment
-      file.remote = file.remote?.replace(cwUrl, "");
-      return file;
-    }),
-  );
+  await assertSnapshot(context, files);
 
   // Test pages
   for (const page of pages) {
