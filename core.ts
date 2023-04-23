@@ -27,13 +27,7 @@ import type {
   ScriptOrFunction,
 } from "./core/scripts.ts";
 
-import type {
-  default as Reader,
-  DirEntry,
-  FileInfo,
-  Loader,
-} from "./core/reader.ts";
-import type { default as FS, Entry } from "./core/fs.ts";
+import type { default as FS, Entry, Loader } from "./core/fs.ts";
 import type Logger from "./core/logger.ts";
 import type Writer from "./core/writer.ts";
 import type IncludesLoader from "./core/includes_loader.ts";
@@ -111,7 +105,6 @@ export type {
   DenoConfig,
   DenoConfigResult,
   Dest,
-  DirEntry,
   Engine,
   Entry,
   ErrorData,
@@ -121,7 +114,6 @@ export type {
   Events,
   Exception,
   Extensions,
-  FileInfo,
   Format,
   Formats,
   FS,
@@ -139,7 +131,6 @@ export type {
   Processor,
   Processors,
   ProxyComponents,
-  Reader,
   Renderer,
   RequestHandler,
   ScopeFilter,

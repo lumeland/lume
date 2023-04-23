@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { merge, normalizePath } from "../core/utils.ts";
 
 import { Data, Page, Site } from "../core.ts";
 
@@ -46,7 +46,16 @@ export class Search {
    * @deprecated Use `search.page()` instead
    */
   data(path = "/"): Data | undefined {
-    const result = this.#site.pages.find((page) => page.data.url === path);
+    const normalized = normalizePath(path);
+    const dirData = this.#site.source.data.get(normalized);
+
+    if (dirData) {
+      return dirData;
+    }
+
+    const result = this.#site.pages.find((page) =>
+      page.data.url === normalized
+    );
 
     if (result) {
       return result.data;

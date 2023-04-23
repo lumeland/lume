@@ -1,5 +1,5 @@
 import { join, posix } from "../deps/path.ts";
-import { isPlainObject, merge, normalizePath } from "./utils.ts";
+import { merge, normalizePath } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
 import FS from "./fs.ts";
@@ -16,6 +16,7 @@ import Logger from "./logger.ts";
 import Scripts from "./scripts.ts";
 import Writer from "./writer.ts";
 import textLoader from "./loaders/text.ts";
+import binaryLoader from "./loaders/binary.ts";
 
 import type {
   Component,
@@ -481,7 +482,11 @@ export default class Site {
   /** Save into the cache the content of a file */
   cacheFile(filename: string, data: Data): this {
     const entry = this.fs.addEntry({ path: filename, type: "file" });
-    entry.setContent(data);
+    const format = this.formats.get(filename);
+    entry.setContent(
+      format?.pageLoader || format?.dataLoader || textLoader,
+      data,
+    );
 
     return this;
   }
@@ -727,7 +732,10 @@ export default class Site {
    * Get the content of a file.
    * Resolve the path if it's needed.
    */
-  async getContent(file: string): Promise<string | Uint8Array | undefined> {
+  async getContent(
+    file: string,
+    loader: Loader,
+  ): Promise<string | Uint8Array | undefined> {
     file = normalizePath(file);
     const basePath = this.src();
 
@@ -746,21 +754,35 @@ export default class Site {
     const staticFile = this.files.find((f) => f.outputPath === file);
 
     if (staticFile) {
-      return await staticFile.entry.getContent();
+      return (await staticFile.entry.getContent(loader)).content as
+        | string
+        | Uint8Array;
     }
 
     // Search in includes
     const format = this.formats.search(file);
+    const pageLoader = format?.pageLoader;
 
-    if (format) {
-      try {
-        const source = await this.includesLoader.load(file, format);
+    if (pageLoader) {
+      const resolvedPath = this.includesLoader.resolve(file, format);
 
-        if (source) {
-          return source[1].content as string;
+      if (resolvedPath) {
+        const entry = this.fs.entries.get(resolvedPath);
+
+        if (entry) {
+          try {
+            if (pageLoader === textLoader || pageLoader === binaryLoader) {
+              return (await entry.getContent(pageLoader)).content as
+                | string
+                | Uint8Array;
+            }
+            return (await entry.getContent(loader)).content as
+              | string
+              | Uint8Array;
+          } catch {
+            // Ignore error
+          }
         }
-      } catch {
-        // Ignore error
       }
     }
 
@@ -768,11 +790,7 @@ export default class Site {
     try {
       const entry = this.fs.entries.get(file);
       if (entry) {
-        const content = await entry.getContent();
-
-        return isPlainObject(content) && "content" in content
-          ? content.content as string | Uint8Array
-          : content;
+        return (await entry.getContent(loader)).content as string | Uint8Array;
       }
     } catch {
       // Ignore error

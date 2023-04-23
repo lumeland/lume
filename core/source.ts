@@ -80,7 +80,8 @@ export default class Source {
     variable: string;
   };
 
-  rootData: Data | undefined;
+  /** The data assigned per path */
+  data = new Map<string, Data>();
 
   constructor(options: Options) {
     this.dataLoader = options.dataLoader;
@@ -116,7 +117,7 @@ export default class Source {
 
     await this.#build(
       this.fs.entries.get("/")!,
-      "",
+      "/",
       globalComponents,
       {},
       pages,
@@ -141,7 +142,7 @@ export default class Source {
   ) {
     // Parse the date/time in the folder name
     const [name, date] = parseDate(dir.name);
-    path = `${path}/${name}`;
+    path = posix.join(path, name);
 
     // Load the _data files
     const currentData: Data = date ? { date } : {};
@@ -175,9 +176,7 @@ export default class Source {
     }
 
     // Store the root data to be used by other plugins
-    if (path === "/") {
-      this.rootData = dirData;
-    }
+    this.data.set(path, dirData);
 
     // Load the pages and static files
     for (const entry of dir.children.values()) {

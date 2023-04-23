@@ -1,5 +1,6 @@
 import { posix } from "../deps/path.ts";
-import { read } from "./utils.ts";
+
+import type { Data } from "./filesystem.ts";
 
 type EntryType = "file" | "directory";
 
@@ -8,6 +9,8 @@ export interface Options {
   ignore?: (string | ((entry: Entry) => boolean))[];
 }
 
+export type Loader = (path: string) => Promise<Data>;
+
 export class Entry {
   name: string;
   path: string;
@@ -15,8 +18,7 @@ export class Entry {
   src: string;
   children = new Map<string, Entry>();
   flags = new Set<string>();
-  // deno-lint-ignore no-explicit-any
-  #content?: any;
+  #content = new Map<Loader, Promise<Data> | Data>();
   #info?: Deno.FileInfo;
 
   constructor(name: string, path: string, type: EntryType, src: string) {
@@ -27,22 +29,20 @@ export class Entry {
   }
 
   removeCache() {
-    this.#content = undefined;
+    this.#content.clear();
     this.#info = undefined;
   }
 
-  getContent(loader: ((path: string) => Promise<unknown>) | boolean = false) {
-    if (!this.#content) {
-      this.#content = typeof loader === "boolean"
-        ? read(this.src, loader)
-        : loader(this.src);
+  getContent(loader: Loader): Promise<Data> | Data {
+    if (!this.#content.has(loader)) {
+      this.#content.set(loader, loader(this.src));
     }
 
-    return this.#content;
+    return this.#content.get(loader)!;
   }
 
-  setContent(content: unknown) {
-    this.#content = content;
+  setContent(loader: Loader, content: Data) {
+    this.#content.set(loader, content);
   }
 
   getInfo() {

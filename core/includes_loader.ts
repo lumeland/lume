@@ -36,9 +36,18 @@ export default class IncludesLoader {
         });
       }
 
-      finalPath = posix.join("/", posix.dirname(from), path);
-    } else {
-      finalPath = posix.join("/", format.includesPath || this.includes, path);
+      return posix.join("/", posix.dirname(from), path);
+    }
+
+    const includesPath = posix.join(
+      "/",
+      format.includesPath || this.includes,
+      "/",
+    );
+    finalPath = posix.join("/", path);
+
+    if (!finalPath.startsWith(includesPath)) {
+      finalPath = posix.join("/", includesPath, path);
     }
 
     return finalPath;
