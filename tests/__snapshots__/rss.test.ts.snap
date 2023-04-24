@@ -88,6 +88,14 @@ snapshot[`RSS plugin 4`] = `
     <language>en</language>
     <generator>https://lume.land</generator>
     <item>
+      <title/>
+      <link>https://example.com/pages/subpage/page7/</link>
+      <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
+      <pubDate>Sun, 02 Jan 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Page 6</title>
       <link>https://example.com/pages/page6/</link>
       <guid isPermaLink="false">https://example.com/pages/page6/</guid>
@@ -96,14 +104,6 @@ snapshot[`RSS plugin 4`] = `
         <![CDATA[<p>Content of Page 6</p>
         ]]>
       </content:encoded>
-      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title/>
-      <link>https://example.com/pages/subpage/page7/</link>
-      <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
-      <description/>
-      <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
       <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
     </item>
     <item>
@@ -137,6 +137,14 @@ snapshot[`RSS plugin 4`] = `
     <language>en</language>
     <generator>https://lume.land</generator>
     <item>
+      <title/>
+      <link>https://example.com/pages/subpage/page7/</link>
+      <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
+      <pubDate>Sun, 02 Jan 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Page 6</title>
       <link>https://example.com/pages/page6/</link>
       <guid isPermaLink="false">https://example.com/pages/page6/</guid>
@@ -145,14 +153,6 @@ snapshot[`RSS plugin 4`] = `
         <![CDATA[<p>Content of Page 6</p>
         ]]>
       </content:encoded>
-      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title/>
-      <link>https://example.com/pages/subpage/page7/</link>
-      <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
-      <description/>
-      <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
       <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
     </item>
     <item>

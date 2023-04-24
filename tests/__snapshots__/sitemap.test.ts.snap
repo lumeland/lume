@@ -121,7 +121,7 @@ snapshot[`Sitemap plugin 5`] = `
   </url>
   <url>
     <loc>https://example.com/pages/subpage/page7/</loc>
-    <lastmod>2022-01-01T00:00:00.000Z</lastmod>
+    <lastmod>2022-01-02T00:00:00.000Z</lastmod>
   </url>
 </urlset>',
   data: {
@@ -142,7 +142,7 @@ snapshot[`Sitemap plugin 5`] = `
   </url>
   <url>
     <loc>https://example.com/pages/subpage/page7/</loc>
-    <lastmod>2022-01-01T00:00:00.000Z</lastmod>
+    <lastmod>2022-01-02T00:00:00.000Z</lastmod>
   </url>
 </urlset>',
     page: undefined,

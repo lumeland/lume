@@ -84,12 +84,11 @@ snapshot[`render remote files 2`] = `
 snapshot[`render remote files 3`] = `
 [
   {
-    dest: undefined,
-    filename: "asset.txt",
+    entry: "/asset.txt",
+    flags: [
+      "remote",
+    ],
     outputPath: "/asset.txt",
-    parent: "/",
-    remote: "assets/remote_files/_remotes/asset.txt",
-    src: "/asset.txt",
   },
 ]
 `;

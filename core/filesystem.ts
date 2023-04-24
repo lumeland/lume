@@ -2,97 +2,24 @@ import { posix } from "../deps/path.ts";
 import { documentToString, getExtension, stringToDocument } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
-import type { Component, PageData, ProxyComponents } from "../core.ts";
+import type { PageData, ProxyComponents } from "../core.ts";
+import type { Entry } from "./fs.ts";
 
-/** Abstract class with common functions for Page and Directory classes */
-abstract class Base {
+/** A page of the site */
+export class Page {
   /** The src info */
   src: Src;
 
   /**
-   * Used to save the merged data:
-   * the base data with the parent data
+   * Used to save the page data
    */
   data: PageData = {} as PageData;
-
-  /** The parent directory */
-  #parent?: Directory;
-
-  /**
-   * Used to save the assigned data directly
-   * For directories, the content of _data or _data.* files
-   * For pages, the front matter or exported variables.
-   */
-  #baseData: Data = {};
 
   /**
    * Internal data. Used to save arbitrary data by plugins and processors
    */
   #_data = {};
 
-  constructor(src?: Partial<Src>) {
-    this.src = { path: "", slug: "", asset: true, ...src };
-
-    if (this.src.path && !this.src.slug) {
-      this.src.slug = posix.basename(this.src.path).replace(/\.[\w.]+$/, "");
-    }
-
-    /**
-     * Detect date/datetime of page/directory in the filename
-     *
-     * Filenames can be prepended with a date (yyyy-mm-dd) or datetime
-     * (yyyy-mm-dd-hh-ii-ss) followed by an underscore (_) or hyphen (-).
-     */
-    const filenameRegex =
-      /^(?<year>\d{4})-(?<month>\d\d)-(?<day>\d\d)(?:-(?<hour>\d\d)-(?<minute>\d\d)(?:-(?<second>\d\d))?)?(?:_|-)(?<slug>.*)/;
-    const fileNameParts = filenameRegex.exec(this.src.slug)?.groups;
-
-    if (fileNameParts) {
-      const { year, month, day, hour, minute, second, slug } = fileNameParts;
-      const date = createDate({ year, month, day, hour, minute, second });
-
-      if (date) {
-        this.src.slug = slug;
-        this.baseData.date = date;
-      }
-    }
-  }
-
-  /** Returns the base data */
-  get baseData(): Data {
-    return this.#baseData;
-  }
-
-  /** Set new base data */
-  set baseData(data: Data) {
-    this.#baseData = data;
-  }
-
-  /** Returns the parent directory */
-  get parent(): Directory | undefined {
-    return this.#parent;
-  }
-
-  /** Set the parent directory */
-  set parent(parent: Directory | undefined) {
-    this.#parent = parent;
-  }
-
-  /**
-   * The property _data is to store internal data,
-   * used by plugins, processors, etc to save arbitrary values
-   */
-  set _data(data: Record<string, unknown>) {
-    this.#_data = data;
-  }
-
-  get _data() {
-    return this.#_data;
-  }
-}
-
-/** A page of the site */
-export class Page extends Base {
   /** The page content (string or Uint8Array) */
   #content?: Content;
 
@@ -114,15 +41,32 @@ export class Page extends Base {
     return page;
   }
 
-  /** Duplicate this page. Optionally, you can provide new data */
-  duplicate(index?: number, baseData: Data = {}): Page {
+  constructor(src?: Partial<Src>) {
+    this.src = { path: "", slug: "", asset: true, ...src };
+  }
+
+  /**
+   * The property _data is to store internal data,
+   * used by plugins, processors, etc to save arbitrary values
+   */
+  set _data(data: Record<string, unknown>) {
+    this.#_data = data;
+  }
+
+  get _data() {
+    return this.#_data;
+  }
+
+  /** Duplicate this page. */
+  duplicate(index?: number, data: Data = {}): Page {
     const page = new Page({ ...this.src });
-    page.parent = this.parent;
-    page.baseData = baseData;
 
     if (index !== undefined) {
       page.src.path += `[${index}]`;
     }
+
+    page.data = data as PageData;
+    page.data.page = page;
 
     return page;
   }
@@ -202,70 +146,12 @@ export class Page extends Base {
   }
 }
 
-/** A directory in the src folder */
-export class Directory extends Base {
-  pages = new Map<string, Page>();
-  dirs = new Map<string, Directory>();
-  staticFiles = new Set<StaticFile>();
-  components: Components = new Map();
-
-  /** Create a subdirectory and return it */
-  createDirectory(slug: string): Directory {
-    const path = posix.join(this.src.path, slug);
-    const directory = new Directory({ path, slug });
-    directory.parent = this;
-    this.dirs.set(slug, directory);
-
-    return directory;
-  }
-
-  /** Add a page to this directory */
-  setPage(name: string, page: Page) {
-    const oldPage = this.pages.get(name);
-    page.parent = this;
-    this.pages.set(name, page);
-
-    if (oldPage) {
-      page._data.hash = oldPage._data.hash;
-    }
-  }
-
-  /** Remove a page from this directory */
-  unsetPage(name: string) {
-    this.pages.delete(name);
-  }
-
-  /** Add a static file to this directory */
-  setStaticFile(file: StaticFile) {
-    file.parent = this;
-    this.staticFiles.add(file);
-  }
-}
-
 export interface StaticFile {
-  /** The path to the source file */
-  src: string;
-
-  /** The configuration path to the destination file */
-  dest?: string | ((path: string) => string);
+  /** The Entry instance of the file */
+  entry: Entry;
 
   /** The final url destination */
-  outputPath?: string;
-
-  /** The parent directory where the StaticFile was located */
-  parent?: Directory;
-
-  /** The filename from the parent Directory */
-  filename: string;
-
-  /** Indicates whether the file was copied after the latest change */
-  saved?: boolean;
-
-  /** Indicates whether the source file was removed */
-  removed?: boolean;
-
-  /** The remote url (if the file was downloaded) */
-  remote?: string;
+  outputPath: string;
 }
 
 /** The .src property for a Page or Directory */
@@ -290,6 +176,9 @@ export interface Src {
 
   /** The remote url (if the file was downloaded) */
   remote?: string;
+
+  /** The original entry instance */
+  entry?: Entry;
 }
 
 /** The .dest property for a Page */
@@ -347,24 +236,4 @@ export interface Data {
 
   // deno-lint-ignore no-explicit-any
   [index: string]: any;
-}
-
-export type Components = Map<string, Component | Components>;
-
-export function createDate({ year, month, day, hour, minute, second }: {
-  year: string;
-  month: string;
-  day: string;
-  hour?: string;
-  minute?: string;
-  second?: string;
-}) {
-  return new Date(Date.UTC(
-    parseInt(year),
-    parseInt(month) - 1,
-    parseInt(day),
-    hour ? parseInt(hour) : 0,
-    minute ? parseInt(minute) : 0,
-    second ? parseInt(second) : 0,
-  ));
 }

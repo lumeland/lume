@@ -8,9 +8,9 @@ import { isUrl, merge } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
 import { posix } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
+import textLoader from "../core/loaders/text.ts";
 
 import type { Helper, Site, SourceMap } from "../core.ts";
-import type { SourceMapOptions } from "../deps/postcss.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -75,7 +75,7 @@ export default function (userOptions?: Partial<Options>) {
         file,
       );
       const to = site.dest(file.outputPath!);
-      const map: SourceMapOptions | undefined = enableSourceMap
+      const map = enableSourceMap
         ? {
           inline: false,
           prev: sourceMap,
@@ -118,7 +118,8 @@ function configureImport(site: Site) {
 
     /** Load the content (using the Lume reader) */
     async load(file: string) {
-      return await site.getContent(file);
+      console.log("file", file);
+      return await site.getContent(file, textLoader);
     },
   });
 }

@@ -85,12 +85,10 @@ snapshot[`Load the pages of a site 2`] = `
 snapshot[`Load the pages of a site 3`] = `
 [
   {
-    dest: undefined,
-    filename: "static.yml",
+    entry: "/static.yml",
+    flags: [
+    ],
     outputPath: "/static.yml",
-    parent: "/",
-    remote: undefined,
-    src: "/static.yml",
   },
 ]
 `;
@@ -254,8 +252,8 @@ Content of Page 2",
     search: Search {},
     site: "Folder overrided site name",
     tags: [
-      "pages",
       "sub-pages",
+      "pages",
     ],
     title: "Page 2",
     url: "/overrided-page2/",
@@ -335,8 +333,8 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
     search: Search {},
     site: "Overrided site name",
     tags: [
-      "pages",
       "sub-pages",
+      "pages",
     ],
     title: "Page 4",
     url: "/pages/page4/",
@@ -418,8 +416,8 @@ snapshot[`Load the pages of a site 8`] = `
     search: Search {},
     site: "Folder overrided site name",
     tags: [
-      "pages",
       "sub-pages",
+      "pages",
       "page6",
     ],
     title: "Page 6",
@@ -510,8 +508,8 @@ snapshot[`Load the pages of a site 9`] = `
     search: Search {},
     site: "Folder overrided site name",
     tags: [
-      "pages",
       "sub-pages",
+      "pages",
       "page1",
     ],
     title: "Page 1",
@@ -591,8 +589,8 @@ snapshot[`Load the pages of a site 10`] = `
     search: Search {},
     site: "Folder overrided site name",
     tags: [
-      "pages",
       "sub-pages",
+      "pages",
     ],
     title: "Page 3",
     url: "/page_3",
@@ -672,8 +670,8 @@ Content of Page 7",
     search: Search {},
     site: "Folder overrided site name",
     tags: [
-      "pages",
       "sub-pages",
+      "pages",
       "sub-sub-pages",
       "page7",
     ],

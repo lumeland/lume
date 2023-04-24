@@ -9,11 +9,15 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.16.3] - Unreleased
+## [1.17.0] - Unreleased
 ### Added
 - RSS Plugin
 - Support for negative tags in `search` plugin. For example:
   `search.pages("tag1 !tag2")`.
+
+### Changed
+- Refactor of the internal file system manager, reducing complexity and fixing some bugs. The `Reader` class was replaced by `FS`.
+- `deno task serve --quiet` no longer logs the http server requests.
 
 ### Fixed
 - `multilanguage` plugin:

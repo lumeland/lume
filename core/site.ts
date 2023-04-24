@@ -2,9 +2,7 @@ import { join, posix } from "../deps/path.ts";
 import { merge, normalizePath } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
-import Reader from "./reader.ts";
-import PageLoader from "./page_loader.ts";
-import PagePreparer from "./page_preparer.ts";
+import FS from "./fs.ts";
 import ComponentLoader from "./component_loader.ts";
 import DataLoader from "./data_loader.ts";
 import IncludesLoader from "./includes_loader.ts";
@@ -18,6 +16,7 @@ import Logger from "./logger.ts";
 import Scripts from "./scripts.ts";
 import Writer from "./writer.ts";
 import textLoader from "./loaders/text.ts";
+import binaryLoader from "./loaders/binary.ts";
 
 import type {
   Component,
@@ -80,16 +79,10 @@ export default class Site {
   _data: Record<string, unknown> = {};
 
   /** To read the files from the filesystem */
-  reader: Reader;
+  fs: FS;
 
   /** Info about how to handle different file formats */
   formats: Formats;
-
-  /** To load all pages */
-  pageLoader: PageLoader;
-
-  /** To prepare the pages before rendering */
-  pagePreparer: PagePreparer;
 
   /** To load all _data files */
   dataLoader: DataLoader;
@@ -154,22 +147,26 @@ export default class Site {
     const { quiet, includes, cwd, prettyUrls, components } = this.options;
 
     // To load source files
-    const reader = new Reader({ src });
+    const fs = new FS({
+      root: src,
+      ignore: [
+        posix.join("/", this.options.dest),
+        (entry) => entry.name.startsWith("."),
+      ],
+    });
     const formats = new Formats();
 
-    const pageLoader = new PageLoader({ reader });
-    const pagePreparer = new PagePreparer({ src, prettyUrls });
-    const dataLoader = new DataLoader({ reader, formats });
-    const includesLoader = new IncludesLoader({ reader, includes });
-    const componentLoader = new ComponentLoader({ reader, formats });
+    const dataLoader = new DataLoader({ formats });
+    const includesLoader = new IncludesLoader({ fs, includes });
+    const componentLoader = new ComponentLoader({ formats });
     const source = new Source({
-      reader,
-      pageLoader,
-      pagePreparer,
+      fs,
       dataLoader,
       componentLoader,
       formats,
       components,
+      scopedData: this.scopedData,
+      prettyUrls,
     });
 
     // To render pages
@@ -180,7 +177,6 @@ export default class Site {
       includesLoader,
       prettyUrls,
       preprocessors,
-      pagePreparer,
       formats,
     });
 
@@ -191,10 +187,8 @@ export default class Site {
     const writer = new Writer({ src, dest, logger });
 
     // Save everything in the site instance
-    this.reader = reader;
+    this.fs = fs;
     this.formats = formats;
-    this.pageLoader = pageLoader;
-    this.pagePreparer = pagePreparer;
     this.componentLoader = componentLoader;
     this.dataLoader = dataLoader;
     this.includesLoader = includesLoader;
@@ -481,19 +475,24 @@ export default class Site {
 
   /** Define a remote fallback for a missing local file */
   remoteFile(filename: string, url: string): this {
-    this.reader.remoteFile(filename, url);
+    this.fs.remoteFiles.set(posix.join("/", filename), url);
     return this;
   }
 
   /** Save into the cache the content of a file */
   cacheFile(filename: string, data: Data): this {
-    this.reader.saveCache(filename, data);
+    const entry = this.fs.addEntry({ path: filename, type: "file" });
+    const format = this.formats.get(filename);
+    entry.setContent(
+      format?.pageLoader || format?.dataLoader || textLoader,
+      data,
+    );
+
     return this;
   }
 
   /** Clear the dest directory and any cache */
   async clear(): Promise<void> {
-    this.reader.clearCache();
     await this.writer.clear();
   }
 
@@ -508,11 +507,10 @@ export default class Site {
     }
 
     // Load source files
-    await this.source.load();
+    this.fs.init();
 
     // Get the site content
-    const [_pages, _staticFiles] = this.source.getContent(
-      this.scopedData,
+    const [_pages, _staticFiles] = await this.source.build(
       this.globalComponents,
       [
         (page) => !page.data.draft || this.options.dev,
@@ -544,15 +542,21 @@ export default class Site {
     // Reload the changed files
     for (const file of files) {
       // Delete the file from the cache
-      this.reader.deleteCache(file);
       this.formats.deleteCache(file);
+      const entry = this.fs.update(file);
 
-      await this.source.update(file);
+      // Remove pages or static files depending on this entry
+      const pages = this.pages.filter((page) => page.src.entry === entry).map((
+        page,
+      ) => page.outputPath) as string[];
+      const files = this.files.filter((file) => file.entry === entry).map((
+        file,
+      ) => file.outputPath) as string[];
+      this.writer.removeFiles([...pages, ...files]);
     }
 
     // Get the site content
-    const [_pages, _staticFiles] = this.source.getContent(
-      this.scopedData,
+    const [_pages, _staticFiles] = await this.source.build(
       this.globalComponents,
       [
         (page) => !page.data.draft || this.options.dev,
@@ -652,14 +656,16 @@ export default class Site {
   /** Render a single page (used for on demand rendering) */
   async renderPage(file: string): Promise<Page | undefined> {
     // Load the page
-    await this.source.update(file, true);
+    this.fs.init();
 
-    // Returns the page
-    const [pages] = this.source.getContent(
-      this.scopedData,
+    // Get the site content
+    const [pages] = await this.source.build(
       this.globalComponents,
-      [(page) => page.src.path + page.src.ext === file],
+      [
+        (page) => page.src.path + page.src.ext === file,
+      ],
     );
+
     const page = pages[0];
 
     if (!page) {
@@ -698,9 +704,9 @@ export default class Site {
         path = page.data.url as string;
       } else {
         // It's a static file
-        const file = this.files.find((file) => file.src === path);
+        const file = this.files.find((file) => file.entry.path === path);
 
-        if (file?.outputPath) {
+        if (file) {
           path = file.outputPath;
         } else {
           throw new Error(`Source file not found: ${path}`);
@@ -728,7 +734,7 @@ export default class Site {
    */
   async getContent(
     file: string,
-    { includes = true, loader = textLoader }: ResolveOptions = {},
+    loader: Loader,
   ): Promise<string | Uint8Array | undefined> {
     file = normalizePath(file);
     const basePath = this.src();
@@ -745,34 +751,47 @@ export default class Site {
     }
 
     // It's a static file
-    const staticFile = this.files.find((f) => f.dest === file);
+    const staticFile = this.files.find((f) => f.outputPath === file);
 
     if (staticFile) {
-      const content = await this.reader.read(staticFile.src, loader);
-      return content.content as Uint8Array | string;
+      return (await staticFile.entry.getContent(loader)).content as
+        | string
+        | Uint8Array;
     }
 
     // Search in includes
-    if (includes) {
-      const format = this.formats.search(file);
+    const format = this.formats.search(file);
+    const pageLoader = format?.pageLoader;
 
-      if (format) {
-        try {
-          const source = await this.includesLoader.load(file, format);
+    if (pageLoader) {
+      const resolvedPath = this.includesLoader.resolve(file, format);
 
-          if (source) {
-            return source[1].content as string;
+      if (resolvedPath) {
+        const entry = this.fs.entries.get(resolvedPath);
+
+        if (entry) {
+          try {
+            if (pageLoader === textLoader || pageLoader === binaryLoader) {
+              return (await entry.getContent(pageLoader)).content as
+                | string
+                | Uint8Array;
+            }
+            return (await entry.getContent(loader)).content as
+              | string
+              | Uint8Array;
+          } catch {
+            // Ignore error
           }
-        } catch {
-          // Ignore error
         }
       }
     }
 
     // Read the source files directly
     try {
-      const content = await this.reader.read(file, loader);
-      return content.content as Uint8Array | string;
+      const entry = this.fs.entries.get(file);
+      if (entry) {
+        return (await entry.getContent(loader)).content as string | Uint8Array;
+      }
     } catch {
       // Ignore error
     }

@@ -1,19 +1,16 @@
 import { assert, assertStrictEquals as equals } from "../../deps/assert.ts";
-import { getSite } from "../utils.ts";
-import { getGitDate } from "../../core/page_preparer.ts";
-import { Page } from "../../core/filesystem.ts";
+import { build, getSite } from "../utils.ts";
+import { getDate, getGitDate } from "../../core/source.ts";
 
 Deno.test("Prepare page (Renderer)", async (t) => {
   const site = getSite({
     src: "simple",
   });
-  const { pagePreparer } = site;
+
+  await build(site);
 
   await t.step("Calculate the date", () => {
-    const page = new Page();
-    // @ts-ignore testing
-    page.data.date = "2020-01-01";
-    const date = pagePreparer.getDate(page);
+    const date = getDate("2020-01-01");
     assert(date instanceof Date);
     equals(date.getFullYear(), 2020);
     equals(date.getMonth(), 0);
@@ -24,10 +21,7 @@ Deno.test("Prepare page (Renderer)", async (t) => {
   });
 
   await t.step("Calculate the datetime", () => {
-    const page = new Page();
-    // @ts-ignore testing
-    page.data.date = "2021-01-01 03:10:10";
-    const date = pagePreparer.getDate(page);
+    const date = getDate("2021-01-01 03:10:10");
     assert(date instanceof Date);
     equals(date.getFullYear(), 2021);
     equals(date.getMonth(), 0);
@@ -38,10 +32,7 @@ Deno.test("Prepare page (Renderer)", async (t) => {
   });
 
   await t.step("Calculate ISO datestimes", () => {
-    const page = new Page();
-    // @ts-ignore testing
-    page.data.date = "2021-01-01T03:10:10Z";
-    const date = pagePreparer.getDate(page);
+    const date = getDate("2021-01-01T03:10:10Z");
     assert(date instanceof Date);
     equals(date.getFullYear(), 2021);
     equals(date.getMonth(), 0);
@@ -52,10 +43,7 @@ Deno.test("Prepare page (Renderer)", async (t) => {
   });
 
   await t.step("Calculate ISO datestimes 2", () => {
-    const page = new Page();
-    // @ts-ignore testing
-    page.data.date = "2021-01-01T03:10:10-0700";
-    const date = pagePreparer.getDate(page);
+    const date = getDate("2021-01-01T03:10:10-0700");
     assert(date instanceof Date);
     equals(date.getFullYear(), 2021);
     equals(date.getMonth(), 0);
@@ -66,10 +54,7 @@ Deno.test("Prepare page (Renderer)", async (t) => {
   });
 
   await t.step("Calculate ISO datestimes 3", () => {
-    const page = new Page();
-    // @ts-ignore testing
-    page.data.date = "20210101";
-    const date = pagePreparer.getDate(page);
+    const date = getDate("20210101");
     assert(date instanceof Date);
     equals(date.getFullYear(), 2021);
     equals(date.getMonth(), 0);
@@ -80,10 +65,7 @@ Deno.test("Prepare page (Renderer)", async (t) => {
   });
 
   await t.step("Calculate ISO datestimes 4", () => {
-    const page = new Page();
-    // @ts-ignore testing
-    page.data.date = "20210101T031010Z";
-    const date = pagePreparer.getDate(page);
+    const date = getDate("20210101T031010Z");
     assert(date instanceof Date);
     equals(date.getFullYear(), 2021);
     equals(date.getMonth(), 0);
@@ -94,34 +76,18 @@ Deno.test("Prepare page (Renderer)", async (t) => {
   });
 
   await t.step("Calculate git created", () => {
-    const page = new Page({
-      path: "page1",
-      ext: ".md",
-    });
-    // @ts-ignore testing
-    page.data.date = "git created";
-    const date = pagePreparer.getDate(page);
+    const entry = site.fs.entries.get("/page1.md")!;
+    const date = getDate("git created", entry);
     assert(date instanceof Date);
-    const gitDate = getGitDate(
-      "created",
-      site.src(page.src.path + page.src.ext),
-    );
+    const gitDate = getGitDate("created", entry.src);
     assert(gitDate?.getTime() === date.getTime());
   });
 
   await t.step("Calculate git last modified", () => {
-    const page = new Page({
-      path: "page1",
-      ext: ".md",
-    });
-    // @ts-ignore testing
-    page.data.date = "git last modified";
-    const date = pagePreparer.getDate(page);
+    const entry = site.fs.entries.get("/page1.md")!;
+    const date = getDate("git last modified", entry);
     assert(date instanceof Date);
-    const gitDate = getGitDate(
-      "modified",
-      site.src(page.src.path + page.src.ext),
-    );
+    const gitDate = getGitDate("modified", entry.src);
     assert(gitDate?.getTime() === date.getTime());
   });
 });

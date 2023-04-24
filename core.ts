@@ -27,28 +27,20 @@ import type {
   ScriptOrFunction,
 } from "./core/scripts.ts";
 
-import type {
-  default as Reader,
-  DirEntry,
-  FileInfo,
-  Loader,
-} from "./core/reader.ts";
+import type { default as FS, Entry, Loader } from "./core/fs.ts";
 import type Logger from "./core/logger.ts";
-import type PagePreparer from "./core/page_preparer.ts";
 import type Writer from "./core/writer.ts";
 import type IncludesLoader from "./core/includes_loader.ts";
-import type { default as PageLoader } from "./core/page_loader.ts";
 import type DataLoader from "./core/data_loader.ts";
 import type {
   Component,
+  Components,
   default as ComponentLoader,
 } from "./core/component_loader.ts";
 import type {
-  Components,
   Content,
   Data,
   Dest,
-  Directory,
   Page,
   Src,
   StaticFile,
@@ -113,9 +105,8 @@ export type {
   DenoConfig,
   DenoConfigResult,
   Dest,
-  Directory,
-  DirEntry,
   Engine,
+  Entry,
   ErrorData,
   Event,
   EventListener,
@@ -123,9 +114,9 @@ export type {
   Events,
   Exception,
   Extensions,
-  FileInfo,
   Format,
   Formats,
+  FS,
   Helper,
   HelperOptions,
   ImportMap,
@@ -135,14 +126,11 @@ export type {
   Middleware,
   MultiProcessor,
   Page,
-  PageLoader,
-  PagePreparer,
   Plugin,
   PluginSetup,
   Processor,
   Processors,
   ProxyComponents,
-  Reader,
   Renderer,
   RequestHandler,
   ScopeFilter,

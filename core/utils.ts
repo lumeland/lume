@@ -422,6 +422,10 @@ export function getExtension(path: string): string {
   return match ? match[0] : "";
 }
 
+export async function read(
+  path: string,
+  isBinary: boolean,
+): Promise<Uint8Array | string>;
 export async function read(path: string, isBinary: true): Promise<Uint8Array>;
 export async function read(path: string, isBinary: false): Promise<string>;
 export async function read(

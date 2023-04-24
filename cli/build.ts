@@ -126,8 +126,11 @@ export async function build(
     site.dispatchEvent({ type: "afterStartServer" });
   });
 
+  if (!site.options.quiet) {
+    server.use(logger());
+  }
+
   server.use(
-    logger(),
     reload({ watcher: new SiteWatcher(site) }),
     noCache(),
     notFound({

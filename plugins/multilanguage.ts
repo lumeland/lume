@@ -1,6 +1,7 @@
 import { Page } from "../core/filesystem.ts";
 import { isPlainObject, merge } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
+import { getUrl } from "../core/source.ts";
 
 import type { PageData, Plugin } from "../core.ts";
 
@@ -51,8 +52,7 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
 
       for (const lang of languages) {
         const newData: PageData = { ...data, lang, id };
-        const newPage = page.duplicate();
-        newPage.data = newData;
+        const newPage = page.duplicate(undefined, newData);
         newPages.push(newPage);
 
         // Fix the url
@@ -60,10 +60,7 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
 
         if (customUrl) {
           newData.url = customUrl;
-          newData.url = site.pagePreparer.getUrl(
-            newPage,
-            basePath,
-          );
+          newData.url = getUrl(newPage, site.options.prettyUrls, basePath);
         } else if (newData.url) {
           newData.url = `/${lang}${newData.url}`;
         }

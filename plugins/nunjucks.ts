@@ -157,7 +157,7 @@ export default function (userOptions?: DeepPartial<Options>) {
         path: string,
         callback: nunjucks.Callback<Error, nunjucks.LoaderSource>,
       ) {
-        const content = await site.getContent(path);
+        const content = await site.getContent(path, loader);
 
         if (content) {
           callback(null, {
@@ -196,8 +196,8 @@ export default function (userOptions?: DeepPartial<Options>) {
 
     // Register the component helper
     engine.addHelper("comp", (...args) => {
-      const components = site.source.root
-        .data[site.options.components.variable] as
+      const components = site.source.data.get("/")
+        ?.[site.options.components.variable] as
           | ProxyComponents
           | undefined;
       const [content, name, options = {}] = args;

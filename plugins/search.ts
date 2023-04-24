@@ -1,5 +1,4 @@
-import { merge } from "../core/utils.ts";
-import { Directory } from "../core/filesystem.ts";
+import { merge, normalizePath } from "../core/utils.ts";
 
 import { Data, Page, Site } from "../core.ts";
 
@@ -42,23 +41,21 @@ export class Search {
     site.addEventListener("beforeUpdate", () => this.#cache.clear());
   }
 
-  /** Return the data in the scope of a path (file or folder) */
+  /**
+   * Return the data in the scope of a path (file or folder)
+   * @deprecated Use `search.page()` instead
+   */
   data(path = "/"): Data | undefined {
-    let result: Directory | Page | undefined = this.#site.source.root;
-    const pieces = path.split("/");
+    const normalized = normalizePath(path);
+    const dirData = this.#site.source.data.get(normalized);
 
-    for (const name of pieces) {
-      if (!name) {
-        continue;
-      }
-
-      if (result instanceof Directory) {
-        result = result.dirs.get(name) || result.pages.get(name);
-        continue;
-      }
-
-      return undefined;
+    if (dirData) {
+      return dirData;
     }
+
+    const result = this.#site.pages.find((page) =>
+      page.data.url === normalized
+    );
 
     if (result) {
       return result.data;

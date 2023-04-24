@@ -2,11 +2,11 @@ import { posix } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
 import { merge } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
+import textLoader from "../core/loaders/text.ts";
 import { contentType } from "../deps/media_types.ts";
 
-import type { Element } from "../deps/dom.ts";
-import type { Page, Site } from "../core.ts";
-import type { HTMLTemplateElement } from "../deps/dom.ts";
+import type { Loader, Page, Site } from "../core.ts";
+import type { Element, HTMLTemplateElement } from "../deps/dom.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -92,14 +92,14 @@ export default function (userOptions?: Partial<Options>) {
         posix.relative(site.options.location.pathname, path),
       );
 
-      const content = await getFileContent(site, url);
+      const content = await getFileContent(
+        site,
+        url,
+        asDataUrl ? binaryLoader : textLoader,
+      );
 
       // Return the raw content
       if (!asDataUrl) {
-        if (content instanceof Uint8Array) {
-          return new TextDecoder().decode(content);
-        }
-
         return content;
       }
 
@@ -245,11 +245,9 @@ export default function (userOptions?: Partial<Options>) {
 async function getFileContent(
   site: Site,
   url: string,
+  loader: Loader,
 ): Promise<string | Uint8Array> {
-  const content = await site.getContent(url, {
-    includes: false,
-    loader: binaryLoader,
-  });
+  const content = await site.getContent(url, loader);
 
   if (!content) {
     throw new Error(`Unable to find the file "${url}"`);
