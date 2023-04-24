@@ -2,6 +2,7 @@ import { posix } from "../deps/path.ts";
 import { emptyDir, ensureDir } from "../deps/fs.ts";
 import { concurrent, sha1 } from "./utils.ts";
 import { Exception } from "./errors.ts";
+import binaryLoader from "./loaders/binary.ts";
 
 import type { Page, StaticFile } from "./filesystem.ts";
 import type Logger from "./logger.ts";
@@ -146,7 +147,10 @@ export default class Writer {
       await ensureDir(posix.dirname(pathTo));
 
       if (entry.flags.has("remote")) {
-        await Deno.writeFile(pathTo, await entry.getContent(true));
+        await Deno.writeFile(
+          pathTo,
+          (await entry.getContent(binaryLoader)).content as Uint8Array,
+        );
       } else {
         await Deno.copyFile(entry.src, pathTo);
       }

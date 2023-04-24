@@ -74,11 +74,6 @@ export default class FS {
     this.#walkRemote();
   }
 
-  normalize(path: string) {
-    path = posix.join("/", path);
-    return path.endsWith("/") ? path.slice(0, -1) : path;
-  }
-
   update(path: string): Entry {
     const entry = this.entries.get(path) ||
       this.addEntry({ path, type: "file" });
@@ -110,20 +105,19 @@ export default class FS {
   }
 
   #walkFs(dir: Entry) {
-    const prefix = dir.path === "/" ? "" : dir.path;
-    const dirPath = `${this.options.root}${prefix}`;
+    const dirPath = posix.join(this.options.root, dir.path);
 
     for (const dirEntry of Deno.readDirSync(dirPath)) {
       if (dirEntry.isSymlink) {
         continue;
       }
 
-      const path = `${prefix}/${dirEntry.name}`;
+      const path = posix.join(dir.path, dirEntry.name);
       const entry = new Entry(
         dirEntry.name,
         path,
         dirEntry.isDirectory ? "directory" : "file",
-        this.options.root + path,
+        posix.join(this.options.root, path),
       );
 
       if (!this.#isValid(entry)) {
