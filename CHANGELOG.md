@@ -11,7 +11,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [1.17.0] - Unreleased
 ### Added
-- RSS Plugin
+- RSS Plugin [#413]
 - Support for negative tags in `search` plugin. For example:
   `search.pages("tag1 !tag2")`.
 
@@ -22,13 +22,13 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Fixed
 - `multilanguage` plugin:
   The generated `hreflang` links must have the absolute URL and include the current page.
-- Moved the `nunjucks` dependency to `npm:` import.
+- Moved the `nunjucks` dependency to `npm:` import [#409].
 - `metas` plugin:
   Remove multiple spaces, line breaks and HTML tags.
 - `pagefind` plugin:
-  Fix the output string to be a string decoded from raw byte data.
+  Fix the output string to be a string decoded from raw byte data [#411].
 - Duplicate pages on reload files inside `_data/` folders.
-- Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`, `katex`, `lightningcss`, `postcss`, `terser`.
+- Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`, `katex`, `lightningcss`, `postcss`, `terser`, `liquid`.
 
 ## [1.16.2] - 2023-04-03
 ### Added
@@ -2188,8 +2188,11 @@ The first version.
 [#403]: https://github.com/lumeland/lume/issues/403
 [#406]: https://github.com/lumeland/lume/issues/406
 [#407]: https://github.com/lumeland/lume/issues/407
+[#409]: https://github.com/lumeland/lume/issues/409
+[#411]: https://github.com/lumeland/lume/issues/411
+[#413]: https://github.com/lumeland/lume/issues/413
 
-[1.16.3]: https://github.com/lumeland/lume/compare/v1.16.2...HEAD
+[1.17.0]: https://github.com/lumeland/lume/compare/v1.16.2...HEAD
 [1.16.2]: https://github.com/lumeland/lume/compare/v1.16.1...v1.16.2
 [1.16.1]: https://github.com/lumeland/lume/compare/v1.16.0...v1.16.1
 [1.16.0]: https://github.com/lumeland/lume/compare/v1.15.3...v1.16.0

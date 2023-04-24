@@ -118,7 +118,6 @@ function configureImport(site: Site) {
 
     /** Load the content (using the Lume reader) */
     async load(file: string) {
-      console.log("file", file);
       return await site.getContent(file, textLoader);
     },
   });
