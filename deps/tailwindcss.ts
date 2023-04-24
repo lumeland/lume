@@ -1,2 +1,2 @@
-export { default } from "npm:@lumeland/tailwindcss@3.2.5";
-export type { Config } from "npm:@lumeland/tailwindcss@3.2.5";
+export { default } from "npm:tailwindcss@3.3.1";
+export type { Config } from "npm:tailwindcss@3.3.1";

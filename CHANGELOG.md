@@ -23,12 +23,13 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - `multilanguage` plugin:
   The generated `hreflang` links must have the absolute URL and include the current page.
 - Moved the `nunjucks` dependency to `npm:` import [#409].
+- Moved the `tailwindcss` dependency to `npm:` import.
 - `metas` plugin:
   Remove multiple spaces, line breaks and HTML tags.
 - `pagefind` plugin:
   Fix the output string to be a string decoded from raw byte data [#411].
 - Duplicate pages on reload files inside `_data/` folders.
-- Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`, `katex`, `lightningcss`, `postcss`, `terser`, `liquid`.
+- Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`, `katex`, `lightningcss`, `postcss`, `terser`, `liquid`, `tailwindcss`.
 
 ## [1.16.2] - 2023-04-03
 ### Added
