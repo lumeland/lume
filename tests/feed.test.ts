@@ -1,5 +1,5 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
-import rss from "../plugins/rss.ts";
+import feed from "../plugins/feed.ts";
 
 Deno.test("RSS plugin", async (t) => {
   const site = getSite({
@@ -11,8 +11,12 @@ Deno.test("RSS plugin", async (t) => {
   });
 
   site.use(
-    rss({
-      buildDate: new Date("2020-01-01"),
+    feed({
+      output: ["feed.json", "feed.rss"],
+      info: {
+        date: new Date("2020-01-01"),
+        generator: "https://lume.land",
+      },
     }),
   );
   site.ignore("static.yml");

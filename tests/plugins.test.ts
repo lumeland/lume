@@ -4,7 +4,7 @@ import { pluginNames } from "../core/utils.ts";
 const totalPlugins = Array.from(Deno.readDirSync("plugins")).length;
 
 Deno.test("Plugins list in init", () => {
-  equals(pluginNames.length, totalPlugins - 8);
+  equals(pluginNames.length, totalPlugins - 9);
 
   equals(pluginNames, [
     "attributes",
@@ -13,6 +13,7 @@ Deno.test("Plugins list in init", () => {
     "date",
     "esbuild",
     "eta",
+    "feed",
     "filter_pages",
     "imagick",
     "inline",
@@ -37,7 +38,6 @@ Deno.test("Plugins list in init", () => {
     "relative_urls",
     "remark",
     "resolve_urls",
-    "rss",
     "sass",
     "sheets",
     "sitemap",

@@ -11,7 +11,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [1.17.0] - Unreleased
 ### Added
-- RSS Plugin [#413]
+- Feed Plugin [#413]
 - Support for negative tags in `search` plugin. For example:
   `search.pages("tag1 !tag2")`.
 - Support for remote files in `sass` plugin.

@@ -1,4 +1,5 @@
 import { getLumeVersion, merge } from "../core/utils.ts";
+import { getDataValue } from "./utils.ts";
 
 import type { Page, Site } from "../core.ts";
 import type { HTMLDocument } from "../deps/dom.ts";
@@ -9,14 +10,6 @@ export interface Options {
 
   /** The key name for the transformations definitions */
   name: string;
-
-  /**
-   * Use page data as meta data if the correspond metas value does not exists
-   * @deprecated Use "=key" syntax instead
-   */
-  defaultPageData?: {
-    [K in keyof MetaData]?: string;
-  };
 }
 
 export interface MetaData {
@@ -83,55 +76,26 @@ export default function (userOptions?: Partial<Options>) {
         return;
       }
 
-      const getMetaValue = <T extends keyof MetaData>(key: T) => {
-        const value = metas[key];
+      const { document, data } = page;
+      const metaIcon = getDataValue(data, metas["icon"]);
+      const metaImage = getDataValue(data, metas["image"]);
 
-        // Get the value from the page data
-        if (typeof value === "string" && value.startsWith("=")) {
-          const key = value.slice(1);
-
-          if (!key.includes(".")) {
-            return page.data[key];
-          }
-
-          const keys = key.split(".");
-          let val = page.data;
-          for (const key of keys) {
-            val = val[key];
-          }
-          return val;
-        } else if (value === undefined || value === null) {
-          // Get the value from the default page data
-          if (options.defaultPageData && key in options.defaultPageData) {
-            const pageKey = options.defaultPageData[key];
-            if (pageKey) {
-              return page.data[pageKey] as MetaData[T];
-            }
-          }
-        } else {
-          return value;
-        }
-      };
-
-      const { document } = page;
-      const metaIcon = getMetaValue("icon");
-      const metaImage = getMetaValue("image");
       const url = site.url(page.data.url as string, true);
       const icon = metaIcon ? new URL(site.url(metaIcon), url).href : undefined;
       const image = metaImage
         ? new URL(site.url(metaImage), url).href
         : undefined;
 
-      const type = getMetaValue("type");
-      const site_name = getMetaValue("site");
-      const lang = getMetaValue("lang");
-      const title = getMetaValue("title");
-      const description = getMetaValue("description");
-      const twitter = getMetaValue("twitter");
-      const keywords = getMetaValue("keywords");
-      const robots = getMetaValue("robots");
-      const color = getMetaValue("color");
-      const generator = getMetaValue("generator");
+      const type = getDataValue(data, metas["type"]);
+      const site_name = getDataValue(data, metas["site"]);
+      const lang = getDataValue(data, metas["lang"]);
+      const title = getDataValue(data, metas["title"]);
+      const description = getDataValue(data, metas["description"]);
+      const twitter = getDataValue(data, metas["twitter"]);
+      const keywords = getDataValue(data, metas["keywords"]);
+      const robots = getDataValue(data, metas["robots"]);
+      const color = getDataValue(data, metas["color"]);
+      const generator = getDataValue(data, metas["generator"]);
 
       // Open graph
       addMeta(document, "property", "og:type", type || "website");
