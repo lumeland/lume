@@ -147,7 +147,9 @@ export function saveAsset(
       : toFileUrl(decodeURIComponent(join(root, source))).href;
   }
 
-  sourceMap.sources = sourceMap.sources.map(normalizeSource);
+  sourceMap.sources = sourceMap.sources
+    .filter((source: string) => source !== "<no source>") // tailwindcss
+    .map(normalizeSource);
 
   // Inherit the dynamic sources from the previous source map
   const previousSourceMap = page.data.sourceMap as SourceMap | undefined;

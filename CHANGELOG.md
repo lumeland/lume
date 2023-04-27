@@ -14,10 +14,14 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - RSS Plugin [#413]
 - Support for negative tags in `search` plugin. For example:
   `search.pages("tag1 !tag2")`.
+- Support for remote files in `sass` plugin.
 
 ### Changed
-- Refactor of the internal file system manager, reducing complexity and fixing some bugs. The `Reader` class was replaced by `FS`.
+- Refactor of the internal file system manager, reducing complexity and fixing some bugs.
+  The `Reader` class was replaced by `FS`.
 - `deno task serve --quiet` no longer logs the http server requests.
+- BREAKING: The `includes` option of `sass` plugin accepts only a string
+  (previously `string[]` was also accepted).
 
 ### Fixed
 - `multilanguage` plugin:
@@ -337,7 +341,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Removed `cli/utils.ts` file and move all utils to `core/utils.ts`.
 
 ### Removed
-- BREAKING CHANGE: `parcel_css` plugin was removed (it was a temporary alias to the `lightningcss` plugin).
+- BREAKING: `parcel_css` plugin was removed (it was a temporary alias to the `lightningcss` plugin).
 - The `--root` option in the CLI interface.
 - Warning when different versions of Lume are being used.
 - Removed the `lume vendor` command temporarily because it doesn't work in all cases.

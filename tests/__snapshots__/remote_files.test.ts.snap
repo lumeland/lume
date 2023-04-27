@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`render remote files 1`] = `5`;
+snapshot[`render remote files 1`] = `6`;
 
 snapshot[`render remote files 2`] = `
 {
@@ -75,6 +75,18 @@ snapshot[`render remote files 2`] = `
       engines: undefined,
       ext: ".css",
       includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".scss",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".sass",
       pageLoader: [AsyncFunction: text],
     },
   ],
@@ -287,6 +299,43 @@ snapshot[`render remote files 8`] = `
     path: "/styles2",
     remote: "assets/remote_files/_remotes/styles2.css",
     slug: "styles2",
+  },
+}
+`;
+
+snapshot[`render remote files 9`] = `
+{
+  content: "body{color:blue}",
+  data: {
+    children: false,
+    content: '@import "variables";
+
+body {
+  color: \$color;
+}
+',
+    date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    tags: [
+    ],
+    title: "Remote title",
+    url: "/styles3.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/styles3",
+  },
+  src: {
+    asset: true,
+    ext: ".scss",
+    path: "/styles3",
+    remote: undefined,
+    slug: "styles3",
   },
 }
 `;
