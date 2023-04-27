@@ -1,6 +1,6 @@
 import { merge, normalizePath, replaceExtension } from "../core/utils.ts";
 import Sass from "../deps/sass.ts";
-import { posix, toFileUrl, fromFileUrl } from "../deps/path.ts";
+import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { Page } from "../core/filesystem.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import textLoader from "../core/loaders/text.ts";
@@ -79,7 +79,9 @@ export default function (userOptions?: Partial<Options>) {
               }
             }
 
-            throw new Error(`File cannot be canonicalized: ${url} (${pathname})`);
+            throw new Error(
+              `File cannot be canonicalized: ${url} (${pathname})`,
+            );
           },
           async load(url: URL) {
             let pathname = normalizePath(fromFileUrl(url));
