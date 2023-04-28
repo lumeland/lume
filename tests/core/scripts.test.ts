@@ -38,7 +38,7 @@ Deno.test("Scripts", async (t) => {
     scripts.set("my-fn", () => "foo");
 
     equals(scripts.scripts.size, 4);
-    const result = await scripts.run({}, "my-fn");
+    const result = await scripts.run("my-fn");
     equals(result, true);
   });
 
