@@ -40,7 +40,7 @@ export default function (userOptions?: Partial<Options>) {
 
       // Search for the `robots.txt` file
       const robots = site.files.some((file: StaticFile) =>
-        file.dest === "/robots.txt"
+        file.outputPath === "/robots.txt"
       );
 
       // If the `robots.txt` file doesn't exist, create it
