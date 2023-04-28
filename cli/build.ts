@@ -120,7 +120,11 @@ export async function build(
         windows: "explorer",
       };
 
-      Deno.run({ cmd: [commands[Deno.build.os], `http://localhost:${port}/`] });
+      new Deno.Command(commands[Deno.build.os], {
+        args: [`http://localhost:${port}/`],
+        stdout: "inherit",
+        stderr: "inherit",
+      }).output();
     }
 
     site.dispatchEvent({ type: "afterStartServer" });

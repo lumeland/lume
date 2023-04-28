@@ -36,7 +36,6 @@ import type {
   Plugin,
   Processor,
   ScopeFilter,
-  ScriptOptions,
   ScriptOrFunction,
   StaticFile,
 } from "../core.ts";
@@ -183,7 +182,7 @@ export default class Site {
     // Other stuff
     const events = new Events<SiteEvent>();
     const logger = new Logger({ quiet });
-    const scripts = new Scripts({ logger, options: { cwd } });
+    const scripts = new Scripts({ logger, cwd });
     const writer = new Writer({ src, dest, logger });
 
     // Save everything in the site instance
@@ -274,8 +273,8 @@ export default class Site {
   }
 
   /** Runs a script or function registered previously */
-  async run(name: string, options: ScriptOptions = {}): Promise<boolean> {
-    return await this.scripts.run(options, name);
+  async run(name: string): Promise<boolean> {
+    return await this.scripts.run(name);
   }
 
   /**

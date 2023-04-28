@@ -21,11 +21,7 @@ import type {
   EventOptions,
 } from "./core/events.ts";
 
-import type {
-  default as Scripts,
-  ScriptOptions,
-  ScriptOrFunction,
-} from "./core/scripts.ts";
+import type { default as Scripts, ScriptOrFunction } from "./core/scripts.ts";
 
 import type { default as FS, Entry, Loader } from "./core/fs.ts";
 import type Logger from "./core/logger.ts";
@@ -135,7 +131,6 @@ export type {
   RequestHandler,
   ScopeFilter,
   Scopes,
-  ScriptOptions,
   ScriptOrFunction,
   Scripts,
   Server,

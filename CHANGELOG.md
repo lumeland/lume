@@ -23,6 +23,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - `deno task serve --quiet` no longer logs the http server requests.
 - BREAKING: The `includes` option of `sass` plugin accepts only a string
   (previously `string[]` was also accepted).
+- BREAKING: Removed all `Deno.run` calls and replaced with the new `Deno.Command` API.
+  -  Removed the `ScriptOptions` argument of `lume.run()`.
 
 ### Fixed
 - `multilanguage` plugin:

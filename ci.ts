@@ -55,20 +55,18 @@ export default async function main(args: string[]) {
   checkDenoVersion();
 
   const [lumeArgs, denoArgs] = await getArgs(args, quiet);
-  const process = Deno.run({
-    cmd: [
-      Deno.execPath(),
+  const { code } = new Deno.Command(Deno.execPath(), {
+    args: [
       "run",
       ...denoArgs,
       import.meta.resolve("./cli.ts"),
       ...lumeArgs,
     ],
-  });
+    stdout: "inherit",
+    stderr: "inherit",
+  }).outputSync();
 
-  const status = await process.status();
-  process.close();
-
-  if (!status.success) {
+  if (code !== 0) {
     addEventListener("unload", () => Deno.exit(1));
   }
 }
