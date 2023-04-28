@@ -12,6 +12,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.17.0] - Unreleased
 ### Added
 - Feed Plugin [#413]
+- Ability to add extra data to `on_demand` pages.
 - Support for negative tags in `search` plugin. For example:
   `search.pages("tag1 !tag2")`.
 - Support for remote files in `sass` plugin.
