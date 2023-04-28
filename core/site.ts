@@ -654,7 +654,10 @@ export default class Site {
   }
 
   /** Render a single page (used for on demand rendering) */
-  async renderPage(file: string): Promise<Page | undefined> {
+  async renderPage(
+    file: string,
+    extraData?: Record<string, unknown>,
+  ): Promise<Page | undefined> {
     // Load the page
     this.fs.init();
 
@@ -670,6 +673,11 @@ export default class Site {
 
     if (!page) {
       return;
+    }
+
+    // Add extra data
+    if (extraData) {
+      page.data = { ...page.data, ...extraData };
     }
 
     await this.dispatchEvent({ type: "beforeRenderOnDemand", page });

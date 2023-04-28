@@ -8,6 +8,7 @@ export type Router = (url: URL) => string | undefined;
 export interface Options {
   site: Site;
   router?: Router;
+  extraData?: (request: Request) => Record<string, unknown>;
 }
 
 /** Render pages on demand */
@@ -33,7 +34,8 @@ export default function onDemand(options: Options): Middleware {
       return response;
     }
 
-    const page = await site.renderPage(file);
+    const data = options.extraData?.(request) ?? {};
+    const page = await site.renderPage(file, data);
 
     if (!page || !page.outputPath) {
       return response;
