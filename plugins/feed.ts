@@ -46,11 +46,11 @@ export const defaults: Options = {
     generator: true,
   },
   items: {
-    title: "title",
-    description: "description",
-    date: "date",
-    content: "children",
-    lang: "lang",
+    title: "=title",
+    description: "=description",
+    date: "=date",
+    content: "=children",
+    lang: "=lang",
   },
 };
 
@@ -81,7 +81,7 @@ export default (userOptions?: DeepPartial<Options>) => {
   return (site: Site) => {
     const search = new Search(site, true);
 
-    site.addEventListener("afterRender", () => {
+    site.addEventListener("beforeSave", () => {
       const output = Array.isArray(options.output)
         ? options.output
         : [options.output];
@@ -91,30 +91,31 @@ export default (userOptions?: DeepPartial<Options>) => {
         options.sort,
         options.limit,
       ) as Data[];
-      const { info } = options;
+
+      const { info, items } = options;
+      const rootData = site.source.data.get("/") || {};
 
       const feed: FeedData = {
-        title: info.title,
-        description: info.description,
-        date: info.date,
-        lang: info.lang,
+        title: getDataValue(rootData, info.title),
+        description: getDataValue(rootData, info.description),
+        date: getDataValue(rootData, info.date),
+        lang: getDataValue(rootData, info.lang),
         url: site.url("", true),
         generator: info.generator === true
           ? defaultGenerator
           : info.generator || undefined,
         items: pages.map((data): FeedItem => {
+          const content = getDataValue(data, items.content)?.toString();
+          const pageUrl = site.url(data.url as string, true);
+          const fixedContent = fixUrls(new URL(pageUrl), content || "");
+
           return {
-            title: options.items.title &&
-              getDataValue(data, `=${options.items.title}`),
+            title: getDataValue(data, items.title),
             url: site.url(data.url as string, true),
-            description: options.items.description &&
-              getDataValue(data, `=${options.items.description}`),
-            date: options.items.date &&
-              getDataValue(data, `=${options.items.date}`),
-            content: options.items.content &&
-              getDataValue(data, `=${options.items.content}`)?.toString(),
-            lang: options.items.lang &&
-              getDataValue(data, `=${options.items.lang}`),
+            description: getDataValue(data, items.description),
+            date: getDataValue(data, items.date),
+            content: fixedContent,
+            lang: getDataValue(data, items.lang),
           };
         }),
       };
@@ -142,6 +143,13 @@ export default (userOptions?: DeepPartial<Options>) => {
   };
 };
 
+function fixUrls(base: URL, html: string): string {
+  return html.replaceAll(
+    /\s(href|src)="([^"]+)"/g,
+    (_match, attr, value) => ` ${attr}="${new URL(value, base).href}"`,
+  );
+}
+
 function generateRss(data: FeedData, file: string): string {
   const feed = {
     [$XML]: { cdata: [["rss", "channel", "item", "content:encoded"]] },
@@ -166,7 +174,7 @@ function generateRss(data: FeedData, file: string): string {
           "@type": "application/rss+xml",
         },
         description: data.description,
-        lastBuildDate: data.date.toISOString(),
+        lastBuildDate: data.date.toUTCString(),
         language: data.lang,
         generator: data.generator,
         item: data.items.map((item) => ({
@@ -178,7 +186,7 @@ function generateRss(data: FeedData, file: string): string {
           },
           description: item.description,
           "content:encoded": item.content,
-          pubDate: item.date.toISOString(),
+          pubDate: item.date.toUTCString(),
         })),
       },
     },

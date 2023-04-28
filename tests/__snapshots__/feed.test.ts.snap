@@ -108,7 +108,7 @@ snapshot[`RSS plugin 5`] = `
     <link>https://example.com/</link>
     <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
     <description></description>
-    <lastBuildDate>2020-01-01T00:00:00.000Z</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
     <language>en</language>
     <generator>https://lume.land</generator>
     <item>
@@ -117,7 +117,7 @@ snapshot[`RSS plugin 5`] = `
       <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
       <description/>
       <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
-      <pubDate>2022-01-02T00:00:00.000Z</pubDate>
+      <pubDate>Sun, 02 Jan 2022 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Page 6</title>
@@ -128,7 +128,7 @@ snapshot[`RSS plugin 5`] = `
         <![CDATA[<p>Content of Page 6</p>
         ]]>
       </content:encoded>
-      <pubDate>2022-01-01T00:00:00.000Z</pubDate>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Page 4</title>
@@ -136,7 +136,7 @@ snapshot[`RSS plugin 5`] = `
       <guid isPermaLink="false">https://example.com/pages/page4/</guid>
       <description/>
       <content:encoded><![CDATA[Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts]]></content:encoded>
-      <pubDate>2021-01-02T18:32:00.000Z</pubDate>
+      <pubDate>Sat, 02 Jan 2021 18:32:00 GMT</pubDate>
     </item>
     <item>
       <title>Page 2</title>
@@ -144,7 +144,7 @@ snapshot[`RSS plugin 5`] = `
       <guid isPermaLink="false">https://example.com/overrided-page2/</guid>
       <description/>
       <content:encoded><![CDATA[Content of Page 2]]></content:encoded>
-      <pubDate>2020-06-21T00:00:00.000Z</pubDate>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 GMT</pubDate>
     </item>
   </channel>
 </rss>',
@@ -157,7 +157,7 @@ snapshot[`RSS plugin 5`] = `
     <link>https://example.com/</link>
     <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
     <description></description>
-    <lastBuildDate>2020-01-01T00:00:00.000Z</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
     <language>en</language>
     <generator>https://lume.land</generator>
     <item>
@@ -166,7 +166,7 @@ snapshot[`RSS plugin 5`] = `
       <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
       <description/>
       <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
-      <pubDate>2022-01-02T00:00:00.000Z</pubDate>
+      <pubDate>Sun, 02 Jan 2022 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Page 6</title>
@@ -177,7 +177,7 @@ snapshot[`RSS plugin 5`] = `
         <![CDATA[<p>Content of Page 6</p>
         ]]>
       </content:encoded>
-      <pubDate>2022-01-01T00:00:00.000Z</pubDate>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Page 4</title>
@@ -185,7 +185,7 @@ snapshot[`RSS plugin 5`] = `
       <guid isPermaLink="false">https://example.com/pages/page4/</guid>
       <description/>
       <content:encoded><![CDATA[Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts]]></content:encoded>
-      <pubDate>2021-01-02T18:32:00.000Z</pubDate>
+      <pubDate>Sat, 02 Jan 2021 18:32:00 GMT</pubDate>
     </item>
     <item>
       <title>Page 2</title>
@@ -193,7 +193,7 @@ snapshot[`RSS plugin 5`] = `
       <guid isPermaLink="false">https://example.com/overrided-page2/</guid>
       <description/>
       <content:encoded><![CDATA[Content of Page 2]]></content:encoded>
-      <pubDate>2020-06-21T00:00:00.000Z</pubDate>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 GMT</pubDate>
     </item>
   </channel>
 </rss>',
