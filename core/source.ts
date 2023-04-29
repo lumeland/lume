@@ -577,9 +577,9 @@ export function getGitDate(
     ? ["log", "--diff-filter=A", "--follow", "-1", "--format=%at", "--", file]
     : ["log", "-1", "--format=%at", "--", file];
 
-  const { code, stdout } = new Deno.Command("git", { args }).outputSync();
+  const { stdout, success } = new Deno.Command("git", { args }).outputSync();
 
-  if (code !== 0) {
+  if (!success) {
     return;
   }
   const str = new TextDecoder().decode(stdout);

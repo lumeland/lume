@@ -93,7 +93,7 @@ export default class Scripts {
     });
 
     const output = await command.output();
-    return output.code === 0;
+    return output.success;
   }
 }
 
