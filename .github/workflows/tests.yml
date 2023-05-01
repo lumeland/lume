@@ -36,4 +36,4 @@ jobs:
         run: deno task test
 
       - name: Test upgrade
-        run: deno run -A ci.ts upgrade
+        run: deno run -A cli.ts upgrade
