@@ -47,28 +47,6 @@ export const pluginNames = [
   "windi_css",
 ];
 
-/** A list of the available plugins with init configurations */
-export const initPlugins: Record<
-  string,
-  (denoConfig: DenoConfigResult) => void
-> = {
-  jsx(denoConfig) {
-    denoConfig.config.compilerOptions ||= {};
-    denoConfig.config.compilerOptions.jsx = "react-jsx";
-    denoConfig.config.compilerOptions.jsxImportSource = "react";
-
-    // Add jsx-runtime import to import_map.
-    denoConfig.importMap ||= { imports: {} };
-    denoConfig.importMap.imports["react/jsx-runtime"] =
-      "https://esm.sh/react@18.2.0/jsx-runtime";
-  },
-  jsx_preact(denoConfig) {
-    denoConfig.config.compilerOptions ||= {};
-    denoConfig.config.compilerOptions.jsx = "react-jsx";
-    denoConfig.config.compilerOptions.jsxImportSource = "npm:preact";
-  },
-};
-
 export function log(...lines: (string | undefined)[]) {
   console.log("----------------------------------------");
   lines.forEach((line) => line && console.log(line));
@@ -356,6 +334,36 @@ export async function readDenoConfig(): Promise<DenoConfigResult | undefined> {
       throw err;
     }
   }
+}
+
+export function updateLumeVersion(url: URL, denoConfig: DenoConfigResult) {
+  denoConfig.importMap ??= { imports: {} };
+
+  const { config, importMap } = denoConfig;
+
+  // Configure the import map
+  if (Deno.version.deno < "1.30.0") {
+    config.importMap ||= "./import_map.json";
+  }
+
+  const oldUrl = importMap.imports["lume/"];
+  const newUrl = new URL("./", url).href;
+  importMap.imports["lume/"] = newUrl;
+
+  for (const [specifier, url] of Object.entries(importMap.imports)) {
+    if (url.startsWith(oldUrl)) {
+      importMap.imports[specifier] = url.replace(oldUrl, newUrl);
+    }
+  }
+
+  // Configure lume tasks
+  const tasks = config.tasks || {};
+  if (!tasks.lume || !tasks.lume.includes(`echo "import 'lume/cli.ts'"`)) {
+    tasks.lume = `echo "import 'lume/cli.ts'" | deno run --unstable -A -`;
+    tasks.build = "deno task lume";
+    tasks.serve = "deno task lume -s";
+  }
+  config.tasks = tasks;
 }
 
 /** Update the Deno configuration */

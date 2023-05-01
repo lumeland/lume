@@ -2,9 +2,11 @@ import {
   getLatestDevelopmentVersion,
   getLatestVersion,
   getLumeVersion,
+  readDenoConfig,
+  updateLumeVersion,
+  writeDenoConfig,
 } from "../core/utils.ts";
 import { brightGreen, gray } from "../deps/colors.ts";
-import { importMap } from "./import_map.ts";
 
 interface Options {
   dev?: boolean;
@@ -32,7 +34,6 @@ export async function upgrade(dev = false, version?: string) {
         : "You're using the latest development version of Lume:",
       brightGreen(latest),
     );
-    await importMap(url);
     console.log();
     return;
   }
@@ -43,7 +44,14 @@ export async function upgrade(dev = false, version?: string) {
       : `New version available. Updating Lume to ${brightGreen(latest)}...`,
   );
 
-  await importMap(url);
+  const denoConfig = await readDenoConfig();
+
+  if (!denoConfig) {
+    throw new Error("No Deno config file found");
+  }
+
+  updateLumeVersion(url, denoConfig);
+  await writeDenoConfig(denoConfig);
 
   console.log();
   console.log("Update successful!");

@@ -16,6 +16,10 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Support for negative tags in `search` plugin. For example:
   `search.pages("tag1 !tag2")`.
 - Support for remote files in `sass` plugin.
+- Improved `lume init` for some plugins like `mdx` or `tailwindcss`.
+
+### Removed
+- `lume import-map` command.
 
 ### Changed
 - Refactor of the internal file system manager, reducing complexity and fixing some bugs.

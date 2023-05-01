@@ -5,7 +5,6 @@ import initCommand from "./cli/init.ts";
 import upgradeCommand from "./cli/upgrade.ts";
 import runCommand from "./cli/run.ts";
 import buildCommand from "./cli/build.ts";
-import importMapCommand from "./cli/import_map.ts";
 import createCommand from "./cli/create.ts";
 
 const init = new Command()
@@ -31,15 +30,6 @@ const upgrade = new Command()
   .example("lume upgrade -g", "Upgrades to the latest stable version.")
   .example("lume upgrade --dev", "Upgrades to the latest development version.")
   .action(upgradeCommand);
-
-const importMap = new Command()
-  .description("Create or update a import map file with the Lume imports.")
-  .example("lume import-map", "Create/update the file import_map.json.")
-  .option(
-    "--plugins <output:string[]>",
-    "Name of the plugins installed, in order to configure the import_map.json and deno.json files",
-  )
-  .action(importMapCommand);
 
 const create = new Command()
   .description("Create a new page from a archetype.")
@@ -150,7 +140,6 @@ const lume = new Command()
   .command("new <archetype> [arguments...]", create)
   .command("init", init)
   .command("upgrade", upgrade)
-  .command("import-map", importMap)
   .command("run <script...>", run)
   .command("completions", new CompletionsCommand());
 

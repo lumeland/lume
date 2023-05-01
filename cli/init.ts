@@ -1,23 +1,16 @@
 import { brightGreen, gray } from "../deps/colors.ts";
-import { pluginNames } from "../core/utils.ts";
-import importMap from "./import_map.ts";
+import {
+  pluginNames,
+  updateLumeVersion,
+  writeDenoConfig,
+} from "../core/utils.ts";
 import { Checkbox, Confirm, Select } from "../deps/cliffy.ts";
 import { outdent } from "../deps/outdent.ts";
 
-/** Generate a _config.js file */
-export default function (): Promise<void> {
-  return init();
-}
+import type { DenoConfigResult } from "../core/utils.ts";
 
-export async function init() {
-  const plugins = await initConfig();
-  if (!plugins) return;
-  await importMap({ plugins });
-  welcome();
-}
-
-/** (Re)configure lume config file */
-async function initConfig(): Promise<string[] | undefined> {
+/** Init Lume in the current directory */
+export default async function init(): Promise<void> {
   const configFile = await getConfigFile();
 
   if (!configFile) {
@@ -26,6 +19,13 @@ async function initConfig(): Promise<string[] | undefined> {
   }
 
   const plugins = await getPlugins();
+
+  const denoConfig: DenoConfigResult = {
+    config: {},
+    file: "deno.json",
+  };
+
+  initPlugins(plugins, denoConfig);
 
   // Generate the code for the config file
   const code = [`import lume from "lume/mod.ts";`];
@@ -51,7 +51,11 @@ async function initConfig(): Promise<string[] | undefined> {
   await Deno.writeTextFile(configFile, code.join("\n"));
   console.log();
   console.log("Lume configuration file saved:", gray(configFile));
-  return plugins;
+
+  const url = new URL(import.meta.resolve("../"));
+  updateLumeVersion(url, denoConfig);
+  writeDenoConfig(denoConfig);
+  welcome();
 }
 
 /**
@@ -149,4 +153,60 @@ function welcome() {
     `;
 
   console.log(message);
+}
+
+function initPlugins(plugins: string[], denoConfig: DenoConfigResult) {
+  // Ensure that jsx and jsx_preact are not used at the same time and are loaded before mdx
+  if (plugins.includes("mdx")) {
+    const jsx = plugins.indexOf("jsx");
+    const jsx_preact = plugins.indexOf("jsx_preact");
+
+    if (jsx !== -1 && jsx_preact !== -1) {
+      throw new Error(
+        "You can't use both the jsx and jsx_preact plugins at the same time.",
+      );
+    }
+
+    if (jsx !== -1) {
+      // Ensure jsx is loaded before mdx
+      plugins.splice(jsx, 1);
+      plugins.unshift("jsx");
+    } else if (jsx_preact !== -1) {
+      // Ensure jsx_preact is loaded before mdx
+      plugins.splice(jsx_preact, 1);
+      plugins.unshift("jsx_preact");
+    } else {
+      // Use jsx by default
+      plugins.unshift("jsx");
+    }
+  }
+
+  if (plugins.includes("jsx")) {
+    denoConfig.config.compilerOptions ||= {};
+    denoConfig.config.compilerOptions.jsx = "react-jsx";
+    denoConfig.config.compilerOptions.jsxImportSource = "react";
+
+    // Add jsx-runtime import to import_map.
+    denoConfig.importMap ||= { imports: {} };
+    denoConfig.importMap.imports["react/jsx-runtime"] =
+      "https://esm.sh/react@18.2.0/jsx-runtime";
+  }
+
+  if (plugins.includes("jsx_preact")) {
+    denoConfig.config.compilerOptions ||= {};
+    denoConfig.config.compilerOptions.jsx = "react-jsx";
+    denoConfig.config.compilerOptions.jsxImportSource = "npm:preact";
+  }
+
+  // Ensure that tailwindcss is loaded before postcss
+  if (plugins.includes("tailwindcss")) {
+    const tailwindcss = plugins.indexOf("tailwindcss");
+    const postcss = plugins.indexOf("postcss");
+
+    if (postcss !== -1) {
+      plugins.splice(postcss, 1);
+    }
+
+    plugins.splice(tailwindcss, 1, "tailwindcss", "postcss");
+  }
 }
