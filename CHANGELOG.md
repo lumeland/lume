@@ -21,6 +21,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Removed
 - `lume import-map` command.
 - BREAKING: Removed `ci.ts` file. It's no longer needed due Lume is executed from Deno tasks.
+- BREAKING: Removed `install.ts` file.
 
 ### Changed
 - Refactor of the internal file system manager, reducing complexity and fixing some bugs.

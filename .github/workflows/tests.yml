@@ -29,9 +29,6 @@ jobs:
       - name: Run linter
         run: deno lint
 
-      - name: Test installation
-        run: deno run -A install.ts
-
       - name: Run tests
         run: deno task test
 
