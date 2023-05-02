@@ -89,10 +89,11 @@ snapshot[`sass plugin 3`] = `
 
 snapshot[`sass plugin 4`] = `
 {
-  content: "html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}",
+  content: '@import"./styles.css";html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}',
   data: {
     children: false,
-    content: '@import "./_includes/sass/colors";
+    content: '@import "./styles.css";
+@import "./_includes/sass/colors";
 @import "sass/button";
 ',
     date: 1970-01-01T00:00:00.000Z,
