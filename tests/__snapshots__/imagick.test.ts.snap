@@ -95,7 +95,7 @@ snapshot[`imagick plugin 3`] = `
 
 snapshot[`imagick plugin 4`] = `
 {
-  content: "Uint8Array(951)",
+  content: "Uint8Array(935)",
   data: {
     children: false,
     content: "Uint8Array(29014)",
@@ -127,7 +127,7 @@ snapshot[`imagick plugin 4`] = `
 
 snapshot[`imagick plugin 5`] = `
 {
-  content: "Uint8Array(951)",
+  content: "Uint8Array(935)",
   data: {
     children: false,
     content: "Uint8Array(29014)",
@@ -223,7 +223,7 @@ snapshot[`imagick plugin 7`] = `
 
 snapshot[`imagick plugin 8`] = `
 {
-  content: "Uint8Array(14407)",
+  content: "Uint8Array(14410)",
   data: {
     children: false,
     content: "Uint8Array(29014)",

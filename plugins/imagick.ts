@@ -1,13 +1,13 @@
 import { getPathAndExtension, merge } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
 import { Exception } from "../core/errors.ts";
-import { ImageMagick, initializeImageMagick } from "../deps/imagick.ts";
+import { ImageMagick, initialize } from "../deps/imagick.ts";
 import Cache from "../core/cache.ts";
 
 import type { Page, Site } from "../core.ts";
 import type { IMagickImage, MagickFormat } from "../deps/imagick.ts";
 
-await initializeImageMagick();
+await initialize();
 
 export interface Options {
   /** The list extensions this plugin applies to */
@@ -177,10 +177,14 @@ function transform(
       }
     }
 
-    image.write(
-      (content: Uint8Array) => page.content = new Uint8Array(content),
-      format,
-    );
+    if (format) {
+      image.write(
+        format,
+        (content: Uint8Array) => page.content = new Uint8Array(content),
+      );
+    } else {
+      image.write((content: Uint8Array) => page.content = new Uint8Array(content));
+    }
   });
 }
 

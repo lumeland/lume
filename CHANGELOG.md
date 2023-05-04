@@ -42,7 +42,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - `pagefind` plugin:
   Fix the output string to be a string decoded from raw byte data [#411].
 - Duplicate pages on reload files inside `_data/` folders.
-- Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`, `katex`, `lightningcss`, `postcss`, `terser`, `liquid`, `tailwindcss`, `katex`.
+- Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`, `katex`, `lightningcss`, `postcss`, `terser`, `liquid`, `tailwindcss`, `katex`, `imagick`.
 
 ## [1.16.2] - 2023-04-03
 ### Added

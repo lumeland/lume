@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`Source maps from CSS files 1`] = `4`;
+snapshot[`Source maps from CSS files 1`] = `6`;
 
 snapshot[`Source maps from CSS files 2`] = `
 {
@@ -96,10 +96,20 @@ snapshot[`Source maps from CSS files 3`] = `
 
 snapshot[`Source maps from CSS files 4`] = `
 {
-  content: '{"version":3,"sourceRoot":"assets","mappings":"ACEA,2DCFA,cEMA","sources":["index.scss","third.scss","fourth.scss","colors.scss","button.scss"],"sourcesContent":["html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}","","","",""],"names":[],"file":"index.css.map"}',
+  content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BCEA,2DCFA,cEMA","sources":["index.scss","styles.css","third.scss","fourth.scss","colors.scss","button.scss"],"sourcesContent":["body {\\
+  font-family: sans-serif;\\
+}\\
+html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}\\
+hr{color:blue}\\
+body{font:100% Helvetica,sans-serif;color:#333}","","","","",""],"names":[],"file":"index.css.map"}',
   data: {
     children: false,
-    content: '{"version":3,"sourceRoot":"assets","mappings":"ACEA,2DCFA,cEMA","sources":["index.scss","third.scss","fourth.scss","colors.scss","button.scss"],"sourcesContent":["html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}","","","",""],"names":[],"file":"index.css.map"}',
+    content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BCEA,2DCFA,cEMA","sources":["index.scss","styles.css","third.scss","fourth.scss","colors.scss","button.scss"],"sourcesContent":["body {\\
+  font-family: sans-serif;\\
+}\\
+html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}\\
+hr{color:blue}\\
+body{font:100% Helvetica,sans-serif;color:#333}","","","","",""],"names":[],"file":"index.css.map"}',
     page: undefined,
     sourceMap: undefined,
     url: "/index.css.map",
@@ -142,11 +152,39 @@ snapshot[`Source maps from CSS files 5`] = `
 
 snapshot[`Source maps from CSS files 6`] = `
 {
-  content: "html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:#00f}body{color:#333;font:100% Helvetica,sans-serif}
+  content: '{"version":3,"sourceRoot":"assets","mappings":"AAAA","sources":["styles.css"],"sourcesContent":["body {\\
+  font-family: sans-serif;\\
+}"],"names":[],"file":"styles.css.map"}',
+  data: {
+    children: false,
+    content: '{"version":3,"sourceRoot":"assets","mappings":"AAAA","sources":["styles.css"],"sourcesContent":["body {\\
+  font-family: sans-serif;\\
+}"],"names":[],"file":"styles.css.map"}',
+    page: undefined,
+    sourceMap: undefined,
+    url: "/styles.css.map",
+  },
+  dest: {
+    ext: ".map",
+    path: "/styles.css",
+  },
+  src: {
+    asset: true,
+    path: "",
+    remote: undefined,
+    slug: "styles",
+  },
+}
+`;
+
+snapshot[`Source maps from CSS files 7`] = `
+{
+  content: "body{font-family:sans-serif}html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:#00f}body{color:#333;font:100% Helvetica,sans-serif}
 /*# sourceMappingURL=./index.css.map */",
   data: {
     children: false,
-    content: '@import "./_includes/sass/colors";
+    content: '@import "./styles.css";
+@import "./_includes/sass/colors";
 @import "sass/button";
 ',
     date: 1970-01-01T00:00:00.000Z,
@@ -175,7 +213,7 @@ snapshot[`Source maps from CSS files 6`] = `
 }
 `;
 
-snapshot[`Source maps from CSS files 7`] = `
+snapshot[`Source maps from CSS files 8`] = `
 {
   content: "body{color:#00f}
 /*# sourceMappingURL=./index2.css.map */",
@@ -208,6 +246,41 @@ body
     path: "/index2",
     remote: undefined,
     slug: "index2",
+  },
+}
+`;
+
+snapshot[`Source maps from CSS files 9`] = `
+{
+  content: "body{font-family:sans-serif}
+/*# sourceMappingURL=./styles.css.map */",
+  data: {
+    children: false,
+    content: "body {
+  font-family: sans-serif;
+}",
+    date: 1970-01-01T00:00:00.000Z,
+    mergedKeys: {
+      tags: "stringArray",
+    },
+    page: undefined,
+    paginate: [Function: paginate],
+    search: Search {},
+    sourceMap: undefined,
+    tags: [
+    ],
+    url: "/styles.css",
+  },
+  dest: {
+    ext: ".css",
+    path: "/styles",
+  },
+  src: {
+    asset: true,
+    ext: ".css",
+    path: "/styles",
+    remote: undefined,
+    slug: "styles",
   },
 }
 `;
