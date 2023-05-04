@@ -45,7 +45,7 @@ export default class Scopes {
     return function (entry) {
       // Ignore directories
       if (entry.type === "directory") {
-        return false;
+        return true;
       }
 
       // It matches with any scope that has changed

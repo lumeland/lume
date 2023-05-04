@@ -16,7 +16,9 @@ Deno.test("Scripts", async (t) => {
   fs.addEntry({ path: "/file3.css", type: "file" });
   fs.addEntry({ path: "/file4.html", type: "file" });
 
-  const entries = Array.from(fs.entries.values());
+  const entries = Array.from(fs.entries.values()).filter((entry) =>
+    entry.type === "file"
+  );
 
   await t.step("Add scopes", () => {
     scopes.scopes.add((path: string) => path.endsWith(".foo"));
