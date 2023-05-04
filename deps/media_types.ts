@@ -1,1 +1,1 @@
-export * from "https://deno.land/std@0.185.0/media_types/mod.ts";
+export * from "https://deno.land/std@0.186.0/media_types/mod.ts";

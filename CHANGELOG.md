@@ -18,11 +18,6 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Support for remote files in `sass` plugin.
 - Improved `lume init` for some plugins like `mdx` or `tailwindcss`.
 
-### Removed
-- `lume import-map` command.
-- BREAKING: Removed `ci.ts` file. It's no longer needed due Lume is executed from Deno tasks.
-- BREAKING: Removed `install.ts` file.
-
 ### Changed
 - Refactor of the internal file system manager, reducing complexity and fixing some bugs.
   The `Reader` class was replaced by `FS`.
@@ -31,6 +26,11 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
   (previously `string[]` was also accepted).
 - BREAKING: Removed all `Deno.run` calls and replaced with the new `Deno.Command` API.
   -  Removed the `ScriptOptions` argument of `lume.run()`.
+
+### Removed
+- `lume import-map` command.
+- BREAKING: Removed `ci.ts` file. It's no longer needed due Lume is executed from Deno tasks.
+- BREAKING: Removed `install.ts` file.
 
 ### Fixed
 - `multilanguage` plugin:
@@ -42,7 +42,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - `pagefind` plugin:
   Fix the output string to be a string decoded from raw byte data [#411].
 - Duplicate pages on reload files inside `_data/` folders.
-- Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`, `katex`, `lightningcss`, `postcss`, `terser`, `liquid`, `tailwindcss`, `katex`, `imagick`.
+- Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`, `katex`, `lightningcss`, `postcss`, `terser`, `liquid`, `tailwindcss`, `katex`, `imagick`, `preact-render-to-string`, `date-fns`.
 
 ## [1.16.2] - 2023-04-03
 ### Added

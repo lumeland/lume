@@ -1,1 +1,1 @@
-export * from "npm:date-fns@2.29.3";
+export * from "npm:date-fns@2.30.0";
