@@ -512,7 +512,7 @@ export default class Site {
     const [_pages, _staticFiles] = await this.source.build(
       this.globalComponents,
       [
-        (page) => !page.data.draft || this.options.dev,
+        (_, page) => !page?.data.draft || this.options.dev,
       ],
     );
 
@@ -558,7 +558,7 @@ export default class Site {
     const [_pages, _staticFiles] = await this.source.build(
       this.globalComponents,
       [
-        (page) => !page.data.draft || this.options.dev,
+        (_, page) => !page?.data.draft || this.options.dev,
         this.scopes.getFilter(files),
       ],
     );
@@ -664,7 +664,9 @@ export default class Site {
     const [pages] = await this.source.build(
       this.globalComponents,
       [
-        (page) => page.src.path + page.src.ext === file,
+        (entry) =>
+          (entry.type === "directory" && file.startsWith(entry.path)) ||
+          entry.path === file,
       ],
     );
 

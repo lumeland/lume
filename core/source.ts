@@ -110,12 +110,13 @@ export default class Source {
 
   async build(
     globalComponents: Components,
-    pageFilters: ((page: Page) => boolean)[],
+    buildFilters: BuildFilter[],
   ): Promise<[Page[], StaticFile[]]> {
     const pages: Page[] = [];
     const staticFiles: StaticFile[] = [];
 
     await this.#build(
+      buildFilters,
       this.fs.entries.get("/")!,
       "/",
       globalComponents,
@@ -125,14 +126,13 @@ export default class Source {
     );
 
     return [
-      pages.filter((
-        page,
-      ) => pageFilters.every((filter) => filter(page))),
+      pages,
       staticFiles,
     ];
   }
 
   async #build(
+    buildFilters: BuildFilter[],
     dir: Entry,
     path: string,
     parentComponents: Components,
@@ -140,6 +140,10 @@ export default class Source {
     pages: Page[],
     staticFiles: StaticFile[],
   ) {
+    if (buildFilters.some((filter) => !filter(dir))) {
+      return;
+    }
+
     // Parse the date/time in the folder name
     const [name, date] = parseDate(dir.name);
     path = posix.join(path, name);
@@ -180,6 +184,10 @@ export default class Source {
 
     // Load the pages and static files
     for (const entry of dir.children.values()) {
+      if (buildFilters.some((filter) => !filter(entry))) {
+        continue;
+      }
+
       // Static files
       if (this.staticPaths.has(entry.path)) {
         const dest = this.staticPaths.get(entry.path);
@@ -280,6 +288,10 @@ export default class Source {
           page.data.date = getDate(page.data.date, entry);
           page.data.page = page;
 
+          if (buildFilters.some((filter) => !filter(entry, page))) {
+            continue;
+          }
+
           pages.push(page);
           continue;
         }
@@ -288,6 +300,7 @@ export default class Source {
       // Load recursively the directory
       if (entry.type === "directory") {
         await this.#build(
+          buildFilters,
           entry,
           path,
           parentComponents,
@@ -412,6 +425,8 @@ function toProxy(
     },
   }) as unknown as ProxyComponents;
 }
+
+export type BuildFilter = (entry: Entry, page?: Page) => boolean;
 
 export type ComponentFunction = (props: Record<string, unknown>) => string;
 

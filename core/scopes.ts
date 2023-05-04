@@ -1,4 +1,4 @@
-import type { Page } from "../core.ts";
+import type { Entry } from "../core.ts";
 
 /**
  * Define independent updates scopes
@@ -8,7 +8,7 @@ export default class Scopes {
   scopes = new Set<ScopeFilter>();
 
   /** Returns a function to filter the pages that must be rebuild */
-  getFilter(changedFiles: Iterable<string>): (page: Page) => boolean {
+  getFilter(changedFiles: Iterable<string>): (entry: Entry) => boolean {
     // There's no any scope, so rebuild all pages
     if (this.scopes.size === 0) {
       return () => true;
@@ -42,18 +42,21 @@ export default class Scopes {
     }
 
     // Generate the filter function
-    return function (page) {
-      const path = page.src.path + page.src.ext;
+    return function (entry) {
+      // Ignore directories
+      if (entry.type === "directory") {
+        return false;
+      }
 
       // It matches with any scope that has changed
       for (const scopeFn of changed) {
-        if (scopeFn(path)) {
+        if (scopeFn(entry.path)) {
           return true;
         }
       }
 
       // It's not scoped
-      return noScoped && notChanged.every((scopeFn) => !scopeFn(path));
+      return noScoped && notChanged.every((scopeFn) => !scopeFn(entry.path));
     };
   }
 }
