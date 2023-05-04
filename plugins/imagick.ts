@@ -183,7 +183,9 @@ function transform(
         (content: Uint8Array) => page.content = new Uint8Array(content),
       );
     } else {
-      image.write((content: Uint8Array) => page.content = new Uint8Array(content));
+      image.write((content: Uint8Array) =>
+        page.content = new Uint8Array(content)
+      );
     }
   });
 }

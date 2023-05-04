@@ -1,5 +1,8 @@
 import { merge } from "../core/utils.ts";
-import onDemand, { getRouter } from "../middlewares/on_demand.ts";
+import onDemand, {
+  getRouter,
+  MiddlewareOptions,
+} from "../middlewares/on_demand.ts";
 import { extname } from "../deps/path.ts";
 
 import type { Logger, Page, Site } from "../core.ts";
@@ -10,6 +13,9 @@ export interface Options {
 
   /** The file path to save the preloaded modules */
   preloadPath: string;
+
+  /** Extra data to pass to the pages */
+  extraData?: (request: Request) => Record<string, unknown>;
 }
 
 // Default options
@@ -39,6 +45,12 @@ export default function (userOptions?: Partial<Options>) {
 
     // Add the ondemand middleware
     site.options.server.middlewares ||= [];
+
+    site._data.on_demand = {
+      extraData: options.extraData,
+      routesFile,
+    } as MiddlewareOptions;
+
     site.options.server.middlewares.push(onDemand({
       site,
       router: getRouter(collector.routes),

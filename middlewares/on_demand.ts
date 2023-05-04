@@ -8,13 +8,15 @@ export type Router = (url: URL) => string | undefined;
 export interface Options {
   site: Site;
   router?: Router;
-  extraData?: (request: Request) => Record<string, unknown>;
 }
 
 /** Render pages on demand */
 export default function onDemand(options: Options): Middleware {
   const site = options.site;
   let router = options.router;
+
+  const { routesFile, extraData } =
+    (site._data.on_demand || {}) as MiddlewareOptions;
 
   return async (request, next) => {
     const response = await next(request);
@@ -24,7 +26,9 @@ export default function onDemand(options: Options): Middleware {
     }
 
     if (!router) {
-      router = await createDefaultRouter(site.src("_routes.json"));
+      router = await createDefaultRouter(
+        routesFile || site.root("/_routes.json"),
+      );
     }
 
     const url = new URL(request.url);
@@ -34,7 +38,7 @@ export default function onDemand(options: Options): Middleware {
       return response;
     }
 
-    const data = options.extraData?.(request) ?? {};
+    const data = extraData?.(request) ?? {};
     const page = await site.renderPage(file, data);
 
     if (!page || !page.outputPath) {
@@ -86,4 +90,9 @@ export function getRouter(routes: Map<string, string>): Router {
 
     return path;
   };
+}
+
+export interface MiddlewareOptions {
+  extraData?: (request: Request) => Record<string, unknown>;
+  routesFile?: string;
 }
