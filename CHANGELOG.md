@@ -9,7 +9,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.17.0] - Unreleased
+## [1.17.0] - 2023-05-05
 ### Added
 - Feed Plugin [#413]
 - Ability to add extra data to `on_demand` pages.
@@ -2206,7 +2206,7 @@ The first version.
 [#411]: https://github.com/lumeland/lume/issues/411
 [#413]: https://github.com/lumeland/lume/issues/413
 
-[1.17.0]: https://github.com/lumeland/lume/compare/v1.16.2...HEAD
+[1.17.0]: https://github.com/lumeland/lume/compare/v1.16.2...v1.17.0
 [1.16.2]: https://github.com/lumeland/lume/compare/v1.16.1...v1.16.2
 [1.16.1]: https://github.com/lumeland/lume/compare/v1.16.0...v1.16.1
 [1.16.0]: https://github.com/lumeland/lume/compare/v1.15.3...v1.16.0
