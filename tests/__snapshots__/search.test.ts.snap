@@ -54,10 +54,10 @@ snapshot[`Search Date by upper than 1`] = `"(page) => page.outputPath?.endsWith(
 
 snapshot[`Search Date by upper or equals than 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo?.getTime() >= value2.getTime()"`;
 
-snapshot[`Sort by one field 1`] = `[Function (anonymous)]`;
+snapshot[`Sort by one field 1`] = `[Function: anonymous]`;
 
-snapshot[`Sort by one field DESC 1`] = `[Function (anonymous)]`;
+snapshot[`Sort by one field DESC 1`] = `[Function: anonymous]`;
 
-snapshot[`Sort by two fields 1`] = `[Function (anonymous)]`;
+snapshot[`Sort by two fields 1`] = `[Function: anonymous]`;
 
-snapshot[`Sort by two fields, sencod is DESC 1`] = `[Function (anonymous)]`;
+snapshot[`Sort by two fields, sencod is DESC 1`] = `[Function: anonymous]`;

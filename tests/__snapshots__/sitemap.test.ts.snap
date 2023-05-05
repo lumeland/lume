@@ -70,10 +70,7 @@ snapshot[`Sitemap plugin 2`] = `
 }
 `;
 
-snapshot[`Sitemap plugin 3`] = `
-[
-]
-`;
+snapshot[`Sitemap plugin 3`] = `[]`;
 
 snapshot[`Sitemap plugin 4`] = `
 {
@@ -106,45 +103,81 @@ Sitemap: https://example.com/sitemap.xml",
 snapshot[`Sitemap plugin 5`] = `
 {
   content: '<?xml version="1.0" encoding="utf-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://example.com/overrided-page2/</loc>
-    <lastmod>2020-06-21T00:00:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://example.com/pages/page4/</loc>
-    <lastmod>2021-01-02T18:32:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://example.com/pages/page6/</loc>
-    <lastmod>2022-01-01T00:00:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://example.com/pages/subpage/page7/</loc>
-    <lastmod>2022-01-02T00:00:00.000Z</lastmod>
-  </url>
-</urlset>',
+' +
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+' +
+    "  <url>
+" +
+    "    <loc>https://example.com/overrided-page2/</loc>
+" +
+    "    <lastmod>2020-06-21T00:00:00.000Z</lastmod>
+" +
+    "  </url>
+" +
+    "  <url>
+" +
+    "    <loc>https://example.com/pages/page4/</loc>
+" +
+    "    <lastmod>2021-01-02T18:32:00.000Z</lastmod>
+" +
+    "  </url>
+" +
+    "  <url>
+" +
+    "    <loc>https://example.com/pages/page6/</loc>
+" +
+    "    <lastmod>2022-01-01T00:00:00.000Z</lastmod>
+" +
+    "  </url>
+" +
+    "  <url>
+" +
+    "    <loc>https://example.com/pages/subpage/page7/</loc>
+" +
+    "    <lastmod>2022-01-02T00:00:00.000Z</lastmod>
+" +
+    "  </url>
+" +
+    "</urlset>",
   data: {
     children: false,
     content: '<?xml version="1.0" encoding="utf-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://example.com/overrided-page2/</loc>
-    <lastmod>2020-06-21T00:00:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://example.com/pages/page4/</loc>
-    <lastmod>2021-01-02T18:32:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://example.com/pages/page6/</loc>
-    <lastmod>2022-01-01T00:00:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://example.com/pages/subpage/page7/</loc>
-    <lastmod>2022-01-02T00:00:00.000Z</lastmod>
-  </url>
-</urlset>',
+' +
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+' +
+      "  <url>
+" +
+      "    <loc>https://example.com/overrided-page2/</loc>
+" +
+      "    <lastmod>2020-06-21T00:00:00.000Z</lastmod>
+" +
+      "  </url>
+" +
+      "  <url>
+" +
+      "    <loc>https://example.com/pages/page4/</loc>
+" +
+      "    <lastmod>2021-01-02T18:32:00.000Z</lastmod>
+" +
+      "  </url>
+" +
+      "  <url>
+" +
+      "    <loc>https://example.com/pages/page6/</loc>
+" +
+      "    <lastmod>2022-01-01T00:00:00.000Z</lastmod>
+" +
+      "  </url>
+" +
+      "  <url>
+" +
+      "    <loc>https://example.com/pages/subpage/page7/</loc>
+" +
+      "    <lastmod>2022-01-02T00:00:00.000Z</lastmod>
+" +
+      "  </url>
+" +
+      "</urlset>",
     page: undefined,
     url: "/sitemap.xml",
   },
@@ -191,8 +224,7 @@ Content of Page 5",
     paginate: [Function: paginate],
     search: Search {},
     site: "Default site name",
-    tags: [
-    ],
+    tags: [],
     title: "Page 5",
     url: "/page5/",
   },
@@ -293,7 +325,8 @@ Content of Page 2",
 snapshot[`Sitemap plugin 8`] = `
 {
   content: "<!DOCTYPE html>
-Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
+" +
+    "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
   data: {
     children: true,
     colors: [

@@ -70,34 +70,47 @@ snapshot[`build a site with nunjucks 2`] = `
 }
 `;
 
-snapshot[`build a site with nunjucks 3`] = `
-[
-]
-`;
+snapshot[`build a site with nunjucks 3`] = `[]`;
 
 snapshot[`build a site with nunjucks 4`] = `
 {
   content: "
-button {
-  background-color: blue;
-}
-
-icon {
-  width: 48px;
-  height: 48px;
-}
+" +
+    "button {
+" +
+    "  background-color: blue;
+" +
+    "}
+" +
+    "
+" +
+    "icon {
+" +
+    "  width: 48px;
+" +
+    "  height: 48px;
+" +
+    "}
 ",
   data: {
     children: false,
     content: "
-button {
-  background-color: blue;
-}
-
-icon {
-  width: 48px;
-  height: 48px;
-}
+" +
+      "button {
+" +
+      "  background-color: blue;
+" +
+      "}
+" +
+      "
+" +
+      "icon {
+" +
+      "  width: 48px;
+" +
+      "  height: 48px;
+" +
+      "}
 ",
     page: undefined,
     url: "/components.css",
@@ -117,25 +130,39 @@ icon {
 
 snapshot[`build a site with nunjucks 5`] = `
 {
-  content: '
-document.querySelectorAll("button").forEach(button => {
-  button.addEventListener("click", () => {
-    alert("Hello world!");
-  });
-});
-
-console.log("Hello world, from the icon/User component");
+  content: "
+" +
+    'document.querySelectorAll("button").forEach(button => {
+' +
+    '  button.addEventListener("click", () => {
+' +
+    '    alert("Hello world!");
+' +
+    "  });
+" +
+    "});
+" +
+    "
+" +
+    'console.log("Hello world, from the icon/User component");
 ',
   data: {
     children: false,
-    content: '
-document.querySelectorAll("button").forEach(button => {
-  button.addEventListener("click", () => {
-    alert("Hello world!");
-  });
-});
-
-console.log("Hello world, from the icon/User component");
+    content: "
+" +
+      'document.querySelectorAll("button").forEach(button => {
+' +
+      '  button.addEventListener("click", () => {
+' +
+      '    alert("Hello world!");
+' +
+      "  });
+" +
+      "});
+" +
+      "
+" +
+      'console.log("Hello world, from the icon/User component");
 ',
     page: undefined,
     url: "/components.js",
@@ -155,56 +182,99 @@ console.log("Hello world, from the icon/User component");
 
 snapshot[`build a site with nunjucks 6`] = `
 {
-  content: '<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <main><button class="" type="button">
-  button without arguments
-</button>
-
-<button class="" type="button">button content</button>
-<icon name="John">
-  this is John
-</icon>
-
-
-<button class="my-button" type="button">
-  button content
-
-  <icon name="John">
-  
-  this is John
-  
-</icon>
-
-</button>
-</main>
-  </body>
-</html>
-',
+  content: "<!DOCTYPE html>
+" +
+    "
+" +
+    '<html lang="en">
+' +
+    "  <head>
+" +
+    '    <meta charset="utf-8">
+' +
+    "    <title></title>
+" +
+    "  </head>
+" +
+    "  <body>
+" +
+    '    <main><button class="" type="button">
+' +
+    "  button without arguments
+" +
+    "</button>
+" +
+    "
+" +
+    '<button class="" type="button">button content</button>
+' +
+    '<icon name="John">
+' +
+    "  this is John
+" +
+    "</icon>
+" +
+    "
+" +
+    "
+" +
+    '<button class="my-button" type="button">
+' +
+    "  button content
+" +
+    "
+" +
+    '  <icon name="John">
+' +
+    "  
+" +
+    "  this is John
+" +
+    "  
+" +
+    "</icon>
+" +
+    "
+" +
+    "</button>
+" +
+    "</main>
+" +
+    "  </body>
+" +
+    "</html>
+",
   data: {
     children: true,
     comp: {},
     content: '{% comp "Button" %}
-  button without arguments
-{% endcomp %}
-
-{{ comp.Button({ content: "button content" }) | safe }}
-{{ comp.icon.User({ content: "this is John", name:"John" }) | safe }}
-
-{% comp "Button", className="my-button" %}
-  button content
-
-  {% comp "icon.user", name="John" %}
-  this is John
-  {% endcomp %}
-{% endcomp %}
-',
+' +
+      "  button without arguments
+" +
+      "{% endcomp %}
+" +
+      "
+" +
+      '{{ comp.Button({ content: "button content" }) | safe }}
+' +
+      '{{ comp.icon.User({ content: "this is John", name:"John" }) | safe }}
+' +
+      "
+" +
+      '{% comp "Button", className="my-button" %}
+' +
+      "  button content
+" +
+      "
+" +
+      '  {% comp "icon.user", name="John" %}
+' +
+      "  this is John
+" +
+      "  {% endcomp %}
+" +
+      "{% endcomp %}
+",
     date: 1970-01-01T00:00:00.000Z,
     layout: "basic.njk",
     mergedKeys: {
@@ -213,8 +283,7 @@ snapshot[`build a site with nunjucks 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/components/",
   },
   dest: {
@@ -253,8 +322,7 @@ snapshot[`build a site with nunjucks 7`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/data.json",
   },
   dest: {
@@ -273,19 +341,30 @@ snapshot[`build a site with nunjucks 7`] = `
 
 snapshot[`build a site with nunjucks 8`] = `
 {
-  content: '<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Hello World</title>
-  </head>
-  <body>
-    <main><h1>Hello World</h1>
-</main>
-  </body>
-</html>
-',
+  content: "<!DOCTYPE html>
+" +
+    "
+" +
+    '<html lang="en">
+' +
+    "  <head>
+" +
+    '    <meta charset="utf-8">
+' +
+    "    <title>Hello World</title>
+" +
+    "  </head>
+" +
+    "  <body>
+" +
+    "    <main><h1>Hello World</h1>
+" +
+    "</main>
+" +
+    "  </body>
+" +
+    "</html>
+",
   data: {
     children: true,
     comp: {},
@@ -299,8 +378,7 @@ snapshot[`build a site with nunjucks 8`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Hello World",
     url: "/",
   },
@@ -320,18 +398,28 @@ snapshot[`build a site with nunjucks 8`] = `
 
 snapshot[`build a site with nunjucks 9`] = `
 {
-  content: '<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>njk filter example</title>
-  </head>
-  <body>
-    <main><h1>NJK FILTER EXAMPLE</h1></main>
-  </body>
-</html>
-',
+  content: "<!DOCTYPE html>
+" +
+    "
+" +
+    '<html lang="en">
+' +
+    "  <head>
+" +
+    '    <meta charset="utf-8">
+' +
+    "    <title>njk filter example</title>
+" +
+    "  </head>
+" +
+    "  <body>
+" +
+    "    <main><h1>NJK FILTER EXAMPLE</h1></main>
+" +
+    "  </body>
+" +
+    "</html>
+",
   data: {
     children: true,
     comp: {},
@@ -344,8 +432,7 @@ snapshot[`build a site with nunjucks 9`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "njk filter example",
     url: "/njk-filter/",
   },
@@ -365,51 +452,90 @@ snapshot[`build a site with nunjucks 9`] = `
 
 snapshot[`build a site with nunjucks 10`] = `
 {
-  content: '<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>The title</title>
-  </head>
-  <body>
-    <main><p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<div>hello (async)</div>
-
-<ul>
-  <li>This is a partial</li>
-  <li>async helper in a partial (async)</li>
-</ul>
-<ul>
-  <li>This is a partial</li>
-  <li>async helper in a partial (async)</li>
-</ul>
-</main>
-  </body>
-</html>
-',
+  content: "<!DOCTYPE html>
+" +
+    "
+" +
+    '<html lang="en">
+' +
+    "  <head>
+" +
+    '    <meta charset="utf-8">
+' +
+    "    <title>The title</title>
+" +
+    "  </head>
+" +
+    "  <body>
+" +
+    "    <main><p><strong>THE TITLE</strong></p>
+" +
+    "<p><strong>THE TITLE</strong></p>
+" +
+    "<p><strong>THE TITLE</strong></p>
+" +
+    "<p><strong>THE TITLE</strong></p>
+" +
+    "<p><strong>THE TITLE</strong></p>
+" +
+    "<p><strong>THE TITLE</strong></p>
+" +
+    "<p><strong>THE TITLE</strong></p>
+" +
+    "<p><strong>THE TITLE</strong></p>
+" +
+    "<div>hello (async)</div>
+" +
+    "
+" +
+    "<ul>
+" +
+    "  <li>This is a partial</li>
+" +
+    "  <li>async helper in a partial (async)</li>
+" +
+    "</ul>
+" +
+    "<ul>
+" +
+    "  <li>This is a partial</li>
+" +
+    "  <li>async helper in a partial (async)</li>
+" +
+    "</ul>
+" +
+    "</main>
+" +
+    "  </body>
+" +
+    "</html>
+",
   data: {
     children: true,
     comp: {},
-    content: '<p>{% upperCase title %}</p>
-<p>{% upperCase "The title" %}</p>
-<p>{% upperCaseAsync title %}</p>
-<p>{% upperCaseAsync "The title" %}</p>
-<p>{% upperCaseBody %}The title{% endupperCaseBody %}</p>
-<p>{% upperCaseBody %}{{ title }}{% endupperCaseBody %}</p>
-<p>{% upperCaseBodyAsync %}The title{% endupperCaseBodyAsync %}</p>
-<p>{% upperCaseBodyAsync %}{{ title }}{% endupperCaseBodyAsync %}</p>
-<div>{{ "hello" | returnAsync }}</div>
-
-{% include "partial.njk" %}
-{% include "./_includes/partial.njk" %}
+    content: "<p>{% upperCase title %}</p>
+" +
+      '<p>{% upperCase "The title" %}</p>
+' +
+      "<p>{% upperCaseAsync title %}</p>
+" +
+      '<p>{% upperCaseAsync "The title" %}</p>
+' +
+      "<p>{% upperCaseBody %}The title{% endupperCaseBody %}</p>
+" +
+      "<p>{% upperCaseBody %}{{ title }}{% endupperCaseBody %}</p>
+" +
+      "<p>{% upperCaseBodyAsync %}The title{% endupperCaseBodyAsync %}</p>
+" +
+      "<p>{% upperCaseBodyAsync %}{{ title }}{% endupperCaseBodyAsync %}</p>
+" +
+      '<div>{{ "hello" | returnAsync }}</div>
+' +
+      "
+" +
+      '{% include "partial.njk" %}
+' +
+      '{% include "./_includes/partial.njk" %}
 ',
     date: 1970-01-01T00:00:00.000Z,
     layout: "basic.njk",
@@ -419,8 +545,7 @@ snapshot[`build a site with nunjucks 10`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "The title",
     url: "/with-helpers/",
   },

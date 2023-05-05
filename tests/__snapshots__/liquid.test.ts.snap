@@ -77,10 +77,7 @@ snapshot[`build a site with liquid 2`] = `
 }
 `;
 
-snapshot[`build a site with liquid 3`] = `
-[
-]
-`;
+snapshot[`build a site with liquid 3`] = `[]`;
 
 snapshot[`build a site with liquid 4`] = `
 {
@@ -103,8 +100,7 @@ snapshot[`build a site with liquid 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/data.json",
   },
   dest: {
@@ -123,19 +119,30 @@ snapshot[`build a site with liquid 4`] = `
 
 snapshot[`build a site with liquid 5`] = `
 {
-  content: '<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Hello World</title>
-  </head>
-  <body>
-    <main><h1>Hello World</h1>
-</main>
-  </body>
-</html>
-',
+  content: "<!DOCTYPE html>
+" +
+    "
+" +
+    '<html lang="en">
+' +
+    "  <head>
+" +
+    '    <meta charset="utf-8">
+' +
+    "    <title>Hello World</title>
+" +
+    "  </head>
+" +
+    "  <body>
+" +
+    "    <main><h1>Hello World</h1>
+" +
+    "</main>
+" +
+    "  </body>
+" +
+    "</html>
+",
   data: {
     children: true,
     content: "<h1>{{ title }}</h1>
@@ -148,8 +155,7 @@ snapshot[`build a site with liquid 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Hello World",
     url: "/",
   },
@@ -169,18 +175,28 @@ snapshot[`build a site with liquid 5`] = `
 
 snapshot[`build a site with liquid 6`] = `
 {
-  content: '<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>liquid filter example</title>
-  </head>
-  <body>
-    <main><h1>LIQUID FILTER EXAMPLE</h1></main>
-  </body>
-</html>
-',
+  content: "<!DOCTYPE html>
+" +
+    "
+" +
+    '<html lang="en">
+' +
+    "  <head>
+" +
+    '    <meta charset="utf-8">
+' +
+    "    <title>liquid filter example</title>
+" +
+    "  </head>
+" +
+    "  <body>
+" +
+    "    <main><h1>LIQUID FILTER EXAMPLE</h1></main>
+" +
+    "  </body>
+" +
+    "</html>
+",
   data: {
     children: true,
     content: undefined,
@@ -192,8 +208,7 @@ snapshot[`build a site with liquid 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "liquid filter example",
     url: "/liquid-filter/",
   },
@@ -213,50 +228,89 @@ snapshot[`build a site with liquid 6`] = `
 
 snapshot[`build a site with liquid 7`] = `
 {
-  content: '<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>The title</title>
-  </head>
-  <body>
-    <main><p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<div>hello (async)</div>
-
-<ul>
-  <li>This is a partial</li>
-  <li>async helper in a partial (async)</li>
-</ul>
-<ul>
-  <li>This is a partial</li>
-  <li>async helper in a partial (async)</li>
-</ul>
-</main>
-  </body>
-</html>
-',
+  content: "<!DOCTYPE html>
+" +
+    "
+" +
+    '<html lang="en">
+' +
+    "  <head>
+" +
+    '    <meta charset="utf-8">
+' +
+    "    <title>The title</title>
+" +
+    "  </head>
+" +
+    "  <body>
+" +
+    "    <main><p><strong>THE TITLE</strong></p>
+" +
+    "<p><strong>THE TITLE</strong></p>
+" +
+    "<p><strong>THE TITLE</strong></p>
+" +
+    "<p><strong>THE TITLE</strong></p>
+" +
+    "<p><strong>THE TITLE</strong></p>
+" +
+    "<p><strong>THE TITLE</strong></p>
+" +
+    "<p><strong>THE TITLE</strong></p>
+" +
+    "<p><strong>THE TITLE</strong></p>
+" +
+    "<div>hello (async)</div>
+" +
+    "
+" +
+    "<ul>
+" +
+    "  <li>This is a partial</li>
+" +
+    "  <li>async helper in a partial (async)</li>
+" +
+    "</ul>
+" +
+    "<ul>
+" +
+    "  <li>This is a partial</li>
+" +
+    "  <li>async helper in a partial (async)</li>
+" +
+    "</ul>
+" +
+    "</main>
+" +
+    "  </body>
+" +
+    "</html>
+",
   data: {
     children: true,
-    content: '<p>{% upperCase title %}</p>
-<p>{% upperCase "The title" %}</p>
-<p>{% upperCaseAsync title %}</p>
-<p>{% upperCaseAsync "The title" %}</p>
-<p>{% upperCaseBody %}The title{% endupperCaseBody %}</p>
-<p>{% upperCaseBody %}{{ title }}{% endupperCaseBody %}</p>
-<p>{% upperCaseBodyAsync %}The title{% endupperCaseBodyAsync %}</p>
-<p>{% upperCaseBodyAsync %}{{ title }}{% endupperCaseBodyAsync %}</p>
-<div>{{ "hello" | returnAsync }}</div>
-
-{% include "partial.liquid" %}
-{% include "./_includes/partial.liquid" %}
+    content: "<p>{% upperCase title %}</p>
+" +
+      '<p>{% upperCase "The title" %}</p>
+' +
+      "<p>{% upperCaseAsync title %}</p>
+" +
+      '<p>{% upperCaseAsync "The title" %}</p>
+' +
+      "<p>{% upperCaseBody %}The title{% endupperCaseBody %}</p>
+" +
+      "<p>{% upperCaseBody %}{{ title }}{% endupperCaseBody %}</p>
+" +
+      "<p>{% upperCaseBodyAsync %}The title{% endupperCaseBodyAsync %}</p>
+" +
+      "<p>{% upperCaseBodyAsync %}{{ title }}{% endupperCaseBodyAsync %}</p>
+" +
+      '<div>{{ "hello" | returnAsync }}</div>
+' +
+      "
+" +
+      '{% include "partial.liquid" %}
+' +
+      '{% include "./_includes/partial.liquid" %}
 ',
     date: 1970-01-01T00:00:00.000Z,
     layout: "basic.liquid",
@@ -266,8 +320,7 @@ snapshot[`build a site with liquid 7`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "The title",
     url: "/with-helpers/",
   },

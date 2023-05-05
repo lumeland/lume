@@ -87,30 +87,39 @@ snapshot[`Build a mdx site 2`] = `
 }
 `;
 
-snapshot[`Build a mdx site 3`] = `
-[
-]
-`;
+snapshot[`Build a mdx site 3`] = `[]`;
 
 snapshot[`Build a mdx site 4`] = `
 {
-  content: '<!DOCTYPE html>
-<header><h1>Hello world</h1><p>This is a description</p></header>
-<h2>Hello world</h2>
-<p>This is a markdown file with the title <strong>Hello world</strong>.</p>
-<img src="https://via.placeholder.com/350x150" alt="foo"/>',
+  content: "<!DOCTYPE html>
+" +
+    "<header><h1>Hello world</h1><p>This is a description</p></header>
+" +
+    "<h2>Hello world</h2>
+" +
+    "<p>This is a markdown file with the title <strong>Hello world</strong>.</p>
+" +
+    '<img src="https://via.placeholder.com/350x150" alt="foo"/>',
   data: {
     children: true,
     comp: {},
     content: 'import Image from "./_includes/Image.tsx";
-
-<comp.Header title={title} description={description}/>
-
-## Hello world
-
-This is a markdown file with the title **{ title }**.
-
-<Image alt="foo" />
+' +
+      "
+" +
+      "<comp.Header title={title} description={description}/>
+" +
+      "
+" +
+      "## Hello world
+" +
+      "
+" +
+      "This is a markdown file with the title **{ title }**.
+" +
+      "
+" +
+      '<Image alt="foo" />
 ',
     date: 1970-01-01T00:00:00.000Z,
     description: "This is a description",
@@ -120,8 +129,7 @@ This is a markdown file with the title **{ title }**.
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Hello world",
     url: "/",
   },

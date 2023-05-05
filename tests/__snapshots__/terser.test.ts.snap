@@ -72,10 +72,7 @@ snapshot[`terser plugin 2`] = `
 }
 `;
 
-snapshot[`terser plugin 3`] = `
-[
-]
-`;
+snapshot[`terser plugin 3`] = `[]`;
 
 snapshot[`terser plugin 4`] = `
 {
@@ -93,8 +90,7 @@ console.log(one() + two());
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/main.js",
   },
   dest: {
@@ -117,18 +113,30 @@ snapshot[`terser plugin 5`] = `
   data: {
     children: true,
     content: "export function one () {
-  return {{ one }};
-}
-
-export function two () {
-  return {{ two }};
-}
-/*
-Commented code
-export function two () {
-  return {{ two }};
-}
-*/",
+" +
+      "  return {{ one }};
+" +
+      "}
+" +
+      "
+" +
+      "export function two () {
+" +
+      "  return {{ two }};
+" +
+      "}
+" +
+      "/*
+" +
+      "Commented code
+" +
+      "export function two () {
+" +
+      "  return {{ two }};
+" +
+      "}
+" +
+      "*/",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
       tags: "stringArray",
@@ -137,8 +145,7 @@ export function two () {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     two: 2,
     url: "/numbers.js",
   },

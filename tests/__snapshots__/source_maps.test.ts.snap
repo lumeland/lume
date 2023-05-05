@@ -89,10 +89,7 @@ snapshot[`Source maps from CSS files 2`] = `
 }
 `;
 
-snapshot[`Source maps from CSS files 3`] = `
-[
-]
-`;
+snapshot[`Source maps from CSS files 3`] = `[]`;
 
 snapshot[`Source maps from CSS files 4`] = `
 {
@@ -180,12 +177,15 @@ snapshot[`Source maps from CSS files 6`] = `
 snapshot[`Source maps from CSS files 7`] = `
 {
   content: "body{font-family:sans-serif}html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:#00f}body{color:#333;font:100% Helvetica,sans-serif}
-/*# sourceMappingURL=./index.css.map */",
+" +
+    "/*# sourceMappingURL=./index.css.map */",
   data: {
     children: false,
     content: '@import "./styles.css";
-@import "./_includes/sass/colors";
-@import "sass/button";
+' +
+      '@import "./_includes/sass/colors";
+' +
+      '@import "sass/button";
 ',
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -195,8 +195,7 @@ snapshot[`Source maps from CSS files 7`] = `
     paginate: [Function: paginate],
     search: Search {},
     sourceMap: undefined,
-    tags: [
-    ],
+    tags: [],
     url: "/index.css",
   },
   dest: {
@@ -232,8 +231,7 @@ body
     paginate: [Function: paginate],
     search: Search {},
     sourceMap: undefined,
-    tags: [
-    ],
+    tags: [],
     url: "/index2.css",
   },
   dest: {
@@ -267,8 +265,7 @@ snapshot[`Source maps from CSS files 9`] = `
     paginate: [Function: paginate],
     search: Search {},
     sourceMap: undefined,
-    tags: [
-    ],
+    tags: [],
     url: "/styles.css",
   },
   dest: {
@@ -359,10 +356,7 @@ snapshot[`Source maps from Js files 2`] = `
 }
 `;
 
-snapshot[`Source maps from Js files 3`] = `
-[
-]
-`;
+snapshot[`Source maps from Js files 3`] = `[]`;
 
 snapshot[`Source maps from Js files 4`] = `
 {
@@ -478,16 +472,22 @@ document.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\
 snapshot[`Source maps from Js files 7`] = `
 {
   content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll("h1")?.forEach((r=>{r.innerHTML=e(r.innerHTML)}));
-//# sourceMappingURL=./main.js.map',
+' +
+    "//# sourceMappingURL=./main.js.map",
   data: {
     children: false,
     content: '/// <reference lib="dom" />
-import toUppercase from "./modules/to_uppercase.ts";
-
-document.querySelectorAll("h1")?.forEach((h1) => {
-  h1.innerHTML = toUppercase(h1.innerHTML);
-});
-',
+' +
+      'import toUppercase from "./modules/to_uppercase.ts";
+' +
+      "
+" +
+      'document.querySelectorAll("h1")?.forEach((h1) => {
+' +
+      "  h1.innerHTML = toUppercase(h1.innerHTML);
+" +
+      "});
+",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
       tags: "stringArray",
@@ -496,8 +496,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     paginate: [Function: paginate],
     search: Search {},
     sourceMap: undefined,
-    tags: [
-    ],
+    tags: [],
     url: "/main.js",
   },
   dest: {
@@ -517,12 +516,15 @@ document.querySelectorAll("h1")?.forEach((h1) => {
 snapshot[`Source maps from Js files 8`] = `
 {
   content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0});export{e as default};
-//# sourceMappingURL=./to_uppercase.js.map',
+' +
+    "//# sourceMappingURL=./to_uppercase.js.map",
   data: {
     children: false,
     content: "export default function toUppercase(text: string) {
-  return text.toUpperCase();
-}
+" +
+      "  return text.toUpperCase();
+" +
+      "}
 ",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -532,8 +534,7 @@ snapshot[`Source maps from Js files 8`] = `
     paginate: [Function: paginate],
     search: Search {},
     sourceMap: undefined,
-    tags: [
-    ],
+    tags: [],
     url: "/modules/to_uppercase.js",
   },
   dest: {
@@ -553,16 +554,22 @@ snapshot[`Source maps from Js files 8`] = `
 snapshot[`Source maps from Js files 9`] = `
 {
   content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll(".other")?.forEach((r=>{r.innerHTML=e(r.innerHTML)}));
-//# sourceMappingURL=./other.js.map',
+' +
+    "//# sourceMappingURL=./other.js.map",
   data: {
     children: false,
     content: '/// <reference lib="dom" />
-import toUppercase from "./modules/to_uppercase.ts";
-
-document.querySelectorAll(".other")?.forEach((el) => {
-  el.innerHTML = toUppercase(el.innerHTML);
-});
-',
+' +
+      'import toUppercase from "./modules/to_uppercase.ts";
+' +
+      "
+" +
+      'document.querySelectorAll(".other")?.forEach((el) => {
+' +
+      "  el.innerHTML = toUppercase(el.innerHTML);
+" +
+      "});
+",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
       tags: "stringArray",
@@ -571,8 +578,7 @@ document.querySelectorAll(".other")?.forEach((el) => {
     paginate: [Function: paginate],
     search: Search {},
     sourceMap: undefined,
-    tags: [
-    ],
+    tags: [],
     url: "/other.js",
   },
   dest: {

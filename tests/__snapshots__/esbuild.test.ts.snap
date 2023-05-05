@@ -74,10 +74,7 @@ snapshot[`esbuild plugin 2`] = `
 }
 `;
 
-snapshot[`esbuild plugin 3`] = `
-[
-]
-`;
+snapshot[`esbuild plugin 3`] = `[]`;
 
 snapshot[`esbuild plugin 4`] = `
 {
@@ -86,12 +83,17 @@ snapshot[`esbuild plugin 4`] = `
   data: {
     children: false,
     content: '/// <reference lib="dom" />
-import toUppercase from "./modules/to_uppercase.ts";
-
-document.querySelectorAll("h1")?.forEach((h1) => {
-  h1.innerHTML = toUppercase(h1.innerHTML);
-});
-',
+' +
+      'import toUppercase from "./modules/to_uppercase.ts";
+' +
+      "
+" +
+      'document.querySelectorAll("h1")?.forEach((h1) => {
+' +
+      "  h1.innerHTML = toUppercase(h1.innerHTML);
+" +
+      "});
+",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
       tags: "stringArray",
@@ -99,8 +101,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/main.js",
   },
   dest: {
@@ -124,12 +125,17 @@ snapshot[`esbuild plugin 5`] = `
   data: {
     children: false,
     content: '/// <reference lib="dom" />
-import toUppercase from "./modules/to_uppercase.ts";
-
-document.querySelectorAll(".other")?.forEach((el) => {
-  el.innerHTML = toUppercase(el.innerHTML);
-});
-',
+' +
+      'import toUppercase from "./modules/to_uppercase.ts";
+' +
+      "
+" +
+      'document.querySelectorAll(".other")?.forEach((el) => {
+' +
+      "  el.innerHTML = toUppercase(el.innerHTML);
+" +
+      "});
+",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
       tags: "stringArray",
@@ -137,8 +143,7 @@ document.querySelectorAll(".other")?.forEach((el) => {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/other.js",
   },
   dest: {
@@ -229,10 +234,7 @@ snapshot[`esbuild plugin with splitting as true 2`] = `
 }
 `;
 
-snapshot[`esbuild plugin with splitting as true 3`] = `
-[
-]
-`;
+snapshot[`esbuild plugin with splitting as true 3`] = `[]`;
 
 snapshot[`esbuild plugin with splitting as true 4`] = `
 {
@@ -264,12 +266,17 @@ snapshot[`esbuild plugin with splitting as true 5`] = `
   data: {
     children: false,
     content: '/// <reference lib="dom" />
-import toUppercase from "./modules/to_uppercase.ts";
-
-document.querySelectorAll("h1")?.forEach((h1) => {
-  h1.innerHTML = toUppercase(h1.innerHTML);
-});
-',
+' +
+      'import toUppercase from "./modules/to_uppercase.ts";
+' +
+      "
+" +
+      'document.querySelectorAll("h1")?.forEach((h1) => {
+' +
+      "  h1.innerHTML = toUppercase(h1.innerHTML);
+" +
+      "});
+",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
       tags: "stringArray",
@@ -277,8 +284,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/foo/main.js",
   },
   dest: {
@@ -302,12 +308,17 @@ snapshot[`esbuild plugin with splitting as true 6`] = `
   data: {
     children: false,
     content: '/// <reference lib="dom" />
-import toUppercase from "./modules/to_uppercase.ts";
-
-document.querySelectorAll(".other")?.forEach((el) => {
-  el.innerHTML = toUppercase(el.innerHTML);
-});
-',
+' +
+      'import toUppercase from "./modules/to_uppercase.ts";
+' +
+      "
+" +
+      'document.querySelectorAll(".other")?.forEach((el) => {
+' +
+      "  el.innerHTML = toUppercase(el.innerHTML);
+" +
+      "});
+",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
       tags: "stringArray",
@@ -315,8 +326,7 @@ document.querySelectorAll(".other")?.forEach((el) => {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/foo/other.js",
   },
   dest: {

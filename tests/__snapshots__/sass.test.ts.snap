@@ -82,10 +82,7 @@ snapshot[`sass plugin 2`] = `
 }
 `;
 
-snapshot[`sass plugin 3`] = `
-[
-]
-`;
+snapshot[`sass plugin 3`] = `[]`;
 
 snapshot[`sass plugin 4`] = `
 {
@@ -93,8 +90,10 @@ snapshot[`sass plugin 4`] = `
   data: {
     children: false,
     content: '@import "./styles.css";
-@import "./_includes/sass/colors";
-@import "sass/button";
+' +
+      '@import "./_includes/sass/colors";
+' +
+      '@import "sass/button";
 ',
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -103,8 +102,7 @@ snapshot[`sass plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/index.css",
   },
   dest: {
@@ -138,8 +136,7 @@ body
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/index2.css",
   },
   dest: {

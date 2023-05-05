@@ -70,30 +70,39 @@ snapshot[`code_hightlight plugin 2`] = `
 }
 `;
 
-snapshot[`code_hightlight plugin 3`] = `
-[
-]
-`;
+snapshot[`code_hightlight plugin 3`] = `[]`;
 
 snapshot[`code_hightlight plugin 4`] = `
 {
   content: "backend:
-  name: git-gateway
-  branch: master
-media_folder: img
-public_folder: /img
-site_url: 'https://example.com/'
-local_backend: false
+" +
+    "  name: git-gateway
+" +
+    "  branch: master
+" +
+    "media_folder: img
+" +
+    "public_folder: /img
+" +
+    "site_url: 'https://example.com/'
+" +
+    "local_backend: false
 ",
   data: {
     children: false,
     content: "backend:
-  name: git-gateway
-  branch: master
-media_folder: img
-public_folder: /img
-site_url: 'https://example.com/'
-local_backend: false
+" +
+      "  name: git-gateway
+" +
+      "  branch: master
+" +
+      "media_folder: img
+" +
+      "public_folder: /img
+" +
+      "site_url: 'https://example.com/'
+" +
+      "local_backend: false
 ",
     page: undefined,
     url: "/admin/config.yml",
@@ -113,34 +122,58 @@ local_backend: false
 
 snapshot[`code_hightlight plugin 5`] = `
 {
-  content: '
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Admin</title>
-        </head>
-        <body>
-        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-        </body>
-        </html>
-        ',
+  content: "
+" +
+    "        <!DOCTYPE html>
+" +
+    '        <html lang="en">
+' +
+    "        <head>
+" +
+    '          <meta charset="UTF-8">
+' +
+    '          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+    "          <title>Admin</title>
+" +
+    "        </head>
+" +
+    "        <body>
+" +
+    '        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+' +
+    "        </body>
+" +
+    "        </html>
+" +
+    "        ",
   data: {
     children: false,
-    content: '
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Admin</title>
-        </head>
-        <body>
-        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-        </body>
-        </html>
-        ',
+    content: "
+" +
+      "        <!DOCTYPE html>
+" +
+      '        <html lang="en">
+' +
+      "        <head>
+" +
+      '          <meta charset="UTF-8">
+' +
+      '          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+      "          <title>Admin</title>
+" +
+      "        </head>
+" +
+      "        <body>
+" +
+      '        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+' +
+      "        </body>
+" +
+      "        </html>
+" +
+      "        ",
     page: undefined,
     url: "/admin/",
   },

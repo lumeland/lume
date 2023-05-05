@@ -77,15 +77,13 @@ snapshot[`build a site with pug 2`] = `
 }
 `;
 
-snapshot[`build a site with pug 3`] = `
-[
-]
-`;
+snapshot[`build a site with pug 3`] = `[]`;
 
 snapshot[`build a site with pug 4`] = `
 {
-  content: '<!DOCTYPE html>
-<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
+  content: "<!DOCTYPE html>
+" +
+    '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
   data: {
     children: true,
     content: "extends /layout.pug
@@ -99,8 +97,7 @@ block content
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Pug example",
     url: "/extends/",
   },
@@ -120,28 +117,45 @@ block content
 
 snapshot[`build a site with pug 5`] = `
 {
-  content: '<!DOCTYPE html>
-<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
-<p>This is a paragraph</p>
-<ul>
-<li>Option 1</li>
-<li>Option 2</li>
-</ul><h1>Some dynamic content</h1></body></html>',
+  content: "<!DOCTYPE html>
+" +
+    '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
+' +
+    "<p>This is a paragraph</p>
+" +
+    "<ul>
+" +
+    "<li>Option 1</li>
+" +
+    "<li>Option 2</li>
+" +
+    "</ul><h1>Some dynamic content</h1></body></html>",
   data: {
     children: true,
-    content: 'extends ./_includes/layout.pug
-block content
-  :md
-    # This is a title
-
-    This is a paragraph
-
-    - Option 1
-    - Option 2
-
-  - const dynamicMd = "# Some dynamic content";
-  != filters.md(dynamicMd)
-',
+    content: "extends ./_includes/layout.pug
+" +
+      "block content
+" +
+      "  :md
+" +
+      "    # This is a title
+" +
+      "
+" +
+      "    This is a paragraph
+" +
+      "
+" +
+      "    - Option 1
+" +
+      "    - Option 2
+" +
+      "
+" +
+      '  - const dynamicMd = "# Some dynamic content";
+' +
+      "  != filters.md(dynamicMd)
+",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
       tags: "stringArray",
@@ -149,8 +163,7 @@ block content
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Markdown content",
     url: "/article.html",
   },
@@ -170,8 +183,9 @@ block content
 
 snapshot[`build a site with pug 6`] = `
 {
-  content: '<!DOCTYPE html>
-<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><header><h1>Pug example</h1></header></body></html>',
+  content: "<!DOCTYPE html>
+" +
+    '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><header><h1>Pug example</h1></header></body></html>',
   data: {
     children: true,
     content: "header
@@ -185,8 +199,7 @@ snapshot[`build a site with pug 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Pug example",
     url: "/layout/",
   },

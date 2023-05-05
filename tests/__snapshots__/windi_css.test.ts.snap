@@ -76,115 +76,210 @@ snapshot[`Windi CSS plugin 2`] = `
 }
 `;
 
-snapshot[`Windi CSS plugin 3`] = `
-[
-]
-`;
+snapshot[`Windi CSS plugin 3`] = `[]`;
 
 snapshot[`Windi CSS plugin 4`] = `
 {
-  content: \`<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Windi demo</title>
-  <link rel="stylesheet" href="/windi.css">
-<style>*, ::before, ::after {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  border-color: #e5e7eb;
-}
-* {
-  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgba(59, 130, 246, 0.5);
-  --tw-ring-offset-shadow: 0 0 #0000;
-  --tw-ring-shadow: 0 0 #0000;
-  --tw-shadow: 0 0 #0000;
-}
-:root {
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-}
-:-moz-focusring {
-  outline: 1px dotted ButtonText;
-}
-:-moz-ui-invalid {
-  box-shadow: none;
-}
-::moz-focus-inner {
-  border-style: none;
-  padding: 0;
-}
-::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
-  height: auto;
-}
-::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
-[type='search'] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
-abbr[title] {
-  -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
-}
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
-body {
-  margin: 0;
-  font-family: inherit;
-  line-height: inherit;
-}
-html {
-  -webkit-text-size-adjust: 100%;
-  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  line-height: 1.5;
-}
-p {
-  margin: 0;
-}
-.btn-green {
-  --tw-bg-opacity: 1;
-  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: rgba(255, 255, 255, var(--tw-text-opacity));
-}
-.btn-green:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
-}
-.bg-purple-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(139, 92, 246, var(--tw-bg-opacity));
-}</style></head>
-<body>
-  <div class="bg-purple-500">
-  <p>This is page 1</p>
-
-  <a href="page2.html" class="btn-green">Go to page 2</a>
-</div>
-
-</body></html>\`,
+  content: "<!DOCTYPE html>
+" +
+    '<html lang="en"><head>
+' +
+    '  <meta charset="UTF-8">
+' +
+    '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+' +
+    '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+    "  <title>Windi demo</title>
+" +
+    '  <link rel="stylesheet" href="/windi.css">
+' +
+    "<style>*, ::before, ::after {
+" +
+    "  -webkit-box-sizing: border-box;
+" +
+    "  box-sizing: border-box;
+" +
+    "  border-width: 0;
+" +
+    "  border-style: solid;
+" +
+    "  border-color: #e5e7eb;
+" +
+    "}
+" +
+    "* {
+" +
+    "  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+" +
+    "  --tw-ring-offset-width: 0px;
+" +
+    "  --tw-ring-offset-color: #fff;
+" +
+    "  --tw-ring-color: rgba(59, 130, 246, 0.5);
+" +
+    "  --tw-ring-offset-shadow: 0 0 #0000;
+" +
+    "  --tw-ring-shadow: 0 0 #0000;
+" +
+    "  --tw-shadow: 0 0 #0000;
+" +
+    "}
+" +
+    ":root {
+" +
+    "  -moz-tab-size: 4;
+" +
+    "  -o-tab-size: 4;
+" +
+    "  tab-size: 4;
+" +
+    "}
+" +
+    ":-moz-focusring {
+" +
+    "  outline: 1px dotted ButtonText;
+" +
+    "}
+" +
+    ":-moz-ui-invalid {
+" +
+    "  box-shadow: none;
+" +
+    "}
+" +
+    "::moz-focus-inner {
+" +
+    "  border-style: none;
+" +
+    "  padding: 0;
+" +
+    "}
+" +
+    "::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+" +
+    "  height: auto;
+" +
+    "}
+" +
+    "::-webkit-search-decoration {
+" +
+    "  -webkit-appearance: none;
+" +
+    "}
+" +
+    "::-webkit-file-upload-button {
+" +
+    "  -webkit-appearance: button;
+" +
+    "  font: inherit;
+" +
+    "}
+" +
+    "[type='search'] {
+" +
+    "  -webkit-appearance: textfield;
+" +
+    "  outline-offset: -2px;
+" +
+    "}
+" +
+    "abbr[title] {
+" +
+    "  -webkit-text-decoration: underline dotted;
+" +
+    "  text-decoration: underline dotted;
+" +
+    "}
+" +
+    "a {
+" +
+    "  color: inherit;
+" +
+    "  text-decoration: inherit;
+" +
+    "}
+" +
+    "body {
+" +
+    "  margin: 0;
+" +
+    "  font-family: inherit;
+" +
+    "  line-height: inherit;
+" +
+    "}
+" +
+    "html {
+" +
+    "  -webkit-text-size-adjust: 100%;
+" +
+    '  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+' +
+    "  line-height: 1.5;
+" +
+    "}
+" +
+    "p {
+" +
+    "  margin: 0;
+" +
+    "}
+" +
+    ".btn-green {
+" +
+    "  --tw-bg-opacity: 1;
+" +
+    "  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+" +
+    "  --tw-text-opacity: 1;
+" +
+    "  color: rgba(255, 255, 255, var(--tw-text-opacity));
+" +
+    "}
+" +
+    ".btn-green:hover {
+" +
+    "  --tw-bg-opacity: 1;
+" +
+    "  background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
+" +
+    "}
+" +
+    ".bg-purple-500 {
+" +
+    "  --tw-bg-opacity: 1;
+" +
+    "  background-color: rgba(139, 92, 246, var(--tw-bg-opacity));
+" +
+    "}</style></head>
+" +
+    "<body>
+" +
+    '  <div class="bg-purple-500">
+' +
+    "  <p>This is page 1</p>
+" +
+    "
+" +
+    '  <a href="page2.html" class="btn-green">Go to page 2</a>
+' +
+    "</div>
+" +
+    "
+" +
+    "</body></html>",
   data: {
     children: true,
     content: '<div class="bg-purple-500">
-  <p>This is page 1</p>
-
-  <a href="page2.html" class="btn-green">Go to page 2</a>
-</div>',
+' +
+      "  <p>This is page 1</p>
+" +
+      "
+" +
+      '  <a href="page2.html" class="btn-green">Go to page 2</a>
+' +
+      "</div>",
     date: 1970-01-01T00:00:00.000Z,
     layout: "layout.njk",
     mergedKeys: {
@@ -193,8 +288,7 @@ p {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/",
   },
   dest: {
@@ -213,83 +307,159 @@ p {
 
 snapshot[`Windi CSS plugin 5`] = `
 {
-  content: \`<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Windi demo</title>
-  <link rel="stylesheet" href="/windi.css">
-<style>*, ::before, ::after {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  border-color: #e5e7eb;
-}
-* {
-  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgba(59, 130, 246, 0.5);
-  --tw-ring-offset-shadow: 0 0 #0000;
-  --tw-ring-shadow: 0 0 #0000;
-  --tw-shadow: 0 0 #0000;
-}
-:root {
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-}
-:-moz-focusring {
-  outline: 1px dotted ButtonText;
-}
-:-moz-ui-invalid {
-  box-shadow: none;
-}
-::moz-focus-inner {
-  border-style: none;
-  padding: 0;
-}
-::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
-  height: auto;
-}
-::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
-[type='search'] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
-abbr[title] {
-  -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
-}
-body {
-  margin: 0;
-  font-family: inherit;
-  line-height: inherit;
-}
-html {
-  -webkit-text-size-adjust: 100%;
-  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  line-height: 1.5;
-}
-p {
-  margin: 0;
-}
-.text-sky-100 {
-  --tw-text-opacity: 1;
-  color: rgba(224, 242, 254, var(--tw-text-opacity));
-}</style></head>
-<body>
-  <p class="text-sky-100">This is page 1</p>
-
-</body></html>\`,
+  content: "<!DOCTYPE html>
+" +
+    '<html lang="en"><head>
+' +
+    '  <meta charset="UTF-8">
+' +
+    '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+' +
+    '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+    "  <title>Windi demo</title>
+" +
+    '  <link rel="stylesheet" href="/windi.css">
+' +
+    "<style>*, ::before, ::after {
+" +
+    "  -webkit-box-sizing: border-box;
+" +
+    "  box-sizing: border-box;
+" +
+    "  border-width: 0;
+" +
+    "  border-style: solid;
+" +
+    "  border-color: #e5e7eb;
+" +
+    "}
+" +
+    "* {
+" +
+    "  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+" +
+    "  --tw-ring-offset-width: 0px;
+" +
+    "  --tw-ring-offset-color: #fff;
+" +
+    "  --tw-ring-color: rgba(59, 130, 246, 0.5);
+" +
+    "  --tw-ring-offset-shadow: 0 0 #0000;
+" +
+    "  --tw-ring-shadow: 0 0 #0000;
+" +
+    "  --tw-shadow: 0 0 #0000;
+" +
+    "}
+" +
+    ":root {
+" +
+    "  -moz-tab-size: 4;
+" +
+    "  -o-tab-size: 4;
+" +
+    "  tab-size: 4;
+" +
+    "}
+" +
+    ":-moz-focusring {
+" +
+    "  outline: 1px dotted ButtonText;
+" +
+    "}
+" +
+    ":-moz-ui-invalid {
+" +
+    "  box-shadow: none;
+" +
+    "}
+" +
+    "::moz-focus-inner {
+" +
+    "  border-style: none;
+" +
+    "  padding: 0;
+" +
+    "}
+" +
+    "::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+" +
+    "  height: auto;
+" +
+    "}
+" +
+    "::-webkit-search-decoration {
+" +
+    "  -webkit-appearance: none;
+" +
+    "}
+" +
+    "::-webkit-file-upload-button {
+" +
+    "  -webkit-appearance: button;
+" +
+    "  font: inherit;
+" +
+    "}
+" +
+    "[type='search'] {
+" +
+    "  -webkit-appearance: textfield;
+" +
+    "  outline-offset: -2px;
+" +
+    "}
+" +
+    "abbr[title] {
+" +
+    "  -webkit-text-decoration: underline dotted;
+" +
+    "  text-decoration: underline dotted;
+" +
+    "}
+" +
+    "body {
+" +
+    "  margin: 0;
+" +
+    "  font-family: inherit;
+" +
+    "  line-height: inherit;
+" +
+    "}
+" +
+    "html {
+" +
+    "  -webkit-text-size-adjust: 100%;
+" +
+    '  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+' +
+    "  line-height: 1.5;
+" +
+    "}
+" +
+    "p {
+" +
+    "  margin: 0;
+" +
+    "}
+" +
+    ".text-sky-100 {
+" +
+    "  --tw-text-opacity: 1;
+" +
+    "  color: rgba(224, 242, 254, var(--tw-text-opacity));
+" +
+    "}</style></head>
+" +
+    "<body>
+" +
+    '  <p class="text-sky-100">This is page 1</p>
+' +
+    "
+" +
+    "</body></html>",
   data: {
     children: true,
     content: undefined,
@@ -301,8 +471,7 @@ p {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/page/1.html",
   },
   dest: {
@@ -321,83 +490,159 @@ p {
 
 snapshot[`Windi CSS plugin 6`] = `
 {
-  content: \`<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Windi demo</title>
-  <link rel="stylesheet" href="/windi.css">
-<style>*, ::before, ::after {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  border-color: #e5e7eb;
-}
-* {
-  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgba(59, 130, 246, 0.5);
-  --tw-ring-offset-shadow: 0 0 #0000;
-  --tw-ring-shadow: 0 0 #0000;
-  --tw-shadow: 0 0 #0000;
-}
-:root {
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-}
-:-moz-focusring {
-  outline: 1px dotted ButtonText;
-}
-:-moz-ui-invalid {
-  box-shadow: none;
-}
-::moz-focus-inner {
-  border-style: none;
-  padding: 0;
-}
-::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
-  height: auto;
-}
-::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
-[type='search'] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
-abbr[title] {
-  -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
-}
-body {
-  margin: 0;
-  font-family: inherit;
-  line-height: inherit;
-}
-html {
-  -webkit-text-size-adjust: 100%;
-  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  line-height: 1.5;
-}
-p {
-  margin: 0;
-}
-.text-sky-200 {
-  --tw-text-opacity: 1;
-  color: rgba(186, 230, 253, var(--tw-text-opacity));
-}</style></head>
-<body>
-  <p class="text-sky-200">This is page 2</p>
-
-</body></html>\`,
+  content: "<!DOCTYPE html>
+" +
+    '<html lang="en"><head>
+' +
+    '  <meta charset="UTF-8">
+' +
+    '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+' +
+    '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+    "  <title>Windi demo</title>
+" +
+    '  <link rel="stylesheet" href="/windi.css">
+' +
+    "<style>*, ::before, ::after {
+" +
+    "  -webkit-box-sizing: border-box;
+" +
+    "  box-sizing: border-box;
+" +
+    "  border-width: 0;
+" +
+    "  border-style: solid;
+" +
+    "  border-color: #e5e7eb;
+" +
+    "}
+" +
+    "* {
+" +
+    "  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+" +
+    "  --tw-ring-offset-width: 0px;
+" +
+    "  --tw-ring-offset-color: #fff;
+" +
+    "  --tw-ring-color: rgba(59, 130, 246, 0.5);
+" +
+    "  --tw-ring-offset-shadow: 0 0 #0000;
+" +
+    "  --tw-ring-shadow: 0 0 #0000;
+" +
+    "  --tw-shadow: 0 0 #0000;
+" +
+    "}
+" +
+    ":root {
+" +
+    "  -moz-tab-size: 4;
+" +
+    "  -o-tab-size: 4;
+" +
+    "  tab-size: 4;
+" +
+    "}
+" +
+    ":-moz-focusring {
+" +
+    "  outline: 1px dotted ButtonText;
+" +
+    "}
+" +
+    ":-moz-ui-invalid {
+" +
+    "  box-shadow: none;
+" +
+    "}
+" +
+    "::moz-focus-inner {
+" +
+    "  border-style: none;
+" +
+    "  padding: 0;
+" +
+    "}
+" +
+    "::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+" +
+    "  height: auto;
+" +
+    "}
+" +
+    "::-webkit-search-decoration {
+" +
+    "  -webkit-appearance: none;
+" +
+    "}
+" +
+    "::-webkit-file-upload-button {
+" +
+    "  -webkit-appearance: button;
+" +
+    "  font: inherit;
+" +
+    "}
+" +
+    "[type='search'] {
+" +
+    "  -webkit-appearance: textfield;
+" +
+    "  outline-offset: -2px;
+" +
+    "}
+" +
+    "abbr[title] {
+" +
+    "  -webkit-text-decoration: underline dotted;
+" +
+    "  text-decoration: underline dotted;
+" +
+    "}
+" +
+    "body {
+" +
+    "  margin: 0;
+" +
+    "  font-family: inherit;
+" +
+    "  line-height: inherit;
+" +
+    "}
+" +
+    "html {
+" +
+    "  -webkit-text-size-adjust: 100%;
+" +
+    '  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+' +
+    "  line-height: 1.5;
+" +
+    "}
+" +
+    "p {
+" +
+    "  margin: 0;
+" +
+    "}
+" +
+    ".text-sky-200 {
+" +
+    "  --tw-text-opacity: 1;
+" +
+    "  color: rgba(186, 230, 253, var(--tw-text-opacity));
+" +
+    "}</style></head>
+" +
+    "<body>
+" +
+    '  <p class="text-sky-200">This is page 2</p>
+' +
+    "
+" +
+    "</body></html>",
   data: {
     children: true,
     content: undefined,
@@ -409,8 +654,7 @@ p {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/page/2.html",
   },
   dest: {
@@ -429,85 +673,163 @@ p {
 
 snapshot[`Windi CSS plugin 7`] = `
 {
-  content: \`<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Windi demo</title>
-  <link rel="stylesheet" href="/windi.css">
-<style>*, ::before, ::after {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  border-color: #e5e7eb;
-}
-* {
-  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgba(59, 130, 246, 0.5);
-  --tw-ring-offset-shadow: 0 0 #0000;
-  --tw-ring-shadow: 0 0 #0000;
-  --tw-shadow: 0 0 #0000;
-}
-:root {
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-}
-:-moz-focusring {
-  outline: 1px dotted ButtonText;
-}
-:-moz-ui-invalid {
-  box-shadow: none;
-}
-::moz-focus-inner {
-  border-style: none;
-  padding: 0;
-}
-::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
-  height: auto;
-}
-::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
-[type='search'] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
-abbr[title] {
-  -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
-}
-body {
-  margin: 0;
-  font-family: inherit;
-  line-height: inherit;
-}
-html {
-  -webkit-text-size-adjust: 100%;
-  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  line-height: 1.5;
-}
-p {
-  margin: 0;
-}
-.bg-purple-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(124, 58, 237, var(--tw-bg-opacity));
-}</style></head>
-<body>
-  <div class="bg-purple-600">
-  <p>This is page 2</p>
-</div>
-
-</body></html>\`,
+  content: "<!DOCTYPE html>
+" +
+    '<html lang="en"><head>
+' +
+    '  <meta charset="UTF-8">
+' +
+    '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+' +
+    '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+    "  <title>Windi demo</title>
+" +
+    '  <link rel="stylesheet" href="/windi.css">
+' +
+    "<style>*, ::before, ::after {
+" +
+    "  -webkit-box-sizing: border-box;
+" +
+    "  box-sizing: border-box;
+" +
+    "  border-width: 0;
+" +
+    "  border-style: solid;
+" +
+    "  border-color: #e5e7eb;
+" +
+    "}
+" +
+    "* {
+" +
+    "  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+" +
+    "  --tw-ring-offset-width: 0px;
+" +
+    "  --tw-ring-offset-color: #fff;
+" +
+    "  --tw-ring-color: rgba(59, 130, 246, 0.5);
+" +
+    "  --tw-ring-offset-shadow: 0 0 #0000;
+" +
+    "  --tw-ring-shadow: 0 0 #0000;
+" +
+    "  --tw-shadow: 0 0 #0000;
+" +
+    "}
+" +
+    ":root {
+" +
+    "  -moz-tab-size: 4;
+" +
+    "  -o-tab-size: 4;
+" +
+    "  tab-size: 4;
+" +
+    "}
+" +
+    ":-moz-focusring {
+" +
+    "  outline: 1px dotted ButtonText;
+" +
+    "}
+" +
+    ":-moz-ui-invalid {
+" +
+    "  box-shadow: none;
+" +
+    "}
+" +
+    "::moz-focus-inner {
+" +
+    "  border-style: none;
+" +
+    "  padding: 0;
+" +
+    "}
+" +
+    "::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+" +
+    "  height: auto;
+" +
+    "}
+" +
+    "::-webkit-search-decoration {
+" +
+    "  -webkit-appearance: none;
+" +
+    "}
+" +
+    "::-webkit-file-upload-button {
+" +
+    "  -webkit-appearance: button;
+" +
+    "  font: inherit;
+" +
+    "}
+" +
+    "[type='search'] {
+" +
+    "  -webkit-appearance: textfield;
+" +
+    "  outline-offset: -2px;
+" +
+    "}
+" +
+    "abbr[title] {
+" +
+    "  -webkit-text-decoration: underline dotted;
+" +
+    "  text-decoration: underline dotted;
+" +
+    "}
+" +
+    "body {
+" +
+    "  margin: 0;
+" +
+    "  font-family: inherit;
+" +
+    "  line-height: inherit;
+" +
+    "}
+" +
+    "html {
+" +
+    "  -webkit-text-size-adjust: 100%;
+" +
+    '  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+' +
+    "  line-height: 1.5;
+" +
+    "}
+" +
+    "p {
+" +
+    "  margin: 0;
+" +
+    "}
+" +
+    ".bg-purple-600 {
+" +
+    "  --tw-bg-opacity: 1;
+" +
+    "  background-color: rgba(124, 58, 237, var(--tw-bg-opacity));
+" +
+    "}</style></head>
+" +
+    "<body>
+" +
+    '  <div class="bg-purple-600">
+' +
+    "  <p>This is page 2</p>
+" +
+    "</div>
+" +
+    "
+" +
+    "</body></html>",
   data: {
     children: true,
     content: '<div class="bg-purple-600">
@@ -521,8 +843,7 @@ p {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/page2/",
   },
   dest: {
@@ -542,33 +863,57 @@ p {
 snapshot[`Windi CSS plugin 8`] = `
 {
   content: ".btn {
-  border-radius: 0.25rem;
-  font-weight: 700;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-.btn-blue {
-  --tw-bg-opacity: 1;
-  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: rgba(255, 255, 255, var(--tw-text-opacity));
-  padding-top: 1rem;
-}
-.btn-blue:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgba(29, 78, 216, var(--tw-bg-opacity));
-}",
+" +
+    "  border-radius: 0.25rem;
+" +
+    "  font-weight: 700;
+" +
+    "  padding-top: 0.5rem;
+" +
+    "  padding-bottom: 0.5rem;
+" +
+    "  padding-left: 1rem;
+" +
+    "  padding-right: 1rem;
+" +
+    "}
+" +
+    ".btn-blue {
+" +
+    "  --tw-bg-opacity: 1;
+" +
+    "  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+" +
+    "  --tw-text-opacity: 1;
+" +
+    "  color: rgba(255, 255, 255, var(--tw-text-opacity));
+" +
+    "  padding-top: 1rem;
+" +
+    "}
+" +
+    ".btn-blue:hover {
+" +
+    "  --tw-bg-opacity: 1;
+" +
+    "  background-color: rgba(29, 78, 216, var(--tw-bg-opacity));
+" +
+    "}",
   data: {
     children: false,
     content: ".btn {
-  @apply font-bold py-2 px-4 rounded;
-}
-.btn-blue {
-  @apply bg-blue-500 hover:bg-blue-700 text-white;
-  padding-top: 1rem;
-}",
+" +
+      "  @apply font-bold py-2 px-4 rounded;
+" +
+      "}
+" +
+      ".btn-blue {
+" +
+      "  @apply bg-blue-500 hover:bg-blue-700 text-white;
+" +
+      "  padding-top: 1rem;
+" +
+      "}",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
       tags: "stringArray",
@@ -576,8 +921,7 @@ snapshot[`Windi CSS plugin 8`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/styles.css",
   },
   dest: {

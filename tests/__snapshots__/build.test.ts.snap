@@ -70,10 +70,7 @@ snapshot[`build a simple site 2`] = `
 }
 `;
 
-snapshot[`build a simple site 3`] = `
-[
-]
-`;
+snapshot[`build a simple site 3`] = `[]`;
 
 snapshot[`build a simple site 4`] = `
 {
@@ -91,8 +88,7 @@ snapshot[`build a simple site 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Second page",
     url: "/page2.html",
   },
@@ -126,8 +122,7 @@ snapshot[`build a simple site 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "First page",
     url: "/page1/",
   },

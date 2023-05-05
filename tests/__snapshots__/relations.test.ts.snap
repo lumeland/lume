@@ -70,23 +70,29 @@ snapshot[`relations plugin 2`] = `
 }
 `;
 
-snapshot[`relations plugin 3`] = `
-[
-]
-`;
+snapshot[`relations plugin 3`] = `[]`;
 
 snapshot[`relations plugin 4`] = `
 {
   content: "<!DOCTYPE html>
-<h1>Category 1</h1>
-
-<div><p>This is the first category</p>
-</div>
-
-<h2>Posts</h2>
-<ul>
-
-</ul>
+" +
+    "<h1>Category 1</h1>
+" +
+    "
+" +
+    "<div><p>This is the first category</p>
+" +
+    "</div>
+" +
+    "
+" +
+    "<h2>Posts</h2>
+" +
+    "<ul>
+" +
+    "
+" +
+    "</ul>
 ",
   data: {
     children: true,
@@ -99,8 +105,8 @@ snapshot[`relations plugin 4`] = `
     },
     page: undefined,
     paginate: [Function: paginate],
-    post: [
-      <ref *2> {
+    post: <ref *2> [
+      <ref *1> {
         category: {
           children: true,
           content: "This is the first category
@@ -112,12 +118,11 @@ snapshot[`relations plugin 4`] = `
           },
           page: undefined,
           paginate: [Function: paginate],
-          post: [Circular *1],
+          post: [Circular *2],
           renderOrder: -2,
           search: Search {},
           slug: "category-1",
-          tags: [
-          ],
+          tags: [],
           title: "Category 1",
           type: "category",
           url: "/categories/category-1/",
@@ -140,12 +145,11 @@ snapshot[`relations plugin 4`] = `
             page: undefined,
             paginate: [Function: paginate],
             post: [
-              [Circular *2],
+              [Circular *1],
             ],
             renderOrder: -1,
             search: Search {},
-            tags: [
-            ],
+            tags: [],
             type: "comment",
             url: "/comments/comment-2/",
           },
@@ -161,8 +165,7 @@ snapshot[`relations plugin 4`] = `
         page: undefined,
         paginate: [Function: paginate],
         search: Search {},
-        tags: [
-        ],
+        tags: [],
         type: "post",
         url: "/posts/post-2/",
       },
@@ -170,8 +173,7 @@ snapshot[`relations plugin 4`] = `
     renderOrder: -2,
     search: Search {},
     slug: "category-1",
-    tags: [
-    ],
+    tags: [],
     title: "Category 1",
     type: "category",
     url: "/categories/category-1/",
@@ -193,15 +195,24 @@ snapshot[`relations plugin 4`] = `
 snapshot[`relations plugin 5`] = `
 {
   content: "<!DOCTYPE html>
-<h1>Category 2</h1>
-
-<div><p>This is the second category</p>
-</div>
-
-<h2>Posts</h2>
-<ul>
-
-</ul>
+" +
+    "<h1>Category 2</h1>
+" +
+    "
+" +
+    "<div><p>This is the second category</p>
+" +
+    "</div>
+" +
+    "
+" +
+    "<h2>Posts</h2>
+" +
+    "<ul>
+" +
+    "
+" +
+    "</ul>
 ",
   data: {
     children: true,
@@ -214,8 +225,8 @@ snapshot[`relations plugin 5`] = `
     },
     page: undefined,
     paginate: [Function: paginate],
-    post: [
-      <ref *2> {
+    post: <ref *2> [
+      <ref *1> {
         category: {
           children: true,
           content: "This is the second category
@@ -227,11 +238,10 @@ snapshot[`relations plugin 5`] = `
           },
           page: undefined,
           paginate: [Function: paginate],
-          post: [Circular *1],
+          post: [Circular *2],
           search: Search {},
           slug: "category-2",
-          tags: [
-          ],
+          tags: [],
           title: "Category 2",
           type: "category",
           url: "/categories/category-2/",
@@ -255,11 +265,10 @@ snapshot[`relations plugin 5`] = `
             page: undefined,
             paginate: [Function: paginate],
             post: [
-              [Circular *2],
+              [Circular *1],
             ],
             search: Search {},
-            tags: [
-            ],
+            tags: [],
             type: "comment",
             url: "/comments/comment-1/",
           },
@@ -275,11 +284,10 @@ snapshot[`relations plugin 5`] = `
             page: undefined,
             paginate: [Function: paginate],
             post: [
-              [Circular *2],
+              [Circular *1],
             ],
             search: Search {},
-            tags: [
-            ],
+            tags: [],
             type: "comment",
             url: "/comments/comment-3/",
           },
@@ -296,16 +304,14 @@ snapshot[`relations plugin 5`] = `
         paginate: [Function: paginate],
         renderOrder: 1,
         search: Search {},
-        tags: [
-        ],
+        tags: [],
         type: "post",
         url: "/posts/post-1/",
       },
     ],
     search: Search {},
     slug: "category-2",
-    tags: [
-    ],
+    tags: [],
     title: "Category 2",
     type: "category",
     url: "/categories/category-2/",
@@ -340,8 +346,8 @@ snapshot[`relations plugin 6`] = `
     },
     page: undefined,
     paginate: [Function: paginate],
-    post: [
-      <ref *1> {
+    post: <ref *1> [
+      <ref *2> {
         category: {
           children: true,
           content: "This is the second category
@@ -354,12 +360,11 @@ snapshot[`relations plugin 6`] = `
           page: undefined,
           paginate: [Function: paginate],
           post: [
-            [Circular *1],
+            [Circular *2],
           ],
           search: Search {},
           slug: "category-2",
-          tags: [
-          ],
+          tags: [],
           title: "Category 2",
           type: "category",
           url: "/categories/category-2/",
@@ -382,10 +387,9 @@ snapshot[`relations plugin 6`] = `
             },
             page: undefined,
             paginate: [Function: paginate],
-            post: [Circular *2],
+            post: [Circular *1],
             search: Search {},
-            tags: [
-            ],
+            tags: [],
             type: "comment",
             url: "/comments/comment-1/",
           },
@@ -401,11 +405,10 @@ snapshot[`relations plugin 6`] = `
             page: undefined,
             paginate: [Function: paginate],
             post: [
-              [Circular *1],
+              [Circular *2],
             ],
             search: Search {},
-            tags: [
-            ],
+            tags: [],
             type: "comment",
             url: "/comments/comment-3/",
           },
@@ -422,15 +425,13 @@ snapshot[`relations plugin 6`] = `
         paginate: [Function: paginate],
         renderOrder: 1,
         search: Search {},
-        tags: [
-        ],
+        tags: [],
         type: "post",
         url: "/posts/post-1/",
       },
     ],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     type: "comment",
     url: "/comments/comment-1/",
   },
@@ -464,8 +465,8 @@ snapshot[`relations plugin 7`] = `
     },
     page: undefined,
     paginate: [Function: paginate],
-    post: [
-      <ref *1> {
+    post: <ref *1> [
+      <ref *2> {
         category: {
           children: true,
           content: "This is the first category
@@ -478,13 +479,12 @@ snapshot[`relations plugin 7`] = `
           page: undefined,
           paginate: [Function: paginate],
           post: [
-            [Circular *1],
+            [Circular *2],
           ],
           renderOrder: -2,
           search: Search {},
           slug: "category-1",
-          tags: [
-          ],
+          tags: [],
           title: "Category 1",
           type: "category",
           url: "/categories/category-1/",
@@ -506,11 +506,10 @@ snapshot[`relations plugin 7`] = `
             },
             page: undefined,
             paginate: [Function: paginate],
-            post: [Circular *2],
+            post: [Circular *1],
             renderOrder: -1,
             search: Search {},
-            tags: [
-            ],
+            tags: [],
             type: "comment",
             url: "/comments/comment-2/",
           },
@@ -526,16 +525,14 @@ snapshot[`relations plugin 7`] = `
         page: undefined,
         paginate: [Function: paginate],
         search: Search {},
-        tags: [
-        ],
+        tags: [],
         type: "post",
         url: "/posts/post-2/",
       },
     ],
     renderOrder: -1,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     type: "comment",
     url: "/comments/comment-2/",
   },
@@ -569,7 +566,7 @@ snapshot[`relations plugin 8`] = `
     },
     page: undefined,
     paginate: [Function: paginate],
-    post: [
+    post: <ref *2> [
       <ref *1> {
         category: {
           children: true,
@@ -587,8 +584,7 @@ snapshot[`relations plugin 8`] = `
           ],
           search: Search {},
           slug: "category-2",
-          tags: [
-          ],
+          tags: [],
           title: "Category 2",
           type: "category",
           url: "/categories/category-2/",
@@ -615,8 +611,7 @@ snapshot[`relations plugin 8`] = `
               [Circular *1],
             ],
             search: Search {},
-            tags: [
-            ],
+            tags: [],
             type: "comment",
             url: "/comments/comment-1/",
           },
@@ -633,8 +628,7 @@ snapshot[`relations plugin 8`] = `
             paginate: [Function: paginate],
             post: [Circular *2],
             search: Search {},
-            tags: [
-            ],
+            tags: [],
             type: "comment",
             url: "/comments/comment-3/",
           },
@@ -651,15 +645,13 @@ snapshot[`relations plugin 8`] = `
         paginate: [Function: paginate],
         renderOrder: 1,
         search: Search {},
-        tags: [
-        ],
+        tags: [],
         type: "post",
         url: "/posts/post-1/",
       },
     ],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     type: "comment",
     url: "/comments/comment-3/",
   },
@@ -679,21 +671,33 @@ snapshot[`relations plugin 8`] = `
 
 snapshot[`relations plugin 9`] = `
 {
-  content: '<!DOCTYPE html>
-<div><p>First post with category 2 and comments 1 and 3</p>
-</div>
-
-  
-<h2>Category:</h2>
-<a href="/categories/category-2/">Category 2</a>
-<p>This is the second category</p>
-
-
-<ul>
-
-</ul>',
+  content: "<!DOCTYPE html>
+" +
+    "<div><p>First post with category 2 and comments 1 and 3</p>
+" +
+    "</div>
+" +
+    "
+" +
+    "  
+" +
+    "<h2>Category:</h2>
+" +
+    '<a href="/categories/category-2/">Category 2</a>
+' +
+    "<p>This is the second category</p>
+" +
+    "
+" +
+    "
+" +
+    "<ul>
+" +
+    "
+" +
+    "</ul>",
   data: {
-    category: <ref *1> {
+    category: <ref *2> {
       children: true,
       content: "This is the second category
 ",
@@ -705,8 +709,8 @@ snapshot[`relations plugin 9`] = `
       page: undefined,
       paginate: [Function: paginate],
       post: [
-        <ref *2> {
-          category: [Circular *1],
+        <ref *1> {
+          category: [Circular *2],
           category_id: "category-2",
           children: true,
           comment_id: [
@@ -726,11 +730,10 @@ snapshot[`relations plugin 9`] = `
               page: undefined,
               paginate: [Function: paginate],
               post: [
-                [Circular *2],
+                [Circular *1],
               ],
               search: Search {},
-              tags: [
-              ],
+              tags: [],
               type: "comment",
               url: "/comments/comment-1/",
             },
@@ -746,11 +749,10 @@ snapshot[`relations plugin 9`] = `
               page: undefined,
               paginate: [Function: paginate],
               post: [
-                [Circular *2],
+                [Circular *1],
               ],
               search: Search {},
-              tags: [
-              ],
+              tags: [],
               type: "comment",
               url: "/comments/comment-3/",
             },
@@ -767,16 +769,14 @@ snapshot[`relations plugin 9`] = `
           paginate: [Function: paginate],
           renderOrder: 1,
           search: Search {},
-          tags: [
-          ],
+          tags: [],
           type: "post",
           url: "/posts/post-1/",
         },
       ],
       search: Search {},
       slug: "category-2",
-      tags: [
-      ],
+      tags: [],
       title: "Category 2",
       type: "category",
       url: "/categories/category-2/",
@@ -787,7 +787,7 @@ snapshot[`relations plugin 9`] = `
       1,
       3,
     ],
-    comments: [
+    comments: <ref *3> [
       {
         children: true,
         content: "This is the first comment
@@ -800,8 +800,8 @@ snapshot[`relations plugin 9`] = `
         page: undefined,
         paginate: [Function: paginate],
         post: [
-          <ref *2> {
-            category: <ref *1> {
+          <ref *1> {
+            category: <ref *2> {
               children: true,
               content: "This is the second category
 ",
@@ -813,12 +813,11 @@ snapshot[`relations plugin 9`] = `
               page: undefined,
               paginate: [Function: paginate],
               post: [
-                [Circular *2],
+                [Circular *1],
               ],
               search: Search {},
               slug: "category-2",
-              tags: [
-              ],
+              tags: [],
               title: "Category 2",
               type: "category",
               url: "/categories/category-2/",
@@ -842,15 +841,13 @@ snapshot[`relations plugin 9`] = `
             paginate: [Function: paginate],
             renderOrder: 1,
             search: Search {},
-            tags: [
-            ],
+            tags: [],
             type: "post",
             url: "/posts/post-1/",
           },
         ],
         search: Search {},
-        tags: [
-        ],
+        tags: [],
         type: "comment",
         url: "/comments/comment-1/",
       },
@@ -866,8 +863,8 @@ snapshot[`relations plugin 9`] = `
         page: undefined,
         paginate: [Function: paginate],
         post: [
-          <ref *2> {
-            category: <ref *1> {
+          <ref *1> {
+            category: <ref *2> {
               children: true,
               content: "This is the second category
 ",
@@ -879,12 +876,11 @@ snapshot[`relations plugin 9`] = `
               page: undefined,
               paginate: [Function: paginate],
               post: [
-                [Circular *2],
+                [Circular *1],
               ],
               search: Search {},
               slug: "category-2",
-              tags: [
-              ],
+              tags: [],
               title: "Category 2",
               type: "category",
               url: "/categories/category-2/",
@@ -908,15 +904,13 @@ snapshot[`relations plugin 9`] = `
             paginate: [Function: paginate],
             renderOrder: 1,
             search: Search {},
-            tags: [
-            ],
+            tags: [],
             type: "post",
             url: "/posts/post-1/",
           },
         ],
         search: Search {},
-        tags: [
-        ],
+        tags: [],
         type: "comment",
         url: "/comments/comment-3/",
       },
@@ -933,8 +927,7 @@ snapshot[`relations plugin 9`] = `
     paginate: [Function: paginate],
     renderOrder: 1,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     type: "post",
     url: "/posts/post-1/",
   },
@@ -954,21 +947,33 @@ snapshot[`relations plugin 9`] = `
 
 snapshot[`relations plugin 10`] = `
 {
-  content: '<!DOCTYPE html>
-<div><p>Second post with category 1 and comment 2</p>
-</div>
-
-  
-<h2>Category:</h2>
-<a href="/categories/category-1/">Category 1</a>
-<p>This is the first category</p>
-
-
-<ul>
-
-</ul>',
+  content: "<!DOCTYPE html>
+" +
+    "<div><p>Second post with category 1 and comment 2</p>
+" +
+    "</div>
+" +
+    "
+" +
+    "  
+" +
+    "<h2>Category:</h2>
+" +
+    '<a href="/categories/category-1/">Category 1</a>
+' +
+    "<p>This is the first category</p>
+" +
+    "
+" +
+    "
+" +
+    "<ul>
+" +
+    "
+" +
+    "</ul>",
   data: {
-    category: <ref *1> {
+    category: <ref *2> {
       children: true,
       content: "This is the first category
 ",
@@ -980,8 +985,8 @@ snapshot[`relations plugin 10`] = `
       page: undefined,
       paginate: [Function: paginate],
       post: [
-        <ref *2> {
-          category: [Circular *1],
+        <ref *1> {
+          category: [Circular *2],
           category_id: "category-1",
           children: true,
           comment_id: [
@@ -1000,12 +1005,11 @@ snapshot[`relations plugin 10`] = `
               page: undefined,
               paginate: [Function: paginate],
               post: [
-                [Circular *2],
+                [Circular *1],
               ],
               renderOrder: -1,
               search: Search {},
-              tags: [
-              ],
+              tags: [],
               type: "comment",
               url: "/comments/comment-2/",
             },
@@ -1021,8 +1025,7 @@ snapshot[`relations plugin 10`] = `
           page: undefined,
           paginate: [Function: paginate],
           search: Search {},
-          tags: [
-          ],
+          tags: [],
           type: "post",
           url: "/posts/post-2/",
         },
@@ -1030,8 +1033,7 @@ snapshot[`relations plugin 10`] = `
       renderOrder: -2,
       search: Search {},
       slug: "category-1",
-      tags: [
-      ],
+      tags: [],
       title: "Category 1",
       type: "category",
       url: "/categories/category-1/",
@@ -1041,7 +1043,7 @@ snapshot[`relations plugin 10`] = `
     comment_id: [
       2,
     ],
-    comments: [
+    comments: <ref *3> [
       {
         children: true,
         content: "This is the second comment
@@ -1054,8 +1056,8 @@ snapshot[`relations plugin 10`] = `
         page: undefined,
         paginate: [Function: paginate],
         post: [
-          <ref *2> {
-            category: <ref *1> {
+          <ref *1> {
+            category: <ref *2> {
               children: true,
               content: "This is the first category
 ",
@@ -1067,13 +1069,12 @@ snapshot[`relations plugin 10`] = `
               page: undefined,
               paginate: [Function: paginate],
               post: [
-                [Circular *2],
+                [Circular *1],
               ],
               renderOrder: -2,
               search: Search {},
               slug: "category-1",
-              tags: [
-              ],
+              tags: [],
               title: "Category 1",
               type: "category",
               url: "/categories/category-1/",
@@ -1095,16 +1096,14 @@ snapshot[`relations plugin 10`] = `
             page: undefined,
             paginate: [Function: paginate],
             search: Search {},
-            tags: [
-            ],
+            tags: [],
             type: "post",
             url: "/posts/post-2/",
           },
         ],
         renderOrder: -1,
         search: Search {},
-        tags: [
-        ],
+        tags: [],
         type: "comment",
         url: "/comments/comment-2/",
       },
@@ -1120,8 +1119,7 @@ snapshot[`relations plugin 10`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     type: "post",
     url: "/posts/post-2/",
   },

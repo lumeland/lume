@@ -88,10 +88,7 @@ snapshot[`imagick plugin 2`] = `
 }
 `;
 
-snapshot[`imagick plugin 3`] = `
-[
-]
-`;
+snapshot[`imagick plugin 3`] = `[]`;
 
 snapshot[`imagick plugin 4`] = `
 {
@@ -107,8 +104,7 @@ snapshot[`imagick plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/lume-small.png",
   },
   dest: {
@@ -139,8 +135,7 @@ snapshot[`imagick plugin 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/lume-big.png",
   },
   dest: {
@@ -171,8 +166,7 @@ snapshot[`imagick plugin 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/lume.jpg",
   },
   dest: {
@@ -203,8 +197,7 @@ snapshot[`imagick plugin 7`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/lume.webp",
   },
   dest: {
@@ -235,8 +228,7 @@ snapshot[`imagick plugin 8`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/lume.png",
   },
   dest: {

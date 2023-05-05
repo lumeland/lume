@@ -77,33 +77,49 @@ snapshot[`postcss plugin 2`] = `
 }
 `;
 
-snapshot[`postcss plugin 3`] = `
-[
-]
-`;
+snapshot[`postcss plugin 3`] = `[]`;
 
 snapshot[`postcss plugin 4`] = `
 {
   content: ".foo {
-  color: red;
-}
-
-::root {
-  --color: #333;
-  --background: #fff;
-  --font-family: sans-serif;
-}
-
-.text {
-  font-family: var(--font-family);
-}
-
-.text p {
-    color: var(--color);
-    box-shadow: 0 0 0.5em var(--background);
-    -webkit-backdrop-filter: blur(2px);
-            backdrop-filter: blur(2px);
-  }
+" +
+    "  color: red;
+" +
+    "}
+" +
+    "
+" +
+    "::root {
+" +
+    "  --color: #333;
+" +
+    "  --background: #fff;
+" +
+    "  --font-family: sans-serif;
+" +
+    "}
+" +
+    "
+" +
+    ".text {
+" +
+    "  font-family: var(--font-family);
+" +
+    "}
+" +
+    "
+" +
+    ".text p {
+" +
+    "    color: var(--color);
+" +
+    "    box-shadow: 0 0 0.5em var(--background);
+" +
+    "    -webkit-backdrop-filter: blur(2px);
+" +
+    "            backdrop-filter: blur(2px);
+" +
+    "  }
 ",
   data: {
     children: false,
@@ -117,8 +133,7 @@ snapshot[`postcss plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/index.css",
   },
   dest: {
@@ -138,26 +153,42 @@ snapshot[`postcss plugin 4`] = `
 snapshot[`postcss plugin 5`] = `
 {
   content: ".text {
-  font-family: var(--font-family);
-}
-.text p {
-    color: var(--color);
-    box-shadow: 0 0 0.5em var(--background);
-    -webkit-backdrop-filter: blur(2px);
-            backdrop-filter: blur(2px);
-  }
+" +
+    "  font-family: var(--font-family);
+" +
+    "}
+" +
+    ".text p {
+" +
+    "    color: var(--color);
+" +
+    "    box-shadow: 0 0 0.5em var(--background);
+" +
+    "    -webkit-backdrop-filter: blur(2px);
+" +
+    "            backdrop-filter: blur(2px);
+" +
+    "  }
 ",
   data: {
     children: false,
     content: ".text {
-  font-family: var(--font-family);
-
-  & p {
-    color: var(--color);
-    box-shadow: 0 0 0.5em var(--background);
-    backdrop-filter: blur(2px);
-  }
-}
+" +
+      "  font-family: var(--font-family);
+" +
+      "
+" +
+      "  & p {
+" +
+      "    color: var(--color);
+" +
+      "    box-shadow: 0 0 0.5em var(--background);
+" +
+      "    backdrop-filter: blur(2px);
+" +
+      "  }
+" +
+      "}
 ",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -166,8 +197,7 @@ snapshot[`postcss plugin 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/text.css",
   },
   dest: {
@@ -260,10 +290,7 @@ snapshot[`postcss plugin without includes 2`] = `
 }
 `;
 
-snapshot[`postcss plugin without includes 3`] = `
-[
-]
-`;
+snapshot[`postcss plugin without includes 3`] = `[]`;
 
 snapshot[`postcss plugin without includes 4`] = `
 {
@@ -282,8 +309,7 @@ snapshot[`postcss plugin without includes 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/index.css",
   },
   dest: {
@@ -303,26 +329,42 @@ snapshot[`postcss plugin without includes 4`] = `
 snapshot[`postcss plugin without includes 5`] = `
 {
   content: ".text {
-  font-family: var(--font-family);
-}
-.text p {
-    color: var(--color);
-    box-shadow: 0 0 0.5em var(--background);
-    -webkit-backdrop-filter: blur(2px);
-            backdrop-filter: blur(2px);
-  }
+" +
+    "  font-family: var(--font-family);
+" +
+    "}
+" +
+    ".text p {
+" +
+    "    color: var(--color);
+" +
+    "    box-shadow: 0 0 0.5em var(--background);
+" +
+    "    -webkit-backdrop-filter: blur(2px);
+" +
+    "            backdrop-filter: blur(2px);
+" +
+    "  }
 ",
   data: {
     children: false,
     content: ".text {
-  font-family: var(--font-family);
-
-  & p {
-    color: var(--color);
-    box-shadow: 0 0 0.5em var(--background);
-    backdrop-filter: blur(2px);
-  }
-}
+" +
+      "  font-family: var(--font-family);
+" +
+      "
+" +
+      "  & p {
+" +
+      "    color: var(--color);
+" +
+      "    box-shadow: 0 0 0.5em var(--background);
+" +
+      "    backdrop-filter: blur(2px);
+" +
+      "  }
+" +
+      "}
 ",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -331,8 +373,7 @@ snapshot[`postcss plugin without includes 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/text.css",
   },
   dest: {
@@ -426,10 +467,7 @@ snapshot[`postcss plugin with hooks 2`] = `
 }
 `;
 
-snapshot[`postcss plugin with hooks 3`] = `
-[
-]
-`;
+snapshot[`postcss plugin with hooks 3`] = `[]`;
 
 snapshot[`postcss plugin with hooks 4`] = `
 {
@@ -446,8 +484,7 @@ snapshot[`postcss plugin with hooks 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/index.css",
   },
   dest: {
@@ -470,14 +507,22 @@ snapshot[`postcss plugin with hooks 5`] = `
   data: {
     children: false,
     content: ".text {
-  font-family: var(--font-family);
-
-  & p {
-    color: var(--color);
-    box-shadow: 0 0 0.5em var(--background);
-    backdrop-filter: blur(2px);
-  }
-}
+" +
+      "  font-family: var(--font-family);
+" +
+      "
+" +
+      "  & p {
+" +
+      "    color: var(--color);
+" +
+      "    box-shadow: 0 0 0.5em var(--background);
+" +
+      "    backdrop-filter: blur(2px);
+" +
+      "  }
+" +
+      "}
 ",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -486,8 +531,7 @@ snapshot[`postcss plugin with hooks 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/text.css",
   },
   dest: {

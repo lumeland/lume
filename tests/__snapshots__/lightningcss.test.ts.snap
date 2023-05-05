@@ -76,10 +76,7 @@ snapshot[`lightningcss plugin 2`] = `
 }
 `;
 
-snapshot[`lightningcss plugin 3`] = `
-[
-]
-`;
+snapshot[`lightningcss plugin 3`] = `[]`;
 
 snapshot[`lightningcss plugin 4`] = `
 {
@@ -96,8 +93,7 @@ snapshot[`lightningcss plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/index.css",
   },
   dest: {
@@ -120,14 +116,22 @@ snapshot[`lightningcss plugin 5`] = `
   data: {
     children: false,
     content: ".text {
-  font-family: var(--font-family);
-
-  & p {
-    color: var(--color);
-    box-shadow: 0 0 0.5em var(--background);
-    backface-visibility: hidden;
-  }
-}
+" +
+      "  font-family: var(--font-family);
+" +
+      "
+" +
+      "  & p {
+" +
+      "    color: var(--color);
+" +
+      "    box-shadow: 0 0 0.5em var(--background);
+" +
+      "    backface-visibility: hidden;
+" +
+      "  }
+" +
+      "}
 ",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -136,8 +140,7 @@ snapshot[`lightningcss plugin 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/text.css",
   },
   dest: {

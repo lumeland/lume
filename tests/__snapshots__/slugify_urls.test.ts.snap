@@ -70,10 +70,7 @@ snapshot[`slugify_urls plugin 2`] = `
 }
 `;
 
-snapshot[`slugify_urls plugin 3`] = `
-[
-]
-`;
+snapshot[`slugify_urls plugin 3`] = `[]`;
 
 snapshot[`slugify_urls plugin 4`] = `
 {
@@ -91,8 +88,7 @@ snapshot[`slugify_urls plugin 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/chourizos-ao-vino/",
   },
   dest: {
@@ -125,8 +121,7 @@ snapshot[`slugify_urls plugin 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/page-1/",
   },
   dest: {
@@ -157,8 +152,7 @@ Filloas con nocilla",
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/filloas-con-nocilla/",
   },
   dest: {
@@ -189,8 +183,7 @@ Foo",
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/803nfon-sfodij/-/",
   },
   dest: {
@@ -223,8 +216,7 @@ snapshot[`slugify_urls plugin 8`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/paxina-numero/tres/",
   },
   dest: {
@@ -257,8 +249,7 @@ snapshot[`slugify_urls plugin 9`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/paxina-4.html",
   },
   dest: {

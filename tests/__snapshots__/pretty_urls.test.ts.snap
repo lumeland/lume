@@ -70,10 +70,7 @@ snapshot[`Disabled pretty URLs 2`] = `
 }
 `;
 
-snapshot[`Disabled pretty URLs 3`] = `
-[
-]
-`;
+snapshot[`Disabled pretty URLs 3`] = `[]`;
 
 snapshot[`Disabled pretty URLs 4`] = `
 {
@@ -91,8 +88,7 @@ snapshot[`Disabled pretty URLs 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Second page",
     url: "/page2.html",
   },
@@ -126,8 +122,7 @@ snapshot[`Disabled pretty URLs 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "First page",
     url: "/page1.html",
   },

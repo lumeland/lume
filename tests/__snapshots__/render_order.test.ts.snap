@@ -70,10 +70,7 @@ snapshot[`render order property 2`] = `
 }
 `;
 
-snapshot[`render order property 3`] = `
-[
-]
-`;
+snapshot[`render order property 3`] = `[]`;
 
 snapshot[`render order property 4`] = `
 {
@@ -91,8 +88,7 @@ snapshot[`render order property 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/extra-page/",
   },
   dest: {
@@ -124,8 +120,7 @@ snapshot[`render order property 5`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/11/",
   },
   dest: {
@@ -157,8 +152,7 @@ snapshot[`render order property 6`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/12/",
   },
   dest: {
@@ -190,8 +184,7 @@ snapshot[`render order property 7`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/13/",
   },
   dest: {
@@ -223,8 +216,7 @@ snapshot[`render order property 8`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/14/",
   },
   dest: {
@@ -256,8 +248,7 @@ snapshot[`render order property 9`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/15/",
   },
   dest: {
@@ -289,8 +280,7 @@ snapshot[`render order property 10`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/16/",
   },
   dest: {
@@ -322,8 +312,7 @@ snapshot[`render order property 11`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/17/",
   },
   dest: {
@@ -355,8 +344,7 @@ snapshot[`render order property 12`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/18/",
   },
   dest: {
@@ -388,8 +376,7 @@ snapshot[`render order property 13`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/19/",
   },
   dest: {
@@ -421,8 +408,7 @@ snapshot[`render order property 14`] = `
     paginate: [Function: paginate],
     renderOrder: 2,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/20/",
   },
   dest: {
@@ -453,8 +439,7 @@ snapshot[`render order property 15`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/1/",
   },
   dest: {
@@ -485,8 +470,7 @@ snapshot[`render order property 16`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/2/",
   },
   dest: {
@@ -517,8 +501,7 @@ snapshot[`render order property 17`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/3/",
   },
   dest: {
@@ -549,8 +532,7 @@ snapshot[`render order property 18`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/4/",
   },
   dest: {
@@ -581,8 +563,7 @@ snapshot[`render order property 19`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/5/",
   },
   dest: {
@@ -613,8 +594,7 @@ snapshot[`render order property 20`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/6/",
   },
   dest: {
@@ -645,8 +625,7 @@ snapshot[`render order property 21`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/7/",
   },
   dest: {
@@ -677,8 +656,7 @@ snapshot[`render order property 22`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/8/",
   },
   dest: {
@@ -709,8 +687,7 @@ snapshot[`render order property 23`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/9/",
   },
   dest: {
@@ -741,8 +718,7 @@ snapshot[`render order property 24`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/articles/10/",
   },
   dest: {
@@ -761,8 +737,9 @@ snapshot[`render order property 24`] = `
 
 snapshot[`render order property 25`] = `
 {
-  content: '<!DOCTYPE html>
-{"page":1,"totalPages":3,"totalResults":11,"previous":null,"next":"./page-2/index.html"}',
+  content: "<!DOCTYPE html>
+" +
+    '{"page":1,"totalPages":3,"totalResults":11,"previous":null,"next":"./page-2/index.html"}',
   data: {
     children: false,
     content: undefined,
@@ -783,8 +760,7 @@ snapshot[`render order property 25`] = `
     renderOrder: 1,
     results: 5,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/page-1/",
   },
   dest: {
@@ -803,8 +779,9 @@ snapshot[`render order property 25`] = `
 
 snapshot[`render order property 26`] = `
 {
-  content: '<!DOCTYPE html>
-{"page":2,"totalPages":3,"totalResults":11,"previous":"./page-1/index.html","next":"./page-3/index.html"}',
+  content: "<!DOCTYPE html>
+" +
+    '{"page":2,"totalPages":3,"totalResults":11,"previous":"./page-1/index.html","next":"./page-3/index.html"}',
   data: {
     children: false,
     content: undefined,
@@ -825,8 +802,7 @@ snapshot[`render order property 26`] = `
     renderOrder: 1,
     results: 5,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/page-2/",
   },
   dest: {
@@ -845,8 +821,9 @@ snapshot[`render order property 26`] = `
 
 snapshot[`render order property 27`] = `
 {
-  content: '<!DOCTYPE html>
-{"page":3,"totalPages":3,"totalResults":11,"previous":"./page-2/index.html","next":null}',
+  content: "<!DOCTYPE html>
+" +
+    '{"page":3,"totalPages":3,"totalResults":11,"previous":"./page-2/index.html","next":null}',
   data: {
     children: false,
     content: undefined,
@@ -867,8 +844,7 @@ snapshot[`render order property 27`] = `
     renderOrder: 1,
     results: 1,
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/page-3/",
   },
   dest: {

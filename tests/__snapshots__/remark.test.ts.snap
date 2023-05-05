@@ -70,20 +70,23 @@ snapshot[`Build a markdown site 2`] = `
 }
 `;
 
-snapshot[`Build a markdown site 3`] = `
-[
-]
-`;
+snapshot[`Build a markdown site 3`] = `[]`;
 
 snapshot[`Build a markdown site 4`] = `
 {
   content: "<!DOCTYPE html>
-<h1>Normal page</h1>
-<ul>
-<li>List</li>
-<li>Of</li>
-<li>Elements</li>
-</ul>",
+" +
+    "<h1>Normal page</h1>
+" +
+    "<ul>
+" +
+    "<li>List</li>
+" +
+    "<li>Of</li>
+" +
+    "<li>Elements</li>
+" +
+    "</ul>",
   data: {
     children: true,
     content: "# Normal page
@@ -99,8 +102,7 @@ snapshot[`Build a markdown site 4`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Basic page",
     url: "/basic/",
   },
@@ -133,8 +135,7 @@ snapshot[`Build a markdown site 5`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/with-attributes/",
   },
   dest: {
@@ -153,20 +154,30 @@ snapshot[`Build a markdown site 5`] = `
 
 snapshot[`Build a markdown site 6`] = `
 {
-  content: '<!DOCTYPE html>
-<pre><code class="language-html">&#x3C;p>Example&#x3C;/p>
-</code></pre>
-<pre><code>&#x3C;p>Example without color highlight&#x3C;/p>
-</code></pre>',
+  content: "<!DOCTYPE html>
+" +
+    '<pre><code class="language-html">&#x3C;p>Example&#x3C;/p>
+' +
+    "</code></pre>
+" +
+    "<pre><code>&#x3C;p>Example without color highlight&#x3C;/p>
+" +
+    "</code></pre>",
   data: {
     children: true,
     content: "\`\`\`html
-<p>Example</p>
-\`\`\`
-
-\`\`\`
-<p>Example without color highlight</p>
-\`\`\`
+" +
+      "<p>Example</p>
+" +
+      "\`\`\`
+" +
+      "
+" +
+      "\`\`\`
+" +
+      "<p>Example without color highlight</p>
+" +
+      "\`\`\`
 ",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -175,8 +186,7 @@ snapshot[`Build a markdown site 6`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/with-code/",
   },
   dest: {
@@ -196,21 +206,33 @@ snapshot[`Build a markdown site 6`] = `
 snapshot[`Build a markdown site 7`] = `
 {
   content: "<!DOCTYPE html>
-<!-- deno-fmt-ignore-file -->
-<p>This is a definition title
-: And this the description
-: Other description</p>
-<p>Other title
-: And other description</p>",
+" +
+    "<!-- deno-fmt-ignore-file -->
+" +
+    "<p>This is a definition title
+" +
+    ": And this the description
+" +
+    ": Other description</p>
+" +
+    "<p>Other title
+" +
+    ": And other description</p>",
   data: {
     children: true,
     content: "<!-- deno-fmt-ignore-file -->
-This is a definition title
-: And this the description
-: Other description
-
-Other title
-: And other description
+" +
+      "This is a definition title
+" +
+      ": And this the description
+" +
+      ": Other description
+" +
+      "
+" +
+      "Other title
+" +
+      ": And other description
 ",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -219,8 +241,7 @@ Other title
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     url: "/with-deflist/",
   },
   dest: {
@@ -239,16 +260,21 @@ Other title
 
 snapshot[`Build a markdown site 8`] = `
 {
-  content: '<!DOCTYPE html>
-<h1><p>Module <strong>example</strong></p></h1>
-
-<div><p>Welcome to this <a href="/">page</a></p></div>
+  content: "<!DOCTYPE html>
+" +
+    "<h1><p>Module <strong>example</strong></p></h1>
+" +
+    "
+" +
+    '<div><p>Welcome to this <a href="/">page</a></p></div>
 ',
   data: {
     children: true,
     content: "<h1>{{ title | md(true) | safe }}</h1>
-
-<div>{{ description | md | safe }}</div>
+" +
+      "
+" +
+      "<div>{{ description | md | safe }}</div>
 ",
     date: 1970-01-01T00:00:00.000Z,
     description: "Welcome to this [page](/)
@@ -259,8 +285,7 @@ snapshot[`Build a markdown site 8`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Module **example**",
     url: "/with-filter/",
   },
@@ -280,9 +305,11 @@ snapshot[`Build a markdown site 8`] = `
 
 snapshot[`Build a markdown site 9`] = `
 {
-  content: '<!DOCTYPE html>
-<h1>Module example</h1>
-<p><a href="/">Back to home</a></p>',
+  content: "<!DOCTYPE html>
+" +
+    "<h1>Module example</h1>
+" +
+    '<p><a href="/">Back to home</a></p>',
   data: {
     children: true,
     content: undefined,
@@ -293,8 +320,7 @@ snapshot[`Build a markdown site 9`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     templateEngine: "tmpl.js,md",
     title: "Module example",
     url: "/with-module/",
@@ -315,25 +341,40 @@ snapshot[`Build a markdown site 9`] = `
 
 snapshot[`Build a markdown site 10`] = `
 {
-  content: '<!DOCTYPE html>
-<!-- deno-fmt-ignore-file -->
-<h1></h1>
-<p>Foo</p>
-<ul>
-<li>one: <a href="/items/un.html">un</a></li>
-<li>two: <a href="/items/dous.html">dous</a></li>
-<li>three: <a href="/items/tres.html">tres</a></li>
-</ul>',
+  content: "<!DOCTYPE html>
+" +
+    "<!-- deno-fmt-ignore-file -->
+" +
+    "<h1></h1>
+" +
+    "<p>Foo</p>
+" +
+    "<ul>
+" +
+    '<li>one: <a href="/items/un.html">un</a></li>
+' +
+    '<li>two: <a href="/items/dous.html">dous</a></li>
+' +
+    '<li>three: <a href="/items/tres.html">tres</a></li>
+' +
+    "</ul>",
   data: {
     children: true,
     content: "<!-- deno-fmt-ignore-file -->
-# {{ title }}
-
-Foo
-
-{% for title, no in myData %}
-- {{ title }}: [{{ no }}](/items/{{ no }}.html)
-{%- endfor %}
+" +
+      "# {{ title }}
+" +
+      "
+" +
+      "Foo
+" +
+      "
+" +
+      "{% for title, no in myData %}
+" +
+      "- {{ title }}: [{{ no }}](/items/{{ no }}.html)
+" +
+      "{%- endfor %}
 ",
     date: 1970-01-01T00:00:00.000Z,
     mergedKeys: {
@@ -347,8 +388,7 @@ Foo
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     templateEngine: "njk,md",
     url: "/with-nunjucks/",
   },

@@ -86,8 +86,7 @@ snapshot[`Load the pages of a site 3`] = `
 [
   {
     entry: "/static.yml",
-    flags: [
-    ],
+    flags: [],
     outputPath: "/static.yml",
   },
 ]
@@ -275,7 +274,8 @@ Content of Page 2",
 snapshot[`Load the pages of a site 7`] = `
 {
   content: "<!DOCTYPE html>
-Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
+" +
+    "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
   data: {
     children: true,
     colors: [

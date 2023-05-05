@@ -108,15 +108,24 @@ snapshot[`render remote files 3`] = `
 snapshot[`render remote files 4`] = `
 {
   content: "<!DOCTYPE html>
-<h1>Remote layout</h1>
-<h2>Remote title</h2>
-
-&lt;p&gt;Hello world&lt;/p&gt;
-
-
-This is a local template
-
-This is a remote template
+" +
+    "<h1>Remote layout</h1>
+" +
+    "<h2>Remote title</h2>
+" +
+    "
+" +
+    "&lt;p&gt;Hello world&lt;/p&gt;
+" +
+    "
+" +
+    "
+" +
+    "This is a local template
+" +
+    "
+" +
+    "This is a remote template
 ",
   data: {
     children: true,
@@ -130,8 +139,7 @@ This is a remote template
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Remote title",
     url: "/local1/",
   },
@@ -170,8 +178,7 @@ body {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Remote title",
     url: "/other-remote-style.css",
   },
@@ -206,8 +213,7 @@ hello();
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Remote title",
     url: "/scripts.js",
   },
@@ -228,13 +234,20 @@ hello();
 snapshot[`render remote files 7`] = `
 {
   content: "/* Remote style */
-body {
-  color: red;
-}
-/* Other remote style */
-body {
-  color: yellow;
-}
+" +
+    "body {
+" +
+    "  color: red;
+" +
+    "}
+" +
+    "/* Other remote style */
+" +
+    "body {
+" +
+    "  color: yellow;
+" +
+    "}
 ",
   data: {
     children: false,
@@ -248,8 +261,7 @@ body {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Remote title",
     url: "/styles1.css",
   },
@@ -284,8 +296,7 @@ snapshot[`render remote files 8`] = `
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Remote title",
     url: "/styles2.css",
   },
@@ -321,8 +332,7 @@ body {
     page: undefined,
     paginate: [Function: paginate],
     search: Search {},
-    tags: [
-    ],
+    tags: [],
     title: "Remote title",
     url: "/styles3.css",
   },
