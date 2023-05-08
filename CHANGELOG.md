@@ -9,6 +9,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
+## [1.17.0] - Unreleased
+### Fixed
+- Changes on static files deletes the file from `_site` #418
+
 ## [1.17.0] - 2023-05-05
 ### Added
 - Feed Plugin [#413]

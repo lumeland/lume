@@ -20,6 +20,17 @@ Deno.test("Scripts", async (t) => {
     entry.type === "file"
   );
 
+  // Test cache
+  await t.step("Test cache", () => {
+    const entry = fs.entries.get("/file1.foo")!;
+    equals(!!entry, true);
+    equals(entry.flags.size, 0);
+    entry.flags.add("foo");
+    equals(entry.flags.size, 1);
+    entry.removeCache();
+    equals(entry.flags.size, 0);
+  });
+
   await t.step("Add scopes", () => {
     scopes.scopes.add((path: string) => path.endsWith(".foo"));
     equals(scopes.scopes.size, 1);

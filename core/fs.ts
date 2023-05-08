@@ -31,6 +31,7 @@ export class Entry {
   removeCache() {
     this.#content.clear();
     this.#info = undefined;
+    this.flags.clear();
   }
 
   getContent(loader: Loader): Promise<Data> | Data {
