@@ -9,9 +9,17 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
+## [1.17.2] - Unreleased
+### Added
+- Option for specifying the init directory [#417].
+
+### Removed
+- The `deno task lume init` command.
+  Since Lume cannot be installed globally, it doesn't make sense any more.
+
 ## [1.17.1] - 2023-05-08
 ### Fixed
-- Changes on static files deletes the file from `_site` [#418]
+- Changes on static files deletes the file from `_site` [#418].
 
 ## [1.17.0] - 2023-05-05
 ### Added
@@ -2209,8 +2217,10 @@ The first version.
 [#409]: https://github.com/lumeland/lume/issues/409
 [#411]: https://github.com/lumeland/lume/issues/411
 [#413]: https://github.com/lumeland/lume/issues/413
+[#417]: https://github.com/lumeland/lume/issues/417
 [#418]: https://github.com/lumeland/lume/issues/418
 
+[1.17.2]: https://github.com/lumeland/lume/compare/v1.17.1...HEAD
 [1.17.1]: https://github.com/lumeland/lume/compare/v1.17.0...v1.17.1
 [1.17.0]: https://github.com/lumeland/lume/compare/v1.16.2...v1.17.0
 [1.16.2]: https://github.com/lumeland/lume/compare/v1.16.1...v1.16.2

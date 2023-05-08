@@ -13,11 +13,6 @@ const upgrade = new Command()
     "The version to upgrade to.",
   )
   .option(
-    "-g, --global [global:boolean]",
-    "To upgrade lume globally (with deno install).",
-    { default: false },
-  )
-  .option(
     "-d, --dev [dev:boolean]",
     "Install the latest development version (last Git commit).",
   )
@@ -71,7 +66,6 @@ const run = new Command()
     "--quiet [quiet:boolean]",
     "Enable quiet mode (show less info).",
   )
-  // @ts-ignore: todo: fix this
   .action(runCommand);
 
 const lume = new Command()

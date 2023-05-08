@@ -7,13 +7,16 @@ import {
 } from "./core/utils.ts";
 import { Checkbox, Confirm, Select } from "./deps/cliffy.ts";
 import { outdent } from "./deps/outdent.ts";
+import { join } from "./deps/path.ts";
+import { ensureDir } from "./deps/fs.ts";
 
 import type { DenoConfigResult } from "./core/utils.ts";
 
 checkDenoVersion();
+const folder = Deno.args[0] || ".";
 
 /** Init Lume in the current directory */
-const configFile = await getConfigFile();
+const configFile = await getConfigFile(folder);
 
 if (!configFile) {
   console.log(gray("Lume init cancelled."));
@@ -24,7 +27,7 @@ const plugins = await getPlugins();
 
 const denoConfig: DenoConfigResult = {
   config: {},
-  file: "deno.json",
+  file: join(folder, "deno.json"),
 };
 
 initPlugins(plugins, denoConfig);
@@ -50,6 +53,7 @@ code.push("export default site;");
 code.push("");
 
 // Write the code to the file
+await ensureDir(folder);
 await Deno.writeTextFile(configFile, code.join("\n"));
 console.log();
 console.log("Lume configuration file saved:", gray(configFile));
@@ -120,7 +124,7 @@ async function getPlugins(): Promise<string[]> {
 }
 
 /** Question to get the filename of the config file */
-async function getConfigFile(): Promise<string | false> {
+async function getConfigFile(folder: string): Promise<string | false> {
   const file = await Select.prompt({
     message: "Choose the configuration file format",
     options: [
@@ -135,17 +139,19 @@ async function getConfigFile(): Promise<string | false> {
     ],
   });
 
+  const path = join(folder, file);
+
   try {
-    await Deno.lstat(file);
+    await Deno.lstat(path);
     const override = await Confirm.prompt({
-      message: `The file "${file}" already exist. Override?`,
+      message: `The file "${path}" already exist. Override?`,
       default: false,
     });
 
-    return override ? file : false;
+    return override ? path : false;
   } catch (err) {
     if (err instanceof Deno.errors.NotFound) {
-      return file;
+      return path;
     }
 
     throw err;
