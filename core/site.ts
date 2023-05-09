@@ -146,13 +146,7 @@ export default class Site {
     const { quiet, includes, cwd, prettyUrls, components } = this.options;
 
     // To load source files
-    const fs = new FS({
-      root: src,
-      ignore: [
-        posix.join("/", this.options.dest),
-        (entry) => entry.name.startsWith("."),
-      ],
-    });
+    const fs = new FS({ root: src });
     const formats = new Formats();
 
     const dataLoader = new DataLoader({ formats });
@@ -208,6 +202,7 @@ export default class Site {
 
     // Ignore the dest folder by the watcher
     this.options.watcher.ignore.push(this.options.dest);
+    this.fs.options.ignore = this.options.watcher.ignore;
   }
 
   get globalData(): Data {

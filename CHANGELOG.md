@@ -17,6 +17,9 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - The `deno task lume init` command.
   Since Lume cannot be installed globally, it doesn't make sense any more.
 
+### Fixed
+- Dot files mustn't be ignored [#419].
+
 ## [1.17.1] - 2023-05-08
 ### Fixed
 - Changes on static files deletes the file from `_site` [#418].
@@ -2219,6 +2222,7 @@ The first version.
 [#413]: https://github.com/lumeland/lume/issues/413
 [#417]: https://github.com/lumeland/lume/issues/417
 [#418]: https://github.com/lumeland/lume/issues/418
+[#419]: https://github.com/lumeland/lume/issues/419
 
 [1.17.2]: https://github.com/lumeland/lume/compare/v1.17.1...HEAD
 [1.17.1]: https://github.com/lumeland/lume/compare/v1.17.0...v1.17.1

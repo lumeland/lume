@@ -6,7 +6,7 @@ type EntryType = "file" | "directory";
 
 export interface Options {
   root: string;
-  ignore?: (string | ((entry: Entry) => boolean))[];
+  ignore?: (string | ((path: string) => boolean))[];
 }
 
 export type Loader = (path: string) => Promise<Data>;
@@ -92,15 +92,15 @@ export default class FS {
     return entry;
   }
 
-  #isValid(entry: Entry) {
+  #isValid(path: string) {
     const { ignore } = this.options;
 
     return ignore
       ? !ignore.some((ignore) =>
         typeof ignore === "string"
-          ? (entry.path.startsWith(posix.join(ignore, "/")) ||
-            entry.path === ignore)
-          : ignore(entry)
+          ? (path.startsWith(posix.join(ignore, "/")) ||
+            path === ignore)
+          : ignore(path)
       )
       : true;
   }
@@ -114,16 +114,17 @@ export default class FS {
       }
 
       const path = posix.join(dir.path, dirEntry.name);
+
+      if (!this.#isValid(path)) {
+        continue;
+      }
+
       const entry = new Entry(
         dirEntry.name,
         path,
         dirEntry.isDirectory ? "directory" : "file",
         posix.join(this.options.root, path),
       );
-
-      if (!this.#isValid(entry)) {
-        continue;
-      }
 
       dir.children.set(dirEntry.name, entry);
       this.entries.set(path, entry);
@@ -159,16 +160,16 @@ export default class FS {
       const prefix = parent.path === "/" ? "" : parent.path;
       const path = `${prefix}/${name}`;
 
+      if (!this.#isValid(path)) {
+        break;
+      }
+
       parent = children.get(name) || new Entry(
         name,
         path,
         "directory",
         this.options.root + path,
       );
-
-      if (!this.#isValid(parent)) {
-        break;
-      }
 
       children.set(name, parent);
       this.entries.set(parent.path, parent);
