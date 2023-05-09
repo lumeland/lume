@@ -9,7 +9,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.17.2] - Unreleased
+## [1.17.2] - 2023-05-09
 ### Added
 - Option for specifying the init directory [#417].
 
@@ -2224,7 +2224,7 @@ The first version.
 [#418]: https://github.com/lumeland/lume/issues/418
 [#419]: https://github.com/lumeland/lume/issues/419
 
-[1.17.2]: https://github.com/lumeland/lume/compare/v1.17.1...HEAD
+[1.17.2]: https://github.com/lumeland/lume/compare/v1.17.1...v1.17.2
 [1.17.1]: https://github.com/lumeland/lume/compare/v1.17.0...v1.17.1
 [1.17.0]: https://github.com/lumeland/lume/compare/v1.16.2...v1.17.0
 [1.16.2]: https://github.com/lumeland/lume/compare/v1.16.1...v1.16.2
