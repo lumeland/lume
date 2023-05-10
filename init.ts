@@ -58,7 +58,7 @@ await Deno.writeTextFile(configFile, code.join("\n"));
 console.log();
 console.log("Lume configuration file saved:", gray(configFile));
 
-const url = new URL(import.meta.resolve("../"));
+const url = new URL(import.meta.resolve("./"));
 updateLumeVersion(url, denoConfig);
 writeDenoConfig(denoConfig);
 

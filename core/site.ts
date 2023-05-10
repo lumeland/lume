@@ -201,7 +201,7 @@ export default class Site {
     }
 
     // Ignore the dest folder by the watcher
-    this.options.watcher.ignore.push(this.options.dest);
+    this.options.watcher.ignore.push(normalizePath(this.options.dest));
     this.fs.options.ignore = this.options.watcher.ignore;
   }
 
@@ -538,6 +538,10 @@ export default class Site {
       // Delete the file from the cache
       this.formats.deleteCache(file);
       const entry = this.fs.update(file);
+
+      if (!entry) {
+        continue;
+      }
 
       // Remove pages or static files depending on this entry
       const pages = this.pages.filter((page) => page.src.entry === entry).map((

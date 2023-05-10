@@ -75,17 +75,17 @@ export default class FS {
     this.#walkRemote();
   }
 
-  update(path: string): Entry {
-    const entry = this.entries.get(path) ||
-      this.addEntry({ path, type: "file" });
-    entry.removeCache();
+  update(path: string): Entry | undefined {
+    let entry;
 
-    // Remove if it doesn't exist
     try {
+      entry = this.entries.get(path) || this.addEntry({ path });
+      entry.removeCache();
+      // Remove if it doesn't exist
       entry.getInfo();
     } catch (error) {
       if (error instanceof Deno.errors.NotFound) {
-        this.removeEntry(entry);
+        this.removeEntry(path);
       }
     }
 
@@ -150,15 +150,23 @@ export default class FS {
     }
   }
 
-  addEntry(data: { path: string; type: EntryType; src?: string }): Entry {
+  addEntry(data: { path: string; type?: EntryType; src?: string }): Entry {
     const pieces = data.path.split("/").filter((p) => p);
     let parent = this.tree;
+
+    if (!data.src) {
+      data.src = posix.join(this.options.root, data.path);
+    }
+
+    if (!data.type) {
+      const info = Deno.statSync(data.src);
+      data.type = info.isDirectory ? "directory" : "file";
+    }
 
     while (pieces.length > 1) {
       const name = pieces.shift()!;
       const children = parent.children;
-      const prefix = parent.path === "/" ? "" : parent.path;
-      const path = `${prefix}/${name}`;
+      const path = posix.join(parent.path, name);
 
       if (!this.#isValid(path)) {
         break;
@@ -181,17 +189,30 @@ export default class FS {
       name,
       data.path,
       data.type,
-      data.src || this.options.root + data.path,
+      data.src,
     );
     children.set(name, entry);
     this.entries.set(entry.path, entry);
     return entry;
   }
 
-  removeEntry(entry: Entry) {
-    this.entries.delete(entry.path);
-    const parent = this.entries.get(posix.dirname(entry.path))!;
-    parent.children.delete(entry.name);
+  removeEntry(path: string) {
+    const entry = this.entries.get(path);
+    const isFolder = entry?.type === "directory";
+
+    this.entries.delete(path);
+    const parent = this.entries.get(posix.dirname(path))!;
+    const name = posix.basename(path);
+    parent.children.delete(name);
+
+    if (isFolder) {
+      const prefix = posix.join(path, "/");
+      for (const childPath of this.entries.keys()) {
+        if (childPath.startsWith(prefix)) {
+          this.entries.delete(childPath);
+        }
+      }
+    }
   }
 }
 
