@@ -1,7 +1,6 @@
 import { merge } from "../core/utils.ts";
-import { Search } from "./search.ts";
 
-import type { Data, Page, Site } from "../core.ts";
+import type { Data, Searcher, Site } from "../core.ts";
 
 export interface Options {
   /** The helper name */
@@ -20,18 +19,24 @@ export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.data(options.name, new Nav(site));
+    const nav = new Nav(site.searcher);
+    site.data(options.name, nav);
+    site.addEventListener("beforeUpdate", () => nav.deleteCache());
   };
 }
 
 /** Search helper */
 export class Nav {
   #cache = new Map<string, NavData>();
-  #search: Search;
+  #search: Searcher;
 
-  constructor(site: Site) {
-    site.addEventListener("beforeUpdate", () => this.#cache.clear());
-    this.#search = new Search(site, false);
+  constructor(searcher: Searcher) {
+    this.#search = searcher;
+  }
+
+  /** Clear the cache (used after a change in watch mode) */
+  deleteCache() {
+    this.#cache.clear();
   }
 
   menu(url?: "/", query?: string, sort?: string): NavData;
@@ -67,10 +72,10 @@ export class Nav {
       slug: "",
     };
 
-    const pages = this.#search.pages(query, sort) as Page[];
+    const dataPages = this.#search.pages(query, sort);
 
-    for (const page of pages) {
-      const url = page.outputPath;
+    for (const data of dataPages) {
+      const url = data.page?.outputPath;
 
       if (!url) {
         continue;
@@ -82,7 +87,7 @@ export class Nav {
 
       while (part) {
         if (part === "index.html") {
-          current.data = page.data;
+          current.data = data;
           break;
         }
 

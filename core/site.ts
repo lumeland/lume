@@ -13,6 +13,7 @@ import Renderer from "./renderer.ts";
 import Events from "./events.ts";
 import Formats from "./formats.ts";
 import Logger from "./logger.ts";
+import Searcher from "./searcher.ts";
 import Scripts from "./scripts.ts";
 import Writer from "./writer.ts";
 import textLoader from "./loaders/text.ts";
@@ -116,6 +117,9 @@ export default class Site {
   /** To run scripts */
   scripts: Scripts;
 
+  /** To search pages */
+  searcher: Searcher;
+
   /** To write the generated pages in the dest folder */
   writer: Writer;
 
@@ -178,6 +182,17 @@ export default class Site {
     const logger = new Logger({ quiet });
     const scripts = new Scripts({ logger, cwd });
     const writer = new Writer({ src, dest, logger });
+    const searcher = new Searcher({
+      pages: this.pages,
+      sourceData: source.data,
+      filters: [
+        (data: Data) => data.page?.outputPath?.endsWith(".html") ?? false, // only html pages
+        (data: Data) =>
+          options.server?.page404
+            ? data.url !== normalizePath(options.server.page404)
+            : true, // not the 404 page
+      ],
+    });
 
     // Save everything in the site instance
     this.fs = fs;
@@ -193,6 +208,7 @@ export default class Site {
     this.events = events;
     this.logger = logger;
     this.scripts = scripts;
+    this.searcher = searcher;
     this.writer = writer;
 
     // Ignore the "dest" directory if it's inside src
@@ -532,6 +548,8 @@ export default class Site {
     if (await this.dispatchEvent({ type: "beforeUpdate", files }) === false) {
       return;
     }
+
+    this.searcher.deleteCache();
 
     // Reload the changed files
     for (const file of files) {

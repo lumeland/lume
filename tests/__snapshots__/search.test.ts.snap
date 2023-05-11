@@ -1,58 +1,58 @@
 export const snapshot = {};
 
-snapshot[`Search by Tags 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.tags?.includes(value2) && page.data?.tags?.includes(value3)"`;
+snapshot[`Search by Tags 1`] = `"(data) => data.tags?.includes(value0) && data.tags?.includes(value1)"`;
 
-snapshot[`Search by NOT Tags 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.tags?.includes(value2) && !page.data?.tags?.includes(value3)"`;
+snapshot[`Search by NOT Tags 1`] = `"(data) => data.tags?.includes(value0) && !data.tags?.includes(value1)"`;
 
-snapshot[`Search by Equal 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo === value2"`;
+snapshot[`Search by Equal 1`] = `"(data) => data.foo === value0"`;
 
-snapshot[`Search by Equal undefined 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo === value2"`;
+snapshot[`Search by Equal undefined 1`] = `"(data) => data.foo === value0"`;
 
-snapshot[`Search by Equal null 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo === value2"`;
+snapshot[`Search by Equal null 1`] = `"(data) => data.foo === value0"`;
 
-snapshot[`Search by Upper than 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo > value2"`;
+snapshot[`Search by Upper than 1`] = `"(data) => data.foo > value0"`;
 
-snapshot[`Search by Upper or equals than 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo >= value2"`;
+snapshot[`Search by Upper or equals than 1`] = `"(data) => data.foo >= value0"`;
 
-snapshot[`Search by Lower than 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo < value2"`;
+snapshot[`Search by Lower than 1`] = `"(data) => data.foo < value0"`;
 
-snapshot[`Search by Lower or equals than 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo <= value2"`;
+snapshot[`Search by Lower or equals than 1`] = `"(data) => data.foo <= value0"`;
 
-snapshot[`Search by Not Equal 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo !== value2"`;
+snapshot[`Search by Not Equal 1`] = `"(data) => data.foo !== value0"`;
 
-snapshot[`Search by Not Equal alt 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo !== value2"`;
+snapshot[`Search by Not Equal alt 1`] = `"(data) => data.foo !== value0"`;
 
-snapshot[`Search by Starts With 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo?.startsWith(value2)"`;
+snapshot[`Search by Starts With 1`] = `"(data) => data.foo?.startsWith(value0)"`;
 
-snapshot[`Search by NOT Starts With 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && !page.data?.foo?.startsWith(value2)"`;
+snapshot[`Search by NOT Starts With 1`] = `"(data) => !data.foo?.startsWith(value0)"`;
 
-snapshot[`Search by Ends With 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo?.endsWith(value2)"`;
+snapshot[`Search by Ends With 1`] = `"(data) => data.foo?.endsWith(value0)"`;
 
-snapshot[`Search by Contains 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo?.includes(value2)"`;
+snapshot[`Search by Contains 1`] = `"(data) => data.foo?.includes(value0)"`;
 
-snapshot[`Search by Tags with OR 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && value2.some((i) => page.data?.tags?.includes(i))"`;
+snapshot[`Search by Tags with OR 1`] = `"(data) => value0.some((i) => data.tags?.includes(i))"`;
 
-snapshot[`Search by Equal with OR 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && value2.some((i) => page.data?.foo === i)"`;
+snapshot[`Search by Equal with OR 1`] = `"(data) => value0.some((i) => data.foo === i)"`;
 
-snapshot[`Search by Not Equal with OR 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && value2.some((i) => page.data?.foo !== i)"`;
+snapshot[`Search by Not Equal with OR 1`] = `"(data) => value0.some((i) => data.foo !== i)"`;
 
-snapshot[`Search by Starts With with OR 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && value2.some((i) => page.data?.foo?.startsWith(i))"`;
+snapshot[`Search by Starts With with OR 1`] = `"(data) => value0.some((i) => data.foo?.startsWith(i))"`;
 
-snapshot[`Search by Ends With with OR 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && value2.some((i) => page.data?.foo?.endsWith(i))"`;
+snapshot[`Search by Ends With with OR 1`] = `"(data) => value0.some((i) => data.foo?.endsWith(i))"`;
 
-snapshot[`Search by Contains with OR 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && value2.some((i) => page.data?.foo?.includes(i))"`;
+snapshot[`Search by Contains with OR 1`] = `"(data) => value0.some((i) => data.foo?.includes(i))"`;
 
-snapshot[`Search Date by Equal 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo?.getTime() === value2.getTime()"`;
+snapshot[`Search Date by Equal 1`] = `"(data) => data.foo?.getTime() === value0.getTime()"`;
 
-snapshot[`Search Date by Not Equal 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo?.getTime() !== value2.getTime()"`;
+snapshot[`Search Date by Not Equal 1`] = `"(data) => data.foo?.getTime() !== value0.getTime()"`;
 
-snapshot[`Search Date by lower than 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo?.getTime() < value2.getTime()"`;
+snapshot[`Search Date by lower than 1`] = `"(data) => data.foo?.getTime() < value0.getTime()"`;
 
-snapshot[`Search Date by lower or equals than 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo?.getTime() <= value2.getTime()"`;
+snapshot[`Search Date by lower or equals than 1`] = `"(data) => data.foo?.getTime() <= value0.getTime()"`;
 
-snapshot[`Search Date by upper than 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo?.getTime() > value2.getTime()"`;
+snapshot[`Search Date by upper than 1`] = `"(data) => data.foo?.getTime() > value0.getTime()"`;
 
-snapshot[`Search Date by upper or equals than 1`] = `"(page) => page.outputPath?.endsWith(value0) && page.data?.url !== value1 && page.data?.foo?.getTime() >= value2.getTime()"`;
+snapshot[`Search Date by upper or equals than 1`] = `"(data) => data.foo?.getTime() >= value0.getTime()"`;
 
 snapshot[`Sort by one field 1`] = `[Function: anonymous]`;
 

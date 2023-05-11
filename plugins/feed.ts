@@ -7,7 +7,6 @@ import {
 import { getDataValue } from "./utils.ts";
 import { $XML, stringify } from "../deps/xml.ts";
 import { Page } from "../core/filesystem.ts";
-import { Search } from "../plugins/search.ts";
 
 import type { Data, Site } from "../core.ts";
 
@@ -79,14 +78,12 @@ export default (userOptions?: DeepPartial<Options>) => {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    const search = new Search(site, true);
-
     site.addEventListener("beforeSave", () => {
       const output = Array.isArray(options.output)
         ? options.output
         : [options.output];
 
-      const pages = search.pages(
+      const pages = site.searcher.pages(
         options.query,
         options.sort,
         options.limit,

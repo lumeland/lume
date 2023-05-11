@@ -1,8 +1,7 @@
 import { merge } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
-import { Search } from "../plugins/search.ts";
 
-import type { Data, Site, StaticFile } from "../core.ts";
+import type { Data, Searcher, Site, StaticFile } from "../core.ts";
 
 export interface Options {
   /** The sitemap file name */
@@ -33,7 +32,10 @@ export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     site.addEventListener("afterRender", () => {
       // Create the sitemap.xml page
-      const sitemap = Page.create(options.filename, getSitemapContent(site));
+      const sitemap = Page.create(
+        options.filename,
+        getSitemapContent(site.searcher),
+      );
 
       // Add to the sitemap page to pages
       site.pages.push(sitemap);
@@ -62,9 +64,8 @@ export default function (userOptions?: Partial<Options>) {
       }
     });
 
-    function getSitemapContent(site: Site) {
-      const search = new Search(site, true);
-      const sitemap = search.pages(options.query, options.sort)
+    function getSitemapContent(searcher: Searcher) {
+      const sitemap = searcher.pages(options.query, options.sort)
         .map((data: Data) => getPageData(data));
 
       // deno-fmt-ignore
