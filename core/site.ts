@@ -520,10 +520,11 @@ export default class Site {
     this.fs.init();
 
     // Get the site content
+    const isDev = Deno.env.get("LUME_ENV") === "development";
     const [_pages, _staticFiles] = await this.source.build(
       this.globalComponents,
       [
-        (_, page) => !page?.data.draft || this.options.dev,
+        (_, page) => !page?.data.draft || isDev,
       ],
     );
 
@@ -572,10 +573,11 @@ export default class Site {
     }
 
     // Get the site content
+    const isDev = Deno.env.get("LUME_ENV") === "development";
     const [_pages, _staticFiles] = await this.source.build(
       this.globalComponents,
       [
-        (_, page) => !page?.data.draft || this.options.dev,
+        (_, page) => !page?.data.draft || isDev,
         this.scopes.getFilter(files),
       ],
     );

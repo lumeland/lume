@@ -11,6 +11,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [Unreleased]
 ### Added
+- The env variable `LUME_ENV=development` is created when `deno task lume --dev`.
 - New `site.searcher` property with a instance of `Searcher` class.
   It's used by plugins like `search`, `nav`, `sitemap` and `feed`.
   (Previouly, each plugin had it's own instance).

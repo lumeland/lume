@@ -21,7 +21,7 @@ const upgrade = new Command()
   .action(upgradeCommand);
 
 const create = new Command()
-  .description("Create a new page from a archetype.")
+  .description("Run an archetype to create more files.")
   .example(
     "lume new post 'Post title'",
     "Create a new post file using the _archetypes/post.ts archetype.",

@@ -73,9 +73,7 @@ Deno.test("event listener configuration", () => {
   const site = lume();
   const { listeners } = site.events;
 
-  equals(listeners.size, 1);
-  equals(listeners.has("beforeUpdate"), true);
-  equals(listeners.get("beforeUpdate")?.size, 1);
+  equals(listeners.size, 0);
 
   site.addEventListener("afterBuild", "afterbuild-command");
   equals(listeners.get("afterBuild")?.size, 1);
