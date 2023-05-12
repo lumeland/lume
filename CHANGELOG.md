@@ -15,6 +15,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - New `site.searcher` property with a instance of `Searcher` class.
   It's used by plugins like `search`, `nav`, `sitemap` and `feed`.
   (Previouly, each plugin had it's own instance).
+- Cache the remote files using Web Cache API.
 
 ## [1.17.3] - 2023-05-10
 ### Fixed

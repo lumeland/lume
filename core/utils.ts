@@ -444,7 +444,23 @@ export async function read(
     return isBinary ? Deno.readFile(path) : Deno.readTextFile(path);
   }
 
-  const response = await fetch(path);
+  const url = new URL(path);
+
+  if (url.protocol === "file:") {
+    return isBinary ? Deno.readFile(url) : Deno.readTextFile(url);
+  }
+
+  const cache = await caches.open("lume_remote_files");
+  const cached = await cache.match(url);
+
+  if (cached) {
+    return isBinary
+      ? new Uint8Array(await cached.arrayBuffer())
+      : cached.text();
+  }
+
+  const response = await fetch(url);
+  await cache.put(url, response.clone());
 
   return isBinary
     ? new Uint8Array(await response.arrayBuffer())
