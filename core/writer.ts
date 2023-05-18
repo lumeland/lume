@@ -154,7 +154,11 @@ export default class Writer {
       } else {
         await Deno.copyFile(entry.src, pathTo);
       }
-      this.logger.log(`🔥 ${file.outputPath} <dim>${entry.src}</dim>`);
+      this.logger.log(
+        `🔥 ${file.outputPath} <dim>${
+          entry.flags.has("remote") ? entry.src : entry.path
+        }</dim>`,
+      );
       return true;
     } catch {
       // Ignored

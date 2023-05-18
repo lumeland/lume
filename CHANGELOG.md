@@ -17,6 +17,10 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
   (Previouly, each plugin had it's own instance).
 - Cache the remote files using Web Cache API.
 
+### Fixed
+- Ignore `/.git` folder by the watcher.
+- Don't show the full path of the files in the output.
+
 ## [1.17.3] - 2023-05-10
 ### Fixed
 - The `lume/` import is not correctly generated with `lume init`.
