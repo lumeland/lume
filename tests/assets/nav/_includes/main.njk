@@ -16,21 +16,21 @@
 
     <nav>
       <ul>
-      {% for item in nav.menu().children %}
+      {% asyncEach item in nav.menu().children %}
         <li>
           {% include "./step.njk" %}
         </li>
-      {% endfor %}
+      {% endeach %}
       </ul>
     </nav>
 
     <nav>
       <ul>
-      {% for item in nav.menu("/", "menu=true").children %}
+      {% asyncEach item in nav.menu("/", "menu=true").children %}
         <li>
           {% include "./step.njk" %}
         </li>
-      {% endfor %}
+      {% endeach %}
       </ul>
     </nav>
   </body>

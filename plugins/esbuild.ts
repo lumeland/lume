@@ -10,6 +10,7 @@ import { build, BuildOptions, OutputFile, stop } from "../deps/esbuild.ts";
 import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/filesystem.ts";
+import textLoader from "../core/loaders/text.ts";
 
 import type { DenoConfig, Site } from "../core.ts";
 
@@ -178,7 +179,7 @@ export default function (userOptions?: Partial<Options>) {
           if (namespace === "deno") {
             if (path.startsWith(prefix)) {
               const file = path.replace(prefix, "");
-              const content = await site.getContent(file);
+              const content = await site.getContent(file, textLoader);
 
               if (content) {
                 return {

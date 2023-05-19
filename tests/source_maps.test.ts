@@ -13,7 +13,9 @@ Deno.test("Source maps from CSS files", async (t) => {
 
   site.use(sass());
   site.use(postcss());
-  site.use(lightningcss());
+  site.use(lightningcss({
+    includes: false,
+  }));
   site.use(sourceMaps());
 
   await build(site);

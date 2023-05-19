@@ -4,12 +4,12 @@
 <strong>{{ item.slug }}</strong>
 {% endif %}
 
-{% if item.children %}
+{% ifAsync item.children %}
 <ul>
-  {% for item in item.children %}
+  {% asyncEach item in item.children %}
   <li>
     {% include "./step.njk" %}
   </li>
-  {% endfor %}
+  {% endeach %}
 </ul>
 {% endif %}

@@ -1,4 +1,9 @@
-import { merge, normalizePath, replaceExtension } from "../core/utils.ts";
+import {
+  merge,
+  normalizePath,
+  replaceExtension,
+  resolveInclude,
+} from "../core/utils.ts";
 import Sass from "../deps/sass.ts";
 import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { Page } from "../core/filesystem.ts";
@@ -38,7 +43,9 @@ export default function (userOptions?: Partial<Options>) {
       userOptions,
     );
 
-    const includes = posix.join("/", options.includes || site.options.includes);
+    if (options.includes) {
+      site.includes(options.extensions, options.includes);
+    }
 
     site.loadAssets(options.extensions);
     site.process(options.extensions, sass);
@@ -63,17 +70,20 @@ export default function (userOptions?: Partial<Options>) {
               pathname = normalizePath(pathname.slice(basePath.length));
             }
 
-            // Relative path
-            for (const path of getPathsToLook(pathname)) {
-              const entry = entries.get(path);
-              if (entry) {
-                return toFileUrl(site.src(entry.path));
-              }
-            }
+            const { formats } = site;
+            const { includes } = site.options;
 
-            // Import from includes
-            for (const path of getPathsToLook(posix.join(includes, pathname))) {
-              const entry = entries.get(path);
+            for (const path of getPathsToLook(pathname)) {
+              let entry = entries.get(path);
+
+              // Search in includes
+              if (!entry) {
+                const format = formats.search(pathname);
+                const includesPath = format?.includesPath ?? includes;
+                const resolved = resolveInclude(path, includesPath);
+                entry = entries.get(resolved);
+              }
+
               if (entry) {
                 return toFileUrl(site.src(entry.path));
               }
@@ -84,17 +94,10 @@ export default function (userOptions?: Partial<Options>) {
             );
           },
           async load(url: URL) {
-            let pathname = normalizePath(fromFileUrl(url));
+            const pathname = fromFileUrl(url);
+            const contents = await site.getContent(pathname, textLoader);
 
-            if (pathname.startsWith(basePath)) {
-              pathname = normalizePath(pathname.slice(basePath.length));
-            }
-
-            const entry = entries.get(pathname);
-
-            if (entry) {
-              const contents = (await entry.getContent(textLoader))
-                .content as string;
+            if (typeof contents === "string") {
               return {
                 contents,
                 syntax: pathname.endsWith(".sass") ? "indented" : "scss",

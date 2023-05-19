@@ -1,22 +1,17 @@
-import { concurrent, isGenerator } from "./utils.ts";
+import { concurrent, isGenerator, resolveInclude } from "./utils.ts";
 import { Exception } from "./errors.ts";
 import { Page } from "./filesystem.ts";
 import { posix } from "../deps/path.ts";
 import { getDate, getUrl, mergeData } from "./source.ts";
 
-import type {
-  Content,
-  Data,
-  Formats,
-  IncludesLoader,
-  Processors,
-} from "../core.ts";
+import type { Content, Data, Formats, FS, Processors } from "../core.ts";
 
 export interface Options {
-  includesLoader: IncludesLoader;
+  includes: string;
   prettyUrls: boolean;
   preprocessors: Processors;
   formats: Formats;
+  fs: FS;
 }
 
 /**
@@ -24,8 +19,11 @@ export interface Options {
  * in the right order and using the right template engine.
  */
 export default class Renderer {
-  /** To load the includes files (layouts) */
-  includesLoader: IncludesLoader;
+  /** The default folder to include the layouts */
+  includes: string;
+
+  /** The filesystem instance used to read the layouts */
+  fs: FS;
 
   /** To convert the urls to pretty /example.html => /example/ */
   prettyUrls: boolean;
@@ -40,10 +38,11 @@ export default class Renderer {
   helpers = new Map<string, [Helper, HelperOptions]>();
 
   constructor(options: Options) {
-    this.includesLoader = options.includesLoader;
+    this.includes = options.includes;
     this.prettyUrls = options.prettyUrls;
     this.preprocessors = options.preprocessors;
     this.formats = options.formats;
+    this.fs = options.fs;
   }
 
   /** Register a new helper used by the template engines */
@@ -241,19 +240,25 @@ export default class Renderer {
         );
       }
 
-      const result = await this.includesLoader.load(layout, format, path);
+      const includesPath = format.includesPath || this.includes;
+      const layoutPath = resolveInclude(
+        layout,
+        includesPath,
+        posix.dirname(path),
+      );
+      const entry = this.fs.entries.get(layoutPath);
 
-      if (!result) {
+      if (!entry) {
         throw new Exception(
-          "Couldn't load this layout",
-          { layout },
+          "The layout file doesn't exist",
+          { layoutPath },
         );
       }
 
+      const layoutData = await entry.getContent(format.pageLoader);
+
       delete data.layout;
       delete data.templateEngine;
-
-      const [layoutPath, layoutData] = result;
 
       data = {
         ...layoutData,

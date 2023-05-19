@@ -1,22 +1,32 @@
-import { init, transform } from "../deps/lightningcss.ts";
-import { merge } from "../core/utils.ts";
+import { bundleAsync, transform } from "../deps/lightningcss.ts";
+import { merge, resolveInclude } from "../core/utils.ts";
+import textLoader from "../core/loaders/text.ts";
 import { Page } from "../core/filesystem.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
+import { posix } from "../deps/path.ts";
 
 import type { DeepPartial, Site } from "../core.ts";
-import type { TransformOptions } from "../deps/lightningcss.ts";
+import type {
+  BundleAsyncOptions,
+  CustomAtRules,
+  TransformOptions,
+} from "../deps/lightningcss.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
+  /** Custom includes path */
+  includes: string | false;
+
   /** Options passed to parcel_css */
-  options: Omit<TransformOptions, "filename" | "code">;
+  options: Omit<BundleAsyncOptions<CustomAtRules>, "filename">;
 }
 
 // Default options
 export const defaults: Options = {
   extensions: [".css"],
+  includes: false,
   options: {
     minify: true,
     drafts: {
@@ -36,18 +46,24 @@ export const defaults: Options = {
   },
 };
 
-// Init parcelCSS
-await init();
-
 /** A plugin to load all CSS files and process them using parcelCSS */
 export default function (userOptions?: DeepPartial<Options>) {
   return (site: Site) => {
-    const options = merge(defaults, userOptions);
+    const options = merge(
+      { ...defaults, includes: site.options.includes } as Options,
+      userOptions,
+    );
 
     site.loadAssets(options.extensions);
-    site.process(options.extensions, parcelCSS);
 
-    function parcelCSS(file: Page) {
+    if (options.includes) {
+      site.includes(options.extensions, options.includes);
+      site.process(options.extensions, lightningCSSBundler);
+    } else {
+      site.process(options.extensions, lightningCSSTransformer);
+    }
+
+    function lightningCSSTransformer(file: Page) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
         site,
         file,
@@ -55,7 +71,7 @@ export default function (userOptions?: DeepPartial<Options>) {
 
       // Process the code with parcelCSS
       const code = new TextEncoder().encode(content);
-      const transformOptions: TransformOptions = {
+      const transformOptions: TransformOptions<CustomAtRules> = {
         filename,
         code,
         sourceMap: enableSourceMap,
@@ -64,6 +80,49 @@ export default function (userOptions?: DeepPartial<Options>) {
       };
 
       const result = transform(transformOptions);
+      const decoder = new TextDecoder();
+
+      saveAsset(
+        site,
+        file,
+        decoder.decode(result.code),
+        enableSourceMap ? decoder.decode(result.map!) : undefined,
+      );
+    }
+
+    async function lightningCSSBundler(file: Page) {
+      const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
+        site,
+        file,
+      );
+
+      const { formats } = site;
+      const { includes } = site.options;
+
+      // Process the code with lightningCSS
+      const bundleOptions: BundleAsyncOptions<CustomAtRules> = {
+        filename,
+        sourceMap: enableSourceMap,
+        inputSourceMap: JSON.stringify(sourceMap),
+        ...options.options,
+        resolver: {
+          resolve(id: string, from: string) {
+            const format = formats.search(id);
+            const includesPath = format?.includesPath ?? includes;
+
+            return resolveInclude(id, includesPath, posix.dirname(from));
+          },
+          async read(file: string) {
+            if (file === filename) {
+              return content;
+            }
+
+            return await site.getContent(file, textLoader) as string;
+          },
+        },
+      };
+
+      const result = await bundleAsync(bundleOptions);
       const decoder = new TextDecoder();
 
       saveAsset(

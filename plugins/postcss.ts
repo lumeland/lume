@@ -4,9 +4,8 @@ import {
   postcssImport,
   postcssNesting,
 } from "../deps/postcss.ts";
-import { isUrl, merge } from "../core/utils.ts";
+import { merge, resolveInclude } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
-import { posix } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import textLoader from "../core/loaders/text.ts";
 
@@ -106,19 +105,21 @@ export default function (userOptions?: Partial<Options>) {
  * using the Lume reader and the includes loader
  */
 function configureImport(site: Site) {
+  const { formats } = site;
+  const { includes } = site.options;
+
   return postcssImport({
     /** Resolve the import path */
     resolve(id: string, basedir: string) {
-      if (isUrl(id)) {
-        return id;
-      }
+      const format = formats.search(id);
+      const includesPath = format?.includesPath ?? includes;
 
-      return posix.join(id.startsWith(".") ? basedir : "/", id);
+      return resolveInclude(id, includesPath, basedir);
     },
 
     /** Load the content (using the Lume reader) */
     async load(file: string) {
-      return await site.getContent(file, textLoader);
+      return await site.getContent(file, textLoader) as string;
     },
   });
 }

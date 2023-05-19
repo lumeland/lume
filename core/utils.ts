@@ -229,17 +229,28 @@ export function isPlainObject(obj: unknown): obj is Record<string, unknown> {
  * to Posix paths (with the separator "/")
  * and ensure it starts with "/".
  */
-export function normalizePath(path: string) {
+export function normalizePath(path: string, rootToRemove?: string) {
+  if (rootToRemove) {
+    path = path.replace(rootToRemove, "");
+  }
+
   if (SEP !== "/") {
     path = path.replaceAll(SEP, "/");
 
     // Is absolute Windows path (C:/...)
     if (path.includes(":/")) {
+      if (rootToRemove && path.startsWith(rootToRemove)) {
+        return posix.join("/", path.replace(rootToRemove, ""));
+      }
+
       return path;
     }
   }
 
-  return posix.join("/", path);
+  const absolute = posix.join("/", path);
+  return rootToRemove && absolute.startsWith(rootToRemove)
+    ? posix.join("/", absolute.replace(rootToRemove, ""))
+    : absolute;
 }
 
 /** Convert an HTMLDocument instance to a string */
@@ -479,4 +490,33 @@ export function isGenerator(
 
   const name = content.constructor.name;
   return (name === "GeneratorFunction" || name === "AsyncGeneratorFunction");
+}
+
+/**
+ * Resolve the path of an included file
+ * Used in the template engines and processors
+ */
+export function resolveInclude(
+  path: string,
+  includesDir: string,
+  fromDir?: string,
+  rootToRemove?: string,
+): string {
+  if (isUrl(path)) {
+    return path;
+  }
+
+  if (path.startsWith(".")) {
+    if (!fromDir) {
+      throw new Error(`Cannot load "${path}" without a base directory`);
+    }
+
+    return normalizePath(posix.join(fromDir, path), rootToRemove);
+  }
+
+  const normalized = normalizePath(path, rootToRemove);
+
+  return normalized.startsWith(normalizePath(posix.join(includesDir, "/")))
+    ? normalized
+    : normalizePath(posix.join(includesDir, normalized));
 }

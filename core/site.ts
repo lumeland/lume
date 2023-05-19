@@ -5,7 +5,6 @@ import { Exception } from "./errors.ts";
 import FS from "./fs.ts";
 import ComponentLoader from "./component_loader.ts";
 import DataLoader from "./data_loader.ts";
-import IncludesLoader from "./includes_loader.ts";
 import Source from "./source.ts";
 import Scopes from "./scopes.ts";
 import Processors from "./processors.ts";
@@ -17,7 +16,6 @@ import Searcher from "./searcher.ts";
 import Scripts from "./scripts.ts";
 import Writer from "./writer.ts";
 import textLoader from "./loaders/text.ts";
-import binaryLoader from "./loaders/binary.ts";
 
 import type {
   Component,
@@ -87,9 +85,6 @@ export default class Site {
   /** To load all _data files */
   dataLoader: DataLoader;
 
-  /** To load all _includes files (layouts, templates, etc) */
-  includesLoader: IncludesLoader;
-
   /** To load reusable components */
   componentLoader: ComponentLoader;
 
@@ -154,7 +149,6 @@ export default class Site {
     const formats = new Formats();
 
     const dataLoader = new DataLoader({ formats });
-    const includesLoader = new IncludesLoader({ fs, includes });
     const componentLoader = new ComponentLoader({ formats });
     const source = new Source({
       fs,
@@ -171,10 +165,11 @@ export default class Site {
     const processors = new Processors();
     const preprocessors = new Processors();
     const renderer = new Renderer({
-      includesLoader,
       prettyUrls,
       preprocessors,
       formats,
+      fs,
+      includes,
     });
 
     // Other stuff
@@ -199,7 +194,6 @@ export default class Site {
     this.formats = formats;
     this.componentLoader = componentLoader;
     this.dataLoader = dataLoader;
-    this.includesLoader = includesLoader;
     this.source = source;
     this.scopes = scopes;
     this.processors = processors;
@@ -768,7 +762,7 @@ export default class Site {
     const basePath = this.src();
 
     if (file.startsWith(basePath)) {
-      file = file.slice(basePath.length);
+      file = normalizePath(file.slice(basePath.length));
     }
 
     // It's a page
@@ -785,33 +779,6 @@ export default class Site {
       return (await staticFile.entry.getContent(loader)).content as
         | string
         | Uint8Array;
-    }
-
-    // Search in includes
-    const format = this.formats.search(file);
-    const pageLoader = format?.pageLoader;
-
-    if (pageLoader) {
-      const resolvedPath = this.includesLoader.resolve(file, format);
-
-      if (resolvedPath) {
-        const entry = this.fs.entries.get(resolvedPath);
-
-        if (entry) {
-          try {
-            if (pageLoader === textLoader || pageLoader === binaryLoader) {
-              return (await entry.getContent(pageLoader)).content as
-                | string
-                | Uint8Array;
-            }
-            return (await entry.getContent(loader)).content as
-              | string
-              | Uint8Array;
-          } catch {
-            // Ignore error
-          }
-        }
-      }
     }
 
     // Read the source files directly

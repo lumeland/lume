@@ -17,6 +17,13 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
   (Previouly, each plugin had it's own instance).
 - Cache the remote files using Web Cache API.
 
+### Changed
+- `lightningcss` plugin bundlers the CSS code by default (set `includes: false` option to only transform it).
+- BREAKING CHANGE: Removed the sync template loader for nunjucks. Use `asyncEach / endeach` and `ifAsync / endif` instead of `for / endfor` and `if / endif` if you need to include templates between these tags.
+
+### Removed
+- The `site.includesLoader` class.
+
 ### Fixed
 - Ignore `/.git` folder by the watcher.
 - Don't show the full path of the files in the output.

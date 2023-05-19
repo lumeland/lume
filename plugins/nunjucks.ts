@@ -1,8 +1,8 @@
 import nunjucks from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
-import { merge } from "../core/utils.ts";
+import { merge, resolveInclude } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
-import { basename, join } from "../deps/path.ts";
+import { basename, join, posix } from "../deps/path.ts";
 
 import type {
   ComponentFunction,
@@ -148,20 +148,32 @@ export default function (userOptions?: DeepPartial<Options>) {
       ? { pages: options.extensions, components: options.extensions }
       : options.extensions;
 
-    // Create the nunjucks environment instance
-    const fsLoader = new nunjucks.FileSystemLoader(site.src(options.includes));
+    site.includes(extensions.pages, options.includes);
 
-    const lumeLoader = {
+    const { formats } = site;
+    const { includes } = site.options;
+    const rootToRemove = site.src();
+
+    const lumeLoader: nunjucks.ILoader = {
       async: true,
+      resolve(from: string, to: string) {
+        return posix.join(posix.dirname(from), to);
+      },
+      isRelative(filename: string) {
+        return filename.startsWith(".");
+      },
       async getSource(
-        path: string,
+        id: string,
         callback: nunjucks.Callback<Error, nunjucks.LoaderSource>,
       ) {
-        const content = await site.getContent(path, loader);
+        const format = formats.search(id);
+        const includesPath = format?.includesPath ?? includes;
+        const path = resolveInclude(id, includesPath, undefined, rootToRemove);
+        const content = await site.getContent(path, loader) as string;
 
         if (content) {
           callback(null, {
-            src: content as string,
+            src: content,
             path,
             noCache: false,
           });
@@ -172,10 +184,7 @@ export default function (userOptions?: DeepPartial<Options>) {
       },
     };
 
-    const env = new nunjucks.Environment(
-      [fsLoader, lumeLoader as unknown as nunjucks.ILoader],
-      options.options,
-    );
+    const env = new nunjucks.Environment([lumeLoader], options.options);
 
     for (const [name, fn] of Object.entries(options.plugins)) {
       env.addExtension(name, fn);
