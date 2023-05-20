@@ -16,6 +16,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
   It's used by plugins like `search`, `nav`, `sitemap` and `feed`.
   (Previouly, each plugin had it's own instance).
 - Cache the remote files using Web Cache API.
+- Support for `changefreq` and `priority` tags to `sitemap` plugin.
 
 ### Changed
 - The minimum version of Deno supported is `1.33.4`.

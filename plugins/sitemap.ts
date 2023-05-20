@@ -1,7 +1,17 @@
 import { merge } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
+import { stringify } from "../deps/xml.ts";
 
-import type { Data, Searcher, Site, StaticFile } from "../core.ts";
+import type { Data, Site, StaticFile } from "../core.ts";
+
+type ChangeFreq =
+  | "always"
+  | "hourly"
+  | "daily"
+  | "weekly"
+  | "monthly"
+  | "yearly"
+  | "never";
 
 export interface Options {
   /** The sitemap file name */
@@ -15,6 +25,12 @@ export interface Options {
 
   /** The key to use for the lastmod field or a custom function */
   lastmod?: string | ((data: Data) => Date);
+
+  /** The key to use for the changefreq field or a custom function */
+  changefreq?: string | ((data: Data) => ChangeFreq);
+
+  /** The key to use for the priority field or a custom function */
+  priority?: string | ((data: Data) => number);
 }
 
 // Default options
@@ -34,7 +50,7 @@ export default function (userOptions?: Partial<Options>) {
       // Create the sitemap.xml page
       const sitemap = Page.create(
         options.filename,
-        getSitemapContent(site.searcher),
+        generateSitemap(site.searcher.pages(options.query, options.sort)),
       );
 
       // Add to the sitemap page to pages
@@ -64,30 +80,62 @@ export default function (userOptions?: Partial<Options>) {
       }
     });
 
-    function getSitemapContent(searcher: Searcher) {
-      const sitemap = searcher.pages(options.query, options.sort)
-        .map((data: Data) => getPageData(data));
+    function generateSitemap(pages: Data[]): string {
+      const sitemap = {
+        xml: {
+          "@version": "1.0",
+          "@encoding": "UTF-8",
+        },
+        urlset: {
+          "@xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9",
+          url: pages.map((data) => {
+            const node: UrlItem = {
+              loc: site.url(data.url as string, true),
+            };
 
-      // deno-fmt-ignore
-      return `
-<?xml version="1.0" encoding="utf-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${sitemap.map(({ url, lastmod }) =>
-  `<url>
-    <loc>${url}</loc>
-    ${lastmod ? `<lastmod>${lastmod.toISOString()}</lastmod>` : ""}
-  </url>
-  `).join("").trim()}
-</urlset>`.trim();
-    }
+            const lastmod = getValue<Date>(data, options.lastmod)
+              ?.toISOString();
+            if (lastmod) {
+              node.lastmod = lastmod;
+            }
 
-    function getPageData(data: Data): { url: string; lastmod?: Date } {
-      const url = site.url(data.url as string, true);
-      const lastmod = typeof options.lastmod === "function"
-        ? options.lastmod(data)
-        : data[options.lastmod as string];
+            const changefreq = getValue<ChangeFreq>(data, options.changefreq);
+            if (changefreq) {
+              node.changefreq = changefreq;
+            }
 
-      return { url, lastmod };
+            const priority = getValue<number>(data, options.priority);
+            if (priority) {
+              node.priority = priority;
+            }
+            return node;
+          }),
+        },
+      };
+
+      return stringify(sitemap);
     }
   };
+}
+
+interface UrlItem {
+  loc: string;
+  lastmod?: string;
+  changefreq?: ChangeFreq;
+  priority?: number;
+}
+
+function getValue<T>(
+  data: Data,
+  key?: string | ((data: Data) => T),
+): T | undefined {
+  if (!key) {
+    return undefined;
+  }
+
+  if (typeof key === "function") {
+    return key(data);
+  }
+
+  return data[key];
 }

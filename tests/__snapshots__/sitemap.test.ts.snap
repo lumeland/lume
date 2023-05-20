@@ -102,7 +102,7 @@ Sitemap: https://example.com/sitemap.xml",
 
 snapshot[`Sitemap plugin 5`] = `
 {
-  content: '<?xml version="1.0" encoding="utf-8"?>
+  content: '<?xml version="1.0" encoding="UTF-8"?>
 ' +
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ' +
@@ -141,7 +141,7 @@ snapshot[`Sitemap plugin 5`] = `
     "</urlset>",
   data: {
     children: false,
-    content: '<?xml version="1.0" encoding="utf-8"?>
+    content: '<?xml version="1.0" encoding="UTF-8"?>
 ' +
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ' +
