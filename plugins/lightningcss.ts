@@ -49,10 +49,7 @@ export const defaults: Options = {
 /** A plugin to load all CSS files and process them using parcelCSS */
 export default function (userOptions?: DeepPartial<Options>) {
   return (site: Site) => {
-    const options = merge(
-      { ...defaults, includes: site.options.includes } as Options,
-      userOptions,
-    );
+    const options = merge(defaults, userOptions);
 
     site.loadAssets(options.extensions);
 

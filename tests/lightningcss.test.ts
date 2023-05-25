@@ -11,3 +11,16 @@ Deno.test("lightningcss plugin", async (t) => {
   await build(site);
   await assertSiteSnapshot(t, site);
 });
+
+Deno.test("lightningcss plugin (bundle mode)", async (t) => {
+  const site = getSite({
+    src: "lightningcss",
+  });
+
+  site.use(lightningcss({
+    includes: "_includes",
+  }));
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});
