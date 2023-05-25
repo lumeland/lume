@@ -49,7 +49,9 @@ export async function build(site: Site) {
   }
 }
 
-function normalizeValue(content: unknown[] | Uint8Array | string | undefined): string {
+function normalizeValue(
+  content: unknown[] | Uint8Array | string | undefined,
+): string {
   if (content === undefined) {
     return "undefined";
   }
@@ -57,8 +59,8 @@ function normalizeValue(content: unknown[] | Uint8Array | string | undefined): s
   if (typeof content === "string") {
     // Normalize line ending for Windows
     return content
-    .replaceAll("\r\n", "\n")
-    .replaceAll(/base64,[^"]+/g, "base64,(...)");
+      .replaceAll("\r\n", "\n")
+      .replaceAll(/base64,[^"]+/g, "base64,(...)");
   }
 
   if (content instanceof Uint8Array) {
@@ -88,41 +90,45 @@ export async function assertSiteSnapshot(
   );
 
   // Sort pages and files alphabetically
-  pages.sort((a, b) => compare(a.src.path, b.src.path) || compare(a.outputPath!, b.outputPath!));
+  pages.sort((a, b) =>
+    compare(a.src.path, b.src.path) || compare(a.outputPath!, b.outputPath!)
+  );
   files.sort((a, b) => compare(a.entry.path, b.entry.path));
 
   // Normalize data of the pages
-  const normalizedPages = pages.map(page => {
+  const normalizedPages = pages.map((page) => {
     return {
-      data: Object.fromEntries(Object.entries(page.data).map(([key, value]) => {
-        switch (typeof value) {
-          case "string":
-          case "undefined":
-            return [key, normalizeValue(value)];
-          case "number":
-          case "boolean":
-            return [key, value];
-          case "object":
-            if (value === null) {
-              return [key, null];
-            }
-            if (Array.isArray(value) || value instanceof Uint8Array) {
+      data: Object.fromEntries(
+        Object.entries(page.data).map(([key, value]) => {
+          switch (typeof value) {
+            case "string":
+            case "undefined":
               return [key, normalizeValue(value)];
-            }
-            if (value instanceof Map || value instanceof Set) {
-              return [key, [...value.keys()].sort(compare)];
-            }
-            return [key, Object.keys(value)];
-          case "function":
-            return [key, value.name];
-          case "symbol":
-            return [key, value.toString()];
-          case "bigint":
-            return [key, `${value}n`];
-          default:
-            throw new Error(`Unknown type "${typeof value}"`);
-        }
-      }).sort((a, b) => a[0].localeCompare(b[0]))),
+            case "number":
+            case "boolean":
+              return [key, value];
+            case "object":
+              if (value === null) {
+                return [key, null];
+              }
+              if (Array.isArray(value) || value instanceof Uint8Array) {
+                return [key, normalizeValue(value)];
+              }
+              if (value instanceof Map || value instanceof Set) {
+                return [key, [...value.keys()].sort(compare)];
+              }
+              return [key, Object.keys(value)];
+            case "function":
+              return [key, value.name];
+            case "symbol":
+              return [key, value.toString()];
+            case "bigint":
+              return [key, `${value}n`];
+            default:
+              throw new Error(`Unknown type "${typeof value}"`);
+          }
+        }).sort((a, b) => a[0].localeCompare(b[0])),
+      ),
       content: normalizeValue(page.content),
       src: {
         path: page.src.path,
@@ -131,15 +137,16 @@ export async function assertSiteSnapshot(
         asset: page.src.asset,
         slug: page.src.slug,
       },
-    }
+    };
   });
 
-  const normalizedFiles = files.map(file => {
+  const normalizedFiles = files.map((file) => {
     return {
       ...file,
       entry: file.entry.path,
       flags: [...file.entry.flags],
-  }});
+    };
+  });
 
   // Test static files
   await assertSnapshot(context, normalizedFiles);
@@ -149,4 +156,3 @@ export async function assertSiteSnapshot(
 function compare(a: string, b: string): number {
   return a > b ? 1 : a < b ? -1 : 0;
 }
-
