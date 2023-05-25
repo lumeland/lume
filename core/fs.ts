@@ -77,23 +77,19 @@ export default class FS {
 
   /** Update the entry and returns it if it was removed */
   update(path: string): Entry | undefined {
-    const entry = this.entries.get(path);
+    const exist = this.entries.get(path);
+    const entry = exist || this.addEntry({ path });
 
-    if (entry) {
-      try {
-        entry.removeCache();
-        entry.getInfo();
-        return;
-      } catch (error) {
-        // Remove if it doesn't exist
-        if (error instanceof Deno.errors.NotFound) {
-          this.removeEntry(path);
-          return entry;
-        }
+    try {
+      entry.removeCache();
+      entry.getInfo();
+    } catch (error) {
+      // Remove if it doesn't exist
+      if (error instanceof Deno.errors.NotFound) {
+        this.removeEntry(path);
+        return exist;
       }
     }
-
-    this.addEntry({ path });
   }
 
   #isValid(path: string) {
@@ -163,8 +159,12 @@ export default class FS {
     }
 
     if (!data.type) {
-      const info = Deno.statSync(data.src);
-      data.type = info.isDirectory ? "directory" : "file";
+      try {
+        const info = Deno.statSync(data.src);
+        data.type = info.isDirectory ? "directory" : "file";
+      } catch {
+        data.type = "file";
+      }
     }
 
     while (pieces.length > 1) {
