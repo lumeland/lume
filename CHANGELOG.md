@@ -9,7 +9,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [Unreleased]
+## [1.17.4] - 2023-05-25
 ### Added
 - The env variable `LUME_ENV=development` is created when `deno task lume --dev`.
 - New `site.searcher` property with a instance of `Searcher` class.
@@ -33,6 +33,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Ignore `/.git` folder by the watcher.
 - Don't show the full path of the files in the output.
 - Don't remove unchanged files [#418].
+- Updated dependencies: `std`, `preact`, `terser`, `remark-parse`, `esbuild`.
 
 ## [1.17.3] - 2023-05-10
 ### Fixed
@@ -2254,7 +2255,7 @@ The first version.
 [#418]: https://github.com/lumeland/lume/issues/418
 [#419]: https://github.com/lumeland/lume/issues/419
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.17.3...HEAD
+[1.17.4]: https://github.com/lumeland/lume/compare/v1.17.3...v1.17.4
 [1.17.3]: https://github.com/lumeland/lume/compare/v1.17.2...v1.17.3
 [1.17.2]: https://github.com/lumeland/lume/compare/v1.17.1...v1.17.2
 [1.17.1]: https://github.com/lumeland/lume/compare/v1.17.0...v1.17.1
