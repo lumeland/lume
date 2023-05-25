@@ -75,21 +75,25 @@ export default class FS {
     this.#walkRemote();
   }
 
+  /** Update the entry and returns it if it was removed */
   update(path: string): Entry | undefined {
-    let entry;
+    const entry = this.entries.get(path);
 
-    try {
-      entry = this.entries.get(path) || this.addEntry({ path });
-      entry.removeCache();
-      // Remove if it doesn't exist
-      entry.getInfo();
-    } catch (error) {
-      if (error instanceof Deno.errors.NotFound) {
-        this.removeEntry(path);
+    if (entry) {
+      try {
+        entry.removeCache();
+        entry.getInfo();
+        return;
+      } catch (error) {
+        // Remove if it doesn't exist
+        if (error instanceof Deno.errors.NotFound) {
+          this.removeEntry(path);
+          return entry;
+        }
       }
     }
 
-    return entry;
+    this.addEntry({ path });
   }
 
   #isValid(path: string) {

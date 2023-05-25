@@ -32,6 +32,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Fixed
 - Ignore `/.git` folder by the watcher.
 - Don't show the full path of the files in the output.
+- Don't remove unchanged files [#418].
 
 ## [1.17.3] - 2023-05-10
 ### Fixed
