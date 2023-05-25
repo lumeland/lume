@@ -94,19 +94,19 @@ snapshot[`Source maps from CSS files 2`] = `[]`;
 snapshot[`Source maps from CSS files 3`] = `
 [
   {
-    content: '{"version":3,"sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets","mappings":"ACAA,4BCEA,2DCFA,cEMA","sources":["/sass/index.scss","/sass/styles.css","/sass/_includes/sass/third.scss","/sass/_includes/sass/fourth.scss","/sass/_includes/sass/colors.scss","/sass/_includes/sass/button.scss"],"sourcesContent":["body {\\
+    content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BCEA,2DCFA,cEMA","sources":["index.scss","styles.css","third.scss","fourth.scss","colors.scss","button.scss"],"sourcesContent":["body {\\
   font-family: sans-serif;\\
 }\\
 html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}\\
 hr{color:blue}\\
-body{font:100% Helvetica,sans-serif;color:#333}","","","","",""],"names":[],"file":"/index.css.map"}',
+body{font:100% Helvetica,sans-serif;color:#333}","","","","",""],"names":[],"file":"index.css.map"}',
     data: {
-      content: '{"version":3,"sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets","mappings":"ACAA,4BCEA,2DCFA,cEMA","sources":["/sass/index.scss","/sass/styles.css","/sass/_includes/sass/third.scss","/sass/_includes/sass/fourth.scss","/sass/_includes/sass/colors.scss","/sass/_includes/sass/button.scss"],"sourcesContent":["body {\\
+      content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BCEA,2DCFA,cEMA","sources":["index.scss","styles.css","third.scss","fourth.scss","colors.scss","button.scss"],"sourcesContent":["body {\\
   font-family: sans-serif;\\
 }\\
 html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}\\
 hr{color:blue}\\
-body{font:100% Helvetica,sans-serif;color:#333}","","","","",""],"names":[],"file":"/index.css.map"}',
+body{font:100% Helvetica,sans-serif;color:#333}","","","","",""],"names":[],"file":"index.css.map"}',
       page: [
         "src",
         "data",
@@ -123,9 +123,9 @@ body{font:100% Helvetica,sans-serif;color:#333}","","","","",""],"names":[],"fil
     },
   },
   {
-    content: '{"version":3,"sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets","mappings":"AAEA","sources":["/sass/index2.sass","/sass/_includes/sass/colors.scss"],"sourcesContent":["",""],"names":[],"file":"/index2.css.map"}',
+    content: '{"version":3,"sourceRoot":"assets","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["",""],"names":[],"file":"index2.css.map"}',
     data: {
-      content: '{"version":3,"sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets","mappings":"AAEA","sources":["/sass/index2.sass","/sass/_includes/sass/colors.scss"],"sourcesContent":["",""],"names":[],"file":"/index2.css.map"}',
+      content: '{"version":3,"sourceRoot":"assets","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["",""],"names":[],"file":"index2.css.map"}',
       page: [
         "src",
         "data",
@@ -142,13 +142,13 @@ body{font:100% Helvetica,sans-serif;color:#333}","","","","",""],"names":[],"fil
     },
   },
   {
-    content: '{"version":3,"sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets","mappings":"AAAA","sources":["/sass/styles.css"],"sourcesContent":["body {\\
+    content: '{"version":3,"sourceRoot":"assets","mappings":"AAAA","sources":["styles.css"],"sourcesContent":["body {\\
   font-family: sans-serif;\\
-}"],"names":[],"file":"/styles.css.map"}',
+}"],"names":[],"file":"styles.css.map"}',
     data: {
-      content: '{"version":3,"sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets","mappings":"AAAA","sources":["/sass/styles.css"],"sourcesContent":["body {\\
+      content: '{"version":3,"sourceRoot":"assets","mappings":"AAAA","sources":["styles.css"],"sourcesContent":["body {\\
   font-family: sans-serif;\\
-}"],"names":[],"file":"/styles.css.map"}',
+}"],"names":[],"file":"styles.css.map"}',
       page: [
         "src",
         "data",
@@ -337,7 +337,7 @@ snapshot[`Source maps from Js files 2`] = `[]`;
 snapshot[`Source maps from Js files 3`] = `
 [
   {
-    content: '{"version":3,"file":"/main.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"sources":["/esbuild/modules/to_uppercase.ts","/esbuild/main.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
+    content: '{"version":3,"file":"main.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"sources":["to_uppercase.ts","main.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
 ","/// <reference lib=\\\\"dom\\\\" />\\
@@ -346,9 +346,9 @@ import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
 document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
   h1.innerHTML = toUppercase(h1.innerHTML);\\
 });\\
-"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets"}',
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"assets"}',
     data: {
-      content: '{"version":3,"file":"/main.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"sources":["/esbuild/modules/to_uppercase.ts","/esbuild/main.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
+      content: '{"version":3,"file":"main.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"sources":["to_uppercase.ts","main.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
 ","/// <reference lib=\\\\"dom\\\\" />\\
@@ -357,7 +357,7 @@ import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
 document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
   h1.innerHTML = toUppercase(h1.innerHTML);\\
 });\\
-"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets"}',
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"assets"}',
       page: [
         "src",
         "data",
@@ -374,15 +374,15 @@ document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
     },
   },
   {
-    content: '{"version":3,"file":"/modules/to_uppercase.js.map","names":["toUppercase","text","toUpperCase","n"],"sources":["/esbuild/modules/to_uppercase.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
+    content: '{"version":3,"file":"to_uppercase.js.map","names":["toUppercase","text","toUpperCase","n"],"sources":["to_uppercase.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
-"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,yBAAAG","sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets"}',
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,yBAAAG","sourceRoot":"assets"}',
     data: {
-      content: '{"version":3,"file":"/modules/to_uppercase.js.map","names":["toUppercase","text","toUpperCase","n"],"sources":["/esbuild/modules/to_uppercase.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
+      content: '{"version":3,"file":"to_uppercase.js.map","names":["toUppercase","text","toUpperCase","n"],"sources":["to_uppercase.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
-"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,yBAAAG","sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets"}',
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,yBAAAG","sourceRoot":"assets"}',
       page: [
         "src",
         "data",
@@ -399,7 +399,7 @@ document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
     },
   },
   {
-    content: '{"version":3,"file":"/other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["/esbuild/modules/to_uppercase.ts","/esbuild/other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
+    content: '{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
 ","/// <reference lib=\\\\"dom\\\\" />\\
@@ -408,9 +408,9 @@ import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
 document.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\
   el.innerHTML = toUppercase(el.innerHTML);\\
 });\\
-"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets"}',
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"assets"}',
     data: {
-      content: '{"version":3,"file":"/other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["/esbuild/modules/to_uppercase.ts","/esbuild/other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
+      content: '{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
 ","/// <reference lib=\\\\"dom\\\\" />\\
@@ -419,7 +419,7 @@ import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
 document.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\
   el.innerHTML = toUppercase(el.innerHTML);\\
 });\\
-"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets"}',
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"assets"}',
       page: [
         "src",
         "data",

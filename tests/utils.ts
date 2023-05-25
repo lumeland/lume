@@ -1,11 +1,12 @@
 import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
-import { fromFileUrl, join } from "../deps/path.ts";
+import { basename, fromFileUrl, join } from "../deps/path.ts";
 import { printError } from "../core/errors.ts";
 import { DeepPartial } from "../core/utils.ts";
 
-import type { Site, SiteOptions } from "../core.ts";
+import type { Site, SiteOptions, SourceMap } from "../core.ts";
 
+const cwUrl = import.meta.resolve("./");
 const cwd = fromFileUrl(import.meta.resolve("./"));
 
 export function getPath(path: string): string {
@@ -69,6 +70,17 @@ function normalizeValue(
 
   return `Array(${content.length})`;
 }
+function normalizeSourceMap(content: string) {
+  const sourceMap: SourceMap = JSON.parse(content);
+  sourceMap.sourceRoot = sourceMap.sourceRoot
+    ? basename(sourceMap.sourceRoot)
+    : undefined;
+  sourceMap.file = sourceMap.file ? basename(sourceMap.file) : undefined;
+  sourceMap.sources = sourceMap.sources.map((source: string) =>
+    basename(source)
+  );
+  return JSON.stringify(sourceMap);
+}
 
 export async function assertSiteSnapshot(
   context: Deno.TestContext,
@@ -97,11 +109,16 @@ export async function assertSiteSnapshot(
 
   // Normalize data of the pages
   const normalizedPages = pages.map((page) => {
+    const isSourceMap = page.outputPath?.endsWith(".map");
     return {
       data: Object.fromEntries(
         Object.entries(page.data).map(([key, value]) => {
           switch (typeof value) {
             case "string":
+              if (isSourceMap && key === "content") {
+                return [key, normalizeSourceMap(value)];
+              }
+              return [key, normalizeValue(value)];
             case "undefined":
               return [key, normalizeValue(value)];
             case "number":
@@ -129,11 +146,13 @@ export async function assertSiteSnapshot(
           }
         }).sort((a, b) => a[0].localeCompare(b[0])),
       ),
-      content: normalizeValue(page.content),
+      content: isSourceMap
+        ? normalizeSourceMap(page.content as string)
+        : normalizeValue(page.content),
       src: {
         path: page.src.path,
         ext: page.src.ext,
-        remote: page.src.remote,
+        remote: page.src.remote?.replace(cwUrl, ""),
         asset: page.src.asset,
         slug: page.src.slug,
       },
