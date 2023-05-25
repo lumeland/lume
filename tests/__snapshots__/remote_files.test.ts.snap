@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`render remote files 1`] = `6`;
-
-snapshot[`render remote files 2`] = `
+snapshot[`render remote files 1`] = `
 {
   formats: [
     {
@@ -95,7 +93,7 @@ snapshot[`render remote files 2`] = `
 }
 `;
 
-snapshot[`render remote files 3`] = `
+snapshot[`render remote files 2`] = `
 [
   {
     entry: "/asset.txt",
@@ -107,247 +105,224 @@ snapshot[`render remote files 3`] = `
 ]
 `;
 
-snapshot[`render remote files 4`] = `
-{
-  content: "<!DOCTYPE html>
+snapshot[`render remote files 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
 " +
-    "<h1>Remote layout</h1>
+      "<h1>Remote layout</h1>
 " +
-    "<h2>Remote title</h2>
+      "<h2>Remote title</h2>
 " +
-    "
+      "
 " +
-    "&lt;p&gt;Hello world&lt;/p&gt;
+      "&lt;p&gt;Hello world&lt;/p&gt;
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "This is a local template
+      "This is a local template
 " +
-    "
+      "
 " +
-    "This is a remote template
+      "This is a remote template
 ",
-  data: {
-    children: true,
-    content: "Hello world
+    data: {
+      children: "<p>Hello world</p>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "remote1.njk",
-    mergedKeys: {
-      tags: "stringArray",
+      content: "Hello world
+",
+      date: [],
+      layout: "remote1.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Remote title",
+      url: "/local1/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Remote title",
-    url: "/local1/",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/local1",
+      remote: undefined,
+      slug: "local1",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/local1/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/local1",
-    remote: undefined,
-    slug: "local1",
-  },
-}
-`;
-
-snapshot[`render remote files 5`] = `
-{
-  content: "/* Other remote style */
-body {
-  color: yellow;
-}
-",
-  data: {
-    children: false,
+  {
     content: "/* Other remote style */
 body {
   color: yellow;
 }
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Remote title",
-    url: "/other-remote-style.css",
-  },
-  dest: {
-    ext: ".css",
-    path: "/other-remote-style",
-  },
-  src: {
-    asset: true,
-    ext: ".css",
-    path: "/other-remote-style",
-    remote: "assets/remote_files/_remotes/other-remote-style.css",
-    slug: "other-remote-style",
-  },
+    data: {
+      content: "/* Other remote style */
+body {
+  color: yellow;
 }
-`;
-
-snapshot[`render remote files 6`] = `
-{
-  content: 'var r=Object.defineProperty;var e=(t,m)=>r(t,"name",{value:m,configurable:!0});var l="Name";function o(){console.log("hello",l)}e(o,"default");o();
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Remote title",
+      url: "/other-remote-style.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/other-remote-style",
+      remote: "file:///Users/oscarotero/www/lumeland/lume/tests/assets/remote_files/_remotes/other-remote-style.css",
+      slug: "other-remote-style",
+    },
+  },
+  {
+    content: 'var r=Object.defineProperty;var e=(t,m)=>r(t,"name",{value:m,configurable:!0});var l="Name";function o(){console.log("hello",l)}e(o,"default");o();
 ',
-  data: {
-    children: false,
-    content: 'import hello from "./_includes/hello.js";
+    data: {
+      content: 'import hello from "./_includes/hello.js";
 
 hello();
 ',
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Remote title",
+      url: "/scripts.js",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Remote title",
-    url: "/scripts.js",
+    src: {
+      asset: true,
+      ext: ".js",
+      path: "/scripts",
+      remote: undefined,
+      slug: "scripts",
+    },
   },
-  dest: {
-    ext: ".js",
-    path: "/scripts",
-  },
-  src: {
-    asset: true,
-    ext: ".js",
-    path: "/scripts",
-    remote: undefined,
-    slug: "scripts",
-  },
-}
-`;
-
-snapshot[`render remote files 7`] = `
-{
-  content: "/* Remote style */
+  {
+    content: "/* Remote style */
 " +
-    "body {
+      "body {
 " +
-    "  color: red;
+      "  color: red;
 " +
-    "}
+      "}
 " +
-    "/* Other remote style */
+      "/* Other remote style */
 " +
-    "body {
+      "body {
 " +
-    "  color: yellow;
+      "  color: yellow;
 " +
-    "}
+      "}
 ",
-  data: {
-    children: false,
-    content: '@import "remote-style.css";
+    data: {
+      content: '@import "remote-style.css";
 @import "./other-remote-style.css";
 ',
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Remote title",
+      url: "/styles1.css",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Remote title",
-    url: "/styles1.css",
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/styles1",
+      remote: undefined,
+      slug: "styles1",
+    },
   },
-  dest: {
-    ext: ".css",
-    path: "/styles1",
-  },
-  src: {
-    asset: true,
-    ext: ".css",
-    path: "/styles1",
-    remote: undefined,
-    slug: "styles1",
-  },
-}
-`;
-
-snapshot[`render remote files 8`] = `
-{
-  content: "body {
-  color: blue;
-}",
-  data: {
-    children: false,
+  {
     content: "body {
   color: blue;
 }",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+    data: {
+      content: "body {
+  color: blue;
+}",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Remote title",
+      url: "/styles2.css",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Remote title",
-    url: "/styles2.css",
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/styles2",
+      remote: "file:///Users/oscarotero/www/lumeland/lume/tests/assets/remote_files/_remotes/styles2.css",
+      slug: "styles2",
+    },
   },
-  dest: {
-    ext: ".css",
-    path: "/styles2",
-  },
-  src: {
-    asset: true,
-    ext: ".css",
-    path: "/styles2",
-    remote: "assets/remote_files/_remotes/styles2.css",
-    slug: "styles2",
-  },
-}
-`;
-
-snapshot[`render remote files 9`] = `
-{
-  content: "body{color:blue}",
-  data: {
-    children: false,
-    content: '@import "variables";
+  {
+    content: "body{color:blue}",
+    data: {
+      content: '@import "variables";
 
 body {
   color: \$color;
 }
 ',
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Remote title",
+      url: "/styles3.css",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Remote title",
-    url: "/styles3.css",
+    src: {
+      asset: true,
+      ext: ".scss",
+      path: "/styles3",
+      remote: undefined,
+      slug: "styles3",
+    },
   },
-  dest: {
-    ext: ".css",
-    path: "/styles3",
-  },
-  src: {
-    asset: true,
-    ext: ".scss",
-    path: "/styles3",
-    remote: undefined,
-    slug: "styles3",
-  },
-}
+]
 `;

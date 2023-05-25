@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`multilanguage plugin 1`] = `9`;
-
-snapshot[`multilanguage plugin 2`] = `
+snapshot[`multilanguage plugin 1`] = `
 {
   formats: [
     {
@@ -70,518 +68,462 @@ snapshot[`multilanguage plugin 2`] = `
 }
 `;
 
-snapshot[`multilanguage plugin 3`] = `[]`;
+snapshot[`multilanguage plugin 2`] = `[]`;
 
-snapshot[`multilanguage plugin 4`] = `
-{
-  content: "<!DOCTYPE html>
+snapshot[`multilanguage plugin 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
 " +
-    '<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/">
+      '<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/">
 ' +
-    '<link rel="alternate" hreflang="gl" href="http://localhost/gl/">
+      '<link rel="alternate" hreflang="gl" href="http://localhost/gl/">
 ' +
-    "</head><body><p>Hello world</p>
+      "</head><body><p>Hello world</p>
 " +
-    "</body></html>",
-  data: {
-    alternates: [
-      "en",
-      "gl",
-    ],
-    children: true,
-    content: "Hello world
+      "</body></html>",
+    data: {
+      alternates: "Array(2)",
+      children: "<p>Hello world</p>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    id: "index",
-    lang: "en",
-    mergedKeys: {
-      en: "object",
-      fr: "object",
-      gl: "object",
-      it: "object",
-      tags: "stringArray",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Hello world",
-    url: "/en/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/en/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/index",
-    remote: undefined,
-    slug: "index",
-  },
-}
-`;
-
-snapshot[`multilanguage plugin 5`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    '<html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/">
-' +
-    '<link rel="alternate" hreflang="gl" href="http://localhost/gl/">
-' +
-    "</head><body><p>Ola mundo</p>
-" +
-    "</body></html>",
-  data: {
-    alternates: [
-      "en",
-      "gl",
-    ],
-    children: true,
-    content: "Ola mundo",
-    date: 1970-01-01T00:00:00.000Z,
-    id: "index",
-    lang: "gl",
-    mergedKeys: {
-      en: "object",
-      fr: "object",
-      gl: "object",
-      it: "object",
-      tags: "stringArray",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Ola mundo",
-    url: "/gl/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/gl/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/index",
-    remote: undefined,
-    slug: "index",
-  },
-}
-`;
-
-snapshot[`multilanguage plugin 6`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    '<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/other-page-english/">
-' +
-    '<link rel="alternate" hreflang="fr" href="http://localhost/fr/other-page-french.html">
-' +
-    "</head><body><p>Other page</p></body></html>",
-  data: {
-    alternates: [
-      "en",
-      "fr",
-    ],
-    children: true,
-    content: "<p>Other page</p>",
-    date: 1970-01-01T00:00:00.000Z,
-    id: "other",
-    lang: "en",
-    mergedKeys: {
-      en: "object",
-      fr: "object",
-      gl: "object",
-      it: "object",
-      tags: "stringArray",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Other",
-    url: "/en/other-page-english/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/en/other-page-english/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".njk",
-    path: "/other",
-    remote: undefined,
-    slug: "other",
-  },
-}
-`;
-
-snapshot[`multilanguage plugin 7`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    '<html lang="fr"><head><link rel="alternate" hreflang="en" href="http://localhost/en/other-page-english/">
-' +
-    '<link rel="alternate" hreflang="fr" href="http://localhost/fr/other-page-french.html">
-' +
-    "</head><body><p>Other page</p></body></html>",
-  data: {
-    alternates: [
-      "en",
-      "fr",
-    ],
-    children: true,
-    content: "<p>Other page</p>",
-    date: 1970-01-01T00:00:00.000Z,
-    id: "other",
-    lang: "fr",
-    mergedKeys: {
-      en: "object",
-      fr: "object",
-      gl: "object",
-      it: "object",
-      tags: "stringArray",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Autre",
-    url: "/fr/other-page-french.html",
-  },
-  dest: {
-    ext: ".html",
-    path: "/fr/other-page-french",
-  },
-  src: {
-    asset: undefined,
-    ext: ".njk",
-    path: "/other",
-    remote: undefined,
-    slug: "other",
-  },
-}
-`;
-
-snapshot[`multilanguage plugin 8`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    '<html lang="it"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
-' +
-    '<link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
-' +
-    '<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-1/">
-' +
-    "</head><body><p>Pagina 1</p>
-" +
-    "</body></html>",
-  data: {
-    alternates: [
-      "en",
-      "gl",
-      "it",
-    ],
-    children: true,
-    content: "Pagina 1
+      content: "Hello world
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    id: "page1",
-    lang: "it",
-    mergedKeys: {
-      en: "object",
-      fr: "object",
-      gl: "object",
-      it: "object",
-      tags: "stringArray",
+      date: [],
+      id: "index",
+      lang: "en",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Hello world",
+      url: "/en/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "page-it",
-    url: "/it/pagina-1/",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/it/pagina-1/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/pages/page1",
-    remote: undefined,
-    slug: "page1",
-  },
-}
-`;
-
-snapshot[`multilanguage plugin 9`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 " +
-    '<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
+      '<html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/">
 ' +
-    '<link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
+      '<link rel="alternate" hreflang="gl" href="http://localhost/gl/">
 ' +
-    '<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-1/">
-' +
-    "</head><body><p>Page 1</p>
+      "</head><body><p>Ola mundo</p>
 " +
-    "</body></html>",
-  data: {
-    alternates: [
-      "en",
-      "gl",
-      "it",
-    ],
-    children: true,
-    content: "Page 1
+      "</body></html>",
+    data: {
+      alternates: "Array(2)",
+      children: "<p>Ola mundo</p>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    id: "page1",
-    lang: "en",
-    mergedKeys: {
-      en: "object",
-      fr: "object",
-      gl: "object",
-      it: "object",
-      tags: "stringArray",
+      content: "Ola mundo",
+      date: [],
+      id: "index",
+      lang: "gl",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Ola mundo",
+      url: "/gl/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "page-en",
-    url: "/en/page-1/",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/en/page-1/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/pages/page1_en",
-    remote: undefined,
-    slug: "page1_en",
-  },
-}
-`;
-
-snapshot[`multilanguage plugin 10`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 " +
-    '<html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
+      '<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/other-page-english/">
 ' +
-    '<link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
+      '<link rel="alternate" hreflang="fr" href="http://localhost/fr/other-page-french.html">
 ' +
-    '<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-1/">
-' +
-    "</head><body><p>Páxina 1</p>
+      "</head><body><p>Other page</p></body></html>",
+    data: {
+      alternates: "Array(2)",
+      children: "<p>Other page</p>",
+      content: "<p>Other page</p>",
+      date: [],
+      id: "other",
+      lang: "en",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Other",
+      url: "/en/other-page-english/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/other",
+      remote: undefined,
+      slug: "other",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
 " +
-    "</body></html>",
-  data: {
-    alternates: [
-      "en",
-      "gl",
-      "it",
-    ],
-    children: true,
-    content: "Páxina 1
+      '<html lang="fr"><head><link rel="alternate" hreflang="en" href="http://localhost/en/other-page-english/">
+' +
+      '<link rel="alternate" hreflang="fr" href="http://localhost/fr/other-page-french.html">
+' +
+      "</head><body><p>Other page</p></body></html>",
+    data: {
+      alternates: "Array(2)",
+      children: "<p>Other page</p>",
+      content: "<p>Other page</p>",
+      date: [],
+      id: "other",
+      lang: "fr",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Autre",
+      url: "/fr/other-page-french.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/other",
+      remote: undefined,
+      slug: "other",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html lang="it"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
+' +
+      '<link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
+' +
+      '<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-1/">
+' +
+      "</head><body><p>Pagina 1</p>
+" +
+      "</body></html>",
+    data: {
+      alternates: "Array(3)",
+      children: "<p>Pagina 1</p>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    id: "page1",
-    lang: "gl",
-    mergedKeys: {
-      en: "object",
-      fr: "object",
-      gl: "object",
-      it: "object",
-      tags: "stringArray",
+      content: "Pagina 1
+",
+      date: [],
+      id: "page1",
+      lang: "it",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "page-it",
+      url: "/it/pagina-1/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "page-gl",
-    url: "/gl/paxina-1/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/gl/paxina-1/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/pages/page1_gl",
-    remote: undefined,
-    slug: "page1_gl",
-  },
-}
-`;
-
-snapshot[`multilanguage plugin 11`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    '<html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
-' +
-    '<link rel="alternate" hreflang="gl" href="http://localhost/gl/page-1/">
-' +
-    "</head><body><nav>
-" +
-    "
-" +
-    '  <a href="/en/page-1/" hreflang="en" class="alternate"></a>
-' +
-    "
-" +
-    '  <a href="/gl/page-1/" hreflang="gl" class="alternate"></a>
-' +
-    "
-" +
-    "</nav>
-" +
-    "
-" +
-    "  <li>Ola mundo</li>
-" +
-    "
-" +
-    "  <li>page-gl</li>
-" +
-    "
-" +
-    "</body></html>",
-  data: {
-    alternates: [
-      "en",
-      "gl",
-    ],
-    children: false,
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    id: "page-1",
-    lang: "gl",
-    layout: "layout.njk",
-    mergedKeys: {
-      en: "object",
-      fr: "object",
-      gl: "object",
-      it: "object",
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/pages/page1",
+      remote: undefined,
+      slug: "page1",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    pagination: {
-      next: null,
-      page: 1,
-      previous: null,
-      totalPages: 1,
-      totalResults: 2,
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
+' +
+      '<link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
+' +
+      '<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-1/">
+' +
+      "</head><body><p>Page 1</p>
+" +
+      "</body></html>",
+    data: {
+      alternates: "Array(3)",
+      children: "<p>Page 1</p>
+",
+      content: "Page 1
+",
+      date: [],
+      id: "page1",
+      lang: "en",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "page-en",
+      url: "/en/page-1/",
     },
-    results: 2,
-    search: Search {},
-    tags: [],
-    url: "/gl/page-1/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/gl/page-1/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.js",
-    path: "/pagination[0]",
-    remote: undefined,
-    slug: "pagination",
-  },
-}
-`;
-
-snapshot[`multilanguage plugin 12`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    '<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
-' +
-    '<link rel="alternate" hreflang="gl" href="http://localhost/gl/page-1/">
-' +
-    "</head><body><nav>
-" +
-    "
-" +
-    '  <a href="/en/page-1/" hreflang="en" class="alternate"></a>
-' +
-    "
-" +
-    '  <a href="/gl/page-1/" hreflang="gl" class="alternate"></a>
-' +
-    "
-" +
-    "</nav>
-" +
-    "
-" +
-    "  <li>Hello world</li>
-" +
-    "
-" +
-    "  <li>Other</li>
-" +
-    "
-" +
-    "  <li>page-en</li>
-" +
-    "
-" +
-    "</body></html>",
-  data: {
-    alternates: [
-      "en",
-      "gl",
-    ],
-    children: false,
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    id: "page-1",
-    lang: "en",
-    layout: "layout.njk",
-    mergedKeys: {
-      en: "object",
-      fr: "object",
-      gl: "object",
-      it: "object",
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/pages/page1_en",
+      remote: undefined,
+      slug: "page1_en",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    pagination: {
-      next: null,
-      page: 1,
-      previous: null,
-      totalPages: 1,
-      totalResults: 3,
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
+' +
+      '<link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
+' +
+      '<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-1/">
+' +
+      "</head><body><p>Páxina 1</p>
+" +
+      "</body></html>",
+    data: {
+      alternates: "Array(3)",
+      children: "<p>Páxina 1</p>
+",
+      content: "Páxina 1
+",
+      date: [],
+      id: "page1",
+      lang: "gl",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "page-gl",
+      url: "/gl/paxina-1/",
     },
-    results: 3,
-    search: Search {},
-    tags: [],
-    url: "/en/page-1/",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/pages/page1_gl",
+      remote: undefined,
+      slug: "page1_gl",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/en/page-1/index",
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
+' +
+      '<link rel="alternate" hreflang="gl" href="http://localhost/gl/page-1/">
+' +
+      "</head><body><nav>
+" +
+      "
+" +
+      '  <a href="/en/page-1/" hreflang="en" class="alternate"></a>
+' +
+      "
+" +
+      '  <a href="/gl/page-1/" hreflang="gl" class="alternate"></a>
+' +
+      "
+" +
+      "</nav>
+" +
+      "
+" +
+      "  <li>Ola mundo</li>
+" +
+      "
+" +
+      "  <li>page-gl</li>
+" +
+      "
+" +
+      "</body></html>",
+    data: {
+      alternates: "Array(2)",
+      children: null,
+      content: null,
+      date: [],
+      id: "page-1",
+      lang: "gl",
+      layout: "layout.njk",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      pagination: [
+        "page",
+        "totalPages",
+        "totalResults",
+        "previous",
+        "next",
+      ],
+      results: "Array(2)",
+      search: [],
+      tags: "Array(0)",
+      url: "/gl/page-1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/pagination[0]",
+      remote: undefined,
+      slug: "pagination",
+    },
   },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.js",
-    path: "/pagination[1]",
-    remote: undefined,
-    slug: "pagination",
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
+' +
+      '<link rel="alternate" hreflang="gl" href="http://localhost/gl/page-1/">
+' +
+      "</head><body><nav>
+" +
+      "
+" +
+      '  <a href="/en/page-1/" hreflang="en" class="alternate"></a>
+' +
+      "
+" +
+      '  <a href="/gl/page-1/" hreflang="gl" class="alternate"></a>
+' +
+      "
+" +
+      "</nav>
+" +
+      "
+" +
+      "  <li>Hello world</li>
+" +
+      "
+" +
+      "  <li>Other</li>
+" +
+      "
+" +
+      "  <li>page-en</li>
+" +
+      "
+" +
+      "</body></html>",
+    data: {
+      alternates: "Array(2)",
+      children: null,
+      content: null,
+      date: [],
+      id: "page-1",
+      lang: "en",
+      layout: "layout.njk",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      pagination: [
+        "page",
+        "totalPages",
+        "totalResults",
+        "previous",
+        "next",
+      ],
+      results: "Array(3)",
+      search: [],
+      tags: "Array(0)",
+      url: "/en/page-1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/pagination[1]",
+      remote: undefined,
+      slug: "pagination",
+    },
   },
-}
+]
 `;

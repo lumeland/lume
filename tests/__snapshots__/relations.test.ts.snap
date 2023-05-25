@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`relations plugin 1`] = `7`;
-
-snapshot[`relations plugin 2`] = `
+snapshot[`relations plugin 1`] = `
 {
   formats: [
     {
@@ -70,1069 +68,364 @@ snapshot[`relations plugin 2`] = `
 }
 `;
 
-snapshot[`relations plugin 3`] = `[]`;
+snapshot[`relations plugin 2`] = `[]`;
 
-snapshot[`relations plugin 4`] = `
-{
-  content: "<!DOCTYPE html>
+snapshot[`relations plugin 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
 " +
-    "<h1>Category 1</h1>
+      "<h1>Category 1</h1>
 " +
-    "
+      "
 " +
-    "<div><p>This is the first category</p>
+      "<div><p>This is the first category</p>
 " +
-    "</div>
+      "</div>
 " +
-    "
+      "
 " +
-    "<h2>Posts</h2>
+      "<h2>Posts</h2>
 " +
-    "<ul>
+      "<ul>
 " +
-    "
+      "
 " +
-    "</ul>
+      "</ul>
 ",
-  data: {
-    children: true,
-    content: "This is the first category
+    data: {
+      children: "<p>This is the first category</p>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "categories.njk",
-    mergedKeys: {
-      tags: "stringArray",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    post: <ref *2> [
-      <ref *1> {
-        category: {
-          children: true,
-          content: "This is the first category
-",
-          date: 1970-01-01T00:00:00.000Z,
-          layout: "categories.njk",
-          mergedKeys: {
-            tags: "stringArray",
-          },
-          page: undefined,
-          paginate: [Function: paginate],
-          post: [Circular *2],
-          renderOrder: -2,
-          search: Search {},
-          slug: "category-1",
-          tags: [],
-          title: "Category 1",
-          type: "category",
-          url: "/categories/category-1/",
-        },
-        category_id: "category-1",
-        children: true,
-        comment_id: [
-          2,
-        ],
-        comments: [
-          {
-            children: true,
-            content: "This is the second comment
-",
-            date: 1970-01-01T00:00:00.000Z,
-            id: 2,
-            mergedKeys: {
-              tags: "stringArray",
-            },
-            page: undefined,
-            paginate: [Function: paginate],
-            post: [
-              [Circular *1],
-            ],
-            renderOrder: -1,
-            search: Search {},
-            tags: [],
-            type: "comment",
-            url: "/comments/comment-2/",
-          },
-        ],
-        content: "Second post with category 1 and comment 2
-",
-        date: 1970-01-01T00:00:00.000Z,
-        id: "second-post",
-        layout: "posts.njk",
-        mergedKeys: {
-          tags: "stringArray",
-        },
-        page: undefined,
-        paginate: [Function: paginate],
-        search: Search {},
-        tags: [],
-        type: "post",
-        url: "/posts/post-2/",
-      },
-    ],
-    renderOrder: -2,
-    search: Search {},
-    slug: "category-1",
-    tags: [],
-    title: "Category 1",
-    type: "category",
-    url: "/categories/category-1/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/categories/category-1/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/categories/category-1",
-    remote: undefined,
-    slug: "category-1",
-  },
-}
-`;
-
-snapshot[`relations plugin 5`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    "<h1>Category 2</h1>
-" +
-    "
-" +
-    "<div><p>This is the second category</p>
-" +
-    "</div>
-" +
-    "
-" +
-    "<h2>Posts</h2>
-" +
-    "<ul>
-" +
-    "
-" +
-    "</ul>
-",
-  data: {
-    children: true,
-    content: "This is the second category
-",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "categories.njk",
-    mergedKeys: {
-      tags: "stringArray",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    post: <ref *2> [
-      <ref *1> {
-        category: {
-          children: true,
-          content: "This is the second category
-",
-          date: 1970-01-01T00:00:00.000Z,
-          layout: "categories.njk",
-          mergedKeys: {
-            tags: "stringArray",
-          },
-          page: undefined,
-          paginate: [Function: paginate],
-          post: [Circular *2],
-          search: Search {},
-          slug: "category-2",
-          tags: [],
-          title: "Category 2",
-          type: "category",
-          url: "/categories/category-2/",
-        },
-        category_id: "category-2",
-        children: true,
-        comment_id: [
-          1,
-          3,
-        ],
-        comments: [
-          {
-            children: true,
-            content: "This is the first comment
-",
-            date: 1970-01-01T00:00:00.000Z,
-            id: 1,
-            mergedKeys: {
-              tags: "stringArray",
-            },
-            page: undefined,
-            paginate: [Function: paginate],
-            post: [
-              [Circular *1],
-            ],
-            search: Search {},
-            tags: [],
-            type: "comment",
-            url: "/comments/comment-1/",
-          },
-          {
-            children: true,
-            content: "This is the third comment
-",
-            date: 1970-01-01T00:00:00.000Z,
-            id: 3,
-            mergedKeys: {
-              tags: "stringArray",
-            },
-            page: undefined,
-            paginate: [Function: paginate],
-            post: [
-              [Circular *1],
-            ],
-            search: Search {},
-            tags: [],
-            type: "comment",
-            url: "/comments/comment-3/",
-          },
-        ],
-        content: "First post with category 2 and comments 1 and 3
-",
-        date: 1970-01-01T00:00:00.000Z,
-        id: "first-post",
-        layout: "posts.njk",
-        mergedKeys: {
-          tags: "stringArray",
-        },
-        page: undefined,
-        paginate: [Function: paginate],
-        renderOrder: 1,
-        search: Search {},
-        tags: [],
-        type: "post",
-        url: "/posts/post-1/",
-      },
-    ],
-    search: Search {},
-    slug: "category-2",
-    tags: [],
-    title: "Category 2",
-    type: "category",
-    url: "/categories/category-2/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/categories/category-2/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/categories/category-2",
-    remote: undefined,
-    slug: "category-2",
-  },
-}
-`;
-
-snapshot[`relations plugin 6`] = `
-{
-  content: "<!DOCTYPE html>
-<p>This is the first comment</p>
-",
-  data: {
-    children: true,
-    content: "This is the first comment
-",
-    date: 1970-01-01T00:00:00.000Z,
-    id: 1,
-    mergedKeys: {
-      tags: "stringArray",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    post: <ref *1> [
-      <ref *2> {
-        category: {
-          children: true,
-          content: "This is the second category
-",
-          date: 1970-01-01T00:00:00.000Z,
-          layout: "categories.njk",
-          mergedKeys: {
-            tags: "stringArray",
-          },
-          page: undefined,
-          paginate: [Function: paginate],
-          post: [
-            [Circular *2],
-          ],
-          search: Search {},
-          slug: "category-2",
-          tags: [],
-          title: "Category 2",
-          type: "category",
-          url: "/categories/category-2/",
-        },
-        category_id: "category-2",
-        children: true,
-        comment_id: [
-          1,
-          3,
-        ],
-        comments: [
-          {
-            children: true,
-            content: "This is the first comment
-",
-            date: 1970-01-01T00:00:00.000Z,
-            id: 1,
-            mergedKeys: {
-              tags: "stringArray",
-            },
-            page: undefined,
-            paginate: [Function: paginate],
-            post: [Circular *1],
-            search: Search {},
-            tags: [],
-            type: "comment",
-            url: "/comments/comment-1/",
-          },
-          {
-            children: true,
-            content: "This is the third comment
-",
-            date: 1970-01-01T00:00:00.000Z,
-            id: 3,
-            mergedKeys: {
-              tags: "stringArray",
-            },
-            page: undefined,
-            paginate: [Function: paginate],
-            post: [
-              [Circular *2],
-            ],
-            search: Search {},
-            tags: [],
-            type: "comment",
-            url: "/comments/comment-3/",
-          },
-        ],
-        content: "First post with category 2 and comments 1 and 3
-",
-        date: 1970-01-01T00:00:00.000Z,
-        id: "first-post",
-        layout: "posts.njk",
-        mergedKeys: {
-          tags: "stringArray",
-        },
-        page: undefined,
-        paginate: [Function: paginate],
-        renderOrder: 1,
-        search: Search {},
-        tags: [],
-        type: "post",
-        url: "/posts/post-1/",
-      },
-    ],
-    search: Search {},
-    tags: [],
-    type: "comment",
-    url: "/comments/comment-1/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/comments/comment-1/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/comments/comment-1",
-    remote: undefined,
-    slug: "comment-1",
-  },
-}
-`;
-
-snapshot[`relations plugin 7`] = `
-{
-  content: "<!DOCTYPE html>
-<p>This is the second comment</p>
-",
-  data: {
-    children: true,
-    content: "This is the second comment
-",
-    date: 1970-01-01T00:00:00.000Z,
-    id: 2,
-    mergedKeys: {
-      tags: "stringArray",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    post: <ref *1> [
-      <ref *2> {
-        category: {
-          children: true,
-          content: "This is the first category
-",
-          date: 1970-01-01T00:00:00.000Z,
-          layout: "categories.njk",
-          mergedKeys: {
-            tags: "stringArray",
-          },
-          page: undefined,
-          paginate: [Function: paginate],
-          post: [
-            [Circular *2],
-          ],
-          renderOrder: -2,
-          search: Search {},
-          slug: "category-1",
-          tags: [],
-          title: "Category 1",
-          type: "category",
-          url: "/categories/category-1/",
-        },
-        category_id: "category-1",
-        children: true,
-        comment_id: [
-          2,
-        ],
-        comments: [
-          {
-            children: true,
-            content: "This is the second comment
-",
-            date: 1970-01-01T00:00:00.000Z,
-            id: 2,
-            mergedKeys: {
-              tags: "stringArray",
-            },
-            page: undefined,
-            paginate: [Function: paginate],
-            post: [Circular *1],
-            renderOrder: -1,
-            search: Search {},
-            tags: [],
-            type: "comment",
-            url: "/comments/comment-2/",
-          },
-        ],
-        content: "Second post with category 1 and comment 2
-",
-        date: 1970-01-01T00:00:00.000Z,
-        id: "second-post",
-        layout: "posts.njk",
-        mergedKeys: {
-          tags: "stringArray",
-        },
-        page: undefined,
-        paginate: [Function: paginate],
-        search: Search {},
-        tags: [],
-        type: "post",
-        url: "/posts/post-2/",
-      },
-    ],
-    renderOrder: -1,
-    search: Search {},
-    tags: [],
-    type: "comment",
-    url: "/comments/comment-2/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/comments/comment-2/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/comments/comment-2",
-    remote: undefined,
-    slug: "comment-2",
-  },
-}
-`;
-
-snapshot[`relations plugin 8`] = `
-{
-  content: "<!DOCTYPE html>
-<p>This is the third comment</p>
-",
-  data: {
-    children: true,
-    content: "This is the third comment
-",
-    date: 1970-01-01T00:00:00.000Z,
-    id: 3,
-    mergedKeys: {
-      tags: "stringArray",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    post: <ref *2> [
-      <ref *1> {
-        category: {
-          children: true,
-          content: "This is the second category
-",
-          date: 1970-01-01T00:00:00.000Z,
-          layout: "categories.njk",
-          mergedKeys: {
-            tags: "stringArray",
-          },
-          page: undefined,
-          paginate: [Function: paginate],
-          post: [
-            [Circular *1],
-          ],
-          search: Search {},
-          slug: "category-2",
-          tags: [],
-          title: "Category 2",
-          type: "category",
-          url: "/categories/category-2/",
-        },
-        category_id: "category-2",
-        children: true,
-        comment_id: [
-          1,
-          3,
-        ],
-        comments: [
-          {
-            children: true,
-            content: "This is the first comment
-",
-            date: 1970-01-01T00:00:00.000Z,
-            id: 1,
-            mergedKeys: {
-              tags: "stringArray",
-            },
-            page: undefined,
-            paginate: [Function: paginate],
-            post: [
-              [Circular *1],
-            ],
-            search: Search {},
-            tags: [],
-            type: "comment",
-            url: "/comments/comment-1/",
-          },
-          {
-            children: true,
-            content: "This is the third comment
-",
-            date: 1970-01-01T00:00:00.000Z,
-            id: 3,
-            mergedKeys: {
-              tags: "stringArray",
-            },
-            page: undefined,
-            paginate: [Function: paginate],
-            post: [Circular *2],
-            search: Search {},
-            tags: [],
-            type: "comment",
-            url: "/comments/comment-3/",
-          },
-        ],
-        content: "First post with category 2 and comments 1 and 3
-",
-        date: 1970-01-01T00:00:00.000Z,
-        id: "first-post",
-        layout: "posts.njk",
-        mergedKeys: {
-          tags: "stringArray",
-        },
-        page: undefined,
-        paginate: [Function: paginate],
-        renderOrder: 1,
-        search: Search {},
-        tags: [],
-        type: "post",
-        url: "/posts/post-1/",
-      },
-    ],
-    search: Search {},
-    tags: [],
-    type: "comment",
-    url: "/comments/comment-3/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/comments/comment-3/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/comments/comment-3",
-    remote: undefined,
-    slug: "comment-3",
-  },
-}
-`;
-
-snapshot[`relations plugin 9`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    "<div><p>First post with category 2 and comments 1 and 3</p>
-" +
-    "</div>
-" +
-    "
-" +
-    "  
-" +
-    "<h2>Category:</h2>
-" +
-    '<a href="/categories/category-2/">Category 2</a>
-' +
-    "<p>This is the second category</p>
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "
-" +
-    "</ul>",
-  data: {
-    category: <ref *2> {
-      children: true,
-      content: "This is the second category
-",
-      date: 1970-01-01T00:00:00.000Z,
-      layout: "categories.njk",
-      mergedKeys: {
-        tags: "stringArray",
-      },
-      page: undefined,
-      paginate: [Function: paginate],
-      post: [
-        <ref *1> {
-          category: [Circular *2],
-          category_id: "category-2",
-          children: true,
-          comment_id: [
-            1,
-            3,
-          ],
-          comments: [
-            {
-              children: true,
-              content: "This is the first comment
-",
-              date: 1970-01-01T00:00:00.000Z,
-              id: 1,
-              mergedKeys: {
-                tags: "stringArray",
-              },
-              page: undefined,
-              paginate: [Function: paginate],
-              post: [
-                [Circular *1],
-              ],
-              search: Search {},
-              tags: [],
-              type: "comment",
-              url: "/comments/comment-1/",
-            },
-            {
-              children: true,
-              content: "This is the third comment
-",
-              date: 1970-01-01T00:00:00.000Z,
-              id: 3,
-              mergedKeys: {
-                tags: "stringArray",
-              },
-              page: undefined,
-              paginate: [Function: paginate],
-              post: [
-                [Circular *1],
-              ],
-              search: Search {},
-              tags: [],
-              type: "comment",
-              url: "/comments/comment-3/",
-            },
-          ],
-          content: "First post with category 2 and comments 1 and 3
-",
-          date: 1970-01-01T00:00:00.000Z,
-          id: "first-post",
-          layout: "posts.njk",
-          mergedKeys: {
-            tags: "stringArray",
-          },
-          page: undefined,
-          paginate: [Function: paginate],
-          renderOrder: 1,
-          search: Search {},
-          tags: [],
-          type: "post",
-          url: "/posts/post-1/",
-        },
-      ],
-      search: Search {},
-      slug: "category-2",
-      tags: [],
-      title: "Category 2",
-      type: "category",
-      url: "/categories/category-2/",
-    },
-    category_id: "category-2",
-    children: true,
-    comment_id: [
-      1,
-      3,
-    ],
-    comments: <ref *3> [
-      {
-        children: true,
-        content: "This is the first comment
-",
-        date: 1970-01-01T00:00:00.000Z,
-        id: 1,
-        mergedKeys: {
-          tags: "stringArray",
-        },
-        page: undefined,
-        paginate: [Function: paginate],
-        post: [
-          <ref *1> {
-            category: <ref *2> {
-              children: true,
-              content: "This is the second category
-",
-              date: 1970-01-01T00:00:00.000Z,
-              layout: "categories.njk",
-              mergedKeys: {
-                tags: "stringArray",
-              },
-              page: undefined,
-              paginate: [Function: paginate],
-              post: [
-                [Circular *1],
-              ],
-              search: Search {},
-              slug: "category-2",
-              tags: [],
-              title: "Category 2",
-              type: "category",
-              url: "/categories/category-2/",
-            },
-            category_id: "category-2",
-            children: true,
-            comment_id: [
-              1,
-              3,
-            ],
-            comments: [Circular *3],
-            content: "First post with category 2 and comments 1 and 3
-",
-            date: 1970-01-01T00:00:00.000Z,
-            id: "first-post",
-            layout: "posts.njk",
-            mergedKeys: {
-              tags: "stringArray",
-            },
-            page: undefined,
-            paginate: [Function: paginate],
-            renderOrder: 1,
-            search: Search {},
-            tags: [],
-            type: "post",
-            url: "/posts/post-1/",
-          },
-        ],
-        search: Search {},
-        tags: [],
-        type: "comment",
-        url: "/comments/comment-1/",
-      },
-      {
-        children: true,
-        content: "This is the third comment
-",
-        date: 1970-01-01T00:00:00.000Z,
-        id: 3,
-        mergedKeys: {
-          tags: "stringArray",
-        },
-        page: undefined,
-        paginate: [Function: paginate],
-        post: [
-          <ref *1> {
-            category: <ref *2> {
-              children: true,
-              content: "This is the second category
-",
-              date: 1970-01-01T00:00:00.000Z,
-              layout: "categories.njk",
-              mergedKeys: {
-                tags: "stringArray",
-              },
-              page: undefined,
-              paginate: [Function: paginate],
-              post: [
-                [Circular *1],
-              ],
-              search: Search {},
-              slug: "category-2",
-              tags: [],
-              title: "Category 2",
-              type: "category",
-              url: "/categories/category-2/",
-            },
-            category_id: "category-2",
-            children: true,
-            comment_id: [
-              1,
-              3,
-            ],
-            comments: [Circular *3],
-            content: "First post with category 2 and comments 1 and 3
-",
-            date: 1970-01-01T00:00:00.000Z,
-            id: "first-post",
-            layout: "posts.njk",
-            mergedKeys: {
-              tags: "stringArray",
-            },
-            page: undefined,
-            paginate: [Function: paginate],
-            renderOrder: 1,
-            search: Search {},
-            tags: [],
-            type: "post",
-            url: "/posts/post-1/",
-          },
-        ],
-        search: Search {},
-        tags: [],
-        type: "comment",
-        url: "/comments/comment-3/",
-      },
-    ],
-    content: "First post with category 2 and comments 1 and 3
-",
-    date: 1970-01-01T00:00:00.000Z,
-    id: "first-post",
-    layout: "posts.njk",
-    mergedKeys: {
-      tags: "stringArray",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    renderOrder: 1,
-    search: Search {},
-    tags: [],
-    type: "post",
-    url: "/posts/post-1/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/posts/post-1/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/posts/post-1",
-    remote: undefined,
-    slug: "post-1",
-  },
-}
-`;
-
-snapshot[`relations plugin 10`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    "<div><p>Second post with category 1 and comment 2</p>
-" +
-    "</div>
-" +
-    "
-" +
-    "  
-" +
-    "<h2>Category:</h2>
-" +
-    '<a href="/categories/category-1/">Category 1</a>
-' +
-    "<p>This is the first category</p>
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "
-" +
-    "</ul>",
-  data: {
-    category: <ref *2> {
-      children: true,
       content: "This is the first category
 ",
-      date: 1970-01-01T00:00:00.000Z,
+      date: [],
       layout: "categories.njk",
-      mergedKeys: {
-        tags: "stringArray",
-      },
-      page: undefined,
-      paginate: [Function: paginate],
-      post: [
-        <ref *1> {
-          category: [Circular *2],
-          category_id: "category-1",
-          children: true,
-          comment_id: [
-            2,
-          ],
-          comments: [
-            {
-              children: true,
-              content: "This is the second comment
-",
-              date: 1970-01-01T00:00:00.000Z,
-              id: 2,
-              mergedKeys: {
-                tags: "stringArray",
-              },
-              page: undefined,
-              paginate: [Function: paginate],
-              post: [
-                [Circular *1],
-              ],
-              renderOrder: -1,
-              search: Search {},
-              tags: [],
-              type: "comment",
-              url: "/comments/comment-2/",
-            },
-          ],
-          content: "Second post with category 1 and comment 2
-",
-          date: 1970-01-01T00:00:00.000Z,
-          id: "second-post",
-          layout: "posts.njk",
-          mergedKeys: {
-            tags: "stringArray",
-          },
-          page: undefined,
-          paginate: [Function: paginate],
-          search: Search {},
-          tags: [],
-          type: "post",
-          url: "/posts/post-2/",
-        },
+      mergedKeys: [
+        "tags",
       ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      post: "Array(1)",
       renderOrder: -2,
-      search: Search {},
+      search: [],
       slug: "category-1",
-      tags: [],
+      tags: "Array(0)",
       title: "Category 1",
       type: "category",
       url: "/categories/category-1/",
     },
-    category_id: "category-1",
-    children: true,
-    comment_id: [
-      2,
-    ],
-    comments: <ref *3> [
-      {
-        children: true,
-        content: "This is the second comment
-",
-        date: 1970-01-01T00:00:00.000Z,
-        id: 2,
-        mergedKeys: {
-          tags: "stringArray",
-        },
-        page: undefined,
-        paginate: [Function: paginate],
-        post: [
-          <ref *1> {
-            category: <ref *2> {
-              children: true,
-              content: "This is the first category
-",
-              date: 1970-01-01T00:00:00.000Z,
-              layout: "categories.njk",
-              mergedKeys: {
-                tags: "stringArray",
-              },
-              page: undefined,
-              paginate: [Function: paginate],
-              post: [
-                [Circular *1],
-              ],
-              renderOrder: -2,
-              search: Search {},
-              slug: "category-1",
-              tags: [],
-              title: "Category 1",
-              type: "category",
-              url: "/categories/category-1/",
-            },
-            category_id: "category-1",
-            children: true,
-            comment_id: [
-              2,
-            ],
-            comments: [Circular *3],
-            content: "Second post with category 1 and comment 2
-",
-            date: 1970-01-01T00:00:00.000Z,
-            id: "second-post",
-            layout: "posts.njk",
-            mergedKeys: {
-              tags: "stringArray",
-            },
-            page: undefined,
-            paginate: [Function: paginate],
-            search: Search {},
-            tags: [],
-            type: "post",
-            url: "/posts/post-2/",
-          },
-        ],
-        renderOrder: -1,
-        search: Search {},
-        tags: [],
-        type: "comment",
-        url: "/comments/comment-2/",
-      },
-    ],
-    content: "Second post with category 1 and comment 2
-",
-    date: 1970-01-01T00:00:00.000Z,
-    id: "second-post",
-    layout: "posts.njk",
-    mergedKeys: {
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/categories/category-1",
+      remote: undefined,
+      slug: "category-1",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    type: "post",
-    url: "/posts/post-2/",
   },
-  dest: {
-    ext: ".html",
-    path: "/posts/post-2/index",
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<h1>Category 2</h1>
+" +
+      "
+" +
+      "<div><p>This is the second category</p>
+" +
+      "</div>
+" +
+      "
+" +
+      "<h2>Posts</h2>
+" +
+      "<ul>
+" +
+      "
+" +
+      "</ul>
+",
+    data: {
+      children: "<p>This is the second category</p>
+",
+      content: "This is the second category
+",
+      date: [],
+      layout: "categories.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      post: "Array(1)",
+      search: [],
+      slug: "category-2",
+      tags: "Array(0)",
+      title: "Category 2",
+      type: "category",
+      url: "/categories/category-2/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/categories/category-2",
+      remote: undefined,
+      slug: "category-2",
+    },
   },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/posts/post-2",
-    remote: undefined,
-    slug: "post-2",
+  {
+    content: "<!DOCTYPE html>
+<p>This is the first comment</p>
+",
+    data: {
+      children: "<p>This is the first comment</p>
+",
+      content: "This is the first comment
+",
+      date: [],
+      id: 1,
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      post: "Array(1)",
+      search: [],
+      tags: "Array(0)",
+      type: "comment",
+      url: "/comments/comment-1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/comments/comment-1",
+      remote: undefined,
+      slug: "comment-1",
+    },
   },
-}
+  {
+    content: "<!DOCTYPE html>
+<p>This is the second comment</p>
+",
+    data: {
+      children: "<p>This is the second comment</p>
+",
+      content: "This is the second comment
+",
+      date: [],
+      id: 2,
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      post: "Array(1)",
+      renderOrder: -1,
+      search: [],
+      tags: "Array(0)",
+      type: "comment",
+      url: "/comments/comment-2/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/comments/comment-2",
+      remote: undefined,
+      slug: "comment-2",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<p>This is the third comment</p>
+",
+    data: {
+      children: "<p>This is the third comment</p>
+",
+      content: "This is the third comment
+",
+      date: [],
+      id: 3,
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      post: "Array(1)",
+      search: [],
+      tags: "Array(0)",
+      type: "comment",
+      url: "/comments/comment-3/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/comments/comment-3",
+      remote: undefined,
+      slug: "comment-3",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<div><p>First post with category 2 and comments 1 and 3</p>
+" +
+      "</div>
+" +
+      "
+" +
+      "  
+" +
+      "<h2>Category:</h2>
+" +
+      '<a href="/categories/category-2/">Category 2</a>
+' +
+      "<p>This is the second category</p>
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "
+" +
+      "</ul>",
+    data: {
+      category: [
+        "mergedKeys",
+        "paginate",
+        "search",
+        "tags",
+        "type",
+        "layout",
+        "title",
+        "slug",
+        "content",
+        "url",
+        "date",
+        "page",
+        "children",
+        "post",
+      ],
+      category_id: "category-2",
+      children: "<p>First post with category 2 and comments 1 and 3</p>
+",
+      comment_id: "Array(2)",
+      comments: "Array(2)",
+      content: "First post with category 2 and comments 1 and 3
+",
+      date: [],
+      id: "first-post",
+      layout: "posts.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      renderOrder: 1,
+      search: [],
+      tags: "Array(0)",
+      type: "post",
+      url: "/posts/post-1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/posts/post-1",
+      remote: undefined,
+      slug: "post-1",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<div><p>Second post with category 1 and comment 2</p>
+" +
+      "</div>
+" +
+      "
+" +
+      "  
+" +
+      "<h2>Category:</h2>
+" +
+      '<a href="/categories/category-1/">Category 1</a>
+' +
+      "<p>This is the first category</p>
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "
+" +
+      "</ul>",
+    data: {
+      category: [
+        "mergedKeys",
+        "paginate",
+        "search",
+        "tags",
+        "type",
+        "layout",
+        "title",
+        "slug",
+        "renderOrder",
+        "content",
+        "url",
+        "date",
+        "page",
+        "children",
+        "post",
+      ],
+      category_id: "category-1",
+      children: "<p>Second post with category 1 and comment 2</p>
+",
+      comment_id: "Array(1)",
+      comments: "Array(1)",
+      content: "Second post with category 1 and comment 2
+",
+      date: [],
+      id: "second-post",
+      layout: "posts.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      type: "post",
+      url: "/posts/post-2/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/posts/post-2",
+      remote: undefined,
+      slug: "post-2",
+    },
+  },
+]
 `;

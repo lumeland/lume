@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`Pagefind plugin 1`] = `2`;
-
-snapshot[`Pagefind plugin 2`] = `
+snapshot[`Pagefind plugin 1`] = `
 {
   formats: [
     {
@@ -70,130 +68,131 @@ snapshot[`Pagefind plugin 2`] = `
 }
 `;
 
-snapshot[`Pagefind plugin 3`] = `[]`;
+snapshot[`Pagefind plugin 2`] = `[]`;
 
-snapshot[`Pagefind plugin 4`] = `
-{
-  content: "<!DOCTYPE html>
+snapshot[`Pagefind plugin 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
 " +
-    '<html lang="en"><head>
+      '<html lang="en"><head>
 ' +
-    '  <meta charset="UTF-8">
+      '  <meta charset="UTF-8">
 ' +
-    '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 ' +
-    '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ' +
-    "  <title>First page</title>
+      "  <title>First page</title>
 " +
-    \`<link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="text/javascript" src="/pagefind/pagefind-ui.js"></script><script type="text/javascript">window.addEventListener('DOMContentLoaded', () => { new PagefindUI({"element":"#search","showImages":false,"showEmptyFilters":true,"resetStyles":true,"bundlePath":"/pagefind/","baseUrl":"/"}); });</script></head>
+      \`<link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="text/javascript" src="/pagefind/pagefind-ui.js"></script><script type="text/javascript">window.addEventListener('DOMContentLoaded', () => { new PagefindUI({"element":"#search","showImages":false,"showEmptyFilters":true,"resetStyles":true,"bundlePath":"/pagefind/","baseUrl":"/"}); });</script></head>
 \` +
-    "<body>
+      "<body>
 " +
-    '  <div id="search"></div>
+      '  <div id="search"></div>
 ' +
-    "  <h1>Hello world</h1>
+      "  <h1>Hello world</h1>
 " +
-    "<p>This is the first page</p>
+      "<p>This is the first page</p>
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "</body></html>",
-  data: {
-    children: true,
-    content: "# Hello world
+      "</body></html>",
+    data: {
+      children: "<h1>Hello world</h1>
+<p>This is the first page</p>
+",
+      content: "# Hello world
 
 This is the first page
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "main.njk",
-    mergedKeys: {
-      tags: "stringArray",
+      date: [],
+      layout: "main.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "First page",
+      url: "/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "First page",
-    url: "/",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/index",
-    remote: undefined,
-    slug: "index",
-  },
-}
-`;
-
-snapshot[`Pagefind plugin 5`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 " +
-    '<html lang="en"><head>
+      '<html lang="en"><head>
 ' +
-    '  <meta charset="UTF-8">
+      '  <meta charset="UTF-8">
 ' +
-    '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 ' +
-    '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ' +
-    "  <title>Second page</title>
+      "  <title>Second page</title>
 " +
-    \`<link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="text/javascript" src="/pagefind/pagefind-ui.js"></script><script type="text/javascript">window.addEventListener('DOMContentLoaded', () => { new PagefindUI({"element":"#search","showImages":false,"showEmptyFilters":true,"resetStyles":true,"bundlePath":"/pagefind/","baseUrl":"/"}); });</script></head>
+      \`<link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="text/javascript" src="/pagefind/pagefind-ui.js"></script><script type="text/javascript">window.addEventListener('DOMContentLoaded', () => { new PagefindUI({"element":"#search","showImages":false,"showEmptyFilters":true,"resetStyles":true,"bundlePath":"/pagefind/","baseUrl":"/"}); });</script></head>
 \` +
-    "<body>
+      "<body>
 " +
-    '  <div id="search"></div>
+      '  <div id="search"></div>
 ' +
-    "  <h1>Other page</h1>
+      "  <h1>Other page</h1>
 " +
-    "<p>This is the second page</p>
+      "<p>This is the second page</p>
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "</body></html>",
-  data: {
-    children: true,
-    content: "# Other page
+      "</body></html>",
+    data: {
+      children: "<h1>Other page</h1>
+<p>This is the second page</p>
+",
+      content: "# Other page
 
 This is the second page
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "main.njk",
-    mergedKeys: {
-      tags: "stringArray",
+      date: [],
+      layout: "main.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Second page",
+      url: "/page2/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Second page",
-    url: "/page2/",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/page2",
+      remote: undefined,
+      slug: "page2",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/page2/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/page2",
-    remote: undefined,
-    slug: "page2",
-  },
-}
+]
 `;

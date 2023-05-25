@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`terser plugin 1`] = `2`;
-
-snapshot[`terser plugin 2`] = `
+snapshot[`terser plugin 1`] = `
 {
   formats: [
     {
@@ -72,93 +70,113 @@ snapshot[`terser plugin 2`] = `
 }
 `;
 
-snapshot[`terser plugin 3`] = `[]`;
+snapshot[`terser plugin 2`] = `[]`;
 
-snapshot[`terser plugin 4`] = `
-{
-  content: 'import{one as o,two as m}from"./numbers.js";console.log(o()+m());',
-  data: {
-    children: false,
-    content: 'import { one, two } from "./numbers.js";
+snapshot[`terser plugin 3`] = `
+[
+  {
+    content: 'import{one as o,two as m}from"./numbers.js";console.log(o()+m());',
+    data: {
+      content: 'import { one, two } from "./numbers.js";
 
 console.log(one() + two());
 ',
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/main.js",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/main.js",
-  },
-  dest: {
-    ext: ".js",
-    path: "/main",
-  },
-  src: {
-    asset: true,
-    ext: ".js",
-    path: "/main",
-    remote: undefined,
-    slug: "main",
-  },
-}
-`;
-
-snapshot[`terser plugin 5`] = `
-{
-  content: "export function one(){return 1}export function two(){return 2}",
-  data: {
-    children: true,
-    content: "export function one () {
-" +
-      "  return {{ one }};
-" +
-      "}
-" +
-      "
-" +
-      "export function two () {
-" +
-      "  return {{ two }};
-" +
-      "}
-" +
-      "/*
-" +
-      "Commented code
-" +
-      "export function two () {
-" +
-      "  return {{ two }};
-" +
-      "}
-" +
-      "*/",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+    src: {
+      asset: true,
+      ext: ".js",
+      path: "/main",
+      remote: undefined,
+      slug: "main",
     },
-    one: 1,
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    two: 2,
-    url: "/numbers.js",
   },
-  dest: {
-    ext: ".js",
-    path: "/numbers",
+  {
+    content: "export function one(){return 1}export function two(){return 2}",
+    data: {
+      children: "export function one () {
+" +
+        "  return 1;
+" +
+        "}
+" +
+        "
+" +
+        "export function two () {
+" +
+        "  return 2;
+" +
+        "}
+" +
+        "/*
+" +
+        "Commented code
+" +
+        "export function two () {
+" +
+        "  return 2;
+" +
+        "}
+" +
+        "*/",
+      content: "export function one () {
+" +
+        "  return {{ one }};
+" +
+        "}
+" +
+        "
+" +
+        "export function two () {
+" +
+        "  return {{ two }};
+" +
+        "}
+" +
+        "/*
+" +
+        "Commented code
+" +
+        "export function two () {
+" +
+        "  return {{ two }};
+" +
+        "}
+" +
+        "*/",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      one: 1,
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      two: 2,
+      url: "/numbers.js",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/numbers.js",
+      remote: undefined,
+      slug: "numbers",
+    },
   },
-  src: {
-    asset: undefined,
-    ext: ".njk",
-    path: "/numbers.js",
-    remote: undefined,
-    slug: "numbers",
-  },
-}
+]
 `;

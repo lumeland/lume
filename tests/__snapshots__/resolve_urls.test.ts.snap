@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`relative_url plugin 1`] = `5`;
-
-snapshot[`relative_url plugin 2`] = `
+snapshot[`relative_url plugin 1`] = `
 {
   formats: [
     {
@@ -70,7 +68,7 @@ snapshot[`relative_url plugin 2`] = `
 }
 `;
 
-snapshot[`relative_url plugin 3`] = `
+snapshot[`relative_url plugin 2`] = `
 [
   {
     entry: "/statics/robots.txt",
@@ -80,265 +78,299 @@ snapshot[`relative_url plugin 3`] = `
 ]
 `;
 
-snapshot[`relative_url plugin 4`] = `
-{
-  content: "<!DOCTYPE html>
+snapshot[`relative_url plugin 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
 " +
-    "<html><head></head><body><p>First article</p>
+      "<html><head></head><body><p>First article</p>
 " +
-    '<p><a href="/drafts/second-article/">Go to second</a>
+      '<p><a href="/drafts/second-article/">Go to second</a>
 ' +
-    '<a href="/other/">Go to other</a>
+      '<a href="/other/">Go to other</a>
 ' +
-    '<a href="/">Go to index</a></p>
+      '<a href="/">Go to index</a></p>
 ' +
-    "</body></html>",
-  data: {
-    children: true,
-    content: "<!-- deno-fmt-ignore-file -->
+      "</body></html>",
+    data: {
+      children: "<!-- deno-fmt-ignore-file -->
 " +
-      "
+        "<p>First article</p>
 " +
-      "First article
+        '<p><a href="./article-2.md">Go to second</a>
+' +
+        '<a href="../other.md">Go to other</a>
+' +
+        '<a href="/index.md">Go to index</a></p>
+',
+      content: "<!-- deno-fmt-ignore-file -->
 " +
-      "
+        "
 " +
-      "[Go to second](./article-2.md)
+        "First article
 " +
-      "[Go to other](../other.md)
+        "
 " +
-      "[Go to index](/index.md)",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+        "[Go to second](./article-2.md)
+" +
+        "[Go to other](../other.md)
+" +
+        "[Go to index](/index.md)",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/first-article/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/articles/first-article/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/articles/first-article/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/articles/article-1",
-    remote: undefined,
-    slug: "article-1",
-  },
-}
-`;
-
-snapshot[`relative_url plugin 5`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    "<html><head></head><body><p>Second article</p>
-" +
-    '<p><a href="/articles/first-article/">Go to first</a>
-' +
-    '<a href="/other/">Go to other</a>
-' +
-    '<a href="/">Go to index</a></p>
-' +
-    "</body></html>",
-  data: {
-    children: true,
-    content: "<!-- deno-fmt-ignore-file -->
-" +
-      "
-" +
-      "Second article
-" +
-      "
-" +
-      "[Go to first](article-1.md)
-" +
-      "[Go to other](../other.md)
-" +
-      "[Go to index](/index.md)",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/articles/article-1",
+      remote: undefined,
+      slug: "article-1",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/drafts/second-article/",
   },
-  dest: {
-    ext: ".html",
-    path: "/drafts/second-article/index",
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head></head><body><p>Second article</p>
+" +
+      '<p><a href="/articles/first-article/">Go to first</a>
+' +
+      '<a href="/other/">Go to other</a>
+' +
+      '<a href="/">Go to index</a></p>
+' +
+      "</body></html>",
+    data: {
+      children: "<!-- deno-fmt-ignore-file -->
+" +
+        "<p>Second article</p>
+" +
+        '<p><a href="article-1.md">Go to first</a>
+' +
+        '<a href="../other.md">Go to other</a>
+' +
+        '<a href="/index.md">Go to index</a></p>
+',
+      content: "<!-- deno-fmt-ignore-file -->
+" +
+        "
+" +
+        "Second article
+" +
+        "
+" +
+        "[Go to first](article-1.md)
+" +
+        "[Go to other](../other.md)
+" +
+        "[Go to index](/index.md)",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/drafts/second-article/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/articles/article-2",
+      remote: undefined,
+      slug: "article-2",
+    },
   },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/articles/article-2",
-    remote: undefined,
-    slug: "article-2",
-  },
-}
-`;
-
-snapshot[`relative_url plugin 6`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 " +
-    '<html><head></head><body><p><a href="/bar">url</a>
+      '<html><head></head><body><p><a href="/bar">url</a>
 ' +
-    '<a href="foo">url</a>
+      '<a href="foo">url</a>
 ' +
-    '<a href="./foo">url</a>
+      '<a href="./foo">url</a>
 ' +
-    '<a href="../foo">url</a>
+      '<a href="../foo">url</a>
 ' +
-    '<a href="#foo">url</a>
+      '<a href="#foo">url</a>
 ' +
-    '<a href="?foo=bar">url</a>
+      '<a href="?foo=bar">url</a>
 ' +
-    '<a href="/other/">url</a>
+      '<a href="/other/">url</a>
 ' +
-    '<a href="/other/">url</a>
+      '<a href="/other/">url</a>
 ' +
-    '<a href="https://domain.com">url</a>
+      '<a href="https://domain.com">url</a>
 ' +
-    '<a href="/other/?tab=1">url</a>
+      '<a href="/other/?tab=1">url</a>
 ' +
-    '<a href="/other/#tab-1">url</a>
+      '<a href="/other/#tab-1">url</a>
 ' +
-    '<a href="/robots.txt">url</a>
+      '<a href="/robots.txt">url</a>
 ' +
-    '<a href="/tilde-and-ene/">url</a></p>
+      '<a href="/tilde-and-ene/">url</a></p>
 ' +
-    "</body></html>",
-  data: {
-    children: true,
-    content: "<!-- deno-fmt-ignore-file -->
+      "</body></html>",
+    data: {
+      children: "<!-- deno-fmt-ignore-file -->
 " +
-      "[url](/bar)
+        '<p><a href="/bar">url</a>
+' +
+        '<a href="foo">url</a>
+' +
+        '<a href="./foo">url</a>
+' +
+        '<a href="../foo">url</a>
+' +
+        '<a href="#foo">url</a>
+' +
+        '<a href="?foo=bar">url</a>
+' +
+        '<a href="~/other.md">url</a>
+' +
+        '<a href="other.md">url</a>
+' +
+        '<a href="https://domain.com">url</a>
+' +
+        '<a href="other.md?tab=1">url</a>
+' +
+        '<a href="other.md#tab-1">url</a>
+' +
+        '<a href="~/statics/robots.txt">url</a>
+' +
+        '<a href="t%C3%ADlde-and-e%C3%B1e.md">url</a></p>
+',
+      content: "<!-- deno-fmt-ignore-file -->
 " +
-      "[url](foo)
+        "[url](/bar)
 " +
-      "[url](./foo)
+        "[url](foo)
 " +
-      "[url](../foo)
+        "[url](./foo)
 " +
-      "[url](#foo)
+        "[url](../foo)
 " +
-      "[url](?foo=bar)
+        "[url](#foo)
 " +
-      "[url](~/other.md)
+        "[url](?foo=bar)
 " +
-      "[url](other.md)
+        "[url](~/other.md)
 " +
-      "[url](https://domain.com)
+        "[url](other.md)
 " +
-      "[url](other.md?tab=1)
+        "[url](https://domain.com)
 " +
-      "[url](other.md#tab-1)
+        "[url](other.md?tab=1)
 " +
-      "[url](~/statics/robots.txt)
+        "[url](other.md#tab-1)
 " +
-      "[url](tílde-and-eñe.md)
+        "[url](~/statics/robots.txt)
+" +
+        "[url](tílde-and-eñe.md)
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/index",
-    remote: undefined,
-    slug: "index",
-  },
-}
-`;
-
-snapshot[`relative_url plugin 7`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 " +
-    "<html><head></head><body><p>Other page</p>
+      "<html><head></head><body><p>Other page</p>
 " +
-    '<p><a href="/robots.txt">See robots.txt</a></p>
+      '<p><a href="/robots.txt">See robots.txt</a></p>
 ' +
-    "</body></html>",
-  data: {
-    children: true,
-    content: "Other page
+      "</body></html>",
+    data: {
+      children: "<p>Other page</p>
+" +
+        '<p><a href="statics/robots.txt">See robots.txt</a></p>
+',
+      content: "Other page
 
 [See robots.txt](statics/robots.txt)
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/other/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/other/",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/other",
+      remote: undefined,
+      slug: "other",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/other/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/other",
-    remote: undefined,
-    slug: "other",
-  },
-}
-`;
-
-snapshot[`relative_url plugin 8`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 " +
-    "<html><head></head><body><p>Tilde and eñe</p>
+      "<html><head></head><body><p>Tilde and eñe</p>
 " +
-    "</body></html>",
-  data: {
-    children: true,
-    content: "Tilde and eñe
+      "</body></html>",
+    data: {
+      children: "<p>Tilde and eñe</p>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      content: "Tilde and eñe
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/tilde-and-ene/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/tilde-and-ene/",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/tílde-and-eñe",
+      remote: undefined,
+      slug: "tílde-and-eñe",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/tilde-and-ene/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/tílde-and-eñe",
-    remote: undefined,
-    slug: "tílde-and-eñe",
-  },
-}
+]
 `;

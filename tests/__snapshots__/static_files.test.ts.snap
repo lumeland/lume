@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`Copy static files 1`] = `0`;
-
-snapshot[`Copy static files 2`] = `
+snapshot[`Copy static files 1`] = `
 {
   formats: [
     {
@@ -86,7 +84,7 @@ snapshot[`Copy static files 2`] = `
 }
 `;
 
-snapshot[`Copy static files 3`] = `
+snapshot[`Copy static files 2`] = `
 [
   {
     entry: "/_headers",
@@ -180,3 +178,5 @@ snapshot[`Copy static files 3`] = `
   },
 ]
 `;
+
+snapshot[`Copy static files 3`] = `[]`;

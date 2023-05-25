@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`Build a mdx site 1`] = `1`;
-
-snapshot[`Build a mdx site 2`] = `
+snapshot[`Build a mdx site 1`] = `
 {
   formats: [
     {
@@ -87,62 +85,83 @@ snapshot[`Build a mdx site 2`] = `
 }
 `;
 
-snapshot[`Build a mdx site 3`] = `[]`;
+snapshot[`Build a mdx site 2`] = `[]`;
 
-snapshot[`Build a mdx site 4`] = `
-{
-  content: "<!DOCTYPE html>
+snapshot[`Build a mdx site 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
 " +
-    "<header><h1>Hello world</h1><p>This is a description</p></header>
+      "<header><h1>Hello world</h1><p>This is a description</p></header>
 " +
-    "<h2>Hello world</h2>
+      "<h2>Hello world</h2>
 " +
-    "<p>This is a markdown file with the title <strong>Hello world</strong>.</p>
+      "<p>This is a markdown file with the title <strong>Hello world</strong>.</p>
 " +
-    '<img src="https://via.placeholder.com/350x150" alt="foo"/>',
-  data: {
-    children: true,
-    comp: {},
-    content: 'import Image from "./_includes/Image.tsx";
+      '<img src="https://via.placeholder.com/350x150" alt="foo"/>',
+    data: {
+      children: [
+        "type",
+        "props",
+        "key",
+        "ref",
+        "__k",
+        "__",
+        "__b",
+        "__e",
+        "__d",
+        "__c",
+        "__h",
+        "constructor",
+        "__v",
+        "__source",
+        "__self",
+        "toString",
+      ],
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: 'import Image from "./_includes/Image.tsx";
 ' +
-      "
+        "
 " +
-      "<comp.Header title={title} description={description}/>
+        "<comp.Header title={title} description={description}/>
 " +
-      "
+        "
 " +
-      "## Hello world
+        "## Hello world
 " +
-      "
+        "
 " +
-      "This is a markdown file with the title **{ title }**.
+        "This is a markdown file with the title **{ title }**.
 " +
-      "
+        "
 " +
-      '<Image alt="foo" />
+        '<Image alt="foo" />
 ',
-    date: 1970-01-01T00:00:00.000Z,
-    description: "This is a description",
-    mergedKeys: {
-      tags: "stringArray",
+      date: [],
+      description: "This is a description",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Hello world",
+      url: "/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Hello world",
-    url: "/",
+    src: {
+      asset: undefined,
+      ext: ".mdx",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".mdx",
-    path: "/index",
-    remote: undefined,
-    slug: "index",
-  },
-}
+]
 `;

@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`build a site with jsx/tsx modules 1`] = `5`;
-
-snapshot[`build a site with jsx/tsx modules 2`] = `
+snapshot[`build a site with jsx/tsx modules 1`] = `
 {
   formats: [
     {
@@ -82,184 +80,247 @@ snapshot[`build a site with jsx/tsx modules 2`] = `
 }
 `;
 
-snapshot[`build a site with jsx/tsx modules 3`] = `[]`;
+snapshot[`build a site with jsx/tsx modules 2`] = `[]`;
 
-snapshot[`build a site with jsx/tsx modules 4`] = `
-{
-  content: "<!DOCTYPE html>
+snapshot[`build a site with jsx/tsx modules 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
 " +
-    "<html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
-  data: {
-    children: true,
-    comp: {},
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.jsx",
-    mergedKeys: {
-      tags: "stringArray",
+      "<html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
+    data: {
+      children: [
+        "\$\$typeof",
+        "type",
+        "key",
+        "ref",
+        "props",
+        "_owner",
+        "_store",
+        "toString",
+      ],
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: [
+        "\$\$typeof",
+        "type",
+        "key",
+        "ref",
+        "props",
+        "_owner",
+        "_store",
+      ],
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "This is the title",
+      url: "/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "This is the title",
-    url: "/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".jsx",
-    path: "/index",
-    remote: undefined,
-    slug: "index",
-  },
-}
-`;
-
-snapshot[`build a site with jsx/tsx modules 5`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    "<html><head><title></title></head><body><main><div>1</div></main></body></html>",
-  data: {
-    children: true,
-    comp: {},
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.jsx",
-    mergedKeys: {
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".jsx",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/page/1/",
   },
-  dest: {
-    ext: ".html",
-    path: "/page/1/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".jsx",
-    path: "/multiple[0]",
-    remote: undefined,
-    slug: "multiple",
-  },
-}
-`;
-
-snapshot[`build a site with jsx/tsx modules 6`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 " +
-    "<html><head><title></title></head><body><main><div>2</div></main></body></html>",
-  data: {
-    children: true,
-    comp: {},
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.jsx",
-    mergedKeys: {
-      tags: "stringArray",
+      "<html><head><title></title></head><body><main><div>1</div></main></body></html>",
+    data: {
+      children: [
+        "\$\$typeof",
+        "type",
+        "key",
+        "ref",
+        "props",
+        "_owner",
+        "_store",
+        "toString",
+      ],
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: [
+        "\$\$typeof",
+        "type",
+        "key",
+        "ref",
+        "props",
+        "_owner",
+        "_store",
+      ],
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page/1/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/page/2/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/page/2/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".jsx",
-    path: "/multiple[1]",
-    remote: undefined,
-    slug: "multiple",
-  },
-}
-`;
-
-snapshot[`build a site with jsx/tsx modules 7`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    '<html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
-  data: {
-    children: true,
-    comp: {},
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.jsx",
-    mergedKeys: {
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".jsx",
+      path: "/multiple[0]",
+      remote: undefined,
+      slug: "multiple",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "This is the title",
-    url: "/with-function/",
   },
-  dest: {
-    ext: ".html",
-    path: "/with-function/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".jsx",
-    path: "/with-function",
-    remote: undefined,
-    slug: "with-function",
-  },
-}
-`;
-
-snapshot[`build a site with jsx/tsx modules 8`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 " +
-    '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1 class="foo">Hello world</h1>
+      "<html><head><title></title></head><body><main><div>2</div></main></body></html>",
+    data: {
+      children: [
+        "\$\$typeof",
+        "type",
+        "key",
+        "ref",
+        "props",
+        "_owner",
+        "_store",
+        "toString",
+      ],
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: [
+        "\$\$typeof",
+        "type",
+        "key",
+        "ref",
+        "props",
+        "_owner",
+        "_store",
+      ],
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page/2/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".jsx",
+      path: "/multiple[1]",
+      remote: undefined,
+      slug: "multiple",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
+    data: {
+      children: [
+        "\$\$typeof",
+        "type",
+        "key",
+        "ref",
+        "props",
+        "_owner",
+        "_store",
+        "toString",
+      ],
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "default",
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "This is the title",
+      url: "/with-function/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".jsx",
+      path: "/with-function",
+      remote: undefined,
+      slug: "with-function",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1 class="foo">Hello world</h1>
 ' +
-    '<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+      '<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
 ' +
-    "</div></main></body></html>",
-  data: {
-    children: true,
-    comp: {},
-    content: "# Hello world{.foo}
+      "</div></main></body></html>",
+    data: {
+      children: '<h1 class="foo">Hello world</h1>
+' +
+        '<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+',
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "# Hello world{.foo}
 
 This is a **markdown** text. [Go home](/)
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.jsx",
-    mergedKeys: {
-      tags: "stringArray",
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Markdown combined with JSX",
+      url: "/with-markdown/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Markdown combined with JSX",
-    url: "/with-markdown/",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/with-markdown",
+      remote: undefined,
+      slug: "with-markdown",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/with-markdown/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/with-markdown",
-    remote: undefined,
-    slug: "with-markdown",
-  },
-}
+]
 `;

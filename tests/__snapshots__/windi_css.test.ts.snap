@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`Windi CSS plugin 1`] = `5`;
-
-snapshot[`Windi CSS plugin 2`] = `
+snapshot[`Windi CSS plugin 1`] = `
 {
   formats: [
     {
@@ -76,202 +74,188 @@ snapshot[`Windi CSS plugin 2`] = `
 }
 `;
 
-snapshot[`Windi CSS plugin 3`] = `[]`;
+snapshot[`Windi CSS plugin 2`] = `[]`;
 
-snapshot[`Windi CSS plugin 4`] = `
-{
-  content: "<!DOCTYPE html>
+snapshot[`Windi CSS plugin 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
 " +
-    '<html lang="en"><head>
+      '<html lang="en"><head>
 ' +
-    '  <meta charset="UTF-8">
+      '  <meta charset="UTF-8">
 ' +
-    '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 ' +
-    '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ' +
-    "  <title>Windi demo</title>
+      "  <title>Windi demo</title>
 " +
-    '  <link rel="stylesheet" href="/windi.css">
+      '  <link rel="stylesheet" href="/windi.css">
 ' +
-    "<style>*, ::before, ::after {
+      "<style>*, ::before, ::after {
 " +
-    "  -webkit-box-sizing: border-box;
+      "  -webkit-box-sizing: border-box;
 " +
-    "  box-sizing: border-box;
+      "  box-sizing: border-box;
 " +
-    "  border-width: 0;
+      "  border-width: 0;
 " +
-    "  border-style: solid;
+      "  border-style: solid;
 " +
-    "  border-color: #e5e7eb;
+      "  border-color: #e5e7eb;
 " +
-    "}
+      "}
 " +
-    "* {
+      "* {
 " +
-    "  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+      "  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
 " +
-    "  --tw-ring-offset-width: 0px;
+      "  --tw-ring-offset-width: 0px;
 " +
-    "  --tw-ring-offset-color: #fff;
+      "  --tw-ring-offset-color: #fff;
 " +
-    "  --tw-ring-color: rgba(59, 130, 246, 0.5);
+      "  --tw-ring-color: rgba(59, 130, 246, 0.5);
 " +
-    "  --tw-ring-offset-shadow: 0 0 #0000;
+      "  --tw-ring-offset-shadow: 0 0 #0000;
 " +
-    "  --tw-ring-shadow: 0 0 #0000;
+      "  --tw-ring-shadow: 0 0 #0000;
 " +
-    "  --tw-shadow: 0 0 #0000;
+      "  --tw-shadow: 0 0 #0000;
 " +
-    "}
+      "}
 " +
-    ":root {
+      ":root {
 " +
-    "  -moz-tab-size: 4;
+      "  -moz-tab-size: 4;
 " +
-    "  -o-tab-size: 4;
+      "  -o-tab-size: 4;
 " +
-    "  tab-size: 4;
+      "  tab-size: 4;
 " +
-    "}
+      "}
 " +
-    ":-moz-focusring {
+      ":-moz-focusring {
 " +
-    "  outline: 1px dotted ButtonText;
+      "  outline: 1px dotted ButtonText;
 " +
-    "}
+      "}
 " +
-    ":-moz-ui-invalid {
+      ":-moz-ui-invalid {
 " +
-    "  box-shadow: none;
+      "  box-shadow: none;
 " +
-    "}
+      "}
 " +
-    "::moz-focus-inner {
+      "::moz-focus-inner {
 " +
-    "  border-style: none;
+      "  border-style: none;
 " +
-    "  padding: 0;
+      "  padding: 0;
 " +
-    "}
+      "}
 " +
-    "::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+      "::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
 " +
-    "  height: auto;
+      "  height: auto;
 " +
-    "}
+      "}
 " +
-    "::-webkit-search-decoration {
+      "::-webkit-search-decoration {
 " +
-    "  -webkit-appearance: none;
+      "  -webkit-appearance: none;
 " +
-    "}
+      "}
 " +
-    "::-webkit-file-upload-button {
+      "::-webkit-file-upload-button {
 " +
-    "  -webkit-appearance: button;
+      "  -webkit-appearance: button;
 " +
-    "  font: inherit;
+      "  font: inherit;
 " +
-    "}
+      "}
 " +
-    "[type='search'] {
+      "[type='search'] {
 " +
-    "  -webkit-appearance: textfield;
+      "  -webkit-appearance: textfield;
 " +
-    "  outline-offset: -2px;
+      "  outline-offset: -2px;
 " +
-    "}
+      "}
 " +
-    "abbr[title] {
+      "abbr[title] {
 " +
-    "  -webkit-text-decoration: underline dotted;
+      "  -webkit-text-decoration: underline dotted;
 " +
-    "  text-decoration: underline dotted;
+      "  text-decoration: underline dotted;
 " +
-    "}
+      "}
 " +
-    "a {
+      "a {
 " +
-    "  color: inherit;
+      "  color: inherit;
 " +
-    "  text-decoration: inherit;
+      "  text-decoration: inherit;
 " +
-    "}
+      "}
 " +
-    "body {
+      "body {
 " +
-    "  margin: 0;
+      "  margin: 0;
 " +
-    "  font-family: inherit;
+      "  font-family: inherit;
 " +
-    "  line-height: inherit;
+      "  line-height: inherit;
 " +
-    "}
+      "}
 " +
-    "html {
+      "html {
 " +
-    "  -webkit-text-size-adjust: 100%;
+      "  -webkit-text-size-adjust: 100%;
 " +
-    '  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+      '  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 ' +
-    "  line-height: 1.5;
+      "  line-height: 1.5;
 " +
-    "}
+      "}
 " +
-    "p {
+      "p {
 " +
-    "  margin: 0;
+      "  margin: 0;
 " +
-    "}
+      "}
 " +
-    ".btn-green {
+      ".btn-green {
 " +
-    "  --tw-bg-opacity: 1;
+      "  --tw-bg-opacity: 1;
 " +
-    "  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+      "  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
 " +
-    "  --tw-text-opacity: 1;
+      "  --tw-text-opacity: 1;
 " +
-    "  color: rgba(255, 255, 255, var(--tw-text-opacity));
+      "  color: rgba(255, 255, 255, var(--tw-text-opacity));
 " +
-    "}
+      "}
 " +
-    ".btn-green:hover {
+      ".btn-green:hover {
 " +
-    "  --tw-bg-opacity: 1;
+      "  --tw-bg-opacity: 1;
 " +
-    "  background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
+      "  background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
 " +
-    "}
+      "}
 " +
-    ".bg-purple-500 {
+      ".bg-purple-500 {
 " +
-    "  --tw-bg-opacity: 1;
+      "  --tw-bg-opacity: 1;
 " +
-    "  background-color: rgba(139, 92, 246, var(--tw-bg-opacity));
+      "  background-color: rgba(139, 92, 246, var(--tw-bg-opacity));
 " +
-    "}</style></head>
+      "}</style></head>
 " +
-    "<body>
+      "<body>
 " +
-    '  <div class="bg-purple-500">
-' +
-    "  <p>This is page 1</p>
-" +
-    "
-" +
-    '  <a href="page2.html" class="btn-green">Go to page 2</a>
-' +
-    "</div>
-" +
-    "
-" +
-    "</body></html>",
-  data: {
-    children: true,
-    content: '<div class="bg-purple-500">
+      '  <div class="bg-purple-500">
 ' +
       "  <p>This is page 1</p>
 " +
@@ -279,661 +263,669 @@ snapshot[`Windi CSS plugin 4`] = `
 " +
       '  <a href="page2.html" class="btn-green">Go to page 2</a>
 ' +
-      "</div>",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.njk",
-    mergedKeys: {
-      tags: "stringArray",
+      "</div>
+" +
+      "
+" +
+      "</body></html>",
+    data: {
+      children: '<div class="bg-purple-500">
+' +
+        "  <p>This is page 1</p>
+" +
+        "
+" +
+        '  <a href="page2.html" class="btn-green">Go to page 2</a>
+' +
+        "</div>",
+      content: '<div class="bg-purple-500">
+' +
+        "  <p>This is page 1</p>
+" +
+        "
+" +
+        '  <a href="page2.html" class="btn-green">Go to page 2</a>
+' +
+        "</div>",
+      date: [],
+      layout: "layout.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".njk",
-    path: "/index",
-    remote: undefined,
-    slug: "index",
-  },
-}
-`;
-
-snapshot[`Windi CSS plugin 5`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    '<html lang="en"><head>
-' +
-    '  <meta charset="UTF-8">
-' +
-    '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-' +
-    '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-' +
-    "  <title>Windi demo</title>
-" +
-    '  <link rel="stylesheet" href="/windi.css">
-' +
-    "<style>*, ::before, ::after {
-" +
-    "  -webkit-box-sizing: border-box;
-" +
-    "  box-sizing: border-box;
-" +
-    "  border-width: 0;
-" +
-    "  border-style: solid;
-" +
-    "  border-color: #e5e7eb;
-" +
-    "}
-" +
-    "* {
-" +
-    "  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
-" +
-    "  --tw-ring-offset-width: 0px;
-" +
-    "  --tw-ring-offset-color: #fff;
-" +
-    "  --tw-ring-color: rgba(59, 130, 246, 0.5);
-" +
-    "  --tw-ring-offset-shadow: 0 0 #0000;
-" +
-    "  --tw-ring-shadow: 0 0 #0000;
-" +
-    "  --tw-shadow: 0 0 #0000;
-" +
-    "}
-" +
-    ":root {
-" +
-    "  -moz-tab-size: 4;
-" +
-    "  -o-tab-size: 4;
-" +
-    "  tab-size: 4;
-" +
-    "}
-" +
-    ":-moz-focusring {
-" +
-    "  outline: 1px dotted ButtonText;
-" +
-    "}
-" +
-    ":-moz-ui-invalid {
-" +
-    "  box-shadow: none;
-" +
-    "}
-" +
-    "::moz-focus-inner {
-" +
-    "  border-style: none;
-" +
-    "  padding: 0;
-" +
-    "}
-" +
-    "::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
-" +
-    "  height: auto;
-" +
-    "}
-" +
-    "::-webkit-search-decoration {
-" +
-    "  -webkit-appearance: none;
-" +
-    "}
-" +
-    "::-webkit-file-upload-button {
-" +
-    "  -webkit-appearance: button;
-" +
-    "  font: inherit;
-" +
-    "}
-" +
-    "[type='search'] {
-" +
-    "  -webkit-appearance: textfield;
-" +
-    "  outline-offset: -2px;
-" +
-    "}
-" +
-    "abbr[title] {
-" +
-    "  -webkit-text-decoration: underline dotted;
-" +
-    "  text-decoration: underline dotted;
-" +
-    "}
-" +
-    "body {
-" +
-    "  margin: 0;
-" +
-    "  font-family: inherit;
-" +
-    "  line-height: inherit;
-" +
-    "}
-" +
-    "html {
-" +
-    "  -webkit-text-size-adjust: 100%;
-" +
-    '  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-' +
-    "  line-height: 1.5;
-" +
-    "}
-" +
-    "p {
-" +
-    "  margin: 0;
-" +
-    "}
-" +
-    ".text-sky-100 {
-" +
-    "  --tw-text-opacity: 1;
-" +
-    "  color: rgba(224, 242, 254, var(--tw-text-opacity));
-" +
-    "}</style></head>
-" +
-    "<body>
-" +
-    '  <p class="text-sky-100">This is page 1</p>
-' +
-    "
-" +
-    "</body></html>",
-  data: {
-    children: true,
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.njk",
-    mergedKeys: {
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/page/1.html",
   },
-  dest: {
-    ext: ".html",
-    path: "/page/1",
-  },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.js",
-    path: "/multi[0]",
-    remote: undefined,
-    slug: "multi",
-  },
-}
-`;
-
-snapshot[`Windi CSS plugin 6`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 " +
-    '<html lang="en"><head>
+      '<html lang="en"><head>
 ' +
-    '  <meta charset="UTF-8">
+      '  <meta charset="UTF-8">
 ' +
-    '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 ' +
-    '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ' +
-    "  <title>Windi demo</title>
+      "  <title>Windi demo</title>
 " +
-    '  <link rel="stylesheet" href="/windi.css">
+      '  <link rel="stylesheet" href="/windi.css">
 ' +
-    "<style>*, ::before, ::after {
+      "<style>*, ::before, ::after {
 " +
-    "  -webkit-box-sizing: border-box;
+      "  -webkit-box-sizing: border-box;
 " +
-    "  box-sizing: border-box;
+      "  box-sizing: border-box;
 " +
-    "  border-width: 0;
+      "  border-width: 0;
 " +
-    "  border-style: solid;
+      "  border-style: solid;
 " +
-    "  border-color: #e5e7eb;
+      "  border-color: #e5e7eb;
 " +
-    "}
+      "}
 " +
-    "* {
+      "* {
 " +
-    "  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+      "  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
 " +
-    "  --tw-ring-offset-width: 0px;
+      "  --tw-ring-offset-width: 0px;
 " +
-    "  --tw-ring-offset-color: #fff;
+      "  --tw-ring-offset-color: #fff;
 " +
-    "  --tw-ring-color: rgba(59, 130, 246, 0.5);
+      "  --tw-ring-color: rgba(59, 130, 246, 0.5);
 " +
-    "  --tw-ring-offset-shadow: 0 0 #0000;
+      "  --tw-ring-offset-shadow: 0 0 #0000;
 " +
-    "  --tw-ring-shadow: 0 0 #0000;
+      "  --tw-ring-shadow: 0 0 #0000;
 " +
-    "  --tw-shadow: 0 0 #0000;
+      "  --tw-shadow: 0 0 #0000;
 " +
-    "}
+      "}
 " +
-    ":root {
+      ":root {
 " +
-    "  -moz-tab-size: 4;
+      "  -moz-tab-size: 4;
 " +
-    "  -o-tab-size: 4;
+      "  -o-tab-size: 4;
 " +
-    "  tab-size: 4;
+      "  tab-size: 4;
 " +
-    "}
+      "}
 " +
-    ":-moz-focusring {
+      ":-moz-focusring {
 " +
-    "  outline: 1px dotted ButtonText;
+      "  outline: 1px dotted ButtonText;
 " +
-    "}
+      "}
 " +
-    ":-moz-ui-invalid {
+      ":-moz-ui-invalid {
 " +
-    "  box-shadow: none;
+      "  box-shadow: none;
 " +
-    "}
+      "}
 " +
-    "::moz-focus-inner {
+      "::moz-focus-inner {
 " +
-    "  border-style: none;
+      "  border-style: none;
 " +
-    "  padding: 0;
+      "  padding: 0;
 " +
-    "}
+      "}
 " +
-    "::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+      "::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
 " +
-    "  height: auto;
+      "  height: auto;
 " +
-    "}
+      "}
 " +
-    "::-webkit-search-decoration {
+      "::-webkit-search-decoration {
 " +
-    "  -webkit-appearance: none;
+      "  -webkit-appearance: none;
 " +
-    "}
+      "}
 " +
-    "::-webkit-file-upload-button {
+      "::-webkit-file-upload-button {
 " +
-    "  -webkit-appearance: button;
+      "  -webkit-appearance: button;
 " +
-    "  font: inherit;
+      "  font: inherit;
 " +
-    "}
+      "}
 " +
-    "[type='search'] {
+      "[type='search'] {
 " +
-    "  -webkit-appearance: textfield;
+      "  -webkit-appearance: textfield;
 " +
-    "  outline-offset: -2px;
+      "  outline-offset: -2px;
 " +
-    "}
+      "}
 " +
-    "abbr[title] {
+      "abbr[title] {
 " +
-    "  -webkit-text-decoration: underline dotted;
+      "  -webkit-text-decoration: underline dotted;
 " +
-    "  text-decoration: underline dotted;
+      "  text-decoration: underline dotted;
 " +
-    "}
+      "}
 " +
-    "body {
+      "body {
 " +
-    "  margin: 0;
+      "  margin: 0;
 " +
-    "  font-family: inherit;
+      "  font-family: inherit;
 " +
-    "  line-height: inherit;
+      "  line-height: inherit;
 " +
-    "}
+      "}
 " +
-    "html {
+      "html {
 " +
-    "  -webkit-text-size-adjust: 100%;
+      "  -webkit-text-size-adjust: 100%;
 " +
-    '  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+      '  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 ' +
-    "  line-height: 1.5;
+      "  line-height: 1.5;
 " +
-    "}
+      "}
 " +
-    "p {
+      "p {
 " +
-    "  margin: 0;
+      "  margin: 0;
 " +
-    "}
+      "}
 " +
-    ".text-sky-200 {
+      ".text-sky-100 {
 " +
-    "  --tw-text-opacity: 1;
+      "  --tw-text-opacity: 1;
 " +
-    "  color: rgba(186, 230, 253, var(--tw-text-opacity));
+      "  color: rgba(224, 242, 254, var(--tw-text-opacity));
 " +
-    "}</style></head>
+      "}</style></head>
 " +
-    "<body>
+      "<body>
 " +
-    '  <p class="text-sky-200">This is page 2</p>
+      '  <p class="text-sky-100">This is page 1</p>
 ' +
-    "
+      "
 " +
-    "</body></html>",
-  data: {
-    children: true,
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.njk",
-    mergedKeys: {
-      tags: "stringArray",
+      "</body></html>",
+    data: {
+      children: '<p class="text-sky-100">This is page 1</p>',
+      content: "content",
+      date: [],
+      layout: "layout.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page/1.html",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/page/2.html",
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/multi[0]",
+      remote: undefined,
+      slug: "multi",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/page/2",
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html lang="en"><head>
+' +
+      '  <meta charset="UTF-8">
+' +
+      '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+' +
+      '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+      "  <title>Windi demo</title>
+" +
+      '  <link rel="stylesheet" href="/windi.css">
+' +
+      "<style>*, ::before, ::after {
+" +
+      "  -webkit-box-sizing: border-box;
+" +
+      "  box-sizing: border-box;
+" +
+      "  border-width: 0;
+" +
+      "  border-style: solid;
+" +
+      "  border-color: #e5e7eb;
+" +
+      "}
+" +
+      "* {
+" +
+      "  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+" +
+      "  --tw-ring-offset-width: 0px;
+" +
+      "  --tw-ring-offset-color: #fff;
+" +
+      "  --tw-ring-color: rgba(59, 130, 246, 0.5);
+" +
+      "  --tw-ring-offset-shadow: 0 0 #0000;
+" +
+      "  --tw-ring-shadow: 0 0 #0000;
+" +
+      "  --tw-shadow: 0 0 #0000;
+" +
+      "}
+" +
+      ":root {
+" +
+      "  -moz-tab-size: 4;
+" +
+      "  -o-tab-size: 4;
+" +
+      "  tab-size: 4;
+" +
+      "}
+" +
+      ":-moz-focusring {
+" +
+      "  outline: 1px dotted ButtonText;
+" +
+      "}
+" +
+      ":-moz-ui-invalid {
+" +
+      "  box-shadow: none;
+" +
+      "}
+" +
+      "::moz-focus-inner {
+" +
+      "  border-style: none;
+" +
+      "  padding: 0;
+" +
+      "}
+" +
+      "::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+" +
+      "  height: auto;
+" +
+      "}
+" +
+      "::-webkit-search-decoration {
+" +
+      "  -webkit-appearance: none;
+" +
+      "}
+" +
+      "::-webkit-file-upload-button {
+" +
+      "  -webkit-appearance: button;
+" +
+      "  font: inherit;
+" +
+      "}
+" +
+      "[type='search'] {
+" +
+      "  -webkit-appearance: textfield;
+" +
+      "  outline-offset: -2px;
+" +
+      "}
+" +
+      "abbr[title] {
+" +
+      "  -webkit-text-decoration: underline dotted;
+" +
+      "  text-decoration: underline dotted;
+" +
+      "}
+" +
+      "body {
+" +
+      "  margin: 0;
+" +
+      "  font-family: inherit;
+" +
+      "  line-height: inherit;
+" +
+      "}
+" +
+      "html {
+" +
+      "  -webkit-text-size-adjust: 100%;
+" +
+      '  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+' +
+      "  line-height: 1.5;
+" +
+      "}
+" +
+      "p {
+" +
+      "  margin: 0;
+" +
+      "}
+" +
+      ".text-sky-200 {
+" +
+      "  --tw-text-opacity: 1;
+" +
+      "  color: rgba(186, 230, 253, var(--tw-text-opacity));
+" +
+      "}</style></head>
+" +
+      "<body>
+" +
+      '  <p class="text-sky-200">This is page 2</p>
+' +
+      "
+" +
+      "</body></html>",
+    data: {
+      children: '<p class="text-sky-200">This is page 2</p>',
+      content: "content",
+      date: [],
+      layout: "layout.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page/2.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/multi[1]",
+      remote: undefined,
+      slug: "multi",
+    },
   },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.js",
-    path: "/multi[1]",
-    remote: undefined,
-    slug: "multi",
-  },
-}
-`;
-
-snapshot[`Windi CSS plugin 7`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 " +
-    '<html lang="en"><head>
+      '<html lang="en"><head>
 ' +
-    '  <meta charset="UTF-8">
+      '  <meta charset="UTF-8">
 ' +
-    '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 ' +
-    '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ' +
-    "  <title>Windi demo</title>
+      "  <title>Windi demo</title>
 " +
-    '  <link rel="stylesheet" href="/windi.css">
+      '  <link rel="stylesheet" href="/windi.css">
 ' +
-    "<style>*, ::before, ::after {
+      "<style>*, ::before, ::after {
 " +
-    "  -webkit-box-sizing: border-box;
+      "  -webkit-box-sizing: border-box;
 " +
-    "  box-sizing: border-box;
+      "  box-sizing: border-box;
 " +
-    "  border-width: 0;
+      "  border-width: 0;
 " +
-    "  border-style: solid;
+      "  border-style: solid;
 " +
-    "  border-color: #e5e7eb;
+      "  border-color: #e5e7eb;
 " +
-    "}
+      "}
 " +
-    "* {
+      "* {
 " +
-    "  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+      "  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
 " +
-    "  --tw-ring-offset-width: 0px;
+      "  --tw-ring-offset-width: 0px;
 " +
-    "  --tw-ring-offset-color: #fff;
+      "  --tw-ring-offset-color: #fff;
 " +
-    "  --tw-ring-color: rgba(59, 130, 246, 0.5);
+      "  --tw-ring-color: rgba(59, 130, 246, 0.5);
 " +
-    "  --tw-ring-offset-shadow: 0 0 #0000;
+      "  --tw-ring-offset-shadow: 0 0 #0000;
 " +
-    "  --tw-ring-shadow: 0 0 #0000;
+      "  --tw-ring-shadow: 0 0 #0000;
 " +
-    "  --tw-shadow: 0 0 #0000;
+      "  --tw-shadow: 0 0 #0000;
 " +
-    "}
+      "}
 " +
-    ":root {
+      ":root {
 " +
-    "  -moz-tab-size: 4;
+      "  -moz-tab-size: 4;
 " +
-    "  -o-tab-size: 4;
+      "  -o-tab-size: 4;
 " +
-    "  tab-size: 4;
+      "  tab-size: 4;
 " +
-    "}
+      "}
 " +
-    ":-moz-focusring {
+      ":-moz-focusring {
 " +
-    "  outline: 1px dotted ButtonText;
+      "  outline: 1px dotted ButtonText;
 " +
-    "}
+      "}
 " +
-    ":-moz-ui-invalid {
+      ":-moz-ui-invalid {
 " +
-    "  box-shadow: none;
+      "  box-shadow: none;
 " +
-    "}
+      "}
 " +
-    "::moz-focus-inner {
+      "::moz-focus-inner {
 " +
-    "  border-style: none;
+      "  border-style: none;
 " +
-    "  padding: 0;
+      "  padding: 0;
 " +
-    "}
+      "}
 " +
-    "::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+      "::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
 " +
-    "  height: auto;
+      "  height: auto;
 " +
-    "}
+      "}
 " +
-    "::-webkit-search-decoration {
+      "::-webkit-search-decoration {
 " +
-    "  -webkit-appearance: none;
+      "  -webkit-appearance: none;
 " +
-    "}
+      "}
 " +
-    "::-webkit-file-upload-button {
+      "::-webkit-file-upload-button {
 " +
-    "  -webkit-appearance: button;
+      "  -webkit-appearance: button;
 " +
-    "  font: inherit;
+      "  font: inherit;
 " +
-    "}
+      "}
 " +
-    "[type='search'] {
+      "[type='search'] {
 " +
-    "  -webkit-appearance: textfield;
+      "  -webkit-appearance: textfield;
 " +
-    "  outline-offset: -2px;
+      "  outline-offset: -2px;
 " +
-    "}
+      "}
 " +
-    "abbr[title] {
+      "abbr[title] {
 " +
-    "  -webkit-text-decoration: underline dotted;
+      "  -webkit-text-decoration: underline dotted;
 " +
-    "  text-decoration: underline dotted;
+      "  text-decoration: underline dotted;
 " +
-    "}
+      "}
 " +
-    "body {
+      "body {
 " +
-    "  margin: 0;
+      "  margin: 0;
 " +
-    "  font-family: inherit;
+      "  font-family: inherit;
 " +
-    "  line-height: inherit;
+      "  line-height: inherit;
 " +
-    "}
+      "}
 " +
-    "html {
+      "html {
 " +
-    "  -webkit-text-size-adjust: 100%;
+      "  -webkit-text-size-adjust: 100%;
 " +
-    '  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+      '  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 ' +
-    "  line-height: 1.5;
+      "  line-height: 1.5;
 " +
-    "}
+      "}
 " +
-    "p {
+      "p {
 " +
-    "  margin: 0;
+      "  margin: 0;
 " +
-    "}
+      "}
 " +
-    ".bg-purple-600 {
+      ".bg-purple-600 {
 " +
-    "  --tw-bg-opacity: 1;
+      "  --tw-bg-opacity: 1;
 " +
-    "  background-color: rgba(124, 58, 237, var(--tw-bg-opacity));
+      "  background-color: rgba(124, 58, 237, var(--tw-bg-opacity));
 " +
-    "}</style></head>
+      "}</style></head>
 " +
-    "<body>
+      "<body>
 " +
-    '  <div class="bg-purple-600">
+      '  <div class="bg-purple-600">
 ' +
-    "  <p>This is page 2</p>
+      "  <p>This is page 2</p>
 " +
-    "</div>
+      "</div>
 " +
-    "
+      "
 " +
-    "</body></html>",
-  data: {
-    children: true,
-    content: '<div class="bg-purple-600">
+      "</body></html>",
+    data: {
+      children: '<div class="bg-purple-600">
   <p>This is page 2</p>
 </div>',
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.njk",
-    mergedKeys: {
-      tags: "stringArray",
+      content: '<div class="bg-purple-600">
+  <p>This is page 2</p>
+</div>',
+      date: [],
+      layout: "layout.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page2/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/page2/",
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/page2",
+      remote: undefined,
+      slug: "page2",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/page2/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".njk",
-    path: "/page2",
-    remote: undefined,
-    slug: "page2",
-  },
-}
-`;
-
-snapshot[`Windi CSS plugin 8`] = `
-{
-  content: ".btn {
-" +
-    "  border-radius: 0.25rem;
-" +
-    "  font-weight: 700;
-" +
-    "  padding-top: 0.5rem;
-" +
-    "  padding-bottom: 0.5rem;
-" +
-    "  padding-left: 1rem;
-" +
-    "  padding-right: 1rem;
-" +
-    "}
-" +
-    ".btn-blue {
-" +
-    "  --tw-bg-opacity: 1;
-" +
-    "  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
-" +
-    "  --tw-text-opacity: 1;
-" +
-    "  color: rgba(255, 255, 255, var(--tw-text-opacity));
-" +
-    "  padding-top: 1rem;
-" +
-    "}
-" +
-    ".btn-blue:hover {
-" +
-    "  --tw-bg-opacity: 1;
-" +
-    "  background-color: rgba(29, 78, 216, var(--tw-bg-opacity));
-" +
-    "}",
-  data: {
-    children: false,
+  {
     content: ".btn {
 " +
-      "  @apply font-bold py-2 px-4 rounded;
+      "  border-radius: 0.25rem;
+" +
+      "  font-weight: 700;
+" +
+      "  padding-top: 0.5rem;
+" +
+      "  padding-bottom: 0.5rem;
+" +
+      "  padding-left: 1rem;
+" +
+      "  padding-right: 1rem;
 " +
       "}
 " +
       ".btn-blue {
 " +
-      "  @apply bg-blue-500 hover:bg-blue-700 text-white;
+      "  --tw-bg-opacity: 1;
+" +
+      "  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+" +
+      "  --tw-text-opacity: 1;
+" +
+      "  color: rgba(255, 255, 255, var(--tw-text-opacity));
 " +
       "  padding-top: 1rem;
 " +
+      "}
+" +
+      ".btn-blue:hover {
+" +
+      "  --tw-bg-opacity: 1;
+" +
+      "  background-color: rgba(29, 78, 216, var(--tw-bg-opacity));
+" +
       "}",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+    data: {
+      content: ".btn {
+" +
+        "  @apply font-bold py-2 px-4 rounded;
+" +
+        "}
+" +
+        ".btn-blue {
+" +
+        "  @apply bg-blue-500 hover:bg-blue-700 text-white;
+" +
+        "  padding-top: 1rem;
+" +
+        "}",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/styles.css",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/styles.css",
+    src: {
+      asset: true,
+      ext: ".windi.css",
+      path: "/styles",
+      remote: undefined,
+      slug: "styles",
+    },
   },
-  dest: {
-    ext: ".css",
-    path: "/styles",
-  },
-  src: {
-    asset: true,
-    ext: ".windi.css",
-    path: "/styles",
-    remote: undefined,
-    slug: "styles",
-  },
-}
+]
 `;

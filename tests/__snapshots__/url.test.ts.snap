@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`url and htmlUrl update href 1`] = `2`;
-
-snapshot[`url and htmlUrl update href 2`] = `
+snapshot[`url and htmlUrl update href 1`] = `
 {
   formats: [
     {
@@ -70,123 +68,168 @@ snapshot[`url and htmlUrl update href 2`] = `
 }
 `;
 
-snapshot[`url and htmlUrl update href 3`] = `[]`;
+snapshot[`url and htmlUrl update href 2`] = `[]`;
 
-snapshot[`url and htmlUrl update href 4`] = `
-{
-  content: "
+snapshot[`url and htmlUrl update href 3`] = `
+[
+  {
+    content: "
 " +
-    "    <!DOCTYPE html>
+      "    <!DOCTYPE html>
 " +
-    '    <html lang="en">
+      '    <html lang="en">
 ' +
-    "        <head>
+      "        <head>
 " +
-    "            <title>Default Filter</title>
+      "            <title>Default Filter</title>
 " +
-    "        </head>
+      "        </head>
 " +
-    "        <body>
+      "        <body>
 " +
-    '            <a id="url" href="https://example.com/test/url/">Url</a>
+      '            <a id="url" href="https://example.com/test/url/">Url</a>
 ' +
-    '            <a id="htmlUrl" href="https://example.com/test/htmlUrl/">htmlUrl</a>
+      '            <a id="htmlUrl" href="https://example.com/test/htmlUrl/">htmlUrl</a>
 ' +
-    "            <template>
+      "            <template>
 " +
-    "              <h1>Template content</h1>
+      "              <h1>Template content</h1>
 " +
-    "            </template>
+      "            </template>
 " +
-    "        </body>
+      "        </body>
 " +
-    "    </html>
+      "    </html>
 " +
-    "  ",
-  data: {
-    children: true,
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      "  ",
+    data: {
+      children: "
+" +
+        "    <!DOCTYPE html>
+" +
+        '    <html lang="en">
+' +
+        "        <head>
+" +
+        "            <title>Default Filter</title>
+" +
+        "        </head>
+" +
+        "        <body>
+" +
+        '            <a id="url" href="https://example.com/test/url/">Url</a>
+' +
+        '            <a id="htmlUrl" href="https://example.com/test/htmlUrl/">htmlUrl</a>
+' +
+        "            <template>
+" +
+        "              <h1>Template content</h1>
+" +
+        "            </template>
+" +
+        "        </body>
+" +
+        "    </html>
+" +
+        "  ",
+      content: "default",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Default Filter",
+      url: "/default-filter/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Default Filter",
-    url: "/default-filter/",
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/default-filter",
+      remote: undefined,
+      slug: "default-filter",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/default-filter/index",
+  {
+    content: "
+" +
+      "    <!DOCTYPE html>
+" +
+      '    <html lang="en">
+' +
+      "        <head>
+" +
+      "            <title>Renamed Filter</title>
+" +
+      "        </head>
+" +
+      "        <body>
+" +
+      '            <a id="urlify" href="undefined">Urlify</a>
+' +
+      "            undefined
+" +
+      "        </body>
+" +
+      "    </html>
+" +
+      "  ",
+    data: {
+      children: "
+" +
+        "    <!DOCTYPE html>
+" +
+        '    <html lang="en">
+' +
+        "        <head>
+" +
+        "            <title>Renamed Filter</title>
+" +
+        "        </head>
+" +
+        "        <body>
+" +
+        '            <a id="urlify" href="undefined">Urlify</a>
+' +
+        "            undefined
+" +
+        "        </body>
+" +
+        "    </html>
+" +
+        "  ",
+      content: "default",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Renamed Filter",
+      url: "/renamed-filter/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/renamed-filter",
+      remote: undefined,
+      slug: "renamed-filter",
+    },
   },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.js",
-    path: "/default-filter",
-    remote: undefined,
-    slug: "default-filter",
-  },
-}
+]
 `;
 
-snapshot[`url and htmlUrl update href 5`] = `
-{
-  content: "
-" +
-    "    <!DOCTYPE html>
-" +
-    '    <html lang="en">
-' +
-    "        <head>
-" +
-    "            <title>Renamed Filter</title>
-" +
-    "        </head>
-" +
-    "        <body>
-" +
-    '            <a id="urlify" href="undefined">Urlify</a>
-' +
-    "            undefined
-" +
-    "        </body>
-" +
-    "    </html>
-" +
-    "  ",
-  data: {
-    children: true,
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Renamed Filter",
-    url: "/renamed-filter/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/renamed-filter/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.js",
-    path: "/renamed-filter",
-    remote: undefined,
-    slug: "renamed-filter",
-  },
-}
-`;
-
-snapshot[`configure url and htmlUrl names 1`] = `2`;
-
-snapshot[`configure url and htmlUrl names 2`] = `
+snapshot[`configure url and htmlUrl names 1`] = `
 {
   formats: [
     {
@@ -254,116 +297,163 @@ snapshot[`configure url and htmlUrl names 2`] = `
 }
 `;
 
-snapshot[`configure url and htmlUrl names 3`] = `[]`;
+snapshot[`configure url and htmlUrl names 2`] = `[]`;
 
-snapshot[`configure url and htmlUrl names 4`] = `
-{
-  content: "
+snapshot[`configure url and htmlUrl names 3`] = `
+[
+  {
+    content: "
 " +
-    "    <!DOCTYPE html>
+      "    <!DOCTYPE html>
 " +
-    '    <html lang="en">
+      '    <html lang="en">
 ' +
-    "        <head>
+      "        <head>
 " +
-    "            <title>Default Filter</title>
+      "            <title>Default Filter</title>
 " +
-    "        </head>
+      "        </head>
 " +
-    "        <body>
+      "        <body>
 " +
-    '            <a id="url" href="undefined">Url</a>
+      '            <a id="url" href="undefined">Url</a>
 ' +
-    "            undefined
+      "            undefined
 " +
-    "            <template>
+      "            <template>
 " +
-    "              <h1>Template content</h1>
+      "              <h1>Template content</h1>
 " +
-    "            </template>
+      "            </template>
 " +
-    "        </body>
+      "        </body>
 " +
-    "    </html>
+      "    </html>
 " +
-    "  ",
-  data: {
-    children: true,
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      "  ",
+    data: {
+      children: "
+" +
+        "    <!DOCTYPE html>
+" +
+        '    <html lang="en">
+' +
+        "        <head>
+" +
+        "            <title>Default Filter</title>
+" +
+        "        </head>
+" +
+        "        <body>
+" +
+        '            <a id="url" href="undefined">Url</a>
+' +
+        "            undefined
+" +
+        "            <template>
+" +
+        "              <h1>Template content</h1>
+" +
+        "            </template>
+" +
+        "        </body>
+" +
+        "    </html>
+" +
+        "  ",
+      content: "default",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Default Filter",
+      url: "/default-filter/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Default Filter",
-    url: "/default-filter/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/default-filter/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.js",
-    path: "/default-filter",
-    remote: undefined,
-    slug: "default-filter",
-  },
-}
-`;
-
-snapshot[`configure url and htmlUrl names 5`] = `
-{
-  content: "
-" +
-    "    <!DOCTYPE html>
-" +
-    '    <html lang="en">
-' +
-    "        <head>
-" +
-    "            <title>Renamed Filter</title>
-" +
-    "        </head>
-" +
-    "        <body>
-" +
-    '            <a id="urlify" href="https://example.com/urlify/">Urlify</a>
-' +
-    '            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>
-' +
-    "        </body>
-" +
-    "    </html>
-" +
-    "  ",
-  data: {
-    children: true,
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/default-filter",
+      remote: undefined,
+      slug: "default-filter",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Renamed Filter",
-    url: "/renamed-filter/",
   },
-  dest: {
-    ext: ".html",
-    path: "/renamed-filter/index",
+  {
+    content: "
+" +
+      "    <!DOCTYPE html>
+" +
+      '    <html lang="en">
+' +
+      "        <head>
+" +
+      "            <title>Renamed Filter</title>
+" +
+      "        </head>
+" +
+      "        <body>
+" +
+      '            <a id="urlify" href="https://example.com/urlify/">Urlify</a>
+' +
+      '            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>
+' +
+      "        </body>
+" +
+      "    </html>
+" +
+      "  ",
+    data: {
+      children: "
+" +
+        "    <!DOCTYPE html>
+" +
+        '    <html lang="en">
+' +
+        "        <head>
+" +
+        "            <title>Renamed Filter</title>
+" +
+        "        </head>
+" +
+        "        <body>
+" +
+        '            <a id="urlify" href="https://example.com/urlify/">Urlify</a>
+' +
+        '            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>
+' +
+        "        </body>
+" +
+        "    </html>
+" +
+        "  ",
+      content: "default",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Renamed Filter",
+      url: "/renamed-filter/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/renamed-filter",
+      remote: undefined,
+      slug: "renamed-filter",
+    },
   },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.js",
-    path: "/renamed-filter",
-    remote: undefined,
-    slug: "renamed-filter",
-  },
-}
+]
 `;

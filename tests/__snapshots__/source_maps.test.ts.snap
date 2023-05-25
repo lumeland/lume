@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`Source maps from CSS files 1`] = `6`;
-
-snapshot[`Source maps from CSS files 2`] = `
+snapshot[`Source maps from CSS files 1`] = `
 {
   formats: [
     {
@@ -91,202 +89,178 @@ snapshot[`Source maps from CSS files 2`] = `
 }
 `;
 
-snapshot[`Source maps from CSS files 3`] = `[]`;
+snapshot[`Source maps from CSS files 2`] = `[]`;
 
-snapshot[`Source maps from CSS files 4`] = `
-{
-  content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BCEA,2DCFA,cEMA","sources":["index.scss","styles.css","third.scss","fourth.scss","colors.scss","button.scss"],"sourcesContent":["body {\\
+snapshot[`Source maps from CSS files 3`] = `
+[
+  {
+    content: '{"version":3,"sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets","mappings":"ACAA,4BCEA,2DCFA,cEMA","sources":["/sass/index.scss","/sass/styles.css","/sass/_includes/sass/third.scss","/sass/_includes/sass/fourth.scss","/sass/_includes/sass/colors.scss","/sass/_includes/sass/button.scss"],"sourcesContent":["body {\\
   font-family: sans-serif;\\
 }\\
 html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}\\
 hr{color:blue}\\
-body{font:100% Helvetica,sans-serif;color:#333}","","","","",""],"names":[],"file":"index.css.map"}',
-  data: {
-    children: false,
-    content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BCEA,2DCFA,cEMA","sources":["index.scss","styles.css","third.scss","fourth.scss","colors.scss","button.scss"],"sourcesContent":["body {\\
+body{font:100% Helvetica,sans-serif;color:#333}","","","","",""],"names":[],"file":"/index.css.map"}',
+    data: {
+      content: '{"version":3,"sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets","mappings":"ACAA,4BCEA,2DCFA,cEMA","sources":["/sass/index.scss","/sass/styles.css","/sass/_includes/sass/third.scss","/sass/_includes/sass/fourth.scss","/sass/_includes/sass/colors.scss","/sass/_includes/sass/button.scss"],"sourcesContent":["body {\\
   font-family: sans-serif;\\
 }\\
 html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}\\
 hr{color:blue}\\
-body{font:100% Helvetica,sans-serif;color:#333}","","","","",""],"names":[],"file":"index.css.map"}',
-    page: undefined,
-    sourceMap: undefined,
-    url: "/index.css.map",
-  },
-  dest: {
-    ext: ".map",
-    path: "/index.css",
-  },
-  src: {
-    asset: true,
-    path: "",
-    remote: undefined,
-    slug: "index",
-  },
-}
-`;
-
-snapshot[`Source maps from CSS files 5`] = `
-{
-  content: '{"version":3,"sourceRoot":"assets","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["",""],"names":[],"file":"index2.css.map"}',
-  data: {
-    children: false,
-    content: '{"version":3,"sourceRoot":"assets","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["",""],"names":[],"file":"index2.css.map"}',
-    page: undefined,
-    sourceMap: undefined,
-    url: "/index2.css.map",
-  },
-  dest: {
-    ext: ".map",
-    path: "/index2.css",
-  },
-  src: {
-    asset: true,
-    path: "",
-    remote: undefined,
-    slug: "index2",
-  },
-}
-`;
-
-snapshot[`Source maps from CSS files 6`] = `
-{
-  content: '{"version":3,"sourceRoot":"assets","mappings":"AAAA","sources":["styles.css"],"sourcesContent":["body {\\
-  font-family: sans-serif;\\
-}"],"names":[],"file":"styles.css.map"}',
-  data: {
-    children: false,
-    content: '{"version":3,"sourceRoot":"assets","mappings":"AAAA","sources":["styles.css"],"sourcesContent":["body {\\
-  font-family: sans-serif;\\
-}"],"names":[],"file":"styles.css.map"}',
-    page: undefined,
-    sourceMap: undefined,
-    url: "/styles.css.map",
-  },
-  dest: {
-    ext: ".map",
-    path: "/styles.css",
-  },
-  src: {
-    asset: true,
-    path: "",
-    remote: undefined,
-    slug: "styles",
-  },
-}
-`;
-
-snapshot[`Source maps from CSS files 7`] = `
-{
-  content: "body{font-family:sans-serif}html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:#00f}body{color:#333;font:100% Helvetica,sans-serif}
-" +
-    "/*# sourceMappingURL=./index.css.map */",
-  data: {
-    children: false,
-    content: '@import "./styles.css";
-' +
-      '@import "./_includes/sass/colors";
-' +
-      '@import "sass/button";
-',
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+body{font:100% Helvetica,sans-serif;color:#333}","","","","",""],"names":[],"file":"/index.css.map"}',
+      page: [
+        "src",
+        "data",
+      ],
+      sourceMap: "undefined",
+      url: "/index.css.map",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    sourceMap: undefined,
-    tags: [],
-    url: "/index.css",
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "index",
+    },
   },
-  dest: {
-    ext: ".css",
-    path: "/index",
+  {
+    content: '{"version":3,"sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets","mappings":"AAEA","sources":["/sass/index2.sass","/sass/_includes/sass/colors.scss"],"sourcesContent":["",""],"names":[],"file":"/index2.css.map"}',
+    data: {
+      content: '{"version":3,"sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets","mappings":"AAEA","sources":["/sass/index2.sass","/sass/_includes/sass/colors.scss"],"sourcesContent":["",""],"names":[],"file":"/index2.css.map"}',
+      page: [
+        "src",
+        "data",
+      ],
+      sourceMap: "undefined",
+      url: "/index2.css.map",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "index2",
+    },
   },
-  src: {
-    asset: true,
-    ext: ".scss",
-    path: "/index",
-    remote: undefined,
-    slug: "index",
+  {
+    content: '{"version":3,"sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets","mappings":"AAAA","sources":["/sass/styles.css"],"sourcesContent":["body {\\
+  font-family: sans-serif;\\
+}"],"names":[],"file":"/styles.css.map"}',
+    data: {
+      content: '{"version":3,"sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets","mappings":"AAAA","sources":["/sass/styles.css"],"sourcesContent":["body {\\
+  font-family: sans-serif;\\
+}"],"names":[],"file":"/styles.css.map"}',
+      page: [
+        "src",
+        "data",
+      ],
+      sourceMap: "undefined",
+      url: "/styles.css.map",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "styles",
+    },
   },
-}
-`;
-
-snapshot[`Source maps from CSS files 8`] = `
-{
-  content: "body{color:#00f}
+  {
+    content: "body{font-family:sans-serif}html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:#00f}body{color:#333;font:100% Helvetica,sans-serif}
+" +
+      "/*# sourceMappingURL=./index.css.map */",
+    data: {
+      content: '@import "./styles.css";
+' +
+        '@import "./_includes/sass/colors";
+' +
+        '@import "sass/button";
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      sourceMap: "undefined",
+      tags: "Array(0)",
+      url: "/index.css",
+    },
+    src: {
+      asset: true,
+      ext: ".scss",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+  {
+    content: "body{color:#00f}
 /*# sourceMappingURL=./index2.css.map */",
-  data: {
-    children: false,
-    content: '@import "sass/colors"
+    data: {
+      content: '@import "sass/colors"
 
 body
   color: \$primary-color
 ',
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      sourceMap: "undefined",
+      tags: "Array(0)",
+      url: "/index2.css",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    sourceMap: undefined,
-    tags: [],
-    url: "/index2.css",
+    src: {
+      asset: true,
+      ext: ".sass",
+      path: "/index2",
+      remote: undefined,
+      slug: "index2",
+    },
   },
-  dest: {
-    ext: ".css",
-    path: "/index2",
-  },
-  src: {
-    asset: true,
-    ext: ".sass",
-    path: "/index2",
-    remote: undefined,
-    slug: "index2",
-  },
-}
-`;
-
-snapshot[`Source maps from CSS files 9`] = `
-{
-  content: "body{font-family:sans-serif}
+  {
+    content: "body{font-family:sans-serif}
 /*# sourceMappingURL=./styles.css.map */",
-  data: {
-    children: false,
-    content: "body {
+    data: {
+      content: "body {
   font-family: sans-serif;
 }",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      sourceMap: "undefined",
+      tags: "Array(0)",
+      url: "/styles.css",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    sourceMap: undefined,
-    tags: [],
-    url: "/styles.css",
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/styles",
+      remote: undefined,
+      slug: "styles",
+    },
   },
-  dest: {
-    ext: ".css",
-    path: "/styles",
-  },
-  src: {
-    asset: true,
-    ext: ".css",
-    path: "/styles",
-    remote: undefined,
-    slug: "styles",
-  },
-}
+]
 `;
 
-snapshot[`Source maps from Js files 1`] = `6`;
-
-snapshot[`Source maps from Js files 2`] = `
+snapshot[`Source maps from Js files 1`] = `
 {
   formats: [
     {
@@ -358,11 +332,12 @@ snapshot[`Source maps from Js files 2`] = `
 }
 `;
 
-snapshot[`Source maps from Js files 3`] = `[]`;
+snapshot[`Source maps from Js files 2`] = `[]`;
 
-snapshot[`Source maps from Js files 4`] = `
-{
-  content: '{"version":3,"file":"main.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"sources":["to_uppercase.ts","main.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
+snapshot[`Source maps from Js files 3`] = `
+[
+  {
+    content: '{"version":3,"file":"/main.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"sources":["/esbuild/modules/to_uppercase.ts","/esbuild/main.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
 ","/// <reference lib=\\\\"dom\\\\" />\\
@@ -371,10 +346,9 @@ import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
 document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
   h1.innerHTML = toUppercase(h1.innerHTML);\\
 });\\
-"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"assets"}',
-  data: {
-    children: false,
-    content: '{"version":3,"file":"main.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"sources":["to_uppercase.ts","main.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets"}',
+    data: {
+      content: '{"version":3,"file":"/main.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","h1","innerHTML"],"sources":["/esbuild/modules/to_uppercase.ts","/esbuild/main.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
 ","/// <reference lib=\\\\"dom\\\\" />\\
@@ -383,56 +357,49 @@ import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
 document.querySelectorAll(\\\\"h1\\\\")?.forEach((h1) => {\\
   h1.innerHTML = toUppercase(h1.innerHTML);\\
 });\\
-"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"assets"}',
-    page: undefined,
-    sourceMap: undefined,
-    url: "/main.js.map",
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,OAAOC,SAASC,IACxCA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets"}',
+      page: [
+        "src",
+        "data",
+      ],
+      sourceMap: "undefined",
+      url: "/main.js.map",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "main",
+    },
   },
-  dest: {
-    ext: ".map",
-    path: "/main.js",
-  },
-  src: {
-    asset: true,
-    path: "",
-    remote: undefined,
-    slug: "main",
-  },
-}
-`;
-
-snapshot[`Source maps from Js files 5`] = `
-{
-  content: '{"version":3,"file":"to_uppercase.js.map","names":["toUppercase","text","toUpperCase","n"],"sources":["to_uppercase.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
+  {
+    content: '{"version":3,"file":"/modules/to_uppercase.js.map","names":["toUppercase","text","toUpperCase","n"],"sources":["/esbuild/modules/to_uppercase.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
-"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,yBAAAG","sourceRoot":"assets"}',
-  data: {
-    children: false,
-    content: '{"version":3,"file":"to_uppercase.js.map","names":["toUppercase","text","toUpperCase","n"],"sources":["to_uppercase.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,yBAAAG","sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets"}',
+    data: {
+      content: '{"version":3,"file":"/modules/to_uppercase.js.map","names":["toUppercase","text","toUpperCase","n"],"sources":["/esbuild/modules/to_uppercase.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
-"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,yBAAAG","sourceRoot":"assets"}',
-    page: undefined,
-    sourceMap: undefined,
-    url: "/modules/to_uppercase.js.map",
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,yBAAAG","sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets"}',
+      page: [
+        "src",
+        "data",
+      ],
+      sourceMap: "undefined",
+      url: "/modules/to_uppercase.js.map",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "to_uppercase",
+    },
   },
-  dest: {
-    ext: ".map",
-    path: "/modules/to_uppercase.js",
-  },
-  src: {
-    asset: true,
-    path: "",
-    remote: undefined,
-    slug: "to_uppercase",
-  },
-}
-`;
-
-snapshot[`Source maps from Js files 6`] = `
-{
-  content: '{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
+  {
+    content: '{"version":3,"file":"/other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["/esbuild/modules/to_uppercase.ts","/esbuild/other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
 ","/// <reference lib=\\\\"dom\\\\" />\\
@@ -441,10 +408,9 @@ import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
 document.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\
   el.innerHTML = toUppercase(el.innerHTML);\\
 });\\
-"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"assets"}',
-  data: {
-    children: false,
-    content: '{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets"}',
+    data: {
+      content: '{"version":3,"file":"/other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["/esbuild/modules/to_uppercase.ts","/esbuild/other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\
   return text.toUpperCase();\\
 }\\
 ","/// <reference lib=\\\\"dom\\\\" />\\
@@ -453,146 +419,132 @@ import toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\
 document.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\
   el.innerHTML = toUppercase(el.innerHTML);\\
 });\\
-"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"assets"}',
-    page: undefined,
-    sourceMap: undefined,
-    url: "/other.js.map",
-  },
-  dest: {
-    ext: ".map",
-    path: "/other.js",
-  },
-  src: {
-    asset: true,
-    path: "",
-    remote: undefined,
-    slug: "other",
-  },
-}
-`;
-
-snapshot[`Source maps from Js files 7`] = `
-{
-  content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll("h1")?.forEach((r=>{r.innerHTML=e(r.innerHTML)}));
-' +
-    "//# sourceMappingURL=./main.js.map",
-  data: {
-    children: false,
-    content: '/// <reference lib="dom" />
-' +
-      'import toUppercase from "./modules/to_uppercase.ts";
-' +
-      "
-" +
-      'document.querySelectorAll("h1")?.forEach((h1) => {
-' +
-      "  h1.innerHTML = toUppercase(h1.innerHTML);
-" +
-      "});
-",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","sourceRoot":"file:///Users/oscarotero/www/lumeland/lume/tests/assets"}',
+      page: [
+        "src",
+        "data",
+      ],
+      sourceMap: "undefined",
+      url: "/other.js.map",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    sourceMap: undefined,
-    tags: [],
-    url: "/main.js",
-  },
-  dest: {
-    ext: ".js",
-    path: "/main",
-  },
-  src: {
-    asset: true,
-    ext: ".ts",
-    path: "/main",
-    remote: undefined,
-    slug: "main",
-  },
-}
-`;
-
-snapshot[`Source maps from Js files 8`] = `
-{
-  content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0});export{e as default};
-' +
-    "//# sourceMappingURL=./to_uppercase.js.map",
-  data: {
-    children: false,
-    content: "export default function toUppercase(text: string) {
-" +
-      "  return text.toUpperCase();
-" +
-      "}
-",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "other",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    sourceMap: undefined,
-    tags: [],
-    url: "/modules/to_uppercase.js",
   },
-  dest: {
-    ext: ".js",
-    path: "/modules/to_uppercase",
-  },
-  src: {
-    asset: true,
-    ext: ".ts",
-    path: "/modules/to_uppercase",
-    remote: undefined,
-    slug: "to_uppercase",
-  },
-}
-`;
-
-snapshot[`Source maps from Js files 9`] = `
-{
-  content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll(".other")?.forEach((r=>{r.innerHTML=e(r.innerHTML)}));
+  {
+    content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll("h1")?.forEach((r=>{r.innerHTML=e(r.innerHTML)}));
 ' +
-    "//# sourceMappingURL=./other.js.map",
-  data: {
-    children: false,
-    content: '/// <reference lib="dom" />
+      "//# sourceMappingURL=./main.js.map",
+    data: {
+      content: '/// <reference lib="dom" />
 ' +
-      'import toUppercase from "./modules/to_uppercase.ts";
+        'import toUppercase from "./modules/to_uppercase.ts";
 ' +
-      "
+        "
 " +
-      'document.querySelectorAll(".other")?.forEach((el) => {
+        'document.querySelectorAll("h1")?.forEach((h1) => {
 ' +
-      "  el.innerHTML = toUppercase(el.innerHTML);
+        "  h1.innerHTML = toUppercase(h1.innerHTML);
 " +
-      "});
+        "});
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      sourceMap: "undefined",
+      tags: "Array(0)",
+      url: "/main.js",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    sourceMap: undefined,
-    tags: [],
-    url: "/other.js",
+    src: {
+      asset: true,
+      ext: ".ts",
+      path: "/main",
+      remote: undefined,
+      slug: "main",
+    },
   },
-  dest: {
-    ext: ".js",
-    path: "/other",
+  {
+    content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0});export{e as default};
+' +
+      "//# sourceMappingURL=./to_uppercase.js.map",
+    data: {
+      content: "export default function toUppercase(text: string) {
+" +
+        "  return text.toUpperCase();
+" +
+        "}
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      sourceMap: "undefined",
+      tags: "Array(0)",
+      url: "/modules/to_uppercase.js",
+    },
+    src: {
+      asset: true,
+      ext: ".ts",
+      path: "/modules/to_uppercase",
+      remote: undefined,
+      slug: "to_uppercase",
+    },
   },
-  src: {
-    asset: true,
-    ext: ".ts",
-    path: "/other",
-    remote: undefined,
-    slug: "other",
+  {
+    content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll(".other")?.forEach((r=>{r.innerHTML=e(r.innerHTML)}));
+' +
+      "//# sourceMappingURL=./other.js.map",
+    data: {
+      content: '/// <reference lib="dom" />
+' +
+        'import toUppercase from "./modules/to_uppercase.ts";
+' +
+        "
+" +
+        'document.querySelectorAll(".other")?.forEach((el) => {
+' +
+        "  el.innerHTML = toUppercase(el.innerHTML);
+" +
+        "});
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      sourceMap: "undefined",
+      tags: "Array(0)",
+      url: "/other.js",
+    },
+    src: {
+      asset: true,
+      ext: ".ts",
+      path: "/other",
+      remote: undefined,
+      slug: "other",
+    },
   },
-}
+]
 `;

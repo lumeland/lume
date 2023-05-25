@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`slugify_urls plugin 1`] = `6`;
-
-snapshot[`slugify_urls plugin 2`] = `
+snapshot[`slugify_urls plugin 1`] = `
 {
   formats: [
     {
@@ -70,198 +68,183 @@ snapshot[`slugify_urls plugin 2`] = `
 }
 `;
 
-snapshot[`slugify_urls plugin 3`] = `[]`;
+snapshot[`slugify_urls plugin 2`] = `[]`;
 
-snapshot[`slugify_urls plugin 4`] = `
-{
-  content: "<!DOCTYPE html>
+snapshot[`slugify_urls plugin 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
 <p>Page 2</p>
 ",
-  data: {
-    children: true,
-    content: "Page 2
+    data: {
+      children: "<p>Page 2</p>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      content: "Page 2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/chourizos-ao-vino/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/chourizos-ao-vino/",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/Chourizos ao viño",
+      remote: undefined,
+      slug: "Chourizos ao viño",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/chourizos-ao-vino/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/Chourizos ao viño",
-    remote: undefined,
-    slug: "Chourizos ao viño",
-  },
-}
-`;
-
-snapshot[`slugify_urls plugin 5`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 <p>Page 1</p>
 ",
-  data: {
-    children: true,
-    content: "Page 1
+    data: {
+      children: "<p>Page 1</p>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      content: "Page 1
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page-1/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/page-1/",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/Page 1",
+      remote: undefined,
+      slug: "Page 1",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/page-1/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/Page 1",
-    remote: undefined,
-    slug: "Page 1",
-  },
-}
-`;
-
-snapshot[`slugify_urls plugin 6`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 Filloas con nocilla",
-  data: {
-    children: true,
-    content: "Filloas con nocilla",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+    data: {
+      children: "Filloas con nocilla",
+      content: "Filloas con nocilla",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/filloas-con-nocilla/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/filloas-con-nocilla/",
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/generator[0]",
+      remote: undefined,
+      slug: "generator",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/filloas-con-nocilla/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.js",
-    path: "/generator[0]",
-    remote: undefined,
-    slug: "generator",
-  },
-}
-`;
-
-snapshot[`slugify_urls plugin 7`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 Foo",
-  data: {
-    children: true,
-    content: "Foo",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+    data: {
+      children: "Foo",
+      content: "Foo",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/803nfon-sfodij/-/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/803nfon-sfodij/-/",
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/generator[1]",
+      remote: undefined,
+      slug: "generator",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/803nfon-sfodij/-/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.js",
-    path: "/generator[1]",
-    remote: undefined,
-    slug: "generator",
-  },
-}
-`;
-
-snapshot[`slugify_urls plugin 8`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 <p>Page 3</p>
 ",
-  data: {
-    children: true,
-    content: "Page 3
+    data: {
+      children: "<p>Page 3</p>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      content: "Page 3
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/paxina-numero/tres/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/paxina-numero/tres/",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/page-3",
+      remote: undefined,
+      slug: "page-3",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/paxina-numero/tres/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/page-3",
-    remote: undefined,
-    slug: "page-3",
-  },
-}
-`;
-
-snapshot[`slugify_urls plugin 9`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 <p>Page 4</p>
 ",
-  data: {
-    children: true,
-    content: "Page 4
+    data: {
+      children: "<p>Page 4</p>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      content: "Page 4
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/paxina-4.html",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    url: "/paxina-4.html",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/page-4",
+      remote: undefined,
+      slug: "page-4",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/paxina-4",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/page-4",
-    remote: undefined,
-    slug: "page-4",
-  },
-}
+]
 `;

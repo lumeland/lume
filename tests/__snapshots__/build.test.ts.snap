@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`build a simple site 1`] = `2`;
-
-snapshot[`build a simple site 2`] = `
+snapshot[`build a simple site 1`] = `
 {
   formats: [
     {
@@ -70,72 +68,71 @@ snapshot[`build a simple site 2`] = `
 }
 `;
 
-snapshot[`build a simple site 3`] = `[]`;
+snapshot[`build a simple site 2`] = `[]`;
 
-snapshot[`build a simple site 4`] = `
-{
-  content: "<!DOCTYPE html>
+snapshot[`build a simple site 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
 <h1>Welcome</h1>
 ",
-  data: {
-    children: true,
-    content: "# Welcome
+    data: {
+      children: "<h1>Welcome</h1>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      content: "# Welcome
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Second page",
+      url: "/page2.html",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Second page",
-    url: "/page2.html",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/foo",
+      remote: undefined,
+      slug: "foo",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/page2",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/foo",
-    remote: undefined,
-    slug: "foo",
-  },
-}
-`;
-
-snapshot[`build a simple site 5`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 <h1>Welcome</h1>
 ",
-  data: {
-    children: true,
-    content: "# Welcome
+    data: {
+      children: "<h1>Welcome</h1>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      tags: "stringArray",
+      content: "# Welcome
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "First page",
+      url: "/page1/",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "First page",
-    url: "/page1/",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/page1",
+      remote: undefined,
+      slug: "page1",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/page1/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/page1",
-    remote: undefined,
-    slug: "page1",
-  },
-}
+]
 `;

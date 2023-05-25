@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`Load the pages of a site 1`] = `9`;
-
-snapshot[`Load the pages of a site 2`] = `
+snapshot[`Load the pages of a site 1`] = `
 {
   formats: [
     {
@@ -82,7 +80,7 @@ snapshot[`Load the pages of a site 2`] = `
 }
 `;
 
-snapshot[`Load the pages of a site 3`] = `
+snapshot[`Load the pages of a site 2`] = `
 [
   {
     entry: "/static.yml",
@@ -92,658 +90,382 @@ snapshot[`Load the pages of a site 3`] = `
 ]
 `;
 
-snapshot[`Load the pages of a site 4`] = `
-{
-  content: "Uint8Array(1503)",
-  data: {
-    children: false,
+snapshot[`Load the pages of a site 3`] = `
+[
+  {
     content: "Uint8Array(1503)",
-    date: 1970-01-01T00:00:00.000Z,
-    imagick: [
-      {
-        resize: [
-          400,
-          300,
-        ],
-        suffix: "-small",
-      },
-    ],
-    mergedKeys: {
-      imagick: "array",
-      metas: "object",
-      tags: "stringArray",
+    data: {
+      content: "Uint8Array(1503)",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(1)",
+      url: "/favicon.png",
     },
-    metas: {
-      description: "Default description",
-      title: "Default title",
+    src: {
+      asset: true,
+      ext: ".png",
+      path: "/favicon",
+      remote: undefined,
+      slug: "favicon",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    site: "Default site name",
-    tags: [
-      "pages",
-    ],
-    url: "/favicon.png",
   },
-  dest: {
-    ext: ".png",
-    path: "/favicon",
-  },
-  src: {
-    asset: true,
-    ext: ".png",
-    path: "/favicon",
-    remote: undefined,
-    slug: "favicon",
-  },
-}
-`;
-
-snapshot[`Load the pages of a site 5`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 Content of Page 5",
-  data: {
-    children: true,
-    content: "Content of Page 5",
-    date: 1970-01-01T00:00:00.000Z,
-    imagick: [
-      {
-        resize: [
-          400,
-          300,
-        ],
-        suffix: "-small",
-      },
-    ],
-    mergedKeys: {
-      imagick: "array",
-      metas: "object",
-      tags: "stringArray",
+    data: {
+      children: "Content of Page 5",
+      content: "Content of Page 5",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(1)",
+      title: "Page 5",
+      url: "/page5/",
     },
-    metas: {
-      description: "Default description",
-      title: "Default title",
+    src: {
+      asset: undefined,
+      ext: ".yaml",
+      path: "/page5",
+      remote: undefined,
+      slug: "page5",
     },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    site: "Default site name",
-    tags: [
-      "pages",
-    ],
-    title: "Page 5",
-    url: "/page5/",
   },
-  dest: {
-    ext: ".html",
-    path: "/page5/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".yaml",
-    path: "/page5",
-    remote: undefined,
-    slug: "page5",
-  },
-}
-`;
-
-snapshot[`Load the pages of a site 6`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 Content of Page 2",
-  data: {
-    children: true,
-    colors: [
-      "#ff0000",
-      "#0000ff",
-      "#00ff00",
-    ],
-    content: "Content of Page 2",
-    date: 1970-01-01T00:00:00.000Z,
-    documents: [
-      {
-        title: "Document 1",
-      },
-      {
-        title: "Document 2",
-      },
-      {
-        title: "Document 3",
-      },
-    ],
-    drinks: {
-      alcoholic: [
-        "gin-tonic",
-        "gin-soda",
+    data: {
+      children: "Content of Page 2",
+      colors: "Array(3)",
+      content: "Content of Page 2",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
       ],
-      others: [
-        "coffee",
-        "tea",
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
       ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(2)",
+      title: "Page 2",
+      url: "/overrided-page2/",
     },
-    imagick: [
-      {
-        resize: [
-          400,
-          300,
-        ],
-        suffix: "-small",
-      },
-    ],
-    mergedKeys: {
-      imagick: "array",
-      metas: "object",
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".tmpl.json",
+      path: "/pages/2020-06-21_page2",
+      remote: undefined,
+      slug: "page2",
     },
-    metas: {
-      description: "Default description",
-      title: "Default title",
-    },
-    names: [
-      "Oscar",
-      "Laura",
-    ],
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    site: "Folder overrided site name",
-    tags: [
-      "sub-pages",
-      "pages",
-    ],
-    title: "Page 2",
-    url: "/overrided-page2/",
   },
-  dest: {
-    ext: ".html",
-    path: "/overrided-page2/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.json",
-    path: "/pages/2020-06-21_page2",
-    remote: undefined,
-    slug: "page2",
-  },
-}
-`;
-
-snapshot[`Load the pages of a site 7`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 " +
-    "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
-  data: {
-    children: true,
-    colors: [
-      "#ff0000",
-      "#0000ff",
-      "#00ff00",
-    ],
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    documents: [
-      {
-        title: "Document 1",
-      },
-      {
-        title: "Document 2",
-      },
-      {
-        title: "Document 3",
-      },
-    ],
-    drinks: {
-      alcoholic: [
-        "gin-tonic",
-        "gin-soda",
+      "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
+    data: {
+      children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
+      colors: "Array(3)",
+      content: "default",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
       ],
-      others: [
-        "coffee",
-        "tea",
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
       ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Overrided site name",
+      tags: "Array(2)",
+      title: "Page 4",
+      url: "/pages/page4/",
     },
-    imagick: [
-      {
-        resize: [
-          400,
-          300,
-        ],
-        suffix: "-small",
-      },
-    ],
-    mergedKeys: {
-      imagick: "array",
-      metas: "object",
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".tmpl.ts",
+      path: "/pages/2021-01-02-18-32_page4",
+      remote: undefined,
+      slug: "page4",
     },
-    metas: {
-      description: "Default description",
-      title: "Default title",
-    },
-    names: [
-      "Oscar",
-      "Laura",
-    ],
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    site: "Overrided site name",
-    tags: [
-      "sub-pages",
-      "pages",
-    ],
-    title: "Page 4",
-    url: "/pages/page4/",
   },
-  dest: {
-    ext: ".html",
-    path: "/pages/page4/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.ts",
-    path: "/pages/2021-01-02-18-32_page4",
-    remote: undefined,
-    slug: "page4",
-  },
-}
-`;
-
-snapshot[`Load the pages of a site 8`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 <p>Content of Page 6</p>
 ",
-  data: {
-    children: true,
-    colors: [
-      "#ff0000",
-      "#0000ff",
-      "#00ff00",
-    ],
-    content: "Content of Page 6
+    data: {
+      children: "<p>Content of Page 6</p>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    documents: [
-      {
-        title: "Document 1",
-      },
-      {
-        title: "Document 2",
-      },
-      {
-        title: "Document 3",
-      },
-    ],
-    drinks: {
-      alcoholic: [
-        "gin-tonic",
-        "gin-soda",
+      colors: "Array(3)",
+      content: "Content of Page 6
+",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
       ],
-      others: [
-        "coffee",
-        "tea",
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
       ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(3)",
+      title: "Page 6",
+      url: "/pages/page6/",
     },
-    imagick: [
-      {
-        resize: [
-          400,
-          300,
-        ],
-        suffix: "-small",
-      },
-    ],
-    mergedKeys: {
-      imagick: "array",
-      metas: "object",
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/pages/2021-12-29-page6",
+      remote: undefined,
+      slug: "page6",
     },
-    metas: {
-      description: "Default description",
-      title: "Default title",
-    },
-    names: [
-      "Oscar",
-      "Laura",
-    ],
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    site: "Folder overrided site name",
-    tags: [
-      "sub-pages",
-      "pages",
-      "page6",
-    ],
-    title: "Page 6",
-    url: "/pages/page6/",
   },
-  dest: {
-    ext: ".html",
-    path: "/pages/page6/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/pages/2021-12-29-page6",
-    remote: undefined,
-    slug: "page6",
-  },
-}
-`;
-
-snapshot[`Load the pages of a site 9`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 <p>Content of Page 1</p>
 ",
-  data: {
-    children: true,
-    colors: [
-      "#ff0000",
-      "#0000ff",
-      "#00ff00",
-    ],
-    content: "Content of Page 1
+    data: {
+      children: "<p>Content of Page 1</p>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    documents: [
-      {
-        title: "Document 1",
-      },
-      {
-        title: "Document 2",
-      },
-      {
-        title: "Document 3",
-      },
-    ],
-    draft: true,
-    drinks: {
-      alcoholic: [
-        "gin-tonic",
-        "gin-soda",
+      colors: "Array(3)",
+      content: "Content of Page 1
+",
+      date: [],
+      documents: "Array(3)",
+      draft: true,
+      drinks: [
+        "alcoholic",
+        "others",
       ],
-      others: [
-        "coffee",
-        "tea",
+      imagick: "Array(2)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
       ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(3)",
+      title: "Page 1",
+      url: "/pages/page1/",
     },
-    imagick: [
-      {
-        resize: [
-          400,
-          300,
-        ],
-        suffix: "-small",
-      },
-      {
-        resize: [
-          900,
-          900,
-        ],
-        suffix: "-big",
-      },
-    ],
-    mergedKeys: {
-      imagick: "array",
-      metas: "object",
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/pages/page1",
+      remote: undefined,
+      slug: "page1",
     },
-    metas: {
-      description: "Default description",
-      title: "Custom title",
-    },
-    names: [
-      "Oscar",
-      "Laura",
-    ],
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    site: "Folder overrided site name",
-    tags: [
-      "sub-pages",
-      "pages",
-      "page1",
-    ],
-    title: "Page 1",
-    url: "/pages/page1/",
   },
-  dest: {
-    ext: ".html",
-    path: "/pages/page1/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/pages/page1",
-    remote: undefined,
-    slug: "page1",
-  },
-}
-`;
-
-snapshot[`Load the pages of a site 10`] = `
-{
-  content: "Content of Page 3",
-  data: {
-    children: true,
-    colors: [
-      "#ff0000",
-      "#0000ff",
-      "#00ff00",
-    ],
+  {
     content: "Content of Page 3",
-    date: 1970-01-01T00:00:00.000Z,
-    documents: [
-      {
-        title: "Document 1",
-      },
-      {
-        title: "Document 2",
-      },
-      {
-        title: "Document 3",
-      },
-    ],
-    drinks: {
-      alcoholic: [
-        "gin-tonic",
-        "gin-soda",
+    data: {
+      children: "Content of Page 3",
+      colors: "Array(3)",
+      content: "Content of Page 3",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
       ],
-      others: [
-        "coffee",
-        "tea",
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
       ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(2)",
+      title: "Page 3",
+      url: "/page_3",
     },
-    imagick: [
-      {
-        resize: [
-          400,
-          300,
-        ],
-        suffix: "-small",
-      },
-    ],
-    mergedKeys: {
-      imagick: "array",
-      metas: "object",
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/pages/page3",
+      remote: undefined,
+      slug: "page3",
     },
-    metas: {
-      description: "Default description",
-      title: "Default title",
-    },
-    names: [
-      "Oscar",
-      "Laura",
-    ],
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    site: "Folder overrided site name",
-    tags: [
-      "sub-pages",
-      "pages",
-    ],
-    title: "Page 3",
-    url: "/page_3",
   },
-  dest: {
-    ext: "",
-    path: "/page_3",
-  },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.js",
-    path: "/pages/page3",
-    remote: undefined,
-    slug: "page3",
-  },
-}
-`;
-
-snapshot[`Load the pages of a site 11`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 Content of Page 7",
-  data: {
-    children: true,
-    colors: [
-      "#ff0000",
-      "#0000ff",
-      "#00ff00",
-    ],
-    content: "Content of Page 7",
-    date: 1970-01-01T00:00:00.000Z,
-    documents: [
-      {
-        title: "Document 1",
-      },
-      {
-        title: "Document 2",
-      },
-      {
-        title: "Document 3",
-      },
-    ],
-    drinks: {
-      alcoholic: [
-        "gin-tonic",
-        "gin-soda",
+    data: {
+      children: "Content of Page 7",
+      colors: "Array(3)",
+      content: "Content of Page 7",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
       ],
-      others: [
-        "coffee",
-        "tea",
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
       ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(4)",
+      title: "Page 7",
+      url: "/pages/subpage/page7/",
     },
-    imagick: [
-      {
-        resize: [
-          400,
-          300,
-        ],
-        suffix: "-small",
-      },
-    ],
-    mergedKeys: {
-      imagick: "array",
-      metas: "object",
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/pages/subpage/page7",
+      remote: undefined,
+      slug: "page7",
     },
-    metas: {
-      description: "Default description",
-      title: "Default title",
-    },
-    names: [
-      "Oscar",
-      "Laura",
-    ],
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    site: "Folder overrided site name",
-    tags: [
-      "sub-pages",
-      "pages",
-      "sub-sub-pages",
-      "page7",
-    ],
-    title: "Page 7",
-    url: "/pages/subpage/page7/",
   },
-  dest: {
-    ext: ".html",
-    path: "/pages/subpage/page7/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".tmpl.js",
-    path: "/pages/subpage/page7",
-    remote: undefined,
-    slug: "page7",
-  },
-}
-`;
-
-snapshot[`Load the pages of a site 12`] = `
-{
-  content: "body {
-  font-family: sans-serif;
-  color: black;
-}
-",
-  data: {
-    children: false,
+  {
     content: "body {
   font-family: sans-serif;
   color: black;
 }
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    imagick: [
-      {
-        resize: [
-          400,
-          300,
-        ],
-        suffix: "-small",
-      },
-    ],
-    mergedKeys: {
-      imagick: "array",
-      metas: "object",
-      tags: "stringArray",
-    },
-    metas: {
-      description: "Default description",
-      title: "Default title",
-    },
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    site: "Default site name",
-    tags: [
-      "pages",
-    ],
-    url: "/styles.css",
-  },
-  dest: {
-    ext: ".css",
-    path: "/styles",
-  },
-  src: {
-    asset: true,
-    ext: ".css",
-    path: "/styles",
-    remote: undefined,
-    slug: "styles",
-  },
+    data: {
+      content: "body {
+  font-family: sans-serif;
+  color: black;
 }
+",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(1)",
+      url: "/styles.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/styles",
+      remote: undefined,
+      slug: "styles",
+    },
+  },
+]
 `;

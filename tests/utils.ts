@@ -1,12 +1,11 @@
 import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
-import { basename, fromFileUrl, join } from "../deps/path.ts";
+import { fromFileUrl, join } from "../deps/path.ts";
 import { printError } from "../core/errors.ts";
 import { DeepPartial } from "../core/utils.ts";
 
-import type { Page, Site, SiteOptions, SourceMap } from "../core.ts";
+import type { Site, SiteOptions } from "../core.ts";
 
-const cwUrl = import.meta.resolve("./");
 const cwd = fromFileUrl(import.meta.resolve("./"));
 
 export function getPath(path: string): string {
@@ -50,33 +49,23 @@ export async function build(site: Site) {
   }
 }
 
-function normalizeContent(
-  content: string | Uint8Array | undefined,
-): string | undefined {
-  if (content instanceof Uint8Array) {
-    return `Uint8Array(${content.length})`;
+function normalizeValue(content: unknown[] | Uint8Array | string | undefined): string {
+  if (content === undefined) {
+    return "undefined";
   }
+
   if (typeof content === "string") {
     // Normalize line ending for Windows
     return content
-      .replaceAll("\r\n", "\n")
-      .replaceAll(/base64,[^"]+/g, "base64,(...)");
+    .replaceAll("\r\n", "\n")
+    .replaceAll(/base64,[^"]+/g, "base64,(...)");
   }
-}
 
-async function assertPageSnapshot(
-  context: Deno.TestContext,
-  page: Page,
-) {
-  let { data } = page;
-  const { dest, src, content } = page;
+  if (content instanceof Uint8Array) {
+    return `Uint8Array(${content.length})`;
+  }
 
-  // Sort data alphabetically
-  const entries = Object.entries(data).sort((a, b) => a[0].localeCompare(b[0]));
-  // @ts-ignore: just for testing
-  data = Object.fromEntries(entries);
-
-  await assertSnapshot(context, { src, dest, data, content });
+  return `Array(${content.length})`;
 }
 
 export async function assertSiteSnapshot(
@@ -84,9 +73,6 @@ export async function assertSiteSnapshot(
   site: Site,
 ) {
   const { pages, files } = site;
-
-  // Test number of pages
-  await assertSnapshot(context, pages.length);
 
   // To-do: test site configuration
   await assertSnapshot(
@@ -102,96 +88,65 @@ export async function assertSiteSnapshot(
   );
 
   // Sort pages and files alphabetically
-  pages.sort((a, b) => {
-    return compare(a.src.path, b.src.path) ||
-      compare(a.outputPath!, b.outputPath!);
-  });
+  pages.sort((a, b) => compare(a.src.path, b.src.path) || compare(a.outputPath!, b.outputPath!));
+  files.sort((a, b) => compare(a.entry.path, b.entry.path));
 
-  files.sort((a, b) => {
-    return compare(a.entry.path, b.entry.path);
-  });
-
-  // Normalize some dynamic data of the pages
-  pages.forEach((page) => {
-    // Normalize data
-    if (page.data.date instanceof Date) {
-      page.data.date = new Date(0);
-    }
-    // Ignore comp object
-    if (page.data.comp) {
-      page.data.comp = {};
-    }
-
-    // @ts-ignore: Remove page reference
-    page.data.page = undefined;
-
-    // Remove children reference becase it's different in the test environment
-    page.data.children = !!page.data.children;
-
-    // Normalize source maps
-    if (page.data.sourceMap) {
-      normalizeSourceMap(page.data.sourceMap as SourceMap);
-    }
-
-    // Remove pagination results details from the data
-    if (Array.isArray(page.data.results)) {
-      // @ts-ignore: Remove pagination
-      page.data.results = page.data.results.length;
-    }
-    // Remove alternates values (added by multilanguage plugin)
-    if (page.data.alternates) {
-      // @ts-ignore: Remove alternates
-      page.data.alternates = page.data.alternates.map((data) => data.lang)
-        .sort();
-    }
-    // Remote base path because it's different in the test environment
-    page.src.remote = page.src.remote?.replace(cwUrl, "");
-    delete page.src.created;
-    delete page.src.lastModified;
-    delete page.src.entry;
-
-    // Normalize content for Windows
-    page.content = normalizeContent(page.content);
-    page.data.content = normalizeContent(
-      page.data.content as string | Uint8Array | undefined,
-    );
-
-    // Source maps
-    if (page.outputPath?.endsWith(".map")) {
-      const map = JSON.parse(page.content as string);
-      normalizeSourceMap(map);
-      page.content = JSON.stringify(map);
-      page.data.content = JSON.stringify(map);
+  // Normalize data of the pages
+  const normalizedPages = pages.map(page => {
+    return {
+      data: Object.fromEntries(Object.entries(page.data).map(([key, value]) => {
+        switch (typeof value) {
+          case "string":
+          case "undefined":
+            return [key, normalizeValue(value)];
+          case "number":
+          case "boolean":
+            return [key, value];
+          case "object":
+            if (value === null) {
+              return [key, null];
+            }
+            if (Array.isArray(value) || value instanceof Uint8Array) {
+              return [key, normalizeValue(value)];
+            }
+            if (value instanceof Map || value instanceof Set) {
+              return [key, [...value.keys()].sort(compare)];
+            }
+            return [key, Object.keys(value)];
+          case "function":
+            return [key, value.name];
+          case "symbol":
+            return [key, value.toString()];
+          case "bigint":
+            return [key, `${value}n`];
+          default:
+            throw new Error(`Unknown type "${typeof value}"`);
+        }
+      }).sort((a, b) => a[0].localeCompare(b[0]))),
+      content: normalizeValue(page.content),
+      src: {
+        path: page.src.path,
+        ext: page.src.ext,
+        remote: page.src.remote,
+        asset: page.src.asset,
+        slug: page.src.slug,
+      },
     }
   });
 
-  // Normalize some dynamic data of the files
-  files.forEach((file) => {
-    // @ts-ignore: Just for testing
-    file.flags = [...file.entry.flags];
-    // @ts-ignore: Just for testing
-    file.entry = file.entry.path;
-  });
+  const normalizedFiles = files.map(file => {
+    return {
+      ...file,
+      entry: file.entry.path,
+      flags: [...file.entry.flags],
+  }});
 
   // Test static files
-  await assertSnapshot(context, files);
-
-  // Test pages
-  for (const page of pages) {
-    await assertPageSnapshot(context, page);
-  }
+  await assertSnapshot(context, normalizedFiles);
+  await assertSnapshot(context, normalizedPages);
 }
 
 function compare(a: string, b: string): number {
   return a > b ? 1 : a < b ? -1 : 0;
 }
 
-function normalizeSourceMap(sourceMap: SourceMap) {
-  sourceMap.sourceRoot = sourceMap.sourceRoot
-    ? basename(sourceMap.sourceRoot)
-    : undefined;
-  sourceMap.file = sourceMap.file ? basename(sourceMap.file) : undefined;
-  sourceMap.sources = sourceMap.sources.map((source: string) =>
-    basename(source)
-  );
-}

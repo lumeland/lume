@@ -1,8 +1,6 @@
 export const snapshot = {};
 
-snapshot[`nav plugin 1`] = `6`;
-
-snapshot[`nav plugin 2`] = `
+snapshot[`nav plugin 1`] = `
 {
   formats: [
     {
@@ -70,1760 +68,1741 @@ snapshot[`nav plugin 2`] = `
 }
 `;
 
-snapshot[`nav plugin 3`] = `[]`;
+snapshot[`nav plugin 2`] = `[]`;
 
-snapshot[`nav plugin 4`] = `
-{
-  content: "<!DOCTYPE html>
+snapshot[`nav plugin 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
 " +
-    "<html>
+      "<html>
 " +
-    "  <head>
+      "  <head>
 " +
-    "    <title>Docs</title>
+      "    <title>Docs</title>
 " +
-    "  </head>
+      "  </head>
 " +
-    "
+      "
 " +
-    "  <body>
+      "  <body>
 " +
-    "    <nav>
+      "    <nav>
 " +
-    '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+      '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
 ' +
-    "        
+      "        
 " +
-    '        <li><a href="/">Home</a></li>
+      '        <li><a href="/">Home</a></li>
 ' +
-    "        
+      "        
 " +
-    '        <li><a href="/docs/">Docs</a></li>
+      '        <li><a href="/docs/">Docs</a></li>
 ' +
-    "        
+      "        
 " +
-    "      </ul>
+      "      </ul>
 " +
-    "    </nav>
+      "    </nav>
 " +
-    "
+      "
 " +
-    "    <h1>Docs</h1>
+      "    <h1>Docs</h1>
 " +
-    "
+      "
 " +
-    "    <nav>
+      "    <nav>
 " +
-    "      <ul>
+      "      <ul>
 " +
-    "      
+      "      
 " +
-    "        <li>
+      "        <li>
 " +
-    "          
+      "          
 " +
-    '<a href="/docs/">Docs</a>
+      '<a href="/docs/">Docs</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "<ul>
+      "<ul>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "  <li>
 " +
-    "    
+      "    
 " +
-    '<a href="/docs/about-docs/">About docs</a>
+      '<a href="/docs/about-docs/">About docs</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "  <li>
 " +
-    "    
+      "    
 " +
-    '<a href="/docs/pages/">About pages</a>
+      '<a href="/docs/pages/">About pages</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "<ul>
+      "<ul>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "  <li>
 " +
-    "    
+      "    
 " +
-    '<a href="/docs/pages/first/">Pages first</a>
+      '<a href="/docs/pages/first/">Pages first</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "  <li>
 " +
-    "    
+      "    
 " +
-    '<a href="/docs/pages/second/">Pages second</a>
+      '<a href="/docs/pages/second/">Pages second</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "</ul>
+      "</ul>
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "</ul>
+      "</ul>
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "        </li>
+      "        </li>
 " +
-    "      
+      "      
 " +
-    "      </ul>
+      "      </ul>
 " +
-    "    </nav>
+      "    </nav>
 " +
-    "
+      "
 " +
-    "    <nav>
+      "    <nav>
 " +
-    "      <ul>
+      "      <ul>
 " +
-    "      
+      "      
 " +
-    "        <li>
+      "        <li>
 " +
-    "          
+      "          
 " +
-    "<strong>docs</strong>
+      "<strong>docs</strong>
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "<ul>
+      "<ul>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "  <li>
 " +
-    "    
+      "    
 " +
-    '<a href="/docs/about-docs/">About docs</a>
+      '<a href="/docs/about-docs/">About docs</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "  <li>
 " +
-    "    
+      "    
 " +
-    "<strong>pages</strong>
+      "<strong>pages</strong>
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "<ul>
+      "<ul>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "  <li>
 " +
-    "    
+      "    
 " +
-    '<a href="/docs/pages/second/">Pages second</a>
+      '<a href="/docs/pages/second/">Pages second</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "</ul>
+      "</ul>
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "</ul>
+      "</ul>
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "        </li>
+      "        </li>
 " +
-    "      
+      "      
 " +
-    "      </ul>
+      "      </ul>
 " +
-    "    </nav>
+      "    </nav>
 " +
-    "  </body>
+      "  </body>
 " +
-    "</html>",
-  data: {
-    children: false,
-    content: "",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "main.njk",
-    mergedKeys: {
-      tags: "stringArray",
+      "</html>",
+    data: {
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Docs",
+      url: "/docs/",
     },
-    nav: Nav {},
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Docs",
-    url: "/docs/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/docs/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/docs",
-    remote: undefined,
-    slug: "docs",
-  },
-}
-`;
-
-snapshot[`nav plugin 5`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    "<html>
-" +
-    "  <head>
-" +
-    "    <title>About docs</title>
-" +
-    "  </head>
-" +
-    "
-" +
-    "  <body>
-" +
-    "    <nav>
-" +
-    '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-' +
-    "        
-" +
-    '        <li><a href="/">Home</a></li>
-' +
-    "        
-" +
-    '        <li><a href="/docs/">Docs</a></li>
-' +
-    "        
-" +
-    '        <li><a href="/docs/about-docs/">About docs</a></li>
-' +
-    "        
-" +
-    "      </ul>
-" +
-    "    </nav>
-" +
-    "
-" +
-    "    <h1>About docs</h1>
-" +
-    "
-" +
-    "    <nav>
-" +
-    "      <ul>
-" +
-    "      
-" +
-    "        <li>
-" +
-    "          
-" +
-    '<a href="/docs/">Docs</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/about-docs/">About docs</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/pages/">About pages</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/pages/first/">Pages first</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/pages/second/">Pages second</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "</ul>
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "</ul>
-" +
-    "
-" +
-    "
-" +
-    "        </li>
-" +
-    "      
-" +
-    "      </ul>
-" +
-    "    </nav>
-" +
-    "
-" +
-    "    <nav>
-" +
-    "      <ul>
-" +
-    "      
-" +
-    "        <li>
-" +
-    "          
-" +
-    "<strong>docs</strong>
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/about-docs/">About docs</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    "<strong>pages</strong>
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/pages/second/">Pages second</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "</ul>
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "</ul>
-" +
-    "
-" +
-    "
-" +
-    "        </li>
-" +
-    "      
-" +
-    "      </ul>
-" +
-    "    </nav>
-" +
-    "  </body>
-" +
-    "</html>",
-  data: {
-    children: false,
-    content: "",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "main.njk",
-    menu: true,
-    mergedKeys: {
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/docs",
+      remote: undefined,
+      slug: "docs",
     },
-    nav: Nav {},
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "About docs",
-    url: "/docs/about-docs/",
   },
-  dest: {
-    ext: ".html",
-    path: "/docs/about-docs/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/docs/about-docs",
-    remote: undefined,
-    slug: "about-docs",
-  },
-}
-`;
-
-snapshot[`nav plugin 6`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 " +
-    "<html>
+      "<html>
 " +
-    "  <head>
+      "  <head>
 " +
-    "    <title>About pages</title>
+      "    <title>About docs</title>
 " +
-    "  </head>
+      "  </head>
 " +
-    "
+      "
 " +
-    "  <body>
+      "  <body>
 " +
-    "    <nav>
+      "    <nav>
 " +
-    '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+      '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
 ' +
-    "        
+      "        
 " +
-    '        <li><a href="/">Home</a></li>
+      '        <li><a href="/">Home</a></li>
 ' +
-    "        
+      "        
 " +
-    '        <li><a href="/docs/">Docs</a></li>
+      '        <li><a href="/docs/">Docs</a></li>
 ' +
-    "        
+      "        
 " +
-    '        <li><a href="/docs/pages/">About pages</a></li>
+      '        <li><a href="/docs/about-docs/">About docs</a></li>
 ' +
-    "        
+      "        
 " +
-    "      </ul>
+      "      </ul>
 " +
-    "    </nav>
+      "    </nav>
 " +
-    "
+      "
 " +
-    "    <h1>About pages</h1>
+      "    <h1>About docs</h1>
 " +
-    "
+      "
 " +
-    "    <nav>
+      "    <nav>
 " +
-    "      <ul>
+      "      <ul>
 " +
-    "      
+      "      
 " +
-    "        <li>
+      "        <li>
 " +
-    "          
+      "          
 " +
-    '<a href="/docs/">Docs</a>
+      '<a href="/docs/">Docs</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "<ul>
+      "<ul>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "  <li>
 " +
-    "    
+      "    
 " +
-    '<a href="/docs/about-docs/">About docs</a>
+      '<a href="/docs/about-docs/">About docs</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "  <li>
 " +
-    "    
+      "    
 " +
-    '<a href="/docs/pages/">About pages</a>
+      '<a href="/docs/pages/">About pages</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "<ul>
+      "<ul>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "  <li>
 " +
-    "    
+      "    
 " +
-    '<a href="/docs/pages/first/">Pages first</a>
+      '<a href="/docs/pages/first/">Pages first</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "  <li>
 " +
-    "    
+      "    
 " +
-    '<a href="/docs/pages/second/">Pages second</a>
+      '<a href="/docs/pages/second/">Pages second</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "</ul>
+      "</ul>
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "</ul>
+      "</ul>
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "        </li>
+      "        </li>
 " +
-    "      
+      "      
 " +
-    "      </ul>
+      "      </ul>
 " +
-    "    </nav>
+      "    </nav>
 " +
-    "
+      "
 " +
-    "    <nav>
+      "    <nav>
 " +
-    "      <ul>
+      "      <ul>
 " +
-    "      
+      "      
 " +
-    "        <li>
+      "        <li>
 " +
-    "          
+      "          
 " +
-    "<strong>docs</strong>
+      "<strong>docs</strong>
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "<ul>
+      "<ul>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "  <li>
 " +
-    "    
+      "    
 " +
-    '<a href="/docs/about-docs/">About docs</a>
+      '<a href="/docs/about-docs/">About docs</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "  <li>
 " +
-    "    
+      "    
 " +
-    "<strong>pages</strong>
+      "<strong>pages</strong>
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "<ul>
+      "<ul>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "  <li>
 " +
-    "    
+      "    
 " +
-    '<a href="/docs/pages/second/">Pages second</a>
+      '<a href="/docs/pages/second/">Pages second</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "</ul>
+      "</ul>
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "</ul>
+      "</ul>
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "        </li>
+      "        </li>
 " +
-    "      
+      "      
 " +
-    "      </ul>
+      "      </ul>
 " +
-    "    </nav>
+      "    </nav>
 " +
-    "  </body>
+      "  </body>
 " +
-    "</html>",
-  data: {
-    children: false,
-    content: "",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "main.njk",
-    mergedKeys: {
-      tags: "stringArray",
+      "</html>",
+    data: {
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.njk",
+      menu: true,
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "About docs",
+      url: "/docs/about-docs/",
     },
-    nav: Nav {},
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "About pages",
-    url: "/docs/pages/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/docs/pages/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/docs/pages",
-    remote: undefined,
-    slug: "pages",
-  },
-}
-`;
-
-snapshot[`nav plugin 7`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    "<html>
-" +
-    "  <head>
-" +
-    "    <title>Pages first</title>
-" +
-    "  </head>
-" +
-    "
-" +
-    "  <body>
-" +
-    "    <nav>
-" +
-    '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-' +
-    "        
-" +
-    '        <li><a href="/">Home</a></li>
-' +
-    "        
-" +
-    '        <li><a href="/docs/">Docs</a></li>
-' +
-    "        
-" +
-    '        <li><a href="/docs/pages/">About pages</a></li>
-' +
-    "        
-" +
-    '        <li><a href="/docs/pages/first/">Pages first</a></li>
-' +
-    "        
-" +
-    "      </ul>
-" +
-    "    </nav>
-" +
-    "
-" +
-    "    <h1>Pages first</h1>
-" +
-    "
-" +
-    "    <nav>
-" +
-    "      <ul>
-" +
-    "      
-" +
-    "        <li>
-" +
-    "          
-" +
-    '<a href="/docs/">Docs</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/about-docs/">About docs</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/pages/">About pages</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/pages/first/">Pages first</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/pages/second/">Pages second</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "</ul>
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "</ul>
-" +
-    "
-" +
-    "
-" +
-    "        </li>
-" +
-    "      
-" +
-    "      </ul>
-" +
-    "    </nav>
-" +
-    "
-" +
-    "    <nav>
-" +
-    "      <ul>
-" +
-    "      
-" +
-    "        <li>
-" +
-    "          
-" +
-    "<strong>docs</strong>
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/about-docs/">About docs</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    "<strong>pages</strong>
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/pages/second/">Pages second</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "</ul>
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "</ul>
-" +
-    "
-" +
-    "
-" +
-    "        </li>
-" +
-    "      
-" +
-    "      </ul>
-" +
-    "    </nav>
-" +
-    "  </body>
-" +
-    "</html>",
-  data: {
-    children: false,
-    content: "",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "main.njk",
-    mergedKeys: {
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/docs/about-docs",
+      remote: undefined,
+      slug: "about-docs",
     },
-    nav: Nav {},
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Pages first",
-    url: "/docs/pages/first/",
   },
-  dest: {
-    ext: ".html",
-    path: "/docs/pages/first/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/docs/pages/first",
-    remote: undefined,
-    slug: "first",
-  },
-}
-`;
-
-snapshot[`nav plugin 8`] = `
-{
-  content: "<!DOCTYPE html>
+  {
+    content: "<!DOCTYPE html>
 " +
-    "<html>
+      "<html>
 " +
-    "  <head>
+      "  <head>
 " +
-    "    <title>Pages second</title>
+      "    <title>About pages</title>
 " +
-    "  </head>
+      "  </head>
 " +
-    "
+      "
 " +
-    "  <body>
+      "  <body>
 " +
-    "    <nav>
+      "    <nav>
 " +
-    '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+      '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
 ' +
-    "        
+      "        
 " +
-    '        <li><a href="/">Home</a></li>
+      '        <li><a href="/">Home</a></li>
 ' +
-    "        
+      "        
 " +
-    '        <li><a href="/docs/">Docs</a></li>
+      '        <li><a href="/docs/">Docs</a></li>
 ' +
-    "        
+      "        
 " +
-    '        <li><a href="/docs/pages/">About pages</a></li>
+      '        <li><a href="/docs/pages/">About pages</a></li>
 ' +
-    "        
+      "        
 " +
-    '        <li><a href="/docs/pages/second/">Pages second</a></li>
+      "      </ul>
+" +
+      "    </nav>
+" +
+      "
+" +
+      "    <h1>About pages</h1>
+" +
+      "
+" +
+      "    <nav>
+" +
+      "      <ul>
+" +
+      "      
+" +
+      "        <li>
+" +
+      "          
+" +
+      '<a href="/docs/">Docs</a>
 ' +
-    "        
+      "
 " +
-    "      </ul>
+      "
 " +
-    "    </nav>
+      "
 " +
-    "
+      "<ul>
 " +
-    "    <h1>Pages second</h1>
+      "  
 " +
-    "
+      "  <li>
 " +
-    "    <nav>
+      "    
 " +
-    "      <ul>
-" +
-    "      
-" +
-    "        <li>
-" +
-    "          
-" +
-    '<a href="/docs/">Docs</a>
+      '<a href="/docs/about-docs/">About docs</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "<ul>
+      "
 " +
-    "  
+      "  </li>
 " +
-    "  <li>
+      "  
 " +
-    "    
+      "  <li>
 " +
-    '<a href="/docs/about-docs/">About docs</a>
+      "    
+" +
+      '<a href="/docs/pages/">About pages</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "<ul>
 " +
-    "  </li>
+      "  
 " +
-    "  
+      "  <li>
 " +
-    "  <li>
+      "    
 " +
-    "    
-" +
-    '<a href="/docs/pages/">About pages</a>
+      '<a href="/docs/pages/first/">Pages first</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "<ul>
+      "
 " +
-    "  
+      "  </li>
 " +
-    "  <li>
+      "  
 " +
-    "    
+      "  <li>
 " +
-    '<a href="/docs/pages/first/">Pages first</a>
+      "    
+" +
+      '<a href="/docs/pages/second/">Pages second</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "</ul>
 " +
-    "    
+      "
 " +
-    '<a href="/docs/pages/second/">Pages second</a>
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "</ul>
+" +
+      "
+" +
+      "
+" +
+      "        </li>
+" +
+      "      
+" +
+      "      </ul>
+" +
+      "    </nav>
+" +
+      "
+" +
+      "    <nav>
+" +
+      "      <ul>
+" +
+      "      
+" +
+      "        <li>
+" +
+      "          
+" +
+      "<strong>docs</strong>
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/about-docs/">About docs</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "</ul>
+      "  <li>
 " +
-    "
+      "    
 " +
-    "
+      "<strong>pages</strong>
 " +
-    "  </li>
+      "
 " +
-    "  
+      "
 " +
-    "</ul>
+      "
 " +
-    "
+      "<ul>
 " +
-    "
+      "  
 " +
-    "        </li>
+      "  <li>
 " +
-    "      
+      "    
 " +
-    "      </ul>
-" +
-    "    </nav>
-" +
-    "
-" +
-    "    <nav>
-" +
-    "      <ul>
-" +
-    "      
-" +
-    "        <li>
-" +
-    "          
-" +
-    "<strong>docs</strong>
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/about-docs/">About docs</a>
+      '<a href="/docs/pages/second/">Pages second</a>
 ' +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "
+      "
 " +
-    "  </li>
+      "  </li>
 " +
-    "  
+      "  
 " +
-    "  <li>
+      "</ul>
 " +
-    "    
+      "
 " +
-    "<strong>pages</strong>
+      "
 " +
-    "
+      "  </li>
 " +
-    "
+      "  
 " +
-    "
+      "</ul>
 " +
-    "<ul>
+      "
 " +
-    "  
+      "
 " +
-    "  <li>
+      "        </li>
 " +
-    "    
+      "      
 " +
-    '<a href="/docs/pages/second/">Pages second</a>
-' +
-    "
+      "      </ul>
 " +
-    "
+      "    </nav>
 " +
-    "
+      "  </body>
 " +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "</ul>
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "</ul>
-" +
-    "
-" +
-    "
-" +
-    "        </li>
-" +
-    "      
-" +
-    "      </ul>
-" +
-    "    </nav>
-" +
-    "  </body>
-" +
-    "</html>",
-  data: {
-    children: false,
-    content: "",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "main.njk",
-    menu: true,
-    mergedKeys: {
-      tags: "stringArray",
+      "</html>",
+    data: {
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "About pages",
+      url: "/docs/pages/",
     },
-    nav: Nav {},
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Pages second",
-    url: "/docs/pages/second/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/docs/pages/second/index",
-  },
-  src: {
-    asset: undefined,
-    ext: ".md",
-    path: "/docs/pages/second",
-    remote: undefined,
-    slug: "second",
-  },
-}
-`;
-
-snapshot[`nav plugin 9`] = `
-{
-  content: "<!DOCTYPE html>
-" +
-    "<html>
-" +
-    "  <head>
-" +
-    "    <title>Home</title>
-" +
-    "  </head>
-" +
-    "
-" +
-    "  <body>
-" +
-    "    <nav>
-" +
-    '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-' +
-    "        
-" +
-    '        <li><a href="/">Home</a></li>
-' +
-    "        
-" +
-    "      </ul>
-" +
-    "    </nav>
-" +
-    "
-" +
-    "    <h1>Home</h1>
-" +
-    "
-" +
-    "    <nav>
-" +
-    "      <ul>
-" +
-    "      
-" +
-    "        <li>
-" +
-    "          
-" +
-    '<a href="/docs/">Docs</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/about-docs/">About docs</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/pages/">About pages</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/pages/first/">Pages first</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/pages/second/">Pages second</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "</ul>
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "</ul>
-" +
-    "
-" +
-    "
-" +
-    "        </li>
-" +
-    "      
-" +
-    "      </ul>
-" +
-    "    </nav>
-" +
-    "
-" +
-    "    <nav>
-" +
-    "      <ul>
-" +
-    "      
-" +
-    "        <li>
-" +
-    "          
-" +
-    "<strong>docs</strong>
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/about-docs/">About docs</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    "<strong>pages</strong>
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "<ul>
-" +
-    "  
-" +
-    "  <li>
-" +
-    "    
-" +
-    '<a href="/docs/pages/second/">Pages second</a>
-' +
-    "
-" +
-    "
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "</ul>
-" +
-    "
-" +
-    "
-" +
-    "  </li>
-" +
-    "  
-" +
-    "</ul>
-" +
-    "
-" +
-    "
-" +
-    "        </li>
-" +
-    "      
-" +
-    "      </ul>
-" +
-    "    </nav>
-" +
-    "  </body>
-" +
-    "</html>",
-  data: {
-    children: false,
-    content: "",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "main.njk",
-    mergedKeys: {
-      tags: "stringArray",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/docs/pages",
+      remote: undefined,
+      slug: "pages",
     },
-    nav: Nav {},
-    page: undefined,
-    paginate: [Function: paginate],
-    search: Search {},
-    tags: [],
-    title: "Home",
-    url: "/",
   },
-  dest: {
-    ext: ".html",
-    path: "/index",
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html>
+" +
+      "  <head>
+" +
+      "    <title>Pages first</title>
+" +
+      "  </head>
+" +
+      "
+" +
+      "  <body>
+" +
+      "    <nav>
+" +
+      '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+' +
+      "        
+" +
+      '        <li><a href="/">Home</a></li>
+' +
+      "        
+" +
+      '        <li><a href="/docs/">Docs</a></li>
+' +
+      "        
+" +
+      '        <li><a href="/docs/pages/">About pages</a></li>
+' +
+      "        
+" +
+      '        <li><a href="/docs/pages/first/">Pages first</a></li>
+' +
+      "        
+" +
+      "      </ul>
+" +
+      "    </nav>
+" +
+      "
+" +
+      "    <h1>Pages first</h1>
+" +
+      "
+" +
+      "    <nav>
+" +
+      "      <ul>
+" +
+      "      
+" +
+      "        <li>
+" +
+      "          
+" +
+      '<a href="/docs/">Docs</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/about-docs/">About docs</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/pages/">About pages</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/pages/first/">Pages first</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/pages/second/">Pages second</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "</ul>
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "</ul>
+" +
+      "
+" +
+      "
+" +
+      "        </li>
+" +
+      "      
+" +
+      "      </ul>
+" +
+      "    </nav>
+" +
+      "
+" +
+      "    <nav>
+" +
+      "      <ul>
+" +
+      "      
+" +
+      "        <li>
+" +
+      "          
+" +
+      "<strong>docs</strong>
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/about-docs/">About docs</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      "<strong>pages</strong>
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/pages/second/">Pages second</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "</ul>
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "</ul>
+" +
+      "
+" +
+      "
+" +
+      "        </li>
+" +
+      "      
+" +
+      "      </ul>
+" +
+      "    </nav>
+" +
+      "  </body>
+" +
+      "</html>",
+    data: {
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Pages first",
+      url: "/docs/pages/first/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/docs/pages/first",
+      remote: undefined,
+      slug: "first",
+    },
   },
-  src: {
-    asset: undefined,
-    ext: ".njk",
-    path: "/index",
-    remote: undefined,
-    slug: "index",
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html>
+" +
+      "  <head>
+" +
+      "    <title>Pages second</title>
+" +
+      "  </head>
+" +
+      "
+" +
+      "  <body>
+" +
+      "    <nav>
+" +
+      '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+' +
+      "        
+" +
+      '        <li><a href="/">Home</a></li>
+' +
+      "        
+" +
+      '        <li><a href="/docs/">Docs</a></li>
+' +
+      "        
+" +
+      '        <li><a href="/docs/pages/">About pages</a></li>
+' +
+      "        
+" +
+      '        <li><a href="/docs/pages/second/">Pages second</a></li>
+' +
+      "        
+" +
+      "      </ul>
+" +
+      "    </nav>
+" +
+      "
+" +
+      "    <h1>Pages second</h1>
+" +
+      "
+" +
+      "    <nav>
+" +
+      "      <ul>
+" +
+      "      
+" +
+      "        <li>
+" +
+      "          
+" +
+      '<a href="/docs/">Docs</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/about-docs/">About docs</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/pages/">About pages</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/pages/first/">Pages first</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/pages/second/">Pages second</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "</ul>
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "</ul>
+" +
+      "
+" +
+      "
+" +
+      "        </li>
+" +
+      "      
+" +
+      "      </ul>
+" +
+      "    </nav>
+" +
+      "
+" +
+      "    <nav>
+" +
+      "      <ul>
+" +
+      "      
+" +
+      "        <li>
+" +
+      "          
+" +
+      "<strong>docs</strong>
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/about-docs/">About docs</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      "<strong>pages</strong>
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/pages/second/">Pages second</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "</ul>
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "</ul>
+" +
+      "
+" +
+      "
+" +
+      "        </li>
+" +
+      "      
+" +
+      "      </ul>
+" +
+      "    </nav>
+" +
+      "  </body>
+" +
+      "</html>",
+    data: {
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.njk",
+      menu: true,
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Pages second",
+      url: "/docs/pages/second/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/docs/pages/second",
+      remote: undefined,
+      slug: "second",
+    },
   },
-}
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html>
+" +
+      "  <head>
+" +
+      "    <title>Home</title>
+" +
+      "  </head>
+" +
+      "
+" +
+      "  <body>
+" +
+      "    <nav>
+" +
+      '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+' +
+      "        
+" +
+      '        <li><a href="/">Home</a></li>
+' +
+      "        
+" +
+      "      </ul>
+" +
+      "    </nav>
+" +
+      "
+" +
+      "    <h1>Home</h1>
+" +
+      "
+" +
+      "    <nav>
+" +
+      "      <ul>
+" +
+      "      
+" +
+      "        <li>
+" +
+      "          
+" +
+      '<a href="/docs/">Docs</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/about-docs/">About docs</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/pages/">About pages</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/pages/first/">Pages first</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/pages/second/">Pages second</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "</ul>
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "</ul>
+" +
+      "
+" +
+      "
+" +
+      "        </li>
+" +
+      "      
+" +
+      "      </ul>
+" +
+      "    </nav>
+" +
+      "
+" +
+      "    <nav>
+" +
+      "      <ul>
+" +
+      "      
+" +
+      "        <li>
+" +
+      "          
+" +
+      "<strong>docs</strong>
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/about-docs/">About docs</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      "<strong>pages</strong>
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "  
+" +
+      "  <li>
+" +
+      "    
+" +
+      '<a href="/docs/pages/second/">Pages second</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "</ul>
+" +
+      "
+" +
+      "
+" +
+      "  </li>
+" +
+      "  
+" +
+      "</ul>
+" +
+      "
+" +
+      "
+" +
+      "        </li>
+" +
+      "      
+" +
+      "      </ul>
+" +
+      "    </nav>
+" +
+      "  </body>
+" +
+      "</html>",
+    data: {
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Home",
+      url: "/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+]
 `;
