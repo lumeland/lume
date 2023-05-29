@@ -27,7 +27,6 @@ import type { default as FS, Entry, Loader } from "./core/fs.ts";
 import type Logger from "./core/logger.ts";
 import type Searcher from "./core/searcher.ts";
 import type Writer from "./core/writer.ts";
-import type IncludesLoader from "./core/includes_loader.ts";
 import type DataLoader from "./core/data_loader.ts";
 import type {
   Component,
@@ -117,7 +116,6 @@ export type {
   Helper,
   HelperOptions,
   ImportMap,
-  IncludesLoader,
   Loader,
   Logger,
   Middleware,
