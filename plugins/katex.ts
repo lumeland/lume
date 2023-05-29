@@ -1,4 +1,4 @@
-import { katex, KatexOptions } from "../deps/katex.ts";
+import { katex, KatexOptions, renderMathInElement } from "../deps/katex.ts";
 import { merge } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
 
@@ -18,6 +18,27 @@ const defaultOptions: Options = {
     strict: true,
     displayMode: true,
     throwOnError: true,
+    delimiters: [
+      { left: "$$", right: "$$", display: true },
+      { left: "\\(", right: "\\)", display: false },
+      { left: "\\begin{equation}", right: "\\end{equation}", display: true },
+      { left: "\\begin{align}", right: "\\end{align}", display: true },
+      { left: "\\begin{alignat}", right: "\\end{alignat}", display: true },
+      { left: "\\begin{gather}", right: "\\end{gather}", display: true },
+      { left: "\\begin{CD}", right: "\\end{CD}", display: true },
+      { left: "\\[", right: "\\]", display: true },
+    ],
+    ignoredTags: [
+      "script",
+      "noscript",
+      "style",
+      "textarea",
+      "pre",
+      "code",
+      "option",
+    ],
+    ignoredClasses: [],
+    macros: {},
   },
 };
 
@@ -57,6 +78,10 @@ export default function (userOptions?: DeepPartial<Options>) {
             });
           }
         });
+
+      if (options.options.delimiters) {
+        renderMathInElement(document.body, options.options);
+      }
     });
   };
 }
