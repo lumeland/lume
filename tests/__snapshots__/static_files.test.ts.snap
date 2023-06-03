@@ -102,6 +102,16 @@ snapshot[`Copy static files 2`] = `
     outputPath: "/other/two",
   },
   {
+    entry: "/other2/one",
+    flags: [],
+    outputPath: "/other2/one",
+  },
+  {
+    entry: "/other2/two",
+    flags: [],
+    outputPath: "/other2/two",
+  },
+  {
     entry: "/posts/2022-01-01_first-post/assets/inner/inner2/styles.scss",
     flags: [],
     outputPath: "/posts/first-post/assets/inner/inner2/styles.css",

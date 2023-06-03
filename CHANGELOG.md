@@ -9,6 +9,12 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
+## [Unreleased]
+
+### Fixed
+
+- `Site.copy` now works as expected when given a path with a trailing slash. [#426]
+
 ## [1.17.4] - 2023-05-25
 ### Added
 - The env variable `LUME_ENV=development` is created when `deno task lume --dev`.
@@ -2254,6 +2260,7 @@ The first version.
 [#417]: https://github.com/lumeland/lume/issues/417
 [#418]: https://github.com/lumeland/lume/issues/418
 [#419]: https://github.com/lumeland/lume/issues/419
+[#426]: https://github.com/lumeland/lume/pull/426
 
 [1.17.4]: https://github.com/lumeland/lume/compare/v1.17.3...v1.17.4
 [1.17.3]: https://github.com/lumeland/lume/compare/v1.17.2...v1.17.3
