@@ -60,7 +60,7 @@ export default class Source {
   /** List of static files and folders to copy */
   staticPaths = new Map<
     string,
-    string | ((path: string) => string) | undefined
+    { dest: string | ((path: string) => string) | undefined; dirOnly: boolean }
   >();
 
   /** List of static files and folders to copy */
@@ -103,8 +103,11 @@ export default class Source {
 
   addStaticPath(from: string, to?: string | ((path: string) => string)) {
     this.staticPaths.set(
-      normalizePath(from),
-      typeof to === "string" ? normalizePath(to) : to,
+      normalizePath(from.replace(/\/$/, "")),
+      {
+        dest: typeof to === "string" ? normalizePath(to) : to,
+        dirOnly: from.endsWith("/"),
+      },
     );
   }
 
@@ -190,9 +193,12 @@ export default class Source {
 
       // Static files
       if (this.staticPaths.has(entry.path)) {
-        const dest = this.staticPaths.get(entry.path);
+        const { dest, dirOnly } = this.staticPaths.get(entry.path)!;
 
         if (entry.type === "file") {
+          if (dirOnly) {
+            continue;
+          }
           staticFiles.push({
             entry,
             outputPath: getOutputPath(entry, path, dest),
