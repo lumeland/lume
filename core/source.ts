@@ -58,10 +58,11 @@ export default class Source {
   prettyUrls: boolean;
 
   /** List of static files and folders to copy */
-  staticPaths = new Map<
-    string,
-    { dest: string | ((path: string) => string) | undefined; dirOnly: boolean }
-  >();
+  staticPaths: {
+    from: string;
+    to: string | ((path: string) => string) | undefined;
+    dirOnly: boolean;
+  }[] = [];
 
   /** List of static files and folders to copy */
   copyRemainingFiles?: (path: string) => string | boolean;
@@ -102,10 +103,10 @@ export default class Source {
   }
 
   addStaticPath(from: string, to?: string | ((path: string) => string)) {
-    this.staticPaths.set(
-      normalizePath(from.replace(/\/$/, "")),
+    this.staticPaths.push(
       {
-        dest: typeof to === "string" ? normalizePath(to) : to,
+        from: normalizePath(from.replace(/\/$/, "")),
+        to: typeof to === "string" ? normalizePath(to) : to,
         dirOnly: from.endsWith("/"),
       },
     );
@@ -118,12 +119,42 @@ export default class Source {
     const pages: Page[] = [];
     const staticFiles: StaticFile[] = [];
 
+    // Resolve staticPaths to staticFiles
+    for (const instruction of this.staticPaths) {
+      const entry = this.fs.entries.get(instruction.from);
+      if (entry) {
+        const path = posix.dirname(entry.path);
+
+        if (entry.type == "file") {
+          if (instruction.dirOnly) {
+            continue;
+          }
+          staticFiles.push({
+            entry,
+            outputPath: getOutputPath(
+              entry,
+              path,
+              instruction.to,
+            ),
+          });
+        } else {
+          const dest = instruction.to;
+          staticFiles.push(...this.#getStaticFiles(
+            entry,
+            typeof dest === "string" ? dest : posix.join(path, entry.name),
+            typeof dest === "function" ? dest : undefined,
+          ));
+        }
+      }
+    }
+
     await this.#build(
       buildFilters,
       this.fs.entries.get("/")!,
       "/",
       globalComponents,
       {},
+      new Set(this.staticPaths.map((p) => p.from)),
       pages,
       staticFiles,
     );
@@ -140,6 +171,7 @@ export default class Source {
     path: string,
     parentComponents: Components,
     parentData: Data,
+    staticPaths: Set<string>,
     pages: Page[],
     staticFiles: StaticFile[],
   ) {
@@ -191,26 +223,8 @@ export default class Source {
         continue;
       }
 
-      // Static files
-      if (this.staticPaths.has(entry.path)) {
-        const { dest, dirOnly } = this.staticPaths.get(entry.path)!;
-
-        if (entry.type === "file") {
-          if (dirOnly) {
-            continue;
-          }
-          staticFiles.push({
-            entry,
-            outputPath: getOutputPath(entry, path, dest),
-          });
-          continue;
-        }
-
-        staticFiles.push(...this.#getStaticFiles(
-          entry,
-          typeof dest === "string" ? dest : posix.join(path, entry.name),
-          typeof dest === "function" ? dest : undefined,
-        ));
+      if (staticPaths.has(entry.path)) {
+        // The static file has already been resolved.
         continue;
       }
 
@@ -311,6 +325,7 @@ export default class Source {
           path,
           parentComponents,
           dirData,
+          staticPaths,
           pages,
           staticFiles,
         );
@@ -695,7 +710,10 @@ export function getOutputPath(
     return dest;
   }
 
-  const outputPath = posix.join(path, entry.name);
+  const outputPath = posix.join(
+    path.split("/").map((comp) => parseDate(comp)[0]).join("/"),
+    entry.name,
+  );
 
   if (typeof dest === "function") {
     return dest(outputPath);

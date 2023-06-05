@@ -92,6 +92,16 @@ snapshot[`Copy static files 2`] = `
     outputPath: "/_headers",
   },
   {
+    entry: "/one.yes",
+    flags: [],
+    outputPath: "/one.yes",
+  },
+  {
+    entry: "/one.yes",
+    flags: [],
+    outputPath: "/one-again.yes",
+  },
+  {
     entry: "/other/one",
     flags: [],
     outputPath: "/other/one",
@@ -165,6 +175,11 @@ snapshot[`Copy static files 2`] = `
     entry: "/script/2022-01-01_app/main.js",
     flags: [],
     outputPath: "/script/app/main.js",
+  },
+  {
+    entry: "/static/_redirects",
+    flags: [],
+    outputPath: "/_redirects",
   },
   {
     entry: "/static/one.yes",
