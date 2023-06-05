@@ -13,7 +13,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ### Fixed
 
-- `Site.copy` now works as expected when given a path with a trailing slash. [#426]
+- `Site.copy` now supports trailing slashes in the source path. [#426]
 
 ## [1.17.4] - 2023-05-25
 ### Added
