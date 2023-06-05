@@ -112,6 +112,7 @@ export default class Writer {
 
   /**
    * Copy the static files in the dest folder
+   * Returns the static files that have been successfully copied
    */
   async copyFiles(files: StaticFile[]): Promise<StaticFile[]> {
     const copyFiles: StaticFile[] = [];
