@@ -1,5 +1,6 @@
-import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
+import { assert, assertEquals, assertStrictEquals } from "../deps/assert.ts";
 import binaryLoader from "../core/loaders/binary.ts";
+import textLoader from "../core/loaders/text.ts";
 import { assertSiteSnapshot, build, getPage, getSite } from "./utils.ts";
 
 Deno.test("Load the pages of a site", async (t) => {
@@ -38,5 +39,14 @@ Deno.test("ignored draft pages on dev=false", async () => {
 
   await build(site);
 
-  equals(site.pages.length, 6);
+  assertStrictEquals(site.pages.length, 6);
+});
+
+Deno.test("textLoader with frontmatter containing just a comment", async () => {
+  assertEquals(
+    await textLoader(
+      import.meta.resolve("./assets/frontmatter-only-comment.md"),
+    ),
+    { content: "" },
+  );
 });

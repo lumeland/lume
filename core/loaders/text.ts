@@ -8,7 +8,8 @@ export default async function text(path: string): Promise<Data> {
   const content = await read(path, false);
 
   if (test(content)) {
-    const { attrs = {}, body } = extract<Data>(content);
+    let { attrs, body } = extract<Data>(content);
+    attrs ??= {};
     attrs.content = body;
 
     return attrs;
