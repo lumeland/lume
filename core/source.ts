@@ -691,13 +691,15 @@ export function getOutputPath(
   path: string,
   dest?: string | ((path: string) => string),
 ): string {
-  if (typeof dest === "function") {
-    return dest(posix.join(path, entry.name));
-  }
-
   if (typeof dest === "string") {
     return dest;
   }
 
-  return posix.join(path, entry.name);
+  const outputPath = posix.join(path, entry.name);
+
+  if (typeof dest === "function") {
+    return dest(outputPath);
+  }
+
+  return outputPath;
 }
