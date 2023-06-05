@@ -13,7 +13,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ### Fixed
 
-- `Site.copy` now works as expected when given a path with a trailing slash. [#426]
+- `Site.copy` now supports trailing slashes in the source path. [#426]
+- Multiple `Site.copy` calls can now be used to copy one file to multiple destinations. [#429]
 
 ## [1.17.4] - 2023-05-25
 ### Added
@@ -2261,6 +2262,7 @@ The first version.
 [#418]: https://github.com/lumeland/lume/issues/418
 [#419]: https://github.com/lumeland/lume/issues/419
 [#426]: https://github.com/lumeland/lume/pull/426
+[#429]: https://github.com/lumeland/lume/pull/429
 
 [1.17.4]: https://github.com/lumeland/lume/compare/v1.17.3...v1.17.4
 [1.17.3]: https://github.com/lumeland/lume/compare/v1.17.2...v1.17.3

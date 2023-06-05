@@ -23,20 +23,19 @@ Deno.test("static files configuration", () => {
   const { staticPaths } = site.source;
 
   site.copy("img");
-  equals(staticPaths.size, 1);
-  equals(staticPaths.has("/img"), true);
-  equals(staticPaths.get("/img")!.dest, undefined);
+  equals(staticPaths.length, 1);
+  equals(staticPaths[0].from, "/img");
+  equals(staticPaths[0].to, undefined);
 
   site.copy("statics/favicon.ico", "favicon.ico");
-  equals(staticPaths.size, 2);
-  equals(
-    staticPaths.get("/statics/favicon.ico")!.dest,
-    "/favicon.ico",
-  );
+  equals(staticPaths.length, 2);
+  equals(staticPaths[1].from, "/statics/favicon.ico");
+  equals(staticPaths[1].to, "/favicon.ico");
 
   site.copy("css", ".");
-  equals(staticPaths.size, 3);
-  equals(staticPaths.get("/css")!.dest, "/");
+  equals(staticPaths.length, 3);
+  equals(staticPaths[2].from, "/css");
+  equals(staticPaths[2].to, "/");
 });
 
 Deno.test("ignored files configuration", () => {

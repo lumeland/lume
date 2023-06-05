@@ -112,6 +112,7 @@ export default class Writer {
 
   /**
    * Copy the static files in the dest folder
+   * Returns the static files that have been successfully copied
    */
   async copyFiles(files: StaticFile[]): Promise<StaticFile[]> {
     const copyFiles: StaticFile[] = [];
@@ -135,11 +136,11 @@ export default class Writer {
   async copyFile(file: StaticFile): Promise<boolean> {
     const { entry } = file;
 
-    if (entry.flags.has("saved")) {
+    if (entry.flags.has("saved-" + file.outputPath)) {
       return false;
     }
 
-    entry.flags.add("saved");
+    entry.flags.add("saved-" + file.outputPath);
 
     const pathTo = posix.join(this.dest, file.outputPath);
 

@@ -12,11 +12,17 @@ export interface Options {
 export type Loader = (path: string) => Promise<Data>;
 
 export class Entry {
+  /** The name of the file/dir. */
   name: string;
+  /** The normalized path of the file/dir. */
   path: string;
+  /** The type of the entry. */
   type: EntryType;
+  /** The absolute file path. */
   src: string;
+  /** The children of the entry. */
   children = new Map<string, Entry>();
+  /** Temporary flags that are cleared when a file is modified. */
   flags = new Set<string>();
   #content = new Map<Loader, Promise<Data> | Data>();
   #info?: Deno.FileInfo;

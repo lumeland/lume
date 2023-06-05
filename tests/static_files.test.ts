@@ -21,6 +21,10 @@ Deno.test("Copy static files", async (t) => {
     (file) => "/subdir" + file.replace(/\.copy2/, ".copy3"),
   );
 
+  // a single file can be copied multiple times
+  site.copy("one.yes");
+  site.copy("one.yes", "one-again.yes");
+
   // copied with the trailing slash
   site.copy("other2/");
 
