@@ -80,6 +80,12 @@ export default class FS {
     const exist = this.entries.get(path);
     const entry = exist || this.addEntry({ path });
 
+    // New directory, walk it
+    if (!exist && entry.type === "directory") {
+      this.#walkFs(entry);
+      return;
+    }
+
     try {
       entry.removeCache();
       entry.getInfo();
