@@ -4,6 +4,8 @@
     "test": "TZ=Z deno test --unstable -A --no-check",
     "test:update": "deno task test -- --update",
     "install": "deno run -A install.ts",
-    "changelog": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.1.0/bin.ts"
+    "changelog": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.3.0/bin.ts",
+    "update-deps": "deno run -A --quiet 'https://deno.land/x/udd@0.8.2/main.ts' deps/*",
+    "rollback-exp-deps": "git checkout deps/react.ts && git checkout deps/tailwindcss.ts"
   }
 }
