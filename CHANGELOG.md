@@ -13,6 +13,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - `Site.copy` now works as expected when given a path with a trailing slash. [#426]
 - YAML front matters containing only a comment no longer result in an error.
 - `@import` to includes folders in SASS plugin.
+- File watcher when a new directory is added.
 - Updated dependencies: `std`, `lightningcss`, `liquidjs`, `postcss`, `preact`, `terser`.
 
 ## [1.17.4] - 2023-05-25
