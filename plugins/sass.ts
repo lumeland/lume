@@ -55,6 +55,7 @@ export default function (userOptions?: Partial<Options>) {
 
     async function sass(page: Page) {
       const { content, filename, enableSourceMap } = prepareAsset(site, page);
+      const baseFilename = posix.dirname(filename);
 
       const sassOptions: Sass.StringOptions<"async"> = {
         ...options.options,
@@ -64,25 +65,32 @@ export default function (userOptions?: Partial<Options>) {
         url: toFileUrl(filename),
         importer: {
           canonicalize(url: string) {
-            let pathname = normalizePath(fromFileUrl(url));
+            const pathname = normalizePath(fromFileUrl(url));
 
-            if (pathname.startsWith(basePath)) {
-              pathname = normalizePath(pathname.slice(basePath.length));
+            const mainPath = pathname.startsWith(basePath)
+              ? normalizePath(pathname.slice(basePath.length))
+              : pathname;
+
+            for (const path of getPathsToLook(mainPath)) {
+              const entry = entries.get(path);
+
+              if (entry) {
+                return toFileUrl(site.src(entry.path));
+              }
             }
 
+            // Search in includes
+            const includePath = pathname.startsWith(baseFilename)
+              ? pathname.slice(baseFilename.length)
+              : mainPath;
             const { formats } = site;
             const { includes } = site.options;
 
-            for (const path of getPathsToLook(pathname)) {
-              let entry = entries.get(path);
-
-              // Search in includes
-              if (!entry) {
-                const format = formats.search(pathname);
-                const includesPath = format?.includesPath ?? includes;
-                const resolved = resolveInclude(path, includesPath);
-                entry = entries.get(resolved);
-              }
+            for (const path of getPathsToLook(includePath)) {
+              const format = formats.search(pathname);
+              const includesPath = format?.includesPath ?? includes;
+              const resolved = resolveInclude(path, includesPath);
+              const entry = entries.get(resolved);
 
               if (entry) {
                 return toFileUrl(site.src(entry.path));
