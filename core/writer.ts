@@ -152,7 +152,8 @@ export default class Writer {
           (await entry.getContent(binaryLoader)).content as Uint8Array,
         );
       } else {
-        await Deno.copyFile(entry.src, pathTo);
+        // Copy file https://github.com/denoland/deno/issues/19425
+        Deno.writeFileSync(pathTo, Deno.readFileSync(entry.src));
       }
       this.logger.log(
         `🔥 ${file.outputPath} <dim>${
