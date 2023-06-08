@@ -12,11 +12,13 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Added
 - TOML Plugin [#432]
 
+## [1.17.5] - 2023-06-08
 ### Fixed
 - `Site.copy` now works as expected when given a path with a trailing slash. [#426]
-- YAML front matters containing only a comment no longer result in an error.
+- YAML front matters containing only a comment no longer result in an error. [#431]
 - `@import` to includes folders in SASS plugin.
 - File watcher when a new directory is added.
+- File watcher enter in an infinite loop in some cases.
 - Updated dependencies: `std`, `lightningcss`, `liquidjs`, `postcss`, `preact`, `terser`.
 
 ## [1.17.4] - 2023-05-25
@@ -2266,8 +2268,9 @@ The first version.
 [#419]: https://github.com/lumeland/lume/issues/419
 [#426]: https://github.com/lumeland/lume/issues/426
 [#432]: https://github.com/lumeland/lume/issues/432
+[#431]: https://github.com/lumeland/lume/issues/431
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.17.4...HEAD
+[1.17.5]: https://github.com/lumeland/lume/compare/v1.17.4...v1.17.5
 [1.17.4]: https://github.com/lumeland/lume/compare/v1.17.3...v1.17.4
 [1.17.3]: https://github.com/lumeland/lume/compare/v1.17.2...v1.17.3
 [1.17.2]: https://github.com/lumeland/lume/compare/v1.17.1...v1.17.2

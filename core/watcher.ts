@@ -104,7 +104,7 @@ export default class FSWatcher implements Watcher {
     };
 
     for await (const event of watcher) {
-      let paths = event.paths.map(normalizePath);
+      let paths = event.paths.map((path) => normalizePath(path));
 
       // Filter ignored paths
       paths = paths.filter((path) =>
