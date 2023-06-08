@@ -16,7 +16,7 @@ export const defaults: Options = {
   extensions: [".toml"],
 };
 
-/** A plugin to add support for YAML files */
+/** A plugin to add support for TOML files */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
   const extensions = Array.isArray(options.extensions)
