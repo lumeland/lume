@@ -9,6 +9,9 @@ but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
 ## [Unreleased]
+### Added
+- TOML Plugin [#432]
+
 ### Fixed
 - `Site.copy` now works as expected when given a path with a trailing slash. [#426]
 - YAML front matters containing only a comment no longer result in an error.
