@@ -11,8 +11,6 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.18.0] - Unreleased
 ### Added
 - TOML Plugin [#432]
-
-### Changed
 - JSON Plugin supports `.jsonc` files [#433]
 
 ## [1.17.5] - 2023-06-08
