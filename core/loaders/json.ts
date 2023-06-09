@@ -6,7 +6,7 @@ import type { Data } from "../../core.ts";
 /** Load and parse a JSON / JSONC file */
 export default async function json(path: string): Promise<Data> {
   const text = await read(path, false);
-  const content = parse(text);
+  const content = path.endsWith(".jsonc") ? parse(text) : JSON.parse(text);
 
   if (!content) {
     return {};
