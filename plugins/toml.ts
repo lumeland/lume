@@ -1,4 +1,4 @@
-import toml from "../core/loaders/yaml.ts";
+import toml from "../core/loaders/toml.ts";
 import { merge } from "../core/utils.ts";
 
 import type { Site } from "../core.ts";

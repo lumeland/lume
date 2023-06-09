@@ -46,6 +46,7 @@ Deno.test("Plugins list in init", () => {
     "svgo",
     "tailwindcss",
     "terser",
+    "toml",
     "windi_css",
   ]);
 });

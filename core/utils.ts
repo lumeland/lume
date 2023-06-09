@@ -44,6 +44,7 @@ export const pluginNames = [
   "svgo",
   "tailwindcss",
   "terser",
+  "toml",
   "windi_css",
 ];
 
