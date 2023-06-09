@@ -117,6 +117,8 @@ Deno.test("data configuration", () => {
   equals(formats.size, 11);
   equals(formats.has(".json"), true);
   assert(formats.get(".json")?.dataLoader);
+  equals(formats.has(".jsonc"), true);
+  assert(formats.get(".jsonc")?.dataLoader);
   equals(formats.has(".js"), true);
   assert(formats.get(".js")?.dataLoader);
   equals(formats.has(".ts"), true);
@@ -142,6 +144,7 @@ Deno.test("pages configuration", () => {
 
   const extensions = [
     ".tmpl.json",
+    ".tmpl.jsonc",
     ".tmpl.js",
     ".tmpl.ts",
     ".md",
