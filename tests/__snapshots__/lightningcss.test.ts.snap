@@ -15,6 +15,11 @@ snapshot[`lightningcss plugin 1`] = `
     },
     {
       engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
@@ -22,6 +27,11 @@ snapshot[`lightningcss plugin 1`] = `
       dataLoader: [AsyncFunction: json],
       engines: undefined,
       ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
     },
     {
       engines: 1,
@@ -165,6 +175,11 @@ snapshot[`lightningcss plugin (bundle mode) 1`] = `
     },
     {
       engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
@@ -172,6 +187,11 @@ snapshot[`lightningcss plugin (bundle mode) 1`] = `
       dataLoader: [AsyncFunction: json],
       engines: undefined,
       ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
     },
     {
       engines: 1,

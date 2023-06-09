@@ -15,6 +15,11 @@ snapshot[`Build a markdown site 1`] = `
     },
     {
       engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
@@ -22,6 +27,11 @@ snapshot[`Build a markdown site 1`] = `
       dataLoader: [AsyncFunction: json],
       engines: undefined,
       ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
     },
     {
       engines: 1,
@@ -565,6 +575,11 @@ snapshot[`Build a markdown with hooks 1`] = `
     },
     {
       engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
@@ -572,6 +587,11 @@ snapshot[`Build a markdown with hooks 1`] = `
       dataLoader: [AsyncFunction: json],
       engines: undefined,
       ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
     },
     {
       engines: 1,
