@@ -1,0 +1,6 @@
+{
+  "title": "Title of the index",
+  "content": "Content of the index",
+  "date": "1979-06-21T23:45:00.000Z",
+  "layout": "layout.njk"
+}
