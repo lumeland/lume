@@ -12,6 +12,9 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Added
 - TOML Plugin [#432]
 
+### Changed
+- JSON Plugin supports `.jsonc` files [#433]
+
 ## [1.17.5] - 2023-06-08
 ### Fixed
 - `Site.copy` now works as expected when given a path with a trailing slash. [#426]
@@ -2269,6 +2272,7 @@ The first version.
 [#426]: https://github.com/lumeland/lume/issues/426
 [#431]: https://github.com/lumeland/lume/issues/431
 [#432]: https://github.com/lumeland/lume/issues/432
+[#433]: https://github.com/lumeland/lume/issues/433
 
 [1.18.0]: https://github.com/lumeland/lume/compare/v1.17.5...HEAD
 [1.17.5]: https://github.com/lumeland/lume/compare/v1.17.4...v1.17.5

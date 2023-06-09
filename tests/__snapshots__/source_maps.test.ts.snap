@@ -15,6 +15,11 @@ snapshot[`Source maps from CSS files 1`] = `
     },
     {
       engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
@@ -22,6 +27,11 @@ snapshot[`Source maps from CSS files 1`] = `
       dataLoader: [AsyncFunction: json],
       engines: undefined,
       ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
     },
     {
       engines: 1,
@@ -275,6 +285,11 @@ snapshot[`Source maps from Js files 1`] = `
     },
     {
       engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
@@ -282,6 +297,11 @@ snapshot[`Source maps from Js files 1`] = `
       dataLoader: [AsyncFunction: json],
       engines: undefined,
       ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
     },
     {
       engines: 1,

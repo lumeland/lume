@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`build a simple site 1`] = `
+snapshot[`JSON plugin 1`] = `
 {
   formats: [
     {
@@ -78,71 +78,6 @@ snapshot[`build a simple site 1`] = `
 }
 `;
 
-snapshot[`build a simple site 2`] = `[]`;
+snapshot[`JSON plugin 2`] = `[]`;
 
-snapshot[`build a simple site 3`] = `
-[
-  {
-    content: "<!DOCTYPE html>
-<h1>Welcome</h1>
-",
-    data: {
-      children: "<h1>Welcome</h1>
-",
-      content: "# Welcome
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Second page",
-      url: "/page2.html",
-    },
-    src: {
-      asset: undefined,
-      ext: ".md",
-      path: "/foo",
-      remote: undefined,
-      slug: "foo",
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-<h1>Welcome</h1>
-",
-    data: {
-      children: "<h1>Welcome</h1>
-",
-      content: "# Welcome
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "First page",
-      url: "/page1/",
-    },
-    src: {
-      asset: undefined,
-      ext: ".md",
-      path: "/page1",
-      remote: undefined,
-      slug: "page1",
-    },
-  },
-]
-`;
+snapshot[`JSON plugin 3`] = `[]`;

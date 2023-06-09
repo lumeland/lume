@@ -114,9 +114,11 @@ Deno.test("data configuration", () => {
   const site = lume();
   const { formats } = site;
 
-  equals(formats.size, 11);
+  equals(formats.size, 13);
   equals(formats.has(".json"), true);
   assert(formats.get(".json")?.dataLoader);
+  equals(formats.has(".jsonc"), true);
+  assert(formats.get(".jsonc")?.dataLoader);
   equals(formats.has(".js"), true);
   assert(formats.get(".js")?.dataLoader);
   equals(formats.has(".ts"), true);
@@ -129,7 +131,7 @@ Deno.test("data configuration", () => {
   const loader = () => Promise.resolve({});
   site.loadData([".ext1", ".ext2"], loader);
 
-  equals(formats.size, 13);
+  equals(formats.size, 15);
   equals(formats.get(".ext1")?.dataLoader, loader);
   equals(formats.get(".ext2")?.dataLoader, loader);
 });
@@ -138,10 +140,11 @@ Deno.test("pages configuration", () => {
   const site = lume();
   const { formats } = site;
 
-  equals(formats.size, 11);
+  equals(formats.size, 13);
 
   const extensions = [
     ".tmpl.json",
+    ".tmpl.jsonc",
     ".tmpl.js",
     ".tmpl.ts",
     ".md",
@@ -172,7 +175,7 @@ Deno.test("pages configuration", () => {
 
   site.loadPages(newExts, loader, engine);
 
-  equals(formats.size, 13);
+  equals(formats.size, 15);
 
   for (const ext of newExts) {
     equals(formats.has(ext), true);
@@ -185,7 +188,7 @@ Deno.test("assets configuration", () => {
   const site = lume();
   const { formats } = site;
 
-  equals(formats.size, 11);
+  equals(formats.size, 13);
 
   const loader = () => Promise.resolve({});
 
@@ -196,7 +199,7 @@ Deno.test("assets configuration", () => {
 
   site.loadAssets(extensions, loader);
 
-  equals(formats.size, 12);
+  equals(formats.size, 14);
   for (const ext of extensions) {
     equals(formats.has(ext), true);
     assert(formats.get(ext)?.pageLoader);
