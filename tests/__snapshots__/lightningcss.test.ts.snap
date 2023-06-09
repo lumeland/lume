@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`lightningcss plugin 1`] = `
+snapshot[`lightningcss plugin (only transform) 1`] = `
 {
   formats: [
     {
@@ -84,9 +84,9 @@ snapshot[`lightningcss plugin 1`] = `
 }
 `;
 
-snapshot[`lightningcss plugin 2`] = `[]`;
+snapshot[`lightningcss plugin (only transform) 2`] = `[]`;
 
-snapshot[`lightningcss plugin 3`] = `
+snapshot[`lightningcss plugin (only transform) 3`] = `
 [
   {
     content: '@import "variables.css";@import "./text.css";',
