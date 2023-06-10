@@ -3,7 +3,8 @@
   "fmt": {
     "exclude": [
       "tests/assets/json/page1.md",
-      "tests/assets/toml/page1.md"
+      "tests/assets/toml/page1.md",
+      "CHANGELOG.md"
     ]
   },
   "tasks": {
