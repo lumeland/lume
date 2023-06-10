@@ -104,7 +104,8 @@ export default class Site {
   renderer: Renderer;
 
   /** To listen and dispatch events */
-  events: Events<SiteEvent>;
+  // deno-lint-ignore no-explicit-any
+  events: Events<any>;
 
   /** To output messages to the console */
   logger: Logger;
@@ -244,9 +245,9 @@ export default class Site {
   }
 
   /** Add a listener to an event */
-  addEventListener(
-    type: SiteEventType,
-    listener: EventListener<SiteEvent> | string,
+  addEventListener<K extends keyof SiteEventMap>(
+    type: K,
+    listener: EventListener<Event & SiteEventMap[K]> | string,
     options?: EventOptions,
   ): this {
     const fn = typeof listener === "string"
@@ -877,44 +878,52 @@ export interface ComponentsOptions {
   jsFile: string;
 }
 
+export type SiteEventMap = {
+  beforeBuild: {
+    /** the list of pages that have been saved */
+    pages: Page[];
+  };
+  afterBuild: {
+    /** the list of pages that have been saved */
+    pages: Page[];
+    /** contains the list of static files that have been copied */
+    staticFiles: StaticFile[];
+  };
+  beforeUpdate: {
+    /** the files that were changed */
+    files: Set<string>;
+  };
+  afterUpdate: {
+    /** the files that were changed */
+    files: Set<string>;
+    /** the list of pages that have been saved */
+    pages: Page[];
+    /** contains the list of static files that have been copied */
+    staticFiles: StaticFile[];
+  };
+  beforeRender: {
+    /** the list of pages that have been saved */
+    pages: Page[];
+  };
+  afterRender: {
+    /** the list of pages that have been saved */
+    pages: Page[];
+  };
+  beforeRenderOnDemand: {
+    /** the page that will be rendered */
+    page: Page;
+  };
+  // deno-lint-ignore ban-types
+  beforeSave: {};
+  // deno-lint-ignore ban-types
+  afterStartServer: {};
+};
+
 /** Custom events for site build */
-export interface SiteEvent extends Event {
-  /** The event type */
-  type: SiteEventType;
-
-  /**
-   * Available only in "beforeUpdate" and "afterUpdate"
-   * contains the files that were changed
-   */
-  files?: Set<string>;
-
-  /**
-   * Available only in "beforeRenderOnDemand"
-   * contains the page that will be rendered
-   */
-  page?: Page;
-
-  /**
-   * Available only in "afterBuild", "beforeRender", "afterRender" and "afterUpdate"
-   * contains the list of pages that have been saved
-   */
-  pages?: Page[];
-
-  /**
-   * Available only in "afterBuild" and "afterUpdate"
-   * contains the list of static files that have been copied
-   */
-  staticFiles?: StaticFile[];
-}
+export type SiteEvent<T extends SiteEventType = SiteEventType> =
+  & Event
+  & SiteEventMap[T]
+  & { type: T };
 
 /** The available event types */
-export type SiteEventType =
-  | "beforeBuild"
-  | "afterBuild"
-  | "beforeUpdate"
-  | "afterUpdate"
-  | "beforeRender"
-  | "afterRender"
-  | "beforeRenderOnDemand"
-  | "beforeSave"
-  | "afterStartServer";
+export type SiteEventType = keyof SiteEventMap;
