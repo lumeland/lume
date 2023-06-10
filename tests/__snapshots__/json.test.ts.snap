@@ -138,5 +138,53 @@ snapshot[`JSON plugin 3`] = `
       slug: "index",
     },
   },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<p>{
+" +
+      "&quot;title&quot;: &quot;First page&quot;
+" +
+      "}</p>
+" +
+      "<h1>Welcome</h1>
+",
+    data: {
+      children: "<p>{
+&quot;title&quot;: &quot;First page&quot;
+}</p>
+<h1>Welcome</h1>
+",
+      content: '{
+  "title": "First page"
+}
+
+# Welcome
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: [
+        "title",
+        "description",
+      ],
+      tags: "Array(0)",
+      url: "/page1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/page1",
+      remote: undefined,
+      slug: "page1",
+    },
+  },
 ]
 `;
