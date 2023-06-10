@@ -16,6 +16,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Changed
 - `lightningcss` plugin bundles the CSS code by default.
   Set the option `includes: false` to only transform the code.
+- Improved type annotation of `Site.addEventListener`.
 
 ## [1.17.5] - 2023-06-08
 ### Fixed
