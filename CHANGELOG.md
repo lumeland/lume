@@ -11,6 +11,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - TOML Plugin [#432]
 - JSON Plugin supports `.jsonc` files [#433]
 - Frontmatter support for JSON / TOML format [#434]
+- Picture plugin [#384]
 
 ### Changed
 - `lightningcss` plugin bundles the CSS code by default.
@@ -2254,6 +2255,7 @@ The first version.
 [#369]: https://github.com/lumeland/lume/issues/369
 [#374]: https://github.com/lumeland/lume/issues/374
 [#383]: https://github.com/lumeland/lume/issues/383
+[#384]: https://github.com/lumeland/lume/issues/384
 [#386]: https://github.com/lumeland/lume/issues/386
 [#387]: https://github.com/lumeland/lume/issues/387
 [#388]: https://github.com/lumeland/lume/issues/388

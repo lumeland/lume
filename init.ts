@@ -202,14 +202,21 @@ function initPlugins(plugins: string[], denoConfig: DenoConfigResult) {
   }
 
   // Ensure that tailwindcss is loaded before postcss
-  if (plugins.includes("tailwindcss")) {
-    const tailwindcss = plugins.indexOf("tailwindcss");
-    const postcss = plugins.indexOf("postcss");
+  fixPluginOrder(plugins, "tailwindcss", "postcss");
 
-    if (postcss !== -1) {
-      plugins.splice(postcss, 1);
+  // Ensure that picture is loaded before imagick
+  fixPluginOrder(plugins, "picture", "imagick");
+}
+
+function fixPluginOrder(plugins: string[], plugin1: string, plugin2: string) {
+  if (plugins.includes(plugin1)) {
+    const pos1 = plugins.indexOf(plugin1);
+    const pos2 = plugins.indexOf(plugin2);
+
+    if (pos2 !== -1) {
+      plugins.splice(pos2, 1);
     }
 
-    plugins.splice(tailwindcss, 1, "tailwindcss", "postcss");
+    plugins.splice(pos1, 1, plugin1, plugin2);
   }
 }

@@ -29,6 +29,7 @@ export const pluginNames = [
   "netlify_cms",
   "on_demand",
   "pagefind",
+  "picture",
   "postcss",
   "prism",
   "pug",
