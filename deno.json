@@ -1,5 +1,11 @@
 {
   "lock": false,
+  "fmt": {
+    "exclude": [
+      "tests/assets/json/page1.md",
+      "tests/assets/toml/page1.md"
+    ]
+  },
   "tasks": {
     "test": "TZ=Z deno test --unstable -A --no-check",
     "test:update": "deno task test -- --update",
