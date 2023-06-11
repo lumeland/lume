@@ -63,6 +63,12 @@ snapshot[`TOML plugin 1`] = `
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
       engines: undefined,
       ext: ".yaml",
@@ -73,12 +79,6 @@ snapshot[`TOML plugin 1`] = `
       engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
-    },
-    {
-      dataLoader: [AsyncFunction: toml],
-      engines: undefined,
-      ext: ".toml",
-      pageLoader: [AsyncFunction: toml],
     },
   ],
 }
