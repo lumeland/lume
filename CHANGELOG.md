@@ -8,7 +8,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [1.18.0] - Unreleased
 ### Added
-- TOML Plugin [#432]
+- TOML Plugin [#432], [#436].
 - JSON Plugin supports `.jsonc` files [#433]
 - Frontmatter support for JSON / TOML format [#434]
 - Picture plugin [#384]
@@ -2278,6 +2278,7 @@ The first version.
 [#432]: https://github.com/lumeland/lume/issues/432
 [#433]: https://github.com/lumeland/lume/issues/433
 [#434]: https://github.com/lumeland/lume/issues/434
+[#436]: https://github.com/lumeland/lume/issues/436
 
 [1.18.0]: https://github.com/lumeland/lume/compare/v1.17.5...HEAD
 [1.17.5]: https://github.com/lumeland/lume/compare/v1.17.4...v1.17.5
