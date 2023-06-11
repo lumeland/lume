@@ -22,6 +22,7 @@ export interface PluginOptions {
   nunjucks?: Partial<NunjucksOptions>;
   search?: Partial<SearchOptions>;
   paginate?: Partial<PaginateOptions>;
+  toml?: Partial<TomlOptions>;
   yaml?: Partial<YamlOptions>;
 }
 
