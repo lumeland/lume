@@ -75,6 +75,21 @@ snapshot[`nav plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_data.yml",
+    "/_includes",
+    "/_includes/main.njk",
+    "/_includes/step.njk",
+    "/docs",
+    "/docs.md",
+    "/docs/about-docs.md",
+    "/docs/pages",
+    "/docs/pages.md",
+    "/docs/pages/first.md",
+    "/docs/pages/second.md",
+    "/index.njk",
+  ],
 }
 `;
 

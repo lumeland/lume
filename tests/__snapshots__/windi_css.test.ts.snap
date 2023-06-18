@@ -81,6 +81,16 @@ snapshot[`Windi CSS plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/layout.njk",
+    "/index.njk",
+    "/multi.tmpl.js",
+    "/page2.njk",
+    "/styles.windi.css",
+    "/windi.css",
+  ],
 }
 `;
 

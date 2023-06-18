@@ -96,6 +96,18 @@ snapshot[`Source maps from CSS files 1`] = `
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/sass",
+    "/_includes/sass/button.scss",
+    "/_includes/sass/colors.scss",
+    "/_includes/sass/fourth.scss",
+    "/_includes/sass/third.scss",
+    "/index.scss",
+    "/index2.sass",
+    "/styles.css",
+  ],
 }
 `;
 
@@ -348,6 +360,13 @@ snapshot[`Source maps from Js files 1`] = `
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
+  ],
+  src: [
+    "/",
+    "/main.ts",
+    "/modules",
+    "/modules/to_uppercase.ts",
+    "/other.ts",
   ],
 }
 `;

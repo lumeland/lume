@@ -75,6 +75,17 @@ snapshot[`Build a markdown site 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/basic.md",
+    "/empty.md",
+    "/with-attributes.md",
+    "/with-code.md",
+    "/with-deflist.md",
+    "/with-filter.njk",
+    "/with-module.tmpl.js",
+    "/with-nunjucks.md",
+  ],
 }
 `;
 

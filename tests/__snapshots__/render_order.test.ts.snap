@@ -75,6 +75,15 @@ snapshot[`render order property 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/paginate.tmpl.js",
+    "/extra-page.md",
+    "/pages.tmpl.ts",
+    "/pages2.tmpl.ts",
+    "/pagination.tmpl.ts",
+  ],
 }
 `;
 

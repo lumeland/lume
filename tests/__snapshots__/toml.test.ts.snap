@@ -81,6 +81,14 @@ snapshot[`TOML plugin 1`] = `
       pageLoader: [AsyncFunction: toml],
     },
   ],
+  src: [
+    "/",
+    "/_data.toml",
+    "/_includes",
+    "/_includes/layout.njk",
+    "/index.toml",
+    "/page1.md",
+  ],
 }
 `;
 

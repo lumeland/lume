@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`JSON plugin 1`] = `
+snapshot[`follow symlinks 1`] = `
 {
   formats: [
     {
@@ -77,18 +77,18 @@ snapshot[`JSON plugin 1`] = `
   ],
   src: [
     "/",
-    "/_data.jsonc",
     "/_includes",
-    "/_includes/layout.njk",
-    "/index.tmpl.json",
-    "/page1.md",
+    "/_includes/footer.njk",
+    "/_includes/layouts",
+    "/_includes/layouts/layout.njk",
+    "/index.md",
   ],
 }
 `;
 
-snapshot[`JSON plugin 2`] = `[]`;
+snapshot[`follow symlinks 2`] = `[]`;
 
-snapshot[`JSON plugin 3`] = `
+snapshot[`follow symlinks 3`] = `
 [
   {
     content: "<!DOCTYPE html>
@@ -97,30 +97,34 @@ snapshot[`JSON plugin 3`] = `
 " +
       "  <head>
 " +
-      "    <title>Title of the index</title>
+      "    <h1>Hello world</h1>
 " +
       "  </head>
 " +
       "  <body>
 " +
-      "    <h1>Default title</h1>
+      "    <p>Hello wold</p>
 " +
-      "    <p>Default description</p>
+      "
 " +
-      "    <h2>Title of the index</h2>
+      "
 " +
-      "    <p>Content of the index</p>
+      "    <footer>
 " +
-      "    
+      "  End
+" +
+      "</footer>
 " +
       "  </body>
 " +
       "</html>",
     data: {
-      children: "Content of the index",
-      content: "Content of the index",
+      children: "<p>Hello wold</p>
+",
+      content: "Hello wold
+",
       date: [],
-      layout: "layout.njk",
+      layout: "layouts/layout.njk",
       mergedKeys: [
         "tags",
       ],
@@ -130,68 +134,16 @@ snapshot[`JSON plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      site: [
-        "title",
-        "description",
-      ],
       tags: "Array(0)",
-      title: "Title of the index",
+      title: "Hello world",
       url: "/",
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.json",
+      ext: ".md",
       path: "/index",
       remote: undefined,
       slug: "index",
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-" +
-      "<p>{
-" +
-      "&quot;title&quot;: &quot;First page&quot;
-" +
-      "}</p>
-" +
-      "<h1>Welcome</h1>
-",
-    data: {
-      children: "<p>{
-&quot;title&quot;: &quot;First page&quot;
-}</p>
-<h1>Welcome</h1>
-",
-      content: '{
-  "title": "First page"
-}
-
-# Welcome
-',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: [
-        "title",
-        "description",
-      ],
-      tags: "Array(0)",
-      url: "/page1/",
-    },
-    src: {
-      asset: undefined,
-      ext: ".md",
-      path: "/page1",
-      remote: undefined,
-      slug: "page1",
     },
   },
 ]

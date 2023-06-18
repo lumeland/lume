@@ -93,6 +93,11 @@ snapshot[`imagick plugin 1`] = `
       pageLoader: [AsyncFunction: binary],
     },
   ],
+  src: [
+    "/",
+    "/index.njk",
+    "/kevin-schmid-unsplash.jpg",
+  ],
 }
 `;
 

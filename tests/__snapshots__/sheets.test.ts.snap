@@ -90,6 +90,12 @@ snapshot[`Sheets plugin 1`] = `
       ext: ".csv",
     },
   ],
+  src: [
+    "/",
+    "/_data",
+    "/_data/attendance_numbers.numbers",
+    "/index.njk",
+  ],
 }
 `;
 

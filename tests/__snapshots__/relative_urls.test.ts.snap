@@ -75,6 +75,14 @@ snapshot[`relative_url plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/about-us",
+    "/about-us/contact.md",
+    "/about-us/index.md",
+    "/about-us/presentation.md",
+    "/index.md",
+  ],
 }
 `;
 

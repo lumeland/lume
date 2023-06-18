@@ -75,6 +75,14 @@ snapshot[`Filter pages (allow all) 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/layout.tmpl.js",
+    "/multiple-async.tmpl.js",
+    "/multiple.tmpl.js",
+    "/simple.tmpl.js",
+  ],
 }
 `;
 
@@ -507,6 +515,14 @@ snapshot[`Filter pages (allow only /multiple/*) 1`] = `
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
+  ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/layout.tmpl.js",
+    "/multiple-async.tmpl.js",
+    "/multiple.tmpl.js",
+    "/simple.tmpl.js",
   ],
 }
 `;

@@ -115,11 +115,12 @@ export default class FS {
     const dirPath = posix.join(this.options.root, dir.path);
 
     for (const dirEntry of Deno.readDirSync(dirPath)) {
+      const path = posix.join(dir.path, dirEntry.name);
+
       if (dirEntry.isSymlink) {
+        this.#walkLink(dir, dirEntry.name);
         continue;
       }
-
-      const path = posix.join(dir.path, dirEntry.name);
 
       if (!this.#isValid(path)) {
         continue;
@@ -138,6 +139,26 @@ export default class FS {
       if (entry.type === "directory") {
         this.#walkFs(entry);
       }
+    }
+  }
+
+  #walkLink(dir: Entry, name: string) {
+    const src = posix.join(dir.src, name);
+    const info = Deno.statSync(src);
+    const type = info.isDirectory ? "directory" : "file";
+
+    const entry = new Entry(
+      name,
+      posix.join(dir.path, name),
+      type,
+      Deno.realPathSync(src),
+    );
+
+    dir.children.set(name, entry);
+    this.entries.set(entry.path, entry);
+
+    if (type === "directory") {
+      this.#walkFs(entry);
     }
   }
 

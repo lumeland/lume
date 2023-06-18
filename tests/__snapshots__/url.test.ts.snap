@@ -75,6 +75,11 @@ snapshot[`url and htmlUrl update href 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/default-filter.tmpl.js",
+    "/renamed-filter.tmpl.js",
+  ],
 }
 `;
 
@@ -313,6 +318,11 @@ snapshot[`configure url and htmlUrl names 1`] = `
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
+  ],
+  src: [
+    "/",
+    "/default-filter.tmpl.js",
+    "/renamed-filter.tmpl.js",
   ],
 }
 `;

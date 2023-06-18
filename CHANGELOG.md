@@ -8,10 +8,11 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [1.18.0] - Unreleased
 ### Added
-- TOML Plugin [#432]
-- JSON Plugin supports `.jsonc` files [#433]
-- Frontmatter support for JSON / TOML format [#434]
-- Picture plugin [#384]
+- TOML Plugin [#432].
+- JSON Plugin supports `.jsonc` files [#433].
+- Frontmatter support for JSON / TOML format [#434].
+- Picture plugin [#384].
+- Support for symlinks in the src folder.
 
 ### Changed
 - `lightningcss` plugin bundles the CSS code by default.

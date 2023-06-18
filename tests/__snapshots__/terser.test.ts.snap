@@ -77,6 +77,11 @@ snapshot[`terser plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/main.js",
+    "/numbers.js.njk",
+  ],
 }
 `;
 

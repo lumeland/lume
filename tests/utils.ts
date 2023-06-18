@@ -98,6 +98,7 @@ export async function assertSiteSnapshot(
           engines: format.engines?.length,
         };
       }),
+      src: Array.from(site.fs.entries.keys()).sort(),
     },
   );
 

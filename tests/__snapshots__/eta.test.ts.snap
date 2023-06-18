@@ -82,6 +82,14 @@ snapshot[`build a site with eta 1`] = `
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/footer.eta",
+    "/_includes/header.eta",
+    "/_includes/layout.eta",
+    "/index.eta",
+  ],
 }
 `;
 

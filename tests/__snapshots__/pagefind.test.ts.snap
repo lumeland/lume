@@ -75,6 +75,13 @@ snapshot[`Pagefind plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/main.njk",
+    "/index.md",
+    "/page2.md",
+  ],
 }
 `;
 

@@ -84,6 +84,12 @@ snapshot[`postcss plugin 1`] = `
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/index.njk",
+    "/script.js",
+    "/styles.css",
+  ],
 }
 `;
 

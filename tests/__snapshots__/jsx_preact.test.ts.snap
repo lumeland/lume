@@ -87,6 +87,19 @@ snapshot[`build a site with jsx/tsx modules using Preact 1`] = `
       pageLoader: [AsyncFunction: module],
     },
   ],
+  src: [
+    "/",
+    "/_components",
+    "/_components/button.jsx",
+    "/_includes",
+    "/_includes/hello.jsx",
+    "/_includes/layout.jsx",
+    "/index.jsx",
+    "/multiple.jsx",
+    "/with-comp.njk",
+    "/with-function.jsx",
+    "/with-markdown.md",
+  ],
 }
 `;
 

@@ -92,6 +92,14 @@ snapshot[`Build a mdx site 1`] = `
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/_components",
+    "/_components/Header.jsx",
+    "/_includes",
+    "/_includes/Image.tsx",
+    "/index.mdx",
+  ],
 }
 `;
 

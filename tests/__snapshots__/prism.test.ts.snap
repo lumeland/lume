@@ -75,6 +75,10 @@ snapshot[`Prism plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/index.md",
+  ],
 }
 `;
 

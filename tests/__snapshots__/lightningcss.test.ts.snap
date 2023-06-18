@@ -81,6 +81,13 @@ snapshot[`lightningcss plugin (only transform) 1`] = `
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/variables.css",
+    "/index.css",
+    "/text.css",
+  ],
 }
 `;
 
@@ -241,6 +248,13 @@ snapshot[`lightningcss plugin (bundle mode) 1`] = `
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
+  ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/variables.css",
+    "/index.css",
+    "/text.css",
   ],
 }
 `;

@@ -89,6 +89,18 @@ snapshot[`sass plugin 1`] = `
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/sass",
+    "/_includes/sass/button.scss",
+    "/_includes/sass/colors.scss",
+    "/_includes/sass/fourth.scss",
+    "/_includes/sass/third.scss",
+    "/index.scss",
+    "/index2.sass",
+    "/styles.css",
+  ],
 }
 `;
 

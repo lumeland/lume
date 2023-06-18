@@ -75,6 +75,11 @@ snapshot[`code_hightlight plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_data",
+    "/_data/netlify_cms.yml",
+  ],
 }
 `;
 

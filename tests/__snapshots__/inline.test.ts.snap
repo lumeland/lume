@@ -89,6 +89,14 @@ snapshot[`inline plugin 1`] = `
       pageLoader: [AsyncFunction: binary],
     },
   ],
+  src: [
+    "/",
+    "/favicon.png",
+    "/favicon.svg",
+    "/index.njk",
+    "/script.js",
+    "/styles.css.njk",
+  ],
 }
 `;
 
