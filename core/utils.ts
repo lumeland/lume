@@ -46,6 +46,7 @@ export const pluginNames = [
   "tailwindcss",
   "terser",
   "toml",
+  "vento",
   "windi_css",
 ];
 

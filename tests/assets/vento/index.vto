@@ -1,0 +1,14 @@
+---
+title: Título
+layout: layout.vto
+---
+
+<h1>{{ title }}</h1>
+
+{{ comp button {href: "https://lume.land"} }}
+  Go to Lume
+{{ /comp }}
+
+{{ set href = "/" |> url(true) }}
+
+{{ comp button {href, content: "Go to Lume"} /}}

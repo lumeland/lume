@@ -12,6 +12,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - JSON Plugin supports `.jsonc` files [#433].
 - Frontmatter support for JSON / TOML format [#434].
 - Picture plugin [#384].
+- Vento plugin.
 - Support for symlinks in the src folder.
 
 ### Changed
