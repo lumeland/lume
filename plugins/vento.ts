@@ -33,7 +33,7 @@ class LumeLoader extends FileLoader {
   }
 
   async load(file: string) {
-    const entry = this.fs.entries.get(file);
+    const entry = this.fs.entries.get(normalizePath(file));
 
     if (!entry) {
       throw new Error(`File not found: ${file}`);

@@ -20,6 +20,9 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
   Set the option `includes: false` to only transform the code.
 - Improved type annotation of `Site.addEventListener`.
 
+### Fixed
+- Updated dependencies: `std`, `esbuild`, `eta`, `liquidjs`, `postcss-nesting`, `preact-render-to-string`, `sass`, `terser`.
+
 ## [1.17.5] - 2023-06-08
 ### Fixed
 - `Site.copy` now works as expected when given a path with a trailing slash. [#426]

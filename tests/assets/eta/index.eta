@@ -5,5 +5,4 @@ layout: layout.eta
 ---
 <h1><%= name %>'s Eta source code!</h1>
 
-<%~ await includeFile("footer", { name }) %>
-<%~ await includeFile("./_includes/footer", { name }) %>
+<%~ await includeAsync("/footer", { name }) %>

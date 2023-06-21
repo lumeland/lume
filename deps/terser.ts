@@ -1,2 +1,2 @@
-export { minify } from "npm:terser@5.17.7";
-export type { MinifyOptions } from "npm:terser@5.17.7";
+export { minify } from "npm:terser@5.18.1";
+export type { MinifyOptions } from "npm:terser@5.18.1";
