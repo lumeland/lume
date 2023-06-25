@@ -143,7 +143,8 @@ export default class Site {
 
     const src = this.src();
     const dest = this.dest();
-    const { quiet, includes, cwd, prettyUrls, components } = this.options;
+    const { quiet, includes, cwd, prettyUrls, components, server } =
+      this.options;
 
     // To load source files
     const fs = new FS({ root: src });
@@ -178,15 +179,14 @@ export default class Site {
     const logger = new Logger({ quiet });
     const scripts = new Scripts({ logger, cwd });
     const writer = new Writer({ src, dest, logger });
+
+    const url404 = server.page404 ? normalizePath(server.page404) : undefined;
     const searcher = new Searcher({
       pages: this.pages,
       sourceData: source.data,
       filters: [
         (data: Data) => data.page?.outputPath?.endsWith(".html") ?? false, // only html pages
-        (data: Data) =>
-          options.server?.page404
-            ? data.url !== normalizePath(options.server.page404)
-            : true, // not the 404 page
+        (data: Data) => !url404 || data.url !== url404, // not the 404 page
       ],
     });
 

@@ -21,6 +21,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Improved type annotation of `Site.addEventListener`.
 
 ### Fixed
+- Searcher returns the 404 page.
 - Updated dependencies: `std`, `esbuild`, `eta`, `liquidjs`, `postcss-nesting`, `preact-render-to-string`, `sass`, `terser`.
 
 ## [1.17.5] - 2023-06-08
