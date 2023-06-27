@@ -499,7 +499,6 @@ Content of Page 2",
   {
     content: "Content of Page 3",
     data: {
-      children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",
       date: [],

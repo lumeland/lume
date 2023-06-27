@@ -361,8 +361,6 @@ snapshot[`build a site with nunjucks 3`] = `
     content: '["red","green","blue"]
 ',
     data: {
-      children: '["red","green","blue"]
-',
       colors: "Array(3)",
       comp: [
         "_components",

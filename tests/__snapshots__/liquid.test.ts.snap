@@ -105,8 +105,6 @@ snapshot[`build a site with liquid 3`] = `
     content: '["red","green","blue"]
 ',
     data: {
-      children: '["red","green","blue"]
-',
       colors: "Array(3)",
       content: "{{ colors | json }}
 ",

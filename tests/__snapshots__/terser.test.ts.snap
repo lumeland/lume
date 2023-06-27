@@ -120,31 +120,6 @@ console.log(one() + two());
   {
     content: "export function one(){return 1}export function two(){return 2}",
     data: {
-      children: "export function one () {
-" +
-        "  return 1;
-" +
-        "}
-" +
-        "
-" +
-        "export function two () {
-" +
-        "  return 2;
-" +
-        "}
-" +
-        "/*
-" +
-        "Commented code
-" +
-        "export function two () {
-" +
-        "  return 2;
-" +
-        "}
-" +
-        "*/",
       content: "export function one () {
 " +
         "  return {{ one }};

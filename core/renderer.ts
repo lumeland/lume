@@ -120,13 +120,15 @@ export default class Renderer {
         pages.concat(generatedPages),
         async (page) => {
           try {
-            // If the page is an asset, just return the content without rendering
-            if (this.formats.get(page.src.ext || "")?.asset) {
-              page.content = page.data.content as Content;
-              return;
+            const content = await this.#renderPage(page);
+
+            // If the page is HTML, save the children to render the layout later
+            if (page.outputPath?.endsWith(".html")) {
+              page.data.children = content;
+              renderedPages.push(page);
+            } else {
+              page.content = content;
             }
-            page.data.children = await this.#renderPage(page);
-            renderedPages.push(page);
           } catch (cause) {
             throw new Exception("Error rendering this page", { cause, page });
           }
