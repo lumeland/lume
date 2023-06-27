@@ -22,6 +22,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ### Fixed
 - Searcher returns the 404 page.
+- Asset pages generated from a generator.
 - Updated dependencies: `std`, `esbuild`, `eta`, `liquidjs`, `postcss-nesting`, `preact-render-to-string`, `sass`, `terser`.
 
 ## [1.17.5] - 2023-06-08
