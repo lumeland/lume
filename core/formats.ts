@@ -43,12 +43,16 @@ export default class Formats {
   }
 
   /** Assign a value to a extension */
-  set(format: Format): void {
+  set(format: Format, override = true): void {
     const { ext } = format;
     const existing = this.entries.get(ext);
 
     if (existing) {
-      this.entries.set(ext, { ...existing, ...format });
+      if (override) {
+        this.entries.set(ext, { ...existing, ...format });
+      } else {
+        this.entries.set(ext, { ...format, ...existing });
+      }
       return;
     }
 

@@ -344,9 +344,9 @@ export default class Site {
   }
 
   /** Register an import path for some extensions  */
-  includes(extensions: string[], path: string): this {
+  includes(extensions: string[], path: string, override = true): this {
     extensions.forEach((ext) => {
-      this.formats.set({ ext, includesPath: path });
+      this.formats.set({ ext, includesPath: path }, override);
     });
 
     // Ignore any includes folder

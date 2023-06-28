@@ -51,7 +51,7 @@ export default function (userOptions?: Partial<Options>) {
     const plugins = [...options.plugins];
 
     if (options.includes) {
-      site.includes(options.extensions, options.includes);
+      site.includes(options.extensions, options.includes, false);
 
       plugins.unshift(configureImport(site));
     }
