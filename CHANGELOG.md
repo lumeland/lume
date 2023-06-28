@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.18.0] - Unreleased
+## [1.18.0] - 2023-06-28
 ### Added
 - TOML Plugin [#432].
 - JSON Plugin supports `.jsonc` files [#433].
@@ -2288,7 +2288,7 @@ The first version.
 [#433]: https://github.com/lumeland/lume/issues/433
 [#434]: https://github.com/lumeland/lume/issues/434
 
-[1.18.0]: https://github.com/lumeland/lume/compare/v1.17.5...HEAD
+[1.18.0]: https://github.com/lumeland/lume/compare/v1.17.5...v1.18.0
 [1.17.5]: https://github.com/lumeland/lume/compare/v1.17.4...v1.17.5
 [1.17.4]: https://github.com/lumeland/lume/compare/v1.17.3...v1.17.4
 [1.17.3]: https://github.com/lumeland/lume/compare/v1.17.2...v1.17.3
