@@ -24,6 +24,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Searcher returns the 404 page.
 - Asset pages generated from a generator.
 - postcss overrides the default includes path for CSS files.
+- Nunjucks relative includes.
 - Updated dependencies: `std`, `esbuild`, `eta`, `liquidjs`, `postcss-nesting`, `preact-render-to-string`, `sass`, `terser`.
 
 ## [1.17.5] - 2023-06-08

@@ -1,6 +1,6 @@
 import nunjucks from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
-import { merge, resolveInclude } from "../core/utils.ts";
+import { merge, normalizePath, resolveInclude } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
 import { basename, join, posix } from "../deps/path.ts";
 
@@ -166,9 +166,14 @@ export default function (userOptions?: DeepPartial<Options>) {
         id: string,
         callback: nunjucks.Callback<Error, nunjucks.LoaderSource>,
       ) {
-        const format = formats.search(id);
-        const includesPath = format?.includesPath ?? includes;
-        const path = resolveInclude(id, includesPath, undefined, rootToRemove);
+        let path = normalizePath(id, rootToRemove);
+
+        if (path === normalizePath(id)) {
+          const format = formats.search(id);
+          const includesPath = format?.includesPath ?? includes;
+          path = resolveInclude(id, includesPath, undefined, rootToRemove);
+        }
+
         const content = await site.getContent(path, loader) as string;
 
         if (content) {
