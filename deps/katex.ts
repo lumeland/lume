@@ -1,4 +1,4 @@
-import katex from "npm:katex@0.16.7";
+import katex from "npm:katex@0.16.8";
 import { Node } from "../deps/dom.ts";
 
 import type { Document, Element } from "../deps/dom.ts";
