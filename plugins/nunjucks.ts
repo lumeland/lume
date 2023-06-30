@@ -137,14 +137,14 @@ export class NunjucksEngine implements Engine {
   }
 }
 
-class LumeLoader extends nunjucks.Loader implements nunjucks.ILoader {
+class LumeLoader extends nunjucks.Loader implements nunjucks.ILoaderAsync {
   constructor(private site: Site) {
     super();
   }
 
-  async = true;
+  async: true = true;
 
-  async getSource(
+  getSource(
     id: string,
     callback: nunjucks.Callback<Error, nunjucks.LoaderSource>,
   ) {
@@ -157,18 +157,18 @@ class LumeLoader extends nunjucks.Loader implements nunjucks.ILoader {
       path = resolveInclude(id, includesPath, undefined, rootToRemove);
     }
 
-    const content = await this.site.getContent(path, loader) as string;
+    this.site.getContent(path, loader).then((content) => {
+      if (content) {
+        callback(null, {
+          src: content as string,
+          path,
+          noCache: false,
+        });
+        return;
+      }
 
-    if (content) {
-      callback(null, {
-        src: content,
-        path,
-        noCache: false,
-      });
-      return;
-    }
-
-    callback(new Error(`Could not load ${path}`), null);
+      callback(new Error(`Could not load ${path}`), null);
+    });
   }
 
   resolve(from: string, to: string): string {
