@@ -9,6 +9,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.18.1] - Unreleased
 ### Fixed
 - Updated deps: `esbuild`, `katex`, `lightningcss`, `terser`, `vento`.
+- Ensure cached remote files are refreshed if something fails.
 
 ## [1.18.0] - 2023-06-28
 ### Added

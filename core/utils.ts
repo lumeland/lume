@@ -465,12 +465,18 @@ export async function read(
   }
 
   const cache = await caches.open("lume_remote_files");
-  const cached = await cache.match(url);
 
-  if (cached) {
-    return isBinary
-      ? new Uint8Array(await cached.arrayBuffer())
-      : cached.text();
+  // Prevent https://github.com/denoland/deno/issues/19696
+  try {
+    const cached = await cache.match(url);
+
+    if (cached) {
+      return isBinary
+        ? new Uint8Array(await cached.arrayBuffer())
+        : cached.text();
+    }
+  } catch {
+    // ignore
   }
 
   const response = await fetch(url);
