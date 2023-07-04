@@ -204,10 +204,10 @@ export default function (userOptions?: Partial<Options>) {
         });
       },
     };
-    options.options.plugins?.unshift(lumeLoaderPlugin);
+    options.options.plugins?.push(lumeLoaderPlugin);
 
     site.hooks.addEsbuildPlugin = (plugin) => {
-      options.options.plugins?.push(plugin);
+      options.options.plugins?.unshift(plugin);
     };
 
     /** Run esbuild and returns the output files */
