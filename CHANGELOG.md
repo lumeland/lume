@@ -11,6 +11,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Updated deps: `esbuild`, `katex`, `lightningcss`, `terser`, `vento`.
 - Ensure cached remote files are refreshed if something fails.
 - Support for `data:` urls to esbuild [#442].
+- Some TypeScript errors [#441].
 
 ## [1.18.0] - 2023-06-28
 ### Added
@@ -2293,6 +2294,7 @@ The first version.
 [#432]: https://github.com/lumeland/lume/issues/432
 [#433]: https://github.com/lumeland/lume/issues/433
 [#434]: https://github.com/lumeland/lume/issues/434
+[#441]: https://github.com/lumeland/lume/issues/441
 [#442]: https://github.com/lumeland/lume/issues/442
 
 [1.18.1]: https://github.com/lumeland/lume/compare/v1.18.0...HEAD
