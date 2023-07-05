@@ -4,6 +4,7 @@
     "exclude": [
       "tests/assets/json/page1.md",
       "tests/assets/toml/page1.md",
+      "deps/katex-auto-render",
       "CHANGELOG.md"
     ]
   },
