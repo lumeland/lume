@@ -69,7 +69,7 @@ function renderElem(elem: Element, optionsCopy: KatexOptions) {
             if (frag) {
                 // Remove extra text nodes
                 for (let j = 0; j < nSiblings; j++) {
-                    childNode.nextSibling?.remove();
+                    (childNode.nextSibling as Element | undefined)?.remove();
                 }
                 i += frag.childNodes.length - 1;
                 elem.replaceChild(frag, childNode);
