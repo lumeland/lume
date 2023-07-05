@@ -1,12 +1,16 @@
-/* eslint no-console:0 */
-
-import katex from "katex";
-import splitAtDelimiters from "./splitAtDelimiters";
+import { katex, KatexOptions } from "../../deps/katex.ts";
+import splitAtDelimiters from "./splitAtDelimiters.js";
+import { Node } from "../../deps/dom.ts";
+import type { Document, Element } from "../../deps/dom.ts";
 
 /* Note: optionsCopy is mutated by this method. If it is ever exposed in the
  * API, we should copy it before mutating.
  */
-const renderMathInText = function(text, optionsCopy) {
+const renderMathInText = function (
+    document: Document,
+    text: string,
+    optionsCopy: KatexOptions,
+) {
     const data = splitAtDelimiters(text, optionsCopy.delimiters);
     if (data.length === 1 && data[0].type === 'text') {
         // There is no formula in the text.
@@ -26,23 +30,17 @@ const renderMathInText = function(text, optionsCopy) {
             // Override any display mode defined in the settings with that
             // defined by the text itself
             optionsCopy.displayMode = data[i].display;
-            try {
-                if (optionsCopy.preProcess) {
-                    math = optionsCopy.preProcess(math);
-                }
-                katex.render(math, span, optionsCopy);
-            } catch (e) {
-                if (!(e instanceof katex.ParseError)) {
-                    throw e;
-                }
-                optionsCopy.errorCallback(
-                    "KaTeX auto-render: Failed to parse `" + data[i].data +
-                        "` with ",
-                    e
-                );
-                fragment.appendChild(document.createTextNode(data[i].rawData));
-                continue;
+            if (optionsCopy.preProcess) {
+                math = optionsCopy.preProcess(math);
             }
+            const rendered = katex.renderToString(
+                math,
+                optionsCopy,
+            );
+            const div = document.createElement("div");
+            div.innerHTML = rendered.trim();
+
+            span.appendChild(div.firstChild as Node);
             fragment.appendChild(span);
         }
     }
@@ -50,15 +48,12 @@ const renderMathInText = function(text, optionsCopy) {
     return fragment;
 };
 
-const renderElem = function(elem, optionsCopy) {
+function renderElem(elem: Element, optionsCopy: KatexOptions) {
     for (let i = 0; i < elem.childNodes.length; i++) {
         const childNode = elem.childNodes[i];
         if (childNode.nodeType === 3) {
             // Text node
-            // Concatenate all sibling text nodes.
-            // Webkit browsers split very large text nodes into smaller ones,
-            // so the delimiters may be split across different nodes.
-            let textContentConcat = childNode.textContent;
+            let textContentConcat = childNode.textContent || "";
             let sibling = childNode.nextSibling;
             let nSiblings = 0;
             while (sibling && (sibling.nodeType === Node.TEXT_NODE)) {
@@ -66,11 +61,15 @@ const renderElem = function(elem, optionsCopy) {
                 sibling = sibling.nextSibling;
                 nSiblings++;
             }
-            const frag = renderMathInText(textContentConcat, optionsCopy);
+            const frag = renderMathInText(
+                elem.ownerDocument!,
+                textContentConcat,
+                optionsCopy,
+            );
             if (frag) {
                 // Remove extra text nodes
                 for (let j = 0; j < nSiblings; j++) {
-                    childNode.nextSibling.remove();
+                    childNode.nextSibling?.remove();
                 }
                 i += frag.childNodes.length - 1;
                 elem.replaceChild(frag, childNode);
@@ -81,62 +80,29 @@ const renderElem = function(elem, optionsCopy) {
             }
         } else if (childNode.nodeType === 1) {
             // Element node
-            const className = ' ' + childNode.className + ' ';
-            const shouldRender = optionsCopy.ignoredTags.indexOf(
-                childNode.nodeName.toLowerCase()) === -1 &&
-                  optionsCopy.ignoredClasses.every(
-                      x => className.indexOf(' ' + x + ' ') === -1);
+            const className = " " + (childNode as Element).className + " ";
+            const shouldRender = optionsCopy.ignoredTags!.indexOf(
+                        childNode.nodeName.toLowerCase(),
+                    ) === -1 &&
+                optionsCopy.ignoredClasses!.every(
+                    (x) => className.indexOf(" " + x + " ") === -1,
+                );
 
             if (shouldRender) {
-                renderElem(childNode, optionsCopy);
+                renderElem(childNode as Element, optionsCopy);
             }
         }
         // Otherwise, it's something else, and ignore it.
     }
-};
+}
 
-const renderMathInElement = function(elem, options) {
+export function renderMathInElement(
+    elem: Element | undefined,
+    options: KatexOptions,
+) {
     if (!elem) {
         throw new Error("No element provided to render");
     }
 
-    const optionsCopy = {};
-
-    // Object.assign(optionsCopy, option)
-    for (const option in options) {
-        if (options.hasOwnProperty(option)) {
-            optionsCopy[option] = options[option];
-        }
-    }
-
-    // default options
-    optionsCopy.delimiters = optionsCopy.delimiters || [
-        {left: "$$", right: "$$", display: true},
-        {left: "\\(", right: "\\)", display: false},
-        // LaTeX uses $…$, but it ruins the display of normal `$` in text:
-        // {left: "$", right: "$", display: false},
-        // $ must come after $$
-
-        // Render AMS environments even if outside $$…$$ delimiters.
-        {left: "\\begin{equation}", right: "\\end{equation}", display: true},
-        {left: "\\begin{align}", right: "\\end{align}", display: true},
-        {left: "\\begin{alignat}", right: "\\end{alignat}", display: true},
-        {left: "\\begin{gather}", right: "\\end{gather}", display: true},
-        {left: "\\begin{CD}", right: "\\end{CD}", display: true},
-
-        {left: "\\[", right: "\\]", display: true},
-    ];
-    optionsCopy.ignoredTags = optionsCopy.ignoredTags || [
-        "script", "noscript", "style", "textarea", "pre", "code", "option",
-    ];
-    optionsCopy.ignoredClasses = optionsCopy.ignoredClasses || [];
-    optionsCopy.errorCallback = optionsCopy.errorCallback || console.error;
-
-    // Enable sharing of global macros defined via `\gdef` between different
-    // math elements within a single call to `renderMathInElement`.
-    optionsCopy.macros = optionsCopy.macros || {};
-
-    renderElem(elem, optionsCopy);
-};
-
-export default renderMathInElement;
+    renderElem(elem, Object.assign({}, options));
+}
