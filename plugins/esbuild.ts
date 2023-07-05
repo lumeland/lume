@@ -386,6 +386,11 @@ const cache = new Map<string, string | Uint8Array>();
 
 export async function readFile(path: string): Promise<string | Uint8Array> {
   if (!isUrl(path)) {
+    if (path.startsWith("data:")) {
+      const response = await fetch(path);
+      return await response.text();
+    }
+
     return await Deno.readTextFile(path);
   }
 
