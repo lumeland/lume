@@ -1,1 +1,1 @@
-export * from "npm:lightningcss@1.21.1";
+export * from "npm:lightningcss@1.21.5";

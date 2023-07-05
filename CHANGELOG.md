@@ -8,7 +8,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [1.18.1] - Unreleased
 ### Fixed
-- Updated deps: `esbuild`, `katex`, `lightningcss`, `terser`, `vento`.
+- Updated deps: `std`, `esbuild`, `katex`, `lightningcss`, `postcss-nesting`, `terser`, `vento`.
 - Ensure cached remote files are refreshed if something fails.
 - Support for `data:` urls to esbuild [#442].
 - Some TypeScript errors [#441].

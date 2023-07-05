@@ -73,7 +73,7 @@ export default function (userOptions?: DeepPartial<Options>) {
       const code = new TextEncoder().encode(content);
       const transformOptions: TransformOptions<CustomAtRules> = {
         filename,
-        // @ts-expect-error: the lightningcss type definitions expect a node Buffer: https://github.com/parcel-bundler/lightningcss/pull/530
+        // @ts-ignore: the lightningcss type definitions expect a node Buffer: https://github.com/parcel-bundler/lightningcss/pull/530
         code,
         sourceMap: enableSourceMap,
         inputSourceMap: JSON.stringify(sourceMap),
