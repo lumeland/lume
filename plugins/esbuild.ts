@@ -239,6 +239,8 @@ export default function (userOptions?: Partial<Options>) {
       };
 
       const { outputFiles, warnings, errors } = await build(
+        // @ts-expect-error: esbuild uses a SameShape type to prevent the passing
+        // of extra options (which we use to pass the entryContent)
         buildOptions,
       );
 

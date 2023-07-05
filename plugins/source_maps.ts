@@ -79,10 +79,10 @@ export const dynamicSourcesSymbol = Symbol.for("dynamicSources");
 export interface SourceMap {
   version: number;
   file?: string;
-  sources: string[];
+  sources: readonly string[];
   sourceRoot?: string;
-  sourcesContent?: string[];
-  names: string[];
+  sourcesContent?: readonly (string | null)[];
+  names: readonly string[];
   mappings: string;
   [dynamicSourcesSymbol]?: Record<string, string>;
 }

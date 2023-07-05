@@ -137,6 +137,45 @@ export class NunjucksEngine implements Engine {
   }
 }
 
+class LumeLoader extends nunjucks.Loader implements nunjucks.ILoaderAsync {
+  constructor(private site: Site) {
+    super();
+  }
+
+  async: true = true;
+
+  getSource(
+    id: string,
+    callback: nunjucks.Callback<Error, nunjucks.LoaderSource>,
+  ) {
+    const rootToRemove = this.site.src();
+    let path = normalizePath(id, rootToRemove);
+
+    if (path === normalizePath(id)) {
+      const format = this.site.formats.search(id);
+      const includesPath = format?.includesPath ?? this.site.options.includes;
+      path = resolveInclude(id, includesPath, undefined, rootToRemove);
+    }
+
+    this.site.getContent(path, loader).then((content) => {
+      if (content) {
+        callback(null, {
+          src: content as string,
+          path,
+          noCache: false,
+        });
+        return;
+      }
+
+      callback(new Error(`Could not load ${path}`), null);
+    });
+  }
+
+  resolve(from: string, to: string): string {
+    return posix.join(posix.dirname(from), to);
+  }
+}
+
 /** Register the plugin to use Nunjucks as a template engine */
 export default function (userOptions?: DeepPartial<Options>) {
   return (site: Site) => {
@@ -150,46 +189,10 @@ export default function (userOptions?: DeepPartial<Options>) {
 
     site.includes(extensions.pages, options.includes);
 
-    const { formats } = site;
-    const { includes } = site.options;
-    const rootToRemove = site.src();
-
-    const lumeLoader: nunjucks.ILoader = {
-      async: true,
-      resolve(from: string, to: string) {
-        return posix.join(posix.dirname(from), to);
-      },
-      isRelative(filename: string) {
-        return filename.startsWith(".");
-      },
-      async getSource(
-        id: string,
-        callback: nunjucks.Callback<Error, nunjucks.LoaderSource>,
-      ) {
-        let path = normalizePath(id, rootToRemove);
-
-        if (path === normalizePath(id)) {
-          const format = formats.search(id);
-          const includesPath = format?.includesPath ?? includes;
-          path = resolveInclude(id, includesPath, undefined, rootToRemove);
-        }
-
-        const content = await site.getContent(path, loader) as string;
-
-        if (content) {
-          callback(null, {
-            src: content,
-            path,
-            noCache: false,
-          });
-          return;
-        }
-
-        callback(new Error(`Could not load ${path}`), null);
-      },
-    };
-
-    const env = new nunjucks.Environment([lumeLoader], options.options);
+    const env = new nunjucks.Environment(
+      [new LumeLoader(site)],
+      options.options,
+    );
 
     for (const [name, fn] of Object.entries(options.plugins)) {
       env.addExtension(name, fn);

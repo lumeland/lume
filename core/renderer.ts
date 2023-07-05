@@ -140,7 +140,10 @@ export default class Renderer {
         renderedPages,
         async (page) => {
           try {
-            page.content = await this.#renderLayout(page, page.data.children);
+            page.content = await this.#renderLayout(
+              page,
+              page.data.children as Content,
+            );
 
             // Ensure all HTML pages have the DOCTYPE declaration
             if (

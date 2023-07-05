@@ -26,7 +26,7 @@ Deno.test("build/update events", async () => {
   const events: string[] = [];
 
   const listener = (event: SiteEvent) => events.push(event.type);
-  const updateListener = (event: SiteEvent) => {
+  const updateListener = (event: SiteEvent<"beforeUpdate" | "afterUpdate">) => {
     equals(event.files!.size, 1);
     equals(event.files!.has("/page1.md"), true);
     listener(event);

@@ -245,9 +245,9 @@ export default class Site {
   }
 
   /** Add a listener to an event */
-  addEventListener<K extends keyof SiteEventMap>(
+  addEventListener<K extends SiteEventType>(
     type: K,
-    listener: EventListener<Event & SiteEventMap[K]> | string,
+    listener: EventListener<Event & SiteEvent<K>> | string,
     options?: EventOptions,
   ): this {
     const fn = typeof listener === "string"
