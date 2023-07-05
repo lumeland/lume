@@ -177,7 +177,6 @@ export async function sha1(message: string | Uint8Array): Promise<string> {
 }
 
 /** Helper to create optional properties recursively */
-// deno-lint-ignore ban-types
 export type DeepPartial<T> = T extends object ? {
     [P in keyof T]?: DeepPartial<T[P]>;
   }
