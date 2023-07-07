@@ -13,6 +13,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
     to ensure browser compatible code [#442].
   - Save the esm.sh requests in cache.
     This ensure the plugin will works ofline, once the requests are cached.
+  - Change the order of the custom plugins [#445]
 
 ## [1.18.1] - 2023-07-05
 ### Fixed
@@ -2304,6 +2305,7 @@ The first version.
 [#434]: https://github.com/lumeland/lume/issues/434
 [#441]: https://github.com/lumeland/lume/issues/441
 [#442]: https://github.com/lumeland/lume/issues/442
+[#445]: https://github.com/lumeland/lume/issues/445
 
 [1.18.2]: https://github.com/lumeland/lume/compare/v1.18.1...HEAD
 [1.18.1]: https://github.com/lumeland/lume/compare/v1.18.0...v1.18.1
