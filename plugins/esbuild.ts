@@ -3,6 +3,7 @@ import {
   isUrl,
   merge,
   normalizePath,
+  read,
   readDenoConfig,
   replaceExtension,
 } from "../core/utils.ts";
@@ -382,23 +383,11 @@ function pathWithoutExtension(path: string): string {
   return path.replace(/\.\w+$/, "");
 }
 
-const cache = new Map<string, string | Uint8Array>();
-
-export async function readFile(path: string): Promise<string | Uint8Array> {
-  if (!isUrl(path)) {
-    if (path.startsWith("data:")) {
-      const response = await fetch(path);
-      return await response.text();
-    }
-
-    return await Deno.readTextFile(path);
-  }
-
-  if (!cache.has(path)) {
-    const response = await fetch(path);
-    const content = await response.text();
-    cache.set(path, content);
-  }
-
-  return cache.get(path)!;
+export async function readFile(path: string): Promise<string> {
+  return await read(path, false, {
+    headers: {
+      "User-Agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/115.0",
+    },
+  });
 }

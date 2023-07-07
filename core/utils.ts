@@ -447,13 +447,30 @@ export async function read(
   path: string,
   isBinary: boolean,
 ): Promise<Uint8Array | string>;
-export async function read(path: string, isBinary: true): Promise<Uint8Array>;
-export async function read(path: string, isBinary: false): Promise<string>;
+export async function read(
+  path: string,
+  isBinary: true,
+  init?: RequestInit,
+): Promise<Uint8Array>;
+export async function read(
+  path: string,
+  isBinary: false,
+  init?: RequestInit,
+): Promise<string>;
 export async function read(
   path: string,
   isBinary: boolean,
+  init?: RequestInit,
 ): Promise<string | Uint8Array> {
   if (!isUrl(path)) {
+    if (path.startsWith("data:")) {
+      const response = await fetch(path);
+
+      return isBinary
+        ? new Uint8Array(await response.arrayBuffer())
+        : response.text();
+    }
+
     return isBinary ? Deno.readFile(path) : Deno.readTextFile(path);
   }
 
@@ -478,7 +495,7 @@ export async function read(
     // ignore
   }
 
-  const response = await fetch(url);
+  const response = await fetch(url, init);
   await cache.put(url, response.clone());
 
   return isBinary
