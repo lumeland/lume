@@ -1,4 +1,4 @@
-# Migration fron Lume v1 to Lume v2
+# Migration from Lume v1 to Lume v2
 
 ## `search` Plugin
 
