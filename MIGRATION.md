@@ -6,3 +6,12 @@
   https://github.com/lumeland/lume/issues/251
 - Removed `search.tags()` function. Use `search.values("tags")`.
 - Removed `data` filter.
+
+## `toml` Plugin
+
+- It's installed by default
+- QUESTION: Should be possible to create pages from toml files?
+  - No, use only for _data
+  - Yes, but with a subextension to avoid conflicts with some configuration
+    files like `netlify.toml`. For example: `page.tmpl.toml`.
+  - Yes.
