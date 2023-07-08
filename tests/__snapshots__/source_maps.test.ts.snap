@@ -63,6 +63,12 @@ snapshot[`Source maps from CSS files 1`] = `
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
       engines: undefined,
       ext: ".yaml",
@@ -347,6 +353,12 @@ snapshot[`Source maps from Js files 1`] = `
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
     },
     {
       dataLoader: [AsyncFunction: yaml],

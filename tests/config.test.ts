@@ -114,7 +114,7 @@ Deno.test("data configuration", () => {
   const site = lume();
   const { formats } = site;
 
-  equals(formats.size, 13);
+  equals(formats.size, 14);
   equals(formats.has(".json"), true);
   assert(formats.get(".json")?.dataLoader);
   equals(formats.has(".jsonc"), true);
@@ -123,6 +123,8 @@ Deno.test("data configuration", () => {
   assert(formats.get(".js")?.dataLoader);
   equals(formats.has(".ts"), true);
   assert(formats.get(".ts")?.dataLoader);
+  equals(formats.has(".toml"), true);
+  assert(formats.get(".toml")?.dataLoader);
   equals(formats.has(".yaml"), true);
   assert(formats.get(".yaml")?.dataLoader);
   equals(formats.has(".yml"), true);
@@ -131,7 +133,7 @@ Deno.test("data configuration", () => {
   const loader = () => Promise.resolve({});
   site.loadData([".ext1", ".ext2"], loader);
 
-  equals(formats.size, 15);
+  equals(formats.size, 16);
   equals(formats.get(".ext1")?.dataLoader, loader);
   equals(formats.get(".ext2")?.dataLoader, loader);
 });
@@ -140,7 +142,7 @@ Deno.test("pages configuration", () => {
   const site = lume();
   const { formats } = site;
 
-  equals(formats.size, 13);
+  equals(formats.size, 14);
 
   const extensions = [
     ".tmpl.json",
@@ -149,6 +151,7 @@ Deno.test("pages configuration", () => {
     ".tmpl.ts",
     ".md",
     ".njk",
+    ".toml",
     ".yaml",
     ".yml",
   ];
@@ -175,7 +178,7 @@ Deno.test("pages configuration", () => {
 
   site.loadPages(newExts, loader, engine);
 
-  equals(formats.size, 15);
+  equals(formats.size, 16);
 
   for (const ext of newExts) {
     equals(formats.has(ext), true);
@@ -188,7 +191,7 @@ Deno.test("assets configuration", () => {
   const site = lume();
   const { formats } = site;
 
-  equals(formats.size, 13);
+  equals(formats.size, 14);
 
   const loader = () => Promise.resolve({});
 
@@ -199,7 +202,7 @@ Deno.test("assets configuration", () => {
 
   site.loadAssets(extensions, loader);
 
-  equals(formats.size, 14);
+  equals(formats.size, 15);
   for (const ext of extensions) {
     equals(formats.has(ext), true);
     assert(formats.get(ext)?.pageLoader);
