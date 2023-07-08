@@ -266,25 +266,24 @@ Deno.test("helpers configuration", () => {
   const site = lume();
   const { helpers } = site.renderer;
 
-  equals(helpers.size, 5);
+  equals(helpers.size, 4);
   equals(helpers.has("url"), true);
   equals(helpers.has("htmlUrl"), true);
   equals(helpers.has("md"), true);
   equals(helpers.has("njk"), true);
-  equals(helpers.has("data"), true);
 
   const helper = () => {};
   const options = { type: "filter" };
 
   site.helper("helper1", helper, options);
-  equals(helpers.size, 6);
+  equals(helpers.size, 5);
   equals(helpers.has("helper1"), true);
   equals(helpers.get("helper1")![0], helper);
   equals(helpers.get("helper1")![1], options);
 
   const filter = () => {};
   site.filter("filter1", filter, true);
-  equals(helpers.size, 7);
+  equals(helpers.size, 6);
   equals(helpers.has("filter1"), true);
   equals(helpers.get("filter1")![0], filter);
   equals(helpers.get("filter1")![1].type, "filter");

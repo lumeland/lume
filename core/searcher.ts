@@ -61,6 +61,11 @@ export default class Searcher {
     return (limit < 0) ? result.slice(limit) : result.slice(0, limit);
   }
 
+  /** Search and return the first page */
+  page(query?: string, sort?: string): Data | undefined {
+    return this.pages(query, sort)[0];
+  }
+
   /** Returns all values from the same key of a search */
   values<T = unknown>(key: string, query?: string): T[] {
     const values = new Set();

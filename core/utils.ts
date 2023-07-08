@@ -223,7 +223,9 @@ export function isPlainObject(obj: unknown): obj is Record<string, unknown> {
   return typeof obj === "object" && obj !== null &&
     obj.constructor === objectConstructor &&
     // @ts-ignore: Check if the argument passed is a React element
-    obj["$$typeof"] !== reactElement;
+    obj["$$typeof"] !== reactElement &&
+    // @ts-ignore: Check if the argument passed is a Page.data object
+    obj !== obj.page?.data;
 }
 
 /**
