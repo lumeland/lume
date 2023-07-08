@@ -81,6 +81,18 @@ snapshot[`multilanguage plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/layout.njk",
+    "/index.md",
+    "/other.njk",
+    "/pages",
+    "/pages/page1.md",
+    "/pages/page1_en.md",
+    "/pages/page1_gl.md",
+    "/pagination.tmpl.js",
+  ],
 }
 `;
 

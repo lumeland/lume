@@ -81,6 +81,10 @@ snapshot[`base_path plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/index.njk",
+  ],
 }
 `;
 

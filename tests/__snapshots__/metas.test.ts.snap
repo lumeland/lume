@@ -81,6 +81,13 @@ snapshot[`metas plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_data.yml",
+    "/page-1.njk",
+    "/page-2.njk",
+    "/page-3.md",
+  ],
 }
 `;
 

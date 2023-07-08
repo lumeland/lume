@@ -78,7 +78,6 @@ import type {
 import type { PaginationInfo, Paginator } from "./plugins/paginate.ts";
 import type { Transformation } from "./plugins/imagick.ts";
 import type { MetaData } from "./plugins/metas.ts";
-import type { Search } from "./plugins/search.ts";
 import type { Children } from "./plugins/jsx.ts";
 import type { SourceMap } from "./plugins/source_maps.ts";
 
@@ -212,7 +211,7 @@ export interface PageData extends Data {
    * The searcher helper
    * @see https://lume.land/plugins/search/
    */
-  search: Search;
+  search: Searcher;
 
   /**
    * The source map data (if it's an asset)

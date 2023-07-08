@@ -81,6 +81,23 @@ snapshot[`build a site with nunjucks 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_components",
+    "/_components/Button.ts",
+    "/_components/icon",
+    "/_components/icon/User.njk",
+    "/_data.yml",
+    "/_includes",
+    "/_includes/basic.njk",
+    "/_includes/partial.njk",
+    "/components.njk",
+    "/data.json.njk",
+    "/empty.njk",
+    "/index.njk",
+    "/njk-filter.tmpl.js",
+    "/with-helpers.njk",
+  ],
 }
 `;
 
@@ -350,8 +367,6 @@ snapshot[`build a site with nunjucks 3`] = `
     content: '["red","green","blue"]
 ',
     data: {
-      children: '["red","green","blue"]
-',
       colors: "Array(3)",
       comp: [
         "_components",

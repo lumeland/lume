@@ -6,17 +6,42 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.18.0] - Unreleased
+## [1.18.2] - Unreleased
+### Fixed
+- esbuild plugin fixes:
+  - Send browser's User-Agent headers to esm.sh
+    to ensure browser compatible code [#442].
+  - Save the esm.sh requests in cache.
+    This ensure the plugin will works ofline, once the requests are cached.
+  - Change the order of the custom plugins [#445]
+
+## [1.18.1] - 2023-07-05
+### Fixed
+- Updated deps: `std`, `esbuild`, `katex`, `lightningcss`, `postcss-nesting`, `terser`, `vento`.
+- Ensure cached remote files are refreshed if something fails.
+- Support for `data:` urls to esbuild [#442].
+- Some TypeScript errors [#441].
+
+## [1.18.0] - 2023-06-28
 ### Added
-- TOML Plugin [#432], [#436].
-- JSON Plugin supports `.jsonc` files [#433]
-- Frontmatter support for JSON / TOML format [#434]
-- Picture plugin [#384]
+- TOML Plugin [#432].
+- JSON Plugin supports `.jsonc` files [#433].
+- Frontmatter support for JSON / TOML format [#434].
+- Picture plugin [#384].
+- Vento plugin.
+- Support for symlinks in the src folder.
 
 ### Changed
 - `lightningcss` plugin bundles the CSS code by default.
   Set the option `includes: false` to only transform the code.
 - Improved type annotation of `Site.addEventListener`.
+
+### Fixed
+- Searcher returns the 404 page.
+- Asset pages generated from a generator.
+- postcss overrides the default includes path for CSS files.
+- Nunjucks relative includes.
+- Updated dependencies: `std`, `esbuild`, `eta`, `liquidjs`, `postcss-nesting`, `preact-render-to-string`, `sass`, `terser`.
 
 ## [1.17.5] - 2023-06-08
 ### Fixed
@@ -2278,9 +2303,13 @@ The first version.
 [#432]: https://github.com/lumeland/lume/issues/432
 [#433]: https://github.com/lumeland/lume/issues/433
 [#434]: https://github.com/lumeland/lume/issues/434
-[#436]: https://github.com/lumeland/lume/issues/436
+[#441]: https://github.com/lumeland/lume/issues/441
+[#442]: https://github.com/lumeland/lume/issues/442
+[#445]: https://github.com/lumeland/lume/issues/445
 
-[1.18.0]: https://github.com/lumeland/lume/compare/v1.17.5...HEAD
+[1.18.2]: https://github.com/lumeland/lume/compare/v1.18.1...HEAD
+[1.18.1]: https://github.com/lumeland/lume/compare/v1.18.0...v1.18.1
+[1.18.0]: https://github.com/lumeland/lume/compare/v1.17.5...v1.18.0
 [1.17.5]: https://github.com/lumeland/lume/compare/v1.17.4...v1.17.5
 [1.17.4]: https://github.com/lumeland/lume/compare/v1.17.3...v1.17.4
 [1.17.3]: https://github.com/lumeland/lume/compare/v1.17.2...v1.17.3

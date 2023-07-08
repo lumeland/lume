@@ -59,6 +59,7 @@ export default function (userOptions: DeepPartial<Options> = {}) {
 
   return (site: Site) => {
     // Create & configure a windicss instance
+    // @ts-expect-error: windicss provides wrong types under node16 module resolution
     const processor = new Processor();
     options.config = processor.loadConfig(options.config);
 
@@ -123,7 +124,12 @@ export default function (userOptions: DeepPartial<Options> = {}) {
 /**
  * Run windicss on a HTML page
  */
-export function windi(page: Page, processor: Processor, options: Options) {
+export function windi(
+  page: Page,
+  // @ts-expect-error: windicss provides wrong types under node16 module resolution
+  processor: Processor,
+  options: Options,
+) {
   const content = page.content as string;
   const parser = new HTMLParser(content);
 

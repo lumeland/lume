@@ -1,4 +1,5 @@
-import { katex, KatexOptions, renderMathInElement } from "../deps/katex.ts";
+import { katex, KatexOptions } from "../deps/katex.ts";
+import { renderMathInElement } from "../deps/katex-auto-render/auto-render.ts";
 import { merge } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
 

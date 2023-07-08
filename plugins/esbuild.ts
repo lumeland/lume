@@ -3,6 +3,7 @@ import {
   isUrl,
   merge,
   normalizePath,
+  read,
   readDenoConfig,
   replaceExtension,
 } from "../core/utils.ts";
@@ -204,10 +205,10 @@ export default function (userOptions?: Partial<Options>) {
         });
       },
     };
-    options.options.plugins?.unshift(lumeLoaderPlugin);
+    options.options.plugins?.push(lumeLoaderPlugin);
 
     site.hooks.addEsbuildPlugin = (plugin) => {
-      options.options.plugins?.push(plugin);
+      options.options.plugins?.unshift(plugin);
     };
 
     /** Run esbuild and returns the output files */
@@ -239,6 +240,8 @@ export default function (userOptions?: Partial<Options>) {
       };
 
       const { outputFiles, warnings, errors } = await build(
+        // @ts-expect-error: esbuild uses a SameShape type to prevent the passing
+        // of extra options (which we use to pass the entryContent)
         buildOptions,
       );
 
@@ -380,18 +383,11 @@ function pathWithoutExtension(path: string): string {
   return path.replace(/\.\w+$/, "");
 }
 
-const cache = new Map<string, string | Uint8Array>();
-
-export async function readFile(path: string): Promise<string | Uint8Array> {
-  if (!isUrl(path)) {
-    return await Deno.readTextFile(path);
-  }
-
-  if (!cache.has(path)) {
-    const response = await fetch(path);
-    const content = await response.text();
-    cache.set(path, content);
-  }
-
-  return cache.get(path)!;
+export async function readFile(path: string): Promise<string> {
+  return await read(path, false, {
+    headers: {
+      "User-Agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/115.0",
+    },
+  });
 }

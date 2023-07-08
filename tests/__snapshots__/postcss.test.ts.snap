@@ -88,6 +88,15 @@ snapshot[`postcss plugin 1`] = `
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/components",
+    "/_includes/components/foo.css",
+    "/_includes/variables.css",
+    "/index.css",
+    "/text.css",
+  ],
 }
 `;
 
@@ -310,6 +319,15 @@ snapshot[`postcss plugin without includes 1`] = `
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/components",
+    "/_includes/components/foo.css",
+    "/_includes/variables.css",
+    "/index.css",
+    "/text.css",
+  ],
 }
 `;
 
@@ -495,6 +513,15 @@ snapshot[`postcss plugin with hooks 1`] = `
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
+  ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/components",
+    "/_includes/components/foo.css",
+    "/_includes/variables.css",
+    "/index.css",
+    "/text.css",
   ],
 }
 `;

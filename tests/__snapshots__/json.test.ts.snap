@@ -81,6 +81,14 @@ snapshot[`JSON plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_data.jsonc",
+    "/_includes",
+    "/_includes/layout.njk",
+    "/index.tmpl.json",
+    "/page1.md",
+  ],
 }
 `;
 

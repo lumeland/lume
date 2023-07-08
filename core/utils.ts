@@ -46,6 +46,7 @@ export const pluginNames = [
   "tailwindcss",
   "terser",
   "toml",
+  "vento",
   "windi_css",
 ];
 
@@ -176,7 +177,6 @@ export async function sha1(message: string | Uint8Array): Promise<string> {
 }
 
 /** Helper to create optional properties recursively */
-// deno-lint-ignore ban-types
 export type DeepPartial<T> = T extends object ? {
     [P in keyof T]?: DeepPartial<T[P]>;
   }
@@ -223,7 +223,9 @@ export function isPlainObject(obj: unknown): obj is Record<string, unknown> {
   return typeof obj === "object" && obj !== null &&
     obj.constructor === objectConstructor &&
     // @ts-ignore: Check if the argument passed is a React element
-    obj["$$typeof"] !== reactElement;
+    obj["$$typeof"] !== reactElement &&
+    // @ts-ignore: Check if the argument passed is a Page.data object
+    obj !== obj.page?.data;
 }
 
 /**
@@ -447,13 +449,30 @@ export async function read(
   path: string,
   isBinary: boolean,
 ): Promise<Uint8Array | string>;
-export async function read(path: string, isBinary: true): Promise<Uint8Array>;
-export async function read(path: string, isBinary: false): Promise<string>;
+export async function read(
+  path: string,
+  isBinary: true,
+  init?: RequestInit,
+): Promise<Uint8Array>;
+export async function read(
+  path: string,
+  isBinary: false,
+  init?: RequestInit,
+): Promise<string>;
 export async function read(
   path: string,
   isBinary: boolean,
+  init?: RequestInit,
 ): Promise<string | Uint8Array> {
   if (!isUrl(path)) {
+    if (path.startsWith("data:")) {
+      const response = await fetch(path);
+
+      return isBinary
+        ? new Uint8Array(await response.arrayBuffer())
+        : response.text();
+    }
+
     return isBinary ? Deno.readFile(path) : Deno.readTextFile(path);
   }
 
@@ -464,15 +483,21 @@ export async function read(
   }
 
   const cache = await caches.open("lume_remote_files");
-  const cached = await cache.match(url);
 
-  if (cached) {
-    return isBinary
-      ? new Uint8Array(await cached.arrayBuffer())
-      : cached.text();
+  // Prevent https://github.com/denoland/deno/issues/19696
+  try {
+    const cached = await cache.match(url);
+
+    if (cached) {
+      return isBinary
+        ? new Uint8Array(await cached.arrayBuffer())
+        : cached.text();
+    }
+  } catch {
+    // ignore
   }
 
-  const response = await fetch(url);
+  const response = await fetch(url, init);
   await cache.put(url, response.clone());
 
   return isBinary

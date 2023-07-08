@@ -81,6 +81,11 @@ snapshot[`code_hightlight plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/index.md",
+    "/other.njk",
+  ],
 }
 `;
 

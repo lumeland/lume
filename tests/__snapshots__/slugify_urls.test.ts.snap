@@ -81,6 +81,14 @@ snapshot[`slugify_urls plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/Chourizos ao viño.md",
+    "/Page 1.md",
+    "/generator.tmpl.js",
+    "/page-3.md",
+    "/page-4.md",
+  ],
 }
 `;
 

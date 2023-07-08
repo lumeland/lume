@@ -81,6 +81,13 @@ snapshot[`Disabled pretty URLs 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/.page1.md",
+    "/_page1.md",
+    "/foo.md",
+    "/page1.md",
+  ],
 }
 `;
 

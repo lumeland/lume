@@ -30,6 +30,7 @@ export const defaults: Options = {
   extensions: [".css"],
   includes: false,
   plugins: [
+    // @ts-expect-error: postcss-nesting provides wrong types under node16 module resolution: https://github.com/csstools/postcss-plugins/issues/1031
     postcssNesting(),
     autoprefixer(),
   ],
@@ -51,7 +52,7 @@ export default function (userOptions?: Partial<Options>) {
     const plugins = [...options.plugins];
 
     if (options.includes) {
-      site.includes(options.extensions, options.includes);
+      site.includes(options.extensions, options.includes, false);
 
       plugins.unshift(configureImport(site));
     }

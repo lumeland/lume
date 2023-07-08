@@ -24,6 +24,7 @@ import type {
   Context,
   Emitter,
   LiquidOptions,
+  TagClass,
   TagToken,
   Template,
   TopLevelToken,
@@ -152,7 +153,7 @@ export default function (userOptions?: DeepPartial<Options>) {
  * Create a custom tag
  * https://liquidjs.com/tutorials/register-filters-tags.html#Register-Tags
  */
-function createCustomTag(fn: Helper): Tag {
+function createCustomTag(fn: Helper): TagClass {
   return class extends Tag {
     #value: Value;
 
@@ -176,7 +177,7 @@ function createCustomTag(fn: Helper): Tag {
  * Create a custom tag with body
  * https://liquidjs.com/tutorials/register-filters-tags.html#Register-Tags
  */
-function createCustomTagWithBody(fn: Helper): Tag {
+function createCustomTagWithBody(fn: Helper): TagClass {
   return class extends Tag {
     args: ValueToken[] = [];
     templates: Template[] = [];
@@ -201,7 +202,10 @@ function createCustomTagWithBody(fn: Helper): Tag {
 
       while (remainTokens.length) {
         const token = remainTokens.shift()!;
-        if (token.kind === TokenKind.Tag && token.name === `end${name}`) {
+        if (
+          token.kind === TokenKind.Tag &&
+          (token as TagToken).name === `end${name}`
+        ) {
           return;
         }
         this.templates.push(liquid.parser.parseToken(token, remainTokens));

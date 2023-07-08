@@ -81,6 +81,10 @@ snapshot[`Katex plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/index.md",
+  ],
 }
 `;
 

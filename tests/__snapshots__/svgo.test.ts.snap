@@ -87,6 +87,10 @@ snapshot[`terser plugin 1`] = `
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/favicon.svg",
+  ],
 }
 `;
 

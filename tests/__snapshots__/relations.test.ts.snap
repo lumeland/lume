@@ -81,6 +81,26 @@ snapshot[`relations plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/categories.njk",
+    "/_includes/comment.njk",
+    "/_includes/posts.njk",
+    "/categories",
+    "/categories/_data.yml",
+    "/categories/category-1.md",
+    "/categories/category-2.md",
+    "/comments",
+    "/comments/_data.yml",
+    "/comments/comment-1.md",
+    "/comments/comment-2.md",
+    "/comments/comment-3.md",
+    "/posts",
+    "/posts/_data.yml",
+    "/posts/post-1.md",
+    "/posts/post-2.md",
+  ],
 }
 `;
 

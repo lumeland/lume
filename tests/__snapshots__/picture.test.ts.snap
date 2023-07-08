@@ -99,6 +99,11 @@ snapshot[`imagick plugin 1`] = `
       pageLoader: [AsyncFunction: binary],
     },
   ],
+  src: [
+    "/",
+    "/index.njk",
+    "/kevin-schmid-unsplash.jpg",
+  ],
 }
 `;
 
@@ -119,8 +124,8 @@ snapshot[`imagick plugin 3`] = `
 " +
       "<body>
 " +
-      '  <div imagick="png 600@2">
-' +
+      "  <div>
+" +
       '    <picture><source srcset="/kevin-schmid-unsplash-600w.png, /kevin-schmid-unsplash-600w@2.png 2x" type="image/png"><img src="/kevin-schmid-unsplash.jpg"></picture>
 ' +
       "  </div>
@@ -129,8 +134,8 @@ snapshot[`imagick plugin 3`] = `
 " +
       "
 " +
-      '  <picture imagick="avif webp jpg 600@2">
-' +
+      "  <picture>
+" +
       '    <source srcset="/kevin-schmid-unsplash-600w.avif, /kevin-schmid-unsplash-600w@2.avif 2x" type="image/avif"><source srcset="/kevin-schmid-unsplash-600w.webp, /kevin-schmid-unsplash-600w@2.webp 2x" type="image/webp"><source srcset="/kevin-schmid-unsplash-600w.jpg, /kevin-schmid-unsplash-600w@2.jpg 2x" type="image/jpeg"><img src="/kevin-schmid-unsplash.jpg">
 ' +
       "  </picture>
@@ -139,7 +144,7 @@ snapshot[`imagick plugin 3`] = `
 " +
       "  <!-- This image will be converted to a picture -->
 " +
-      '  <picture><source srcset="/kevin-schmid-unsplash-300w.avif, /kevin-schmid-unsplash-300w@2.avif 2x" type="image/avif"><source srcset="/kevin-schmid-unsplash-300w.webp, /kevin-schmid-unsplash-300w@2.webp 2x" type="image/webp"><source srcset="/kevin-schmid-unsplash-300w.jpg, /kevin-schmid-unsplash-300w@2.jpg 2x" type="image/jpeg"><img src="/kevin-schmid-unsplash.jpg" imagick="avif webp jpg 300@2"></picture>
+      '  <picture><source srcset="/kevin-schmid-unsplash-300w.avif, /kevin-schmid-unsplash-300w@2.avif 2x" type="image/avif"><source srcset="/kevin-schmid-unsplash-300w.webp, /kevin-schmid-unsplash-300w@2.webp 2x" type="image/webp"><source srcset="/kevin-schmid-unsplash-300w.jpg, /kevin-schmid-unsplash-300w@2.jpg 2x" type="image/jpeg"><img src="/kevin-schmid-unsplash.jpg"></picture>
 ' +
       "
 " +

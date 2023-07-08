@@ -88,6 +88,15 @@ snapshot[`build a site with pug 1`] = `
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/layout.pug",
+    "/_includes/layout2.pug",
+    "/extends.pug",
+    "/filter.pug",
+    "/layout.pug",
+  ],
 }
 `;
 

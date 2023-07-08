@@ -54,6 +54,12 @@ export default function (): Plugin {
       }
     });
 
+    site.process([".html"], (page) => {
+      page.document?.querySelectorAll("[imagick]").forEach((element) => {
+        (element as Element).removeAttribute("imagick");
+      });
+    });
+
     site.process("*", (page) => {
       const path = page.outputPath!;
 

@@ -81,6 +81,29 @@ snapshot[`Sitemap plugin 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_data.yml",
+    "/favicon.png",
+    "/page5.yaml",
+    "/pages",
+    "/pages/2020-06-21_page2.tmpl.json",
+    "/pages/2021-01-02-18-32_page4.tmpl.ts",
+    "/pages/2021-12-29-page6.md",
+    "/pages/_data",
+    "/pages/_data.yml",
+    "/pages/_data/colors.yml",
+    "/pages/_data/documents.ts",
+    "/pages/_data/drinks.js",
+    "/pages/_data/names.json",
+    "/pages/page1.md",
+    "/pages/page3.tmpl.js",
+    "/pages/subpage",
+    "/pages/subpage/_data.yml",
+    "/pages/subpage/page7.tmpl.js",
+    "/static.yml",
+    "/styles.css",
+  ],
 }
 `;
 
@@ -374,7 +397,6 @@ Content of Page 2",
   {
     content: "Content of Page 3",
     data: {
-      children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",
       date: [],

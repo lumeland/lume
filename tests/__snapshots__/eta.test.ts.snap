@@ -88,6 +88,14 @@ snapshot[`build a site with eta 1`] = `
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/footer.eta",
+    "/_includes/header.eta",
+    "/_includes/layout.eta",
+    "/index.eta",
+  ],
 }
 `;
 
@@ -122,7 +130,7 @@ snapshot[`build a site with eta 3`] = `
 " +
       "
 " +
-      "<footer>This is a footer of Timothy</footer><footer>This is a footer of Timothy</footer></body>
+      "<footer>This is a footer of Timothy</footer></body>
 " +
       "</html>
 ",
@@ -131,14 +139,13 @@ snapshot[`build a site with eta 3`] = `
 " +
         "
 " +
-        "<footer>This is a footer of Timothy</footer><footer>This is a footer of Timothy</footer>",
+        "<footer>This is a footer of Timothy</footer>",
       content: "<h1><%= name %>'s Eta source code!</h1>
 " +
         "
 " +
-        '<%~ await includeFile("footer", { name }) %>
-' +
-        '<%~ await includeFile("./_includes/footer", { name }) %>',
+        '<%~ await includeAsync("/footer", { name }) %>
+',
       date: [],
       layout: "layout.eta",
       mergedKeys: [

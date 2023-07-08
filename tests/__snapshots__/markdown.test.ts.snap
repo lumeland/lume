@@ -81,6 +81,18 @@ snapshot[`Build a markdown site 1`] = `
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/basic.md",
+    "/empty.md",
+    "/footnote.md",
+    "/with-attributes.md",
+    "/with-code.md",
+    "/with-deflist.md",
+    "/with-filter.njk",
+    "/with-module.tmpl.js",
+    "/with-nunjucks.md",
+  ],
 }
 `;
 
@@ -646,6 +658,18 @@ snapshot[`Build a markdown with hooks 1`] = `
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
+  ],
+  src: [
+    "/",
+    "/basic.md",
+    "/empty.md",
+    "/footnote.md",
+    "/with-attributes.md",
+    "/with-code.md",
+    "/with-deflist.md",
+    "/with-filter.njk",
+    "/with-module.tmpl.js",
+    "/with-nunjucks.md",
   ],
 }
 `;

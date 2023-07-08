@@ -95,6 +95,14 @@ snapshot[`inline plugin 1`] = `
       pageLoader: [AsyncFunction: binary],
     },
   ],
+  src: [
+    "/",
+    "/favicon.png",
+    "/favicon.svg",
+    "/index.njk",
+    "/script.js",
+    "/styles.css.njk",
+  ],
 }
 `;
 
@@ -448,10 +456,6 @@ const a = 1, _b = 1 < a, _c = a > 4;
   color: #333;
 }",
     data: {
-      children: "body {
-  background: white;
-  color: #333;
-}",
       content: "body {
   background: white;
   color: #333;

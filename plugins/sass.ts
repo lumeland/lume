@@ -4,15 +4,16 @@ import {
   replaceExtension,
   resolveInclude,
 } from "../core/utils.ts";
-import Sass from "../deps/sass.ts";
+import { compileStringAsync } from "../deps/sass.ts";
 import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { Page } from "../core/filesystem.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import textLoader from "../core/loaders/text.ts";
 
 import type { Site } from "../core.ts";
+import type { StringOptions } from "../deps/sass.ts";
 
-type SassOptions = Omit<Sass.StringOptions<"async">, "url" | "syntax">;
+type SassOptions = Omit<StringOptions<"async">, "url" | "syntax">;
 
 export interface Options {
   /** Extensions processed by this plugin */
@@ -57,13 +58,15 @@ export default function (userOptions?: Partial<Options>) {
       const { content, filename, enableSourceMap } = prepareAsset(site, page);
       const baseFilename = posix.dirname(filename);
 
-      const sassOptions: Sass.StringOptions<"async"> = {
+      const sassOptions: StringOptions<"async"> = {
         ...options.options,
         sourceMap: enableSourceMap,
         style: options.format,
         syntax: page.src.ext === ".sass" ? "indented" : "scss",
+        // @ts-ignore: url is not in the type definition
         url: toFileUrl(filename),
         importer: {
+          // @ts-ignore: url is not in the type definition
           canonicalize(url: string) {
             const pathname = normalizePath(fromFileUrl(url));
 
@@ -101,6 +104,7 @@ export default function (userOptions?: Partial<Options>) {
               `File cannot be canonicalized: ${url} (${pathname})`,
             );
           },
+          // @ts-ignore: url is not in the type definition
           async load(url: URL) {
             const pathname = fromFileUrl(url);
             const contents = await site.getContent(pathname, textLoader);
@@ -118,7 +122,7 @@ export default function (userOptions?: Partial<Options>) {
         },
       };
 
-      const output = await Sass.compileStringAsync(content, sassOptions);
+      const output = await compileStringAsync(content, sassOptions);
 
       // @ts-ignore: sourceMap is not in the type definition
       saveAsset(site, page, output.css, output.sourceMap);

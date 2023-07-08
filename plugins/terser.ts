@@ -52,7 +52,13 @@ export default function (userOptions?: DeepPartial<Options>) {
 
       try {
         const output = await minify({ [filename]: content }, terserOptions);
-        saveAsset(site, page, output.code!, output.map);
+        saveAsset(
+          site,
+          page,
+          output.code!,
+          // @ts-expect-error: terser uses @jridgewell/gen-mapping, which incorrectly has typed some types as nullable: https://github.com/jridgewell/gen-mapping/pull/9
+          output.map,
+        );
       } catch (cause) {
         throw new Exception(
           "Error processing the file",

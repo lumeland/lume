@@ -88,6 +88,18 @@ snapshot[`build a site with liquid 1`] = `
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/_data.yml",
+    "/_includes",
+    "/_includes/basic.liquid",
+    "/_includes/partial.liquid",
+    "/data.json.liquid",
+    "/empty.liquid",
+    "/index.liquid",
+    "/liquid-filter.tmpl.js",
+    "/with-helpers.liquid",
+  ],
 }
 `;
 
@@ -99,8 +111,6 @@ snapshot[`build a site with liquid 3`] = `
     content: '["red","green","blue"]
 ',
     data: {
-      children: '["red","green","blue"]
-',
       colors: "Array(3)",
       content: "{{ colors | json }}
 ",
