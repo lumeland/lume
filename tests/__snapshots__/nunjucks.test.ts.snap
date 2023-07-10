@@ -92,7 +92,7 @@ snapshot[`build a site with nunjucks 1`] = `
     "/_includes/basic.njk",
     "/_includes/partial.njk",
     "/components.njk",
-    "/data.json.njk",
+    "/data.njk",
     "/empty.njk",
     "/index.njk",
     "/njk-filter.tmpl.js",
@@ -391,7 +391,7 @@ snapshot[`build a site with nunjucks 3`] = `
     src: {
       asset: undefined,
       ext: ".njk",
-      path: "/data.json",
+      path: "/data",
       remote: undefined,
       slug: "data",
     },

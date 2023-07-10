@@ -101,7 +101,7 @@ snapshot[`inline plugin 1`] = `
     "/favicon.svg",
     "/index.njk",
     "/script.js",
-    "/styles.css.njk",
+    "/styles.njk",
   ],
 }
 `;
@@ -476,7 +476,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
     src: {
       asset: undefined,
       ext: ".njk",
-      path: "/styles.css",
+      path: "/styles",
       remote: undefined,
       slug: "styles",
     },

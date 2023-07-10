@@ -94,7 +94,7 @@ snapshot[`build a site with liquid 1`] = `
     "/_includes",
     "/_includes/basic.liquid",
     "/_includes/partial.liquid",
-    "/data.json.liquid",
+    "/data.liquid",
     "/empty.liquid",
     "/index.liquid",
     "/liquid-filter.tmpl.js",
@@ -131,7 +131,7 @@ snapshot[`build a site with liquid 3`] = `
     src: {
       asset: undefined,
       ext: ".liquid",
-      path: "/data.json",
+      path: "/data",
       remote: undefined,
       slug: "data",
     },

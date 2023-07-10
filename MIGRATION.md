@@ -1,5 +1,9 @@
 # Migration from Lume v1 to Lume v2
 
+## Core
+
+- Removed output extension detection in the filename: #430
+
 ## `search` Plugin
 
 - Removed `returnPageData` option. Pages always return the `data` object

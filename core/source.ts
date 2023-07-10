@@ -1,5 +1,5 @@
 import { posix } from "../deps/path.ts";
-import { getExtension, normalizePath } from "./utils.ts";
+import { normalizePath } from "./utils.ts";
 import { Page, StaticFile } from "./filesystem.ts";
 import { parseISO } from "../deps/date.ts";
 import { Exception } from "./errors.ts";
@@ -658,11 +658,6 @@ export function getUrl(
 
   // Calculate the URL from the path
   url = posix.join(parentPath, page.src.slug);
-  const ext = getExtension(page.src.path);
-
-  if (ext) {
-    return url + ext;
-  }
 
   if (page.src.asset) {
     return url + page.src.ext;

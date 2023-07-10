@@ -86,7 +86,7 @@ snapshot[`terser plugin 1`] = `
   src: [
     "/",
     "/main.js",
-    "/numbers.js.njk",
+    "/numbers.njk",
   ],
 }
 `;
@@ -169,7 +169,7 @@ console.log(one() + two());
     src: {
       asset: undefined,
       ext: ".njk",
-      path: "/numbers.js",
+      path: "/numbers",
       remote: undefined,
       slug: "numbers",
     },
