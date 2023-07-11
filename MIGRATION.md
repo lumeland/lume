@@ -3,6 +3,8 @@
 ## Core
 
 - Removed output extension detection in the filename: #430
+- Removed `Page.dest` property #290.
+  - This also removed `Page.updateDest` function.
 
 ## `search` Plugin
 

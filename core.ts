@@ -36,7 +36,6 @@ import type {
 import type {
   Content,
   Data,
-  Dest,
   Page,
   Src,
   StaticFile,
@@ -99,7 +98,6 @@ export type {
   DeepPartial,
   DenoConfig,
   DenoConfigResult,
-  Dest,
   Engine,
   Entry,
   ErrorData,

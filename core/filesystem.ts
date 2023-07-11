@@ -1,5 +1,5 @@
 import { posix } from "../deps/path.ts";
-import { documentToString, getExtension, stringToDocument } from "./utils.ts";
+import { documentToString, stringToDocument } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
 import type { PageData, ProxyComponents } from "../core.ts";
@@ -82,33 +82,6 @@ export class Page {
     return url.endsWith("/") ? url + "index.html" : url;
   }
 
-  /**
-   * Update the destination file. It also update the data.url accordingly
-   * @deprecated Use `page.data.url` to change the url
-   */
-  updateDest(dest: Partial<Dest>): void {
-    const newDest = { ...this.dest, ...dest };
-
-    if (newDest.ext === ".html" && posix.basename(newDest.path) === "index") {
-      this.data.url = newDest.path.slice(0, -5);
-    } else {
-      this.data.url = newDest.path + newDest.ext;
-    }
-  }
-
-  /** @deprecated Use `page.data.url` or `page.outputPath`. */
-  get dest(): Dest {
-    const url = this.outputPath;
-    if (!url) {
-      return { path: "", ext: "" };
-    }
-    const ext = getExtension(url);
-    return {
-      path: ext ? url.slice(0, -ext.length) : url,
-      ext,
-    };
-  }
-
   /** The content of this page */
   set content(content: Content | undefined) {
     this.#document = undefined;
@@ -179,18 +152,6 @@ export interface Src {
 
   /** The original entry instance */
   entry?: Entry;
-}
-
-/** The .dest property for a Page */
-export interface Dest {
-  /** The path to the file (without extension) */
-  path: string;
-
-  /** The extension of the file */
-  ext: string;
-
-  /** The hash (used to detect content changes) */
-  hash?: string;
 }
 
 /** The .content property for a Page */
