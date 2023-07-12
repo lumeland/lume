@@ -660,12 +660,12 @@ export function getUrl(
   url = posix.join(parentPath, page.src.slug);
   const ext = getExtension(page.src.path);
 
-  if (ext) {
-    return url + ext;
+  if (page.src.asset) {
+    return url + ext + page.src.ext;
   }
 
-  if (page.src.asset) {
-    return url + page.src.ext;
+  if (ext) {
+    return url + ext;
   }
 
   if (prettyUrls) {
