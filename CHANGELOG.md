@@ -8,12 +8,14 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [1.18.2] - Unreleased
 ### Fixed
-- esbuild plugin fixes:
+- Assets with subextensions (like `.min.css`) are not exported correctly [#448].
+- Esbuild plugin fixes:
   - Send browser's User-Agent headers to esm.sh
     to ensure browser compatible code [#442].
   - Save the esm.sh requests in cache.
     This ensure the plugin will works ofline, once the requests are cached.
   - Change the order of the custom plugins [#445]
+- Updated deps: `terser`, `std`, `preact`, `postcss`, `liquid`.
 
 ## [1.18.1] - 2023-07-05
 ### Fixed
@@ -2306,6 +2308,7 @@ The first version.
 [#441]: https://github.com/lumeland/lume/issues/441
 [#442]: https://github.com/lumeland/lume/issues/442
 [#445]: https://github.com/lumeland/lume/issues/445
+[#448]: https://github.com/lumeland/lume/issues/448
 
 [1.18.2]: https://github.com/lumeland/lume/compare/v1.18.1...HEAD
 [1.18.1]: https://github.com/lumeland/lume/compare/v1.18.0...v1.18.1
