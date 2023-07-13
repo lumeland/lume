@@ -278,7 +278,7 @@ export default class Source {
             remote: entry.flags.has("remote") ? entry.src : undefined,
             ext,
             asset,
-            slug: slug.replace(/\.[\w.]+$/, ""),
+            slug: slug.slice(0, -ext.length),
             entry,
           });
 
