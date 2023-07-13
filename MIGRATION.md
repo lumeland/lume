@@ -21,3 +21,7 @@
   - Yes, but with a subextension to avoid conflicts with some configuration
     files like `netlify.toml`. For example: `page.tmpl.toml`.
   - Yes.
+
+## `markdown` Plugin
+
+- Disable indented code blocks by default #376

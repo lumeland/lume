@@ -78,8 +78,10 @@ export default function (userOptions?: DeepPartial<Options>) {
   }
 
   return function (site: Site) {
-    // @ts-ignore: This expression is not callable.
     const engine = markdownIt(options.options);
+
+    // Disable indented code blocks by default
+    engine.disable("code");
 
     // Register markdown-it plugins
     options.plugins.forEach((plugin) =>

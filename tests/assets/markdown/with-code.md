@@ -6,4 +6,4 @@
 <p>Example without color highlight</p>
 ```
 
-    Indented code
+    Not indented code

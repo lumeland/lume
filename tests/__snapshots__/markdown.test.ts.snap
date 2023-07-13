@@ -288,9 +288,7 @@ snapshot[`Build a markdown site 3`] = `
 " +
       "</code></pre>
 " +
-      "<pre><code>Indented code
-" +
-      "</code></pre>
+      "<p>Not indented code</p>
 ",
     data: {
       children: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
@@ -301,9 +299,7 @@ snapshot[`Build a markdown site 3`] = `
 " +
         "</code></pre>
 " +
-        "<pre><code>Indented code
-" +
-        "</code></pre>
+        "<p>Not indented code</p>
 ",
       content: "\`\`\`html
 " +
@@ -321,7 +317,7 @@ snapshot[`Build a markdown site 3`] = `
 " +
         "
 " +
-        "    Indented code
+        "    Not indented code
 ",
       date: [],
       mergedKeys: [
@@ -866,9 +862,7 @@ snapshot[`Build a markdown with hooks 3`] = `
 " +
       "</code></pre>
 " +
-      "<pre><code>Indented code
-" +
-      "</code></pre>
+      "<p>Not indented code</p>
 ",
     data: {
       children: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
@@ -879,9 +873,7 @@ snapshot[`Build a markdown with hooks 3`] = `
 " +
         "</code></pre>
 " +
-        "<pre><code>Indented code
-" +
-        "</code></pre>
+        "<p>Not indented code</p>
 ",
       content: "\`\`\`html
 " +
@@ -899,7 +891,7 @@ snapshot[`Build a markdown with hooks 3`] = `
 " +
         "
 " +
-        "    Indented code
+        "    Not indented code
 ",
       date: [],
       mergedKeys: [
