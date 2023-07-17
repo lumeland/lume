@@ -22,10 +22,6 @@ export const defaults: Options = {
 // JSX children type
 export type Children = React.ReactNode | React.ReactNode[];
 
-// Ensure React is available in the global scope
-// so no need to import it in every file
-window.React ||= React;
-
 /** Template engine to render JSX files */
 export class JsxEngine implements Engine {
   helpers: Record<string, Helper> = {};

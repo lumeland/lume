@@ -25,3 +25,7 @@
 ## `markdown` Plugin
 
 - Disable indented code blocks by default #376
+
+## `jsx` Plugin
+
+- Removed `window.React` #332.
