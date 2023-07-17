@@ -2,7 +2,7 @@ import { join, relative } from "../deps/path.ts";
 import { normalizePath } from "./utils.ts";
 import Events from "./events.ts";
 
-import type { Event, EventListener, EventOptions } from "../core.ts";
+import type { Event, EventListener, EventOptions, Site } from "../core.ts";
 
 /** The options to configure the local server */
 export interface Options {
@@ -34,7 +34,22 @@ export type WatchEventType =
   | "change"
   | "error";
 
-export default class Watcher {
+export interface Watcher {
+  /** Add a listener to an event */
+  addEventListener(
+    type: WatchEventType,
+    listener: EventListener<WatchEvent>,
+    options?: EventOptions,
+  ): this;
+
+  /** Dispatch an event */
+  dispatchEvent(event: WatchEvent): Promise<boolean>;
+
+  /** Start the watcher */
+  start(): Promise<void>;
+}
+
+export default class FSWatcher implements Watcher {
   events: Events<WatchEvent> = new Events<WatchEvent>();
   options: Options;
 
@@ -89,22 +104,19 @@ export default class Watcher {
     };
 
     for await (const event of watcher) {
-      let paths = event.paths.map(normalizePath);
+      let paths = event.paths.map((path) => normalizePath(path));
 
       // Filter ignored paths
-      paths = paths.filter((path) => {
-        if (path.endsWith(".DS_Store")) { // macOS file
-          return false;
-        }
-
-        return ignore
+      paths = paths.filter((path) =>
+        ignore
           ? !ignore.some((ignore) =>
             typeof ignore === "string"
-              ? path.startsWith(normalizePath(join(root, ignore, "/")))
+              ? (path.startsWith(normalizePath(join(root, ignore, "/"))) ||
+                path === normalizePath(join(root, ignore)))
               : ignore(path)
           )
-          : true;
-      });
+          : true
+      );
 
       if (!paths.length) {
         continue;
@@ -116,5 +128,41 @@ export default class Watcher {
       clearTimeout(timer);
       timer = setTimeout(callback, debounce ?? 100);
     }
+  }
+}
+
+export class SiteWatcher implements Watcher {
+  site: Site;
+  events: Events<WatchEvent> = new Events<WatchEvent>();
+
+  constructor(site: Site) {
+    this.site = site;
+  }
+
+  /** Add a listener to an event */
+  addEventListener(
+    type: WatchEventType,
+    listener: EventListener<WatchEvent>,
+    options?: EventOptions,
+  ) {
+    this.events.addEventListener(type, listener, options);
+    return this;
+  }
+
+  /** Dispatch an event */
+  dispatchEvent(event: WatchEvent) {
+    return this.events.dispatchEvent(event);
+  }
+
+  /** Start the watcher */
+  async start() {
+    await this.dispatchEvent({ type: "start" });
+    this.site.addEventListener("afterUpdate", (event) => {
+      const files = new Set([
+        ...event.pages.map((page) => page.outputPath!),
+        ...event.staticFiles.map((file) => file.outputPath!),
+      ]);
+      this.dispatchEvent({ type: "change", files });
+    });
   }
 }

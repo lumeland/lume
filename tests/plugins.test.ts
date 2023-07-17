@@ -1,51 +1,10 @@
 import { assertEquals as equals } from "../deps/assert.ts";
-import * as plugins from "../plugins.ts";
-import { pluginNames } from "../cli/utils.ts";
+import { pluginNames } from "../core/utils.ts";
 
-const allNames = Object.keys(plugins);
 const totalPlugins = Array.from(Deno.readDirSync("plugins")).length;
 
-Deno.test("Plugins module", () => {
-  equals(allNames.length, totalPlugins);
-
-  equals(allNames, [
-    "attributes",
-    "basePath",
-    "codeHighlight",
-    "date",
-    "esbuild",
-    "eta",
-    "imagick",
-    "inline",
-    "json",
-    "jsx",
-    "liquid",
-    "markdown",
-    "metas",
-    "modifyUrls",
-    "modules",
-    "netlifyCMS",
-    "nunjucks",
-    "onDemand",
-    "paginate",
-    "parcelCss",
-    "postcss",
-    "prism",
-    "pug",
-    "relativeUrls",
-    "resolveUrls",
-    "sass",
-    "search",
-    "slugifyUrls",
-    "svgo",
-    "terser",
-    "url",
-    "yaml",
-  ]);
-});
-
 Deno.test("Plugins list in init", () => {
-  equals(pluginNames.length, totalPlugins - 8);
+  equals(pluginNames.length, totalPlugins - 9);
 
   equals(pluginNames, [
     "attributes",
@@ -54,23 +13,42 @@ Deno.test("Plugins list in init", () => {
     "date",
     "esbuild",
     "eta",
+    "feed",
+    "filter_pages",
     "imagick",
     "inline",
     "jsx",
+    "jsx_preact",
+    "katex",
+    "lightningcss",
     "liquid",
+    "mdx",
     "metas",
+    "minify_html",
     "modify_urls",
+    "multilanguage",
+    "nav",
     "netlify_cms",
     "on_demand",
-    "parcel_css",
+    "pagefind",
+    "picture",
     "postcss",
     "prism",
     "pug",
+    "relations",
     "relative_urls",
+    "remark",
     "resolve_urls",
     "sass",
+    "sheets",
+    "sitemap",
     "slugify_urls",
+    "source_maps",
     "svgo",
+    "tailwindcss",
     "terser",
+    "toml",
+    "vento",
+    "windi_css",
   ]);
 });

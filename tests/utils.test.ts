@@ -1,10 +1,9 @@
 import { assertEquals as equals } from "../deps/assert.ts";
 import {
   documentToString,
-  getDenoConfig,
-  getImportMap,
   isPlainObject,
   merge,
+  readDenoConfig,
   sha1,
   stringToDocument,
 } from "../core/utils.ts";
@@ -93,37 +92,11 @@ Deno.test("sha1 function", async () => {
 
 Deno.test("load deno.jsonc", async () => {
   Deno.chdir(getPath("assets"));
-  const config = await getDenoConfig();
+  const config = await readDenoConfig();
 
   equals(config?.config?.tasks, { foo: "echo bar" });
-});
-
-Deno.test("import map", async () => {
-  const map = await getImportMap();
-
-  equals(map, {
-    imports: {
-      "lume/": new URL("../", import.meta.url).href,
-    },
-  });
-});
-
-Deno.test("merge import map", async () => {
-  const map = await getImportMap(getPath("assets/import_map.json"));
-
-  equals(map, {
-    imports: {
-      "lume/": new URL("../", import.meta.url).href,
-      "std/": "https://deno.land/std@0.121.0/",
-      "/": "./",
-    },
-    scopes: {
-      "foo/": {
-        "std/": "https://deno.land/std@0.121.0/foo/",
-        "/": "./foo/",
-      },
-    },
-  });
+  equals(config?.file, "deno.jsonc");
+  equals(config?.importMap?.imports["std/"], "https://deno.land/std@0.121.0/");
 });
 
 Deno.test("documentToString function should add doctype, if missing", () => {

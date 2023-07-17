@@ -1,18 +1,23 @@
-import { merge } from "../core/utils.ts";
-import denosass from "../deps/denosass.ts";
-import { posix, toFileUrl } from "../deps/path.ts";
+import {
+  merge,
+  normalizePath,
+  replaceExtension,
+  resolveInclude,
+} from "../core/utils.ts";
+import { compileStringAsync } from "../deps/sass.ts";
+import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { Page } from "../core/filesystem.ts";
+import { prepareAsset, saveAsset } from "./source_maps.ts";
+import textLoader from "../core/loaders/text.ts";
 
 import type { Site } from "../core.ts";
+import type { StringOptions } from "../deps/sass.ts";
 
-type SassOptions = Omit<denosass.StringOptions<"sync">, "url" | "syntax">;
+type SassOptions = Omit<StringOptions<"async">, "url" | "syntax">;
 
 export interface Options {
   /** Extensions processed by this plugin */
   extensions: string[];
-
-  /** Set `true` to generate source map files */
-  sourceMap: boolean;
 
   /** Output format */
   format: "compressed" | "expanded";
@@ -21,15 +26,14 @@ export interface Options {
   options: SassOptions;
 
   /** Custom includes paths */
-  includes: string | string[];
+  includes: string;
 }
 
 const defaults: Options = {
   extensions: [".scss", ".sass"],
-  sourceMap: false,
   format: "compressed",
   options: {},
-  includes: [],
+  includes: "",
 };
 
 /** A plugin to use SASS in Lume */
@@ -40,52 +44,114 @@ export default function (userOptions?: Partial<Options>) {
       userOptions,
     );
 
-    const includes = Array.isArray(options.includes)
-      ? options.includes.map((path) => site.src(path))
-      : [site.src(options.includes)];
+    if (options.includes) {
+      site.includes(options.extensions, options.includes);
+    }
 
     site.loadAssets(options.extensions);
     site.process(options.extensions, sass);
 
-    function sass(page: Page) {
-      const code = page.content as string;
-      const filename = site.src(page.src.path + page.src.ext);
-      const sassOptions: denosass.StringOptions<"sync"> = {
+    const { entries } = site.fs;
+    const basePath = site.src();
+
+    async function sass(page: Page) {
+      const { content, filename, enableSourceMap } = prepareAsset(site, page);
+      const baseFilename = posix.dirname(filename);
+
+      const sassOptions: StringOptions<"async"> = {
         ...options.options,
-        sourceMap: options.sourceMap,
-        loadPaths: [...includes, posix.dirname(filename)],
+        sourceMap: enableSourceMap,
         style: options.format,
         syntax: page.src.ext === ".sass" ? "indented" : "scss",
+        // @ts-ignore: url is not in the type definition
         url: toFileUrl(filename),
+        importer: {
+          // @ts-ignore: url is not in the type definition
+          canonicalize(url: string) {
+            const pathname = normalizePath(fromFileUrl(url));
+
+            const mainPath = pathname.startsWith(basePath)
+              ? normalizePath(pathname.slice(basePath.length))
+              : pathname;
+
+            for (const path of getPathsToLook(mainPath)) {
+              const entry = entries.get(path);
+
+              if (entry) {
+                return toFileUrl(site.src(entry.path));
+              }
+            }
+
+            // Search in includes
+            const includePath = pathname.startsWith(baseFilename)
+              ? pathname.slice(baseFilename.length)
+              : mainPath;
+            const { formats } = site;
+            const { includes } = site.options;
+
+            for (const path of getPathsToLook(includePath)) {
+              const format = formats.search(pathname);
+              const includesPath = format?.includesPath ?? includes;
+              const resolved = resolveInclude(path, includesPath);
+              const entry = entries.get(resolved);
+
+              if (entry) {
+                return toFileUrl(site.src(entry.path));
+              }
+            }
+
+            throw new Error(
+              `File cannot be canonicalized: ${url} (${pathname})`,
+            );
+          },
+          // @ts-ignore: url is not in the type definition
+          async load(url: URL) {
+            const pathname = fromFileUrl(url);
+            const contents = await site.getContent(pathname, textLoader);
+
+            if (typeof contents === "string") {
+              return {
+                contents,
+                syntax: pathname.endsWith(".sass") ? "indented" : "scss",
+                sourceMapUrl: url,
+              };
+            }
+
+            throw new Error(`File not found: ${url} (${pathname})`);
+          },
+        },
       };
 
-      const output = denosass.compileString(code, sassOptions);
+      const output = await compileStringAsync(content, sassOptions);
 
-      page.content = output.css;
-      page.updateDest({ ext: ".css" });
-
-      if (output.sourceMap) {
-        page.content += `\n/*# sourceMappingURL=${
-          posix.basename(page.dest.path)
-        }.css.map */`;
-
-        // Add a `file` and `sourceRoot` properties to the sourcemap
-        const sourceRoot = toFileUrl(site.options.cwd).href;
-        output.sourceMap.sourceRoot = sourceRoot;
-        output.sourceMap.file = page.dest.path + page.dest.ext;
-
-        // sass source-maps use file URLs (eg. "file:///foo/bar"), but
-        // relative paths (eg. "../bar") look better in the dev-tools.
-        // Also, the sass CLI tool produces relative paths.
-        output.sourceMap.sources = output.sourceMap.sources.map(
-          (fileUrl: string) => posix.relative(sourceRoot, fileUrl),
-        );
-
-        site.pages.push(Page.create(
-          page.dest.path + ".css.map",
-          JSON.stringify(output.sourceMap),
-        ));
-      }
+      // @ts-ignore: sourceMap is not in the type definition
+      saveAsset(site, page, output.css, output.sourceMap);
+      page.data.url = replaceExtension(page.data.url, ".css");
     }
   };
+}
+
+function getPathsToLook(path: string): string[] {
+  const basename = posix.basename(path);
+
+  if (posix.extname(path)) {
+    if (basename.startsWith("_")) {
+      return [path];
+    }
+    return [path, posix.join(posix.dirname(path), `_${basename}`)];
+  } else {
+    if (basename.startsWith("_")) {
+      return [
+        `${path}.scss`,
+        `${path}.sass`,
+      ];
+    }
+
+    return [
+      `${path}.scss`,
+      `${path}.sass`,
+      posix.join(posix.dirname(path), `_${basename}.scss`),
+      posix.join(posix.dirname(path), `_${basename}.sass`),
+    ];
+  }
 }

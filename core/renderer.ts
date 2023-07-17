@@ -1,21 +1,17 @@
-import { posix } from "../deps/path.ts";
-import { concurrent, createDate } from "./utils.ts";
+import { concurrent, isGenerator, resolveInclude } from "./utils.ts";
 import { Exception } from "./errors.ts";
 import { Page } from "./filesystem.ts";
+import { posix } from "../deps/path.ts";
+import { getDate, getUrl, mergeData } from "./source.ts";
 
-import type {
-  Content,
-  Data,
-  Formats,
-  IncludesLoader,
-  Processors,
-} from "../core.ts";
+import type { Content, Data, Formats, FS, Processors } from "../core.ts";
 
 export interface Options {
-  includesLoader: IncludesLoader;
-  prettyUrls: boolean | "no-html-extension";
+  includes: string;
+  prettyUrls: boolean;
   preprocessors: Processors;
   formats: Formats;
+  fs: FS;
 }
 
 /**
@@ -23,11 +19,14 @@ export interface Options {
  * in the right order and using the right template engine.
  */
 export default class Renderer {
-  /** To load the includes files (layouts) */
-  includesLoader: IncludesLoader;
+  /** The default folder to include the layouts */
+  includes: string;
+
+  /** The filesystem instance used to read the layouts */
+  fs: FS;
 
   /** To convert the urls to pretty /example.html => /example/ */
-  prettyUrls: boolean | "no-html-extension";
+  prettyUrls: boolean;
 
   /** All preprocessors */
   preprocessors: Processors;
@@ -39,10 +38,11 @@ export default class Renderer {
   helpers = new Map<string, [Helper, HelperOptions]>();
 
   constructor(options: Options) {
-    this.includesLoader = options.includesLoader;
+    this.includes = options.includes;
     this.prettyUrls = options.prettyUrls;
     this.preprocessors = options.preprocessors;
     this.formats = options.formats;
+    this.fs = options.fs;
   }
 
   /** Register a new helper used by the template engines */
@@ -50,30 +50,30 @@ export default class Renderer {
     this.helpers.set(name, [fn, options]);
 
     for (const format of this.formats.entries.values()) {
-      format.engine?.addHelper(name, fn, options);
+      format.engines?.forEach((engine) => engine.addHelper(name, fn, options));
     }
 
     return this;
   }
 
   /** Render the provided pages */
-  async renderPages(from: Page[], to: Page[]) {
+  async renderPages(from: Page[], to: Page[], onDemand: Page[]): Promise<void> {
     for (const group of this.#groupPages(from)) {
       const pages: Page[] = [];
       const generators: Page[] = [];
 
       // Split regular pages and generators
       for (const page of group) {
-        this.preparePage(page);
-
         if (isGenerator(page.data.content)) {
           generators.push(page);
           continue;
         }
 
-        if (!page.data.ondemand) {
-          pages.push(page);
+        if (page.data.ondemand) {
+          onDemand.push(page);
+          continue;
         }
+        pages.push(page);
       }
 
       // Preprocess the pages and add them to site.pages
@@ -82,19 +82,30 @@ export default class Renderer {
 
       const generatedPages: Page[] = [];
       for (const page of generators) {
-        const generator = await this.render(
-          page.data.content,
-          page.data,
+        const data = { ...page.data };
+        const { content } = data;
+        delete data.content;
+
+        const generator = await this.render<Generator<Data, Data>>(
+          content,
+          data,
           page.src.path + page.src.ext,
-        ) as Generator<Data, Data>;
+        );
 
         let index = 0;
+        const basePath: string | false = typeof page.data.url === "string"
+          ? posix.dirname(page.data.url)
+          : false;
+
         for await (const data of generator) {
           if (!data.content) {
             data.content = null;
           }
-          const newPage = page.duplicate(index++, data);
-          this.preparePage(newPage);
+          const newPage = page.duplicate(index++, mergeData(page.data, data));
+          newPage.data.url = basePath
+            ? getUrl(newPage, this.prettyUrls, basePath)
+            : false;
+          newPage.data.date = getDate(newPage);
           generatedPages.push(newPage);
         }
       }
@@ -103,14 +114,53 @@ export default class Renderer {
       await this.preprocessors.run(generatedPages);
       to.push(...generatedPages);
 
-      // Render pages
+      // Render the pages content
+      const renderedPages: Page[] = [];
       await concurrent(
         pages.concat(generatedPages),
         async (page) => {
           try {
-            page.content = await this.#renderPage(page);
+            const content = await this.#renderPage(page);
+
+            // If the page is HTML, save the children to render the layout later
+            if (page.outputPath?.endsWith(".html")) {
+              page.data.children = content;
+              renderedPages.push(page);
+            } else {
+              page.content = content;
+            }
           } catch (cause) {
             throw new Exception("Error rendering this page", { cause, page });
+          }
+        },
+      );
+
+      // Render the pages layouts
+      await concurrent(
+        renderedPages,
+        async (page) => {
+          try {
+            page.content = await this.#renderLayout(
+              page,
+              page.data.children as Content,
+            );
+
+            // Ensure all HTML pages have the DOCTYPE declaration
+            if (
+              page.outputPath?.endsWith(".html") &&
+              typeof page.content === "string"
+            ) {
+              const trim = page.content.trim();
+
+              if (trim && !trim.match(/^<!DOCTYPE\s/i)) {
+                page.content = `<!DOCTYPE html>\n${page.content}`;
+              }
+            }
+          } catch (cause) {
+            throw new Exception("Error rendering the layout of this page", {
+              cause,
+              page,
+            });
           }
         },
       );
@@ -125,17 +175,22 @@ export default class Renderer {
       });
     }
 
-    this.preparePage(page);
     await this.preprocessors.run([page]);
-    page.content = await this.#renderPage(page);
+
+    if (this.formats.get(page.src.ext || "")?.asset) {
+      page.content = page.data.content as Content;
+    } else {
+      const content = await this.#renderPage(page);
+      page.content = await this.#renderLayout(page, content);
+    }
   }
 
   /** Render a template */
-  async render(
+  async render<T>(
     content: unknown,
     data: Data,
     filename: string,
-  ): Promise<unknown> {
+  ): Promise<T> {
     const engines = this.#getEngine(filename, data);
 
     if (engines) {
@@ -144,88 +199,7 @@ export default class Renderer {
       }
     }
 
-    return content;
-  }
-
-  /** Prepare the page before rendering
-   * - Ensure the date is defined
-   * - Generate the URL
-   * - Modify the dest info accordingly
-   */
-  preparePage(page: Page) {
-    const { dest, data } = page;
-
-    // Ensure the date is defined
-    if (!data.date) {
-      data.date = page.src.created ?? page.src.lastModified;
-    } else {
-      if (typeof data.date === "string" || typeof data.date === "number") {
-        data.date = createDate(data.date);
-      }
-
-      if (!(data.date instanceof Date)) {
-        throw new Exception(
-          'Invalid date. Use "yyyy-mm-dd" or "yyy-mm-dd hh:mm:ss" formats',
-          { page },
-        );
-      }
-    }
-
-    // Generate the URL and dest info accordingly
-    let { url } = data;
-
-    if (url === false) {
-      return;
-    }
-
-    if (typeof url === "function") {
-      url = url(page);
-    }
-
-    if (typeof url === "string") {
-      // Relative URL
-      if (url.startsWith("./") || url.startsWith("../")) {
-        url = posix.join(posix.dirname(page.dest.path), url);
-      } else if (!url.startsWith("/")) {
-        throw new Exception(
-          `The url variable must start with "/", "./" or "../"`,
-          { page, url },
-        );
-      }
-
-      if (url.endsWith("/")) {
-        dest.path = `${url}index`;
-        dest.ext = ".html";
-      } else {
-        dest.ext = posix.extname(url);
-        dest.path = dest.ext ? url.slice(0, -dest.ext.length) : url;
-      }
-    } else if (url !== undefined) {
-      // If the user has provided a value which hasn't yielded a string then it is an invalid url.
-      throw new Exception(
-        `If a url is specified, it should either be a string, or a function which returns a string. The provided url is of type: ${typeof url}.`,
-        { page, url },
-      );
-      // If the user hasn't provided a value, generate a url using Site settings.
-    } else if (!this.formats.get(page.src.ext || "")?.asset) {
-      // Handle subextensions, like styles.css.njk
-      const subext = posix.extname(page.dest.path);
-
-      if (subext) {
-        dest.path = page.dest.path.slice(0, -subext.length);
-        dest.ext = subext;
-      } else {
-        // Add automatically .html extension
-        if (
-          this.prettyUrls === true && posix.basename(dest.path) !== "index"
-        ) {
-          dest.path = posix.join(dest.path, "index");
-        }
-        dest.ext = ".html";
-      }
-    }
-
-    page.updateDest(dest, this.prettyUrls);
+    return content as T;
   }
 
   /** Group the pages by renderOrder */
@@ -243,16 +217,22 @@ export default class Renderer {
 
   /** Render a page */
   async #renderPage(page: Page): Promise<Content> {
+    const data = { ...page.data };
+    const { content } = data;
+    delete data.content;
+
+    return await this.render<Content>(
+      content,
+      data,
+      page.src.path + page.src.ext,
+    );
+  }
+
+  /** Render the page layout */
+  async #renderLayout(page: Page, content: Content): Promise<Content> {
     let data = { ...page.data };
-    let { content, layout } = data;
-
-    // If the page is an asset, just return the content (don't render templates or layouts)
-    if (this.formats.get(page.src.ext || "")?.asset) {
-      return content as Content;
-    }
-
     let path = page.src.path + page.src.ext;
-    content = await this.render(content, data, path);
+    let layout = data.layout;
 
     // Render the layouts recursively
     while (layout) {
@@ -265,19 +245,25 @@ export default class Renderer {
         );
       }
 
-      const result = await this.includesLoader.load(layout, format, path);
+      const includesPath = format.includesPath || this.includes;
+      const layoutPath = resolveInclude(
+        layout,
+        includesPath,
+        posix.dirname(path),
+      );
+      const entry = this.fs.entries.get(layoutPath);
 
-      if (!result) {
+      if (!entry) {
         throw new Exception(
-          "Couldn't load this layout",
-          { layout },
+          "The layout file doesn't exist",
+          { layoutPath },
         );
       }
 
+      const layoutData = await entry.getContent(format.pageLoader);
+
       delete data.layout;
       delete data.templateEngine;
-
-      const [layoutPath, layoutData] = result;
 
       data = {
         ...layoutData,
@@ -285,12 +271,16 @@ export default class Renderer {
         content,
       };
 
-      content = await this.render(layoutData.content, data, layoutPath);
+      content = await this.render<Content>(
+        layoutData.content,
+        data,
+        layoutPath,
+      );
       layout = layoutData.layout;
       path = layoutPath;
     }
 
-    return content as Content;
+    return content;
   }
 
   /** Get the engines assigned to an extension or configured in the data */
@@ -302,39 +292,22 @@ export default class Renderer {
         ? templateEngine
         : templateEngine.split(",");
 
-      return templateEngine.map((name) => {
+      return templateEngine.reduce((engines, name) => {
         const format = this.formats.get(`.${name.trim()}`);
 
-        if (format?.engine) {
-          return format.engine;
+        if (format?.engines) {
+          return engines.concat(format.engines);
         }
 
         throw new Exception(
           "Invalid value for templateEngine",
           { path, templateEngine },
         );
-      });
+      }, [] as Engine[]);
     }
 
-    const engine = this.formats.search(path)?.engine;
-
-    if (engine) {
-      return [engine];
-    }
+    return this.formats.search(path)?.engines;
   }
-}
-
-/**
- * Check if the content of a page is a generator.
- * Used to generate multiple pages
- */
-function isGenerator(content: unknown) {
-  if (typeof content !== "function") {
-    return false;
-  }
-
-  const name = content.constructor.name;
-  return (name === "GeneratorFunction" || name === "AsyncGeneratorFunction");
 }
 
 /** An interface used by all template engines */

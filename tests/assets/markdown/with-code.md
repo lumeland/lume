@@ -5,3 +5,5 @@
 ```
 <p>Example without color highlight</p>
 ```
+
+    Not indented code

@@ -4,8 +4,8 @@ export interface Options {
   /** The logger to use */
   logger: Logger;
 
-  /** The default cwd for scripts */
-  options: ScriptOptions;
+  /** The current working directory */
+  cwd?: string;
 }
 
 /**
@@ -16,15 +16,15 @@ export default class Scripts {
   /** The logger to output messages in the terminal */
   logger: Logger;
 
-  /** The default options to execute the scripts */
-  options: ScriptOptions;
+  /** The current working directory */
+  cwd: string;
 
   /** All registered scripts and functions */
   scripts = new Map<string, ScriptOrFunction[]>();
 
   constructor(options: Options) {
     this.logger = options.logger;
-    this.options = options.options;
+    this.cwd = options.cwd || Deno.cwd();
   }
 
   /** Register one or more scripts under a specific name */
@@ -34,13 +34,10 @@ export default class Scripts {
 
   /** Run one or more commands */
   async run(
-    options: ScriptOptions,
     ...names: ScriptOrFunction[]
   ): Promise<boolean> {
-    options = { ...this.options, ...options };
-
     for (const name of names) {
-      const success = await this.#run(options, name);
+      const success = await this.#run(name);
 
       if (!success) {
         return false;
@@ -51,16 +48,16 @@ export default class Scripts {
   }
 
   /** Run an individual script or function */
-  async #run(options: ScriptOptions, name: ScriptOrFunction): Promise<unknown> {
+  async #run(name: ScriptOrFunction): Promise<unknown> {
     if (typeof name === "string" && this.scripts.has(name)) {
       this.logger.log(`⚡️ <green>${name}</green>`);
       const command = this.scripts.get(name)!;
-      return this.run(options, ...command);
+      return this.run(...command);
     }
 
     if (Array.isArray(name)) {
       const results = await Promise.all(
-        name.map((n) => this.#run(options, n)),
+        name.map((n) => this.#run(n)),
       );
       return results.every((success) => success);
     }
@@ -69,26 +66,34 @@ export default class Scripts {
       return this.#runFunction(name);
     }
 
-    return this.#runScript(options, name);
+    return this.#runScript(name);
   }
 
   /** Run a function */
   async #runFunction(fn: () => unknown) {
-    this.logger.log(`⚡️ <dim>${fn.name}()</dim>`);
+    if (fn.name) {
+      this.logger.log(`⚡️ <dim>${fn.name}()</dim>`);
+    }
     const result = await fn();
     return result !== false;
   }
 
   /** Run a shell command */
-  async #runScript(options: ScriptOptions, script: string) {
+  async #runScript(script: string) {
     this.logger.log(`⚡️ <dim>${script}</dim>`);
 
-    const cmd = shArgs(script);
-    const process = Deno.run({ cmd, ...options });
-    const status = await process.status();
-    process.close();
+    const args = shArgs(script);
+    const cmd = args.shift()!;
 
-    return status.success;
+    const command = new Deno.Command(cmd, {
+      args,
+      stdout: "inherit",
+      stderr: "inherit",
+      cwd: this.cwd,
+    });
+
+    const output = await command.output();
+    return output.success;
   }
 }
 
@@ -101,6 +106,3 @@ function shArgs(script: string) {
 
 /** A script or function */
 export type ScriptOrFunction = string | (() => unknown) | ScriptOrFunction[];
-
-/** The options for a script */
-export type ScriptOptions = Omit<Deno.RunOptions, "cmd">;

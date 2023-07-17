@@ -1,0 +1,204 @@
+export const snapshot = {};
+
+snapshot[`JSON plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/_data.jsonc",
+    "/_includes",
+    "/_includes/layout.njk",
+    "/index.tmpl.json",
+    "/page1.md",
+  ],
+}
+`;
+
+snapshot[`JSON plugin 2`] = `[]`;
+
+snapshot[`JSON plugin 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html>
+" +
+      "  <head>
+" +
+      "    <title>Title of the index</title>
+" +
+      "  </head>
+" +
+      "  <body>
+" +
+      "    <h1>Default title</h1>
+" +
+      "    <p>Default description</p>
+" +
+      "    <h2>Title of the index</h2>
+" +
+      "    <p>Content of the index</p>
+" +
+      "    
+" +
+      "  </body>
+" +
+      "</html>",
+    data: {
+      children: "Content of the index",
+      content: "Content of the index",
+      date: [],
+      layout: "layout.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: [
+        "title",
+        "description",
+      ],
+      tags: "Array(0)",
+      title: "Title of the index",
+      url: "/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.json",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<p>{
+" +
+      "&quot;title&quot;: &quot;First page&quot;
+" +
+      "}</p>
+" +
+      "<h1>Welcome</h1>
+",
+    data: {
+      children: "<p>{
+&quot;title&quot;: &quot;First page&quot;
+}</p>
+<h1>Welcome</h1>
+",
+      content: '{
+  "title": "First page"
+}
+
+# Welcome
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: [
+        "title",
+        "description",
+      ],
+      tags: "Array(0)",
+      url: "/page1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/page1",
+      remote: undefined,
+      slug: "page1",
+    },
+  },
+]
+`;

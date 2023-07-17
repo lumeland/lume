@@ -1,0 +1,15 @@
+{% if item.data %}
+<a href="{{ item.data.url }}">{{ item.data.title }}</a>
+{% else %}
+<strong>{{ item.slug }}</strong>
+{% endif %}
+
+{% ifAsync item.children %}
+<ul>
+  {% asyncEach item in item.children %}
+  <li>
+    {% include "./step.njk" %}
+  </li>
+  {% endeach %}
+</ul>
+{% endif %}

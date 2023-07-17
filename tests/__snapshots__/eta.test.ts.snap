@@ -1,124 +1,174 @@
 export const snapshot = {};
 
-snapshot[`build a site with eta 1`] = `1`;
-
-snapshot[`build a site with eta 2`] = `
+snapshot[`build a site with eta 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".eta",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/footer.eta",
+    "/_includes/header.eta",
+    "/_includes/layout.eta",
+    "/index.eta",
+  ],
 }
 `;
+
+snapshot[`build a site with eta 2`] = `[]`;
 
 snapshot[`build a site with eta 3`] = `
 [
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html lang="en">
+' +
+      "<head>
+" +
+      '  <meta charset="utf-8">
+' +
+      '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+      "  <title>Eta example</title>
+" +
+      "</head>
+" +
+      "<body>
+" +
+      "  <nav>
+" +
+      '    <a href="/blog/">Go to home</a>
+' +
+      "  </nav>
+" +
+      "  <h1>Timothy's Eta source code!</h1>
+" +
+      "
+" +
+      "<footer>This is a footer of Timothy</footer></body>
+" +
+      "</html>
+",
+    data: {
+      children: "<h1>Timothy's Eta source code!</h1>
+" +
+        "
+" +
+        "<footer>This is a footer of Timothy</footer>",
+      content: "<h1><%= name %>'s Eta source code!</h1>
+" +
+        "
+" +
+        '<%~ await includeAsync("/footer", { name }) %>
+',
+      date: [],
+      layout: "layout.eta",
+      mergedKeys: [
+        "tags",
+      ],
+      name: "Timothy",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Eta example",
+      url: "/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".eta",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
 ]
-`;
-
-snapshot[`build a site with eta 4`] = `
-{
-  content: \`<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eta example</title>
-</head>
-<body>
-  <nav>
-    <a href="/blog/">Go to home</a>
-  </nav>
-  <h1>Timothy's Eta source code!</h1>
-
-<footer>This is a footer of Timothy</footer><footer>This is a footer of Timothy</footer></body>
-</html>
-\`,
-  data: {
-    content: \`<h1><%= name %>'s Eta source code!</h1>
-
-<%~ await includeFile("footer", { name }) %>
-<%~ await includeFile("./_includes/footer", { name }) %>\`,
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.eta",
-    name: "Timothy",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "Eta example",
-    url: "/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/index",
-  },
-  src: {
-    ext: ".eta",
-    path: "/index",
-    remote: undefined,
-  },
-}
 `;

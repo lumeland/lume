@@ -1,19 +1,19 @@
 import nunjucks from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
-import { merge, normalizePath } from "../core/utils.ts";
+import { merge, normalizePath, resolveInclude } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
-import { join } from "../deps/path.ts";
+import { basename, join, posix } from "../deps/path.ts";
 
 import type {
   ComponentFunction,
   Data,
+  DeepPartial,
   Engine,
   Helper,
   HelperOptions,
   ProxyComponents,
   Site,
 } from "../core.ts";
-import type { NunjucksOptions } from "../deps/nunjucks.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -26,11 +26,11 @@ export interface Options {
   includes: string;
 
   /** Options passed to Nunjucks */
-  options: Partial<NunjucksOptions>;
+  options: nunjucks.ConfigureOptions;
 
   /** Plugins loaded by Nunjucks */
   plugins: {
-    [index: string]: unknown;
+    [index: string]: nunjucks.Extension;
   };
 }
 
@@ -57,15 +57,17 @@ export class NunjucksEngine implements Engine {
 
   deleteCache(file: string): void {
     this.cache.delete(file);
+    const filename = basename(file);
 
     // Remove the internal cache of nunjucks
-    const fsLoader = this.env.loaders[0];
-    const filename = join(this.basePath, file);
-    const name = fsLoader.pathsToNames[filename];
-
-    if (name) {
-      delete fsLoader.cache[name];
-    }
+    // deno-lint-ignore no-explicit-any
+    this.env.loaders.forEach((fsLoader: any) => {
+      Object.keys(fsLoader.cache).forEach((key) => {
+        if (key.endsWith(filename)) {
+          delete fsLoader.cache[key];
+        }
+      });
+    });
   }
 
   render(content: string, data?: Data, filename?: string) {
@@ -107,6 +109,7 @@ export class NunjucksEngine implements Engine {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
+        // @ts-ignore: The type definition of nunjucks is wrong
         nunjucks.compile(content, this.env, join(this.basePath, filename)),
       );
     }
@@ -134,8 +137,47 @@ export class NunjucksEngine implements Engine {
   }
 }
 
+class LumeLoader extends nunjucks.Loader implements nunjucks.ILoaderAsync {
+  constructor(private site: Site) {
+    super();
+  }
+
+  async: true = true;
+
+  getSource(
+    id: string,
+    callback: nunjucks.Callback<Error, nunjucks.LoaderSource>,
+  ) {
+    const rootToRemove = this.site.src();
+    let path = normalizePath(id, rootToRemove);
+
+    if (path === normalizePath(id)) {
+      const format = this.site.formats.search(id);
+      const includesPath = format?.includesPath ?? this.site.options.includes;
+      path = resolveInclude(id, includesPath, undefined, rootToRemove);
+    }
+
+    this.site.getContent(path, loader).then((content) => {
+      if (content) {
+        callback(null, {
+          src: content as string,
+          path,
+          noCache: false,
+        });
+        return;
+      }
+
+      callback(new Error(`Could not load ${path}`), null);
+    });
+  }
+
+  resolve(from: string, to: string): string {
+    return posix.join(posix.dirname(from), to);
+  }
+}
+
 /** Register the plugin to use Nunjucks as a template engine */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
@@ -145,42 +187,20 @@ export default function (userOptions?: Partial<Options>) {
       ? { pages: options.extensions, components: options.extensions }
       : options.extensions;
 
-    // Create the nunjucks environment instance
-    const fsLoader = new nunjucks.FileSystemLoader(site.src(options.includes));
-    const basePath = site.src();
-
-    const lumeLoader = {
-      async: true,
-      async getSource(
-        path: string,
-        callback: (err?: string, src?: { src: string; path: string }) => void,
-      ) {
-        let relPath = normalizePath(path);
-        relPath = relPath.startsWith(basePath)
-          ? relPath.slice(basePath.length)
-          : relPath;
-        const content = await site.getContent(relPath);
-
-        if (content) {
-          callback(undefined, {
-            src: content as string,
-            path,
-          });
-          return;
-        }
-
-        callback(`Could not load ${path}`);
-      },
-    };
+    site.includes(extensions.pages, options.includes);
 
     const env = new nunjucks.Environment(
-      [fsLoader, lumeLoader],
+      [new LumeLoader(site)],
       options.options,
     );
 
     for (const [name, fn] of Object.entries(options.plugins)) {
       env.addExtension(name, fn);
     }
+
+    site.hooks.addNunjucksPlugin = (name, fn) => {
+      env.addExtension(name, fn);
+    };
 
     const engine = new NunjucksEngine(env, site.src());
 
@@ -193,10 +213,10 @@ export default function (userOptions?: Partial<Options>) {
 
     // Register the component helper
     engine.addHelper("comp", (...args) => {
-      const baseData = site.source.root!.baseData || {};
-      const components = baseData[site.options.components.variable] as
-        | ProxyComponents
-        | undefined;
+      const components = site.source.data.get("/")
+        ?.[site.options.components.variable] as
+          | ProxyComponents
+          | undefined;
       const [content, name, options = {}] = args;
       delete options.__keywords;
       const props = { content, ...options };
@@ -229,7 +249,7 @@ export default function (userOptions?: Partial<Options>) {
     });
 
     function filter(string: string, data?: Data) {
-      return engine.render(string, { ...site.globalData, ...data });
+      return engine.render(string, { ...site.scopedData.get("/"), ...data });
     }
   };
 }

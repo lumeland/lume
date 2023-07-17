@@ -1,239 +1,245 @@
 export const snapshot = {};
 
-snapshot[`imagick plugin 1`] = `5`;
-
-snapshot[`imagick plugin 2`] = `
+snapshot[`imagick plugin 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       asset: true,
-      engine: false,
+      engines: undefined,
       ext: ".jpg",
       pageLoader: [AsyncFunction: binary],
     },
     {
       asset: true,
-      engine: false,
+      engines: undefined,
       ext: ".jpeg",
       pageLoader: [AsyncFunction: binary],
     },
     {
       asset: true,
-      engine: false,
+      engines: undefined,
       ext: ".png",
       pageLoader: [AsyncFunction: binary],
     },
   ],
+  src: [
+    "/",
+    "/_data.yml",
+    "/lume.png",
+  ],
 }
 `;
+
+snapshot[`imagick plugin 2`] = `[]`;
 
 snapshot[`imagick plugin 3`] = `
 [
+  {
+    content: "Uint8Array(935)",
+    data: {
+      content: "Uint8Array(29014)",
+      date: [],
+      imagick: "undefined",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/lume-small.png",
+    },
+    src: {
+      asset: true,
+      ext: ".png",
+      path: "/lume[0]",
+      remote: undefined,
+      slug: "lume",
+    },
+  },
+  {
+    content: "Uint8Array(935)",
+    data: {
+      content: "Uint8Array(29014)",
+      date: [],
+      imagick: "undefined",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/lume-big.png",
+    },
+    src: {
+      asset: true,
+      ext: ".png",
+      path: "/lume[1]",
+      remote: undefined,
+      slug: "lume",
+    },
+  },
+  {
+    content: "Uint8Array(1231)",
+    data: {
+      content: "Uint8Array(29014)",
+      date: [],
+      imagick: "undefined",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/lume.jpg",
+    },
+    src: {
+      asset: true,
+      ext: ".png",
+      path: "/lume[2]",
+      remote: undefined,
+      slug: "lume",
+    },
+  },
+  {
+    content: "Uint8Array(8648)",
+    data: {
+      content: "Uint8Array(29014)",
+      date: [],
+      imagick: "undefined",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/lume.webp",
+    },
+    src: {
+      asset: true,
+      ext: ".png",
+      path: "/lume[3]",
+      remote: undefined,
+      slug: "lume",
+    },
+  },
+  {
+    content: "Uint8Array(14410)",
+    data: {
+      content: "Uint8Array(29014)",
+      date: [],
+      imagick: "undefined",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/lume.png",
+    },
+    src: {
+      asset: true,
+      ext: ".png",
+      path: "/lume[4]",
+      remote: undefined,
+      slug: "lume",
+    },
+  },
 ]
-`;
-
-snapshot[`imagick plugin 4`] = `
-{
-  content: "Uint8Array(14407)",
-  data: {
-    content: "Uint8Array(29014)",
-    date: 1970-01-01T00:00:00.000Z,
-    imagick: [
-      {
-        blur: 10,
-        resize: 20,
-        suffix: "-small",
-      },
-      {
-        blur: 10,
-        resize: 20,
-        suffix: "-big",
-      },
-      {
-        format: "jpg",
-      },
-      {
-        format: "webp",
-      },
-      {
-        format: "png",
-      },
-    ],
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/lume.png",
-  },
-  dest: {
-    ext: ".png",
-    path: "/lume",
-  },
-  src: {
-    ext: ".png",
-    path: "/lume",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`imagick plugin 5`] = `
-{
-  content: "Uint8Array(951)",
-  data: {
-    content: "Uint8Array(29014)",
-    date: 1970-01-01T00:00:00.000Z,
-    imagick: undefined,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/lume-small.png",
-  },
-  dest: {
-    ext: ".png",
-    path: "/lume-small",
-  },
-  src: {
-    ext: ".png",
-    path: "/lume[0]",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`imagick plugin 6`] = `
-{
-  content: "Uint8Array(951)",
-  data: {
-    content: "Uint8Array(29014)",
-    date: 1970-01-01T00:00:00.000Z,
-    imagick: undefined,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/lume-big.png",
-  },
-  dest: {
-    ext: ".png",
-    path: "/lume-big",
-  },
-  src: {
-    ext: ".png",
-    path: "/lume[1]",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`imagick plugin 7`] = `
-{
-  content: "Uint8Array(1231)",
-  data: {
-    content: "Uint8Array(29014)",
-    date: 1970-01-01T00:00:00.000Z,
-    imagick: undefined,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/lume.jpg",
-  },
-  dest: {
-    ext: ".jpg",
-    path: "/lume",
-  },
-  src: {
-    ext: ".png",
-    path: "/lume[2]",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`imagick plugin 8`] = `
-{
-  content: "Uint8Array(8648)",
-  data: {
-    content: "Uint8Array(29014)",
-    date: 1970-01-01T00:00:00.000Z,
-    imagick: undefined,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/lume.webp",
-  },
-  dest: {
-    ext: ".webp",
-    path: "/lume",
-  },
-  src: {
-    ext: ".png",
-    path: "/lume[3]",
-    remote: undefined,
-  },
-}
 `;

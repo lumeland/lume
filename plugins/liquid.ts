@@ -1,10 +1,34 @@
-import { Liquid } from "../deps/liquid.ts";
+import {
+  evalToken,
+  Liquid,
+  Tag,
+  Tokenizer,
+  TokenKind,
+  toPromise,
+  Value,
+  ValueToken,
+} from "../deps/liquid.ts";
 import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Data, Engine, Helper, HelperOptions, Site } from "../core.ts";
-import type { LiquidOptions } from "../deps/liquid.ts";
+import type {
+  Data,
+  DeepPartial,
+  Engine,
+  Helper,
+  HelperOptions,
+  Site,
+} from "../core.ts";
+import type {
+  Context,
+  Emitter,
+  LiquidOptions,
+  TagClass,
+  TagToken,
+  Template,
+  TopLevelToken,
+} from "../deps/liquid.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -17,7 +41,7 @@ export interface Options {
   includes: string;
 
   /** Options passed to Liquidjs library */
-  options: Partial<LiquidOptions>;
+  options: LiquidOptions;
 }
 
 // Default options
@@ -29,13 +53,11 @@ export const defaults: Options = {
 
 /** Template engine to render Liquid files */
 export class LiquidEngine implements Engine {
-  // deno-lint-ignore no-explicit-any
-  liquid: any;
-  cache = new Map<string, unknown>();
+  liquid: Liquid;
+  cache = new Map<string, Template[]>();
   basePath: string;
 
-  // deno-lint-ignore no-explicit-any
-  constructor(liquid: any, basePath: string) {
+  constructor(liquid: Liquid, basePath: string) {
     this.liquid = liquid;
     this.basePath = basePath;
   }
@@ -62,7 +84,7 @@ export class LiquidEngine implements Engine {
     return this.liquid.renderSync(template, data);
   }
 
-  getTemplate(content: string, filename: string) {
+  getTemplate(content: string, filename: string): Template[] {
     if (!this.cache.has(filename)) {
       this.cache.set(
         filename,
@@ -82,6 +104,8 @@ export class LiquidEngine implements Engine {
         // Tag with body not supported yet
         if (!options.body) {
           this.liquid.registerTag(name, createCustomTag(fn));
+        } else {
+          this.liquid.registerTag(name, createCustomTagWithBody(fn));
         }
         break;
     }
@@ -89,7 +113,7 @@ export class LiquidEngine implements Engine {
 }
 
 /** Register the plugin to add support for Liquid files */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   return function (site: Site) {
     const options = merge(
       { ...defaults, includes: site.options.includes },
@@ -120,7 +144,7 @@ export default function (userOptions?: Partial<Options>) {
     site.filter("liquid", filter as Helper, true);
 
     function filter(string: string, data?: Data) {
-      return engine.render(string, { ...site.globalData, ...data });
+      return engine.render(string, { ...site.scopedData.get("/"), ...data });
     }
   };
 }
@@ -129,17 +153,76 @@ export default function (userOptions?: Partial<Options>) {
  * Create a custom tag
  * https://liquidjs.com/tutorials/register-filters-tags.html#Register-Tags
  */
-function createCustomTag(fn: Helper) {
-  return {
-    parse(tagToken: unknown) {
-      // @ts-ignore: No types for Liquid
-      this.str = tagToken.args;
-    },
+function createCustomTag(fn: Helper): TagClass {
+  return class extends Tag {
+    #value: Value;
 
-    async render(ctx: unknown): Promise<unknown> {
-      // @ts-ignore: No types for Liquid
-      const str = await this.liquid.evalValue(this.str, ctx);
-      return fn(str);
-    },
+    constructor(
+      token: TagToken,
+      remainTokens: TopLevelToken[],
+      liquid: Liquid,
+    ) {
+      super(token, remainTokens, liquid);
+      this.#value = new Value(token.args, liquid);
+    }
+
+    async render(ctx: Context, emitter: Emitter) {
+      const str = await toPromise(this.#value.value(ctx, false));
+      emitter.write(await fn(str));
+    }
+  };
+}
+
+/**
+ * Create a custom tag with body
+ * https://liquidjs.com/tutorials/register-filters-tags.html#Register-Tags
+ */
+function createCustomTagWithBody(fn: Helper): TagClass {
+  return class extends Tag {
+    args: ValueToken[] = [];
+    templates: Template[] = [];
+
+    constructor(
+      token: TagToken,
+      remainTokens: TopLevelToken[],
+      liquid: Liquid,
+    ) {
+      super(token, remainTokens, liquid);
+      const tokenizer = new Tokenizer(
+        token.args,
+        this.liquid.options.operators,
+      );
+      const name = token.name;
+
+      while (!tokenizer.end()) {
+        const value = tokenizer.readValue();
+        if (value) this.args.push(value);
+        tokenizer.readTo(",");
+      }
+
+      while (remainTokens.length) {
+        const token = remainTokens.shift()!;
+        if (
+          token.kind === TokenKind.Tag &&
+          (token as TagToken).name === `end${name}`
+        ) {
+          return;
+        }
+        this.templates.push(liquid.parser.parseToken(token, remainTokens));
+      }
+      throw new Error(`tag ${token.getText()} not closed`);
+    }
+
+    async render(ctx: Context, emitter: Emitter) {
+      const r = this.liquid.renderer;
+      const str = await toPromise(r.renderTemplates(this.templates, ctx));
+      const args = [str];
+
+      for (const arg of this.args) {
+        args.push(await toPromise(evalToken(arg, ctx)));
+      }
+
+      emitter.write(await fn(...args));
+    }
   };
 }

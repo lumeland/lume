@@ -5,7 +5,6 @@ import Logger from "../../core/logger.ts";
 Deno.test("Scripts", async (t) => {
   const scripts = new Scripts({
     logger: new Logger({ quiet: true }),
-    options: {},
   });
 
   equals(scripts.scripts.size, 0);
@@ -38,7 +37,7 @@ Deno.test("Scripts", async (t) => {
     scripts.set("my-fn", () => "foo");
 
     equals(scripts.scripts.size, 4);
-    const result = await scripts.run({}, "my-fn");
+    const result = await scripts.run("my-fn");
     equals(result, true);
   });
 
@@ -46,7 +45,7 @@ Deno.test("Scripts", async (t) => {
     scripts.set("my-false-fn", () => false);
 
     equals(scripts.scripts.size, 5);
-    const result = await scripts.run({}, "my-false-fn");
+    const result = await scripts.run("my-false-fn");
     equals(result, false);
   });
 });

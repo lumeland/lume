@@ -26,10 +26,21 @@ Deno.test("build a site with liquid", async (t) => {
     { type: "tag" },
   );
   site.helper(
+    "upperCaseBody",
+    (text) => `<strong>${(text as string).toUpperCase()}</strong>`,
+    { type: "tag", body: true },
+  );
+  site.helper(
     "upperCaseAsync",
     (text) =>
       Promise.resolve(`<strong>${(text as string).toUpperCase()}</strong>`),
     { type: "tag", async: true },
+  );
+  site.helper(
+    "upperCaseBodyAsync",
+    (text) =>
+      Promise.resolve(`<strong>${(text as string).toUpperCase()}</strong>`),
+    { type: "tag", body: true, async: true },
   );
 
   await build(site);

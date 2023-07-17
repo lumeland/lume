@@ -1,404 +1,657 @@
 export const snapshot = {};
 
-snapshot[`build a site with nunjucks 1`] = `7`;
-
-snapshot[`build a site with nunjucks 2`] = `
+snapshot[`build a site with nunjucks 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_components",
+    "/_components/Button.ts",
+    "/_components/icon",
+    "/_components/icon/User.njk",
+    "/_data.yml",
+    "/_includes",
+    "/_includes/basic.njk",
+    "/_includes/partial.njk",
+    "/components.njk",
+    "/data.njk",
+    "/empty.njk",
+    "/index.njk",
+    "/njk-filter.tmpl.js",
+    "/with-helpers.njk",
+  ],
 }
 `;
+
+snapshot[`build a site with nunjucks 2`] = `[]`;
 
 snapshot[`build a site with nunjucks 3`] = `
 [
-]
-`;
-
-snapshot[`build a site with nunjucks 4`] = `
-{
-  content: "
-button {
-  background-color: blue;
-}
-
-icon {
-  width: 48px;
-  height: 48px;
-}
-",
-  data: {
+  {
     content: "
-button {
-  background-color: blue;
-}
-
-icon {
-  width: 48px;
-  height: 48px;
-}
+" +
+      "button {
+" +
+      "  background-color: blue;
+" +
+      "}
+" +
+      "
+" +
+      "icon {
+" +
+      "  width: 48px;
+" +
+      "  height: 48px;
+" +
+      "}
 ",
-    page: undefined,
-    tags: [
-    ],
-    url: "/components.css",
-  },
-  dest: {
-    ext: ".css",
-    path: "/components",
-  },
-  src: {
-    ext: undefined,
-    path: "",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`build a site with nunjucks 5`] = `
-{
-  content: '
-document.querySelectorAll("button").forEach(button => {
-  button.addEventListener("click", () => {
-    alert("Hello world!");
-  });
-});
-
-console.log("Hello world, from the icon/User component");
-',
-  data: {
-    content: '
-document.querySelectorAll("button").forEach(button => {
-  button.addEventListener("click", () => {
-    alert("Hello world!");
-  });
-});
-
-console.log("Hello world, from the icon/User component");
-',
-    page: undefined,
-    tags: [
-    ],
-    url: "/components.js",
-  },
-  dest: {
-    ext: ".js",
-    path: "/components",
-  },
-  src: {
-    ext: undefined,
-    path: "",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`build a site with nunjucks 6`] = `
-{
-  content: '<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <main><button class="" type="button">
-  button without arguments
-</button>
-
-<button class="" type="button">button content</button>
-<icon name="John">
-  this is John
-</icon>
-
-
-<button class="my-button" type="button">
-  button content
-
-  <icon name="John">
-  
-  this is John
-  
-</icon>
-
-</button>
-</main>
-  </body>
-</html>
-',
-  data: {
-    comp: {},
-    content: '{% comp "Button" %}
-  button without arguments
-{% endcomp %}
-
-{{ comp.Button({ content: "button content" }) | safe }}
-{{ comp.icon.User({ content: "this is John", name:"John" }) | safe }}
-
-{% comp "Button", className="my-button" %}
-  button content
-
-  {% comp "icon.user", name="John" %}
-  this is John
-  {% endcomp %}
-{% endcomp %}
-',
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "basic.njk",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/components/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/components/index",
-  },
-  src: {
-    ext: ".njk",
-    path: "/components",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`build a site with nunjucks 7`] = `
-{
-  content: '["red","green","blue"]
-',
-  data: {
-    colors: [
-      "red",
-      "green",
-      "blue",
-    ],
-    comp: {},
-    content: "{{ colors | dump | safe }}
+    data: {
+      content: "
+" +
+        "button {
+" +
+        "  background-color: blue;
+" +
+        "}
+" +
+        "
+" +
+        "icon {
+" +
+        "  width: 48px;
+" +
+        "  height: 48px;
+" +
+        "}
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: null,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/data.json",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/components.css",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "components",
+    },
   },
-  dest: {
-    ext: ".json",
-    path: "/data",
-  },
-  src: {
-    ext: ".njk",
-    path: "/data.json",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`build a site with nunjucks 8`] = `
-{
-  content: '<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Hello World</title>
-  </head>
-  <body>
-    <main><h1>Hello World</h1>
-</main>
-  </body>
-</html>
+  {
+    content: "
+" +
+      'document.querySelectorAll("button").forEach(button => {
+' +
+      '  button.addEventListener("click", () => {
+' +
+      '    alert("Hello world!");
+' +
+      "  });
+" +
+      "});
+" +
+      "
+" +
+      'console.log("Hello world, from the icon/User component");
 ',
-  data: {
-    comp: {},
-    content: "<h1>{{ title }}</h1>
+    data: {
+      content: "
+" +
+        'document.querySelectorAll("button").forEach(button => {
+' +
+        '  button.addEventListener("click", () => {
+' +
+        '    alert("Hello world!");
+' +
+        "  });
+" +
+        "});
+" +
+        "
+" +
+        'console.log("Hello world, from the icon/User component");
+',
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/components.js",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "components",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "
+" +
+      '<html lang="en">
+' +
+      "  <head>
+" +
+      '    <meta charset="utf-8">
+' +
+      "    <title></title>
+" +
+      "  </head>
+" +
+      "  <body>
+" +
+      '    <main><button class="" type="button">
+' +
+      "  button without arguments
+" +
+      "</button>
+" +
+      "
+" +
+      '<button class="" type="button">button content</button>
+' +
+      '<icon name="John">
+' +
+      "  this is John
+" +
+      "</icon>
+" +
+      "
+" +
+      "
+" +
+      '<button class="my-button" type="button">
+' +
+      "  button content
+" +
+      "
+" +
+      '  <icon name="John">
+' +
+      "  
+" +
+      "  this is John
+" +
+      "  
+" +
+      "</icon>
+" +
+      "
+" +
+      "</button>
+" +
+      "</main>
+" +
+      "  </body>
+" +
+      "</html>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "./_includes/basic.njk",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "Hello World",
-    url: "/",
+    data: {
+      children: '<button class="" type="button">
+' +
+        "  button without arguments
+" +
+        "</button>
+" +
+        "
+" +
+        '<button class="" type="button">button content</button>
+' +
+        '<icon name="John">
+' +
+        "  this is John
+" +
+        "</icon>
+" +
+        "
+" +
+        "
+" +
+        '<button class="my-button" type="button">
+' +
+        "  button content
+" +
+        "
+" +
+        '  <icon name="John">
+' +
+        "  
+" +
+        "  this is John
+" +
+        "  
+" +
+        "</icon>
+" +
+        "
+" +
+        "</button>
+",
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: '{% comp "Button" %}
+' +
+        "  button without arguments
+" +
+        "{% endcomp %}
+" +
+        "
+" +
+        '{{ comp.Button({ content: "button content" }) | safe }}
+' +
+        '{{ comp.icon.User({ content: "this is John", name:"John" }) | safe }}
+' +
+        "
+" +
+        '{% comp "Button", className="my-button" %}
+' +
+        "  button content
+" +
+        "
+" +
+        '  {% comp "icon.user", name="John" %}
+' +
+        "  this is John
+" +
+        "  {% endcomp %}
+" +
+        "{% endcomp %}
+",
+      date: [],
+      layout: "basic.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/components/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/components",
+      remote: undefined,
+      slug: "components",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/index",
-  },
-  src: {
-    ext: ".njk",
-    path: "/index",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`build a site with nunjucks 9`] = `
-{
-  content: '<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>njk filter example</title>
-  </head>
-  <body>
-    <main><h1>NJK FILTER EXAMPLE</h1></main>
-  </body>
-</html>
+  {
+    content: '["red","green","blue"]
 ',
-  data: {
-    comp: {},
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "basic.njk",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "njk filter example",
-    url: "/njk-filter/",
+    data: {
+      colors: "Array(3)",
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "{{ colors | dump | safe }}
+",
+      date: [],
+      layout: null,
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/data.json",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/data",
+      remote: undefined,
+      slug: "data",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/njk-filter/index",
+  {
+    content: "<!DOCTYPE html>
+" +
+      "
+" +
+      '<html lang="en">
+' +
+      "  <head>
+" +
+      '    <meta charset="utf-8">
+' +
+      "    <title>Hello World</title>
+" +
+      "  </head>
+" +
+      "  <body>
+" +
+      "    <main><h1>Hello World</h1>
+" +
+      "</main>
+" +
+      "  </body>
+" +
+      "</html>
+",
+    data: {
+      children: "<h1>Hello World</h1>
+",
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "<h1>{{ title }}</h1>
+",
+      date: [],
+      layout: "./_includes/basic.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Hello World",
+      url: "/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
   },
-  src: {
-    ext: ".tmpl.js",
-    path: "/njk-filter",
-    remote: undefined,
+  {
+    content: "<!DOCTYPE html>
+" +
+      "
+" +
+      '<html lang="en">
+' +
+      "  <head>
+" +
+      '    <meta charset="utf-8">
+' +
+      "    <title>njk filter example</title>
+" +
+      "  </head>
+" +
+      "  <body>
+" +
+      "    <main><h1>NJK FILTER EXAMPLE</h1></main>
+" +
+      "  </body>
+" +
+      "</html>
+",
+    data: {
+      children: "<h1>NJK FILTER EXAMPLE</h1>",
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "default",
+      date: [],
+      layout: "basic.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "njk filter example",
+      url: "/njk-filter/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/njk-filter",
+      remote: undefined,
+      slug: "njk-filter",
+    },
   },
-}
-`;
-
-snapshot[`build a site with nunjucks 10`] = `
-{
-  content: '<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>The title</title>
-  </head>
-  <body>
-    <main><p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<div>hello (async)</div>
-
-<ul>
-  <li>This is a partial</li>
-  <li>async helper in a partial (async)</li>
-</ul>
-<ul>
-  <li>This is a partial</li>
-  <li>async helper in a partial (async)</li>
-</ul>
-</main>
-  </body>
-</html>
+  {
+    content: "<!DOCTYPE html>
+" +
+      "
+" +
+      '<html lang="en">
+' +
+      "  <head>
+" +
+      '    <meta charset="utf-8">
+' +
+      "    <title>The title</title>
+" +
+      "  </head>
+" +
+      "  <body>
+" +
+      "    <main><p><strong>THE TITLE</strong></p>
+" +
+      "<p><strong>THE TITLE</strong></p>
+" +
+      "<p><strong>THE TITLE</strong></p>
+" +
+      "<p><strong>THE TITLE</strong></p>
+" +
+      "<p><strong>THE TITLE</strong></p>
+" +
+      "<p><strong>THE TITLE</strong></p>
+" +
+      "<p><strong>THE TITLE</strong></p>
+" +
+      "<p><strong>THE TITLE</strong></p>
+" +
+      "<div>hello (async)</div>
+" +
+      "
+" +
+      "<ul>
+" +
+      "  <li>This is a partial</li>
+" +
+      "  <li>async helper in a partial (async)</li>
+" +
+      "</ul>
+" +
+      "<ul>
+" +
+      "  <li>This is a partial</li>
+" +
+      "  <li>async helper in a partial (async)</li>
+" +
+      "</ul>
+" +
+      "</main>
+" +
+      "  </body>
+" +
+      "</html>
+",
+    data: {
+      children: "<p><strong>THE TITLE</strong></p>
+" +
+        "<p><strong>THE TITLE</strong></p>
+" +
+        "<p><strong>THE TITLE</strong></p>
+" +
+        "<p><strong>THE TITLE</strong></p>
+" +
+        "<p><strong>THE TITLE</strong></p>
+" +
+        "<p><strong>THE TITLE</strong></p>
+" +
+        "<p><strong>THE TITLE</strong></p>
+" +
+        "<p><strong>THE TITLE</strong></p>
+" +
+        "<div>hello (async)</div>
+" +
+        "
+" +
+        "<ul>
+" +
+        "  <li>This is a partial</li>
+" +
+        "  <li>async helper in a partial (async)</li>
+" +
+        "</ul>
+" +
+        "<ul>
+" +
+        "  <li>This is a partial</li>
+" +
+        "  <li>async helper in a partial (async)</li>
+" +
+        "</ul>
+",
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "<p>{% upperCase title %}</p>
+" +
+        '<p>{% upperCase "The title" %}</p>
+' +
+        "<p>{% upperCaseAsync title %}</p>
+" +
+        '<p>{% upperCaseAsync "The title" %}</p>
+' +
+        "<p>{% upperCaseBody %}The title{% endupperCaseBody %}</p>
+" +
+        "<p>{% upperCaseBody %}{{ title }}{% endupperCaseBody %}</p>
+" +
+        "<p>{% upperCaseBodyAsync %}The title{% endupperCaseBodyAsync %}</p>
+" +
+        "<p>{% upperCaseBodyAsync %}{{ title }}{% endupperCaseBodyAsync %}</p>
+" +
+        '<div>{{ "hello" | returnAsync }}</div>
+' +
+        "
+" +
+        '{% include "partial.njk" %}
+' +
+        '{% include "./_includes/partial.njk" %}
 ',
-  data: {
-    comp: {},
-    content: '<p>{% upperCase title %}</p>
-<p>{% upperCase "The title" %}</p>
-<p>{% upperCaseAsync title %}</p>
-<p>{% upperCaseAsync "The title" %}</p>
-<p>{% upperCaseBody %}The title{% endupperCaseBody %}</p>
-<p>{% upperCaseBody %}{{ title }}{% endupperCaseBody %}</p>
-<p>{% upperCaseBodyAsync %}The title{% endupperCaseBodyAsync %}</p>
-<p>{% upperCaseBodyAsync %}{{ title }}{% endupperCaseBodyAsync %}</p>
-<div>{{ "hello" | returnAsync }}</div>
-
-{% include "partial.njk" %}
-{% include "./_includes/partial.njk" %}
-',
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "basic.njk",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "The title",
-    url: "/with-helpers/",
+      date: [],
+      layout: "basic.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "The title",
+      url: "/with-helpers/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/with-helpers",
+      remote: undefined,
+      slug: "with-helpers",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/with-helpers/index",
-  },
-  src: {
-    ext: ".njk",
-    path: "/with-helpers",
-    remote: undefined,
-  },
-}
+]
 `;

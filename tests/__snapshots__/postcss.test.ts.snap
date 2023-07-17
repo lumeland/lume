@@ -1,316 +1,603 @@
 export const snapshot = {};
 
-snapshot[`postcss plugin 1`] = `2`;
-
-snapshot[`postcss plugin 2`] = `
+snapshot[`postcss plugin 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       asset: true,
-      engine: false,
+      engines: undefined,
       ext: ".css",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/components",
+    "/_includes/components/foo.css",
+    "/_includes/variables.css",
+    "/index.min.css",
+    "/text.css",
+  ],
 }
 `;
+
+snapshot[`postcss plugin 2`] = `[]`;
 
 snapshot[`postcss plugin 3`] = `
 [
+  {
+    content: ".foo {
+" +
+      "  color: red;
+" +
+      "}
+" +
+      "
+" +
+      "::root {
+" +
+      "  --color: #333;
+" +
+      "  --background: #fff;
+" +
+      "  --font-family: sans-serif;
+" +
+      "}
+" +
+      "
+" +
+      ".text {
+" +
+      "  font-family: var(--font-family);
+" +
+      "}
+" +
+      "
+" +
+      ".text p {
+" +
+      "    color: var(--color);
+" +
+      "    box-shadow: 0 0 0.5em var(--background);
+" +
+      "    -webkit-backdrop-filter: blur(2px);
+" +
+      "            backdrop-filter: blur(2px);
+" +
+      "  }
+",
+    data: {
+      content: '@import "variables.css";
+@import "./text.css";
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/index.min.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/index.min",
+      remote: undefined,
+      slug: "index.min",
+    },
+  },
+  {
+    content: ".text {
+" +
+      "  font-family: var(--font-family);
+" +
+      "}
+" +
+      ".text p {
+" +
+      "    color: var(--color);
+" +
+      "    box-shadow: 0 0 0.5em var(--background);
+" +
+      "    -webkit-backdrop-filter: blur(2px);
+" +
+      "            backdrop-filter: blur(2px);
+" +
+      "  }
+",
+    data: {
+      content: ".text {
+" +
+        "  font-family: var(--font-family);
+" +
+        "
+" +
+        "  & p {
+" +
+        "    color: var(--color);
+" +
+        "    box-shadow: 0 0 0.5em var(--background);
+" +
+        "    backdrop-filter: blur(2px);
+" +
+        "  }
+" +
+        "}
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/text.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/text",
+      remote: undefined,
+      slug: "text",
+    },
+  },
 ]
 `;
 
-snapshot[`postcss plugin 4`] = `
-{
-  content: ".foo {
-  color: red;
-}
-
-::root {
-  --color: #333;
-  --background: #fff;
-  --font-family: sans-serif;
-}
-
-.text {
-  font-family: var(--font-family)
-}
-
-.text p {
-    color: var(--color);
-    box-shadow: 0 0 0.5em var(--background);
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-  }
-",
-  data: {
-    content: '@import "variables.css";
-@import "./text.css";
-',
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/index.css",
-  },
-  dest: {
-    ext: ".css",
-    path: "/index",
-  },
-  src: {
-    ext: ".css",
-    path: "/index",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`postcss plugin 5`] = `
-{
-  content: ".text {
-  font-family: var(--font-family)
-}
-.text p {
-    color: var(--color);
-    box-shadow: 0 0 0.5em var(--background);
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-  }
-",
-  data: {
-    content: ".text {
-  font-family: var(--font-family);
-
-  & p {
-    color: var(--color);
-    box-shadow: 0 0 0.5em var(--background);
-    backface-visibility: hidden;
-  }
-}
-",
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/text.css",
-  },
-  dest: {
-    ext: ".css",
-    path: "/text",
-  },
-  src: {
-    ext: ".css",
-    path: "/text",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`postcss plugin without includes 1`] = `2`;
-
-snapshot[`postcss plugin without includes 2`] = `
+snapshot[`postcss plugin without includes 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       asset: true,
-      engine: false,
+      engines: undefined,
       ext: ".css",
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/components",
+    "/_includes/components/foo.css",
+    "/_includes/variables.css",
+    "/index.min.css",
+    "/text.css",
+  ],
 }
 `;
+
+snapshot[`postcss plugin without includes 2`] = `[]`;
 
 snapshot[`postcss plugin without includes 3`] = `
 [
-]
-`;
-
-snapshot[`postcss plugin without includes 4`] = `
-{
-  content: '@import "variables.css";
-@import "./text.css";
-',
-  data: {
+  {
     content: '@import "variables.css";
 @import "./text.css";
 ',
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/index.css",
+    data: {
+      content: '@import "variables.css";
+@import "./text.css";
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/index.min.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/index.min",
+      remote: undefined,
+      slug: "index.min",
+    },
   },
-  dest: {
-    ext: ".css",
-    path: "/index",
+  {
+    content: ".text {
+" +
+      "  font-family: var(--font-family);
+" +
+      "}
+" +
+      ".text p {
+" +
+      "    color: var(--color);
+" +
+      "    box-shadow: 0 0 0.5em var(--background);
+" +
+      "    -webkit-backdrop-filter: blur(2px);
+" +
+      "            backdrop-filter: blur(2px);
+" +
+      "  }
+",
+    data: {
+      content: ".text {
+" +
+        "  font-family: var(--font-family);
+" +
+        "
+" +
+        "  & p {
+" +
+        "    color: var(--color);
+" +
+        "    box-shadow: 0 0 0.5em var(--background);
+" +
+        "    backdrop-filter: blur(2px);
+" +
+        "  }
+" +
+        "}
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/text.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/text",
+      remote: undefined,
+      slug: "text",
+    },
   },
-  src: {
-    ext: ".css",
-    path: "/index",
-    remote: undefined,
-  },
+]
+`;
+
+snapshot[`postcss plugin with hooks 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".css",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+  ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/components",
+    "/_includes/components/foo.css",
+    "/_includes/variables.css",
+    "/index.min.css",
+    "/text.css",
+  ],
 }
 `;
 
-snapshot[`postcss plugin without includes 5`] = `
-{
-  content: ".text {
-  font-family: var(--font-family)
-}
-.text p {
-    color: var(--color);
-    box-shadow: 0 0 0.5em var(--background);
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-  }
-",
-  data: {
-    content: ".text {
-  font-family: var(--font-family);
+snapshot[`postcss plugin with hooks 2`] = `[]`;
 
-  & p {
-    color: var(--color);
-    box-shadow: 0 0 0.5em var(--background);
-    backface-visibility: hidden;
-  }
-}
+snapshot[`postcss plugin with hooks 3`] = `
+[
+  {
+    content: ".foo{color:red}::root{--color:#333;--background:#fff;--font-family:sans-serif}.text{font-family:var(--font-family)}.text p{-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);box-shadow:0 0 .5em var(--background);color:var(--color)}",
+    data: {
+      content: '@import "variables.css";
+@import "./text.css";
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/index.min.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/index.min",
+      remote: undefined,
+      slug: "index.min",
+    },
+  },
+  {
+    content: ".text{font-family:var(--font-family)}.text p{-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);box-shadow:0 0 .5em var(--background);color:var(--color)}",
+    data: {
+      content: ".text {
+" +
+        "  font-family: var(--font-family);
+" +
+        "
+" +
+        "  & p {
+" +
+        "    color: var(--color);
+" +
+        "    box-shadow: 0 0 0.5em var(--background);
+" +
+        "    backdrop-filter: blur(2px);
+" +
+        "  }
+" +
+        "}
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/text.css",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/text.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/text",
+      remote: undefined,
+      slug: "text",
+    },
   },
-  dest: {
-    ext: ".css",
-    path: "/text",
-  },
-  src: {
-    ext: ".css",
-    path: "/text",
-    remote: undefined,
-  },
-}
+]
 `;

@@ -21,6 +21,12 @@ Deno.test("Copy static files", async (t) => {
     (file) => "/subdir" + file.replace(/\.copy2/, ".copy3"),
   );
 
+  // copied with the trailing slash
+  site.copy("other2/");
+
+  // not copied because of the trailing slash
+  site.copy("three.no/");
+
   await build(site);
   await assertSiteSnapshot(t, site);
 });

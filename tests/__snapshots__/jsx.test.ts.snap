@@ -1,265 +1,354 @@
 export const snapshot = {};
 
-snapshot[`build a site with jsx/tsx modules 1`] = `6`;
-
-snapshot[`build a site with jsx/tsx modules 2`] = `
+snapshot[`build a site with jsx/tsx modules 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       componentLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".jsx",
       pageLoader: [AsyncFunction: module],
     },
     {
       componentLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".tsx",
       pageLoader: [AsyncFunction: module],
     },
   ],
+  src: [
+    "/",
+    "/_components",
+    "/_components/button.jsx",
+    "/_includes",
+    "/_includes/hello.jsx",
+    "/_includes/layout.jsx",
+    "/index.jsx",
+    "/multiple.jsx",
+    "/with-function.jsx",
+    "/with-markdown.md",
+  ],
 }
 `;
+
+snapshot[`build a site with jsx/tsx modules 2`] = `[]`;
 
 snapshot[`build a site with jsx/tsx modules 3`] = `
 [
-]
-`;
-
-snapshot[`build a site with jsx/tsx modules 4`] = `
-{
-  content: "<html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
-  data: {
-    comp: {},
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.jsx",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "This is the title",
-    url: "/",
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
+    data: {
+      children: [
+        "\$\$typeof",
+        "type",
+        "key",
+        "ref",
+        "props",
+        "_owner",
+        "_store",
+        "toString",
+      ],
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: [
+        "\$\$typeof",
+        "type",
+        "key",
+        "ref",
+        "props",
+        "_owner",
+        "_store",
+      ],
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "This is the title",
+      url: "/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".jsx",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/index",
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head><title></title></head><body><main><div>1</div></main></body></html>",
+    data: {
+      children: [
+        "\$\$typeof",
+        "type",
+        "key",
+        "ref",
+        "props",
+        "_owner",
+        "_store",
+        "toString",
+      ],
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: [
+        "\$\$typeof",
+        "type",
+        "key",
+        "ref",
+        "props",
+        "_owner",
+        "_store",
+      ],
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page/1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".jsx",
+      path: "/multiple[0]",
+      remote: undefined,
+      slug: "multiple",
+    },
   },
-  src: {
-    ext: ".jsx",
-    path: "/index",
-    remote: undefined,
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head><title></title></head><body><main><div>2</div></main></body></html>",
+    data: {
+      children: [
+        "\$\$typeof",
+        "type",
+        "key",
+        "ref",
+        "props",
+        "_owner",
+        "_store",
+        "toString",
+      ],
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: [
+        "\$\$typeof",
+        "type",
+        "key",
+        "ref",
+        "props",
+        "_owner",
+        "_store",
+      ],
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page/2/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".jsx",
+      path: "/multiple[1]",
+      remote: undefined,
+      slug: "multiple",
+    },
   },
-}
-`;
-
-snapshot[`build a site with jsx/tsx modules 5`] = `
-{
-  content: "<html><head><title></title></head><body><main><div>1</div></main></body></html>",
-  data: {
-    comp: {},
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.jsx",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/page/1/",
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
+    data: {
+      children: [
+        "\$\$typeof",
+        "type",
+        "key",
+        "ref",
+        "props",
+        "_owner",
+        "_store",
+        "toString",
+      ],
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "default",
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "This is the title",
+      url: "/with-function/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".jsx",
+      path: "/with-function",
+      remote: undefined,
+      slug: "with-function",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/page/1/index",
-  },
-  src: {
-    ext: ".jsx",
-    path: "/multiple[0]",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`build a site with jsx/tsx modules 6`] = `
-{
-  content: "<html><head><title></title></head><body><main><div>2</div></main></body></html>",
-  data: {
-    comp: {},
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.jsx",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/page/2/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/page/2/index",
-  },
-  src: {
-    ext: ".jsx",
-    path: "/multiple[1]",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`build a site with jsx/tsx modules 7`] = `
-{
-  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1>Hello <strong class="foo">world</strong></h1>
-<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
-<p><button type="foo">Hello</button></p>
-<img src="foo"/></div></main></body></html>',
-  data: {
-    comp: {},
-    content: '# Hello <strong className="foo">world</strong>
-
-This is a **markdown** text. [Go home](/)
-
-<comp.Button type="foo" />
-
-<img src="foo" />
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1 class="foo">Hello world</h1>
+' +
+      '<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+' +
+      "</div></main></body></html>",
+    data: {
+      children: '<h1 class="foo">Hello world</h1>
+' +
+        '<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
 ',
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.jsx",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    templateEngine: "jsx,md",
-    title: "Markdown combined with JSX",
-    url: "/pseudo-mdx/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/pseudo-mdx/index",
-  },
-  src: {
-    ext: ".md",
-    path: "/pseudo-mdx",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`build a site with jsx/tsx modules 8`] = `
-{
-  content: '<html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
-  data: {
-    comp: {},
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.jsx",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "This is the title",
-    url: "/with-function/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/with-function/index",
-  },
-  src: {
-    ext: ".jsx",
-    path: "/with-function",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`build a site with jsx/tsx modules 9`] = `
-{
-  content: '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1 class="foo">Hello world</h1>
-<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
-</div></main></body></html>',
-  data: {
-    comp: {},
-    content: "# Hello world{.foo}
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "# Hello world{.foo}
 
 This is a **markdown** text. [Go home](/)
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.jsx",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "Markdown combined with JSX",
-    url: "/with-markdown/",
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Markdown combined with JSX",
+      url: "/with-markdown/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/with-markdown",
+      remote: undefined,
+      slug: "with-markdown",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/with-markdown/index",
-  },
-  src: {
-    ext: ".md",
-    path: "/with-markdown",
-    remote: undefined,
-  },
-}
+]
 `;

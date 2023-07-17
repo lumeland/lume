@@ -1,140 +1,178 @@
 export const snapshot = {};
 
-snapshot[`terser plugin 1`] = `2`;
-
-snapshot[`terser plugin 2`] = `
+snapshot[`terser plugin 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       asset: true,
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/main.js",
+    "/numbers.njk",
+  ],
 }
 `;
+
+snapshot[`terser plugin 2`] = `[]`;
 
 snapshot[`terser plugin 3`] = `
 [
-]
-`;
-
-snapshot[`terser plugin 4`] = `
-{
-  content: 'import{one as o,two as m}from"./numbers.js";console.log(o()+m());',
-  data: {
-    content: 'import { one, two } from "./numbers.js";
+  {
+    content: 'import{one as o,two as m}from"./numbers.js";console.log(o()+m());',
+    data: {
+      content: 'import { one, two } from "./numbers.js";
 
 console.log(one() + two());
 ',
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/main.js",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/main.js",
+    },
+    src: {
+      asset: true,
+      ext: ".js",
+      path: "/main",
+      remote: undefined,
+      slug: "main",
+    },
   },
-  dest: {
-    ext: ".js",
-    path: "/main",
+  {
+    content: "export function one(){return 1}export function two(){return 2}",
+    data: {
+      content: "export function one () {
+" +
+        "  return {{ one }};
+" +
+        "}
+" +
+        "
+" +
+        "export function two () {
+" +
+        "  return {{ two }};
+" +
+        "}
+" +
+        "/*
+" +
+        "Commented code
+" +
+        "export function two () {
+" +
+        "  return {{ two }};
+" +
+        "}
+" +
+        "*/",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      one: 1,
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      two: 2,
+      url: "/numbers.js",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/numbers",
+      remote: undefined,
+      slug: "numbers",
+    },
   },
-  src: {
-    ext: ".js",
-    path: "/main",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`terser plugin 5`] = `
-{
-  content: "export function one(){return 1}export function two(){return 2}",
-  data: {
-    content: "export function one () {
-  return {{ one }};
-}
-
-export function two () {
-  return {{ two }};
-}
-/*
-Commented code
-export function two () {
-  return {{ two }};
-}
-*/",
-    date: 1970-01-01T00:00:00.000Z,
-    one: 1,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    two: 2,
-    url: "/numbers.js",
-  },
-  dest: {
-    ext: ".js",
-    path: "/numbers",
-  },
-  src: {
-    ext: ".njk",
-    path: "/numbers.js",
-    remote: undefined,
-  },
-}
+]
 `;

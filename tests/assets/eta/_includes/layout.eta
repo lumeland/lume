@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<%~ await includeFile("/header", { title }) %>
+<%~ await includeAsync("/header", { title }) %>
 <body>
   <nav>
     <a href="<%= filters.url("/") %>">Go to home</a>

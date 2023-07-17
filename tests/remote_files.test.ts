@@ -1,20 +1,18 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import postcss from "../plugins/postcss.ts";
+import sass from "../plugins/sass.ts";
 import esbuild from "../plugins/esbuild.ts";
 
-Deno.test("render remote files", {
-  sanitizeOps: false,
-  sanitizeResources: false,
-  ignore: true,
-}, async (t) => {
+Deno.test("render remote files", async (t) => {
   const site = getSite({
     src: "remote_files",
   });
   site.copy("asset.txt");
   site.use(postcss());
+  site.use(sass());
   site.use(esbuild());
 
-  const base = new URL("./assets/remote_files/_remotes/", import.meta.url);
+  const base = import.meta.resolve("./assets/remote_files/_remotes/");
 
   site.remoteFile("_includes/remote1.njk", new URL("./remote1.njk", base).href);
   site.remoteFile(
@@ -33,6 +31,10 @@ Deno.test("render remote files", {
   );
   site.remoteFile("_data.yml", new URL("./_data.yml", base).href);
   site.remoteFile("_includes/hello.js", new URL("./hello.js", base).href);
+  site.remoteFile(
+    "_includes/variables.scss",
+    new URL("./variables.scss", base).href,
+  );
 
   await build(site);
   await assertSiteSnapshot(t, site);

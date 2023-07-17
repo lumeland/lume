@@ -1,6 +1,9 @@
 import { posix } from "../deps/path.ts";
 import Events from "./events.ts";
-import { serveFile, Server as HttpServer } from "../deps/http.ts";
+import {
+  serveFile as HttpServeFile,
+  Server as HttpServer,
+} from "../deps/http.ts";
 
 import type { Event, EventListener, EventOptions } from "../core.ts";
 import type { ConnInfo } from "../deps/http.ts";
@@ -42,6 +45,7 @@ export default class Server {
   events: Events<ServerEvent> = new Events<ServerEvent>();
   options: Options;
   middlewares: Middleware[] = [];
+  #server?: HttpServer;
 
   constructor(options: Options) {
     this.options = options;
@@ -72,14 +76,26 @@ export default class Server {
   async start() {
     const { port } = this.options;
 
-    const server = new HttpServer({
+    this.#server = new HttpServer({
       port: port,
       handler: (request, connInfo) => this.handle(request, connInfo),
     });
 
     this.dispatchEvent({ type: "start" });
 
-    await server.listenAndServe();
+    await this.#server.listenAndServe();
+  }
+
+  /** Stops the server */
+  stop() {
+    try {
+      this.#server?.close();
+    } catch (error) {
+      this.dispatchEvent({
+        type: "error",
+        error,
+      });
+    }
   }
 
   /** Handle a http request event */
@@ -95,49 +111,52 @@ export default class Server {
         return await middleware(request, next, connInfo);
       }
 
-      return await this.serveFile(request);
+      return await serveFile(this.options.root, request);
     };
 
     return await next(request);
   }
+}
 
-  /** Server a static file */
-  async serveFile(request: Request): Promise<Response> {
-    const url = new URL(request.url);
-    const pathname = decodeURIComponent(url.pathname);
-    const path = posix.join(this.options.root, pathname);
+/** Server a static file */
+export async function serveFile(
+  root: string,
+  request: Request,
+): Promise<Response> {
+  const url = new URL(request.url);
+  const pathname = decodeURIComponent(url.pathname);
+  const path = posix.join(root, pathname);
 
-    try {
-      const file = path.endsWith("/") ? path + "index.html" : path;
+  try {
+    const file = path.endsWith("/") ? path + "index.html" : path;
 
-      // Redirect /example to /example/
-      const info = await Deno.stat(file);
+    // Redirect /example to /example/
+    const info = await Deno.stat(file);
 
-      if (info.isDirectory) {
-        return new Response(null, {
-          status: 301,
-          headers: {
-            location: posix.join(pathname, "/"),
-          },
-        });
-      }
-
-      // Serve the static file
-      return await serveFile(request, file);
-    } catch {
-      try {
-        // Exists a HTML file with this name?
-        if (!posix.extname(path)) {
-          return await serveFile(request, path + ".html");
-        }
-      } catch {
-        // Continue
-      }
-
-      return new Response(
-        "Not found",
-        { status: 404 },
-      );
+    if (info.isDirectory) {
+      return new Response(null, {
+        status: 301,
+        headers: {
+          location: posix.join(pathname, "/"),
+        },
+      });
     }
+
+    // Serve the static file
+    return await HttpServeFile(request, file);
+  } catch {
+    try {
+      // Exists a HTML file with this name?
+      if (!posix.extname(path)) {
+        return await HttpServeFile(request, path + ".html");
+      }
+    } catch {
+      // Continue
+    }
+
+    return new Response(
+      "Not found",
+      { status: 404 },
+    );
   }
 }

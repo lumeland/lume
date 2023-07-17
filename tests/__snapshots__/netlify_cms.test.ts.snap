@@ -1,153 +1,207 @@
 export const snapshot = {};
 
-snapshot[`code_hightlight plugin 1`] = `2`;
-
-snapshot[`code_hightlight plugin 2`] = `
+snapshot[`code_hightlight plugin 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_data",
+    "/_data/netlify_cms.yml",
+  ],
 }
 `;
+
+snapshot[`code_hightlight plugin 2`] = `[]`;
 
 snapshot[`code_hightlight plugin 3`] = `
 [
-]
-`;
-
-snapshot[`code_hightlight plugin 4`] = `
-{
-  content: "backend:
-  name: git-gateway
-  branch: master
-media_folder: img
-public_folder: /img
-site_url: 'https://example.com/'
-local_backend: false
-",
-  data: {
+  {
     content: "backend:
-  name: git-gateway
-  branch: master
-media_folder: img
-public_folder: /img
-site_url: 'https://example.com/'
-local_backend: false
+" +
+      "  name: git-gateway
+" +
+      "  branch: master
+" +
+      "media_folder: img
+" +
+      "public_folder: /img
+" +
+      "site_url: 'https://example.com/'
+" +
+      "local_backend: false
 ",
-    page: undefined,
-    tags: [
-    ],
-    url: "/admin/config.yml",
+    data: {
+      content: "backend:
+" +
+        "  name: git-gateway
+" +
+        "  branch: master
+" +
+        "media_folder: img
+" +
+        "public_folder: /img
+" +
+        "site_url: 'https://example.com/'
+" +
+        "local_backend: false
+",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/admin/config.yml",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "config",
+    },
   },
-  dest: {
-    ext: ".yml",
-    path: "/admin/config",
+  {
+    content: "
+" +
+      "        <!DOCTYPE html>
+" +
+      '        <html lang="en">
+' +
+      "        <head>
+" +
+      '          <meta charset="UTF-8">
+' +
+      '          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+      "          <title>Admin</title>
+" +
+      "        </head>
+" +
+      "        <body>
+" +
+      '        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+' +
+      "        </body>
+" +
+      "        </html>
+" +
+      "        ",
+    data: {
+      content: "
+" +
+        "        <!DOCTYPE html>
+" +
+        '        <html lang="en">
+' +
+        "        <head>
+" +
+        '          <meta charset="UTF-8">
+' +
+        '          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+        "          <title>Admin</title>
+" +
+        "        </head>
+" +
+        "        <body>
+" +
+        '        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+' +
+        "        </body>
+" +
+        "        </html>
+" +
+        "        ",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/admin/",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "index",
+    },
   },
-  src: {
-    ext: undefined,
-    path: "",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`code_hightlight plugin 5`] = `
-{
-  content: '
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Admin</title>
-        </head>
-        <body>
-        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-        </body>
-        </html>
-        ',
-  data: {
-    content: '
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Admin</title>
-        </head>
-        <body>
-        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-        </body>
-        </html>
-        ',
-    page: undefined,
-    tags: [
-    ],
-    url: "/admin/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/admin/index",
-  },
-  src: {
-    ext: undefined,
-    path: "",
-    remote: undefined,
-  },
-}
+]
 `;

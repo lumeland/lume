@@ -7,7 +7,9 @@ Deno.test("inline plugin", async (t) => {
     src: "inline",
   });
 
-  site.use(inline());
+  site.use(inline({
+    copyAttributes: ["custom", /^data-/, /^@/],
+  }));
   site.loadAssets([".svg", ".js"]);
   site.loadAssets([".png"], binaryLoader);
   site.copy("favicon.png", "favicon2.png");

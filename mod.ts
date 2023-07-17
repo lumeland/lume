@@ -1,5 +1,4 @@
 import { parse } from "./deps/flags.ts";
-import { posix } from "./deps/path.ts";
 import Site from "./core/site.ts";
 import url, { Options as UrlOptions } from "./plugins/url.ts";
 import json, { Options as JsonOptions } from "./plugins/json.ts";
@@ -8,17 +7,14 @@ import modules, { Options as ModulesOptions } from "./plugins/modules.ts";
 import nunjucks, { Options as NunjucksOptions } from "./plugins/nunjucks.ts";
 import search, { Options as SearchOptions } from "./plugins/search.ts";
 import paginate, { Options as PaginateOptions } from "./plugins/paginate.ts";
+import toml, { Options as TomlOptions } from "./plugins/toml.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { merge } from "./core/utils.ts";
 
-import type {
-  ComponentsOptions,
-  ServerOptions,
-  SiteOptions,
-  WatcherOptions,
-} from "./core/site.ts";
+import type { DeepPartial } from "./core/utils.ts";
+import type { SiteOptions } from "./core/site.ts";
 
-interface PluginOptions {
+export interface PluginOptions {
   url?: Partial<UrlOptions>;
   json?: Partial<JsonOptions>;
   markdown?: Partial<MarkdownOptions>;
@@ -26,29 +22,29 @@ interface PluginOptions {
   nunjucks?: Partial<NunjucksOptions>;
   search?: Partial<SearchOptions>;
   paginate?: Partial<PaginateOptions>;
+  toml?: Partial<TomlOptions>;
   yaml?: Partial<YamlOptions>;
 }
 
-interface Options
-  extends Omit<Partial<SiteOptions>, "server" | "watcher" | "components"> {
-  server?: Partial<ServerOptions>;
-  watcher?: Partial<WatcherOptions>;
-  components?: Partial<ComponentsOptions>;
-}
-
-export default function (
-  options: Options = {},
+export default function lume(
+  options: DeepPartial<SiteOptions> = {},
   pluginOptions: PluginOptions = {},
   cliOptions = true,
-) {
+): Site {
   if (cliOptions) {
     options = merge(options, getOptionsFromCli());
   }
 
+  if (options.dev) {
+    Deno.env.set("LUME_ENV", "development");
+  } else {
+    Deno.env.delete("LUME_ENV");
+  }
+
   const site = new Site(options as Partial<SiteOptions>);
 
-  // Ignore the .git folder and .DS_Store file by the watcher
-  site.options.watcher.ignore.push(".git");
+  // Ignore the .git folder and .DS_Store (macOS) files by the watcher
+  site.options.watcher.ignore.push("/.git");
   site.options.watcher.ignore.push((path) => path.endsWith("/.DS_Store"));
 
   return site
@@ -56,6 +52,7 @@ export default function (
     .ignore("import_map.json")
     .ignore("deno.json")
     .ignore("deno.jsonc")
+    .data("mergedKeys", { tags: "stringArray" })
     .use(url(pluginOptions.url))
     .use(json(pluginOptions.json))
     .use(markdown(pluginOptions.markdown))
@@ -63,28 +60,19 @@ export default function (
     .use(nunjucks(pluginOptions.nunjucks))
     .use(paginate(pluginOptions.paginate))
     .use(search(pluginOptions.search))
+    .use(toml(pluginOptions.toml))
     .use(yaml(pluginOptions.yaml));
 }
 
-function getOptionsFromCli(): Partial<Options> {
+function getOptionsFromCli(): DeepPartial<SiteOptions> {
   const options = parse(Deno.args, {
-    string: [
-      "root",
-      "src",
-      "dest",
-      "location",
-      "port",
-    ],
+    string: ["src", "dest", "location", "port"],
     boolean: ["quiet", "serve", "open"],
-    alias: { serve: "s", port: "p", open: "o" },
+    alias: { dev: "d", serve: "s", port: "p", open: "o" },
     ["--"]: true,
   });
 
-  const overrides: Partial<Options> = {};
-
-  if (options.root) {
-    overrides.cwd = posix.resolve(Deno.cwd(), options.root);
-  }
+  const overrides: DeepPartial<SiteOptions> = {};
 
   if (options.src) {
     overrides.src = options.src;
@@ -102,6 +90,10 @@ function getOptionsFromCli(): Partial<Options> {
 
   if (options.quiet) {
     overrides.quiet = options.quiet;
+  }
+
+  if (Deno.env.get("LUME_ENV") === "development") {
+    overrides.dev = true;
   }
 
   if (options.port) {

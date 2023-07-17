@@ -1,22 +1,17 @@
-import Watcher from "../core/watcher.ts";
 import { normalizePath } from "../core/utils.ts";
 import reloadClient from "./reload_client.js";
 
 import type { Middleware } from "../core.ts";
+import type { Watcher } from "../core/watcher.ts";
 
 export interface Options {
-  root: string;
+  watcher: Watcher;
 }
 
 /** Middleware to hot reload changes */
 export default function reload(options: Options): Middleware {
-  // Live reload server
   const sockets = new Set<WebSocket>();
-
-  // Create the watcher
-  const watcher = new Watcher({
-    root: options.root,
-  });
+  const { watcher } = options;
 
   watcher.addEventListener("change", (event) => {
     if (!sockets.size) {
@@ -67,9 +62,7 @@ export default function reload(options: Options): Middleware {
       body +=
         `<script type="module" id="lume-live-reload">${reloadClient}; liveReload();</script>`;
 
-      const { status, statusText } = response;
-      const headers = new Headers();
-      headers.set("content-type", "text/html");
+      const { status, statusText, headers } = response;
 
       return new Response(body, { status, statusText, headers });
     }

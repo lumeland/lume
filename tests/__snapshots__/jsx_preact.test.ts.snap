@@ -1,0 +1,478 @@
+export const snapshot = {};
+
+snapshot[`build a site with jsx/tsx modules using Preact 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".jsx",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".tsx",
+      pageLoader: [AsyncFunction: module],
+    },
+  ],
+  src: [
+    "/",
+    "/_components",
+    "/_components/button.jsx",
+    "/_includes",
+    "/_includes/hello.jsx",
+    "/_includes/layout.jsx",
+    "/index.jsx",
+    "/multiple.jsx",
+    "/with-comp.njk",
+    "/with-function.jsx",
+    "/with-markdown.md",
+  ],
+}
+`;
+
+snapshot[`build a site with jsx/tsx modules using Preact 2`] = `[]`;
+
+snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
+    data: {
+      children: [
+        "type",
+        "props",
+        "key",
+        "ref",
+        "__k",
+        "__",
+        "__b",
+        "__e",
+        "__d",
+        "__c",
+        "__h",
+        "constructor",
+        "__v",
+        "__source",
+        "__self",
+        "toString",
+      ],
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: [
+        "type",
+        "props",
+        "key",
+        "ref",
+        "__k",
+        "__",
+        "__b",
+        "__e",
+        "__d",
+        "__c",
+        "__h",
+        "constructor",
+        "__v",
+        "__source",
+        "__self",
+        "toString",
+      ],
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "This is the title",
+      url: "/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".jsx",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head><title></title></head><body><main><div>1</div></main></body></html>",
+    data: {
+      children: [
+        "type",
+        "props",
+        "key",
+        "ref",
+        "__k",
+        "__",
+        "__b",
+        "__e",
+        "__d",
+        "__c",
+        "__h",
+        "constructor",
+        "__v",
+        "__source",
+        "__self",
+        "toString",
+      ],
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: [
+        "type",
+        "props",
+        "key",
+        "ref",
+        "__k",
+        "__",
+        "__b",
+        "__e",
+        "__d",
+        "__c",
+        "__h",
+        "constructor",
+        "__v",
+        "__source",
+        "__self",
+        "toString",
+      ],
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page/1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".jsx",
+      path: "/multiple[0]",
+      remote: undefined,
+      slug: "multiple",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head><title></title></head><body><main><div>2</div></main></body></html>",
+    data: {
+      children: [
+        "type",
+        "props",
+        "key",
+        "ref",
+        "__k",
+        "__",
+        "__b",
+        "__e",
+        "__d",
+        "__c",
+        "__h",
+        "constructor",
+        "__v",
+        "__source",
+        "__self",
+        "toString",
+      ],
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: [
+        "type",
+        "props",
+        "key",
+        "ref",
+        "__k",
+        "__",
+        "__b",
+        "__e",
+        "__d",
+        "__c",
+        "__h",
+        "constructor",
+        "__v",
+        "__source",
+        "__self",
+        "toString",
+      ],
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page/2/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".jsx",
+      path: "/multiple[1]",
+      remote: undefined,
+      slug: "multiple",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<button>Hello</button>
+",
+    data: {
+      children: "<button>Hello</button>
+",
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "{{ comp.button('primary') | safe }}
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/with-comp/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/with-comp",
+      remote: undefined,
+      slug: "with-comp",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
+    data: {
+      children: [
+        "type",
+        "props",
+        "key",
+        "ref",
+        "__k",
+        "__",
+        "__b",
+        "__e",
+        "__d",
+        "__c",
+        "__h",
+        "constructor",
+        "__v",
+        "__source",
+        "__self",
+        "toString",
+      ],
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "default",
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "This is the title",
+      url: "/with-function/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".jsx",
+      path: "/with-function",
+      remote: undefined,
+      slug: "with-function",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1 class="foo">Hello world</h1>
+' +
+      '<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+' +
+      '<pre><code class="language-css">body {
+' +
+      "  color: blue;
+" +
+      "}
+" +
+      "</code></pre>
+" +
+      "</div></main></body></html>",
+    data: {
+      children: '<h1 class="foo">Hello world</h1>
+' +
+        '<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+' +
+        '<pre><code class="language-css">body {
+' +
+        "  color: blue;
+" +
+        "}
+" +
+        "</code></pre>
+",
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "# Hello world{.foo}
+" +
+        "
+" +
+        "This is a **markdown** text. [Go home](/)
+" +
+        "
+" +
+        "\`\`\`css
+" +
+        "body {
+" +
+        "  color: blue;
+" +
+        "}
+" +
+        "\`\`\`
+",
+      date: [],
+      layout: "layout.jsx",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Markdown combined with JSX",
+      url: "/with-markdown/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/with-markdown",
+      remote: undefined,
+      slug: "with-markdown",
+    },
+  },
+]
+`;

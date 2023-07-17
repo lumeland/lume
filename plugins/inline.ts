@@ -2,10 +2,11 @@ import { posix } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
 import { merge } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
+import textLoader from "../core/loaders/text.ts";
 import { contentType } from "../deps/media_types.ts";
 
-import type { Element } from "../deps/dom.ts";
-import type { Page, Site } from "../core.ts";
+import type { Loader, Page, Site } from "../core.ts";
+import type { Element, HTMLTemplateElement } from "../deps/dom.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -13,12 +14,16 @@ export interface Options {
 
   /** Attribute used to select the elements this plugin applies to */
   attribute: string;
+
+  /** List of extra attributes to copy if replacing the element */
+  copyAttributes: (string | RegExp)[];
 }
 
 // Default options
 export const defaults: Options = {
   extensions: [".html"],
   attribute: "inline",
+  copyAttributes: [/^data-/],
 };
 
 const cache = new Map();
@@ -38,7 +43,18 @@ export default function (userOptions?: Partial<Options>) {
     const selector = `[${options.attribute}]`;
 
     async function inline(page: Page) {
-      for (const element of page.document!.querySelectorAll(selector)) {
+      const templateElements = [...page.document!.querySelectorAll("template")]
+        .flatMap((template) => {
+          return (template as HTMLTemplateElement).content.querySelectorAll(
+            selector,
+          );
+        });
+      for (
+        const element of [
+          ...page.document!.querySelectorAll(selector),
+          ...templateElements,
+        ]
+      ) {
         await runInline(page.data.url as string, element as Element);
         (element as Element).removeAttribute(options.attribute);
       }
@@ -76,14 +92,14 @@ export default function (userOptions?: Partial<Options>) {
         posix.relative(site.options.location.pathname, path),
       );
 
-      const content = await getFileContent(site, url);
+      const content = await getFileContent(
+        site,
+        url,
+        asDataUrl ? binaryLoader : textLoader,
+      );
 
       // Return the raw content
       if (!asDataUrl) {
-        if (content instanceof Uint8Array) {
-          return new TextDecoder().decode(content);
-        }
-
         return content;
       }
 
@@ -103,12 +119,33 @@ export default function (userOptions?: Partial<Options>) {
       return `data:${type};base64,${encode(content)}`;
     }
 
+    function migrateAttributes(
+      from: Element,
+      to: Element,
+      attributes: string[],
+    ) {
+      for (const { name, value } of from.attributes) {
+        const shouldCopy = [...attributes, ...options.copyAttributes].some(
+          (attr) => attr instanceof RegExp ? attr.test(name) : attr === name,
+        );
+        if (shouldCopy && !to.hasAttribute(name)) {
+          to.setAttribute(name, value);
+        }
+      }
+    }
+
     async function inlineStyles(url: string, element: Element) {
       const path = posix.resolve(url, element.getAttribute("href")!);
       const style = element.ownerDocument!.createElement("style");
 
+      migrateAttributes(element, style, ["id", "class", "nonce", "title"]);
+
       try {
-        style.innerHTML = await getContent(path);
+        let content = await getContent(path);
+        if (element.hasAttribute("media")) {
+          content = `@media ${element.getAttribute("media")} { ${content} }`;
+        }
+        style.innerHTML = content;
         element.replaceWith(style);
       } catch (cause) {
         site.logger.warn("Unable to inline the file", {
@@ -148,13 +185,28 @@ export default function (userOptions?: Partial<Options>) {
           const svg = div.firstElementChild;
 
           if (svg) {
-            if (!svg.className) {
-              svg.className = element.className;
+            const width = parseInt(element.getAttribute("width") || "0");
+            const height = parseInt(element.getAttribute("height") || "0");
+            const viewBox = svg.getAttribute("viewBox")?.split(" ");
+
+            if (width && height) {
+              svg.setAttribute("width", width);
+              svg.setAttribute("height", height);
+            } else if (width) {
+              svg.setAttribute("width", width);
+              if (viewBox?.length === 4) {
+                const ratio = width / parseInt(viewBox[2]);
+                svg.setAttribute("height", parseInt(viewBox[3]) * ratio);
+              }
+            } else if (height) {
+              svg.setAttribute("height", height);
+              if (viewBox?.length === 4) {
+                const ratio = height / parseInt(viewBox[3]);
+                svg.setAttribute("width", parseInt(viewBox[2]) * ratio);
+              }
             }
 
-            if (!svg.id) {
-              svg.id = element.id;
-            }
+            migrateAttributes(element, svg, ["id", "class", "width", "height"]);
 
             element.replaceWith(svg);
           }
@@ -193,11 +245,9 @@ export default function (userOptions?: Partial<Options>) {
 async function getFileContent(
   site: Site,
   url: string,
+  loader: Loader,
 ): Promise<string | Uint8Array> {
-  const content = await site.getContent(url, {
-    includes: false,
-    loader: binaryLoader,
-  });
+  const content = await site.getContent(url, loader);
 
   if (!content) {
     throw new Error(`Unable to find the file "${url}"`);

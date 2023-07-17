@@ -16,10 +16,10 @@ export interface Format {
   componentLoader?: Loader;
 
   /**
-   * The template engine used to render this format
+   * The template engines used to render this format
    * Used to render the page and components
    */
-  engine?: Engine;
+  engines?: Engine[];
 
   /**
    * This is used to distinguish between pages that output html files (like index.njk -> index.html)
@@ -43,12 +43,16 @@ export default class Formats {
   }
 
   /** Assign a value to a extension */
-  set(format: Format): void {
+  set(format: Format, override = true): void {
     const { ext } = format;
     const existing = this.entries.get(ext);
 
     if (existing) {
-      this.entries.set(ext, { ...existing, ...format });
+      if (override) {
+        this.entries.set(ext, { ...existing, ...format });
+      } else {
+        this.entries.set(ext, { ...format, ...existing });
+      }
       return;
     }
 
@@ -99,7 +103,7 @@ export default class Formats {
   /** Delete a cached template */
   deleteCache(file: string): void {
     for (const format of this.entries.values()) {
-      format.engine?.deleteCache(file);
+      format.engines?.forEach((engine) => engine.deleteCache(file));
     }
   }
 }

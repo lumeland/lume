@@ -1,164 +1,48 @@
 import { posix } from "../deps/path.ts";
-import { createDate, documentToString, stringToDocument } from "./utils.ts";
+import { documentToString, stringToDocument } from "./utils.ts";
 
 import type { HTMLDocument } from "../deps/dom.ts";
-import type { ProxyComponents } from "../core.ts";
+import type { PageData, ProxyComponents } from "../core.ts";
+import type { Entry } from "./fs.ts";
 
-/** Abstract class with common functions for Page and Directory classes */
-abstract class Base {
+/** A page of the site */
+export class Page {
   /** The src info */
   src: Src;
 
-  /** The destination info */
-  dest: Dest;
-
-  /** The parent directory */
-  #parent?: Directory;
-
   /**
-   * Used to save the assigned data directly
-   * For directories, the content of _data or _data.* files
-   * For pages, the front matter or exported variables.
+   * Used to save the page data
    */
-  #data: Data = {};
+  data: PageData = {} as PageData;
 
   /**
    * Internal data. Used to save arbitrary data by plugins and processors
    */
   #_data = {};
 
-  /**
-   * Used to save the merged data:
-   * the base data with the parent data
-   */
-  #cache?: Data;
+  /** The page content (string or Uint8Array) */
+  #content?: Content;
 
-  constructor(src?: Src) {
-    this.src = src || { path: "" };
-    this.dest = {
-      path: this.src.path,
-      ext: this.src.ext || "",
-    };
+  /** The parsed HTML (only for HTML documents) */
+  #document?: HTMLDocument;
 
-    // Detect the date of the page/directory in the filename
-    const basename = posix.basename(this.src.path);
-    const dateInPath = basename.match(/^([^_]+)?_/);
+  /** Convenient way to create a page dynamically with a url and content */
+  static create(url: string, content: Content): Page {
+    const slug = posix.basename(url).replace(/\.[\w.]+$/, "");
+    const page = new Page({ slug });
 
-    if (dateInPath) {
-      const [found, dateStr] = dateInPath;
-      const date = createDate(dateStr);
-
-      if (date) {
-        this.dest.path = this.dest.path.replace(found, "");
-        this.#data.date = date;
-      }
+    if (url.endsWith("/index.html")) {
+      url = url.slice(0, -10);
     }
 
-    // Make data enumerable
-    const descriptor: PropertyDescriptor =
-      Object.getOwnPropertyDescriptor(Base.prototype, "data") || {};
-    descriptor.enumerable = true;
-    Object.defineProperty(this, "data", descriptor);
+    page.data = { url, content, page } as PageData;
+    page.content = content;
+
+    return page;
   }
 
-  /** Returns the parent directory */
-  get parent(): Directory | undefined {
-    return this.#parent;
-  }
-
-  /** Set the parent directory */
-  set parent(parent: Directory | undefined) {
-    this.dest.path = posix.join(
-      parent?.dest.path || "/",
-      posix.basename(this.dest.path),
-    );
-    this.#parent = parent;
-  }
-
-  /** Returns the front matter for pages, _data for directories */
-  get baseData(): Data {
-    return this.#data;
-  }
-
-  /** Set front matter for pages, _data for directories */
-  set baseData(data: Data) {
-    this.#data = data;
-    this.refreshCache();
-  }
-
-  /**
-   * Merge the data of parent directories recursively
-   * and return the merged data
-   */
-  get data(): Data {
-    if (this.#cache) {
-      return this.#cache;
-    }
-
-    // Merge the data of the parent directories
-    const pageData: Data = this instanceof Page
-      ? { page: this, ...this.baseData }
-      : this.baseData;
-
-    const parentData: Data = this.parent?.data || {};
-    const data: Data = { ...parentData, ...pageData };
-
-    // Merge special keys
-    const mergedKeys: Record<string, string> = {
-      tags: "stringArray",
-      ...parentData.mergedKeys,
-      ...pageData.mergedKeys,
-    };
-
-    for (const [key, type] of Object.entries(mergedKeys)) {
-      switch (type) {
-        case "stringArray":
-        case "array":
-          {
-            const pageValue: unknown[] = Array.isArray(pageData[key])
-              ? pageData[key] as unknown[]
-              : (key in pageData)
-              ? [pageData[key]]
-              : [];
-
-            const parentValue: unknown[] = Array.isArray(parentData[key])
-              ? parentData[key] as unknown[]
-              : (key in parentData)
-              ? [parentData[key]]
-              : [];
-
-            const merged = [...parentValue, ...pageValue];
-
-            data[key] = [
-              ...new Set(
-                type === "stringArray" ? merged.map(String) : merged,
-              ),
-            ];
-          }
-          break;
-
-        case "object":
-          {
-            const pageValue = pageData[key] as
-              | Record<string, unknown>
-              | undefined;
-            const parentValue = parentData[key] as
-              | Record<string, unknown>
-              | undefined;
-
-            data[key] = { ...parentValue, ...pageValue };
-          }
-          break;
-      }
-    }
-
-    return this.#cache = data;
-  }
-
-  /** Replace the data of this object with the given data */
-  set data(data: Data) {
-    this.#cache = undefined;
-    this.#data = data;
+  constructor(src?: Partial<Src>) {
+    this.src = { path: "", slug: "", asset: true, ...src };
   }
 
   /**
@@ -173,70 +57,29 @@ abstract class Base {
     return this.#_data;
   }
 
-  /** Clean the cache of the merged data */
-  refreshCache(): boolean {
-    if (this.#cache) {
-      this.#cache = undefined;
-      return true;
-    }
-    return false;
-  }
-}
-
-/** A page of the site */
-export class Page extends Base {
-  /** The page content (string or Uint8Array) */
-  #content?: Content;
-
-  /** The parsed HTML (only for HTML documents) */
-  #document?: HTMLDocument;
-
-  /** Convenient way to create a page dynamically with a url and content */
-  static create(url: string, content: Content): Page {
-    const ext = posix.extname(url);
-    const path = ext ? url.slice(0, -ext.length) : url;
-
-    const page = new Page();
-    page.data = { url, content };
-    page.content = content;
-    page.updateDest({ path, ext });
-
-    return page;
-  }
-
-  /** Duplicate this page. Optionally, you can provide new data */
-  duplicate(index: number | string, data = {}): Page {
+  /** Duplicate this page. */
+  duplicate(index?: number, data: Data = {}): Page {
     const page = new Page({ ...this.src });
-    page.parent = this.parent;
-    page.dest = { ...this.dest };
 
-    const pageData = { ...this.data, ...data };
-    delete pageData.page;
+    if (index !== undefined) {
+      page.src.path += `[${index}]`;
+    }
 
-    page.data = pageData;
-    page.src.path += `[${index}]`;
+    page.data = data as PageData;
+    page.data.page = page;
 
     return page;
   }
 
-  updateDest(
-    dest: Partial<Dest>,
-    prettyUrl: boolean | "no-html-extension" = false,
-  ): void {
-    this.dest = { ...this.dest, ...dest };
-    const { path, ext } = this.dest;
+  /** Returns the output path of this page */
+  get outputPath(): string | undefined {
+    const url = this.data.url;
 
-    if (ext === ".html") {
-      if (posix.basename(path) === "index") {
-        this.data.url = path.slice(0, -5);
-      } else if (prettyUrl === "no-html-extension") {
-        this.data.url = path;
-      } else {
-        this.data.url = path + ext;
-      }
-    } else {
-      this.data.url = path + ext;
+    if (!url) {
+      return undefined;
     }
+
+    return url.endsWith("/") ? url + "index.html" : url;
   }
 
   /** The content of this page */
@@ -263,9 +106,11 @@ export class Page extends Base {
   }
 
   get document(): HTMLDocument | undefined {
+    const url = this.data.url as string;
+
     if (
       !this.#document && this.#content &&
-      (this.dest.ext === ".html" || this.dest.ext === ".htm")
+      (url.endsWith(".html") || url.endsWith("/"))
     ) {
       this.#document = stringToDocument(this.#content.toString());
     }
@@ -274,112 +119,22 @@ export class Page extends Base {
   }
 }
 
-/** A directory in the src folder */
-export class Directory extends Base {
-  pages = new Map<string, Page>();
-  dirs = new Map<string, Directory>();
-  staticFiles = new Set<StaticFile>();
-  components?: Components;
-
-  /** Create a subdirectory and return it */
-  createDirectory(name: string): Directory {
-    const path = posix.join(this.src.path, name);
-    const directory = new Directory({ path });
-    directory.parent = this;
-    this.dirs.set(name, directory);
-
-    return directory;
-  }
-
-  /** Add a page to this directory */
-  setPage(name: string, page: Page) {
-    const oldPage = this.pages.get(name);
-    page.parent = this;
-    page.dest.path = posix.join(this.dest.path, posix.basename(page.dest.path));
-    this.pages.set(name, page);
-
-    if (oldPage) {
-      page.dest.hash = oldPage.dest.hash;
-    }
-  }
-
-  /** Remove a page from this directory */
-  unsetPage(name: string) {
-    this.pages.delete(name);
-  }
-
-  /** Add a static file to this directory */
-  setStaticFile(file: StaticFile) {
-    this.staticFiles.add(file);
-  }
-
-  /** Get the components of this directory and parent directories */
-  getComponents(): Components | undefined {
-    if (!this.components) {
-      return;
-    }
-
-    return this.parent
-      ? new Map([
-        ...this.parent.getComponents()?.entries() ?? [],
-        ...this.components?.entries() ?? [],
-      ])
-      : this.components;
-  }
-
-  /** Return the list of pages in this directory recursively */
-  *getPages(): Iterable<Page> {
-    for (const page of this.pages.values()) {
-      yield page;
-    }
-
-    for (const dir of this.dirs.values()) {
-      yield* dir.getPages();
-    }
-  }
-
-  /** Return the list of static files in this directory recursively */
-  *getStaticFiles(): Iterable<StaticFile> {
-    for (const file of this.staticFiles) {
-      yield file;
-    }
-
-    for (const dir of this.dirs.values()) {
-      yield* dir.getStaticFiles();
-    }
-  }
-
-  /** Refresh the data cache in this directory recursively (used for rebuild) */
-  refreshCache(): boolean {
-    if (super.refreshCache()) {
-      this.pages.forEach((page) => page.refreshCache());
-      this.dirs.forEach((dir) => dir.refreshCache());
-      return true;
-    }
-
-    return false;
-  }
-}
-
 export interface StaticFile {
-  /** The path to the source file */
-  src: string;
+  /** The Entry instance of the file */
+  entry: Entry;
 
-  /** The path to the destination file */
-  dest: string;
-
-  /** Indicates whether the file was copied after the latest change */
-  saved?: boolean;
-
-  /** Indicates whether the source file was removed */
-  removed?: boolean;
-
-  /** The remote url (if the file was downloaded) */
-  remote?: string;
+  /** The final url destination */
+  outputPath: string;
 }
 
 /** The .src property for a Page or Directory */
 export interface Src {
+  /** The slug name of the file or directory */
+  slug: string;
+
+  /** If the page was loaded as asset or not */
+  asset: boolean;
+
   /** The path to the file (without extension) */
   path: string;
 
@@ -394,18 +149,9 @@ export interface Src {
 
   /** The remote url (if the file was downloaded) */
   remote?: string;
-}
 
-/** The .dest property for a Page */
-export interface Dest {
-  /** The path to the file (without extension) */
-  path: string;
-
-  /** The extension of the file */
-  ext: string;
-
-  /** The hash (used to detect content changes) */
-  hash?: string;
+  /** The original entry instance */
+  entry?: Entry;
 }
 
 /** The .content property for a Page */
@@ -449,24 +195,6 @@ export interface Data {
   /** The page object */
   page?: Page;
 
-  [index: string]: unknown;
+  // deno-lint-ignore no-explicit-any
+  [index: string]: any;
 }
-
-export interface Component {
-  /** The file path of the component */
-  path: string;
-
-  /** Name of the component (used to get it from templates) */
-  name: string;
-
-  /** The function that will be called to render the component */
-  render: (props: Record<string, unknown>) => string;
-
-  /** Optional CSS code needed to style the component (global, only inserted once) */
-  css?: string;
-
-  /** Optional JS code needed for the component interactivity (global, only inserted once) */
-  js?: string;
-}
-
-export type Components = Map<string, Component | Components>;

@@ -1,0 +1,221 @@
+export const snapshot = {};
+
+snapshot[`Pagefind plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/main.njk",
+    "/index.md",
+    "/page2.md",
+  ],
+}
+`;
+
+snapshot[`Pagefind plugin 2`] = `[]`;
+
+snapshot[`Pagefind plugin 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html lang="en"><head>
+' +
+      '  <meta charset="UTF-8">
+' +
+      '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+' +
+      '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+      "  <title>First page</title>
+" +
+      \`<link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="text/javascript" src="/pagefind/pagefind-ui.js"></script><script type="text/javascript">window.addEventListener('DOMContentLoaded', () => { new PagefindUI({"element":"#search","showImages":false,"showEmptyFilters":true,"resetStyles":true,"bundlePath":"/pagefind/","baseUrl":"/"}); });</script></head>
+\` +
+      "<body>
+" +
+      '  <div id="search"></div>
+' +
+      "  <h1>Hello world</h1>
+" +
+      "<p>This is the first page</p>
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "</body></html>",
+    data: {
+      children: "<h1>Hello world</h1>
+<p>This is the first page</p>
+",
+      content: "# Hello world
+
+This is the first page
+",
+      date: [],
+      layout: "main.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "First page",
+      url: "/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html lang="en"><head>
+' +
+      '  <meta charset="UTF-8">
+' +
+      '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+' +
+      '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+      "  <title>Second page</title>
+" +
+      \`<link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="text/javascript" src="/pagefind/pagefind-ui.js"></script><script type="text/javascript">window.addEventListener('DOMContentLoaded', () => { new PagefindUI({"element":"#search","showImages":false,"showEmptyFilters":true,"resetStyles":true,"bundlePath":"/pagefind/","baseUrl":"/"}); });</script></head>
+\` +
+      "<body>
+" +
+      '  <div id="search"></div>
+' +
+      "  <h1>Other page</h1>
+" +
+      "<p>This is the second page</p>
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "</body></html>",
+    data: {
+      children: "<h1>Other page</h1>
+<p>This is the second page</p>
+",
+      content: "# Other page
+
+This is the second page
+",
+      date: [],
+      layout: "main.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Second page",
+      url: "/page2/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/page2",
+      remote: undefined,
+      slug: "page2",
+    },
+  },
+]
+`;

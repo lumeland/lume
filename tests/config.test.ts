@@ -1,4 +1,4 @@
-import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
+import { assert, assertEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
 
 import type { Engine } from "../core.ts";
@@ -24,18 +24,18 @@ Deno.test("static files configuration", () => {
   site.copy("img");
   equals(staticPaths.size, 1);
   equals(staticPaths.has("/img"), true);
-  equals(staticPaths.get("/img"), undefined);
+  equals(staticPaths.get("/img")!.dest, undefined);
 
   site.copy("statics/favicon.ico", "favicon.ico");
   equals(staticPaths.size, 2);
   equals(
-    staticPaths.get("/statics/favicon.ico"),
+    staticPaths.get("/statics/favicon.ico")!.dest,
     "/favicon.ico",
   );
 
   site.copy("css", ".");
   equals(staticPaths.size, 3);
-  equals(staticPaths.get("/css"), "/");
+  equals(staticPaths.get("/css")!.dest, "/");
 });
 
 Deno.test("ignored files configuration", () => {
@@ -72,9 +72,7 @@ Deno.test("event listener configuration", () => {
   const site = lume();
   const { listeners } = site.events;
 
-  equals(listeners.size, 1);
-  equals(listeners.has("beforeUpdate"), true);
-  equals(listeners.get("beforeUpdate")?.size, 1);
+  equals(listeners.size, 0);
 
   site.addEventListener("afterBuild", "afterbuild-command");
   equals(listeners.get("afterBuild")?.size, 1);
@@ -115,13 +113,17 @@ Deno.test("data configuration", () => {
   const site = lume();
   const { formats } = site;
 
-  equals(formats.size, 10);
+  equals(formats.size, 14);
   equals(formats.has(".json"), true);
   assert(formats.get(".json")?.dataLoader);
+  equals(formats.has(".jsonc"), true);
+  assert(formats.get(".jsonc")?.dataLoader);
   equals(formats.has(".js"), true);
   assert(formats.get(".js")?.dataLoader);
   equals(formats.has(".ts"), true);
   assert(formats.get(".ts")?.dataLoader);
+  equals(formats.has(".toml"), true);
+  assert(formats.get(".toml")?.dataLoader);
   equals(formats.has(".yaml"), true);
   assert(formats.get(".yaml")?.dataLoader);
   equals(formats.has(".yml"), true);
@@ -130,7 +132,7 @@ Deno.test("data configuration", () => {
   const loader = () => Promise.resolve({});
   site.loadData([".ext1", ".ext2"], loader);
 
-  equals(formats.size, 12);
+  equals(formats.size, 16);
   equals(formats.get(".ext1")?.dataLoader, loader);
   equals(formats.get(".ext2")?.dataLoader, loader);
 });
@@ -139,14 +141,16 @@ Deno.test("pages configuration", () => {
   const site = lume();
   const { formats } = site;
 
-  equals(formats.size, 10);
+  equals(formats.size, 14);
 
   const extensions = [
     ".tmpl.json",
+    ".tmpl.jsonc",
     ".tmpl.js",
     ".tmpl.ts",
     ".md",
     ".njk",
+    ".toml",
     ".yaml",
     ".yml",
   ];
@@ -173,7 +177,7 @@ Deno.test("pages configuration", () => {
 
   site.loadPages(newExts, loader, engine);
 
-  equals(formats.size, 12);
+  equals(formats.size, 16);
 
   for (const ext of newExts) {
     equals(formats.has(ext), true);
@@ -186,7 +190,7 @@ Deno.test("assets configuration", () => {
   const site = lume();
   const { formats } = site;
 
-  equals(formats.size, 10);
+  equals(formats.size, 14);
 
   const loader = () => Promise.resolve({});
 
@@ -197,7 +201,7 @@ Deno.test("assets configuration", () => {
 
   site.loadAssets(extensions, loader);
 
-  equals(formats.size, 11);
+  equals(formats.size, 15);
   for (const ext of extensions) {
     equals(formats.has(ext), true);
     assert(formats.get(ext)?.pageLoader);
@@ -212,25 +216,25 @@ Deno.test("preprocessor configuration", () => {
 
   equals(processors.size, 0);
 
-  const processor = () => Promise.resolve({});
+  const processor = () => Promise.resolve();
   const ext1 = [".ext1"];
 
   site.preprocess(ext1, processor);
   equals(processors.size, 1);
   equals(processors.has(processor), true);
-  equals(processors.get(processor), ext1);
+  equals(processors.get(processor), { extensions: ext1, multiple: false });
 
   const ext2 = [".ext2"];
   site.preprocess(ext2, processor);
   equals(processors.size, 1);
   equals(processors.has(processor), true);
-  equals(processors.get(processor), ext2);
+  equals(processors.get(processor), { extensions: ext2, multiple: false });
 
-  const processor2 = () => Promise.resolve({});
+  const processor2 = () => Promise.resolve();
   site.preprocess(ext2, processor2);
   equals(processors.size, 2);
   equals(processors.has(processor2), true);
-  equals(processors.get(processor2), ext2);
+  equals(processors.get(processor2), { extensions: ext2, multiple: false });
 });
 
 Deno.test("processor configuration", () => {
@@ -239,25 +243,25 @@ Deno.test("processor configuration", () => {
 
   equals(processors.size, 0);
 
-  const processor = () => Promise.resolve({});
+  const processor = () => Promise.resolve();
   const ext1 = [".ext1"];
 
   site.process(ext1, processor);
   equals(processors.size, 1);
   equals(processors.has(processor), true);
-  equals(processors.get(processor), ext1);
+  equals(processors.get(processor), { extensions: ext1, multiple: false });
 
   const ext2 = [".ext2"];
   site.process(ext2, processor);
   equals(processors.size, 1);
   equals(processors.has(processor), true);
-  equals(processors.get(processor), ext2);
+  equals(processors.get(processor), { extensions: ext2, multiple: false });
 
-  const processor2 = () => Promise.resolve({});
+  const processor2 = () => Promise.resolve();
   site.process(ext2, processor2);
   equals(processors.size, 2);
   equals(processors.has(processor2), true);
-  equals(processors.get(processor2), ext2);
+  equals(processors.get(processor2), { extensions: ext2, multiple: false });
 });
 
 Deno.test("helpers configuration", () => {
@@ -290,14 +294,16 @@ Deno.test("helpers configuration", () => {
 
 Deno.test("extra data", () => {
   const site = lume();
-  const { globalData } = site;
+  const globalData = site.scopedData.get("/") || {};
 
-  equals(Object.keys(globalData).length, 2);
-  equals(Object.keys(globalData)[0], "paginate");
-  equals(Object.keys(globalData)[1], "search");
+  equals(site.scopedData.size, 1);
+  equals(Object.keys(globalData).length, 3);
+  equals(Object.keys(globalData)[0], "mergedKeys");
+  equals(Object.keys(globalData)[1], "paginate");
+  equals(Object.keys(globalData)[2], "search");
 
   site.data("name", "lume");
-  equals(Object.keys(globalData).length, 3);
+  equals(Object.keys(globalData).length, 4);
   equals(globalData.name, "lume");
 });
 

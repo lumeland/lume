@@ -1,3 +1,5 @@
+/** @jsxImportSource npm:react@18.2.0 */
+
 import { assert } from "../../../deps/assert.ts";
 export const layout = "layout.jsx";
 

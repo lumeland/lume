@@ -1,13 +1,13 @@
-import { merge } from "../core/utils.ts";
+import { getPathAndExtension, merge } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
 import { Exception } from "../core/errors.ts";
-import { ImageMagick, initializeImageMagick } from "../deps/imagick.ts";
+import { ImageMagick, initialize } from "../deps/imagick.ts";
 import Cache from "../core/cache.ts";
 
 import type { Page, Site } from "../core.ts";
 import type { IMagickImage, MagickFormat } from "../deps/imagick.ts";
 
-await initializeImageMagick();
+await initialize();
 
 export interface Options {
   /** The list extensions this plugin applies to */
@@ -58,12 +58,14 @@ export const defaults: Options = {
 
 export interface Transformation {
   suffix?: string;
-  format?: MagickFormat;
+  format?: MagickFormat | MagickFormat[];
+  matches?: RegExp | string;
   // deno-lint-ignore no-explicit-any
   [key: string]: any;
 }
-
-export type Transformations = Transformation[];
+interface SingleTransformation extends Transformation {
+  format?: MagickFormat;
+}
 
 /** A plugin to transform images in Lume */
 export default function (userOptions?: Partial<Options>) {
@@ -84,10 +86,10 @@ export default function (userOptions?: Partial<Options>) {
       site.options.watcher.ignore.push(cacheFolder);
     }
 
-    async function imagick(page: Page) {
+    async function imagick(page: Page, pages: Page[]) {
       const imagick = page.data[options.name] as
         | Transformation
-        | Transformations
+        | Transformation[]
         | undefined;
 
       if (!imagick) {
@@ -95,14 +97,21 @@ export default function (userOptions?: Partial<Options>) {
       }
 
       const content = page.content as Uint8Array;
-      const transformations = Array.isArray(imagick) ? imagick : [imagick];
-      const last = transformations[transformations.length - 1];
+      const transformations = getTransformations(imagick);
       let transformed = false;
       let index = 0;
       for (const transformation of transformations) {
-        const output = transformation === last
-          ? page
-          : page.duplicate(index++, { [options.name]: undefined });
+        if (transformation.matches) {
+          const regex = new RegExp(transformation.matches);
+          if (!regex.test(page.data.url as string)) {
+            continue;
+          }
+        }
+
+        const output = page.duplicate(index++, {
+          ...page.data,
+          [options.name]: undefined,
+        });
 
         rename(output, transformation);
 
@@ -122,13 +131,16 @@ export default function (userOptions?: Partial<Options>) {
         }
 
         if (output !== page) {
-          site.pages.push(output);
+          pages.push(output);
         }
       }
 
       if (transformed) {
         site.logger.log("🎨", `${page.src.path}${page.src.ext}`);
       }
+
+      // Remove the original page
+      return false;
     }
   };
 }
@@ -145,6 +157,7 @@ function transform(
     for (const [name, args] of Object.entries(transformation)) {
       switch (name) {
         case "suffix":
+        case "matches":
           break;
 
         case "format":
@@ -164,19 +177,61 @@ function transform(
       }
     }
 
-    image.write(
-      (content: Uint8Array) => page.content = new Uint8Array(content),
-      format,
-    );
+    if (format) {
+      image.write(
+        format,
+        (content: Uint8Array) => page.content = new Uint8Array(content),
+      );
+    } else {
+      image.write((content: Uint8Array) =>
+        page.content = new Uint8Array(content)
+      );
+    }
   });
 }
 
 function rename(page: Page, transformation: Transformation): void {
-  if (transformation.format) {
-    page.updateDest({ ext: "." + transformation.format });
+  const { format, suffix } = transformation;
+  const url = page.data.url;
+
+  if (!url) {
+    return;
   }
 
-  if (transformation.suffix) {
-    page.updateDest({ path: page.dest.path + transformation.suffix });
+  let [path, ext] = getPathAndExtension(url);
+
+  if (format) {
+    ext = `.${format}`;
   }
+
+  if (suffix) {
+    path += suffix;
+  }
+
+  page.data.url = path + ext;
+}
+
+function getTransformations(
+  input: Transformation | Transformation[],
+): SingleTransformation[] {
+  if (Array.isArray(input)) {
+    const singles: SingleTransformation[] = [];
+
+    for (const transformation of input) {
+      if (Array.isArray(transformation.format)) {
+        transformation.format.forEach((format) => {
+          singles.push({ ...transformation, format });
+        });
+      } else {
+        singles.push(transformation as SingleTransformation);
+      }
+    }
+    return singles;
+  }
+
+  if (Array.isArray(input.format)) {
+    return input.format.map((format) => ({ ...input, format }));
+  }
+
+  return [input as SingleTransformation];
 }

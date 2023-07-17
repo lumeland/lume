@@ -1,185 +1,177 @@
 export const snapshot = {};
 
-snapshot[`sass plugin 1`] = `4`;
-
-snapshot[`sass plugin 2`] = `
+snapshot[`sass plugin 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       asset: true,
-      engine: false,
+      engines: undefined,
       ext: ".scss",
+      includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
       asset: true,
-      engine: false,
+      engines: undefined,
       ext: ".sass",
+      includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
+  ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/sass",
+    "/_includes/sass/button.scss",
+    "/_includes/sass/colors.scss",
+    "/_includes/sass/fourth.scss",
+    "/_includes/sass/third.scss",
+    "/index.scss",
+    "/index2.sass",
+    "/styles.css",
   ],
 }
 `;
 
+snapshot[`sass plugin 2`] = `[]`;
+
 snapshot[`sass plugin 3`] = `
 [
-]
-`;
-
-snapshot[`sass plugin 4`] = `
-{
-  content: "(removed for testing)",
-  data: {
-    content: "(removed for testing)",
-    page: undefined,
-    tags: [
-    ],
-    url: "/index.css.map",
-  },
-  dest: {
-    ext: ".map",
-    path: "/index.css",
-  },
-  src: {
-    ext: undefined,
-    path: "",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`sass plugin 5`] = `
-{
-  content: "(removed for testing)",
-  data: {
-    content: "(removed for testing)",
-    page: undefined,
-    tags: [
-    ],
-    url: "/index2.css.map",
-  },
-  dest: {
-    ext: ".map",
-    path: "/index2.css",
-  },
-  src: {
-    ext: undefined,
-    path: "",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`sass plugin 6`] = `
-{
-  content: "body{font:100% Helvetica,sans-serif;color:#333}
-/*# sourceMappingURL=index.css.map */",
-  data: {
-    content: '@import "./_includes/sass/colors";
-@import "sass/button";
+  {
+    content: '@import"./styles.css";html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}',
+    data: {
+      content: '@import "./styles.css";
+' +
+        '@import "./_includes/sass/colors";
+' +
+        '@import "sass/button";
 ',
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/index.css",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/index.css",
+    },
+    src: {
+      asset: true,
+      ext: ".scss",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
   },
-  dest: {
-    ext: ".css",
-    path: "/index",
-  },
-  src: {
-    ext: ".scss",
-    path: "/index",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`sass plugin 7`] = `
-{
-  content: "body{color:blue}
-/*# sourceMappingURL=index2.css.map */",
-  data: {
-    content: '@import "sass/colors"
+  {
+    content: "body{color:blue}",
+    data: {
+      content: '@import "sass/colors"
 
 body
   color: \$primary-color
 ',
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/index2.css",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/index2.css",
+    },
+    src: {
+      asset: true,
+      ext: ".sass",
+      path: "/index2",
+      remote: undefined,
+      slug: "index2",
+    },
   },
-  dest: {
-    ext: ".css",
-    path: "/index2",
-  },
-  src: {
-    ext: ".sass",
-    path: "/index2",
-    remote: undefined,
-  },
-}
+]
 `;

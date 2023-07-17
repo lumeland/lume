@@ -7,14 +7,14 @@ import {
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Data, Engine, Helper, Site } from "../core.ts";
+import type { Data, DeepPartial, Engine, Helper, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
   /** Options passed to markdown-it library */
-  options: Partial<MarkdownItOptions>;
+  options: MarkdownItOptions;
 
   /** The list of markdown-it plugins to use */
   plugins: unknown[];
@@ -29,7 +29,7 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
-  extensions: [".md"],
+  extensions: [".md", ".markdown"],
   options: {
     html: true,
   },
@@ -70,7 +70,7 @@ export class MarkdownEngine implements Engine {
 }
 
 /** Register the plugin to support Markdown */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   const options = merge(defaults, userOptions);
 
   if (options.keepDefaultPlugins && userOptions?.plugins?.length) {
@@ -78,18 +78,32 @@ export default function (userOptions?: Partial<Options>) {
   }
 
   return function (site: Site) {
-    // @ts-ignore: This expression is not callable.
     const engine = markdownIt(options.options);
+
+    // Disable indented code blocks by default
+    engine.disable("code");
 
     // Register markdown-it plugins
     options.plugins.forEach((plugin) =>
       Array.isArray(plugin) ? engine.use(...plugin) : engine.use(plugin)
     );
 
+    // Hook to add markdown-it plugins
+    site.hooks.addMarkdownItPlugin = (plugin, options) => {
+      engine.use(plugin, options);
+    };
+
     // Register custom rules
     for (const [name, rule] of Object.entries(options.rules)) {
-      engine.rules[name] = rule;
+      engine.renderer.rules[name] = rule;
     }
+
+    // Hook to add custom rules
+    site.hooks.addMarkdownItRule = (name, rule) => {
+      engine.renderer.rules[name] = rule;
+    };
+
+    site.hooks.markdownIt = (callback) => callback(engine);
 
     // Load the pages
     site.loadPages(options.extensions, loader, new MarkdownEngine(engine));

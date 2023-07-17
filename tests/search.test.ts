@@ -1,253 +1,188 @@
-import { assertStrictEquals as equals } from "../deps/assert.ts";
-import { buildFilter, buildSort } from "../plugins/search.ts";
+import { assertSnapshot } from "../deps/snapshot.ts";
+import { buildFilter, buildSort } from "../core/searcher.ts";
 
-Deno.test("Search by Tags", () => {
+Deno.test("Search by Tags", async (t) => {
   const filter = buildFilter("foo bar");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.tags?.includes(value1) && page.data?.tags?.includes(value2)",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Equal", () => {
+Deno.test("Search by NOT Tags", async (t) => {
+  const filter = buildFilter("foo !bar");
+
+  await assertSnapshot(t, filter?.toString());
+});
+
+Deno.test("Search by Equal", async (t) => {
   const filter = buildFilter("foo=bar");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo === value1",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Equal undefined", () => {
+Deno.test("Search by Equal undefined", async (t) => {
   const filter = buildFilter("foo=undefined");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo === value1",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
-Deno.test("Search by Equal null", () => {
+
+Deno.test("Search by Equal null", async (t) => {
   const filter = buildFilter("foo=null");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo === value1",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Upper than", () => {
+Deno.test("Search by Upper than", async (t) => {
   const filter = buildFilter("foo>bar");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo > value1",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Upper or equals than", () => {
+Deno.test("Search by Upper or equals than", async (t) => {
   const filter = buildFilter("foo>=bar");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo >= value1",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Lower than", () => {
+Deno.test("Search by Lower than", async (t) => {
   const filter = buildFilter("foo<bar");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo < value1",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Lower or equals than", () => {
+Deno.test("Search by Lower or equals than", async (t) => {
   const filter = buildFilter("foo<=bar");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo <= value1",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Not Equal", () => {
+Deno.test("Search by Not Equal", async (t) => {
   const filter = buildFilter("foo!=bar");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo !== value1",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Starts With", () => {
+Deno.test("Search by Not Equal alt", async (t) => {
+  const filter = buildFilter("!foo=bar");
+
+  await assertSnapshot(t, filter?.toString());
+});
+
+Deno.test("Search by Starts With", async (t) => {
   const filter = buildFilter("foo^=bar");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo?.startsWith(value1)",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Ends With", () => {
+Deno.test("Search by NOT Starts With", async (t) => {
+  const filter = buildFilter("!foo^=bar");
+
+  await assertSnapshot(t, filter?.toString());
+});
+
+Deno.test("Search by Ends With", async (t) => {
   const filter = buildFilter("foo$=bar");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo?.endsWith(value1)",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Contains", () => {
+Deno.test("Search by Contains", async (t) => {
   const filter = buildFilter("foo*=bar");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo?.includes(value1)",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Tags with OR", () => {
+Deno.test("Search by Tags with OR", async (t) => {
   const filter = buildFilter("foo|bar");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && value1.some((i) => page.data?.tags?.includes(i))",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Equal with OR", () => {
+Deno.test("Search by Equal with OR", async (t) => {
   const filter = buildFilter("foo=bar|baz");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && value1.some((i) => page.data?.foo === i)",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Not Equal with OR", () => {
+Deno.test("Search by Not Equal with OR", async (t) => {
   const filter = buildFilter("foo!=bar|baz");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && value1.some((i) => page.data?.foo !== i)",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Starts With with OR", () => {
+Deno.test("Search by Starts With with OR", async (t) => {
   const filter = buildFilter("foo^=bar|baz");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && value1.some((i) => page.data?.foo?.startsWith(i))",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Ends With with OR", () => {
+Deno.test("Search by Ends With with OR", async (t) => {
   const filter = buildFilter("foo$=bar|baz");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && value1.some((i) => page.data?.foo?.endsWith(i))",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search by Contains with OR", () => {
+Deno.test("Search by Contains with OR", async (t) => {
   const filter = buildFilter("foo*=bar|baz");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && value1.some((i) => page.data?.foo?.includes(i))",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search Date by Equal", () => {
+Deno.test("Search Date by Equal", async (t) => {
   const filter = buildFilter("foo=2000-01-02");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo?.getTime() === value1.getTime()",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search Date by Not Equal", () => {
+Deno.test("Search Date by Not Equal", async (t) => {
   const filter = buildFilter("foo!=2000-01-02");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo?.getTime() !== value1.getTime()",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search Date by lower than", () => {
+Deno.test("Search Date by lower than", async (t) => {
   const filter = buildFilter("foo<2000-01-02T18:00");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo?.getTime() < value1.getTime()",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search Date by lower or equals than", () => {
+Deno.test("Search Date by lower or equals than", async (t) => {
   const filter = buildFilter("foo<=2000-01-02T18:00");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo?.getTime() <= value1.getTime()",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search Date by upper than", () => {
+Deno.test("Search Date by upper than", async (t) => {
   const filter = buildFilter("foo>2000-01-02T18:00");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo?.getTime() > value1.getTime()",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Search Date by upper or equals than", () => {
+Deno.test("Search Date by upper or equals than", async (t) => {
   const filter = buildFilter("foo>=2000-01-02T18:00");
 
-  equals(
-    "(page) => page.dest?.ext === value0 && page.data?.foo?.getTime() >= value1.getTime()",
-    filter.toString(),
-  );
+  await assertSnapshot(t, filter?.toString());
 });
 
-Deno.test("Sort by one field", () => {
+Deno.test("Sort by one field", async (t) => {
   const sort = buildSort("order");
 
-  equals(
-    "function anonymous(a,b\n) {\nreturn (a.data?.order == b.data?.order ? 0 : (a.data?.order < b.data?.order ? -1 : 1))\n}",
-    sort.toString(),
-  );
+  await assertSnapshot(t, sort);
 });
 
-Deno.test("Sort by one field DESC", () => {
+Deno.test("Sort by one field DESC", async (t) => {
   const sort = buildSort("order=desc");
 
-  equals(
-    "function anonymous(a,b\n) {\nreturn (a.data?.order == b.data?.order ? 0 : (a.data?.order > b.data?.order ? -1 : 1))\n}",
-    sort.toString(),
-  );
+  await assertSnapshot(t, sort);
 });
 
-Deno.test("Sort by two fields", () => {
+Deno.test("Sort by two fields", async (t) => {
   const sort = buildSort("order title");
 
-  equals(
-    "function anonymous(a,b\n) {\nreturn (a.data?.order == b.data?.order ? (a.data?.title == b.data?.title ? 0 : (a.data?.title < b.data?.title ? -1 : 1)) : (a.data?.order < b.data?.order ? -1 : 1))\n}",
-    sort.toString(),
-  );
+  await assertSnapshot(t, sort);
 });
 
-Deno.test("Sort by two fields, sencod is DESC", () => {
+Deno.test("Sort by two fields, sencod is DESC", async (t) => {
   const sort = buildSort("order title=desc");
 
-  equals(
-    "function anonymous(a,b\n) {\nreturn (a.data?.order == b.data?.order ? (a.data?.title == b.data?.title ? 0 : (a.data?.title > b.data?.title ? -1 : 1)) : (a.data?.order < b.data?.order ? -1 : 1))\n}",
-    sort.toString(),
-  );
+  await assertSnapshot(t, sort);
 });

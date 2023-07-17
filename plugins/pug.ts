@@ -3,7 +3,14 @@ import { join } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Data, Engine, Helper, HelperOptions, Site } from "../core.ts";
+import type {
+  Data,
+  DeepPartial,
+  Engine,
+  Helper,
+  HelperOptions,
+  Site,
+} from "../core.ts";
 import type { Options as PugOptions } from "../deps/pug.ts";
 
 export interface Options {
@@ -17,7 +24,7 @@ export interface Options {
   includes: string;
 
   /** Options passed to Pug */
-  options: Partial<PugOptions>;
+  options: PugOptions;
 }
 
 // Default options
@@ -33,6 +40,7 @@ type Compiler = typeof compile;
 export class PugEngine implements Engine {
   options: PugOptions;
   compiler: Compiler;
+  filters: Record<string, Helper> = {};
   cache = new Map<string, (data?: Data) => string>();
   basePath: string;
 
@@ -51,8 +59,16 @@ export class PugEngine implements Engine {
   }
 
   renderSync(content: string, data?: Data, filename?: string): string {
+    const dataWithFilters = {
+      ...data,
+      filters: {
+        ...data?.filters,
+        ...this.filters,
+      },
+    };
+
     if (!filename) {
-      return this.compiler(content, this.options)(data);
+      return this.compiler(content, this.options)(dataWithFilters);
     }
     if (!this.cache.has(filename)) {
       this.cache.set(
@@ -64,7 +80,7 @@ export class PugEngine implements Engine {
       );
     }
 
-    return this.cache.get(filename)!(data);
+    return this.cache.get(filename)!(dataWithFilters);
   }
 
   addHelper(name: string, fn: Helper, options: HelperOptions) {
@@ -72,13 +88,14 @@ export class PugEngine implements Engine {
       case "filter": {
         this.options.filters ||= {};
 
-        const filter = (text: string, opt: Record<string, unknown>) => {
+        const filter: Helper = (text: string, opt: Record<string, unknown>) => {
           delete opt.filename;
           const args = Object.values(opt);
           return fn(text, ...args);
         };
 
-        this.options.filters[name] = filter as Helper;
+        this.filters[name] = fn;
+        this.options.filters[name] = filter;
         return;
       }
     }
@@ -86,7 +103,7 @@ export class PugEngine implements Engine {
 }
 
 /** Register the plugin to use Pug as a template engine */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
@@ -108,7 +125,7 @@ export default function (userOptions?: Partial<Options>) {
     site.filter("pug", filter as Helper, true);
 
     function filter(string: string, data?: Data) {
-      return engine.render(string, { ...site.globalData, ...data });
+      return engine.render(string, { ...site.scopedData.get("/"), ...data });
     }
   };
 }

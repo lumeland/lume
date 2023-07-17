@@ -1,0 +1,236 @@
+export const snapshot = {};
+
+snapshot[`build a site with vento 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".vento",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".vto",
+      pageLoader: [AsyncFunction: text],
+    },
+  ],
+  src: [
+    "/",
+    "/_components",
+    "/_components/Button.vto",
+    "/_includes",
+    "/_includes/footer.vto",
+    "/_includes/layout.vto",
+    "/index.vto",
+  ],
+}
+`;
+
+snapshot[`build a site with vento 2`] = `[]`;
+
+snapshot[`build a site with vento 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html lang="en">
+' +
+      "<head>
+" +
+      '  <meta charset="UTF-8">
+' +
+      '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+' +
+      '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+      "  <title>TÍTULO</title>
+" +
+      "</head>
+" +
+      "<body>
+" +
+      "  <h1>Título</h1>
+" +
+      "
+" +
+      '<a href="https://lume.land" class="btn btn-primary">
+' +
+      "  Go to Lume
+" +
+      "</a>
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      "
+" +
+      '<a href="https://example.com/blog/" class="btn btn-primary">Go to Lume</a>
+' +
+      "
+" +
+      "
+" +
+      "
+" +
+      "  <footer>
+" +
+      "Título
+" +
+      "</footer>
+" +
+      "</body>
+" +
+      "</html>
+",
+    data: {
+      children: "<h1>Título</h1>
+" +
+        "
+" +
+        '<a href="https://lume.land" class="btn btn-primary">
+' +
+        "  Go to Lume
+" +
+        "</a>
+" +
+        "
+" +
+        "
+" +
+        "
+" +
+        "
+" +
+        '<a href="https://example.com/blog/" class="btn btn-primary">Go to Lume</a>
+' +
+        "
+",
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "<h1>{{ title }}</h1>
+" +
+        "
+" +
+        '{{ comp button {href: "https://lume.land"} }}
+' +
+        "  Go to Lume
+" +
+        "{{ /comp }}
+" +
+        "
+" +
+        '{{ set href = "/" |> url(true) }}
+' +
+        "
+" +
+        '{{ comp button {href, content: "Go to Lume"} /}}
+',
+      date: [],
+      layout: "layout.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Título",
+      url: "/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".vto",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+]
+`;

@@ -16,45 +16,66 @@ Deno.test("Components", async (t) => {
   site.use(pug());
   site.use(jsx());
 
+  site.component("custom", {
+    name: "button",
+    render: ({ text }): string => {
+      return `<button class="custom">${text}</button>`;
+    },
+  });
+
+  site.component("custom.header", {
+    name: "title",
+    render: ({ text }): string => {
+      return `<h1 class="custom">${text}</h1>`;
+    },
+  });
+
+  assert(site.globalComponents.get("custom"));
+
   await build(site);
 
-  await t.step("Components are accessed from comp", () => {
-    const data = site.source.root?.data;
-    assert(data);
-    assert(data.comp);
-    assert(data.comp.button_eta);
-    assert(data.comp.button_jsx);
-    assert(data.comp.button_njk);
-    assert(data.comp.button_liquid);
+  const comp = site.pages.find((page) => page.data.url === "/")?.data.comp;
+  const subcomp =
+    site.pages.find((page) => page.data.url === "/subfolder/")?.data.comp;
 
-    const subData = site.source.root?.dirs.get("subfolder")?.data;
-    assert(subData);
-    assert(subData.comp);
-    assert(subData.comp.button_eta);
-    assert(subData.comp.button_jsx);
-    assert(subData.comp.button_njk);
-    assert(subData.comp.button_liquid);
-    assert(subData.comp.innerbutton);
-    assert(subData.comp.button_pug);
-    assert(subData.comp.button_ts);
+  await t.step("Components are accessed from comp", () => {
+    assert(comp);
+    assert(comp.button_eta);
+    assert(comp.button_jsx);
+    assert(comp.button_njk);
+    assert(comp.button_liquid);
+
+    assert(subcomp);
+    assert(subcomp.button_eta);
+    assert(subcomp.button_jsx);
+    assert(subcomp.button_njk);
+    assert(subcomp.button_liquid);
+    assert(subcomp.innerbutton);
+    assert(subcomp.button_pug);
+    assert(subcomp.button_ts);
   });
 
   await t.step("Nunjucks components", () => {
-    const comp = site.source.root?.data.comp?.button_njk;
-
-    // @ts-ignore: TODO: fix
-    const result = comp({ text: "Hello world" });
+    const result = comp.button_njk({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_njk">Hello world</button>`,
     );
   });
 
-  await t.step("Liquid components", () => {
-    const comp = site.source.root?.data.comp?.button_liquid;
+  await t.step("Inherit and not inherit data for components", () => {
+    assertEquals(
+      comp.inherit().trim(),
+      `<p>Inherit: Hello from _data.yml</p>`,
+    );
+    assertEquals(
+      comp.not_inherit().trim(),
+      `<p>Not inherit: </p>`,
+    );
+  });
 
-    // @ts-ignore: TODO: fix
-    const result = comp({ text: "Hello world" });
+  await t.step("Liquid components", () => {
+    const result = comp.button_liquid({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_liquid">Hello world</button>`,
@@ -62,10 +83,7 @@ Deno.test("Components", async (t) => {
   });
 
   await t.step("Module components", () => {
-    const comp = site.source.root?.dirs.get("subfolder")?.data.comp?.button_ts;
-
-    // @ts-ignore: TODO: fix
-    const result = comp({ text: "Hello world" });
+    const result = subcomp.button_ts({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_ts">Hello world</button>`,
@@ -73,10 +91,7 @@ Deno.test("Components", async (t) => {
   });
 
   await t.step("Eta components", () => {
-    const comp = site.source.root?.data.comp?.button_eta;
-
-    // @ts-ignore: TODO: fix
-    const result = comp({ text: "Hello world" });
+    const result = comp.button_eta({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_eta">Hello world</button>`,
@@ -84,10 +99,7 @@ Deno.test("Components", async (t) => {
   });
 
   await t.step("Pug components", () => {
-    const comp = site.source.root?.dirs.get("subfolder")?.data.comp?.button_pug;
-
-    // @ts-ignore: TODO: fix
-    const result = comp({ text: "Hello world" });
+    const result = subcomp.button_pug({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_pug">Hello world</button>`,
@@ -95,10 +107,7 @@ Deno.test("Components", async (t) => {
   });
 
   await t.step("JSX components", () => {
-    const comp = site.source.root?.data.comp?.button_jsx;
-
-    // @ts-ignore: TODO: fix
-    const result = comp({ text: "Hello world" });
+    const result = comp.button_jsx({ text: "Hello world" });
     assertEquals(
       result.toString().trim(),
       `<button class="button_jsx">Hello world</button>`,
@@ -106,14 +115,21 @@ Deno.test("Components", async (t) => {
   });
 
   await t.step("JS inner components", () => {
-    const comp = site.source.root?.dirs.get("subfolder")?.data.comp
-      ?.innerButton;
-
-    // @ts-ignore: TODO: fix
-    const result = comp({ text: "Inner button" });
+    const result = subcomp.innerButton({ text: "Inner button" });
     assertEquals(
       result.toString().trim(),
       `<div><button class="button_jsx">Inner button</button></div>`,
+    );
+  });
+
+  await t.step("Custom components", () => {
+    assertEquals(
+      comp.custom.button({ text: "Hello world" }),
+      `<button class="custom">Hello world</button>`,
+    );
+    assertEquals(
+      comp.custom.header.title({ text: "Hello world" }),
+      `<h1 class="custom">Hello world</h1>`,
     );
   });
 });

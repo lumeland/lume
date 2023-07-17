@@ -4,19 +4,16 @@ import {
   postcssImport,
   postcssNesting,
 } from "../deps/postcss.ts";
-import { isUrl, merge } from "../core/utils.ts";
+import { merge, resolveInclude } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
-import { posix } from "../deps/path.ts";
+import { prepareAsset, saveAsset } from "./source_maps.ts";
+import textLoader from "../core/loaders/text.ts";
 
-import type { Helper, Site } from "../core.ts";
-import type { SourceMapOptions } from "../deps/postcss.ts";
+import type { Helper, Site, SourceMap } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
-
-  /** Set `true` to generate source map files */
-  sourceMap: boolean | SourceMapOptions;
 
   /** Custom includes path for `postcss-import` */
   includes: string | false;
@@ -31,9 +28,9 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".css"],
-  sourceMap: false,
   includes: false,
   plugins: [
+    // @ts-expect-error: postcss-nesting provides wrong types under node16 module resolution: https://github.com/csstools/postcss-plugins/issues/1031
     postcssNesting(),
     autoprefixer(),
   ],
@@ -55,7 +52,7 @@ export default function (userOptions?: Partial<Options>) {
     const plugins = [...options.plugins];
 
     if (options.includes) {
-      site.includes(options.extensions, options.includes);
+      site.includes(options.extensions, options.includes, false);
 
       plugins.unshift(configureImport(site));
     }
@@ -63,27 +60,38 @@ export default function (userOptions?: Partial<Options>) {
     // @ts-ignore: Argument of type 'unknown[]' is not assignable to parameter of type 'AcceptedPlugin[]'.
     const runner = postcss(plugins);
 
+    site.hooks.addPostcssPlugin = (plugin) => {
+      runner.use(plugin);
+    };
+    site.hooks.postcss = (callback) => callback(runner);
+
     site.loadAssets(options.extensions);
     site.process(options.extensions, postCss);
     site.filter("postcss", filter as Helper, true);
 
     async function postCss(file: Page) {
-      const from = site.src(file.src.path + file.src.ext);
-      const to = site.dest(file.dest.path + file.dest.ext);
-      const map = options.sourceMap;
+      const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
+        site,
+        file,
+      );
+      const to = site.dest(file.outputPath!);
+      const map = enableSourceMap
+        ? {
+          inline: false,
+          prev: sourceMap,
+          annotation: false,
+        }
+        : undefined;
 
       // Process the code with PostCSS
-      const result = await runner.process(file.content!, { from, to, map });
+      const result = await runner.process(content, { from: filename, to, map });
 
-      file.content = result.css;
-
-      if (result.map) {
-        const mapFile = Page.create(
-          file.dest.path + ".css.map",
-          result.map.toString(),
-        );
-        site.pages.push(mapFile);
-      }
+      saveAsset(
+        site,
+        file,
+        result.css,
+        result.map?.toJSON() as unknown as SourceMap,
+      );
     }
 
     async function filter(code: string) {
@@ -98,51 +106,21 @@ export default function (userOptions?: Partial<Options>) {
  * using the Lume reader and the includes loader
  */
 function configureImport(site: Site) {
-  const { includesLoader, formats, reader } = site;
+  const { formats } = site;
+  const { includes } = site.options;
 
   return postcssImport({
     /** Resolve the import path */
-    async resolve(id: string, basedir: string) {
-      if (isUrl(id)) {
-        return id;
-      }
-
-      /** Relative path */
-      if (id.startsWith(".")) {
-        return posix.join(basedir, id);
-      }
-
-      if (!id.startsWith("/")) {
-        const path = posix.join(basedir, id);
-        const exists = await reader.getInfo(path);
-        if (exists) {
-          return path;
-        }
-      }
-
-      /** Search the path in the includes */
+    resolve(id: string, basedir: string) {
       const format = formats.search(id);
-      if (format) {
-        const path = includesLoader.resolve(id, format, basedir);
+      const includesPath = format?.includesPath ?? includes;
 
-        if (path) {
-          return site.src(path);
-        }
-      }
+      return resolveInclude(id, includesPath, basedir);
     },
 
     /** Load the content (using the Lume reader) */
     async load(file: string) {
-      const format = formats.search(file);
-
-      if (format && format.pageLoader) {
-        const relative = file.slice(site.src().length);
-        const content = await reader.read(relative, format.pageLoader);
-
-        if (content) {
-          return content.content as string;
-        }
-      }
+      return await site.getContent(file, textLoader) as string;
     },
   });
 }

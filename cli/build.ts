@@ -1,53 +1,78 @@
-import { createSite } from "./utils.ts";
+import { checkUpgrade } from "../core/utils.ts";
 import { brightGreen, dim } from "../deps/colors.ts";
 import Server from "../core/server.ts";
-import Watcher from "../core/watcher.ts";
+import FSWatcher, { SiteWatcher } from "../core/watcher.ts";
 import { printError } from "../core/errors.ts";
 import logger from "../middlewares/logger.ts";
 import noCache from "../middlewares/no_cache.ts";
 import notFound from "../middlewares/not_found.ts";
 import reload from "../middlewares/reload.ts";
+import { createSite } from "./run.ts";
 
 interface Options {
-  root: string;
   config?: string;
   serve?: boolean;
   watch?: boolean;
+  dev?: boolean;
 }
 
-export default function ({ root, config, serve, watch }: Options) {
-  return build(root, config, serve, watch);
+export default function ({ config, serve, watch, dev }: Options) {
+  if (dev) {
+    Deno.env.set("LUME_ENV", "development");
+  }
+
+  return build(config, serve, watch);
 }
 
 /** Build the website and optionally watch changes and serve the site */
 export async function build(
-  root: string,
   config: string | undefined,
   serve?: boolean,
   watch?: boolean,
 ) {
-  const site = await createSite(root, config);
+  const site = await createSite(config);
   const quiet = site.options.quiet;
 
   if (!quiet) {
     console.log();
   }
 
+  performance.mark("start");
   await site.build();
+  performance.mark("end");
 
   if (!quiet) {
     console.log();
     console.log(
       `🍾 ${brightGreen("Site built into")} ${dim(site.options.dest)}`,
     );
+    const duration = performance.measure("duration", "start", "end").duration /
+      1000;
+    const total = site.pages.length + site.files.length;
+    console.log(
+      dim(`  ${total} files generated in ${duration.toFixed(2)} seconds`),
+    );
+    console.log();
+
+    await checkUpgrade();
   }
 
   if (!serve && !watch) {
+    // Prevent possible timers to keep the process alive forever (wait preventively 10 seconds)
+    const id = setTimeout(() => {
+      console.log(
+        "After waiting 10 seconds, there are some timers that avoid ending the process.",
+      );
+      console.log("They have been forcibly closed.");
+      Deno.exit(0);
+    }, 10000);
+
+    Deno.unrefTimer(id);
     return;
   }
 
   // Start the watcher
-  const watcher = new Watcher({
+  const watcher = new FSWatcher({
     root: site.src(),
     ignore: site.options.watcher.ignore,
     debounce: site.options.watcher.debounce,
@@ -56,7 +81,6 @@ export async function build(
   watcher.addEventListener("change", (event) => {
     const files = event.files!;
 
-    console.log();
     console.log("Changes detected:");
     files.forEach((file) => console.log("-", dim(file)));
     console.log();
@@ -80,7 +104,6 @@ export async function build(
   server.addEventListener("start", () => {
     const ipAddr = localIp();
 
-    console.log();
     console.log("  Server started at:");
     console.log(brightGreen(`  http://localhost:${port}/`), "(local)");
 
@@ -91,21 +114,33 @@ export async function build(
     console.log();
 
     if (open) {
-      const commands = {
+      const commands: Record<typeof Deno.build.os, string> = {
         darwin: "open",
         linux: "xdg-open",
+        freebsd: "xdg-open",
+        netbsd: "xdg-open",
+        aix: "xdg-open",
+        solaris: "xdg-open",
+        illumos: "xdg-open",
         windows: "explorer",
       };
 
-      Deno.run({ cmd: [commands[Deno.build.os], `http://localhost:${port}/`] });
+      new Deno.Command(commands[Deno.build.os], {
+        args: [`http://localhost:${port}/`],
+        stdout: "inherit",
+        stderr: "inherit",
+      }).output();
     }
 
     site.dispatchEvent({ type: "afterStartServer" });
   });
 
+  if (!site.options.quiet) {
+    server.use(logger());
+  }
+
   server.use(
-    logger(),
-    reload({ root: site.dest() }),
+    reload({ watcher: new SiteWatcher(site) }),
     noCache(),
     notFound({
       root: site.dest(),

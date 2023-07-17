@@ -1,40 +1,53 @@
 export const snapshot = {};
 
-snapshot[`render remote files 1`] = `5`;
-
-snapshot[`render remote files 2`] = `
+snapshot[`render remote files 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       asset: true,
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
       pageLoader: [AsyncFunction: text],
     },
@@ -42,208 +55,320 @@ snapshot[`render remote files 2`] = `
       asset: true,
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       asset: true,
-      engine: false,
+      engines: undefined,
       ext: ".css",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".scss",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".sass",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+  ],
+  src: [
+    "/",
+    "/_data.yml",
+    "/_includes",
+    "/_includes/hello.js",
+    "/_includes/name.js",
+    "/_includes/remote-style.css",
+    "/_includes/remote1.njk",
+    "/_includes/templates",
+    "/_includes/templates/local1.njk",
+    "/_includes/templates/remote-template2.njk",
+    "/_includes/variables.scss",
+    "/_remotes",
+    "/_remotes/_data.yml",
+    "/_remotes/asset.txt",
+    "/_remotes/hello.js",
+    "/_remotes/other-remote-style.css",
+    "/_remotes/remote-style.css",
+    "/_remotes/remote-template2.njk",
+    "/_remotes/remote1.njk",
+    "/_remotes/styles2.css",
+    "/_remotes/variables.scss",
+    "/asset.txt",
+    "/local1.md",
+    "/other-remote-style.css",
+    "/scripts.js",
+    "/styles1.css",
+    "/styles2.css",
+    "/styles3.scss",
   ],
 }
+`;
+
+snapshot[`render remote files 2`] = `
+[
+  {
+    entry: "/asset.txt",
+    flags: [
+      "remote",
+    ],
+    outputPath: "/asset.txt",
+  },
+]
 `;
 
 snapshot[`render remote files 3`] = `
 [
   {
-    dest: "/asset.txt",
-    remote: "assets/remote_files/_remotes/asset.txt",
-    src: "/asset.txt",
-  },
-]
-`;
-
-snapshot[`render remote files 4`] = `
-{
-  content: "<h1>Remote layout</h1>
-<h2>Remote title</h2>
-
-&lt;p&gt;Hello world&lt;/p&gt;
-
-
-This is a local template
-
-This is a remote template
+    content: "<!DOCTYPE html>
+" +
+      "<h1>Remote layout</h1>
+" +
+      "<h2>Remote title</h2>
+" +
+      "
+" +
+      "&lt;p&gt;Hello world&lt;/p&gt;
+" +
+      "
+" +
+      "
+" +
+      "This is a local template
+" +
+      "
+" +
+      "This is a remote template
 ",
-  data: {
-    content: "Hello world
+    data: {
+      children: "<p>Hello world</p>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "remote1.njk",
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "Remote title",
-    url: "/local1/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/local1/index",
-  },
-  src: {
-    ext: ".md",
-    path: "/local1",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`render remote files 5`] = `
-{
-  content: "/* Other remote style */
-body {
-  color: yellow;
-}
+      content: "Hello world
 ",
-  data: {
+      date: [],
+      layout: "remote1.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Remote title",
+      url: "/local1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/local1",
+      remote: undefined,
+      slug: "local1",
+    },
+  },
+  {
     content: "/* Other remote style */
 body {
   color: yellow;
 }
 ",
-    date: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "Remote title",
-    url: "/other-remote-style.css",
-  },
-  dest: {
-    ext: ".css",
-    path: "/other-remote-style",
-  },
-  src: {
-    ext: ".css",
-    path: "/other-remote-style",
-    remote: "assets/remote_files/_remotes/other-remote-style.css",
-  },
-}
-`;
-
-snapshot[`render remote files 6`] = `
-{
-  content: 'var r=Object.defineProperty;var e=(t,m)=>r(t,"name",{value:m,configurable:!0});var l="Name";function o(){console.log("hello",l)}e(o,"default");o();
-',
-  data: {
-    content: 'import hello from "./_includes/hello.js";
-
-hello();
-',
-    date: 1970-01-01T00:00:00.000Z,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "Remote title",
-    url: "/scripts.js",
-  },
-  dest: {
-    ext: ".js",
-    path: "/scripts",
-  },
-  src: {
-    ext: ".js",
-    path: "/scripts",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`render remote files 7`] = `
-{
-  content: "/* Remote style */
-body {
-  color: red;
-}
-/* Other remote style */
+    data: {
+      content: "/* Other remote style */
 body {
   color: yellow;
 }
 ",
-  data: {
-    content: '@import "remote-style.css";
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Remote title",
+      url: "/other-remote-style.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/other-remote-style",
+      remote: "assets/remote_files/_remotes/other-remote-style.css",
+      slug: "other-remote-style",
+    },
+  },
+  {
+    content: 'var r=Object.defineProperty;var e=(t,m)=>r(t,"name",{value:m,configurable:!0});var l="Name";function o(){console.log("hello",l)}e(o,"default");o();
+',
+    data: {
+      content: 'import hello from "./_includes/hello.js";
+
+hello();
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Remote title",
+      url: "/scripts.js",
+    },
+    src: {
+      asset: true,
+      ext: ".js",
+      path: "/scripts",
+      remote: undefined,
+      slug: "scripts",
+    },
+  },
+  {
+    content: "/* Remote style */
+" +
+      "body {
+" +
+      "  color: red;
+" +
+      "}
+" +
+      "/* Other remote style */
+" +
+      "body {
+" +
+      "  color: yellow;
+" +
+      "}
+",
+    data: {
+      content: '@import "remote-style.css";
 @import "./other-remote-style.css";
 ',
-    date: 1970-01-01T00:00:00.000Z,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "Remote title",
-    url: "/styles1.css",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Remote title",
+      url: "/styles1.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/styles1",
+      remote: undefined,
+      slug: "styles1",
+    },
   },
-  dest: {
-    ext: ".css",
-    path: "/styles1",
-  },
-  src: {
-    ext: ".css",
-    path: "/styles1",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`render remote files 8`] = `
-{
-  content: "body {
-  color: blue;
-}",
-  data: {
+  {
     content: "body {
   color: blue;
 }",
-    date: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "Remote title",
-    url: "/styles2.css",
+    data: {
+      content: "body {
+  color: blue;
+}",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Remote title",
+      url: "/styles2.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/styles2",
+      remote: "assets/remote_files/_remotes/styles2.css",
+      slug: "styles2",
+    },
   },
-  dest: {
-    ext: ".css",
-    path: "/styles2",
-  },
-  src: {
-    ext: ".css",
-    path: "/styles2",
-    remote: "assets/remote_files/_remotes/styles2.css",
-  },
+  {
+    content: "body{color:blue}",
+    data: {
+      content: '@import "variables";
+
+body {
+  color: \$color;
 }
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Remote title",
+      url: "/styles3.css",
+    },
+    src: {
+      asset: true,
+      ext: ".scss",
+      path: "/styles3",
+      remote: undefined,
+      slug: "styles3",
+    },
+  },
+]
 `;

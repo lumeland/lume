@@ -1,4 +1,10 @@
 import type {
+  DeepPartial,
+  DenoConfig,
+  DenoConfigResult,
+  ImportMap,
+} from "./core/utils.ts";
+import type {
   ComponentsOptions,
   default as Site,
   ServerOptions,
@@ -15,31 +21,21 @@ import type {
   EventOptions,
 } from "./core/events.ts";
 
-import type {
-  default as Scripts,
-  ScriptOptions,
-  ScriptOrFunction,
-} from "./core/scripts.ts";
+import type { default as Scripts, ScriptOrFunction } from "./core/scripts.ts";
 
-import type {
-  default as Reader,
-  DirEntry,
-  FileInfo,
-  Loader,
-} from "./core/reader.ts";
+import type { default as FS, Entry, Loader } from "./core/fs.ts";
 import type Logger from "./core/logger.ts";
+import type Searcher from "./core/searcher.ts";
 import type Writer from "./core/writer.ts";
-import type IncludesLoader from "./core/includes_loader.ts";
-import type { default as PageLoader } from "./core/page_loader.ts";
 import type DataLoader from "./core/data_loader.ts";
-import type ComponentLoader from "./core/component_loader.ts";
 import type {
   Component,
   Components,
+  default as ComponentLoader,
+} from "./core/component_loader.ts";
+import type {
   Content,
   Data,
-  Dest,
-  Directory,
   Page,
   Src,
   StaticFile,
@@ -55,7 +51,12 @@ import type {
   Helper,
   HelperOptions,
 } from "./core/renderer.ts";
-import type { default as Processors, Processor } from "./core/processors.ts";
+import type {
+  default as Processors,
+  Extensions,
+  MultiProcessor,
+  Processor,
+} from "./core/processors.ts";
 import type { default as Scopes, ScopeFilter } from "./core/scopes.ts";
 import type { ErrorData, Exception } from "./core/errors.ts";
 import type { default as Formats, Format } from "./core/formats.ts";
@@ -74,10 +75,10 @@ import type {
 
 // Plugins types
 import type { PaginationInfo, Paginator } from "./plugins/paginate.ts";
-import type { Transformation, Transformations } from "./plugins/imagick.ts";
+import type { Transformation } from "./plugins/imagick.ts";
 import type { MetaData } from "./plugins/metas.ts";
-import type { Search } from "./plugins/search.ts";
 import type { Children } from "./plugins/jsx.ts";
+import type { SourceMap } from "./plugins/source_maps.ts";
 
 /** The method that installs a plugin */
 type PluginSetup = (options: unknown) => Plugin;
@@ -94,40 +95,41 @@ export type {
   Content,
   Data,
   DataLoader,
-  Dest,
-  Directory,
-  DirEntry,
+  DeepPartial,
+  DenoConfig,
+  DenoConfigResult,
   Engine,
+  Entry,
   ErrorData,
   Event,
   EventListener,
   EventOptions,
   Events,
   Exception,
-  FileInfo,
+  Extensions,
   Format,
   Formats,
+  FS,
   Helper,
   HelperOptions,
-  IncludesLoader,
+  ImportMap,
   Loader,
   Logger,
   Middleware,
+  MultiProcessor,
   Page,
-  PageLoader,
   Plugin,
   PluginSetup,
   Processor,
   Processors,
   ProxyComponents,
-  Reader,
   Renderer,
   RequestHandler,
   ScopeFilter,
   Scopes,
-  ScriptOptions,
   ScriptOrFunction,
   Scripts,
+  Searcher,
   Server,
   ServerEvent,
   ServerEventType,
@@ -137,6 +139,7 @@ export type {
   SiteEventType,
   SiteOptions,
   Source,
+  SourceMap,
   Src,
   StaticFile,
   Watcher,
@@ -147,6 +150,9 @@ export type {
 };
 
 export interface PageData extends Data {
+  /** The language(s) of the page */
+  lang?: string | string[];
+
   /** The title of the page */
   title?: string;
 
@@ -185,7 +191,7 @@ export interface PageData extends Data {
    * Image transformations
    * @see https://lume.land/plugins/imagick/
    */
-  imagick?: Transformation | Transformations;
+  imagick?: Transformation | Transformation[];
 
   /**
    * Meta elements
@@ -203,7 +209,17 @@ export interface PageData extends Data {
    * The searcher helper
    * @see https://lume.land/plugins/search/
    */
-  search: Search;
+  search: Searcher;
+
+  /**
+   * The source map data (if it's an asset)
+   */
+  sourceMap?: SourceMap;
+
+  /**
+   * Alternate pages (for languages)
+   */
+  alternates?: PageData[];
 
   /**
    * The JSX children elements
@@ -250,4 +266,10 @@ export interface PageHelpers {
   htmlUrl: Helper;
 
   [key: string]: Helper | undefined;
+}
+
+/** Definition used to create a new Page */
+export interface Archetype {
+  path: string;
+  content: string | Record<string, unknown> | Uint8Array;
 }

@@ -1,15 +1,143 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
-import { join, posix, resolve, SEP, toFileUrl } from "../deps/path.ts";
-import { exists } from "../deps/fs.ts";
+import { brightGreen, cyan, dim, gray, green, red } from "../deps/colors.ts";
+import { dirname, extname, join, posix, SEP } from "../deps/path.ts";
 import { parse } from "../deps/jsonc.ts";
-import { Exception } from "./errors.ts";
 
-export const baseUrl = new URL("../", import.meta.url);
+/** A list of the available optional plugins */
+export const pluginNames = [
+  "attributes",
+  "base_path",
+  "code_highlight",
+  "date",
+  "esbuild",
+  "eta",
+  "feed",
+  "filter_pages",
+  "imagick",
+  "inline",
+  "jsx",
+  "jsx_preact",
+  "katex",
+  "lightningcss",
+  "liquid",
+  "mdx",
+  "metas",
+  "minify_html",
+  "modify_urls",
+  "multilanguage",
+  "nav",
+  "netlify_cms",
+  "on_demand",
+  "pagefind",
+  "picture",
+  "postcss",
+  "prism",
+  "pug",
+  "relations",
+  "relative_urls",
+  "remark",
+  "resolve_urls",
+  "sass",
+  "sheets",
+  "sitemap",
+  "slugify_urls",
+  "source_maps",
+  "svgo",
+  "tailwindcss",
+  "terser",
+  "toml",
+  "vento",
+  "windi_css",
+];
 
-// TODO: Remove this once Deno.ImportMap is available
-interface ImportMap {
+export function log(...lines: (string | undefined)[]) {
+  console.log("----------------------------------------");
+  lines.forEach((line) => line && console.log(line));
+  console.log("----------------------------------------");
+}
+
+/** Check the compatibility with the current Deno version */
+export function checkDenoVersion(): void {
+  const minimum = "1.33.4";
+  const current = Deno.version.deno;
+
+  if (current < minimum) {
+    console.log("----------------------------------------");
+    console.error(red("Your Deno version is not compatible with Lume"));
+    console.log(`Lume needs Deno ${green(minimum)} or greater`);
+    console.log(`Your current version is ${red(current)}`);
+    console.log(`Run ${cyan("deno upgrade")} and try again`);
+    console.log("----------------------------------------");
+    Deno.exit(1);
+  }
+}
+
+/** Check if the current version is outdated */
+export async function checkUpgrade(): Promise<void> {
+  const current = getLumeVersion();
+
+  // It's a local version
+  if (current.startsWith("local ")) {
+    return;
+  }
+
+  const stable = !!current.match(/^v\d+\./);
+  const expires = 1000 * 60 * 60 * 24; // 1 day
+  const interval = localStorage.getItem("lume-upgrade");
+
+  if (interval && parseInt(interval) + expires > Date.now()) {
+    return;
+  }
+
+  localStorage.setItem("lume-upgrade", Date.now().toString());
+
+  const latest = stable
+    ? await getLatestVersion()
+    : await getLatestDevelopmentVersion();
+
+  if (current === latest) {
+    return;
+  }
+
+  const command = "deno task lume upgrade" + (stable ? "" : " --dev");
+
+  log(
+    `Update available ${dim(current)} → ${green(latest)}`,
+    `Run ${cyan(command)} to update`,
+  );
+}
+
+/** Return the latest stable version from the deno.land/x repository */
+export async function getLatestVersion(): Promise<string> {
+  const response = await fetch("https://cdn.deno.land/lume/meta/versions.json");
+  const versions = await response.json();
+  return versions.latest;
+}
+
+/** Return the hash of the latest commit from the GitHub repository */
+export async function getLatestDevelopmentVersion(): Promise<string> {
+  const response = await fetch(
+    "https://api.github.com/repos/lumeland/lume/commits?per_page=1",
+  );
+  const commits = await response.json();
+  return commits[0].sha;
+}
+
+/** Import map file */
+export interface ImportMap {
   imports: Record<string, string>;
   scopes?: Record<string, Record<string, string>>;
+}
+
+/** Basic options for deno.json file */
+export interface DenoConfig {
+  importMap?: string;
+  tasks?: Record<string, string>;
+  compilerOptions?: {
+    jsx?: "jsx" | "react-jsx";
+    jsxImportSource?: string;
+  };
+  [key: string]: unknown;
 }
 
 /** Run a callback concurrently with all the elements of an Iterable */
@@ -48,14 +176,20 @@ export async function sha1(message: string | Uint8Array): Promise<string> {
   return decoder.decode(hash);
 }
 
+/** Helper to create optional properties recursively */
+export type DeepPartial<T> = T extends object ? {
+    [P in keyof T]?: DeepPartial<T[P]>;
+  }
+  : T;
+
 /**
  * Merge two objects recursively.
  * It's used to merge user options with default options.
  */
 export function merge<Type>(
   defaults: Type,
-  user?: Partial<Type>,
-) {
+  user?: Partial<Type> | DeepPartial<Type>,
+): Type {
   const merged = { ...defaults };
 
   if (!user) {
@@ -89,7 +223,9 @@ export function isPlainObject(obj: unknown): obj is Record<string, unknown> {
   return typeof obj === "object" && obj !== null &&
     obj.constructor === objectConstructor &&
     // @ts-ignore: Check if the argument passed is a React element
-    obj["$$typeof"] !== reactElement;
+    obj["$$typeof"] !== reactElement &&
+    // @ts-ignore: Check if the argument passed is a Page.data object
+    obj !== obj.page?.data;
 }
 
 /**
@@ -97,17 +233,28 @@ export function isPlainObject(obj: unknown): obj is Record<string, unknown> {
  * to Posix paths (with the separator "/")
  * and ensure it starts with "/".
  */
-export function normalizePath(path: string) {
+export function normalizePath(path: string, rootToRemove?: string) {
+  if (rootToRemove) {
+    path = path.replace(rootToRemove, "");
+  }
+
   if (SEP !== "/") {
     path = path.replaceAll(SEP, "/");
 
     // Is absolute Windows path (C:/...)
     if (path.includes(":/")) {
+      if (rootToRemove && path.startsWith(rootToRemove)) {
+        return posix.join("/", path.replace(rootToRemove, ""));
+      }
+
       return path;
     }
   }
 
-  return posix.join("/", path);
+  const absolute = posix.join("/", path);
+  return rootToRemove && absolute.startsWith(rootToRemove)
+    ? posix.join("/", absolute.replace(rootToRemove, ""))
+    : absolute;
 }
 
 /** Convert an HTMLDocument instance to a string */
@@ -139,107 +286,61 @@ export function stringToDocument(string: string): HTMLDocument {
 }
 
 /** Return the current installed version */
-export function getLumeVersion(url = baseUrl): string {
+export function getLumeVersion(
+  url = new URL(import.meta.resolve("../")),
+): string {
   const { pathname } = url;
   return pathname.match(/@([^/]+)/)?.[1] ?? `local (${pathname})`;
 }
 
-/** Return the latest stable version from the deno.land/x repository */
-export async function getLatestVersion(): Promise<string> {
-  const response = await fetch("https://cdn.deno.land/lume/meta/versions.json");
-  const versions = await response.json();
-  return versions.latest;
-}
-
-/** Return the hash of the latest commit from the GitHub repository */
-export async function getLatestDevelopmentVersion(): Promise<string> {
-  const response = await fetch(
-    "https://api.github.com/repos/lumeland/lume/commits?per_page=1",
-  );
-  const commits = await response.json();
-  return commits[0].sha;
-}
-
-export interface UpgradeInfo {
-  current: string;
-  latest: string;
-  command: string;
-}
-
-export async function mustNotifyUpgrade(): Promise<undefined | UpgradeInfo> {
-  const current = getLumeVersion();
-
-  // It's a local version
-  if (current.startsWith("local ")) {
-    return;
-  }
-
-  const stable = !!current.match(/^v\d+\./);
-
-  const expires = 1000 * 60 * 60 * 24; // 1 day
-  const interval = localStorage.getItem("lume-upgrade");
-
-  if (interval && parseInt(interval) + expires > Date.now()) {
-    return;
-  }
-
-  localStorage.setItem("lume-upgrade", Date.now().toString());
-
-  const latest = stable
-    ? await getLatestVersion()
-    : await getLatestDevelopmentVersion();
-
-  if (current === latest) {
-    return;
-  }
-
-  const command = stable ? "lume upgrade" : "lume upgrade --dev";
-  return { current, latest, command };
-}
-
 /** Returns the _config file of a site */
 export async function getConfigFile(
-  root: string = Deno.cwd(),
-  config?: string,
+  path?: string,
 ): Promise<string | undefined> {
-  root = resolve(Deno.cwd(), root);
-
-  if (config) {
-    const path = join(root, config);
-
-    if (await exists(path)) {
-      return path;
+  if (path) {
+    try {
+      return await Deno.realPath(path);
+    } catch {
+      throw new Error(`Config file not found (${path})`);
     }
-
-    throw new Exception("Config file not found", { path });
   }
 
-  const files = ["_config.js", "_config.ts"];
+  const paths = ["_config.js", "_config.ts"];
 
-  for (const file of files) {
-    const path = posix.join(root, file);
-
-    if (await exists(path)) {
-      return path;
+  for (const path of paths) {
+    try {
+      return await Deno.realPath(path);
+    } catch {
+      // Ignore
     }
   }
 }
 
-/** Basic options for deno.json file */
-export interface DenoConfig {
-  importMap?: string;
-  tasks?: Record<string, string>;
-  [key: string]: unknown;
+export interface DenoConfigResult {
+  file: string;
+  config: DenoConfig;
+  importMap?: ImportMap;
 }
 
-/** Return the file name and the content of the deno config file */
-export async function getDenoConfig(): Promise<
-  { file: string; config: DenoConfig } | undefined
-> {
+/** Detect and returns the Deno configuration */
+export async function readDenoConfig(): Promise<DenoConfigResult | undefined> {
   for (const file of ["deno.json", "deno.jsonc"]) {
     try {
       const content = await Deno.readTextFile(file);
-      return { file, config: parse(content) as DenoConfig };
+      const config = parse(content) as DenoConfig;
+      let importMap: ImportMap | undefined;
+
+      if (config.importMap) {
+        importMap = isUrl(config.importMap)
+          ? await (await fetch(config.importMap)).json()
+          : await JSON.parse(await Deno.readTextFile(config.importMap));
+      } else if (config.imports) {
+        importMap = {
+          imports: config.imports as Record<string, string>,
+          scopes: config.scopes as Record<string, Record<string, string>>,
+        };
+      }
+      return { file, config, importMap };
     } catch (err) {
       if (err instanceof Deno.errors.NotFound) {
         continue;
@@ -250,105 +351,199 @@ export async function getDenoConfig(): Promise<
   }
 }
 
-export async function loadImportMap(url: URL): Promise<ImportMap> {
-  return await (await fetch(url)).json() as ImportMap;
-}
+export function updateLumeVersion(url: URL, denoConfig: DenoConfigResult) {
+  denoConfig.importMap ??= { imports: {} };
 
-/**
- * Return a data url with the import map of Lume
- * Optionally merge it with a custom import map from the user
- */
-export async function getImportMap(mapFile?: string): Promise<ImportMap> {
-  const map: ImportMap = {
-    imports: {
-      "lume/": new URL("./", baseUrl).href,
-    },
-  };
+  const { config, importMap } = denoConfig;
 
-  if (mapFile) {
-    const importMap = await loadImportMap(await toUrl(mapFile));
-
-    map.imports = { ...importMap.imports, ...map.imports };
-    map.scopes = importMap.scopes;
+  // Configure the import map
+  if (Deno.version.deno < "1.30.0") {
+    config.importMap ||= "./import_map.json";
   }
 
-  return map;
-}
+  const oldUrl = importMap.imports["lume/"];
+  const newUrl = new URL("./", url).href;
+  importMap.imports["lume/"] = newUrl;
 
-export type SpecifierMap = Record<string, string>;
-
-/** Check the compatibility with the current Deno version */
-export interface DenoInfo {
-  current: string;
-  minimum: string;
-  command: string;
-}
-
-export function checkDenoVersion(): DenoInfo | undefined {
-  const minimum = "1.20.1";
-  const current = Deno.version.deno;
-
-  if (current < minimum) {
-    return { current, minimum, command: "deno upgrade" };
+  for (const [specifier, url] of Object.entries(importMap.imports)) {
+    if (url.startsWith(oldUrl)) {
+      importMap.imports[specifier] = url.replace(oldUrl, newUrl);
+    }
   }
+
+  // Configure lume tasks
+  const tasks = config.tasks || {};
+  if (!tasks.lume || !tasks.lume.includes(`echo "import 'lume/cli.ts'"`)) {
+    tasks.lume = `echo "import 'lume/cli.ts'" | deno run --unstable -A -`;
+    tasks.build = "deno task lume";
+    tasks.serve = "deno task lume -s";
+  }
+  config.tasks = tasks;
+}
+
+/** Update the Deno configuration */
+export async function writeDenoConfig(options: DenoConfigResult) {
+  const { file, config, importMap } = options;
+
+  if (importMap && !config.importMap) {
+    config.imports = importMap.imports;
+    config.scopes = importMap.scopes;
+  }
+
+  if (config.importMap) {
+    const importMapFile = join(dirname(file), config.importMap);
+    await Deno.writeTextFile(
+      importMapFile,
+      JSON.stringify(importMap, null, 2) + "\n",
+    );
+    console.log(brightGreen("Import map file saved:"), importMapFile);
+  }
+
+  if (extname(file) === ".jsonc") {
+    const save = confirm(
+      "Saving the deno.jsonc file will overwrite the comments. Continue?",
+    );
+
+    if (!save) {
+      console.log(
+        "You have to update your deno.jsonc file manually with the following content:",
+      );
+      console.log(dim(JSON.stringify(config, null, 2)));
+      console.log("Use deno.json to update it automatically without asking.");
+      return;
+    }
+  }
+  await Deno.writeTextFile(file, JSON.stringify(config, null, 2) + "\n");
+  console.log("Deno configuration file saved:", gray(file));
 }
 
 export function isUrl(path: string): boolean {
   return !!path.match(/^(https?|file):\/\//);
 }
-
-export async function toUrl(path: string, resolve = true): Promise<URL> {
-  if (isUrl(path)) {
-    return new URL(path);
-  }
-
-  if (!resolve) {
-    return toFileUrl(path);
-  }
-
-  return toFileUrl(await Deno.realPath(path));
+export function isAbsolutePath(path: string): boolean {
+  return SEP !== "/" ? /^\w:[\/\\]/.test(path) : path.startsWith("/");
 }
 
-export function createDate(str: string | number): Date | undefined {
-  if (typeof str === "number") {
-    return new Date(str);
+export function replaceExtension(
+  path: string | false,
+  ext: string,
+): string | false {
+  if (!path) {
+    return false;
   }
-
-  const datetime = str.match(
-    /^(\d{4})-(\d\d)-(\d\d)(?:-(\d\d)-(\d\d)(?:-(\d\d))?)?$/,
-  );
-
-  if (datetime) {
-    const [, year, month, day, hour, minute, second] = datetime;
-
-    return new Date(Date.UTC(
-      parseInt(year),
-      parseInt(month) - 1,
-      parseInt(day),
-      hour ? parseInt(hour) : 0,
-      minute ? parseInt(minute) : 0,
-      second ? parseInt(second) : 0,
-    ));
-  }
-
-  if (str.match(/^\d+$/)) {
-    return new Date(parseInt(str));
-  }
+  return path.replace(/\.\w+$/, ext);
 }
 
-export async function read(path: string, isBinary: true): Promise<Uint8Array>;
-export async function read(path: string, isBinary: false): Promise<string>;
+export function getPathAndExtension(path: string): [string, string] {
+  const extension = getExtension(path);
+  const pathWithoutExtension = path.slice(0, -extension.length);
+  return [pathWithoutExtension, extension];
+}
+
+export function getExtension(path: string): string {
+  const match = path.match(/\.\w+$/);
+  return match ? match[0] : "";
+}
+
 export async function read(
   path: string,
   isBinary: boolean,
+): Promise<Uint8Array | string>;
+export async function read(
+  path: string,
+  isBinary: true,
+  init?: RequestInit,
+): Promise<Uint8Array>;
+export async function read(
+  path: string,
+  isBinary: false,
+  init?: RequestInit,
+): Promise<string>;
+export async function read(
+  path: string,
+  isBinary: boolean,
+  init?: RequestInit,
 ): Promise<string | Uint8Array> {
   if (!isUrl(path)) {
+    if (path.startsWith("data:")) {
+      const response = await fetch(path);
+
+      return isBinary
+        ? new Uint8Array(await response.arrayBuffer())
+        : response.text();
+    }
+
     return isBinary ? Deno.readFile(path) : Deno.readTextFile(path);
   }
 
-  const response = await fetch(path);
+  const url = new URL(path);
+
+  if (url.protocol === "file:") {
+    return isBinary ? Deno.readFile(url) : Deno.readTextFile(url);
+  }
+
+  const cache = await caches.open("lume_remote_files");
+
+  // Prevent https://github.com/denoland/deno/issues/19696
+  try {
+    const cached = await cache.match(url);
+
+    if (cached) {
+      return isBinary
+        ? new Uint8Array(await cached.arrayBuffer())
+        : cached.text();
+    }
+  } catch {
+    // ignore
+  }
+
+  const response = await fetch(url, init);
+  await cache.put(url, response.clone());
 
   return isBinary
     ? new Uint8Array(await response.arrayBuffer())
     : response.text();
+}
+
+/**
+ * Check if the content variable is a generator.
+ */
+export function isGenerator(
+  content: unknown,
+): content is GeneratorFunction | AsyncGeneratorFunction {
+  if (typeof content !== "function") {
+    return false;
+  }
+
+  const name = content.constructor.name;
+  return (name === "GeneratorFunction" || name === "AsyncGeneratorFunction");
+}
+
+/**
+ * Resolve the path of an included file
+ * Used in the template engines and processors
+ */
+export function resolveInclude(
+  path: string,
+  includesDir: string,
+  fromDir?: string,
+  rootToRemove?: string,
+): string {
+  if (isUrl(path)) {
+    return path;
+  }
+
+  if (path.startsWith(".")) {
+    if (!fromDir) {
+      throw new Error(`Cannot load "${path}" without a base directory`);
+    }
+
+    return normalizePath(posix.join(fromDir, path), rootToRemove);
+  }
+
+  const normalized = normalizePath(path, rootToRemove);
+
+  return normalized.startsWith(normalizePath(posix.join(includesDir, "/")))
+    ? normalized
+    : normalizePath(posix.join(includesDir, normalized));
 }

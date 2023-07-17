@@ -1,4 +1,5 @@
 import { getLumeVersion, merge } from "../core/utils.ts";
+import { getDataValue } from "./utils.ts";
 
 import type { Page, Site } from "../core.ts";
 import type { HTMLDocument } from "../deps/dom.ts";
@@ -12,6 +13,9 @@ export interface Options {
 }
 
 export interface MetaData {
+  /** The type of the site default is website */
+  type: string;
+
   /** The name of the site */
   site: string;
 
@@ -58,6 +62,11 @@ export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
+    // Configure the merged keys
+    const mergedKeys = site.scopedData.get("/")?.mergedKeys || {};
+    mergedKeys[options.name] = "object";
+    site.data("mergedKeys", mergedKeys);
+
     site.process(options.extensions, metas);
 
     function metas(page: Page) {
@@ -67,23 +76,39 @@ export default function (userOptions?: Partial<Options>) {
         return;
       }
 
-      const { document } = page;
+      const { document, data } = page;
+      const metaIcon = getDataValue(data, metas["icon"]);
+      const metaImage = getDataValue(data, metas["image"]);
+
       const url = site.url(page.data.url as string, true);
-      const icon = metas.icon ? site.url(metas.icon, true) : undefined;
-      const image = metas.image ? site.url(metas.image, true) : undefined;
+      const icon = metaIcon ? new URL(site.url(metaIcon), url).href : undefined;
+      const image = metaImage
+        ? new URL(site.url(metaImage), url).href
+        : undefined;
+
+      const type = getDataValue(data, metas["type"]);
+      const site_name = getDataValue(data, metas["site"]);
+      const lang = getDataValue(data, metas["lang"]);
+      const title = getDataValue(data, metas["title"]);
+      const description = getDataValue(data, metas["description"]);
+      const twitter = getDataValue(data, metas["twitter"]);
+      const keywords = getDataValue(data, metas["keywords"]);
+      const robots = getDataValue(data, metas["robots"]);
+      const color = getDataValue(data, metas["color"]);
+      const generator = getDataValue(data, metas["generator"]);
 
       // Open graph
-      addMeta(document, "property", "og:type", "website");
-      addMeta(document, "property", "og:site_name", metas.site);
-      addMeta(document, "property", "og:locale", metas.lang);
-      addMeta(document, "property", "og:title", metas.title, 65);
-      addMeta(document, "property", "og:description", metas.description, 155);
+      addMeta(document, "property", "og:type", type || "website");
+      addMeta(document, "property", "og:site_name", site_name);
+      addMeta(document, "property", "og:locale", lang);
+      addMeta(document, "property", "og:title", title, 65);
+      addMeta(document, "property", "og:description", description, 155);
       addMeta(document, "property", "og:url", url);
       addMeta(document, "property", "og:image", image || icon);
 
       // Twitter cards
-      addMeta(document, "name", "twitter:title", metas.title, 65);
-      addMeta(document, "name", "twitter:description", metas.description, 200);
+      addMeta(document, "name", "twitter:title", title, 65);
+      addMeta(document, "name", "twitter:description", description, 200);
       addMeta(
         document,
         "name",
@@ -91,34 +116,34 @@ export default function (userOptions?: Partial<Options>) {
         image ? "summary_large_image" : "summary",
       );
       addMeta(document, "name", "twitter:image", image || icon);
-      addMeta(document, "name", "twitter:site", metas.twitter);
+      addMeta(document, "name", "twitter:site", twitter);
 
       // Schema.org
-      addMeta(document, "itemprop", "name", metas.title);
-      addMeta(document, "itemprop", "description", metas.description, 155);
+      addMeta(document, "itemprop", "name", title);
+      addMeta(document, "itemprop", "description", description, 155);
       addMeta(document, "itemprop", "image", image || icon);
 
       // SEO
-      addMeta(document, "name", "description", metas.description, 155);
-      addMeta(document, "name", "keywords", metas.keywords?.join(", "));
+      addMeta(document, "name", "description", description, 155);
+      addMeta(document, "name", "keywords", keywords?.join(", "));
 
-      if (metas.robots === true) {
+      if (robots === true) {
         addMeta(document, "name", "robots", "index, follow");
-      } else if (metas.robots === false) {
+      } else if (robots === false) {
         addMeta(document, "name", "robots", "noindex, nofollow, noarchive");
-      } else if (metas.robots) {
-        addMeta(document, "name", "robots", metas.robots);
+      } else if (robots) {
+        addMeta(document, "name", "robots", robots);
       }
 
       // Misc
-      addMeta(document, "name", "theme-color", metas.color);
+      addMeta(document, "name", "theme-color", color);
 
-      if (metas.generator) {
+      if (generator) {
         addMeta(
           document,
           "name",
           "generator",
-          metas.generator === true ? defaultGenerator : metas.generator,
+          generator === true ? defaultGenerator : generator,
         );
       }
     }
@@ -135,7 +160,10 @@ function addMeta(
   if (!content) {
     return;
   }
-  content = content.trim();
+  content = content
+    .replaceAll(/<[^>]*>/g, "")
+    .replaceAll(/\s+/g, " ")
+    .trim();
 
   if (limit && content.length > limit) {
     content = content.substr(0, limit - 1).trimEnd() + "…";

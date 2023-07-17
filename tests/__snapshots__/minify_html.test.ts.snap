@@ -1,0 +1,246 @@
+export const snapshot = {};
+
+snapshot[`minify_html plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/index.njk",
+  ],
+}
+`;
+
+snapshot[`minify_html plugin 2`] = `[]`;
+
+snapshot[`minify_html plugin 3`] = `
+[
+  {
+    content: \`<!doctype html><html lang=en><meta charset=UTF-8><meta content="IE=edge"http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0"name=viewport><title>Document</title><style>body{color:#333;font:14px/1.42857143 'Open Sans',sans-serif;background:#fff}h1{font-size:1.5em;margin-top:0;margin-bottom:.5em}</style><body><h1>Hello World</h1><script>var a=1;var b=2;var c=a+ b;console.log(c)</script>\`,
+    data: {
+      children: "<!DOCTYPE html>
+" +
+        '<html lang="en">
+' +
+        "<head>
+" +
+        '  <meta charset="UTF-8">
+' +
+        '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+' +
+        '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+        "  <title>Document</title>
+" +
+        "  <style>
+" +
+        "    body {
+" +
+        "      font-family: 'Open Sans', sans-serif;
+" +
+        "      font-size: 14px;
+" +
+        "      line-height: 1.42857143;
+" +
+        "      color: #333;
+" +
+        "      background-color: #fff;
+" +
+        "    }
+" +
+        "    h1 {
+" +
+        "      font-size: 1.5em;
+" +
+        "      margin-top: 0;
+" +
+        "      margin-bottom: .5em;
+" +
+        "    }
+" +
+        "  </style>
+" +
+        "</head>
+" +
+        "<body>
+" +
+        "  <h1>Hello World</h1>
+" +
+        "  <script>
+" +
+        "    var a = 1;
+" +
+        "    var b = 2;
+" +
+        "    var c = a + b;
+" +
+        "    console.log(c);
+" +
+        "  </script>
+" +
+        "</body>
+" +
+        "</html>",
+      content: "<!DOCTYPE html>
+" +
+        '<html lang="en">
+' +
+        "<head>
+" +
+        '  <meta charset="UTF-8">
+' +
+        '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+' +
+        '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+' +
+        "  <title>Document</title>
+" +
+        "  <style>
+" +
+        "    body {
+" +
+        "      font-family: 'Open Sans', sans-serif;
+" +
+        "      font-size: 14px;
+" +
+        "      line-height: 1.42857143;
+" +
+        "      color: #333;
+" +
+        "      background-color: #fff;
+" +
+        "    }
+" +
+        "    h1 {
+" +
+        "      font-size: 1.5em;
+" +
+        "      margin-top: 0;
+" +
+        "      margin-bottom: .5em;
+" +
+        "    }
+" +
+        "  </style>
+" +
+        "</head>
+" +
+        "<body>
+" +
+        "  <h1>Hello World</h1>
+" +
+        "  <script>
+" +
+        "    var a = 1;
+" +
+        "    var b = 2;
+" +
+        "    var c = a + b;
+" +
+        "    console.log(c);
+" +
+        "  </script>
+" +
+        "</body>
+" +
+        "</html>",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+]
+`;

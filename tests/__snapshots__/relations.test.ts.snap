@@ -1,0 +1,467 @@
+export const snapshot = {};
+
+snapshot[`relations plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/categories.njk",
+    "/_includes/comment.njk",
+    "/_includes/posts.njk",
+    "/categories",
+    "/categories/_data.yml",
+    "/categories/category-1.md",
+    "/categories/category-2.md",
+    "/comments",
+    "/comments/_data.yml",
+    "/comments/comment-1.md",
+    "/comments/comment-2.md",
+    "/comments/comment-3.md",
+    "/posts",
+    "/posts/_data.yml",
+    "/posts/post-1.md",
+    "/posts/post-2.md",
+  ],
+}
+`;
+
+snapshot[`relations plugin 2`] = `[]`;
+
+snapshot[`relations plugin 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<h1>Category 1</h1>
+" +
+      "
+" +
+      "<div><p>This is the first category</p>
+" +
+      "</div>
+" +
+      "
+" +
+      "<h2>Posts</h2>
+" +
+      "<ul>
+" +
+      "
+" +
+      "</ul>
+",
+    data: {
+      children: "<p>This is the first category</p>
+",
+      content: "This is the first category
+",
+      date: [],
+      layout: "categories.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      post: "Array(1)",
+      renderOrder: -2,
+      search: [],
+      slug: "category-1",
+      tags: "Array(0)",
+      title: "Category 1",
+      type: "category",
+      url: "/categories/category-1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/categories/category-1",
+      remote: undefined,
+      slug: "category-1",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<h1>Category 2</h1>
+" +
+      "
+" +
+      "<div><p>This is the second category</p>
+" +
+      "</div>
+" +
+      "
+" +
+      "<h2>Posts</h2>
+" +
+      "<ul>
+" +
+      "
+" +
+      "</ul>
+",
+    data: {
+      children: "<p>This is the second category</p>
+",
+      content: "This is the second category
+",
+      date: [],
+      layout: "categories.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      post: "Array(1)",
+      search: [],
+      slug: "category-2",
+      tags: "Array(0)",
+      title: "Category 2",
+      type: "category",
+      url: "/categories/category-2/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/categories/category-2",
+      remote: undefined,
+      slug: "category-2",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<p>This is the first comment</p>
+",
+    data: {
+      children: "<p>This is the first comment</p>
+",
+      content: "This is the first comment
+",
+      date: [],
+      id: 1,
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      post: "Array(1)",
+      search: [],
+      tags: "Array(0)",
+      type: "comment",
+      url: "/comments/comment-1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/comments/comment-1",
+      remote: undefined,
+      slug: "comment-1",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<p>This is the second comment</p>
+",
+    data: {
+      children: "<p>This is the second comment</p>
+",
+      content: "This is the second comment
+",
+      date: [],
+      id: 2,
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      post: "Array(1)",
+      renderOrder: -1,
+      search: [],
+      tags: "Array(0)",
+      type: "comment",
+      url: "/comments/comment-2/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/comments/comment-2",
+      remote: undefined,
+      slug: "comment-2",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<p>This is the third comment</p>
+",
+    data: {
+      children: "<p>This is the third comment</p>
+",
+      content: "This is the third comment
+",
+      date: [],
+      id: 3,
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      post: "Array(1)",
+      search: [],
+      tags: "Array(0)",
+      type: "comment",
+      url: "/comments/comment-3/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/comments/comment-3",
+      remote: undefined,
+      slug: "comment-3",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<div><p>First post with category 2 and comments 1 and 3</p>
+" +
+      "</div>
+" +
+      "
+" +
+      "  
+" +
+      "<h2>Category:</h2>
+" +
+      '<a href="/categories/category-2/">Category 2</a>
+' +
+      "<p>This is the second category</p>
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "
+" +
+      "</ul>",
+    data: {
+      category: [
+        "mergedKeys",
+        "paginate",
+        "search",
+        "tags",
+        "type",
+        "layout",
+        "title",
+        "slug",
+        "content",
+        "url",
+        "date",
+        "page",
+        "children",
+        "post",
+      ],
+      category_id: "category-2",
+      children: "<p>First post with category 2 and comments 1 and 3</p>
+",
+      comment_id: "Array(2)",
+      comments: "Array(2)",
+      content: "First post with category 2 and comments 1 and 3
+",
+      date: [],
+      id: "first-post",
+      layout: "posts.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      renderOrder: 1,
+      search: [],
+      tags: "Array(0)",
+      type: "post",
+      url: "/posts/post-1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/posts/post-1",
+      remote: undefined,
+      slug: "post-1",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<div><p>Second post with category 1 and comment 2</p>
+" +
+      "</div>
+" +
+      "
+" +
+      "  
+" +
+      "<h2>Category:</h2>
+" +
+      '<a href="/categories/category-1/">Category 1</a>
+' +
+      "<p>This is the first category</p>
+" +
+      "
+" +
+      "
+" +
+      "<ul>
+" +
+      "
+" +
+      "</ul>",
+    data: {
+      category: [
+        "mergedKeys",
+        "paginate",
+        "search",
+        "tags",
+        "type",
+        "layout",
+        "title",
+        "slug",
+        "renderOrder",
+        "content",
+        "url",
+        "date",
+        "page",
+        "children",
+        "post",
+      ],
+      category_id: "category-1",
+      children: "<p>Second post with category 1 and comment 2</p>
+",
+      comment_id: "Array(1)",
+      comments: "Array(1)",
+      content: "Second post with category 1 and comment 2
+",
+      date: [],
+      id: "second-post",
+      layout: "posts.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      type: "post",
+      url: "/posts/post-2/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/posts/post-2",
+      remote: undefined,
+      slug: "post-2",
+    },
+  },
+]
+`;

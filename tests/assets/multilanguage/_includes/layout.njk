@@ -1,0 +1,11 @@
+<nav>
+{% for item in alternates %}
+  <a href="{{ item.url }}" hreflang={{ item.lang }} class="alternate">{{ item.title }}</a>
+{% endfor %}
+</nav
+
+<ul>
+{% for item in results %}
+  <li>{{ item.title }}</li>
+{% endfor %}
+</ul>

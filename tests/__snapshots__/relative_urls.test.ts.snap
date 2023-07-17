@@ -1,235 +1,388 @@
 export const snapshot = {};
 
-snapshot[`relative_url plugin 1`] = `4`;
-
-snapshot[`relative_url plugin 2`] = `
+snapshot[`relative_url plugin 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/about-us",
+    "/about-us/contact.md",
+    "/about-us/index.md",
+    "/about-us/presentation.md",
+    "/index.md",
+  ],
 }
 `;
+
+snapshot[`relative_url plugin 2`] = `[]`;
 
 snapshot[`relative_url plugin 3`] = `
 [
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head></head><body><p>Contact</p>
+" +
+      "<ul>
+" +
+      '<li><a href="../..">Index</a></li>
+' +
+      '<li><a href="..">About us</a></li>
+' +
+      '<li><a href="">Contact</a></li>
+' +
+      '<li><a href="../presentation">Presentation</a></li>
+' +
+      "</ul>
+" +
+      "</body></html>",
+    data: {
+      children: "<p>Contact</p>
+" +
+        "<ul>
+" +
+        '<li><a href="/">Index</a></li>
+' +
+        '<li><a href="/about-us">About us</a></li>
+' +
+        '<li><a href="/about-us/contact">Contact</a></li>
+' +
+        '<li><a href="/about-us/presentation">Presentation</a></li>
+' +
+        "</ul>
+",
+      content: "Contact
+" +
+        "
+" +
+        "- [Index](/)
+" +
+        "- [About us](/about-us)
+" +
+        "- [Contact](/about-us/contact)
+" +
+        "- [Presentation](/about-us/presentation)
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/about-us/contact/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/about-us/contact",
+      remote: undefined,
+      slug: "contact",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head></head><body><p>About us</p>
+" +
+      "<ul>
+" +
+      '<li><a href="..">Index</a></li>
+' +
+      '<li><a href="">About us</a></li>
+' +
+      '<li><a href="contact">Contact</a></li>
+' +
+      '<li><a href="presentation">Presentation</a></li>
+' +
+      "</ul>
+" +
+      "</body></html>",
+    data: {
+      children: "<p>About us</p>
+" +
+        "<ul>
+" +
+        '<li><a href="/">Index</a></li>
+' +
+        '<li><a href="/about-us">About us</a></li>
+' +
+        '<li><a href="/about-us/contact">Contact</a></li>
+' +
+        '<li><a href="/about-us/presentation">Presentation</a></li>
+' +
+        "</ul>
+",
+      content: "About us
+" +
+        "
+" +
+        "- [Index](/)
+" +
+        "- [About us](/about-us)
+" +
+        "- [Contact](/about-us/contact)
+" +
+        "- [Presentation](/about-us/presentation)
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/about-us/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/about-us/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head></head><body><p>Presentation</p>
+" +
+      "<ul>
+" +
+      '<li><a href="../..">Index</a></li>
+' +
+      '<li><a href="..">About us</a></li>
+' +
+      '<li><a href="../contact">Contact</a></li>
+' +
+      '<li><a href="">Presentation</a></li>
+' +
+      "</ul>
+" +
+      "</body></html>",
+    data: {
+      children: "<p>Presentation</p>
+" +
+        "<ul>
+" +
+        '<li><a href="/">Index</a></li>
+' +
+        '<li><a href="/about-us">About us</a></li>
+' +
+        '<li><a href="/about-us/contact">Contact</a></li>
+' +
+        '<li><a href="/about-us/presentation">Presentation</a></li>
+' +
+        "</ul>
+",
+      content: "Presentation
+" +
+        "
+" +
+        "- [Index](/)
+" +
+        "- [About us](/about-us)
+" +
+        "- [Contact](/about-us/contact)
+" +
+        "- [Presentation](/about-us/presentation)
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/about-us/presentation/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/about-us/presentation",
+      remote: undefined,
+      slug: "presentation",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head></head><body><p>Index</p>
+" +
+      "<ul>
+" +
+      '<li><a href="">Index</a></li>
+' +
+      '<li><a href="about-us">About us</a></li>
+' +
+      '<li><a href="./about-us/contact">Contact</a></li>
+' +
+      '<li><a href="about-us/presentation">Presentation</a></li>
+' +
+      '<li><a href="?ignored=true">Ignored</a></li>
+' +
+      '<li><a href="#ignored">Ignored</a></li>
+' +
+      '<li><a href="https://ignored.com">Ignored</a></li>
+' +
+      '<li><a href="//ignored.com">Ignored</a></li>
+' +
+      "</ul>
+" +
+      "</body></html>",
+    data: {
+      children: "<p>Index</p>
+" +
+        "<ul>
+" +
+        '<li><a href="/">Index</a></li>
+' +
+        '<li><a href="about-us">About us</a></li>
+' +
+        '<li><a href="./about-us/contact">Contact</a></li>
+' +
+        '<li><a href="about-us/presentation">Presentation</a></li>
+' +
+        '<li><a href="?ignored=true">Ignored</a></li>
+' +
+        '<li><a href="#ignored">Ignored</a></li>
+' +
+        '<li><a href="https://ignored.com">Ignored</a></li>
+' +
+        '<li><a href="//ignored.com">Ignored</a></li>
+' +
+        "</ul>
+",
+      content: "Index
+" +
+        "
+" +
+        "- [Index](/)
+" +
+        "- [About us](about-us)
+" +
+        "- [Contact](./about-us/contact)
+" +
+        "- [Presentation](about-us/presentation)
+" +
+        "- [Ignored](?ignored=true)
+" +
+        "- [Ignored](#ignored)
+" +
+        "- [Ignored](https://ignored.com)
+" +
+        "- [Ignored](//ignored.com)
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
 ]
-`;
-
-snapshot[`relative_url plugin 4`] = `
-{
-  content: '<!DOCTYPE html>
-<html><head></head><body><p>Contact</p>
-<ul>
-<li><a href="../..">Index</a></li>
-<li><a href="..">About us</a></li>
-<li><a href="">Contact</a></li>
-<li><a href="../presentation">Presentation</a></li>
-</ul>
-</body></html>',
-  data: {
-    content: "Contact
-
-- [Index](/)
-- [About us](/about-us)
-- [Contact](/about-us/contact)
-- [Presentation](/about-us/presentation)
-",
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/about-us/contact/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/about-us/contact/index",
-  },
-  src: {
-    ext: ".md",
-    path: "/about-us/contact",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`relative_url plugin 5`] = `
-{
-  content: '<!DOCTYPE html>
-<html><head></head><body><p>About us</p>
-<ul>
-<li><a href="..">Index</a></li>
-<li><a href="">About us</a></li>
-<li><a href="contact">Contact</a></li>
-<li><a href="presentation">Presentation</a></li>
-</ul>
-</body></html>',
-  data: {
-    content: "About us
-
-- [Index](/)
-- [About us](/about-us)
-- [Contact](/about-us/contact)
-- [Presentation](/about-us/presentation)
-",
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/about-us/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/about-us/index",
-  },
-  src: {
-    ext: ".md",
-    path: "/about-us/index",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`relative_url plugin 6`] = `
-{
-  content: '<!DOCTYPE html>
-<html><head></head><body><p>Presentation</p>
-<ul>
-<li><a href="../..">Index</a></li>
-<li><a href="..">About us</a></li>
-<li><a href="../contact">Contact</a></li>
-<li><a href="">Presentation</a></li>
-</ul>
-</body></html>',
-  data: {
-    content: "Presentation
-
-- [Index](/)
-- [About us](/about-us)
-- [Contact](/about-us/contact)
-- [Presentation](/about-us/presentation)
-",
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/about-us/presentation/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/about-us/presentation/index",
-  },
-  src: {
-    ext: ".md",
-    path: "/about-us/presentation",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`relative_url plugin 7`] = `
-{
-  content: '<!DOCTYPE html>
-<html><head></head><body><p>Index</p>
-<ul>
-<li><a href="">Index</a></li>
-<li><a href="about-us">About us</a></li>
-<li><a href="./about-us/contact">Contact</a></li>
-<li><a href="about-us/presentation">Presentation</a></li>
-<li><a href="?ignored=true">Ignored</a></li>
-<li><a href="#ignored">Ignored</a></li>
-<li><a href="https://ignored.com">Ignored</a></li>
-<li><a href="//ignored.com">Ignored</a></li>
-</ul>
-</body></html>',
-  data: {
-    content: "Index
-
-- [Index](/)
-- [About us](about-us)
-- [Contact](./about-us/contact)
-- [Presentation](about-us/presentation)
-- [Ignored](?ignored=true)
-- [Ignored](#ignored)
-- [Ignored](https://ignored.com)
-- [Ignored](//ignored.com)
-",
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/index",
-  },
-  src: {
-    ext: ".md",
-    path: "/index",
-    remote: undefined,
-  },
-}
 `;

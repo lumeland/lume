@@ -1,32 +1,18 @@
-import {
-  assertEquals,
-  assertStrictEquals as equals,
-  assertStringIncludes as contains,
-} from "../deps/assert.ts";
-import { getSite } from "./utils.ts";
+import { assertEquals, assertStrictEquals as equals } from "../deps/assert.ts";
+import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import { SiteEvent } from "../core.ts";
 
-Deno.test("build a simple site", async () => {
+Deno.test("build a simple site", async (t) => {
   const site = getSite({
     src: "simple",
   });
 
-  await site.build();
-
-  const { pages } = site;
-
-  // Test the generated pages
-  equals(pages.length, 1);
-  equals(pages[0].src.path, "/page1");
-  equals(pages[0].src.ext, ".md");
-  equals(pages[0].dest.path, "/page1/index");
-  equals(pages[0].dest.ext, ".html");
-  equals(pages[0].data.url, "/page1/");
-  contains(pages[0].content as string, "<h1>Welcome</h1>");
+  await build(site);
+  await assertSiteSnapshot(t, site);
 
   // Test the enumerated properties
   const page = site.pages[0];
-  assertEquals(Object.keys(page), ["src", "dest", "data"]);
+  assertEquals(Object.keys(page), ["src", "data"]);
 });
 
 Deno.test("build/update events", async () => {
@@ -35,13 +21,12 @@ Deno.test("build/update events", async () => {
       src: "empty",
     },
     {},
-    false,
   );
 
   const events: string[] = [];
 
   const listener = (event: SiteEvent) => events.push(event.type);
-  const updateListener = (event: SiteEvent) => {
+  const updateListener = (event: SiteEvent<"beforeUpdate" | "afterUpdate">) => {
     equals(event.files!.size, 1);
     equals(event.files!.has("/page1.md"), true);
     listener(event);

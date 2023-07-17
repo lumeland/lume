@@ -1,15 +1,537 @@
-<!-- deno-fmt-ignore-file -->
-
 # Changelog
-
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
-and this project adheres to [Semantic Versioning](https://semver.org/).
+and this project try to adheres to [Semantic Versioning](https://semver.org/),
+but not always is possible (due the use of unstable features from Deno).
+Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [Unreleased]
+## [1.18.2] - Unreleased
+### Fixed
+- Assets with subextensions (like `.min.css`) are not exported correctly [#448].
+- Esbuild plugin fixes:
+  - Send browser's User-Agent headers to esm.sh
+    to ensure browser compatible code [#442].
+  - Save the esm.sh requests in cache.
+    This ensure the plugin will works ofline, once the requests are cached.
+  - Change the order of the custom plugins [#445]
+- Updated deps: `terser`, `std`, `preact`, `postcss`, `liquid`.
+
+## [1.18.1] - 2023-07-05
+### Fixed
+- Updated deps: `std`, `esbuild`, `katex`, `lightningcss`, `postcss-nesting`, `terser`, `vento`.
+- Ensure cached remote files are refreshed if something fails.
+- Support for `data:` urls to esbuild [#442].
+- Some TypeScript errors [#441].
+
+## [1.18.0] - 2023-06-28
 ### Added
-- New `stopWords` option to `slugify_urls` plugin [#243].
+- TOML Plugin [#432].
+- JSON Plugin supports `.jsonc` files [#433].
+- Frontmatter support for JSON / TOML format [#434].
+- Picture plugin [#384].
+- Vento plugin.
+- Support for symlinks in the src folder.
+
+### Changed
+- `lightningcss` plugin bundles the CSS code by default.
+  Set the option `includes: false` to only transform the code.
+- Improved type annotation of `Site.addEventListener`.
+
+### Fixed
+- Searcher returns the 404 page.
+- Asset pages generated from a generator.
+- postcss overrides the default includes path for CSS files.
+- Nunjucks relative includes.
+- Updated dependencies: `std`, `esbuild`, `eta`, `liquidjs`, `postcss-nesting`, `preact-render-to-string`, `sass`, `terser`.
+
+## [1.17.5] - 2023-06-08
+### Fixed
+- `Site.copy` now works as expected when given a path with a trailing slash. [#426]
+- YAML front matters containing only a comment no longer result in an error. [#431]
+- `@import` to includes folders in SASS plugin.
+- File watcher when a new directory is added.
+- File watcher enter in an infinite loop in some cases.
+- Updated dependencies: `std`, `lightningcss`, `liquidjs`, `postcss`, `preact`, `terser`.
+
+## [1.17.4] - 2023-05-25
+### Added
+- The env variable `LUME_ENV=development` is created when `deno task lume --dev`.
+- New `site.searcher` property with a instance of `Searcher` class.
+  It's used by plugins like `search`, `nav`, `sitemap` and `feed`.
+  (Previouly, each plugin had it's own instance).
+- Cache the remote files using Web Cache API.
+- Support for `changefreq` and `priority` tags to `sitemap` plugin.
+
+### Changed
+- The minimum version of Deno supported is `1.33.4`.
+- `lightningcss` plugin bundlers the CSS code by default
+  (set `includes: false` option to only transform it).
+- BREAKING CHANGE: Removed the sync template loader for nunjucks.
+  Use `asyncEach / endeach` and `ifAsync / endif` instead of `for / endfor` and `if / endif`
+  if you need to include templates between these tags.
+
+### Removed
+- The `site.includesLoader` class.
+
+### Fixed
+- Ignore `/.git` folder by the watcher.
+- Don't show the full path of the files in the output.
+- Don't remove unchanged files [#418].
+- Updated dependencies: `std`, `preact`, `terser`, `remark-parse`, `esbuild`.
+
+## [1.17.3] - 2023-05-10
+### Fixed
+- The `lume/` import is not correctly generated with `lume init`.
+- File system update in watch mode.
+
+## [1.17.2] - 2023-05-09
+### Added
+- Option for specifying the init directory [#417].
+
+### Removed
+- The `deno task lume init` command.
+  Since Lume cannot be installed globally, it doesn't make sense any more.
+
+### Fixed
+- Dot files mustn't be ignored [#419].
+
+## [1.17.1] - 2023-05-08
+### Fixed
+- Changes on static files deletes the file from `_site` [#418].
+
+## [1.17.0] - 2023-05-05
+### Added
+- Feed Plugin [#413]
+- Ability to add extra data to `on_demand` pages.
+- Support for negative tags in `search` plugin. For example:
+  `search.pages("tag1 !tag2")`.
+- Support for remote files in `sass` plugin.
+- Improved `lume init` for some plugins like `mdx` or `tailwindcss`.
+
+### Changed
+- Refactor of the internal file system manager, reducing complexity and fixing some bugs.
+  The `Reader` class was replaced by `FS`.
+- `deno task serve --quiet` no longer logs the http server requests.
+- BREAKING: The `includes` option of `sass` plugin accepts only a string
+  (previously `string[]` was also accepted).
+- BREAKING: Removed all `Deno.run` calls and replaced with the new `Deno.Command` API.
+  -  Removed the `ScriptOptions` argument of `lume.run()`.
+
+### Removed
+- `lume import-map` command.
+- BREAKING: Removed `ci.ts` file. It's no longer needed due Lume is executed from Deno tasks.
+- BREAKING: Removed `install.ts` file.
+
+### Fixed
+- `multilanguage` plugin:
+  The generated `hreflang` links must have the absolute URL and include the current page.
+- Moved the `nunjucks` dependency to `npm:` import [#409].
+- Moved the `tailwindcss` dependency to `npm:` import.
+- `metas` plugin:
+  Remove multiple spaces, line breaks and HTML tags.
+- `pagefind` plugin:
+  Fix the output string to be a string decoded from raw byte data [#411].
+- Duplicate pages on reload files inside `_data/` folders.
+- Updated dependencies: `sass`, `deno_dom`, `nunjucks`, `std`, `esbuild`, `terser`, `katex`, `lightningcss`, `postcss`, `terser`, `liquid`, `tailwindcss`, `katex`, `imagick`, `preact-render-to-string`, `date-fns`.
+
+## [1.16.2] - 2023-04-03
+### Added
+- Not operator for `search` plugin [#406].
+  For example the negation of `level>2` is `level!>2`.
+  - Support for the NOT operator at the beginning: For example `level!>2` and `!level>2` are equivalents.
+
+### Fixed
+- JavaScript source maps on Chrome/Safari [#407]
+- Nunjucks cache for the imported templates.
+- The `multilanguage` plugin doesn't prefix the custom URLs with the language code.
+- Updated dependencies: `std`, `esbuild`.
+
+## [1.16.1] - 2023-03-29
+### Added
+- `esm` option to `esbuild` plugin [#400], [#401].
+- `query` and `sort` arguments to `nav.menu()` and `nav.breadcrumb()`.
+
+### Fixed
+- Return type in Preact engine [#403].
+- `minify_html` plugin configure the site to load the `.html` files as assets.
+- Updated dependencies: `std`, `terser`, `sass`, `esbuild`, `liquid`, `preact`.
+
+## [1.16.0] - 2023-03-21
+### Added
+- New plugin `nav` to create menus using the URL hierarchical structure.
+  It also can create breadcrumbs [#351], [#353].
+- New middleware `serve_folder` to include additional folders to the server [#383].
+- New function `site.copyRemainingFiles()`.
+- New property `page.data.children` to store the rendered page content [#357], [#398].
+- BREAKING: `multilanguage` plugin has changed significally:
+  - It requires to specify the available languages in the configuration. For example:
+    ```js
+    site.use(multilanguage({
+      languages: ["en", "gl"],
+    }))
+    ```
+  - The `page.data.alternates` object has changed the signature to `PageData[]`.
+    Previously it was `Record<string, Page>`.
+  - Different pages can be defined of translated versions of the same page with the new `id` variable.
+  - `mergeLanguages` helper has been removed. Use the `id` value to relate pages.
+- Added support for using prerelease versions of Pagefind [#388].
+- `paginate` plugin: The second argument of `each` function contains the page number.
+- Support `.markdown` file extension for Markdown [#386], [#387].
+- Expose the `PluginOptions` interface [#390].
+- Run the `inline` plugin on elements within a `<template>` element.
+- Added `copyAttributes` option to the `inline` plugin to support custom attributes.
+- Added `foreignKeys[n].filter` option to the `relations` plugin.
+- Allow filename dates to be followed by either an underscore or hyphen [#395].
+
+### Changed
+- Removed global installation in benefit of Deno tasks.
+  If you want to have the `lume` command, install [Lume CLI](https://github.com/lumeland/cli).
+
+### Fixed
+- `--open` flag: Include all platforms supported by Deno.
+- Updated dependencies: `std`, `esbuild`, `liquid`, `preact`, `terser`, `eta`, `pagefind`, `sass`, `autoprefixer`.
+- `reload` middleware doesn't keep the response header.
+
+## [1.15.3] - 2023-02-20
+### Added
+- New hook `markdownIt` to modify the `MarkdownIt` instance directly.
+- New option `lastmod` to the sitemap plugin [#369].
+  It accepts a `string` with the key of the variable (by default is `date`),
+  or a custom function to get the date from the page data.
+- New option `ui.processTerm` to `pagefind` plugin.
+
+### Changed
+- Improved TUI for `init` script [#358], [#374].
+
+### Fixed
+- `inline` plugin: handle `width` and `height` attributes of inlined SVG files.
+- Updated dependencies: `std`, `preact`, `sass`, `terser`, `esbuild`, `imagemagick`, `mdx`, `lighningcss`, `liquid`, `postcss-nesting`, `pagefind`.
+
+## [1.15.2] - 2023-02-02
+### Added
+- Property `inheritData` for components [#364].
+- Support for import maps in the deno.json file.
+
+### Changed
+- Improved the `multilanguage` plugin:
+  - Languages versions stored in different files are better handled.
+  - Removed the root key of the page language.
+
+### Fixed
+- Updated dependencies: `std`, `esbuild`, `eta`, `postcss-nesting`, `terser`, `pagefind`.
+
+## [1.15.1] - 2023-01-14
+### Added
+- Support for `body` filters to Liquid.
+
+### Fixed
+- `--unstable` flag requirement for `lume init`.
+- Error with `npm` specifiers in `lume init` [#359].
+- Updated dependencies: `std`, `esbuild`, `eta`.
+
+## [1.15.0] - 2023-01-10
+### Added
+- Archetypes, that allows to create templates used when creating new content [#337].
+- New plugin `tailwindcss` [#344].
+- Third argument to `site.data()` to customize the data path [#339].
+- Improved the `relations` plugin:
+  - You can configure the key used to save the relations with `relationKey`.
+  - You can configure the key used to save the multiple relations with `pluralRelationKey`.
+- New hook `postcss` to modify the `Processor` instance in a low level way.
+- You can change the `type:og` in lume and default is website [#348].
+
+### Changed
+- `denosass` library has been replaced with [@lumeland/sass](https://www.npmjs.com/package/@lumeland/sass) NPM package
+  (the same code as official NPM Sass package, but with a couple of tweaks to make it work on Deno).
+- BREAKING: The plugin `relations` accepts an object instead of an array
+  to configure the foreign keys:
+  ```ts
+  //Before:
+  foreignKeys: {
+    post: ["post_id", "id"]
+  }
+  // Before
+  foreignKeys: {
+    post: { foreignKey: "post_id", idKey: "id" },
+  }
+  ```
+- BREAKING: The plugin `date` loads `date-fns` dependency from `npm:`.
+  The locales must be loaded from npm. For example:
+  ```ts
+  import gl from "npm:date-fns/locale/gl/index.js";
+  import pt from "npm:date-fns/locale/pt/index.js";
+
+  //...
+  site.use(date({
+    locales: { gl, pt }
+  }))
+  ```
+
+### Removed
+- The `task.ts` file, used in the previous version of deno task.
+
+### Fixed
+- Updated dependencies: `pagefind`, `std`, `cliffy`, `esbuild`, `liquidjs`, `date-fns`, `lightningcss`, `postcss`.
+- Source map with paths with spaces [#341].
+- HTML charset on `reload` and `not_found` middlewares [#342].
+- `lume run` wasn't receiving the argument name properly [#346].
+- Reload the Deno cache after upgrading Lume [#340], [#343].
+- `esbuild` loading for some specifiers defined in the import map.
+
+## [1.14.2] - 2022-12-15
+### Fixed
+- `Deno.spawn` was removed in Deno 1.29 [#338].
+- Updated dependencies: `std`, `esbuild`, `mdx`.
+
+## [1.14.1] - 2022-12-13
+### Fixed
+- A bug in `site.processAll()` and `site.preprocessAll()` causes all pages are processed [#323].
+- Updated `liquidjs` custom tags code.
+- Updated dependencies: `cliffy`, `esbuild`, `katex`, `liquidjs`, `markdown-it-attrs`, `postcss`, `postcss-import`.
+
+## [1.14.0] - 2022-12-12
+### Added
+- Implemented `hooks` [#329].
+  - `addMarkdownItPlugin(plugin, options)`
+  - `addMarkdownItRule(name, rule)`
+  - `addPostcssPlugin(plugin)`
+  - `addEsbuildPlugin(plugin)`
+  - `addNunjucksPlugin(name, fn)`
+- New `components` option to MDX plugin.
+- New plugin `filter_pages` [#254].
+- Added `translations` option for `pagefind` plugin.
+- New functions `site.processAll()` and `site.preprocessAll()` to (pre)process all pages at the same time [#327].
+- A couple of improvements to `metas` plugin:
+  - It's no longer needed to manually define the `mergedKeys` _data value.
+    The plugin does it.
+  - The `defaultPageData` option is deprecated [#321].
+    Use data aliases instead, that also supports subkeys. For example:
+
+    ```yml
+    title: This is the title
+    intro:
+      text: Page description
+    metas:
+      title: "=title" # Alias to the title value
+      description: "=intro.text" # Alias to the intro.text value
+    ```
+
+### Changed
+- The `<!DOCTYPE html>` declaration is added automatically to HTML pages if the Doctype is missing [#334].
+
+### Removed
+- `languages` option of `prism` plugin. Now you need to import the languages from `npm`.
+
+### Fixed
+- Updated dependencies: `pagefind`, `std`, `terser`, `postcss-import`, `lightningcss`, `liquid`.
+- MDX renderer must return a JSX object instead of a string.
+- Removed hardcode configuration of tags merging.
+- URL of the pages processed by `esbuild` when `splitting` is enabled [#323].
+
+## [1.13.2] - 2022-11-30
+### Added
+- Property `pages` to `afterRender` event, with all rendered pages.
+- `splitting` support for the `esbuild` plugin [#323].
+- Filters are available as a global variable in Pug [#320], [#328].
+
+### Changed
+- Relative urls from page generators [#324].
+
+### Fixed
+- Nunjucks cache in Windows.
+- Updated dependencies: `std`, `esbuild`, `deno_dom`, `pagefind`, `lightningcss`, `markdown-it`, `postcss`, `preact`, `svgo`, `terser`.
+
+## [1.13.1] - 2022-11-22
+### Removed
+- The `Page.isHtml` property added in v1.13.0.
+
+### Fixed
+- Updated the dependencies: `std`, `minify_html`, `sheetjs`.
+- Updated `highlight.js` types.
+- Updated `liquid` types.
+- Updated `terser` types.
+- Import `lightningcss` from npm.
+- Load a fixed version of `prism` to avoid deno.lock errors.
+- Live reload: use `wss://` protocol under `https://` [#316].
+- Some Nunjucks template caches not cleaned after changes in watch mode.
+
+## [1.13.0] - 2022-11-16
+### Added
+- New `mdx` plugin.
+- New `sitemap` plugin [#287].
+- New method `Server.stop()` to close the local server [#296].
+- New option `emptyDest` to configure whether the dest folder must be emptied before build [#308].
+- The `src` property of pages and folders includes now the `slug` value [#278].
+- New `Page.isHtml` property that returns whether the page is HTML.
+- New `Page.outputPath` property that returns the output path of the page (formely `page.dest.path + page.dest.ext).
+- New option `returnPageData` to the `search` plugin [#251].
+- New middleware `www` [#280].
+- The plugin `relations` allows to customize the id key per type.
+- The `multilanguage` plugin detects two different pages as language versions of the same page if the source file ends by `_[lang]` [#301].
+  For example `/about-me.md` (default language), `/about-me_pt.md` and `/about-me_it.md`.
+- New option `excludeSelectors` to `pagefind` plugin.
+
+### Changed
+- The file names starting with `[number]_` no longer are parsed as dates.
+  For example `14455_full.jpg`. In previous versions, Lume interpret `14455` as a timestamp to create a Date and remove the prefix to output the file as `full.jpg` [#284].
+- The plugin `search` ignores the page 404 [#299].
+- For better compatibility, `postcss` and its plugins are loaded from `npm:` specifiers.
+- The `Page.dest` and `Page.updateDest` properties are deprecated.
+  If you want to change the destination of a page, simply update the `Page.data.url` value.
+- JSX plugin now provides a jsx-runtime import to type `SX.IntrinsicElements`.
+
+### Removed
+- `react_runtime` and `preact_runtime` dependencies.
+- `no-html-extension` option for `prettyUrl` configuration. To have the same functionality, disable the pretty urls and use the `modify_urls` plugin to remove the `.html` extension to the links.
+
+### Fixed
+- Removed typo in `jsx_preact`, allowing `comp` function to execute properly [#295].
+- The data cascade merging was refactored and simplified.
+- Types of Nunjucks.
+- Updated dependencies: `std`, `esbuild`, `pagefind`, `liquid`, `preact`, `cliffy`, `nunjucks`, `lightningcss`.
+- The requirement of the `--unstable` flag for `init`.
+
+## [1.12.1] - 2022-10-15
+### Added
+- Show build duration and number of generated files [#283].
+- New option `defaultPageData` to the `metas` plugin [#286].
+- Support for CJK characters by the `slugify_url` plugin [#291], [#292].
+- `beforeRender` event has the `pages` property with the list of pages that will be rendered.
+
+### Changed
+- Don't show `pagefind` output if everything is OK.
+- `deno task lume` uses stdin evaluation. This allows to add more Deno flags to configure permissions, lock files, etc [#293].
+
+### Fixed
+- Export the `Options` interface for `katex` plugin.
+- `git created` and `git last modified` date values use the creation or modification time as fallback when the page wasn't added to the git history.
+- `relations` plugin has been refactored to better support rendering order and autogenerated pages [#285].
+  - Removed the `onlyData` option (it's always true)
+  - Sort multiple relations by id
+- Date value in remote pages [#288].
+- Updated dependencies: `std`, `esbuild`, `cliffy`, `preact`.
+
+## [1.12.0] - 2022-10-03
+### Added
+- New plugin `katex` [#260].
+- New plugin `pagefind` [#253].
+- New plugin `sheets` [#252].
+- New plugin `remark` to use this library as markdown renderer [#267].
+- New plugin `source_maps` to generate the source maps of processed assets (CSS and JS) [#274].
+- Allow to load remote configuration files.
+  For example: `lume --config="https://example.com/_config.ts`.
+- Improvements to the plugin `imagick`:
+  - It accepts an array of formats [#268].
+  - New `matches` property to apply transformations conditionally [#279].
+- The `date` field of the pages accepts more formats [#272]:
+  - Any IS0 8601 representation
+  - `git created` to get the date of the file's first commit.
+  - `git last modified` to get the date of the latest's first commit.
+
+### Changed
+- Minimum version of Deno is 1.25.4.
+- In the build mode, in order to prevent some timers to keep the process alive indefinitely and after waiting 10 seconds, exit from the Deno process with a `Deno.exit(0)`.
+- `site.pages`, `site.files` and `site.onDemandPages` are readonly properties.
+  This allows to use their reference anywhere.
+- Lume throws an exception if the `import_map.json` file doesn't contain the `lume/` import.
+  (Previously it only showed a warning).
+- When a processor returns `false`, the page is removed from the output.
+- Moved some dependencies to `npm:` imports.
+- Removed `cli/utils.ts` file and move all utils to `core/utils.ts`.
+
+### Removed
+- BREAKING: `parcel_css` plugin was removed (it was a temporary alias to the `lightningcss` plugin).
+- The `--root` option in the CLI interface.
+- Warning when different versions of Lume are being used.
+- Removed the `lume vendor` command temporarily because it doesn't work in all cases.
+  I'll consider reintroduce it again when the support for `npm:` modules is implemented.
+- All `sourceMap` option of plugins like `esbuild`, `sass`, `postcss`, etc.
+  Use the new `source_maps` plugin to configure the source maps generation in an unique place.
+
+### Fixed
+- New type `DeepPartial` to fix some plugins options with nested objects.
+- Updated deps: `std`, `esbuild`, `lightningcss`, `sass`, `postcss_autoprefixer`, `minify_html`.
+- When Lume edit the `import_map.json` file (after running `upgrade` or `import-map` commands), any specifier using a lume url is updated.
+  Previously, only the `lume/` specifier was updated.
+- `Procesor` return type.
+- Repeated suffixes added to the images by the `Imagick` plugin [#269].
+- Correct typo in invalid date error message [#271].
+- `inline` plugin creates empy `class` and `id` attributes to SVGs [#276].
+
+## [1.11.4] - 2022-09-18
+### Fixed
+- Markdown `rules` configuration [#259].
+
+## [1.11.3] - 2022-09-16
+### Added
+- Missing option `preflight` to `windi_css` plugin (enabled by default).
+
+### Changed
+- Improved the live reload performance. Now the browser refresh faster and all changes are detected. In previous versions the browser didn't reload always if many pages were updated at the same time.
+
+### Fixed
+- Relative urls to images for the `metas` plugin [#255].
+- Upgrade notification must be shown only on build.
+- Upgrade command in the upgrade notification.
+- Upgrade dependencies: `std`, `cliffy`, `postcss_autoprefixer`, `deno_dom`, `lightningcss`.
+
+## [1.11.2] - 2022-09-12
+### Added
+- `lume init` configures JSX automatically on install `jsx` or `jsx_preact` plugins.
+
+### Changed
+- Pages are rendered in two separated steps: page rendering and layout rendering. This allows to modify the page data before render the layouts (for example adding a TOC).
+- Renamed `parcel_css` plugin to `lightningcss`. For backward compatibility, `parcel_css` is keept as an alias of `lightningcss`, but will be removed in Lume 1.12.0.
+- Some improvements in `esbuild` plugin:
+  - The `esbuild_deno_loader` was removed because it wasn't updated and didn't work well.
+    It has been replaced by a new loader, more simple and reliable.
+  - Detect automatically the JSX configuration from the `deno.json` file.
+    Now it works fine with jsx transformers.
+
+### Fixed
+- Updated deps: `esbuild`, `std`, `parcel_css`, `cliffy`, `postcss_autoprefixer`.
+- The list of available plugins on `lume init`.
+
+## [1.11.1] - 2022-09-02
+### Fixed
+- `jsx` and `jsx_preact` plugins when the children prop is a string.
+
+## [1.11.0] - 2022-09-01
+### Added
+- New plugin `minify_html` [#248].
+- New plugin `multilanguage`, to create pages of different languages [#205].
+- New plugin `relations`, to create automatic relations between pages,
+  similar to relational database (using id, type and foreign keys).
+- New plugin `jsx_preact`, to use Preact instead of React.
+- New plugin `windi_css`, to use Windi CSS framework [#247].
+- Enabled the plugin `on_demand`, allowing to generate pages dynamically on Deno Deploy.
+- New function `site.cacheFile()`.
+- New function `site.component()` to register components directly [#250].
+- New function `site.root()`, similar to `site.src()` and `site.dest()` but returns the path relative to the cwd.
+- New property `site.onDemandPages` with an array of pages that must be generated on demand.
+- New filter `data`, provided by the `search` plugin, to return the `Data` objects of the pages, instead the full `Page` instance.
+- New `stopWords` option to the `slugify_urls` plugin [#243].
+- New `each` option to the `paginate` plugin.
+- New middleware `basic_auth` [#249].
+
+### Changed
+- The minimum Deno version supported is `1.24.0`.
+- The paginate helper returns an array with the pages instead of a generator.
+  This makes it more easy to work with, like inspect and modify the values [#241].
+- `lume upgrade` upgrades lume locally by default (editing the import_map.json file).
+  Run `lume upgrade --global` to update it globally (with `deno install`).
+
+### Removed
+- `/plugins.ts` module. It makes no sense.
+- The ability to pass arguments to Deno after `--`. Example `lume -s -- --compact`.
+  Use a deno task to customize how Lume is executed by Deno.
+
+### Fixed
+- Updated dependencies: `std`, `deno_dom`, `liquid`, `parcel_css`, `prism`, `autoprefixer`.
+- Added the `content-type` headers of pages generated on demand.
+- File paths added to `watcher.ignore` were not checked correctly.
+- `inline` plugin does not respect additional style tag attributes [#246].
 
 ## [1.10.4] - 2022-08-14
 ### Added
@@ -42,7 +564,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - JSX plugin can render text files (like markdown). This allows to emulate mdx (combining jsx and md template engines for the same file).
 
 ### Changed
-- Preprocessors assigned to page generators are executed **before** the new pages are generated (previously they were executed after generating them). This shouldn't be a breaking change, unless you're doing something very weird.
+- Preprocessors assigned to page generators are executed **before** the new pages are generated (previously they were executed after generating them). This shouldn't be a BREAKING CHANGE, unless you're doing something very weird.
 - Changed SASS library to [binyamin/deno-sass](https://gitlab.com/binyamin/deno-sass), that uses [dart-sass](https://github.com/sass/dart-sass) and improved source map support [#227].
 
 ### Fixed
@@ -1677,6 +2199,7 @@ The first version.
 [#198]: https://github.com/lumeland/lume/issues/198
 [#202]: https://github.com/lumeland/lume/issues/202
 [#203]: https://github.com/lumeland/lume/issues/203
+[#205]: https://github.com/lumeland/lume/issues/205
 [#206]: https://github.com/lumeland/lume/issues/206
 [#207]: https://github.com/lumeland/lume/issues/207
 [#209]: https://github.com/lumeland/lume/issues/209
@@ -1693,9 +2216,129 @@ The first version.
 [#234]: https://github.com/lumeland/lume/issues/234
 [#239]: https://github.com/lumeland/lume/issues/239
 [#240]: https://github.com/lumeland/lume/issues/240
+[#241]: https://github.com/lumeland/lume/issues/241
 [#243]: https://github.com/lumeland/lume/issues/243
+[#246]: https://github.com/lumeland/lume/issues/246
+[#247]: https://github.com/lumeland/lume/issues/247
+[#248]: https://github.com/lumeland/lume/issues/248
+[#249]: https://github.com/lumeland/lume/issues/249
+[#250]: https://github.com/lumeland/lume/issues/250
+[#251]: https://github.com/lumeland/lume/issues/251
+[#252]: https://github.com/lumeland/lume/issues/252
+[#253]: https://github.com/lumeland/lume/issues/253
+[#254]: https://github.com/lumeland/lume/issues/254
+[#255]: https://github.com/lumeland/lume/issues/255
+[#259]: https://github.com/lumeland/lume/issues/259
+[#260]: https://github.com/lumeland/lume/issues/260
+[#267]: https://github.com/lumeland/lume/issues/267
+[#268]: https://github.com/lumeland/lume/issues/268
+[#269]: https://github.com/lumeland/lume/issues/269
+[#271]: https://github.com/lumeland/lume/issues/271
+[#272]: https://github.com/lumeland/lume/issues/272
+[#274]: https://github.com/lumeland/lume/issues/274
+[#276]: https://github.com/lumeland/lume/issues/276
+[#278]: https://github.com/lumeland/lume/issues/278
+[#279]: https://github.com/lumeland/lume/issues/279
+[#280]: https://github.com/lumeland/lume/issues/280
+[#283]: https://github.com/lumeland/lume/issues/283
+[#284]: https://github.com/lumeland/lume/issues/284
+[#285]: https://github.com/lumeland/lume/issues/285
+[#286]: https://github.com/lumeland/lume/issues/286
+[#287]: https://github.com/lumeland/lume/issues/287
+[#288]: https://github.com/lumeland/lume/issues/288
+[#291]: https://github.com/lumeland/lume/issues/291
+[#292]: https://github.com/lumeland/lume/issues/292
+[#293]: https://github.com/lumeland/lume/issues/293
+[#295]: https://github.com/lumeland/lume/issues/295
+[#296]: https://github.com/lumeland/lume/issues/296
+[#299]: https://github.com/lumeland/lume/issues/299
+[#301]: https://github.com/lumeland/lume/issues/301
+[#308]: https://github.com/lumeland/lume/issues/308
+[#316]: https://github.com/lumeland/lume/issues/316
+[#320]: https://github.com/lumeland/lume/issues/320
+[#321]: https://github.com/lumeland/lume/issues/321
+[#323]: https://github.com/lumeland/lume/issues/323
+[#324]: https://github.com/lumeland/lume/issues/324
+[#327]: https://github.com/lumeland/lume/issues/327
+[#328]: https://github.com/lumeland/lume/issues/328
+[#329]: https://github.com/lumeland/lume/issues/329
+[#334]: https://github.com/lumeland/lume/issues/334
+[#337]: https://github.com/lumeland/lume/issues/337
+[#338]: https://github.com/lumeland/lume/issues/338
+[#339]: https://github.com/lumeland/lume/issues/339
+[#340]: https://github.com/lumeland/lume/issues/340
+[#341]: https://github.com/lumeland/lume/issues/341
+[#342]: https://github.com/lumeland/lume/issues/342
+[#343]: https://github.com/lumeland/lume/issues/343
+[#344]: https://github.com/lumeland/lume/issues/344
+[#346]: https://github.com/lumeland/lume/issues/346
+[#348]: https://github.com/lumeland/lume/issues/348
+[#351]: https://github.com/lumeland/lume/issues/351
+[#353]: https://github.com/lumeland/lume/issues/353
+[#357]: https://github.com/lumeland/lume/issues/357
+[#358]: https://github.com/lumeland/lume/issues/358
+[#359]: https://github.com/lumeland/lume/issues/359
+[#364]: https://github.com/lumeland/lume/issues/364
+[#369]: https://github.com/lumeland/lume/issues/369
+[#374]: https://github.com/lumeland/lume/issues/374
+[#383]: https://github.com/lumeland/lume/issues/383
+[#384]: https://github.com/lumeland/lume/issues/384
+[#386]: https://github.com/lumeland/lume/issues/386
+[#387]: https://github.com/lumeland/lume/issues/387
+[#388]: https://github.com/lumeland/lume/issues/388
+[#390]: https://github.com/lumeland/lume/issues/390
+[#395]: https://github.com/lumeland/lume/issues/395
+[#398]: https://github.com/lumeland/lume/issues/398
+[#400]: https://github.com/lumeland/lume/issues/400
+[#401]: https://github.com/lumeland/lume/issues/401
+[#403]: https://github.com/lumeland/lume/issues/403
+[#406]: https://github.com/lumeland/lume/issues/406
+[#407]: https://github.com/lumeland/lume/issues/407
+[#409]: https://github.com/lumeland/lume/issues/409
+[#411]: https://github.com/lumeland/lume/issues/411
+[#413]: https://github.com/lumeland/lume/issues/413
+[#417]: https://github.com/lumeland/lume/issues/417
+[#418]: https://github.com/lumeland/lume/issues/418
+[#419]: https://github.com/lumeland/lume/issues/419
+[#426]: https://github.com/lumeland/lume/issues/426
+[#431]: https://github.com/lumeland/lume/issues/431
+[#432]: https://github.com/lumeland/lume/issues/432
+[#433]: https://github.com/lumeland/lume/issues/433
+[#434]: https://github.com/lumeland/lume/issues/434
+[#441]: https://github.com/lumeland/lume/issues/441
+[#442]: https://github.com/lumeland/lume/issues/442
+[#445]: https://github.com/lumeland/lume/issues/445
+[#448]: https://github.com/lumeland/lume/issues/448
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.10.4...HEAD
+[1.18.2]: https://github.com/lumeland/lume/compare/v1.18.1...HEAD
+[1.18.1]: https://github.com/lumeland/lume/compare/v1.18.0...v1.18.1
+[1.18.0]: https://github.com/lumeland/lume/compare/v1.17.5...v1.18.0
+[1.17.5]: https://github.com/lumeland/lume/compare/v1.17.4...v1.17.5
+[1.17.4]: https://github.com/lumeland/lume/compare/v1.17.3...v1.17.4
+[1.17.3]: https://github.com/lumeland/lume/compare/v1.17.2...v1.17.3
+[1.17.2]: https://github.com/lumeland/lume/compare/v1.17.1...v1.17.2
+[1.17.1]: https://github.com/lumeland/lume/compare/v1.17.0...v1.17.1
+[1.17.0]: https://github.com/lumeland/lume/compare/v1.16.2...v1.17.0
+[1.16.2]: https://github.com/lumeland/lume/compare/v1.16.1...v1.16.2
+[1.16.1]: https://github.com/lumeland/lume/compare/v1.16.0...v1.16.1
+[1.16.0]: https://github.com/lumeland/lume/compare/v1.15.3...v1.16.0
+[1.15.3]: https://github.com/lumeland/lume/compare/v1.15.2...v1.15.3
+[1.15.2]: https://github.com/lumeland/lume/compare/v1.15.1...v1.15.2
+[1.15.1]: https://github.com/lumeland/lume/compare/v1.15.0...v1.15.1
+[1.15.0]: https://github.com/lumeland/lume/compare/v1.14.2...v1.15.0
+[1.14.2]: https://github.com/lumeland/lume/compare/v1.14.1...v1.14.2
+[1.14.1]: https://github.com/lumeland/lume/compare/v1.14.0...v1.14.1
+[1.14.0]: https://github.com/lumeland/lume/compare/v1.13.2...v1.14.0
+[1.13.2]: https://github.com/lumeland/lume/compare/v1.13.1...v1.13.2
+[1.13.1]: https://github.com/lumeland/lume/compare/v1.13.0...v1.13.1
+[1.13.0]: https://github.com/lumeland/lume/compare/v1.12.1...v1.13.0
+[1.12.1]: https://github.com/lumeland/lume/compare/v1.12.0...v1.12.1
+[1.12.0]: https://github.com/lumeland/lume/compare/v1.11.4...v1.12.0
+[1.11.4]: https://github.com/lumeland/lume/compare/v1.11.3...v1.11.4
+[1.11.3]: https://github.com/lumeland/lume/compare/v1.11.2...v1.11.3
+[1.11.2]: https://github.com/lumeland/lume/compare/v1.11.1...v1.11.2
+[1.11.1]: https://github.com/lumeland/lume/compare/v1.11.0...v1.11.1
+[1.11.0]: https://github.com/lumeland/lume/compare/v1.10.4...v1.11.0
 [1.10.4]: https://github.com/lumeland/lume/compare/v1.10.3...v1.10.4
 [1.10.3]: https://github.com/lumeland/lume/compare/v1.10.2...v1.10.3
 [1.10.2]: https://github.com/lumeland/lume/compare/v1.10.1...v1.10.2

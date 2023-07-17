@@ -1,13 +1,1 @@
-export { default as format } from "https://deno.land/x/date_fns@v2.22.1/format/index.js";
-export const modulePath = "https://deno.land/x/date_fns@v2.22.1";
-
-export async function loadLanguages(languages: string[]) {
-  const loaded: Record<string, unknown> = {};
-
-  await Promise.all(languages.map(async (language) => {
-    const module = await import(`${modulePath}/locale/${language}/index.js`);
-    loaded[language] = module.default;
-  }));
-
-  return loaded;
-}
+export * from "npm:date-fns@2.30.0";

@@ -1,260 +1,403 @@
 export const snapshot = {};
 
-snapshot[`relative_url plugin 1`] = `5`;
-
-snapshot[`relative_url plugin 2`] = `
+snapshot[`relative_url plugin 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/articles",
+    "/articles/article-1.md",
+    "/articles/article-2.md",
+    "/index.md",
+    "/other.md",
+    "/statics",
+    "/statics/robots.txt",
+    "/tílde-and-eñe.md",
+  ],
 }
+`;
+
+snapshot[`relative_url plugin 2`] = `
+[
+  {
+    entry: "/statics/robots.txt",
+    flags: [],
+    outputPath: "/robots.txt",
+  },
+]
 `;
 
 snapshot[`relative_url plugin 3`] = `
 [
   {
-    dest: "/robots.txt",
-    remote: undefined,
-    src: "/statics/robots.txt",
+    content: "<!DOCTYPE html>
+" +
+      "<html><head></head><body><p>First article</p>
+" +
+      '<p><a href="/drafts/second-article/">Go to second</a>
+' +
+      '<a href="/other/">Go to other</a>
+' +
+      '<a href="/">Go to index</a></p>
+' +
+      "</body></html>",
+    data: {
+      children: "<!-- deno-fmt-ignore-file -->
+" +
+        "<p>First article</p>
+" +
+        '<p><a href="./article-2.md">Go to second</a>
+' +
+        '<a href="../other.md">Go to other</a>
+' +
+        '<a href="/index.md">Go to index</a></p>
+',
+      content: "<!-- deno-fmt-ignore-file -->
+" +
+        "
+" +
+        "First article
+" +
+        "
+" +
+        "[Go to second](./article-2.md)
+" +
+        "[Go to other](../other.md)
+" +
+        "[Go to index](/index.md)",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/first-article/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/articles/article-1",
+      remote: undefined,
+      slug: "article-1",
+    },
   },
-]
-`;
-
-snapshot[`relative_url plugin 4`] = `
-{
-  content: '<!DOCTYPE html>
-<html><head></head><body><p>First article</p>
-<p><a href="/drafts/second-article/">Go to second</a>
-<a href="/other/">Go to other</a>
-<a href="/">Go to index</a></p>
-</body></html>',
-  data: {
-    content: "<!-- deno-fmt-ignore-file -->
-
-First article
-
-[Go to second](./article-2.md)
-[Go to other](../other.md)
-[Go to index](/index.md)",
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/articles/first-article/",
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head></head><body><p>Second article</p>
+" +
+      '<p><a href="/articles/first-article/">Go to first</a>
+' +
+      '<a href="/other/">Go to other</a>
+' +
+      '<a href="/">Go to index</a></p>
+' +
+      "</body></html>",
+    data: {
+      children: "<!-- deno-fmt-ignore-file -->
+" +
+        "<p>Second article</p>
+" +
+        '<p><a href="article-1.md">Go to first</a>
+' +
+        '<a href="../other.md">Go to other</a>
+' +
+        '<a href="/index.md">Go to index</a></p>
+',
+      content: "<!-- deno-fmt-ignore-file -->
+" +
+        "
+" +
+        "Second article
+" +
+        "
+" +
+        "[Go to first](article-1.md)
+" +
+        "[Go to other](../other.md)
+" +
+        "[Go to index](/index.md)",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/drafts/second-article/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/articles/article-2",
+      remote: undefined,
+      slug: "article-2",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/articles/first-article/index",
-  },
-  src: {
-    ext: ".md",
-    path: "/articles/article-1",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`relative_url plugin 5`] = `
-{
-  content: '<!DOCTYPE html>
-<html><head></head><body><p>Second article</p>
-<p><a href="/articles/first-article/">Go to first</a>
-<a href="/other/">Go to other</a>
-<a href="/">Go to index</a></p>
-</body></html>',
-  data: {
-    content: "<!-- deno-fmt-ignore-file -->
-
-Second article
-
-[Go to first](article-1.md)
-[Go to other](../other.md)
-[Go to index](/index.md)",
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/drafts/second-article/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/drafts/second-article/index",
-  },
-  src: {
-    ext: ".md",
-    path: "/articles/article-2",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`relative_url plugin 6`] = `
-{
-  content: '<!DOCTYPE html>
-<html><head></head><body><p><a href="/bar">url</a>
-<a href="foo">url</a>
-<a href="./foo">url</a>
-<a href="../foo">url</a>
-<a href="#foo">url</a>
-<a href="?foo=bar">url</a>
-<a href="/other/">url</a>
-<a href="/other/">url</a>
-<a href="https://domain.com">url</a>
-<a href="/other/?tab=1">url</a>
-<a href="/other/#tab-1">url</a>
-<a href="/robots.txt">url</a>
-<a href="/tilde-and-ene/">url</a></p>
-</body></html>',
-  data: {
-    content: "<!-- deno-fmt-ignore-file -->
-[url](/bar)
-[url](foo)
-[url](./foo)
-[url](../foo)
-[url](#foo)
-[url](?foo=bar)
-[url](~/other.md)
-[url](other.md)
-[url](https://domain.com)
-[url](other.md?tab=1)
-[url](other.md#tab-1)
-[url](~/statics/robots.txt)
-[url](tílde-and-eñe.md)
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html><head></head><body><p><a href="/bar">url</a>
+' +
+      '<a href="foo">url</a>
+' +
+      '<a href="./foo">url</a>
+' +
+      '<a href="../foo">url</a>
+' +
+      '<a href="#foo">url</a>
+' +
+      '<a href="?foo=bar">url</a>
+' +
+      '<a href="/other/">url</a>
+' +
+      '<a href="/other/">url</a>
+' +
+      '<a href="https://domain.com">url</a>
+' +
+      '<a href="/other/?tab=1">url</a>
+' +
+      '<a href="/other/#tab-1">url</a>
+' +
+      '<a href="/robots.txt">url</a>
+' +
+      '<a href="/tilde-and-ene/">url</a></p>
+' +
+      "</body></html>",
+    data: {
+      children: "<!-- deno-fmt-ignore-file -->
+" +
+        '<p><a href="/bar">url</a>
+' +
+        '<a href="foo">url</a>
+' +
+        '<a href="./foo">url</a>
+' +
+        '<a href="../foo">url</a>
+' +
+        '<a href="#foo">url</a>
+' +
+        '<a href="?foo=bar">url</a>
+' +
+        '<a href="~/other.md">url</a>
+' +
+        '<a href="other.md">url</a>
+' +
+        '<a href="https://domain.com">url</a>
+' +
+        '<a href="other.md?tab=1">url</a>
+' +
+        '<a href="other.md#tab-1">url</a>
+' +
+        '<a href="~/statics/robots.txt">url</a>
+' +
+        '<a href="t%C3%ADlde-and-e%C3%B1e.md">url</a></p>
+',
+      content: "<!-- deno-fmt-ignore-file -->
+" +
+        "[url](/bar)
+" +
+        "[url](foo)
+" +
+        "[url](./foo)
+" +
+        "[url](../foo)
+" +
+        "[url](#foo)
+" +
+        "[url](?foo=bar)
+" +
+        "[url](~/other.md)
+" +
+        "[url](other.md)
+" +
+        "[url](https://domain.com)
+" +
+        "[url](other.md?tab=1)
+" +
+        "[url](other.md#tab-1)
+" +
+        "[url](~/statics/robots.txt)
+" +
+        "[url](tílde-and-eñe.md)
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/index",
-  },
-  src: {
-    ext: ".md",
-    path: "/index",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`relative_url plugin 7`] = `
-{
-  content: '<!DOCTYPE html>
-<html><head></head><body><p>Other page</p>
-<p><a href="/robots.txt">See robots.txt</a></p>
-</body></html>',
-  data: {
-    content: "Other page
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head></head><body><p>Other page</p>
+" +
+      '<p><a href="/robots.txt">See robots.txt</a></p>
+' +
+      "</body></html>",
+    data: {
+      children: "<p>Other page</p>
+" +
+        '<p><a href="statics/robots.txt">See robots.txt</a></p>
+',
+      content: "Other page
 
 [See robots.txt](statics/robots.txt)
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/other/",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/other/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/other",
+      remote: undefined,
+      slug: "other",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/other/index",
-  },
-  src: {
-    ext: ".md",
-    path: "/other",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`relative_url plugin 8`] = `
-{
-  content: "<!DOCTYPE html>
-<html><head></head><body><p>Tilde and eñe</p>
-</body></html>",
-  data: {
-    content: "Tilde and eñe
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head></head><body><p>Tilde and eñe</p>
+" +
+      "</body></html>",
+    data: {
+      children: "<p>Tilde and eñe</p>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/tilde-and-ene/",
+      content: "Tilde and eñe
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/tilde-and-ene/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/tílde-and-eñe",
+      remote: undefined,
+      slug: "tílde-and-eñe",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/tilde-and-ene/index",
-  },
-  src: {
-    ext: ".md",
-    path: "/tílde-and-eñe",
-    remote: undefined,
-  },
-}
+]
 `;

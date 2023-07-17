@@ -1,2 +1,2 @@
-export * from "https://deno.land/x/eta@v1.12.3/mod.ts";
-export type { EtaConfig } from "https://deno.land/x/eta@v1.12.3/config.ts";
+export { Eta } from "https://deno.land/x/eta@v3.0.3/src/index.ts";
+export type { EtaConfig } from "https://deno.land/x/eta@v3.0.3/src/config.ts";

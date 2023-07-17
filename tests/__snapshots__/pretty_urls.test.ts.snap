@@ -1,197 +1,161 @@
 export const snapshot = {};
 
-snapshot[`Disabled pretty URLs 1`] = `1`;
-
-snapshot[`Disabled pretty URLs 2`] = `
+snapshot[`Disabled pretty URLs 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/.page1.md",
+    "/_page1.md",
+    "/foo.md",
+    "/page1.md",
+  ],
 }
 `;
+
+snapshot[`Disabled pretty URLs 2`] = `[]`;
 
 snapshot[`Disabled pretty URLs 3`] = `
 [
-]
-`;
-
-snapshot[`Disabled pretty URLs 4`] = `
-{
-  content: "<h1>Welcome</h1>
+  {
+    content: "<!DOCTYPE html>
+<h1>Welcome</h1>
 ",
-  data: {
-    content: "# Welcome
+    data: {
+      children: "<h1>Welcome</h1>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "First page",
-    url: "/page1.html",
-  },
-  dest: {
-    ext: ".html",
-    path: "/page1",
-  },
-  src: {
-    ext: ".md",
-    path: "/page1",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`Pretty URLs with no-html-extension 1`] = `1`;
-
-snapshot[`Pretty URLs with no-html-extension 2`] = `
-{
-  formats: [
-    {
-      engine: true,
-      ext: ".tmpl.ts",
-      pageLoader: [AsyncFunction: module],
+      content: "# Welcome
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Second page",
+      url: "/page2.html",
     },
-    {
-      engine: true,
-      ext: ".tmpl.js",
-      pageLoader: [AsyncFunction: module],
-    },
-    {
-      engine: false,
-      ext: ".tmpl.json",
-      pageLoader: [AsyncFunction: json],
-    },
-    {
-      dataLoader: [AsyncFunction: json],
-      engine: false,
-      ext: ".json",
-    },
-    {
-      engine: true,
+    src: {
+      asset: undefined,
       ext: ".md",
-      pageLoader: [AsyncFunction: text],
+      path: "/foo",
+      remote: undefined,
+      slug: "foo",
     },
-    {
-      componentLoader: [AsyncFunction: module],
-      dataLoader: [AsyncFunction: module],
-      engine: true,
-      ext: ".js",
+  },
+  {
+    content: "<!DOCTYPE html>
+<h1>Welcome</h1>
+",
+    data: {
+      children: "<h1>Welcome</h1>
+",
+      content: "# Welcome
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "First page",
+      url: "/page1.html",
     },
-    {
-      componentLoader: [AsyncFunction: module],
-      dataLoader: [AsyncFunction: module],
-      engine: true,
-      ext: ".ts",
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/page1",
+      remote: undefined,
+      slug: "page1",
     },
-    {
-      componentLoader: [AsyncFunction: text],
-      engine: true,
-      ext: ".njk",
-      includesPath: "_includes",
-      pageLoader: [AsyncFunction: text],
-    },
-    {
-      dataLoader: [AsyncFunction: yaml],
-      engine: false,
-      ext: ".yaml",
-      pageLoader: [AsyncFunction: yaml],
-    },
-    {
-      dataLoader: [AsyncFunction: yaml],
-      engine: false,
-      ext: ".yml",
-      pageLoader: [AsyncFunction: yaml],
-    },
-  ],
-}
-`;
-
-snapshot[`Pretty URLs with no-html-extension 3`] = `
-[
+  },
 ]
-`;
-
-snapshot[`Pretty URLs with no-html-extension 4`] = `
-{
-  content: "<h1>Welcome</h1>
-",
-  data: {
-    content: "# Welcome
-",
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "First page",
-    url: "/page1",
-  },
-  dest: {
-    ext: ".html",
-    path: "/page1",
-  },
-  src: {
-    ext: ".md",
-    path: "/page1",
-    remote: undefined,
-  },
-}
 `;

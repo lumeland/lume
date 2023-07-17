@@ -1,316 +1,448 @@
 export const snapshot = {};
 
-snapshot[`Build a site with js/ts modules 1`] = `6`;
-
-snapshot[`Build a site with js/ts modules 2`] = `
+snapshot[`Build a site with js/ts modules 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/layout.tmpl.js",
+    "/multiple-async.tmpl.js",
+    "/multiple.tmpl.js",
+    "/simple.tmpl.js",
+  ],
 }
 `;
+
+snapshot[`Build a site with js/ts modules 2`] = `[]`;
 
 snapshot[`Build a site with js/ts modules 3`] = `
 [
+  {
+    content: "
+" +
+      "  <!DOCTYPE html>
+" +
+      '  <html lang="en">
+' +
+      "    <head>
+" +
+      '      <meta charset="utf-8">
+' +
+      "      <title>Multiple page 1</title>
+" +
+      "    </head>
+" +
+      "    <body>
+" +
+      "      <main>Async Page 1</main>
+" +
+      "    </body>
+" +
+      "  </html>
+" +
+      "  ",
+    data: {
+      children: "Async Page 1",
+      content: "Async Page 1",
+      date: [],
+      layout: "layout.tmpl.js",
+      mergedKeys: [
+        "tags",
+      ],
+      num: 1,
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(1)",
+      title: "Multiple page 1",
+      url: "/async/1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/multiple-async[0]",
+      remote: undefined,
+      slug: "multiple-async",
+    },
+  },
+  {
+    content: "
+" +
+      "  <!DOCTYPE html>
+" +
+      '  <html lang="en">
+' +
+      "    <head>
+" +
+      '      <meta charset="utf-8">
+' +
+      "      <title>Multiple page 2</title>
+" +
+      "    </head>
+" +
+      "    <body>
+" +
+      "      <main>Async Page 2</main>
+" +
+      "    </body>
+" +
+      "  </html>
+" +
+      "  ",
+    data: {
+      children: "Async Page 2",
+      content: "Async Page 2",
+      date: [],
+      layout: "layout.tmpl.js",
+      mergedKeys: [
+        "tags",
+      ],
+      num: 2,
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(1)",
+      title: "Multiple page 2",
+      url: "/async/2/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/multiple-async[1]",
+      remote: undefined,
+      slug: "multiple-async",
+    },
+  },
+  {
+    content: "
+" +
+      "  <!DOCTYPE html>
+" +
+      '  <html lang="en">
+' +
+      "    <head>
+" +
+      '      <meta charset="utf-8">
+' +
+      "      <title>Page 1</title>
+" +
+      "    </head>
+" +
+      "    <body>
+" +
+      "      <main>Content page 1</main>
+" +
+      "    </body>
+" +
+      "  </html>
+" +
+      "  ",
+    data: {
+      children: "Content page 1",
+      content: "Content page 1",
+      date: [],
+      layout: "layout.tmpl.js",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(1)",
+      title: "Page 1",
+      url: "/multiple/1.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/multiple[0]",
+      remote: undefined,
+      slug: "multiple",
+    },
+  },
+  {
+    content: "
+" +
+      "  <!DOCTYPE html>
+" +
+      '  <html lang="en">
+' +
+      "    <head>
+" +
+      '      <meta charset="utf-8">
+' +
+      "      <title>Default title</title>
+" +
+      "    </head>
+" +
+      "    <body>
+" +
+      "      <main>Content page 2</main>
+" +
+      "    </body>
+" +
+      "  </html>
+" +
+      "  ",
+    data: {
+      children: "Content page 2",
+      content: "Content page 2",
+      date: [],
+      layout: "layout.tmpl.js",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(1)",
+      url: "/multiple/2.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/multiple[1]",
+      remote: undefined,
+      slug: "multiple",
+    },
+  },
+  {
+    content: "
+" +
+      "  <!DOCTYPE html>
+" +
+      '  <html lang="en">
+' +
+      "    <head>
+" +
+      '      <meta charset="utf-8">
+' +
+      "      <title>Default title</title>
+" +
+      "    </head>
+" +
+      "    <body>
+" +
+      "      <main>Content page 3</main>
+" +
+      "    </body>
+" +
+      "  </html>
+" +
+      "  ",
+    data: {
+      children: "Content page 3",
+      content: "Content page 3",
+      date: [],
+      layout: "layout.tmpl.js",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(1)",
+      url: "/multiple/3.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/multiple[2]",
+      remote: undefined,
+      slug: "multiple",
+    },
+  },
+  {
+    content: "
+" +
+      "  <!DOCTYPE html>
+" +
+      '  <html lang="en">
+' +
+      "    <head>
+" +
+      '      <meta charset="utf-8">
+' +
+      "      <title>Module example</title>
+" +
+      "    </head>
+" +
+      "    <body>
+" +
+      "      <main>
+" +
+      "    <h1>Module example</h1>
+" +
+      "    <nav>
+" +
+      '      <a class="home" href="https://example.com/blog/">Back to home</a>
+' +
+      "    </nav>
+" +
+      "    <div>
+" +
+      "      
+" +
+      "<p>This is a simple page.</p>
+" +
+      '<a class="link-1" href="/blog/">Go to home page</a>
+' +
+      '<a class="link-2" href="/blog/simple-page-new-permalink.html">Go to simple page</a>
+' +
+      "
+" +
+      "    </div>
+" +
+      "  </main>
+" +
+      "    </body>
+" +
+      "  </html>
+" +
+      "  ",
+    data: {
+      children: "
+" +
+        "    <h1>Module example</h1>
+" +
+        "    <nav>
+" +
+        '      <a class="home" href="https://example.com/blog/">Back to home</a>
+' +
+        "    </nav>
+" +
+        "    <div>
+" +
+        "      
+" +
+        "<p>This is a simple page.</p>
+" +
+        '<a class="link-1" href="/blog/">Go to home page</a>
+' +
+        '<a class="link-2" href="/blog/simple-page-new-permalink.html">Go to simple page</a>
+' +
+        "
+" +
+        "    </div>
+" +
+        "  ",
+      content: "default",
+      date: [],
+      layout: "layout.tmpl.js",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Module example",
+      url: "/simple-page-new-permalink.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/simple",
+      remote: undefined,
+      slug: "simple",
+    },
+  },
 ]
-`;
-
-snapshot[`Build a site with js/ts modules 4`] = `
-{
-  content: '
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <title>Multiple page 1</title>
-    </head>
-    <body>
-      <main>Async Page 1</main>
-    </body>
-  </html>
-  ',
-  data: {
-    content: "Async Page 1",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.tmpl.js",
-    num: 1,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-      "autogenerated",
-    ],
-    title: "Multiple page 1",
-    url: "/async/1/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/async/1/index",
-  },
-  src: {
-    ext: ".tmpl.js",
-    path: "/multiple-async[0]",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`Build a site with js/ts modules 5`] = `
-{
-  content: '
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <title>Multiple page 2</title>
-    </head>
-    <body>
-      <main>Async Page 2</main>
-    </body>
-  </html>
-  ',
-  data: {
-    content: "Async Page 2",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.tmpl.js",
-    num: 2,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-      "autogenerated",
-    ],
-    title: "Multiple page 2",
-    url: "/async/2/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/async/2/index",
-  },
-  src: {
-    ext: ".tmpl.js",
-    path: "/multiple-async[1]",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`Build a site with js/ts modules 6`] = `
-{
-  content: '
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <title>Page 1</title>
-    </head>
-    <body>
-      <main>Content page 1</main>
-    </body>
-  </html>
-  ',
-  data: {
-    content: "Content page 1",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.tmpl.js",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-      "multiple",
-    ],
-    title: "Page 1",
-    url: "/multiple/1.html",
-  },
-  dest: {
-    ext: ".html",
-    path: "/multiple/1",
-  },
-  src: {
-    ext: ".tmpl.js",
-    path: "/multiple[0]",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`Build a site with js/ts modules 7`] = `
-{
-  content: '
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <title>Default title</title>
-    </head>
-    <body>
-      <main>Content page 2</main>
-    </body>
-  </html>
-  ',
-  data: {
-    content: "Content page 2",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.tmpl.js",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-      "multiple",
-    ],
-    url: "/multiple/2.html",
-  },
-  dest: {
-    ext: ".html",
-    path: "/multiple/2",
-  },
-  src: {
-    ext: ".tmpl.js",
-    path: "/multiple[1]",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`Build a site with js/ts modules 8`] = `
-{
-  content: '
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <title>Default title</title>
-    </head>
-    <body>
-      <main>Content page 3</main>
-    </body>
-  </html>
-  ',
-  data: {
-    content: "Content page 3",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.tmpl.js",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-      "multiple",
-    ],
-    url: "/multiple/3.html",
-  },
-  dest: {
-    ext: ".html",
-    path: "/multiple/3",
-  },
-  src: {
-    ext: ".tmpl.js",
-    path: "/multiple[2]",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`Build a site with js/ts modules 9`] = `
-{
-  content: '
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <title>Module example</title>
-    </head>
-    <body>
-      <main>
-    <h1>Module example</h1>
-    <nav>
-      <a class="home" href="https://example.com/blog/">Back to home</a>
-    </nav>
-    <div>
-      
-<p>This is a simple page.</p>
-<a class="link-1" href="/blog/">Go to home page</a>
-<a class="link-2" href="/blog/simple-page-new-permalink.html">Go to simple page</a>
-
-    </div>
-  </main>
-    </body>
-  </html>
-  ',
-  data: {
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "layout.tmpl.js",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "Module example",
-    url: "/simple-page-new-permalink.html",
-  },
-  dest: {
-    ext: ".html",
-    path: "/simple-page-new-permalink",
-  },
-  src: {
-    ext: ".tmpl.js",
-    path: "/simple",
-    remote: undefined,
-  },
-}
 `;

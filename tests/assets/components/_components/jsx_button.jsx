@@ -1,3 +1,5 @@
+/** @jsxImportSource npm:react@18.2.0 */
+
 export const name = "button_jsx";
 export const css = `
 .button_jsx {

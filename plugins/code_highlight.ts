@@ -1,8 +1,7 @@
-import hljs, { HighlightOptions, LanguageFn } from "../deps/highlight.ts";
+import hljs, { HLJSOptions, LanguageFn } from "../deps/highlight.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Page, Site } from "../core.ts";
-import type { Element } from "../deps/dom.ts";
+import type { DeepPartial, Page, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -12,7 +11,7 @@ export interface Options {
   languages?: Record<string, LanguageFn>;
 
   /** Options passed to highlight.js */
-  options: Partial<HighlightOptions>;
+  options: Omit<HLJSOptions, "__emitter">;
 }
 
 // Default options
@@ -24,12 +23,12 @@ export const defaults: Options = {
     languageDetectRe: /\blanguage-([\w-]+)\b/i,
     classPrefix: "hljs-",
     cssSelector: "pre code",
-    languages: null,
+    languages: undefined,
   },
 };
 
 /** A plugin to syntax-highlight code using the highlight.js library */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   const options = merge(defaults, userOptions);
   hljs.configure(options.options);
 
@@ -43,10 +42,11 @@ export default function (userOptions?: Partial<Options>) {
     site.process(options.extensions, codeHighlight);
 
     function codeHighlight(page: Page) {
-      page.document!.querySelectorAll(options.options.cssSelector!)
+      page.document!.querySelectorAll(options.options.cssSelector)
         .forEach((element) => {
           try {
-            hljs.highlightElement(element as Element);
+            // deno-lint-ignore no-explicit-any
+            hljs.highlightElement(element as any);
           } catch {
             // Ignore
           }

@@ -1,107 +1,158 @@
 export const snapshot = {};
 
-snapshot[`metas plugin 1`] = `1`;
-
-snapshot[`metas plugin 2`] = `
+snapshot[`metas plugin 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/_data.yml",
+    "/page-1.njk",
+    "/page-2.njk",
+    "/page-3.md",
+  ],
 }
 `;
 
+snapshot[`metas plugin 2`] = `[]`;
+
 snapshot[`metas plugin 3`] = `
 [
-]
-`;
-
-snapshot[`metas plugin 4`] = `
-{
-  content: '<!DOCTYPE html>
-<html><head>
-  <meta property="og:type" content="website">
-<meta property="og:site_name" content="My site">
-<meta property="og:locale" content="gl">
-<meta property="og:title" content="Custom title">
-<meta property="og:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
-<meta property="og:url" content="http://localhost/page-1/">
-<meta property="og:image" content="http://localhost/my-image.png">
-<meta name="twitter:title" content="Custom title">
-<meta name="twitter:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://localhost/my-image.png">
-<meta name="twitter:site" content="@myUser">
-<meta itemprop="name" content="Custom title">
-<meta itemprop="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
-<meta itemprop="image" content="http://localhost/my-image.png">
-<meta name="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
-<meta name="keywords" content="one, two">
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="black">
-<meta name="generator" content="Lume testing">
-</head>
-  <body>
-    Hello world
-  
-
-</body></html>',
-  data: {
-    content: "<html>
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head>
+" +
+      '  <meta property="og:type" content="website">
+' +
+      '<meta property="og:site_name" content="My site">
+' +
+      '<meta property="og:locale" content="gl">
+' +
+      '<meta property="og:title" content="Custom title">
+' +
+      '<meta property="og:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
+' +
+      '<meta property="og:url" content="http://localhost/page-1/">
+' +
+      '<meta property="og:image" content="http://localhost/my-image.png">
+' +
+      '<meta name="twitter:title" content="Custom title">
+' +
+      '<meta name="twitter:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+' +
+      '<meta name="twitter:card" content="summary_large_image">
+' +
+      '<meta name="twitter:image" content="http://localhost/my-image.png">
+' +
+      '<meta name="twitter:site" content="@myUser">
+' +
+      '<meta itemprop="name" content="Custom title">
+' +
+      '<meta itemprop="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
+' +
+      '<meta itemprop="image" content="http://localhost/my-image.png">
+' +
+      '<meta name="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
+' +
+      '<meta name="keywords" content="one, two">
+' +
+      '<meta name="robots" content="index, follow">
+' +
+      '<meta name="theme-color" content="black">
+' +
+      '<meta name="generator" content="Lume testing">
+' +
+      "</head>
+" +
+      "  <body>
+" +
+      "    Hello world
+" +
+      "  
+" +
+      "
+" +
+      "</body></html>",
+    data: {
+      children: "<html>
   <head>
   </head>
   <body>
@@ -109,41 +160,256 @@ snapshot[`metas plugin 4`] = `
   </body>
 </html>
 ",
-    date: 1970-01-01T00:00:00.000Z,
-    mergedKeys: {
-      metas: "object",
-    },
-    metas: {
-      color: "black",
-      description: 'A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append "…" to the end. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      generator: "Lume testing",
-      icon: "/my-icon.png",
-      image: "/my-image.png",
-      keywords: [
-        "one",
-        "two",
+      content: "<html>
+  <head>
+  </head>
+  <body>
+    Hello world
+  </body>
+</html>
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+        "metas",
       ],
-      lang: "gl",
-      robots: true,
-      site: "My site",
-      title: "Custom title",
-      twitter: "@myUser",
+      metas: [
+        "site",
+        "title",
+        "description",
+        "image",
+        "icon",
+        "robots",
+        "keywords",
+        "twitter",
+        "lang",
+        "color",
+        "generator",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page-1/",
     },
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/page-1/",
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/page-1",
+      remote: undefined,
+      slug: "page-1",
+    },
   },
-  dest: {
-    ext: ".html",
-    path: "/page-1/index",
+  {
+    content: "<!DOCTYPE html>
+" +
+      "<html><head>
+" +
+      '  <meta property="og:type" content="website">
+' +
+      '<meta property="og:site_name" content="My site">
+' +
+      '<meta property="og:locale" content="gl">
+' +
+      '<meta property="og:title" content="Relative paths">
+' +
+      '<meta property="og:description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
+' +
+      '<meta property="og:url" content="http://localhost/page-2/">
+' +
+      '<meta property="og:image" content="http://localhost/page-2/my-image.png">
+' +
+      '<meta name="twitter:title" content="Relative paths">
+' +
+      '<meta name="twitter:description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
+' +
+      '<meta name="twitter:card" content="summary_large_image">
+' +
+      '<meta name="twitter:image" content="http://localhost/page-2/my-image.png">
+' +
+      '<meta name="twitter:site" content="@myUser">
+' +
+      '<meta itemprop="name" content="Relative paths">
+' +
+      '<meta itemprop="description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
+' +
+      '<meta itemprop="image" content="http://localhost/page-2/my-image.png">
+' +
+      '<meta name="description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
+' +
+      '<meta name="keywords" content="one, two">
+' +
+      '<meta name="robots" content="noindex, nofollow, noarchive">
+' +
+      '<meta name="theme-color" content="black">
+' +
+      '<meta name="generator" content="Lume testing">
+' +
+      "</head>
+" +
+      "  <body>
+" +
+      "    Hello world
+" +
+      "  
+" +
+      "
+" +
+      "</body></html>",
+    data: {
+      children: "<html>
+  <head>
+  </head>
+  <body>
+    Hello world
+  </body>
+</html>
+",
+      content: "<html>
+  <head>
+  </head>
+  <body>
+    Hello world
+  </body>
+</html>
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+        "metas",
+      ],
+      metas: [
+        "site",
+        "title",
+        "description",
+        "image",
+        "icon",
+        "robots",
+        "keywords",
+        "twitter",
+        "lang",
+        "color",
+        "generator",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page-2/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/page-2",
+      remote: undefined,
+      slug: "page-2",
+    },
   },
-  src: {
-    ext: ".njk",
-    path: "/page-1",
-    remote: undefined,
+  {
+    content: "<!DOCTYPE html>
+" +
+      '<html><head><meta property="og:type" content="website">
+' +
+      '<meta property="og:site_name" content="My site">
+' +
+      '<meta property="og:locale" content="gl">
+' +
+      '<meta property="og:title" content="Title from page data">
+' +
+      '<meta property="og:description" content="This is page excerpt will be used as meta description.">
+' +
+      '<meta property="og:url" content="http://localhost/page-3/">
+' +
+      '<meta property="og:image" content="http://localhost/page-3/use-cover-as-meta-image.png">
+' +
+      '<meta name="twitter:title" content="Title from page data">
+' +
+      '<meta name="twitter:description" content="This is page excerpt will be used as meta description.">
+' +
+      '<meta name="twitter:card" content="summary_large_image">
+' +
+      '<meta name="twitter:image" content="http://localhost/page-3/use-cover-as-meta-image.png">
+' +
+      '<meta name="twitter:site" content="@myUser">
+' +
+      '<meta itemprop="name" content="Title from page data">
+' +
+      '<meta itemprop="description" content="This is page excerpt will be used as meta description.">
+' +
+      '<meta itemprop="image" content="http://localhost/page-3/use-cover-as-meta-image.png">
+' +
+      '<meta name="description" content="This is page excerpt will be used as meta description.">
+' +
+      '<meta name="keywords" content="one, two">
+' +
+      '<meta name="robots" content="this robots will be overrided">
+' +
+      '<meta name="theme-color" content="black">
+' +
+      '<meta name="generator" content="Lume testing">
+' +
+      "</head><body><p>This is page excerpt will be used as meta description.</p>
+" +
+      "<!--more-->
+" +
+      "</body></html>",
+    data: {
+      children: "<p>This is page excerpt will be used as meta description.</p>
+" +
+        "<!--more-->
+",
+      content: "This is page excerpt will be used as meta description.
+
+<!--more-->
+",
+      cover: "./use-cover-as-meta-image.png",
+      date: [],
+      excerpt: "This is page excerpt will be used as meta description.
+
+",
+      header: [
+        "title",
+      ],
+      mergedKeys: [
+        "tags",
+        "metas",
+      ],
+      metas: [
+        "site",
+        "title",
+        "description",
+        "image",
+        "icon",
+        "robots",
+        "keywords",
+        "twitter",
+        "lang",
+        "color",
+        "generator",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      robots: "this robots will be overrided",
+      search: [],
+      tags: "Array(0)",
+      url: "/page-3/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/page-3",
+      remote: undefined,
+      slug: "page-3",
+    },
   },
-}
+]
 `;

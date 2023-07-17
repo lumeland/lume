@@ -1,0 +1,348 @@
+export const snapshot = {};
+
+snapshot[`lightningcss plugin (only transform) 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".css",
+      pageLoader: [AsyncFunction: text],
+    },
+  ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/variables.css",
+    "/index.css",
+    "/text.css",
+  ],
+}
+`;
+
+snapshot[`lightningcss plugin (only transform) 2`] = `[]`;
+
+snapshot[`lightningcss plugin (only transform) 3`] = `
+[
+  {
+    content: '@import "variables.css";@import "./text.css";',
+    data: {
+      content: '@import "variables.css";
+@import "./text.css";
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/index.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+  {
+    content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}",
+    data: {
+      content: ".text {
+" +
+        "  font-family: var(--font-family);
+" +
+        "
+" +
+        "  & p {
+" +
+        "    color: var(--color);
+" +
+        "    box-shadow: 0 0 0.5em var(--background);
+" +
+        "    backface-visibility: hidden;
+" +
+        "  }
+" +
+        "}
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/text.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/text",
+      remote: undefined,
+      slug: "text",
+    },
+  },
+]
+`;
+
+snapshot[`lightningcss plugin (bundle mode) 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".css",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+  ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/variables.css",
+    "/index.css",
+    "/text.css",
+  ],
+}
+`;
+
+snapshot[`lightningcss plugin (bundle mode) 2`] = `[]`;
+
+snapshot[`lightningcss plugin (bundle mode) 3`] = `
+[
+  {
+    content: "::root{--color:#333;--background:#fff;--font-family:sans-serif}.text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}",
+    data: {
+      content: '@import "variables.css";
+@import "./text.css";
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/index.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+  {
+    content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}",
+    data: {
+      content: ".text {
+" +
+        "  font-family: var(--font-family);
+" +
+        "
+" +
+        "  & p {
+" +
+        "    color: var(--color);
+" +
+        "    box-shadow: 0 0 0.5em var(--background);
+" +
+        "    backface-visibility: hidden;
+" +
+        "  }
+" +
+        "}
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/text.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/text",
+      remote: undefined,
+      slug: "text",
+    },
+  },
+]
+`;

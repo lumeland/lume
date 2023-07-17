@@ -1,27 +1,23 @@
 import { minify } from "../deps/terser.ts";
-import { posix } from "../deps/path.ts";
 import { merge } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
 import { Page } from "../core/filesystem.ts";
+import { prepareAsset, saveAsset } from "./source_maps.ts";
 
-import type { Helper, Site } from "../core.ts";
-import type { TerserOptions } from "../deps/terser.ts";
+import type { DeepPartial, Helper, Site } from "../core.ts";
+import type { MinifyOptions } from "../deps/terser.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /** Set `true` to generate source map files */
-  sourceMap: boolean;
-
   /** Options passed to `terser` */
-  options: Partial<TerserOptions>;
+  options: MinifyOptions;
 }
 
 // Default options
 export const defaults: Options = {
   extensions: [".js"],
-  sourceMap: false,
   options: {
     module: true,
     compress: true,
@@ -30,7 +26,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to load all JavaScript files and minify them using Terser */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: DeepPartial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -38,30 +34,35 @@ export default function (userOptions?: Partial<Options>) {
     site.process(options.extensions, terser);
     site.filter("terser", filter as Helper, true);
 
-    async function terser(file: Page) {
-      const filename = file.dest.path + file.dest.ext;
-      const content = file.content;
-      const terserOptions = { ...options.options };
+    async function terser(page: Page) {
+      const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
+        site,
+        page,
+      );
 
-      if (options.sourceMap) {
-        terserOptions.sourceMap = {
-          filename,
-          url: posix.basename(filename) + ".map",
-        };
-      }
+      const terserOptions = {
+        ...options.options,
+        sourceMap: enableSourceMap
+          ? {
+            content: JSON.stringify(sourceMap),
+            filename: filename,
+          }
+          : undefined,
+      };
 
       try {
         const output = await minify({ [filename]: content }, terserOptions);
-        file.content = output.code;
-
-        if (output.map) {
-          const mapFile = Page.create(file.dest.path + ".js.map", output.map);
-          site.pages.push(mapFile);
-        }
+        saveAsset(
+          site,
+          page,
+          output.code!,
+          // @ts-expect-error: terser uses @jridgewell/gen-mapping, which incorrectly has typed some types as nullable: https://github.com/jridgewell/gen-mapping/pull/9
+          output.map,
+        );
       } catch (cause) {
         throw new Exception(
           "Error processing the file",
-          { name: "Plugin Terser", cause, page: file, content },
+          { name: "Plugin Terser", cause, page, content },
         );
       }
     }

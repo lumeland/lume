@@ -1,0 +1,161 @@
+export const snapshot = {};
+
+snapshot[`build a simple site 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/.page1.md",
+    "/_page1.md",
+    "/foo.md",
+    "/page1.md",
+  ],
+}
+`;
+
+snapshot[`build a simple site 2`] = `[]`;
+
+snapshot[`build a simple site 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
+<h1>Welcome</h1>
+",
+    data: {
+      children: "<h1>Welcome</h1>
+",
+      content: "# Welcome
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Second page",
+      url: "/page2.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/foo",
+      remote: undefined,
+      slug: "foo",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<h1>Welcome</h1>
+",
+    data: {
+      children: "<h1>Welcome</h1>
+",
+      content: "# Welcome
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "First page",
+      url: "/page1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/page1",
+      remote: undefined,
+      slug: "page1",
+    },
+  },
+]
+`;

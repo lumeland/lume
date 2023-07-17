@@ -1,295 +1,501 @@
 export const snapshot = {};
 
-snapshot[`url and htmlUrl update href 1`] = `2`;
-
-snapshot[`url and htmlUrl update href 2`] = `
+snapshot[`url and htmlUrl update href 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/default-filter.tmpl.js",
+    "/renamed-filter.tmpl.js",
+  ],
 }
 `;
+
+snapshot[`url and htmlUrl update href 2`] = `[]`;
 
 snapshot[`url and htmlUrl update href 3`] = `
 [
+  {
+    content: "
+" +
+      "    <!DOCTYPE html>
+" +
+      '    <html lang="en">
+' +
+      "        <head>
+" +
+      "            <title>Default Filter</title>
+" +
+      "        </head>
+" +
+      "        <body>
+" +
+      '            <a id="url" href="https://example.com/test/url/">Url</a>
+' +
+      '            <a id="htmlUrl" href="https://example.com/test/htmlUrl/">htmlUrl</a>
+' +
+      "            <template>
+" +
+      "              <h1>Template content</h1>
+" +
+      "            </template>
+" +
+      "        </body>
+" +
+      "    </html>
+" +
+      "  ",
+    data: {
+      children: "
+" +
+        "    <!DOCTYPE html>
+" +
+        '    <html lang="en">
+' +
+        "        <head>
+" +
+        "            <title>Default Filter</title>
+" +
+        "        </head>
+" +
+        "        <body>
+" +
+        '            <a id="url" href="https://example.com/test/url/">Url</a>
+' +
+        '            <a id="htmlUrl" href="https://example.com/test/htmlUrl/">htmlUrl</a>
+' +
+        "            <template>
+" +
+        "              <h1>Template content</h1>
+" +
+        "            </template>
+" +
+        "        </body>
+" +
+        "    </html>
+" +
+        "  ",
+      content: "default",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Default Filter",
+      url: "/default-filter/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/default-filter",
+      remote: undefined,
+      slug: "default-filter",
+    },
+  },
+  {
+    content: "
+" +
+      "    <!DOCTYPE html>
+" +
+      '    <html lang="en">
+' +
+      "        <head>
+" +
+      "            <title>Renamed Filter</title>
+" +
+      "        </head>
+" +
+      "        <body>
+" +
+      '            <a id="urlify" href="undefined">Urlify</a>
+' +
+      "            undefined
+" +
+      "        </body>
+" +
+      "    </html>
+" +
+      "  ",
+    data: {
+      children: "
+" +
+        "    <!DOCTYPE html>
+" +
+        '    <html lang="en">
+' +
+        "        <head>
+" +
+        "            <title>Renamed Filter</title>
+" +
+        "        </head>
+" +
+        "        <body>
+" +
+        '            <a id="urlify" href="undefined">Urlify</a>
+' +
+        "            undefined
+" +
+        "        </body>
+" +
+        "    </html>
+" +
+        "  ",
+      content: "default",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Renamed Filter",
+      url: "/renamed-filter/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/renamed-filter",
+      remote: undefined,
+      slug: "renamed-filter",
+    },
+  },
 ]
 `;
 
-snapshot[`url and htmlUrl update href 4`] = `
-{
-  content: '
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <title>Default Filter</title>
-        </head>
-        <body>
-            <a id="url" href="https://example.com/test/url/">Url</a>
-            <a id="htmlUrl" href="https://example.com/test/htmlUrl/">htmlUrl</a>
-            <template>
-              <h1>Template content</h1>
-            </template>
-        </body>
-    </html>
-  ',
-  data: {
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "Default Filter",
-    url: "/default-filter/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/default-filter/index",
-  },
-  src: {
-    ext: ".tmpl.js",
-    path: "/default-filter",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`url and htmlUrl update href 5`] = `
-{
-  content: '
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <title>Renamed Filter</title>
-        </head>
-        <body>
-            <a id="urlify" href="undefined">Urlify</a>
-            undefined
-        </body>
-    </html>
-  ',
-  data: {
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "Renamed Filter",
-    url: "/renamed-filter/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/renamed-filter/index",
-  },
-  src: {
-    ext: ".tmpl.js",
-    path: "/renamed-filter",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`configure url and htmlUrl names 1`] = `2`;
-
-snapshot[`configure url and htmlUrl names 2`] = `
+snapshot[`configure url and htmlUrl names 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
   ],
+  src: [
+    "/",
+    "/default-filter.tmpl.js",
+    "/renamed-filter.tmpl.js",
+  ],
 }
 `;
+
+snapshot[`configure url and htmlUrl names 2`] = `[]`;
 
 snapshot[`configure url and htmlUrl names 3`] = `
 [
+  {
+    content: "
+" +
+      "    <!DOCTYPE html>
+" +
+      '    <html lang="en">
+' +
+      "        <head>
+" +
+      "            <title>Default Filter</title>
+" +
+      "        </head>
+" +
+      "        <body>
+" +
+      '            <a id="url" href="undefined">Url</a>
+' +
+      "            undefined
+" +
+      "            <template>
+" +
+      "              <h1>Template content</h1>
+" +
+      "            </template>
+" +
+      "        </body>
+" +
+      "    </html>
+" +
+      "  ",
+    data: {
+      children: "
+" +
+        "    <!DOCTYPE html>
+" +
+        '    <html lang="en">
+' +
+        "        <head>
+" +
+        "            <title>Default Filter</title>
+" +
+        "        </head>
+" +
+        "        <body>
+" +
+        '            <a id="url" href="undefined">Url</a>
+' +
+        "            undefined
+" +
+        "            <template>
+" +
+        "              <h1>Template content</h1>
+" +
+        "            </template>
+" +
+        "        </body>
+" +
+        "    </html>
+" +
+        "  ",
+      content: "default",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Default Filter",
+      url: "/default-filter/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/default-filter",
+      remote: undefined,
+      slug: "default-filter",
+    },
+  },
+  {
+    content: "
+" +
+      "    <!DOCTYPE html>
+" +
+      '    <html lang="en">
+' +
+      "        <head>
+" +
+      "            <title>Renamed Filter</title>
+" +
+      "        </head>
+" +
+      "        <body>
+" +
+      '            <a id="urlify" href="https://example.com/urlify/">Urlify</a>
+' +
+      '            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>
+' +
+      "        </body>
+" +
+      "    </html>
+" +
+      "  ",
+    data: {
+      children: "
+" +
+        "    <!DOCTYPE html>
+" +
+        '    <html lang="en">
+' +
+        "        <head>
+" +
+        "            <title>Renamed Filter</title>
+" +
+        "        </head>
+" +
+        "        <body>
+" +
+        '            <a id="urlify" href="https://example.com/urlify/">Urlify</a>
+' +
+        '            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>
+' +
+        "        </body>
+" +
+        "    </html>
+" +
+        "  ",
+      content: "default",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Renamed Filter",
+      url: "/renamed-filter/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/renamed-filter",
+      remote: undefined,
+      slug: "renamed-filter",
+    },
+  },
 ]
-`;
-
-snapshot[`configure url and htmlUrl names 4`] = `
-{
-  content: '
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <title>Default Filter</title>
-        </head>
-        <body>
-            <a id="url" href="undefined">Url</a>
-            undefined
-            <template>
-              <h1>Template content</h1>
-            </template>
-        </body>
-    </html>
-  ',
-  data: {
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "Default Filter",
-    url: "/default-filter/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/default-filter/index",
-  },
-  src: {
-    ext: ".tmpl.js",
-    path: "/default-filter",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`configure url and htmlUrl names 5`] = `
-{
-  content: '
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <title>Renamed Filter</title>
-        </head>
-        <body>
-            <a id="urlify" href="https://example.com/urlify/">Urlify</a>
-            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>
-        </body>
-    </html>
-  ',
-  data: {
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "Renamed Filter",
-    url: "/renamed-filter/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/renamed-filter/index",
-  },
-  src: {
-    ext: ".tmpl.js",
-    path: "/renamed-filter",
-    remote: undefined,
-  },
-}
 `;

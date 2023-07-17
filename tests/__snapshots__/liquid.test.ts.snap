@@ -1,249 +1,385 @@
 export const snapshot = {};
 
-snapshot[`build a site with liquid 1`] = `4`;
-
-snapshot[`build a site with liquid 2`] = `
+snapshot[`build a site with liquid 1`] = `
 {
   formats: [
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.ts",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: true,
+      engines: 1,
       ext: ".tmpl.js",
       pageLoader: [AsyncFunction: module],
     },
     {
-      engine: false,
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
       ext: ".tmpl.json",
       pageLoader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engine: false,
+      engines: undefined,
       ext: ".json",
     },
     {
-      engine: true,
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
       ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
       pageLoader: [AsyncFunction: text],
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".js",
     },
     {
       componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
-      engine: true,
+      engines: 1,
       ext: ".ts",
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yaml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engine: false,
+      engines: undefined,
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
     {
       componentLoader: [AsyncFunction: text],
-      engine: true,
+      engines: 1,
       ext: ".liquid",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
   ],
+  src: [
+    "/",
+    "/_data.yml",
+    "/_includes",
+    "/_includes/basic.liquid",
+    "/_includes/partial.liquid",
+    "/data.liquid",
+    "/empty.liquid",
+    "/index.liquid",
+    "/liquid-filter.tmpl.js",
+    "/with-helpers.liquid",
+  ],
 }
 `;
+
+snapshot[`build a site with liquid 2`] = `[]`;
 
 snapshot[`build a site with liquid 3`] = `
 [
+  {
+    content: '["red","green","blue"]
+',
+    data: {
+      colors: "Array(3)",
+      content: "{{ colors | json }}
+",
+      date: [],
+      layout: null,
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/data.json",
+    },
+    src: {
+      asset: undefined,
+      ext: ".liquid",
+      path: "/data",
+      remote: undefined,
+      slug: "data",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "
+" +
+      '<html lang="en">
+' +
+      "  <head>
+" +
+      '    <meta charset="utf-8">
+' +
+      "    <title>Hello World</title>
+" +
+      "  </head>
+" +
+      "  <body>
+" +
+      "    <main><h1>Hello World</h1>
+" +
+      "</main>
+" +
+      "  </body>
+" +
+      "</html>
+",
+    data: {
+      children: "<h1>Hello World</h1>
+",
+      content: "<h1>{{ title }}</h1>
+",
+      date: [],
+      layout: "basic.liquid",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Hello World",
+      url: "/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".liquid",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "
+" +
+      '<html lang="en">
+' +
+      "  <head>
+" +
+      '    <meta charset="utf-8">
+' +
+      "    <title>liquid filter example</title>
+" +
+      "  </head>
+" +
+      "  <body>
+" +
+      "    <main><h1>LIQUID FILTER EXAMPLE</h1></main>
+" +
+      "  </body>
+" +
+      "</html>
+",
+    data: {
+      children: "<h1>LIQUID FILTER EXAMPLE</h1>",
+      content: "default",
+      date: [],
+      layout: "basic.liquid",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "liquid filter example",
+      url: "/liquid-filter/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/liquid-filter",
+      remote: undefined,
+      slug: "liquid-filter",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+" +
+      "
+" +
+      '<html lang="en">
+' +
+      "  <head>
+" +
+      '    <meta charset="utf-8">
+' +
+      "    <title>The title</title>
+" +
+      "  </head>
+" +
+      "  <body>
+" +
+      "    <main><p><strong>THE TITLE</strong></p>
+" +
+      "<p><strong>THE TITLE</strong></p>
+" +
+      "<p><strong>THE TITLE</strong></p>
+" +
+      "<p><strong>THE TITLE</strong></p>
+" +
+      "<p><strong>THE TITLE</strong></p>
+" +
+      "<p><strong>THE TITLE</strong></p>
+" +
+      "<p><strong>THE TITLE</strong></p>
+" +
+      "<p><strong>THE TITLE</strong></p>
+" +
+      "<div>hello (async)</div>
+" +
+      "
+" +
+      "<ul>
+" +
+      "  <li>This is a partial</li>
+" +
+      "  <li>async helper in a partial (async)</li>
+" +
+      "</ul>
+" +
+      "<ul>
+" +
+      "  <li>This is a partial</li>
+" +
+      "  <li>async helper in a partial (async)</li>
+" +
+      "</ul>
+" +
+      "</main>
+" +
+      "  </body>
+" +
+      "</html>
+",
+    data: {
+      children: "<p><strong>THE TITLE</strong></p>
+" +
+        "<p><strong>THE TITLE</strong></p>
+" +
+        "<p><strong>THE TITLE</strong></p>
+" +
+        "<p><strong>THE TITLE</strong></p>
+" +
+        "<p><strong>THE TITLE</strong></p>
+" +
+        "<p><strong>THE TITLE</strong></p>
+" +
+        "<p><strong>THE TITLE</strong></p>
+" +
+        "<p><strong>THE TITLE</strong></p>
+" +
+        "<div>hello (async)</div>
+" +
+        "
+" +
+        "<ul>
+" +
+        "  <li>This is a partial</li>
+" +
+        "  <li>async helper in a partial (async)</li>
+" +
+        "</ul>
+" +
+        "<ul>
+" +
+        "  <li>This is a partial</li>
+" +
+        "  <li>async helper in a partial (async)</li>
+" +
+        "</ul>
+",
+      content: "<p>{% upperCase title %}</p>
+" +
+        '<p>{% upperCase "The title" %}</p>
+' +
+        "<p>{% upperCaseAsync title %}</p>
+" +
+        '<p>{% upperCaseAsync "The title" %}</p>
+' +
+        "<p>{% upperCaseBody %}The title{% endupperCaseBody %}</p>
+" +
+        "<p>{% upperCaseBody %}{{ title }}{% endupperCaseBody %}</p>
+" +
+        "<p>{% upperCaseBodyAsync %}The title{% endupperCaseBodyAsync %}</p>
+" +
+        "<p>{% upperCaseBodyAsync %}{{ title }}{% endupperCaseBodyAsync %}</p>
+" +
+        '<div>{{ "hello" | returnAsync }}</div>
+' +
+        "
+" +
+        '{% include "partial.liquid" %}
+' +
+        '{% include "./_includes/partial.liquid" %}
+',
+      date: [],
+      layout: "basic.liquid",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "The title",
+      url: "/with-helpers/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".liquid",
+      path: "/with-helpers",
+      remote: undefined,
+      slug: "with-helpers",
+    },
+  },
 ]
-`;
-
-snapshot[`build a site with liquid 4`] = `
-{
-  content: '["red","green","blue"]
-',
-  data: {
-    colors: [
-      "red",
-      "green",
-      "blue",
-    ],
-    content: "{{ colors | json }}
-",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: null,
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    url: "/data.json",
-  },
-  dest: {
-    ext: ".json",
-    path: "/data",
-  },
-  src: {
-    ext: ".liquid",
-    path: "/data.json",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`build a site with liquid 5`] = `
-{
-  content: '<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Hello World</title>
-  </head>
-  <body>
-    <main><h1>Hello World</h1>
-</main>
-  </body>
-</html>
-',
-  data: {
-    content: "<h1>{{ title }}</h1>
-",
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "basic.liquid",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "Hello World",
-    url: "/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/index",
-  },
-  src: {
-    ext: ".liquid",
-    path: "/index",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`build a site with liquid 6`] = `
-{
-  content: '<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>liquid filter example</title>
-  </head>
-  <body>
-    <main><h1>LIQUID FILTER EXAMPLE</h1></main>
-  </body>
-</html>
-',
-  data: {
-    content: undefined,
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "basic.liquid",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "liquid filter example",
-    url: "/liquid-filter/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/liquid-filter/index",
-  },
-  src: {
-    ext: ".tmpl.js",
-    path: "/liquid-filter",
-    remote: undefined,
-  },
-}
-`;
-
-snapshot[`build a site with liquid 7`] = `
-{
-  content: '<!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>The title</title>
-  </head>
-  <body>
-    <main><p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<p><strong>THE TITLE</strong></p>
-<div>hello (async)</div>
-
-<ul>
-  <li>This is a partial</li>
-  <li>async helper in a partial (async)</li>
-</ul>
-<ul>
-  <li>This is a partial</li>
-  <li>async helper in a partial (async)</li>
-</ul>
-</main>
-  </body>
-</html>
-',
-  data: {
-    content: '<p>{% upperCase title %}</p>
-<p>{% upperCase "The title" %}</p>
-<p>{% upperCaseAsync title %}</p>
-<p>{% upperCaseAsync "The title" %}</p>
-<div>{{ "hello" | returnAsync }}</div>
-
-{% include "partial.liquid" %}
-{% include "./_includes/partial.liquid" %}
-',
-    date: 1970-01-01T00:00:00.000Z,
-    layout: "basic.liquid",
-    page: undefined,
-    paginate: [GeneratorFunction: paginate],
-    search: Search {},
-    tags: [
-    ],
-    title: "The title",
-    url: "/with-helpers/",
-  },
-  dest: {
-    ext: ".html",
-    path: "/with-helpers/index",
-  },
-  src: {
-    ext: ".liquid",
-    path: "/with-helpers",
-    remote: undefined,
-  },
-}
 `;

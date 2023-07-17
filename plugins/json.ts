@@ -14,8 +14,8 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: {
-    data: [".json"],
-    pages: [".tmpl.json"],
+    data: [".json", ".jsonc"],
+    pages: [".tmpl.json", ".tmpl.jsonc"],
   },
 };
 

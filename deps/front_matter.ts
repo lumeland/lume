@@ -1,1 +1,1 @@
-export * from "https://deno.land/std@0.152.0/encoding/front_matter.ts";
+export * from "https://deno.land/std@0.194.0/front_matter/any.ts";

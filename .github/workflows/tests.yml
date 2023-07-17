@@ -1,6 +1,6 @@
 name: Tests
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   test:
@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       
       - name: Setup Deno environment
         uses: denoland/setup-deno@v1
@@ -29,11 +29,8 @@ jobs:
       - name: Run linter
         run: deno lint
 
-      - name: Test installation
-        run: deno run -A install.ts
-
       - name: Run tests
         run: deno task test
-      
+
       - name: Test upgrade
-        run: deno run --unstable -A --no-check ci.ts upgrade
+        run: deno run -A cli.ts upgrade

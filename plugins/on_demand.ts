@@ -1,114 +1,143 @@
 import { merge } from "../core/utils.ts";
-import onDemand from "../middlewares/on_demand.ts";
+import onDemand, {
+  getRouter,
+  MiddlewareOptions,
+} from "../middlewares/on_demand.ts";
+import { extname } from "../deps/path.ts";
 
-import type { Page, Site } from "../core.ts";
-import type { Router } from "../middlewares/on_demand.ts";
+import type { Logger, Page, Site } from "../core.ts";
 
 export interface Options {
-  /** A function to return the page file associated with the provided url */
-  router?: Router;
+  /** The file path to save the routes */
+  routesPath: string;
+
+  /** The file path to save the preloaded modules */
+  preloadPath: string;
+
+  /** Extra data to pass to the pages */
+  extraData?: (request: Request) => Record<string, unknown>;
 }
 
 // Default options
-export const defaults: Options = {};
+export const defaults: Options = {
+  routesPath: "/_routes.json",
+  preloadPath: "/_preload.ts",
+};
 
 /** A plugin to generate pages on demand in the server side */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    if (!options.router) {
-      const router = new JsonRouter(site.src("_routes.json"));
-      router.startCollecting(site);
-      options.router = router.match.bind(router);
-    }
+    const routesFile = site.root(options.routesPath);
+    const preloadFile = site.root(options.preloadPath);
+    const collector = new JsonRouterCollector(routesFile, preloadFile);
 
-    const { router } = options;
+    // Collect and save the routes automatically
+    site.addEventListener("beforeSave", async () => {
+      collector.collectRoutes(site.onDemandPages);
+      await collector.saveRoutes(site.logger);
+    });
 
+    // Ignore the routes files by the watcher
+    site.options.watcher.ignore.push(options.routesPath);
+    site.options.watcher.ignore.push(options.preloadPath);
+
+    // Add the ondemand middleware
     site.options.server.middlewares ||= [];
-    site.options.server.middlewares.push(onDemand({ site, router }));
+
+    site._data.on_demand = {
+      extraData: options.extraData,
+      routesFile,
+    } as MiddlewareOptions;
+
+    site.options.server.middlewares.push(onDemand({
+      site,
+      router: getRouter(collector.routes),
+    }));
   };
 }
 
 /** Class to load and manage static routes in a JSON file
  *  Used by default if no router is provided
  */
-export class JsonRouter {
-  /** Filename to save the {url: path} of on-demand pages */
+export class JsonRouterCollector {
   #routesFile: string;
+  #preloadFile: string;
 
   /** Pages that must be generated on demand */
-  #routes?: Map<string, string>;
+  routes = new Map<string, string>();
 
-  constructor(routesFile: string) {
+  constructor(routesFile: string, preloadFile: string) {
     this.#routesFile = routesFile;
-  }
-
-  async match(url: URL): Promise<string | undefined> {
-    if (!this.#routes) {
-      await this.#loadRoutes();
-    }
-
-    const { pathname } = url;
-    const path = this.#routes?.get(pathname);
-
-    // Handle urls like /example as /example/
-    if (!path && !pathname.endsWith("/")) {
-      return this.#routes?.get(pathname + "/");
-    }
-
-    return path;
-  }
-
-  startCollecting(site: Site): void {
-    // Events to collect and save the routes automatically
-    site.addEventListener(
-      "afterRender",
-      () => this.#collectRoutes(site.pages),
-    );
-    site.addEventListener("afterBuild", () => this.#saveRoutes());
-
-    // Ignore the routes file by the watcher
-    site.options.watcher.ignore.push(this.#routesFile);
+    this.#preloadFile = preloadFile;
   }
 
   /** Collect the routes of all pages with data.ondemand = true */
-  #collectRoutes(pages: Page[]): void {
-    const routes = new Map<string, string>();
+  collectRoutes(pages: Page[]): void {
+    this.routes.clear();
 
     pages.forEach((page) => {
-      if (page.data.ondemand) {
-        routes.set(page.data.url as string, page.src.path + page.src.ext);
-      }
+      this.routes.set(
+        page.data.url as string,
+        page.src.path + page.src.ext,
+      );
     });
-
-    this.#routes = routes;
-  }
-
-  /** Load the routes from the routesFile */
-  async #loadRoutes(): Promise<void> {
-    try {
-      const pages = JSON.parse(
-        await Deno.readTextFile(this.#routesFile),
-      ) as Record<string, string>;
-      this.#routes = new Map(Object.entries(pages));
-    } catch {
-      this.#routes = new Map();
-    }
   }
 
   /** Save the routes into the routesFile */
-  async #saveRoutes(): Promise<void> {
-    if (!this.#routes?.size) {
+  async saveRoutes(logger: Logger): Promise<void> {
+    if (!this.routes.size) {
       return;
     }
 
     const data: Record<string, string> = {};
-    this.#routes.forEach((path, url) => data[url] = path);
+    const preloaded = new Set<string>();
+
+    this.routes.forEach((path, url) => {
+      data[url] = path;
+
+      switch (extname(path)) {
+        case ".js":
+        case ".jsx":
+        case ".ts":
+        case ".tsx":
+        case ".mjs":
+          preloaded.add(path);
+      }
+    });
 
     await Deno.writeTextFile(
       this.#routesFile,
       JSON.stringify(data, null, 2) + "\n",
     );
+    logger.log(`Routes saved at <dim>${this.#routesFile}</dim>`);
+
+    if (preloaded.size) {
+      await Deno.writeTextFile(
+        this.#preloadFile,
+        generatePreloadCode(preloaded) + "\n",
+      );
+      logger.log(`Preloader saved at <dim>${this.#preloadFile}</dim>`);
+    }
   }
+}
+
+function generatePreloadCode(paths: Set<string>): string {
+  const imports: string[] = [];
+  const caches: string[] = [];
+
+  Array.from(paths).map((path, index) => {
+    imports.push(`import * as $${index} from ".${path}";`);
+    caches.push(`  site.cacheFile("${path}", toData($${index}));`);
+  });
+
+  return `import { toData } from "lume/core/loaders/module.ts";
+${imports.join("\n")}
+
+import type { Site } from "lume/core.ts";
+
+export default function (site: Site) {
+${caches.join("\n")}
+}`;
 }
