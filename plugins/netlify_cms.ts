@@ -35,7 +35,8 @@ const defaults: Options = {
   configKey: "netlify_cms",
   netlifyIdentity: false,
   extraHTML: "",
-  proxyCommand: "npx netlify-cms-proxy-server",
+  proxyCommand:
+    "deno run --allow-read --allow-net=0.0.0.0 --allow-write --allow-env npm:netlify-cms-proxy-server",
 };
 
 /** A plugin to use Netlify CMS in Lume easily */

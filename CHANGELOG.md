@@ -16,7 +16,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
     This ensure the plugin will works ofline, once the requests are cached.
   - Change the order of the custom plugins [#445]
 - Updated deps: `terser`, `std`, `preact`, `postcss`, `liquid`, `esbuild`, `@types/react`, `@types/react-dom`, `terser`, `tailwind`.
-- Add `proxyCommand` as option for `netlify_cms` plugin.
+- Add `proxyCommand` as option for `netlify_cms` plugin [#449].
+- Changed default proxy command for `netlify_cms` [#449].
 
 ## [1.18.1] - 2023-07-05
 ### Fixed
@@ -2310,6 +2311,7 @@ The first version.
 [#442]: https://github.com/lumeland/lume/issues/442
 [#445]: https://github.com/lumeland/lume/issues/445
 [#448]: https://github.com/lumeland/lume/issues/448
+[#449]: https://github.com/lumeland/lume/issues/449
 
 [1.18.2]: https://github.com/lumeland/lume/compare/v1.18.1...HEAD
 [1.18.1]: https://github.com/lumeland/lume/compare/v1.18.0...v1.18.1
