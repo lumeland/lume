@@ -2,7 +2,6 @@ import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 
 Deno.test("url and htmlUrl update href", async (t) => {
   const site = getSite({
-    dev: true,
     src: "url",
     location: new URL("https://example.com/test/"),
   });
@@ -13,7 +12,6 @@ Deno.test("url and htmlUrl update href", async (t) => {
 
 Deno.test("configure url and htmlUrl names", async (t) => {
   const site = getSite({
-    dev: true,
     src: "url",
     location: new URL("https://example.com/"),
   }, {

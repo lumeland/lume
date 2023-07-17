@@ -3,7 +3,6 @@ import footnotePlugin from "npm:markdown-it-footnote@3.0.3";
 
 Deno.test("Build a markdown site", async (t) => {
   const site = getSite({
-    dev: true,
     src: "markdown",
     location: new URL("https://example.com/blog"),
   }, {

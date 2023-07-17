@@ -48,7 +48,6 @@ const defaults: SiteOptions = {
   includes: "_includes",
   location: new URL("http://localhost"),
   quiet: false,
-  dev: false,
   prettyUrls: true,
   server: {
     port: 3000,
@@ -819,9 +818,6 @@ export interface SiteOptions {
 
   /** The default includes path */
   includes: string;
-
-  /** Set `true` to enable the `dev` mode */
-  dev: boolean;
 
   /** The site location (used to generate final urls) */
   location: URL;

@@ -67,7 +67,7 @@ export default function lume(
 function getOptionsFromCli(): DeepPartial<SiteOptions> {
   const options = parse(Deno.args, {
     string: ["src", "dest", "location", "port"],
-    boolean: ["quiet", "dev", "serve", "open"],
+    boolean: ["quiet", "serve", "open"],
     alias: { dev: "d", serve: "s", port: "p", open: "o" },
     ["--"]: true,
   });
