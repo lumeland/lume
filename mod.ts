@@ -35,12 +35,6 @@ export default function lume(
     options = merge(options, getOptionsFromCli());
   }
 
-  if (options.dev) {
-    Deno.env.set("LUME_ENV", "development");
-  } else {
-    Deno.env.delete("LUME_ENV");
-  }
-
   const site = new Site(options as Partial<SiteOptions>);
 
   // Ignore the .git folder and .DS_Store (macOS) files by the watcher
@@ -90,10 +84,6 @@ function getOptionsFromCli(): DeepPartial<SiteOptions> {
 
   if (options.quiet) {
     overrides.quiet = options.quiet;
-  }
-
-  if (Deno.env.get("LUME_ENV") === "development") {
-    overrides.dev = true;
   }
 
   if (options.port) {

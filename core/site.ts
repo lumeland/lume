@@ -1,5 +1,5 @@
 import { join, posix } from "../deps/path.ts";
-import { merge, normalizePath } from "./utils.ts";
+import { env, merge, normalizePath } from "./utils.ts";
 import { Exception } from "./errors.ts";
 
 import FS from "./fs.ts";
@@ -514,11 +514,11 @@ export default class Site {
     this.fs.init();
 
     // Get the site content
-    const isDev = Deno.env.get("LUME_ENV") === "development";
+    const showDrafts = env<boolean>("LUME_DRAFTS");
     const [_pages, _staticFiles] = await this.source.build(
       this.globalComponents,
       [
-        (_, page) => !page?.data.draft || isDev,
+        (_, page) => !page?.data.draft || showDrafts === true,
       ],
     );
 
@@ -567,11 +567,11 @@ export default class Site {
     }
 
     // Get the site content
-    const isDev = Deno.env.get("LUME_ENV") === "development";
+    const showDrafts = env<boolean>("LUME_DRAFTS");
     const [_pages, _staticFiles] = await this.source.build(
       this.globalComponents,
       [
-        (_, page) => !page?.data.draft || isDev,
+        (_, page) => !page?.data.draft || showDrafts === true,
         this.scopes.getFilter(files),
       ],
     );

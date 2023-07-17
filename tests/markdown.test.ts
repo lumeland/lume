@@ -25,7 +25,6 @@ Deno.test("Build a markdown site", async (t) => {
 
 Deno.test("Build a markdown with hooks", async (t) => {
   const site = getSite({
-    dev: true,
     src: "markdown",
     location: new URL("https://example.com/blog"),
   });

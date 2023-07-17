@@ -1,4 +1,3 @@
-import { assert } from "../deps/assert.ts";
 import { assert, assertEquals, assertStrictEquals } from "../deps/assert.ts";
 
 import binaryLoader from "../core/loaders/binary.ts";
@@ -6,6 +5,7 @@ import textLoader from "../core/loaders/text.ts";
 import { assertSiteSnapshot, build, getPage, getSite } from "./utils.ts";
 
 Deno.test("Load the pages of a site", async (t) => {
+  Deno.env.set("LUME_DRAFTS", "true");
   const site = getSite({
     src: "normal",
   });
@@ -31,8 +31,8 @@ Deno.test("Load the pages of a site", async (t) => {
 });
 
 Deno.test("ignored draft pages on dev=false", async () => {
+  Deno.env.set("LUME_DRAFTS", "false");
   const site = getSite({
-    dev: false,
     src: "normal",
   });
 
