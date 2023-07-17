@@ -16,6 +16,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
     This ensure the plugin will works ofline, once the requests are cached.
   - Change the order of the custom plugins [#445]
 - Updated deps: `terser`, `std`, `preact`, `postcss`, `liquid`.
+- Add `proxyCommand` as option for `netlify_cms` plugin.
 
 ## [1.18.1] - 2023-07-05
 ### Fixed
