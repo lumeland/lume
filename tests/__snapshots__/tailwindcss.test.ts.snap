@@ -1732,7 +1732,7 @@ snapshot[`postcss plugin 3`] = `
   {
     content: "/*
 " +
-      "! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com
+      "! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
 " +
       "*//*
 " +
@@ -2068,6 +2068,10 @@ snapshot[`postcss plugin 3`] = `
 " +
       "  font-family: inherit; /* 1 */
 " +
+      "  font-feature-settings: inherit; /* 1 */
+" +
+      "  font-variation-settings: inherit; /* 1 */
+" +
       "  font-size: 100%; /* 1 */
 " +
       "  font-weight: inherit; /* 1 */
@@ -2335,6 +2339,20 @@ snapshot[`postcss plugin 3`] = `
       "  list-style: none;
 " +
       "  margin: 0;
+" +
+      "  padding: 0;
+" +
+      "}
+" +
+      "
+" +
+      "/*
+" +
+      "Reset default styling for dialogs.
+" +
+      "*/
+" +
+      "dialog {
 " +
       "  padding: 0;
 " +
