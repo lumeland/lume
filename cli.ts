@@ -1,4 +1,4 @@
-import { Command, CompletionsCommand } from "./deps/cliffy.ts";
+import { Command, CompletionsCommand, EnumType } from "./deps/cliffy.ts";
 import { getLumeVersion } from "./core/utils.ts";
 import { printError } from "./core/errors.ts";
 import upgradeCommand from "./cli/upgrade.ts";
@@ -8,12 +8,13 @@ import createCommand from "./cli/create.ts";
 
 const upgrade = new Command()
   .description("Upgrade your Lume executable to the latest version.")
+  .type("branch", new EnumType(["master", "v2"]))
   .option(
     "--version <version:string>",
     "The version to upgrade to.",
   )
   .option(
-    "-d, --dev [dev:boolean]",
+    "-d, --dev [dev:branch]",
     "Install the latest development version (last Git commit).",
   )
   .example("lume upgrade -g", "Upgrades to the latest stable version.")

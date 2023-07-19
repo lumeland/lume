@@ -115,9 +115,11 @@ export async function getLatestVersion(): Promise<string> {
 }
 
 /** Return the hash of the latest commit from the GitHub repository */
-export async function getLatestDevelopmentVersion(): Promise<string> {
+export async function getLatestDevelopmentVersion(
+  branch = "master",
+): Promise<string> {
   const response = await fetch(
-    "https://api.github.com/repos/lumeland/lume/commits?per_page=1",
+    `https://api.github.com/repos/lumeland/lume/commits/${branch}?per_page=1`,
   );
   const commits = await response.json();
   return commits[0].sha;

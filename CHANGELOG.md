@@ -9,6 +9,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.18.2] - Unreleased
 ### Added
 - `slugify_urls` plugin is applied also to static files [#447].
+- Allow to upgrade to Lume v2 with `lume upgrade --dev=v2`.
 
 ### Fixed
 - Assets with subextensions (like `.min.css`) are not exported correctly [#448].
