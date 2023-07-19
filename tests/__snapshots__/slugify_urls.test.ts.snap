@@ -74,11 +74,17 @@ snapshot[`slugify_urls plugin 1`] = `
       ext: ".yml",
       pageLoader: [AsyncFunction: yaml],
     },
+    {
+      copy: true,
+      engines: undefined,
+      ext: ".css",
+    },
   ],
   src: [
     "/",
     "/Chourizos ao viño.md",
     "/Page 1.md",
+    "/UI Styles.css",
     "/generator.tmpl.js",
     "/page-3.md",
     "/page-4.md",
@@ -86,9 +92,298 @@ snapshot[`slugify_urls plugin 1`] = `
 }
 `;
 
-snapshot[`slugify_urls plugin 2`] = `[]`;
+snapshot[`slugify_urls plugin 2`] = `
+[
+  {
+    entry: "/UI Styles.css",
+    flags: [],
+    outputPath: "/UI Styles.css",
+  },
+]
+`;
 
 snapshot[`slugify_urls plugin 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
+<p>Page 2</p>
+",
+    data: {
+      children: "<p>Page 2</p>
+",
+      content: "Page 2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/chourizos-ao-vino/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/Chourizos ao viño",
+      remote: undefined,
+      slug: "Chourizos ao viño",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<p>Page 1</p>
+",
+    data: {
+      children: "<p>Page 1</p>
+",
+      content: "Page 1
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page-1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/Page 1",
+      remote: undefined,
+      slug: "Page 1",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+Filloas con nocilla",
+    data: {
+      children: "Filloas con nocilla",
+      content: "Filloas con nocilla",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/filloas-con-nocilla/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/generator[0]",
+      remote: undefined,
+      slug: "generator",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+Foo",
+    data: {
+      children: "Foo",
+      content: "Foo",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/803nfon-sfodij/-/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/generator[1]",
+      remote: undefined,
+      slug: "generator",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<p>Page 3</p>
+",
+    data: {
+      children: "<p>Page 3</p>
+",
+      content: "Page 3
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/paxina-numero/tres/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/page-3",
+      remote: undefined,
+      slug: "page-3",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<p>Page 4</p>
+",
+    data: {
+      children: "<p>Page 4</p>
+",
+      content: "Page 4
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/paxina-4.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/page-4",
+      remote: undefined,
+      slug: "page-4",
+    },
+  },
+]
+`;
+
+snapshot[`slugify_urls plugin (static files) 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      copy: true,
+      engines: undefined,
+      ext: ".css",
+    },
+  ],
+  src: [
+    "/",
+    "/Chourizos ao viño.md",
+    "/Page 1.md",
+    "/UI Styles.css",
+    "/generator.tmpl.js",
+    "/page-3.md",
+    "/page-4.md",
+  ],
+}
+`;
+
+snapshot[`slugify_urls plugin (static files) 2`] = `
+[
+  {
+    entry: "/UI Styles.css",
+    flags: [],
+    outputPath: "/ui-styles.css",
+  },
+]
+`;
+
+snapshot[`slugify_urls plugin (static files) 3`] = `
 [
   {
     content: "<!DOCTYPE html>

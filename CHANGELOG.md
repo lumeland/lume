@@ -7,6 +7,9 @@ but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
 ## [1.18.2] - Unreleased
+### Added
+- `slugify_urls` plugin is applied also to static files [#447].
+
 ### Fixed
 - Assets with subextensions (like `.min.css`) are not exported correctly [#448].
 - Esbuild plugin fixes:
@@ -2310,6 +2313,7 @@ The first version.
 [#441]: https://github.com/lumeland/lume/issues/441
 [#442]: https://github.com/lumeland/lume/issues/442
 [#445]: https://github.com/lumeland/lume/issues/445
+[#447]: https://github.com/lumeland/lume/issues/447
 [#448]: https://github.com/lumeland/lume/issues/448
 [#449]: https://github.com/lumeland/lume/issues/449
 

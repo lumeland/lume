@@ -1,11 +1,11 @@
 import { unidecode } from "../deps/unidecode.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Helper, Page, Site } from "../core.ts";
+import type { Extensions, Helper, Page, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions: Extensions;
 
   /** Convert the paths to lower case */
   lowercase: boolean;
@@ -52,6 +52,13 @@ export default function (userOptions?: Partial<Options>) {
   return (site: Site) => {
     site.filter("slugify", slugify as Helper);
     site.preprocess(options.extensions, slugifyUrls);
+
+    // Slugify the static files
+    site.addEventListener("beforeRender", () => {
+      site.files
+        .filter((file) => extensionMatches(file.outputPath, options.extensions))
+        .forEach((file) => file.outputPath = slugify(file.outputPath));
+    });
   };
 
   function slugifyUrls(page: Page) {
@@ -104,4 +111,8 @@ export function createSlugifier(
     // replace dash with separator
     return string.replaceAll("-", separator);
   };
+}
+
+function extensionMatches(path: string, extensions: Extensions): boolean {
+  return extensions === "*" || extensions.some((ext) => path.endsWith(ext));
 }
