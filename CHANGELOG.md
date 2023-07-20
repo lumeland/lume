@@ -31,6 +31,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Some TypeScript errors [#441].
 
 ## [1.18.0] - 2023-06-28
+Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.18.0-release-notes/)
+
 ### Added
 - TOML Plugin [#432].
 - JSON Plugin supports `.jsonc` files [#433].
@@ -107,6 +109,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Changes on static files deletes the file from `_site` [#418].
 
 ## [1.17.0] - 2023-05-05
+Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.17.0-release-notes/)
+
 ### Added
 - Feed Plugin [#413]
 - Ability to add extra data to `on_demand` pages.
@@ -164,6 +168,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Updated dependencies: `std`, `terser`, `sass`, `esbuild`, `liquid`, `preact`.
 
 ## [1.16.0] - 2023-03-21
+Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.16.0-release-notes/)
+
 ### Added
 - New plugin `nav` to create menus using the URL hierarchical structure.
   It also can create breadcrumbs [#351], [#353].
@@ -237,6 +243,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Updated dependencies: `std`, `esbuild`, `eta`.
 
 ## [1.15.0] - 2023-01-10
+Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.15.0-release-notes/)
+
 ### Added
 - Archetypes, that allows to create templates used when creating new content [#337].
 - New plugin `tailwindcss` [#344].
@@ -297,6 +305,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Updated dependencies: `cliffy`, `esbuild`, `katex`, `liquidjs`, `markdown-it-attrs`, `postcss`, `postcss-import`.
 
 ## [1.14.0] - 2022-12-12
+Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.14.0-release/)
+
 ### Added
 - Implemented `hooks` [#329].
   - `addMarkdownItPlugin(plugin, options)`
@@ -363,6 +373,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Some Nunjucks template caches not cleaned after changes in watch mode.
 
 ## [1.13.0] - 2022-11-16
+Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.13.0-release/)
+
 ### Added
 - New `mdx` plugin.
 - New `sitemap` plugin [#287].
