@@ -10,6 +10,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Added
 - `slugify_urls` plugin is applied also to static files [#447].
 - Allow to upgrade to Lume v2 with `lume upgrade --dev=v2`.
+- Add `proxyCommand` as option for `netlify_cms` plugin [#449].
 
 ### Fixed
 - Assets with subextensions (like `.min.css`) are not exported correctly [#448].
@@ -20,7 +21,6 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
     This ensure the plugin will works ofline, once the requests are cached.
   - Change the order of the custom plugins [#445]
 - Updated deps: `terser`, `std`, `preact`, `postcss`, `liquid`, `esbuild`, `@types/react`, `@types/react-dom`, `terser`, `tailwind`.
-- Add `proxyCommand` as option for `netlify_cms` plugin [#449].
 - Changed default proxy command for `netlify_cms` [#449].
 
 ## [1.18.1] - 2023-07-05
