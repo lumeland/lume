@@ -12,6 +12,9 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Allow to upgrade to Lume v2 with `lume upgrade --dev=v2`.
 - Add `proxyCommand` as option for `netlify_cms` plugin [#449].
 
+### Changed
+- `on_demand` plugin: Changed the way to generate the `_preload.ts` file.
+
 ### Fixed
 - Assets with subextensions (like `.min.css`) are not exported correctly [#448].
 - Esbuild plugin fixes:
