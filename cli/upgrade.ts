@@ -55,11 +55,6 @@ export async function upgrade(dev: boolean | string = false, version?: string) {
 
   console.log();
   console.log("Update successful!");
-  console.log(
-    version
-      ? `You're using Lume ${brightGreen(latest)}!`
-      : `You're using the latest version of Lume: ${brightGreen(latest)}!`,
-  );
 
   if (!dev) {
     console.log(
@@ -67,6 +62,7 @@ export async function upgrade(dev: boolean | string = false, version?: string) {
       gray(`https://github.com/lumeland/lume/blob/${latest}/CHANGELOG.md`),
     );
   }
+
   console.log();
 }
 
