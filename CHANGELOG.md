@@ -6,10 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.18.2] - Unreleased
+## [1.18.2] - 2023-07-21
 ### Added
 - `slugify_urls` plugin is applied also to static files [#447].
-- Allow to upgrade to Lume v2 with `lume upgrade --dev=v2`.
+- You can upgrade to Lume v2 (development version) with `lume upgrade --dev=v2`.
 - Add `proxyCommand` as option for `netlify_cms` plugin [#449].
 
 ### Changed
@@ -2335,7 +2335,7 @@ The first version.
 [#449]: https://github.com/lumeland/lume/issues/449
 [#450]: https://github.com/lumeland/lume/issues/450
 
-[1.18.2]: https://github.com/lumeland/lume/compare/v1.18.1...HEAD
+[1.18.2]: https://github.com/lumeland/lume/compare/v1.18.1...v1.18.2
 [1.18.1]: https://github.com/lumeland/lume/compare/v1.18.0...v1.18.1
 [1.18.0]: https://github.com/lumeland/lume/compare/v1.17.5...v1.18.0
 [1.17.5]: https://github.com/lumeland/lume/compare/v1.17.4...v1.17.5
