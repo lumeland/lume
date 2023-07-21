@@ -14,6 +14,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ### Changed
 - `on_demand` plugin: Changed the way to generate the `_preload.ts` file.
+- Ignore `deno.lock` file by default [#450].
 
 ### Fixed
 - Assets with subextensions (like `.min.css`) are not exported correctly [#448].
@@ -2332,6 +2333,7 @@ The first version.
 [#447]: https://github.com/lumeland/lume/issues/447
 [#448]: https://github.com/lumeland/lume/issues/448
 [#449]: https://github.com/lumeland/lume/issues/449
+[#450]: https://github.com/lumeland/lume/issues/450
 
 [1.18.2]: https://github.com/lumeland/lume/compare/v1.18.1...HEAD
 [1.18.1]: https://github.com/lumeland/lume/compare/v1.18.0...v1.18.1
