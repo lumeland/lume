@@ -6,6 +6,11 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
+## Unreleased
+
+### Fixed
+- `relative_urls` give wrong URL when `prettyUrls` is disabled
+
 ## [1.18.2] - 2023-07-21
 ### Added
 - `slugify_urls` plugin is applied also to static files [#447].
