@@ -31,3 +31,7 @@
 ## `jsx` Plugin
 
 - Removed `window.React` #332.
+
+## `slugify_urls` Plugin
+
+- Slugify static files by default. #447

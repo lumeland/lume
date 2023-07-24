@@ -103,7 +103,7 @@ snapshot[`slugify_urls plugin 2`] = `
   {
     entry: "/UI Styles.css",
     flags: [],
-    outputPath: "/UI Styles.css",
+    outputPath: "/ui-styles.css",
   },
 ]
 `;
@@ -348,6 +348,12 @@ snapshot[`slugify_urls plugin (static files) 1`] = `
       ext: ".njk",
       includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
     },
     {
       dataLoader: [AsyncFunction: yaml],

@@ -27,7 +27,7 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
-  extensions: [".html"],
+  extensions: "*",
   lowercase: true,
   alphanumeric: true,
   separator: "-",
