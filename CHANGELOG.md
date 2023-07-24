@@ -9,7 +9,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## Unreleased
 
 ### Fixed
-- `relative_urls` give wrong URL when `prettyUrls` is disabled
+- `relative_urls` give wrong URL when `prettyUrls` is disabled #451
 
 ## [1.18.2] - 2023-07-21
 ### Added

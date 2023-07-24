@@ -18,9 +18,8 @@ export default function () {
           url = posix.join(basePath, url);
         }
 
-        const from = site.url(page.data.url as string);
-        if (site.options.prettyUrls) return posix.relative(from, url);
-        else return posix.join("./", posix.relative(posix.dirname(from), url));
+        const from = site.url(page.outputPath as string);
+        return posix.relative(posix.dirname(from), url);
       },
     }));
   };
