@@ -19,7 +19,8 @@ export default function () {
         }
 
         const from = site.url(page.data.url as string);
-        return posix.relative(from, url);
+        if (site.options.prettyUrls) return posix.relative(from, url);
+        else return posix.join("./", posix.relative(posix.dirname(from), url));
       },
     }));
   };
