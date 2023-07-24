@@ -9,7 +9,7 @@ import {
 import { brightGreen, gray } from "../deps/colors.ts";
 
 interface Options {
-  dev?: boolean;
+  dev?: boolean | string;
   version?: string;
 }
 export default function ({ dev, version }: Options) {
@@ -17,11 +17,11 @@ export default function ({ dev, version }: Options) {
 }
 
 /** Upgrade the Lume installation to the latest version */
-export async function upgrade(dev = false, version?: string) {
-  const latest = version
-    ? version
-    : dev
-    ? await getLatestDevelopmentVersion()
+export async function upgrade(dev: boolean | string = false, version?: string) {
+  const latest = version ? version : dev
+    ? await getLatestDevelopmentVersion(
+      typeof dev === "string" ? dev : undefined,
+    )
     : await getLatestVersion();
   const url = getVersionUrl(latest, dev);
 
@@ -55,11 +55,6 @@ export async function upgrade(dev = false, version?: string) {
 
   console.log();
   console.log("Update successful!");
-  console.log(
-    version
-      ? `You're using Lume ${brightGreen(latest)}!`
-      : `You're using the latest version of Lume: ${brightGreen(latest)}!`,
-  );
 
   if (!dev) {
     console.log(
@@ -67,10 +62,11 @@ export async function upgrade(dev = false, version?: string) {
       gray(`https://github.com/lumeland/lume/blob/${latest}/CHANGELOG.md`),
     );
   }
+
   console.log();
 }
 
-function getVersionUrl(version: string, dev = false): URL {
+function getVersionUrl(version: string, dev: boolean | string = false): URL {
   // Prepend automatically "v" to the version if it's missing
   if (!dev && !version.startsWith("v")) {
     version = `v${version}`;

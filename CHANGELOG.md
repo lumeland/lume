@@ -6,9 +6,19 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.18.2] - Unreleased
+## [Unreleased]
+### Fixed
+- `relative_urls` give wrong URL when `prettyUrls` is disabled [#451]
+
+## [1.18.2] - 2023-07-21
 ### Added
 - `slugify_urls` plugin is applied also to static files [#447].
+- You can upgrade to Lume v2 (development version) with `lume upgrade --dev=v2`.
+- Add `proxyCommand` as option for `netlify_cms` plugin [#449].
+
+### Changed
+- `on_demand` plugin: Changed the way to generate the `_preload.ts` file.
+- Ignore `deno.lock` file by default [#450].
 
 ### Fixed
 - Assets with subextensions (like `.min.css`) are not exported correctly [#448].
@@ -18,7 +28,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
   - Save the esm.sh requests in cache.
     This ensure the plugin will works ofline, once the requests are cached.
   - Change the order of the custom plugins [#445]
-- Updated deps: `terser`, `std`, `preact`, `postcss`, `liquid`.
+- Updated deps: `terser`, `std`, `preact`, `postcss`, `liquid`, `esbuild`, `@types/react`, `@types/react-dom`, `terser`, `tailwind`.
+- Changed default proxy command for `netlify_cms` [#449].
 
 ## [1.18.1] - 2023-07-05
 ### Fixed
@@ -28,6 +39,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Some TypeScript errors [#441].
 
 ## [1.18.0] - 2023-06-28
+Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.18.0-release-notes/)
+
 ### Added
 - TOML Plugin [#432].
 - JSON Plugin supports `.jsonc` files [#433].
@@ -104,6 +117,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Changes on static files deletes the file from `_site` [#418].
 
 ## [1.17.0] - 2023-05-05
+Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.17.0-release-notes/)
+
 ### Added
 - Feed Plugin [#413]
 - Ability to add extra data to `on_demand` pages.
@@ -161,6 +176,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Updated dependencies: `std`, `terser`, `sass`, `esbuild`, `liquid`, `preact`.
 
 ## [1.16.0] - 2023-03-21
+Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.16.0-release-notes/)
+
 ### Added
 - New plugin `nav` to create menus using the URL hierarchical structure.
   It also can create breadcrumbs [#351], [#353].
@@ -234,6 +251,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Updated dependencies: `std`, `esbuild`, `eta`.
 
 ## [1.15.0] - 2023-01-10
+Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.15.0-release-notes/)
+
 ### Added
 - Archetypes, that allows to create templates used when creating new content [#337].
 - New plugin `tailwindcss` [#344].
@@ -294,6 +313,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Updated dependencies: `cliffy`, `esbuild`, `katex`, `liquidjs`, `markdown-it-attrs`, `postcss`, `postcss-import`.
 
 ## [1.14.0] - 2022-12-12
+Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.14.0-release/)
+
 ### Added
 - Implemented `hooks` [#329].
   - `addMarkdownItPlugin(plugin, options)`
@@ -360,6 +381,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Some Nunjucks template caches not cleaned after changes in watch mode.
 
 ## [1.13.0] - 2022-11-16
+Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.13.0-release/)
+
 ### Added
 - New `mdx` plugin.
 - New `sitemap` plugin [#287].
@@ -2313,8 +2336,12 @@ The first version.
 [#445]: https://github.com/lumeland/lume/issues/445
 [#447]: https://github.com/lumeland/lume/issues/447
 [#448]: https://github.com/lumeland/lume/issues/448
+[#449]: https://github.com/lumeland/lume/issues/449
+[#450]: https://github.com/lumeland/lume/issues/450
+[#451]: https://github.com/lumeland/lume/issues/451
 
-[1.18.2]: https://github.com/lumeland/lume/compare/v1.18.1...HEAD
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.18.2...HEAD
+[1.18.2]: https://github.com/lumeland/lume/compare/v1.18.1...v1.18.2
 [1.18.1]: https://github.com/lumeland/lume/compare/v1.18.0...v1.18.1
 [1.18.0]: https://github.com/lumeland/lume/compare/v1.17.5...v1.18.0
 [1.17.5]: https://github.com/lumeland/lume/compare/v1.17.4...v1.17.5

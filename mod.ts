@@ -46,6 +46,7 @@ export default function lume(
     .ignore("import_map.json")
     .ignore("deno.json")
     .ignore("deno.jsonc")
+    .ignore("deno.lock")
     .data("mergedKeys", { tags: "stringArray" })
     .use(url(pluginOptions.url))
     .use(json(pluginOptions.json))

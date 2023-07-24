@@ -2,10 +2,13 @@ import { isPlainObject, isUrl } from "../utils.ts";
 
 import type { Data } from "../../core.ts";
 
+const cached = new Set<string>();
+
 /** Load a JavaScript/TypeScript file. Use a random hash to prevent caching */
 export default async function module(path: string): Promise<Data> {
-  const url = isUrl(path) ? path : `file://${path}#${Date.now()}`;
-  const mod = await import(url);
+  const url = isUrl(path) ? path : `file://${path}`;
+  const specifier = cached.has(url) ? `${url}#${Date.now()}` : url;
+  const mod = await import(specifier);
   return toData(mod);
 }
 
