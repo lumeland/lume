@@ -36,7 +36,25 @@ export default function (userOptions?: Partial<Options>) {
     // Collect and save the routes automatically
     site.addEventListener("beforeSave", async () => {
       collector.collectRoutes(site.onDemandPages);
-      await collector.saveRoutes(site.logger);
+      const specifiers: string[] = [];
+
+      for (const [path, entry] of site.fs.entries) {
+        const ext = extname(path);
+
+        switch (ext) {
+          case ".ts":
+          case ".tsx":
+          case ".js":
+          case ".jsx":
+          case ".mjs":
+            specifiers.push(entry.flags.has("remote") ? entry.src : path);
+            break;
+
+          default:
+            break;
+        }
+      }
+      await collector.saveRoutes(site.logger, specifiers);
     });
 
     // Ignore the routes files by the watcher
@@ -86,58 +104,36 @@ export class JsonRouterCollector {
   }
 
   /** Save the routes into the routesFile */
-  async saveRoutes(logger: Logger): Promise<void> {
+  async saveRoutes(logger: Logger, specifiers: string[]): Promise<void> {
     if (!this.routes.size) {
       return;
     }
 
     const data: Record<string, string> = {};
-    const preloaded = new Set<string>();
 
     this.routes.forEach((path, url) => {
       data[url] = path;
-
-      switch (extname(path)) {
-        case ".js":
-        case ".jsx":
-        case ".ts":
-        case ".tsx":
-        case ".mjs":
-          preloaded.add(path);
-      }
     });
 
+    // Write the routes file
     await Deno.writeTextFile(
       this.#routesFile,
       JSON.stringify(data, null, 2) + "\n",
     );
+
     logger.log(`Routes saved at <dim>${this.#routesFile}</dim>`);
 
-    if (preloaded.size) {
+    // Write the preload file
+    if (specifiers.length && Object.keys(data).length) {
+      const code = Array.from(specifiers)
+        .map((path) => `import {} from ".${path}";`)
+        .join("\n");
       await Deno.writeTextFile(
         this.#preloadFile,
-        generatePreloadCode(preloaded) + "\n",
+        `${code}\n`,
       );
+
       logger.log(`Preloader saved at <dim>${this.#preloadFile}</dim>`);
     }
   }
-}
-
-function generatePreloadCode(paths: Set<string>): string {
-  const imports: string[] = [];
-  const caches: string[] = [];
-
-  Array.from(paths).map((path, index) => {
-    imports.push(`import * as $${index} from ".${path}";`);
-    caches.push(`  site.cacheFile("${path}", toData($${index}));`);
-  });
-
-  return `import { toData } from "lume/core/loaders/module.ts";
-${imports.join("\n")}
-
-import type { Site } from "lume/core.ts";
-
-export default function (site: Site) {
-${caches.join("\n")}
-}`;
 }

@@ -24,6 +24,9 @@ export interface Options {
 
   /** Custom HTML code to append in the index.html page */
   extraHTML: string;
+
+  /** Command to run the proxy server */
+  proxyCommand: string;
 }
 
 const defaults: Options = {
@@ -32,6 +35,8 @@ const defaults: Options = {
   configKey: "netlify_cms",
   netlifyIdentity: false,
   extraHTML: "",
+  proxyCommand:
+    "deno run --allow-read --allow-net=0.0.0.0 --allow-write --allow-env npm:netlify-cms-proxy-server",
 };
 
 /** A plugin to use Netlify CMS in Lume easily */
@@ -46,7 +51,7 @@ export default function (userOptions?: Partial<Options>) {
     // Run the local netlify server
     if (local_backend) {
       site.addEventListener("afterStartServer", () => {
-        site.run("npx netlify-cms-proxy-server");
+        site.run(options.proxyCommand);
       });
     }
 
