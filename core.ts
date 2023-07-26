@@ -200,10 +200,10 @@ export interface PageData extends Data {
   metas?: MetaData;
 
   /**
-   * Netlify CMS configuration
-   * @see https://lume.land/plugins/netlify_cms/
+   * Decap CMS configuration
+   * @see https://lume.land/plugins/decap_cms/
    */
-  netlify_cms?: Record<string, unknown>;
+  decap_cms?: Record<string, unknown>;
 
   /**
    * The searcher helper

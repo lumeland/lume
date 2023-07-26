@@ -1,13 +1,13 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
-import netlifyCMS from "../plugins/netlify_cms.ts";
+import decapCMS from "../plugins/decap_cms.ts";
 
-Deno.test("code_hightlight plugin", async (t) => {
+Deno.test("Decap CMS plugin", async (t) => {
   const site = getSite({
-    src: "netlify_cms",
+    src: "decap_cms",
     location: new URL("https://example.com"),
   });
 
-  site.use(netlifyCMS({
+  site.use(decapCMS({
     local: false,
   }));
 

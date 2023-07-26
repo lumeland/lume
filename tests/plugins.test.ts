@@ -28,7 +28,7 @@ Deno.test("Plugins list in init", () => {
     "modify_urls",
     "multilanguage",
     "nav",
-    "netlify_cms",
+    "decap_cms",
     "on_demand",
     "pagefind",
     "picture",

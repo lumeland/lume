@@ -35,3 +35,7 @@
 ## `slugify_urls` Plugin
 
 - Slugify static files by default. #447
+
+## `netlify_cms` Plugin
+
+- Renamed to `decap_cms`.

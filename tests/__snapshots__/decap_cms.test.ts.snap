@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`code_hightlight plugin 1`] = `
+snapshot[`Decap CMS plugin 1`] = `
 {
   formats: [
     {
@@ -84,14 +84,14 @@ snapshot[`code_hightlight plugin 1`] = `
   src: [
     "/",
     "/_data",
-    "/_data/netlify_cms.yml",
+    "/_data/decap_cms.yml",
   ],
 }
 `;
 
-snapshot[`code_hightlight plugin 2`] = `[]`;
+snapshot[`Decap CMS plugin 2`] = `[]`;
 
-snapshot[`code_hightlight plugin 3`] = `
+snapshot[`Decap CMS plugin 3`] = `
 [
   {
     content: "backend:

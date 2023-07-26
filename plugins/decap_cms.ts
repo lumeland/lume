@@ -32,7 +32,7 @@ export interface Options {
 const defaults: Options = {
   local: undefined,
   path: "/admin/",
-  configKey: "netlify_cms",
+  configKey: "decap_cms",
   netlifyIdentity: false,
   extraHTML: "",
   proxyCommand:

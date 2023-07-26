@@ -26,7 +26,7 @@ export const pluginNames = [
   "modify_urls",
   "multilanguage",
   "nav",
-  "netlify_cms",
+  "decap_cms",
   "on_demand",
   "pagefind",
   "picture",
