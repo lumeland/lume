@@ -64,7 +64,7 @@ export class VentoEngine implements Engine {
     return this.engine.runString(content, data, filename);
   }
 
-  renderSync(content: string, data: Data = {}, filename?: string): string {
+  renderComponent(content: string, data: Data = {}, filename?: string): string {
     return this.engine.runString(content, data, filename) as unknown as string;
   }
 

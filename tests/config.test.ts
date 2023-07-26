@@ -167,7 +167,7 @@ Deno.test("pages configuration", () => {
     render() {
       return "";
     }
-    renderSync() {
+    renderComponent() {
       return "";
     }
     addHelper() {}

@@ -83,10 +83,10 @@ export default async function (${destructure}) {
     const body = mdxContext({
       components: { comp: data?.comp, ...this.options.components },
     });
-    return this.jsxEngine.renderSync(body);
+    return this.jsxEngine.renderComponent(body);
   }
 
-  renderSync(content: string) {
+  renderComponent(content: string) {
     return content;
   }
 

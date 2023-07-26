@@ -7,6 +7,7 @@
   - This also removed `Page.updateDest` function.
 - Removed `--dev` mode #244, #201.
   - Use the env variable `LUME_DRAFTS=true` to output draft pages.
+- Renamed the interface method `Engine.renderSync` to `Engine.renderComponent`.
 
 ## `search` Plugin
 

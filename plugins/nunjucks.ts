@@ -96,7 +96,7 @@ export class NunjucksEngine implements Engine {
     });
   }
 
-  renderSync(content: string, data?: Data, filename?: string): string {
+  renderComponent(content: string, data?: Data, filename?: string): string {
     if (!filename) {
       return this.env.renderString(content, data);
     }

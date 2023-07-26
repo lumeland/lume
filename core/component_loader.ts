@@ -80,7 +80,7 @@ export default class ComponentsLoader {
       render(data) {
         return format.engines!.reduce(
           (content, engine) =>
-            engine.renderSync(content, getData(data), entry.path),
+            engine.renderComponent(content, getData(data), entry.path),
           content,
         );
       },

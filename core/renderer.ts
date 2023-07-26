@@ -322,8 +322,8 @@ export interface Engine<T = string | { toString(): string }> {
     filename?: string,
   ): T | Promise<T>;
 
-  /** Render a template synchronous (used to render components) */
-  renderSync(
+  /** Render a component (it must be synchronous) */
+  renderComponent(
     content: unknown,
     data?: Data,
     filename?: string,

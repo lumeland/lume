@@ -59,7 +59,7 @@ export class MarkdownEngine implements Engine {
     })).toString();
   }
 
-  renderSync(content: string, data?: Data, filename?: string): string {
+  renderComponent(content: string, data?: Data, filename?: string): string {
     return this.engine.processSync({
       value: content,
       data: data?.page?.data,
@@ -126,7 +126,7 @@ export default function (userOptions?: Partial<Options>) {
     site.filter("md", filter as Helper);
 
     function filter(content: string): string {
-      return remarkEngine.renderSync(content).trim();
+      return remarkEngine.renderComponent(content).trim();
     }
   };
 }

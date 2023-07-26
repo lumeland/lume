@@ -55,10 +55,10 @@ export class PugEngine implements Engine {
   }
 
   render(content: string, data?: Data, filename?: string): string {
-    return this.renderSync(content, data, filename);
+    return this.renderComponent(content, data, filename);
   }
 
-  renderSync(content: string, data?: Data, filename?: string): string {
+  renderComponent(content: string, data?: Data, filename?: string): string {
     const dataWithFilters = {
       ...data,
       filters: {

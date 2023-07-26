@@ -75,7 +75,7 @@ export class LiquidEngine implements Engine {
     return await this.liquid.render(template, data);
   }
 
-  renderSync(content: string, data?: Data, filename?: string) {
+  renderComponent(content: string, data?: Data, filename?: string) {
     if (!filename) {
       return this.liquid.parseAndRenderSync(content, data);
     }
