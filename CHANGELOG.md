@@ -6,9 +6,14 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [Unreleased]
+## [1.18.4] - Unreleased
+### Added
+- Generic to `Page` to set the data interface. For example: `Page<Post>`.
+
+## [1.18.3] - 2023-07-26
 ### Fixed
 - `relative_urls` give wrong URL when `prettyUrls` is disabled [#451]
+- `module` loader cache.
 
 ## [1.18.2] - 2023-07-21
 ### Added
@@ -2340,7 +2345,8 @@ The first version.
 [#450]: https://github.com/lumeland/lume/issues/450
 [#451]: https://github.com/lumeland/lume/issues/451
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.18.2...HEAD
+[1.18.4]: https://github.com/lumeland/lume/compare/v1.18.3...HEAD
+[1.18.3]: https://github.com/lumeland/lume/compare/v1.18.2...v1.18.3
 [1.18.2]: https://github.com/lumeland/lume/compare/v1.18.1...v1.18.2
 [1.18.1]: https://github.com/lumeland/lume/compare/v1.18.0...v1.18.1
 [1.18.0]: https://github.com/lumeland/lume/compare/v1.17.5...v1.18.0

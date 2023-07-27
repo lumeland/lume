@@ -8,6 +8,7 @@ const cached = new Set<string>();
 export default async function module(path: string): Promise<Data> {
   const url = isUrl(path) ? path : `file://${path}`;
   const specifier = cached.has(url) ? `${url}#${Date.now()}` : url;
+  cached.add(url);
   const mod = await import(specifier);
   return toData(mod);
 }
