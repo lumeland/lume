@@ -46,8 +46,8 @@ export const pluginNames = [
   "tailwindcss",
   "terser",
   "toml",
+  "unocss",
   "vento",
-  "windi_css",
 ];
 
 export function log(...lines: (string | undefined)[]) {

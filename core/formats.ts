@@ -62,7 +62,7 @@ export default class Formats {
       return;
     }
 
-    // Chained extension (.tmpl.js, .windi.css) goes first
+    // Chained extension (.tmpl.js) goes first
     if (ext.match(/^\.\w+\.\w+$/)) {
       const entries = Array.from(this.entries.entries());
       entries.unshift([ext, format]);

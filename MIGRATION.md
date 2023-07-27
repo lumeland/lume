@@ -40,3 +40,7 @@
 ## `netlify_cms` Plugin
 
 - Renamed to `decap_cms`.
+
+## `windi_css` Plugin
+
+- Replaced with `unocss`.
