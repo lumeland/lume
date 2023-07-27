@@ -6,14 +6,14 @@ import type { PageData, ProxyComponents } from "../core.ts";
 import type { Entry } from "./fs.ts";
 
 /** A page of the site */
-export class Page {
+export class Page<D extends PageData = PageData> {
   /** The src info */
   src: Src;
 
   /**
    * Used to save the page data
    */
-  data: PageData = {} as PageData;
+  data: D = {} as D;
 
   /**
    * Internal data. Used to save arbitrary data by plugins and processors
@@ -58,14 +58,14 @@ export class Page {
   }
 
   /** Duplicate this page. */
-  duplicate(index?: number, data: Data = {}): Page {
+  duplicate(index?: number, data: D = {} as D): Page {
     const page = new Page({ ...this.src });
 
     if (index !== undefined) {
       page.src.path += `[${index}]`;
     }
 
-    page.data = data as PageData;
+    page.data = data;
     page.data.page = page;
 
     return page;
@@ -197,12 +197,12 @@ export interface Dest {
 export type Content = Uint8Array | string;
 
 /** The data of a page */
-export interface Data {
+export interface Data<D extends PageData = PageData> {
   /** List of tags assigned to a page or folder */
   tags?: string[];
 
   /** The url of a page */
-  url?: string | ((page: Page) => string) | false;
+  url?: string | ((page: Page<D>) => string) | false;
 
   /** If is `true`, the page will be visible only in `dev` mode */
   draft?: boolean;
@@ -232,7 +232,7 @@ export interface Data {
   comp?: ProxyComponents;
 
   /** The page object */
-  page?: Page;
+  page?: Page<D>;
 
   // deno-lint-ignore no-explicit-any
   [index: string]: any;
