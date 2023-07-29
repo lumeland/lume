@@ -17,25 +17,30 @@ export interface Options {
   extensions: string[];
 
   /** List of remark plugins to use */
-  remarkPlugins?: unknown[];
+  remarkPlugins: unknown[];
 
   /** List of rehype plugins to use */
-  rehypePlugins?: unknown[];
+  rehypePlugins: unknown[];
 
   /** Flag to turn on HTML sanitization to prevent XSS */
-  sanitize?: boolean;
+  sanitize: boolean;
 
-  /** Flag to override the default plugins */
-  overrideDefaultPlugins?: boolean;
+  /** Set `false` to remove the default plugins */
+  useDefaultPlugins: boolean;
 }
 
 // Default options
 export const defaults: Options = {
   extensions: [".md"],
-  // By default, GitHub-flavored markdown is enabled
-  remarkPlugins: [remarkGfm],
+  remarkPlugins: [],
+  rehypePlugins: [],
   sanitize: false,
+  useDefaultPlugins: true,
 };
+
+const remarkDefaultPlugins = [
+  remarkGfm,
+];
 
 /** Template engine to render Markdown files with Remark */
 export class MarkdownEngine implements Engine {
@@ -83,15 +88,12 @@ export default function (userOptions?: Partial<Options>) {
     // Add remark-parse to generate MDAST
     plugins.push(remarkParse);
 
-    if (!options.overrideDefaultPlugins) {
-      // Add default remark plugins
-      defaults.remarkPlugins?.forEach((defaultPlugin) =>
-        plugins.push(defaultPlugin)
-      );
+    if (options.useDefaultPlugins) {
+      options.remarkPlugins.unshift(...remarkDefaultPlugins);
     }
 
     // Add remark plugins
-    options.remarkPlugins?.forEach((plugin) => plugins.push(plugin));
+    plugins.push(...options.remarkPlugins);
 
     // Add remark-rehype to generate HAST
     plugins.push([remarkRehype, { allowDangerousHtml: true }]);
@@ -102,7 +104,7 @@ export default function (userOptions?: Partial<Options>) {
     }
 
     // Add rehype plugins
-    options.rehypePlugins?.forEach((plugin) => plugins.push(plugin));
+    plugins.push(...options.rehypePlugins);
 
     if (options.sanitize) {
       // Add rehype-sanitize to make sure HTML is safe

@@ -23,8 +23,8 @@ export interface Options {
   // deno-lint-ignore no-explicit-any
   rules: Record<string, (...args: any[]) => any>;
 
-  /** Set `true` append your plugins to the defaults */
-  keepDefaultPlugins: boolean;
+  /** Set `false` to remove the default plugins */
+  useDefaultPlugins: boolean;
 }
 
 // Default options
@@ -33,13 +33,15 @@ export const defaults: Options = {
   options: {
     html: true,
   },
-  plugins: [
-    markdownItAttrs,
-    markdownItDeflist,
-  ],
+  plugins: [],
   rules: {},
-  keepDefaultPlugins: false,
+  useDefaultPlugins: true,
 };
+
+const defaultPlugins = [
+  markdownItAttrs,
+  markdownItDeflist,
+];
 
 interface MarkdownItEngine {
   render: (input: string, env?: Record<string, unknown>) => string;
@@ -73,8 +75,8 @@ export class MarkdownEngine implements Engine {
 export default function (userOptions?: DeepPartial<Options>) {
   const options = merge(defaults, userOptions);
 
-  if (options.keepDefaultPlugins && userOptions?.plugins?.length) {
-    options.plugins = defaults.plugins.concat(userOptions.plugins);
+  if (options.useDefaultPlugins) {
+    options.plugins.unshift(...defaultPlugins);
   }
 
   return function (site: Site) {

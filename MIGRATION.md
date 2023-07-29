@@ -25,10 +25,6 @@
     files like `netlify.toml`. For example: `page.tmpl.toml`.
   - Yes.
 
-## `markdown` Plugin
-
-- Disable indented code blocks by default #376
-
 ## `jsx` Plugin
 
 - Removed `window.React` #332.
@@ -44,3 +40,24 @@
 ## `windi_css` Plugin
 
 - Replaced with `unocss`.
+
+## `markdown` Plugin
+
+- Disable indented code blocks by default #376
+- New option `useDefaultPlugins` that it's `true` by default.
+- Removed `keepDefaultPlugins`
+
+## `postcss` Plugin
+
+- New option `useDefaultPlugins` that it's `true` by default.
+- Removed `keepDefaultPlugins`
+
+## `mdx` Plugin
+
+- New option `useDefaultPlugins` that it's `true` by default.
+- Removed `overrideDefaultPlugins`
+
+## `remark` Plugin
+
+- New option `useDefaultPlugins` that it's `true` by default.
+- Removed `overrideDefaultPlugins`

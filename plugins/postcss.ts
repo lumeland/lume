@@ -21,21 +21,23 @@ export interface Options {
   /** Plugins to use by postcss */
   plugins: unknown[];
 
-  /** Set `true` append your plugins to the defaults */
-  keepDefaultPlugins: boolean;
+  /** Set `false` to remove the default plugins */
+  useDefaultPlugins: boolean;
 }
 
 // Default options
 export const defaults: Options = {
   extensions: [".css"],
   includes: false,
-  plugins: [
-    // @ts-expect-error: postcss-nesting provides wrong types under node16 module resolution: https://github.com/csstools/postcss-plugins/issues/1031
-    postcssNesting(),
-    autoprefixer(),
-  ],
-  keepDefaultPlugins: false,
+  plugins: [],
+  useDefaultPlugins: true,
 };
+
+const defaultPlugins = [
+  // @ts-expect-error: postcss-nesting provides wrong types under node16 module resolution: https://github.com/csstools/postcss-plugins/issues/1031
+  postcssNesting(),
+  autoprefixer(),
+];
 
 /** A plugin to load all CSS files and process them using PostCSS */
 export default function (userOptions?: Partial<Options>) {
@@ -45,11 +47,11 @@ export default function (userOptions?: Partial<Options>) {
       userOptions,
     );
 
-    if (options.keepDefaultPlugins && userOptions?.plugins?.length) {
-      options.plugins = defaults.plugins.concat(userOptions.plugins);
-    }
-
     const plugins = [...options.plugins];
+
+    if (options.useDefaultPlugins) {
+      plugins.unshift(...defaultPlugins);
+    }
 
     if (options.includes) {
       site.includes(options.extensions, options.includes, false);

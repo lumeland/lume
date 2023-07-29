@@ -13,14 +13,14 @@ export interface Options {
 
   /** List of remark plugins to use */
   // deno-lint-ignore no-explicit-any
-  remarkPlugins?: any[];
+  remarkPlugins: any[];
 
   /** List of rehype plugins to use */
   // deno-lint-ignore no-explicit-any
-  rehypePlugins?: any[];
+  rehypePlugins: any[];
 
-  /** Flag to override the default plugins */
-  overrideDefaultPlugins?: boolean;
+  /** Set `false` to remove the default plugins */
+  useDefaultPlugins: boolean;
 
   /** Optional pragma to add to the code evaluation */
   pragma?: string;
@@ -32,9 +32,14 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".mdx"],
-  // By default, GitHub-flavored markdown is enabled
-  remarkPlugins: [remarkGfm],
+  remarkPlugins: [],
+  rehypePlugins: [],
+  useDefaultPlugins: true,
 };
+
+const remarkDefaultPlugins = [
+  remarkGfm,
+];
 
 /** Template engine to render Markdown files with Remark */
 export class MDXEngine implements Engine<string | { toString(): string }> {
@@ -97,8 +102,8 @@ export default async function (${destructure}) {
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
-  if (options.remarkPlugins && !options.overrideDefaultPlugins) {
-    options.remarkPlugins.push(...defaults.remarkPlugins!);
+  if (options.useDefaultPlugins) {
+    options.remarkPlugins.unshift(...remarkDefaultPlugins);
   }
 
   return function (site: Site) {
