@@ -9,6 +9,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.18.4] - Unreleased
 ### Added
 - Generic to `Page` to set the data interface. For example: `Page<Post>`.
+- Add PHP to pages that can be rendered with templates. [#460]
 
 ## [1.18.3] - 2023-07-26
 ### Fixed
