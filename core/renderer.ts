@@ -123,7 +123,7 @@ export default class Renderer {
             const content = await this.#renderPage(page);
 
             // If the page is HTML or PHP, save the children to render the layout later
-            if (/\.(html|php)$/.test(page.outputPath || '')) {
+            if (/\.(html|php)$/.test(page.outputPath || "")) {
               page.data.children = content;
               renderedPages.push(page);
             } else {
