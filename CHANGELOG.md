@@ -2345,6 +2345,7 @@ The first version.
 [#449]: https://github.com/lumeland/lume/issues/449
 [#450]: https://github.com/lumeland/lume/issues/450
 [#451]: https://github.com/lumeland/lume/issues/451
+[#460]: https://github.com/lumeland/lume/issues/460
 
 [1.18.4]: https://github.com/lumeland/lume/compare/v1.18.3...HEAD
 [1.18.3]: https://github.com/lumeland/lume/compare/v1.18.2...v1.18.3
