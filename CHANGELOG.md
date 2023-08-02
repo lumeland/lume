@@ -15,6 +15,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ### Fixed
 - Updated dependencies: `std`, `esbuild`, `eta`, `imagemagick`, `@types/react`, `sass`.
+- Changed quick start demo after init for Windows Powershell's compability [#463].
 
 ## [1.18.3] - 2023-07-26
 ### Fixed
@@ -2351,6 +2352,7 @@ The first version.
 [#450]: https://github.com/lumeland/lume/issues/450
 [#451]: https://github.com/lumeland/lume/issues/451
 [#462]: https://github.com/lumeland/lume/issues/462
+[#463]: https://github.com/lumeland/lume/issues/463
 
 [1.18.4]: https://github.com/lumeland/lume/compare/v1.18.3...HEAD
 [1.18.3]: https://github.com/lumeland/lume/compare/v1.18.2...v1.18.3

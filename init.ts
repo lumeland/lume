@@ -63,7 +63,6 @@ updateLumeVersion(url, denoConfig);
 writeDenoConfig(denoConfig);
 
 const links = {
-  page: brightGreen("echo 'Hello world' > index.md"),
   serve: brightGreen("deno task serve"),
   repo: gray("https://github.com/lumeland/lume"),
   website: gray("https://lume.land"),
@@ -81,8 +80,10 @@ const message = outdent`
 
   🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-  Run ${links.page} to create your first page
-  Run ${links.serve} to start a local server
+  Quick start:
+    Create the index.md file and write some content
+    Run ${links.serve} to start a local server
+
   See ${links.website} for online documentation
   See ${links.discord} to propose new ideas and get help at Discord
   See ${links.repo} to view the source code and report issues
