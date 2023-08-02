@@ -188,11 +188,11 @@ snapshot[`multilanguage plugin 3`] = `
 ' +
       '<link rel="alternate" hreflang="fr" href="http://localhost/fr/other-page-french.html">
 ' +
-      "</head><body><p>Other page</p></body></html>",
+      '</head><body><p>Other page <a href="/gl/">Link to index in Galego</a></p></body></html>',
     data: {
       alternates: "Array(2)",
-      children: "<p>Other page</p>",
-      content: "<p>Other page</p>",
+      children: '<p>Other page <a href="/gl/">Link to index in Galego</a></p>',
+      content: \`<p>Other page <a href="{{ '~/index.md(lang=gl)' | url }}">Link to index in Galego</a></p>\`,
       date: [],
       id: "other",
       lang: "en",
@@ -228,11 +228,11 @@ snapshot[`multilanguage plugin 3`] = `
 ' +
       '<link rel="alternate" hreflang="fr" href="http://localhost/fr/other-page-french.html">
 ' +
-      "</head><body><p>Other page</p></body></html>",
+      '</head><body><p>Other page <a href="/gl/">Link to index in Galego</a></p></body></html>',
     data: {
       alternates: "Array(2)",
-      children: "<p>Other page</p>",
-      content: "<p>Other page</p>",
+      children: '<p>Other page <a href="/gl/">Link to index in Galego</a></p>',
+      content: \`<p>Other page <a href="{{ '~/index.md(lang=gl)' | url }}">Link to index in Galego</a></p>\`,
       date: [],
       id: "other",
       lang: "fr",
