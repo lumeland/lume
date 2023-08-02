@@ -102,7 +102,8 @@ snapshot[`Source maps from CSS files 1`] = `
     "/_includes/sass",
     "/_includes/sass/_list.scss",
     "/_includes/sass/bootstrap.scss",
-    "/_includes/sass/button.scss",
+    "/_includes/sass/button",
+    "/_includes/sass/button/index.scss",
     "/_includes/sass/colors.scss",
     "/_includes/sass/fourth.scss",
     "/_includes/sass/third.scss",
@@ -118,9 +119,9 @@ snapshot[`Source maps from CSS files 2`] = `[]`;
 snapshot[`Source maps from CSS files 3`] = `
 [
   {
-    content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BDEQ,2DGFR,cEMA,+CLAA","sources":["index.scss","styles.css","third.scss","fourth.scss","colors.scss","button.scss","_list.scss"],"sourcesContent":["","","","","","",""],"names":[],"file":"index.css.map"}',
+    content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BDEQ,2DGFR,cEMA,+CLAA","sources":["index.scss","styles.css","third.scss","fourth.scss","colors.scss","index.scss","_list.scss"],"sourcesContent":["","","","","","",""],"names":[],"file":"index.css.map"}',
     data: {
-      content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BDEQ,2DGFR,cEMA,+CLAA","sources":["index.scss","styles.css","third.scss","fourth.scss","colors.scss","button.scss","_list.scss"],"sourcesContent":["","","","","","",""],"names":[],"file":"index.css.map"}',
+      content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BDEQ,2DGFR,cEMA,+CLAA","sources":["index.scss","styles.css","third.scss","fourth.scss","colors.scss","index.scss","_list.scss"],"sourcesContent":["","","","","","",""],"names":[],"file":"index.css.map"}',
       page: [
         "src",
         "data",

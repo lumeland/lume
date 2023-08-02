@@ -16,6 +16,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Fixed
 - Updated dependencies: `std`, `esbuild`, `eta`, `imagemagick`, `@types/react`, `sass`.
 - Changed quick start demo after init for Windows Powershell's compability [#463].
+- `sass` plugin: Resolve `index.scss` and `_index.scss` files.
 
 ## [1.18.3] - 2023-07-26
 ### Fixed
