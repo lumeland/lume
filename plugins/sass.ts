@@ -69,7 +69,6 @@ export default function (userOptions?: Partial<Options>) {
           // @ts-ignore: url is not in the type definition
           canonicalize(url: string) {
             const pathname = normalizePath(fromFileUrl(url));
-
             const mainPath = pathname.startsWith(basePath)
               ? normalizePath(pathname.slice(basePath.length))
               : pathname;
@@ -152,6 +151,10 @@ function getPathsToLook(path: string): string[] {
       `${path}.sass`,
       posix.join(posix.dirname(path), `_${basename}.scss`),
       posix.join(posix.dirname(path), `_${basename}.sass`),
+      posix.join(path, `index.scss`),
+      posix.join(path, `index.sass`),
+      posix.join(path, `_index.scss`),
+      posix.join(path, `_index.sass`),
     ];
   }
 }

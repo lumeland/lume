@@ -99,7 +99,10 @@ snapshot[`sass plugin 1`] = `
     "/",
     "/_includes",
     "/_includes/sass",
-    "/_includes/sass/button.scss",
+    "/_includes/sass/_list.scss",
+    "/_includes/sass/bootstrap.scss",
+    "/_includes/sass/button",
+    "/_includes/sass/button/index.scss",
     "/_includes/sass/colors.scss",
     "/_includes/sass/fourth.scss",
     "/_includes/sass/third.scss",
@@ -115,14 +118,26 @@ snapshot[`sass plugin 2`] = `[]`;
 snapshot[`sass plugin 3`] = `
 [
   {
-    content: '@import"./styles.css";html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}',
+    content: '@import"./styles.css";html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}li{margin:0;padding:0;list-style:none}',
     data: {
-      content: '@import "./styles.css";
+      content: '@use "sass/bootstrap";
+' +
+        "
+" +
+        '@import "./styles.css";
 ' +
         '@import "./_includes/sass/colors";
 ' +
         '@import "sass/button";
-',
+' +
+        "
+" +
+        "li {
+" +
+        "  @include bootstrap.list-reset;
+" +
+        "}
+",
       date: [],
       mergedKeys: [
         "tags",

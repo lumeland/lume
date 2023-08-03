@@ -717,9 +717,16 @@ export default class Site {
     if (path.startsWith("~/")) {
       path = decodeURI(path.slice(1));
 
+      // Has a search query
+      const match = path.match(/^(.*)\s*\(([^)]+)\)$/);
+      const srcPath = match ? match[1] : path;
+      const pages = match
+        ? this.searcher.pages(match[2]).map<Page>((data) => data.page!)
+        : this.pages;
+
       // It's a page
-      const page = this.pages.find((page) =>
-        page.src.path + page.src.ext === path
+      const page = pages.find((page) =>
+        page.src.path + page.src.ext === srcPath
       );
 
       if (page) {
