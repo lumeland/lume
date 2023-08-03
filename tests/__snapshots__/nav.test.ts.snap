@@ -104,263 +104,135 @@ snapshot[`nav plugin 2`] = `[]`;
 snapshot[`nav plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html>
-" +
-      "  <head>
-" +
-      "    <title>Docs</title>
-" +
-      "  </head>
-" +
-      "
-" +
-      "  <body>
-" +
-      "    <nav>
-" +
-      '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-' +
-      "        
-" +
-      '        <li><a href="/">Home</a></li>
-' +
-      "        
-" +
-      '        <li><a href="/docs/">Docs</a></li>
-' +
-      "        
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "
-" +
-      "    <h1>Docs</h1>
-" +
-      "
-" +
-      "    <nav>
-" +
-      "      <ul>
-" +
-      "      
-" +
-      "        <li>
-" +
-      "          
-" +
-      '<a href="/docs/">Docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/about-docs/">About docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/">About pages</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/first/">Pages first</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/second/">Pages second</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "        </li>
-" +
-      "      
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "
-" +
-      "    <nav>
-" +
-      "      <ul>
-" +
-      "      
-" +
-      "        <li>
-" +
-      "          
-" +
-      "<strong>docs</strong>
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/about-docs/">About docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      "<strong>pages</strong>
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/second/">Pages second</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "        </li>
-" +
-      "      
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "  </body>
-" +
-      "</html>",
+    content: '<!DOCTYPE html>
+<html>
+  <head>
+    <title>Docs</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/docs/">Docs</a></li>
+        
+      </ul>
+    </nav>
+
+    <h1>Docs</h1>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<a href="/docs/">Docs</a>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/">About pages</a>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/first/">Pages first</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+  </body>
+</html>',
     data: {
       children: "",
       content: "",
@@ -389,267 +261,137 @@ snapshot[`nav plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html>
-" +
-      "  <head>
-" +
-      "    <title>About docs</title>
-" +
-      "  </head>
-" +
-      "
-" +
-      "  <body>
-" +
-      "    <nav>
-" +
-      '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-' +
-      "        
-" +
-      '        <li><a href="/">Home</a></li>
-' +
-      "        
-" +
-      '        <li><a href="/docs/">Docs</a></li>
-' +
-      "        
-" +
-      '        <li><a href="/docs/about-docs/">About docs</a></li>
-' +
-      "        
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "
-" +
-      "    <h1>About docs</h1>
-" +
-      "
-" +
-      "    <nav>
-" +
-      "      <ul>
-" +
-      "      
-" +
-      "        <li>
-" +
-      "          
-" +
-      '<a href="/docs/">Docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/about-docs/">About docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/">About pages</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/first/">Pages first</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/second/">Pages second</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "        </li>
-" +
-      "      
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "
-" +
-      "    <nav>
-" +
-      "      <ul>
-" +
-      "      
-" +
-      "        <li>
-" +
-      "          
-" +
-      "<strong>docs</strong>
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/about-docs/">About docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      "<strong>pages</strong>
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/second/">Pages second</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "        </li>
-" +
-      "      
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "  </body>
-" +
-      "</html>",
+    content: '<!DOCTYPE html>
+<html>
+  <head>
+    <title>About docs</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/docs/">Docs</a></li>
+        
+        <li><a href="/docs/about-docs/">About docs</a></li>
+        
+      </ul>
+    </nav>
+
+    <h1>About docs</h1>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<a href="/docs/">Docs</a>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/">About pages</a>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/first/">Pages first</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+  </body>
+</html>',
     data: {
       children: "",
       content: "",
@@ -679,267 +421,137 @@ snapshot[`nav plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html>
-" +
-      "  <head>
-" +
-      "    <title>About pages</title>
-" +
-      "  </head>
-" +
-      "
-" +
-      "  <body>
-" +
-      "    <nav>
-" +
-      '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-' +
-      "        
-" +
-      '        <li><a href="/">Home</a></li>
-' +
-      "        
-" +
-      '        <li><a href="/docs/">Docs</a></li>
-' +
-      "        
-" +
-      '        <li><a href="/docs/pages/">About pages</a></li>
-' +
-      "        
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "
-" +
-      "    <h1>About pages</h1>
-" +
-      "
-" +
-      "    <nav>
-" +
-      "      <ul>
-" +
-      "      
-" +
-      "        <li>
-" +
-      "          
-" +
-      '<a href="/docs/">Docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/about-docs/">About docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/">About pages</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/first/">Pages first</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/second/">Pages second</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "        </li>
-" +
-      "      
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "
-" +
-      "    <nav>
-" +
-      "      <ul>
-" +
-      "      
-" +
-      "        <li>
-" +
-      "          
-" +
-      "<strong>docs</strong>
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/about-docs/">About docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      "<strong>pages</strong>
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/second/">Pages second</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "        </li>
-" +
-      "      
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "  </body>
-" +
-      "</html>",
+    content: '<!DOCTYPE html>
+<html>
+  <head>
+    <title>About pages</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/docs/">Docs</a></li>
+        
+        <li><a href="/docs/pages/">About pages</a></li>
+        
+      </ul>
+    </nav>
+
+    <h1>About pages</h1>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<a href="/docs/">Docs</a>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/">About pages</a>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/first/">Pages first</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+  </body>
+</html>',
     data: {
       children: "",
       content: "",
@@ -968,271 +580,139 @@ snapshot[`nav plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html>
-" +
-      "  <head>
-" +
-      "    <title>Pages first</title>
-" +
-      "  </head>
-" +
-      "
-" +
-      "  <body>
-" +
-      "    <nav>
-" +
-      '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-' +
-      "        
-" +
-      '        <li><a href="/">Home</a></li>
-' +
-      "        
-" +
-      '        <li><a href="/docs/">Docs</a></li>
-' +
-      "        
-" +
-      '        <li><a href="/docs/pages/">About pages</a></li>
-' +
-      "        
-" +
-      '        <li><a href="/docs/pages/first/">Pages first</a></li>
-' +
-      "        
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "
-" +
-      "    <h1>Pages first</h1>
-" +
-      "
-" +
-      "    <nav>
-" +
-      "      <ul>
-" +
-      "      
-" +
-      "        <li>
-" +
-      "          
-" +
-      '<a href="/docs/">Docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/about-docs/">About docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/">About pages</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/first/">Pages first</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/second/">Pages second</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "        </li>
-" +
-      "      
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "
-" +
-      "    <nav>
-" +
-      "      <ul>
-" +
-      "      
-" +
-      "        <li>
-" +
-      "          
-" +
-      "<strong>docs</strong>
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/about-docs/">About docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      "<strong>pages</strong>
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/second/">Pages second</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "        </li>
-" +
-      "      
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "  </body>
-" +
-      "</html>",
+    content: '<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pages first</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/docs/">Docs</a></li>
+        
+        <li><a href="/docs/pages/">About pages</a></li>
+        
+        <li><a href="/docs/pages/first/">Pages first</a></li>
+        
+      </ul>
+    </nav>
+
+    <h1>Pages first</h1>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<a href="/docs/">Docs</a>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/">About pages</a>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/first/">Pages first</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+  </body>
+</html>',
     data: {
       children: "",
       content: "",
@@ -1261,271 +741,139 @@ snapshot[`nav plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html>
-" +
-      "  <head>
-" +
-      "    <title>Pages second</title>
-" +
-      "  </head>
-" +
-      "
-" +
-      "  <body>
-" +
-      "    <nav>
-" +
-      '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-' +
-      "        
-" +
-      '        <li><a href="/">Home</a></li>
-' +
-      "        
-" +
-      '        <li><a href="/docs/">Docs</a></li>
-' +
-      "        
-" +
-      '        <li><a href="/docs/pages/">About pages</a></li>
-' +
-      "        
-" +
-      '        <li><a href="/docs/pages/second/">Pages second</a></li>
-' +
-      "        
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "
-" +
-      "    <h1>Pages second</h1>
-" +
-      "
-" +
-      "    <nav>
-" +
-      "      <ul>
-" +
-      "      
-" +
-      "        <li>
-" +
-      "          
-" +
-      '<a href="/docs/">Docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/about-docs/">About docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/">About pages</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/first/">Pages first</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/second/">Pages second</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "        </li>
-" +
-      "      
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "
-" +
-      "    <nav>
-" +
-      "      <ul>
-" +
-      "      
-" +
-      "        <li>
-" +
-      "          
-" +
-      "<strong>docs</strong>
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/about-docs/">About docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      "<strong>pages</strong>
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/second/">Pages second</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "        </li>
-" +
-      "      
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "  </body>
-" +
-      "</html>",
+    content: '<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pages second</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/docs/">Docs</a></li>
+        
+        <li><a href="/docs/pages/">About pages</a></li>
+        
+        <li><a href="/docs/pages/second/">Pages second</a></li>
+        
+      </ul>
+    </nav>
+
+    <h1>Pages second</h1>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<a href="/docs/">Docs</a>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/">About pages</a>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/first/">Pages first</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+  </body>
+</html>',
     data: {
       children: "",
       content: "",
@@ -1555,259 +903,133 @@ snapshot[`nav plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html>
-" +
-      "  <head>
-" +
-      "    <title>Home</title>
-" +
-      "  </head>
-" +
-      "
-" +
-      "  <body>
-" +
-      "    <nav>
-" +
-      '      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-' +
-      "        
-" +
-      '        <li><a href="/">Home</a></li>
-' +
-      "        
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "
-" +
-      "    <h1>Home</h1>
-" +
-      "
-" +
-      "    <nav>
-" +
-      "      <ul>
-" +
-      "      
-" +
-      "        <li>
-" +
-      "          
-" +
-      '<a href="/docs/">Docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/about-docs/">About docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/">About pages</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/first/">Pages first</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/second/">Pages second</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "        </li>
-" +
-      "      
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "
-" +
-      "    <nav>
-" +
-      "      <ul>
-" +
-      "      
-" +
-      "        <li>
-" +
-      "          
-" +
-      "<strong>docs</strong>
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/about-docs/">About docs</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      "<strong>pages</strong>
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "  
-" +
-      "  <li>
-" +
-      "    
-" +
-      '<a href="/docs/pages/second/">Pages second</a>
-' +
-      "
-" +
-      "
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "  </li>
-" +
-      "  
-" +
-      "</ul>
-" +
-      "
-" +
-      "
-" +
-      "        </li>
-" +
-      "      
-" +
-      "      </ul>
-" +
-      "    </nav>
-" +
-      "  </body>
-" +
-      "</html>",
+    content: '<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        
+        <li><a href="/">Home</a></li>
+        
+      </ul>
+    </nav>
+
+    <h1>Home</h1>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<a href="/docs/">Docs</a>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/">About pages</a>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/first/">Pages first</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second/">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+  </body>
+</html>',
     data: {
       children: "",
       content: "",

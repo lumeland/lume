@@ -110,24 +110,15 @@ snapshot[`relations plugin 3`] = `
 [
   {
     content: "<!DOCTYPE html>
-" +
-      "<h1>Category 1</h1>
-" +
-      "
-" +
-      "<div><p>This is the first category</p>
-" +
-      "</div>
-" +
-      "
-" +
-      "<h2>Posts</h2>
-" +
-      "<ul>
-" +
-      "
-" +
-      "</ul>
+<h1>Category 1</h1>
+
+<div><p>This is the first category</p>
+</div>
+
+<h2>Posts</h2>
+<ul>
+
+</ul>
 ",
     data: {
       children: "<p>This is the first category</p>
@@ -163,24 +154,15 @@ snapshot[`relations plugin 3`] = `
   },
   {
     content: "<!DOCTYPE html>
-" +
-      "<h1>Category 2</h1>
-" +
-      "
-" +
-      "<div><p>This is the second category</p>
-" +
-      "</div>
-" +
-      "
-" +
-      "<h2>Posts</h2>
-" +
-      "<ul>
-" +
-      "
-" +
-      "</ul>
+<h1>Category 2</h1>
+
+<div><p>This is the second category</p>
+</div>
+
+<h2>Posts</h2>
+<ul>
+
+</ul>
 ",
     data: {
       children: "<p>This is the second category</p>
@@ -314,31 +296,19 @@ snapshot[`relations plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<div><p>First post with category 2 and comments 1 and 3</p>
-" +
-      "</div>
-" +
-      "
-" +
-      "  
-" +
-      "<h2>Category:</h2>
-" +
-      '<a href="/categories/category-2/">Category 2</a>
-' +
-      "<p>This is the second category</p>
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "
-" +
-      "</ul>",
+    content: '<!DOCTYPE html>
+<div><p>First post with category 2 and comments 1 and 3</p>
+</div>
+
+  
+<h2>Category:</h2>
+<a href="/categories/category-2/">Category 2</a>
+<p>This is the second category</p>
+
+
+<ul>
+
+</ul>',
     data: {
       category: [
         "mergedKeys",
@@ -389,31 +359,19 @@ snapshot[`relations plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<div><p>Second post with category 1 and comment 2</p>
-" +
-      "</div>
-" +
-      "
-" +
-      "  
-" +
-      "<h2>Category:</h2>
-" +
-      '<a href="/categories/category-1/">Category 1</a>
-' +
-      "<p>This is the first category</p>
-" +
-      "
-" +
-      "
-" +
-      "<ul>
-" +
-      "
-" +
-      "</ul>",
+    content: '<!DOCTYPE html>
+<div><p>Second post with category 1 and comment 2</p>
+</div>
+
+  
+<h2>Category:</h2>
+<a href="/categories/category-1/">Category 1</a>
+<p>This is the first category</p>
+
+
+<ul>
+
+</ul>',
     data: {
       category: [
         "mergedKeys",

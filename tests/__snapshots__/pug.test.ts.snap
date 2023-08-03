@@ -105,9 +105,8 @@ snapshot[`build a site with pug 2`] = `[]`;
 snapshot[`build a site with pug 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-" +
-      '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
+    content: '<!DOCTYPE html>
+<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
     data: {
       children: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
       content: "extends /layout.pug
@@ -137,55 +136,33 @@ block content
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
-' +
-      "<p>This is a paragraph</p>
-" +
-      "<ul>
-" +
-      "<li>Option 1</li>
-" +
-      "<li>Option 2</li>
-" +
-      "</ul><h1>Some dynamic content</h1></body></html>",
+    content: '<!DOCTYPE html>
+<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
+<p>This is a paragraph</p>
+<ul>
+<li>Option 1</li>
+<li>Option 2</li>
+</ul><h1>Some dynamic content</h1></body></html>',
     data: {
       children: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
-' +
-        "<p>This is a paragraph</p>
-" +
-        "<ul>
-" +
-        "<li>Option 1</li>
-" +
-        "<li>Option 2</li>
-" +
-        "</ul><h1>Some dynamic content</h1></body></html>",
-      content: "extends ./_includes/layout.pug
-" +
-        "block content
-" +
-        "  :md
-" +
-        "    # This is a title
-" +
-        "
-" +
-        "    This is a paragraph
-" +
-        "
-" +
-        "    - Option 1
-" +
-        "    - Option 2
-" +
-        "
-" +
-        '  - const dynamicMd = "# Some dynamic content";
-' +
-        "  != filters.md(dynamicMd)
-",
+<p>This is a paragraph</p>
+<ul>
+<li>Option 1</li>
+<li>Option 2</li>
+</ul><h1>Some dynamic content</h1></body></html>',
+      content: 'extends ./_includes/layout.pug
+block content
+  :md
+    # This is a title
+
+    This is a paragraph
+
+    - Option 1
+    - Option 2
+
+  - const dynamicMd = "# Some dynamic content";
+  != filters.md(dynamicMd)
+',
       date: [],
       mergedKeys: [
         "tags",
@@ -209,9 +186,8 @@ block content
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><header><h1>Pug example</h1></header></body></html>',
+    content: '<!DOCTYPE html>
+<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><header><h1>Pug example</h1></header></body></html>',
     data: {
       children: "<header><h1>Pug example</h1></header>",
       content: "header

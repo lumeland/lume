@@ -127,30 +127,18 @@ console.log(one() + two());
     content: "export function one(){return 1}export function two(){return 2}",
     data: {
       content: "export function one () {
-" +
-        "  return {{ one }};
-" +
-        "}
-" +
-        "
-" +
-        "export function two () {
-" +
-        "  return {{ two }};
-" +
-        "}
-" +
-        "/*
-" +
-        "Commented code
-" +
-        "export function two () {
-" +
-        "  return {{ two }};
-" +
-        "}
-" +
-        "*/",
+  return {{ one }};
+}
+
+export function two () {
+  return {{ two }};
+}
+/*
+Commented code
+export function two () {
+  return {{ two }};
+}
+*/",
       date: [],
       mergedKeys: [
         "tags",

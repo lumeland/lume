@@ -96,61 +96,34 @@ snapshot[`metas plugin 2`] = `[]`;
 snapshot[`metas plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head>
-" +
-      '  <meta property="og:type" content="website">
-' +
-      '<meta property="og:site_name" content="My site">
-' +
-      '<meta property="og:locale" content="gl">
-' +
-      '<meta property="og:title" content="Custom title">
-' +
-      '<meta property="og:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
-' +
-      '<meta property="og:url" content="http://localhost/page-1/">
-' +
-      '<meta property="og:image" content="http://localhost/my-image.png">
-' +
-      '<meta name="twitter:title" content="Custom title">
-' +
-      '<meta name="twitter:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
-' +
-      '<meta name="twitter:card" content="summary_large_image">
-' +
-      '<meta name="twitter:image" content="http://localhost/my-image.png">
-' +
-      '<meta name="twitter:site" content="@myUser">
-' +
-      '<meta itemprop="name" content="Custom title">
-' +
-      '<meta itemprop="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
-' +
-      '<meta itemprop="image" content="http://localhost/my-image.png">
-' +
-      '<meta name="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
-' +
-      '<meta name="keywords" content="one, two">
-' +
-      '<meta name="robots" content="index, follow">
-' +
-      '<meta name="theme-color" content="black">
-' +
-      '<meta name="generator" content="Lume testing">
-' +
-      "</head>
-" +
-      "  <body>
-" +
-      "    Hello world
-" +
-      "  
-" +
-      "
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head>
+  <meta property="og:type" content="website">
+<meta property="og:site_name" content="My site">
+<meta property="og:locale" content="gl">
+<meta property="og:title" content="Custom title">
+<meta property="og:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
+<meta property="og:url" content="http://localhost/page-1/">
+<meta property="og:image" content="http://localhost/my-image.png">
+<meta name="twitter:title" content="Custom title">
+<meta name="twitter:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost/my-image.png">
+<meta name="twitter:site" content="@myUser">
+<meta itemprop="name" content="Custom title">
+<meta itemprop="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
+<meta itemprop="image" content="http://localhost/my-image.png">
+<meta name="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
+<meta name="keywords" content="one, two">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="black">
+<meta name="generator" content="Lume testing">
+</head>
+  <body>
+    Hello world
+  
+
+</body></html>',
     data: {
       children: "<html>
   <head>
@@ -204,61 +177,34 @@ snapshot[`metas plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head>
-" +
-      '  <meta property="og:type" content="website">
-' +
-      '<meta property="og:site_name" content="My site">
-' +
-      '<meta property="og:locale" content="gl">
-' +
-      '<meta property="og:title" content="Relative paths">
-' +
-      '<meta property="og:description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
-' +
-      '<meta property="og:url" content="http://localhost/page-2/">
-' +
-      '<meta property="og:image" content="http://localhost/page-2/my-image.png">
-' +
-      '<meta name="twitter:title" content="Relative paths">
-' +
-      '<meta name="twitter:description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
-' +
-      '<meta name="twitter:card" content="summary_large_image">
-' +
-      '<meta name="twitter:image" content="http://localhost/page-2/my-image.png">
-' +
-      '<meta name="twitter:site" content="@myUser">
-' +
-      '<meta itemprop="name" content="Relative paths">
-' +
-      '<meta itemprop="description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
-' +
-      '<meta itemprop="image" content="http://localhost/page-2/my-image.png">
-' +
-      '<meta name="description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
-' +
-      '<meta name="keywords" content="one, two">
-' +
-      '<meta name="robots" content="noindex, nofollow, noarchive">
-' +
-      '<meta name="theme-color" content="black">
-' +
-      '<meta name="generator" content="Lume testing">
-' +
-      "</head>
-" +
-      "  <body>
-" +
-      "    Hello world
-" +
-      "  
-" +
-      "
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head>
+  <meta property="og:type" content="website">
+<meta property="og:site_name" content="My site">
+<meta property="og:locale" content="gl">
+<meta property="og:title" content="Relative paths">
+<meta property="og:description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
+<meta property="og:url" content="http://localhost/page-2/">
+<meta property="og:image" content="http://localhost/page-2/my-image.png">
+<meta name="twitter:title" content="Relative paths">
+<meta name="twitter:description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost/page-2/my-image.png">
+<meta name="twitter:site" content="@myUser">
+<meta itemprop="name" content="Relative paths">
+<meta itemprop="description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
+<meta itemprop="image" content="http://localhost/page-2/my-image.png">
+<meta name="description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
+<meta name="keywords" content="one, two">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="black">
+<meta name="generator" content="Lume testing">
+</head>
+  <body>
+    Hello world
+  
+
+</body></html>',
     data: {
       children: "<html>
   <head>
@@ -312,57 +258,33 @@ snapshot[`metas plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      '<html><head><meta property="og:type" content="website">
-' +
-      '<meta property="og:site_name" content="My site">
-' +
-      '<meta property="og:locale" content="gl">
-' +
-      '<meta property="og:title" content="Title from page data">
-' +
-      '<meta property="og:description" content="This is page excerpt will be used as meta description.">
-' +
-      '<meta property="og:url" content="http://localhost/page-3/">
-' +
-      '<meta property="og:image" content="http://localhost/page-3/use-cover-as-meta-image.png">
-' +
-      '<meta name="twitter:title" content="Title from page data">
-' +
-      '<meta name="twitter:description" content="This is page excerpt will be used as meta description.">
-' +
-      '<meta name="twitter:card" content="summary_large_image">
-' +
-      '<meta name="twitter:image" content="http://localhost/page-3/use-cover-as-meta-image.png">
-' +
-      '<meta name="twitter:site" content="@myUser">
-' +
-      '<meta itemprop="name" content="Title from page data">
-' +
-      '<meta itemprop="description" content="This is page excerpt will be used as meta description.">
-' +
-      '<meta itemprop="image" content="http://localhost/page-3/use-cover-as-meta-image.png">
-' +
-      '<meta name="description" content="This is page excerpt will be used as meta description.">
-' +
-      '<meta name="keywords" content="one, two">
-' +
-      '<meta name="robots" content="this robots will be overrided">
-' +
-      '<meta name="theme-color" content="black">
-' +
-      '<meta name="generator" content="Lume testing">
-' +
-      "</head><body><p>This is page excerpt will be used as meta description.</p>
-" +
-      "<!--more-->
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head><meta property="og:type" content="website">
+<meta property="og:site_name" content="My site">
+<meta property="og:locale" content="gl">
+<meta property="og:title" content="Title from page data">
+<meta property="og:description" content="This is page excerpt will be used as meta description.">
+<meta property="og:url" content="http://localhost/page-3/">
+<meta property="og:image" content="http://localhost/page-3/use-cover-as-meta-image.png">
+<meta name="twitter:title" content="Title from page data">
+<meta name="twitter:description" content="This is page excerpt will be used as meta description.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost/page-3/use-cover-as-meta-image.png">
+<meta name="twitter:site" content="@myUser">
+<meta itemprop="name" content="Title from page data">
+<meta itemprop="description" content="This is page excerpt will be used as meta description.">
+<meta itemprop="image" content="http://localhost/page-3/use-cover-as-meta-image.png">
+<meta name="description" content="This is page excerpt will be used as meta description.">
+<meta name="keywords" content="one, two">
+<meta name="robots" content="this robots will be overrided">
+<meta name="theme-color" content="black">
+<meta name="generator" content="Lume testing">
+</head><body><p>This is page excerpt will be used as meta description.</p>
+<!--more-->
+</body></html>',
     data: {
       children: "<p>This is page excerpt will be used as meta description.</p>
-" +
-        "<!--more-->
+<!--more-->
 ",
       content: "This is page excerpt will be used as meta description.
 

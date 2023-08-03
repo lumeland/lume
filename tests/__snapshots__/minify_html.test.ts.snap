@@ -95,132 +95,70 @@ snapshot[`minify_html plugin 3`] = `
   {
     content: \`<!doctype html><html lang=en><meta charset=UTF-8><meta content="IE=edge"http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0"name=viewport><title>Document</title><style>body{color:#333;font:14px/1.42857143 'Open Sans',sans-serif;background:#fff}h1{font-size:1.5em;margin-top:0;margin-bottom:.5em}</style><body><h1>Hello World</h1><script>var a=1;var b=2;var c=a+ b;console.log(c)</script>\`,
     data: {
-      children: "<!DOCTYPE html>
-" +
-        '<html lang="en">
-' +
-        "<head>
-" +
-        '  <meta charset="UTF-8">
-' +
-        '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-' +
-        '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-' +
-        "  <title>Document</title>
-" +
-        "  <style>
-" +
-        "    body {
-" +
-        "      font-family: 'Open Sans', sans-serif;
-" +
-        "      font-size: 14px;
-" +
-        "      line-height: 1.42857143;
-" +
-        "      color: #333;
-" +
-        "      background-color: #fff;
-" +
-        "    }
-" +
-        "    h1 {
-" +
-        "      font-size: 1.5em;
-" +
-        "      margin-top: 0;
-" +
-        "      margin-bottom: .5em;
-" +
-        "    }
-" +
-        "  </style>
-" +
-        "</head>
-" +
-        "<body>
-" +
-        "  <h1>Hello World</h1>
-" +
-        "  <script>
-" +
-        "    var a = 1;
-" +
-        "    var b = 2;
-" +
-        "    var c = a + b;
-" +
-        "    console.log(c);
-" +
-        "  </script>
-" +
-        "</body>
-" +
-        "</html>",
-      content: "<!DOCTYPE html>
-" +
-        '<html lang="en">
-' +
-        "<head>
-" +
-        '  <meta charset="UTF-8">
-' +
-        '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-' +
-        '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-' +
-        "  <title>Document</title>
-" +
-        "  <style>
-" +
-        "    body {
-" +
-        "      font-family: 'Open Sans', sans-serif;
-" +
-        "      font-size: 14px;
-" +
-        "      line-height: 1.42857143;
-" +
-        "      color: #333;
-" +
-        "      background-color: #fff;
-" +
-        "    }
-" +
-        "    h1 {
-" +
-        "      font-size: 1.5em;
-" +
-        "      margin-top: 0;
-" +
-        "      margin-bottom: .5em;
-" +
-        "    }
-" +
-        "  </style>
-" +
-        "</head>
-" +
-        "<body>
-" +
-        "  <h1>Hello World</h1>
-" +
-        "  <script>
-" +
-        "    var a = 1;
-" +
-        "    var b = 2;
-" +
-        "    var c = a + b;
-" +
-        "    console.log(c);
-" +
-        "  </script>
-" +
-        "</body>
-" +
-        "</html>",
+      children: \`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: #333;
+      background-color: #fff;
+    }
+    h1 {
+      font-size: 1.5em;
+      margin-top: 0;
+      margin-bottom: .5em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello World</h1>
+  <script>
+    var a = 1;
+    var b = 2;
+    var c = a + b;
+    console.log(c);
+  </script>
+</body>
+</html>\`,
+      content: \`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: #333;
+      background-color: #fff;
+    }
+    h1 {
+      font-size: 1.5em;
+      margin-top: 0;
+      margin-bottom: .5em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello World</h1>
+  <script>
+    var a = 1;
+    var b = 2;
+    var c = a + b;
+    console.log(c);
+  </script>
+</body>
+</html>\`,
       date: [],
       mergedKeys: [
         "tags",

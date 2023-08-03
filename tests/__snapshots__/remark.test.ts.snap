@@ -101,30 +101,19 @@ snapshot[`Build a markdown site 3`] = `
 [
   {
     content: "<!DOCTYPE html>
-" +
-      "<h1>Normal page</h1>
-" +
-      "<ul>
-" +
-      "<li>List</li>
-" +
-      "<li>Of</li>
-" +
-      "<li>Elements</li>
-" +
-      "</ul>",
+<h1>Normal page</h1>
+<ul>
+<li>List</li>
+<li>Of</li>
+<li>Elements</li>
+</ul>",
     data: {
       children: "<h1>Normal page</h1>
-" +
-        "<ul>
-" +
-        "<li>List</li>
-" +
-        "<li>Of</li>
-" +
-        "<li>Elements</li>
-" +
-        "</ul>",
+<ul>
+<li>List</li>
+<li>Of</li>
+<li>Elements</li>
+</ul>",
       content: "# Normal page
 
 - List
@@ -182,36 +171,23 @@ snapshot[`Build a markdown site 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      '<pre><code class="language-html">&#x3C;p>Example&#x3C;/p>
-' +
-      "</code></pre>
-" +
-      "<pre><code>&#x3C;p>Example without color highlight&#x3C;/p>
-" +
-      "</code></pre>",
+    content: '<!DOCTYPE html>
+<pre><code class="language-html">&#x3C;p>Example&#x3C;/p>
+</code></pre>
+<pre><code>&#x3C;p>Example without color highlight&#x3C;/p>
+</code></pre>',
     data: {
       children: '<pre><code class="language-html">&#x3C;p>Example&#x3C;/p>
-' +
-        "</code></pre>
-" +
-        "<pre><code>&#x3C;p>Example without color highlight&#x3C;/p>
-" +
-        "</code></pre>",
+</code></pre>
+<pre><code>&#x3C;p>Example without color highlight&#x3C;/p>
+</code></pre>',
       content: "\`\`\`html
-" +
-        "<p>Example</p>
-" +
-        "\`\`\`
-" +
-        "
-" +
-        "\`\`\`
-" +
-        "<p>Example without color highlight</p>
-" +
-        "\`\`\`
+<p>Example</p>
+\`\`\`
+
+\`\`\`
+<p>Example without color highlight</p>
+\`\`\`
 ",
       date: [],
       mergedKeys: [
@@ -236,43 +212,26 @@ snapshot[`Build a markdown site 3`] = `
   },
   {
     content: "<!DOCTYPE html>
-" +
-      "<!-- deno-fmt-ignore-file -->
-" +
-      "<p>This is a definition title
-" +
-      ": And this the description
-" +
-      ": Other description</p>
-" +
-      "<p>Other title
-" +
-      ": And other description</p>",
+<!-- deno-fmt-ignore-file -->
+<p>This is a definition title
+: And this the description
+: Other description</p>
+<p>Other title
+: And other description</p>",
     data: {
       children: "<!-- deno-fmt-ignore-file -->
-" +
-        "<p>This is a definition title
-" +
-        ": And this the description
-" +
-        ": Other description</p>
-" +
-        "<p>Other title
-" +
-        ": And other description</p>",
+<p>This is a definition title
+: And this the description
+: Other description</p>
+<p>Other title
+: And other description</p>",
       content: "<!-- deno-fmt-ignore-file -->
-" +
-        "This is a definition title
-" +
-        ": And this the description
-" +
-        ": Other description
-" +
-        "
-" +
-        "Other title
-" +
-        ": And other description
+This is a definition title
+: And this the description
+: Other description
+
+Other title
+: And other description
 ",
       date: [],
       mergedKeys: [
@@ -296,26 +255,19 @@ snapshot[`Build a markdown site 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<h1><p>Module <strong>example</strong></p></h1>
-" +
-      "
-" +
-      '<div><p>Welcome to this <a href="/">page</a></p></div>
+    content: '<!DOCTYPE html>
+<h1><p>Module <strong>example</strong></p></h1>
+
+<div><p>Welcome to this <a href="/">page</a></p></div>
 ',
     data: {
-      children: "<h1><p>Module <strong>example</strong></p></h1>
-" +
-        "
-" +
-        '<div><p>Welcome to this <a href="/">page</a></p></div>
+      children: '<h1><p>Module <strong>example</strong></p></h1>
+
+<div><p>Welcome to this <a href="/">page</a></p></div>
 ',
       content: "<h1>{{ title | md(true) | safe }}</h1>
-" +
-        "
-" +
-        "<div>{{ description | md | safe }}</div>
+
+<div>{{ description | md | safe }}</div>
 ",
       date: [],
       description: "Welcome to this [page](/)
@@ -342,11 +294,9 @@ snapshot[`Build a markdown site 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<h1>Module example</h1>
-" +
-      '<p><a href="/">Back to home</a></p>',
+    content: '<!DOCTYPE html>
+<h1>Module example</h1>
+<p><a href="/">Back to home</a></p>',
     data: {
       children: '<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>',
@@ -375,54 +325,32 @@ snapshot[`Build a markdown site 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<!-- deno-fmt-ignore-file -->
-" +
-      "<h1></h1>
-" +
-      "<p>Foo</p>
-" +
-      "<ul>
-" +
-      '<li>one: <a href="/items/un.html">un</a></li>
-' +
-      '<li>two: <a href="/items/dous.html">dous</a></li>
-' +
-      '<li>three: <a href="/items/tres.html">tres</a></li>
-' +
-      "</ul>",
+    content: '<!DOCTYPE html>
+<!-- deno-fmt-ignore-file -->
+<h1></h1>
+<p>Foo</p>
+<ul>
+<li>one: <a href="/items/un.html">un</a></li>
+<li>two: <a href="/items/dous.html">dous</a></li>
+<li>three: <a href="/items/tres.html">tres</a></li>
+</ul>',
     data: {
-      children: "<!-- deno-fmt-ignore-file -->
-" +
-        "<h1></h1>
-" +
-        "<p>Foo</p>
-" +
-        "<ul>
-" +
-        '<li>one: <a href="/items/un.html">un</a></li>
-' +
-        '<li>two: <a href="/items/dous.html">dous</a></li>
-' +
-        '<li>three: <a href="/items/tres.html">tres</a></li>
-' +
-        "</ul>",
+      children: '<!-- deno-fmt-ignore-file -->
+<h1></h1>
+<p>Foo</p>
+<ul>
+<li>one: <a href="/items/un.html">un</a></li>
+<li>two: <a href="/items/dous.html">dous</a></li>
+<li>three: <a href="/items/tres.html">tres</a></li>
+</ul>',
       content: "<!-- deno-fmt-ignore-file -->
-" +
-        "# {{ title }}
-" +
-        "
-" +
-        "Foo
-" +
-        "
-" +
-        "{% for title, no in myData %}
-" +
-        "- {{ title }}: [{{ no }}](/items/{{ no }}.html)
-" +
-        "{%- endfor %}
+# {{ title }}
+
+Foo
+
+{% for title, no in myData %}
+- {{ title }}: [{{ no }}](/items/{{ no }}.html)
+{%- endfor %}
 ",
       date: [],
       mergedKeys: [

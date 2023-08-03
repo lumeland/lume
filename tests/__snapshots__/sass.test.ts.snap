@@ -121,23 +121,15 @@ snapshot[`sass plugin 3`] = `
     content: '@import"./styles.css";html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}li{margin:0;padding:0;list-style:none}',
     data: {
       content: '@use "sass/bootstrap";
-' +
-        "
-" +
-        '@import "./styles.css";
-' +
-        '@import "./_includes/sass/colors";
-' +
-        '@import "sass/button";
-' +
-        "
-" +
-        "li {
-" +
-        "  @include bootstrap.list-reset;
-" +
-        "}
-",
+
+@import "./styles.css";
+@import "./_includes/sass/colors";
+@import "sass/button";
+
+li {
+  @include bootstrap.list-reset;
+}
+',
       date: [],
       mergedKeys: [
         "tags",

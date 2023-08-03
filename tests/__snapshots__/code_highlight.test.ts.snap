@@ -94,75 +94,43 @@ snapshot[`code_hightlight plugin 2`] = `[]`;
 snapshot[`code_hightlight plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body><h1>Code highlight plugin testing</h1>
-" +
-      '<pre><code class="language-html hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is a HTML code<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-' +
-      "</code></pre>
-" +
-      "<pre><code>Not highlighted code
-" +
-      "</code></pre>
-" +
-      '<pre><code class="language-css hljs"><span class="hljs-selector-tag">p</span> {
-' +
-      '  <span class="hljs-attribute">color</span>: red
-' +
-      "}
-" +
-      "</code></pre>
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body><h1>Code highlight plugin testing</h1>
+<pre><code class="language-html hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is a HTML code<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+<pre><code>Not highlighted code
+</code></pre>
+<pre><code class="language-css hljs"><span class="hljs-selector-tag">p</span> {
+  <span class="hljs-attribute">color</span>: red
+}
+</code></pre>
+</body></html>',
     data: {
-      children: "<h1>Code highlight plugin testing</h1>
-" +
-        '<pre><code class="language-html">&lt;p&gt;This is a HTML code&lt;/p&gt;
-' +
-        "</code></pre>
-" +
-        "<pre><code>Not highlighted code
-" +
-        "</code></pre>
-" +
-        '<pre><code class="language-css">p {
-' +
-        "  color: red
-" +
-        "}
-" +
-        "</code></pre>
-",
+      children: '<h1>Code highlight plugin testing</h1>
+<pre><code class="language-html">&lt;p&gt;This is a HTML code&lt;/p&gt;
+</code></pre>
+<pre><code>Not highlighted code
+</code></pre>
+<pre><code class="language-css">p {
+  color: red
+}
+</code></pre>
+',
       content: "# Code highlight plugin testing
-" +
-        "
-" +
-        "\`\`\`html
-" +
-        "<p>This is a HTML code</p>
-" +
-        "\`\`\`
-" +
-        "
-" +
-        "\`\`\`
-" +
-        "Not highlighted code
-" +
-        "\`\`\`
-" +
-        "
-" +
-        "\`\`\`css
-" +
-        "p {
-" +
-        "  color: red
-" +
-        "}
-" +
-        "\`\`\`
+
+\`\`\`html
+<p>This is a HTML code</p>
+\`\`\`
+
+\`\`\`
+Not highlighted code
+\`\`\`
+
+\`\`\`css
+p {
+  color: red
+}
+\`\`\`
 ",
       date: [],
       mergedKeys: [
@@ -186,52 +154,31 @@ snapshot[`code_hightlight plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body>
-" +
-      "  <pre>Code inside a PRE</pre>
-" +
-      "  <code>Code inside a CODE</code>
-" +
-      "  <pre><code>Not highlighted code</code></pre>
-" +
-      '  <pre class="language-css"><code class="hljs language-css"><span class="hljs-selector-tag">p</span> { <span class="hljs-attribute">display</span>: none }</code></pre>
-' +
-      "
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body>
+  <pre>Code inside a PRE</pre>
+  <code>Code inside a CODE</code>
+  <pre><code>Not highlighted code</code></pre>
+  <pre class="language-css"><code class="hljs language-css"><span class="hljs-selector-tag">p</span> { <span class="hljs-attribute">display</span>: none }</code></pre>
+
+</body></html>',
     data: {
-      children: "<html>
-" +
-        "<body>
-" +
-        "  <pre>Code inside a PRE</pre>
-" +
-        "  <code>Code inside a CODE</code>
-" +
-        "  <pre><code>Not highlighted code</code></pre>
-" +
-        '  <pre class="language-css"><code>p { display: none }</code></pre>
-' +
-        "</body>
-" +
-        "</html>",
-      content: "<html>
-" +
-        "<body>
-" +
-        "  <pre>Code inside a PRE</pre>
-" +
-        "  <code>Code inside a CODE</code>
-" +
-        "  <pre><code>Not highlighted code</code></pre>
-" +
-        '  <pre class="language-css"><code>p { display: none }</code></pre>
-' +
-        "</body>
-" +
-        "</html>",
+      children: '<html>
+<body>
+  <pre>Code inside a PRE</pre>
+  <code>Code inside a CODE</code>
+  <pre><code>Not highlighted code</code></pre>
+  <pre class="language-css"><code>p { display: none }</code></pre>
+</body>
+</html>',
+      content: '<html>
+<body>
+  <pre>Code inside a PRE</pre>
+  <code>Code inside a CODE</code>
+  <pre><code>Not highlighted code</code></pre>
+  <pre class="language-css"><code>p { display: none }</code></pre>
+</body>
+</html>',
       date: [],
       mergedKeys: [
         "tags",

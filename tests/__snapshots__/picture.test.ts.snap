@@ -112,126 +112,69 @@ snapshot[`imagick plugin 2`] = `[]`;
 snapshot[`imagick plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head>
-" +
-      "  <title>Demo</title>
-" +
-      "</head>
-" +
-      "
-" +
-      "<body>
-" +
-      "  <div>
-" +
-      '    <picture><source srcset="/kevin-schmid-unsplash-600w.png, /kevin-schmid-unsplash-600w@2.png 2x" type="image/png"><img src="/kevin-schmid-unsplash.jpg"></picture>
-' +
-      "  </div>
-" +
-      " 
-" +
-      "
-" +
-      "  <picture>
-" +
-      '    <source srcset="/kevin-schmid-unsplash-600w.avif, /kevin-schmid-unsplash-600w@2.avif 2x" type="image/avif"><source srcset="/kevin-schmid-unsplash-600w.webp, /kevin-schmid-unsplash-600w@2.webp 2x" type="image/webp"><source srcset="/kevin-schmid-unsplash-600w.jpg, /kevin-schmid-unsplash-600w@2.jpg 2x" type="image/jpeg"><img src="/kevin-schmid-unsplash.jpg">
-' +
-      "  </picture>
-" +
-      "
-" +
-      "  <!-- This image will be converted to a picture -->
-" +
-      '  <picture><source srcset="/kevin-schmid-unsplash-300w.avif, /kevin-schmid-unsplash-300w@2.avif 2x" type="image/avif"><source srcset="/kevin-schmid-unsplash-300w.webp, /kevin-schmid-unsplash-300w@2.webp 2x" type="image/webp"><source srcset="/kevin-schmid-unsplash-300w.jpg, /kevin-schmid-unsplash-300w@2.jpg 2x" type="image/jpeg"><img src="/kevin-schmid-unsplash.jpg"></picture>
-' +
-      "
-" +
-      "
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head>
+  <title>Demo</title>
+</head>
+
+<body>
+  <div>
+    <picture><source srcset="/kevin-schmid-unsplash-600w.png, /kevin-schmid-unsplash-600w@2.png 2x" type="image/png"><img src="/kevin-schmid-unsplash.jpg"></picture>
+  </div>
+ 
+
+  <picture>
+    <source srcset="/kevin-schmid-unsplash-600w.avif, /kevin-schmid-unsplash-600w@2.avif 2x" type="image/avif"><source srcset="/kevin-schmid-unsplash-600w.webp, /kevin-schmid-unsplash-600w@2.webp 2x" type="image/webp"><source srcset="/kevin-schmid-unsplash-600w.jpg, /kevin-schmid-unsplash-600w@2.jpg 2x" type="image/jpeg"><img src="/kevin-schmid-unsplash.jpg">
+  </picture>
+
+  <!-- This image will be converted to a picture -->
+  <picture><source srcset="/kevin-schmid-unsplash-300w.avif, /kevin-schmid-unsplash-300w@2.avif 2x" type="image/avif"><source srcset="/kevin-schmid-unsplash-300w.webp, /kevin-schmid-unsplash-300w@2.webp 2x" type="image/webp"><source srcset="/kevin-schmid-unsplash-300w.jpg, /kevin-schmid-unsplash-300w@2.jpg 2x" type="image/jpeg"><img src="/kevin-schmid-unsplash.jpg"></picture>
+
+
+</body></html>',
     data: {
-      children: "<!doctype html>
-" +
-        "<html>
-" +
-        "<head>
-" +
-        "  <title>Demo</title>
-" +
-        "</head>
-" +
-        "
-" +
-        "<body>
-" +
-        '  <div imagick="png 600@2">
-' +
-        '    <img src="/kevin-schmid-unsplash.jpg">
-' +
-        "  </div>
-" +
-        " 
-" +
-        "
-" +
-        '  <picture imagick="avif webp jpg 600@2">
-' +
-        '    <img src="/kevin-schmid-unsplash.jpg">
-' +
-        "  </picture>
-" +
-        "
-" +
-        "  <!-- This image will be converted to a picture -->
-" +
-        '  <img src="/kevin-schmid-unsplash.jpg" imagick="avif webp jpg 300@2">
-' +
-        "</body>
-" +
-        "</html>
-",
-      content: "<!doctype html>
-" +
-        "<html>
-" +
-        "<head>
-" +
-        "  <title>Demo</title>
-" +
-        "</head>
-" +
-        "
-" +
-        "<body>
-" +
-        '  <div imagick="png 600@2">
-' +
-        '    <img src="/kevin-schmid-unsplash.jpg">
-' +
-        "  </div>
-" +
-        " 
-" +
-        "
-" +
-        '  <picture imagick="avif webp jpg 600@2">
-' +
-        '    <img src="/kevin-schmid-unsplash.jpg">
-' +
-        "  </picture>
-" +
-        "
-" +
-        "  <!-- This image will be converted to a picture -->
-" +
-        '  <img src="/kevin-schmid-unsplash.jpg" imagick="avif webp jpg 300@2">
-' +
-        "</body>
-" +
-        "</html>
-",
+      children: '<!doctype html>
+<html>
+<head>
+  <title>Demo</title>
+</head>
+
+<body>
+  <div imagick="png 600@2">
+    <img src="/kevin-schmid-unsplash.jpg">
+  </div>
+ 
+
+  <picture imagick="avif webp jpg 600@2">
+    <img src="/kevin-schmid-unsplash.jpg">
+  </picture>
+
+  <!-- This image will be converted to a picture -->
+  <img src="/kevin-schmid-unsplash.jpg" imagick="avif webp jpg 300@2">
+</body>
+</html>
+',
+      content: '<!doctype html>
+<html>
+<head>
+  <title>Demo</title>
+</head>
+
+<body>
+  <div imagick="png 600@2">
+    <img src="/kevin-schmid-unsplash.jpg">
+  </div>
+ 
+
+  <picture imagick="avif webp jpg 600@2">
+    <img src="/kevin-schmid-unsplash.jpg">
+  </picture>
+
+  <!-- This image will be converted to a picture -->
+  <img src="/kevin-schmid-unsplash.jpg" imagick="avif webp jpg 300@2">
+</body>
+</html>
+',
       date: [],
       mergedKeys: [
         "tags",

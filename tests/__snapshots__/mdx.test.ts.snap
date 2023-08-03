@@ -114,15 +114,11 @@ snapshot[`Build a mdx site 2`] = `[]`;
 snapshot[`Build a mdx site 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-" +
-      "<header><h1>Hello world</h1><p>This is a description</p></header>
-" +
-      "<h2>Hello world</h2>
-" +
-      "<p>This is a markdown file with the title <strong>Hello world</strong>.</p>
-" +
-      '<img src="https://via.placeholder.com/350x150" alt="foo"/>',
+    content: '<!DOCTYPE html>
+<header><h1>Hello world</h1><p>This is a description</p></header>
+<h2>Hello world</h2>
+<p>This is a markdown file with the title <strong>Hello world</strong>.</p>
+<img src="https://via.placeholder.com/350x150" alt="foo"/>',
     data: {
       children: [
         "type",
@@ -147,22 +143,14 @@ snapshot[`Build a mdx site 3`] = `
         "_proxies",
       ],
       content: 'import Image from "./_includes/Image.tsx";
-' +
-        "
-" +
-        "<comp.Header title={title} description={description}/>
-" +
-        "
-" +
-        "## Hello world
-" +
-        "
-" +
-        "This is a markdown file with the title **{ title }**.
-" +
-        "
-" +
-        '<Image alt="foo" />
+
+<comp.Header title={title} description={description}/>
+
+## Hello world
+
+This is a markdown file with the title **{ title }**.
+
+<Image alt="foo" />
 ',
       date: [],
       description: "This is a description",

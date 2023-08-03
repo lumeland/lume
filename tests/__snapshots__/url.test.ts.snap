@@ -94,65 +94,37 @@ snapshot[`url and htmlUrl update href 2`] = `[]`;
 snapshot[`url and htmlUrl update href 3`] = `
 [
   {
-    content: "
-" +
-      "    <!DOCTYPE html>
-" +
-      '    <html lang="en">
-' +
-      "        <head>
-" +
-      "            <title>Default Filter</title>
-" +
-      "        </head>
-" +
-      "        <body>
-" +
-      '            <a id="url" href="https://example.com/test/url/">Url</a>
-' +
-      '            <a id="htmlUrl" href="https://example.com/test/htmlUrl/">htmlUrl</a>
-' +
-      "            <template>
-" +
-      "              <h1>Template content</h1>
-" +
-      "            </template>
-" +
-      "        </body>
-" +
-      "    </html>
-" +
-      "  ",
+    content: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Default Filter</title>
+        </head>
+        <body>
+            <a id="url" href="https://example.com/test/url/">Url</a>
+            <a id="htmlUrl" href="https://example.com/test/htmlUrl/">htmlUrl</a>
+            <template>
+              <h1>Template content</h1>
+            </template>
+        </body>
+    </html>
+  ',
     data: {
-      children: "
-" +
-        "    <!DOCTYPE html>
-" +
-        '    <html lang="en">
-' +
-        "        <head>
-" +
-        "            <title>Default Filter</title>
-" +
-        "        </head>
-" +
-        "        <body>
-" +
-        '            <a id="url" href="https://example.com/test/url/">Url</a>
-' +
-        '            <a id="htmlUrl" href="https://example.com/test/htmlUrl/">htmlUrl</a>
-' +
-        "            <template>
-" +
-        "              <h1>Template content</h1>
-" +
-        "            </template>
-" +
-        "        </body>
-" +
-        "    </html>
-" +
-        "  ",
+      children: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Default Filter</title>
+        </head>
+        <body>
+            <a id="url" href="https://example.com/test/url/">Url</a>
+            <a id="htmlUrl" href="https://example.com/test/htmlUrl/">htmlUrl</a>
+            <template>
+              <h1>Template content</h1>
+            </template>
+        </body>
+    </html>
+  ',
       content: "default",
       date: [],
       mergedKeys: [
@@ -177,53 +149,31 @@ snapshot[`url and htmlUrl update href 3`] = `
     },
   },
   {
-    content: "
-" +
-      "    <!DOCTYPE html>
-" +
-      '    <html lang="en">
-' +
-      "        <head>
-" +
-      "            <title>Renamed Filter</title>
-" +
-      "        </head>
-" +
-      "        <body>
-" +
-      '            <a id="urlify" href="undefined">Urlify</a>
-' +
-      "            undefined
-" +
-      "        </body>
-" +
-      "    </html>
-" +
-      "  ",
+    content: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Renamed Filter</title>
+        </head>
+        <body>
+            <a id="urlify" href="undefined">Urlify</a>
+            undefined
+        </body>
+    </html>
+  ',
     data: {
-      children: "
-" +
-        "    <!DOCTYPE html>
-" +
-        '    <html lang="en">
-' +
-        "        <head>
-" +
-        "            <title>Renamed Filter</title>
-" +
-        "        </head>
-" +
-        "        <body>
-" +
-        '            <a id="urlify" href="undefined">Urlify</a>
-' +
-        "            undefined
-" +
-        "        </body>
-" +
-        "    </html>
-" +
-        "  ",
+      children: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Renamed Filter</title>
+        </head>
+        <body>
+            <a id="urlify" href="undefined">Urlify</a>
+            undefined
+        </body>
+    </html>
+  ',
       content: "default",
       date: [],
       mergedKeys: [
@@ -344,65 +294,37 @@ snapshot[`configure url and htmlUrl names 2`] = `[]`;
 snapshot[`configure url and htmlUrl names 3`] = `
 [
   {
-    content: "
-" +
-      "    <!DOCTYPE html>
-" +
-      '    <html lang="en">
-' +
-      "        <head>
-" +
-      "            <title>Default Filter</title>
-" +
-      "        </head>
-" +
-      "        <body>
-" +
-      '            <a id="url" href="undefined">Url</a>
-' +
-      "            undefined
-" +
-      "            <template>
-" +
-      "              <h1>Template content</h1>
-" +
-      "            </template>
-" +
-      "        </body>
-" +
-      "    </html>
-" +
-      "  ",
+    content: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Default Filter</title>
+        </head>
+        <body>
+            <a id="url" href="undefined">Url</a>
+            undefined
+            <template>
+              <h1>Template content</h1>
+            </template>
+        </body>
+    </html>
+  ',
     data: {
-      children: "
-" +
-        "    <!DOCTYPE html>
-" +
-        '    <html lang="en">
-' +
-        "        <head>
-" +
-        "            <title>Default Filter</title>
-" +
-        "        </head>
-" +
-        "        <body>
-" +
-        '            <a id="url" href="undefined">Url</a>
-' +
-        "            undefined
-" +
-        "            <template>
-" +
-        "              <h1>Template content</h1>
-" +
-        "            </template>
-" +
-        "        </body>
-" +
-        "    </html>
-" +
-        "  ",
+      children: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Default Filter</title>
+        </head>
+        <body>
+            <a id="url" href="undefined">Url</a>
+            undefined
+            <template>
+              <h1>Template content</h1>
+            </template>
+        </body>
+    </html>
+  ',
       content: "default",
       date: [],
       mergedKeys: [
@@ -427,53 +349,31 @@ snapshot[`configure url and htmlUrl names 3`] = `
     },
   },
   {
-    content: "
-" +
-      "    <!DOCTYPE html>
-" +
-      '    <html lang="en">
-' +
-      "        <head>
-" +
-      "            <title>Renamed Filter</title>
-" +
-      "        </head>
-" +
-      "        <body>
-" +
-      '            <a id="urlify" href="https://example.com/urlify/">Urlify</a>
-' +
-      '            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>
-' +
-      "        </body>
-" +
-      "    </html>
-" +
-      "  ",
+    content: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Renamed Filter</title>
+        </head>
+        <body>
+            <a id="urlify" href="https://example.com/urlify/">Urlify</a>
+            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>
+        </body>
+    </html>
+  ',
     data: {
-      children: "
-" +
-        "    <!DOCTYPE html>
-" +
-        '    <html lang="en">
-' +
-        "        <head>
-" +
-        "            <title>Renamed Filter</title>
-" +
-        "        </head>
-" +
-        "        <body>
-" +
-        '            <a id="urlify" href="https://example.com/urlify/">Urlify</a>
-' +
-        '            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>
-' +
-        "        </body>
-" +
-        "    </html>
-" +
-        "  ",
+      children: '
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Renamed Filter</title>
+        </head>
+        <body>
+            <a id="urlify" href="https://example.com/urlify/">Urlify</a>
+            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>
+        </body>
+    </html>
+  ',
       content: "default",
       date: [],
       mergedKeys: [

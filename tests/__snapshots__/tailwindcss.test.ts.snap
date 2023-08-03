@@ -104,1573 +104,793 @@ snapshot[`postcss plugin 2`] = `[]`;
 snapshot[`postcss plugin 3`] = `
 [
   {
-    content: "<!doctype html>
-" +
-      '<html lang="en">
-' +
-      "<head>
-" +
-      '    <meta charset="UTF-8">
-' +
-      '    <meta http-equiv="x-ua-compatible" content="ie=edge">
-' +
-      '    <meta name="viewport" content="width=device-width,initial-scale=1">
-' +
-      "    <title>essential</title>
-" +
-      '    <link rel="preconnect" href="https://fonts.gstatic.com">
-' +
-      '    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;1,400&family=Work+Sans:wght@200;400;500;600;700&display=swap" rel="stylesheet">
-' +
-      '    <link href="/styles.css" rel="stylesheet">
-' +
-      "</head>
-" +
-      '<body class="font-sans antialiased bg-gray-100 text-gray-700">
-' +
-      '    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
-' +
-      '    <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
-' +
-      "        <div>
-" +
-      '            <a href="/" class="lowercase font-normal text-xl">essential</a>
-' +
-      "        </div>
-" +
-      '        <div class="flex items-center justify-center font-normal relative z-10">
-' +
-      '            <button class="md:hidden">
-' +
-      '                <svg xmlns="http://www.w3.org/2000/svg" class="text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-' +
-      '                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-' +
-      "                </svg>
-" +
-      "            </button>
-" +
-      '            <div class="hidden md:flex items-center justify-center">
-' +
-      '                <a href="/products" class="mx-6">Shop</a>
-' +
-      '                <a href="/about" class="mx-6">About</a>
-' +
-      '                <a href="/blog" class="mx-6">Articles</a>
-' +
-      "            </div>
-" +
-      "        </div>
-" +
-      '        <div class="flex">
-' +
-      '            <a href="#" class="ml-4">
-' +
-      '                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-' +
-      '                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-' +
-      "                </svg>
-" +
-      "            </a>
-" +
-      '            <a href="#" class="ml-4">
-' +
-      '                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-' +
-      '                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-' +
-      "                </svg>
-" +
-      "            </a>
-" +
-      "        </div>
-" +
-      '        <div class="fixed inset-0 w-screen h-screen md:hidden flex flex-col items-center justify-center text-2xl space-y-4 bg-blue-100 text-white z-40">
-' +
-      '            <button class="absolute top-0 right-0 mt-12 mr-12 text-white">
-' +
-      '                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-' +
-      '                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-' +
-      "                </svg>
-" +
-      "            </button>
-" +
-      '            <a href="/products" class="mx-6">Shop</a>
-' +
-      '            <a href="/about" class="mx-6">About</a>
-' +
-      '            <a href="/blog" class="mx-6">Articles</a>
-' +
-      "        </div>
-" +
-      "    </div>
-" +
-      '    <div class="-mt-32 relative w-full h-screen bg-blue-100 flex items-center justify-center">
-' +
-      '        <div class="relative z-10 text-center text-white text-center px-6">
-' +
-      '            <div class="text-xs uppercase tracking-widest">Clean and affordable beauty</div>
-' +
-      '            <h1 class="text-3xl md:text-5xl font-display font-semibold mt-2">Beautiful, natural skin</h1>
-' +
-      '            <p class="mt-4">A unique layout with a striking design</p>
-' +
-      '            <div class="max-w-sm mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-' +
-      '                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
-' +
-      '                <a href="#" class="inline-block bg-gray-100 text-gray-700 text-sm tracking-widest font-heading px-8 py-4">Learn more</a>
-' +
-      "            </div>
-" +
-      "        </div>
-" +
-      '        <img class="w-full h-full absolute inset-0 object-cover opacity-95">
-' +
-      "    </div>
-" +
-      '    <div class="container mx-auto px-6 flex flex-wrap items-center py-24">
-' +
-      '        <div class="w-full lg:flex-1">
-' +
-      '            <div class="uppercase text-sm text-gray-700 tracking-widest">Why Cheslsea?</div>
-' +
-      '            <h2 class="text-3xl md:text-4xl font-semibold font-display mt-3">Natural and organic is the future of skincare and life as we know it.</h2>
-' +
-      "        </div>
-" +
-      '        <div class="w-full lg:w-auto text-center">
-' +
-      '            <svg class="inline-block w-32 h-32 -mb-10 -mt-4 lg:mt-0 lg:mb-0 lg:transform lg:rotate-90 lg:-ml-8" x="0px" y="0px" viewBox="0 0 100 125">
-' +
-      '                <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
-' +
-      "            </svg>
-" +
-      "        </div>
-" +
-      '        <div class="w-full lg:flex-1">
-' +
-      "            <p>Let's face it. Many cosmetics are bad for your skin. We use only natural ingredients and still provide consistently great tanning results.</p>
-" +
-      '            <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-4">Learn more</a>
-' +
-      "        </div>
-" +
-      "    </div>
-" +
-      '    <div class="p-4 grid grid-cols-1 md:grid-cols-5 grid-rows-2 gap-4 md:h-screen">
-' +
-      '        <a href="#" class="relative block bg-black text-white md:col-span-2">
-' +
-      '            <div class="relative z-10 p-12">
-' +
-      '                <h3 class="font-display text-2xl">Best Sellers</h3>
-' +
-      '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-      '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-      "            </div>
-" +
-      '            <img src="https://images.unsplash.com/photo-1527632911563-ee5b6d53465b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-      "        </a>
-" +
-      '        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-1">
-' +
-      '            <div class="relative z-10 p-12">
-' +
-      '                <h3 class="font-display text-2xl">Limited</h3>
-' +
-      '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-      '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-      "            </div>
-" +
-      '            <img src="https://images.unsplash.com/photo-1531646317777-0619c7c5d1d3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-      "        </a>
-" +
-      '        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-2 lg:row-span-2">
-' +
-      '            <div class="relative z-10 p-12">
-' +
-      '                <h3 class="font-display text-2xl">New In</h3>
-' +
-      '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-      '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-      "            </div>
-" +
-      '            <img src="https://images.unsplash.com/photo-1527633412983-d80af308e660?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-      "        </a>
-" +
-      '        <a href="#" class="relative block bg-black text-white md:col-span-2 lg:col-span-1">
-' +
-      '            <div class="relative z-10 p-12">
-' +
-      '                <h3 class="font-display text-2xl">Sale</h3>
-' +
-      '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-      '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-      "            </div>
-" +
-      '            <img src="https://images.unsplash.com/photo-1533017568856-f6085fef5f1f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-      "        </a>
-" +
-      '        <a href="#" class="relative block bg-black text-white md:col-span-5 lg:col-span-2">
-' +
-      '            <div class="relative z-10 p-12">
-' +
-      '                <h3 class="font-display text-2xl">Half Price</h3>
-' +
-      '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-      '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-      "            </div>
-" +
-      '            <img src="https://images.unsplash.com/photo-1603001790877-2733c25430d7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-      "        </a>
-" +
-      "    </div>
-" +
-      '    <div class="text-center py-12">
-' +
-      '        <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
-' +
-      "    </div>
-" +
-      '    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
-' +
-      '        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
-' +
-      '            <div class="relative z-10 p-12">
-' +
-      '                <div class="uppercase text-sm text-gray-700 tracking-widest">Limited Run</div>
-' +
-      '                <h3 class="font-display font-semibold text-3xl mt-2">Moisturise</h3>
-' +
-      '                <p class="mt-3 mx-auto max-w-md">Whether in the sun or on the couch, hydration is key to maintaining happy, healthy skin.</p>
-' +
-      '                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
-' +
-      "            </div>
-" +
-      "        </div>
-" +
-      '        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
-' +
-      '            <img src="https://images.unsplash.com/photo-1597931752949-98c74b5b159f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-      "        </div>
-" +
-      '        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
-' +
-      '            <img src="https://images.unsplash.com/photo-1607602175460-c5dff74d7909?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1482&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-      "        </div>
-" +
-      '        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
-' +
-      '            <img src="https://images.unsplash.com/photo-1598282780498-8eda08ec1941?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-      "        </div>
-" +
-      "    </div>
-" +
-      '    <div class="container mx-auto px-6 py-12">
-' +
-      '        <h2 class="font-display font-semibold text-3xl">Testimonials</h2>
-' +
-      '        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24 mt-12">
-' +
-      '            <div class="relative">
-' +
-      '                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-' +
-      '                <div class="relative z-10 text-sm flex items-center justify-end">
-' +
-      '                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
-' +
-      '                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
-' +
-      "                    </svg>
-" +
-      "                    <span>Elle Spearman</span>
-" +
-      "                </div>
-" +
-      '                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
-' +
-      '                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
-' +
-      "                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
-" +
-      "                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
-" +
-      "                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
-" +
-      '                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
-' +
-      '                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
-' +
-      "                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
-" +
-      "                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
-" +
-      "                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
-" +
-      '                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
-' +
-      "                </svg>
-" +
-      "            </div>
-" +
-      '            <div class="relative">
-' +
-      '                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-' +
-      '                <div class="relative z-10 text-sm flex items-center justify-end">
-' +
-      '                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
-' +
-      '                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
-' +
-      "                    </svg>
-" +
-      "                    <span>Elle Spearman</span>
-" +
-      "                </div>
-" +
-      '                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
-' +
-      '                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
-' +
-      "                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
-" +
-      "                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
-" +
-      "                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
-" +
-      '                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
-' +
-      '                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
-' +
-      "                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
-" +
-      "                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
-" +
-      "                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
-" +
-      '                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
-' +
-      "                </svg>
-" +
-      "            </div>
-" +
-      '            <div class="relative">
-' +
-      '                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-' +
-      '                <div class="relative z-10 text-sm flex items-center justify-end">
-' +
-      '                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
-' +
-      '                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
-' +
-      "                    </svg>
-" +
-      "                    <span>Elle Spearman</span>
-" +
-      "                </div>
-" +
-      '                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
-' +
-      '                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
-' +
-      "                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
-" +
-      "                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
-" +
-      "                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
-" +
-      '                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
-' +
-      '                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
-' +
-      "                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
-" +
-      "                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
-" +
-      "                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
-" +
-      '                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
-' +
-      "                </svg>
-" +
-      "            </div>
-" +
-      "        </div>
-" +
-      "    </div>
-" +
-      '    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
-' +
-      '        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
-' +
-      '            <img src="https://images.unsplash.com/photo-1605204376600-72ed73f1f9ec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2551&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-      "        </div>
-" +
-      '        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
-' +
-      '            <div class="relative z-10 p-12">
-' +
-      '                <div class="uppercase text-sm text-gray-700 tracking-widest">Only the best</div>
-' +
-      '                <h3 class="font-display font-semibold text-3xl mt-2">Cleansers</h3>
-' +
-      \`                <p class="mt-3 mx-auto max-w-md">We're humans too and we understand that skin care and cosmetics should rejuvenate and rehydrate in the short and long run.</p>
-\` +
-      '                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
-' +
-      "            </div>
-" +
-      "        </div>
-" +
-      '        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
-' +
-      '            <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-      "        </div>
-" +
-      '        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
-' +
-      '            <img src="https://images.unsplash.com/photo-1585652757146-e9d00bf2810c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-      "        </div>
-" +
-      "    </div>
-" +
-      '    <div class="text-gray-800 text-opacity-40 font-semibold text-xs tracking-widest px-12">
-' +
-      '        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 py-24">
-' +
-      "            <div>
-" +
-      '                <div class="text-gray-900 text-4xl font-display">essential</div>
-' +
-      "            </div>
-" +
-      "            <div>
-" +
-      '                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">More Info</div>
-' +
-      '                <a href="#" class="block mb-4">Shop</a>
-' +
-      '                <a href="#" class="block mb-4">About</a>
-' +
-      '                <a href="#" class="block mb-4">Info</a>
-' +
-      '                <a href="#" class="block mb-4">FAQ</a>
-' +
-      "            </div>
-" +
-      "            <div>
-" +
-      '                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Helpful Links</div>
-' +
-      '                <a href="#" class="block mb-4">Shop</a>
-' +
-      '                <a href="#" class="block mb-4">About</a>
-' +
-      '                <a href="#" class="block mb-4">Info</a>
-' +
-      '                <a href="#" class="block mb-4">FAQ</a>
-' +
-      "            </div>
-" +
-      "            <div>
-" +
-      '                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Find out more</div>
-' +
-      '                <a href="#" class="block mb-4">Shop</a>
-' +
-      '                <a href="#" class="block mb-4">About</a>
-' +
-      '                <a href="#" class="block mb-4">Info</a>
-' +
-      '                <a href="#" class="block mb-4">FAQ</a>
-' +
-      "            </div>
-" +
-      "        </div>
-" +
-      "    </div>
-" +
-      '    <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
-' +
-      "</body>
-" +
-      "</html>
-",
+    content: \`<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>essential</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;1,400&family=Work+Sans:wght@200;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+</head>
+<body class="font-sans antialiased bg-gray-100 text-gray-700">
+    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
+        <div>
+            <a href="/" class="lowercase font-normal text-xl">essential</a>
+        </div>
+        <div class="flex items-center justify-center font-normal relative z-10">
+            <button class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+            <div class="hidden md:flex items-center justify-center">
+                <a href="/products" class="mx-6">Shop</a>
+                <a href="/about" class="mx-6">About</a>
+                <a href="/blog" class="mx-6">Articles</a>
+            </div>
+        </div>
+        <div class="flex">
+            <a href="#" class="ml-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+            </a>
+            <a href="#" class="ml-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="fixed inset-0 w-screen h-screen md:hidden flex flex-col items-center justify-center text-2xl space-y-4 bg-blue-100 text-white z-40">
+            <button class="absolute top-0 right-0 mt-12 mr-12 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <a href="/products" class="mx-6">Shop</a>
+            <a href="/about" class="mx-6">About</a>
+            <a href="/blog" class="mx-6">Articles</a>
+        </div>
+    </div>
+    <div class="-mt-32 relative w-full h-screen bg-blue-100 flex items-center justify-center">
+        <div class="relative z-10 text-center text-white text-center px-6">
+            <div class="text-xs uppercase tracking-widest">Clean and affordable beauty</div>
+            <h1 class="text-3xl md:text-5xl font-display font-semibold mt-2">Beautiful, natural skin</h1>
+            <p class="mt-4">A unique layout with a striking design</p>
+            <div class="max-w-sm mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
+                <a href="#" class="inline-block bg-gray-100 text-gray-700 text-sm tracking-widest font-heading px-8 py-4">Learn more</a>
+            </div>
+        </div>
+        <img class="w-full h-full absolute inset-0 object-cover opacity-95">
+    </div>
+    <div class="container mx-auto px-6 flex flex-wrap items-center py-24">
+        <div class="w-full lg:flex-1">
+            <div class="uppercase text-sm text-gray-700 tracking-widest">Why Cheslsea?</div>
+            <h2 class="text-3xl md:text-4xl font-semibold font-display mt-3">Natural and organic is the future of skincare and life as we know it.</h2>
+        </div>
+        <div class="w-full lg:w-auto text-center">
+            <svg class="inline-block w-32 h-32 -mb-10 -mt-4 lg:mt-0 lg:mb-0 lg:transform lg:rotate-90 lg:-ml-8" x="0px" y="0px" viewBox="0 0 100 125">
+                <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+            </svg>
+        </div>
+        <div class="w-full lg:flex-1">
+            <p>Let's face it. Many cosmetics are bad for your skin. We use only natural ingredients and still provide consistently great tanning results.</p>
+            <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-4">Learn more</a>
+        </div>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-5 grid-rows-2 gap-4 md:h-screen">
+        <a href="#" class="relative block bg-black text-white md:col-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Best Sellers</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1527632911563-ee5b6d53465b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-1">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Limited</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1531646317777-0619c7c5d1d3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-2 lg:row-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">New In</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1527633412983-d80af308e660?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-2 lg:col-span-1">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Sale</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1533017568856-f6085fef5f1f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-5 lg:col-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Half Price</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1603001790877-2733c25430d7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+    </div>
+    <div class="text-center py-12">
+        <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
+        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
+            <div class="relative z-10 p-12">
+                <div class="uppercase text-sm text-gray-700 tracking-widest">Limited Run</div>
+                <h3 class="font-display font-semibold text-3xl mt-2">Moisturise</h3>
+                <p class="mt-3 mx-auto max-w-md">Whether in the sun or on the couch, hydration is key to maintaining happy, healthy skin.</p>
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
+            </div>
+        </div>
+        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
+            <img src="https://images.unsplash.com/photo-1597931752949-98c74b5b159f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1607602175460-c5dff74d7909?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1482&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1598282780498-8eda08ec1941?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+    </div>
+    <div class="container mx-auto px-6 py-12">
+        <h2 class="font-display font-semibold text-3xl">Testimonials</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24 mt-12">
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
+        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
+            <img src="https://images.unsplash.com/photo-1605204376600-72ed73f1f9ec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2551&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
+            <div class="relative z-10 p-12">
+                <div class="uppercase text-sm text-gray-700 tracking-widest">Only the best</div>
+                <h3 class="font-display font-semibold text-3xl mt-2">Cleansers</h3>
+                <p class="mt-3 mx-auto max-w-md">We're humans too and we understand that skin care and cosmetics should rejuvenate and rehydrate in the short and long run.</p>
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
+            </div>
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1585652757146-e9d00bf2810c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+    </div>
+    <div class="text-gray-800 text-opacity-40 font-semibold text-xs tracking-widest px-12">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 py-24">
+            <div>
+                <div class="text-gray-900 text-4xl font-display">essential</div>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">More Info</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Helpful Links</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Find out more</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
+</body>
+</html>
+\`,
     data: {
-      children: "<!doctype html>
-" +
-        '<html lang="en">
-' +
-        "<head>
-" +
-        '    <meta charset="UTF-8">
-' +
-        '    <meta http-equiv="x-ua-compatible" content="ie=edge">
-' +
-        '    <meta name="viewport" content="width=device-width,initial-scale=1">
-' +
-        "    <title>essential</title>
-" +
-        '    <link rel="preconnect" href="https://fonts.gstatic.com">
-' +
-        '    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;1,400&family=Work+Sans:wght@200;400;500;600;700&display=swap" rel="stylesheet">
-' +
-        '    <link href="/styles.css" rel="stylesheet">
-' +
-        "</head>
-" +
-        '<body class="font-sans antialiased bg-gray-100 text-gray-700">
-' +
-        '    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
-' +
-        '    <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
-' +
-        "        <div>
-" +
-        '            <a href="/" class="lowercase font-normal text-xl">essential</a>
-' +
-        "        </div>
-" +
-        '        <div class="flex items-center justify-center font-normal relative z-10">
-' +
-        '            <button class="md:hidden">
-' +
-        '                <svg xmlns="http://www.w3.org/2000/svg" class="text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-' +
-        '                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-' +
-        "                </svg>
-" +
-        "            </button>
-" +
-        '            <div class="hidden md:flex items-center justify-center">
-' +
-        '                <a href="/products" class="mx-6">Shop</a>
-' +
-        '                <a href="/about" class="mx-6">About</a>
-' +
-        '                <a href="/blog" class="mx-6">Articles</a>
-' +
-        "            </div>
-" +
-        "        </div>
-" +
-        '        <div class="flex">
-' +
-        '            <a href="#" class="ml-4">
-' +
-        '                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-' +
-        '                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-' +
-        "                </svg>
-" +
-        "            </a>
-" +
-        '            <a href="#" class="ml-4">
-' +
-        '                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-' +
-        '                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-' +
-        "                </svg>
-" +
-        "            </a>
-" +
-        "        </div>
-" +
-        '        <div class="fixed inset-0 w-screen h-screen md:hidden flex flex-col items-center justify-center text-2xl space-y-4 bg-blue-100 text-white z-40">
-' +
-        '            <button class="absolute top-0 right-0 mt-12 mr-12 text-white">
-' +
-        '                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-' +
-        '                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-' +
-        "                </svg>
-" +
-        "            </button>
-" +
-        '            <a href="/products" class="mx-6">Shop</a>
-' +
-        '            <a href="/about" class="mx-6">About</a>
-' +
-        '            <a href="/blog" class="mx-6">Articles</a>
-' +
-        "        </div>
-" +
-        "    </div>
-" +
-        '    <div class="-mt-32 relative w-full h-screen bg-blue-100 flex items-center justify-center">
-' +
-        '        <div class="relative z-10 text-center text-white text-center px-6">
-' +
-        '            <div class="text-xs uppercase tracking-widest">Clean and affordable beauty</div>
-' +
-        '            <h1 class="text-3xl md:text-5xl font-display font-semibold mt-2">Beautiful, natural skin</h1>
-' +
-        '            <p class="mt-4">A unique layout with a striking design</p>
-' +
-        '            <div class="max-w-sm mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-' +
-        '                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
-' +
-        '                <a href="#" class="inline-block bg-gray-100 text-gray-700 text-sm tracking-widest font-heading px-8 py-4">Learn more</a>
-' +
-        "            </div>
-" +
-        "        </div>
-" +
-        '        <img class="w-full h-full absolute inset-0 object-cover opacity-95">
-' +
-        "    </div>
-" +
-        '    <div class="container mx-auto px-6 flex flex-wrap items-center py-24">
-' +
-        '        <div class="w-full lg:flex-1">
-' +
-        '            <div class="uppercase text-sm text-gray-700 tracking-widest">Why Cheslsea?</div>
-' +
-        '            <h2 class="text-3xl md:text-4xl font-semibold font-display mt-3">Natural and organic is the future of skincare and life as we know it.</h2>
-' +
-        "        </div>
-" +
-        '        <div class="w-full lg:w-auto text-center">
-' +
-        '            <svg class="inline-block w-32 h-32 -mb-10 -mt-4 lg:mt-0 lg:mb-0 lg:transform lg:rotate-90 lg:-ml-8" x="0px" y="0px" viewBox="0 0 100 125">
-' +
-        '                <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
-' +
-        "            </svg>
-" +
-        "        </div>
-" +
-        '        <div class="w-full lg:flex-1">
-' +
-        "            <p>Let's face it. Many cosmetics are bad for your skin. We use only natural ingredients and still provide consistently great tanning results.</p>
-" +
-        '            <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-4">Learn more</a>
-' +
-        "        </div>
-" +
-        "    </div>
-" +
-        '    <div class="p-4 grid grid-cols-1 md:grid-cols-5 grid-rows-2 gap-4 md:h-screen">
-' +
-        '        <a href="#" class="relative block bg-black text-white md:col-span-2">
-' +
-        '            <div class="relative z-10 p-12">
-' +
-        '                <h3 class="font-display text-2xl">Best Sellers</h3>
-' +
-        '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-        '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-        "            </div>
-" +
-        '            <img src="https://images.unsplash.com/photo-1527632911563-ee5b6d53465b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-        "        </a>
-" +
-        '        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-1">
-' +
-        '            <div class="relative z-10 p-12">
-' +
-        '                <h3 class="font-display text-2xl">Limited</h3>
-' +
-        '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-        '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-        "            </div>
-" +
-        '            <img src="https://images.unsplash.com/photo-1531646317777-0619c7c5d1d3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-        "        </a>
-" +
-        '        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-2 lg:row-span-2">
-' +
-        '            <div class="relative z-10 p-12">
-' +
-        '                <h3 class="font-display text-2xl">New In</h3>
-' +
-        '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-        '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-        "            </div>
-" +
-        '            <img src="https://images.unsplash.com/photo-1527633412983-d80af308e660?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-        "        </a>
-" +
-        '        <a href="#" class="relative block bg-black text-white md:col-span-2 lg:col-span-1">
-' +
-        '            <div class="relative z-10 p-12">
-' +
-        '                <h3 class="font-display text-2xl">Sale</h3>
-' +
-        '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-        '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-        "            </div>
-" +
-        '            <img src="https://images.unsplash.com/photo-1533017568856-f6085fef5f1f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-        "        </a>
-" +
-        '        <a href="#" class="relative block bg-black text-white md:col-span-5 lg:col-span-2">
-' +
-        '            <div class="relative z-10 p-12">
-' +
-        '                <h3 class="font-display text-2xl">Half Price</h3>
-' +
-        '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-        '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-        "            </div>
-" +
-        '            <img src="https://images.unsplash.com/photo-1603001790877-2733c25430d7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-        "        </a>
-" +
-        "    </div>
-" +
-        '    <div class="text-center py-12">
-' +
-        '        <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
-' +
-        "    </div>
-" +
-        '    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
-' +
-        '        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
-' +
-        '            <div class="relative z-10 p-12">
-' +
-        '                <div class="uppercase text-sm text-gray-700 tracking-widest">Limited Run</div>
-' +
-        '                <h3 class="font-display font-semibold text-3xl mt-2">Moisturise</h3>
-' +
-        '                <p class="mt-3 mx-auto max-w-md">Whether in the sun or on the couch, hydration is key to maintaining happy, healthy skin.</p>
-' +
-        '                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
-' +
-        "            </div>
-" +
-        "        </div>
-" +
-        '        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
-' +
-        '            <img src="https://images.unsplash.com/photo-1597931752949-98c74b5b159f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-        "        </div>
-" +
-        '        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
-' +
-        '            <img src="https://images.unsplash.com/photo-1607602175460-c5dff74d7909?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1482&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-        "        </div>
-" +
-        '        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
-' +
-        '            <img src="https://images.unsplash.com/photo-1598282780498-8eda08ec1941?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-        "        </div>
-" +
-        "    </div>
-" +
-        '    <div class="container mx-auto px-6 py-12">
-' +
-        '        <h2 class="font-display font-semibold text-3xl">Testimonials</h2>
-' +
-        '        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24 mt-12">
-' +
-        '            <div class="relative">
-' +
-        '                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-' +
-        '                <div class="relative z-10 text-sm flex items-center justify-end">
-' +
-        '                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
-' +
-        '                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
-' +
-        "                    </svg>
-" +
-        "                    <span>Elle Spearman</span>
-" +
-        "                </div>
-" +
-        '                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
-' +
-        '                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
-' +
-        "                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
-" +
-        "                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
-" +
-        "                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
-" +
-        '                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
-' +
-        '                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
-' +
-        "                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
-" +
-        "                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
-" +
-        "                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
-" +
-        '                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
-' +
-        "                </svg>
-" +
-        "            </div>
-" +
-        '            <div class="relative">
-' +
-        '                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-' +
-        '                <div class="relative z-10 text-sm flex items-center justify-end">
-' +
-        '                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
-' +
-        '                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
-' +
-        "                    </svg>
-" +
-        "                    <span>Elle Spearman</span>
-" +
-        "                </div>
-" +
-        '                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
-' +
-        '                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
-' +
-        "                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
-" +
-        "                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
-" +
-        "                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
-" +
-        '                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
-' +
-        '                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
-' +
-        "                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
-" +
-        "                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
-" +
-        "                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
-" +
-        '                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
-' +
-        "                </svg>
-" +
-        "            </div>
-" +
-        '            <div class="relative">
-' +
-        '                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-' +
-        '                <div class="relative z-10 text-sm flex items-center justify-end">
-' +
-        '                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
-' +
-        '                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
-' +
-        "                    </svg>
-" +
-        "                    <span>Elle Spearman</span>
-" +
-        "                </div>
-" +
-        '                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
-' +
-        '                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
-' +
-        "                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
-" +
-        "                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
-" +
-        "                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
-" +
-        '                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
-' +
-        '                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
-' +
-        "                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
-" +
-        "                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
-" +
-        "                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
-" +
-        '                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
-' +
-        "                </svg>
-" +
-        "            </div>
-" +
-        "        </div>
-" +
-        "    </div>
-" +
-        '    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
-' +
-        '        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
-' +
-        '            <img src="https://images.unsplash.com/photo-1605204376600-72ed73f1f9ec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2551&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-        "        </div>
-" +
-        '        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
-' +
-        '            <div class="relative z-10 p-12">
-' +
-        '                <div class="uppercase text-sm text-gray-700 tracking-widest">Only the best</div>
-' +
-        '                <h3 class="font-display font-semibold text-3xl mt-2">Cleansers</h3>
-' +
-        \`                <p class="mt-3 mx-auto max-w-md">We're humans too and we understand that skin care and cosmetics should rejuvenate and rehydrate in the short and long run.</p>
-\` +
-        '                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
-' +
-        "            </div>
-" +
-        "        </div>
-" +
-        '        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
-' +
-        '            <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-        "        </div>
-" +
-        '        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
-' +
-        '            <img src="https://images.unsplash.com/photo-1585652757146-e9d00bf2810c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-        "        </div>
-" +
-        "    </div>
-" +
-        '    <div class="text-gray-800 text-opacity-40 font-semibold text-xs tracking-widest px-12">
-' +
-        '        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 py-24">
-' +
-        "            <div>
-" +
-        '                <div class="text-gray-900 text-4xl font-display">essential</div>
-' +
-        "            </div>
-" +
-        "            <div>
-" +
-        '                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">More Info</div>
-' +
-        '                <a href="#" class="block mb-4">Shop</a>
-' +
-        '                <a href="#" class="block mb-4">About</a>
-' +
-        '                <a href="#" class="block mb-4">Info</a>
-' +
-        '                <a href="#" class="block mb-4">FAQ</a>
-' +
-        "            </div>
-" +
-        "            <div>
-" +
-        '                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Helpful Links</div>
-' +
-        '                <a href="#" class="block mb-4">Shop</a>
-' +
-        '                <a href="#" class="block mb-4">About</a>
-' +
-        '                <a href="#" class="block mb-4">Info</a>
-' +
-        '                <a href="#" class="block mb-4">FAQ</a>
-' +
-        "            </div>
-" +
-        "            <div>
-" +
-        '                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Find out more</div>
-' +
-        '                <a href="#" class="block mb-4">Shop</a>
-' +
-        '                <a href="#" class="block mb-4">About</a>
-' +
-        '                <a href="#" class="block mb-4">Info</a>
-' +
-        '                <a href="#" class="block mb-4">FAQ</a>
-' +
-        "            </div>
-" +
-        "        </div>
-" +
-        "    </div>
-" +
-        '    <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
-' +
-        "</body>
-" +
-        "</html>
-",
-      content: "<!doctype html>
-" +
-        '<html lang="en">
-' +
-        "<head>
-" +
-        '    <meta charset="UTF-8">
-' +
-        '    <meta http-equiv="x-ua-compatible" content="ie=edge">
-' +
-        '    <meta name="viewport" content="width=device-width,initial-scale=1">
-' +
-        "    <title>essential</title>
-" +
-        '    <link rel="preconnect" href="https://fonts.gstatic.com">
-' +
-        '    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;1,400&family=Work+Sans:wght@200;400;500;600;700&display=swap" rel="stylesheet">
-' +
-        '    <link href="/styles.css" rel="stylesheet">
-' +
-        "</head>
-" +
-        '<body class="font-sans antialiased bg-gray-100 text-gray-700">
-' +
-        '    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
-' +
-        '    <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
-' +
-        "        <div>
-" +
-        '            <a href="/" class="lowercase font-normal text-xl">essential</a>
-' +
-        "        </div>
-" +
-        '        <div class="flex items-center justify-center font-normal relative z-10">
-' +
-        '            <button class="md:hidden">
-' +
-        '                <svg xmlns="http://www.w3.org/2000/svg" class="text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-' +
-        '                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-' +
-        "                </svg>
-" +
-        "            </button>
-" +
-        '            <div class="hidden md:flex items-center justify-center">
-' +
-        '                <a href="/products" class="mx-6">Shop</a>
-' +
-        '                <a href="/about" class="mx-6">About</a>
-' +
-        '                <a href="/blog" class="mx-6">Articles</a>
-' +
-        "            </div>
-" +
-        "        </div>
-" +
-        '        <div class="flex">
-' +
-        '            <a href="#" class="ml-4">
-' +
-        '                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-' +
-        '                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-' +
-        "                </svg>
-" +
-        "            </a>
-" +
-        '            <a href="#" class="ml-4">
-' +
-        '                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-' +
-        '                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-' +
-        "                </svg>
-" +
-        "            </a>
-" +
-        "        </div>
-" +
-        '        <div class="fixed inset-0 w-screen h-screen md:hidden flex flex-col items-center justify-center text-2xl space-y-4 bg-blue-100 text-white z-40">
-' +
-        '            <button class="absolute top-0 right-0 mt-12 mr-12 text-white">
-' +
-        '                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-' +
-        '                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-' +
-        "                </svg>
-" +
-        "            </button>
-" +
-        '            <a href="/products" class="mx-6">Shop</a>
-' +
-        '            <a href="/about" class="mx-6">About</a>
-' +
-        '            <a href="/blog" class="mx-6">Articles</a>
-' +
-        "        </div>
-" +
-        "    </div>
-" +
-        '    <div class="-mt-32 relative w-full h-screen bg-blue-100 flex items-center justify-center">
-' +
-        '        <div class="relative z-10 text-center text-white text-center px-6">
-' +
-        '            <div class="text-xs uppercase tracking-widest">Clean and affordable beauty</div>
-' +
-        '            <h1 class="text-3xl md:text-5xl font-display font-semibold mt-2">Beautiful, natural skin</h1>
-' +
-        '            <p class="mt-4">A unique layout with a striking design</p>
-' +
-        '            <div class="max-w-sm mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-' +
-        '                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
-' +
-        '                <a href="#" class="inline-block bg-gray-100 text-gray-700 text-sm tracking-widest font-heading px-8 py-4">Learn more</a>
-' +
-        "            </div>
-" +
-        "        </div>
-" +
-        '        <img class="w-full h-full absolute inset-0 object-cover opacity-95">
-' +
-        "    </div>
-" +
-        '    <div class="container mx-auto px-6 flex flex-wrap items-center py-24">
-' +
-        '        <div class="w-full lg:flex-1">
-' +
-        '            <div class="uppercase text-sm text-gray-700 tracking-widest">Why Cheslsea?</div>
-' +
-        '            <h2 class="text-3xl md:text-4xl font-semibold font-display mt-3">Natural and organic is the future of skincare and life as we know it.</h2>
-' +
-        "        </div>
-" +
-        '        <div class="w-full lg:w-auto text-center">
-' +
-        '            <svg class="inline-block w-32 h-32 -mb-10 -mt-4 lg:mt-0 lg:mb-0 lg:transform lg:rotate-90 lg:-ml-8" x="0px" y="0px" viewBox="0 0 100 125">
-' +
-        '                <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
-' +
-        "            </svg>
-" +
-        "        </div>
-" +
-        '        <div class="w-full lg:flex-1">
-' +
-        "            <p>Let's face it. Many cosmetics are bad for your skin. We use only natural ingredients and still provide consistently great tanning results.</p>
-" +
-        '            <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-4">Learn more</a>
-' +
-        "        </div>
-" +
-        "    </div>
-" +
-        '    <div class="p-4 grid grid-cols-1 md:grid-cols-5 grid-rows-2 gap-4 md:h-screen">
-' +
-        '        <a href="#" class="relative block bg-black text-white md:col-span-2">
-' +
-        '            <div class="relative z-10 p-12">
-' +
-        '                <h3 class="font-display text-2xl">Best Sellers</h3>
-' +
-        '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-        '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-        "            </div>
-" +
-        '            <img src="https://images.unsplash.com/photo-1527632911563-ee5b6d53465b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-        "        </a>
-" +
-        '        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-1">
-' +
-        '            <div class="relative z-10 p-12">
-' +
-        '                <h3 class="font-display text-2xl">Limited</h3>
-' +
-        '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-        '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-        "            </div>
-" +
-        '            <img src="https://images.unsplash.com/photo-1531646317777-0619c7c5d1d3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-        "        </a>
-" +
-        '        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-2 lg:row-span-2">
-' +
-        '            <div class="relative z-10 p-12">
-' +
-        '                <h3 class="font-display text-2xl">New In</h3>
-' +
-        '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-        '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-        "            </div>
-" +
-        '            <img src="https://images.unsplash.com/photo-1527633412983-d80af308e660?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-        "        </a>
-" +
-        '        <a href="#" class="relative block bg-black text-white md:col-span-2 lg:col-span-1">
-' +
-        '            <div class="relative z-10 p-12">
-' +
-        '                <h3 class="font-display text-2xl">Sale</h3>
-' +
-        '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-        '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-        "            </div>
-" +
-        '            <img src="https://images.unsplash.com/photo-1533017568856-f6085fef5f1f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-        "        </a>
-" +
-        '        <a href="#" class="relative block bg-black text-white md:col-span-5 lg:col-span-2">
-' +
-        '            <div class="relative z-10 p-12">
-' +
-        '                <h3 class="font-display text-2xl">Half Price</h3>
-' +
-        '                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
-' +
-        '                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
-' +
-        "            </div>
-" +
-        '            <img src="https://images.unsplash.com/photo-1603001790877-2733c25430d7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
-' +
-        "        </a>
-" +
-        "    </div>
-" +
-        '    <div class="text-center py-12">
-' +
-        '        <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
-' +
-        "    </div>
-" +
-        '    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
-' +
-        '        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
-' +
-        '            <div class="relative z-10 p-12">
-' +
-        '                <div class="uppercase text-sm text-gray-700 tracking-widest">Limited Run</div>
-' +
-        '                <h3 class="font-display font-semibold text-3xl mt-2">Moisturise</h3>
-' +
-        '                <p class="mt-3 mx-auto max-w-md">Whether in the sun or on the couch, hydration is key to maintaining happy, healthy skin.</p>
-' +
-        '                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
-' +
-        "            </div>
-" +
-        "        </div>
-" +
-        '        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
-' +
-        '            <img src="https://images.unsplash.com/photo-1597931752949-98c74b5b159f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-        "        </div>
-" +
-        '        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
-' +
-        '            <img src="https://images.unsplash.com/photo-1607602175460-c5dff74d7909?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1482&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-        "        </div>
-" +
-        '        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
-' +
-        '            <img src="https://images.unsplash.com/photo-1598282780498-8eda08ec1941?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-        "        </div>
-" +
-        "    </div>
-" +
-        '    <div class="container mx-auto px-6 py-12">
-' +
-        '        <h2 class="font-display font-semibold text-3xl">Testimonials</h2>
-' +
-        '        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24 mt-12">
-' +
-        '            <div class="relative">
-' +
-        '                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-' +
-        '                <div class="relative z-10 text-sm flex items-center justify-end">
-' +
-        '                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
-' +
-        '                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
-' +
-        "                    </svg>
-" +
-        "                    <span>Elle Spearman</span>
-" +
-        "                </div>
-" +
-        '                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
-' +
-        '                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
-' +
-        "                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
-" +
-        "                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
-" +
-        "                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
-" +
-        '                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
-' +
-        '                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
-' +
-        "                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
-" +
-        "                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
-" +
-        "                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
-" +
-        '                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
-' +
-        "                </svg>
-" +
-        "            </div>
-" +
-        '            <div class="relative">
-' +
-        '                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-' +
-        '                <div class="relative z-10 text-sm flex items-center justify-end">
-' +
-        '                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
-' +
-        '                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
-' +
-        "                    </svg>
-" +
-        "                    <span>Elle Spearman</span>
-" +
-        "                </div>
-" +
-        '                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
-' +
-        '                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
-' +
-        "                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
-" +
-        "                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
-" +
-        "                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
-" +
-        '                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
-' +
-        '                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
-' +
-        "                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
-" +
-        "                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
-" +
-        "                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
-" +
-        '                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
-' +
-        "                </svg>
-" +
-        "            </div>
-" +
-        '            <div class="relative">
-' +
-        '                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-' +
-        '                <div class="relative z-10 text-sm flex items-center justify-end">
-' +
-        '                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
-' +
-        '                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
-' +
-        "                    </svg>
-" +
-        "                    <span>Elle Spearman</span>
-" +
-        "                </div>
-" +
-        '                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
-' +
-        '                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
-' +
-        "                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
-" +
-        "                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
-" +
-        "                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
-" +
-        '                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
-' +
-        '                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
-' +
-        "                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
-" +
-        "                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
-" +
-        "                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
-" +
-        '                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
-' +
-        "                </svg>
-" +
-        "            </div>
-" +
-        "        </div>
-" +
-        "    </div>
-" +
-        '    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
-' +
-        '        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
-' +
-        '            <img src="https://images.unsplash.com/photo-1605204376600-72ed73f1f9ec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2551&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-        "        </div>
-" +
-        '        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
-' +
-        '            <div class="relative z-10 p-12">
-' +
-        '                <div class="uppercase text-sm text-gray-700 tracking-widest">Only the best</div>
-' +
-        '                <h3 class="font-display font-semibold text-3xl mt-2">Cleansers</h3>
-' +
-        \`                <p class="mt-3 mx-auto max-w-md">We're humans too and we understand that skin care and cosmetics should rejuvenate and rehydrate in the short and long run.</p>
-\` +
-        '                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
-' +
-        "            </div>
-" +
-        "        </div>
-" +
-        '        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
-' +
-        '            <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-        "        </div>
-" +
-        '        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
-' +
-        '            <img src="https://images.unsplash.com/photo-1585652757146-e9d00bf2810c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
-' +
-        "        </div>
-" +
-        "    </div>
-" +
-        '    <div class="text-gray-800 text-opacity-40 font-semibold text-xs tracking-widest px-12">
-' +
-        '        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 py-24">
-' +
-        "            <div>
-" +
-        '                <div class="text-gray-900 text-4xl font-display">essential</div>
-' +
-        "            </div>
-" +
-        "            <div>
-" +
-        '                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">More Info</div>
-' +
-        '                <a href="#" class="block mb-4">Shop</a>
-' +
-        '                <a href="#" class="block mb-4">About</a>
-' +
-        '                <a href="#" class="block mb-4">Info</a>
-' +
-        '                <a href="#" class="block mb-4">FAQ</a>
-' +
-        "            </div>
-" +
-        "            <div>
-" +
-        '                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Helpful Links</div>
-' +
-        '                <a href="#" class="block mb-4">Shop</a>
-' +
-        '                <a href="#" class="block mb-4">About</a>
-' +
-        '                <a href="#" class="block mb-4">Info</a>
-' +
-        '                <a href="#" class="block mb-4">FAQ</a>
-' +
-        "            </div>
-" +
-        "            <div>
-" +
-        '                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Find out more</div>
-' +
-        '                <a href="#" class="block mb-4">Shop</a>
-' +
-        '                <a href="#" class="block mb-4">About</a>
-' +
-        '                <a href="#" class="block mb-4">Info</a>
-' +
-        '                <a href="#" class="block mb-4">FAQ</a>
-' +
-        "            </div>
-" +
-        "        </div>
-" +
-        "    </div>
-" +
-        '    <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
-' +
-        "</body>
-" +
-        "</html>
-",
+      children: \`<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>essential</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;1,400&family=Work+Sans:wght@200;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+</head>
+<body class="font-sans antialiased bg-gray-100 text-gray-700">
+    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
+        <div>
+            <a href="/" class="lowercase font-normal text-xl">essential</a>
+        </div>
+        <div class="flex items-center justify-center font-normal relative z-10">
+            <button class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+            <div class="hidden md:flex items-center justify-center">
+                <a href="/products" class="mx-6">Shop</a>
+                <a href="/about" class="mx-6">About</a>
+                <a href="/blog" class="mx-6">Articles</a>
+            </div>
+        </div>
+        <div class="flex">
+            <a href="#" class="ml-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+            </a>
+            <a href="#" class="ml-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="fixed inset-0 w-screen h-screen md:hidden flex flex-col items-center justify-center text-2xl space-y-4 bg-blue-100 text-white z-40">
+            <button class="absolute top-0 right-0 mt-12 mr-12 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <a href="/products" class="mx-6">Shop</a>
+            <a href="/about" class="mx-6">About</a>
+            <a href="/blog" class="mx-6">Articles</a>
+        </div>
+    </div>
+    <div class="-mt-32 relative w-full h-screen bg-blue-100 flex items-center justify-center">
+        <div class="relative z-10 text-center text-white text-center px-6">
+            <div class="text-xs uppercase tracking-widest">Clean and affordable beauty</div>
+            <h1 class="text-3xl md:text-5xl font-display font-semibold mt-2">Beautiful, natural skin</h1>
+            <p class="mt-4">A unique layout with a striking design</p>
+            <div class="max-w-sm mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
+                <a href="#" class="inline-block bg-gray-100 text-gray-700 text-sm tracking-widest font-heading px-8 py-4">Learn more</a>
+            </div>
+        </div>
+        <img class="w-full h-full absolute inset-0 object-cover opacity-95">
+    </div>
+    <div class="container mx-auto px-6 flex flex-wrap items-center py-24">
+        <div class="w-full lg:flex-1">
+            <div class="uppercase text-sm text-gray-700 tracking-widest">Why Cheslsea?</div>
+            <h2 class="text-3xl md:text-4xl font-semibold font-display mt-3">Natural and organic is the future of skincare and life as we know it.</h2>
+        </div>
+        <div class="w-full lg:w-auto text-center">
+            <svg class="inline-block w-32 h-32 -mb-10 -mt-4 lg:mt-0 lg:mb-0 lg:transform lg:rotate-90 lg:-ml-8" x="0px" y="0px" viewBox="0 0 100 125">
+                <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+            </svg>
+        </div>
+        <div class="w-full lg:flex-1">
+            <p>Let's face it. Many cosmetics are bad for your skin. We use only natural ingredients and still provide consistently great tanning results.</p>
+            <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-4">Learn more</a>
+        </div>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-5 grid-rows-2 gap-4 md:h-screen">
+        <a href="#" class="relative block bg-black text-white md:col-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Best Sellers</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1527632911563-ee5b6d53465b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-1">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Limited</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1531646317777-0619c7c5d1d3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-2 lg:row-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">New In</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1527633412983-d80af308e660?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-2 lg:col-span-1">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Sale</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1533017568856-f6085fef5f1f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-5 lg:col-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Half Price</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1603001790877-2733c25430d7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+    </div>
+    <div class="text-center py-12">
+        <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
+        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
+            <div class="relative z-10 p-12">
+                <div class="uppercase text-sm text-gray-700 tracking-widest">Limited Run</div>
+                <h3 class="font-display font-semibold text-3xl mt-2">Moisturise</h3>
+                <p class="mt-3 mx-auto max-w-md">Whether in the sun or on the couch, hydration is key to maintaining happy, healthy skin.</p>
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
+            </div>
+        </div>
+        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
+            <img src="https://images.unsplash.com/photo-1597931752949-98c74b5b159f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1607602175460-c5dff74d7909?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1482&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1598282780498-8eda08ec1941?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+    </div>
+    <div class="container mx-auto px-6 py-12">
+        <h2 class="font-display font-semibold text-3xl">Testimonials</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24 mt-12">
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
+        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
+            <img src="https://images.unsplash.com/photo-1605204376600-72ed73f1f9ec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2551&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
+            <div class="relative z-10 p-12">
+                <div class="uppercase text-sm text-gray-700 tracking-widest">Only the best</div>
+                <h3 class="font-display font-semibold text-3xl mt-2">Cleansers</h3>
+                <p class="mt-3 mx-auto max-w-md">We're humans too and we understand that skin care and cosmetics should rejuvenate and rehydrate in the short and long run.</p>
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
+            </div>
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1585652757146-e9d00bf2810c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+    </div>
+    <div class="text-gray-800 text-opacity-40 font-semibold text-xs tracking-widest px-12">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 py-24">
+            <div>
+                <div class="text-gray-900 text-4xl font-display">essential</div>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">More Info</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Helpful Links</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Find out more</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
+</body>
+</html>
+\`,
+      content: \`<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>essential</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;1,400&family=Work+Sans:wght@200;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+</head>
+<body class="font-sans antialiased bg-gray-100 text-gray-700">
+    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
+        <div>
+            <a href="/" class="lowercase font-normal text-xl">essential</a>
+        </div>
+        <div class="flex items-center justify-center font-normal relative z-10">
+            <button class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+            <div class="hidden md:flex items-center justify-center">
+                <a href="/products" class="mx-6">Shop</a>
+                <a href="/about" class="mx-6">About</a>
+                <a href="/blog" class="mx-6">Articles</a>
+            </div>
+        </div>
+        <div class="flex">
+            <a href="#" class="ml-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+            </a>
+            <a href="#" class="ml-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="fixed inset-0 w-screen h-screen md:hidden flex flex-col items-center justify-center text-2xl space-y-4 bg-blue-100 text-white z-40">
+            <button class="absolute top-0 right-0 mt-12 mr-12 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <a href="/products" class="mx-6">Shop</a>
+            <a href="/about" class="mx-6">About</a>
+            <a href="/blog" class="mx-6">Articles</a>
+        </div>
+    </div>
+    <div class="-mt-32 relative w-full h-screen bg-blue-100 flex items-center justify-center">
+        <div class="relative z-10 text-center text-white text-center px-6">
+            <div class="text-xs uppercase tracking-widest">Clean and affordable beauty</div>
+            <h1 class="text-3xl md:text-5xl font-display font-semibold mt-2">Beautiful, natural skin</h1>
+            <p class="mt-4">A unique layout with a striking design</p>
+            <div class="max-w-sm mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
+                <a href="#" class="inline-block bg-gray-100 text-gray-700 text-sm tracking-widest font-heading px-8 py-4">Learn more</a>
+            </div>
+        </div>
+        <img class="w-full h-full absolute inset-0 object-cover opacity-95">
+    </div>
+    <div class="container mx-auto px-6 flex flex-wrap items-center py-24">
+        <div class="w-full lg:flex-1">
+            <div class="uppercase text-sm text-gray-700 tracking-widest">Why Cheslsea?</div>
+            <h2 class="text-3xl md:text-4xl font-semibold font-display mt-3">Natural and organic is the future of skincare and life as we know it.</h2>
+        </div>
+        <div class="w-full lg:w-auto text-center">
+            <svg class="inline-block w-32 h-32 -mb-10 -mt-4 lg:mt-0 lg:mb-0 lg:transform lg:rotate-90 lg:-ml-8" x="0px" y="0px" viewBox="0 0 100 125">
+                <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+            </svg>
+        </div>
+        <div class="w-full lg:flex-1">
+            <p>Let's face it. Many cosmetics are bad for your skin. We use only natural ingredients and still provide consistently great tanning results.</p>
+            <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-4">Learn more</a>
+        </div>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-5 grid-rows-2 gap-4 md:h-screen">
+        <a href="#" class="relative block bg-black text-white md:col-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Best Sellers</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1527632911563-ee5b6d53465b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-1">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Limited</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1531646317777-0619c7c5d1d3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-2 lg:row-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">New In</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1527633412983-d80af308e660?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-2 lg:col-span-1">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Sale</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1533017568856-f6085fef5f1f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-5 lg:col-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Half Price</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1603001790877-2733c25430d7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+    </div>
+    <div class="text-center py-12">
+        <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
+        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
+            <div class="relative z-10 p-12">
+                <div class="uppercase text-sm text-gray-700 tracking-widest">Limited Run</div>
+                <h3 class="font-display font-semibold text-3xl mt-2">Moisturise</h3>
+                <p class="mt-3 mx-auto max-w-md">Whether in the sun or on the couch, hydration is key to maintaining happy, healthy skin.</p>
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
+            </div>
+        </div>
+        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
+            <img src="https://images.unsplash.com/photo-1597931752949-98c74b5b159f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1607602175460-c5dff74d7909?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1482&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1598282780498-8eda08ec1941?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+    </div>
+    <div class="container mx-auto px-6 py-12">
+        <h2 class="font-display font-semibold text-3xl">Testimonials</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24 mt-12">
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
+        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
+            <img src="https://images.unsplash.com/photo-1605204376600-72ed73f1f9ec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2551&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
+            <div class="relative z-10 p-12">
+                <div class="uppercase text-sm text-gray-700 tracking-widest">Only the best</div>
+                <h3 class="font-display font-semibold text-3xl mt-2">Cleansers</h3>
+                <p class="mt-3 mx-auto max-w-md">We're humans too and we understand that skin care and cosmetics should rejuvenate and rehydrate in the short and long run.</p>
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
+            </div>
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1585652757146-e9d00bf2810c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+    </div>
+    <div class="text-gray-800 text-opacity-40 font-semibold text-xs tracking-widest px-12">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 py-24">
+            <div>
+                <div class="text-gray-900 text-4xl font-display">essential</div>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">More Info</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Helpful Links</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Find out more</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
+</body>
+</html>
+\`,
       date: [],
       mergedKeys: [
         "tags",
@@ -1694,26 +914,18 @@ snapshot[`postcss plugin 3`] = `
   },
   {
     content: 'menuButton.addEventListener("click", function () {
-' +
-      '  const classList = document.getElementById("nav").classList;
-' +
-      '  classList.toggle("gap-8");
-' +
-      '  classList.toggle("gap-16");
-' +
-      "});
-",
+  const classList = document.getElementById("nav").classList;
+  classList.toggle("gap-8");
+  classList.toggle("gap-16");
+});
+',
     data: {
       content: 'menuButton.addEventListener("click", function () {
-' +
-        '  const classList = document.getElementById("nav").classList;
-' +
-        '  classList.toggle("gap-8");
-' +
-        '  classList.toggle("gap-16");
-' +
-        "});
-",
+  const classList = document.getElementById("nav").classList;
+  classList.toggle("gap-8");
+  classList.toggle("gap-16");
+});
+',
       date: [],
       mergedKeys: [
         "tags",
@@ -1737,1972 +949,989 @@ snapshot[`postcss plugin 3`] = `
   },
   {
     content: "/*
-" +
-      "! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
-" +
-      "*//*
-" +
-      "1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
-" +
-      "2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
-" +
-      "*/
-" +
-      "
-" +
-      "*,
-" +
-      "::before,
-" +
-      "::after {
-" +
-      "  box-sizing: border-box; /* 1 */
-" +
-      "  border-width: 0; /* 2 */
-" +
-      "  border-style: solid; /* 2 */
-" +
-      "  border-color: #e5e7eb; /* 2 */
-" +
-      "}
-" +
-      "
-" +
-      "::before,
-" +
-      "::after {
-" +
-      "  --tw-content: '';
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "1. Use a consistent sensible line-height in all browsers.
-" +
-      "2. Prevent adjustments of font size after orientation changes in iOS.
-" +
-      "3. Use a more readable tab size.
-" +
-      "4. Use the user's configured \`sans\` font-family by default.
-" +
-      "5. Use the user's configured \`sans\` font-feature-settings by default.
-" +
-      "6. Use the user's configured \`sans\` font-variation-settings by default.
-" +
-      "*/
-" +
-      "
-" +
-      "html {
-" +
-      "  line-height: 1.5; /* 1 */
-" +
-      "  -webkit-text-size-adjust: 100%; /* 2 */
-" +
-      "  -moz-tab-size: 4; /* 3 */
-" +
-      "  -o-tab-size: 4;
-" +
-      "     tab-size: 4; /* 3 */
-" +
-      '  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
-' +
-      "  font-feature-settings: normal; /* 5 */
-" +
-      "  font-variation-settings: normal; /* 6 */
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "1. Remove the margin in all browsers.
-" +
-      "2. Inherit line-height from \`html\` so users can set them as a class directly on the \`html\` element.
-" +
-      "*/
-" +
-      "
-" +
-      "body {
-" +
-      "  margin: 0; /* 1 */
-" +
-      "  line-height: inherit; /* 2 */
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "1. Add the correct height in Firefox.
-" +
-      "2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
-" +
-      "3. Ensure horizontal rules are visible by default.
-" +
-      "*/
-" +
-      "
-" +
-      "hr {
-" +
-      "  height: 0; /* 1 */
-" +
-      "  color: inherit; /* 2 */
-" +
-      "  border-top-width: 1px; /* 3 */
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Add the correct text decoration in Chrome, Edge, and Safari.
-" +
-      "*/
-" +
-      "
-" +
-      "abbr:where([title]) {
-" +
-      "  -webkit-text-decoration: underline dotted;
-" +
-      "          text-decoration: underline dotted;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Remove the default font size and weight for headings.
-" +
-      "*/
-" +
-      "
-" +
-      "h1,
-" +
-      "h2,
-" +
-      "h3,
-" +
-      "h4,
-" +
-      "h5,
-" +
-      "h6 {
-" +
-      "  font-size: inherit;
-" +
-      "  font-weight: inherit;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Reset links to optimize for opt-in styling instead of opt-out.
-" +
-      "*/
-" +
-      "
-" +
-      "a {
-" +
-      "  color: inherit;
-" +
-      "  text-decoration: inherit;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Add the correct font weight in Edge and Safari.
-" +
-      "*/
-" +
-      "
-" +
-      "b,
-" +
-      "strong {
-" +
-      "  font-weight: bolder;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "1. Use the user's configured \`mono\` font family by default.
-" +
-      "2. Correct the odd \`em\` font sizing in all browsers.
-" +
-      "*/
-" +
-      "
-" +
-      "code,
-" +
-      "kbd,
-" +
-      "samp,
-" +
-      "pre {
-" +
-      '  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; /* 1 */
-' +
-      "  font-size: 1em; /* 2 */
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Add the correct font size in all browsers.
-" +
-      "*/
-" +
-      "
-" +
-      "small {
-" +
-      "  font-size: 80%;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Prevent \`sub\` and \`sup\` elements from affecting the line height in all browsers.
-" +
-      "*/
-" +
-      "
-" +
-      "sub,
-" +
-      "sup {
-" +
-      "  font-size: 75%;
-" +
-      "  line-height: 0;
-" +
-      "  position: relative;
-" +
-      "  vertical-align: baseline;
-" +
-      "}
-" +
-      "
-" +
-      "sub {
-" +
-      "  bottom: -0.25em;
-" +
-      "}
-" +
-      "
-" +
-      "sup {
-" +
-      "  top: -0.5em;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
-" +
-      "2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
-" +
-      "3. Remove gaps between table borders by default.
-" +
-      "*/
-" +
-      "
-" +
-      "table {
-" +
-      "  text-indent: 0; /* 1 */
-" +
-      "  border-color: inherit; /* 2 */
-" +
-      "  border-collapse: collapse; /* 3 */
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "1. Change the font styles in all browsers.
-" +
-      "2. Remove the margin in Firefox and Safari.
-" +
-      "3. Remove default padding in all browsers.
-" +
-      "*/
-" +
-      "
-" +
-      "button,
-" +
-      "input,
-" +
-      "optgroup,
-" +
-      "select,
-" +
-      "textarea {
-" +
-      "  font-family: inherit; /* 1 */
-" +
-      "  font-feature-settings: inherit; /* 1 */
-" +
-      "  font-variation-settings: inherit; /* 1 */
-" +
-      "  font-size: 100%; /* 1 */
-" +
-      "  font-weight: inherit; /* 1 */
-" +
-      "  line-height: inherit; /* 1 */
-" +
-      "  color: inherit; /* 1 */
-" +
-      "  margin: 0; /* 2 */
-" +
-      "  padding: 0; /* 3 */
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Remove the inheritance of text transform in Edge and Firefox.
-" +
-      "*/
-" +
-      "
-" +
-      "button,
-" +
-      "select {
-" +
-      "  text-transform: none;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "1. Correct the inability to style clickable types in iOS and Safari.
-" +
-      "2. Remove default button styles.
-" +
-      "*/
-" +
-      "
-" +
-      "button,
-" +
-      "[type='button'],
-" +
-      "[type='reset'],
-" +
-      "[type='submit'] {
-" +
-      "  -webkit-appearance: button; /* 1 */
-" +
-      "  background-color: transparent; /* 2 */
-" +
-      "  background-image: none; /* 2 */
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Use the modern Firefox focus style for all focusable elements.
-" +
-      "*/
-" +
-      "
-" +
-      ":-moz-focusring {
-" +
-      "  outline: auto;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Remove the additional \`:invalid\` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
-" +
-      "*/
-" +
-      "
-" +
-      ":-moz-ui-invalid {
-" +
-      "  box-shadow: none;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Add the correct vertical alignment in Chrome and Firefox.
-" +
-      "*/
-" +
-      "
-" +
-      "progress {
-" +
-      "  vertical-align: baseline;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Correct the cursor style of increment and decrement buttons in Safari.
-" +
-      "*/
-" +
-      "
-" +
-      "::-webkit-inner-spin-button,
-" +
-      "::-webkit-outer-spin-button {
-" +
-      "  height: auto;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "1. Correct the odd appearance in Chrome and Safari.
-" +
-      "2. Correct the outline style in Safari.
-" +
-      "*/
-" +
-      "
-" +
-      "[type='search'] {
-" +
-      "  -webkit-appearance: textfield; /* 1 */
-" +
-      "  outline-offset: -2px; /* 2 */
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Remove the inner padding in Chrome and Safari on macOS.
-" +
-      "*/
-" +
-      "
-" +
-      "::-webkit-search-decoration {
-" +
-      "  -webkit-appearance: none;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "1. Correct the inability to style clickable types in iOS and Safari.
-" +
-      "2. Change font properties to \`inherit\` in Safari.
-" +
-      "*/
-" +
-      "
-" +
-      "::-webkit-file-upload-button {
-" +
-      "  -webkit-appearance: button; /* 1 */
-" +
-      "  font: inherit; /* 2 */
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Add the correct display in Chrome and Safari.
-" +
-      "*/
-" +
-      "
-" +
-      "summary {
-" +
-      "  display: list-item;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Removes the default spacing and border for appropriate elements.
-" +
-      "*/
-" +
-      "
-" +
-      "blockquote,
-" +
-      "dl,
-" +
-      "dd,
-" +
-      "h1,
-" +
-      "h2,
-" +
-      "h3,
-" +
-      "h4,
-" +
-      "h5,
-" +
-      "h6,
-" +
-      "hr,
-" +
-      "figure,
-" +
-      "p,
-" +
-      "pre {
-" +
-      "  margin: 0;
-" +
-      "}
-" +
-      "
-" +
-      "fieldset {
-" +
-      "  margin: 0;
-" +
-      "  padding: 0;
-" +
-      "}
-" +
-      "
-" +
-      "legend {
-" +
-      "  padding: 0;
-" +
-      "}
-" +
-      "
-" +
-      "ol,
-" +
-      "ul,
-" +
-      "menu {
-" +
-      "  list-style: none;
-" +
-      "  margin: 0;
-" +
-      "  padding: 0;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Reset default styling for dialogs.
-" +
-      "*/
-" +
-      "dialog {
-" +
-      "  padding: 0;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Prevent resizing textareas horizontally by default.
-" +
-      "*/
-" +
-      "
-" +
-      "textarea {
-" +
-      "  resize: vertical;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
-" +
-      "2. Set the default placeholder color to the user's configured gray 400 color.
-" +
-      "*/
-" +
-      "
-" +
-      "input::-moz-placeholder, textarea::-moz-placeholder {
-" +
-      "  opacity: 1; /* 1 */
-" +
-      "  color: #9ca3af; /* 2 */
-" +
-      "}
-" +
-      "
-" +
-      "input::placeholder,
-" +
-      "textarea::placeholder {
-" +
-      "  opacity: 1; /* 1 */
-" +
-      "  color: #9ca3af; /* 2 */
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Set the default cursor for buttons.
-" +
-      "*/
-" +
-      "
-" +
-      "button,
-" +
-      '[role="button"] {
-' +
-      "  cursor: pointer;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Make sure disabled buttons don't get the pointer cursor.
-" +
-      "*/
-" +
-      ":disabled {
-" +
-      "  cursor: default;
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "1. Make replaced elements \`display: block\` by default. (https://github.com/mozdevs/cssremedy/issues/14)
-" +
-      "2. Add \`vertical-align: middle\` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
-" +
-      "   This can trigger a poorly considered lint error in some tools but is included by design.
-" +
-      "*/
-" +
-      "
-" +
-      "img,
-" +
-      "svg,
-" +
-      "video,
-" +
-      "canvas,
-" +
-      "audio,
-" +
-      "iframe,
-" +
-      "embed,
-" +
-      "object {
-" +
-      "  display: block; /* 1 */
-" +
-      "  vertical-align: middle; /* 2 */
-" +
-      "}
-" +
-      "
-" +
-      "/*
-" +
-      "Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
-" +
-      "*/
-" +
-      "
-" +
-      "img,
-" +
-      "video {
-" +
-      "  max-width: 100%;
-" +
-      "  height: auto;
-" +
-      "}
-" +
-      "
-" +
-      "/* Make elements with the HTML hidden attribute stay hidden by default */
-" +
-      "[hidden] {
-" +
-      "  display: none;
-" +
-      "}
-" +
-      "
-" +
-      "*, ::before, ::after {
-" +
-      "  --tw-border-spacing-x: 0;
-" +
-      "  --tw-border-spacing-y: 0;
-" +
-      "  --tw-translate-x: 0;
-" +
-      "  --tw-translate-y: 0;
-" +
-      "  --tw-rotate: 0;
-" +
-      "  --tw-skew-x: 0;
-" +
-      "  --tw-skew-y: 0;
-" +
-      "  --tw-scale-x: 1;
-" +
-      "  --tw-scale-y: 1;
-" +
-      "  --tw-pan-x:  ;
-" +
-      "  --tw-pan-y:  ;
-" +
-      "  --tw-pinch-zoom:  ;
-" +
-      "  --tw-scroll-snap-strictness: proximity;
-" +
-      "  --tw-gradient-from-position:  ;
-" +
-      "  --tw-gradient-via-position:  ;
-" +
-      "  --tw-gradient-to-position:  ;
-" +
-      "  --tw-ordinal:  ;
-" +
-      "  --tw-slashed-zero:  ;
-" +
-      "  --tw-numeric-figure:  ;
-" +
-      "  --tw-numeric-spacing:  ;
-" +
-      "  --tw-numeric-fraction:  ;
-" +
-      "  --tw-ring-inset:  ;
-" +
-      "  --tw-ring-offset-width: 0px;
-" +
-      "  --tw-ring-offset-color: #fff;
-" +
-      "  --tw-ring-color: rgb(59 130 246 / 0.5);
-" +
-      "  --tw-ring-offset-shadow: 0 0 #0000;
-" +
-      "  --tw-ring-shadow: 0 0 #0000;
-" +
-      "  --tw-shadow: 0 0 #0000;
-" +
-      "  --tw-shadow-colored: 0 0 #0000;
-" +
-      "  --tw-blur:  ;
-" +
-      "  --tw-brightness:  ;
-" +
-      "  --tw-contrast:  ;
-" +
-      "  --tw-grayscale:  ;
-" +
-      "  --tw-hue-rotate:  ;
-" +
-      "  --tw-invert:  ;
-" +
-      "  --tw-saturate:  ;
-" +
-      "  --tw-sepia:  ;
-" +
-      "  --tw-drop-shadow:  ;
-" +
-      "  --tw-backdrop-blur:  ;
-" +
-      "  --tw-backdrop-brightness:  ;
-" +
-      "  --tw-backdrop-contrast:  ;
-" +
-      "  --tw-backdrop-grayscale:  ;
-" +
-      "  --tw-backdrop-hue-rotate:  ;
-" +
-      "  --tw-backdrop-invert:  ;
-" +
-      "  --tw-backdrop-opacity:  ;
-" +
-      "  --tw-backdrop-saturate:  ;
-" +
-      "  --tw-backdrop-sepia:  ;
-" +
-      "}
-" +
-      "
-" +
-      "::backdrop {
-" +
-      "  --tw-border-spacing-x: 0;
-" +
-      "  --tw-border-spacing-y: 0;
-" +
-      "  --tw-translate-x: 0;
-" +
-      "  --tw-translate-y: 0;
-" +
-      "  --tw-rotate: 0;
-" +
-      "  --tw-skew-x: 0;
-" +
-      "  --tw-skew-y: 0;
-" +
-      "  --tw-scale-x: 1;
-" +
-      "  --tw-scale-y: 1;
-" +
-      "  --tw-pan-x:  ;
-" +
-      "  --tw-pan-y:  ;
-" +
-      "  --tw-pinch-zoom:  ;
-" +
-      "  --tw-scroll-snap-strictness: proximity;
-" +
-      "  --tw-gradient-from-position:  ;
-" +
-      "  --tw-gradient-via-position:  ;
-" +
-      "  --tw-gradient-to-position:  ;
-" +
-      "  --tw-ordinal:  ;
-" +
-      "  --tw-slashed-zero:  ;
-" +
-      "  --tw-numeric-figure:  ;
-" +
-      "  --tw-numeric-spacing:  ;
-" +
-      "  --tw-numeric-fraction:  ;
-" +
-      "  --tw-ring-inset:  ;
-" +
-      "  --tw-ring-offset-width: 0px;
-" +
-      "  --tw-ring-offset-color: #fff;
-" +
-      "  --tw-ring-color: rgb(59 130 246 / 0.5);
-" +
-      "  --tw-ring-offset-shadow: 0 0 #0000;
-" +
-      "  --tw-ring-shadow: 0 0 #0000;
-" +
-      "  --tw-shadow: 0 0 #0000;
-" +
-      "  --tw-shadow-colored: 0 0 #0000;
-" +
-      "  --tw-blur:  ;
-" +
-      "  --tw-brightness:  ;
-" +
-      "  --tw-contrast:  ;
-" +
-      "  --tw-grayscale:  ;
-" +
-      "  --tw-hue-rotate:  ;
-" +
-      "  --tw-invert:  ;
-" +
-      "  --tw-saturate:  ;
-" +
-      "  --tw-sepia:  ;
-" +
-      "  --tw-drop-shadow:  ;
-" +
-      "  --tw-backdrop-blur:  ;
-" +
-      "  --tw-backdrop-brightness:  ;
-" +
-      "  --tw-backdrop-contrast:  ;
-" +
-      "  --tw-backdrop-grayscale:  ;
-" +
-      "  --tw-backdrop-hue-rotate:  ;
-" +
-      "  --tw-backdrop-invert:  ;
-" +
-      "  --tw-backdrop-opacity:  ;
-" +
-      "  --tw-backdrop-saturate:  ;
-" +
-      "  --tw-backdrop-sepia:  ;
-" +
-      "}
-" +
-      ".container {
-" +
-      "  width: 100%;
-" +
-      "}
-" +
-      "@media (min-width: 640px) {
-" +
-      "
-" +
-      "  .container {
-" +
-      "    max-width: 640px;
-" +
-      "  }
-" +
-      "}
-" +
-      "@media (min-width: 768px) {
-" +
-      "
-" +
-      "  .container {
-" +
-      "    max-width: 768px;
-" +
-      "  }
-" +
-      "}
-" +
-      "@media (min-width: 1024px) {
-" +
-      "
-" +
-      "  .container {
-" +
-      "    max-width: 1024px;
-" +
-      "  }
-" +
-      "}
-" +
-      "@media (min-width: 1280px) {
-" +
-      "
-" +
-      "  .container {
-" +
-      "    max-width: 1280px;
-" +
-      "  }
-" +
-      "}
-" +
-      "@media (min-width: 1536px) {
-" +
-      "
-" +
-      "  .container {
-" +
-      "    max-width: 1536px;
-" +
-      "  }
-" +
-      "}
-" +
-      ".fixed {
-" +
-      "  position: fixed;
-" +
-      "}
-" +
-      ".absolute {
-" +
-      "  position: absolute;
-" +
-      "}
-" +
-      ".relative {
-" +
-      "  position: relative;
-" +
-      "}
-" +
-      ".inset-0 {
-" +
-      "  inset: 0px;
-" +
-      "}
-" +
-      ".left-0 {
-" +
-      "  left: 0px;
-" +
-      "}
-" +
-      ".right-0 {
-" +
-      "  right: 0px;
-" +
-      "}
-" +
-      ".top-0 {
-" +
-      "  top: 0px;
-" +
-      "}
-" +
-      ".z-10 {
-" +
-      "  z-index: 10;
-" +
-      "}
-" +
-      ".z-40 {
-" +
-      "  z-index: 40;
-" +
-      "}
-" +
-      ".col-span-1 {
-" +
-      "  grid-column: span 1 / span 1;
-" +
-      "}
-" +
-      ".row-span-1 {
-" +
-      "  grid-row: span 1 / span 1;
-" +
-      "}
-" +
-      ".mx-6 {
-" +
-      "  margin-left: 1.5rem;
-" +
-      "  margin-right: 1.5rem;
-" +
-      "}
-" +
-      ".mx-auto {
-" +
-      "  margin-left: auto;
-" +
-      "  margin-right: auto;
-" +
-      "}
-" +
-      ".-mb-10 {
-" +
-      "  margin-bottom: -2.5rem;
-" +
-      "}
-" +
-      ".-mb-8 {
-" +
-      "  margin-bottom: -2rem;
-" +
-      "}
-" +
-      ".-ml-8 {
-" +
-      "  margin-left: -2rem;
-" +
-      "}
-" +
-      ".-mt-10 {
-" +
-      "  margin-top: -2.5rem;
-" +
-      "}
-" +
-      ".-mt-32 {
-" +
-      "  margin-top: -8rem;
-" +
-      "}
-" +
-      ".-mt-4 {
-" +
-      "  margin-top: -1rem;
-" +
-      "}
-" +
-      ".mb-4 {
-" +
-      "  margin-bottom: 1rem;
-" +
-      "}
-" +
-      ".mb-6 {
-" +
-      "  margin-bottom: 1.5rem;
-" +
-      "}
-" +
-      ".ml-4 {
-" +
-      "  margin-left: 1rem;
-" +
-      "}
-" +
-      ".mr-12 {
-" +
-      "  margin-right: 3rem;
-" +
-      "}
-" +
-      ".mt-12 {
-" +
-      "  margin-top: 3rem;
-" +
-      "}
-" +
-      ".mt-2 {
-" +
-      "  margin-top: 0.5rem;
-" +
-      "}
-" +
-      ".mt-3 {
-" +
-      "  margin-top: 0.75rem;
-" +
-      "}
-" +
-      ".mt-4 {
-" +
-      "  margin-top: 1rem;
-" +
-      "}
-" +
-      ".mt-6 {
-" +
-      "  margin-top: 1.5rem;
-" +
-      "}
-" +
-      ".block {
-" +
-      "  display: block;
-" +
-      "}
-" +
-      ".inline-block {
-" +
-      "  display: inline-block;
-" +
-      "}
-" +
-      ".flex {
-" +
-      "  display: flex;
-" +
-      "}
-" +
-      ".grid {
-" +
-      "  display: grid;
-" +
-      "}
-" +
-      ".hidden {
-" +
-      "  display: none;
-" +
-      "}
-" +
-      ".h-10 {
-" +
-      "  height: 2.5rem;
-" +
-      "}
-" +
-      ".h-24 {
-" +
-      "  height: 6rem;
-" +
-      "}
-" +
-      ".h-28 {
-" +
-      "  height: 7rem;
-" +
-      "}
-" +
-      ".h-32 {
-" +
-      "  height: 8rem;
-" +
-      "}
-" +
-      ".h-6 {
-" +
-      "  height: 1.5rem;
-" +
-      "}
-" +
-      ".h-64 {
-" +
-      "  height: 16rem;
-" +
-      "}
-" +
-      ".h-8 {
-" +
-      "  height: 2rem;
-" +
-      "}
-" +
-      ".h-full {
-" +
-      "  height: 100%;
-" +
-      "}
-" +
-      ".h-screen {
-" +
-      "  height: 100vh;
-" +
-      "}
-" +
-      ".w-10 {
-" +
-      "  width: 2.5rem;
-" +
-      "}
-" +
-      ".w-28 {
-" +
-      "  width: 7rem;
-" +
-      "}
-" +
-      ".w-32 {
-" +
-      "  width: 8rem;
-" +
-      "}
-" +
-      ".w-6 {
-" +
-      "  width: 1.5rem;
-" +
-      "}
-" +
-      ".w-full {
-" +
-      "  width: 100%;
-" +
-      "}
-" +
-      ".w-screen {
-" +
-      "  width: 100vw;
-" +
-      "}
-" +
-      ".max-w-md {
-" +
-      "  max-width: 28rem;
-" +
-      "}
-" +
-      ".max-w-sm {
-" +
-      "  max-width: 24rem;
-" +
-      "}
-" +
-      ".grid-cols-1 {
-" +
-      "  grid-template-columns: repeat(1, minmax(0, 1fr));
-" +
-      "}
-" +
-      ".grid-rows-2 {
-" +
-      "  grid-template-rows: repeat(2, minmax(0, 1fr));
-" +
-      "}
-" +
-      ".flex-col {
-" +
-      "  flex-direction: column;
-" +
-      "}
-" +
-      ".flex-wrap {
-" +
-      "  flex-wrap: wrap;
-" +
-      "}
-" +
-      ".items-center {
-" +
-      "  align-items: center;
-" +
-      "}
-" +
-      ".justify-end {
-" +
-      "  justify-content: flex-end;
-" +
-      "}
-" +
-      ".justify-center {
-" +
-      "  justify-content: center;
-" +
-      "}
-" +
-      ".justify-between {
-" +
-      "  justify-content: space-between;
-" +
-      "}
-" +
-      ".gap-12 {
-" +
-      "  gap: 3rem;
-" +
-      "}
-" +
-      ".gap-16 {
-" +
-      "  gap: 4rem;
-" +
-      "}
-" +
-      ".gap-4 {
-" +
-      "  gap: 1rem;
-" +
-      "}
-" +
-      ".gap-6 {
-" +
-      "  gap: 1.5rem;
-" +
-      "}
-" +
-      ".gap-8 {
-" +
-      "  gap: 2rem;
-" +
-      "}
-" +
-      ".space-y-4 > :not([hidden]) ~ :not([hidden]) {
-" +
-      "  --tw-space-y-reverse: 0;
-" +
-      "  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-" +
-      "  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-" +
-      "}
-" +
-      ".bg-black {
-" +
-      "  --tw-bg-opacity: 1;
-" +
-      "  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-" +
-      "}
-" +
-      ".bg-blue-100 {
-" +
-      "  --tw-bg-opacity: 1;
-" +
-      "  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
-" +
-      "}
-" +
-      ".bg-blue-200 {
-" +
-      "  --tw-bg-opacity: 1;
-" +
-      "  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
-" +
-      "}
-" +
-      ".bg-gray-100 {
-" +
-      "  --tw-bg-opacity: 1;
-" +
-      "  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-" +
-      "}
-" +
-      ".bg-gray-200 {
-" +
-      "  --tw-bg-opacity: 1;
-" +
-      "  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-" +
-      "}
-" +
-      ".bg-white {
-" +
-      "  --tw-bg-opacity: 1;
-" +
-      "  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-" +
-      "}
-" +
-      ".object-cover {
-" +
-      "  -o-object-fit: cover;
-" +
-      "     object-fit: cover;
-" +
-      "}
-" +
-      ".p-12 {
-" +
-      "  padding: 3rem;
-" +
-      "}
-" +
-      ".p-4 {
-" +
-      "  padding: 1rem;
-" +
-      "}
-" +
-      ".px-12 {
-" +
-      "  padding-left: 3rem;
-" +
-      "  padding-right: 3rem;
-" +
-      "}
-" +
-      ".px-6 {
-" +
-      "  padding-left: 1.5rem;
-" +
-      "  padding-right: 1.5rem;
-" +
-      "}
-" +
-      ".px-8 {
-" +
-      "  padding-left: 2rem;
-" +
-      "  padding-right: 2rem;
-" +
-      "}
-" +
-      ".py-12 {
-" +
-      "  padding-top: 3rem;
-" +
-      "  padding-bottom: 3rem;
-" +
-      "}
-" +
-      ".py-24 {
-" +
-      "  padding-top: 6rem;
-" +
-      "  padding-bottom: 6rem;
-" +
-      "}
-" +
-      ".py-4 {
-" +
-      "  padding-top: 1rem;
-" +
-      "  padding-bottom: 1rem;
-" +
-      "}
-" +
-      ".text-center {
-" +
-      "  text-align: center;
-" +
-      "}
-" +
-      ".text-justify {
-" +
-      "  text-align: justify;
-" +
-      "}
-" +
-      ".font-sans {
-" +
-      '  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-' +
-      "}
-" +
-      ".text-2xl {
-" +
-      "  font-size: 1.5rem;
-" +
-      "  line-height: 2rem;
-" +
-      "}
-" +
-      ".text-3xl {
-" +
-      "  font-size: 1.875rem;
-" +
-      "  line-height: 2.25rem;
-" +
-      "}
-" +
-      ".text-4xl {
-" +
-      "  font-size: 2.25rem;
-" +
-      "  line-height: 2.5rem;
-" +
-      "}
-" +
-      ".text-sm {
-" +
-      "  font-size: 0.875rem;
-" +
-      "  line-height: 1.25rem;
-" +
-      "}
-" +
-      ".text-xl {
-" +
-      "  font-size: 1.25rem;
-" +
-      "  line-height: 1.75rem;
-" +
-      "}
-" +
-      ".text-xs {
-" +
-      "  font-size: 0.75rem;
-" +
-      "  line-height: 1rem;
-" +
-      "}
-" +
-      ".font-light {
-" +
-      "  font-weight: 300;
-" +
-      "}
-" +
-      ".font-normal {
-" +
-      "  font-weight: 400;
-" +
-      "}
-" +
-      ".font-semibold {
-" +
-      "  font-weight: 600;
-" +
-      "}
-" +
-      ".uppercase {
-" +
-      "  text-transform: uppercase;
-" +
-      "}
-" +
-      ".lowercase {
-" +
-      "  text-transform: lowercase;
-" +
-      "}
-" +
-      ".tracking-wider {
-" +
-      "  letter-spacing: 0.05em;
-" +
-      "}
-" +
-      ".tracking-widest {
-" +
-      "  letter-spacing: 0.1em;
-" +
-      "}
-" +
-      ".text-blue-900 {
-" +
-      "  --tw-text-opacity: 1;
-" +
-      "  color: rgb(30 58 138 / var(--tw-text-opacity));
-" +
-      "}
-" +
-      ".text-gray-500 {
-" +
-      "  --tw-text-opacity: 1;
-" +
-      "  color: rgb(107 114 128 / var(--tw-text-opacity));
-" +
-      "}
-" +
-      ".text-gray-700 {
-" +
-      "  --tw-text-opacity: 1;
-" +
-      "  color: rgb(55 65 81 / var(--tw-text-opacity));
-" +
-      "}
-" +
-      ".text-gray-800 {
-" +
-      "  --tw-text-opacity: 1;
-" +
-      "  color: rgb(31 41 55 / var(--tw-text-opacity));
-" +
-      "}
-" +
-      ".text-gray-900 {
-" +
-      "  --tw-text-opacity: 1;
-" +
-      "  color: rgb(17 24 39 / var(--tw-text-opacity));
-" +
-      "}
-" +
-      ".text-white {
-" +
-      "  --tw-text-opacity: 1;
-" +
-      "  color: rgb(255 255 255 / var(--tw-text-opacity));
-" +
-      "}
-" +
-      ".text-opacity-40 {
-" +
-      "  --tw-text-opacity: 0.4;
-" +
-      "}
-" +
-      ".antialiased {
-" +
-      "  -webkit-font-smoothing: antialiased;
-" +
-      "  -moz-osx-font-smoothing: grayscale;
-" +
-      "}
-" +
-      ".opacity-5 {
-" +
-      "  opacity: 0.05;
-" +
-      "}
-" +
-      ".opacity-75 {
-" +
-      "  opacity: 0.75;
-" +
-      "}
-" +
-      ".opacity-95 {
-" +
-      "  opacity: 0.95;
-" +
-      "}
-" +
-      "@media (min-width: 768px) {
-" +
-      "
-" +
-      "  .md\\\\:col-span-2 {
-" +
-      "    grid-column: span 2 / span 2;
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:col-span-3 {
-" +
-      "    grid-column: span 3 / span 3;
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:col-span-5 {
-" +
-      "    grid-column: span 5 / span 5;
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:row-span-2 {
-" +
-      "    grid-row: span 2 / span 2;
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:flex {
-" +
-      "    display: flex;
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:hidden {
-" +
-      "    display: none;
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:h-auto {
-" +
-      "    height: auto;
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:h-screen {
-" +
-      "    height: 100vh;
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:grid-cols-2 {
-" +
-      "    grid-template-columns: repeat(2, minmax(0, 1fr));
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:grid-cols-3 {
-" +
-      "    grid-template-columns: repeat(3, minmax(0, 1fr));
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:grid-cols-4 {
-" +
-      "    grid-template-columns: repeat(4, minmax(0, 1fr));
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:grid-cols-5 {
-" +
-      "    grid-template-columns: repeat(5, minmax(0, 1fr));
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:grid-rows-2 {
-" +
-      "    grid-template-rows: repeat(2, minmax(0, 1fr));
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:gap-24 {
-" +
-      "    gap: 6rem;
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:text-4xl {
-" +
-      "    font-size: 2.25rem;
-" +
-      "    line-height: 2.5rem;
-" +
-      "  }
-" +
-      "
-" +
-      "  .md\\\\:text-5xl {
-" +
-      "    font-size: 3rem;
-" +
-      "    line-height: 1;
-" +
-      "  }
-" +
-      "}
-" +
-      "@media (min-width: 1024px) {
-" +
-      "
-" +
-      "  .lg\\\\:col-span-1 {
-" +
-      "    grid-column: span 1 / span 1;
-" +
-      "  }
-" +
-      "
-" +
-      "  .lg\\\\:col-span-2 {
-" +
-      "    grid-column: span 2 / span 2;
-" +
-      "  }
-" +
-      "
-" +
-      "  .lg\\\\:row-span-2 {
-" +
-      "    grid-row: span 2 / span 2;
-" +
-      "  }
-" +
-      "
-" +
-      "  .lg\\\\:-ml-8 {
-" +
-      "    margin-left: -2rem;
-" +
-      "  }
-" +
-      "
-" +
-      "  .lg\\\\:mb-0 {
-" +
-      "    margin-bottom: 0px;
-" +
-      "  }
-" +
-      "
-" +
-      "  .lg\\\\:mt-0 {
-" +
-      "    margin-top: 0px;
-" +
-      "  }
-" +
-      "
-" +
-      "  .lg\\\\:w-auto {
-" +
-      "    width: auto;
-" +
-      "  }
-" +
-      "
-" +
-      "  .lg\\\\:flex-1 {
-" +
-      "    flex: 1 1 0%;
-" +
-      "  }
-" +
-      "
-" +
-      "  .lg\\\\:rotate-90 {
-" +
-      "    --tw-rotate: 90deg;
-" +
-      "    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-" +
-      "  }
-" +
-      "
-" +
-      "  .lg\\\\:transform {
-" +
-      "    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-" +
-      "  }
-" +
-      "
-" +
-      "  .lg\\\\:text-base {
-" +
-      "    font-size: 1rem;
-" +
-      "    line-height: 1.5rem;
-" +
-      "  }
-" +
-      "}
+! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
+*//*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: #e5e7eb; /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured \`sans\` font-family by default.
+5. Use the user's configured \`sans\` font-feature-settings by default.
+6. Use the user's configured \`sans\` font-variation-settings by default.
+*/
+
+html {
+  line-height: 1.5; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  -moz-tab-size: 4; /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4; /* 3 */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, \\"Helvetica Neue\\", Arial, \\"Noto Sans\\", sans-serif, \\"Apple Color Emoji\\", \\"Segoe UI Emoji\\", \\"Segoe UI Symbol\\", \\"Noto Color Emoji\\"; /* 4 */
+  font-feature-settings: normal; /* 5 */
+  font-variation-settings: normal; /* 6 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from \`html\` so users can set them as a class directly on the \`html\` element.
+*/
+
+body {
+  margin: 0; /* 1 */
+  line-height: inherit; /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0; /* 1 */
+  color: inherit; /* 2 */
+  border-top-width: 1px; /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured \`mono\` font family by default.
+2. Correct the odd \`em\` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \\"Liberation Mono\\", \\"Courier New\\", monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent \`sub\` and \`sup\` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+  border-collapse: collapse; /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-feature-settings: inherit; /* 1 */
+  font-variation-settings: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  font-weight: inherit; /* 1 */
+  line-height: inherit; /* 1 */
+  color: inherit; /* 1 */
+  margin: 0; /* 2 */
+  padding: 0; /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button; /* 1 */
+  background-color: transparent; /* 2 */
+  background-image: none; /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional \`:invalid\` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to \`inherit\` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role=\\"button\\"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements \`display: block\` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add \`vertical-align: middle\` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block; /* 1 */
+  vertical-align: middle; /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+[hidden] {
+  display: none;
+}
+
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+.container {
+  width: 100%;
+}
+@media (min-width: 640px) {
+
+  .container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+
+  .container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+
+  .container {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+
+  .container {
+    max-width: 1280px;
+  }
+}
+@media (min-width: 1536px) {
+
+  .container {
+    max-width: 1536px;
+  }
+}
+.fixed {
+  position: fixed;
+}
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.inset-0 {
+  inset: 0px;
+}
+.left-0 {
+  left: 0px;
+}
+.right-0 {
+  right: 0px;
+}
+.top-0 {
+  top: 0px;
+}
+.z-10 {
+  z-index: 10;
+}
+.z-40 {
+  z-index: 40;
+}
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+.row-span-1 {
+  grid-row: span 1 / span 1;
+}
+.mx-6 {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.-mb-10 {
+  margin-bottom: -2.5rem;
+}
+.-mb-8 {
+  margin-bottom: -2rem;
+}
+.-ml-8 {
+  margin-left: -2rem;
+}
+.-mt-10 {
+  margin-top: -2.5rem;
+}
+.-mt-32 {
+  margin-top: -8rem;
+}
+.-mt-4 {
+  margin-top: -1rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+.ml-4 {
+  margin-left: 1rem;
+}
+.mr-12 {
+  margin-right: 3rem;
+}
+.mt-12 {
+  margin-top: 3rem;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.mt-3 {
+  margin-top: 0.75rem;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+.flex {
+  display: flex;
+}
+.grid {
+  display: grid;
+}
+.hidden {
+  display: none;
+}
+.h-10 {
+  height: 2.5rem;
+}
+.h-24 {
+  height: 6rem;
+}
+.h-28 {
+  height: 7rem;
+}
+.h-32 {
+  height: 8rem;
+}
+.h-6 {
+  height: 1.5rem;
+}
+.h-64 {
+  height: 16rem;
+}
+.h-8 {
+  height: 2rem;
+}
+.h-full {
+  height: 100%;
+}
+.h-screen {
+  height: 100vh;
+}
+.w-10 {
+  width: 2.5rem;
+}
+.w-28 {
+  width: 7rem;
+}
+.w-32 {
+  width: 8rem;
+}
+.w-6 {
+  width: 1.5rem;
+}
+.w-full {
+  width: 100%;
+}
+.w-screen {
+  width: 100vw;
+}
+.max-w-md {
+  max-width: 28rem;
+}
+.max-w-sm {
+  max-width: 24rem;
+}
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.grid-rows-2 {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.items-center {
+  align-items: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.gap-12 {
+  gap: 3rem;
+}
+.gap-16 {
+  gap: 4rem;
+}
+.gap-4 {
+  gap: 1rem;
+}
+.gap-6 {
+  gap: 1.5rem;
+}
+.gap-8 {
+  gap: 2rem;
+}
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+}
+.bg-blue-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
+}
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.p-12 {
+  padding: 3rem;
+}
+.p-4 {
+  padding: 1rem;
+}
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.py-24 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.text-center {
+  text-align: center;
+}
+.text-justify {
+  text-align: justify;
+}
+.font-sans {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, \\"Helvetica Neue\\", Arial, \\"Noto Sans\\", sans-serif, \\"Apple Color Emoji\\", \\"Segoe UI Emoji\\", \\"Segoe UI Symbol\\", \\"Noto Color Emoji\\";
+}
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.font-light {
+  font-weight: 300;
+}
+.font-normal {
+  font-weight: 400;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.lowercase {
+  text-transform: lowercase;
+}
+.tracking-wider {
+  letter-spacing: 0.05em;
+}
+.tracking-widest {
+  letter-spacing: 0.1em;
+}
+.text-blue-900 {
+  --tw-text-opacity: 1;
+  color: rgb(30 58 138 / var(--tw-text-opacity));
+}
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+.text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+.text-gray-800 {
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity));
+}
+.text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.text-opacity-40 {
+  --tw-text-opacity: 0.4;
+}
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.opacity-5 {
+  opacity: 0.05;
+}
+.opacity-75 {
+  opacity: 0.75;
+}
+.opacity-95 {
+  opacity: 0.95;
+}
+@media (min-width: 768px) {
+
+  .md\\\\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
+  .md\\\\:col-span-3 {
+    grid-column: span 3 / span 3;
+  }
+
+  .md\\\\:col-span-5 {
+    grid-column: span 5 / span 5;
+  }
+
+  .md\\\\:row-span-2 {
+    grid-row: span 2 / span 2;
+  }
+
+  .md\\\\:flex {
+    display: flex;
+  }
+
+  .md\\\\:hidden {
+    display: none;
+  }
+
+  .md\\\\:h-auto {
+    height: auto;
+  }
+
+  .md\\\\:h-screen {
+    height: 100vh;
+  }
+
+  .md\\\\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\\\\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\\\\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .md\\\\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .md\\\\:grid-rows-2 {
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\\\\:gap-24 {
+    gap: 6rem;
+  }
+
+  .md\\\\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .md\\\\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+@media (min-width: 1024px) {
+
+  .lg\\\\:col-span-1 {
+    grid-column: span 1 / span 1;
+  }
+
+  .lg\\\\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
+  .lg\\\\:row-span-2 {
+    grid-row: span 2 / span 2;
+  }
+
+  .lg\\\\:-ml-8 {
+    margin-left: -2rem;
+  }
+
+  .lg\\\\:mb-0 {
+    margin-bottom: 0px;
+  }
+
+  .lg\\\\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .lg\\\\:w-auto {
+    width: auto;
+  }
+
+  .lg\\\\:flex-1 {
+    flex: 1 1 0%;
+  }
+
+  .lg\\\\:rotate-90 {
+    --tw-rotate: 90deg;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .lg\\\\:transform {
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .lg\\\\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
 ",
     data: {
       content: "@tailwind base;

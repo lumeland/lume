@@ -245,8 +245,7 @@ Content of Page 2",
   },
   {
     content: "<!DOCTYPE html>
-" +
-      "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
+Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
     data: {
       children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
       colors: "Array(3)",

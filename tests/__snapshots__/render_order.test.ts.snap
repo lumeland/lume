@@ -678,9 +678,8 @@ snapshot[`render order property 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      '{"page":1,"totalPages":3,"totalResults":11,"previous":null,"next":"./page-2/index.html"}',
+    content: '<!DOCTYPE html>
+{"page":1,"totalPages":3,"totalResults":11,"previous":null,"next":"./page-2/index.html"}',
     data: {
       children: null,
       content: null,
@@ -716,9 +715,8 @@ snapshot[`render order property 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      '{"page":2,"totalPages":3,"totalResults":11,"previous":"./page-1/index.html","next":"./page-3/index.html"}',
+    content: '<!DOCTYPE html>
+{"page":2,"totalPages":3,"totalResults":11,"previous":"./page-1/index.html","next":"./page-3/index.html"}',
     data: {
       children: null,
       content: null,
@@ -754,9 +752,8 @@ snapshot[`render order property 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      '{"page":3,"totalPages":3,"totalResults":11,"previous":"./page-2/index.html","next":null}',
+    content: '<!DOCTYPE html>
+{"page":3,"totalPages":3,"totalResults":11,"previous":"./page-2/index.html","next":null}',
     data: {
       children: null,
       content: null,
