@@ -106,11 +106,9 @@ snapshot[`RSS plugin 2`] = `[]`;
 snapshot[`RSS plugin 3`] = `
 [
   {
-    content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","description":"","items":[{"id":"https://example.com/pages/subpage/page7/","url":"https://example.com/pages/subpage/page7/","content_html":"Content of Page 7","date_published":"Sun, 02 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page6/","url":"https://example.com/pages/page6/","title":"Page 6","content_html":"<p>Content of Page 6</p>\\
-","date_published":"Sat, 01 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page4/","url":"https://example.com/pages/page4/","title":"Page 4","content_html":"Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts","date_published":"Sat, 02 Jan 2021 18:32:00 GMT"},{"id":"https://example.com/overrided-page2/","url":"https://example.com/overrided-page2/","title":"Page 2","content_html":"Content of Page 2","date_published":"Sun, 21 Jun 2020 00:00:00 GMT"}]}',
+    content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","description":"","items":[{"id":"https://example.com/pages/subpage/page7/","url":"https://example.com/pages/subpage/page7/","content_html":"Content of Page 7","date_published":"Sun, 02 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page6/","url":"https://example.com/pages/page6/","title":"Page 6","content_html":"<p>Content of Page 6</p>\\\\n","date_published":"Sat, 01 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page4/","url":"https://example.com/pages/page4/","title":"Page 4","content_html":"Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts","date_published":"Sat, 02 Jan 2021 18:32:00 GMT"},{"id":"https://example.com/overrided-page2/","url":"https://example.com/overrided-page2/","title":"Page 2","content_html":"Content of Page 2","date_published":"Sun, 21 Jun 2020 00:00:00 GMT"}]}',
     data: {
-      content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","description":"","items":[{"id":"https://example.com/pages/subpage/page7/","url":"https://example.com/pages/subpage/page7/","content_html":"Content of Page 7","date_published":"Sun, 02 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page6/","url":"https://example.com/pages/page6/","title":"Page 6","content_html":"<p>Content of Page 6</p>\\
-","date_published":"Sat, 01 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page4/","url":"https://example.com/pages/page4/","title":"Page 4","content_html":"Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts","date_published":"Sat, 02 Jan 2021 18:32:00 GMT"},{"id":"https://example.com/overrided-page2/","url":"https://example.com/overrided-page2/","title":"Page 2","content_html":"Content of Page 2","date_published":"Sun, 21 Jun 2020 00:00:00 GMT"}]}',
+      content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","description":"","items":[{"id":"https://example.com/pages/subpage/page7/","url":"https://example.com/pages/subpage/page7/","content_html":"Content of Page 7","date_published":"Sun, 02 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page6/","url":"https://example.com/pages/page6/","title":"Page 6","content_html":"<p>Content of Page 6</p>\\\\n","date_published":"Sat, 01 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page4/","url":"https://example.com/pages/page4/","title":"Page 4","content_html":"Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts","date_published":"Sat, 02 Jan 2021 18:32:00 GMT"},{"id":"https://example.com/overrided-page2/","url":"https://example.com/overrided-page2/","title":"Page 2","content_html":"Content of Page 2","date_published":"Sun, 21 Jun 2020 00:00:00 GMT"}]}',
       page: [
         "src",
         "data",
@@ -127,192 +125,100 @@ snapshot[`RSS plugin 3`] = `
   },
   {
     content: '<?xml version="1.0" encoding="UTF-8"?>
-' +
-      '<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
-' +
-      "  <channel>
-" +
-      "    <title>My RSS Feed</title>
-" +
-      "    <link>https://example.com/</link>
-" +
-      '    <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
-' +
-      "    <description></description>
-" +
-      "    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
-" +
-      "    <language>en</language>
-" +
-      "    <generator>https://lume.land</generator>
-" +
-      "    <item>
-" +
-      "      <title/>
-" +
-      "      <link>https://example.com/pages/subpage/page7/</link>
-" +
-      '      <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
-' +
-      "      <description/>
-" +
-      "      <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
-" +
-      "      <pubDate>Sun, 02 Jan 2022 00:00:00 GMT</pubDate>
-" +
-      "    </item>
-" +
-      "    <item>
-" +
-      "      <title>Page 6</title>
-" +
-      "      <link>https://example.com/pages/page6/</link>
-" +
-      '      <guid isPermaLink="false">https://example.com/pages/page6/</guid>
-' +
-      "      <description/>
-" +
-      "      <content:encoded>
-" +
-      "        <![CDATA[<p>Content of Page 6</p>
-" +
-      "        ]]>
-" +
-      "      </content:encoded>
-" +
-      "      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
-" +
-      "    </item>
-" +
-      "    <item>
-" +
-      "      <title>Page 4</title>
-" +
-      "      <link>https://example.com/pages/page4/</link>
-" +
-      '      <guid isPermaLink="false">https://example.com/pages/page4/</guid>
-' +
-      "      <description/>
-" +
-      "      <content:encoded><![CDATA[Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts]]></content:encoded>
-" +
-      "      <pubDate>Sat, 02 Jan 2021 18:32:00 GMT</pubDate>
-" +
-      "    </item>
-" +
-      "    <item>
-" +
-      "      <title>Page 2</title>
-" +
-      "      <link>https://example.com/overrided-page2/</link>
-" +
-      '      <guid isPermaLink="false">https://example.com/overrided-page2/</guid>
-' +
-      "      <description/>
-" +
-      "      <content:encoded><![CDATA[Content of Page 2]]></content:encoded>
-" +
-      "      <pubDate>Sun, 21 Jun 2020 00:00:00 GMT</pubDate>
-" +
-      "    </item>
-" +
-      "  </channel>
-" +
-      "</rss>",
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+  <channel>
+    <title>My RSS Feed</title>
+    <link>https://example.com/</link>
+    <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
+    <description></description>
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
+    <language>en</language>
+    <generator>https://lume.land</generator>
+    <item>
+      <title/>
+      <link>https://example.com/pages/subpage/page7/</link>
+      <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
+      <pubDate>Sun, 02 Jan 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Page 6</title>
+      <link>https://example.com/pages/page6/</link>
+      <guid isPermaLink="false">https://example.com/pages/page6/</guid>
+      <description/>
+      <content:encoded>
+        <![CDATA[<p>Content of Page 6</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Page 4</title>
+      <link>https://example.com/pages/page4/</link>
+      <guid isPermaLink="false">https://example.com/pages/page4/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts]]></content:encoded>
+      <pubDate>Sat, 02 Jan 2021 18:32:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Page 2</title>
+      <link>https://example.com/overrided-page2/</link>
+      <guid isPermaLink="false">https://example.com/overrided-page2/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 2]]></content:encoded>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>',
     data: {
       content: '<?xml version="1.0" encoding="UTF-8"?>
-' +
-        '<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
-' +
-        "  <channel>
-" +
-        "    <title>My RSS Feed</title>
-" +
-        "    <link>https://example.com/</link>
-" +
-        '    <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
-' +
-        "    <description></description>
-" +
-        "    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
-" +
-        "    <language>en</language>
-" +
-        "    <generator>https://lume.land</generator>
-" +
-        "    <item>
-" +
-        "      <title/>
-" +
-        "      <link>https://example.com/pages/subpage/page7/</link>
-" +
-        '      <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
-' +
-        "      <description/>
-" +
-        "      <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
-" +
-        "      <pubDate>Sun, 02 Jan 2022 00:00:00 GMT</pubDate>
-" +
-        "    </item>
-" +
-        "    <item>
-" +
-        "      <title>Page 6</title>
-" +
-        "      <link>https://example.com/pages/page6/</link>
-" +
-        '      <guid isPermaLink="false">https://example.com/pages/page6/</guid>
-' +
-        "      <description/>
-" +
-        "      <content:encoded>
-" +
-        "        <![CDATA[<p>Content of Page 6</p>
-" +
-        "        ]]>
-" +
-        "      </content:encoded>
-" +
-        "      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
-" +
-        "    </item>
-" +
-        "    <item>
-" +
-        "      <title>Page 4</title>
-" +
-        "      <link>https://example.com/pages/page4/</link>
-" +
-        '      <guid isPermaLink="false">https://example.com/pages/page4/</guid>
-' +
-        "      <description/>
-" +
-        "      <content:encoded><![CDATA[Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts]]></content:encoded>
-" +
-        "      <pubDate>Sat, 02 Jan 2021 18:32:00 GMT</pubDate>
-" +
-        "    </item>
-" +
-        "    <item>
-" +
-        "      <title>Page 2</title>
-" +
-        "      <link>https://example.com/overrided-page2/</link>
-" +
-        '      <guid isPermaLink="false">https://example.com/overrided-page2/</guid>
-' +
-        "      <description/>
-" +
-        "      <content:encoded><![CDATA[Content of Page 2]]></content:encoded>
-" +
-        "      <pubDate>Sun, 21 Jun 2020 00:00:00 GMT</pubDate>
-" +
-        "    </item>
-" +
-        "  </channel>
-" +
-        "</rss>",
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+  <channel>
+    <title>My RSS Feed</title>
+    <link>https://example.com/</link>
+    <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
+    <description></description>
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
+    <language>en</language>
+    <generator>https://lume.land</generator>
+    <item>
+      <title/>
+      <link>https://example.com/pages/subpage/page7/</link>
+      <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
+      <pubDate>Sun, 02 Jan 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Page 6</title>
+      <link>https://example.com/pages/page6/</link>
+      <guid isPermaLink="false">https://example.com/pages/page6/</guid>
+      <description/>
+      <content:encoded>
+        <![CDATA[<p>Content of Page 6</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Page 4</title>
+      <link>https://example.com/pages/page4/</link>
+      <guid isPermaLink="false">https://example.com/pages/page4/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts]]></content:encoded>
+      <pubDate>Sat, 02 Jan 2021 18:32:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Page 2</title>
+      <link>https://example.com/overrided-page2/</link>
+      <guid isPermaLink="false">https://example.com/overrided-page2/</guid>
+      <description/>
+      <content:encoded><![CDATA[Content of Page 2]]></content:encoded>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>',
       page: [
         "src",
         "data",
@@ -408,8 +314,7 @@ Content of Page 2",
   },
   {
     content: "<!DOCTYPE html>
-" +
-      "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
+Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
     data: {
       children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.tmpl.ts",
       colors: "Array(3)",

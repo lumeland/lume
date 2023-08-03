@@ -92,32 +92,19 @@ snapshot[`follow symlinks 3`] = `
 [
   {
     content: "<!DOCTYPE html>
-" +
-      "<html>
-" +
-      "  <head>
-" +
-      "    <h1>Hello world</h1>
-" +
-      "  </head>
-" +
-      "  <body>
-" +
-      "    <p>Hello wold</p>
-" +
-      "
-" +
-      "
-" +
-      "    <footer>
-" +
-      "  End
-" +
-      "</footer>
-" +
-      "  </body>
-" +
-      "</html>",
+<html>
+  <head>
+    <h1>Hello world</h1>
+  </head>
+  <body>
+    <p>Hello wold</p>
+
+
+    <footer>
+  End
+</footer>
+  </body>
+</html>",
     data: {
       children: "<p>Hello wold</p>
 ",

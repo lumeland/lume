@@ -126,22 +126,14 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
     content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}",
     data: {
       content: ".text {
-" +
-        "  font-family: var(--font-family);
-" +
-        "
-" +
-        "  & p {
-" +
-        "    color: var(--color);
-" +
-        "    box-shadow: 0 0 0.5em var(--background);
-" +
-        "    backface-visibility: hidden;
-" +
-        "  }
-" +
-        "}
+  font-family: var(--font-family);
+
+  & p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    backface-visibility: hidden;
+  }
+}
 ",
       date: [],
       mergedKeys: [
@@ -294,22 +286,14 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
     content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}",
     data: {
       content: ".text {
-" +
-        "  font-family: var(--font-family);
-" +
-        "
-" +
-        "  & p {
-" +
-        "    color: var(--color);
-" +
-        "    box-shadow: 0 0 0.5em var(--background);
-" +
-        "    backface-visibility: hidden;
-" +
-        "  }
-" +
-        "}
+  font-family: var(--font-family);
+
+  & p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    backface-visibility: hidden;
+  }
+}
 ",
       date: [],
       mergedKeys: [

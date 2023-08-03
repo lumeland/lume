@@ -91,49 +91,30 @@ snapshot[`relative_url plugin 2`] = `[]`;
 snapshot[`relative_url plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body><p>Contact</p>
-" +
-      "<ul>
-" +
-      '<li><a href="../..">Index</a></li>
-' +
-      '<li><a href="..">About us</a></li>
-' +
-      '<li><a href="">Contact</a></li>
-' +
-      '<li><a href="../presentation">Presentation</a></li>
-' +
-      "</ul>
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body><p>Contact</p>
+<ul>
+<li><a href="../..">Index</a></li>
+<li><a href="..">About us</a></li>
+<li><a href="">Contact</a></li>
+<li><a href="../presentation">Presentation</a></li>
+</ul>
+</body></html>',
     data: {
-      children: "<p>Contact</p>
-" +
-        "<ul>
-" +
-        '<li><a href="/">Index</a></li>
-' +
-        '<li><a href="/about-us">About us</a></li>
-' +
-        '<li><a href="/about-us/contact">Contact</a></li>
-' +
-        '<li><a href="/about-us/presentation">Presentation</a></li>
-' +
-        "</ul>
-",
+      children: '<p>Contact</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+',
       content: "Contact
-" +
-        "
-" +
-        "- [Index](/)
-" +
-        "- [About us](/about-us)
-" +
-        "- [Contact](/about-us/contact)
-" +
-        "- [Presentation](/about-us/presentation)
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
 ",
       date: [],
       mergedKeys: [
@@ -157,49 +138,30 @@ snapshot[`relative_url plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body><p>About us</p>
-" +
-      "<ul>
-" +
-      '<li><a href="..">Index</a></li>
-' +
-      '<li><a href="">About us</a></li>
-' +
-      '<li><a href="contact">Contact</a></li>
-' +
-      '<li><a href="presentation">Presentation</a></li>
-' +
-      "</ul>
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body><p>About us</p>
+<ul>
+<li><a href="..">Index</a></li>
+<li><a href="">About us</a></li>
+<li><a href="contact">Contact</a></li>
+<li><a href="presentation">Presentation</a></li>
+</ul>
+</body></html>',
     data: {
-      children: "<p>About us</p>
-" +
-        "<ul>
-" +
-        '<li><a href="/">Index</a></li>
-' +
-        '<li><a href="/about-us">About us</a></li>
-' +
-        '<li><a href="/about-us/contact">Contact</a></li>
-' +
-        '<li><a href="/about-us/presentation">Presentation</a></li>
-' +
-        "</ul>
-",
+      children: '<p>About us</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+',
       content: "About us
-" +
-        "
-" +
-        "- [Index](/)
-" +
-        "- [About us](/about-us)
-" +
-        "- [Contact](/about-us/contact)
-" +
-        "- [Presentation](/about-us/presentation)
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
 ",
       date: [],
       mergedKeys: [
@@ -223,49 +185,30 @@ snapshot[`relative_url plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body><p>Presentation</p>
-" +
-      "<ul>
-" +
-      '<li><a href="../..">Index</a></li>
-' +
-      '<li><a href="..">About us</a></li>
-' +
-      '<li><a href="../contact">Contact</a></li>
-' +
-      '<li><a href="">Presentation</a></li>
-' +
-      "</ul>
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body><p>Presentation</p>
+<ul>
+<li><a href="../..">Index</a></li>
+<li><a href="..">About us</a></li>
+<li><a href="../contact">Contact</a></li>
+<li><a href="">Presentation</a></li>
+</ul>
+</body></html>',
     data: {
-      children: "<p>Presentation</p>
-" +
-        "<ul>
-" +
-        '<li><a href="/">Index</a></li>
-' +
-        '<li><a href="/about-us">About us</a></li>
-' +
-        '<li><a href="/about-us/contact">Contact</a></li>
-' +
-        '<li><a href="/about-us/presentation">Presentation</a></li>
-' +
-        "</ul>
-",
+      children: '<p>Presentation</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+',
       content: "Presentation
-" +
-        "
-" +
-        "- [Index](/)
-" +
-        "- [About us](/about-us)
-" +
-        "- [Contact](/about-us/contact)
-" +
-        "- [Presentation](/about-us/presentation)
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
 ",
       date: [],
       mergedKeys: [
@@ -289,73 +232,42 @@ snapshot[`relative_url plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body><p>Index</p>
-" +
-      "<ul>
-" +
-      '<li><a href="">Index</a></li>
-' +
-      '<li><a href="about-us">About us</a></li>
-' +
-      '<li><a href="./about-us/contact">Contact</a></li>
-' +
-      '<li><a href="about-us/presentation">Presentation</a></li>
-' +
-      '<li><a href="?ignored=true">Ignored</a></li>
-' +
-      '<li><a href="#ignored">Ignored</a></li>
-' +
-      '<li><a href="https://ignored.com">Ignored</a></li>
-' +
-      '<li><a href="//ignored.com">Ignored</a></li>
-' +
-      "</ul>
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body><p>Index</p>
+<ul>
+<li><a href="">Index</a></li>
+<li><a href="about-us">About us</a></li>
+<li><a href="./about-us/contact">Contact</a></li>
+<li><a href="about-us/presentation">Presentation</a></li>
+<li><a href="?ignored=true">Ignored</a></li>
+<li><a href="#ignored">Ignored</a></li>
+<li><a href="https://ignored.com">Ignored</a></li>
+<li><a href="//ignored.com">Ignored</a></li>
+</ul>
+</body></html>',
     data: {
-      children: "<p>Index</p>
-" +
-        "<ul>
-" +
-        '<li><a href="/">Index</a></li>
-' +
-        '<li><a href="about-us">About us</a></li>
-' +
-        '<li><a href="./about-us/contact">Contact</a></li>
-' +
-        '<li><a href="about-us/presentation">Presentation</a></li>
-' +
-        '<li><a href="?ignored=true">Ignored</a></li>
-' +
-        '<li><a href="#ignored">Ignored</a></li>
-' +
-        '<li><a href="https://ignored.com">Ignored</a></li>
-' +
-        '<li><a href="//ignored.com">Ignored</a></li>
-' +
-        "</ul>
-",
+      children: '<p>Index</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="about-us">About us</a></li>
+<li><a href="./about-us/contact">Contact</a></li>
+<li><a href="about-us/presentation">Presentation</a></li>
+<li><a href="?ignored=true">Ignored</a></li>
+<li><a href="#ignored">Ignored</a></li>
+<li><a href="https://ignored.com">Ignored</a></li>
+<li><a href="//ignored.com">Ignored</a></li>
+</ul>
+',
       content: "Index
-" +
-        "
-" +
-        "- [Index](/)
-" +
-        "- [About us](about-us)
-" +
-        "- [Contact](./about-us/contact)
-" +
-        "- [Presentation](about-us/presentation)
-" +
-        "- [Ignored](?ignored=true)
-" +
-        "- [Ignored](#ignored)
-" +
-        "- [Ignored](https://ignored.com)
-" +
-        "- [Ignored](//ignored.com)
+
+- [Index](/)
+- [About us](about-us)
+- [Contact](./about-us/contact)
+- [Presentation](about-us/presentation)
+- [Ignored](?ignored=true)
+- [Ignored](#ignored)
+- [Ignored](https://ignored.com)
+- [Ignored](//ignored.com)
 ",
       date: [],
       mergedKeys: [
@@ -472,49 +384,30 @@ snapshot[`relative_url plugin when pretty urls disabled 2`] = `[]`;
 snapshot[`relative_url plugin when pretty urls disabled 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body><p>Contact</p>
-" +
-      "<ul>
-" +
-      '<li><a href="..">Index</a></li>
-' +
-      '<li><a href="">About us</a></li>
-' +
-      '<li><a href="contact">Contact</a></li>
-' +
-      '<li><a href="presentation">Presentation</a></li>
-' +
-      "</ul>
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body><p>Contact</p>
+<ul>
+<li><a href="..">Index</a></li>
+<li><a href="">About us</a></li>
+<li><a href="contact">Contact</a></li>
+<li><a href="presentation">Presentation</a></li>
+</ul>
+</body></html>',
     data: {
-      children: "<p>Contact</p>
-" +
-        "<ul>
-" +
-        '<li><a href="/">Index</a></li>
-' +
-        '<li><a href="/about-us">About us</a></li>
-' +
-        '<li><a href="/about-us/contact">Contact</a></li>
-' +
-        '<li><a href="/about-us/presentation">Presentation</a></li>
-' +
-        "</ul>
-",
+      children: '<p>Contact</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+',
       content: "Contact
-" +
-        "
-" +
-        "- [Index](/)
-" +
-        "- [About us](/about-us)
-" +
-        "- [Contact](/about-us/contact)
-" +
-        "- [Presentation](/about-us/presentation)
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
 ",
       date: [],
       mergedKeys: [
@@ -538,49 +431,30 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body><p>About us</p>
-" +
-      "<ul>
-" +
-      '<li><a href="..">Index</a></li>
-' +
-      '<li><a href="">About us</a></li>
-' +
-      '<li><a href="contact">Contact</a></li>
-' +
-      '<li><a href="presentation">Presentation</a></li>
-' +
-      "</ul>
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body><p>About us</p>
+<ul>
+<li><a href="..">Index</a></li>
+<li><a href="">About us</a></li>
+<li><a href="contact">Contact</a></li>
+<li><a href="presentation">Presentation</a></li>
+</ul>
+</body></html>',
     data: {
-      children: "<p>About us</p>
-" +
-        "<ul>
-" +
-        '<li><a href="/">Index</a></li>
-' +
-        '<li><a href="/about-us">About us</a></li>
-' +
-        '<li><a href="/about-us/contact">Contact</a></li>
-' +
-        '<li><a href="/about-us/presentation">Presentation</a></li>
-' +
-        "</ul>
-",
+      children: '<p>About us</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+',
       content: "About us
-" +
-        "
-" +
-        "- [Index](/)
-" +
-        "- [About us](/about-us)
-" +
-        "- [Contact](/about-us/contact)
-" +
-        "- [Presentation](/about-us/presentation)
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
 ",
       date: [],
       mergedKeys: [
@@ -604,49 +478,30 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body><p>Presentation</p>
-" +
-      "<ul>
-" +
-      '<li><a href="..">Index</a></li>
-' +
-      '<li><a href="">About us</a></li>
-' +
-      '<li><a href="contact">Contact</a></li>
-' +
-      '<li><a href="presentation">Presentation</a></li>
-' +
-      "</ul>
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body><p>Presentation</p>
+<ul>
+<li><a href="..">Index</a></li>
+<li><a href="">About us</a></li>
+<li><a href="contact">Contact</a></li>
+<li><a href="presentation">Presentation</a></li>
+</ul>
+</body></html>',
     data: {
-      children: "<p>Presentation</p>
-" +
-        "<ul>
-" +
-        '<li><a href="/">Index</a></li>
-' +
-        '<li><a href="/about-us">About us</a></li>
-' +
-        '<li><a href="/about-us/contact">Contact</a></li>
-' +
-        '<li><a href="/about-us/presentation">Presentation</a></li>
-' +
-        "</ul>
-",
+      children: '<p>Presentation</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+',
       content: "Presentation
-" +
-        "
-" +
-        "- [Index](/)
-" +
-        "- [About us](/about-us)
-" +
-        "- [Contact](/about-us/contact)
-" +
-        "- [Presentation](/about-us/presentation)
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
 ",
       date: [],
       mergedKeys: [
@@ -670,73 +525,42 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body><p>Index</p>
-" +
-      "<ul>
-" +
-      '<li><a href="">Index</a></li>
-' +
-      '<li><a href="about-us">About us</a></li>
-' +
-      '<li><a href="./about-us/contact">Contact</a></li>
-' +
-      '<li><a href="about-us/presentation">Presentation</a></li>
-' +
-      '<li><a href="?ignored=true">Ignored</a></li>
-' +
-      '<li><a href="#ignored">Ignored</a></li>
-' +
-      '<li><a href="https://ignored.com">Ignored</a></li>
-' +
-      '<li><a href="//ignored.com">Ignored</a></li>
-' +
-      "</ul>
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body><p>Index</p>
+<ul>
+<li><a href="">Index</a></li>
+<li><a href="about-us">About us</a></li>
+<li><a href="./about-us/contact">Contact</a></li>
+<li><a href="about-us/presentation">Presentation</a></li>
+<li><a href="?ignored=true">Ignored</a></li>
+<li><a href="#ignored">Ignored</a></li>
+<li><a href="https://ignored.com">Ignored</a></li>
+<li><a href="//ignored.com">Ignored</a></li>
+</ul>
+</body></html>',
     data: {
-      children: "<p>Index</p>
-" +
-        "<ul>
-" +
-        '<li><a href="/">Index</a></li>
-' +
-        '<li><a href="about-us">About us</a></li>
-' +
-        '<li><a href="./about-us/contact">Contact</a></li>
-' +
-        '<li><a href="about-us/presentation">Presentation</a></li>
-' +
-        '<li><a href="?ignored=true">Ignored</a></li>
-' +
-        '<li><a href="#ignored">Ignored</a></li>
-' +
-        '<li><a href="https://ignored.com">Ignored</a></li>
-' +
-        '<li><a href="//ignored.com">Ignored</a></li>
-' +
-        "</ul>
-",
+      children: '<p>Index</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="about-us">About us</a></li>
+<li><a href="./about-us/contact">Contact</a></li>
+<li><a href="about-us/presentation">Presentation</a></li>
+<li><a href="?ignored=true">Ignored</a></li>
+<li><a href="#ignored">Ignored</a></li>
+<li><a href="https://ignored.com">Ignored</a></li>
+<li><a href="//ignored.com">Ignored</a></li>
+</ul>
+',
       content: "Index
-" +
-        "
-" +
-        "- [Index](/)
-" +
-        "- [About us](about-us)
-" +
-        "- [Contact](./about-us/contact)
-" +
-        "- [Presentation](about-us/presentation)
-" +
-        "- [Ignored](?ignored=true)
-" +
-        "- [Ignored](#ignored)
-" +
-        "- [Ignored](https://ignored.com)
-" +
-        "- [Ignored](//ignored.com)
+
+- [Index](/)
+- [About us](about-us)
+- [Contact](./about-us/contact)
+- [Presentation](about-us/presentation)
+- [Ignored](?ignored=true)
+- [Ignored](#ignored)
+- [Ignored](https://ignored.com)
+- [Ignored](//ignored.com)
 ",
       date: [],
       mergedKeys: [

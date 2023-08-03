@@ -108,8 +108,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
 [
   {
     content: "<!DOCTYPE html>
-" +
-      "<html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
+<html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
     data: {
       children: [
         "\$\$typeof",
@@ -159,8 +158,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
   },
   {
     content: "<!DOCTYPE html>
-" +
-      "<html><head><title></title></head><body><main><div>1</div></main></body></html>",
+<html><head><title></title></head><body><main><div>1</div></main></body></html>",
     data: {
       children: [
         "\$\$typeof",
@@ -209,8 +207,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
   },
   {
     content: "<!DOCTYPE html>
-" +
-      "<html><head><title></title></head><body><main><div>2</div></main></body></html>",
+<html><head><title></title></head><body><main><div>2</div></main></body></html>",
     data: {
       children: [
         "\$\$typeof",
@@ -258,9 +255,8 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      '<html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
+    content: '<!DOCTYPE html>
+<html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
     data: {
       children: [
         "\$\$typeof",
@@ -301,17 +297,13 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      '<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1 class="foo">Hello world</h1>
-' +
-      '<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
-' +
-      "</div></main></body></html>",
+    content: '<!DOCTYPE html>
+<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1 class="foo">Hello world</h1>
+<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+</div></main></body></html>',
     data: {
       children: '<h1 class="foo">Hello world</h1>
-' +
-        '<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
 ',
       comp: [
         "_components",

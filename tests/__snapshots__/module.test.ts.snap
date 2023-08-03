@@ -91,29 +91,18 @@ snapshot[`Build a site with js/ts modules 2`] = `[]`;
 snapshot[`Build a site with js/ts modules 3`] = `
 [
   {
-    content: "
-" +
-      "  <!DOCTYPE html>
-" +
-      '  <html lang="en">
-' +
-      "    <head>
-" +
-      '      <meta charset="utf-8">
-' +
-      "      <title>Multiple page 1</title>
-" +
-      "    </head>
-" +
-      "    <body>
-" +
-      "      <main>Async Page 1</main>
-" +
-      "    </body>
-" +
-      "  </html>
-" +
-      "  ",
+    content: '
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Multiple page 1</title>
+    </head>
+    <body>
+      <main>Async Page 1</main>
+    </body>
+  </html>
+  ',
     data: {
       children: "Async Page 1",
       content: "Async Page 1",
@@ -142,29 +131,18 @@ snapshot[`Build a site with js/ts modules 3`] = `
     },
   },
   {
-    content: "
-" +
-      "  <!DOCTYPE html>
-" +
-      '  <html lang="en">
-' +
-      "    <head>
-" +
-      '      <meta charset="utf-8">
-' +
-      "      <title>Multiple page 2</title>
-" +
-      "    </head>
-" +
-      "    <body>
-" +
-      "      <main>Async Page 2</main>
-" +
-      "    </body>
-" +
-      "  </html>
-" +
-      "  ",
+    content: '
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Multiple page 2</title>
+    </head>
+    <body>
+      <main>Async Page 2</main>
+    </body>
+  </html>
+  ',
     data: {
       children: "Async Page 2",
       content: "Async Page 2",
@@ -193,29 +171,18 @@ snapshot[`Build a site with js/ts modules 3`] = `
     },
   },
   {
-    content: "
-" +
-      "  <!DOCTYPE html>
-" +
-      '  <html lang="en">
-' +
-      "    <head>
-" +
-      '      <meta charset="utf-8">
-' +
-      "      <title>Page 1</title>
-" +
-      "    </head>
-" +
-      "    <body>
-" +
-      "      <main>Content page 1</main>
-" +
-      "    </body>
-" +
-      "  </html>
-" +
-      "  ",
+    content: '
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Page 1</title>
+    </head>
+    <body>
+      <main>Content page 1</main>
+    </body>
+  </html>
+  ',
     data: {
       children: "Content page 1",
       content: "Content page 1",
@@ -243,29 +210,18 @@ snapshot[`Build a site with js/ts modules 3`] = `
     },
   },
   {
-    content: "
-" +
-      "  <!DOCTYPE html>
-" +
-      '  <html lang="en">
-' +
-      "    <head>
-" +
-      '      <meta charset="utf-8">
-' +
-      "      <title>Default title</title>
-" +
-      "    </head>
-" +
-      "    <body>
-" +
-      "      <main>Content page 2</main>
-" +
-      "    </body>
-" +
-      "  </html>
-" +
-      "  ",
+    content: '
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Default title</title>
+    </head>
+    <body>
+      <main>Content page 2</main>
+    </body>
+  </html>
+  ',
     data: {
       children: "Content page 2",
       content: "Content page 2",
@@ -292,29 +248,18 @@ snapshot[`Build a site with js/ts modules 3`] = `
     },
   },
   {
-    content: "
-" +
-      "  <!DOCTYPE html>
-" +
-      '  <html lang="en">
-' +
-      "    <head>
-" +
-      '      <meta charset="utf-8">
-' +
-      "      <title>Default title</title>
-" +
-      "    </head>
-" +
-      "    <body>
-" +
-      "      <main>Content page 3</main>
-" +
-      "    </body>
-" +
-      "  </html>
-" +
-      "  ",
+    content: '
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Default title</title>
+    </head>
+    <body>
+      <main>Content page 3</main>
+    </body>
+  </html>
+  ',
     data: {
       children: "Content page 3",
       content: "Content page 3",
@@ -341,79 +286,44 @@ snapshot[`Build a site with js/ts modules 3`] = `
     },
   },
   {
-    content: "
-" +
-      "  <!DOCTYPE html>
-" +
-      '  <html lang="en">
-' +
-      "    <head>
-" +
-      '      <meta charset="utf-8">
-' +
-      "      <title>Module example</title>
-" +
-      "    </head>
-" +
-      "    <body>
-" +
-      "      <main>
-" +
-      "    <h1>Module example</h1>
-" +
-      "    <nav>
-" +
-      '      <a class="home" href="https://example.com/blog/">Back to home</a>
-' +
-      "    </nav>
-" +
-      "    <div>
-" +
-      "      
-" +
-      "<p>This is a simple page.</p>
-" +
-      '<a class="link-1" href="/blog/">Go to home page</a>
-' +
-      '<a class="link-2" href="/blog/simple-page-new-permalink.html">Go to simple page</a>
-' +
-      "
-" +
-      "    </div>
-" +
-      "  </main>
-" +
-      "    </body>
-" +
-      "  </html>
-" +
-      "  ",
+    content: '
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Module example</title>
+    </head>
+    <body>
+      <main>
+    <h1>Module example</h1>
+    <nav>
+      <a class="home" href="https://example.com/blog/">Back to home</a>
+    </nav>
+    <div>
+      
+<p>This is a simple page.</p>
+<a class="link-1" href="/blog/">Go to home page</a>
+<a class="link-2" href="/blog/simple-page-new-permalink.html">Go to simple page</a>
+
+    </div>
+  </main>
+    </body>
+  </html>
+  ',
     data: {
-      children: "
-" +
-        "    <h1>Module example</h1>
-" +
-        "    <nav>
-" +
-        '      <a class="home" href="https://example.com/blog/">Back to home</a>
-' +
-        "    </nav>
-" +
-        "    <div>
-" +
-        "      
-" +
-        "<p>This is a simple page.</p>
-" +
-        '<a class="link-1" href="/blog/">Go to home page</a>
-' +
-        '<a class="link-2" href="/blog/simple-page-new-permalink.html">Go to simple page</a>
-' +
-        "
-" +
-        "    </div>
-" +
-        "  ",
+      children: '
+    <h1>Module example</h1>
+    <nav>
+      <a class="home" href="https://example.com/blog/">Back to home</a>
+    </nav>
+    <div>
+      
+<p>This is a simple page.</p>
+<a class="link-1" href="/blog/">Go to home page</a>
+<a class="link-2" href="/blog/simple-page-new-permalink.html">Go to simple page</a>
+
+    </div>
+  ',
       content: "default",
       date: [],
       layout: "layout.tmpl.js",

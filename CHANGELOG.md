@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
+## [1.18.5] - Unreleased
+### Fixed
+- Updated dependencies: `std`, `@types/react`.
+
 ## [1.18.4] - 2023-08-02
 ### Added
 - Generic to `Page` to set the data interface. For example: `Page<Post>`.
@@ -2355,6 +2359,7 @@ The first version.
 [#462]: https://github.com/lumeland/lume/issues/462
 [#463]: https://github.com/lumeland/lume/issues/463
 
+[1.18.5]: https://github.com/lumeland/lume/compare/v1.18.4...HEAD
 [1.18.4]: https://github.com/lumeland/lume/compare/v1.18.3...v1.18.4
 [1.18.3]: https://github.com/lumeland/lume/compare/v1.18.2...v1.18.3
 [1.18.2]: https://github.com/lumeland/lume/compare/v1.18.1...v1.18.2

@@ -102,41 +102,26 @@ snapshot[`relative_url plugin 2`] = `
 snapshot[`relative_url plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body><p>First article</p>
-" +
-      '<p><a href="/drafts/second-article/">Go to second</a>
-' +
-      '<a href="/other/">Go to other</a>
-' +
-      '<a href="/">Go to index</a></p>
-' +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body><p>First article</p>
+<p><a href="/drafts/second-article/">Go to second</a>
+<a href="/other/">Go to other</a>
+<a href="/">Go to index</a></p>
+</body></html>',
     data: {
-      children: "<!-- deno-fmt-ignore-file -->
-" +
-        "<p>First article</p>
-" +
-        '<p><a href="./article-2.md">Go to second</a>
-' +
-        '<a href="../other.md">Go to other</a>
-' +
-        '<a href="/index.md">Go to index</a></p>
+      children: '<!-- deno-fmt-ignore-file -->
+<p>First article</p>
+<p><a href="./article-2.md">Go to second</a>
+<a href="../other.md">Go to other</a>
+<a href="/index.md">Go to index</a></p>
 ',
       content: "<!-- deno-fmt-ignore-file -->
-" +
-        "
-" +
-        "First article
-" +
-        "
-" +
-        "[Go to second](./article-2.md)
-" +
-        "[Go to other](../other.md)
-" +
-        "[Go to index](/index.md)",
+
+First article
+
+[Go to second](./article-2.md)
+[Go to other](../other.md)
+[Go to index](/index.md)",
       date: [],
       mergedKeys: [
         "tags",
@@ -159,41 +144,26 @@ snapshot[`relative_url plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body><p>Second article</p>
-" +
-      '<p><a href="/articles/first-article/">Go to first</a>
-' +
-      '<a href="/other/">Go to other</a>
-' +
-      '<a href="/">Go to index</a></p>
-' +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body><p>Second article</p>
+<p><a href="/articles/first-article/">Go to first</a>
+<a href="/other/">Go to other</a>
+<a href="/">Go to index</a></p>
+</body></html>',
     data: {
-      children: "<!-- deno-fmt-ignore-file -->
-" +
-        "<p>Second article</p>
-" +
-        '<p><a href="article-1.md">Go to first</a>
-' +
-        '<a href="../other.md">Go to other</a>
-' +
-        '<a href="/index.md">Go to index</a></p>
+      children: '<!-- deno-fmt-ignore-file -->
+<p>Second article</p>
+<p><a href="article-1.md">Go to first</a>
+<a href="../other.md">Go to other</a>
+<a href="/index.md">Go to index</a></p>
 ',
       content: "<!-- deno-fmt-ignore-file -->
-" +
-        "
-" +
-        "Second article
-" +
-        "
-" +
-        "[Go to first](article-1.md)
-" +
-        "[Go to other](../other.md)
-" +
-        "[Go to index](/index.md)",
+
+Second article
+
+[Go to first](article-1.md)
+[Go to other](../other.md)
+[Go to index](/index.md)",
       date: [],
       mergedKeys: [
         "tags",
@@ -216,91 +186,51 @@ snapshot[`relative_url plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      '<html><head></head><body><p><a href="/bar">url</a>
-' +
-      '<a href="foo">url</a>
-' +
-      '<a href="./foo">url</a>
-' +
-      '<a href="../foo">url</a>
-' +
-      '<a href="#foo">url</a>
-' +
-      '<a href="?foo=bar">url</a>
-' +
-      '<a href="/other/">url</a>
-' +
-      '<a href="/other/">url</a>
-' +
-      '<a href="https://domain.com">url</a>
-' +
-      '<a href="/other/?tab=1">url</a>
-' +
-      '<a href="/other/#tab-1">url</a>
-' +
-      '<a href="/robots.txt">url</a>
-' +
-      '<a href="/tilde-and-ene/">url</a></p>
-' +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body><p><a href="/bar">url</a>
+<a href="foo">url</a>
+<a href="./foo">url</a>
+<a href="../foo">url</a>
+<a href="#foo">url</a>
+<a href="?foo=bar">url</a>
+<a href="/other/">url</a>
+<a href="/other/">url</a>
+<a href="https://domain.com">url</a>
+<a href="/other/?tab=1">url</a>
+<a href="/other/#tab-1">url</a>
+<a href="/robots.txt">url</a>
+<a href="/tilde-and-ene/">url</a></p>
+</body></html>',
     data: {
-      children: "<!-- deno-fmt-ignore-file -->
-" +
-        '<p><a href="/bar">url</a>
-' +
-        '<a href="foo">url</a>
-' +
-        '<a href="./foo">url</a>
-' +
-        '<a href="../foo">url</a>
-' +
-        '<a href="#foo">url</a>
-' +
-        '<a href="?foo=bar">url</a>
-' +
-        '<a href="~/other.md">url</a>
-' +
-        '<a href="other.md">url</a>
-' +
-        '<a href="https://domain.com">url</a>
-' +
-        '<a href="other.md?tab=1">url</a>
-' +
-        '<a href="other.md#tab-1">url</a>
-' +
-        '<a href="~/statics/robots.txt">url</a>
-' +
-        '<a href="t%C3%ADlde-and-e%C3%B1e.md">url</a></p>
+      children: '<!-- deno-fmt-ignore-file -->
+<p><a href="/bar">url</a>
+<a href="foo">url</a>
+<a href="./foo">url</a>
+<a href="../foo">url</a>
+<a href="#foo">url</a>
+<a href="?foo=bar">url</a>
+<a href="~/other.md">url</a>
+<a href="other.md">url</a>
+<a href="https://domain.com">url</a>
+<a href="other.md?tab=1">url</a>
+<a href="other.md#tab-1">url</a>
+<a href="~/statics/robots.txt">url</a>
+<a href="t%C3%ADlde-and-e%C3%B1e.md">url</a></p>
 ',
       content: "<!-- deno-fmt-ignore-file -->
-" +
-        "[url](/bar)
-" +
-        "[url](foo)
-" +
-        "[url](./foo)
-" +
-        "[url](../foo)
-" +
-        "[url](#foo)
-" +
-        "[url](?foo=bar)
-" +
-        "[url](~/other.md)
-" +
-        "[url](other.md)
-" +
-        "[url](https://domain.com)
-" +
-        "[url](other.md?tab=1)
-" +
-        "[url](other.md#tab-1)
-" +
-        "[url](~/statics/robots.txt)
-" +
-        "[url](tílde-and-eñe.md)
+[url](/bar)
+[url](foo)
+[url](./foo)
+[url](../foo)
+[url](#foo)
+[url](?foo=bar)
+[url](~/other.md)
+[url](other.md)
+[url](https://domain.com)
+[url](other.md?tab=1)
+[url](other.md#tab-1)
+[url](~/statics/robots.txt)
+[url](tílde-and-eñe.md)
 ",
       date: [],
       mergedKeys: [
@@ -324,17 +254,13 @@ snapshot[`relative_url plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body><p>Other page</p>
-" +
-      '<p><a href="/robots.txt">See robots.txt</a></p>
-' +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body><p>Other page</p>
+<p><a href="/robots.txt">See robots.txt</a></p>
+</body></html>',
     data: {
-      children: "<p>Other page</p>
-" +
-        '<p><a href="statics/robots.txt">See robots.txt</a></p>
+      children: '<p>Other page</p>
+<p><a href="statics/robots.txt">See robots.txt</a></p>
 ',
       content: "Other page
 
@@ -363,10 +289,8 @@ snapshot[`relative_url plugin 3`] = `
   },
   {
     content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body><p>Tilde and eñe</p>
-" +
-      "</body></html>",
+<html><head></head><body><p>Tilde and eñe</p>
+</body></html>",
     data: {
       children: "<p>Tilde and eñe</p>
 ",

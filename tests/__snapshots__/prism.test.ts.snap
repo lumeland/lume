@@ -87,194 +87,103 @@ snapshot[`Prism plugin 2`] = `[]`;
 snapshot[`Prism plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-" +
-      "<html><head></head><body><h1>Hello world</h1>
-" +
-      '<pre class="language-css" tabindex="0"><code class="language-css"><span class="token selector">body</span> <span class="token punctuation">{</span>
-' +
-      '  <span class="token property">background</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
-' +
-      '<span class="token punctuation">}</span>
-' +
-      "</code></pre>
-" +
-      '<pre class="language-less" tabindex="0"><code class="language-less"><span class="token variable">@width<span class="token punctuation">:</span></span> 10px<span class="token punctuation">;</span>
-' +
-      '<span class="token variable">@height<span class="token punctuation">:</span></span> <span class="token variable">@width</span> <span class="token operator">+</span> 10px<span class="token punctuation">;</span>
-' +
-      "
-" +
-      '<span class="token selector">#header</span> <span class="token punctuation">{</span>
-' +
-      '  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token variable">@width</span><span class="token punctuation">;</span>
-' +
-      '  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token variable">@height</span><span class="token punctuation">;</span>
-' +
-      '<span class="token punctuation">}</span>
-' +
-      "</code></pre>
-" +
-      '<pre class="language-html" tabindex="0"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
-' +
-      '<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-' +
-      '<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
-' +
-      '  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-' +
-      '  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>IE=edge<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-' +
-      '  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-' +
-      '  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Document<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
-' +
-      '<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
-' +
-      '<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
-' +
-      "  
-" +
-      '<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
-' +
-      '<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
-' +
-      "</code></pre>
-" +
-      '<pre class="language-js" tabindex="0"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"foo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-' +
-      "</code></pre>
-" +
-      "</body></html>",
+    content: '<!DOCTYPE html>
+<html><head></head><body><h1>Hello world</h1>
+<pre class="language-css" tabindex="0"><code class="language-css"><span class="token selector">body</span> <span class="token punctuation">{</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class="language-less" tabindex="0"><code class="language-less"><span class="token variable">@width<span class="token punctuation">:</span></span> 10px<span class="token punctuation">;</span>
+<span class="token variable">@height<span class="token punctuation">:</span></span> <span class="token variable">@width</span> <span class="token operator">+</span> 10px<span class="token punctuation">;</span>
+
+<span class="token selector">#header</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token variable">@width</span><span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token variable">@height</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class="language-html" tabindex="0"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>IE=edge<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Document<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<pre class="language-js" tabindex="0"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"foo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</body></html>',
     data: {
-      children: "<h1>Hello world</h1>
-" +
-        '<pre><code class="language-css">body {
-' +
-        "  background: red;
-" +
-        "}
-" +
-        "</code></pre>
-" +
-        '<pre><code class="language-less">@width: 10px;
-' +
-        "@height: @width + 10px;
-" +
-        "
-" +
-        "#header {
-" +
-        "  width: @width;
-" +
-        "  height: @height;
-" +
-        "}
-" +
-        "</code></pre>
-" +
-        '<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-' +
-        "&lt;html lang=&quot;en&quot;&gt;
-" +
-        "&lt;head&gt;
-" +
-        "  &lt;meta charset=&quot;UTF-8&quot;&gt;
-" +
-        "  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
-" +
-        "  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-" +
-        "  &lt;title&gt;Document&lt;/title&gt;
-" +
-        "&lt;/head&gt;
-" +
-        "&lt;body&gt;
-" +
-        "  
-" +
-        "&lt;/body&gt;
-" +
-        "&lt;/html&gt;
-" +
-        "</code></pre>
-" +
-        '<pre><code class="language-js">console.log(&quot;foo&quot;);
-' +
-        "</code></pre>
-",
-      content: "# Hello world
-" +
-        "
-" +
-        "\`\`\`css
-" +
-        "body {
-" +
-        "  background: red;
-" +
-        "}
-" +
-        "\`\`\`
-" +
-        "
-" +
-        "\`\`\`less
-" +
-        "@width: 10px;
-" +
-        "@height: @width + 10px;
-" +
-        "
-" +
-        "#header {
-" +
-        "  width: @width;
-" +
-        "  height: @height;
-" +
-        "}
-" +
-        "\`\`\`
-" +
-        "
-" +
-        "\`\`\`html
-" +
-        "<!DOCTYPE html>
-" +
-        '<html lang="en">
-' +
-        "<head>
-" +
-        '  <meta charset="UTF-8">
-' +
-        '  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-' +
-        '  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-' +
-        "  <title>Document</title>
-" +
-        "</head>
-" +
-        "<body>
-" +
-        "  
-" +
-        "</body>
-" +
-        "</html>
-" +
-        "\`\`\`
-" +
-        "
-" +
-        "\`\`\`js
-" +
-        'console.log("foo");
-' +
-        "\`\`\`
-",
+      children: '<h1>Hello world</h1>
+<pre><code class="language-css">body {
+  background: red;
+}
+</code></pre>
+<pre><code class="language-less">@width: 10px;
+@height: @width + 10px;
+
+#header {
+  width: @width;
+  height: @height;
+}
+</code></pre>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<pre><code class="language-js">console.log(&quot;foo&quot;);
+</code></pre>
+',
+      content: '# Hello world
+
+\`\`\`css
+body {
+  background: red;
+}
+\`\`\`
+
+\`\`\`less
+@width: 10px;
+@height: @width + 10px;
+
+#header {
+  width: @width;
+  height: @height;
+}
+\`\`\`
+
+\`\`\`html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+\`\`\`
+
+\`\`\`js
+console.log("foo");
+\`\`\`
+',
       date: [],
       mergedKeys: [
         "tags",

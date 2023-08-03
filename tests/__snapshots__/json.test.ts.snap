@@ -92,30 +92,18 @@ snapshot[`JSON plugin 3`] = `
 [
   {
     content: "<!DOCTYPE html>
-" +
-      "<html>
-" +
-      "  <head>
-" +
-      "    <title>Title of the index</title>
-" +
-      "  </head>
-" +
-      "  <body>
-" +
-      "    <h1>Default title</h1>
-" +
-      "    <p>Default description</p>
-" +
-      "    <h2>Title of the index</h2>
-" +
-      "    <p>Content of the index</p>
-" +
-      "    
-" +
-      "  </body>
-" +
-      "</html>",
+<html>
+  <head>
+    <title>Title of the index</title>
+  </head>
+  <body>
+    <h1>Default title</h1>
+    <p>Default description</p>
+    <h2>Title of the index</h2>
+    <p>Content of the index</p>
+    
+  </body>
+</html>",
     data: {
       children: "Content of the index",
       content: "Content of the index",
@@ -148,14 +136,10 @@ snapshot[`JSON plugin 3`] = `
   },
   {
     content: "<!DOCTYPE html>
-" +
-      "<p>{
-" +
-      "&quot;title&quot;: &quot;First page&quot;
-" +
-      "}</p>
-" +
-      "<h1>Welcome</h1>
+<p>{
+&quot;title&quot;: &quot;First page&quot;
+}</p>
+<h1>Welcome</h1>
 ",
     data: {
       children: "<p>{

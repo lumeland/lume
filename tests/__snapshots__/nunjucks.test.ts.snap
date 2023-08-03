@@ -101,41 +101,25 @@ snapshot[`build a site with nunjucks 3`] = `
 [
   {
     content: "
-" +
-      "button {
-" +
-      "  background-color: blue;
-" +
-      "}
-" +
-      "
-" +
-      "icon {
-" +
-      "  width: 48px;
-" +
-      "  height: 48px;
-" +
-      "}
+button {
+  background-color: blue;
+}
+
+icon {
+  width: 48px;
+  height: 48px;
+}
 ",
     data: {
       content: "
-" +
-        "button {
-" +
-        "  background-color: blue;
-" +
-        "}
-" +
-        "
-" +
-        "icon {
-" +
-        "  width: 48px;
-" +
-        "  height: 48px;
-" +
-        "}
+button {
+  background-color: blue;
+}
+
+icon {
+  width: 48px;
+  height: 48px;
+}
 ",
       page: [
         "src",
@@ -152,38 +136,24 @@ snapshot[`build a site with nunjucks 3`] = `
     },
   },
   {
-    content: "
-" +
-      'document.querySelectorAll("button").forEach(button => {
-' +
-      '  button.addEventListener("click", () => {
-' +
-      '    alert("Hello world!");
-' +
-      "  });
-" +
-      "});
-" +
-      "
-" +
-      'console.log("Hello world, from the icon/User component");
+    content: '
+document.querySelectorAll("button").forEach(button => {
+  button.addEventListener("click", () => {
+    alert("Hello world!");
+  });
+});
+
+console.log("Hello world, from the icon/User component");
 ',
     data: {
-      content: "
-" +
-        'document.querySelectorAll("button").forEach(button => {
-' +
-        '  button.addEventListener("click", () => {
-' +
-        '    alert("Hello world!");
-' +
-        "  });
-" +
-        "});
-" +
-        "
-" +
-        'console.log("Hello world, from the icon/User component");
+      content: '
+document.querySelectorAll("button").forEach(button => {
+  button.addEventListener("click", () => {
+    alert("Hello world!");
+  });
+});
+
+console.log("Hello world, from the icon/User component");
 ',
       page: [
         "src",
@@ -200,141 +170,79 @@ snapshot[`build a site with nunjucks 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "
-" +
-      '<html lang="en">
-' +
-      "  <head>
-" +
-      '    <meta charset="utf-8">
-' +
-      "    <title></title>
-" +
-      "  </head>
-" +
-      "  <body>
-" +
-      '    <main><button class="" type="button">
-' +
-      "  button without arguments
-" +
-      "</button>
-" +
-      "
-" +
-      '<button class="" type="button">button content</button>
-' +
-      '<icon name="John">
-' +
-      "  this is John
-" +
-      "</icon>
-" +
-      "
-" +
-      "
-" +
-      '<button class="my-button" type="button">
-' +
-      "  button content
-" +
-      "
-" +
-      '  <icon name="John">
-' +
-      "  
-" +
-      "  this is John
-" +
-      "  
-" +
-      "</icon>
-" +
-      "
-" +
-      "</button>
-" +
-      "</main>
-" +
-      "  </body>
-" +
-      "</html>
-",
+    content: '<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <main><button class="" type="button">
+  button without arguments
+</button>
+
+<button class="" type="button">button content</button>
+<icon name="John">
+  this is John
+</icon>
+
+
+<button class="my-button" type="button">
+  button content
+
+  <icon name="John">
+  
+  this is John
+  
+</icon>
+
+</button>
+</main>
+  </body>
+</html>
+',
     data: {
       children: '<button class="" type="button">
-' +
-        "  button without arguments
-" +
-        "</button>
-" +
-        "
-" +
-        '<button class="" type="button">button content</button>
-' +
-        '<icon name="John">
-' +
-        "  this is John
-" +
-        "</icon>
-" +
-        "
-" +
-        "
-" +
-        '<button class="my-button" type="button">
-' +
-        "  button content
-" +
-        "
-" +
-        '  <icon name="John">
-' +
-        "  
-" +
-        "  this is John
-" +
-        "  
-" +
-        "</icon>
-" +
-        "
-" +
-        "</button>
-",
+  button without arguments
+</button>
+
+<button class="" type="button">button content</button>
+<icon name="John">
+  this is John
+</icon>
+
+
+<button class="my-button" type="button">
+  button content
+
+  <icon name="John">
+  
+  this is John
+  
+</icon>
+
+</button>
+',
       comp: [
         "_components",
         "_proxies",
       ],
       content: '{% comp "Button" %}
-' +
-        "  button without arguments
-" +
-        "{% endcomp %}
-" +
-        "
-" +
-        '{{ comp.Button({ content: "button content" }) | safe }}
-' +
-        '{{ comp.icon.User({ content: "this is John", name:"John" }) | safe }}
-' +
-        "
-" +
-        '{% comp "Button", className="my-button" %}
-' +
-        "  button content
-" +
-        "
-" +
-        '  {% comp "icon.user", name="John" %}
-' +
-        "  this is John
-" +
-        "  {% endcomp %}
-" +
-        "{% endcomp %}
-",
+  button without arguments
+{% endcomp %}
+
+{{ comp.Button({ content: "button content" }) | safe }}
+{{ comp.icon.User({ content: "this is John", name:"John" }) | safe }}
+
+{% comp "Button", className="my-button" %}
+  button content
+
+  {% comp "icon.user", name="John" %}
+  this is John
+  {% endcomp %}
+{% endcomp %}
+',
       date: [],
       layout: "basic.njk",
       mergedKeys: [
@@ -391,30 +299,19 @@ snapshot[`build a site with nunjucks 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "
-" +
-      '<html lang="en">
-' +
-      "  <head>
-" +
-      '    <meta charset="utf-8">
-' +
-      "    <title>Hello World</title>
-" +
-      "  </head>
-" +
-      "  <body>
-" +
-      "    <main><h1>Hello World</h1>
-" +
-      "</main>
-" +
-      "  </body>
-" +
-      "</html>
-",
+    content: '<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+  </head>
+  <body>
+    <main><h1>Hello World</h1>
+</main>
+  </body>
+</html>
+',
     data: {
       children: "<h1>Hello World</h1>
 ",
@@ -448,28 +345,18 @@ snapshot[`build a site with nunjucks 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "
-" +
-      '<html lang="en">
-' +
-      "  <head>
-" +
-      '    <meta charset="utf-8">
-' +
-      "    <title>njk filter example</title>
-" +
-      "  </head>
-" +
-      "  <body>
-" +
-      "    <main><h1>NJK FILTER EXAMPLE</h1></main>
-" +
-      "  </body>
-" +
-      "</html>
-",
+    content: '<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>njk filter example</title>
+  </head>
+  <body>
+    <main><h1>NJK FILTER EXAMPLE</h1></main>
+  </body>
+</html>
+',
     data: {
       children: "<h1>NJK FILTER EXAMPLE</h1>",
       comp: [
@@ -501,128 +388,72 @@ snapshot[`build a site with nunjucks 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-" +
-      "
-" +
-      '<html lang="en">
-' +
-      "  <head>
-" +
-      '    <meta charset="utf-8">
-' +
-      "    <title>The title</title>
-" +
-      "  </head>
-" +
-      "  <body>
-" +
-      "    <main><p><strong>THE TITLE</strong></p>
-" +
-      "<p><strong>THE TITLE</strong></p>
-" +
-      "<p><strong>THE TITLE</strong></p>
-" +
-      "<p><strong>THE TITLE</strong></p>
-" +
-      "<p><strong>THE TITLE</strong></p>
-" +
-      "<p><strong>THE TITLE</strong></p>
-" +
-      "<p><strong>THE TITLE</strong></p>
-" +
-      "<p><strong>THE TITLE</strong></p>
-" +
-      "<div>hello (async)</div>
-" +
-      "
-" +
-      "<ul>
-" +
-      "  <li>This is a partial</li>
-" +
-      "  <li>async helper in a partial (async)</li>
-" +
-      "</ul>
-" +
-      "<ul>
-" +
-      "  <li>This is a partial</li>
-" +
-      "  <li>async helper in a partial (async)</li>
-" +
-      "</ul>
-" +
-      "</main>
-" +
-      "  </body>
-" +
-      "</html>
-",
+    content: '<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The title</title>
+  </head>
+  <body>
+    <main><p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<div>hello (async)</div>
+
+<ul>
+  <li>This is a partial</li>
+  <li>async helper in a partial (async)</li>
+</ul>
+<ul>
+  <li>This is a partial</li>
+  <li>async helper in a partial (async)</li>
+</ul>
+</main>
+  </body>
+</html>
+',
     data: {
       children: "<p><strong>THE TITLE</strong></p>
-" +
-        "<p><strong>THE TITLE</strong></p>
-" +
-        "<p><strong>THE TITLE</strong></p>
-" +
-        "<p><strong>THE TITLE</strong></p>
-" +
-        "<p><strong>THE TITLE</strong></p>
-" +
-        "<p><strong>THE TITLE</strong></p>
-" +
-        "<p><strong>THE TITLE</strong></p>
-" +
-        "<p><strong>THE TITLE</strong></p>
-" +
-        "<div>hello (async)</div>
-" +
-        "
-" +
-        "<ul>
-" +
-        "  <li>This is a partial</li>
-" +
-        "  <li>async helper in a partial (async)</li>
-" +
-        "</ul>
-" +
-        "<ul>
-" +
-        "  <li>This is a partial</li>
-" +
-        "  <li>async helper in a partial (async)</li>
-" +
-        "</ul>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<div>hello (async)</div>
+
+<ul>
+  <li>This is a partial</li>
+  <li>async helper in a partial (async)</li>
+</ul>
+<ul>
+  <li>This is a partial</li>
+  <li>async helper in a partial (async)</li>
+</ul>
 ",
       comp: [
         "_components",
         "_proxies",
       ],
-      content: "<p>{% upperCase title %}</p>
-" +
-        '<p>{% upperCase "The title" %}</p>
-' +
-        "<p>{% upperCaseAsync title %}</p>
-" +
-        '<p>{% upperCaseAsync "The title" %}</p>
-' +
-        "<p>{% upperCaseBody %}The title{% endupperCaseBody %}</p>
-" +
-        "<p>{% upperCaseBody %}{{ title }}{% endupperCaseBody %}</p>
-" +
-        "<p>{% upperCaseBodyAsync %}The title{% endupperCaseBodyAsync %}</p>
-" +
-        "<p>{% upperCaseBodyAsync %}{{ title }}{% endupperCaseBodyAsync %}</p>
-" +
-        '<div>{{ "hello" | returnAsync }}</div>
-' +
-        "
-" +
-        '{% include "partial.njk" %}
-' +
-        '{% include "./_includes/partial.njk" %}
+      content: '<p>{% upperCase title %}</p>
+<p>{% upperCase "The title" %}</p>
+<p>{% upperCaseAsync title %}</p>
+<p>{% upperCaseAsync "The title" %}</p>
+<p>{% upperCaseBody %}The title{% endupperCaseBody %}</p>
+<p>{% upperCaseBody %}{{ title }}{% endupperCaseBody %}</p>
+<p>{% upperCaseBodyAsync %}The title{% endupperCaseBodyAsync %}</p>
+<p>{% upperCaseBodyAsync %}{{ title }}{% endupperCaseBodyAsync %}</p>
+<div>{{ "hello" | returnAsync }}</div>
+
+{% include "partial.njk" %}
+{% include "./_includes/partial.njk" %}
 ',
       date: [],
       layout: "basic.njk",

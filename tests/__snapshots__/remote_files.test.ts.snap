@@ -149,24 +149,15 @@ snapshot[`render remote files 3`] = `
 [
   {
     content: "<!DOCTYPE html>
-" +
-      "<h1>Remote layout</h1>
-" +
-      "<h2>Remote title</h2>
-" +
-      "
-" +
-      "&lt;p&gt;Hello world&lt;/p&gt;
-" +
-      "
-" +
-      "
-" +
-      "This is a local template
-" +
-      "
-" +
-      "This is a remote template
+<h1>Remote layout</h1>
+<h2>Remote title</h2>
+
+&lt;p&gt;Hello world&lt;/p&gt;
+
+
+This is a local template
+
+This is a remote template
 ",
     data: {
       children: "<p>Hello world</p>
@@ -262,20 +253,13 @@ hello();
   },
   {
     content: "/* Remote style */
-" +
-      "body {
-" +
-      "  color: red;
-" +
-      "}
-" +
-      "/* Other remote style */
-" +
-      "body {
-" +
-      "  color: yellow;
-" +
-      "}
+body {
+  color: red;
+}
+/* Other remote style */
+body {
+  color: yellow;
+}
 ",
     data: {
       content: '@import "remote-style.css";

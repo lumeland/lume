@@ -100,44 +100,25 @@ snapshot[`postcss plugin 3`] = `
 [
   {
     content: ".foo {
-" +
-      "  color: red;
-" +
-      "}
-" +
-      "
-" +
-      "::root {
-" +
-      "  --color: #333;
-" +
-      "  --background: #fff;
-" +
-      "  --font-family: sans-serif;
-" +
-      "}
-" +
-      "
-" +
-      ".text {
-" +
-      "  font-family: var(--font-family);
-" +
-      "}
-" +
-      "
-" +
-      ".text p {
-" +
-      "    color: var(--color);
-" +
-      "    box-shadow: 0 0 0.5em var(--background);
-" +
-      "    -webkit-backdrop-filter: blur(2px);
-" +
-      "            backdrop-filter: blur(2px);
-" +
-      "  }
+  color: red;
+}
+
+::root {
+  --color: #333;
+  --background: #fff;
+  --font-family: sans-serif;
+}
+
+.text {
+  font-family: var(--font-family);
+}
+
+.text p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+  }
 ",
     data: {
       content: '@import "variables.css";
@@ -166,41 +147,25 @@ snapshot[`postcss plugin 3`] = `
   },
   {
     content: ".text {
-" +
-      "  font-family: var(--font-family);
-" +
-      "}
-" +
-      ".text p {
-" +
-      "    color: var(--color);
-" +
-      "    box-shadow: 0 0 0.5em var(--background);
-" +
-      "    -webkit-backdrop-filter: blur(2px);
-" +
-      "            backdrop-filter: blur(2px);
-" +
-      "  }
+  font-family: var(--font-family);
+}
+.text p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+  }
 ",
     data: {
       content: ".text {
-" +
-        "  font-family: var(--font-family);
-" +
-        "
-" +
-        "  & p {
-" +
-        "    color: var(--color);
-" +
-        "    box-shadow: 0 0 0.5em var(--background);
-" +
-        "    backdrop-filter: blur(2px);
-" +
-        "  }
-" +
-        "}
+  font-family: var(--font-family);
+
+  & p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    backdrop-filter: blur(2px);
+  }
+}
 ",
       date: [],
       mergedKeys: [
@@ -354,41 +319,25 @@ snapshot[`postcss plugin without includes 3`] = `
   },
   {
     content: ".text {
-" +
-      "  font-family: var(--font-family);
-" +
-      "}
-" +
-      ".text p {
-" +
-      "    color: var(--color);
-" +
-      "    box-shadow: 0 0 0.5em var(--background);
-" +
-      "    -webkit-backdrop-filter: blur(2px);
-" +
-      "            backdrop-filter: blur(2px);
-" +
-      "  }
+  font-family: var(--font-family);
+}
+.text p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+  }
 ",
     data: {
       content: ".text {
-" +
-        "  font-family: var(--font-family);
-" +
-        "
-" +
-        "  & p {
-" +
-        "    color: var(--color);
-" +
-        "    box-shadow: 0 0 0.5em var(--background);
-" +
-        "    backdrop-filter: blur(2px);
-" +
-        "  }
-" +
-        "}
+  font-family: var(--font-family);
+
+  & p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    backdrop-filter: blur(2px);
+  }
+}
 ",
       date: [],
       mergedKeys: [
@@ -543,22 +492,14 @@ snapshot[`postcss plugin with hooks 3`] = `
     content: ".text{font-family:var(--font-family)}.text p{-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);box-shadow:0 0 .5em var(--background);color:var(--color)}",
     data: {
       content: ".text {
-" +
-        "  font-family: var(--font-family);
-" +
-        "
-" +
-        "  & p {
-" +
-        "    color: var(--color);
-" +
-        "    box-shadow: 0 0 0.5em var(--background);
-" +
-        "    backdrop-filter: blur(2px);
-" +
-        "  }
-" +
-        "}
+  font-family: var(--font-family);
+
+  & p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    backdrop-filter: blur(2px);
+  }
+}
 ",
       date: [],
       mergedKeys: [
