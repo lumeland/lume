@@ -5,6 +5,7 @@ import liquid from "../plugins/liquid.ts";
 import eta from "../plugins/eta.ts";
 import pug from "../plugins/pug.ts";
 import jsx from "../plugins/jsx.ts";
+import vento from "../plugins/vento.ts";
 
 Deno.test("Components", async (t) => {
   const site = getSite({
@@ -15,6 +16,7 @@ Deno.test("Components", async (t) => {
   site.use(eta());
   site.use(pug());
   site.use(jsx());
+  site.use(vento());
 
   site.component("custom", {
     name: "button",
@@ -44,6 +46,7 @@ Deno.test("Components", async (t) => {
     assert(comp.button_jsx);
     assert(comp.button_njk);
     assert(comp.button_liquid);
+    assert(comp.button_vto);
 
     assert(subcomp);
     assert(subcomp.button_eta);
@@ -60,6 +63,14 @@ Deno.test("Components", async (t) => {
     assertEquals(
       result.trim(),
       `<button class="button_njk">Hello world</button>`,
+    );
+  });
+
+  await t.step("Vento components", () => {
+    const result = comp.button_vto({ text: "Hello world" });
+    assertEquals(
+      result.trim(),
+      `<button class="button_vto">Hello world</button>`,
     );
   });
 

@@ -7,8 +7,11 @@ but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
 ## [1.18.5] - Unreleased
+### Changed
+- Make Vento components synchronous.
+
 ### Fixed
-- Updated dependencies: `std`, `@types/react`.
+- Updated dependencies: `std`, `@types/react`, `esbuild`, `postcss-nesting`, `vento`.
 
 ## [1.18.4] - 2023-08-02
 ### Added

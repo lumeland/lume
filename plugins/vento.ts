@@ -60,12 +60,14 @@ export class VentoEngine implements Engine {
     this.engine.cache.delete(file);
   }
 
-  render(content: string, data: Data = {}, filename?: string) {
-    return this.engine.runString(content, data, filename);
+  async render(content: string, data: Data = {}, filename?: string) {
+    const result = await this.engine.runString(content, data, filename);
+    return result.content;
   }
 
-  renderComponent(content: string, data: Data = {}, filename?: string): string {
-    return this.engine.runString(content, data, filename) as unknown as string;
+  renderComponent(content: string, data: Data = {}): string {
+    const result = this.engine.runStringSync(content, data);
+    return result.content;
   }
 
   addHelper(name: string, fn: Helper) {
