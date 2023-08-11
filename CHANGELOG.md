@@ -12,6 +12,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ### Fixed
 - Updated dependencies: `std`, `@types/react`, `esbuild`, `postcss-nesting`, `vento`.
+- Script runner now uses `/usr/bin/env bash` instead of `/bin/bash` to improve portability.
 
 ## [1.18.4] - 2023-08-02
 ### Added

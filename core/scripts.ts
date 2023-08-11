@@ -101,7 +101,7 @@ export default class Scripts {
 function shArgs(script: string) {
   return Deno.build.os === "windows"
     ? ["PowerShell.exe", "-Command", script]
-    : ["/bin/bash", "-c", script];
+    : ["/usr/bin/env", "bash", "-c", script];
 }
 
 /** A script or function */
