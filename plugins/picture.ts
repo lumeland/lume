@@ -197,7 +197,7 @@ function createSource(
 ) {
   const source = document.createElement("source");
   const { scales, format } = srcFormat;
-  const [path] = getPathAndExtension(src);
+  const path = encodeURI(getPathAndExtension(src)[0]);
   const srcset: string[] = [];
 
   for (const [suffix, scale] of Object.entries(scales)) {
