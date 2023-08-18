@@ -12,7 +12,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ### Fixed
 - Updated dependencies: `std`, `@types/react`, `esbuild`, `postcss-nesting`, `vento`.
-- Script runner now uses `/usr/bin/env bash` instead of `/bin/bash` to improve portability.
+- Script runner now uses `/usr/bin/env bash` instead of `/bin/bash` to improve portability [#466].
+- `nav` plugin with non-pretty-urls pages [#467].
 
 ## [1.18.4] - 2023-08-02
 ### Added
@@ -2362,6 +2363,8 @@ The first version.
 [#451]: https://github.com/lumeland/lume/issues/451
 [#462]: https://github.com/lumeland/lume/issues/462
 [#463]: https://github.com/lumeland/lume/issues/463
+[#466]: https://github.com/lumeland/lume/issues/466
+[#467]: https://github.com/lumeland/lume/issues/467
 
 [1.18.5]: https://github.com/lumeland/lume/compare/v1.18.4...HEAD
 [1.18.4]: https://github.com/lumeland/lume/compare/v1.18.3...v1.18.4

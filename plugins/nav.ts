@@ -103,6 +103,12 @@ export class Nav {
         } else {
           current = current.children[part];
         }
+
+        if (parts.length === 0) {
+          current.data = data;
+          break;
+        }
+
         part = parts.shift();
       }
     }
