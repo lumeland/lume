@@ -343,6 +343,8 @@ function getLoader(path: string) {
       return "tsx";
     case ".jsx":
       return "jsx";
+    case ".json":
+      return "json";
     default:
       return "js";
   }
