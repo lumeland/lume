@@ -14,7 +14,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Make Vento components synchronous.
 
 ### Fixed
-- Updated dependencies: `std`, `@types/react`, `esbuild`, `postcss-nesting`, `vento`.
+- Updated dependencies: `std`, `@types/react`, `esbuild`, `postcss`, `postcss-nesting`, `autoprefixer`, `vento`, `eta`, `lightningcss`, `liquidjs`, `preact`, `rehype`, `sass`.
 - Script runner now uses `/usr/bin/env bash` instead of `/bin/bash` to improve portability [#466].
 - `nav` plugin with non-pretty-urls pages [#467].
 - `picture` plugin: use encodeURI to handle filenames with spaces [#469], [#470].
