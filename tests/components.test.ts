@@ -37,8 +37,8 @@ Deno.test("Components", async (t) => {
   await build(site);
 
   const comp = site.pages.find((page) => page.data.url === "/")?.data.comp;
-  const subcomp =
-    site.pages.find((page) => page.data.url === "/subfolder/")?.data.comp;
+  const subcomp = site.pages.find((page) => page.data.url === "/subfolder/")
+    ?.data.comp;
 
   await t.step("Components are accessed from comp", () => {
     assert(comp);
