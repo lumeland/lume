@@ -18,6 +18,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Script runner now uses `/usr/bin/env bash` instead of `/bin/bash` to improve portability [#466].
 - `nav` plugin with non-pretty-urls pages [#467].
 - `picture` plugin: use encodeURI to handle filenames with spaces [#469], [#470].
+- `lightningcss` plugin importing external urls.
 
 ## [1.18.4] - 2023-08-02
 ### Added
