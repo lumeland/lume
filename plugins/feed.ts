@@ -24,13 +24,13 @@ export interface Options {
   limit: number;
 
   /** The feed info */
-  info: FeedInfo;
+  info: FeedInfoOptions;
 
   /** The feed items configuration */
-  items: FeedItem;
+  items: FeedItemOptions;
 }
 
-export interface FeedInfo {
+export interface FeedInfoOptions {
   /** The feed title */
   title: string;
 
@@ -53,7 +53,7 @@ export interface FeedInfo {
   generator: string | boolean;
 }
 
-export interface FeedItem {
+export interface FeedItemOptions {
   /** The item title */
   title: string;
 

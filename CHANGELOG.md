@@ -9,6 +9,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.18.5] - Unreleased
 ### Added
 - JSON loader to esbuild [#473].
+- `includes` option to Vento plugin.
 
 ### Changed
 - Make Vento components synchronous.

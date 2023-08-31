@@ -15,7 +15,10 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /** Custom includes path for `postcss-import` */
+  /**
+   * Custom includes path for `postcss-import`
+   * @default `site.options.includes`
+   */
   includes: string | false;
 
   /**
@@ -31,7 +34,7 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".css"],
-  includes: false,
+  includes: "",
   plugins: [
     // @ts-expect-error: postcss-nesting provides wrong types under node16 module resolution: https://github.com/csstools/postcss-plugins/issues/1031
     postcssNesting(),

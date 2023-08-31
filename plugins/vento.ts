@@ -10,6 +10,12 @@ export interface Options {
   extensions: string[];
 
   /**
+   * Custom includes path
+   * @default `site.options.includes`
+   */
+  includes: string;
+
+  /**
    * The options for the Vento engine
    * @see https://vento.js.org/get-started/configuration/
    */
@@ -22,6 +28,7 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".vento", ".vto"],
+  includes: "",
   options: {
     dataVarname: "it",
   },
@@ -80,14 +87,18 @@ export class VentoEngine implements Engine {
 
 /** Register the plugin to support Vento files */
 export default function (userOptions?: Partial<Options>) {
-  const options = merge(defaults, userOptions);
-  const extensions = Array.isArray(options.extensions)
-    ? { pages: options.extensions, components: options.extensions }
-    : options.extensions;
-
   return (site: Site) => {
+    const options = merge(
+      { ...defaults, includes: site.options.includes },
+      userOptions,
+    );
+
+    const extensions = Array.isArray(options.extensions)
+      ? { pages: options.extensions, components: options.extensions }
+      : options.extensions;
+
     const vento = engine({
-      includes: new LumeLoader(normalizePath(site.options.includes), site.fs),
+      includes: new LumeLoader(normalizePath(options.includes), site.fs),
       dataVarname: options.options.dataVarname,
     });
 
