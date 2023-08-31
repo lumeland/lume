@@ -9,7 +9,10 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /** The options for the Vento engine */
+  /**
+   * The options for the Vento engine
+   * @see https://vento.js.org/get-started/configuration/
+   */
   options: {
     /** The name of the variable to access to the data in the templates */
     dataVarname?: string;

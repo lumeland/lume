@@ -4,7 +4,13 @@ import { getExtension, merge } from "../core/utils.ts";
 import type { Site } from "../core.ts";
 
 export interface Options {
+  /** Extensions processed by this plugin to extract the utility classes */
   extensions: string[];
+
+  /**
+   * Options passed to TailwindCSS.
+   * @see https://tailwindcss.com/docs/configuration
+   */
   options: Config;
 }
 

@@ -37,7 +37,7 @@ export interface Options {
   preflight: boolean;
 }
 
-const defaults: Options = {
+export const defaults: Options = {
   minify: false,
   cssFile: false,
   mode: "interpret",

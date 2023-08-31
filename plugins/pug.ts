@@ -20,10 +20,16 @@ export interface Options {
     components: string[];
   };
 
-  /** Custom includes path for Pug */
+  /**
+   * Custom includes path
+   * @default `site.options.includes`
+   */
   includes: string;
 
-  /** Options passed to Pug */
+  /**
+   * Options passed to Pug
+   * @see https://pugjs.org/api/reference.html#options
+   */
   options: PugOptions;
 }
 

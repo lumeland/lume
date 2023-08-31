@@ -18,7 +18,10 @@ export interface Options {
   /** Custom includes path for `postcss-import` */
   includes: string | false;
 
-  /** Plugins to use by postcss */
+  /**
+   * Plugins to use by postcss
+   * @default `[postcssNesting(), autoprefixer()]`
+   */
   plugins: unknown[];
 
   /** Set `true` append your plugins to the defaults */

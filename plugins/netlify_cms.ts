@@ -29,7 +29,7 @@ export interface Options {
   proxyCommand: string;
 }
 
-const defaults: Options = {
+export const defaults: Options = {
   local: undefined,
   path: "/admin/",
   configKey: "netlify_cms",

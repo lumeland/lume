@@ -7,12 +7,12 @@ export interface MarkdownItOptions {
   html?: boolean;
 
   /**
-   * Use '/' to close single tags (<br />).
+   * Use `/` to close single tags (`<br />`).
    * This is only for full CommonMark compatibility.
    */
   xhtmlOut?: boolean;
 
-  /** Convert '\n' in paragraphs into <br> */
+  /** Convert `\n` in paragraphs into `<br>` */
   breaks?: boolean;
 
   /**
@@ -30,8 +30,8 @@ export interface MarkdownItOptions {
   /**
    * Double + single quotes replacement pairs, when typographer enabled,
    * and smartquotes on. Could be either a String or an Array.
-   * For example, you can use '«»„“' for Russian, '„“‚‘' for German,
-   * and ['«\xA0', '\xA0»', '‹\xA0', '\xA0›'] for French (including nbsp).
+   * For example, you can use `«»„“` for Russian, `„“‚‘` for German,
+   * and `['«\xA0', '\xA0»', '‹\xA0', '\xA0›']` for French (including nbsp).
    */
   quotes?: string | string[];
 

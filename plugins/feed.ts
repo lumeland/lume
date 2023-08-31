@@ -11,32 +11,79 @@ import { Page } from "../core/filesystem.ts";
 import type { Data, Site } from "../core.ts";
 
 export interface Options {
+  /** The output filenames */
   output: string | string[];
+
+  /** The query to search the pages */
   query: string;
+
+  /** The sort order */
   sort: string;
+
+  /** The maximum number of items */
   limit: number;
-  info: {
-    title: string;
-    subtitle?: string;
-    date: Date;
-    description: string;
-    lang: string;
-    generator: string | boolean;
-  };
-  items: {
-    title: string;
-    description: string;
-    date: string;
-    content: string;
-    lang: string;
-  };
+
+  /** The feed info */
+  info: FeedInfo;
+
+  /** The feed items configuration */
+  items: FeedItem;
+}
+
+export interface FeedInfo {
+  /** The feed title */
+  title: string;
+
+  /** The feed subtitle */
+  subtitle?: string;
+
+  /**
+   * The feed published date
+   * @default `new Date()`
+   */
+  date: Date;
+
+  /** The feed description */
+  description: string;
+
+  /** The feed language */
+  lang: string;
+
+  /** The feed generator. Set `true` to generate automatically */
+  generator: string | boolean;
+}
+
+export interface FeedItem {
+  /** The item title */
+  title: string;
+
+  /** The item description */
+  description: string;
+
+  /** The item date */
+  date: string;
+
+  /** The item content */
+  content: string;
+
+  /** The item language */
+  lang: string;
 }
 
 export const defaults: Options = {
+  /** The output filenames */
   output: "/feed.rss",
+
+  /** The query to search the pages */
   query: "",
+
+  /** The sort order */
   sort: "date=desc",
+
+  /** The maximum number of items */
   limit: 10,
+
+  /** The feed info */
   info: {
     title: "My RSS Feed",
     date: new Date(),

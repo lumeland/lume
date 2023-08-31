@@ -8,7 +8,7 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /** Options passed to SVGO */
+  /** Options passed to SVGO. See https://github.com/svg/svgo#configuration */
   options: Config;
 }
 

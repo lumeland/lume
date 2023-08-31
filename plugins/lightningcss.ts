@@ -16,7 +16,10 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /** Custom includes path */
+  /**
+   * Custom includes path
+   * @default `site.options.includes`
+   */
   includes: string | false;
 
   /** Options passed to parcel_css */

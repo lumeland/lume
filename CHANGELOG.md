@@ -19,6 +19,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - `nav` plugin with non-pretty-urls pages [#467].
 - `picture` plugin: use encodeURI to handle filenames with spaces [#469], [#470].
 - `lightningcss` plugin importing external urls.
+- Plugin options documentation.
 
 ## [1.18.4] - 2023-08-02
 ### Added

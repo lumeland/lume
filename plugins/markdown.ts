@@ -16,7 +16,10 @@ export interface Options {
   /** Options passed to markdown-it library */
   options: MarkdownItOptions;
 
-  /** The list of markdown-it plugins to use */
+  /**
+   * The list of markdown-it plugins to use
+   * @default `[markdownItAttrs, markdownItDeflist]`
+   */
   plugins: unknown[];
 
   /** To modify existing rules or new custom rules */

@@ -7,12 +7,16 @@ import type { Element } from "../deps/dom.ts";
 import type { DeepPartial, Page, Site } from "../core.ts";
 
 export interface Options {
+  /** The list of extensions this plugin applies to */
   extensions: string[];
+
+  /** The css selector to apply katex */
+
   cssSelector: string;
   options: KatexOptions;
 }
 
-const defaultOptions: Options = {
+export const defaults: Options = {
   extensions: [".html"],
   cssSelector: ".language-math",
   options: {
@@ -44,7 +48,7 @@ const defaultOptions: Options = {
 };
 
 export default function (userOptions?: DeepPartial<Options>) {
-  const options = merge(defaultOptions, userOptions);
+  const options = merge(defaults, userOptions);
   return (site: Site) => {
     site.process(options.extensions, (page: Page) => {
       const { document } = page;

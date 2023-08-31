@@ -7,7 +7,10 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /** The function to generate the new url */
+  /**
+   * The function to generate the new url
+   * @default `(url) => url`
+   */
   fn: (url: string, page: Page) => string;
 }
 
