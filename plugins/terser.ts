@@ -11,7 +11,10 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /** Options passed to `terser` */
+  /**
+   * Options passed to `terser`
+   * @see https://terser.org/docs/api-reference/#minify-options
+   */
   options: MinifyOptions;
 }
 
