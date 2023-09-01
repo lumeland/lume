@@ -1,7 +1,7 @@
 export {
   default as init,
   minify,
-} from "https://wilsonl.in/minify-html/deno/0.10.3/index.js";
+} from "https://wilsonl.in/minify-html/deno/0.11.1/index.js";
 
 export interface Options {
   /** Do not minify DOCTYPEs. Minified DOCTYPEs may not be spec compliant. */
