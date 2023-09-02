@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
+## [1.18.6] - Unreleased
+### Fixed
+- `minify_html` works offline.
+
 ## [1.18.5] - 2023-09-01
 ### Added
 - JSON loader to esbuild [#473].
@@ -2376,6 +2380,7 @@ The first version.
 [#470]: https://github.com/lumeland/lume/issues/470
 [#473]: https://github.com/lumeland/lume/issues/473
 
+[1.18.6]: https://github.com/lumeland/lume/compare/v1.18.5...HEAD
 [1.18.5]: https://github.com/lumeland/lume/compare/v1.18.4...v1.18.5
 [1.18.4]: https://github.com/lumeland/lume/compare/v1.18.3...v1.18.4
 [1.18.3]: https://github.com/lumeland/lume/compare/v1.18.2...v1.18.3
