@@ -9,6 +9,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.18.6] - Unreleased
 ### Fixed
 - `minify_html` works offline.
+- Updated dependencies: `std`, `vento`.
 
 ## [1.18.5] - 2023-09-01
 ### Added
