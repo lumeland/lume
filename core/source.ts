@@ -678,11 +678,14 @@ export function getUrl(
   return `${url}.html`;
 }
 
-/** Remove the /index.html part if exist */
+/** Remove the /index.html part if exist and replace spaces */
 export function normalizeUrl(url: string): string {
+  url = url.replaceAll(" ", "%20");
+
   if (url.endsWith("/index.html")) {
     return url.slice(0, -10);
   }
+
   return url;
 }
 

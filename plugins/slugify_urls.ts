@@ -74,6 +74,8 @@ export function createSlugifier(
   const { lowercase, alphanumeric, separator, replace, stopWords } = options;
 
   return function (string) {
+    string = string.replaceAll("%20", " ");
+
     if (lowercase) {
       string = string.toLowerCase();
     }
