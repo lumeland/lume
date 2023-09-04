@@ -108,6 +108,15 @@ export default function (userOptions?: Partial<Options>) {
 
     site.loadPages(extensions.pages, loader, ventoEngine);
     site.loadComponents(extensions.components, loader, ventoEngine);
+    site.filter("vto", filter as Helper, true);
+
+    async function filter(string: string, data?: Data) {
+      const result = await vento.runString(string, {
+        ...site.scopedData.get("/"),
+        ...data,
+      });
+      return result.content;
+    }
   };
 }
 

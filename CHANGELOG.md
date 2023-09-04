@@ -7,9 +7,13 @@ but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
 ## [1.18.6] - Unreleased
+### Added
+- New `vto` filter.
+
 ### Fixed
 - `minify_html` works offline.
 - Updated dependencies: `std`, `vento`.
+- Urls with spaces [#481].
 
 ## [1.18.5] - 2023-09-01
 ### Added
@@ -2380,6 +2384,7 @@ The first version.
 [#469]: https://github.com/lumeland/lume/issues/469
 [#470]: https://github.com/lumeland/lume/issues/470
 [#473]: https://github.com/lumeland/lume/issues/473
+[#481]: https://github.com/lumeland/lume/issues/481
 
 [1.18.6]: https://github.com/lumeland/lume/compare/v1.18.5...HEAD
 [1.18.5]: https://github.com/lumeland/lume/compare/v1.18.4...v1.18.5
