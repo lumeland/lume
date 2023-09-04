@@ -680,7 +680,7 @@ export function getUrl(
 
 /** Remove the /index.html part if exist and replace spaces */
 export function normalizeUrl(url: string): string {
-  url = url.replaceAll(" ", "%20");
+  url = encodeURI(url);
 
   if (url.endsWith("/index.html")) {
     return url.slice(0, -10);
