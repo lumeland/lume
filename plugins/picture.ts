@@ -90,23 +90,35 @@ export default function (): Plugin {
       basePath: string,
     ) {
       const src = img.getAttribute("src") as string;
+      const sizes = img.getAttribute("sizes");
       const sourceFormats = saveTransform(basePath, src, imagick);
 
       for (const sourceFormat of sourceFormats) {
-        const source = createSource(img.ownerDocument!, src, sourceFormat);
+        const source = createSource(
+          img.ownerDocument!,
+          src,
+          sourceFormat,
+          sizes,
+        );
         picture.insertBefore(source, img);
       }
     }
 
     function handleImg(imagick: string, img: Element, basePath: string) {
       const src = img.getAttribute("src") as string;
+      const sizes = img.getAttribute("sizes");
       const sourceFormats = saveTransform(basePath, src, imagick);
       const picture = img.ownerDocument!.createElement("picture");
 
       img.replaceWith(picture);
 
       for (const sourceFormat of sourceFormats) {
-        const source = createSource(img.ownerDocument!, src, sourceFormat);
+        const source = createSource(
+          img.ownerDocument!,
+          src,
+          sourceFormat,
+          sizes,
+        );
         picture.append(source);
       }
 
@@ -194,19 +206,25 @@ function createSource(
   document: Document,
   src: string,
   srcFormat: SourceFormat,
+  sizes?: string | null | undefined,
 ) {
   const source = document.createElement("source");
-  const { scales, format } = srcFormat;
+  const { scales, format, width } = srcFormat;
   const path = encodeURI(getPathAndExtension(src)[0]);
   const srcset: string[] = [];
 
   for (const [suffix, scale] of Object.entries(scales)) {
-    const scaleSuffix = scale === 1 ? "" : ` ${scale}x`;
+    const scaleSuffix = ` ${scale * width}w`;
     srcset.push(`${path}${suffix}.${format}${scaleSuffix}`);
   }
 
   source.setAttribute("srcset", srcset.join(", "));
   source.setAttribute("type", typeByExtension(format));
+
+  if (sizes) {
+    source.setAttribute("sizes", sizes);
+  }
+
   return source;
 }
 
