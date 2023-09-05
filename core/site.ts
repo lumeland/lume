@@ -38,7 +38,6 @@ import type {
   ScriptOrFunction,
   StaticFile,
 } from "../core.ts";
-import { decode } from "../deps/hex.ts";
 
 /** Default options of the site */
 const defaults: SiteOptions = {
