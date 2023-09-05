@@ -7,6 +7,14 @@ Deno.test("build a simple site", async (t) => {
     src: "simple",
   });
 
+  // Add a page dynamically
+  site.page({
+    url: "/dynamic.html",
+    title: "Page 1",
+    templateEngine: "njk",
+    content: "Content of {{ title }}",
+  });
+
   await build(site);
   await assertSiteSnapshot(t, site);
 

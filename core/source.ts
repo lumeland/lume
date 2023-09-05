@@ -21,6 +21,8 @@ export interface Options {
   dataLoader: DataLoader;
   componentLoader: ComponentLoader;
   scopedData: Map<string, Data>;
+  scopedPages: Map<string, Data[]>;
+  scopedComponents: Map<string, Components>;
   fs: FS;
   prettyUrls: boolean;
   components: {
@@ -53,8 +55,16 @@ export default class Source {
   /** The path filters to ignore */
   filters: ScopeFilter[] = [];
 
+  /** The data assigned per path */
   scopedData: Map<string, Data>;
 
+  /** The pages assigned per path */
+  scopedPages: Map<string, Data[]>;
+
+  /** The components assigned per path */
+  scopedComponents: Map<string, Components>;
+
+  /** Use pretty URLs */
   prettyUrls: boolean;
 
   /** List of static files and folders to copy */
@@ -90,6 +100,8 @@ export default class Source {
     this.formats = options.formats;
     this.components = options.components;
     this.scopedData = options.scopedData;
+    this.scopedPages = options.scopedPages;
+    this.scopedComponents = options.scopedComponents;
     this.prettyUrls = options.prettyUrls;
   }
 
@@ -111,10 +123,7 @@ export default class Source {
     );
   }
 
-  async build(
-    globalComponents: Components,
-    buildFilters: BuildFilter[],
-  ): Promise<[Page[], StaticFile[]]> {
+  async build(...buildFilters: BuildFilter[]): Promise<[Page[], StaticFile[]]> {
     const pages: Page[] = [];
     const staticFiles: StaticFile[] = [];
 
@@ -122,7 +131,7 @@ export default class Source {
       buildFilters,
       this.fs.entries.get("/")!,
       "/",
-      globalComponents,
+      new Map(),
       {},
       pages,
       staticFiles,
@@ -163,27 +172,58 @@ export default class Source {
       }
     }
 
+    // Directory data
     const dirData = mergeData(
       this.scopedData.get(dir.path) || {},
       parentData,
       currentData,
     );
 
+    // Directory components
+    const scopedComponents = this.scopedComponents.get(dir.path);
+    let loadedComponents: Components | undefined;
+
     // Load _components files
     for (const entry of dir.children.values()) {
       if (entry.type === "directory" && entry.name === "_components") {
-        parentComponents = new Map(parentComponents);
-        await this.componentLoader.load(entry, dirData, parentComponents);
-        dirData[this.components.variable] = toProxy(
-          parentComponents,
-          this.extraCode,
-        );
+        loadedComponents = await this.componentLoader.load(entry, dirData);
         break;
       }
     }
 
+    // Merge the components
+    if (scopedComponents || loadedComponents) {
+      parentComponents = mergeComponents(
+        parentComponents,
+        scopedComponents || new Map(),
+        loadedComponents || new Map(),
+      );
+
+      dirData[this.components.variable] = toProxy(
+        parentComponents,
+        this.extraCode,
+      );
+    }
+
     // Store the root data to be used by other plugins
     this.data.set(path, dirData);
+
+    // Load the pages assigned to the current path
+    if (this.scopedPages.has(dir.path)) {
+      for (const data of this.scopedPages.get(dir.path)!) {
+        const page = new Page();
+        page.data = mergeData(
+          dirData,
+          { date: new Date() },
+          data,
+        );
+
+        page.data.url = getUrl(page, this.prettyUrls, path);
+        page.data.date = getDate(page.data.date);
+        page.data.page = page;
+        pages.push(page);
+      }
+    }
 
     // Load the pages and static files
     for (const entry of dir.children.values()) {
@@ -441,27 +481,25 @@ export interface ProxyComponents {
 }
 
 /** Merge the cascade components */
-export function mergeComponents(
-  current: Components,
-  previous: Components = new Map(),
-): Components {
-  const components = new Map(previous);
+export function mergeComponents(...components: Components[]): Components {
+  return components.reduce((previous, current) => {
+    const components = new Map(previous);
 
-  for (const [key, value] of current) {
-    if (components.has(key)) {
-      const previousValue = components.get(key);
+    for (const [key, value] of current) {
+      if (components.has(key)) {
+        const previousValue = components.get(key);
 
-      if (previousValue instanceof Map && value instanceof Map) {
-        components.set(key, mergeComponents(value, previousValue));
+        if (previousValue instanceof Map && value instanceof Map) {
+          components.set(key, mergeComponents(value, previousValue));
+        } else {
+          components.set(key, value);
+        }
       } else {
         components.set(key, value);
       }
-    } else {
-      components.set(key, value);
     }
-  }
-
-  return components;
+    return components;
+  });
 }
 
 /** Merge the cascade data */
@@ -673,11 +711,14 @@ export function getUrl(
   return `${url}.html`;
 }
 
-/** Remove the /index.html part if exist */
+/** Remove the /index.html part if exist and replace spaces */
 export function normalizeUrl(url: string): string {
+  url = encodeURI(url);
+
   if (url.endsWith("/index.html")) {
     return url.slice(0, -10);
   }
+
   return url;
 }
 

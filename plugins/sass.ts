@@ -22,14 +22,20 @@ export interface Options {
   /** Output format */
   format: "compressed" | "expanded";
 
-  /** SASS options */
+  /**
+   * SASS options
+   * @see https://sass-lang.com/documentation/js-api/interfaces/options/
+   */
   options: SassOptions;
 
-  /** Custom includes paths */
+  /**
+   * Custom includes paths
+   * @default `site.options.includes`
+   */
   includes: string;
 }
 
-const defaults: Options = {
+export const defaults: Options = {
   extensions: [".scss", ".sass"],
   format: "compressed",
   options: {},

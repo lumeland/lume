@@ -1,11 +1,10 @@
 ---
-url: ./first-article/
+url: ./third article/
 ---
 <!-- deno-fmt-ignore-file -->
 
-First article
+Third article
 
 [Go to second](./article-2.md)
-[Go to third](./article-3.md)
 [Go to other](../other.md)
 [Go to index](/index.md)

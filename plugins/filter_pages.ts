@@ -6,7 +6,10 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: Extensions;
 
-  /** The function to test the page */
+  /**
+   * The function to test the page
+   * @default `(page) => true`
+   */
   fn: (page: Page) => boolean;
 }
 

@@ -25,7 +25,10 @@ export interface Options {
    */
   esm: EsmOptions;
 
-  /** The options for esbuild */
+  /**
+   * The options for esbuild
+   * @see https://esbuild.github.io/api/#general-options
+   */
   options: BuildOptions;
 }
 
@@ -43,7 +46,7 @@ export interface EsmOptions {
 const denoConfig = await readDenoConfig();
 
 // Default options
-const defaults: Options = {
+export const defaults: Options = {
   extensions: [".ts", ".js"],
   esm: {},
   options: {
@@ -343,6 +346,8 @@ function getLoader(path: string) {
       return "tsx";
     case ".jsx":
       return "jsx";
+    case ".json":
+      return "json";
     default:
       return "js";
   }

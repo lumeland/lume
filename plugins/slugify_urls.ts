@@ -74,6 +74,8 @@ export function createSlugifier(
   const { lowercase, alphanumeric, separator, replace, stopWords } = options;
 
   return function (string) {
+    string = decodeURI(string);
+
     if (lowercase) {
       string = string.toLowerCase();
     }

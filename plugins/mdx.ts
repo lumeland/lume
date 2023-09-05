@@ -11,7 +11,10 @@ export interface Options {
   /** List of extensions this plugin applies to */
   extensions: string[];
 
-  /** List of remark plugins to use */
+  /**
+   * List of remark plugins to use
+   * @default `[remarkGfm]`
+   */
   // deno-lint-ignore no-explicit-any
   remarkPlugins: any[];
 

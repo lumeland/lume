@@ -22,10 +22,16 @@ export interface Options {
     components: string[];
   };
 
-  /** Custom includes path */
+  /**
+   * Custom includes path
+   * @default `site.options.includes`
+   */
   includes: string;
 
-  /** Options passed to Nunjucks */
+  /**
+   * Options passed to Nunjucks
+   * @see https://mozilla.github.io/nunjucks/api.html#configure
+   */
   options: nunjucks.ConfigureOptions;
 
   /** Plugins loaded by Nunjucks */

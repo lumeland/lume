@@ -10,7 +10,10 @@ export interface Options {
   /** Register languages on the Highlight.js context. */
   languages?: Record<string, LanguageFn>;
 
-  /** Options passed to highlight.js */
+  /**
+   * Options passed to highlight.js.
+   * @see https://highlightjs.readthedocs.io/en/latest/api.html#configure
+   */
   options: Omit<HLJSOptions, "__emitter">;
 }
 

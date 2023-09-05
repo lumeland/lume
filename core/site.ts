@@ -121,8 +121,11 @@ export default class Site {
   /** Data assigned with site.data() */
   scopedData = new Map<string, Data>([["/", {}]]);
 
-  /** Global components shared by all templates */
-  globalComponents: Components = new Map();
+  /** Pages created with site.page() */
+  scopedPages = new Map<string, Data[]>();
+
+  /** Components created with site.component() */
+  scopedComponents = new Map<string, Components>();
 
   /** Hooks installed by the plugins */
   // deno-lint-ignore no-explicit-any
@@ -158,6 +161,8 @@ export default class Site {
       formats,
       components,
       scopedData: this.scopedData,
+      scopedPages: this.scopedPages,
+      scopedComponents: this.scopedComponents,
       prettyUrls,
     });
 
@@ -408,10 +413,20 @@ export default class Site {
     return this;
   }
 
+  /** Register a page */
+  page(data: Data, scope = "/"): this {
+    const pages = this.scopedPages.get(scope) || [];
+    pages.push(data);
+    this.scopedPages.set(scope, pages);
+    return this;
+  }
+
   /** Register an extra component accesible by the layouts */
-  component(context: string, component: Component): this {
+  component(context: string, component: Component, scope = "/"): this {
     const pieces = context.split(".");
-    let components = this.globalComponents;
+    const scopedComponents: Components = this.scopedComponents.get(scope) ||
+      new Map();
+    let components: Components = scopedComponents;
 
     while (pieces.length) {
       const name = pieces.shift()!;
@@ -422,6 +437,7 @@ export default class Site {
     }
 
     components.set(component.name, component);
+    this.scopedComponents.set(scope, scopedComponents);
     return this;
   }
 
@@ -516,10 +532,7 @@ export default class Site {
     // Get the site content
     const showDrafts = env<boolean>("LUME_DRAFTS");
     const [_pages, _staticFiles] = await this.source.build(
-      this.globalComponents,
-      [
-        (_, page) => !page?.data.draft || showDrafts === true,
-      ],
+      (_, page) => !page?.data.draft || showDrafts === true,
     );
 
     // Save static files into site.files
@@ -569,11 +582,8 @@ export default class Site {
     // Get the site content
     const showDrafts = env<boolean>("LUME_DRAFTS");
     const [_pages, _staticFiles] = await this.source.build(
-      this.globalComponents,
-      [
-        (_, page) => !page?.data.draft || showDrafts === true,
-        this.scopes.getFilter(files),
-      ],
+      (_, page) => !page?.data.draft || showDrafts === true,
+      this.scopes.getFilter(files),
     );
 
     // Build the pages and save static files into site.files
@@ -675,12 +685,9 @@ export default class Site {
 
     // Get the site content
     const [pages] = await this.source.build(
-      this.globalComponents,
-      [
-        (entry) =>
-          (entry.type === "directory" && file.startsWith(entry.path)) ||
-          entry.path === file,
-      ],
+      (entry) =>
+        (entry.type === "directory" && file.startsWith(entry.path)) ||
+        entry.path === file,
     );
 
     const page = pages[0];
@@ -772,8 +779,11 @@ export default class Site {
       file = normalizePath(file.slice(basePath.length));
     }
 
+    file = decodeURI(file);
+    const url = encodeURI(file);
+
     // It's a page
-    const page = this.pages.find((page) => page.data.url === file);
+    const page = this.pages.find((page) => page.data.url === url);
 
     if (page) {
       return page.content;

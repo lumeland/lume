@@ -92,7 +92,7 @@ export interface Options {
   indexing: IndexingOptions;
 }
 
-const defaults: Options = {
+export const defaults: Options = {
   binary: {
     path: "./_bin/pagefind",
     extended: false,

@@ -32,13 +32,13 @@ Deno.test("Components", async (t) => {
     },
   });
 
-  assert(site.globalComponents.get("custom"));
+  assert(site.scopedComponents.get("/")?.get("custom"));
 
   await build(site);
 
   const comp = site.pages.find((page) => page.data.url === "/")?.data.comp;
-  const subcomp =
-    site.pages.find((page) => page.data.url === "/subfolder/")?.data.comp;
+  const subcomp = site.pages.find((page) => page.data.url === "/subfolder/")
+    ?.data.comp;
 
   await t.step("Components are accessed from comp", () => {
     assert(comp);

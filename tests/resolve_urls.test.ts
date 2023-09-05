@@ -14,3 +14,15 @@ Deno.test("relative_url plugin", async (t) => {
   await build(site);
   await assertSiteSnapshot(t, site);
 });
+
+Deno.test("relative_url plugin (without slugify)", async (t) => {
+  const site = getSite({
+    src: "resolve_urls",
+  });
+
+  site.copy("statics", "");
+  site.use(resolveUrls());
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});

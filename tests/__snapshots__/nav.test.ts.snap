@@ -1059,3 +1059,1169 @@ snapshot[`nav plugin 3`] = `
   },
 ]
 `;
+
+snapshot[`nav plugin with pretty urls disabled 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: undefined,
+      ext: ".toml",
+      pageLoader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/_data.yml",
+    "/_includes",
+    "/_includes/main.njk",
+    "/_includes/step.njk",
+    "/docs",
+    "/docs.md",
+    "/docs/about-docs.md",
+    "/docs/pages",
+    "/docs/pages.md",
+    "/docs/pages/first.md",
+    "/docs/pages/second.md",
+    "/index.njk",
+  ],
+}
+`;
+
+snapshot[`nav plugin with pretty urls disabled 2`] = `[]`;
+
+snapshot[`nav plugin with pretty urls disabled 3`] = `
+[
+  {
+    content: '<!DOCTYPE html>
+<html>
+  <head>
+    <title>Docs</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        
+        <li><a href="/index.html">Home</a></li>
+        
+        <li><a href="/docs.html">Docs</a></li>
+        
+      </ul>
+    </nav>
+
+    <h1>Docs</h1>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs.html">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/first.html">Pages first</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/second.html">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages.html">About pages</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+        <li>
+          
+<a href="/docs.html">Docs</a>
+
+
+
+
+        </li>
+      
+      </ul>
+    </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs.html">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second.html">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Docs",
+      url: "/docs.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/docs",
+      remote: undefined,
+      slug: "docs",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html>
+  <head>
+    <title>About docs</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        
+        <li><a href="/index.html">Home</a></li>
+        
+        <li><a href=""></a></li>
+        
+        <li><a href="/docs/about-docs.html">About docs</a></li>
+        
+      </ul>
+    </nav>
+
+    <h1>About docs</h1>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs.html">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/first.html">Pages first</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/second.html">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages.html">About pages</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+        <li>
+          
+<a href="/docs.html">Docs</a>
+
+
+
+
+        </li>
+      
+      </ul>
+    </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs.html">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second.html">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.njk",
+      menu: true,
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "About docs",
+      url: "/docs/about-docs.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/docs/about-docs",
+      remote: undefined,
+      slug: "about-docs",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html>
+  <head>
+    <title>About pages</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        
+        <li><a href="/index.html">Home</a></li>
+        
+        <li><a href=""></a></li>
+        
+        <li><a href="/docs/pages.html">About pages</a></li>
+        
+      </ul>
+    </nav>
+
+    <h1>About pages</h1>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs.html">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/first.html">Pages first</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/second.html">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages.html">About pages</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+        <li>
+          
+<a href="/docs.html">Docs</a>
+
+
+
+
+        </li>
+      
+      </ul>
+    </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs.html">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second.html">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "About pages",
+      url: "/docs/pages.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/docs/pages",
+      remote: undefined,
+      slug: "pages",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pages first</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        
+        <li><a href="/index.html">Home</a></li>
+        
+        <li><a href=""></a></li>
+        
+        <li><a href=""></a></li>
+        
+        <li><a href="/docs/pages/first.html">Pages first</a></li>
+        
+      </ul>
+    </nav>
+
+    <h1>Pages first</h1>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs.html">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/first.html">Pages first</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/second.html">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages.html">About pages</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+        <li>
+          
+<a href="/docs.html">Docs</a>
+
+
+
+
+        </li>
+      
+      </ul>
+    </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs.html">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second.html">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Pages first",
+      url: "/docs/pages/first.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/docs/pages/first",
+      remote: undefined,
+      slug: "first",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pages second</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        
+        <li><a href="/index.html">Home</a></li>
+        
+        <li><a href=""></a></li>
+        
+        <li><a href=""></a></li>
+        
+        <li><a href="/docs/pages/second.html">Pages second</a></li>
+        
+      </ul>
+    </nav>
+
+    <h1>Pages second</h1>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs.html">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/first.html">Pages first</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/second.html">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages.html">About pages</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+        <li>
+          
+<a href="/docs.html">Docs</a>
+
+
+
+
+        </li>
+      
+      </ul>
+    </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs.html">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second.html">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.njk",
+      menu: true,
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Pages second",
+      url: "/docs/pages/second.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/docs/pages/second",
+      remote: undefined,
+      slug: "second",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        
+      </ul>
+    </nav>
+
+    <h1>Home</h1>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs.html">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/first.html">Pages first</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages/second.html">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/pages.html">About pages</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+        <li>
+          
+<a href="/docs.html">Docs</a>
+
+
+
+
+        </li>
+      
+      </ul>
+    </nav>
+
+    <nav>
+      <ul>
+      
+        <li>
+          
+<strong>docs</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/about-docs.html">About docs</a>
+
+
+
+
+  </li>
+  
+  <li>
+    
+<strong>pages</strong>
+
+
+
+<ul>
+  
+  <li>
+    
+<a href="/docs/pages/second.html">Pages second</a>
+
+
+
+
+  </li>
+  
+</ul>
+
+
+  </li>
+  
+</ul>
+
+
+        </li>
+      
+      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Home",
+      url: "/index.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+]
+`;

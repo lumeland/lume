@@ -102,7 +102,7 @@ snapshot[`imagick plugin 1`] = `
   src: [
     "/",
     "/index.njk",
-    "/kevin-schmid-unsplash.jpg",
+    "/kevin schmid unsplash.jpg",
   ],
 }
 `;
@@ -119,16 +119,16 @@ snapshot[`imagick plugin 3`] = `
 
 <body>
   <div>
-    <picture><source srcset="/kevin-schmid-unsplash-600w.png, /kevin-schmid-unsplash-600w@2.png 2x" type="image/png"><img src="/kevin-schmid-unsplash.jpg"></picture>
+    <picture><source srcset="/kevin%20schmid%20unsplash-600w.png, /kevin%20schmid%20unsplash-600w@2.png 2x" type="image/png"><img src="/kevin schmid unsplash.jpg"></picture>
   </div>
- 
+
 
   <picture>
-    <source srcset="/kevin-schmid-unsplash-600w.avif, /kevin-schmid-unsplash-600w@2.avif 2x" type="image/avif"><source srcset="/kevin-schmid-unsplash-600w.webp, /kevin-schmid-unsplash-600w@2.webp 2x" type="image/webp"><source srcset="/kevin-schmid-unsplash-600w.jpg, /kevin-schmid-unsplash-600w@2.jpg 2x" type="image/jpeg"><img src="/kevin-schmid-unsplash.jpg">
+    <source srcset="/kevin%20schmid%20unsplash-600w.avif, /kevin%20schmid%20unsplash-600w@2.avif 2x" type="image/avif"><source srcset="/kevin%20schmid%20unsplash-600w.webp, /kevin%20schmid%20unsplash-600w@2.webp 2x" type="image/webp"><source srcset="/kevin%20schmid%20unsplash-600w.jpg, /kevin%20schmid%20unsplash-600w@2.jpg 2x" type="image/jpeg"><img src="/kevin schmid unsplash.jpg">
   </picture>
 
   <!-- This image will be converted to a picture -->
-  <picture><source srcset="/kevin-schmid-unsplash-300w.avif, /kevin-schmid-unsplash-300w@2.avif 2x" type="image/avif"><source srcset="/kevin-schmid-unsplash-300w.webp, /kevin-schmid-unsplash-300w@2.webp 2x" type="image/webp"><source srcset="/kevin-schmid-unsplash-300w.jpg, /kevin-schmid-unsplash-300w@2.jpg 2x" type="image/jpeg"><img src="/kevin-schmid-unsplash.jpg"></picture>
+  <picture><source srcset="/kevin%20schmid%20unsplash-300w.avif, /kevin%20schmid%20unsplash-300w@2.avif 2x" type="image/avif"><source srcset="/kevin%20schmid%20unsplash-300w.webp, /kevin%20schmid%20unsplash-300w@2.webp 2x" type="image/webp"><source srcset="/kevin%20schmid%20unsplash-300w.jpg, /kevin%20schmid%20unsplash-300w@2.jpg 2x" type="image/jpeg"><img src="/kevin schmid unsplash.jpg"></picture>
 
 
 </body></html>',
@@ -141,16 +141,16 @@ snapshot[`imagick plugin 3`] = `
 
 <body>
   <div imagick="png 600@2">
-    <img src="/kevin-schmid-unsplash.jpg">
+    <img src="/kevin schmid unsplash.jpg">
   </div>
- 
+
 
   <picture imagick="avif webp jpg 600@2">
-    <img src="/kevin-schmid-unsplash.jpg">
+    <img src="/kevin schmid unsplash.jpg">
   </picture>
 
   <!-- This image will be converted to a picture -->
-  <img src="/kevin-schmid-unsplash.jpg" imagick="avif webp jpg 300@2">
+  <img src="/kevin schmid unsplash.jpg" imagick="avif webp jpg 300@2">
 </body>
 </html>
 ',
@@ -162,16 +162,16 @@ snapshot[`imagick plugin 3`] = `
 
 <body>
   <div imagick="png 600@2">
-    <img src="/kevin-schmid-unsplash.jpg">
+    <img src="/kevin schmid unsplash.jpg">
   </div>
- 
+
 
   <picture imagick="avif webp jpg 600@2">
-    <img src="/kevin-schmid-unsplash.jpg">
+    <img src="/kevin schmid unsplash.jpg">
   </picture>
 
   <!-- This image will be converted to a picture -->
-  <img src="/kevin-schmid-unsplash.jpg" imagick="avif webp jpg 300@2">
+  <img src="/kevin schmid unsplash.jpg" imagick="avif webp jpg 300@2">
 </body>
 </html>
 ',
@@ -212,14 +212,14 @@ snapshot[`imagick plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/kevin-schmid-unsplash-600w.png",
+      url: "/kevin schmid unsplash-600w.png",
     },
     src: {
       asset: true,
       ext: ".jpg",
-      path: "/kevin-schmid-unsplash[0]",
+      path: "/kevin schmid unsplash[0]",
       remote: undefined,
-      slug: "kevin-schmid-unsplash",
+      slug: "kevin schmid unsplash",
     },
   },
   {
@@ -238,14 +238,14 @@ snapshot[`imagick plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/kevin-schmid-unsplash-300w.webp",
+      url: "/kevin schmid unsplash-300w.webp",
     },
     src: {
       asset: true,
       ext: ".jpg",
-      path: "/kevin-schmid-unsplash[10]",
+      path: "/kevin schmid unsplash[10]",
       remote: undefined,
-      slug: "kevin-schmid-unsplash",
+      slug: "kevin schmid unsplash",
     },
   },
   {
@@ -264,14 +264,14 @@ snapshot[`imagick plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/kevin-schmid-unsplash-300w@2.webp",
+      url: "/kevin schmid unsplash-300w@2.webp",
     },
     src: {
       asset: true,
       ext: ".jpg",
-      path: "/kevin-schmid-unsplash[11]",
+      path: "/kevin schmid unsplash[11]",
       remote: undefined,
-      slug: "kevin-schmid-unsplash",
+      slug: "kevin schmid unsplash",
     },
   },
   {
@@ -290,14 +290,14 @@ snapshot[`imagick plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/kevin-schmid-unsplash-300w.jpg",
+      url: "/kevin schmid unsplash-300w.jpg",
     },
     src: {
       asset: true,
       ext: ".jpg",
-      path: "/kevin-schmid-unsplash[12]",
+      path: "/kevin schmid unsplash[12]",
       remote: undefined,
-      slug: "kevin-schmid-unsplash",
+      slug: "kevin schmid unsplash",
     },
   },
   {
@@ -316,14 +316,14 @@ snapshot[`imagick plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/kevin-schmid-unsplash-300w@2.jpg",
+      url: "/kevin schmid unsplash-300w@2.jpg",
     },
     src: {
       asset: true,
       ext: ".jpg",
-      path: "/kevin-schmid-unsplash[13]",
+      path: "/kevin schmid unsplash[13]",
       remote: undefined,
-      slug: "kevin-schmid-unsplash",
+      slug: "kevin schmid unsplash",
     },
   },
   {
@@ -342,14 +342,14 @@ snapshot[`imagick plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/kevin-schmid-unsplash-600w@2.png",
+      url: "/kevin schmid unsplash-600w@2.png",
     },
     src: {
       asset: true,
       ext: ".jpg",
-      path: "/kevin-schmid-unsplash[1]",
+      path: "/kevin schmid unsplash[1]",
       remote: undefined,
-      slug: "kevin-schmid-unsplash",
+      slug: "kevin schmid unsplash",
     },
   },
   {
@@ -368,14 +368,14 @@ snapshot[`imagick plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/kevin-schmid-unsplash-600w.avif",
+      url: "/kevin schmid unsplash-600w.avif",
     },
     src: {
       asset: true,
       ext: ".jpg",
-      path: "/kevin-schmid-unsplash[2]",
+      path: "/kevin schmid unsplash[2]",
       remote: undefined,
-      slug: "kevin-schmid-unsplash",
+      slug: "kevin schmid unsplash",
     },
   },
   {
@@ -394,14 +394,14 @@ snapshot[`imagick plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/kevin-schmid-unsplash-600w@2.avif",
+      url: "/kevin schmid unsplash-600w@2.avif",
     },
     src: {
       asset: true,
       ext: ".jpg",
-      path: "/kevin-schmid-unsplash[3]",
+      path: "/kevin schmid unsplash[3]",
       remote: undefined,
-      slug: "kevin-schmid-unsplash",
+      slug: "kevin schmid unsplash",
     },
   },
   {
@@ -420,14 +420,14 @@ snapshot[`imagick plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/kevin-schmid-unsplash-600w.webp",
+      url: "/kevin schmid unsplash-600w.webp",
     },
     src: {
       asset: true,
       ext: ".jpg",
-      path: "/kevin-schmid-unsplash[4]",
+      path: "/kevin schmid unsplash[4]",
       remote: undefined,
-      slug: "kevin-schmid-unsplash",
+      slug: "kevin schmid unsplash",
     },
   },
   {
@@ -446,14 +446,14 @@ snapshot[`imagick plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/kevin-schmid-unsplash-600w@2.webp",
+      url: "/kevin schmid unsplash-600w@2.webp",
     },
     src: {
       asset: true,
       ext: ".jpg",
-      path: "/kevin-schmid-unsplash[5]",
+      path: "/kevin schmid unsplash[5]",
       remote: undefined,
-      slug: "kevin-schmid-unsplash",
+      slug: "kevin schmid unsplash",
     },
   },
   {
@@ -472,14 +472,14 @@ snapshot[`imagick plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/kevin-schmid-unsplash-600w.jpg",
+      url: "/kevin schmid unsplash-600w.jpg",
     },
     src: {
       asset: true,
       ext: ".jpg",
-      path: "/kevin-schmid-unsplash[6]",
+      path: "/kevin schmid unsplash[6]",
       remote: undefined,
-      slug: "kevin-schmid-unsplash",
+      slug: "kevin schmid unsplash",
     },
   },
   {
@@ -498,14 +498,14 @@ snapshot[`imagick plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/kevin-schmid-unsplash-600w@2.jpg",
+      url: "/kevin schmid unsplash-600w@2.jpg",
     },
     src: {
       asset: true,
       ext: ".jpg",
-      path: "/kevin-schmid-unsplash[7]",
+      path: "/kevin schmid unsplash[7]",
       remote: undefined,
-      slug: "kevin-schmid-unsplash",
+      slug: "kevin schmid unsplash",
     },
   },
   {
@@ -524,14 +524,14 @@ snapshot[`imagick plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/kevin-schmid-unsplash-300w.avif",
+      url: "/kevin schmid unsplash-300w.avif",
     },
     src: {
       asset: true,
       ext: ".jpg",
-      path: "/kevin-schmid-unsplash[8]",
+      path: "/kevin schmid unsplash[8]",
       remote: undefined,
-      slug: "kevin-schmid-unsplash",
+      slug: "kevin schmid unsplash",
     },
   },
   {
@@ -550,14 +550,14 @@ snapshot[`imagick plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/kevin-schmid-unsplash-300w@2.avif",
+      url: "/kevin schmid unsplash-300w@2.avif",
     },
     src: {
       asset: true,
       ext: ".jpg",
-      path: "/kevin-schmid-unsplash[9]",
+      path: "/kevin schmid unsplash[9]",
       remote: undefined,
-      slug: "kevin-schmid-unsplash",
+      slug: "kevin schmid unsplash",
     },
   },
 ]

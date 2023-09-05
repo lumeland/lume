@@ -1,5 +1,5 @@
 import { bundleAsync, transform } from "../deps/lightningcss.ts";
-import { merge, resolveInclude } from "../core/utils.ts";
+import { merge, read, resolveInclude } from "../core/utils.ts";
 import textLoader from "../core/loaders/text.ts";
 import { Page } from "../core/filesystem.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
@@ -16,7 +16,10 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /** Custom includes path */
+  /**
+   * Custom includes path
+   * @default `site.options.includes`
+   */
   includes: string | false;
 
   /** Options passed to parcel_css */
@@ -116,6 +119,15 @@ export default function (userOptions?: DeepPartial<Options>) {
           async read(file: string) {
             if (file === filename) {
               return content;
+            }
+
+            if (file.startsWith("http")) {
+              return read(file, false, {
+                headers: {
+                  "User-Agent":
+                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/115.0",
+                },
+              });
             }
 
             return await site.getContent(file, textLoader) as string;

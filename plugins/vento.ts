@@ -9,7 +9,16 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /** The options for the Vento engine */
+  /**
+   * Custom includes path
+   * @default `site.options.includes`
+   */
+  includes: string;
+
+  /**
+   * The options for the Vento engine
+   * @see https://vento.js.org/get-started/configuration/
+   */
   options: {
     /** The name of the variable to access to the data in the templates */
     dataVarname?: string;
@@ -19,6 +28,7 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".vento", ".vto"],
+  includes: "",
   options: {
     dataVarname: "it",
   },
@@ -77,14 +87,18 @@ export class VentoEngine implements Engine {
 
 /** Register the plugin to support Vento files */
 export default function (userOptions?: Partial<Options>) {
-  const options = merge(defaults, userOptions);
-  const extensions = Array.isArray(options.extensions)
-    ? { pages: options.extensions, components: options.extensions }
-    : options.extensions;
-
   return (site: Site) => {
+    const options = merge(
+      { ...defaults, includes: site.options.includes },
+      userOptions,
+    );
+
+    const extensions = Array.isArray(options.extensions)
+      ? { pages: options.extensions, components: options.extensions }
+      : options.extensions;
+
     const vento = engine({
-      includes: new LumeLoader(normalizePath(site.options.includes), site.fs),
+      includes: new LumeLoader(normalizePath(options.includes), site.fs),
       dataVarname: options.options.dataVarname,
     });
 
@@ -94,6 +108,15 @@ export default function (userOptions?: Partial<Options>) {
 
     site.loadPages(extensions.pages, loader, ventoEngine);
     site.loadComponents(extensions.components, loader, ventoEngine);
+    site.filter("vto", filter as Helper, true);
+
+    async function filter(string: string, data?: Data) {
+      const result = await vento.runString(string, {
+        ...site.scopedData.get("/"),
+        ...data,
+      });
+      return result.content;
+    }
   };
 }
 

@@ -6,12 +6,32 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.18.5] - Unreleased
+## [1.18.6] - Unreleased
+### Added
+- New `vto` filter.
+- New `site.page()` to add pages dynamically from `_config.ts`.
+- New argument for `site.component()` to define the directory scope.
+
+### Fixed
+- `minify_html` works offline.
+- Updated dependencies: `std`, `vento`.
+- Urls with spaces [#481].
+
+## [1.18.5] - 2023-09-01
+### Added
+- JSON loader to esbuild [#473].
+- `includes` option to Vento plugin.
+
 ### Changed
 - Make Vento components synchronous.
 
 ### Fixed
-- Updated dependencies: `std`, `@types/react`, `esbuild`, `postcss-nesting`, `vento`.
+- Updated dependencies: `std`, `@types/react`, `esbuild`, `postcss`, `postcss-nesting`, `autoprefixer`, `vento`, `eta`, `lightningcss`, `liquidjs`, `preact`, `rehype`, `sass`, `minify_html`.
+- Script runner now uses `/usr/bin/env bash` instead of `/bin/bash` to improve portability [#466].
+- `nav` plugin with non-pretty-urls pages [#467].
+- `picture` plugin: use encodeURI to handle filenames with spaces [#469], [#470].
+- `lightningcss` plugin importing external urls.
+- Plugin options documentation.
 
 ## [1.18.4] - 2023-08-02
 ### Added
@@ -2361,8 +2381,15 @@ The first version.
 [#451]: https://github.com/lumeland/lume/issues/451
 [#462]: https://github.com/lumeland/lume/issues/462
 [#463]: https://github.com/lumeland/lume/issues/463
+[#466]: https://github.com/lumeland/lume/issues/466
+[#467]: https://github.com/lumeland/lume/issues/467
+[#469]: https://github.com/lumeland/lume/issues/469
+[#470]: https://github.com/lumeland/lume/issues/470
+[#473]: https://github.com/lumeland/lume/issues/473
+[#481]: https://github.com/lumeland/lume/issues/481
 
-[1.18.5]: https://github.com/lumeland/lume/compare/v1.18.4...HEAD
+[1.18.6]: https://github.com/lumeland/lume/compare/v1.18.5...HEAD
+[1.18.5]: https://github.com/lumeland/lume/compare/v1.18.4...v1.18.5
 [1.18.4]: https://github.com/lumeland/lume/compare/v1.18.3...v1.18.4
 [1.18.3]: https://github.com/lumeland/lume/compare/v1.18.2...v1.18.3
 [1.18.2]: https://github.com/lumeland/lume/compare/v1.18.1...v1.18.2

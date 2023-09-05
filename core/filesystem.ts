@@ -79,7 +79,7 @@ export class Page<D extends PageData = PageData> {
       return undefined;
     }
 
-    return url.endsWith("/") ? url + "index.html" : url;
+    return decodeURI(url.endsWith("/") ? url + "index.html" : url);
   }
 
   /** The content of this page */

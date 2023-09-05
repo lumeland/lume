@@ -37,10 +37,16 @@ export interface Options {
     components: string[];
   };
 
-  /** Custom includes path */
+  /**
+   * Custom includes path
+   * @default `site.options.includes`
+   */
   includes: string;
 
-  /** Options passed to Liquidjs library */
+  /**
+   * Options passed to Liquidjs library
+   * @see https://liquidjs.com/tutorials/options.html
+   */
   options: LiquidOptions;
 }
 

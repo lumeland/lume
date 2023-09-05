@@ -101,6 +101,7 @@ snapshot[`build a site with vento 1`] = `
     "/_includes/footer.vto",
     "/_includes/layout.vto",
     "/index.vto",
+    "/vto-filter.tmpl.js",
   ],
 }
 `;
@@ -186,6 +187,38 @@ Título
       path: "/index",
       remote: undefined,
       slug: "index",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<h1>VENTO FILTER EXAMPLE</h1>",
+    data: {
+      children: "<h1>VENTO FILTER EXAMPLE</h1>",
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "default",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "vento filter example",
+      url: "/vto-filter/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/vto-filter",
+      remote: undefined,
+      slug: "vto-filter",
     },
   },
 ]
