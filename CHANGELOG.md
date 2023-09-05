@@ -11,6 +11,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - New `vto` filter.
 - New `site.page()` to add pages dynamically from `_config.ts`.
 - New argument for `site.component()` to define the directory scope.
+- Plugin `picture`: Support sizes attribute [#482]
 
 ### Fixed
 - `minify_html` works offline.
@@ -2387,6 +2388,7 @@ The first version.
 [#470]: https://github.com/lumeland/lume/issues/470
 [#473]: https://github.com/lumeland/lume/issues/473
 [#481]: https://github.com/lumeland/lume/issues/481
+[#482]: https://github.com/lumeland/lume/issues/482
 
 [1.18.6]: https://github.com/lumeland/lume/compare/v1.18.5...HEAD
 [1.18.5]: https://github.com/lumeland/lume/compare/v1.18.4...v1.18.5
