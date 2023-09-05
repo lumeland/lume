@@ -214,7 +214,11 @@ function createSource(
   const srcset: string[] = [];
 
   for (const [suffix, scale] of Object.entries(scales)) {
-    const scaleSuffix = sizes ? ` ${scale * width}w` : scale === 1 ? "" : ` ${scale}x`;
+    const scaleSuffix = sizes
+      ? ` ${scale * width}w`
+      : scale === 1
+      ? ""
+      : ` ${scale}x`;
     srcset.push(`${path}${suffix}.${format}${scaleSuffix}`);
   }
 
