@@ -22,8 +22,12 @@ export default class ComponentsLoader {
   async load(
     dirEntry: Entry,
     data: Data,
-    components: Components,
-  ): Promise<void> {
+    components?: Components,
+  ): Promise<Components> {
+    if (!components) {
+      components = new Map();
+    }
+
     for await (const entry of dirEntry.children.values()) {
       if (entry.name.startsWith(".") || entry.name.startsWith("_")) {
         continue;
@@ -44,6 +48,8 @@ export default class ComponentsLoader {
         components.set(component.name.toLowerCase(), component);
       }
     }
+
+    return components;
   }
 
   /** Load a component file */

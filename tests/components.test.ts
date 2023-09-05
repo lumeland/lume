@@ -32,7 +32,7 @@ Deno.test("Components", async (t) => {
     },
   });
 
-  assert(site.globalComponents.get("custom"));
+  assert(site.scopedComponents.get("/")?.get("custom"));
 
   await build(site);
 

@@ -10,6 +10,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Added
 - New `vto` filter.
 - New `site.page()` to add pages dynamically from `_config.ts`.
+- New argument for `site.component()` to define the directory scope.
 
 ### Fixed
 - `minify_html` works offline.
