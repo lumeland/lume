@@ -38,6 +38,7 @@ import type {
   ScriptOrFunction,
   StaticFile,
 } from "../core.ts";
+import { decode } from "../deps/hex.ts";
 
 /** Default options of the site */
 const defaults: SiteOptions = {
@@ -773,8 +774,11 @@ export default class Site {
       file = normalizePath(file.slice(basePath.length));
     }
 
+    file = decodeURI(file);
+    const url = encodeURI(file);
+
     // It's a page
-    const page = this.pages.find((page) => page.data.url === file);
+    const page = this.pages.find((page) => page.data.url === url);
 
     if (page) {
       return page.content;

@@ -91,24 +91,16 @@ snapshot[`inline plugin 1`] = `
   ],
   src: [
     "/",
-    "/favicon.png",
     "/favicon.svg",
     "/index.njk",
+    "/other favicon.png",
     "/script.js",
     "/styles.css.njk",
   ],
 }
 `;
 
-snapshot[`inline plugin 2`] = `
-[
-  {
-    entry: "/favicon.png",
-    flags: [],
-    outputPath: "/favicon2.png",
-  },
-]
-`;
+snapshot[`inline plugin 2`] = `[]`;
 
 snapshot[`inline plugin 3`] = `
 [
@@ -162,7 +154,7 @@ snapshot[`inline plugin 3`] = `
   <link id="el-3" rel="shortcut icon" href="data:image/svg+xml;base64,(...)">
   <link id="el-4" rel="shortcut icon" href="/favicon.svg">
   <link id="el-5" rel="shortcut icon" href="data:image/png;base64,(...)">
-  <link id="el-6" rel="shortcut icon" href="/favicon2.png">
+  <link id="el-6" rel="shortcut icon" href="/other favicon.png">
 </head>
 <body>
   <svg width="126px" height="126px" viewbox="0 0 126 126" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" id="el-7" class="has-svg" custom="value">
@@ -179,7 +171,7 @@ snapshot[`inline plugin 3`] = `
 </svg>
   <img id="el-8" class="has-svg" src="./favicon.svg">
   <img id="el-9" class="has-png" src="data:image/png;base64,(...)">
-  <img id="el-10" class="has-png" src="./favicon2.png">
+  <img id="el-10" class="has-png" src="./other favicon.png">
   <svg width="123" height="123" viewbox="0 0 126 126" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
     <title>favicon</title>
     <g id="favicon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -220,15 +212,15 @@ const a = 1, _b = 1 < a, _c = a > 4;
   <link id="el-2" nonce="1234" media="print" rel="stylesheet" href="styles.css" data-custom="attr" inline>
   <link id="el-3" rel="shortcut icon" href="/favicon.svg" inline>
   <link id="el-4" rel="shortcut icon" href="/favicon.svg">
-  <link id="el-5" rel="shortcut icon" href="/favicon2.png" inline>
-  <link id="el-6" rel="shortcut icon" href="/favicon2.png">
+  <link id="el-5" rel="shortcut icon" href="/other%20favicon.png" inline>
+  <link id="el-6" rel="shortcut icon" href="/other favicon.png">
 </head>
 <body>
   <img id="el-7" class="has-svg" src="./favicon.svg" custom="value" inline>
   <img src="./favicon.svg" inline>
   <img id="el-8" class="has-svg" src="./favicon.svg">
-  <img id="el-9" class="has-png" src="./favicon2.png" inline>
-  <img id="el-10" class="has-png" src="./favicon2.png">
+  <img id="el-9" class="has-png" src="./other favicon.png" inline>
+  <img id="el-10" class="has-png" src="./other favicon.png">
   <img src="./favicon.svg" width="123" inline>
   <img src="./favicon.svg" width="200" height="200" inline>
   <script id="el-11" src="./script.js"></script>
@@ -249,15 +241,15 @@ const a = 1, _b = 1 < a, _c = a > 4;
   <link id="el-2" nonce="1234" media="print" rel="stylesheet" href="styles.css" data-custom="attr" inline>
   <link id="el-3" rel="shortcut icon" href="/favicon.svg" inline>
   <link id="el-4" rel="shortcut icon" href="/favicon.svg">
-  <link id="el-5" rel="shortcut icon" href="/favicon2.png" inline>
-  <link id="el-6" rel="shortcut icon" href="/favicon2.png">
+  <link id="el-5" rel="shortcut icon" href="/other%20favicon.png" inline>
+  <link id="el-6" rel="shortcut icon" href="/other favicon.png">
 </head>
 <body>
   <img id="el-7" class="has-svg" src="./favicon.svg" custom="value" inline>
   <img src="./favicon.svg" inline>
   <img id="el-8" class="has-svg" src="./favicon.svg">
-  <img id="el-9" class="has-png" src="./favicon2.png" inline>
-  <img id="el-10" class="has-png" src="./favicon2.png">
+  <img id="el-9" class="has-png" src="./other favicon.png" inline>
+  <img id="el-10" class="has-png" src="./other favicon.png">
   <img src="./favicon.svg" width="123" inline>
   <img src="./favicon.svg" width="200" height="200" inline>
   <script id="el-11" src="./script.js"></script>
@@ -288,6 +280,31 @@ const a = 1, _b = 1 < a, _c = a > 4;
       path: "/index",
       remote: undefined,
       slug: "index",
+    },
+  },
+  {
+    content: "Uint8Array(1503)",
+    data: {
+      content: "Uint8Array(1503)",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/other favicon.png",
+    },
+    src: {
+      asset: true,
+      ext: ".png",
+      path: "/other favicon",
+      remote: undefined,
+      slug: "other favicon",
     },
   },
   {
