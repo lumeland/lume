@@ -21,6 +21,7 @@ export interface Options {
   dataLoader: DataLoader;
   componentLoader: ComponentLoader;
   scopedData: Map<string, Data>;
+  scopedPages: Map<string, Data[]>;
   fs: FS;
   prettyUrls: boolean;
   components: {
@@ -53,8 +54,13 @@ export default class Source {
   /** The path filters to ignore */
   filters: ScopeFilter[] = [];
 
+  /** The data assigned per path */
   scopedData: Map<string, Data>;
 
+  /** The pages assigned per path */
+  scopedPages: Map<string, Data[]>;
+
+  /** Use pretty URLs */
   prettyUrls: boolean;
 
   /** List of static files and folders to copy */
@@ -90,6 +96,7 @@ export default class Source {
     this.formats = options.formats;
     this.components = options.components;
     this.scopedData = options.scopedData;
+    this.scopedPages = options.scopedPages;
     this.prettyUrls = options.prettyUrls;
   }
 
@@ -184,6 +191,23 @@ export default class Source {
 
     // Store the root data to be used by other plugins
     this.data.set(path, dirData);
+
+    // Load the pages assigned to the current path
+    if (this.scopedPages.has(dir.path)) {
+      for (const data of this.scopedPages.get(dir.path)!) {
+        const page = new Page();
+        page.data = mergeData(
+          dirData,
+          { date: new Date() },
+          data,
+        );
+
+        page.data.url = getUrl(page, this.prettyUrls, path);
+        page.data.date = getDate(page.data.date);
+        page.data.page = page;
+        pages.push(page);
+      }
+    }
 
     // Load the pages and static files
     for (const entry of dir.children.values()) {

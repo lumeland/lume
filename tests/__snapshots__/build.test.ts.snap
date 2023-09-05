@@ -91,6 +91,35 @@ snapshot[`build a simple site 3`] = `
 [
   {
     content: "<!DOCTYPE html>
+Content of Page 1",
+    data: {
+      children: "Content of Page 1",
+      content: "Content of {{ title }}",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      templateEngine: "njk",
+      title: "Page 1",
+      url: "/dynamic.html",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
 <h1>Welcome</h1>
 ",
     data: {

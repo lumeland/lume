@@ -9,6 +9,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.18.6] - Unreleased
 ### Added
 - New `vto` filter.
+- New `site.page()` to add pages dynamically from `_config.ts`.
 
 ### Fixed
 - `minify_html` works offline.

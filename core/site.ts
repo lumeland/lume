@@ -122,6 +122,9 @@ export default class Site {
   /** Data assigned with site.data() */
   scopedData = new Map<string, Data>([["/", {}]]);
 
+  /** Pages created with site.page() */
+  scopedPages = new Map<string, Data[]>();
+
   /** Global components shared by all templates */
   globalComponents: Components = new Map();
 
@@ -159,6 +162,7 @@ export default class Site {
       formats,
       components,
       scopedData: this.scopedData,
+      scopedPages: this.scopedPages,
       prettyUrls,
     });
 
@@ -406,6 +410,14 @@ export default class Site {
     const data = this.scopedData.get(scope) || {};
     data[name] = value;
     this.scopedData.set(scope, data);
+    return this;
+  }
+
+  /** Register a page */
+  page(data: Data, scope = "/"): this {
+    const pages = this.scopedPages.get(scope) || [];
+    pages.push(data);
+    this.scopedPages.set(scope, pages);
     return this;
   }
 
