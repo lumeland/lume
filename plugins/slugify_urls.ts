@@ -111,7 +111,7 @@ export function createSlugifier(
     );
 
     // replace dash with separator
-    return string.replaceAll("-", separator);
+    return encodeURI(string.replaceAll("-", separator));
   };
 }
 
