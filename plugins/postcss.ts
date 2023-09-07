@@ -35,11 +35,7 @@ export interface Options {
 export const defaults: Options = {
   extensions: [".css"],
   includes: "",
-  plugins: [
-    // @ts-expect-error: postcss-nesting provides wrong types under node16 module resolution: https://github.com/csstools/postcss-plugins/issues/1031
-    postcssNesting(),
-    autoprefixer(),
-  ],
+  plugins: [],
   useDefaultPlugins: true,
 };
 
