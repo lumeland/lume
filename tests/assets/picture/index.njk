@@ -5,6 +5,8 @@
 </head>
 
 <body>
+
+  <!-- without sizes -->
   <div imagick="png 600@2">
     <img src="/kevin schmid unsplash.jpg">
   </div>
@@ -16,5 +18,19 @@
 
   <!-- This image will be converted to a picture -->
   <img src="/kevin schmid unsplash.jpg" imagick="avif webp jpg 300@2">
+
+
+  <!-- with sizes -->
+  <div imagick="png 600@2">
+    <img src="/kevin schmid unsplash.jpg" sizes="600px">
+  </div>
+
+
+  <picture imagick="avif webp jpg 600@2">
+    <img src="/kevin schmid unsplash.jpg" sizes="600px">
+  </picture>
+
+  <!-- This image will be converted to a picture -->
+  <img src="/kevin schmid unsplash.jpg" imagick="avif webp jpg 300@2" sizes="600px">
 </body>
 </html>
