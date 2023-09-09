@@ -96,7 +96,6 @@ snapshot[`Source maps from CSS files 1`] = `
       asset: true,
       engines: undefined,
       ext: ".css",
-      includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
   ],

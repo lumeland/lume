@@ -60,9 +60,7 @@ export default function (userOptions?: Partial<Options>) {
     }
 
     if (options.includes) {
-      site.includes(options.extensions, options.includes, false);
-
-      plugins.unshift(configureImport(site));
+      plugins.unshift(configureImport(site, options.includes));
     }
 
     // @ts-ignore: Argument of type 'unknown[]' is not assignable to parameter of type 'AcceptedPlugin[]'.
@@ -113,17 +111,11 @@ export default function (userOptions?: Partial<Options>) {
  * Function to configure the postcssImport
  * using the Lume reader and the includes loader
  */
-function configureImport(site: Site) {
-  const { formats } = site;
-  const { includes } = site.options;
-
+function configureImport(site: Site, includes: string) {
   return postcssImport({
     /** Resolve the import path */
     resolve(id: string, basedir: string) {
-      const format = formats.search(id);
-      const includesPath = format?.includesPath ?? includes;
-
-      return resolveInclude(id, includesPath, basedir);
+      return resolveInclude(id, includes, basedir);
     },
 
     /** Load the content (using the Lume reader) */
