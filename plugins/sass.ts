@@ -50,10 +50,6 @@ export default function (userOptions?: Partial<Options>) {
       userOptions,
     );
 
-    if (options.includes) {
-      site.includes(options.extensions, options.includes);
-    }
-
     site.loadAssets(options.extensions);
     site.process(options.extensions, sass);
 
@@ -69,10 +65,8 @@ export default function (userOptions?: Partial<Options>) {
         sourceMap: enableSourceMap,
         style: options.format,
         syntax: page.src.ext === ".sass" ? "indented" : "scss",
-        // @ts-ignore: url is not in the type definition
         url: toFileUrl(filename),
         importer: {
-          // @ts-ignore: url is not in the type definition
           canonicalize(url: string) {
             const pathname = normalizePath(fromFileUrl(url));
             const mainPath = pathname.startsWith(basePath)
@@ -91,13 +85,9 @@ export default function (userOptions?: Partial<Options>) {
             const includePath = pathname.startsWith(baseFilename)
               ? pathname.slice(baseFilename.length)
               : mainPath;
-            const { formats } = site;
-            const { includes } = site.options;
 
             for (const path of getPathsToLook(includePath)) {
-              const format = formats.search(pathname);
-              const includesPath = format?.includesPath ?? includes;
-              const resolved = resolveInclude(path, includesPath);
+              const resolved = resolveInclude(path, options.includes);
               const entry = entries.get(resolved);
 
               if (entry) {
@@ -109,7 +99,6 @@ export default function (userOptions?: Partial<Options>) {
               `File cannot be canonicalized: ${url} (${pathname})`,
             );
           },
-          // @ts-ignore: url is not in the type definition
           async load(url: URL) {
             const pathname = fromFileUrl(url);
             const contents = await site.getContent(pathname, textLoader);
