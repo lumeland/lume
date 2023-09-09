@@ -29,7 +29,7 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".css"],
-  includes: false,
+  includes: "",
   options: {
     minify: true,
     drafts: {
@@ -60,7 +60,6 @@ export default function (userOptions?: DeepPartial<Options>) {
     site.loadAssets(options.extensions);
 
     if (options.includes) {
-      site.includes(options.extensions, options.includes);
       site.process(options.extensions, lightningCSSBundler);
     } else {
       site.process(options.extensions, lightningCSSTransformer);
@@ -76,7 +75,6 @@ export default function (userOptions?: DeepPartial<Options>) {
       const code = new TextEncoder().encode(content);
       const transformOptions: TransformOptions<CustomAtRules> = {
         filename,
-        // @ts-ignore: the lightningcss type definitions expect a node Buffer: https://github.com/parcel-bundler/lightningcss/pull/530
         code,
         sourceMap: enableSourceMap,
         inputSourceMap: JSON.stringify(sourceMap),
@@ -100,9 +98,6 @@ export default function (userOptions?: DeepPartial<Options>) {
         file,
       );
 
-      const { formats } = site;
-      const { includes } = site.options;
-
       // Process the code with lightningCSS
       const bundleOptions: BundleAsyncOptions<CustomAtRules> = {
         filename,
@@ -111,10 +106,11 @@ export default function (userOptions?: DeepPartial<Options>) {
         ...options.options,
         resolver: {
           resolve(id: string, from: string) {
-            const format = formats.search(id);
-            const includesPath = format?.includesPath ?? includes;
-
-            return resolveInclude(id, includesPath, posix.dirname(from));
+            return resolveInclude(
+              id,
+              options.includes as string,
+              posix.dirname(from),
+            );
           },
           async read(file: string) {
             if (file === filename) {

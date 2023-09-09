@@ -249,7 +249,6 @@ snapshot[`lightningcss plugin (bundle mode) 1`] = `
       asset: true,
       engines: undefined,
       ext: ".css",
-      includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
   ],
