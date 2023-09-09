@@ -245,7 +245,15 @@ export default class Renderer {
         );
       }
 
-      const includesPath = format.includesPath || this.includes;
+      const includesPath = format.engines?.[0].includes;
+
+      if (!includesPath) {
+        throw new Exception(
+          "The layout engine doesn't support includes",
+          { layout },
+        );
+      }
+
       const layoutPath = resolveInclude(
         layout,
         includesPath,
@@ -312,6 +320,9 @@ export default class Renderer {
 
 /** An interface used by all template engines */
 export interface Engine<T = string | { toString(): string }> {
+  /** The folder name of the includes */
+  includes?: string;
+
   /** Delete a cached template */
   deleteCache(file: string): void;
 

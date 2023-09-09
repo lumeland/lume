@@ -63,7 +63,6 @@ snapshot[`render remote files 1`] = `
       componentLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".njk",
-      includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {

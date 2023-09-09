@@ -59,7 +59,6 @@ snapshot[`Load the pages of a site 1`] = `
       componentLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".njk",
-      includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {

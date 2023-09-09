@@ -61,7 +61,6 @@ snapshot[`inline plugin 1`] = `
       componentLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".njk",
-      includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {

@@ -62,10 +62,12 @@ export class LiquidEngine implements Engine {
   liquid: Liquid;
   cache = new Map<string, Template[]>();
   basePath: string;
+  includes: string;
 
-  constructor(liquid: Liquid, basePath: string) {
+  constructor(liquid: Liquid, basePath: string, includes: string) {
     this.liquid = liquid;
     this.basePath = basePath;
+    this.includes = includes;
   }
 
   deleteCache(file: string): void {
@@ -139,11 +141,13 @@ export default function (userOptions?: DeepPartial<Options>) {
       ...options.options,
     };
 
-    const engine = new LiquidEngine(new Liquid(liquidOptions), site.src());
+    const engine = new LiquidEngine(
+      new Liquid(liquidOptions),
+      site.src(),
+      options.includes,
+    );
 
     site.loadPages(extensions.pages, loader, engine);
-    site.includes(extensions.pages, options.includes);
-    site.includes(extensions.components, options.includes);
     site.loadComponents(extensions.components, loader, engine);
 
     // Register the liquid filter

@@ -12,11 +12,18 @@ export interface Options {
       pages: string[];
       components: string[];
     };
+
+  /**
+   * Custom includes path
+   * @default `site.options.includes`
+   */
+  includes: string;
 }
 
 // Default options
 export const defaults: Options = {
   extensions: [".jsx", ".tsx"],
+  includes: "",
 };
 
 // JSX children type
@@ -26,9 +33,11 @@ export type Children = React.ReactNode | React.ReactNode[];
 export class JsxEngine implements Engine {
   helpers: Record<string, Helper> = {};
   basePath: string;
+  includes: string;
 
-  constructor(basePath: string) {
+  constructor(basePath: string, includes: string) {
     this.basePath = basePath;
+    this.includes = includes;
   }
 
   deleteCache() {}
@@ -89,13 +98,16 @@ export class JsxEngine implements Engine {
 
 /** Register the plugin to support JSX and TSX files */
 export default function (userOptions?: Partial<Options>) {
-  const options = merge(defaults, userOptions);
-  const extensions = Array.isArray(options.extensions)
-    ? { pages: options.extensions, components: options.extensions }
-    : options.extensions;
-
   return (site: Site) => {
-    const engine = new JsxEngine(site.src("/"));
+    const options = merge(
+      { ...defaults, includes: site.options.includes },
+      userOptions,
+    );
+    const extensions = Array.isArray(options.extensions)
+      ? { pages: options.extensions, components: options.extensions }
+      : options.extensions;
+
+    const engine = new JsxEngine(site.src("/"), options.includes);
 
     site.loadPages(extensions.pages, loader, engine);
     site.loadComponents(extensions.components, loader, engine);

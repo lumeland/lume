@@ -10,6 +10,12 @@ export interface Options {
     data: string[];
     components: string[];
   };
+
+  /**
+   * Custom includes path
+   * @default `site.options.includes`
+   */
+  includes: string;
 }
 
 // Default options
@@ -19,11 +25,17 @@ export const defaults: Options = {
     data: [".js", ".ts"],
     components: [".js", ".ts"],
   },
+  includes: "",
 };
 
 /** Template engine to render js/ts files */
 export class ModuleEngine implements Engine {
   helpers: Record<string, Helper> = {};
+  includes: string;
+
+  constructor(includes: string) {
+    this.includes = includes;
+  }
 
   deleteCache() {}
 
@@ -46,18 +58,21 @@ export class ModuleEngine implements Engine {
 
 /** Register the plugin to load JavaScript/TypeScript modules */
 export default function (userOptions?: Partial<Options>) {
-  const options = merge(defaults, userOptions);
-
-  const extensions = Array.isArray(options.extensions)
-    ? {
-      pages: options.extensions,
-      data: options.extensions,
-      components: options.extensions,
-    }
-    : options.extensions;
-
   return (site: Site) => {
-    const engine = new ModuleEngine();
+    const options = merge(
+      { ...defaults, includes: site.options.includes },
+      userOptions,
+    );
+
+    const extensions = Array.isArray(options.extensions)
+      ? {
+        pages: options.extensions,
+        data: options.extensions,
+        components: options.extensions,
+      }
+      : options.extensions;
+
+    const engine = new ModuleEngine(options.includes);
 
     site.loadData(extensions.data, loader);
     site.loadPages(extensions.pages, loader, engine);

@@ -59,7 +59,6 @@ snapshot[`Filter pages (allow all) 1`] = `
       componentLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".njk",
-      includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
@@ -416,7 +415,6 @@ snapshot[`Filter pages (allow only /multiple/*) 1`] = `
       componentLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".njk",
-      includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {

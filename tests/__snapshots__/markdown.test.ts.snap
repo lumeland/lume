@@ -59,7 +59,6 @@ snapshot[`Build a markdown site 1`] = `
       componentLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".njk",
-      includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
@@ -522,7 +521,6 @@ snapshot[`Build a markdown with hooks 1`] = `
       componentLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".njk",
-      includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {

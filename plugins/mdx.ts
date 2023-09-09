@@ -30,6 +30,12 @@ export interface Options {
 
   /** Components to add/override */
   components?: Record<string, unknown>;
+
+  /**
+   * Custom includes path
+   * @default `site.options.includes`
+   */
+  includes: string;
 }
 
 // Default options
@@ -38,6 +44,7 @@ export const defaults: Options = {
   remarkPlugins: [],
   rehypePlugins: [],
   useDefaultPlugins: true,
+  includes: "",
 };
 
 const remarkDefaultPlugins = [
@@ -49,11 +56,13 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
   baseUrl: string;
   options: Options;
   jsxEngine: Engine;
+  includes: string;
 
   constructor(baseUrl: string, options: Options, jsxEngine: Engine) {
     this.baseUrl = baseUrl;
     this.options = options;
     this.jsxEngine = jsxEngine;
+    this.includes = options.includes;
   }
 
   deleteCache() {}
@@ -103,13 +112,16 @@ export default async function (${destructure}) {
 
 /** Register the plugin to support MDX */
 export default function (userOptions?: Partial<Options>) {
-  const options = merge(defaults, userOptions);
-
-  if (options.useDefaultPlugins) {
-    options.remarkPlugins.unshift(...remarkDefaultPlugins);
-  }
-
   return function (site: Site) {
+    const options = merge(
+      { ...defaults, includes: site.options.includes },
+      userOptions,
+    );
+
+    if (options.useDefaultPlugins) {
+      options.remarkPlugins.unshift(...remarkDefaultPlugins);
+    }
+
     // Get the JSX stringify
     const format = site.formats.get(".jsx") || site.formats.get(".tsx");
 

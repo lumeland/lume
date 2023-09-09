@@ -27,9 +27,6 @@ export interface Format {
    */
   asset?: boolean;
 
-  /** A custom path for includes */
-  includesPath?: string;
-
   /** Whether this file must be copied instead loaded */
   copy?: boolean | ((path: string) => string);
 }

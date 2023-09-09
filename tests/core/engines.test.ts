@@ -14,6 +14,7 @@ Deno.test("Engines", async (t) => {
     site.engine(
       [".foo"],
       new class implements Engine {
+        includes = "";
         render(content: string, data: Data): Promise<string> {
           return Promise.resolve(this.renderComponent(content, data));
         }
@@ -44,6 +45,7 @@ Deno.test("Engines", async (t) => {
     site.engine(
       [".upper"],
       new class implements Engine {
+        includes = "";
         render(content: string): Promise<string> {
           return Promise.resolve(this.renderComponent(content));
         }

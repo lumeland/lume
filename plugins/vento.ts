@@ -61,9 +61,11 @@ class LumeLoader extends FileLoader {
 /** Template engine to render Vento files */
 export class VentoEngine implements Engine {
   engine: Environment;
+  includes: string;
 
-  constructor(engine: Environment) {
+  constructor(engine: Environment, includes: string) {
     this.engine = engine;
+    this.includes = includes;
   }
 
   deleteCache(file: string) {
@@ -104,7 +106,7 @@ export default function (userOptions?: Partial<Options>) {
 
     vento.tags.push(compTag);
 
-    const ventoEngine = new VentoEngine(vento);
+    const ventoEngine = new VentoEngine(vento, options.includes);
 
     site.loadPages(extensions.pages, loader, ventoEngine);
     site.loadComponents(extensions.components, loader, ventoEngine);

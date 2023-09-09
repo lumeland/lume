@@ -59,7 +59,6 @@ snapshot[`lightningcss plugin (only transform) 1`] = `
       componentLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".njk",
-      includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {
@@ -224,7 +223,6 @@ snapshot[`lightningcss plugin (bundle mode) 1`] = `
       componentLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".njk",
-      includesPath: "_includes",
       pageLoader: [AsyncFunction: text],
     },
     {

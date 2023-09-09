@@ -54,11 +54,13 @@ export class NunjucksEngine implements Engine {
   env: any;
   cache = new Map();
   basePath: string;
+  includes: string;
 
   // deno-lint-ignore no-explicit-any
-  constructor(env: any, basePath: string) {
+  constructor(env: any, basePath: string, includes: string) {
     this.env = env;
     this.basePath = basePath;
+    this.includes = includes;
   }
 
   deleteCache(file: string): void {
@@ -144,8 +146,11 @@ export class NunjucksEngine implements Engine {
 }
 
 class LumeLoader extends nunjucks.Loader implements nunjucks.ILoaderAsync {
-  constructor(private site: Site) {
+  includes: string;
+
+  constructor(private site: Site, includes: string) {
     super();
+    this.includes = includes;
   }
 
   async: true = true;
@@ -158,9 +163,7 @@ class LumeLoader extends nunjucks.Loader implements nunjucks.ILoaderAsync {
     let path = normalizePath(id, rootToRemove);
 
     if (path === normalizePath(id)) {
-      const format = this.site.formats.search(id);
-      const includesPath = format?.includesPath ?? this.site.options.includes;
-      path = resolveInclude(id, includesPath, undefined, rootToRemove);
+      path = resolveInclude(id, this.includes, undefined, rootToRemove);
     }
 
     this.site.getContent(path, loader).then((content) => {
@@ -193,10 +196,8 @@ export default function (userOptions?: DeepPartial<Options>) {
       ? { pages: options.extensions, components: options.extensions }
       : options.extensions;
 
-    site.includes(extensions.pages, options.includes);
-
     const env = new nunjucks.Environment(
-      [new LumeLoader(site)],
+      [new LumeLoader(site, options.includes)],
       options.options,
     );
 
@@ -208,10 +209,9 @@ export default function (userOptions?: DeepPartial<Options>) {
       env.addExtension(name, fn);
     };
 
-    const engine = new NunjucksEngine(env, site.src());
+    const engine = new NunjucksEngine(env, site.src(), options.includes);
 
     site.loadPages(extensions.pages, loader, engine);
-    site.includes(extensions.pages, options.includes);
     site.loadComponents(extensions.components, loader, engine);
 
     // Register the njk filter

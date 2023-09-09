@@ -347,16 +347,6 @@ export default class Site {
     return this;
   }
 
-  /** Register an import path for some extensions  */
-  includes(extensions: string[], path: string, override = true): this {
-    extensions.forEach((ext) => {
-      this.formats.set({ ext, includesPath: path }, override);
-    });
-
-    // Ignore any includes folder
-    return this.ignore(path);
-  }
-
   /** Register the engines for some extensions  */
   engine(extensions: string[], ...engines: Engine[]): this {
     extensions.forEach((ext) => {

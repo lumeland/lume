@@ -1,5 +1,9 @@
 # Migration from Lume v1 to Lume v2
 
+## Added
+
+- `includes` option to `module` and `mdx` plugins.
+
 ## Core
 
 - Removed output extension detection in the filename: #430
@@ -8,6 +12,8 @@
 - Removed `--dev` mode #244, #201.
   - Use the env variable `LUME_DRAFTS=true` to output draft pages.
 - Renamed the interface method `Engine.renderSync` to `Engine.renderComponent`.
+- Removed `site.includes()` function.
+- Removed `Format.includesPath`.
 
 ## `search` Plugin
 

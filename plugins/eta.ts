@@ -14,7 +14,10 @@ export interface Options {
     components: string[];
   };
 
-  /** Custom includes path */
+  /**
+   * Custom includes path
+   * @default `site.options.includes`
+   */
   includes: string;
 
   /** Configuration to pass to Eta */
@@ -35,10 +38,12 @@ export class EtaEngine implements Engine {
   engine: Eta;
   filters: Record<string, Helper> = {};
   basePath: string;
+  includes: string;
 
-  constructor(engine: Eta, basePath: string) {
+  constructor(engine: Eta, basePath: string, includes: string) {
     this.engine = engine;
     this.basePath = basePath;
+    this.includes = includes;
   }
 
   deleteCache(file: string): void {
@@ -106,11 +111,9 @@ export default function (userOptions?: Partial<Options>) {
       ? { pages: options.extensions, components: options.extensions }
       : options.extensions;
 
-    const engine = new EtaEngine(eta, site.src());
+    const engine = new EtaEngine(eta, site.src(), options.includes);
 
     site.loadPages(extensions.pages, loader, engine);
-    site.includes(extensions.pages, options.includes);
-    site.includes(extensions.components, options.includes);
     site.loadComponents(extensions.components, loader, engine);
   };
 }

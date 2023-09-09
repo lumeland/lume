@@ -49,11 +49,18 @@ export class PugEngine implements Engine {
   filters: Record<string, Helper> = {};
   cache = new Map<string, (data?: Data) => string>();
   basePath: string;
+  includes: string;
 
-  constructor(compiler: Compiler, basePath: string, options: PugOptions = {}) {
+  constructor(
+    compiler: Compiler,
+    basePath: string,
+    includes: string,
+    options: PugOptions = {},
+  ) {
     this.compiler = compiler;
     this.options = options;
     this.basePath = basePath;
+    this.includes = includes;
   }
 
   deleteCache(): void {
@@ -121,10 +128,14 @@ export default function (userOptions?: DeepPartial<Options>) {
       ? { pages: options.extensions, components: options.extensions }
       : options.extensions;
 
-    const engine = new PugEngine(compile, site.src(), options.options);
+    const engine = new PugEngine(
+      compile,
+      site.src(),
+      options.includes,
+      options.options,
+    );
 
     site.loadPages(extensions.components, loader, engine);
-    site.includes(extensions.pages, options.includes);
     site.loadComponents(extensions.components, loader, engine);
 
     // Register the pug filter
