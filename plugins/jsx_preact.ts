@@ -99,7 +99,6 @@ export default function (userOptions?: Partial<Options>) {
 
     const engine = new PreactJsxEngine(site.src(), options.includes);
 
-    site.loadComponents(options.extensions, loader, engine);
     site.loadPages(options.extensions, {
       loader,
       engine,

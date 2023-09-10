@@ -131,7 +131,6 @@ export default function (userOptions?: DeepPartial<Options>) {
       options.options,
     );
 
-    site.loadComponents(options.extensions, loader, engine);
     site.loadPages(options.extensions, {
       loader,
       engine,

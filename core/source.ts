@@ -305,9 +305,18 @@ export default class Source {
         }
 
         // The file is a page
-        const loader = format.assetLoader || format.loader;
 
-        if (loader) {
+        if (format.pageType) {
+          const loader = format.pageType === "asset"
+            ? format.assetLoader
+            : format.loader;
+
+          if (!loader) {
+            throw new Error(
+              `Missing loader for ${format.pageType} page type (${entry.path}))`,
+            );
+          }
+
           const info = entry.getInfo();
           const { ext } = format;
           const [slug, date] = parseDate(entry.name);
@@ -319,7 +328,7 @@ export default class Source {
             created: info?.birthtime || undefined,
             remote: entry.flags.has("remote") ? entry.src : undefined,
             ext,
-            asset: format.assetLoader ? true : false,
+            asset: format.pageType === "asset",
             slug: slug.slice(0, -ext.length),
             entry,
           });

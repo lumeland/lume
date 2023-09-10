@@ -63,7 +63,6 @@ export default function (userOptions?: Partial<Options>) {
     const engine = new ModuleEngine(options.includes);
 
     site.loadData(options.extensions, loader);
-    site.loadComponents(options.extensions, loader, engine);
     site.loadPages(options.extensions, {
       loader,
       engine,

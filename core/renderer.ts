@@ -178,7 +178,7 @@ export default class Renderer {
     await this.preprocessors.run([page]);
 
     // The page is type asset
-    if (this.formats.get(page.src.ext || "")?.assetLoader) {
+    if (this.formats.get(page.src.ext || "")?.pageType === "asset") {
       page.content = page.data.content as Content;
     } else {
       const content = await this.#renderPage(page);

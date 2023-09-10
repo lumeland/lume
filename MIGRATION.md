@@ -16,6 +16,7 @@
 - Changed the `Format` interface.
 - The `pageSubExtension` is used only to load pages, but not for layouts,
   components, etc.
+- Removed `site.loadComponents`. They are intrinsic to `site.loadPages`.
 
 ## `search` Plugin
 

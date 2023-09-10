@@ -6,6 +6,9 @@ export interface Format {
   /** The file extension for this format */
   ext: string;
 
+  /** The type of page */
+  pageType?: "page" | "asset";
+
   /** The file loader used for this format (used by pages, includes, components, etc) */
   loader?: Loader;
 

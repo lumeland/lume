@@ -302,15 +302,24 @@ export default class Site {
    * Register a page loader for some extensions
    */
   loadPages(extensions: string[], options: LoadPagesOptions): this {
-    const { loader, engine, subExtension } = options;
+    const { engine, subExtension } = options;
+    const loader = options.loader || textLoader;
 
     const pageExtensions = subExtension
       ? extensions.map((ext) => subExtension + ext)
       : extensions;
 
     pageExtensions.forEach((ext) => {
-      this.formats.set({ ext, loader: loader || textLoader });
+      this.formats.set({
+        ext,
+        loader,
+        pageType: "page",
+      });
     });
+
+    if (subExtension) {
+      extensions.forEach((ext) => this.formats.set({ ext, loader }));
+    }
 
     if (engine) {
       this.engine(extensions, engine);
@@ -328,24 +337,10 @@ export default class Site {
       this.formats.set({
         ext,
         assetLoader,
+        pageType: "asset",
       });
     });
 
-    return this;
-  }
-
-  /**
-   * Register a component loader for some extensions
-   */
-  loadComponents(
-    extensions: string[],
-    loader: Loader = textLoader,
-    engine: Engine,
-  ): this {
-    extensions.forEach((ext) => {
-      this.formats.set({ ext, loader });
-    });
-    this.engine(extensions, engine);
     return this;
   }
 

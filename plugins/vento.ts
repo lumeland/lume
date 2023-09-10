@@ -112,7 +112,6 @@ export default function (userOptions?: Partial<Options>) {
       engine: ventoEngine,
       subExtension: options.pageSubExtension,
     });
-    site.loadComponents(options.extensions, loader, ventoEngine);
     site.filter("vto", filter as Helper, true);
 
     async function filter(string: string, data?: Data) {

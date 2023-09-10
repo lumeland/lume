@@ -103,7 +103,6 @@ export default function (userOptions?: Partial<Options>) {
     );
     const engine = new JsxEngine(site.src("/"), options.includes);
 
-    site.loadComponents(options.extensions, loader, engine);
     site.loadPages(options.extensions, {
       loader,
       engine,
