@@ -11,8 +11,9 @@ export interface Options {
   extensions: string[];
 
   /** The css selector to apply katex */
-
   cssSelector: string;
+
+  /** Configuration to pass to katex */
   options: KatexOptions;
 }
 

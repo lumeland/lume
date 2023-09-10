@@ -25,15 +25,14 @@
 ## `toml` Plugin
 
 - It's installed by default
-- QUESTION: Should be possible to create pages from toml files?
-  - No, use only for _data
-  - Yes, but with a subextension to avoid conflicts with some configuration
-    files like `netlify.toml`. For example: `page.tmpl.toml`.
-  - Yes.
+- New option `pageExtensions`.
+- Changed `extensions` option type to `string[]`.
 
 ## `jsx` Plugin
 
 - Removed `window.React` #332.
+- New option `pageExtensions`.
+- Changed `extensions` option type to `string[]`.
 
 ## `slugify_urls` Plugin
 
@@ -67,3 +66,43 @@
 
 - New option `useDefaultPlugins` that it's `true` by default.
 - Removed `overrideDefaultPlugins`
+
+## `module` Plugin
+
+- New option `pageExtensions`.
+- Changed `extensions` option type to `string[]`.
+
+## `eta` Plugin
+
+- New option `pageExtensions`.
+- Changed `extensions` option type to `string[]`.
+
+## `json` Plugin
+
+- New option `pageExtensions`.
+- Changed `extensions` option type to `string[]`.
+
+## `jsx_preact` Plugin
+
+- New option `pageExtensions`.
+- Changed `extensions` option type to `string[]`.
+
+## `liquid` Plugin
+
+- New option `pageExtensions`.
+- Changed `extensions` option type to `string[]`.
+
+## `nunjucks` Plugin
+
+- New option `pageExtensions`.
+- Changed `extensions` option type to `string[]`.
+
+## `pug` Plugin
+
+- New option `pageExtensions`.
+- Changed `extensions` option type to `string[]`.
+
+## `vento` Plugin
+
+- New option `pageExtensions`.
+- Changed `extensions` option type to `string[]`.

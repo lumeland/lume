@@ -4,12 +4,13 @@ import { merge } from "../core/utils.ts";
 import type { Data, Engine, Helper, Site } from "../core.ts";
 
 export interface Options {
-  /** The list of extensions used to load files */
-  extensions: string[] | {
-    pages: string[];
-    data: string[];
-    components: string[];
-  };
+  /** The list of extensions this plugin applies to */
+  extensions: string[];
+
+  /**
+   * The list of extensions used to load page files
+   */
+  pageExtensions?: string[];
 
   /**
    * Custom includes path
@@ -20,11 +21,8 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
-  extensions: {
-    pages: [".tmpl.js", ".tmpl.ts"],
-    data: [".js", ".ts"],
-    components: [".js", ".ts"],
-  },
+  extensions: [".js", ".ts"],
+  pageExtensions: [".tmpl.js", ".tmpl.ts"],
   includes: "",
 };
 
@@ -64,18 +62,14 @@ export default function (userOptions?: Partial<Options>) {
       userOptions,
     );
 
-    const extensions = Array.isArray(options.extensions)
-      ? {
-        pages: options.extensions,
-        data: options.extensions,
-        components: options.extensions,
-      }
-      : options.extensions;
-
     const engine = new ModuleEngine(options.includes);
 
-    site.loadData(extensions.data, loader);
-    site.loadPages(extensions.pages, loader, engine);
-    site.loadComponents(extensions.components, loader, engine);
+    site.loadData(options.extensions, loader);
+    site.loadComponents(options.extensions, loader, engine);
+    site.loadPages(
+      options.pageExtensions || options.extensions,
+      loader,
+      engine,
+    );
   };
 }

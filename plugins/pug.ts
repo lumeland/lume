@@ -15,10 +15,12 @@ import type { Options as PugOptions } from "../deps/pug.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[] | {
-    pages: string[];
-    components: string[];
-  };
+  extensions: string[];
+
+  /**
+   * The list of extensions used to load page files
+   */
+  pageExtensions?: string[];
 
   /**
    * Custom includes path
@@ -124,10 +126,6 @@ export default function (userOptions?: DeepPartial<Options>) {
     );
     options.options.basedir = site.src(options.includes);
 
-    const extensions = Array.isArray(options.extensions)
-      ? { pages: options.extensions, components: options.extensions }
-      : options.extensions;
-
     const engine = new PugEngine(
       compile,
       site.src(),
@@ -135,8 +133,12 @@ export default function (userOptions?: DeepPartial<Options>) {
       options.options,
     );
 
-    site.loadPages(extensions.components, loader, engine);
-    site.loadComponents(extensions.components, loader, engine);
+    site.loadPages(
+      options.pageExtensions || options.extensions,
+      loader,
+      engine,
+    );
+    site.loadComponents(options.extensions, loader, engine);
 
     // Register the pug filter
     site.filter("pug", filter as Helper, true);

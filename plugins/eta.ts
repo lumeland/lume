@@ -9,10 +9,13 @@ import type { EtaConfig } from "../deps/eta.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[] | {
-    pages: string[];
-    components: string[];
-  };
+  extensions: string[];
+
+  /**
+   * The list of extensions used to load page files
+   * If not set, it will use the same extensions as `extensions`
+   */
+  pageExtensions?: string[];
 
   /**
    * Custom includes path
@@ -107,13 +110,13 @@ export default function (userOptions?: Partial<Options>) {
       views: site.src(options.includes),
     });
 
-    const extensions = Array.isArray(options.extensions)
-      ? { pages: options.extensions, components: options.extensions }
-      : options.extensions;
-
     const engine = new EtaEngine(eta, site.src(), options.includes);
 
-    site.loadPages(extensions.pages, loader, engine);
-    site.loadComponents(extensions.components, loader, engine);
+    site.loadPages(
+      options.pageExtensions || options.extensions,
+      loader,
+      engine,
+    );
+    site.loadComponents(options.extensions, loader, engine);
   };
 }

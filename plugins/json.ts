@@ -4,30 +4,28 @@ import { merge } from "../core/utils.ts";
 import type { Site } from "../core.ts";
 
 export interface Options {
-  /** The list of extensions used to load files */
-  extensions: string[] | {
-    pages: string[];
-    data: string[];
-  };
+  /** The list of extensions this plugin applies to */
+  extensions: string[];
+
+  /**
+   * The list of extensions used to load page files
+   * If not set, it will use the same extensions as `extensions`
+   */
+  pageExtensions?: string[];
 }
 
 // Default options
 export const defaults: Options = {
-  extensions: {
-    data: [".json", ".jsonc"],
-    pages: [".tmpl.json", ".tmpl.jsonc"],
-  },
+  extensions: [".json", ".jsonc"],
+  pageExtensions: [".tmpl.json", ".tmpl.jsonc"],
 };
 
 /** A plugin to add support for JSON files */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
-  const extensions = Array.isArray(options.extensions)
-    ? { pages: options.extensions, data: options.extensions }
-    : options.extensions;
 
   return (site: Site) => {
-    site.loadData(extensions.data, json);
-    site.loadPages(extensions.pages, json);
+    site.loadData(options.extensions, json);
+    site.loadPages(options.pageExtensions || options.extensions, json);
   };
 }

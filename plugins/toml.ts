@@ -5,10 +5,12 @@ import type { Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[] | {
-    pages: string[];
-    data: string[];
-  };
+  extensions: string[];
+
+  /**
+   * The list of extensions used to load page files
+   */
+  pageExtensions?: string[];
 }
 
 // Default options
@@ -19,12 +21,9 @@ export const defaults: Options = {
 /** A plugin to add support for TOML files */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
-  const extensions = Array.isArray(options.extensions)
-    ? { pages: options.extensions, data: options.extensions }
-    : options.extensions;
 
   return (site: Site) => {
-    site.loadData(extensions.data, toml);
-    site.loadPages(extensions.pages, toml);
+    site.loadData(options.extensions, toml);
+    site.loadPages(options.pageExtensions || options.extensions, toml);
   };
 }

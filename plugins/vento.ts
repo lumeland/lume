@@ -10,6 +10,11 @@ export interface Options {
   extensions: string[];
 
   /**
+   * The list of extensions used to load page files
+   */
+  pageExtensions?: string[];
+
+  /**
    * Custom includes path
    * @default `site.options.includes`
    */
@@ -95,10 +100,6 @@ export default function (userOptions?: Partial<Options>) {
       userOptions,
     );
 
-    const extensions = Array.isArray(options.extensions)
-      ? { pages: options.extensions, components: options.extensions }
-      : options.extensions;
-
     const vento = engine({
       includes: new LumeLoader(normalizePath(options.includes), site.fs),
       dataVarname: options.options.dataVarname,
@@ -108,8 +109,12 @@ export default function (userOptions?: Partial<Options>) {
 
     const ventoEngine = new VentoEngine(vento, options.includes);
 
-    site.loadPages(extensions.pages, loader, ventoEngine);
-    site.loadComponents(extensions.components, loader, ventoEngine);
+    site.loadPages(
+      options.pageExtensions || options.extensions,
+      loader,
+      ventoEngine,
+    );
+    site.loadComponents(options.extensions, loader, ventoEngine);
     site.filter("vto", filter as Helper, true);
 
     async function filter(string: string, data?: Data) {

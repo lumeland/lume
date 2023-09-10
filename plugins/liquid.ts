@@ -32,10 +32,12 @@ import type {
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[] | {
-    pages: string[];
-    components: string[];
-  };
+  extensions: string[];
+
+  /**
+   * The list of extensions used to load page files
+   */
+  pageExtensions?: string[];
 
   /**
    * Custom includes path
@@ -128,14 +130,6 @@ export default function (userOptions?: DeepPartial<Options>) {
       userOptions,
     );
 
-    const extensions = Array.isArray(options.extensions)
-      ? {
-        pages: options.extensions,
-        includes: options.extensions,
-        components: options.extensions,
-      }
-      : options.extensions;
-
     const liquidOptions: LiquidOptions = {
       root: site.src(options.includes),
       ...options.options,
@@ -147,8 +141,12 @@ export default function (userOptions?: DeepPartial<Options>) {
       options.includes,
     );
 
-    site.loadPages(extensions.pages, loader, engine);
-    site.loadComponents(extensions.components, loader, engine);
+    site.loadPages(
+      options.pageExtensions || options.extensions,
+      loader,
+      engine,
+    );
+    site.loadComponents(options.extensions, loader, engine);
 
     // Register the liquid filter
     site.filter("liquid", filter as Helper, true);
