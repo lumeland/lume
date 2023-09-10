@@ -5,23 +5,23 @@ snapshot[`render order property 1`] = `
   formats: [
     {
       engines: 1,
-      ext: ".tmpl.ts",
-      pageLoader: [AsyncFunction: module],
+      ext: ".page.ts",
+      loader: [AsyncFunction: module],
     },
     {
       engines: 1,
-      ext: ".tmpl.js",
-      pageLoader: [AsyncFunction: module],
+      ext: ".page.js",
+      loader: [AsyncFunction: module],
     },
     {
       engines: undefined,
-      ext: ".tmpl.jsonc",
-      pageLoader: [AsyncFunction: json],
+      ext: ".page.jsonc",
+      loader: [AsyncFunction: json],
     },
     {
       engines: undefined,
-      ext: ".tmpl.json",
-      pageLoader: [AsyncFunction: json],
+      ext: ".page.json",
+      loader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -36,58 +36,57 @@ snapshot[`render order property 1`] = `
     {
       engines: 1,
       ext: ".md",
-      pageLoader: [AsyncFunction: text],
+      loader: [AsyncFunction: text],
     },
     {
       engines: 1,
       ext: ".markdown",
-      pageLoader: [AsyncFunction: text],
+      loader: [AsyncFunction: text],
     },
     {
-      componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
+      loader: [AsyncFunction: module],
     },
     {
-      componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".ts",
+      loader: [AsyncFunction: module],
     },
     {
-      componentLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".njk",
-      pageLoader: [AsyncFunction: text],
+      loader: [AsyncFunction: text],
     },
     {
       dataLoader: [AsyncFunction: toml],
       engines: undefined,
       ext: ".toml",
-      pageLoader: [AsyncFunction: toml],
+      loader: [AsyncFunction: toml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: undefined,
       ext: ".yaml",
-      pageLoader: [AsyncFunction: yaml],
+      loader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: undefined,
       ext: ".yml",
-      pageLoader: [AsyncFunction: yaml],
+      loader: [AsyncFunction: yaml],
     },
   ],
   src: [
     "/",
     "/_includes",
-    "/_includes/paginate.tmpl.js",
+    "/_includes/paginate.js",
     "/extra-page.md",
-    "/pages.tmpl.ts",
-    "/pages2.tmpl.ts",
-    "/pagination.tmpl.ts",
+    "/pages.page.ts",
+    "/pages2.page.ts",
+    "/pagination.page.ts",
   ],
 }
 `;
@@ -148,7 +147,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages2[0]",
       remote: undefined,
       slug: "pages2",
@@ -176,7 +175,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages2[1]",
       remote: undefined,
       slug: "pages2",
@@ -204,7 +203,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages2[2]",
       remote: undefined,
       slug: "pages2",
@@ -232,7 +231,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages2[3]",
       remote: undefined,
       slug: "pages2",
@@ -260,7 +259,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages2[4]",
       remote: undefined,
       slug: "pages2",
@@ -288,7 +287,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages2[5]",
       remote: undefined,
       slug: "pages2",
@@ -316,7 +315,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages2[6]",
       remote: undefined,
       slug: "pages2",
@@ -344,7 +343,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages2[7]",
       remote: undefined,
       slug: "pages2",
@@ -372,7 +371,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages2[8]",
       remote: undefined,
       slug: "pages2",
@@ -400,7 +399,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages2[9]",
       remote: undefined,
       slug: "pages2",
@@ -427,7 +426,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages[0]",
       remote: undefined,
       slug: "pages",
@@ -454,7 +453,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages[1]",
       remote: undefined,
       slug: "pages",
@@ -481,7 +480,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages[2]",
       remote: undefined,
       slug: "pages",
@@ -508,7 +507,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages[3]",
       remote: undefined,
       slug: "pages",
@@ -535,7 +534,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages[4]",
       remote: undefined,
       slug: "pages",
@@ -562,7 +561,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages[5]",
       remote: undefined,
       slug: "pages",
@@ -589,7 +588,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages[6]",
       remote: undefined,
       slug: "pages",
@@ -616,7 +615,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages[7]",
       remote: undefined,
       slug: "pages",
@@ -643,7 +642,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages[8]",
       remote: undefined,
       slug: "pages",
@@ -670,7 +669,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pages[9]",
       remote: undefined,
       slug: "pages",
@@ -683,7 +682,7 @@ snapshot[`render order property 3`] = `
       children: null,
       content: null,
       date: [],
-      layout: "paginate.tmpl.js",
+      layout: "paginate.js",
       mergedKeys: [
         "tags",
       ],
@@ -707,7 +706,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pagination[0]",
       remote: undefined,
       slug: "pagination",
@@ -720,7 +719,7 @@ snapshot[`render order property 3`] = `
       children: null,
       content: null,
       date: [],
-      layout: "paginate.tmpl.js",
+      layout: "paginate.js",
       mergedKeys: [
         "tags",
       ],
@@ -744,7 +743,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pagination[1]",
       remote: undefined,
       slug: "pagination",
@@ -757,7 +756,7 @@ snapshot[`render order property 3`] = `
       children: null,
       content: null,
       date: [],
-      layout: "paginate.tmpl.js",
+      layout: "paginate.js",
       mergedKeys: [
         "tags",
       ],
@@ -781,7 +780,7 @@ snapshot[`render order property 3`] = `
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.ts",
+      ext: ".page.ts",
       path: "/pagination[2]",
       remote: undefined,
       slug: "pagination",

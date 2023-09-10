@@ -301,17 +301,20 @@ export default class Site {
   /**
    * Register a page loader for some extensions
    */
-  loadPages(
-    extensions: string[],
-    pageLoader: Loader = textLoader,
-    engine?: Engine,
-  ): this {
-    extensions.forEach((ext) => {
-      this.formats.set({ ext, pageLoader });
+  loadPages(extensions: string[], options: LoadPagesOptions): this {
+    const { loader, engine, subExtension } = options;
+
+    const pageExtensions = subExtension
+      ? extensions.map((ext) => subExtension + ext)
+      : extensions;
+
+    pageExtensions.forEach((ext) => {
+      this.formats.set({ ext, loader: loader || textLoader });
     });
 
     if (engine) {
       this.engine(extensions, engine);
+      this.engine(pageExtensions, engine);
     }
 
     return this;
@@ -320,11 +323,11 @@ export default class Site {
   /**
    * Register an assets loader for some extensions
    */
-  loadAssets(extensions: string[], pageLoader: Loader = textLoader): this {
+  loadAssets(extensions: string[], loader: Loader = textLoader): this {
     extensions.forEach((ext) => {
       this.formats.set({
         ext,
-        pageLoader,
+        loader,
         asset: true,
       });
     });
@@ -337,11 +340,11 @@ export default class Site {
    */
   loadComponents(
     extensions: string[],
-    componentLoader: Loader = textLoader,
+    loader: Loader = textLoader,
     engine: Engine,
   ): this {
     extensions.forEach((ext) => {
-      this.formats.set({ ext, componentLoader });
+      this.formats.set({ ext, loader });
     });
     this.engine(extensions, engine);
     return this;
@@ -494,7 +497,7 @@ export default class Site {
     const entry = this.fs.addEntry({ path: filename, type: "file" });
     const format = this.formats.get(filename);
     entry.setContent(
-      format?.pageLoader || format?.dataLoader || textLoader,
+      format?.loader || format?.dataLoader || textLoader,
       data,
     );
 
@@ -921,6 +924,12 @@ export type SiteEventMap = {
   // deno-lint-ignore ban-types
   afterStartServer: {};
 };
+
+export interface LoadPagesOptions {
+  loader?: Loader;
+  engine?: Engine;
+  subExtension?: string;
+}
 
 /** Custom events for site build */
 export type SiteEvent<T extends SiteEventType = SiteEventType> =

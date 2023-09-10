@@ -2,7 +2,7 @@ import { Site } from "../core.ts";
 import { Eta } from "../deps/eta.ts";
 import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
-import { merge, subExtensions } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 
 import type { Data, Engine, Helper, HelperOptions } from "../core.ts";
 import type { EtaConfig } from "../deps/eta.ts";
@@ -109,11 +109,11 @@ export default function (userOptions?: Partial<Options>) {
 
     const engine = new EtaEngine(eta, site.src(), options.includes);
 
-    site.loadPages(
-      subExtensions(options.extensions, options.pageSubExtension),
+    site.loadComponents(options.extensions, loader, engine);
+    site.loadPages(options.extensions, {
       loader,
       engine,
-    );
-    site.loadComponents(options.extensions, loader, engine);
+      subExtension: options.pageSubExtension,
+    });
   };
 }

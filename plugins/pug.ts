@@ -1,7 +1,7 @@
 import { compile } from "../deps/pug.ts";
 import { join } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
-import { merge, subExtensions } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 
 import type {
   Data,
@@ -131,12 +131,11 @@ export default function (userOptions?: DeepPartial<Options>) {
       options.options,
     );
 
-    site.loadPages(
-      subExtensions(options.extensions, options.pageSubExtension),
+    site.loadComponents(options.extensions, loader, engine);
+    site.loadPages(options.extensions, {
       loader,
       engine,
-    );
-    site.loadComponents(options.extensions, loader, engine);
+    });
 
     // Register the pug filter
     site.filter("pug", filter as Helper, true);

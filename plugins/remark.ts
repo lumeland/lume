@@ -125,7 +125,10 @@ export default function (userOptions?: Partial<Options>) {
 
     // Load the pages
     const remarkEngine = new MarkdownEngine(engine);
-    site.loadPages(options.extensions, loader, remarkEngine);
+    site.loadPages(options.extensions, {
+      loader,
+      engine: remarkEngine,
+    });
 
     // Register the filter
     site.filter("md", filter as Helper);

@@ -305,7 +305,7 @@ export default class Source {
         }
 
         // The file is a page
-        if (format.pageLoader) {
+        if (format.loader) {
           const info = entry.getInfo();
           const { ext, asset } = format;
           const [slug, date] = parseDate(entry.name);
@@ -327,7 +327,7 @@ export default class Source {
             dirData,
             date ? { date } : {},
             this.scopedData.get(entry.path) || {},
-            await entry.getContent(format.pageLoader),
+            await entry.getContent(format.loader),
           ) as PageData;
 
           page.data.url = getUrl(page, this.prettyUrls, path);

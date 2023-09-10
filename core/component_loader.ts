@@ -63,12 +63,12 @@ export default class ComponentsLoader {
       return;
     }
 
-    if (!format.componentLoader || !format.engines?.length) {
+    if (!format.loader || !format.engines?.length) {
       return;
     }
 
     const component = await entry.getContent(
-      format.componentLoader,
+      format.loader,
     ) as ComponentFile;
 
     function getData(data: Record<string, unknown>) {

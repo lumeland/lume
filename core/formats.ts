@@ -7,13 +7,10 @@ export interface Format {
   ext: string;
 
   /** The file loader used for this format */
-  pageLoader?: Loader;
+  loader?: Loader;
 
   /** Loader for _data files in this format */
   dataLoader?: Loader;
-
-  /** Loader for _components files in this format */
-  componentLoader?: Loader;
 
   /**
    * The template engines used to render this format

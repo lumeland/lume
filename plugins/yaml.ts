@@ -25,6 +25,6 @@ export default function (userOptions?: Partial<Options>) {
 
   return (site: Site) => {
     site.loadData(extensions.data, yaml);
-    site.loadPages(extensions.pages, yaml);
+    site.loadPages(extensions.pages, { loader: yaml });
   };
 }

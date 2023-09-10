@@ -1,5 +1,5 @@
 import loader from "../core/loaders/module.ts";
-import { merge, subExtensions } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 
 import type { Data, Engine, Helper, Site } from "../core.ts";
 
@@ -20,7 +20,7 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".js", ".ts"],
-  pageSubExtension: ".tmpl",
+  pageSubExtension: ".page",
   includes: "",
 };
 
@@ -64,10 +64,10 @@ export default function (userOptions?: Partial<Options>) {
 
     site.loadData(options.extensions, loader);
     site.loadComponents(options.extensions, loader, engine);
-    site.loadPages(
-      subExtensions(options.extensions, options.pageSubExtension),
+    site.loadPages(options.extensions, {
       loader,
       engine,
-    );
+      subExtension: options.pageSubExtension,
+    });
   };
 }

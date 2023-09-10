@@ -1,5 +1,5 @@
 export const tags = ["multiple"];
-export const layout = "layout.tmpl.js";
+export const layout = "layout.js";
 
 export default function* () {
   const pages = [1, 2, 3];

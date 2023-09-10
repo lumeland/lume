@@ -572,15 +572,3 @@ export function env<T>(name: string): T | undefined {
       return value as T;
   }
 }
-
-export function subExtensions(extensions: string[], subextension?: string) {
-  if (!subextension) {
-    return extensions;
-  }
-  if (!subextension.startsWith(".")) {
-    throw new Error(
-      `Invalid subextension: "${subextension}". It must start with "."`,
-    );
-  }
-  return extensions.map((ext) => subextension + ext);
-}

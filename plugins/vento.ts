@@ -1,6 +1,6 @@
 import { engine, FileLoader } from "../deps/vento.ts";
 import loader from "../core/loaders/text.ts";
-import { merge, normalizePath, subExtensions } from "../core/utils.ts";
+import { merge, normalizePath } from "../core/utils.ts";
 
 import type { Environment, Token } from "../deps/vento.ts";
 import type { Data, Engine, FS, Helper, Site } from "../core.ts";
@@ -107,11 +107,11 @@ export default function (userOptions?: Partial<Options>) {
 
     const ventoEngine = new VentoEngine(vento, options.includes);
 
-    site.loadPages(
-      subExtensions(options.extensions, options.pageSubExtension),
+    site.loadPages(options.extensions, {
       loader,
-      ventoEngine,
-    );
+      engine: ventoEngine,
+      subExtension: options.pageSubExtension,
+    });
     site.loadComponents(options.extensions, loader, ventoEngine);
     site.filter("vto", filter as Helper, true);
 

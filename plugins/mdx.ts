@@ -132,7 +132,10 @@ export default function (userOptions?: Partial<Options>) {
     }
 
     // Load the pages
-    const MdxEngine = new MDXEngine(site.src(), options, format.engines[0]);
-    site.loadPages(options.extensions, loader, MdxEngine);
+    const engine = new MDXEngine(site.src(), options, format.engines[0]);
+    site.loadPages(options.extensions, {
+      loader,
+      engine,
+    });
   };
 }

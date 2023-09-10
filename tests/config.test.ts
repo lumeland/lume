@@ -143,10 +143,10 @@ Deno.test("pages configuration", () => {
   equals(formats.size, 14);
 
   const extensions = [
-    ".tmpl.json",
-    ".tmpl.jsonc",
-    ".tmpl.js",
-    ".tmpl.ts",
+    ".page.json",
+    ".page.jsonc",
+    ".page.js",
+    ".page.ts",
     ".md",
     ".njk",
     ".toml",
@@ -156,7 +156,7 @@ Deno.test("pages configuration", () => {
 
   for (const ext of extensions) {
     equals(formats.has(ext), true);
-    assert(formats.get(ext)?.pageLoader);
+    assert(formats.get(ext)?.loader);
     assert(!formats.get(ext)?.asset);
   }
 
@@ -174,13 +174,13 @@ Deno.test("pages configuration", () => {
 
   const newExts = [".ext1", ".ext2"];
 
-  site.loadPages(newExts, loader, engine);
+  site.loadPages(newExts, { loader, engine });
 
   equals(formats.size, 16);
 
   for (const ext of newExts) {
     equals(formats.has(ext), true);
-    assert(formats.get(ext)?.pageLoader);
+    assert(formats.get(ext)?.loader);
     assert(!formats.get(ext)?.asset);
   }
 });
@@ -203,7 +203,7 @@ Deno.test("assets configuration", () => {
   equals(formats.size, 15);
   for (const ext of extensions) {
     equals(formats.has(ext), true);
-    assert(formats.get(ext)?.pageLoader);
+    assert(formats.get(ext)?.loader);
     assert(formats.get(ext)?.asset);
   }
 });

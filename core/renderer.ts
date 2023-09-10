@@ -238,7 +238,7 @@ export default class Renderer {
     while (layout) {
       const format = this.formats.search(layout);
 
-      if (!format || !format.pageLoader) {
+      if (!format || !format.loader) {
         throw new Exception(
           "There's no handler for this layout format",
           { layout },
@@ -268,7 +268,7 @@ export default class Renderer {
         );
       }
 
-      const layoutData = await entry.getContent(format.pageLoader);
+      const layoutData = await entry.getContent(format.loader);
 
       delete data.layout;
       delete data.templateEngine;

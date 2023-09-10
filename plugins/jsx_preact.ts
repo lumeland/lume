@@ -1,6 +1,6 @@
 import { preact, renderToString } from "../deps/preact.ts";
 import loader from "../core/loaders/module.ts";
-import { merge, subExtensions } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 
 import type { Data, Engine, Helper, Site } from "../core.ts";
 
@@ -100,10 +100,10 @@ export default function (userOptions?: Partial<Options>) {
     const engine = new PreactJsxEngine(site.src(), options.includes);
 
     site.loadComponents(options.extensions, loader, engine);
-    site.loadPages(
-      subExtensions(options.extensions, options.pageSubExtension),
+    site.loadPages(options.extensions, {
       loader,
       engine,
-    );
+      subExtension: options.pageSubExtension,
+    });
   };
 }

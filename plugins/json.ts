@@ -1,5 +1,5 @@
 import json from "../core/loaders/json.ts";
-import { merge, subExtensions } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 
 import type { Site } from "../core.ts";
 
@@ -14,7 +14,7 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".json", ".jsonc"],
-  pageSubExtension: ".tmpl",
+  pageSubExtension: ".page",
 };
 
 /** A plugin to add support for JSON files */
@@ -23,9 +23,9 @@ export default function (userOptions?: Partial<Options>) {
 
   return (site: Site) => {
     site.loadData(options.extensions, json);
-    site.loadPages(
-      subExtensions(options.extensions, options.pageSubExtension),
-      json,
-    );
+    site.loadPages(options.extensions, {
+      subExtension: options.pageSubExtension,
+      loader: json,
+    });
   };
 }

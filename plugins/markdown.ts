@@ -111,7 +111,10 @@ export default function (userOptions?: DeepPartial<Options>) {
     site.hooks.markdownIt = (callback) => callback(engine);
 
     // Load the pages
-    site.loadPages(options.extensions, loader, new MarkdownEngine(engine));
+    site.loadPages(options.extensions, {
+      loader,
+      engine: new MarkdownEngine(engine),
+    });
 
     // Register the md filter
     site.filter("md", filter as Helper);

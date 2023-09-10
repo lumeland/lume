@@ -5,23 +5,23 @@ snapshot[`build a site with vento 1`] = `
   formats: [
     {
       engines: 1,
-      ext: ".tmpl.ts",
-      pageLoader: [AsyncFunction: module],
+      ext: ".page.ts",
+      loader: [AsyncFunction: module],
     },
     {
       engines: 1,
-      ext: ".tmpl.js",
-      pageLoader: [AsyncFunction: module],
+      ext: ".page.js",
+      loader: [AsyncFunction: module],
     },
     {
       engines: undefined,
-      ext: ".tmpl.jsonc",
-      pageLoader: [AsyncFunction: json],
+      ext: ".page.jsonc",
+      loader: [AsyncFunction: json],
     },
     {
       engines: undefined,
-      ext: ".tmpl.json",
-      pageLoader: [AsyncFunction: json],
+      ext: ".page.json",
+      loader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -36,60 +36,57 @@ snapshot[`build a site with vento 1`] = `
     {
       engines: 1,
       ext: ".md",
-      pageLoader: [AsyncFunction: text],
+      loader: [AsyncFunction: text],
     },
     {
       engines: 1,
       ext: ".markdown",
-      pageLoader: [AsyncFunction: text],
+      loader: [AsyncFunction: text],
     },
     {
-      componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
+      loader: [AsyncFunction: module],
     },
     {
-      componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".ts",
+      loader: [AsyncFunction: module],
     },
     {
-      componentLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".njk",
-      pageLoader: [AsyncFunction: text],
+      loader: [AsyncFunction: text],
     },
     {
       dataLoader: [AsyncFunction: toml],
       engines: undefined,
       ext: ".toml",
-      pageLoader: [AsyncFunction: toml],
+      loader: [AsyncFunction: toml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: undefined,
       ext: ".yaml",
-      pageLoader: [AsyncFunction: yaml],
+      loader: [AsyncFunction: yaml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: undefined,
       ext: ".yml",
-      pageLoader: [AsyncFunction: yaml],
+      loader: [AsyncFunction: yaml],
     },
     {
-      componentLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".vento",
-      pageLoader: [AsyncFunction: text],
+      loader: [AsyncFunction: text],
     },
     {
-      componentLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".vto",
-      pageLoader: [AsyncFunction: text],
+      loader: [AsyncFunction: text],
     },
   ],
   src: [
@@ -100,7 +97,7 @@ snapshot[`build a site with vento 1`] = `
     "/_includes/footer.vto",
     "/_includes/layout.vto",
     "/index.vto",
-    "/vto-filter.tmpl.js",
+    "/vto-filter.page.js",
   ],
 }
 `;
@@ -214,7 +211,7 @@ Título
     },
     src: {
       asset: undefined,
-      ext: ".tmpl.js",
+      ext: ".page.js",
       path: "/vto-filter",
       remote: undefined,
       slug: "vto-filter",

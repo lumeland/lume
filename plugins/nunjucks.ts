@@ -1,11 +1,6 @@
 import nunjucks from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
-import {
-  merge,
-  normalizePath,
-  resolveInclude,
-  subExtensions,
-} from "../core/utils.ts";
+import { merge, normalizePath, resolveInclude } from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
 import { basename, join, posix } from "../deps/path.ts";
 
@@ -213,12 +208,12 @@ export default function (userOptions?: DeepPartial<Options>) {
 
     const engine = new NunjucksEngine(env, site.src(), options.includes);
 
-    site.loadPages(
-      subExtensions(options.extensions, options.pageSubExtension),
+    site.loadComponents(options.extensions, loader, engine);
+    site.loadPages(options.extensions, {
       loader,
       engine,
-    );
-    site.loadComponents(options.extensions, loader, engine);
+      subExtension: options.pageSubExtension,
+    });
 
     // Register the njk filter
     site.filter("njk", filter as Helper, true);

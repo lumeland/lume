@@ -1,5 +1,5 @@
 import toml from "../core/loaders/toml.ts";
-import { merge, subExtensions } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 
 import type { Site } from "../core.ts";
 
@@ -22,9 +22,9 @@ export default function (userOptions?: Partial<Options>) {
 
   return (site: Site) => {
     site.loadData(options.extensions, toml);
-    site.loadPages(
-      subExtensions(options.extensions, options.pageSubExtension),
-      toml,
-    );
+    site.loadPages(options.extensions, {
+      loader: toml,
+      subExtension: options.pageSubExtension,
+    });
   };
 }
