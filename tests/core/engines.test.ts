@@ -11,19 +11,21 @@ Deno.test("Engines", async (t) => {
   equals(formats.size, 0);
 
   await t.step("Add a template engine", () => {
-    site.engine(
+    site.loadPages(
       [".foo"],
-      new class implements Engine {
-        includes = "";
-        render(content: string, data: Data): Promise<string> {
-          return Promise.resolve(this.renderComponent(content, data));
-        }
-        renderComponent(content: string, data: Data): string {
-          return content + data.foo;
-        }
-        addHelper() {}
-        deleteCache() {}
-      }(),
+      {
+        engine: new class implements Engine {
+          includes = "";
+          render(content: string, data: Data): Promise<string> {
+            return Promise.resolve(this.renderComponent(content, data));
+          }
+          renderComponent(content: string, data: Data): string {
+            return content + data.foo;
+          }
+          addHelper() {}
+          deleteCache() {}
+        }(),
+      },
     );
 
     equals(formats.size, 1);
@@ -42,19 +44,21 @@ Deno.test("Engines", async (t) => {
   });
 
   await t.step("Add other template engine", () => {
-    site.engine(
+    site.loadPages(
       [".upper"],
-      new class implements Engine {
-        includes = "";
-        render(content: string): Promise<string> {
-          return Promise.resolve(this.renderComponent(content));
-        }
-        renderComponent(content: string): string {
-          return content.toUpperCase();
-        }
-        addHelper() {}
-        deleteCache() {}
-      }(),
+      {
+        engine: new class implements Engine {
+          includes = "";
+          render(content: string): Promise<string> {
+            return Promise.resolve(this.renderComponent(content));
+          }
+          renderComponent(content: string): string {
+            return content.toUpperCase();
+          }
+          addHelper() {}
+          deleteCache() {}
+        }(),
+      },
     );
 
     equals(formats.size, 2);

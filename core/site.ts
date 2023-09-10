@@ -301,9 +301,14 @@ export default class Site {
   /**
    * Register a page loader for some extensions
    */
-  loadPages(extensions: string[], options: LoadPagesOptions): this {
+  loadPages(extensions: string[], options: LoadPagesOptions | Loader): this {
+    if (typeof options === "function") {
+      options = { loader: options };
+    }
+
     const { engine, subExtension } = options;
     const loader = options.loader || textLoader;
+    const engines = Array.isArray(engine) ? engine : engine ? [engine] : [];
 
     const pageExtensions = subExtension
       ? extensions.map((ext) => subExtension + ext)
@@ -314,16 +319,16 @@ export default class Site {
         ext,
         loader,
         pageType: "page",
+        engines,
       });
     });
 
     if (subExtension) {
-      extensions.forEach((ext) => this.formats.set({ ext, loader }));
+      extensions.forEach((ext) => this.formats.set({ ext, loader, engines }));
     }
 
-    if (engine) {
-      this.engine(extensions, engine);
-      this.engine(pageExtensions, engine);
+    for (const [name, helper] of this.renderer.helpers) {
+      engines.forEach((engine) => engine.addHelper(name, ...helper));
     }
 
     return this;
@@ -340,19 +345,6 @@ export default class Site {
         pageType: "asset",
       });
     });
-
-    return this;
-  }
-
-  /** Register the engines for some extensions  */
-  engine(extensions: string[], ...engines: Engine[]): this {
-    extensions.forEach((ext) => {
-      this.formats.set({ ext, engines });
-    });
-
-    for (const [name, helper] of this.renderer.helpers) {
-      engines.forEach((engine) => engine.addHelper(name, ...helper));
-    }
 
     return this;
   }
@@ -921,7 +913,7 @@ export type SiteEventMap = {
 
 export interface LoadPagesOptions {
   loader?: Loader;
-  engine?: Engine;
+  engine?: Engine | Engine[];
   subExtension?: string;
 }
 
