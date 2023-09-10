@@ -10,7 +10,7 @@ import {
 } from "../deps/liquid.ts";
 import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
-import { merge } from "../core/utils.ts";
+import { merge, subExtensions } from "../core/utils.ts";
 
 import type {
   Data,
@@ -34,10 +34,8 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /**
-   * The list of extensions used to load page files
-   */
-  pageExtensions?: string[];
+  /** Optional sub-extension for page files */
+  pageSubExtension?: string;
 
   /**
    * Custom includes path
@@ -142,7 +140,7 @@ export default function (userOptions?: DeepPartial<Options>) {
     );
 
     site.loadPages(
-      options.pageExtensions || options.extensions,
+      subExtensions(options.extensions, options.pageSubExtension),
       loader,
       engine,
     );

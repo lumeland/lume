@@ -1,6 +1,6 @@
 import { React, ReactDOMServer } from "../deps/react.ts";
 import loader from "../core/loaders/module.ts";
-import { merge } from "../core/utils.ts";
+import { merge, subExtensions } from "../core/utils.ts";
 
 import type { Data, Engine, Helper, Site } from "../core.ts";
 
@@ -8,10 +8,8 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /**
-   * The list of extensions used to load page files
-   */
-  pageExtensions?: string[];
+  /** Optional sub-extension for page files */
+  pageSubExtension?: string;
 
   /**
    * Custom includes path
@@ -107,7 +105,7 @@ export default function (userOptions?: Partial<Options>) {
 
     site.loadComponents(options.extensions, loader, engine);
     site.loadPages(
-      options.pageExtensions || options.extensions,
+      subExtensions(options.extensions, options.pageSubExtension),
       loader,
       engine,
     );

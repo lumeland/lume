@@ -1,6 +1,11 @@
 import nunjucks from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
-import { merge, normalizePath, resolveInclude } from "../core/utils.ts";
+import {
+  merge,
+  normalizePath,
+  resolveInclude,
+  subExtensions,
+} from "../core/utils.ts";
 import { Exception } from "../core/errors.ts";
 import { basename, join, posix } from "../deps/path.ts";
 
@@ -19,10 +24,8 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /**
-   * The list of extensions used to load page files
-   */
-  pageExtensions?: string[];
+  /** Optional sub-extension for page files */
+  pageSubExtension?: string;
 
   /**
    * Custom includes path
@@ -211,7 +214,7 @@ export default function (userOptions?: DeepPartial<Options>) {
     const engine = new NunjucksEngine(env, site.src(), options.includes);
 
     site.loadPages(
-      options.pageExtensions || options.extensions,
+      subExtensions(options.extensions, options.pageSubExtension),
       loader,
       engine,
     );

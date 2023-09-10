@@ -25,13 +25,13 @@
 ## `toml` Plugin
 
 - It's installed by default
-- New option `pageExtensions`.
+- New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
 
 ## `jsx` Plugin
 
 - Removed `window.React` #332.
-- New option `pageExtensions`.
+- New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
 
 ## `slugify_urls` Plugin
@@ -69,40 +69,40 @@
 
 ## `module` Plugin
 
-- New option `pageExtensions`.
+- New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
 
 ## `eta` Plugin
 
-- New option `pageExtensions`.
+- New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
 
 ## `json` Plugin
 
-- New option `pageExtensions`.
+- New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
 
 ## `jsx_preact` Plugin
 
-- New option `pageExtensions`.
+- New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
 
 ## `liquid` Plugin
 
-- New option `pageExtensions`.
+- New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
 
 ## `nunjucks` Plugin
 
-- New option `pageExtensions`.
+- New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
 
 ## `pug` Plugin
 
-- New option `pageExtensions`.
+- New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
 
 ## `vento` Plugin
 
-- New option `pageExtensions`.
+- New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.

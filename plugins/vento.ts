@@ -1,6 +1,6 @@
 import { engine, FileLoader } from "../deps/vento.ts";
 import loader from "../core/loaders/text.ts";
-import { merge, normalizePath } from "../core/utils.ts";
+import { merge, normalizePath, subExtensions } from "../core/utils.ts";
 
 import type { Environment, Token } from "../deps/vento.ts";
 import type { Data, Engine, FS, Helper, Site } from "../core.ts";
@@ -9,10 +9,8 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /**
-   * The list of extensions used to load page files
-   */
-  pageExtensions?: string[];
+  /** Optional sub-extension for page files */
+  pageSubExtension?: string;
 
   /**
    * Custom includes path
@@ -110,7 +108,7 @@ export default function (userOptions?: Partial<Options>) {
     const ventoEngine = new VentoEngine(vento, options.includes);
 
     site.loadPages(
-      options.pageExtensions || options.extensions,
+      subExtensions(options.extensions, options.pageSubExtension),
       loader,
       ventoEngine,
     );

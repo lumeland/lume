@@ -2,7 +2,7 @@ import { Site } from "../core.ts";
 import { Eta } from "../deps/eta.ts";
 import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
-import { merge } from "../core/utils.ts";
+import { merge, subExtensions } from "../core/utils.ts";
 
 import type { Data, Engine, Helper, HelperOptions } from "../core.ts";
 import type { EtaConfig } from "../deps/eta.ts";
@@ -11,11 +11,8 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions: string[];
 
-  /**
-   * The list of extensions used to load page files
-   * If not set, it will use the same extensions as `extensions`
-   */
-  pageExtensions?: string[];
+  /** Optional sub-extension for page files */
+  pageSubExtension?: string;
 
   /**
    * Custom includes path
@@ -113,7 +110,7 @@ export default function (userOptions?: Partial<Options>) {
     const engine = new EtaEngine(eta, site.src(), options.includes);
 
     site.loadPages(
-      options.pageExtensions || options.extensions,
+      subExtensions(options.extensions, options.pageSubExtension),
       loader,
       engine,
     );
