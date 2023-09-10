@@ -133,7 +133,7 @@ snapshot[`Build a markdown site 3`] = `
       url: "/basic/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/basic",
       remote: undefined,
@@ -161,7 +161,7 @@ snapshot[`Build a markdown site 3`] = `
       url: "/with-attributes/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/with-attributes",
       remote: undefined,
@@ -201,7 +201,7 @@ snapshot[`Build a markdown site 3`] = `
       url: "/with-code/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/with-code",
       remote: undefined,
@@ -245,7 +245,7 @@ Other title
       url: "/with-deflist/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/with-deflist",
       remote: undefined,
@@ -284,7 +284,7 @@ Other title
       url: "/with-filter/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/with-filter",
       remote: undefined,
@@ -315,7 +315,7 @@ Other title
       url: "/with-module/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/with-module",
       remote: undefined,
@@ -370,7 +370,7 @@ Foo
       url: "/with-nunjucks/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/with-nunjucks",
       remote: undefined,

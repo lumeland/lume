@@ -141,7 +141,7 @@ snapshot[`build a site with eta 3`] = `
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".eta",
       path: "/index",
       remote: undefined,

@@ -13,7 +13,9 @@
   - Use the env variable `LUME_DRAFTS=true` to output draft pages.
 - Renamed the interface method `Engine.renderSync` to `Engine.renderComponent`.
 - Removed `site.includes()` function.
-- Removed `Format.includesPath`.
+- Changed the `Format` interface.
+- The `pageSubExtension` is used only to load pages, but not for layouts,
+  components, etc.
 
 ## `search` Plugin
 
@@ -71,6 +73,7 @@
 
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
+- Replaced `.tmpl` subextension with `.page`.
 
 ## `eta` Plugin
 
@@ -81,6 +84,7 @@
 
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
+- Replaced `.tmpl` subextension with `.page`.
 
 ## `jsx_preact` Plugin
 

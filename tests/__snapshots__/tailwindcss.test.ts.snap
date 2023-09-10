@@ -44,11 +44,11 @@ snapshot[`postcss plugin 1`] = `
       loader: [AsyncFunction: text],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
-      loader: [AsyncFunction: text],
+      loader: [AsyncFunction: module],
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -80,10 +80,9 @@ snapshot[`postcss plugin 1`] = `
       loader: [AsyncFunction: yaml],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".css",
-      loader: [AsyncFunction: text],
     },
   ],
   src: [
@@ -901,7 +900,7 @@ snapshot[`postcss plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/index",
       remote: undefined,

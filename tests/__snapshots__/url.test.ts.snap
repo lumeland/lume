@@ -139,7 +139,7 @@ snapshot[`url and htmlUrl update href 3`] = `
       url: "/default-filter/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/default-filter",
       remote: undefined,
@@ -188,7 +188,7 @@ snapshot[`url and htmlUrl update href 3`] = `
       url: "/renamed-filter/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/renamed-filter",
       remote: undefined,
@@ -337,7 +337,7 @@ snapshot[`configure url and htmlUrl names 3`] = `
       url: "/default-filter/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/default-filter",
       remote: undefined,
@@ -386,7 +386,7 @@ snapshot[`configure url and htmlUrl names 3`] = `
       url: "/renamed-filter/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/renamed-filter",
       remote: undefined,

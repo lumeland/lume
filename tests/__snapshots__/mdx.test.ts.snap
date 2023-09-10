@@ -164,7 +164,7 @@ This is a markdown file with the title **{ title }**.
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".mdx",
       path: "/index",
       remote: undefined,

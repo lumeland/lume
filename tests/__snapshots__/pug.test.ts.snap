@@ -124,7 +124,7 @@ block content
       url: "/extends/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".pug",
       path: "/extends",
       remote: undefined,
@@ -174,7 +174,7 @@ block content
       url: "/article.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".pug",
       path: "/filter",
       remote: undefined,
@@ -205,7 +205,7 @@ block content
       url: "/layout/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".pug",
       path: "/layout",
       remote: undefined,

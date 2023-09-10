@@ -44,18 +44,18 @@ snapshot[`render remote files 1`] = `
       loader: [AsyncFunction: text],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
-      loader: [AsyncFunction: text],
+      loader: [AsyncFunction: module],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".ts",
-      loader: [AsyncFunction: text],
+      loader: [AsyncFunction: module],
     },
     {
       engines: 1,
@@ -81,22 +81,19 @@ snapshot[`render remote files 1`] = `
       loader: [AsyncFunction: yaml],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".css",
-      loader: [AsyncFunction: text],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".scss",
-      loader: [AsyncFunction: text],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".sass",
-      loader: [AsyncFunction: text],
     },
   ],
   src: [
@@ -179,7 +176,7 @@ This is a remote template
       url: "/local1/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/local1",
       remote: undefined,

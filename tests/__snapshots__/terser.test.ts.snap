@@ -44,11 +44,11 @@ snapshot[`terser plugin 1`] = `
       loader: [AsyncFunction: text],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
-      loader: [AsyncFunction: text],
+      loader: [AsyncFunction: module],
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -152,7 +152,7 @@ export function two () {
       url: "/numbers.js",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/numbers",
       remote: undefined,

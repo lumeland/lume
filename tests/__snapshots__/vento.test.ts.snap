@@ -178,7 +178,7 @@ Título
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
@@ -210,7 +210,7 @@ Título
       url: "/vto-filter/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/vto-filter",
       remote: undefined,

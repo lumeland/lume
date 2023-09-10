@@ -144,7 +144,7 @@ p {
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -191,7 +191,7 @@ p {
       url: "/other/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/other",
       remote: undefined,

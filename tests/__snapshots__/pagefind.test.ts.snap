@@ -133,7 +133,7 @@ This is the first page
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -180,7 +180,7 @@ This is the second page
       url: "/page2/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/page2",
       remote: undefined,

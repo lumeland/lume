@@ -151,7 +151,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".jsx",
       path: "/index",
       remote: undefined,
@@ -200,7 +200,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       url: "/page/1/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".jsx",
       path: "/multiple[0]",
       remote: undefined,
@@ -249,7 +249,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       url: "/page/2/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".jsx",
       path: "/multiple[1]",
       remote: undefined,
@@ -291,7 +291,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       url: "/with-function/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".jsx",
       path: "/with-function",
       remote: undefined,
@@ -331,7 +331,7 @@ This is a **markdown** text. [Go home](/)
       url: "/with-markdown/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/with-markdown",
       remote: undefined,

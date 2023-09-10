@@ -177,7 +177,7 @@ snapshot[`base_path plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/index",
       remote: undefined,

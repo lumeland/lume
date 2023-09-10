@@ -171,7 +171,7 @@ snapshot[`minify_html plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/index",
       remote: undefined,

@@ -167,7 +167,7 @@ snapshot[`metas plugin 3`] = `
       url: "/page-1/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/page-1",
       remote: undefined,
@@ -248,7 +248,7 @@ snapshot[`metas plugin 3`] = `
       url: "/page-2/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/page-2",
       remote: undefined,
@@ -324,7 +324,7 @@ snapshot[`metas plugin 3`] = `
       url: "/page-3/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/page-3",
       remote: undefined,

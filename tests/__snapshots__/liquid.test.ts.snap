@@ -125,7 +125,7 @@ snapshot[`build a site with liquid 3`] = `
       url: "/data.json",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".liquid",
       path: "/data",
       remote: undefined,
@@ -167,7 +167,7 @@ snapshot[`build a site with liquid 3`] = `
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".liquid",
       path: "/index",
       remote: undefined,
@@ -206,7 +206,7 @@ snapshot[`build a site with liquid 3`] = `
       url: "/liquid-filter/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/liquid-filter",
       remote: undefined,
@@ -293,7 +293,7 @@ snapshot[`build a site with liquid 3`] = `
       url: "/with-helpers/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".liquid",
       path: "/with-helpers",
       remote: undefined,

@@ -117,7 +117,7 @@ snapshot[`Disabled pretty URLs 3`] = `
       url: "/page2.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/foo",
       remote: undefined,
@@ -148,7 +148,7 @@ snapshot[`Disabled pretty URLs 3`] = `
       url: "/page1.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/page1",
       remote: undefined,

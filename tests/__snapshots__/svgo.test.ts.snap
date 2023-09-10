@@ -79,10 +79,9 @@ snapshot[`terser plugin 1`] = `
       loader: [AsyncFunction: yaml],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".svg",
-      loader: [AsyncFunction: text],
     },
   ],
   src: [

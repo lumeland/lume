@@ -79,16 +79,14 @@ snapshot[`sass plugin 1`] = `
       loader: [AsyncFunction: yaml],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".scss",
-      loader: [AsyncFunction: text],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".sass",
-      loader: [AsyncFunction: text],
     },
   ],
   src: [

@@ -189,7 +189,7 @@ c = \\\\pm\\\\sqrt{a^2 + b^2}
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,

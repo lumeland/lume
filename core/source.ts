@@ -305,9 +305,11 @@ export default class Source {
         }
 
         // The file is a page
-        if (format.loader) {
+        const loader = format.assetLoader || format.loader;
+
+        if (loader) {
           const info = entry.getInfo();
-          const { ext, asset } = format;
+          const { ext } = format;
           const [slug, date] = parseDate(entry.name);
 
           // Create the page
@@ -317,7 +319,7 @@ export default class Source {
             created: info?.birthtime || undefined,
             remote: entry.flags.has("remote") ? entry.src : undefined,
             ext,
-            asset,
+            asset: format.assetLoader ? true : false,
             slug: slug.slice(0, -ext.length),
             entry,
           });
@@ -327,7 +329,7 @@ export default class Source {
             dirData,
             date ? { date } : {},
             this.scopedData.get(entry.path) || {},
-            await entry.getContent(format.loader),
+            await entry.getContent(loader),
           ) as PageData;
 
           page.data.url = getUrl(page, this.prettyUrls, path);

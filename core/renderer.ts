@@ -177,7 +177,8 @@ export default class Renderer {
 
     await this.preprocessors.run([page]);
 
-    if (this.formats.get(page.src.ext || "")?.asset) {
+    // The page is type asset
+    if (this.formats.get(page.src.ext || "")?.assetLoader) {
       page.content = page.data.content as Content;
     } else {
       const content = await this.#renderPage(page);
@@ -263,7 +264,7 @@ export default class Renderer {
 
       if (!entry) {
         throw new Exception(
-          "The layout file doesn't exist",
+          `The layout file "${layoutPath}" doesn't exist`,
           { layoutPath },
         );
       }

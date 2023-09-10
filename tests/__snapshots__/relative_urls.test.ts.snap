@@ -134,7 +134,7 @@ snapshot[`relative_url plugin 3`] = `
       url: "/about-us/contact/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/about-us/contact",
       remote: undefined,
@@ -181,7 +181,7 @@ snapshot[`relative_url plugin 3`] = `
       url: "/about-us/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/about-us/index",
       remote: undefined,
@@ -228,7 +228,7 @@ snapshot[`relative_url plugin 3`] = `
       url: "/about-us/presentation/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/about-us/presentation",
       remote: undefined,
@@ -287,7 +287,7 @@ snapshot[`relative_url plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -431,7 +431,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       url: "/about-us/contact.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/about-us/contact",
       remote: undefined,
@@ -478,7 +478,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       url: "/about-us/index.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/about-us/index",
       remote: undefined,
@@ -525,7 +525,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       url: "/about-us/presentation.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/about-us/presentation",
       remote: undefined,
@@ -584,7 +584,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       url: "/index.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,

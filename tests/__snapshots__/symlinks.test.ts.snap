@@ -130,7 +130,7 @@ snapshot[`follow symlinks 3`] = `
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,

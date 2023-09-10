@@ -131,7 +131,7 @@ snapshot[`TOML plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".toml",
       path: "/index",
       remote: undefined,
@@ -166,7 +166,7 @@ snapshot[`TOML plugin 3`] = `
       url: "/page1/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/page1",
       remote: undefined,

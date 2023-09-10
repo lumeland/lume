@@ -144,7 +144,7 @@ First article
       url: "/articles/first-article/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/articles/article-1",
       remote: undefined,
@@ -189,7 +189,7 @@ Second article
       url: "/drafts/second-article/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/articles/article-2",
       remote: undefined,
@@ -232,7 +232,7 @@ Third article
       url: "/articles/third-article/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/articles/article-3",
       remote: undefined,
@@ -300,7 +300,7 @@ Third article
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -334,7 +334,7 @@ Third article
       url: "/other/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/other",
       remote: undefined,
@@ -364,7 +364,7 @@ Third article
       url: "/tilde-and-ene/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/tílde-and-eñe",
       remote: undefined,
@@ -518,7 +518,7 @@ First article
       url: "/articles/first-article/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/articles/article-1",
       remote: undefined,
@@ -563,7 +563,7 @@ Second article
       url: "/drafts/second-article/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/articles/article-2",
       remote: undefined,
@@ -606,7 +606,7 @@ Third article
       url: "/articles/third%20article/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/articles/article-3",
       remote: undefined,
@@ -674,7 +674,7 @@ Third article
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -708,7 +708,7 @@ Third article
       url: "/other/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/other",
       remote: undefined,
@@ -738,7 +738,7 @@ Third article
       url: "/tílde-and-eñe/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/tílde-and-eñe",
       remote: undefined,

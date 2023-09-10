@@ -262,7 +262,7 @@ console.log("Hello world, from the icon/User component");
       url: "/components/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/components",
       remote: undefined,
@@ -295,7 +295,7 @@ console.log("Hello world, from the icon/User component");
       url: "/data.json",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/data",
       remote: undefined,
@@ -341,7 +341,7 @@ console.log("Hello world, from the icon/User component");
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/index",
       remote: undefined,
@@ -384,7 +384,7 @@ console.log("Hello world, from the icon/User component");
       url: "/njk-filter/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/njk-filter",
       remote: undefined,
@@ -475,7 +475,7 @@ console.log("Hello world, from the icon/User component");
       url: "/with-helpers/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/with-helpers",
       remote: undefined,

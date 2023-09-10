@@ -1408,7 +1408,7 @@ video {
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/index",
       remote: undefined,
@@ -3364,7 +3364,7 @@ video {
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/index",
       remote: undefined,

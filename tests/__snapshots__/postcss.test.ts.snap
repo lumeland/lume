@@ -79,10 +79,9 @@ snapshot[`postcss plugin 1`] = `
       loader: [AsyncFunction: yaml],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".css",
-      loader: [AsyncFunction: text],
     },
   ],
   src: [
@@ -273,10 +272,9 @@ snapshot[`postcss plugin without includes 1`] = `
       loader: [AsyncFunction: yaml],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".css",
-      loader: [AsyncFunction: text],
     },
   ],
   src: [
@@ -449,10 +447,9 @@ snapshot[`postcss plugin with hooks 1`] = `
       loader: [AsyncFunction: yaml],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".css",
-      loader: [AsyncFunction: text],
     },
   ],
   src: [

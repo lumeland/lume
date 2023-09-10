@@ -44,11 +44,11 @@ snapshot[`inline plugin 1`] = `
       loader: [AsyncFunction: text],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
-      loader: [AsyncFunction: text],
+      loader: [AsyncFunction: module],
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -80,16 +80,14 @@ snapshot[`inline plugin 1`] = `
       loader: [AsyncFunction: yaml],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".svg",
-      loader: [AsyncFunction: text],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: binary],
       engines: undefined,
       ext: ".png",
-      loader: [AsyncFunction: binary],
     },
   ],
   src: [
@@ -278,7 +276,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/index",
       remote: undefined,
@@ -363,7 +361,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
       url: "/styles.css",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/styles",
       remote: undefined,

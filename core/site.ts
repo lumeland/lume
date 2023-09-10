@@ -323,12 +323,11 @@ export default class Site {
   /**
    * Register an assets loader for some extensions
    */
-  loadAssets(extensions: string[], loader: Loader = textLoader): this {
+  loadAssets(extensions: string[], assetLoader: Loader = textLoader): this {
     extensions.forEach((ext) => {
       this.formats.set({
         ext,
-        loader,
-        asset: true,
+        assetLoader,
       });
     });
 

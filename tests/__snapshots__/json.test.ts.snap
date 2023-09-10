@@ -131,7 +131,7 @@ snapshot[`JSON plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.json",
       path: "/index",
       remote: undefined,
@@ -175,7 +175,7 @@ snapshot[`JSON plugin 3`] = `
       url: "/page1/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/page1",
       remote: undefined,

@@ -44,18 +44,18 @@ snapshot[`esbuild plugin 1`] = `
       loader: [AsyncFunction: text],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
-      loader: [AsyncFunction: text],
+      loader: [AsyncFunction: module],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".ts",
-      loader: [AsyncFunction: text],
+      loader: [AsyncFunction: module],
     },
     {
       engines: 1,
@@ -83,7 +83,10 @@ snapshot[`esbuild plugin 1`] = `
   ],
   src: [
     "/",
+    "/_includes",
+    "/_includes/layout.js",
     "/data.json",
+    "/main.njk",
     "/main.ts",
     "/modules",
     "/modules/to_uppercase.ts",
@@ -140,6 +143,38 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     src: {
       asset: true,
       ext: ".ts",
+      path: "/main",
+      remote: undefined,
+      slug: "main",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+
+  <body>
+    Hello world
+  </body>
+  ",
+    data: {
+      children: "Hello world",
+      content: "Hello world",
+      date: [],
+      layout: "layout.js",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/main/",
+    },
+    src: {
+      asset: false,
+      ext: ".njk",
       path: "/main",
       remote: undefined,
       slug: "main",
@@ -224,18 +259,18 @@ snapshot[`esbuild plugin with splitting as true 1`] = `
       loader: [AsyncFunction: text],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
-      loader: [AsyncFunction: text],
+      loader: [AsyncFunction: module],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".ts",
-      loader: [AsyncFunction: text],
+      loader: [AsyncFunction: module],
     },
     {
       engines: 1,
@@ -263,7 +298,10 @@ snapshot[`esbuild plugin with splitting as true 1`] = `
   ],
   src: [
     "/",
+    "/_includes",
+    "/_includes/layout.js",
     "/data.json",
+    "/main.njk",
     "/main.ts",
     "/modules",
     "/modules/to_uppercase.ts",
@@ -339,6 +377,38 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     src: {
       asset: true,
       ext: ".ts",
+      path: "/main",
+      remote: undefined,
+      slug: "main",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+
+  <body>
+    Hello world
+  </body>
+  ",
+    data: {
+      children: "Hello world",
+      content: "Hello world",
+      date: [],
+      layout: "layout.js",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/main/",
+    },
+    src: {
+      asset: false,
+      ext: ".njk",
       path: "/main",
       remote: undefined,
       slug: "main",

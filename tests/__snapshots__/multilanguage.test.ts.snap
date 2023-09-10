@@ -131,7 +131,7 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/en/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -170,7 +170,7 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/gl/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -207,7 +207,7 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/en/other-page-english/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/other",
       remote: undefined,
@@ -244,7 +244,7 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/fr/other-page-french.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/other",
       remote: undefined,
@@ -285,7 +285,7 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/it/pagina-1/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/pages/page1",
       remote: undefined,
@@ -326,7 +326,7 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/en/page-1/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/pages/page1_en",
       remote: undefined,
@@ -367,7 +367,7 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/gl/paxina-1/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/pages/page1_gl",
       remote: undefined,
@@ -424,7 +424,7 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/gl/page-1/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/pagination[0]",
       remote: undefined,
@@ -483,7 +483,7 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/en/page-1/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/pagination[1]",
       remote: undefined,

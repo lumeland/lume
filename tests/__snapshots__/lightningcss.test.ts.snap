@@ -79,10 +79,9 @@ snapshot[`lightningcss plugin (only transform) 1`] = `
       loader: [AsyncFunction: yaml],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".css",
-      loader: [AsyncFunction: text],
     },
   ],
   src: [
@@ -242,10 +241,9 @@ snapshot[`lightningcss plugin (bundle mode) 1`] = `
       loader: [AsyncFunction: yaml],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".css",
-      loader: [AsyncFunction: text],
     },
   ],
   src: [

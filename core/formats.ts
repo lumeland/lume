@@ -6,8 +6,11 @@ export interface Format {
   /** The file extension for this format */
   ext: string;
 
-  /** The file loader used for this format */
+  /** The file loader used for this format (used by pages, includes, components, etc) */
   loader?: Loader;
+
+  /** The loader used as asset */
+  assetLoader?: Loader;
 
   /** Loader for _data files in this format */
   dataLoader?: Loader;
@@ -17,12 +20,6 @@ export interface Format {
    * Used to render the page and components
    */
   engines?: Engine[];
-
-  /**
-   * This is used to distinguish between pages that output html files (like index.njk -> index.html)
-   * and pages that output assets (like styles.css -> styles.css).
-   */
-  asset?: boolean;
 
   /** Whether this file must be copied instead loaded */
   copy?: boolean | ((path: string) => string);

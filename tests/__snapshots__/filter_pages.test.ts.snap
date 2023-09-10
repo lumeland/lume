@@ -127,7 +127,7 @@ snapshot[`Filter pages (allow all) 3`] = `
       url: "/async/1/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/multiple-async[0]",
       remote: undefined,
@@ -167,7 +167,7 @@ snapshot[`Filter pages (allow all) 3`] = `
       url: "/async/2/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/multiple-async[1]",
       remote: undefined,
@@ -206,7 +206,7 @@ snapshot[`Filter pages (allow all) 3`] = `
       url: "/multiple/1.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/multiple[0]",
       remote: undefined,
@@ -244,7 +244,7 @@ snapshot[`Filter pages (allow all) 3`] = `
       url: "/multiple/2.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/multiple[1]",
       remote: undefined,
@@ -282,7 +282,7 @@ snapshot[`Filter pages (allow all) 3`] = `
       url: "/multiple/3.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/multiple[2]",
       remote: undefined,
@@ -345,7 +345,7 @@ snapshot[`Filter pages (allow all) 3`] = `
       url: "/simple-page-new-permalink.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/simple",
       remote: undefined,
@@ -481,7 +481,7 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       url: "/multiple/1.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/multiple[0]",
       remote: undefined,
@@ -519,7 +519,7 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       url: "/multiple/2.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/multiple[1]",
       remote: undefined,
@@ -557,7 +557,7 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       url: "/multiple/3.html",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".page.js",
       path: "/multiple[2]",
       remote: undefined,

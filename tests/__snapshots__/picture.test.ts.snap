@@ -79,22 +79,19 @@ snapshot[`imagick plugin 1`] = `
       loader: [AsyncFunction: yaml],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: binary],
       engines: undefined,
       ext: ".jpg",
-      loader: [AsyncFunction: binary],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: binary],
       engines: undefined,
       ext: ".jpeg",
-      loader: [AsyncFunction: binary],
     },
     {
-      asset: true,
+      assetLoader: [AsyncFunction: binary],
       engines: undefined,
       ext: ".png",
-      loader: [AsyncFunction: binary],
     },
   ],
   src: [
@@ -235,7 +232,7 @@ snapshot[`imagick plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".njk",
       path: "/index",
       remote: undefined,
