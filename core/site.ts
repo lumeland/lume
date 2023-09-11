@@ -478,18 +478,6 @@ export default class Site {
     return this;
   }
 
-  /** Save into the cache the content of a file */
-  cacheFile(filename: string, data: Data): this {
-    const entry = this.fs.addEntry({ path: filename, type: "file" });
-    const format = this.formats.get(filename);
-    entry.setContent(
-      format?.loader || format?.dataLoader || textLoader,
-      data,
-    );
-
-    return this;
-  }
-
   /** Clear the dest directory and any cache */
   async clear(): Promise<void> {
     await this.writer.clear();

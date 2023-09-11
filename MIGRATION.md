@@ -18,6 +18,8 @@
   components, etc.
 - Removed `site.loadComponents()`. It's included in `site.loadPages()` options.
 - Removed `site.engine()`. It's included in `site.loadPages()` options.
+- Removed `site.cacheFile()`
+- Removed `Entry.setContent()`
 
 ## `search` Plugin
 

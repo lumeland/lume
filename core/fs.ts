@@ -42,10 +42,6 @@ export class Entry {
     return this.#content.get(loader)!;
   }
 
-  setContent(loader: Loader, content: Data) {
-    this.#content.set(loader, content);
-  }
-
   getInfo() {
     if (!this.#info) {
       this.#info = this.src.includes("://")
