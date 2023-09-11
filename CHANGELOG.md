@@ -15,7 +15,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ### Fixed
 - `minify_html` works offline.
-- Updated dependencies: `std`, `vento`.
+- Updated dependencies: `std`, `vento`, `terser`, `lightningcss`.
+- Use the wasm version of `lightningcss` due many bugs with the [N-API version in Deno](https://github.com/denoland/deno/issues/20072).
 - Urls with spaces [#481].
 
 ## [1.18.5] - 2023-09-01
