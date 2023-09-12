@@ -55,7 +55,7 @@ export async function upgrade(dev: boolean | string = false, version?: string) {
 
   if (!dev) {
     log.info(
-      `See the changes in <gray>https://github.com/lumeland/lume/blob/${latest}/CHANGELOG.md</gray>`,
+      `See the changes in <dim>https://github.com/lumeland/lume/blob/${latest}/CHANGELOG.md</dim>`,
     );
   }
 }

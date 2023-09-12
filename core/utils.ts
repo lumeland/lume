@@ -614,7 +614,7 @@ const logFormats: Record<string, (str: string) => string> = {
 
 function formatter(record: LogRecord) {
   const { msg, level, levelName } = record;
-  const prefix = level > 2 ? `${levelName}: ` : "";
+  const prefix = level > 20 ? `${levelName}: ` : "";
 
   return prefix + msg.replaceAll(
     /<(\w+)>([^<]+)<\/\1>/g,
