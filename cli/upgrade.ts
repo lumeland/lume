@@ -2,11 +2,11 @@ import {
   getLatestDevelopmentVersion,
   getLatestVersion,
   getLumeVersion,
+  log,
   readDenoConfig,
   updateLumeVersion,
   writeDenoConfig,
 } from "../core/utils.ts";
-import { brightGreen, gray } from "../deps/colors.ts";
 
 interface Options {
   dev?: boolean | string;
@@ -26,22 +26,20 @@ export async function upgrade(dev: boolean | string = false, version?: string) {
   const url = getVersionUrl(latest, dev);
 
   if (latest === getLumeVersion()) {
-    console.log(
-      version
-        ? `You're already using this version of Lume:`
-        : dev
-        ? "You're using the latest version of Lume:"
-        : "You're using the latest development version of Lume:",
-      brightGreen(latest),
-    );
-    console.log();
+    const message = version
+      ? `You're already using this version of Lume:`
+      : dev
+      ? "You're using the latest version of Lume:"
+      : "You're using the latest development version of Lume:";
+
+    log.info(`${message} <green>${latest}</green>`);
     return;
   }
 
-  console.log(
+  log.info(
     version
-      ? `Updating Lume to ${brightGreen(latest)}...`
-      : `New version available. Updating Lume to ${brightGreen(latest)}...`,
+      ? `Updating Lume to <green>${latest}</green>...`
+      : `New version available. Updating Lume to <green>${latest}</green>...`,
   );
 
   const denoConfig = await readDenoConfig();
@@ -53,17 +51,13 @@ export async function upgrade(dev: boolean | string = false, version?: string) {
   updateLumeVersion(url, denoConfig);
   await writeDenoConfig(denoConfig);
 
-  console.log();
-  console.log("Update successful!");
+  log.info("Update successful!");
 
   if (!dev) {
-    console.log(
-      "See the changes in",
-      gray(`https://github.com/lumeland/lume/blob/${latest}/CHANGELOG.md`),
+    log.info(
+      `See the changes in <gray>https://github.com/lumeland/lume/blob/${latest}/CHANGELOG.md</gray>`,
     );
   }
-
-  console.log();
 }
 
 function getVersionUrl(version: string, dev: boolean | string = false): URL {

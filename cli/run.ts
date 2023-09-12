@@ -1,7 +1,6 @@
 import lume from "../mod.ts";
 import { toFileUrl } from "../deps/path.ts";
-import { dim } from "../deps/colors.ts";
-import { getConfigFile, isUrl } from "../core/utils.ts";
+import { getConfigFile, isUrl, log } from "../core/utils.ts";
 
 import type { Site } from "../core.ts";
 
@@ -45,8 +44,7 @@ export async function createSite(config?: string): Promise<Site> {
   }
 
   if (url) {
-    console.log(`Loading config file ${dim(url)}`);
-    console.log();
+    log.debug(`Loading config file <dim>${url}</dim>`);
     const mod = await import(url);
     return mod.default;
   }

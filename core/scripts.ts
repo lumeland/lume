@@ -1,9 +1,6 @@
-import type { Logger } from "../core.ts";
+import { log } from "./utils.ts";
 
 export interface Options {
-  /** The logger to use */
-  logger: Logger;
-
   /** The current working directory */
   cwd?: string;
 }
@@ -13,17 +10,13 @@ export interface Options {
  * It can execute the scripts and functions in parallel or sequentially
  */
 export default class Scripts {
-  /** The logger to output messages in the terminal */
-  logger: Logger;
-
   /** The current working directory */
   cwd: string;
 
   /** All registered scripts and functions */
   scripts = new Map<string, ScriptOrFunction[]>();
 
-  constructor(options: Options) {
-    this.logger = options.logger;
+  constructor(options: Options = {}) {
     this.cwd = options.cwd || Deno.cwd();
   }
 
@@ -50,7 +43,7 @@ export default class Scripts {
   /** Run an individual script or function */
   async #run(name: ScriptOrFunction): Promise<unknown> {
     if (typeof name === "string" && this.scripts.has(name)) {
-      this.logger.log(`⚡️ <green>${name}</green>`);
+      log.info(`[script] ${name}`);
       const command = this.scripts.get(name)!;
       return this.run(...command);
     }
@@ -72,7 +65,7 @@ export default class Scripts {
   /** Run a function */
   async #runFunction(fn: () => unknown) {
     if (fn.name) {
-      this.logger.log(`⚡️ <dim>${fn.name}()</dim>`);
+      log.info(`[script] ${fn.name}()`);
     }
     const result = await fn();
     return result !== false;
@@ -80,7 +73,7 @@ export default class Scripts {
 
   /** Run a shell command */
   async #runScript(script: string) {
-    this.logger.log(`⚡️ <dim>${script}</dim>`);
+    log.info(`[script] ${script}`);
 
     const args = shArgs(script);
     const cmd = args.shift()!;

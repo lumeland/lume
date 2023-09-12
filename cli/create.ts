@@ -1,8 +1,7 @@
 import { stringify } from "../deps/yaml.ts";
 import { dirname, join, toFileUrl } from "../deps/path.ts";
 import { ensureDir } from "../deps/fs.ts";
-import { cyan, yellow } from "../deps/colors.ts";
-import { isGenerator, isUrl } from "../core/utils.ts";
+import { isGenerator, isUrl, log } from "../core/utils.ts";
 import { createSite } from "./run.ts";
 
 import type { Archetype, Site } from "../core.ts";
@@ -102,10 +101,10 @@ async function saveFile(path: string, content: string | Uint8Array) {
       ? await Deno.writeFile(path, content, { createNew: true })
       : await Deno.writeTextFile(path, content, { createNew: true });
 
-    console.log("✔️", cyan("Created file:"), path);
+    log.info(`✔️ Created file: <dim>${path}</dim>`);
   } catch (error) {
     if (error instanceof Deno.errors.AlreadyExists) {
-      console.log("⚠️", yellow("File already exists:"), path);
+      log.warning(`⚠️ File already exists: <dim>${path}</dim>`);
     } else {
       throw error;
     }

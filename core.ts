@@ -24,7 +24,6 @@ import type {
 import type { default as Scripts, ScriptOrFunction } from "./core/scripts.ts";
 
 import type { default as FS, Entry, Loader } from "./core/fs.ts";
-import type Logger from "./core/logger.ts";
 import type Searcher from "./core/searcher.ts";
 import type Writer from "./core/writer.ts";
 import type DataLoader from "./core/data_loader.ts";
@@ -58,7 +57,6 @@ import type {
   Processor,
 } from "./core/processors.ts";
 import type { default as Scopes, ScopeFilter } from "./core/scopes.ts";
-import type { ErrorData, Exception } from "./core/errors.ts";
 import type { default as Formats, Format } from "./core/formats.ts";
 import type {
   default as Server,
@@ -100,12 +98,10 @@ export type {
   DenoConfigResult,
   Engine,
   Entry,
-  ErrorData,
   Event,
   EventListener,
   EventOptions,
   Events,
-  Exception,
   Extensions,
   Format,
   Formats,
@@ -114,7 +110,6 @@ export type {
   HelperOptions,
   ImportMap,
   Loader,
-  Logger,
   Middleware,
   MultiProcessor,
   Page,

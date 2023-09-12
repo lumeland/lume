@@ -1,16 +1,6 @@
 import { bold, cyan, dim, red, yellow } from "../deps/colors.ts";
 import { fromFileUrl } from "../deps/path.ts";
 
-import type { Page } from "../core.ts";
-
-/** Error payload interface  */
-export interface ErrorData {
-  cause?: Error;
-  name?: string;
-  mark?: Mark;
-  [key: string]: unknown;
-}
-
 /** Parsed stacktraces */
 export interface Mark {
   name?: string;
@@ -18,34 +8,6 @@ export interface Mark {
   line?: number;
   column?: number;
   code?: string;
-}
-
-/**
- * Generic Exception to throw errors.
- * It allows to include extra data.
- */
-export class Exception extends Error {
-  data?: Record<string, unknown>;
-  mark?: Mark;
-
-  constructor(message: string, data: ErrorData = {}) {
-    const options = data.cause ? { cause: data.cause } : {};
-    delete data.cause;
-
-    super(message, options);
-
-    if (data.name) {
-      this.name = data.name;
-      delete data.name;
-    }
-
-    if (data.mark) {
-      this.mark = data.mark;
-      delete data.mark;
-    }
-
-    this.data = data;
-  }
 }
 
 /** Pretty-print an Error or Exception instance */
@@ -64,35 +26,6 @@ export function printError(error: unknown, caused = false) {
       console.error(`${bold(red(`${error.name}:`))}`, error.message);
     } else {
       console.error(error);
-    }
-  }
-
-  // Print the data and mark of Exception instances
-  if (error instanceof Exception) {
-    if (error.mark) {
-      const { mark } = error;
-      const code = getCode(mark);
-
-      if (code && mark.file && mark.line && mark.column) {
-        console.log(
-          `    at ${cyan(mark.file)}:${yellow(mark.line.toString())}:${
-            yellow(mark.column.toString())
-          }`,
-        );
-        console.log(code);
-      }
-    }
-
-    for (let [key, value] of Object.entries(error.data ?? {})) {
-      if (key === "page") {
-        const src = (value as Page).src;
-        value = src.path + src.ext;
-
-        if (src.remote) {
-          value += ` (remote: ${src.remote})`;
-        }
-      }
-      console.log(dim(`- ${key}:`), value);
     }
   }
 

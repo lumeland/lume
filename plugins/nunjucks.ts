@@ -1,7 +1,6 @@
 import nunjucks from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
 import { merge, normalizePath, resolveInclude } from "../core/utils.ts";
-import { Exception } from "../core/errors.ts";
 import { basename, join, posix } from "../deps/path.ts";
 
 import type {
@@ -228,7 +227,7 @@ export default function (userOptions?: DeepPartial<Options>) {
       const props = { content, ...options };
 
       if (!components) {
-        throw new Exception(`Component "${name}" not found`);
+        throw new Error(`Component "${name}" not found`);
       }
 
       const names = name.split(".") as string[];
@@ -240,7 +239,7 @@ export default function (userOptions?: DeepPartial<Options>) {
           // @ts-ignore: `component` is defined or throw an error
           component = component[names.shift()];
         } catch {
-          throw new Exception(`Component "${name}" not found`);
+          throw new Error(`Component "${name}" not found`);
         }
       }
 
@@ -248,7 +247,7 @@ export default function (userOptions?: DeepPartial<Options>) {
         return component(props);
       }
 
-      throw new Exception(`Component "${name}" not found`);
+      throw new Error(`Component "${name}" not found`);
     }, {
       type: "tag",
       body: true,

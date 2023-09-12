@@ -1,5 +1,4 @@
 import { concurrent, isGenerator, resolveInclude } from "./utils.ts";
-import { Exception } from "./errors.ts";
 import { Page } from "./filesystem.ts";
 import { posix } from "../deps/path.ts";
 import { getDate, getUrl, mergeData } from "./source.ts";
@@ -130,7 +129,9 @@ export default class Renderer {
               page.content = content;
             }
           } catch (cause) {
-            throw new Exception("Error rendering this page", { cause, page });
+            throw new Error(`Error rendering the page: ${page.sourcePath}`, {
+              cause,
+            });
           }
         },
       );
@@ -157,10 +158,10 @@ export default class Renderer {
               }
             }
           } catch (cause) {
-            throw new Exception("Error rendering the layout of this page", {
-              cause,
-              page,
-            });
+            throw new Error(
+              `Error rendering the layout of the page ${page.sourcePath}`,
+              { cause },
+            );
           }
         },
       );
@@ -170,9 +171,9 @@ export default class Renderer {
   /** Render the provided pages */
   async renderPageOnDemand(page: Page): Promise<void> {
     if (isGenerator(page.data.content)) {
-      throw new Exception("Cannot render a multiple page on demand.", {
-        page,
-      });
+      throw new Error(
+        `Cannot render the generator page ${page.sourcePath} on demand.`,
+      );
     }
 
     await this.preprocessors.run([page]);
@@ -240,18 +241,14 @@ export default class Renderer {
       const format = this.formats.search(layout);
 
       if (!format || !format.loader) {
-        throw new Exception(
-          "There's no handler for this layout format",
-          { layout },
-        );
+        throw new Error(`The layout format "${layout}" doesn't exist`);
       }
 
       const includesPath = format.engines?.[0].includes;
 
       if (!includesPath) {
-        throw new Exception(
-          "The layout engine doesn't support includes",
-          { layout },
+        throw new Error(
+          `The layout format "${layout}" doesn't support includes`,
         );
       }
 
@@ -263,10 +260,7 @@ export default class Renderer {
       const entry = this.fs.entries.get(layoutPath);
 
       if (!entry) {
-        throw new Exception(
-          `The layout file "${layoutPath}" doesn't exist`,
-          { layoutPath },
-        );
+        throw new Error(`The layout file "${layoutPath}" doesn't exist`);
       }
 
       const layoutData = await entry.getContent(format.loader);
@@ -308,10 +302,7 @@ export default class Renderer {
           return engines.concat(format.engines);
         }
 
-        throw new Exception(
-          "Invalid value for templateEngine",
-          { path, templateEngine },
-        );
+        throw new Error(`The template engine "${name}" doesn't exist`);
       }, [] as Engine[]);
     }
 

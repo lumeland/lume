@@ -1,4 +1,4 @@
-import { isUrl, merge, normalizePath, read } from "../core/utils.ts";
+import { isUrl, log, merge, normalizePath, read } from "../core/utils.ts";
 import { encode } from "../deps/base64.ts";
 import { Page } from "../core/filesystem.ts";
 import { basename, join, toFileUrl } from "../deps/path.ts";
@@ -45,7 +45,7 @@ export default function (userOptions?: Partial<Options>) {
           );
         }
       } catch (err) {
-        console.error(err, sourceMap.sources);
+        log.error(`${err.message}\n${sourceMap.sources.join("\n")}`);
       }
 
       // Relative paths (eg. "../bar") look better in the dev-tools.

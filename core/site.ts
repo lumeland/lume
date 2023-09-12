@@ -1,6 +1,5 @@
 import { join, posix } from "../deps/path.ts";
-import { env, merge, normalizePath } from "./utils.ts";
-import { Exception } from "./errors.ts";
+import { env, log, merge, normalizePath } from "./utils.ts";
 
 import FS from "./fs.ts";
 import ComponentLoader from "./component_loader.ts";
@@ -11,7 +10,6 @@ import Processors from "./processors.ts";
 import Renderer from "./renderer.ts";
 import Events from "./events.ts";
 import Formats from "./formats.ts";
-import Logger from "./logger.ts";
 import Searcher from "./searcher.ts";
 import Scripts from "./scripts.ts";
 import Writer from "./writer.ts";
@@ -47,7 +45,6 @@ const defaults: SiteOptions = {
   emptyDest: true,
   includes: "_includes",
   location: new URL("http://localhost"),
-  quiet: false,
   prettyUrls: true,
   server: {
     port: 3000,
@@ -106,9 +103,6 @@ export default class Site {
   // deno-lint-ignore no-explicit-any
   events: Events<any>;
 
-  /** To output messages to the console */
-  logger: Logger;
-
   /** To run scripts */
   scripts: Scripts;
 
@@ -145,8 +139,7 @@ export default class Site {
 
     const src = this.src();
     const dest = this.dest();
-    const { quiet, includes, cwd, prettyUrls, components, server } =
-      this.options;
+    const { includes, cwd, prettyUrls, components, server } = this.options;
 
     // To load source files
     const fs = new FS({ root: src });
@@ -180,9 +173,8 @@ export default class Site {
 
     // Other stuff
     const events = new Events<SiteEvent>();
-    const logger = new Logger({ quiet });
-    const scripts = new Scripts({ logger, cwd });
-    const writer = new Writer({ src, dest, logger });
+    const scripts = new Scripts({ cwd });
+    const writer = new Writer({ src, dest });
 
     const url404 = server.page404 ? normalizePath(server.page404) : undefined;
     const searcher = new Searcher({
@@ -205,7 +197,6 @@ export default class Site {
     this.preprocessors = preprocessors;
     this.renderer = renderer;
     this.events = events;
-    this.logger = logger;
     this.scripts = scripts;
     this.searcher = searcher;
     this.writer = writer;
@@ -430,9 +421,8 @@ export default class Site {
     // File extensions
     if (Array.isArray(from)) {
       if (typeof to === "string") {
-        throw new Exception(
-          "copy() files by extension expects a function as second argument",
-          { to },
+        throw new Error(
+          `copy() files by extension expects a function as second argument but got a string "${to}"`,
         );
       }
 
@@ -497,7 +487,7 @@ export default class Site {
     this.fs.init();
 
     // Get the site content
-    const showDrafts = env<boolean>("LUME_DRAFTS");
+    const showDrafts = env<boolean>("LUME_SHOW_DRAFTS");
     const [_pages, _staticFiles] = await this.source.build(
       (_, page) => !page?.data.draft || showDrafts === true,
     );
@@ -513,7 +503,6 @@ export default class Site {
     // Save the pages and copy static files in the dest folder
     const pages = await this.writer.savePages(this.pages);
     const staticFiles = await this.writer.copyFiles(this.files);
-    this.logger.log();
 
     await this.dispatchEvent({ type: "afterBuild", pages, staticFiles });
   }
@@ -547,7 +536,7 @@ export default class Site {
     }
 
     // Get the site content
-    const showDrafts = env<boolean>("LUME_DRAFTS");
+    const showDrafts = env<boolean>("LUME_SHOW_DRAFTS");
     const [_pages, _staticFiles] = await this.source.build(
       (_, page) => !page?.data.draft || showDrafts === true,
       this.scopes.getFilter(files),
@@ -563,10 +552,6 @@ export default class Site {
     // Save the pages and copy static files in the dest folder
     const pages = await this.writer.savePages(this.pages);
     const staticFiles = await this.writer.copyFiles(this.files);
-
-    if (pages.length || staticFiles.length) {
-      this.logger.log();
-    }
 
     await this.dispatchEvent({
       type: "afterUpdate",
@@ -615,8 +600,8 @@ export default class Site {
 
         const shouldSkip = !page.content || page.data.ondemand;
         if (shouldSkip) {
-          this.logger.warn(
-            `Skipped page ${page.data.url} (${
+          log.info(
+            `[Lume] Skipped page ${page.data.url} (${
               page.data.ondemand
                 ? "page is build only on demand"
                 : "file content is empty"
@@ -808,9 +793,6 @@ export interface SiteOptions {
 
   /** Set true to generate pretty urls (`/about-me/`) */
   prettyUrls: boolean;
-
-  /** Set `true` to skip logs */
-  quiet: boolean;
 
   /** The local server options */
   server: ServerOptions;

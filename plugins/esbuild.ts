@@ -1,6 +1,7 @@
 import {
   isAbsolutePath,
   isUrl,
+  log,
   merge,
   normalizePath,
   read,
@@ -249,11 +250,13 @@ export default function (userOptions?: Partial<Options>) {
       );
 
       if (errors.length) {
-        site.logger.warn("esbuild errors", { errors });
+        log.error(`[esbuild plugin] Build errors: \n${errors.join("\n")}`);
       }
 
       if (warnings.length) {
-        site.logger.warn("esbuild warnings", { warnings });
+        log.warning(
+          `[esbuild plugin] Build warnings: \n${warnings.join("\n")}`,
+        );
       }
 
       return [outputFiles || [], enableAllSourceMaps];

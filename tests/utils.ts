@@ -19,7 +19,6 @@ export function getSite(
   pluginOptions = {},
 ): Site {
   options.cwd = getPath("assets");
-  options.quiet = true;
 
   const site = lume(options, pluginOptions, false);
 

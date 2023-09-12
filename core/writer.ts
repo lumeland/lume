@@ -1,16 +1,13 @@
 import { posix } from "../deps/path.ts";
 import { emptyDir, ensureDir } from "../deps/fs.ts";
-import { concurrent, sha1 } from "./utils.ts";
-import { Exception } from "./errors.ts";
+import { concurrent, log, sha1 } from "./utils.ts";
 import binaryLoader from "./loaders/binary.ts";
 
 import type { Page, StaticFile } from "./filesystem.ts";
-import type Logger from "./logger.ts";
 
 export interface Options {
   src: string;
   dest: string;
-  logger: Logger;
 }
 
 /**
@@ -20,14 +17,12 @@ export interface Options {
 export default class Writer {
   src: string;
   dest: string;
-  logger: Logger;
   #saveCount = 0;
   #outputs = new Map<string, [number, string, string]>();
 
   constructor(options: Options) {
     this.src = options.src;
     this.dest = options.dest;
-    this.logger = options.logger;
   }
 
   /**
@@ -61,34 +56,24 @@ export default class Writer {
     }
     // Ignore empty pages
     if (!page.content) {
-      this.logger.warn(
-        `Skipped page ${page.data.url} (file content is empty)`,
+      log.warning(
+        `[Lume] Skipped page ${page.data.url} (file content is empty)`,
       );
       return false;
     }
 
-    const src = page.src.remote
-      ? page.src.remote
-      : page.src.path
-      ? page.src.path + (page.src.ext || "")
-      : "(generated)";
-    const { outputPath } = page;
+    const { sourcePath, outputPath } = page;
     const id = outputPath.toLowerCase();
     const hash = await sha1(page.content);
     const previous = this.#outputs.get(id);
-    this.#outputs.set(id, [this.#saveCount, src, hash]);
+    this.#outputs.set(id, [this.#saveCount, sourcePath, hash]);
 
     if (previous) {
-      const [previousCount, previousPage, previousHash] = previous;
+      const [previousCount, previousSourcePath, previousHash] = previous;
 
       if (previousCount === this.#saveCount) {
-        throw new Exception(
-          "A page will overwrite another page. Use distinct `url` values to resolve the conflict.",
-          {
-            page,
-            previousPage,
-            outputPath,
-          },
+        throw new Error(
+          `The pages ${sourcePath} and ${previousSourcePath} have the same output path "${outputPath}". Use distinct 'url' values to resolve the conflict.`,
         );
       }
 
@@ -98,7 +83,7 @@ export default class Writer {
       }
     }
 
-    this.logger.log(`🔥 ${page.data.url} <dim>${src}</dim>`);
+    log.info(`🔥 ${page.data.url} <dim>${sourcePath}</dim>`);
 
     const filename = posix.join(this.dest, outputPath);
     await ensureDir(posix.dirname(filename));
@@ -155,7 +140,7 @@ export default class Writer {
         // Copy file https://github.com/denoland/deno/issues/19425
         Deno.writeFileSync(pathTo, Deno.readFileSync(entry.src));
       }
-      this.logger.log(
+      log.info(
         `🔥 ${file.outputPath} <dim>${
           entry.flags.has("remote") ? entry.src : entry.path
         }</dim>`,

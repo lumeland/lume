@@ -62,7 +62,7 @@ export default function lume(
 function getOptionsFromCli(): DeepPartial<SiteOptions> {
   const options = parse(Deno.args, {
     string: ["src", "dest", "location", "port"],
-    boolean: ["quiet", "serve", "open"],
+    boolean: ["serve", "open"],
     alias: { dev: "d", serve: "s", port: "p", open: "o" },
     ["--"]: true,
   });
@@ -81,10 +81,6 @@ function getOptionsFromCli(): DeepPartial<SiteOptions> {
     overrides.location = new URL(options.location);
   } else if (options.serve) {
     overrides.location = new URL(`http://localhost:${options.port || 3000}/`);
-  }
-
-  if (options.quiet) {
-    overrides.quiet = options.quiet;
   }
 
   if (options.port) {

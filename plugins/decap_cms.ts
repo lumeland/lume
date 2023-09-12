@@ -1,6 +1,5 @@
 import { Page } from "../core/filesystem.ts";
 import { merge } from "../core/utils.ts";
-import { Exception } from "../core/errors.ts";
 import { posix } from "../deps/path.ts";
 import { stringify } from "../deps/yaml.ts";
 
@@ -62,9 +61,9 @@ export default function (userOptions?: Partial<Options>) {
         | undefined;
 
       if (!config) {
-        throw new Exception("Missing configuration for Netlify CMS", {
-          key: options.configKey,
-        });
+        throw new Error(
+          `Missing configuration for Netlify CMS: ${options.configKey}`,
+        );
       }
 
       // Create config.yml

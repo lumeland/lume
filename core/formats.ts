@@ -1,5 +1,3 @@
-import { Exception } from "./errors.ts";
-
 import type { Engine, Loader } from "../core.ts";
 
 export interface Format {
@@ -64,9 +62,8 @@ export default class Formats {
       return;
     }
 
-    throw new Exception(
-      "Invalid file extension. It must start with '.'",
-      { ext },
+    throw new Error(
+      `Invalid file extension: "${ext}".  It must start with '.'`,
     );
   }
 

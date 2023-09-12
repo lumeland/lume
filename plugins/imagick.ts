@@ -1,6 +1,5 @@
-import { getPathAndExtension, merge } from "../core/utils.ts";
+import { getPathAndExtension, log, merge } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
-import { Exception } from "../core/errors.ts";
 import { ImageMagick, initialize } from "../deps/imagick.ts";
 import Cache from "../core/cache.ts";
 
@@ -136,7 +135,7 @@ export default function (userOptions?: Partial<Options>) {
       }
 
       if (transformed) {
-        site.logger.log("🎨", `${page.src.path}${page.src.ext}`);
+        log.info(`[imagick plugin] Processed ${page.sourcePath}`);
       }
 
       // Remove the original page
@@ -166,7 +165,7 @@ function transform(
 
         default:
           if (!options.functions[name]) {
-            throw new Exception(`Unknown transformation: ${name}`);
+            throw new Error(`Unknown transformation: ${name}`);
           }
 
           if (Array.isArray(args)) {

@@ -1,6 +1,5 @@
 import { minify } from "../deps/terser.ts";
 import { merge } from "../core/utils.ts";
-import { Exception } from "../core/errors.ts";
 import { Page } from "../core/filesystem.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 
@@ -63,9 +62,9 @@ export default function (userOptions?: DeepPartial<Options>) {
           output.map,
         );
       } catch (cause) {
-        throw new Exception(
-          "Error processing the file",
-          { name: "Plugin Terser", cause, page, content },
+        throw new Error(
+          `Error processing the file: ${filename} by the Terser plugin.`,
+          { cause },
         );
       }
     }

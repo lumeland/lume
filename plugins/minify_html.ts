@@ -1,6 +1,5 @@
 import { init, minify } from "../deps/minify_html.ts";
 import { merge } from "../core/utils.ts";
-import { Exception } from "../core/errors.ts";
 
 import type { Options as MinifyOptions } from "../deps/minify_html.ts";
 import type { DeepPartial, Page, Site } from "../core.ts";
@@ -41,10 +40,11 @@ export default function (userOptions?: DeepPartial<Options>) {
 
   // Validate supported file extensions
   if (extensions.some((ext) => ![".html", ".css", ".js"].includes(ext))) {
-    throw new Exception("Unsupported extensions configuration.", {
-      name: "Plugin minify-html",
-      extensions,
-    });
+    throw new Error(
+      `Unsupported extensions configuration: ${
+        extensions.join(", ")
+      }. Only ".html", ".css" and ".js" are supported by minify-html plugin.`,
+    );
   }
 
   return (site: Site) => {

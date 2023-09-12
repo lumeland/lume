@@ -1,7 +1,6 @@
 import { katex, KatexOptions } from "../deps/katex.ts";
 import { renderMathInElement } from "../deps/katex-auto-render/auto-render.ts";
 import { merge } from "../core/utils.ts";
-import { Exception } from "../core/errors.ts";
 
 import type { Element } from "../deps/dom.ts";
 import type { DeepPartial, Page, Site } from "../core.ts";
@@ -78,10 +77,10 @@ export default function (userOptions?: DeepPartial<Options>) {
               element.replaceWith(div.firstChild);
             }
           } catch (cause) {
-            throw new Exception("Katex failed to render", {
-              page,
-              cause,
-            });
+            throw new Error(
+              `Katex failed to render in the page ${page.outputPath}`,
+              { cause },
+            );
           }
         });
 

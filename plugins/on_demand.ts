@@ -1,11 +1,11 @@
-import { merge } from "../core/utils.ts";
+import { log, merge } from "../core/utils.ts";
 import onDemand, {
   getRouter,
   MiddlewareOptions,
 } from "../middlewares/on_demand.ts";
 import { extname } from "../deps/path.ts";
 
-import type { Logger, Page, Site } from "../core.ts";
+import type { Page, Site } from "../core.ts";
 
 export interface Options {
   /** The file path to save the routes */
@@ -54,7 +54,7 @@ export default function (userOptions?: Partial<Options>) {
             break;
         }
       }
-      await collector.saveRoutes(site.logger, specifiers);
+      await collector.saveRoutes(specifiers);
     });
 
     // Ignore the routes files by the watcher
@@ -104,7 +104,7 @@ export class JsonRouterCollector {
   }
 
   /** Save the routes into the routesFile */
-  async saveRoutes(logger: Logger, specifiers: string[]): Promise<void> {
+  async saveRoutes(specifiers: string[]): Promise<void> {
     if (!this.routes.size) {
       return;
     }
@@ -121,7 +121,9 @@ export class JsonRouterCollector {
       JSON.stringify(data, null, 2) + "\n",
     );
 
-    logger.log(`Routes saved at <dim>${this.#routesFile}</dim>`);
+    log.info(
+      `[on_demand plugin] Routes saved at <dim>${this.#routesFile}</dim>`,
+    );
 
     // Write the preload file
     if (specifiers.length && Object.keys(data).length) {
@@ -133,7 +135,9 @@ export class JsonRouterCollector {
         `${code}\n`,
       );
 
-      logger.log(`Preloader saved at <dim>${this.#preloadFile}</dim>`);
+      log.info(
+        `[on_demand plugin] Preloader saved at <dim>${this.#preloadFile}</dim>`,
+      );
     }
   }
 }

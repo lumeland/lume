@@ -1,11 +1,8 @@
 import { assertStrictEquals as equals } from "../../deps/assert.ts";
 import Scripts from "../../core/scripts.ts";
-import Logger from "../../core/logger.ts";
 
 Deno.test("Scripts", async (t) => {
-  const scripts = new Scripts({
-    logger: new Logger({ quiet: true }),
-  });
+  const scripts = new Scripts();
 
   equals(scripts.scripts.size, 0);
 

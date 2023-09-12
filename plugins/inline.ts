@@ -1,6 +1,6 @@
 import { posix } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
-import { merge } from "../core/utils.ts";
+import { log, merge } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
 import textLoader from "../core/loaders/text.ts";
 import { contentType } from "../deps/media_types.ts";
@@ -108,11 +108,7 @@ export default function (userOptions?: Partial<Options>) {
       const type = contentType(ext);
 
       if (!type) {
-        site.logger.warn("Unknown file format", {
-          name: "Inline plugin",
-          path,
-          url,
-        });
+        log.warning(`[Inline plugin] Unknown file format ${path}`);
         return;
       }
 
@@ -148,12 +144,9 @@ export default function (userOptions?: Partial<Options>) {
         style.innerHTML = content;
         element.replaceWith(style);
       } catch (cause) {
-        site.logger.warn("Unable to inline the file", {
-          name: "Inline plugin",
-          cause,
-          path,
-          url,
-        });
+        log.error(
+          `[Inline plugin] Unable to inline the file <dim>${path}</dim> in the page <dim>${url}</dim> (${cause.message})})`,
+        );
       }
     }
 
@@ -164,12 +157,9 @@ export default function (userOptions?: Partial<Options>) {
         element.textContent = await getContent(path);
         element.removeAttribute("src");
       } catch (cause) {
-        site.logger.warn("Unable to inline the file", {
-          name: "Inline plugin",
-          cause,
-          path,
-          url,
-        });
+        log.error(
+          `[Inline plugin] Unable to inline the file <dim>${path}</dim> in the page <dim>${url}</dim> (${cause.message})})`,
+        );
       }
     }
 
@@ -215,12 +205,9 @@ export default function (userOptions?: Partial<Options>) {
 
         element.setAttribute("src", await getContent(path, true));
       } catch (cause) {
-        site.logger.warn("Unable to inline the file", {
-          name: "Inline plugin",
-          cause,
-          path,
-          url,
-        });
+        log.error(
+          `[Inline plugin] Unable to inline the file <dim>${path}</dim> in the page <dim>${url}</dim> (${cause.message})})`,
+        );
       }
     }
 
@@ -230,12 +217,9 @@ export default function (userOptions?: Partial<Options>) {
       try {
         element.setAttribute("href", await getContent(path, true));
       } catch (cause) {
-        site.logger.warn("Unable to inline the file", {
-          name: "Inline plugin",
-          cause,
-          path,
-          url,
-        });
+        log.error(
+          `[Inline plugin] Unable to inline the file <dim>${path}</dim> in the page <dim>${url}</dim> (${cause.message})})`,
+        );
       }
     }
   };

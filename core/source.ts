@@ -2,7 +2,6 @@ import { posix } from "../deps/path.ts";
 import { normalizePath } from "./utils.ts";
 import { Page, StaticFile } from "./filesystem.ts";
 import { parseISO } from "../deps/date.ts";
-import { Exception } from "./errors.ts";
 
 import type {
   ComponentLoader,
@@ -691,17 +690,15 @@ export function getUrl(
       return normalizeUrl(url);
     }
 
-    throw new Exception(
-      `The url variable must start with "/", "./" or "../"`,
-      { page, url },
+    throw new Error(
+      `The url variable for the page ${page.sourcePath} (${url}) must start with "/", "./" or "../" `,
     );
   }
 
   // If the user has provided a value which hasn't yielded a string then it is an invalid url.
   if (url !== undefined) {
-    throw new Exception(
-      `If a url is specified, it should either be a string, or a function which returns a string. The provided url is of type: ${typeof url}.`,
-      { page, url },
+    throw new Error(
+      `The url variable for the page ${page.sourcePath} is not correct. If specified, it should either be a string, or a function which returns a string. The provided url is of type: ${typeof url}.`,
     );
   }
 

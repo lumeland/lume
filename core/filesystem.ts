@@ -82,6 +82,19 @@ export class Page<D extends PageData = PageData> {
     return decodeURI(url.endsWith("/") ? url + "index.html" : url);
   }
 
+  /** Returns the source path of this page */
+  get sourcePath(): string {
+    if (this.src.remote) {
+      return this.src.remote;
+    }
+
+    if (!this.src.path) {
+      return "(generated)";
+    }
+
+    return this.src.path + (this.src.ext || "");
+  }
+
   /** The content of this page */
   set content(content: Content | undefined) {
     this.#document = undefined;

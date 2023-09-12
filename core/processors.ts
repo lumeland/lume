@@ -1,5 +1,4 @@
 import { concurrent } from "./utils.ts";
-import { Exception } from "./errors.ts";
 
 import type { Page } from "../core.ts";
 
@@ -28,9 +27,8 @@ export default class Processors {
     if (Array.isArray(extensions)) {
       extensions.forEach((extension) => {
         if (extension.charAt(0) !== ".") {
-          throw new Exception(
-            "Invalid extension. It must start with '.'",
-            { extension },
+          throw new Error(
+            `Invalid extension ${extension}. It must start with '.'`,
           );
         }
       });
@@ -60,11 +58,10 @@ export default class Processors {
                 }
               }
             } catch (cause) {
-              throw new Exception("Error processing page", {
-                cause,
-                page,
-                processor: process.name,
-              });
+              throw new Error(
+                `Error processing page ${page.sourcePath} with processor ${process.name}`,
+                { cause },
+              );
             }
           },
         );

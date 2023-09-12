@@ -63,10 +63,6 @@ const run = new Command()
     "The URL location of the site.",
     { default: "http://localhost" },
   )
-  .option(
-    "--quiet [quiet:boolean]",
-    "Enable quiet mode (show less info).",
-  )
   .action(runCommand);
 
 const lume = new Command()
@@ -98,10 +94,6 @@ const lume = new Command()
     "--location <location>",
     "The URL location of the site.",
     { default: "http://localhost" },
-  )
-  .option(
-    "--quiet [quiet:boolean]",
-    "Enable quiet mode (show less info).",
   )
   .option(
     "-s, --serve [serve:boolean]",

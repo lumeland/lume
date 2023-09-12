@@ -1,7 +1,20 @@
 import { DOMParser, HTMLDocument } from "../deps/dom.ts";
-import { brightGreen, cyan, dim, gray, green, red } from "../deps/colors.ts";
+import {
+  bold,
+  brightGreen,
+  cyan,
+  dim,
+  gray,
+  green,
+  red,
+  strikethrough,
+  yellow,
+} from "../deps/colors.ts";
 import { dirname, extname, join, posix, SEP } from "../deps/path.ts";
 import { parse } from "../deps/jsonc.ts";
+import * as logger from "../deps/log.ts";
+
+import type { LevelName, LogRecord } from "../deps/log.ts";
 
 /** A list of the available optional plugins */
 export const pluginNames = [
@@ -50,12 +63,6 @@ export const pluginNames = [
   "vento",
 ];
 
-export function log(...lines: (string | undefined)[]) {
-  console.log("----------------------------------------");
-  lines.forEach((line) => line && console.log(line));
-  console.log("----------------------------------------");
-}
-
 /** Check the compatibility with the current Deno version */
 export function checkDenoVersion(): void {
   const minimum = "1.33.4";
@@ -101,10 +108,10 @@ export async function checkUpgrade(): Promise<void> {
 
   const command = "deno task lume upgrade" + (stable ? "" : " --dev");
 
-  log(
-    `Update available ${dim(current)} → ${green(latest)}`,
-    `Run ${cyan(command)} to update`,
-  );
+  console.log("----------------------------------------");
+  console.log(`Update available ${dim(current)} → ${green(latest)}`);
+  console.log(`Run ${cyan(command)} to update`);
+  console.log("----------------------------------------");
 }
 
 /** Return the latest stable version from the deno.land/x repository */
@@ -571,4 +578,46 @@ export function env<T>(name: string): T | undefined {
     default:
       return value as T;
   }
+}
+
+let level = env<LevelName | "NONE">("LUME_LOG_LEVEL") || "DEBUG";
+
+if (level === "NOTSET") {
+  level = "DEBUG";
+}
+
+logger.setup({
+  handlers: {
+    console: new logger.handlers.ConsoleHandler("DEBUG", { formatter }),
+  },
+  loggers: {
+    lume: {
+      level: level === "NONE" ? "NOTSET" : level,
+      handlers: level === "NONE" ? [] : ["console"],
+    },
+  },
+});
+
+export const log = logger.getLogger("lume");
+
+const logFormats: Record<string, (str: string) => string> = {
+  red,
+  Red: (str: string) => bold(red(str)),
+  dim,
+  Dim: (str: string) => bold(dim(str)),
+  green: brightGreen,
+  Green: (str: string) => bold(brightGreen(str)),
+  yellow: yellow,
+  Yellow: (str: string) => bold(yellow(str)),
+  del: (str: string) => strikethrough(dim(str)),
+};
+
+function formatter(record: LogRecord) {
+  const { msg, level, levelName } = record;
+  const prefix = level > 2 ? `${levelName}: ` : "";
+
+  return prefix + msg.replaceAll(
+    /<(\w+)>([^<]+)<\/\1>/g,
+    (_, name, content) => logFormats[name]!(content),
+  );
 }

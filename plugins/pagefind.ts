@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { log, merge } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
 import downloadBinary, { DownloadOptions } from "../deps/pagefind.ts";
 
@@ -197,7 +197,7 @@ ${decode(stdout)}
 ${decode(stderr)}`,
         );
       } else if (options.indexing.verbose) {
-        console.log(decode(stdout));
+        log.debug(decode(stdout));
       }
     });
   };

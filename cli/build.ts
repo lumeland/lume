@@ -1,5 +1,4 @@
-import { checkUpgrade } from "../core/utils.ts";
-import { brightGreen, dim } from "../deps/colors.ts";
+import { checkUpgrade, log } from "../core/utils.ts";
 import Server from "../core/server.ts";
 import FSWatcher, { SiteWatcher } from "../core/watcher.ts";
 import { printError } from "../core/errors.ts";
@@ -31,39 +30,26 @@ export async function build(
   watch?: boolean,
 ) {
   const site = await createSite(config);
-  const quiet = site.options.quiet;
-
-  if (!quiet) {
-    console.log();
-  }
 
   performance.mark("start");
   await site.build();
   performance.mark("end");
 
-  if (!quiet) {
-    console.log();
-    console.log(
-      `🍾 ${brightGreen("Site built into")} ${dim(site.options.dest)}`,
-    );
-    const duration = performance.measure("duration", "start", "end").duration /
-      1000;
-    const total = site.pages.length + site.files.length;
-    console.log(
-      dim(`  ${total} files generated in ${duration.toFixed(2)} seconds`),
-    );
-    console.log();
+  log.info(`🍾 Site built into <dim>${site.options.dest}</dim>`);
+  const duration = performance.measure("duration", "start", "end").duration /
+    1000;
+  const total = site.pages.length + site.files.length;
+  log.info(`  ${total} files generated in ${duration.toFixed(2)} seconds`);
 
-    await checkUpgrade();
-  }
+  await checkUpgrade();
 
   if (!serve && !watch) {
     // Prevent possible timers to keep the process alive forever (wait preventively 10 seconds)
     const id = setTimeout(() => {
-      console.log(
+      log.warning(
         "After waiting 10 seconds, there are some timers that avoid ending the process.",
       );
-      console.log("They have been forcibly closed.");
+      log.warning("They have been forcibly closed.");
       Deno.exit(0);
     }, 10000);
 
@@ -81,9 +67,8 @@ export async function build(
   watcher.addEventListener("change", (event) => {
     const files = event.files!;
 
-    console.log("Changes detected:");
-    files.forEach((file) => console.log("-", dim(file)));
-    console.log();
+    log.info("Changes detected:");
+    files.forEach((file) => log.info(`- <dim>${file}</dim>`));
     return site.update(files);
   });
 
@@ -104,14 +89,12 @@ export async function build(
   server.addEventListener("start", () => {
     const ipAddr = localIp();
 
-    console.log("  Server started at:");
-    console.log(brightGreen(`  http://localhost:${port}/`), "(local)");
+    log.info("  Server started at:");
+    log.info(`  <green>http://localhost:${port}/</green> (local)`);
 
     if (ipAddr) {
-      console.log(brightGreen(`  http://${ipAddr}:${port}/`), "(network)");
+      log.info(`  <green>http://${ipAddr}:${port}/</green> (network)`);
     }
-
-    console.log();
 
     if (open) {
       const commands: Record<typeof Deno.build.os, string> = {
@@ -135,7 +118,7 @@ export async function build(
     site.dispatchEvent({ type: "afterStartServer" });
   });
 
-  if (!site.options.quiet) {
+  if (log.level === 0) {
     server.use(logger());
   }
 

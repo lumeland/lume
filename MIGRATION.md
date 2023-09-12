@@ -10,7 +10,10 @@
 - Removed `Page.dest` property #290.
   - This also removed `Page.updateDest` function.
 - Removed `--dev` mode #244, #201.
-  - Use the env variable `LUME_DRAFTS=true` to output draft pages.
+  - Use the env variable `LUME_SHOW_DRAFTS=true` to output draft pages.
+- Removed `--quiet` argument
+  - Use the env variable
+    `LUME_LOG_LEVEL=DEBUG|INFO|WARNING|ERROR|CRITICAL|NONE`.
 - Renamed the interface method `Engine.renderSync` to `Engine.renderComponent`.
 - Removed `site.includes()` function.
 - Changed the `Format` interface.
