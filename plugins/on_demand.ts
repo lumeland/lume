@@ -3,7 +3,7 @@ import onDemand, {
   getRouter,
   MiddlewareOptions,
 } from "../middlewares/on_demand.ts";
-import { extname } from "../deps/path.ts";
+import { posix } from "../deps/path.ts";
 
 import type { Logger, Page, Site } from "../core.ts";
 
@@ -29,9 +29,12 @@ export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    const routesFile = site.root(options.routesPath);
-    const preloadFile = site.root(options.preloadPath);
-    const collector = new JsonRouterCollector(routesFile, preloadFile);
+    const collector = new JsonRouterCollector({
+      root: site.root(),
+      routesPath: options.routesPath,
+      preloadPath: options.preloadPath,
+      src: site.options.src,
+    });
 
     // Collect and save the routes automatically
     site.addEventListener("beforeSave", async () => {
@@ -39,7 +42,7 @@ export default function (userOptions?: Partial<Options>) {
       const specifiers: string[] = [];
 
       for (const [path, entry] of site.fs.entries) {
-        const ext = extname(path);
+        const ext = posix.extname(path);
 
         switch (ext) {
           case ".ts":
@@ -66,7 +69,7 @@ export default function (userOptions?: Partial<Options>) {
 
     site._data.on_demand = {
       extraData: options.extraData,
-      routesFile,
+      routesFile: site.root(options.routesPath),
     } as MiddlewareOptions;
 
     site.options.server.middlewares.push(onDemand({
@@ -76,19 +79,25 @@ export default function (userOptions?: Partial<Options>) {
   };
 }
 
-/** Class to load and manage static routes in a JSON file
+interface JsonRouterCollectorOptions {
+  root: string;
+  routesPath: string;
+  preloadPath: string;
+  src: string;
+}
+
+/**
+ * Class to load and manage static routes in a JSON file
  *  Used by default if no router is provided
  */
 export class JsonRouterCollector {
-  #routesFile: string;
-  #preloadFile: string;
+  options: JsonRouterCollectorOptions;
 
   /** Pages that must be generated on demand */
   routes = new Map<string, string>();
 
-  constructor(routesFile: string, preloadFile: string) {
-    this.#routesFile = routesFile;
-    this.#preloadFile = preloadFile;
+  constructor(options: JsonRouterCollectorOptions) {
+    this.options = options;
   }
 
   /** Collect the routes of all pages with data.ondemand = true */
@@ -98,7 +107,7 @@ export class JsonRouterCollector {
     pages.forEach((page) => {
       this.routes.set(
         page.data.url as string,
-        page.src.path + page.src.ext,
+        page.src.path + (page.src.ext || ""),
       );
     });
   }
@@ -109,6 +118,8 @@ export class JsonRouterCollector {
       return;
     }
 
+    const routesFile = posix.join(this.options.root, this.options.routesPath);
+    const preloadFile = posix.join(this.options.root, this.options.preloadPath);
     const data: Record<string, string> = {};
 
     this.routes.forEach((path, url) => {
@@ -116,12 +127,9 @@ export class JsonRouterCollector {
     });
 
     // Write the routes file
-    await Deno.writeTextFile(
-      this.#routesFile,
-      JSON.stringify(data, null, 2) + "\n",
-    );
+    await Deno.writeTextFile(routesFile, `${JSON.stringify(data, null, 2)}\n`);
 
-    logger.log(`Routes saved at <dim>${this.#routesFile}</dim>`);
+    logger.log(`Routes saved at <dim>${routesFile}</dim>`);
 
     // Write the preload file
     if (specifiers.length && Object.keys(data).length) {
@@ -132,13 +140,15 @@ export class JsonRouterCollector {
         " * @see https://deno.com/deploy/changelog#statically-analyzable-dynamic-imports",
         " */",
         "export function toStaticallyAnalyzableDynamicImports() {",
-        ...specifiers.map((path) => `  import("./${path}");`),
+        ...specifiers.map((path) =>
+          `  import("./${posix.join(".", this.options.src, path)}");`
+        ),
         "}",
         "",
       ].join("\n");
 
-      await Deno.writeTextFile(this.#preloadFile, code);
-      logger.log(`Preloader saved at <dim>${this.#preloadFile}</dim>`);
+      await Deno.writeTextFile(preloadFile, code);
+      logger.log(`Preloader saved at <dim>${preloadFile}</dim>`);
     }
   }
 }
