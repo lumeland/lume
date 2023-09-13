@@ -13,6 +13,9 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - New argument for `site.component()` to define the directory scope.
 - Plugin `picture`: Support sizes attribute [#482]
 
+### Changed
+- Plugin `metas`: Removed redundant twitter meta tags [#487] [#488]
+
 ### Fixed
 - `minify_html` works offline.
 - Updated dependencies: `std`, `vento`, `terser`, `lightningcss`.
@@ -2390,6 +2393,8 @@ The first version.
 [#473]: https://github.com/lumeland/lume/issues/473
 [#481]: https://github.com/lumeland/lume/issues/481
 [#482]: https://github.com/lumeland/lume/issues/482
+[#487]: https://github.com/lumeland/lume/issues/487
+[#488]: https://github.com/lumeland/lume/issues/488
 
 [1.18.6]: https://github.com/lumeland/lume/compare/v1.18.5...HEAD
 [1.18.5]: https://github.com/lumeland/lume/compare/v1.18.4...v1.18.5
