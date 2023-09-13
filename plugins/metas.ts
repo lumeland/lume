@@ -107,15 +107,12 @@ export default function (userOptions?: Partial<Options>) {
       addMeta(document, "property", "og:image", image || icon);
 
       // Twitter cards
-      addMeta(document, "name", "twitter:title", title, 65);
-      addMeta(document, "name", "twitter:description", description, 200);
       addMeta(
         document,
         "name",
         "twitter:card",
         image ? "summary_large_image" : "summary",
       );
-      addMeta(document, "name", "twitter:image", image || icon);
       addMeta(document, "name", "twitter:site", twitter);
 
       // Schema.org
