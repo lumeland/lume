@@ -580,19 +580,50 @@ export function env<T>(name: string): T | undefined {
   }
 }
 
-let level = env<LevelName | "NONE">("LUME_LOG_LEVEL") || "DEBUG";
+let level = env<LevelName | "NONE">("LUME_LOG_LEVEL")?.toUpperCase();
 
 if (level === "NOTSET") {
   level = "DEBUG";
 }
 
+/**
+ * This is the default logger. It will output color coded log messages to the
+ * console via `console.log()`.
+ */
+class ConsoleHandler extends logger.handlers.BaseHandler {
+  override format(logRecord: LogRecord): string {
+    let { msg } = logRecord;
+
+    switch (logRecord.level) {
+      case logger.LogLevels.WARNING:
+        msg = `<yellow>WARNING</yellow> ${msg}`;
+        break;
+      case logger.LogLevels.ERROR:
+        msg = `<red>ERROR</red> ${msg}`;
+        break;
+      case logger.LogLevels.CRITICAL:
+        msg = `<Red>CRITICAL</Red> ${msg}`;
+        break;
+    }
+
+    return msg.replaceAll(
+      /<(\w+)>([^<]+)<\/\1>/g,
+      (_, name, content) => logFormats[name]!(content),
+    );
+  }
+
+  override log(msg: string) {
+    console.log(msg);
+  }
+}
+
 logger.setup({
   handlers: {
-    console: new logger.handlers.ConsoleHandler("DEBUG", { formatter }),
+    console: new ConsoleHandler("DEBUG"),
   },
   loggers: {
     lume: {
-      level: level === "NONE" ? "NOTSET" : level,
+      level: (level === "NONE" ? "NOTSET" : level) as LevelName,
       handlers: level === "NONE" ? [] : ["console"],
     },
   },
@@ -601,6 +632,8 @@ logger.setup({
 export const log = logger.getLogger("lume");
 
 const logFormats: Record<string, (str: string) => string> = {
+  cyan,
+  Cyan: (str: string) => bold(cyan(str)),
   red,
   Red: (str: string) => bold(red(str)),
   dim,
@@ -611,13 +644,3 @@ const logFormats: Record<string, (str: string) => string> = {
   Yellow: (str: string) => bold(yellow(str)),
   del: (str: string) => strikethrough(dim(str)),
 };
-
-function formatter(record: LogRecord) {
-  const { msg, level, levelName } = record;
-  const prefix = level > 20 ? `${levelName}: ` : "";
-
-  return prefix + msg.replaceAll(
-    /<(\w+)>([^<]+)<\/\1>/g,
-    (_, name, content) => logFormats[name]!(content),
-  );
-}

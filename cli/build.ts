@@ -39,7 +39,9 @@ export async function build(
   const duration = performance.measure("duration", "start", "end").duration /
     1000;
   const total = site.pages.length + site.files.length;
-  log.info(`  ${total} files generated in ${duration.toFixed(2)} seconds`);
+  log.info(
+    `  <dim>${total} files generated in ${duration.toFixed(2)} seconds</dim>`,
+  );
 
   await checkUpgrade();
 

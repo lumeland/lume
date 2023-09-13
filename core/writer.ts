@@ -57,7 +57,7 @@ export default class Writer {
     // Ignore empty pages
     if (!page.content) {
       log.warning(
-        `[Lume] Skipped page ${page.data.url} (file content is empty)`,
+        `[Lume] <cyan>Skipped page</cyan> ${page.data.url} (file content is empty)`,
       );
       return false;
     }
@@ -83,7 +83,7 @@ export default class Writer {
       }
     }
 
-    log.info(`🔥 ${page.data.url} <dim>${sourcePath}</dim>`);
+    log.debug(`🔥 ${page.data.url} <dim>${sourcePath}</dim>`);
 
     const filename = posix.join(this.dest, outputPath);
     await ensureDir(posix.dirname(filename));
@@ -140,7 +140,7 @@ export default class Writer {
         // Copy file https://github.com/denoland/deno/issues/19425
         Deno.writeFileSync(pathTo, Deno.readFileSync(entry.src));
       }
-      log.info(
+      log.debug(
         `🔥 ${file.outputPath} <dim>${
           entry.flags.has("remote") ? entry.src : entry.path
         }</dim>`,

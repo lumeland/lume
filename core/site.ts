@@ -601,7 +601,7 @@ export default class Site {
         const shouldSkip = !page.content || page.data.ondemand;
         if (shouldSkip) {
           log.info(
-            `[Lume] Skipped page ${page.data.url} (${
+            `[Lume] <cyan>Skipped page</cyan> ${page.data.url} (${
               page.data.ondemand
                 ? "page is build only on demand"
                 : "file content is empty"
