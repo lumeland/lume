@@ -71,6 +71,9 @@ export async function build(
     return;
   }
 
+  // Set the live reload environment variable to add hash to the URLs in the module loader
+  Deno.env.set("LUME_LIVE_RELOAD", "true");
+
   // Start the watcher
   const watcher = new FSWatcher({
     root: site.src(),

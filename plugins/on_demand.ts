@@ -125,14 +125,19 @@ export class JsonRouterCollector {
 
     // Write the preload file
     if (specifiers.length && Object.keys(data).length) {
-      const code = Array.from(specifiers)
-        .map((path) => `import {} from ".${path}";`)
-        .join("\n");
-      await Deno.writeTextFile(
-        this.#preloadFile,
-        `${code}\n`,
-      );
+      const code = [
+        "/**",
+        " * Don't execute this function",
+        " * It's just statically analyzable so dynamic imports work on Deno Deploy",
+        " * @see https://deno.com/deploy/changelog#statically-analyzable-dynamic-imports",
+        " */",
+        "export function toStaticallyAnalyzableDynamicImports() {",
+        ...specifiers.map((path) => `  import("./${path}");`),
+        "}",
+        "",
+      ].join("\n");
 
+      await Deno.writeTextFile(this.#preloadFile, code);
       logger.log(`Preloader saved at <dim>${this.#preloadFile}</dim>`);
     }
   }
