@@ -90,6 +90,222 @@ snapshot[`Pagefind plugin 2`] = `[]`;
 snapshot[`Pagefind plugin 3`] = `
 [
   {
+    content: "Uint8Array(168)",
+    data: {
+      content: "Uint8Array(168)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pagefind/fragment/en_48f6619.pf_fragment",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "en_48f6619",
+    },
+  },
+  {
+    content: "Uint8Array(170)",
+    data: {
+      content: "Uint8Array(170)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pagefind/fragment/en_7c1ec25.pf_fragment",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "en_7c1ec25",
+    },
+  },
+  {
+    content: "Uint8Array(133)",
+    data: {
+      content: "Uint8Array(133)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pagefind/index/en_8a7583c.pf_index",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "en_8a7583c",
+    },
+  },
+  {
+    content: "Uint8Array(90)",
+    data: {
+      content: "Uint8Array(90)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pagefind/pagefind-entry.json",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "pagefind-entry",
+    },
+  },
+  {
+    content: "Uint8Array(7336)",
+    data: {
+      content: "Uint8Array(7336)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pagefind/pagefind-modular-ui.css",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "pagefind-modular-ui",
+    },
+  },
+  {
+    content: "Uint8Array(14286)",
+    data: {
+      content: "Uint8Array(14286)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pagefind/pagefind-modular-ui.js",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "pagefind-modular-ui",
+    },
+  },
+  {
+    content: "Uint8Array(14500)",
+    data: {
+      content: "Uint8Array(14500)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pagefind/pagefind-ui.css",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "pagefind-ui",
+    },
+  },
+  {
+    content: "Uint8Array(59522)",
+    data: {
+      content: "Uint8Array(59522)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pagefind/pagefind-ui.js",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "pagefind-ui",
+    },
+  },
+  {
+    content: "Uint8Array(96)",
+    data: {
+      content: "Uint8Array(96)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pagefind/pagefind.en_326c62ddd4.pf_meta",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "pagefind",
+    },
+  },
+  {
+    content: "Uint8Array(30414)",
+    data: {
+      content: "Uint8Array(30414)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pagefind/pagefind.js",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "pagefind",
+    },
+  },
+  {
+    content: "Uint8Array(60537)",
+    data: {
+      content: "Uint8Array(60537)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pagefind/wasm.en.pagefind",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "wasm",
+    },
+  },
+  {
+    content: "Uint8Array(55977)",
+    data: {
+      content: "Uint8Array(55977)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pagefind/wasm.unknown.pagefind",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "wasm",
+    },
+  },
+  {
     content: \`<!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="UTF-8">

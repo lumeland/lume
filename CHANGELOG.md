@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.18.6] - Unreleased
+## [1.19.0] - Unreleased
 ### Added
 - New `vto` filter.
 - New `site.page()` to add pages dynamically from `_config.ts`.
@@ -16,6 +16,11 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ### Changed
 - Plugin `metas`: Removed redundant twitter meta tags [#487] [#488]
+- Upgrade `pagefind` to `v1.0`.
+  This caused some BREAKING CHANGES:
+  - Removed the `binary` options. The binary is downloaded automatically by the NPM package and no `_bin` folder is created.
+  - The option `indexing.bundleDirectory` was renamed to `outputPath` and moved to the options root.
+  - Added new `customRecords` option, a new feature from Pagefind.
 
 ### Fixed
 - `minify_html` works offline.

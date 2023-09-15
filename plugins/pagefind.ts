@@ -1,7 +1,9 @@
 import { merge } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
-import downloadBinary, { DownloadOptions } from "../deps/pagefind.ts";
+import { Page } from "../core/filesystem.ts";
+import * as pagefind from "../deps/pagefind.ts";
 
+import type { CustomRecord } from "../deps/pagefind.ts";
 import type { DeepPartial, Site } from "../core.ts";
 
 export interface TranslationsOptions {
@@ -48,6 +50,17 @@ export interface UIOptions {
   resetStyles: boolean;
 
   /**
+   * Include results from page subsections (based on headings with IDs).
+   */
+  showSubResults: boolean;
+
+  /**
+   * The maximum number of characters to show in the excerpt.
+   * `0` means no limit
+   */
+  excerptLength?: number;
+
+  /**
    * A set of custom ui strings to use instead of the automatically detected language strings.
    * See https://github.com/CloudCannon/pagefind/blob/main/pagefind_ui/translations/en.json for all available keys and initial values.
    * The items in square brackets such as SEARCH_TERM will be substituted dynamically when the text is used.
@@ -55,60 +68,53 @@ export interface UIOptions {
   translations?: TranslationsOptions;
 
   /**
+   * A function that Pagefind UI calls before displaying each result.
+   * This can be used to fix relative URLs, rewrite titles,
+   * or any other modifications you might like to make to the raw result object
+   * returned by Pagefind
+   */
+  processResult?: (result: unknown) => unknown;
+
+  /**
    * A function that Pagefind UI calls before performing a search.
    * This can be used to normalize search terms to match your content.
    */
   processTerm?: (term: string) => string;
-}
 
-export interface IndexingOptions {
-  /** The folder to output search files into, relative to source. */
-  bundleDirectory: string;
-
-  /** The element that Pagefind should treat as the root of the document. */
-  rootSelector: string;
-
-  /** Configures the glob used by Pagefind to discover HTML files. */
-  glob: string;
-
-  /** Ignores any detected languages and creates a single index for the entire site as the provided language. */
-  forceLanguage: string | false;
-
-  /** Prints extra logging while indexing the site. */
-  verbose: boolean;
-
-  /** Extra element selectors that Pagefind should ignore when indexing */
-  excludeSelectors: string[];
+  /**
+   * The number of milliseconds to wait after a user stops typing before performing a search.
+   * If you wish to disable this, set to 0.
+   * @default 300
+   */
+  debounceTimeoutMs?: number;
 }
 
 export interface Options {
-  /** The options to download the binary file */
-  binary: DownloadOptions;
+  /** The path to the pagefind bundle directory */
+  outputPath: string;
 
   /** Options for the UI interface or false to disable it */
   ui: UIOptions | false;
 
   /** Options for the indexing process */
-  indexing: IndexingOptions;
+  indexing: pagefind.PagefindServiceConfig;
+
+  /** Other custom records */
+  customRecords?: CustomRecord[];
 }
 
 export const defaults: Options = {
-  binary: {
-    path: "./_bin/pagefind",
-    extended: false,
-    version: "v0.12.0",
-  },
+  outputPath: "/pagefind",
   ui: {
     containerId: "search",
     showImages: false,
+    excerptLength: 0,
     showEmptyFilters: true,
+    showSubResults: false,
     resetStyles: true,
   },
   indexing: {
-    bundleDirectory: "pagefind",
     rootSelector: "html",
-    glob: "**/*.html",
-    forceLanguage: false,
     verbose: false,
     excludeSelectors: [],
   },
@@ -120,6 +126,53 @@ export default function (userOptions?: DeepPartial<Options>) {
 
   return (site: Site) => {
     const { ui, indexing } = options;
+
+    site.processAll([".html"], async (pages, allPages) => {
+      const { index } = await pagefind.createIndex(indexing);
+
+      if (!index) {
+        throw new Error("Pagefind index not created");
+      }
+
+      // Page indexing
+      for (const page of pages) {
+        const { errors } = await index.addHTMLFile({
+          url: site.url(page.outputPath as string),
+          content: page.content as string,
+        });
+
+        if (errors.length > 0) {
+          throw new Error(
+            `Pagefind index errors for ${page.src.path}:\n${errors.join("\n")}`,
+          );
+        }
+      }
+
+      if (options.customRecords) {
+        for (const record of options.customRecords) {
+          const { errors } = await index.addCustomRecord(record);
+
+          if (errors.length > 0) {
+            throw new Error(
+              `Pagefind index errors for custom record:\n${errors.join("\n")}`,
+            );
+          }
+        }
+      }
+
+      // Output indexing
+      const { files } = await index.getFiles();
+
+      for (const file of files) {
+        const { path, content } = file;
+        allPages.push(
+          Page.create(posix.join("/", options.outputPath, path), content),
+        );
+      }
+
+      // Cleanup
+      await index.deleteIndex();
+    });
 
     if (ui) {
       site.process([".html"], (page) => {
@@ -136,7 +189,7 @@ export default function (userOptions?: DeepPartial<Options>) {
           styles.setAttribute(
             "href",
             site.url(
-              `${posix.join(indexing.bundleDirectory, "pagefind-ui.css")}`,
+              `${posix.join(options.outputPath, "pagefind-ui.css")}`,
             ),
           );
 
@@ -155,7 +208,7 @@ export default function (userOptions?: DeepPartial<Options>) {
           script.setAttribute(
             "src",
             site.url(
-              `${posix.join(indexing.bundleDirectory, "pagefind-ui.js")}`,
+              `${posix.join(options.outputPath, "pagefind-ui.js")}`,
             ),
           );
 
@@ -164,7 +217,7 @@ export default function (userOptions?: DeepPartial<Options>) {
             showImages: ui.showImages,
             showEmptyFilters: ui.showEmptyFilters,
             resetStyles: ui.resetStyles,
-            bundlePath: site.url(posix.join(indexing.bundleDirectory, "/")),
+            bundlePath: site.url(posix.join(options.outputPath, "/")),
             baseUrl: site.url("/"),
             translations: ui.translations,
             processTerm: ui.processTerm ? ui.processTerm.toString() : undefined,
@@ -179,60 +232,5 @@ export default function (userOptions?: DeepPartial<Options>) {
         }
       });
     }
-
-    site.addEventListener("afterBuild", async () => {
-      const binary = await downloadBinary(options.binary);
-      const args = buildArguments(
-        options.indexing,
-        site.dest(),
-      );
-      const { code, stdout, stderr } = await new Deno.Command(binary, { args })
-        .output();
-      if (code !== 0) {
-        throw new Error(
-          `Pagefind exited with code ${code}
-
-${decode(stdout)}
-
-${decode(stderr)}`,
-        );
-      } else if (options.indexing.verbose) {
-        console.log(decode(stdout));
-      }
-    });
   };
-}
-
-function buildArguments(
-  options: Options["indexing"],
-  source: string,
-): string[] {
-  const args = [
-    "--source",
-    source,
-    "--bundle-dir",
-    options.bundleDirectory,
-    "--root-selector",
-    options.rootSelector,
-    "--glob",
-    options.glob,
-  ];
-
-  if (options.forceLanguage) {
-    args.push("--force-language", options.forceLanguage);
-  }
-
-  if (options.excludeSelectors.length > 0) {
-    args.push("--exclude-selectors", options.excludeSelectors.join(","));
-  }
-
-  if (options.verbose) {
-    args.push("--verbose");
-  }
-
-  return args;
-}
-
-function decode(raw: Uint8Array): string {
-  return (new TextDecoder()).decode(raw);
 }
