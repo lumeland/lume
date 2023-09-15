@@ -9,7 +9,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.19.0] - Unreleased
 ### Added
 - New plugin: `favicon`.
-- New function `search.files()` to return the files to be exported [#467].
+- New function `search.files()` to return the files to be exported [#468].
 - New `vto` filter [#480].
 - New `site.page()` to add pages dynamically from `_config.ts`.
 - New argument for `site.component()` to define the directory scope.
@@ -2397,6 +2397,7 @@ The first version.
 [#463]: https://github.com/lumeland/lume/issues/463
 [#466]: https://github.com/lumeland/lume/issues/466
 [#467]: https://github.com/lumeland/lume/issues/467
+[#468]: https://github.com/lumeland/lume/issues/468
 [#469]: https://github.com/lumeland/lume/issues/469
 [#470]: https://github.com/lumeland/lume/issues/470
 [#473]: https://github.com/lumeland/lume/issues/473
