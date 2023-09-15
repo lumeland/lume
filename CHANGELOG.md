@@ -9,7 +9,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.19.0] - Unreleased
 ### Added
 - New plugin: `favicon`.
-- New `vto` filter #480.
+- New function `search.files()` to return the files to be exported [#467].
+- New `vto` filter [#480].
 - New `site.page()` to add pages dynamically from `_config.ts`.
 - New argument for `site.component()` to define the directory scope.
 - Plugin `picture`: Support sizes attribute [#482].
@@ -2399,12 +2400,13 @@ The first version.
 [#469]: https://github.com/lumeland/lume/issues/469
 [#470]: https://github.com/lumeland/lume/issues/470
 [#473]: https://github.com/lumeland/lume/issues/473
+[#480]: https://github.com/lumeland/lume/issues/480
 [#481]: https://github.com/lumeland/lume/issues/481
 [#482]: https://github.com/lumeland/lume/issues/482
 [#487]: https://github.com/lumeland/lume/issues/487
 [#488]: https://github.com/lumeland/lume/issues/488
 
-[1.18.6]: https://github.com/lumeland/lume/compare/v1.18.5...HEAD
+[1.19.0]: https://github.com/lumeland/lume/compare/v1.18.5...HEAD
 [1.18.5]: https://github.com/lumeland/lume/compare/v1.18.4...v1.18.5
 [1.18.4]: https://github.com/lumeland/lume/compare/v1.18.3...v1.18.4
 [1.18.3]: https://github.com/lumeland/lume/compare/v1.18.2...v1.18.3

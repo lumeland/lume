@@ -188,6 +188,7 @@ export default class Site {
     const url404 = server.page404 ? normalizePath(server.page404) : undefined;
     const searcher = new Searcher({
       pages: this.pages,
+      files: this.files,
       sourceData: source.data,
       filters: [
         (data: Data) => data.page?.outputPath?.endsWith(".html") ?? false, // only html pages

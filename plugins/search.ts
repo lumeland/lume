@@ -56,6 +56,11 @@ export class Search {
     return this.pages(query, sort)[0];
   }
 
+  /** Search and return the output files */
+  files(query?: string | RegExp): string[] {
+    return this.#searcher.files(query);
+  }
+
   /** Returns all values from the same key of a search */
   values(key: string, query?: Query) {
     return this.#searcher.values(key, toString(query));
