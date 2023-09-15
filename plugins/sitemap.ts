@@ -108,6 +108,14 @@ export default function (userOptions?: Partial<Options>) {
             if (priority) {
               node.priority = priority;
             }
+
+            if (data.alternates?.length) {
+              node["xhtml:link"] = data.alternates.map((alternate: Data) => ({
+                "@rel": "alternate",
+                "@hreflang": alternate.lang,
+                "@href": site.url(alternate.url as string, true),
+              }));
+            }
             return node;
           }),
         },
@@ -123,6 +131,11 @@ interface UrlItem {
   lastmod?: string;
   changefreq?: ChangeFreq;
   priority?: number;
+  "xhtml:link"?: {
+    "@rel": "alternate";
+    "@hreflang": string;
+    "@href": string;
+  }[];
 }
 
 function getValue<T>(

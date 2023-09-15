@@ -11,7 +11,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - New `vto` filter.
 - New `site.page()` to add pages dynamically from `_config.ts`.
 - New argument for `site.component()` to define the directory scope.
-- Plugin `picture`: Support sizes attribute [#482]
+- Plugin `picture`: Support sizes attribute [#482].
+- Plugin `sitemap`: Support for multilanguage sites.
 
 ### Changed
 - Plugin `metas`: Removed redundant twitter meta tags [#487] [#488]
