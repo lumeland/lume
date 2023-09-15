@@ -11,6 +11,7 @@ export const pluginNames = [
   "date",
   "esbuild",
   "eta",
+  "favicon",
   "feed",
   "filter_pages",
   "imagick",

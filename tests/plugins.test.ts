@@ -13,6 +13,7 @@ Deno.test("Plugins list in init", () => {
     "date",
     "esbuild",
     "eta",
+    "favicon",
     "feed",
     "filter_pages",
     "imagick",

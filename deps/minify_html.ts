@@ -1,30 +1,12 @@
-import {
-  default as initWasm,
-  minify,
-} from "https://wilsonl.in/minify-html/deno/0.11.1/index.js";
+// https://github.com/wilsonzlin/minify-html
+export { minify } from "https://wilsonl.in/minify-html/deno/0.11.1/index.js";
+import initWasm from "https://wilsonl.in/minify-html/deno/0.11.1/index.js";
+import { read } from "../core/utils.ts";
 
-export { minify };
-
-export async function init() {
-  const url = "https://wilsonl.in/minify-html/deno/0.11.1/index_bg.wasm";
-  const cache = await caches.open("lume_minify_html");
-
-  // Prevent https://github.com/denoland/deno/issues/19696
-  try {
-    const cached = await cache.match(url);
-
-    if (cached) {
-      return await initWasm(cached);
-    }
-  } catch {
-    // ignore
-  }
-
-  const response = await fetch(url);
-  await cache.put(url, response.clone());
-
-  return await initWasm(response);
-}
+// Initialize the WASM module
+const url = "https://wilsonl.in/minify-html/deno/0.11.1/index_bg.wasm";
+const wasm = await read(url, true);
+await initWasm(wasm);
 
 export interface Options {
   /** Do not minify DOCTYPEs. Minified DOCTYPEs may not be spec compliant. */

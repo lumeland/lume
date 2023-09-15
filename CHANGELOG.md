@@ -8,6 +8,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [1.19.0] - Unreleased
 ### Added
+- New plugin: `favicon`.
 - New `vto` filter.
 - New `site.page()` to add pages dynamically from `_config.ts`.
 - New argument for `site.component()` to define the directory scope.

@@ -1,13 +1,11 @@
 import { getPathAndExtension, merge } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
 import { Exception } from "../core/errors.ts";
-import { ImageMagick, initialize } from "../deps/imagick.ts";
+import { ImageMagick } from "../deps/imagick.ts";
 import Cache from "../core/cache.ts";
 
 import type { Page, Site } from "../core.ts";
 import type { IMagickImage, MagickFormat } from "../deps/imagick.ts";
-
-await initialize();
 
 export interface Options {
   /** The list extensions this plugin applies to */
