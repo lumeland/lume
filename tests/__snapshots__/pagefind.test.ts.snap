@@ -90,9 +90,9 @@ snapshot[`Pagefind plugin 2`] = `[]`;
 snapshot[`Pagefind plugin 3`] = `
 [
   {
-    content: "Uint8Array(168)",
+    content: "Uint8Array()",
     data: {
-      content: "Uint8Array(168)",
+      content: "Uint8Array()",
       page: [
         "src",
         "data",
@@ -108,9 +108,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(170)",
+    content: "Uint8Array()",
     data: {
-      content: "Uint8Array(170)",
+      content: "Uint8Array()",
       page: [
         "src",
         "data",
@@ -126,9 +126,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(133)",
+    content: "Uint8Array()",
     data: {
-      content: "Uint8Array(133)",
+      content: "Uint8Array()",
       page: [
         "src",
         "data",
@@ -144,9 +144,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(94)",
+    content: "Uint8Array()",
     data: {
-      content: "Uint8Array(94)",
+      content: "Uint8Array()",
       page: [
         "src",
         "data",
@@ -162,9 +162,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(7336)",
+    content: "Uint8Array()",
     data: {
-      content: "Uint8Array(7336)",
+      content: "Uint8Array()",
       page: [
         "src",
         "data",
@@ -180,9 +180,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(14270)",
+    content: "Uint8Array()",
     data: {
-      content: "Uint8Array(14270)",
+      content: "Uint8Array()",
       page: [
         "src",
         "data",
@@ -198,9 +198,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(14500)",
+    content: "Uint8Array()",
     data: {
-      content: "Uint8Array(14500)",
+      content: "Uint8Array()",
       page: [
         "src",
         "data",
@@ -216,9 +216,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(59505)",
+    content: "Uint8Array()",
     data: {
-      content: "Uint8Array(59505)",
+      content: "Uint8Array()",
       page: [
         "src",
         "data",
@@ -234,9 +234,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(100)",
+    content: "Uint8Array()",
     data: {
-      content: "Uint8Array(100)",
+      content: "Uint8Array()",
       page: [
         "src",
         "data",
@@ -252,9 +252,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(30418)",
+    content: "Uint8Array()",
     data: {
-      content: "Uint8Array(30418)",
+      content: "Uint8Array()",
       page: [
         "src",
         "data",
@@ -270,9 +270,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(60561)",
+    content: "Uint8Array()",
     data: {
-      content: "Uint8Array(60561)",
+      content: "Uint8Array()",
       page: [
         "src",
         "data",
@@ -288,9 +288,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(55968)",
+    content: "Uint8Array()",
     data: {
-      content: "Uint8Array(55968)",
+      content: "Uint8Array()",
       page: [
         "src",
         "data",

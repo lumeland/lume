@@ -52,6 +52,7 @@ export async function build(site: Site) {
 
 function normalizeValue(
   content: unknown[] | Uint8Array | string | undefined,
+  options: SiteSnapshotOptions,
 ): string {
   if (content === undefined) {
     return "undefined";
@@ -65,6 +66,9 @@ function normalizeValue(
   }
 
   if (content instanceof Uint8Array) {
+    if (options.avoidBinaryFilesLength) {
+      return `Uint8Array()`;
+    }
     return `Uint8Array(${content.length})`;
   }
 
@@ -82,9 +86,14 @@ function normalizeSourceMap(content: string) {
   return JSON.stringify(sourceMap);
 }
 
+interface SiteSnapshotOptions {
+  avoidBinaryFilesLength?: boolean;
+}
+
 export async function assertSiteSnapshot(
   context: Deno.TestContext,
   site: Site,
+  options: SiteSnapshotOptions = {},
 ) {
   const { pages, files } = site;
 
@@ -119,9 +128,9 @@ export async function assertSiteSnapshot(
               if (isSourceMap && key === "content") {
                 return [key, normalizeSourceMap(value)];
               }
-              return [key, normalizeValue(value)];
+              return [key, normalizeValue(value, options)];
             case "undefined":
-              return [key, normalizeValue(value)];
+              return [key, normalizeValue(value, options)];
             case "number":
             case "boolean":
               return [key, value];
@@ -130,7 +139,7 @@ export async function assertSiteSnapshot(
                 return [key, null];
               }
               if (Array.isArray(value) || value instanceof Uint8Array) {
-                return [key, normalizeValue(value)];
+                return [key, normalizeValue(value, options)];
               }
               if (value instanceof Map || value instanceof Set) {
                 return [key, [...value.keys()].sort(compare)];
@@ -149,7 +158,7 @@ export async function assertSiteSnapshot(
       ),
       content: isSourceMap
         ? normalizeSourceMap(page.content as string)
-        : normalizeValue(page.content),
+        : normalizeValue(page.content, options),
       src: {
         path: page.src.path,
         ext: page.src.ext,

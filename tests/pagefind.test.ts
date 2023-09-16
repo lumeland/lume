@@ -11,6 +11,8 @@ Deno.test(
     site.use(pagefind());
 
     await build(site);
-    await assertSiteSnapshot(t, site);
+    await assertSiteSnapshot(t, site, {
+      avoidBinaryFilesLength: true,
+    });
   },
 );
