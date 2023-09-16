@@ -9,6 +9,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.19.0] - Unreleased
 ### Added
 - New plugin: `favicon`.
+- New plugin: `reading_info`.
 - New function `search.files()` to return the files to be exported [#468].
 - New `vto` filter [#480].
 - New `site.page()` to add pages dynamically from `_config.ts`.

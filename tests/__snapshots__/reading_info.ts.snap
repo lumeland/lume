@@ -1,0 +1,215 @@
+export const snapshot = {};
+
+snapshot[`Reading info plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/layout.njk",
+    "/page.md",
+  ],
+}
+`;
+
+snapshot[`Reading info plugin 2`] = `[]`;
+
+snapshot[`Reading info plugin 3`] = `
+[
+  {
+    content: '<!DOCTYPE html>
+<html>
+  <body>
+    <p>Leverage agile frameworks to provide a robust synopsis for high level overviews.
+Iterative approaches to corporate strategy foster collaborative thinking to
+further the overall value proposition. Organically grow the holistic world view
+of disruptive innovation via workplace diversity and empowerment.</p>
+<!--more-->
+<pre><code class="language-js">// this is a command
+function myCommand() {
+  let counter = 0;
+
+  counter++;
+}
+
+// Test with a line break above this line.
+console.log(&quot;Test&quot;);
+</code></pre>
+<p>Bring to the table win-win survival strategies to ensure proactive domination.
+At the end of the day, going forward, a new normal that has evolved from
+generation X is on the runway heading towards a streamlined cloud solution. User
+generated content in real-time will have multiple touchpoints for offshoring.</p>
+<h2>Section Header</h2>
+<p>Capitalize on low hanging fruit to identify a ballpark value added activity to
+beta test. Override the digital divide with additional clickthroughs from
+DevOps. Nanotechnology immersion along the information highway will close the
+loop on focusing solely on the bottom line.</p>
+
+
+    <footer>
+      Reading time: 34255<br>
+      Reading minutes: 1<br>
+      Words count: 157<br>
+    </footer>
+  </body>
+</html>',
+    data: {
+      author: "Óscar Otero",
+      children: '<p>Leverage agile frameworks to provide a robust synopsis for high level overviews.
+Iterative approaches to corporate strategy foster collaborative thinking to
+further the overall value proposition. Organically grow the holistic world view
+of disruptive innovation via workplace diversity and empowerment.</p>
+<!--more-->
+<pre><code class="language-js">// this is a command
+function myCommand() {
+  let counter = 0;
+
+  counter++;
+}
+
+// Test with a line break above this line.
+console.log(&quot;Test&quot;);
+</code></pre>
+<p>Bring to the table win-win survival strategies to ensure proactive domination.
+At the end of the day, going forward, a new normal that has evolved from
+generation X is on the runway heading towards a streamlined cloud solution. User
+generated content in real-time will have multiple touchpoints for offshoring.</p>
+<h2>Section Header</h2>
+<p>Capitalize on low hanging fruit to identify a ballpark value added activity to
+beta test. Override the digital divide with additional clickthroughs from
+DevOps. Nanotechnology immersion along the information highway will close the
+loop on focusing solely on the bottom line.</p>
+',
+      content: 'Leverage agile frameworks to provide a robust synopsis for high level overviews.
+Iterative approaches to corporate strategy foster collaborative thinking to
+further the overall value proposition. Organically grow the holistic world view
+of disruptive innovation via workplace diversity and empowerment.
+
+<!--more-->
+
+\`\`\`js
+// this is a command
+function myCommand() {
+  let counter = 0;
+
+  counter++;
+}
+
+// Test with a line break above this line.
+console.log("Test");
+\`\`\`
+
+Bring to the table win-win survival strategies to ensure proactive domination.
+At the end of the day, going forward, a new normal that has evolved from
+generation X is on the runway heading towards a streamlined cloud solution. User
+generated content in real-time will have multiple touchpoints for offshoring.
+
+## Section Header
+
+Capitalize on low hanging fruit to identify a ballpark value added activity to
+beta test. Override the digital divide with additional clickthroughs from
+DevOps. Nanotechnology immersion along the information highway will close the
+loop on focusing solely on the bottom line.
+',
+      date: [],
+      layout: "layout.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      readingInfo: [
+        "words",
+        "minutes",
+        "time",
+      ],
+      search: [],
+      tags: "Array(0)",
+      title: "This is my first post",
+      url: "/page/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/page",
+      remote: undefined,
+      slug: "page",
+    },
+  },
+]
+`;

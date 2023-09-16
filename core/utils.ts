@@ -34,6 +34,7 @@ export const pluginNames = [
   "postcss",
   "prism",
   "pug",
+  "reading_info",
   "relations",
   "relative_urls",
   "remark",
