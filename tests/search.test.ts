@@ -182,7 +182,7 @@ Deno.test("Sort by two fields", async (t) => {
   await assertSnapshot(t, sort);
 });
 
-Deno.test("Sort by two fields, sencod is DESC", async (t) => {
+Deno.test("Sort by two fields, second is DESC", async (t) => {
   const sort = buildSort("order title=desc");
 
   await assertSnapshot(t, sort);
@@ -200,7 +200,7 @@ Deno.test("Test the file searcher", async (t) => {
 
   const { searcher } = site;
 
-  await assertSnapshot(t, searcher.files());
+  await assertSnapshot(t, searcher.files().sort());
   await assertSnapshot(t, searcher.files("/*.png").sort());
   await assertSnapshot(t, searcher.files(/\.png$/).sort());
 });
