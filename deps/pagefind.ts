@@ -1,1 +1,1 @@
-export * from "npm:pagefind@1.0.2";
+export * from "npm:pagefind@1.0.3-rc0";

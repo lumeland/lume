@@ -144,9 +144,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(90)",
+    content: "Uint8Array(94)",
     data: {
-      content: "Uint8Array(90)",
+      content: "Uint8Array(94)",
       page: [
         "src",
         "data",
@@ -180,9 +180,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(14286)",
+    content: "Uint8Array(14270)",
     data: {
-      content: "Uint8Array(14286)",
+      content: "Uint8Array(14270)",
       page: [
         "src",
         "data",
@@ -216,9 +216,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(59522)",
+    content: "Uint8Array(59505)",
     data: {
-      content: "Uint8Array(59522)",
+      content: "Uint8Array(59505)",
       page: [
         "src",
         "data",
@@ -234,14 +234,14 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(96)",
+    content: "Uint8Array(100)",
     data: {
-      content: "Uint8Array(96)",
+      content: "Uint8Array(100)",
       page: [
         "src",
         "data",
       ],
-      url: "/pagefind/pagefind.en_326c62ddd4.pf_meta",
+      url: "/pagefind/pagefind.en_b7c8556e99.pf_meta",
     },
     src: {
       asset: true,
@@ -252,9 +252,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(30414)",
+    content: "Uint8Array(30418)",
     data: {
-      content: "Uint8Array(30414)",
+      content: "Uint8Array(30418)",
       page: [
         "src",
         "data",
@@ -270,9 +270,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(60537)",
+    content: "Uint8Array(60561)",
     data: {
-      content: "Uint8Array(60537)",
+      content: "Uint8Array(60561)",
       page: [
         "src",
         "data",
@@ -288,9 +288,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(55977)",
+    content: "Uint8Array(55968)",
     data: {
-      content: "Uint8Array(55977)",
+      content: "Uint8Array(55968)",
       page: [
         "src",
         "data",

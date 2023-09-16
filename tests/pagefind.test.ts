@@ -3,7 +3,6 @@ import pagefind from "../plugins/pagefind.ts";
 
 Deno.test(
   "Pagefind plugin",
-  { sanitizeOps: false, sanitizeResources: false },
   async (t) => {
     const site = getSite({
       src: "pagefind",

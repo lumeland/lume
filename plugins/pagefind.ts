@@ -172,6 +172,7 @@ export default function (userOptions?: DeepPartial<Options>) {
 
       // Cleanup
       await index.deleteIndex();
+      await pagefind.close();
     });
 
     if (ui) {
