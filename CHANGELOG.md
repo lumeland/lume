@@ -39,6 +39,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ### Changed
 - Make Vento components synchronous.
+- Non-HTML pages will render the layout if it's assigned directly (in the front matter).
 
 ### Fixed
 - Updated dependencies: `std`, `@types/react`, `esbuild`, `postcss`, `postcss-nesting`, `autoprefixer`, `vento`, `eta`, `lightningcss`, `liquidjs`, `preact`, `rehype`, `sass`, `minify_html`.

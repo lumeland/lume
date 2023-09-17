@@ -323,16 +323,18 @@ export default class Source {
           });
 
           // Load and merge the page data
+          const pageData = await entry.getContent(format.pageLoader);
           page.data = mergeData(
             dirData,
             date ? { date } : {},
             this.scopedData.get(entry.path) || {},
-            await entry.getContent(format.pageLoader),
+            pageData,
           ) as PageData;
 
           page.data.url = getUrl(page, this.prettyUrls, path);
           page.data.date = getDate(page.data.date, entry);
           page.data.page = page;
+          page._data.layout = pageData.layout;
 
           if (buildFilters.some((filter) => !filter(entry, page))) {
             continue;
