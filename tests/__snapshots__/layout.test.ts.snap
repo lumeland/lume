@@ -108,7 +108,8 @@ snapshot[`Layouts 3`] = `
     data: {
       children: "<h1>Hello world</h1>
 ",
-      content: "# Hello world",
+      content: "# Hello world
+",
       date: [],
       layout: "page.njk",
       mergedKeys: [

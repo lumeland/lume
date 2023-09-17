@@ -63,10 +63,7 @@ export default function (userOptions?: Partial<Options>) {
 
   return (site: Site) => {
     // Configure the merged keys
-    const mergedKeys = site.scopedData.get("/")?.mergedKeys || {};
-    mergedKeys[options.name] = "object";
-    site.data("mergedKeys", mergedKeys);
-
+    site.mergeKey(options.name, "object");
     site.process(options.extensions, metas);
 
     function metas(page: Page) {

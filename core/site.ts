@@ -29,6 +29,7 @@ import type {
   Helper,
   HelperOptions,
   Loader,
+  MergeStrategy,
   Middleware,
   MultiProcessor,
   Page,
@@ -378,7 +379,7 @@ export default class Site {
     return this;
   }
 
-  /** Register a multipreprocessor for some extensions */
+  /** Register a multi-preprocessor for some extensions */
   preprocessAll(extensions: Extensions, processor: MultiProcessor): this {
     this.preprocessors.set(extensions, processor, true);
     return this;
@@ -390,7 +391,7 @@ export default class Site {
     return this;
   }
 
-  /** Register a multiprocessor for some extensions */
+  /** Register a multi-processor for some extensions */
   processAll(extensions: Extensions, processor: MultiProcessor): this {
     this.processors.set(extensions, processor, true);
     return this;
@@ -440,6 +441,16 @@ export default class Site {
 
     components.set(component.name, component);
     this.scopedComponents.set(scope, scopedComponents);
+    return this;
+  }
+
+  /** Register a merging strategy for a data key */
+  mergeKey(key: string, merge: MergeStrategy, scope = "/"): this {
+    const data = this.scopedData.get(scope) || {};
+    const mergedKeys = data.mergedKeys || {};
+    mergedKeys[key] = merge;
+    data.mergedKeys = mergedKeys;
+    this.scopedData.set(scope, data);
     return this;
   }
 

@@ -51,7 +51,7 @@ export default function lume(
     .ignore("deno.json")
     .ignore("deno.jsonc")
     .ignore("deno.lock")
-    .data("mergedKeys", { tags: "stringArray" })
+    .mergeKey("tags", "stringArray")
     .use(url(pluginOptions.url))
     .use(json(pluginOptions.json))
     .use(markdown(pluginOptions.markdown))

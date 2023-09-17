@@ -10,9 +10,10 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Added
 - New plugin: `favicon`.
 - New plugin: `reading_info`.
+- New function `site.mergeKey()` to configure the merging strategy for data keys from the _config.ts file.
+- New function `site.page()` to add pages dynamically from `_config.ts`.
 - New function `search.files()` to return the files to be exported [#468].
 - New `vto` filter [#480].
-- New `site.page()` to add pages dynamically from `_config.ts`.
 - New argument for `site.component()` to define the directory scope.
 - Plugin `picture`: Support sizes attribute [#482].
 - Plugin `sitemap`: Support for multilanguage sites.
