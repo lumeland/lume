@@ -1,1 +1,1 @@
-export * from "npm:sass@1.66.1";
+export * from "npm:sass@1.67.0";
