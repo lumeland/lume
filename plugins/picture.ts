@@ -67,11 +67,11 @@ export default function (): Plugin {
         if (!paths.includes(path)) {
           continue;
         }
-        const imagick: Transformation[] = page.data.imagick
+        const imagick = page.data.imagick = page.data.imagick
           ? Array.isArray(page.data.imagick)
             ? page.data.imagick
             : [page.data.imagick]
-          : (page.data.imagick = []);
+          : [];
 
         for (const [suffix, scale] of Object.entries(scales)) {
           imagick.push({
