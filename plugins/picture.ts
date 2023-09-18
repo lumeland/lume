@@ -2,7 +2,6 @@ import { posix } from "../deps/path.ts";
 import { getPathAndExtension } from "../core/utils.ts";
 import { typeByExtension } from "../deps/media_types.ts";
 
-import type { Transformation } from "../plugins/imagick.ts";
 import type { MagickFormat } from "../deps/imagick.ts";
 import type { Document, Element } from "../deps/dom.ts";
 import type { Plugin, Site } from "../core.ts";
