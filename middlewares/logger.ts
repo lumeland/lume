@@ -17,9 +17,11 @@ export default function log(): Middleware {
         console.log(`${brightGreen(status.toString())} ${pathname}`);
       } else if (status === 301 || status === 302) {
         console.log(
-          `${dim(status.toString())} ${pathname} => ${response.headers?.get(
-            "location",
-          )}`,
+          `${dim(status.toString())} ${pathname} => ${
+            response.headers?.get(
+              "location",
+            )
+          }`,
         );
       } else {
         console.log(`${dim(status.toString())} ${pathname}`);

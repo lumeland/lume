@@ -126,6 +126,8 @@ snapshot[`build a site with vento 3`] = `
 <a href="https://example.com/blog/" class="btn btn-primary">Go to Lume</a>
 
 
+CUSTOM FILTER
+
 
   <footer>
 Título
@@ -145,6 +147,8 @@ Título
 
 <a href="https://example.com/blog/" class="btn btn-primary">Go to Lume</a>
 
+
+CUSTOM FILTER
 ',
       comp: [
         "_components",
@@ -159,6 +163,8 @@ Título
 {{ set href = "/" |> url(true) }}
 
 {{ comp button {href, content: "Go to Lume"} /}}
+
+{{ "custom filter" |> upper }}
 ',
       date: [],
       layout: "layout.vto",
