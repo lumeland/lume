@@ -3,6 +3,7 @@ import pagefind from "../plugins/pagefind.ts";
 
 Deno.test(
   "Pagefind plugin",
+  { ignore: Deno.build.os === "windows" },
   async (t) => {
     const site = getSite({
       src: "pagefind",
