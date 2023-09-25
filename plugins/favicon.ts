@@ -19,12 +19,48 @@ export interface Options {
 
   /** The cache folder */
   cache: string | boolean;
+
+  /** The generated favicons */
+  favicons: Favicon[];
 }
 
 export const defaults: Options = {
   input: "/favicon.svg",
   cache: true,
+  favicons: [
+    {
+      url: "/favicon.ico",
+      size: 16,
+      rel: "icon",
+      format: MagickFormat.Ico,
+    },
+    {
+      url: "/favicon-32.png",
+      size: 32,
+      rel: "icon",
+      format: MagickFormat.Png,
+    },
+    {
+      url: "/favicon-16.png",
+      size: 16,
+      rel: "icon",
+      format: MagickFormat.Png,
+    },
+    {
+      url: "/apple-touch-icon.png",
+      size: 180,
+      rel: "apple-touch-icon",
+      format: MagickFormat.Png,
+    },
+  ],
 };
+
+export interface Favicon {
+  url: string;
+  size: number;
+  rel: string;
+  format: string;
+}
 
 export default function (userOptions: DeepPartial<Options> = {}): Plugin {
   const options = merge(defaults, userOptions);
@@ -58,30 +94,15 @@ export default function (userOptions: DeepPartial<Options> = {}): Plugin {
         throw new Error(`Favicon: ${options.input} not found`);
       }
 
-      event.pages?.push(
-        Page.create(
-          "/favicon.ico",
-          await buildIco(content, MagickFormat.Ico, 16, cache),
-        ),
-      );
-      event.pages?.push(
-        Page.create(
-          "/favicon-32.png",
-          await buildIco(content, MagickFormat.Png, 32, cache),
-        ),
-      );
-      event.pages?.push(
-        Page.create(
-          "/favicon-16.png",
-          await buildIco(content, MagickFormat.Png, 16, cache),
-        ),
-      );
-      event.pages?.push(
-        Page.create(
-          "/apple-touch-icon.png",
-          await buildIco(content, MagickFormat.Png, 180, cache),
-        ),
-      );
+      for (const favicon of options.favicons) {
+        const format = favicon.format.toUpperCase() as MagickFormat;
+        event.pages?.push(
+          Page.create(
+            favicon.url,
+            await buildIco(content, format, favicon.size, cache),
+          ),
+        );
+      }
     });
 
     site.process([".html"], (page) => {
