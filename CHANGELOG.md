@@ -41,6 +41,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
   - Support object and array imagick data [#490].
   - Fixed the value of the image's `src` attribute #492.
   - Fixed attribute values starting/ending with space. For example `imagick=" png w600 "`.
+- `imagick` plugin: Removed duplicated transformations (that outputs the same file URL)
 
 ## [1.18.5] - 2023-09-01
 ### Added

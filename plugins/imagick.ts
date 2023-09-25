@@ -95,7 +95,9 @@ export default function (userOptions?: Partial<Options>) {
       }
 
       const content = page.content as Uint8Array;
-      const transformations = getTransformations(imagick);
+      const transformations = removeDuplicatedTransformations(
+        getTransformations(imagick),
+      );
       let transformed = false;
       let index = 0;
       for (const transformation of transformations) {
@@ -232,4 +234,18 @@ function getTransformations(
   }
 
   return [input as SingleTransformation];
+}
+
+function removeDuplicatedTransformations(
+  transformations: SingleTransformation[],
+): SingleTransformation[] {
+  const result = new Map<string, SingleTransformation>();
+
+  for (const transformation of transformations) {
+    const { format, suffix } = transformation;
+    const key = `${format}:${suffix ?? ""}`;
+    result.set(key, transformation);
+  }
+
+  return [...result.values()];
 }
