@@ -1,5 +1,5 @@
 import { posix } from "../deps/path.ts";
-import { getPathAndExtension } from "../core/utils.ts";
+import { getPathAndExtension, merge } from "../core/utils.ts";
 import { typeByExtension } from "../deps/media_types.ts";
 
 import type { MagickFormat } from "../deps/imagick.ts";
@@ -7,7 +7,7 @@ import type { Document, Element } from "../deps/dom.ts";
 import type { Plugin, Site } from "../core.ts";
 
 interface SourceFormat {
-  width: number;
+  width?: number;
   scales: Record<string, number>;
   format: string;
 }
@@ -16,7 +16,23 @@ interface Source extends SourceFormat {
   paths: string[];
 }
 
-export default function (): Plugin {
+export interface Options {
+  /** The key name for the transformations definitions */
+  name: string;
+
+  /** The priority order of the formats */
+  order: string[];
+}
+
+// Default options
+export const defaults: Options = {
+  name: "imagick",
+  order: ["jxl", "avif", "webp", "png", "jpg"],
+};
+
+export default function (userOptions?: Partial<Options>): Plugin {
+  const options = merge(defaults, userOptions);
+
   return (site: Site) => {
     const transforms = new Map<string, Source>();
 
@@ -66,15 +82,23 @@ export default function (): Plugin {
         if (!paths.includes(path)) {
           continue;
         }
-        const imagick = page.data.imagick = page.data.imagick
-          ? Array.isArray(page.data.imagick)
-            ? page.data.imagick
-            : [page.data.imagick]
+
+        const { name } = options;
+        const imagick = page.data[name] = page.data[name]
+          ? Array.isArray(page.data[name]) ? page.data[name] : [page.data[name]]
           : [];
 
         for (const [suffix, scale] of Object.entries(scales)) {
+          if (width) {
+            imagick.push({
+              resize: width * scale,
+              suffix,
+              format: format as MagickFormat,
+            });
+            continue;
+          }
+
           imagick.push({
-            resize: width * scale,
             suffix,
             format: format as MagickFormat,
           });
@@ -92,7 +116,14 @@ export default function (): Plugin {
       const sizes = img.getAttribute("sizes");
       const sourceFormats = saveTransform(basePath, src, imagick);
 
+      sortSources(sourceFormats);
+      const last = sourceFormats[sourceFormats.length - 1];
+
       for (const sourceFormat of sourceFormats) {
+        if (sourceFormat === last) {
+          editImg(img, src, last, sizes);
+          break;
+        }
         const source = createSource(
           img.ownerDocument!,
           src,
@@ -107,11 +138,27 @@ export default function (): Plugin {
       const src = img.getAttribute("src") as string;
       const sizes = img.getAttribute("sizes");
       const sourceFormats = saveTransform(basePath, src, imagick);
+
+      sortSources(sourceFormats);
+
+      // Just only one format, no need to create a picture element
+      if (sourceFormats.length === 1) {
+        editImg(img, src, sourceFormats[0], sizes);
+        return;
+      }
+
       const picture = img.ownerDocument!.createElement("picture");
 
       img.replaceWith(picture);
 
+      const last = sourceFormats[sourceFormats.length - 1];
+
       for (const sourceFormat of sourceFormats) {
+        if (sourceFormat === last) {
+          editImg(img, src, last, sizes);
+          break;
+        }
+
         const source = createSource(
           img.ownerDocument!,
           src,
@@ -124,6 +171,25 @@ export default function (): Plugin {
       picture.append(img);
     }
 
+    function sortSources(sources: SourceFormat[]) {
+      const { order } = options;
+
+      sources.sort((a, b) => {
+        const aIndex = order.indexOf(a.format);
+        const bIndex = order.indexOf(b.format);
+
+        if (aIndex === -1) {
+          return 1;
+        }
+
+        if (bIndex === -1) {
+          return -1;
+        }
+
+        return aIndex - bIndex;
+      });
+    }
+
     function saveTransform(
       basePath: string,
       src: string,
@@ -133,7 +199,7 @@ export default function (): Plugin {
       const sizes: string[] = [];
       const formats: string[] = [];
 
-      imagick.split(/\s+/).forEach((piece) => {
+      imagick.trim().split(/\s+/).forEach((piece) => {
         if (piece.match(/^\d/)) {
           sizes.push(piece);
         } else {
@@ -142,6 +208,35 @@ export default function (): Plugin {
       });
 
       const sourceFormats: SourceFormat[] = [];
+
+      // No sizes, only transform to the formats
+      if (!sizes.length) {
+        for (const format of formats) {
+          const key = `:${format}`;
+          const sourceFormat = {
+            format,
+            scales: { "": 1 },
+          };
+          sourceFormats.push(sourceFormat);
+
+          const transform = transforms.get(key);
+
+          if (transform) {
+            if (!transform.paths.includes(path)) {
+              transform.paths.push(path);
+            }
+
+            Object.assign(transform.scales, sourceFormat.scales);
+          } else {
+            transforms.set(key, {
+              ...sourceFormat,
+              paths: [path],
+            });
+          }
+        }
+
+        return sourceFormats;
+      }
 
       for (const size of sizes) {
         const [width, scales] = parseSize(size);
@@ -201,19 +296,17 @@ function parseSize(size: string): [number, number[]] {
   ];
 }
 
-function createSource(
-  document: Document,
+function createSrcset(
   src: string,
   srcFormat: SourceFormat,
   sizes?: string | null | undefined,
-) {
-  const source = document.createElement("source");
+): string[] {
   const { scales, format, width } = srcFormat;
   const path = encodeURI(getPathAndExtension(src)[0]);
   const srcset: string[] = [];
 
   for (const [suffix, scale] of Object.entries(scales)) {
-    const scaleSuffix = sizes
+    const scaleSuffix = sizes && width
       ? ` ${scale * width}w`
       : scale === 1
       ? ""
@@ -221,14 +314,45 @@ function createSource(
     srcset.push(`${path}${suffix}.${format}${scaleSuffix}`);
   }
 
+  return srcset;
+}
+
+function createSource(
+  document: Document,
+  src: string,
+  srcFormat: SourceFormat,
+  sizes?: string | null | undefined,
+) {
+  const source = document.createElement("source");
+  const srcset = createSrcset(src, srcFormat, sizes);
+
   source.setAttribute("srcset", srcset.join(", "));
-  source.setAttribute("type", typeByExtension(format));
+  source.setAttribute("type", typeByExtension(srcFormat.format));
 
   if (sizes) {
     source.setAttribute("sizes", sizes);
   }
 
   return source;
+}
+
+function editImg(
+  img: Element,
+  src: string,
+  srcFormat: SourceFormat,
+  sizes?: string | null | undefined,
+) {
+  const srcset = createSrcset(src, srcFormat, sizes);
+  const newSrc = srcset.shift()!;
+
+  if (srcset.length) {
+    img.setAttribute("srcset", srcset.join(", "));
+  }
+  img.setAttribute("src", newSrc);
+
+  if (sizes) {
+    img.setAttribute("sizes", sizes);
+  }
 }
 
 // Missing Element.closest in Deno DOM (https://github.com/b-fuze/deno-dom/issues/99)

@@ -15,7 +15,12 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - New function `search.files()` to return the files to be exported [#468].
 - New `vto` filter [#480].
 - New argument for `site.component()` to define the directory scope.
-- Plugin `picture`: Support sizes attribute [#482].
+- Plugin `picture`:
+  - Support sizes attribute [#482].
+  - New options `name` and `order`.
+  - Don't create the `picture` element if there's only one `source`.
+  - Sort the output formats from the most modern to the most compatible #492.
+  - Support to transform only the formats, but not sizes #492.
 - Plugin `sitemap`: Support for multilanguage sites.
 
 ### Changed
@@ -32,7 +37,10 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Use the wasm version of `lightningcss` due many bugs with the [N-API version in Deno](https://github.com/denoland/deno/issues/20072).
 - Urls with spaces [#481].
 - `on_demand` plugin: Fixed _preload.ts generation.
-- `picture` plugin: support object and array imagick data [#490].
+- `picture` plugin:
+  - Support object and array imagick data [#490].
+  - Fixed the value of the image's `src` attribute #492.
+  - Fixed attribute values starting/ending with space. For example `imagick=" png w600 "`.
 
 ## [1.18.5] - 2023-09-01
 ### Added
