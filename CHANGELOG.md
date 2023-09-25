@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.19.0] - Unreleased
+## [1.19.0] - 2023-09-25
 ### Added
 - New plugin: `favicon`.
 - New plugin: `reading_info`.
@@ -19,8 +19,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
   - Support sizes attribute [#482].
   - New options `name` and `order`.
   - Don't create the `picture` element if there's only one `source`.
-  - Sort the output formats from the most modern to the most compatible #492.
-  - Support to transform only the formats, but not sizes #492.
+  - Sort the output formats from the most modern to the most compatible [#492].
+  - Support to transform only the formats, but not sizes [#492].
 - Plugin `sitemap`: Support for multilanguage sites.
 
 ### Changed
@@ -39,7 +39,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - `on_demand` plugin: Fixed _preload.ts generation.
 - `picture` plugin:
   - Support object and array imagick data [#490].
-  - Fixed the value of the image's `src` attribute #492.
+  - Fixed the value of the image's `src` attribute [#492].
   - Fixed attribute values starting/ending with space. For example `imagick=" png w600 "`.
 - `imagick` plugin: Removed duplicated transformations (that outputs the same file URL)
 
@@ -2419,8 +2419,10 @@ The first version.
 [#482]: https://github.com/lumeland/lume/issues/482
 [#487]: https://github.com/lumeland/lume/issues/487
 [#488]: https://github.com/lumeland/lume/issues/488
+[#490]: https://github.com/lumeland/lume/issues/490
+[#492]: https://github.com/lumeland/lume/issues/492
 
-[1.19.0]: https://github.com/lumeland/lume/compare/v1.18.5...HEAD
+[1.19.0]: https://github.com/lumeland/lume/compare/v1.18.5...v1.19.0
 [1.18.5]: https://github.com/lumeland/lume/compare/v1.18.4...v1.18.5
 [1.18.4]: https://github.com/lumeland/lume/compare/v1.18.3...v1.18.4
 [1.18.3]: https://github.com/lumeland/lume/compare/v1.18.2...v1.18.3
