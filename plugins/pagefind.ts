@@ -162,9 +162,15 @@ export default function (userOptions?: DeepPartial<Options>) {
 
       // Output indexing
       const { files } = await index.getFiles();
+      const textDecoder = new TextDecoder();
+      const textExtensions = [".js", ".css", ".json"];
 
       for (const file of files) {
-        const { path, content } = file;
+        const { path } = file;
+        const content = textExtensions.includes(posix.extname(path))
+          ? textDecoder.decode(file.content)
+          : file.content;
+
         allPages.push(
           Page.create(posix.join("/", options.outputPath, path), content),
         );
