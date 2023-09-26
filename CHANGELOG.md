@@ -9,6 +9,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.19.1] - Unreleased
 ### Fixed
 - `pagefind` plugin: convert the content of js, css and json files to string.
+- `imagick` plugin: bug removing duplicated entries.
 
 ## [1.19.0] - 2023-09-25
 ### Added

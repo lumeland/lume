@@ -242,8 +242,8 @@ function removeDuplicatedTransformations(
   const result = new Map<string, SingleTransformation>();
 
   for (const transformation of transformations) {
-    const { format, suffix } = transformation;
-    const key = `${format}:${suffix ?? ""}`;
+    const { format, suffix, matches } = transformation;
+    const key = `${format}:${suffix ?? ""}${matches ?? ""}`;
     result.set(key, transformation);
   }
 
