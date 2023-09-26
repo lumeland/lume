@@ -4,4 +4,4 @@ export { default as rehypeStringify } from "npm:rehype-stringify@10.0.0";
 export { default as remarkGfm } from "npm:remark-gfm@3.0.1";
 export { default as remarkParse } from "npm:remark-parse@10.0.2";
 export { default as remarkRehype } from "npm:remark-rehype@10.1.0";
-export * as unified from "npm:unified@11.0.2";
+export * as unified from "npm:unified@11.0.3";
