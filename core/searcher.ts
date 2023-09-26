@@ -1,13 +1,18 @@
+import { globToRegExp } from "../deps/path.ts";
 import { normalizePath } from "./utils.ts";
-import { Data, Page } from "../core.ts";
+import { Data, Page, StaticFile } from "../core.ts";
 
 export interface Options {
   /** The pages array */
   pages: Page[];
 
+  /** The static files array */
+  files: StaticFile[];
+
   /** Context data */
   sourceData: Map<string, Data>;
 
+  /** Filters to apply to all page searches */
   filters?: Filter[];
 }
 
@@ -17,12 +22,14 @@ type Condition = [string, string, unknown];
 /** Search helper */
 export default class Searcher {
   #pages: Page[];
+  #files: StaticFile[];
   #sourceData: Map<string, Data>;
   #cache = new Map<string, Data[]>();
   #filters: Filter[];
 
   constructor(options: Options) {
     this.#pages = options.pages;
+    this.#files = options.files;
     this.#sourceData = options.sourceData;
     this.#filters = options.filters || [];
   }
@@ -64,6 +71,23 @@ export default class Searcher {
   /** Search and return the first page */
   page(query?: string, sort?: string): Data | undefined {
     return this.pages(query, sort)[0];
+  }
+
+  /** Search files using a glob */
+  files(globOrRegexp?: RegExp | string): string[] {
+    const files = this.#files.map((file) => file.outputPath);
+    const pages = this.#pages.map((page) => page.outputPath as string);
+    const allFiles = [...files, ...pages];
+
+    if (!globOrRegexp) {
+      return allFiles;
+    }
+
+    const regexp = typeof globOrRegexp === "string"
+      ? globToRegExp(globOrRegexp)
+      : globOrRegexp;
+
+    return allFiles.filter((file) => file && regexp.test(file));
   }
 
   /** Returns all values from the same key of a search */

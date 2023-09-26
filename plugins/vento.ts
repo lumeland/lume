@@ -20,11 +20,17 @@ export interface Options {
 
   /**
    * The options for the Vento engine
-   * @see https://vento.js.org/get-started/configuration/
+   * @see https://vento.js.org/configuration/
    */
   options: {
     /** The name of the variable to access to the data in the templates */
     dataVarname?: string;
+
+    /** Make data available on the global object instead of varName */
+    useWith?: boolean;
+
+    /** Whether or not to automatically XML-escape interpolations. */
+    autoescape?: boolean;
   };
 }
 
@@ -34,6 +40,8 @@ export const defaults: Options = {
   includes: "",
   options: {
     dataVarname: "it",
+    useWith: true,
+    autoescape: false,
   },
 };
 
@@ -100,7 +108,7 @@ export default function (userOptions?: Partial<Options>) {
 
     const vento = engine({
       includes: new LumeLoader(normalizePath(options.includes), site.fs),
-      dataVarname: options.options.dataVarname,
+      ...options.options,
     });
 
     vento.tags.push(compTag);

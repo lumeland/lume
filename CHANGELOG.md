@@ -6,22 +6,47 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.18.6] - Unreleased
+## [1.19.1] - Unreleased
+### Fixed
+- `pagefind` plugin: convert the content of js, css and json files to string.
+- `imagick` plugin: bug removing duplicated entries.
+
+## [1.19.0] - 2023-09-25
 ### Added
-- New `vto` filter.
-- New `site.page()` to add pages dynamically from `_config.ts`.
+- New plugin: `favicon`.
+- New plugin: `reading_info`.
+- New function `site.mergeKey()` to configure the merging strategy for data keys from the _config.ts file.
+- New function `site.page()` to add pages dynamically from `_config.ts`.
+- New function `search.files()` to return the files to be exported [#468].
+- New `vto` filter [#480].
 - New argument for `site.component()` to define the directory scope.
-- Plugin `picture`: Support sizes attribute [#482]
+- Plugin `picture`:
+  - Support sizes attribute [#482].
+  - New options `name` and `order`.
+  - Don't create the `picture` element if there's only one `source`.
+  - Sort the output formats from the most modern to the most compatible [#492].
+  - Support to transform only the formats, but not sizes [#492].
+- Plugin `sitemap`: Support for multilanguage sites.
 
 ### Changed
 - Plugin `metas`: Removed redundant twitter meta tags [#487] [#488]
+- Upgrade `pagefind` to `v1.0`.
+  This caused some BREAKING CHANGES:
+  - Removed the `binary` options. The binary is downloaded automatically by the NPM package and no `_bin` folder is created.
+  - The option `indexing.bundleDirectory` was renamed to `outputPath` and moved to the options root.
+  - Added new `customRecords` option, a new feature from Pagefind.
 
 ### Fixed
 - `minify_html` works offline.
-- Updated dependencies: `std`, `vento`, `terser`, `lightningcss`.
+- Updated dependencies: `std`, `vento`, `terser`, `lightningcss`, `esbuild`, `sass`, `postcss`, `autoprefixer`, `remark`.
 - Use the wasm version of `lightningcss` due many bugs with the [N-API version in Deno](https://github.com/denoland/deno/issues/20072).
 - Urls with spaces [#481].
 - `on_demand` plugin: Fixed _preload.ts generation.
+- `picture` plugin:
+  - Support object and array imagick data [#490].
+  - Fixed the value of the image's `src` attribute [#492].
+  - Fixed attribute values starting/ending with space. For example `imagick=" png w600 "`.
+- `imagick` plugin: Removed duplicated transformations (that outputs the same file URL)
 
 ## [1.18.5] - 2023-09-01
 ### Added
@@ -30,6 +55,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ### Changed
 - Make Vento components synchronous.
+- Non-HTML pages will render the layout if it's assigned directly (in the front matter).
 
 ### Fixed
 - Updated dependencies: `std`, `@types/react`, `esbuild`, `postcss`, `postcss-nesting`, `autoprefixer`, `vento`, `eta`, `lightningcss`, `liquidjs`, `preact`, `rehype`, `sass`, `minify_html`.
@@ -67,12 +93,12 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Ignore `deno.lock` file by default [#450].
 
 ### Fixed
-- Assets with subextensions (like `.min.css`) are not exported correctly [#448].
+- Assets with sub-extensions (like `.min.css`) are not exported correctly [#448].
 - Esbuild plugin fixes:
   - Send browser's User-Agent headers to esm.sh
     to ensure browser compatible code [#442].
   - Save the esm.sh requests in cache.
-    This ensure the plugin will works ofline, once the requests are cached.
+    This ensure the plugin will works offline, once the requests are cached.
   - Change the order of the custom plugins [#445]
 - Updated deps: `terser`, `std`, `preact`, `postcss`, `liquid`, `esbuild`, `@types/react`, `@types/react-dom`, `terser`, `tailwind`.
 - Changed default proxy command for `netlify_cms` [#449].
@@ -90,7 +116,7 @@ Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.18.0-release
 ### Added
 - TOML Plugin [#432].
 - JSON Plugin supports `.jsonc` files [#433].
-- Frontmatter support for JSON / TOML format [#434].
+- Front matter support for JSON / TOML format [#434].
 - Picture plugin [#384].
 - Vento plugin.
 - Support for symlinks in the src folder.
@@ -121,7 +147,7 @@ Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.18.0-release
 - The env variable `LUME_ENV=development` is created when `deno task lume --dev`.
 - New `site.searcher` property with a instance of `Searcher` class.
   It's used by plugins like `search`, `nav`, `sitemap` and `feed`.
-  (Previouly, each plugin had it's own instance).
+  (Previously, each plugin had it's own instance).
 - Cache the remote files using Web Cache API.
 - Support for `changefreq` and `priority` tags to `sitemap` plugin.
 
@@ -230,7 +256,7 @@ Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.16.0-release
 - New middleware `serve_folder` to include additional folders to the server [#383].
 - New function `site.copyRemainingFiles()`.
 - New property `page.data.children` to store the rendered page content [#357], [#398].
-- BREAKING: `multilanguage` plugin has changed significally:
+- BREAKING: `multilanguage` plugin has changed significantly:
   - It requires to specify the available languages in the configuration. For example:
     ```js
     site.use(multilanguage({
@@ -376,7 +402,7 @@ Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.14.0-release
   - It's no longer needed to manually define the `mergedKeys` _data value.
     The plugin does it.
   - The `defaultPageData` option is deprecated [#321].
-    Use data aliases instead, that also supports subkeys. For example:
+    Use data aliases instead, that also supports sub-keys. For example:
 
     ```yml
     title: This is the title
@@ -436,7 +462,7 @@ Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.13.0-release
 - New option `emptyDest` to configure whether the dest folder must be emptied before build [#308].
 - The `src` property of pages and folders includes now the `slug` value [#278].
 - New `Page.isHtml` property that returns whether the page is HTML.
-- New `Page.outputPath` property that returns the output path of the page (formely `page.dest.path + page.dest.ext).
+- New `Page.outputPath` property that returns the output path of the page (formerly `page.dest.path + page.dest.ext).
 - New option `returnPageData` to the `search` plugin [#251].
 - New middleware `www` [#280].
 - The plugin `relations` allows to customize the id key per type.
@@ -529,7 +555,7 @@ Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.13.0-release
 - `Procesor` return type.
 - Repeated suffixes added to the images by the `Imagick` plugin [#269].
 - Correct typo in invalid date error message [#271].
-- `inline` plugin creates empy `class` and `id` attributes to SVGs [#276].
+- `inline` plugin creates empty `class` and `id` attributes to SVGs [#276].
 
 ## [1.11.4] - 2022-09-18
 ### Fixed
@@ -554,7 +580,7 @@ Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.13.0-release
 
 ### Changed
 - Pages are rendered in two separated steps: page rendering and layout rendering. This allows to modify the page data before render the layouts (for example adding a TOC).
-- Renamed `parcel_css` plugin to `lightningcss`. For backward compatibility, `parcel_css` is keept as an alias of `lightningcss`, but will be removed in Lume 1.12.0.
+- Renamed `parcel_css` plugin to `lightningcss`. For backward compatibility, `parcel_css` is kept as an alias of `lightningcss`, but will be removed in Lume 1.12.0.
 - Some improvements in `esbuild` plugin:
   - The `esbuild_deno_loader` was removed because it wasn't updated and didn't work well.
     It has been replaced by a new loader, more simple and reliable.
@@ -614,7 +640,7 @@ Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.13.0-release
 
 ### Fixed
 - Improved `isPlainObject()` return type.
-- Revert change introduced in `1.10.2` related with when preprocessors are applied to autogenerated pages [#239]
+- Revert change introduced in `1.10.2` related with when pre-processors are applied to autogenerated pages [#239]
 
 ## [1.10.3] - 2022-08-12
 ### Fixed
@@ -636,7 +662,7 @@ Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.13.0-release
 - JSX plugin can render text files (like markdown). This allows to emulate mdx (combining jsx and md template engines for the same file).
 
 ### Changed
-- Preprocessors assigned to page generators are executed **before** the new pages are generated (previously they were executed after generating them). This shouldn't be a BREAKING CHANGE, unless you're doing something very weird.
+- Pre-processors assigned to page generators are executed **before** the new pages are generated (previously they were executed after generating them). This shouldn't be a BREAKING CHANGE, unless you're doing something very weird.
 - Changed SASS library to [binyamin/deno-sass](https://gitlab.com/binyamin/deno-sass), that uses [dart-sass](https://github.com/sass/dart-sass) and improved source map support [#227].
 
 ### Fixed
@@ -895,7 +921,7 @@ Announcement in the [Lume blog](https://lume.land/blog/posts/lume-1.13.0-release
 ### Fixed
 - Pretty print the urls of the generated pages on build.
   Example: `/about/` instead of `/about/index.html`.
-- Updated dependecies: `std`, `esbuild`, `deno_graph`, `markdown_it`, `liquidjs`, `parcel_css` and `postcss`.
+- Updated dependencies: `std`, `esbuild`, `deno_graph`, `markdown_it`, `liquidjs`, `parcel_css` and `postcss`.
 - Prevent the mixture of the content for two pages that outputs to the same file [#170].
 - Consistency of `page.data.url` after change any `page.dest` value.
 - Bug detecting static files changes on update.
@@ -968,7 +994,7 @@ The only important change is the removal of `metrics` feature but probably you a
 - The `pug` plugin registers the `pug` filter.
 - Template engine filters (`njk`, `pug`, `liquid`...)
   can access to shared data (like `search`, `paginate` etc)
-- You can add processors and preprocessors to run in all pages with `site.process("*", processFunction)`.
+- You can add processors and pre-processors to run in all pages with `site.process("*", processFunction)`.
 - You can use relative paths for `layout` values
   and when include templates using the template engine syntax (ex: `{% include "./template.njk" %}`).
 - New function `site.includes()` to define different directories for specific extensions.
@@ -980,8 +1006,8 @@ The only important change is the removal of `metrics` feature but probably you a
 
 ### Changed
 - Big internal code refactoring.
-  - Many core classes have been splitted into different small classes
-    with single responsabilities (SOLID principles).
+  - Many core classes have been split into different small classes
+    with single responsibilities (SOLID principles).
   - In the version `1.x` there are many interface (like: `Site`)
     independent of the implementation (like: `LumeSite implements Site`).
     This was not easy to maintain and it makes hard to explore the Lume code in VSCode
@@ -1085,7 +1111,7 @@ The only important change is the removal of `metrics` feature but probably you a
 ### Fixed
 - Updated `postcss`, `deno_graph` and `std`.
 - Ignore the `dest` folder if it's inside `src` and doesn't start with `_` or `.`.
-- Removed unnecesary file system checkings.
+- Removed unnecessary file system checking.
 - Default 404 page in local server.
 
 ## [1.1.1] - 2021-10-08
@@ -1125,7 +1151,7 @@ The only important change is the removal of `metrics` feature but probably you a
 ### Changed
 - Removed all options of `lume init` and convert it to an interactive command.
 - The data of different `_data` files and folders in the same directory is now merged.
-  Previously it was overriden, causing inconsistencies.
+  Previously it was overridden, causing inconsistencies.
 - The local server returns a `301` response for folders without trailing slash.
   For example: `/about-us -> /about-us/`.
 
@@ -1137,7 +1163,7 @@ The only important change is the removal of `metrics` feature but probably you a
 
 ### Fixed
 - Processors take into account the extension of the source file,
-  in addition to the output extension to match with preprocessors behavior.
+  in addition to the output extension to match with pre-processors behavior.
 - Some types like arrays returned by `_data` files no more are converted to plain object.
 - Some bugs in the `inline` plugin.
 - Urls starting with `//` are not normalized because they are absolute urls
@@ -1149,7 +1175,7 @@ The only important change is the removal of `metrics` feature but probably you a
 ## [1.0.5] - 2021-09-07
 ### Fixed
 - Some bugs in the `bundler` plugin:
-  - The `entries` array items dont't need to start with `/`.
+  - The `entries` array items don't need to start with `/`.
   - Show an error if some entry was not found.
   - Wrong content saved when `options.bundler` is `undefined`.
 
@@ -1168,7 +1194,7 @@ The only important change is the removal of `metrics` feature but probably you a
 ### Fixed
 - Updated `std`, `terser` and `svgo`.
 - Updated `react` to include typings.
-- Internal changes to how the processors and preprocessors are handled
+- Internal changes to how the processors and pre-processors are handled
   to ensure that they are executed in the same order they were registered.
 - Use [Error cause](https://deno.com/blog/v1.13#error-cause) property to chain errors.
 
@@ -1330,7 +1356,7 @@ No changes.
 
 ### Fixed
 - The async cache for the `inline` plugin.
-- Some preprocessors were executed several times. [#110].
+- Some pre-processors were executed several times. [#110].
 - The `slugify_urls` plugin produced empty path segments
   (for example, `x/@/y` now becomes `x/-/y` and not `x//y` as before).
 - JavaScript source maps. [#114].
@@ -2389,15 +2415,20 @@ The first version.
 [#463]: https://github.com/lumeland/lume/issues/463
 [#466]: https://github.com/lumeland/lume/issues/466
 [#467]: https://github.com/lumeland/lume/issues/467
+[#468]: https://github.com/lumeland/lume/issues/468
 [#469]: https://github.com/lumeland/lume/issues/469
 [#470]: https://github.com/lumeland/lume/issues/470
 [#473]: https://github.com/lumeland/lume/issues/473
+[#480]: https://github.com/lumeland/lume/issues/480
 [#481]: https://github.com/lumeland/lume/issues/481
 [#482]: https://github.com/lumeland/lume/issues/482
 [#487]: https://github.com/lumeland/lume/issues/487
 [#488]: https://github.com/lumeland/lume/issues/488
+[#490]: https://github.com/lumeland/lume/issues/490
+[#492]: https://github.com/lumeland/lume/issues/492
 
-[1.18.6]: https://github.com/lumeland/lume/compare/v1.18.5...HEAD
+[1.19.1]: https://github.com/lumeland/lume/compare/v1.19.0...HEAD
+[1.19.0]: https://github.com/lumeland/lume/compare/v1.18.5...v1.19.0
 [1.18.5]: https://github.com/lumeland/lume/compare/v1.18.4...v1.18.5
 [1.18.4]: https://github.com/lumeland/lume/compare/v1.18.3...v1.18.4
 [1.18.3]: https://github.com/lumeland/lume/compare/v1.18.2...v1.18.3

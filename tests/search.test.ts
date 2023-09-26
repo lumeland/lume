@@ -1,3 +1,4 @@
+import { build, getSite } from "./utils.ts";
 import { assertSnapshot } from "../deps/snapshot.ts";
 import { buildFilter, buildSort } from "../core/searcher.ts";
 
@@ -181,8 +182,25 @@ Deno.test("Sort by two fields", async (t) => {
   await assertSnapshot(t, sort);
 });
 
-Deno.test("Sort by two fields, sencod is DESC", async (t) => {
+Deno.test("Sort by two fields, second is DESC", async (t) => {
   const sort = buildSort("order title=desc");
 
   await assertSnapshot(t, sort);
+});
+
+Deno.test("Test the file searcher", async (t) => {
+  const site = getSite({
+    src: "normal",
+  });
+
+  site.loadAssets([".css"]);
+  site.copy([".png"]);
+
+  await build(site);
+
+  const { searcher } = site;
+
+  await assertSnapshot(t, searcher.files().sort());
+  await assertSnapshot(t, searcher.files("/*.png").sort());
+  await assertSnapshot(t, searcher.files(/\.png$/).sort());
 });

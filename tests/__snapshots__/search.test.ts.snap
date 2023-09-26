@@ -60,4 +60,30 @@ snapshot[`Sort by one field DESC 1`] = `[Function: anonymous]`;
 
 snapshot[`Sort by two fields 1`] = `[Function: anonymous]`;
 
-snapshot[`Sort by two fields, sencod is DESC 1`] = `[Function: anonymous]`;
+snapshot[`Sort by two fields, second is DESC 1`] = `[Function: anonymous]`;
+
+snapshot[`Test the file searcher 1`] = `
+[
+  "/favicon.png",
+  "/overrided-page2/index.html",
+  "/page5/index.html",
+  "/page_3",
+  "/pages/page4/index.html",
+  "/pages/page6/index.html",
+  "/pages/subpage/page7/index.html",
+  "/static/index.html",
+  "/styles.css",
+]
+`;
+
+snapshot[`Test the file searcher 2`] = `
+[
+  "/favicon.png",
+]
+`;
+
+snapshot[`Test the file searcher 3`] = `
+[
+  "/favicon.png",
+]
+`;

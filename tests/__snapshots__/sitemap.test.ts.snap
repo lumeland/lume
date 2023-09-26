@@ -452,3 +452,634 @@ Content of Page 7",
   },
 ]
 `;
+
+snapshot[`Sitemap plugin with a multilanguage plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/layout.njk",
+    "/index.md",
+    "/other.njk",
+    "/pages",
+    "/pages/page1.md",
+    "/pages/page1_en.md",
+    "/pages/page1_gl.md",
+    "/pagination.tmpl.js",
+  ],
+}
+`;
+
+snapshot[`Sitemap plugin with a multilanguage plugin 2`] = `[]`;
+
+snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
+[
+  {
+    content: "User-agent: *
+Allow: /
+
+Sitemap: https://example.com/sitemap.xml",
+    data: {
+      content: "User-agent: *
+Allow: /
+
+Sitemap: https://example.com/sitemap.xml",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/robots.txt",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "robots",
+    },
+  },
+  {
+    content: '<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://example.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/other-page-english/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/other-page-english/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://example.com/fr/other-page-french.html"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/page-1/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/paxina-1/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/page-1/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/page-1/"/>
+  </url>
+  <url>
+    <loc>https://example.com/fr/other-page-french.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/other-page-english/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://example.com/fr/other-page-french.html"/>
+  </url>
+  <url>
+    <loc>https://example.com/gl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/"/>
+  </url>
+  <url>
+    <loc>https://example.com/gl/page-1/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/page-1/"/>
+  </url>
+  <url>
+    <loc>https://example.com/gl/paxina-1/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/paxina-1/"/>
+  </url>
+  <url>
+    <loc>https://example.com/it/pagina-1/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/paxina-1/"/>
+  </url>
+</urlset>',
+    data: {
+      content: '<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://example.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/other-page-english/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/other-page-english/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://example.com/fr/other-page-french.html"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/page-1/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/paxina-1/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/page-1/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/page-1/"/>
+  </url>
+  <url>
+    <loc>https://example.com/fr/other-page-french.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/other-page-english/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://example.com/fr/other-page-french.html"/>
+  </url>
+  <url>
+    <loc>https://example.com/gl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/"/>
+  </url>
+  <url>
+    <loc>https://example.com/gl/page-1/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/page-1/"/>
+  </url>
+  <url>
+    <loc>https://example.com/gl/paxina-1/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/paxina-1/"/>
+  </url>
+  <url>
+    <loc>https://example.com/it/pagina-1/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/paxina-1/"/>
+  </url>
+</urlset>',
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/sitemap.xml",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "sitemap",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="en" href="https://example.com/en/">
+<link rel="alternate" hreflang="gl" href="https://example.com/gl/">
+</head><body><p>Hello world</p>
+</body></html>',
+    data: {
+      alternates: "Array(2)",
+      children: "<p>Hello world</p>
+",
+      content: "Hello world
+",
+      date: [],
+      id: "index",
+      lang: "en",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Hello world",
+      url: "/en/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="en" href="https://example.com/en/">
+<link rel="alternate" hreflang="gl" href="https://example.com/gl/">
+</head><body><p>Ola mundo</p>
+</body></html>',
+    data: {
+      alternates: "Array(2)",
+      children: "<p>Ola mundo</p>
+",
+      content: "Ola mundo",
+      date: [],
+      id: "index",
+      lang: "gl",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Ola mundo",
+      url: "/gl/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="en" href="https://example.com/en/other-page-english/">
+<link rel="alternate" hreflang="fr" href="https://example.com/fr/other-page-french.html">
+</head><body><p>Other page <a href="/gl/">Link to index in Galego</a></p></body></html>',
+    data: {
+      alternates: "Array(2)",
+      children: '<p>Other page <a href="/gl/">Link to index in Galego</a></p>',
+      content: \`<p>Other page <a href="{{ '~/index.md(lang=gl)' | url }}">Link to index in Galego</a></p>\`,
+      date: [],
+      id: "other",
+      lang: "en",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Other",
+      url: "/en/other-page-english/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/other",
+      remote: undefined,
+      slug: "other",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="fr"><head><link rel="alternate" hreflang="en" href="https://example.com/en/other-page-english/">
+<link rel="alternate" hreflang="fr" href="https://example.com/fr/other-page-french.html">
+</head><body><p>Other page <a href="/gl/">Link to index in Galego</a></p></body></html>',
+    data: {
+      alternates: "Array(2)",
+      children: '<p>Other page <a href="/gl/">Link to index in Galego</a></p>',
+      content: \`<p>Other page <a href="{{ '~/index.md(lang=gl)' | url }}">Link to index in Galego</a></p>\`,
+      date: [],
+      id: "other",
+      lang: "fr",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Autre",
+      url: "/fr/other-page-french.html",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/other",
+      remote: undefined,
+      slug: "other",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="it"><head><link rel="alternate" hreflang="en" href="https://example.com/en/page-1/">
+<link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/">
+<link rel="alternate" hreflang="gl" href="https://example.com/gl/paxina-1/">
+</head><body><p>Pagina 1</p>
+</body></html>',
+    data: {
+      alternates: "Array(3)",
+      children: "<p>Pagina 1</p>
+",
+      content: "Pagina 1
+",
+      date: [],
+      id: "page1",
+      lang: "it",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "page-it",
+      url: "/it/pagina-1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/pages/page1",
+      remote: undefined,
+      slug: "page1",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="en" href="https://example.com/en/page-1/">
+<link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/">
+<link rel="alternate" hreflang="gl" href="https://example.com/gl/paxina-1/">
+</head><body><p>Page 1</p>
+</body></html>',
+    data: {
+      alternates: "Array(3)",
+      children: "<p>Page 1</p>
+",
+      content: "Page 1
+",
+      date: [],
+      id: "page1",
+      lang: "en",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "page-en",
+      url: "/en/page-1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/pages/page1_en",
+      remote: undefined,
+      slug: "page1_en",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="en" href="https://example.com/en/page-1/">
+<link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/">
+<link rel="alternate" hreflang="gl" href="https://example.com/gl/paxina-1/">
+</head><body><p>Páxina 1</p>
+</body></html>',
+    data: {
+      alternates: "Array(3)",
+      children: "<p>Páxina 1</p>
+",
+      content: "Páxina 1
+",
+      date: [],
+      id: "page1",
+      lang: "gl",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "page-gl",
+      url: "/gl/paxina-1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/pages/page1_gl",
+      remote: undefined,
+      slug: "page1_gl",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="en" href="https://example.com/en/page-1/">
+<link rel="alternate" hreflang="gl" href="https://example.com/gl/page-1/">
+</head><body><nav>
+
+  <a href="/en/page-1/" hreflang="en" class="alternate"></a>
+
+  <a href="/gl/page-1/" hreflang="gl" class="alternate"></a>
+
+</nav>
+
+  <li>Ola mundo</li>
+
+  <li>page-gl</li>
+
+</body></html>',
+    data: {
+      alternates: "Array(2)",
+      children: null,
+      content: null,
+      date: [],
+      id: "page-1",
+      lang: "gl",
+      layout: "layout.njk",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      pagination: [
+        "page",
+        "totalPages",
+        "totalResults",
+        "previous",
+        "next",
+      ],
+      results: "Array(2)",
+      search: [],
+      tags: "Array(0)",
+      url: "/gl/page-1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/pagination[0]",
+      remote: undefined,
+      slug: "pagination",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="en" href="https://example.com/en/page-1/">
+<link rel="alternate" hreflang="gl" href="https://example.com/gl/page-1/">
+</head><body><nav>
+
+  <a href="/en/page-1/" hreflang="en" class="alternate"></a>
+
+  <a href="/gl/page-1/" hreflang="gl" class="alternate"></a>
+
+</nav>
+
+  <li>Hello world</li>
+
+  <li>Other</li>
+
+  <li>page-en</li>
+
+</body></html>',
+    data: {
+      alternates: "Array(2)",
+      children: null,
+      content: null,
+      date: [],
+      id: "page-1",
+      lang: "en",
+      layout: "layout.njk",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      pagination: [
+        "page",
+        "totalPages",
+        "totalResults",
+        "previous",
+        "next",
+      ],
+      results: "Array(3)",
+      search: [],
+      tags: "Array(0)",
+      url: "/en/page-1/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".tmpl.js",
+      path: "/pagination[1]",
+      remote: undefined,
+      slug: "pagination",
+    },
+  },
+]
+`;

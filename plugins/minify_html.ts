@@ -1,4 +1,4 @@
-import { init, minify } from "../deps/minify_html.ts";
+import { minify } from "../deps/minify_html.ts";
 import { merge } from "../core/utils.ts";
 
 import type { Options as MinifyOptions } from "../deps/minify_html.ts";
@@ -28,9 +28,6 @@ export const defaults: Options = {
     remove_processing_instructions: false,
   },
 };
-
-// Init minify-html
-await init();
 
 /** A plugin to minify HTML, CSS & JavaScript files */
 export default function (userOptions?: DeepPartial<Options>) {

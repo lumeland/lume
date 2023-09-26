@@ -169,6 +169,7 @@ export interface Src {
 
 /** The .content property for a Page */
 export type Content = Uint8Array | string;
+export type MergeStrategy = "array" | "stringArray" | "object";
 
 /** The data of a page */
 export interface Data<D extends PageData = PageData> {
@@ -197,7 +198,7 @@ export interface Data<D extends PageData = PageData> {
   templateEngine?: string | string[];
 
   /** To configure how some data keys will be merged with the parent */
-  mergedKeys?: Record<string, "array" | "stringArray" | "object">;
+  mergedKeys?: Record<string, MergeStrategy>;
 
   /** Whether render this page on demand or not */
   ondemand?: boolean;

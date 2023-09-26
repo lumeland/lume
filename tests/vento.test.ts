@@ -8,6 +8,7 @@ Deno.test("build a site with vento", async (t) => {
   });
 
   site.use(vento());
+  site.filter("upper", (value: string) => value.toUpperCase());
 
   await build(site);
   await assertSiteSnapshot(t, site);

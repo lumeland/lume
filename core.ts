@@ -35,6 +35,7 @@ import type {
 import type {
   Content,
   Data,
+  MergeStrategy,
   Page,
   Src,
   StaticFile,
@@ -110,6 +111,7 @@ export type {
   HelperOptions,
   ImportMap,
   Loader,
+  MergeStrategy,
   Middleware,
   MultiProcessor,
   Page,

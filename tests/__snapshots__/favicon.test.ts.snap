@@ -1,0 +1,212 @@
+export const snapshot = {};
+
+snapshot[`favicon plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/favicon.svg",
+    "/index.njk",
+  ],
+}
+`;
+
+snapshot[`favicon plugin 2`] = `[]`;
+
+snapshot[`favicon plugin 3`] = `
+[
+  {
+    content: "Uint8Array(2172)",
+    data: {
+      content: "Uint8Array(2172)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/apple-touch-icon.png",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "apple-touch-icon",
+    },
+  },
+  {
+    content: "Uint8Array(590)",
+    data: {
+      content: "Uint8Array(590)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/favicon-16.png",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "favicon-16",
+    },
+  },
+  {
+    content: "Uint8Array(927)",
+    data: {
+      content: "Uint8Array(927)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/favicon-32.png",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "favicon-32",
+    },
+  },
+  {
+    content: "Uint8Array(1150)",
+    data: {
+      content: "Uint8Array(1150)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/favicon.ico",
+    },
+    src: {
+      asset: true,
+      ext: undefined,
+      path: "",
+      remote: undefined,
+      slug: "favicon",
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html><head>
+    <title>Hello world</title>
+  <link rel="icon" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="shortcut icon" sizes="16x16" href="/favicon.ico">
+</head>
+  <body>
+  
+</body></html>',
+    data: {
+      children: "<html>
+  <head>
+    <title>Hello world</title>
+  </head>
+  <body>
+  </body>
+</html>",
+      content: "<html>
+  <head>
+    <title>{{ title }}</title>
+  </head>
+  <body>
+  </body>
+</html>",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Hello world",
+      url: "/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".njk",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+]
+`;

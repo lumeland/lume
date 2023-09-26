@@ -33,7 +33,6 @@ export const defaults: Options = {
   options: {
     minify: true,
     drafts: {
-      nesting: true,
       customMedia: true,
     },
     targets: {

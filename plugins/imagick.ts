@@ -1,12 +1,10 @@
 import { getPathAndExtension, log, merge } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
-import { ImageMagick, initialize } from "../deps/imagick.ts";
+import { ImageMagick } from "../deps/imagick.ts";
 import Cache from "../core/cache.ts";
 
 import type { Page, Site } from "../core.ts";
 import type { IMagickImage, MagickFormat } from "../deps/imagick.ts";
-
-await initialize();
 
 export interface Options {
   /** The list extensions this plugin applies to */
@@ -96,7 +94,9 @@ export default function (userOptions?: Partial<Options>) {
       }
 
       const content = page.content as Uint8Array;
-      const transformations = getTransformations(imagick);
+      const transformations = removeDuplicatedTransformations(
+        getTransformations(imagick),
+      );
       let transformed = false;
       let index = 0;
       for (const transformation of transformations) {
@@ -233,4 +233,18 @@ function getTransformations(
   }
 
   return [input as SingleTransformation];
+}
+
+function removeDuplicatedTransformations(
+  transformations: SingleTransformation[],
+): SingleTransformation[] {
+  const result = new Map<string, SingleTransformation>();
+
+  for (const transformation of transformations) {
+    const { format, suffix, matches } = transformation;
+    const key = `${format}:${suffix ?? ""}${matches ?? ""}`;
+    result.set(key, transformation);
+  }
+
+  return [...result.values()];
 }

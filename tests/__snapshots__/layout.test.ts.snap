@@ -1,0 +1,200 @@
+export const snapshot = {};
+
+snapshot[`Layouts 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".tmpl.ts",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tmpl.js",
+      pageLoader: [AsyncFunction: module],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.jsonc",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      engines: undefined,
+      ext: ".tmpl.json",
+      pageLoader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".json",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: undefined,
+      ext: ".jsonc",
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+    },
+    {
+      componentLoader: [AsyncFunction: module],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+    },
+    {
+      componentLoader: [AsyncFunction: text],
+      engines: 1,
+      ext: ".njk",
+      includesPath: "_includes",
+      pageLoader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yaml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: undefined,
+      ext: ".yml",
+      pageLoader: [AsyncFunction: yaml],
+    },
+    {
+      asset: true,
+      engines: undefined,
+      ext: ".css",
+      pageLoader: [AsyncFunction: text],
+    },
+  ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/page.njk",
+    "/_includes/style.njk",
+    "/index.md",
+    "/styles.2.css",
+    "/styles.css",
+  ],
+}
+`;
+
+snapshot[`Layouts 2`] = `[]`;
+
+snapshot[`Layouts 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello world</h1>
+
+  </body>
+</html>",
+    data: {
+      children: "<h1>Hello world</h1>
+",
+      content: "# Hello world
+",
+      date: [],
+      layout: "page.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/",
+    },
+    src: {
+      asset: undefined,
+      ext: ".md",
+      path: "/index",
+      remote: undefined,
+      slug: "index",
+    },
+  },
+  {
+    content: "body {
+  color: blue;
+}",
+    data: {
+      content: "body {
+  color: blue;
+}",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/styles.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/styles",
+      remote: undefined,
+      slug: "styles",
+    },
+  },
+  {
+    content: "body.style {
+  p {
+  color: red;
+}
+}",
+    data: {
+      children: "p {
+  color: red;
+}",
+      content: "p {
+  color: red;
+}",
+      date: [],
+      layout: "style.njk",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/styles.2.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/styles.2",
+      remote: undefined,
+      slug: "styles",
+    },
+  },
+]
+`;

@@ -27,11 +27,7 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
 
   return (site) => {
     // Configure the merged keys
-    const mergedKeys = site.scopedData.get("/")?.mergedKeys || {};
-    options.languages.forEach((lang) => {
-      mergedKeys[lang] = "object";
-    });
-    site.data("mergedKeys", mergedKeys);
+    options.languages.forEach((lang) => site.mergeKey(lang, "object"));
 
     // Preprocessor to setup multilanguage pages
     site.preprocess(options.extensions, (page, pages) => {
