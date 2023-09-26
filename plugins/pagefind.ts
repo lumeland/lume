@@ -1,4 +1,4 @@
-import { log, merge } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
 import { Page } from "../core/filesystem.ts";
 import * as pagefind from "../deps/pagefind.ts";
