@@ -1,9 +1,8 @@
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
-import { compile } from "../deps/mdx.ts";
+import { compile, remarkGfm } from "../deps/mdx.ts";
 import { join, toFileUrl } from "../deps/path.ts";
 import { encode } from "../deps/base64.ts";
-import { remarkGfm } from "../deps/remark.ts";
 
 import type { Data, Engine, Site } from "../core.ts";
 

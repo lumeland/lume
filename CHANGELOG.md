@@ -7,9 +7,15 @@ but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
 ## [1.19.1] - Unreleased
+### Added
+- `modify_urls` plugin: The replace callback can return a `Promise<string>`.
+- `modify_urls` plugin: Pass the HTML Element instance in the third argument of the replace callback.
+- `modify_urls` plugin: Support for `poster` attribute of `<video>` elements.
+
 ### Fixed
 - `pagefind` plugin: convert the content of js, css and json files to string.
 - `imagick` plugin: bug removing duplicated entries.
+- `mdx` plugin: use `remark-gfm@3.0.1` while mdx-js is not upgraded.
 
 ## [1.19.0] - 2023-09-25
 ### Added

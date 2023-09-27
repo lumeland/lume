@@ -11,7 +11,7 @@ export interface Options {
    * The function to generate the new url
    * @default `(url) => url`
    */
-  fn: (url: string, page: Page) => string;
+  fn: (url: string, page: Page, element: Element) => string | Promise<string>;
 }
 
 // Default options
@@ -24,49 +24,80 @@ export const defaults: Options = {
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
-  const replace = (url: string | null, page: Page) => {
-    return url ? options.fn(url, page) : "";
-  };
+  function replace(
+    url: string | null,
+    page: Page,
+    element: Element,
+  ): string | Promise<string> {
+    return url ? options.fn(url, page, element) : "";
+  }
+
+  async function replaceSrcset(
+    attr: string | null,
+    page: Page,
+    element: Element,
+  ): Promise<string> {
+    const srcset = attr ? attr.trim().split(",") : [];
+    const replaced: string[] = [];
+    for (const src of srcset) {
+      const [, url, rest] = src.trim().match(/^(\S+)(.*)/)!;
+      replaced.push(await replace(url, page, element) + rest);
+    }
+
+    return replaced.join(", ");
+  }
 
   return (site: Site) => {
-    site.process(options.extensions, (page: Page) => {
-      page.document?.querySelectorAll("[href]").forEach((node) => {
+    site.process(options.extensions, async (page: Page) => {
+      const { document } = page;
+
+      if (!document) {
+        return;
+      }
+
+      for (const node of document.querySelectorAll("[href]")) {
         const element = node as Element;
         element.setAttribute(
           "href",
-          replace(element.getAttribute("href"), page),
+          await replace(element.getAttribute("href"), page, element),
         );
-      });
+      }
 
-      page.document?.querySelectorAll("[src]").forEach((node) => {
+      for (const node of document.querySelectorAll("[src]")) {
         const element = node as Element;
-        element.setAttribute("src", replace(element.getAttribute("src"), page));
-      });
+        element.setAttribute(
+          "src",
+          await replace(element.getAttribute("src"), page, element),
+        );
+      }
 
-      const srcsetUrlRegex =
-        /(?<=^\s*|,\s+|\s,+|\s[^\s,]+,+)[^\s,](?:\S*[^\s,])?/g;
+      for (const node of document.querySelectorAll("video[poster]")) {
+        const element = node as Element;
+        element.setAttribute(
+          "poster",
+          await replace(element.getAttribute("poster"), page, element),
+        );
+      }
 
-      page.document?.querySelectorAll("[srcset]").forEach((node) => {
+      for (const node of document.querySelectorAll("[srcset]")) {
         const element = node as Element;
         element.setAttribute(
           "srcset",
-          element.getAttribute("srcset")!.replace(
-            srcsetUrlRegex,
-            (url: string) => replace(url, page),
-          ),
+          await replaceSrcset(element.getAttribute("srcset"), page, element),
         );
-      });
+      }
 
-      page.document?.querySelectorAll("[imagesrcset]").forEach((node) => {
+      for (const node of document.querySelectorAll("[imagesrcset]")) {
         const element = node as Element;
         element.setAttribute(
           "imagesrcset",
-          element.getAttribute("imagesrcset")!.replace(
-            srcsetUrlRegex,
-            (url: string) => replace(url, page),
+          await replaceSrcset(
+            element.getAttribute("imagesrcset"),
+            page,
+            element,
           ),
         );
-      });
+      }
     });
   };
 }
