@@ -1,4 +1,4 @@
-export { default as markdownIt } from "npm:markdown-it@13.0.1";
+export { default as markdownIt } from "npm:markdown-it@13.0.2";
 export { default as markdownItAttrs } from "npm:markdown-it-attrs@4.1.6";
 export { default as markdownItDeflist } from "npm:markdown-it-deflist@2.1.0";
 

@@ -16,6 +16,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - `pagefind` plugin: convert the content of js, css and json files to string.
 - `imagick` plugin: bug removing duplicated entries.
 - `mdx` plugin: use `remark-gfm@3.0.1` while mdx-js is not upgraded.
+- Updated dependencies: `std`, `deno-dom`, `esbuild`, `imagick`, `markdown-it`, `preact`.
 
 ## [1.19.0] - 2023-09-25
 ### Added
