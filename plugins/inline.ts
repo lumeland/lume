@@ -1,5 +1,5 @@
 import { posix } from "../deps/path.ts";
-import { encode } from "../deps/base64.ts";
+import { encodeBase64 } from "../deps/base64.ts";
 import { merge } from "../core/utils.ts";
 import binaryLoader from "../core/loaders/binary.ts";
 import textLoader from "../core/loaders/text.ts";
@@ -116,7 +116,7 @@ export default function (userOptions?: Partial<Options>) {
         return;
       }
 
-      return `data:${type};base64,${encode(content)}`;
+      return `data:${type};base64,${encodeBase64(content)}`;
     }
 
     function migrateAttributes(

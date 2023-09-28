@@ -1,5 +1,5 @@
 import { isUrl, merge, normalizePath, read } from "../core/utils.ts";
-import { encode } from "../deps/base64.ts";
+import { encodeBase64 } from "../deps/base64.ts";
 import { Page } from "../core/filesystem.ts";
 import { basename, join, toFileUrl } from "../deps/path.ts";
 
@@ -57,7 +57,7 @@ export default function (userOptions?: Partial<Options>) {
       // Inline the source map in the output file
       if (options.inline) {
         const url = `data:application/json;charset=utf-8;base64,${
-          encode(JSON.stringify(sourceMap))
+          encodeBase64(JSON.stringify(sourceMap))
         }`;
         file.content += addSourceMap(file.outputPath!, url);
         return;
