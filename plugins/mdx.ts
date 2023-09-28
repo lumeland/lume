@@ -2,7 +2,6 @@ import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 import { compile, remarkGfm } from "../deps/mdx.ts";
 import { join, toFileUrl } from "../deps/path.ts";
-import { encode } from "../deps/base64.ts";
 
 import type { Data, Engine, Site } from "../core.ts";
 
@@ -78,9 +77,10 @@ export default async function (${destructure}) {
 }
     `;
 
-    const url = `data:text/jsx;base64,${encode(code)}`;
+    const url = URL.createObjectURL(new Blob([code], { type: "text/jsx" }));
     const module = (await import(url)).default;
     const mdxContext = (await module(data)).default;
+    URL.revokeObjectURL(url);
 
     const body = mdxContext({
       components: { comp: data?.comp, ...this.options.components },
