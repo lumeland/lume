@@ -12,6 +12,9 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - `modify_urls` plugin: Pass the HTML Element instance in the third argument of the replace callback.
 - `modify_urls` plugin: Support for `poster` attribute of `<video>` elements.
 
+### Changed
+- `favicon` plugin: Follow the recommendations from https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs
+
 ### Fixed
 - `pagefind` plugin: convert the content of js, css and json files to string.
 - `imagick` plugin: bug removing duplicated entries.
