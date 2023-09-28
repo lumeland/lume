@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`imagick plugin 1`] = `
+snapshot[`picture plugin 1`] = `
 {
   formats: [
     {
@@ -101,9 +101,9 @@ snapshot[`imagick plugin 1`] = `
 }
 `;
 
-snapshot[`imagick plugin 2`] = `[]`;
+snapshot[`picture plugin 2`] = `[]`;
 
-snapshot[`imagick plugin 3`] = `
+snapshot[`picture plugin 3`] = `
 [
   {
     content: \`<!DOCTYPE html>
