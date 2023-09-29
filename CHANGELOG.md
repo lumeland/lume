@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.19.1] - Unreleased
+## [1.19.1] - 2023-09-29
 ### Added
 - `modify_urls` plugin: The replace callback can return a `Promise<string>`.
 - `modify_urls` plugin: Pass the HTML Element instance in the third argument of the replace callback.
@@ -2439,7 +2439,7 @@ The first version.
 [#490]: https://github.com/lumeland/lume/issues/490
 [#492]: https://github.com/lumeland/lume/issues/492
 
-[1.19.1]: https://github.com/lumeland/lume/compare/v1.19.0...HEAD
+[1.19.1]: https://github.com/lumeland/lume/compare/v1.19.0...v1.19.1
 [1.19.0]: https://github.com/lumeland/lume/compare/v1.18.5...v1.19.0
 [1.18.5]: https://github.com/lumeland/lume/compare/v1.18.4...v1.18.5
 [1.18.4]: https://github.com/lumeland/lume/compare/v1.18.3...v1.18.4
