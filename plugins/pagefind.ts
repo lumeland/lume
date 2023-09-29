@@ -1,9 +1,8 @@
 import { merge } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
-import { Page } from "../core/filesystem.ts";
-import * as pagefind from "../deps/pagefind.ts";
+import { specifier } from "../deps/pagefind.ts";
 
-import type { CustomRecord } from "../deps/pagefind.ts";
+import type { CustomRecord, PagefindServiceConfig } from "../deps/pagefind.ts";
 import type { DeepPartial, Site } from "../core.ts";
 
 export interface TranslationsOptions {
@@ -94,10 +93,10 @@ export interface Options {
   outputPath: string;
 
   /** Options for the UI interface or false to disable it */
-  ui: UIOptions | false;
+  ui: (UIOptions & { containerId: string }) | false;
 
   /** Options for the indexing process */
-  indexing: pagefind.PagefindServiceConfig;
+  indexing: PagefindServiceConfig;
 
   /** Other custom records */
   customRecords?: CustomRecord[];
@@ -125,58 +124,27 @@ export default function (userOptions?: DeepPartial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.processAll([".html"], async (pages, allPages) => {
-      const { index } = await pagefind.createIndex(options.indexing);
-
-      if (!index) {
-        throw new Error("Pagefind index not created");
-      }
-
-      // Page indexing
-      for (const page of pages) {
-        const { errors } = await index.addHTMLFile({
-          url: site.url(page.outputPath as string),
-          content: page.content as string,
-        });
-
-        if (errors.length > 0) {
-          throw new Error(
-            `Pagefind index errors for ${page.src.path}:\n${errors.join("\n")}`,
-          );
-        }
-      }
-
-      if (options.customRecords) {
-        for (const record of options.customRecords) {
-          const { errors } = await index.addCustomRecord(record);
-
-          if (errors.length > 0) {
-            throw new Error(
-              `Pagefind index errors for custom record:\n${errors.join("\n")}`,
-            );
-          }
-        }
-      }
-
-      // Output indexing
-      const { files } = await index.getFiles();
-      const textDecoder = new TextDecoder();
-      const textExtensions = [".js", ".css", ".json"];
-
-      for (const file of files) {
-        const { path } = file;
-        const content = textExtensions.includes(posix.extname(path))
-          ? textDecoder.decode(file.content)
-          : file.content;
-
-        allPages.push(
-          Page.create(posix.join("/", options.outputPath, path), content),
+    site.addEventListener("afterBuild", async () => {
+      const args = buildArguments(
+        options.indexing,
+        site.dest(),
+        options.outputPath,
+      );
+      console.log([Deno.execPath(), "run", "-A", specifier, ...args].join(" "));
+      const { code, stdout, stderr } = await new Deno.Command(Deno.execPath(), {
+        args: ["run", "-A", specifier, ...args],
+      })
+        .output();
+      const decoder = new TextDecoder();
+      if (code !== 0) {
+        throw new Error(
+          `Pagefind exited with code ${code}
+${decoder.decode(stdout)}
+${decoder.decode(stderr)}`,
         );
+      } else if (options.indexing.verbose) {
+        console.log(decoder.decode(stdout));
       }
-
-      // Cleanup
-      await index.deleteIndex();
-      await pagefind.close();
     });
 
     if (options.ui) {
@@ -240,4 +208,41 @@ export default function (userOptions?: DeepPartial<Options>) {
       });
     }
   };
+}
+
+function buildArguments(
+  options: Options["indexing"],
+  source: string,
+  bundleDirectory: string,
+): string[] {
+  const args: string[] = [
+    "--site",
+    source,
+    "--output-subdir",
+    bundleDirectory,
+    "--glob",
+    "**/*.html",
+  ];
+
+  if (options.rootSelector) {
+    args.push("--root-selector", options.rootSelector);
+  }
+
+  if (options.forceLanguage) {
+    args.push("--force-language", options.forceLanguage);
+  }
+
+  if (options.excludeSelectors?.length) {
+    args.push("--exclude-selectors", options.excludeSelectors.join(","));
+  }
+
+  if (options.verbose) {
+    args.push("--verbose");
+  }
+
+  if (options.logfile) {
+    args.push("--logfile", options.logfile);
+  }
+
+  return args;
 }
