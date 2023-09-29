@@ -16,7 +16,9 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - `favicon` plugin: Follow the recommendations from https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs
 
 ### Fixed
-- `pagefind` plugin: convert the content of js, css and json files to string.
+- `pagefind` plugin:
+  - Convert the content of js, css and json files to string.
+  - Added some missing UI configurations
 - `imagick` plugin: bug removing duplicated entries.
 - `mdx` plugin: use `remark-gfm@3.0.1` while mdx-js is not upgraded.
 - Updated dependencies: `std`, `deno-dom`, `esbuild`, `imagick`, `markdown-it`, `preact`.

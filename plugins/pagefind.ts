@@ -125,10 +125,8 @@ export default function (userOptions?: DeepPartial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    const { ui, indexing } = options;
-
     site.processAll([".html"], async (pages, allPages) => {
-      const { index } = await pagefind.createIndex(indexing);
+      const { index } = await pagefind.createIndex(options.indexing);
 
       if (!index) {
         throw new Error("Pagefind index not created");
@@ -181,13 +179,15 @@ export default function (userOptions?: DeepPartial<Options>) {
       await pagefind.close();
     });
 
-    if (ui) {
+    if (options.ui) {
+      const { containerId, ...ui } = options.ui;
+
       site.process([".html"], (page) => {
         const { document } = page;
         if (!document) {
           return;
         }
-        const container = document.getElementById(ui.containerId);
+        const container = document.getElementById(containerId);
 
         // Insert UI styles and scripts
         if (container) {
@@ -220,14 +220,14 @@ export default function (userOptions?: DeepPartial<Options>) {
           );
 
           const uiSettings = {
-            element: `#${ui.containerId}`,
-            showImages: ui.showImages,
-            showEmptyFilters: ui.showEmptyFilters,
-            resetStyles: ui.resetStyles,
+            element: `#${containerId}`,
+            ...ui,
             bundlePath: site.url(posix.join(options.outputPath, "/")),
             baseUrl: site.url("/"),
-            translations: ui.translations,
             processTerm: ui.processTerm ? ui.processTerm.toString() : undefined,
+            processResult: ui.processResult
+              ? ui.processResult.toString()
+              : undefined,
           };
           const init = document.createElement("script");
           init.setAttribute("type", "text/javascript");
