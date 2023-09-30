@@ -6,10 +6,26 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.19.1] - Unreleased
+## [1.19.2] - Unreleased
+### Added
+- The second argument of the `page.data.url()` function has the default URL value.
+
+## [1.19.1] - 2023-09-29
+### Added
+- `modify_urls` plugin: The replace callback can return a `Promise<string>`.
+- `modify_urls` plugin: Pass the HTML Element instance in the third argument of the replace callback.
+- `modify_urls` plugin: Support for `poster` attribute of `<video>` elements.
+
+### Changed
+- `favicon` plugin: Follow the recommendations from https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs
+
 ### Fixed
-- `pagefind` plugin: convert the content of js, css and json files to string.
+- `pagefind` plugin:
+  - Convert the content of js, css and json files to string.
+  - Added some missing UI configurations
 - `imagick` plugin: bug removing duplicated entries.
+- `mdx` plugin: use `remark-gfm@3.0.1` while mdx-js is not upgraded.
+- Updated dependencies: `std`, `deno-dom`, `esbuild`, `imagick`, `markdown-it`, `preact`, `postcss`.
 
 ## [1.19.0] - 2023-09-25
 ### Added
@@ -2427,7 +2443,8 @@ The first version.
 [#490]: https://github.com/lumeland/lume/issues/490
 [#492]: https://github.com/lumeland/lume/issues/492
 
-[1.19.1]: https://github.com/lumeland/lume/compare/v1.19.0...HEAD
+[1.19.2]: https://github.com/lumeland/lume/compare/v1.19.1...HEAD
+[1.19.1]: https://github.com/lumeland/lume/compare/v1.19.0...v1.19.1
 [1.19.0]: https://github.com/lumeland/lume/compare/v1.18.5...v1.19.0
 [1.18.5]: https://github.com/lumeland/lume/compare/v1.18.4...v1.18.5
 [1.18.4]: https://github.com/lumeland/lume/compare/v1.18.3...v1.18.4

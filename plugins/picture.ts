@@ -48,7 +48,7 @@ export default function (userOptions?: Partial<Options>): Plugin {
 
       for (const node of nodeList) {
         const img = node as Element;
-        const imagick = closest(img, "[imagick]")?.getAttribute("imagick");
+        const imagick = img.closest("[imagick]")?.getAttribute("imagick");
 
         if (!imagick) {
           continue;
@@ -58,7 +58,7 @@ export default function (userOptions?: Partial<Options>): Plugin {
           throw new Error("img element must have a src attribute");
         }
 
-        const picture = closest(img, "picture");
+        const picture = img.closest("picture");
 
         if (picture) {
           handlePicture(imagick, img, picture, basePath);
@@ -353,12 +353,4 @@ function editImg(
   if (sizes) {
     img.setAttribute("sizes", sizes);
   }
-}
-
-// Missing Element.closest in Deno DOM (https://github.com/b-fuze/deno-dom/issues/99)
-function closest(element: Element, selector: string) {
-  while (element && !element.matches(selector)) {
-    element = element.parentElement!;
-  }
-  return element;
 }

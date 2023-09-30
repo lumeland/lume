@@ -20,7 +20,11 @@ export interface Options {
   /** The cache folder */
   cache: string | boolean;
 
-  /** The generated favicons */
+  /**
+   * The generated favicons
+   * By default it follows the recommendations from:
+   * https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs
+   */
   favicons: Favicon[];
 }
 
@@ -30,21 +34,9 @@ export const defaults: Options = {
   favicons: [
     {
       url: "/favicon.ico",
-      size: 16,
-      rel: "icon",
-      format: MagickFormat.Ico,
-    },
-    {
-      url: "/favicon-32.png",
       size: 32,
       rel: "icon",
-      format: MagickFormat.Png,
-    },
-    {
-      url: "/favicon-16.png",
-      size: 16,
-      rel: "icon",
-      format: MagickFormat.Png,
+      format: MagickFormat.Ico,
     },
     {
       url: "/apple-touch-icon.png",
@@ -77,7 +69,9 @@ export default function (userOptions: DeepPartial<Options> = {}): Plugin {
       site.options.watcher.ignore.push(cacheFolder);
     }
 
-    async function getContent(path: string): Promise<Uint8Array> {
+    async function getContent(): Promise<Uint8Array> {
+      const path = options.input;
+
       // Convert the SVG to PNG
       if (path.endsWith(".svg")) {
         const content = await site.getContent(path, textLoader) as string;
@@ -88,7 +82,7 @@ export default function (userOptions: DeepPartial<Options> = {}): Plugin {
     }
 
     site.addEventListener("afterRender", async (event) => {
-      const content = await getContent(options.input);
+      const content = await getContent();
 
       if (!(content instanceof Uint8Array)) {
         throw new Error(`Favicon: ${options.input} not found`);
@@ -103,29 +97,49 @@ export default function (userOptions: DeepPartial<Options> = {}): Plugin {
           ),
         );
       }
+
+      // Add the svg favicon
+      if (
+        options.input.endsWith(".svg") &&
+        !site.pages.find((page) => page.data.url === options.input) &&
+        !site.files.find((file) => file.outputPath === options.input)
+      ) {
+        event.pages?.push(
+          Page.create(
+            options.input,
+            await site.getContent(options.input, textLoader) as string,
+          ),
+        );
+      }
     });
 
     site.process([".html"], (page) => {
       const document = page.document!;
 
-      addIcon(document, "icon", "32x32", site.url("/favicon-32.png"));
-      addIcon(document, "icon", "16x16", site.url("/favicon-16.png"));
-      addIcon(
-        document,
-        "apple-touch-icon",
-        "180x180",
-        site.url("/apple-touch-icon.png"),
-      );
-      addIcon(document, "shortcut icon", "16x16", site.url("/favicon.ico"));
+      if (options.input.endsWith(".svg")) {
+        addIcon(document, {
+          rel: "icon",
+          href: site.url(options.input),
+          type: "image/svg+xml",
+        });
+      }
+
+      for (const favicon of options.favicons) {
+        addIcon(document, {
+          rel: favicon.rel,
+          sizes: `${favicon.size}x${favicon.size}`,
+          href: site.url(favicon.url),
+        });
+      }
     });
   };
 }
 
-function addIcon(document: Document, rel: string, sizes: string, href: string) {
+function addIcon(document: Document, attributes: Record<string, string>) {
   const link = document.createElement("link");
-  link.setAttribute("rel", rel);
-  link.setAttribute("sizes", sizes);
-  link.setAttribute("href", href);
+  for (const [key, value] of Object.entries(attributes)) {
+    link.setAttribute(key, value);
+  }
   document.head.appendChild(link);
   document.head.appendChild(document.createTextNode("\n"));
 }

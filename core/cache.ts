@@ -3,7 +3,7 @@
 import { emptyDir, ensureDir } from "../deps/fs.ts";
 import { posix } from "../deps/path.ts";
 import { crypto } from "../deps/crypto.ts";
-import { encode } from "../deps/hex.ts";
+import { encodeHex } from "../deps/hex.ts";
 
 export interface Options {
   /** The folder to load the files from */
@@ -77,6 +77,5 @@ async function hash(content: string | Uint8Array): Promise<string> {
     typeof content === "string" ? new TextEncoder().encode(content) : content,
   );
 
-  const hex = encode(new Uint8Array(hash));
-  return new TextDecoder().decode(hex);
+  return encodeHex(hash);
 }
