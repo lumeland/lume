@@ -660,7 +660,7 @@ export function getUrl(
   const { data } = page;
   let url = data.url as
     | string
-    | ((page: Page) => string | false)
+    | ((page: Page, defaultUrl: string) => string | false)
     | false
     | undefined;
 
@@ -669,7 +669,7 @@ export function getUrl(
   }
 
   if (typeof url === "function") {
-    url = url(page);
+    url = url(page, getDefaultUrl(page, parentPath, prettyUrls));
   }
 
   if (typeof url === "string") {
@@ -696,8 +696,16 @@ export function getUrl(
     );
   }
 
+  return getDefaultUrl(page, parentPath, prettyUrls);
+}
+
+function getDefaultUrl(
+  page: Page,
+  parentPath: string,
+  prettyUrls: boolean,
+): string {
   // Calculate the URL from the path
-  url = posix.join(parentPath, page.src.slug);
+  const url = posix.join(parentPath, page.src.slug);
   const ext = getExtension(page.src.path);
 
   if (page.src.asset) {
