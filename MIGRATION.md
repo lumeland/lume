@@ -9,6 +9,9 @@
 - Removed output extension detection in the filename: #430
 - Removed `Page.dest` property #290.
   - This also removed `Page.updateDest` function.
+- Removed `Page.src.lastModified` and `Page.src.created` because they are
+  already in `Page.src.entry`.
+- Removed `Page.src.remote` because it's already in `Page.src.entry`.
 - Removed `--dev` mode #244, #201.
   - Use the env variable `LUME_SHOW_DRAFTS=true` to output draft pages.
 - Removed `--quiet` argument

@@ -84,8 +84,8 @@ export class Page<D extends PageData = PageData> {
 
   /** Returns the source path of this page */
   get sourcePath(): string {
-    if (this.src.remote) {
-      return this.src.remote;
+    if (this.src.entry?.flags.has("remote")) {
+      return this.src.entry.src;
     }
 
     if (!this.src.path) {
@@ -153,15 +153,6 @@ export interface Src {
 
   /** The extension of the file (undefined for folders) */
   ext?: string;
-
-  /** The last modified time */
-  lastModified?: Date;
-
-  /** The creation time */
-  created?: Date;
-
-  /** The remote url (if the file was downloaded) */
-  remote?: string;
 
   /** The original entry instance */
   entry?: Entry;

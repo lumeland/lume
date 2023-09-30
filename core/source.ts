@@ -316,16 +316,12 @@ export default class Source {
             );
           }
 
-          const info = entry.getInfo();
           const { ext } = format;
           const [slug, date] = parseDate(entry.name);
 
           // Create the page
           const page = new Page({
             path: entry.path.slice(0, -ext.length),
-            lastModified: info?.mtime || undefined,
-            created: info?.birthtime || undefined,
-            remote: entry.flags.has("remote") ? entry.src : undefined,
             ext,
             asset: format.pageType === "asset",
             slug: slug.slice(0, -ext.length),
