@@ -1,7 +1,7 @@
 import { posix } from "../deps/path.ts";
 import { normalizePath } from "./utils.ts";
 import { Page, StaticFile } from "./filesystem.ts";
-import { parseISO } from "../deps/date.ts";
+import { Temporal } from "../deps/temporal.ts";
 
 import type {
   ComponentLoader,
@@ -620,13 +620,12 @@ export function getDate(date: unknown, entry?: Entry): Date {
       }
     }
 
-    const parsed = parseISO(date);
-
-    if (!isNaN(parsed.getTime())) {
-      return parsed;
+    try {
+      const parsed = parse(date);
+      return new Date(parsed.epochMilliseconds);
+    } catch {
+      throw new Error(`Invalid date: ${date} (${entry?.src})`);
     }
-
-    throw new Error(`Invalid date: ${date} (${entry?.src})`);
   }
 
   return info?.birthtime || info?.mtime || new Date();
@@ -750,4 +749,12 @@ export function getOutputPath(
   }
 
   return posix.join(path, entry.name);
+}
+
+function parse(date: string) {
+  try {
+    return Temporal.Instant.from(date).toZonedDateTimeISO("UTC");
+  } catch {
+    return Temporal.PlainDateTime.from(date).toZonedDateTime("UTC");
+  }
 }

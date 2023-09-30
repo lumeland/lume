@@ -26,6 +26,7 @@
 - Removed `site.engine()`. It's included in `site.loadPages()` options.
 - Removed `site.cacheFile()`
 - Removed `Entry.setContent()`
+- Replace `fn-date` with `Temporal` polyfill to convert dates.
 
 ## `search` Plugin
 
