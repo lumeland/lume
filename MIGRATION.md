@@ -3,6 +3,7 @@
 ## Added
 
 - `includes` option to `module` and `mdx` plugins.
+- `slug` variable to change the final name of files/directories
 
 ## Core
 

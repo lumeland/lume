@@ -170,6 +170,9 @@ export interface Data<D extends PageData = PageData> {
   /** The url of a page */
   url?: string | ((page: Page<D>) => string) | false;
 
+  /** The slug of a page */
+  slug?: string;
+
   /** Mark the page as a draft */
   draft?: boolean;
 
