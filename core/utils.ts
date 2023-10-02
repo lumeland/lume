@@ -582,9 +582,11 @@ export function env<T>(name: string): T | undefined {
   }
 }
 
-let level = env<LevelName | "NONE">("LUME_LOG_LEVEL")?.toUpperCase();
+let level = env<LevelName>("LUME_LOG_LEVEL")?.toUpperCase() as
+  | LevelName
+  | undefined;
 
-if (level === "NOTSET") {
+if (!level || level === "NOTSET") {
   level = "DEBUG";
 }
 
@@ -625,8 +627,8 @@ logger.setup({
   },
   loggers: {
     lume: {
-      level: (level === "NONE" ? "NOTSET" : level) as LevelName,
-      handlers: level === "NONE" ? [] : ["console"],
+      level: level as LevelName,
+      handlers: ["console"],
     },
   },
 });

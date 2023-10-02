@@ -9,7 +9,7 @@
     ]
   },
   "tasks": {
-    "test": "TZ=Z LUME_LOG_LEVEL=NONE deno test -A",
+    "test": "TZ=Z LUME_LOG_LEVEL=ERROR deno test -A",
     "test:update": "deno task test -- --update",
     "install": "deno run -A install.ts",
     "changelog": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.3.0/bin.ts",
