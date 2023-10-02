@@ -463,7 +463,7 @@ Content of Page 7",
       site: "Folder overrided site name",
       tags: "Array(4)",
       title: "Page 7",
-      url: "/pages/subpage/page7/",
+      url: "/pages/new-name/page7/",
     },
     src: {
       asset: false,

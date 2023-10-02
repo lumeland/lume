@@ -153,16 +153,16 @@ Sitemap: https://example.com/sitemap.xml",
     <lastmod>2020-06-21T00:00:00.000Z</lastmod>
   </url>
   <url>
+    <loc>https://example.com/pages/new-name/page7/</loc>
+    <lastmod>2022-01-02T00:00:00.000Z</lastmod>
+  </url>
+  <url>
     <loc>https://example.com/pages/page4/</loc>
     <lastmod>2021-01-02T18:32:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/pages/page6/</loc>
     <lastmod>2022-01-01T00:00:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://example.com/pages/subpage/page7/</loc>
-    <lastmod>2022-01-02T00:00:00.000Z</lastmod>
   </url>
 </urlset>',
     data: {
@@ -173,16 +173,16 @@ Sitemap: https://example.com/sitemap.xml",
     <lastmod>2020-06-21T00:00:00.000Z</lastmod>
   </url>
   <url>
+    <loc>https://example.com/pages/new-name/page7/</loc>
+    <lastmod>2022-01-02T00:00:00.000Z</lastmod>
+  </url>
+  <url>
     <loc>https://example.com/pages/page4/</loc>
     <lastmod>2021-01-02T18:32:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/pages/page6/</loc>
     <lastmod>2022-01-01T00:00:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://example.com/pages/subpage/page7/</loc>
-    <lastmod>2022-01-02T00:00:00.000Z</lastmod>
   </url>
 </urlset>',
       page: [
@@ -440,7 +440,7 @@ Content of Page 7",
       search: [],
       site: "Folder overrided site name",
       tags: "Array(3)",
-      url: "/pages/subpage/page7/",
+      url: "/pages/new-name/page7/",
     },
     src: {
       asset: false,

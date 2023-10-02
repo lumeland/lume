@@ -157,7 +157,6 @@ export default class Source {
 
     // Parse the date/time in the folder name
     const [name, date] = parseDate(dir.name);
-    path = posix.join(path, name);
 
     // Load the _data files
     const currentData: Data = date ? { date } : {};
@@ -171,12 +170,16 @@ export default class Source {
       }
     }
 
-    // Directory data
+    // Merge directory data
     const dirData = mergeData(
-      this.scopedData.get(dir.path) || {},
       parentData,
+      date ? { date } : {},
+      this.scopedData.get(dir.path) || {},
       currentData,
     );
+
+    path = posix.join(path, dirData.slug ?? name);
+    delete dirData.slug; // Slug doesn't have to propagate
 
     // Directory components
     const scopedComponents = this.scopedComponents.get(dir.path);
@@ -304,7 +307,6 @@ export default class Source {
         }
 
         // The file is a page
-
         if (format.pageType) {
           const loader = format.pageType === "asset"
             ? format.assetLoader
@@ -708,7 +710,7 @@ function getDefaultUrl(
   prettyUrls: boolean,
 ): string {
   // Calculate the URL from the path
-  const url = posix.join(parentPath, page.src.slug);
+  const url = posix.join(parentPath, page.data.slug ?? page.src.slug);
 
   if (page.src.asset) {
     return url + page.src.ext;

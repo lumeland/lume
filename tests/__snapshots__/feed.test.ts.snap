@@ -122,9 +122,9 @@ snapshot[`RSS plugin 2`] = `[]`;
 snapshot[`RSS plugin 3`] = `
 [
   {
-    content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","description":"","items":[{"id":"https://example.com/pages/subpage/page7/","url":"https://example.com/pages/subpage/page7/","content_html":"Content of Page 7","date_published":"Sun, 02 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page6/","url":"https://example.com/pages/page6/","title":"Page 6","content_html":"<p>Content of Page 6</p>\\\\n","date_published":"Sat, 01 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page4/","url":"https://example.com/pages/page4/","title":"Page 4","content_html":"Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts","date_published":"Sat, 02 Jan 2021 18:32:00 GMT"},{"id":"https://example.com/overrided-page2/","url":"https://example.com/overrided-page2/","title":"Page 2","content_html":"Content of Page 2","date_published":"Sun, 21 Jun 2020 00:00:00 GMT"}]}',
+    content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","description":"","items":[{"id":"https://example.com/pages/new-name/page7/","url":"https://example.com/pages/new-name/page7/","content_html":"Content of Page 7","date_published":"Sun, 02 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page6/","url":"https://example.com/pages/page6/","title":"Page 6","content_html":"<p>Content of Page 6</p>\\\\n","date_published":"Sat, 01 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page4/","url":"https://example.com/pages/page4/","title":"Page 4","content_html":"Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts","date_published":"Sat, 02 Jan 2021 18:32:00 GMT"},{"id":"https://example.com/overrided-page2/","url":"https://example.com/overrided-page2/","title":"Page 2","content_html":"Content of Page 2","date_published":"Sun, 21 Jun 2020 00:00:00 GMT"}]}',
     data: {
-      content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","description":"","items":[{"id":"https://example.com/pages/subpage/page7/","url":"https://example.com/pages/subpage/page7/","content_html":"Content of Page 7","date_published":"Sun, 02 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page6/","url":"https://example.com/pages/page6/","title":"Page 6","content_html":"<p>Content of Page 6</p>\\\\n","date_published":"Sat, 01 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page4/","url":"https://example.com/pages/page4/","title":"Page 4","content_html":"Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts","date_published":"Sat, 02 Jan 2021 18:32:00 GMT"},{"id":"https://example.com/overrided-page2/","url":"https://example.com/overrided-page2/","title":"Page 2","content_html":"Content of Page 2","date_published":"Sun, 21 Jun 2020 00:00:00 GMT"}]}',
+      content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","description":"","items":[{"id":"https://example.com/pages/new-name/page7/","url":"https://example.com/pages/new-name/page7/","content_html":"Content of Page 7","date_published":"Sun, 02 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page6/","url":"https://example.com/pages/page6/","title":"Page 6","content_html":"<p>Content of Page 6</p>\\\\n","date_published":"Sat, 01 Jan 2022 00:00:00 GMT"},{"id":"https://example.com/pages/page4/","url":"https://example.com/pages/page4/","title":"Page 4","content_html":"Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts","date_published":"Sat, 02 Jan 2021 18:32:00 GMT"},{"id":"https://example.com/overrided-page2/","url":"https://example.com/overrided-page2/","title":"Page 2","content_html":"Content of Page 2","date_published":"Sun, 21 Jun 2020 00:00:00 GMT"}]}',
       page: [
         "src",
         "data",
@@ -152,8 +152,8 @@ snapshot[`RSS plugin 3`] = `
     <generator>https://lume.land</generator>
     <item>
       <title/>
-      <link>https://example.com/pages/subpage/page7/</link>
-      <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
+      <link>https://example.com/pages/new-name/page7/</link>
+      <guid isPermaLink="false">https://example.com/pages/new-name/page7/</guid>
       <description/>
       <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
       <pubDate>Sun, 02 Jan 2022 00:00:00 GMT</pubDate>
@@ -200,8 +200,8 @@ snapshot[`RSS plugin 3`] = `
     <generator>https://lume.land</generator>
     <item>
       <title/>
-      <link>https://example.com/pages/subpage/page7/</link>
-      <guid isPermaLink="false">https://example.com/pages/subpage/page7/</guid>
+      <link>https://example.com/pages/new-name/page7/</link>
+      <guid isPermaLink="false">https://example.com/pages/new-name/page7/</guid>
       <description/>
       <content:encoded><![CDATA[Content of Page 7]]></content:encoded>
       <pubDate>Sun, 02 Jan 2022 00:00:00 GMT</pubDate>
@@ -490,7 +490,7 @@ Content of Page 7",
       search: [],
       site: "Folder overrided site name",
       tags: "Array(3)",
-      url: "/pages/subpage/page7/",
+      url: "/pages/new-name/page7/",
     },
     src: {
       asset: false,
