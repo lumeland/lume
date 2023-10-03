@@ -10,6 +10,9 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Added
 - The second argument of the `page.data.url()` function has the default URL value.
 
+### Fixed
+- Ignore error checking Lume version in offline environments [#496]
+
 ## [1.19.1] - 2023-09-29
 ### Added
 - `modify_urls` plugin: The replace callback can return a `Promise<string>`.
@@ -2442,6 +2445,7 @@ The first version.
 [#488]: https://github.com/lumeland/lume/issues/488
 [#490]: https://github.com/lumeland/lume/issues/490
 [#492]: https://github.com/lumeland/lume/issues/492
+[#496]: https://github.com/lumeland/lume/issues/496
 
 [1.19.2]: https://github.com/lumeland/lume/compare/v1.19.1...HEAD
 [1.19.1]: https://github.com/lumeland/lume/compare/v1.19.0...v1.19.1

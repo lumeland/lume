@@ -93,20 +93,24 @@ export async function checkUpgrade(): Promise<void> {
 
   localStorage.setItem("lume-upgrade", Date.now().toString());
 
-  const latest = stable
-    ? await getLatestVersion()
-    : await getLatestDevelopmentVersion();
+  try {
+    const latest = stable
+      ? await getLatestVersion()
+      : await getLatestDevelopmentVersion();
 
-  if (current === latest) {
-    return;
+    if (current === latest) {
+      return;
+    }
+
+    const command = "deno task lume upgrade" + (stable ? "" : " --dev");
+
+    log(
+      `Update available ${dim(current)} → ${green(latest)}`,
+      `Run ${cyan(command)} to update`,
+    );
+  } catch {
+    // Ignore. Probably we are offline
   }
-
-  const command = "deno task lume upgrade" + (stable ? "" : " --dev");
-
-  log(
-    `Update available ${dim(current)} → ${green(latest)}`,
-    `Run ${cyan(command)} to update`,
-  );
 }
 
 /** Return the latest stable version from the deno.land/x repository */
