@@ -138,7 +138,6 @@ export default function (userOptions?: DeepPartial<Options>) {
           url: site.url(page.outputPath as string),
           content: page.content as string,
         });
-        console.log(`Indexed ${page.outputPath}`);
 
         if (errors.length > 0) {
           throw new Error(
