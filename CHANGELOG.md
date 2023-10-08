@@ -11,7 +11,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - The second argument of the `page.data.url()` function has the default URL value.
 
 ### Fixed
-- Ignore error checking Lume version in offline environments [#496]
+- Ignore error checking Lume version in offline environments [#496].
+- Updated dependencies: `deno_dom`, `katex`, `preact`, `sass`, `svg2png`, `terser`.
 
 ## [1.19.1] - 2023-09-29
 ### Added

@@ -1,4 +1,4 @@
-import katex from "npm:katex@0.16.8";
+import katex from "npm:katex@0.16.9";
 
 export { katex };
 

@@ -9,7 +9,7 @@ Deno.test("Build a mdx site", async (t) => {
 
   site.use(jsx());
   site.use(mdx({
-    pragma: "/** @jsxImportSource https://esm.sh/preact */",
+    pragma: "/** @jsxImportSource npm:preact */",
   }));
 
   await build(site);
