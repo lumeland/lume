@@ -12,7 +12,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ### Fixed
 - Ignore error checking Lume version in offline environments [#496].
-- Updated dependencies: `deno_dom`, `katex`, `preact`, `sass`, `svg2png`, `terser`.
+- Updated dependencies: `deno_dom`, `katex`, `preact`, `sass`, `svg2png`, `terser`, `highlight`.
 
 ## [1.19.1] - 2023-09-29
 ### Added
