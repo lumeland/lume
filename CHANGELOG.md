@@ -10,6 +10,10 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Added
 - The second argument of the `page.data.url()` function has the default URL value.
 
+### Changed
+- Removed schema.org meta tags in metas plugin, because they are are not valid.
+  Probably it needs a new specific plugin.
+
 ### Fixed
 - Ignore error checking Lume version in offline environments [#496].
 - Updated dependencies: `deno_dom`, `katex`, `preact`, `sass`, `svg2png`, `terser`.
