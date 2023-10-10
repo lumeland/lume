@@ -112,11 +112,6 @@ export default function (userOptions?: Partial<Options>): Plugin {
       );
       addMeta(document, "name", "twitter:site", twitter);
 
-      // Schema.org
-      addMeta(document, "itemprop", "name", title);
-      addMeta(document, "itemprop", "description", description, 155);
-      addMeta(document, "itemprop", "image", image || icon);
-
       // SEO
       addMeta(document, "name", "description", description, 155);
       addMeta(document, "name", "keywords", keywords?.join(", "));

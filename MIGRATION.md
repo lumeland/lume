@@ -28,6 +28,7 @@
 - Removed `site.cacheFile()`
 - Removed `Entry.setContent()`
 - Replace `fn-date` with `Temporal` polyfill to convert dates.
+- Removed message to upgrade Lume.
 
 ## `search` Plugin
 

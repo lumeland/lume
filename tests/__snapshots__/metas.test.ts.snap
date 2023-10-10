@@ -117,9 +117,6 @@ snapshot[`metas plugin 3`] = `
 <meta property="og:image" content="http://localhost/my-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@myUser">
-<meta itemprop="name" content="Custom title">
-<meta itemprop="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
-<meta itemprop="image" content="http://localhost/my-image.png">
 <meta name="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
 <meta name="keywords" content="one, two">
 <meta name="robots" content="index, follow">
@@ -195,9 +192,6 @@ snapshot[`metas plugin 3`] = `
 <meta property="og:image" content="http://localhost/page-2/my-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@myUser">
-<meta itemprop="name" content="Relative paths">
-<meta itemprop="description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
-<meta itemprop="image" content="http://localhost/page-2/my-image.png">
 <meta name="description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
 <meta name="keywords" content="one, two">
 <meta name="robots" content="noindex, nofollow, noarchive">
@@ -272,9 +266,6 @@ snapshot[`metas plugin 3`] = `
 <meta property="og:image" content="http://localhost/page-3/use-cover-as-meta-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@myUser">
-<meta itemprop="name" content="Title from page data">
-<meta itemprop="description" content="This is page excerpt will be used as meta description.">
-<meta itemprop="image" content="http://localhost/page-3/use-cover-as-meta-image.png">
 <meta name="description" content="This is page excerpt will be used as meta description.">
 <meta name="keywords" content="one, two">
 <meta name="robots" content="this robots will be overrided">

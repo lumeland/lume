@@ -1,4 +1,4 @@
-/** @jsxImportSource https://esm.sh/preact */
+/** @jsxImportSource npm:preact */
 
 interface Options {
   src: string;

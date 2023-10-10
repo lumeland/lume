@@ -81,41 +81,6 @@ export function checkDenoVersion(): void {
   }
 }
 
-/** Check if the current version is outdated */
-export async function checkUpgrade(): Promise<void> {
-  const current = getLumeVersion();
-
-  // It's a local version
-  if (current.startsWith("local ")) {
-    return;
-  }
-
-  const stable = !!current.match(/^v\d+\./);
-  const expires = 1000 * 60 * 60 * 24; // 1 day
-  const interval = localStorage.getItem("lume-upgrade");
-
-  if (interval && parseInt(interval) + expires > Date.now()) {
-    return;
-  }
-
-  localStorage.setItem("lume-upgrade", Date.now().toString());
-
-  const latest = stable
-    ? await getLatestVersion()
-    : await getLatestDevelopmentVersion();
-
-  if (current === latest) {
-    return;
-  }
-
-  const command = "deno task lume upgrade" + (stable ? "" : " --dev");
-
-  console.log("----------------------------------------");
-  console.log(`Update available ${dim(current)} → ${green(latest)}`);
-  console.log(`Run ${cyan(command)} to update`);
-  console.log("----------------------------------------");
-}
-
 /** Return the latest stable version from the deno.land/x repository */
 export async function getLatestVersion(): Promise<string> {
   const response = await fetch("https://cdn.deno.land/lume/meta/versions.json");

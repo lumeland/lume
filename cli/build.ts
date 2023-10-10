@@ -1,4 +1,4 @@
-import { checkUpgrade, log } from "../core/utils.ts";
+import { log } from "../core/utils.ts";
 import Server from "../core/server.ts";
 import FSWatcher, { SiteWatcher } from "../core/watcher.ts";
 import { printError } from "../core/errors.ts";
@@ -42,8 +42,6 @@ export async function build(
   log.info(
     `  <dim>${total} files generated in ${duration.toFixed(2)} seconds</dim>`,
   );
-
-  await checkUpgrade();
 
   if (!serve && !watch) {
     // Prevent possible timers to keep the process alive forever (wait preventively 10 seconds)

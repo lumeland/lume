@@ -121,7 +121,7 @@ export interface FeedItem {
 
 const defaultGenerator = `Lume ${getLumeVersion()}`;
 
-export default (userOptions?: DeepPartial<Options>) => {
+export default function (userOptions?: DeepPartial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -185,7 +185,7 @@ export default (userOptions?: DeepPartial<Options>) => {
       }
     });
   };
-};
+}
 
 function fixUrls(base: URL, html: string): string {
   return html.replaceAll(

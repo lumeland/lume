@@ -1,4 +1,4 @@
-/** @jsxImportSource https://esm.sh/preact */
+/** @jsxImportSource npm:preact */
 
 export default function Header({ title, description }) {
   return (
