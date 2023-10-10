@@ -716,7 +716,8 @@ function getDefaultUrl(
     return url + page.src.ext;
   }
 
-  if (prettyUrls) {
+  // Pretty URLs affects to all pages but 404
+  if (prettyUrls && url !== "/404") {
     if (posix.basename(url) === "index") {
       return posix.join(posix.dirname(url), "/");
     }

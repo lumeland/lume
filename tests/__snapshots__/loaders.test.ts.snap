@@ -105,6 +105,7 @@ snapshot[`Load the pages of a site 1`] = `
   ],
   src: [
     "/",
+    "/404.md",
     "/_data.yml",
     "/favicon.png",
     "/page5.yaml",
@@ -141,6 +142,44 @@ snapshot[`Load the pages of a site 2`] = `
 
 snapshot[`Load the pages of a site 3`] = `
 [
+  {
+    content: "<!DOCTYPE html>
+<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+",
+    data: {
+      children: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+",
+      content: "This page is exported to \`/404.html\`, not \`/404/index.html\`
+",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(1)",
+      url: "/404.html",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/404",
+      remote: undefined,
+      slug: "404",
+    },
+  },
   {
     content: "Uint8Array(1503)",
     data: {

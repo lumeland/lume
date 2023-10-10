@@ -5,9 +5,6 @@ Deno.test("RSS plugin", async (t) => {
   const site = getSite({
     src: "normal",
     location: new URL("https://example.com/"),
-    server: {
-      page404: "/page5/",
-    },
   });
 
   site.use(

@@ -64,6 +64,7 @@ snapshot[`Sort by two fields, second is DESC 1`] = `[Function: anonymous]`;
 
 snapshot[`Test the file searcher 1`] = `
 [
+  "/404.html",
   "/favicon.png",
   "/overrided-page2/index.html",
   "/page5/index.html",

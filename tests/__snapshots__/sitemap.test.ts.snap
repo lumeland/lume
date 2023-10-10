@@ -93,6 +93,7 @@ snapshot[`Sitemap plugin 1`] = `
   ],
   src: [
     "/",
+    "/404.md",
     "/_data.yml",
     "/favicon.png",
     "/page5.yaml",
@@ -153,6 +154,10 @@ Sitemap: https://example.com/sitemap.xml",
     <lastmod>2020-06-21T00:00:00.000Z</lastmod>
   </url>
   <url>
+    <loc>https://example.com/page5/</loc>
+    <lastmod>1979-06-21T23:45:00.000Z</lastmod>
+  </url>
+  <url>
     <loc>https://example.com/pages/new-name/page7/</loc>
     <lastmod>2022-01-02T00:00:00.000Z</lastmod>
   </url>
@@ -171,6 +176,10 @@ Sitemap: https://example.com/sitemap.xml",
   <url>
     <loc>https://example.com/overrided-page2/</loc>
     <lastmod>2020-06-21T00:00:00.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/page5/</loc>
+    <lastmod>1979-06-21T23:45:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/pages/new-name/page7/</loc>
@@ -197,6 +206,44 @@ Sitemap: https://example.com/sitemap.xml",
       path: "",
       remote: undefined,
       slug: "sitemap",
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+",
+    data: {
+      children: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+",
+      content: "This page is exported to \`/404.html\`, not \`/404/index.html\`
+",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      url: "/404.html",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/404",
+      remote: undefined,
+      slug: "404",
     },
   },
   {
