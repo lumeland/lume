@@ -16,6 +16,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ### Fixed
 - Ignore error checking Lume version in offline environments [#496].
+- `lightningcss` plugin: after refreshing changes the imports of all files are mixed.
 - Updated dependencies: `deno_dom`, `katex`, `preact`, `sass`, `svg2png`, `terser`.
 
 ## [1.19.1] - 2023-09-29
