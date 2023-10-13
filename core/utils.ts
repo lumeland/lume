@@ -552,7 +552,7 @@ let level = env<LevelName>("LUME_LOG_LEVEL")?.toUpperCase() as
   | undefined;
 
 if (!level || level === "NOTSET") {
-  level = "DEBUG";
+  level = "INFO";
 }
 
 /**
