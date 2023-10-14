@@ -1,7 +1,6 @@
 import { log } from "../core/utils.ts";
 import Server from "../core/server.ts";
 import FSWatcher, { SiteWatcher } from "../core/watcher.ts";
-import { printError } from "../core/errors.ts";
 import logger from "../middlewares/logger.ts";
 import noCache from "../middlewares/no_cache.ts";
 import notFound from "../middlewares/not_found.ts";
@@ -76,7 +75,7 @@ export async function build(
   });
 
   watcher.addEventListener("error", (event) => {
-    printError(event.error!);
+    console.error(Deno.inspect(event.error, { colors: true }));
   });
 
   watcher.start();

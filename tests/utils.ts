@@ -1,7 +1,6 @@
 import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
 import { basename, fromFileUrl, join } from "../deps/path.ts";
-import { printError } from "../core/errors.ts";
 import { DeepPartial } from "../core/utils.ts";
 
 import type { Site, SiteOptions, SourceMap } from "../core.ts";
@@ -44,7 +43,7 @@ export async function build(site: Site) {
   try {
     await site.build();
   } catch (error) {
-    printError(error);
+    console.error(Deno.inspect(error, { colors: true }));
     throw error;
   }
 }

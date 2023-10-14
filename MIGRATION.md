@@ -29,6 +29,7 @@
 - Replace `fn-date` with `Temporal` polyfill to convert dates.
 - Removed message to upgrade Lume.
 - Pretty URLs option doesn't affect to the `/404.html` page by default.
+- Removed `Error` class to print the errors. `Deno.inspect()` is used instead.
 
 ## `search` Plugin
 

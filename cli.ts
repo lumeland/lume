@@ -1,6 +1,5 @@
 import { Command, CompletionsCommand, EnumType } from "./deps/cliffy.ts";
 import { getLumeVersion } from "./core/utils.ts";
-import { printError } from "./core/errors.ts";
 import upgradeCommand from "./cli/upgrade.ts";
 import runCommand from "./cli/run.ts";
 import buildCommand from "./cli/build.ts";
@@ -122,6 +121,6 @@ const lume = new Command()
 try {
   await lume.parse(Deno.args);
 } catch (error) {
-  printError(error);
+  console.error(Deno.inspect(error, { colors: true }));
   Deno.exit(1);
 }
