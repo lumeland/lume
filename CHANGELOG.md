@@ -9,6 +9,9 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.19.2] - Unreleased
 ### Added
 - The second argument of the `page.data.url()` function has the default URL value.
+- Default options for `Server` class:
+  - root: `Deno.cwd() + "/_site"`
+  - port: `8000`
 
 ### Changed
 - Removed schema.org meta tags in metas plugin, because they are are not valid.
