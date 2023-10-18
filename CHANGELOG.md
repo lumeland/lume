@@ -17,6 +17,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Removed schema.org meta tags in metas plugin, because they are are not valid.
   Probably it needs a new specific plugin.
 - Updated the minimum Deno version supported to `1.37.2`.
+- `redirects` `www` middleware support `307`, `308` status code.
 
 ### Fixed
 - Ignore error checking Lume version in offline environments [#496].
