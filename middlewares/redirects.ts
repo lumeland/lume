@@ -6,7 +6,7 @@ export interface Options {
 
 export interface Redirect {
   to: string;
-  code: 301 | 302 | 200;
+  code: 301 | 302 | 307 | 308 | 200;
 }
 
 /** Implements redirects */
@@ -28,6 +28,8 @@ export default function redirects(options: Options): Middleware {
     switch (redirect.code) {
       case 301:
       case 302:
+      case 307:
+      case 308:
         return new Response(null, {
           status: redirect.code,
           headers: {
