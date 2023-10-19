@@ -41,7 +41,8 @@ export default function lume(
 
   const site = new Site(options as Partial<SiteOptions>);
 
-  // Ignore the .git folder and .DS_Store (macOS) files by the watcher
+  // Ignore some files by the watcher
+  site.options.watcher.ignore.push("/deno.lock");
   site.options.watcher.ignore.push("/.git");
   site.options.watcher.ignore.push((path) => path.endsWith("/.DS_Store"));
 
