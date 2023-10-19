@@ -1,5 +1,5 @@
 import { Page } from "../core/filesystem.ts";
-import { isPlainObject, merge } from "../core/utils.ts";
+import { isPlainObject, log, merge } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
 import { getUrl } from "../core/source.ts";
 
@@ -33,6 +33,22 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
     site.preprocess(options.extensions, (page, pages) => {
       const { data } = page;
       const languages = data.lang as string | string[] | undefined;
+
+      // If the "lang" variable is not defined, use the default language
+      if (languages === undefined) {
+        data.lang = options.defaultLanguage;
+        return;
+      }
+
+      // If the "lang" variable is a string, check if it's a valid language
+      if (typeof languages === "string") {
+        if (!options.languages.includes(languages)) {
+          log.warning(
+            `[multilanguage plugin] The language "${languages}" in the page ${page.sourcePath} is not defined in the "languages" option.`,
+          );
+        }
+        return;
+      }
 
       // The "lang" variable of the pages must be an array
       if (!Array.isArray(languages)) {

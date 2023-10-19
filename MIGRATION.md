@@ -124,3 +124,7 @@
 
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
+
+## `multilanguage` Plugin
+
+- Apply the default language to all pages without defined language.
