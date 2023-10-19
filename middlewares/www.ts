@@ -2,7 +2,7 @@ import type { Middleware } from "../core.ts";
 
 export interface Options {
   add: boolean;
-  code: 301 | 302;
+  code: 301 | 302 | 307 | 308;
 }
 
 export const defaults: Options = {

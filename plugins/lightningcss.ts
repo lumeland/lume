@@ -59,7 +59,7 @@ export default function (userOptions?: DeepPartial<Options>) {
     site.loadAssets(options.extensions);
 
     if (options.includes) {
-      site.process(options.extensions, lightningCSSBundler);
+      site.processAll(options.extensions, lightningCSSBundler);
     } else {
       site.process(options.extensions, lightningCSSTransformer);
     }
@@ -91,54 +91,59 @@ export default function (userOptions?: DeepPartial<Options>) {
       );
     }
 
-    async function lightningCSSBundler(file: Page) {
-      const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
-        site,
-        file,
-      );
+    /**
+     * Bundles all CSS files into a single file
+     * This cannot be done in parallel because ligthningcss has a bug that mixes the imports of all files
+     * Seems like executing the bundler in sequence fixes the issue
+     */
+    async function lightningCSSBundler(files: Page[]) {
+      for (const file of files) {
+        const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
+          site,
+          file,
+        );
 
-      // Process the code with lightningCSS
-      const bundleOptions: BundleAsyncOptions<CustomAtRules> = {
-        filename,
-        sourceMap: enableSourceMap,
-        inputSourceMap: JSON.stringify(sourceMap),
-        ...options.options,
-        resolver: {
-          resolve(id: string, from: string) {
-            return resolveInclude(
-              id,
-              options.includes as string,
-              posix.dirname(from),
-            );
+        const { includes } = site.options;
+
+        // Process the code with lightningCSS
+        const bundleOptions: BundleAsyncOptions<CustomAtRules> = {
+          filename,
+          sourceMap: enableSourceMap,
+          inputSourceMap: JSON.stringify(sourceMap),
+          ...options.options,
+          resolver: {
+            resolve(id: string, from: string) {
+              return resolveInclude(id, includes, posix.dirname(from));
+            },
+            async read(file: string) {
+              if (file === filename) {
+                return content;
+              }
+
+              if (file.startsWith("http")) {
+                return read(file, false, {
+                  headers: {
+                    "User-Agent":
+                      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/115.0",
+                  },
+                });
+              }
+
+              return await site.getContent(file, textLoader) as string;
+            },
           },
-          async read(file: string) {
-            if (file === filename) {
-              return content;
-            }
+        };
 
-            if (file.startsWith("http")) {
-              return read(file, false, {
-                headers: {
-                  "User-Agent":
-                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/115.0",
-                },
-              });
-            }
+        const result = await bundleAsync(bundleOptions);
+        const decoder = new TextDecoder();
 
-            return await site.getContent(file, textLoader) as string;
-          },
-        },
-      };
-
-      const result = await bundleAsync(bundleOptions);
-      const decoder = new TextDecoder();
-
-      saveAsset(
-        site,
-        file,
-        decoder.decode(result.code),
-        enableSourceMap ? decoder.decode(result.map!) : undefined,
-      );
+        saveAsset(
+          site,
+          file,
+          decoder.decode(result.code),
+          enableSourceMap ? decoder.decode(result.map!) : undefined,
+        );
+      }
     }
   };
 }

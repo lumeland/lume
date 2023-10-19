@@ -9,14 +9,20 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.19.2] - Unreleased
 ### Added
 - The second argument of the `page.data.url()` function has the default URL value.
+- Default options for `Server` class:
+  - root: `Deno.cwd() + "/_site"`
+  - port: `8000`
 
 ### Changed
 - Removed schema.org meta tags in metas plugin, because they are are not valid.
   Probably it needs a new specific plugin.
+- Updated the minimum Deno version supported to `1.37.2`.
+- `redirects` `www` middleware support `307`, `308` status code.
 
 ### Fixed
 - Ignore error checking Lume version in offline environments [#496].
-- Updated dependencies: `deno_dom`, `katex`, `preact`, `sass`, `svg2png`, `terser`.
+- `lightningcss` plugin: after refreshing changes the imports of all files are mixed.
+- Updated dependencies: `std`, `deno_dom`, `katex`, `preact`, `sass`, `svg2png`, `terser`, `pagefind`.
 
 ## [1.19.1] - 2023-09-29
 ### Added

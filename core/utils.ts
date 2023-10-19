@@ -67,7 +67,7 @@ export const pluginNames = [
 
 /** Check the compatibility with the current Deno version */
 export function checkDenoVersion(): void {
-  const minimum = "1.33.4";
+  const minimum = "1.37.2";
   const current = Deno.version.deno;
 
   if (current < minimum) {

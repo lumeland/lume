@@ -17,6 +17,11 @@ export interface Options {
   port: number;
 }
 
+export const defaults: Options = {
+  root: `${Deno.cwd()}/_site`,
+  port: 8000,
+};
+
 export type RequestHandler = (req: Request) => Promise<Response>;
 export type Middleware = (
   req: Request,
@@ -47,8 +52,8 @@ export default class Server {
   middlewares: Middleware[] = [];
   #server?: HttpServer;
 
-  constructor(options: Options) {
-    this.options = options;
+  constructor(options: Partial<Options> = {}) {
+    this.options = { ...defaults, ...options };
   }
 
   /** Register one or more middlewares */
