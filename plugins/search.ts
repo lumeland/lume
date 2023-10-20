@@ -48,7 +48,7 @@ export class Search {
   pages(query?: Query, sort?: Query, limit?: number) {
     const result = this.#searcher.pages(toString(query), toString(sort), limit);
 
-    return this.#returnPageData ? result : result.map((data) => data.page);
+    return this.#returnPageData ? result : result.map((data) => data.page!);
   }
 
   /** Search and return one page */
