@@ -86,7 +86,7 @@ export async function build(
 
   // Start the local server
   const { port, open, page404, middlewares } = site.options.server;
-  const server = new Server({ root: site.dest() });
+  const server = new Server({ root: site.dest(), port });
 
   server.addEventListener("start", () => {
     const ipAddr = localIp();
@@ -138,7 +138,7 @@ export async function build(
     server.use(...middlewares);
   }
 
-  server.start({ port });
+  server.start();
 }
 
 function localIp(): string | undefined {
