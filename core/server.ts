@@ -8,13 +8,14 @@ import { serveFile as HttpServeFile } from "../deps/http.ts";
 import type { Event, EventListener, EventOptions } from "../core.ts";
 
 /** The options to configure the local server */
-export interface Options {
+export interface Options extends Deno.ServeOptions {
   /** The root path */
   root: string;
 }
 
 export const defaults: Options = {
   root: `${Deno.cwd()}/_site`,
+  port: 8000,
 };
 
 export type RequestHandler = (req: Request) => Promise<Response>;
@@ -73,9 +74,12 @@ export default class Server {
   }
 
   /** Start the server */
-  start(options: Deno.ServeOptions = { port: 8000 }) {
-    this.#server = Deno.serve(options, this.handle);
-    this.dispatchEvent({ type: "start" });
+  start(signal?: Deno.ServeOptions["signal"]) {
+    this.#server = Deno.serve({
+      ...this.options,
+      signal,
+      onListen: () => this.dispatchEvent({ type: "start" }),
+    }, this.handle);
   }
 
   /** Stops the server */
