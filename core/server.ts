@@ -1,20 +1,16 @@
+/// <reference lib="deno.unstable" />
+// Deno.Server.shutdown() is unstable
+
 import { posix } from "../deps/path.ts";
 import Events from "./events.ts";
-import {
-  serveFile as HttpServeFile,
-  Server as HttpServer,
-} from "../deps/http.ts";
+import { serveFile as HttpServeFile } from "../deps/http.ts";
 
 import type { Event, EventListener, EventOptions } from "../core.ts";
-import type { ConnInfo } from "../deps/http.ts";
 
 /** The options to configure the local server */
-export interface Options {
+export interface Options extends Deno.ServeOptions {
   /** The root path */
   root: string;
-
-  /** The port to listen on */
-  port: number;
 }
 
 export const defaults: Options = {
@@ -26,7 +22,7 @@ export type RequestHandler = (req: Request) => Promise<Response>;
 export type Middleware = (
   req: Request,
   next: RequestHandler,
-  conn: ConnInfo,
+  info: Deno.ServeHandlerInfo,
 ) => Promise<Response>;
 
 /** Custom events for server */
@@ -50,7 +46,7 @@ export default class Server {
   events: Events<ServerEvent> = new Events<ServerEvent>();
   options: Options;
   middlewares: Middleware[] = [];
-  #server?: HttpServer;
+  #server?: Deno.Server;
 
   constructor(options: Partial<Options> = {}) {
     this.options = { ...defaults, ...options };
@@ -78,23 +74,18 @@ export default class Server {
   }
 
   /** Start the server */
-  async start() {
-    const { port } = this.options;
-
-    this.#server = new HttpServer({
-      port: port,
-      handler: (request, connInfo) => this.handle(request, connInfo),
-    });
-
-    this.dispatchEvent({ type: "start" });
-
-    await this.#server.listenAndServe();
+  start(signal?: Deno.ServeOptions["signal"]) {
+    this.#server = Deno.serve({
+      ...this.options,
+      signal,
+      onListen: () => this.dispatchEvent({ type: "start" }),
+    }, this.handle);
   }
 
   /** Stops the server */
   stop() {
     try {
-      this.#server?.close();
+      this.#server?.shutdown();
     } catch (error) {
       this.dispatchEvent({
         type: "error",
@@ -104,7 +95,10 @@ export default class Server {
   }
 
   /** Handle a http request event */
-  async handle(request: Request, connInfo: ConnInfo): Promise<Response> {
+  async handle(
+    request: Request,
+    info: Deno.ServeHandlerInfo,
+  ): Promise<Response> {
     const middlewares = [...this.middlewares];
 
     const next: RequestHandler = async (
@@ -113,7 +107,7 @@ export default class Server {
       const middleware = middlewares.shift();
 
       if (middleware) {
-        return await middleware(request, next, connInfo);
+        return await middleware(request, next, info);
       }
 
       return await serveFile(this.options.root, request);

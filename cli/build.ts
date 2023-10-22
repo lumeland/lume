@@ -138,7 +138,7 @@ export async function build(
     server.use(...middlewares);
   }
 
-  await server.start();
+  server.start();
 }
 
 function localIp(): string | undefined {
