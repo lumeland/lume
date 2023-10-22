@@ -30,6 +30,7 @@
 - Removed message to upgrade Lume.
 - Pretty URLs option doesn't affect to the `/404.html` page by default.
 - Removed `Error` class to print the errors. `Deno.inspect()` is used instead.
+- Refactor of `Server` function to work with `Deno.serve()` API #501.
 
 ## `search` Plugin
 
