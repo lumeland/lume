@@ -55,8 +55,7 @@ export default class Server {
   use(...middleware: Middleware[]) {
     this.middlewares.push(...middleware);
     return this;
-  };
-
+  }
 
   /** Add a listener to an event */
   addEventListener(
@@ -77,7 +76,7 @@ export default class Server {
   start(options: Deno.ServeOptions = { port: 8000 }) {
     this.#server = Deno.serve(options, this.handle);
     this.dispatchEvent({ type: "start" });
-  };
+  }
 
   /** Stops the server */
   stop() {
@@ -92,7 +91,10 @@ export default class Server {
   }
 
   /** Handle a http request event */
-  async handle(request: Request, info: Deno.ServeHandlerInfo): Promise<Response> {
+  async handle(
+    request: Request,
+    info: Deno.ServeHandlerInfo,
+  ): Promise<Response> {
     const middlewares = [...this.middlewares];
 
     const next: RequestHandler = async (
@@ -108,7 +110,7 @@ export default class Server {
     };
 
     return await next(request);
-  };
+  }
 }
 
 /** Server a static file */
