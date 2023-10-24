@@ -23,9 +23,6 @@ export interface Options {
   /** Set `false` to remove the default plugins */
   useDefaultPlugins: boolean;
 
-  /** Optional pragma to add to the code evaluation */
-  pragma?: string;
-
   /** Components to add/override */
   components?: Record<string, unknown>;
 
@@ -71,25 +68,25 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
     filename?: string,
   ) {
     const baseUrl = toFileUrl(join(this.baseUrl, filename!)).href;
-
+    // @ts-ignore: special case for jsx engines
+    const pragma = `/** @jsxImportSource ${this.jsxEngine.jsxImportSource} */`;
     const result = await compile(content, {
-      jsxImportSource: "",
       baseUrl,
       jsx: true,
       format: "mdx",
       outputFormat: "function-body",
-      useDynamicImport: true,
       remarkPlugins: this.options.remarkPlugins,
       rehypePlugins: this.options.rehypePlugins,
     });
 
     const destructure = `{${Object.keys(data!).join(",")}}`;
-    const pragma = this.options.pragma || "";
-    const code = `${pragma}
-export default async function (${destructure}) {
-  ${result.toString()}
-}
-    `;
+    const code = result.toString()
+      .replace("/*@jsxRuntime automatic @jsxImportSource react*/\n", pragma)
+      .replace(
+        '"use strict";\n',
+        `export default async function (${destructure}) {`,
+      ) +
+      "}";
 
     const url = URL.createObjectURL(new Blob([code], { type: "text/jsx" }));
     const module = (await import(url)).default;

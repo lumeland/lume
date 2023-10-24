@@ -8,9 +8,7 @@ Deno.test("Build a mdx site", async (t) => {
   });
 
   site.use(jsx());
-  site.use(mdx({
-    pragma: "/** @jsxImportSource npm:preact */",
-  }));
+  site.use(mdx());
 
   await build(site);
   await assertSiteSnapshot(t, site);

@@ -29,6 +29,7 @@ export type Children = React.ReactNode | React.ReactNode[];
 
 /** Template engine to render JSX files */
 export class JsxEngine implements Engine {
+  jsxImportSource = "npm:react";
   helpers: Record<string, Helper> = {};
   basePath: string;
   includes: string;

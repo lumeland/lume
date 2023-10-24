@@ -76,8 +76,10 @@
 
 ## `mdx` Plugin
 
+- Updated to MDX v3.
 - New option `useDefaultPlugins` that it's `true` by default.
 - Removed `overrideDefaultPlugins`
+- Removed `pragma` option.
 
 ## `remark` Plugin
 

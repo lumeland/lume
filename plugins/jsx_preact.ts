@@ -29,6 +29,7 @@ export type Children = preact.ComponentChildren;
 
 /** Template engine to render JSX files using Preact */
 export class PreactJsxEngine implements Engine {
+  jsxImportSource = "npm:preact";
   helpers: Record<string, Helper> = {};
   basePath: string;
   includes: string;
