@@ -58,6 +58,7 @@
 ## `netlify_cms` Plugin
 
 - Renamed to `decap_cms`.
+- Changed `netlifyIdentity` option to `identity: "netlify"`
 
 ## `windi_css` Plugin
 

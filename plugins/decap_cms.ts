@@ -18,8 +18,8 @@ export interface Options {
   /** Data key of the configuration */
   configKey: string;
 
-  /** Whether use Netlify Identity */
-  netlifyIdentity: boolean;
+  /** Whether use a identity method */
+  identity?: "netlify";
 
   /** Custom HTML code to append in the index.html page */
   extraHTML: string;
@@ -32,13 +32,12 @@ export const defaults: Options = {
   local: undefined,
   path: "/admin/",
   configKey: "decap_cms",
-  netlifyIdentity: false,
   extraHTML: "",
   proxyCommand:
-    "deno run --allow-read --allow-net=0.0.0.0 --allow-write --allow-env npm:netlify-cms-proxy-server",
+    "deno run --allow-read --allow-net=0.0.0.0 --allow-write --allow-env npm:decap-server",
 };
 
-/** A plugin to use Netlify CMS in Lume easily */
+/** A plugin to use Decap CMS in Lume easily */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
@@ -86,10 +85,10 @@ export default function (userOptions?: Partial<Options>) {
         }" type="text/yaml" rel="cms-config-url">`,
       );
       code.push(
-        `<script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>`,
+        `<script src="https://unpkg.com/decap-cms@3.0.12/dist/decap-cms.js"></script>`,
       );
 
-      if (options.netlifyIdentity) {
+      if (options.identity === "netlify") {
         code.push(
           `<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>`,
         );
