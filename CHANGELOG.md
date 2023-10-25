@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
+## [Unreleased]
+### Fixed
+- Updated deps: `tailwindcss`.
+
 ## [1.19.2] - 2023-10-21
 ### Added
 - The second argument of the `page.data.url()` function has the default URL value.
@@ -2459,6 +2463,7 @@ The first version.
 [#492]: https://github.com/lumeland/lume/issues/492
 [#496]: https://github.com/lumeland/lume/issues/496
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.19.2...HEAD
 [1.19.2]: https://github.com/lumeland/lume/compare/v1.19.1...v1.19.2
 [1.19.1]: https://github.com/lumeland/lume/compare/v1.19.0...v1.19.1
 [1.19.0]: https://github.com/lumeland/lume/compare/v1.18.5...v1.19.0
