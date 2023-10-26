@@ -135,7 +135,7 @@ export default function (userOptions?: DeepPartial<Options>) {
       // Page indexing
       for (const page of pages) {
         const { errors } = await index.addHTMLFile({
-          url: site.url(page.outputPath as string),
+          url: page.data.url as string,
           content: page.content as string,
         });
 

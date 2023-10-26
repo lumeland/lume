@@ -8,6 +8,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [Unreleased]
 ### Fixed
+- Wrong urls in `pagefind` with `base_path` plugin [#502].
 - Updated deps: `tailwindcss`, `deno_dom`, `highlight.js`, `sass`.
 
 ## [1.19.2] - 2023-10-21
@@ -2462,6 +2463,7 @@ The first version.
 [#490]: https://github.com/lumeland/lume/issues/490
 [#492]: https://github.com/lumeland/lume/issues/492
 [#496]: https://github.com/lumeland/lume/issues/496
+[#502]: https://github.com/lumeland/lume/issues/502
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v1.19.2...HEAD
 [1.19.2]: https://github.com/lumeland/lume/compare/v1.19.1...v1.19.2
