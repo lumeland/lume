@@ -8,7 +8,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 
 ## [Unreleased]
 ### Fixed
-- Updated deps: `tailwindcss`.
+- Updated deps: `tailwindcss`, `deno_dom`, `highlight.js`, `sass`.
 
 ## [1.19.2] - 2023-10-21
 ### Added

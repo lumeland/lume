@@ -14,6 +14,6 @@
     "install": "deno run -A install.ts",
     "changelog": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.3.0/bin.ts",
     "update-deps": "deno run -A --quiet 'https://deno.land/x/udd@0.8.2/main.ts' deps/*.ts",
-    "rollback-exp-deps": "git checkout deps/react.ts && git checkout deps/tailwindcss.ts && git checkout deps/cliffy.ts && git checkout deps/mdx.ts && git checkout deps/highlight.ts"
+    "rollback-exp-deps": "git checkout deps/react.ts && git checkout deps/tailwindcss.ts && git checkout deps/cliffy.ts && git checkout deps/mdx.ts"
   }
 }
