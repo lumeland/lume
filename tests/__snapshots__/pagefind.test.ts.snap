@@ -97,14 +97,14 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
-      url: "/pagefind/fragment/en_48f6619.pf_fragment",
+      url: "/pagefind/fragment/en_1e3ac36.pf_fragment",
     },
     src: {
       asset: true,
       ext: undefined,
       path: "",
       remote: undefined,
-      slug: "en_48f6619",
+      slug: "en_1e3ac36",
     },
   },
   {
@@ -115,14 +115,14 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
-      url: "/pagefind/fragment/en_7c1ec25.pf_fragment",
+      url: "/pagefind/fragment/en_4e982c2.pf_fragment",
     },
     src: {
       asset: true,
       ext: undefined,
       path: "",
       remote: undefined,
-      slug: "en_7c1ec25",
+      slug: "en_4e982c2",
     },
   },
   {
@@ -144,9 +144,9 @@ snapshot[`Pagefind plugin 3`] = `
     },
   },
   {
-    content: '{"version":"1.0.4-beta.0","languages":{"en":{"hash":"en_a880b6ddd9","wasm":"en","page_count":2}}}',
+    content: '{"version":"1.0.4-beta.0","languages":{"en":{"hash":"en_972772da52","wasm":"en","page_count":2}}}',
     data: {
-      content: '{"version":"1.0.4-beta.0","languages":{"en":{"hash":"en_a880b6ddd9","wasm":"en","page_count":2}}}',
+      content: '{"version":"1.0.4-beta.0","languages":{"en":{"hash":"en_972772da52","wasm":"en","page_count":2}}}',
       page: [
         "src",
         "data",
@@ -689,7 +689,7 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
-      url: "/pagefind/pagefind.en_a880b6ddd9.pf_meta",
+      url: "/pagefind/pagefind.en_972772da52.pf_meta",
     },
     src: {
       asset: true,
