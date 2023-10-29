@@ -1,47 +1,20 @@
-import { unidecode } from "../deps/unidecode.ts";
 import { merge } from "../core/utils.ts";
+import createSlugifier, {
+  defaults as slugifierDefaults,
+} from "../core/slugifier.ts";
 
 import type { Extensions, Helper, Page, Site } from "../core.ts";
+import type { Options as SlugifierOptions } from "../core/slugifier.ts";
 
-export interface Options {
+export interface Options extends SlugifierOptions {
   /** The list of extensions this plugin applies to */
   extensions: Extensions;
-
-  /** Convert the paths to lower case */
-  lowercase: boolean;
-
-  /** Remove all non-alphanumeric characters */
-  alphanumeric: boolean;
-
-  /** Character used as word separator */
-  separator: string;
-
-  /** Characters to replace */
-  replace: {
-    [index: string]: string;
-  };
-
-  /** Words to remove */
-  stopWords: string[];
 }
 
 // Default options
 export const defaults: Options = {
   extensions: [".html"],
-  lowercase: true,
-  alphanumeric: true,
-  separator: "-",
-  replace: {
-    "Ð": "D", // eth
-    "ð": "d",
-    "Đ": "D", // crossed D
-    "đ": "d",
-    "ø": "o",
-    "ß": "ss",
-    "æ": "ae",
-    "œ": "oe",
-  },
-  stopWords: [],
+  ...slugifierDefaults,
 };
 
 /** A plugin to slugify all URLs, replacing non-URL-safe characters */
@@ -66,53 +39,6 @@ export default function (userOptions?: Partial<Options>) {
       page.data.url = slugify(page.data.url);
     }
   }
-}
-
-export function createSlugifier(
-  options: Options = defaults,
-): (string: string) => string {
-  const { lowercase, alphanumeric, separator, replace, stopWords } = options;
-
-  return function (string) {
-    string = decodeURI(string);
-
-    if (lowercase) {
-      string = string.toLowerCase();
-    }
-
-    string = string.replaceAll(/[^a-z\d/.-]/giu, (char) => {
-      if (char in replace) {
-        return replace[char];
-      }
-
-      if (alphanumeric) {
-        char = char.normalize("NFKD").replaceAll(/[\u0300-\u036F]/g, "");
-        char = unidecode(char).trim();
-      }
-
-      char = /[\p{L}\u0300-\u036F]+/u.test(char) ? char : "-";
-
-      return alphanumeric && /[^\w-]+/.test(char) ? "" : char;
-    });
-
-    if (lowercase) {
-      string = string.toLowerCase();
-    }
-
-    // remove stop words
-    string = string.trim().split(/-+/).filter((word) =>
-      stopWords.indexOf(word) === -1
-    ).join("-");
-
-    // clean url
-    string = string.replaceAll(
-      /(?<=^|[/.])-+(?=[^/.-])|(?<=[^/.-])-+(?=$|[/.])/g,
-      "",
-    );
-
-    // replace dash with separator
-    return encodeURI(string.replaceAll("-", separator));
-  };
 }
 
 function extensionMatches(path: string, extensions: Extensions): boolean {

@@ -1,9 +1,7 @@
 import { assertStrictEquals as equals } from "../deps/assert.ts";
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
-import slugifyUrls, {
-  createSlugifier,
-  defaults,
-} from "../plugins/slugify_urls.ts";
+import slugifyUrls from "../plugins/slugify_urls.ts";
+import createSlugifier from "../core/slugifier.ts";
 
 Deno.test("slugify_urls plugin", async (t) => {
   const site = getSite({
@@ -50,7 +48,6 @@ Deno.test("slugify replacement chars", () => {
 
 Deno.test("slugify forbidden characters and words", () => {
   const slugify = createSlugifier({
-    ...defaults,
     stopWords: ["or", "and", "the"],
   });
 
@@ -61,9 +58,7 @@ Deno.test("slugify forbidden characters and words", () => {
 });
 
 Deno.test("slugify support unicode characters", () => {
-  const slugify = createSlugifier({
-    ...defaults,
-  });
+  const slugify = createSlugifier();
 
   equals(
     slugify("Lume 支持中文，中文标点。？、【】｛｝！￥（）"),

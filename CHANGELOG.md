@@ -7,6 +7,9 @@ but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
 ## [Unreleased]
+### Changed
+- Moved the createSlugifier function to an individual module in `/core/slugifier.ts`.
+
 ### Fixed
 - Wrong urls in `pagefind` with `base_path` plugin [#502].
 - Performance issue in `reading_info` plugin.
