@@ -13,7 +13,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Fixed
 - Wrong urls in `pagefind` with `base_path` plugin [#502].
 - Performance issue in `reading_info` plugin.
-- Updated deps: `tailwindcss`, `deno_dom`, `highlight.js`, `sass`.
+- Updated deps: `tailwindcss`, `deno_dom`, `highlight.js`, `sass`, `react` types, `unified`.
 
 ## [1.19.2] - 2023-10-21
 ### Added
