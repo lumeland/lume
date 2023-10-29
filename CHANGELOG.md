@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [Unreleased]
+## [1.19.3] - 2023-10-29
 ### Changed
 - Moved the createSlugifier function to an individual module in `/core/slugifier.ts`.
 
@@ -2469,7 +2469,7 @@ The first version.
 [#496]: https://github.com/lumeland/lume/issues/496
 [#502]: https://github.com/lumeland/lume/issues/502
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v1.19.2...HEAD
+[1.19.3]: https://github.com/lumeland/lume/compare/v1.19.2...v1.19.3
 [1.19.2]: https://github.com/lumeland/lume/compare/v1.19.1...v1.19.2
 [1.19.1]: https://github.com/lumeland/lume/compare/v1.19.0...v1.19.1
 [1.19.0]: https://github.com/lumeland/lume/compare/v1.18.5...v1.19.0
