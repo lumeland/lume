@@ -31,7 +31,7 @@
 - Pretty URLs option doesn't affect to the `/404.html` page by default.
 - Removed `Error` class to print the errors. `Deno.inspect()` is used instead.
 - Refactor of `Server` function to work with `Deno.serve()` API #501.
-- Use the `dom` library types instead of `deno-dom`.
+- Use the lib `dom` and `dom.iterable` types instead of `deno-dom`.
 
 ## `search` Plugin
 

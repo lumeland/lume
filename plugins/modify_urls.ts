@@ -54,39 +54,35 @@ export default function (userOptions?: Partial<Options>) {
         return;
       }
 
-      for (const element of Array.from(document.querySelectorAll("[href]"))) {
+      for (const element of document.querySelectorAll("[href]")) {
         element.setAttribute(
           "href",
           await replace(element.getAttribute("href"), page, element),
         );
       }
 
-      for (const element of Array.from(document.querySelectorAll("[src]"))) {
+      for (const element of document.querySelectorAll("[src]")) {
         element.setAttribute(
           "src",
           await replace(element.getAttribute("src"), page, element),
         );
       }
 
-      for (
-        const element of Array.from(document.querySelectorAll("video[poster]"))
-      ) {
+      for (const element of document.querySelectorAll("video[poster]")) {
         element.setAttribute(
           "poster",
           await replace(element.getAttribute("poster"), page, element),
         );
       }
 
-      for (const element of Array.from(document.querySelectorAll("[srcset]"))) {
+      for (const element of document.querySelectorAll("[srcset]")) {
         element.setAttribute(
           "srcset",
           await replaceSrcset(element.getAttribute("srcset"), page, element),
         );
       }
 
-      for (
-        const element of Array.from(document.querySelectorAll("[imagesrcset]"))
-      ) {
+      for (const element of document.querySelectorAll("[imagesrcset]")) {
         element.setAttribute(
           "imagesrcset",
           await replaceSrcset(
