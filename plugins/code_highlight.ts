@@ -50,6 +50,8 @@ export default function (userOptions?: DeepPartial<Options>) {
           try {
             // deno-lint-ignore no-explicit-any
             hljs.highlightElement(element as any);
+            // deno-lint-ignore no-explicit-any
+            (element as any).removeAttribute("data-highlighted");
           } catch {
             // Ignore
           }

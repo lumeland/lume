@@ -47,10 +47,15 @@ export default function (userOptions?: Partial<Options>) {
     const segmenter = new Intl.Segmenter(lang, {
       granularity: "word",
     });
-    const words = segmenter.segment(content);
-    const wordCount = [...words].filter((word) => word.isWordLike).length;
-    const minutes = wordCount / options.wordsPerMinute;
 
+    let wordCount = 0;
+    for (const word of segmenter.segment(content)) {
+      if (word.isWordLike) {
+        wordCount++;
+      }
+    }
+
+    const minutes = wordCount / options.wordsPerMinute;
     const time = Math.round(minutes * 60 * 1000);
     const displayTime = Math.ceil(parseFloat(minutes.toFixed(2)));
 

@@ -6,7 +6,16 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.19.2] - Unreleased
+## [1.19.3] - 2023-10-29
+### Changed
+- Moved the createSlugifier function to an individual module in `/core/slugifier.ts`.
+
+### Fixed
+- Wrong urls in `pagefind` with `base_path` plugin [#502].
+- Performance issue in `reading_info` plugin.
+- Updated deps: `tailwindcss`, `deno_dom`, `highlight.js`, `sass`, `react` types, `unified`.
+
+## [1.19.2] - 2023-10-21
 ### Added
 - The second argument of the `page.data.url()` function has the default URL value.
 - Default options for `Server` class:
@@ -17,12 +26,13 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Removed schema.org meta tags in metas plugin, because they are are not valid.
   Probably it needs a new specific plugin.
 - Updated the minimum Deno version supported to `1.37.2`.
-- `redirects` `www` middleware support `307`, `308` status code.
+- `redirects` and `www` middleware support `307`, `308` status code.
 
 ### Fixed
 - Ignore error checking Lume version in offline environments [#496].
 - `lightningcss` plugin: after refreshing changes the imports of all files are mixed.
-- Updated dependencies: `std`, `deno_dom`, `katex`, `preact`, `sass`, `svg2png`, `terser`, `pagefind`.
+- Ignore `deno.lock` file by the watcher.
+- Updated dependencies: `std`, `deno_dom`, `katex`, `preact`, `sass`, `svg2png`, `terser`, `pagefind`, `esbuild`, `liquid`.
 
 ## [1.19.1] - 2023-09-29
 ### Added
@@ -2457,8 +2467,10 @@ The first version.
 [#490]: https://github.com/lumeland/lume/issues/490
 [#492]: https://github.com/lumeland/lume/issues/492
 [#496]: https://github.com/lumeland/lume/issues/496
+[#502]: https://github.com/lumeland/lume/issues/502
 
-[1.19.2]: https://github.com/lumeland/lume/compare/v1.19.1...HEAD
+[1.19.3]: https://github.com/lumeland/lume/compare/v1.19.2...v1.19.3
+[1.19.2]: https://github.com/lumeland/lume/compare/v1.19.1...v1.19.2
 [1.19.1]: https://github.com/lumeland/lume/compare/v1.19.0...v1.19.1
 [1.19.0]: https://github.com/lumeland/lume/compare/v1.18.5...v1.19.0
 [1.18.5]: https://github.com/lumeland/lume/compare/v1.18.4...v1.18.5
