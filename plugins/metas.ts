@@ -2,7 +2,6 @@ import { getLumeVersion, merge } from "../core/utils.ts";
 import { getDataValue } from "./utils.ts";
 
 import type { Page, Plugin, Site } from "../core.ts";
-import type { HTMLDocument } from "../deps/dom.ts";
 
 export interface Options {
   /** The list extensions this plugin applies to */
@@ -140,7 +139,7 @@ export default function (userOptions?: Partial<Options>): Plugin {
 }
 
 function addMeta(
-  document: HTMLDocument,
+  document: Document,
   propName: string,
   propValue: string,
   content?: string,

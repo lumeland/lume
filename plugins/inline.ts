@@ -6,7 +6,6 @@ import textLoader from "../core/loaders/text.ts";
 import { contentType } from "../deps/media_types.ts";
 
 import type { Loader, Page, Site } from "../core.ts";
-import type { Element, HTMLTemplateElement } from "../deps/dom.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -43,20 +42,20 @@ export default function (userOptions?: Partial<Options>) {
     const selector = `[${options.attribute}]`;
 
     async function inline(page: Page) {
-      const templateElements = [...page.document!.querySelectorAll("template")]
-        .flatMap((template) => {
-          return (template as HTMLTemplateElement).content.querySelectorAll(
-            selector,
-          );
-        });
+      const templateElements = Array.from(
+        page.document!.querySelectorAll("template"),
+      )
+        .flatMap((template) =>
+          Array.from(template.content.querySelectorAll(selector))
+        );
       for (
         const element of [
-          ...page.document!.querySelectorAll(selector),
+          ...Array.from(page.document!.querySelectorAll(selector)),
           ...templateElements,
         ]
       ) {
-        await runInline(page.data.url as string, element as Element);
-        (element as Element).removeAttribute(options.attribute);
+        await runInline(page.data.url as string, element);
+        element.removeAttribute(options.attribute);
       }
     }
 
@@ -120,7 +119,7 @@ export default function (userOptions?: Partial<Options>) {
       to: Element,
       attributes: string[],
     ) {
-      for (const { name, value } of from.attributes) {
+      for (const { name, value } of Array.from(from.attributes)) {
         const shouldCopy = [...attributes, ...options.copyAttributes].some(
           (attr) => attr instanceof RegExp ? attr.test(name) : attr === name,
         );
@@ -180,19 +179,22 @@ export default function (userOptions?: Partial<Options>) {
             const viewBox = svg.getAttribute("viewBox")?.split(" ");
 
             if (width && height) {
-              svg.setAttribute("width", width);
-              svg.setAttribute("height", height);
+              svg.setAttribute("width", String(width));
+              svg.setAttribute("height", String(height));
             } else if (width) {
-              svg.setAttribute("width", width);
+              svg.setAttribute("width", String(width));
               if (viewBox?.length === 4) {
                 const ratio = width / parseInt(viewBox[2]);
-                svg.setAttribute("height", parseInt(viewBox[3]) * ratio);
+                svg.setAttribute(
+                  "height",
+                  String(parseInt(viewBox[3]) * ratio),
+                );
               }
             } else if (height) {
-              svg.setAttribute("height", height);
+              svg.setAttribute("height", String(height));
               if (viewBox?.length === 4) {
                 const ratio = height / parseInt(viewBox[3]);
-                svg.setAttribute("width", parseInt(viewBox[2]) * ratio);
+                svg.setAttribute("width", String(parseInt(viewBox[2]) * ratio));
               }
             }
 

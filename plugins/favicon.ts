@@ -6,7 +6,6 @@ import { Page } from "../core/filesystem.ts";
 import Cache from "../core/cache.ts";
 import { svg2png } from "../deps/svg2png.ts";
 
-import type { Document } from "../deps/dom.ts";
 import type { Plugin, Site } from "../core.ts";
 import type { IMagickImage } from "../deps/imagick.ts";
 

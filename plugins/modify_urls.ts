@@ -1,6 +1,5 @@
 import { merge } from "../core/utils.ts";
 
-import type { Element } from "../deps/dom.ts";
 import type { Page, Site } from "../core.ts";
 
 export interface Options {
@@ -55,40 +54,39 @@ export default function (userOptions?: Partial<Options>) {
         return;
       }
 
-      for (const node of document.querySelectorAll("[href]")) {
-        const element = node as Element;
+      for (const element of Array.from(document.querySelectorAll("[href]"))) {
         element.setAttribute(
           "href",
           await replace(element.getAttribute("href"), page, element),
         );
       }
 
-      for (const node of document.querySelectorAll("[src]")) {
-        const element = node as Element;
+      for (const element of Array.from(document.querySelectorAll("[src]"))) {
         element.setAttribute(
           "src",
           await replace(element.getAttribute("src"), page, element),
         );
       }
 
-      for (const node of document.querySelectorAll("video[poster]")) {
-        const element = node as Element;
+      for (
+        const element of Array.from(document.querySelectorAll("video[poster]"))
+      ) {
         element.setAttribute(
           "poster",
           await replace(element.getAttribute("poster"), page, element),
         );
       }
 
-      for (const node of document.querySelectorAll("[srcset]")) {
-        const element = node as Element;
+      for (const element of Array.from(document.querySelectorAll("[srcset]"))) {
         element.setAttribute(
           "srcset",
           await replaceSrcset(element.getAttribute("srcset"), page, element),
         );
       }
 
-      for (const node of document.querySelectorAll("[imagesrcset]")) {
-        const element = node as Element;
+      for (
+        const element of Array.from(document.querySelectorAll("[imagesrcset]"))
+      ) {
         element.setAttribute(
           "imagesrcset",
           await replaceSrcset(

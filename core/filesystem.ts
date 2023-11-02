@@ -1,7 +1,6 @@
 import { posix } from "../deps/path.ts";
 import { documentToString, stringToDocument } from "./utils.ts";
 
-import type { HTMLDocument } from "../deps/dom.ts";
 import type { PageData, ProxyComponents } from "../core.ts";
 import type { Entry } from "./fs.ts";
 
@@ -24,7 +23,7 @@ export class Page<D extends PageData = PageData> {
   #content?: Content;
 
   /** The parsed HTML (only for HTML documents) */
-  #document?: HTMLDocument;
+  #document?: Document;
 
   /** Convenient way to create a page dynamically with a url and content */
   static create(url: string, content: Content): Page {
@@ -113,12 +112,12 @@ export class Page<D extends PageData = PageData> {
   }
 
   /** The parsed HTML code from the content */
-  set document(document: HTMLDocument | undefined) {
+  set document(document: Document | undefined) {
     this.#content = undefined;
     this.#document = document;
   }
 
-  get document(): HTMLDocument | undefined {
+  get document(): Document | undefined {
     const url = this.data.url as string;
 
     if (

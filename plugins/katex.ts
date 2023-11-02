@@ -2,7 +2,6 @@ import { katex, KatexOptions } from "../deps/katex.ts";
 import { renderMathInElement } from "../deps/katex-auto-render/auto-render.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Element } from "../deps/dom.ts";
 import type { DeepPartial, Page, Site } from "../core.ts";
 
 export interface Options {
@@ -58,9 +57,7 @@ export default function (userOptions?: DeepPartial<Options>) {
       }
 
       document.querySelectorAll(options.cssSelector)
-        .forEach((node) => {
-          const element = node as Element;
-
+        .forEach((element) => {
           try {
             const rendered = katex.renderToString(
               element.textContent,
@@ -72,9 +69,9 @@ export default function (userOptions?: DeepPartial<Options>) {
             // we've selected the <code> element, we want to also replace the parent <pre>
             const parent = element.parentElement;
             if (parent && parent.tagName === "PRE") {
-              parent.replaceWith(div.firstChild);
+              parent.replaceWith(div.firstChild!);
             } else {
-              element.replaceWith(div.firstChild);
+              element.replaceWith(div.firstChild!);
             }
           } catch (cause) {
             throw new Error(

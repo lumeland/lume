@@ -1,4 +1,4 @@
-import { DOMParser, HTMLDocument } from "../deps/dom.ts";
+import { DOMParser } from "../deps/dom.ts";
 import {
   bold,
   brightGreen,
@@ -233,8 +233,8 @@ export function normalizePath(path: string, rootToRemove?: string) {
     : absolute;
 }
 
-/** Convert an HTMLDocument instance to a string */
-export function documentToString(document: HTMLDocument) {
+/** Convert an Document instance to a string */
+export function documentToString(document: Document) {
   const { doctype, documentElement } = document;
 
   if (!doctype) {
@@ -250,15 +250,15 @@ export function documentToString(document: HTMLDocument) {
 
 const parser = new DOMParser();
 
-/** Parse a string with HTML code and return an HTMLDocument */
-export function stringToDocument(string: string): HTMLDocument {
+/** Parse a string with HTML code and return a Document */
+export function stringToDocument(string: string): Document {
   const document = parser.parseFromString(string, "text/html");
 
   if (!document) {
     throw new Error("Unable to parse the HTML code");
   }
 
-  return document;
+  return document as unknown as Document;
 }
 
 /** Return the current installed version */

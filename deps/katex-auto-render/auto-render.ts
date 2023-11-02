@@ -1,7 +1,5 @@
 import { katex, KatexOptions } from "../../deps/katex.ts";
 import splitAtDelimiters from "./splitAtDelimiters.js";
-import { Node } from "../../deps/dom.ts";
-import type { Document, Element } from "../../deps/dom.ts";
 
 /* Note: optionsCopy is mutated by this method. If it is ever exposed in the
  * API, we should copy it before mutating.
@@ -40,7 +38,7 @@ const renderMathInText = function (
             const div = document.createElement("div");
             div.innerHTML = rendered.trim();
 
-            span.appendChild(div.firstChild as Node);
+            span.appendChild(div.firstChild!);
             fragment.appendChild(span);
         }
     }
@@ -56,7 +54,7 @@ function renderElem(elem: Element, optionsCopy: KatexOptions) {
             let textContentConcat = childNode.textContent || "";
             let sibling = childNode.nextSibling;
             let nSiblings = 0;
-            while (sibling && (sibling.nodeType === Node.TEXT_NODE)) {
+            while (sibling && (sibling.nodeType === 3)) {
                 textContentConcat += sibling.textContent;
                 sibling = sibling.nextSibling;
                 nSiblings++;
@@ -69,7 +67,7 @@ function renderElem(elem: Element, optionsCopy: KatexOptions) {
             if (frag) {
                 // Remove extra text nodes
                 for (let j = 0; j < nSiblings; j++) {
-                    (childNode.nextSibling as Element | undefined)?.remove();
+                    childNode.nextSibling?.remove();
                 }
                 i += frag.childNodes.length - 1;
                 elem.replaceChild(frag, childNode);
@@ -80,16 +78,17 @@ function renderElem(elem: Element, optionsCopy: KatexOptions) {
             }
         } else if (childNode.nodeType === 1) {
             // Element node
-            const className = " " + (childNode as Element).className + " ";
+            const el = childNode as Element;
+            const className = " " + el.className + " ";
             const shouldRender = optionsCopy.ignoredTags!.indexOf(
-                        childNode.nodeName.toLowerCase(),
+                        el.nodeName.toLowerCase(),
                     ) === -1 &&
                 optionsCopy.ignoredClasses!.every(
                     (x) => className.indexOf(" " + x + " ") === -1,
                 );
 
             if (shouldRender) {
-                renderElem(childNode as Element, optionsCopy);
+                renderElem(el, optionsCopy);
             }
         }
         // Otherwise, it's something else, and ignore it.

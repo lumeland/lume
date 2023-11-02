@@ -11,7 +11,7 @@ export interface Options {
    * Options passed to TailwindCSS.
    * @see https://tailwindcss.com/docs/configuration
    */
-  options: Config;
+  options: Omit<Config, "content">;
 }
 
 export const defaults: Options = {

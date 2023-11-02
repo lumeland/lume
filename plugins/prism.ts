@@ -2,7 +2,6 @@ import Prism from "../deps/prism.ts";
 import { merge } from "../core/utils.ts";
 
 import type { Page, Site } from "../core.ts";
-import type { Element } from "../deps/dom.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -27,7 +26,7 @@ export default function (userOptions?: Partial<Options>) {
 
     function prism(page: Page) {
       page.document!.querySelectorAll(options.cssSelector!)
-        .forEach((element) => Prism.highlightElement(element as Element));
+        .forEach((element) => Prism.highlightElement(element));
     }
   };
 }

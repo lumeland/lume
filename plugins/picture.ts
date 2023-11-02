@@ -1,9 +1,8 @@
 import { posix } from "../deps/path.ts";
 import { getPathAndExtension, merge } from "../core/utils.ts";
-import { typeByExtension } from "../deps/media_types.ts";
+import { contentType } from "../deps/media_types.ts";
 
 import type { MagickFormat } from "../deps/imagick.ts";
-import type { Document, Element } from "../deps/dom.ts";
 import type { Plugin, Site } from "../core.ts";
 
 interface SourceFormat {
@@ -44,10 +43,9 @@ export default function (userOptions?: Partial<Options>): Plugin {
       }
 
       const basePath = posix.dirname(page.outputPath!);
-      const nodeList = document.querySelectorAll("img");
+      const images = document.querySelectorAll("img");
 
-      for (const node of nodeList) {
-        const img = node as Element;
+      for (const img of Array.from(images)) {
         const imagick = img.closest("[imagick]")?.getAttribute("imagick");
 
         if (!imagick) {
@@ -71,7 +69,7 @@ export default function (userOptions?: Partial<Options>): Plugin {
 
     site.process([".html"], (page) => {
       page.document?.querySelectorAll("[imagick]").forEach((element) => {
-        (element as Element).removeAttribute("imagick");
+        element.removeAttribute("imagick");
       });
     });
 
@@ -327,7 +325,7 @@ function createSource(
   const srcset = createSrcset(src, srcFormat, sizes);
 
   source.setAttribute("srcset", srcset.join(", "));
-  source.setAttribute("type", typeByExtension(srcFormat.format));
+  source.setAttribute("type", contentType(srcFormat.format) || "");
 
   if (sizes) {
     source.setAttribute("sizes", sizes);
