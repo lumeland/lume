@@ -5,7 +5,7 @@ import liquid from "../plugins/liquid.ts";
 import eta from "../plugins/eta.ts";
 import pug from "../plugins/pug.ts";
 import jsx from "../plugins/jsx.ts";
-import vento from "../plugins/vento.ts";
+import nunjucks from "../plugins/nunjucks.ts";
 
 Deno.test("Components", async (t) => {
   const site = getSite({
@@ -16,7 +16,7 @@ Deno.test("Components", async (t) => {
   site.use(eta());
   site.use(pug());
   site.use(jsx());
-  site.use(vento());
+  site.use(nunjucks());
 
   site.component("custom", {
     name: "button",

@@ -11,7 +11,7 @@ Deno.test("build a simple site", async (t) => {
   site.page({
     url: "/dynamic.html",
     title: "Page 1",
-    templateEngine: "njk",
+    templateEngine: "vto",
     content: "Content of {{ title }}",
   });
 

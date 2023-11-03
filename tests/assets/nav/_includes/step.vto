@@ -1,0 +1,15 @@
+{{ if item.data }}
+<a href="{{ item.data.url }}">{{ item.data.title }}</a>
+{{ else }}
+<strong>{{ item.slug }}</strong>
+{{ /if }}
+
+{{ if item.children }}
+<ul>
+  {{ for child of item.children }}
+  <li>
+    {{ include "./step.vto" { item: child } }}
+  </li>
+  {{ /for }}
+</ul>
+{{ /if }}

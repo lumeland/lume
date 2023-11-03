@@ -65,7 +65,13 @@ snapshot[`build a site with nunjucks 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -88,6 +94,12 @@ snapshot[`build a site with nunjucks 1`] = `
       engines: 0,
       ext: ".yml",
       loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".njk",
+      loader: [AsyncFunction: text],
       pageType: "page",
     },
   ],

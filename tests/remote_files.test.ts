@@ -2,6 +2,7 @@ import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import postcss from "../plugins/postcss.ts";
 import sass from "../plugins/sass.ts";
 import esbuild from "../plugins/esbuild.ts";
+import nunjucks from "../plugins/nunjucks.ts";
 
 Deno.test("render remote files", async (t) => {
   const site = getSite({
@@ -11,6 +12,7 @@ Deno.test("render remote files", async (t) => {
   site.use(postcss());
   site.use(sass());
   site.use(esbuild());
+  site.use(nunjucks());
 
   const base = import.meta.resolve("./assets/remote_files/_remotes/");
 

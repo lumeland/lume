@@ -1,10 +1,13 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
+import nunjucks from "../plugins/nunjucks.ts";
 
 Deno.test("build a site with nunjucks", async (t) => {
   const site = getSite({
     src: "nunjucks",
     location: new URL("https://example.com/blog"),
   });
+
+  site.use(nunjucks());
 
   // Register an async filter
   site.filter(

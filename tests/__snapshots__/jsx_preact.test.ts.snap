@@ -65,7 +65,13 @@ snapshot[`build a site with jsx/tsx modules using Preact 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -320,40 +326,6 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
       path: "/multiple[1]",
       remote: undefined,
       slug: "multiple",
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-<button>Hello</button>
-",
-    data: {
-      children: "<button>Hello</button>
-",
-      comp: [
-        "_components",
-        "_proxies",
-      ],
-      content: "{{ comp.button('primary') | safe }}
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/with-comp/",
-    },
-    src: {
-      asset: false,
-      ext: ".njk",
-      path: "/with-comp",
-      remote: undefined,
-      slug: "with-comp",
     },
   },
   {

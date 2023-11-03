@@ -1,6 +1,6 @@
 ---
 title: Second page
-layout: main.njk
+layout: main.vto
 ---
 
 # Other page

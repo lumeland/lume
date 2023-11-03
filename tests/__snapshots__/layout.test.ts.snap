@@ -65,7 +65,13 @@ snapshot[`Layouts 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -100,8 +106,8 @@ snapshot[`Layouts 1`] = `
   src: [
     "/",
     "/_includes",
-    "/_includes/page.njk",
-    "/_includes/style.njk",
+    "/_includes/page.vto",
+    "/_includes/style.vto",
     "/index.md",
     "/styles.2.css",
     "/styles.css",
@@ -127,7 +133,7 @@ snapshot[`Layouts 3`] = `
       content: "# Hello world
 ",
       date: [],
-      layout: "page.njk",
+      layout: "page.vto",
       mergedKeys: [
         "tags",
       ],
@@ -191,7 +197,7 @@ snapshot[`Layouts 3`] = `
   color: red;
 }",
       date: [],
-      layout: "style.njk",
+      layout: "style.vto",
       mergedKeys: [
         "tags",
       ],

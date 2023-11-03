@@ -67,7 +67,13 @@ snapshot[`inline plugin 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -108,10 +114,10 @@ snapshot[`inline plugin 1`] = `
   src: [
     "/",
     "/favicon.svg",
-    "/index.njk",
+    "/index.vto",
     "/other favicon.png",
     "/script.js",
-    "/styles.njk",
+    "/styles.vto",
   ],
 }
 `;
@@ -292,7 +298,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/index",
       remote: undefined,
       slug: "index",
@@ -377,7 +383,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/styles",
       remote: undefined,
       slug: "styles",

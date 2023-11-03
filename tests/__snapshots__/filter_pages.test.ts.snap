@@ -65,7 +65,13 @@ snapshot[`Filter pages (allow all) 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -432,7 +438,13 @@ snapshot[`Filter pages (allow only /multiple/*) 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },

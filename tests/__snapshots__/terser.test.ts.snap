@@ -67,7 +67,13 @@ snapshot[`terser plugin 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -96,7 +102,7 @@ snapshot[`terser plugin 1`] = `
   src: [
     "/",
     "/main.js",
-    "/numbers.njk",
+    "/numbers.vto",
   ],
 }
 `;
@@ -166,7 +172,7 @@ export function two () {
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/numbers",
       remote: undefined,
       slug: "numbers",

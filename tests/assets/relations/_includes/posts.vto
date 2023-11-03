@@ -1,0 +1,13 @@
+<div>{{ content }}</div>
+
+{{ if it.category }}
+<h2>Category:</h2>
+<a href="{{ category.url }}">{{ category.title }}</a>
+{{ category.content |> md }}
+{{ /if }}
+
+<ul>
+{{ for com of it.comment }}
+  <li>{{ com.content |> md }}</li>
+{{ /for }}
+</ul>

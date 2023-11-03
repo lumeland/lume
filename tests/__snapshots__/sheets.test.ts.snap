@@ -65,7 +65,13 @@ snapshot[`Sheets plugin 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -110,7 +116,7 @@ snapshot[`Sheets plugin 1`] = `
     "/",
     "/_data",
     "/_data/attendance_numbers.numbers",
-    "/index.njk",
+    "/index.vto",
   ],
 }
 `;
@@ -1245,18 +1251,18 @@ Daniels</th>
 
   <table>
     <tr>
-      {% for key, column in attendance_numbers[0] %}
+      {{ for key, column of attendance_numbers[0] }}
         <th>{{ key }}</th>
-      {% endfor %}
+      {{ /for }}
     </tr>
 
-    {% for row in attendance_numbers %}
+    {{ for row of attendance_numbers }}
       <tr>
-        {% for key, column in row %}
+        {{ for key, column of row }}
           <td>{{ column }}</td>
-        {% endfor %}
+        {{ /for }}
       </tr>
-    {% endfor %}
+    {{ /for }}
   </table>
 </body>
 ",
@@ -1275,7 +1281,7 @@ Daniels</th>
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/index",
       remote: undefined,
       slug: "index",

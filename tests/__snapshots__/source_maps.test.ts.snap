@@ -65,7 +65,13 @@ snapshot[`Source maps from CSS files 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -356,7 +362,13 @@ snapshot[`Source maps from Js files 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -387,8 +399,8 @@ snapshot[`Source maps from Js files 1`] = `
     "/_includes",
     "/_includes/layout.js",
     "/data.json",
-    "/main.njk",
     "/main.ts",
+    "/main.vto",
     "/modules",
     "/modules/to_uppercase.ts",
     "/other.ts",
@@ -533,7 +545,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/main",
       remote: undefined,
       slug: "main",

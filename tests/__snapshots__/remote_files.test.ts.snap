@@ -69,7 +69,13 @@ snapshot[`render remote files 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -111,6 +117,12 @@ snapshot[`render remote files 1`] = `
       engines: undefined,
       ext: ".sass",
       pageType: "asset",
+    },
+    {
+      engines: 1,
+      ext: ".njk",
+      loader: [AsyncFunction: text],
+      pageType: "page",
     },
   ],
   src: [

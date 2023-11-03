@@ -65,7 +65,13 @@ snapshot[`minify_html plugin 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -93,7 +99,7 @@ snapshot[`minify_html plugin 1`] = `
   ],
   src: [
     "/",
-    "/index.njk",
+    "/index.vto",
   ],
 }
 `;
@@ -184,7 +190,7 @@ snapshot[`minify_html plugin 3`] = `
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/index",
       remote: undefined,
       slug: "index",

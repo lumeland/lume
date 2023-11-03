@@ -65,7 +65,13 @@ snapshot[`Pagefind plugin 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -94,7 +100,7 @@ snapshot[`Pagefind plugin 1`] = `
   src: [
     "/",
     "/_includes",
-    "/_includes/main.njk",
+    "/_includes/main.vto",
     "/index.md",
     "/page2.md",
   ],
@@ -810,7 +816,7 @@ snapshot[`Pagefind plugin 3`] = `
 This is the first page
 ",
       date: [],
-      layout: "main.njk",
+      layout: "main.vto",
       mergedKeys: [
         "tags",
       ],
@@ -857,7 +863,7 @@ This is the first page
 This is the second page
 ",
       date: [],
-      layout: "main.njk",
+      layout: "main.vto",
       mergedKeys: [
         "tags",
       ],

@@ -4,7 +4,7 @@ import url, { Options as UrlOptions } from "./plugins/url.ts";
 import json, { Options as JsonOptions } from "./plugins/json.ts";
 import markdown, { Options as MarkdownOptions } from "./plugins/markdown.ts";
 import modules, { Options as ModulesOptions } from "./plugins/modules.ts";
-import nunjucks, { Options as NunjucksOptions } from "./plugins/nunjucks.ts";
+import vento, { Options as VentoOptions } from "./plugins/vento.ts";
 import search, { Options as SearchOptions } from "./plugins/search.ts";
 import paginate, { Options as PaginateOptions } from "./plugins/paginate.ts";
 import toml, { Options as TomlOptions } from "./plugins/toml.ts";
@@ -19,7 +19,7 @@ export interface PluginOptions {
   json?: Partial<JsonOptions>;
   markdown?: Partial<MarkdownOptions>;
   modules?: Partial<ModulesOptions>;
-  nunjucks?: Partial<NunjucksOptions>;
+  vento?: Partial<VentoOptions>;
   search?: Partial<SearchOptions>;
   paginate?: Partial<PaginateOptions>;
   toml?: Partial<TomlOptions>;
@@ -53,7 +53,7 @@ export default function lume(
     .use(json(pluginOptions.json))
     .use(markdown(pluginOptions.markdown))
     .use(modules(pluginOptions.modules))
-    .use(nunjucks(pluginOptions.nunjucks))
+    .use(vento(pluginOptions.vento))
     .use(paginate(pluginOptions.paginate))
     .use(search(pluginOptions.search))
     .use(toml(pluginOptions.toml))

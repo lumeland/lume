@@ -65,7 +65,13 @@ snapshot[`Unocss plugin 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -93,7 +99,7 @@ snapshot[`Unocss plugin 1`] = `
   ],
   src: [
     "/",
-    "/index.njk",
+    "/index.vto",
   ],
 }
 `;
@@ -1421,7 +1427,7 @@ video {
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/index",
       remote: undefined,
       slug: "index",
@@ -1495,7 +1501,13 @@ snapshot[`Unocss plugin (css file) 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -1523,7 +1535,7 @@ snapshot[`Unocss plugin (css file) 1`] = `
   ],
   src: [
     "/",
-    "/index.njk",
+    "/index.vto",
   ],
 }
 `;
@@ -3389,7 +3401,7 @@ video {
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/index",
       remote: undefined,
       slug: "index",

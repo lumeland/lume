@@ -112,7 +112,7 @@ Deno.test("data configuration", () => {
   const site = lume();
   const { formats } = site;
 
-  equals(formats.size, 14);
+  equals(formats.size, 15);
   equals(formats.has(".json"), true);
   assert(formats.get(".json")?.dataLoader);
   equals(formats.has(".jsonc"), true);
@@ -131,7 +131,7 @@ Deno.test("data configuration", () => {
   const loader = () => Promise.resolve({});
   site.loadData([".ext1", ".ext2"], loader);
 
-  equals(formats.size, 16);
+  equals(formats.size, 17);
   equals(formats.get(".ext1")?.dataLoader, loader);
   equals(formats.get(".ext2")?.dataLoader, loader);
 });
@@ -140,7 +140,7 @@ Deno.test("pages configuration", () => {
   const site = lume();
   const { formats } = site;
 
-  equals(formats.size, 14);
+  equals(formats.size, 15);
 
   const extensions = [
     ".page.json",
@@ -148,7 +148,8 @@ Deno.test("pages configuration", () => {
     ".page.js",
     ".page.ts",
     ".md",
-    ".njk",
+    ".vto",
+    ".vento",
     ".toml",
     ".yaml",
     ".yml",
@@ -176,7 +177,7 @@ Deno.test("pages configuration", () => {
 
   site.loadPages(newExts, { loader, engine });
 
-  equals(formats.size, 16);
+  equals(formats.size, 17);
 
   for (const ext of newExts) {
     equals(formats.has(ext), true);
@@ -189,7 +190,7 @@ Deno.test("assets configuration", () => {
   const site = lume();
   const { formats } = site;
 
-  equals(formats.size, 14);
+  equals(formats.size, 15);
 
   const loader = () => Promise.resolve({});
 
@@ -200,7 +201,7 @@ Deno.test("assets configuration", () => {
 
   site.loadAssets(extensions, loader);
 
-  equals(formats.size, 15);
+  equals(formats.size, 16);
   for (const ext of extensions) {
     equals(formats.has(ext), true);
     assert(formats.get(ext)?.pageType === "asset");
@@ -271,7 +272,7 @@ Deno.test("helpers configuration", () => {
   equals(helpers.has("url"), true);
   equals(helpers.has("htmlUrl"), true);
   equals(helpers.has("md"), true);
-  equals(helpers.has("njk"), true);
+  equals(helpers.has("vto"), true);
 
   const helper = () => {};
   const options = { type: "filter" };

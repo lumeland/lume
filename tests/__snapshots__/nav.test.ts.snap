@@ -65,7 +65,13 @@ snapshot[`nav plugin 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -95,8 +101,8 @@ snapshot[`nav plugin 1`] = `
     "/",
     "/_data.yml",
     "/_includes",
-    "/_includes/main.njk",
-    "/_includes/step.njk",
+    "/_includes/main.vto",
+    "/_includes/step.vto",
     "/docs",
     "/docs.md",
     "/docs/about-docs.md",
@@ -104,7 +110,7 @@ snapshot[`nav plugin 1`] = `
     "/docs/pages.md",
     "/docs/pages/first.md",
     "/docs/pages/second.md",
-    "/index.njk",
+    "/index.vto",
   ],
 }
 `;
@@ -247,7 +253,7 @@ snapshot[`nav plugin 3`] = `
       children: "",
       content: "",
       date: [],
-      layout: "main.njk",
+      layout: "main.vto",
       mergedKeys: [
         "tags",
       ],
@@ -406,7 +412,7 @@ snapshot[`nav plugin 3`] = `
       children: "",
       content: "",
       date: [],
-      layout: "main.njk",
+      layout: "main.vto",
       menu: true,
       mergedKeys: [
         "tags",
@@ -566,7 +572,7 @@ snapshot[`nav plugin 3`] = `
       children: "",
       content: "",
       date: [],
-      layout: "main.njk",
+      layout: "main.vto",
       mergedKeys: [
         "tags",
       ],
@@ -727,7 +733,7 @@ snapshot[`nav plugin 3`] = `
       children: "",
       content: "",
       date: [],
-      layout: "main.njk",
+      layout: "main.vto",
       mergedKeys: [
         "tags",
       ],
@@ -888,7 +894,7 @@ snapshot[`nav plugin 3`] = `
       children: "",
       content: "",
       date: [],
-      layout: "main.njk",
+      layout: "main.vto",
       menu: true,
       mergedKeys: [
         "tags",
@@ -1044,7 +1050,7 @@ snapshot[`nav plugin 3`] = `
       children: "",
       content: "",
       date: [],
-      layout: "main.njk",
+      layout: "main.vto",
       mergedKeys: [
         "tags",
       ],
@@ -1061,7 +1067,7 @@ snapshot[`nav plugin 3`] = `
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/index",
       remote: undefined,
       slug: "index",
@@ -1135,7 +1141,13 @@ snapshot[`nav plugin with pretty urls disabled 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -1165,8 +1177,8 @@ snapshot[`nav plugin with pretty urls disabled 1`] = `
     "/",
     "/_data.yml",
     "/_includes",
-    "/_includes/main.njk",
-    "/_includes/step.njk",
+    "/_includes/main.vto",
+    "/_includes/step.vto",
     "/docs",
     "/docs.md",
     "/docs/about-docs.md",
@@ -1174,7 +1186,7 @@ snapshot[`nav plugin with pretty urls disabled 1`] = `
     "/docs/pages.md",
     "/docs/pages/first.md",
     "/docs/pages/second.md",
-    "/index.njk",
+    "/index.vto",
   ],
 }
 `;
@@ -1335,7 +1347,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       children: "",
       content: "",
       date: [],
-      layout: "main.njk",
+      layout: "main.vto",
       mergedKeys: [
         "tags",
       ],
@@ -1512,7 +1524,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       children: "",
       content: "",
       date: [],
-      layout: "main.njk",
+      layout: "main.vto",
       menu: true,
       mergedKeys: [
         "tags",
@@ -1690,7 +1702,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       children: "",
       content: "",
       date: [],
-      layout: "main.njk",
+      layout: "main.vto",
       mergedKeys: [
         "tags",
       ],
@@ -1869,7 +1881,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       children: "",
       content: "",
       date: [],
-      layout: "main.njk",
+      layout: "main.vto",
       mergedKeys: [
         "tags",
       ],
@@ -2048,7 +2060,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       children: "",
       content: "",
       date: [],
-      layout: "main.njk",
+      layout: "main.vto",
       menu: true,
       mergedKeys: [
         "tags",
@@ -2220,7 +2232,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       children: "",
       content: "",
       date: [],
-      layout: "main.njk",
+      layout: "main.vto",
       mergedKeys: [
         "tags",
       ],
@@ -2237,7 +2249,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/index",
       remote: undefined,
       slug: "index",

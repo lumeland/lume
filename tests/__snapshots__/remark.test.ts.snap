@@ -65,7 +65,13 @@ snapshot[`Build a markdown site 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -98,9 +104,9 @@ snapshot[`Build a markdown site 1`] = `
     "/with-attributes.md",
     "/with-code.md",
     "/with-deflist.md",
-    "/with-filter.njk",
+    "/with-filter.vto",
     "/with-module.page.js",
-    "/with-nunjucks.md",
+    "/with-vto.md",
   ],
 }
 `;
@@ -275,9 +281,9 @@ Other title
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
-      content: "<h1>{{ title | md(true) | safe }}</h1>
+      content: "<h1>{{ title |> md(true) }}</h1>
 
-<div>{{ description | md | safe }}</div>
+<div>{{ description |> md }}</div>
 ",
       date: [],
       description: "Welcome to this [page](/)
@@ -297,7 +303,7 @@ Other title
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/with-filter",
       remote: undefined,
       slug: "with-filter",
@@ -337,7 +343,7 @@ Other title
   {
     content: '<!DOCTYPE html>
 <!-- deno-fmt-ignore-file -->
-<h1></h1>
+<h1>Module <strong>example</strong></h1>
 <p>Foo</p>
 <ul>
 <li>one: <a href="/items/un.html">un</a></li>
@@ -346,7 +352,7 @@ Other title
 </ul>',
     data: {
       children: '<!-- deno-fmt-ignore-file -->
-<h1></h1>
+<h1>Module <strong>example</strong></h1>
 <p>Foo</p>
 <ul>
 <li>one: <a href="/items/un.html">un</a></li>
@@ -358,9 +364,9 @@ Other title
 
 Foo
 
-{% for title, no in myData %}
+{{ for title, no of myData }}
 - {{ title }}: [{{ no }}](/items/{{ no }}.html)
-{%- endfor %}
+{{- /for }}
 ",
       date: [],
       mergedKeys: [
@@ -378,15 +384,16 @@ Foo
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      templateEngine: "njk,md",
-      url: "/with-nunjucks/",
+      templateEngine: "vto,md",
+      title: "Module **example**",
+      url: "/with-vto/",
     },
     src: {
       asset: false,
       ext: ".md",
-      path: "/with-nunjucks",
+      path: "/with-vto",
       remote: undefined,
-      slug: "with-nunjucks",
+      slug: "with-vto",
     },
   },
 ]

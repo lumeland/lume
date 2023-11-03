@@ -65,7 +65,13 @@ snapshot[`JSON plugin 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -95,7 +101,7 @@ snapshot[`JSON plugin 1`] = `
     "/",
     "/_data.jsonc",
     "/_includes",
-    "/_includes/layout.njk",
+    "/_includes/layout.vto",
     "/index.page.json",
     "/page1.md",
   ],
@@ -124,7 +130,7 @@ snapshot[`JSON plugin 3`] = `
       children: "Content of the index",
       content: "Content of the index",
       date: [],
-      layout: "layout.njk",
+      layout: "layout.vto",
       mergedKeys: [
         "tags",
       ],

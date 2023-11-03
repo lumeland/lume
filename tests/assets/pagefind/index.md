@@ -1,6 +1,6 @@
 ---
 title: First page
-layout: main.njk
+layout: main.vto
 ---
 
 # Hello world

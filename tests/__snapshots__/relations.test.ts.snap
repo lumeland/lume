@@ -65,7 +65,13 @@ snapshot[`relations plugin 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -94,9 +100,9 @@ snapshot[`relations plugin 1`] = `
   src: [
     "/",
     "/_includes",
-    "/_includes/categories.njk",
-    "/_includes/comment.njk",
-    "/_includes/posts.njk",
+    "/_includes/categories.vto",
+    "/_includes/comment.vto",
+    "/_includes/posts.vto",
     "/categories",
     "/categories/_data.yml",
     "/categories/category-1.md",
@@ -136,7 +142,7 @@ snapshot[`relations plugin 3`] = `
       content: "This is the first category
 ",
       date: [],
-      layout: "categories.njk",
+      layout: "categories.vto",
       mergedKeys: [
         "tags",
       ],
@@ -180,7 +186,7 @@ snapshot[`relations plugin 3`] = `
       content: "This is the second category
 ",
       date: [],
-      layout: "categories.njk",
+      layout: "categories.vto",
       mergedKeys: [
         "tags",
       ],
@@ -310,7 +316,7 @@ snapshot[`relations plugin 3`] = `
 <div><p>First post with category 2 and comments 1 and 3</p>
 </div>
 
-  
+
 <h2>Category:</h2>
 <a href="/categories/category-2/">Category 2</a>
 <p>This is the second category</p>
@@ -318,7 +324,8 @@ snapshot[`relations plugin 3`] = `
 
 <ul>
 
-</ul>',
+</ul>
+',
     data: {
       category: [
         "mergedKeys",
@@ -345,7 +352,7 @@ snapshot[`relations plugin 3`] = `
 ",
       date: [],
       id: "first-post",
-      layout: "posts.njk",
+      layout: "posts.vto",
       mergedKeys: [
         "tags",
       ],
@@ -373,7 +380,7 @@ snapshot[`relations plugin 3`] = `
 <div><p>Second post with category 1 and comment 2</p>
 </div>
 
-  
+
 <h2>Category:</h2>
 <a href="/categories/category-1/">Category 1</a>
 <p>This is the first category</p>
@@ -381,7 +388,8 @@ snapshot[`relations plugin 3`] = `
 
 <ul>
 
-</ul>',
+</ul>
+',
     data: {
       category: [
         "mergedKeys",
@@ -409,7 +417,7 @@ snapshot[`relations plugin 3`] = `
 ",
       date: [],
       id: "second-post",
-      layout: "posts.njk",
+      layout: "posts.vto",
       mergedKeys: [
         "tags",
       ],

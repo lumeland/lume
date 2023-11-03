@@ -1,5 +1,5 @@
 ---
-layout: page.njk
+layout: page.vto
 ---
 
 # Hello world

@@ -1,4 +1,4 @@
-export const layout = "layout.njk";
+export const layout = "layout.vto";
 
 export default function* ({ search, paginate }) {
   for (const p of paginate(search.pages("lang=gl", "url=asc"))) {

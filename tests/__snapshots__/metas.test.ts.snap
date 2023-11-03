@@ -65,7 +65,13 @@ snapshot[`metas plugin 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -94,8 +100,8 @@ snapshot[`metas plugin 1`] = `
   src: [
     "/",
     "/_data.yml",
-    "/page-1.njk",
-    "/page-2.njk",
+    "/page-1.vto",
+    "/page-2.vto",
     "/page-3.md",
   ],
 }
@@ -174,7 +180,7 @@ snapshot[`metas plugin 3`] = `
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/page-1",
       remote: undefined,
       slug: "page-1",
@@ -249,7 +255,7 @@ snapshot[`metas plugin 3`] = `
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/page-2",
       remote: undefined,
       slug: "page-2",

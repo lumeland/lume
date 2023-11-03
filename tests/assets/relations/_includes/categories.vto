@@ -1,0 +1,10 @@
+<h1>{{ title }}</h1>
+
+<div>{{ content }}</div>
+
+<h2>Posts</h2>
+<ul>
+{{ for item of it.post }}
+  <li>{{ item.content |> md }}</li>
+{{ /for }}
+</ul>

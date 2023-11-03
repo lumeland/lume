@@ -1,5 +1,6 @@
 ---
-templateEngine: njk,md
+title: Module **example**
+templateEngine: vto,md
 myData:
   one: un
   two: dous
@@ -10,6 +11,6 @@ myData:
 
 Foo
 
-{% for title, no in myData %}
+{{ for title, no of myData }}
 - {{ title }}: [{{ no }}](/items/{{ no }}.html)
-{%- endfor %}
+{{- /for }}

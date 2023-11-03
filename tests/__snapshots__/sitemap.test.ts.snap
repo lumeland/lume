@@ -65,7 +65,13 @@ snapshot[`Sitemap plugin 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -567,7 +573,13 @@ snapshot[`Sitemap plugin with a multilanguage plugin 1`] = `
     },
     {
       engines: 1,
-      ext: ".njk",
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
       loader: [AsyncFunction: text],
       pageType: "page",
     },
@@ -596,9 +608,9 @@ snapshot[`Sitemap plugin with a multilanguage plugin 1`] = `
   src: [
     "/",
     "/_includes",
-    "/_includes/layout.njk",
+    "/_includes/layout.vto",
     "/index.md",
-    "/other.njk",
+    "/other.vto",
     "/pages",
     "/pages/page1.md",
     "/pages/page1_en.md",
@@ -837,10 +849,10 @@ Sitemap: https://example.com/sitemap.xml",
     content: '<!DOCTYPE html>
 <html lang="en"><head><link rel="alternate" hreflang="en" href="https://example.com/en/other-page-english/">
 <link rel="alternate" hreflang="fr" href="https://example.com/fr/other-page-french.html">
-</head><body><p>Other page <a href="/gl/">Link to index in Galego</a></p></body></html>',
+</head><body><p>Other page <a href="0">Link to index in Galego</a></p></body></html>',
     data: {
       alternates: "Array(2)",
-      children: '<p>Other page <a href="/gl/">Link to index in Galego</a></p>',
+      children: '<p>Other page <a href="0">Link to index in Galego</a></p>',
       content: \`<p>Other page <a href="{{ '~/index.md(lang=gl)' | url }}">Link to index in Galego</a></p>\`,
       date: [],
       id: "other",
@@ -864,7 +876,7 @@ Sitemap: https://example.com/sitemap.xml",
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/other",
       remote: undefined,
       slug: "other",
@@ -874,10 +886,10 @@ Sitemap: https://example.com/sitemap.xml",
     content: '<!DOCTYPE html>
 <html lang="fr"><head><link rel="alternate" hreflang="en" href="https://example.com/en/other-page-english/">
 <link rel="alternate" hreflang="fr" href="https://example.com/fr/other-page-french.html">
-</head><body><p>Other page <a href="/gl/">Link to index in Galego</a></p></body></html>',
+</head><body><p>Other page <a href="0">Link to index in Galego</a></p></body></html>',
     data: {
       alternates: "Array(2)",
-      children: '<p>Other page <a href="/gl/">Link to index in Galego</a></p>',
+      children: '<p>Other page <a href="0">Link to index in Galego</a></p>',
       content: \`<p>Other page <a href="{{ '~/index.md(lang=gl)' | url }}">Link to index in Galego</a></p>\`,
       date: [],
       id: "other",
@@ -901,7 +913,7 @@ Sitemap: https://example.com/sitemap.xml",
     },
     src: {
       asset: false,
-      ext: ".njk",
+      ext: ".vto",
       path: "/other",
       remote: undefined,
       slug: "other",
@@ -1054,7 +1066,7 @@ Sitemap: https://example.com/sitemap.xml",
       date: [],
       id: "page-1",
       lang: "gl",
-      layout: "layout.njk",
+      layout: "layout.vto",
       mergedKeys: [
         "tags",
         "en",
@@ -1113,7 +1125,7 @@ Sitemap: https://example.com/sitemap.xml",
       date: [],
       id: "page-1",
       lang: "en",
-      layout: "layout.njk",
+      layout: "layout.vto",
       mergedKeys: [
         "tags",
         "en",

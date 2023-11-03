@@ -2,7 +2,7 @@
 title: This is my first post
 date: 2018-08-23T10:10:10
 author: Óscar Otero
-layout: layout.njk
+layout: layout.vto
 ---
 
 Leverage agile frameworks to provide a robust synopsis for high level overviews.
