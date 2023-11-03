@@ -117,6 +117,7 @@
 
 ## `nunjucks` Plugin
 
+- Disabled by default
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
 
@@ -127,6 +128,7 @@
 
 ## `vento` Plugin
 
+- Enabled by default
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
 
