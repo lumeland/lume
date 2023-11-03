@@ -79,7 +79,7 @@ export default class Server {
       ...this.options,
       signal,
       onListen: () => this.dispatchEvent({ type: "start" }),
-    }, this.handle);
+    }, this.handle.bind(this));
   }
 
   /** Stops the server */
