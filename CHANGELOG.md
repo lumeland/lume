@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
+## [1.19.4] - Unreleased
+### Fixed
+- Tailwind: Fix types for `options`.
+
 ## [1.19.3] - 2023-10-29
 ### Changed
 - Moved the createSlugifier function to an individual module in `/core/slugifier.ts`.
