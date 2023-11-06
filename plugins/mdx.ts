@@ -127,8 +127,14 @@ export default function (userOptions?: Partial<Options>) {
       );
     }
 
-    // Load the pages
     const engine = new MDXEngine(site.src(), options, format.engines[0]);
+
+    // Ignore includes folder
+    if (options.includes) {
+      site.ignore(options.includes);
+    }
+
+    // Load the pages and register the engine
     site.loadPages(options.extensions, {
       loader,
       engine,

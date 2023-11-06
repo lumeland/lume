@@ -51,6 +51,7 @@
 - Removed `window.React` #332.
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
+- The `includes` folder is automatically ignored.
 
 ## `slugify_urls` Plugin
 
@@ -75,6 +76,7 @@
 
 - New option `useDefaultPlugins` that it's `true` by default.
 - Removed `keepDefaultPlugins`
+- The `includes` folder is automatically ignored.
 
 ## `mdx` Plugin
 
@@ -82,6 +84,7 @@
 - New option `useDefaultPlugins` that it's `true` by default.
 - Removed `overrideDefaultPlugins`
 - Removed `pragma` option.
+- The `includes` folder is automatically ignored.
 
 ## `remark` Plugin
 
@@ -93,11 +96,13 @@
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
 - Replaced `.tmpl` subextension with `.page`.
+- The `includes` folder is automatically ignored.
 
 ## `eta` Plugin
 
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
+- The `includes` folder is automatically ignored.
 
 ## `json` Plugin
 
@@ -109,29 +114,42 @@
 
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
+- The `includes` folder is automatically ignored.
 
 ## `liquid` Plugin
 
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
+- The `includes` folder is automatically ignored.
 
 ## `nunjucks` Plugin
 
 - Disabled by default
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
+- The `includes` folder is automatically ignored.
 
 ## `pug` Plugin
 
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
+- The `includes` folder is automatically ignored.
 
 ## `vento` Plugin
 
 - Enabled by default
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
+- The `includes` folder is automatically ignored.
 
 ## `multilanguage` Plugin
 
 - Apply the default language to all pages without defined language.
+
+## `sass` Plugin
+
+- The `includes` folder is automatically ignored.
+
+## `lightningcss` Plugin
+
+- The `includes` folder is automatically ignored.

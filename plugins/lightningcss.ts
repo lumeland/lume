@@ -60,6 +60,7 @@ export default function (userOptions?: DeepPartial<Options>) {
 
     if (options.includes) {
       site.processAll(options.extensions, lightningCSSBundler);
+      site.ignore(options.includes);
     } else {
       site.process(options.extensions, lightningCSSTransformer);
     }

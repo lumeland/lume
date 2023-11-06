@@ -62,7 +62,15 @@ export default function (userOptions?: Partial<Options>) {
 
     const engine = new ModuleEngine(options.includes);
 
+    // Ignore includes folder
+    if (options.includes) {
+      site.ignore(options.includes);
+    }
+
+    // Load the _data files
     site.loadData(options.extensions, loader);
+
+    // Load the pages and register the engine
     site.loadPages(options.extensions, {
       loader,
       engine,

@@ -139,6 +139,12 @@ export default function (userOptions?: DeepPartial<Options>) {
       options.includes,
     );
 
+    // Ignore includes folder
+    if (options.includes) {
+      site.ignore(options.includes);
+    }
+
+    // Load the pages and register the engine
     site.loadPages(options.extensions, {
       loader,
       engine,

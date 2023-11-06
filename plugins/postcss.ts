@@ -61,6 +61,7 @@ export default function (userOptions?: Partial<Options>) {
 
     if (options.includes) {
       plugins.unshift(configureImport(site, options.includes));
+      site.ignore(options.includes);
     }
 
     // @ts-ignore: Argument of type 'unknown[]' is not assignable to parameter of type 'AcceptedPlugin[]'.

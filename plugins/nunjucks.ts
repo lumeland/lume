@@ -207,6 +207,12 @@ export default function (userOptions?: DeepPartial<Options>) {
 
     const engine = new NunjucksEngine(env, site.src(), options.includes);
 
+    // Ignore includes folder
+    if (options.includes) {
+      site.ignore(options.includes);
+    }
+
+    // Load the pages and register the engine
     site.loadPages(options.extensions, {
       loader,
       engine,

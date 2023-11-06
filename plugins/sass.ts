@@ -50,6 +50,12 @@ export default function (userOptions?: Partial<Options>) {
       userOptions,
     );
 
+    // Ignore includes folder
+    if (options.includes) {
+      site.ignore(options.includes);
+    }
+
+    // Load & process the assets
     site.loadAssets(options.extensions);
     site.process(options.extensions, sass);
 
