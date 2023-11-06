@@ -9,6 +9,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ## [1.19.4] - Unreleased
 ### Fixed
 - Tailwind: Fix types for `options`.
+- Favicon: Better error if the source file is missing [#504].
 
 ## [1.19.3] - 2023-10-29
 ### Changed
@@ -2472,7 +2473,9 @@ The first version.
 [#492]: https://github.com/lumeland/lume/issues/492
 [#496]: https://github.com/lumeland/lume/issues/496
 [#502]: https://github.com/lumeland/lume/issues/502
+[#504]: https://github.com/lumeland/lume/issues/504
 
+[1.19.4]: https://github.com/lumeland/lume/compare/v1.19.3...HEAD
 [1.19.3]: https://github.com/lumeland/lume/compare/v1.19.2...v1.19.3
 [1.19.2]: https://github.com/lumeland/lume/compare/v1.19.1...v1.19.2
 [1.19.1]: https://github.com/lumeland/lume/compare/v1.19.0...v1.19.1
