@@ -19,6 +19,9 @@ export interface Options {
 
   /** Custom transform functions */
   functions: Record<string, TransformationFunction>;
+
+  /** Rewrite path with format extension as hint. The hint can be undefined if the transformation does no reformatting. Return from the function must be a string pathname */
+  rewritePath?: PathRewrittenFunction;
 }
 
 export type TransformationFunction = (
@@ -26,6 +29,11 @@ export type TransformationFunction = (
   // deno-lint-ignore no-explicit-any
   ...args: any[]
 ) => void;
+
+export type PathRewrittenFunction = (
+  path: string,
+  formatExtension?: MagickFormat,
+) => string;
 
 // Default options
 export const defaults: Options = {
@@ -58,8 +66,7 @@ export interface Transformation {
   suffix?: string;
   format?: MagickFormat | MagickFormat[];
   matches?: RegExp | string;
-  // deno-lint-ignore no-explicit-any
-  [key: string]: any;
+  [key: string]: unknown;
 }
 interface SingleTransformation extends Transformation {
   format?: MagickFormat;
@@ -113,7 +120,7 @@ export default function (userOptions?: Partial<Options>) {
           [options.name]: undefined,
         });
 
-        rename(output, transformation);
+        rename(output, transformation, options.rewritePath);
 
         if (cache) {
           const result = await cache.get(content, transformation);
@@ -161,7 +168,7 @@ function transform(
           break;
 
         case "format":
-          format = args;
+          format = args as MagickFormat | undefined;
           break;
 
         default:
@@ -190,7 +197,11 @@ function transform(
   });
 }
 
-function rename(page: Page, transformation: Transformation): void {
+function rename(
+  page: Page,
+  transformation: SingleTransformation,
+  rewrite?: PathRewrittenFunction,
+): void {
   const { format, suffix } = transformation;
   const url = page.data.url;
 
@@ -206,6 +217,10 @@ function rename(page: Page, transformation: Transformation): void {
 
   if (suffix) {
     path += suffix;
+  }
+
+  if (typeof rewrite === "function") {
+    path += rewrite(path, format);
   }
 
   page.data.url = path + ext;
