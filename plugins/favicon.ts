@@ -73,7 +73,14 @@ export default function (userOptions: DeepPartial<Options> = {}): Plugin {
 
       // Convert the SVG to PNG
       if (path.endsWith(".svg")) {
-        const content = await site.getContent(path, textLoader) as string;
+        const content = await site.getContent(path, textLoader) as
+          | string
+          | undefined;
+
+        if (!content) {
+          throw new Error(`Favicon: ${path} not found`);
+        }
+
         return await svg2png(content, { width: 180, height: 180 });
       }
 
