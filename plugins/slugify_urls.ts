@@ -8,7 +8,7 @@ import type { Options as SlugifierOptions } from "../core/slugifier.ts";
 
 export interface Options extends SlugifierOptions {
   /** The list of extensions this plugin applies to */
-  extensions: Extensions;
+  extensions?: Extensions;
 }
 
 // Default options
@@ -18,7 +18,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to slugify all URLs, replacing non-URL-safe characters */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
   const slugify = createSlugifier(options);
 

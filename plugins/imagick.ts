@@ -8,16 +8,16 @@ import type { IMagickImage, MagickFormat } from "../deps/imagick.ts";
 
 export interface Options {
   /** The list extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /** The key name for the transformations definitions */
-  name: string;
+  name?: string;
 
   /** The cache folder */
-  cache: string | boolean;
+  cache?: string | boolean;
 
   /** Custom transform functions */
-  functions: Record<string, TransformationFunction>;
+  functions?: Record<string, TransformationFunction>;
 }
 
 export type TransformationFunction = (
@@ -65,7 +65,7 @@ interface SingleTransformation extends Transformation {
 }
 
 /** A plugin to transform images in Lume */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -148,7 +148,7 @@ function transform(
   content: Uint8Array,
   page: Page,
   transformation: Transformation,
-  options: Options,
+  options: Required<Options>,
 ): void {
   let format: MagickFormat | undefined = undefined;
 

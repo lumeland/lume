@@ -2,14 +2,14 @@ import { minify } from "../deps/minify_html.ts";
 import { merge } from "../core/utils.ts";
 
 import type { Options as MinifyOptions } from "../deps/minify_html.ts";
-import type { DeepPartial, Page, Site } from "../core.ts";
+import type { Page, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to. */
-  extensions: Array<".html" | ".css" | ".js">;
+  extensions?: Array<".html" | ".css" | ".js">;
 
   /** Default options for minify-html library */
-  options: MinifyOptions;
+  options?: MinifyOptions;
 }
 
 // Default options
@@ -30,7 +30,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to minify HTML, CSS & JavaScript files */
-export default function (userOptions?: DeepPartial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   const { extensions } = options;

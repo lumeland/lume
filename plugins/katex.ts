@@ -2,17 +2,17 @@ import { katex, KatexOptions } from "../deps/katex.ts";
 import { renderMathInElement } from "../deps/katex-auto-render/auto-render.ts";
 import { merge } from "../core/utils.ts";
 
-import type { DeepPartial, Page, Site } from "../core.ts";
+import type { Page, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /** The css selector to apply katex */
-  cssSelector: string;
+  cssSelector?: string;
 
   /** Configuration to pass to katex */
-  options: KatexOptions;
+  options?: KatexOptions;
 }
 
 export const defaults: Options = {
@@ -46,7 +46,7 @@ export const defaults: Options = {
   },
 };
 
-export default function (userOptions?: DeepPartial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
   return (site: Site) => {
     site.process(options.extensions, (page: Page) => {

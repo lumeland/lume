@@ -4,7 +4,7 @@ import type { Page, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /**
    * The function to generate the new url
@@ -20,7 +20,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to modify all URLs found in the HTML documents */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions: Options) {
   const options = merge(defaults, userOptions);
 
   function replace(

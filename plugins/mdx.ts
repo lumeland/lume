@@ -7,21 +7,21 @@ import type { Data, Engine, Site } from "../core.ts";
 
 export interface Options {
   /** List of extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /**
    * List of remark plugins to use
    * @default `[remarkGfm]`
    */
   // deno-lint-ignore no-explicit-any
-  remarkPlugins: any[];
+  remarkPlugins?: any[];
 
   /** List of rehype plugins to use */
   // deno-lint-ignore no-explicit-any
-  rehypePlugins: any[];
+  rehypePlugins?: any[];
 
   /** Set `false` to remove the default plugins */
-  useDefaultPlugins: boolean;
+  useDefaultPlugins?: boolean;
 
   /** Components to add/override */
   components?: Record<string, unknown>;
@@ -30,16 +30,13 @@ export interface Options {
    * Custom includes path
    * @default `site.options.includes`
    */
-  includes: string;
+  includes?: string;
 }
 
 // Default options
 export const defaults: Options = {
   extensions: [".mdx"],
-  remarkPlugins: [],
-  rehypePlugins: [],
   useDefaultPlugins: true,
-  includes: "",
 };
 
 const remarkDefaultPlugins = [
@@ -49,11 +46,11 @@ const remarkDefaultPlugins = [
 /** Template engine to render Markdown files with Remark */
 export class MDXEngine implements Engine<string | { toString(): string }> {
   baseUrl: string;
-  options: Options;
+  options: Required<Options>;
   jsxEngine: Engine;
   includes: string;
 
-  constructor(baseUrl: string, options: Options, jsxEngine: Engine) {
+  constructor(baseUrl: string, options: Required<Options>, jsxEngine: Engine) {
     this.baseUrl = baseUrl;
     this.options = options;
     this.jsxEngine = jsxEngine;
@@ -107,7 +104,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
 }
 
 /** Register the plugin to support MDX */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   return function (site: Site) {
     const options = merge(
       { ...defaults, includes: site.options.includes },
@@ -115,6 +112,7 @@ export default function (userOptions?: Partial<Options>) {
     );
 
     if (options.useDefaultPlugins) {
+      options.remarkPlugins ||= [];
       options.remarkPlugins.unshift(...remarkDefaultPlugins);
     }
 

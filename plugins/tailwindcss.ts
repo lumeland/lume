@@ -5,21 +5,20 @@ import type { Site } from "../core.ts";
 
 export interface Options {
   /** Extensions processed by this plugin to extract the utility classes */
-  extensions: string[];
+  extensions?: string[];
 
   /**
    * Options passed to TailwindCSS.
    * @see https://tailwindcss.com/docs/configuration
    */
-  options: Omit<Config, "content">;
+  options?: Omit<Config, "content">;
 }
 
 export const defaults: Options = {
   extensions: [".html"],
-  options: {},
 };
 
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

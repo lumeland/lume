@@ -1,4 +1,4 @@
-import { DeepPartial, merge } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
 import binLoader from "../core/loaders/binary.ts";
 import textLoader from "../core/loaders/text.ts";
 import { ImageMagick, MagickFormat, MagickGeometry } from "../deps/imagick.ts";
@@ -14,17 +14,17 @@ export interface Options {
    * The input file to generate the favicons
    * Accepted formats are SVG, PNG, JPG, GIF, BMP, TIFF, WEBP
    */
-  input: string;
+  input?: string;
 
   /** The cache folder */
-  cache: string | boolean;
+  cache?: string | boolean;
 
   /**
    * The generated favicons
    * By default it follows the recommendations from:
    * https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs
    */
-  favicons: Favicon[];
+  favicons?: Favicon[];
 }
 
 export const defaults: Options = {
@@ -53,7 +53,7 @@ export interface Favicon {
   format: string;
 }
 
-export default function (userOptions: DeepPartial<Options> = {}): Plugin {
+export default function (userOptions?: Options): Plugin {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

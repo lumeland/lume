@@ -15,15 +15,15 @@ import type { DeepPartial } from "./core/utils.ts";
 import type { SiteOptions } from "./core/site.ts";
 
 export interface PluginOptions {
-  url?: Partial<UrlOptions>;
-  json?: Partial<JsonOptions>;
-  markdown?: Partial<MarkdownOptions>;
-  modules?: Partial<ModulesOptions>;
-  vento?: Partial<VentoOptions>;
-  search?: Partial<SearchOptions>;
-  paginate?: Partial<PaginateOptions>;
-  toml?: Partial<TomlOptions>;
-  yaml?: Partial<YamlOptions>;
+  url?: UrlOptions;
+  json?: JsonOptions;
+  markdown?: MarkdownOptions;
+  modules?: ModulesOptions;
+  vento?: VentoOptions;
+  search?: SearchOptions;
+  paginate?: PaginateOptions;
+  toml?: TomlOptions;
+  yaml?: YamlOptions;
 }
 
 export default function lume(

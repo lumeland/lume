@@ -4,13 +4,13 @@ import type { Site } from "../core.ts";
 
 export interface Options {
   /** The key name to store the reading info value and the filter */
-  name: string;
+  name?: string;
 
   /** The list extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /** The words per minute a reader can read (default: 275) */
-  wordsPerMinute: number;
+  wordsPerMinute?: number;
 }
 
 export const defaults: Options = {
@@ -19,7 +19,7 @@ export const defaults: Options = {
   wordsPerMinute: 275,
 };
 
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

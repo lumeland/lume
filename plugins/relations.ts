@@ -14,13 +14,13 @@ interface ForeignKeyOptions {
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /** The field name used to save the page id */
-  idKey: string;
+  idKey?: string;
 
   /** The field name used to save the page type */
-  typeKey: string;
+  typeKey?: string;
 
   /** The foreign keys per type (type => foreign_key) */
   foreignKeys: Record<string, string | ForeignKeyOptions>;
@@ -34,7 +34,7 @@ export const defaults: Options = {
   foreignKeys: {},
 };
 
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

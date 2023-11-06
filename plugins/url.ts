@@ -4,9 +4,9 @@ import type { Helper, Site } from "../core.ts";
 
 export interface Options {
   /** The url helper name */
-  names: {
-    url: string;
-    htmlUrl: string;
+  names?: {
+    url?: string;
+    htmlUrl?: string;
   };
 }
 
@@ -21,12 +21,12 @@ export const defaults: Options = {
  * A plugin to register the filters "url" and "htmlUrl"
  * for normalizing URLs in the templates
  */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.filter(options.names.url, url as Helper);
-    site.filter(options.names.htmlUrl, htmlUrl as Helper);
+    site.filter(options.names.url!, url as Helper);
+    site.filter(options.names.htmlUrl!, htmlUrl as Helper);
 
     function url(path = "/", absolute = false) {
       return typeof path === "string" ? site.url(path, absolute) : path;

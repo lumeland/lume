@@ -4,7 +4,7 @@ import type { Extensions, Page, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: Extensions;
+  extensions?: Extensions;
 
   /**
    * The function to test the page
@@ -20,7 +20,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to filter only some pages */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

@@ -32,6 +32,7 @@
 - Removed `Error` class to print the errors. `Deno.inspect()` is used instead.
 - Refactor of `Server` function to work with `Deno.serve()` API #501.
 - Use the lib `dom` and `dom.iterable` types instead of `deno-dom`.
+- Improved plugin types.
 
 ## `search` Plugin
 
@@ -43,6 +44,11 @@
 ## `toml` Plugin
 
 - It's installed by default
+- New option `pageSubExtension`.
+- Changed `extensions` option type to `string[]`.
+
+## `yaml` Plugin
+
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
 

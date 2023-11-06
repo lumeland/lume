@@ -1,4 +1,4 @@
-import type { DeepPartial, Site } from "../core.ts";
+import type { Site } from "../core.ts";
 import { merge, read } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
 import { createGenerator, presetUno, resetUrl } from "../deps/unocss.ts";
@@ -16,13 +16,13 @@ export interface Options {
    * Set to `false` to insert a <style> tag per page.
    * @defaultValue `false`
    */
-  cssFile: false | string;
+  cssFile?: false | string;
   /**
    * Supported CSS reset options.
    * @see {@link https://github.com/unocss/unocss/tree/main/packages/reset}
    * @defaultValue `tailwind`
    */
-  reset: false | "tailwind" | "tailwind-compat" | "eric-meyer";
+  reset?: false | "tailwind" | "tailwind-compat" | "eric-meyer";
 }
 
 export const defaults: Options = {
@@ -33,7 +33,7 @@ export const defaults: Options = {
   reset: "tailwind",
 };
 
-export default function (userOptions: DeepPartial<Options> = {}) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions) as Options;
 
   return (site: Site) => {

@@ -5,48 +5,48 @@ import type { Page, Plugin, Site } from "../core.ts";
 
 export interface Options {
   /** The list extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /** The key name for the transformations definitions */
-  name: string;
+  name?: string;
 }
 
 export interface MetaData {
   /** The type of the site default is website */
-  type: string;
+  type?: string;
 
   /** The name of the site */
-  site: string;
+  site?: string;
 
   /** The title of the page */
-  title: string;
+  title?: string;
 
   /** The page language */
-  lang: string;
+  lang?: string;
 
   /** The description of the page */
-  description: string;
+  description?: string;
 
   /** The image of the page */
-  image: string;
+  image?: string;
 
   /** The icon of the site */
-  icon: string;
+  icon?: string;
 
   /** The page keywords */
-  keywords: string[];
+  keywords?: string[];
 
   /** The twitter username */
-  twitter: string;
+  twitter?: string;
 
   /** The color theme */
-  color: string;
+  color?: string;
 
   /** Robots configuration (Boolean to enable/disable, String for a custom value) */
-  robots: string | boolean;
+  robots?: string | boolean;
 
   /** Whether include the generator or not (Boolean to enable/disable, String for a custom value) */
-  generator: string | boolean;
+  generator?: string | boolean;
 }
 
 const defaults: Options = {
@@ -57,7 +57,7 @@ const defaults: Options = {
 const defaultGenerator = `Lume ${getLumeVersion()}`;
 
 /** A plugin to insert meta tags for SEO and social media */
-export default function (userOptions?: Partial<Options>): Plugin {
+export default function (userOptions?: Options): Plugin {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

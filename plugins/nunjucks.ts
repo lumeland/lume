@@ -6,7 +6,6 @@ import { basename, join, posix } from "../deps/path.ts";
 import type {
   ComponentFunction,
   Data,
-  DeepPartial,
   Engine,
   Helper,
   HelperOptions,
@@ -16,7 +15,7 @@ import type {
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /** Optional sub-extension for page files */
   pageSubExtension?: string;
@@ -25,16 +24,16 @@ export interface Options {
    * Custom includes path
    * @default `site.options.includes`
    */
-  includes: string;
+  includes?: string;
 
   /**
    * Options passed to Nunjucks
    * @see https://mozilla.github.io/nunjucks/api.html#configure
    */
-  options: nunjucks.ConfigureOptions;
+  options?: nunjucks.ConfigureOptions;
 
   /** Plugins loaded by Nunjucks */
-  plugins: {
+  plugins?: {
     [index: string]: nunjucks.Extension;
   };
 }
@@ -42,7 +41,6 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".njk"],
-  includes: "",
   options: {},
   plugins: {},
 };
@@ -185,7 +183,7 @@ class LumeLoader extends nunjucks.Loader implements nunjucks.ILoaderAsync {
 }
 
 /** Register the plugin to use Nunjucks as a template engine */
-export default function (userOptions?: DeepPartial<Options>) {
+export default function (userOptions?: Options) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },

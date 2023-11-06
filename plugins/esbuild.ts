@@ -18,19 +18,19 @@ import type { DenoConfig, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /**
    * Global options for esm.sh CDN used to fetch NPM packages
    * @see https://esm.sh/#docs
    */
-  esm: EsmOptions;
+  esm?: EsmOptions;
 
   /**
    * The options for esbuild
    * @see https://esbuild.github.io/api/#general-options
    */
-  options: BuildOptions;
+  options?: BuildOptions;
 }
 
 export interface EsmOptions {
@@ -68,7 +68,7 @@ interface LumeBuildOptions extends BuildOptions {
   [contentSymbol]: Record<string, string>;
 }
 
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   // Configure jsx automatically

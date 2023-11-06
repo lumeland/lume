@@ -5,10 +5,10 @@ import type { Page, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /** The css selector to apply prism */
-  cssSelector: string;
+  cssSelector?: string;
 }
 
 // Default options
@@ -18,7 +18,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to syntax-highlight code using the prism library */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

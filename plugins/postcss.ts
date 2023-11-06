@@ -13,29 +13,27 @@ import type { Helper, Site, SourceMap } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /**
    * Custom includes path for `postcss-import`
    * @default `site.options.includes`
    */
-  includes: string | false;
+  includes?: string | false;
 
   /**
    * Plugins to use by postcss
    * @default `[postcssNesting(), autoprefixer()]`
    */
-  plugins: unknown[];
+  plugins?: unknown[];
 
   /** Set `false` to remove the default plugins */
-  useDefaultPlugins: boolean;
+  useDefaultPlugins?: boolean;
 }
 
 // Default options
 export const defaults: Options = {
   extensions: [".css"],
-  includes: "",
-  plugins: [],
   useDefaultPlugins: true,
 };
 
@@ -46,14 +44,14 @@ const defaultPlugins = [
 ];
 
 /** A plugin to load all CSS files and process them using PostCSS */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   return (site: Site) => {
-    const options = merge(
+    const options = merge<Options>(
       { ...defaults, includes: site.options.includes },
       userOptions,
     );
 
-    const plugins = [...options.plugins];
+    const plugins = [...options.plugins ?? []];
 
     if (options.useDefaultPlugins) {
       plugins.unshift(...defaultPlugins);

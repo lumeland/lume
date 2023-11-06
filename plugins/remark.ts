@@ -14,29 +14,27 @@ import type { Data, Engine, Helper, Site } from "../core.ts";
 
 export interface Options {
   /** List of extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /**
    * List of remark plugins to use
    * @default `[remarkGfm]`
    */
-  remarkPlugins: unknown[];
+  remarkPlugins?: unknown[];
 
   /** List of rehype plugins to use */
-  rehypePlugins: unknown[];
+  rehypePlugins?: unknown[];
 
   /** Flag to turn on HTML sanitization to prevent XSS */
-  sanitize: boolean;
+  sanitize?: boolean;
 
   /** Set `false` to remove the default plugins */
-  useDefaultPlugins: boolean;
+  useDefaultPlugins?: boolean;
 }
 
 // Default options
 export const defaults: Options = {
   extensions: [".md"],
-  remarkPlugins: [],
-  rehypePlugins: [],
   sanitize: false,
   useDefaultPlugins: true,
 };
@@ -79,7 +77,7 @@ export class MarkdownEngine implements Engine {
 }
 
 /** Register the plugin to support Markdown */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return function (site: Site) {
@@ -92,6 +90,7 @@ export default function (userOptions?: Partial<Options>) {
     plugins.push(remarkParse);
 
     if (options.useDefaultPlugins) {
+      options.remarkPlugins ??= [];
       options.remarkPlugins.unshift(...remarkDefaultPlugins);
     }
 
@@ -107,7 +106,7 @@ export default function (userOptions?: Partial<Options>) {
     }
 
     // Add rehype plugins
-    plugins.push(...options.rehypePlugins);
+    plugins.push(...options.rehypePlugins ?? []);
 
     if (options.sanitize) {
       // Add rehype-sanitize to make sure HTML is safe

@@ -7,10 +7,10 @@ import type { Site } from "../core.ts";
 
 export interface Options {
   /** Set true to inline the source map in the output file */
-  inline: boolean;
+  inline?: boolean;
 
   /** Set true to include the content of the source files */
-  sourceContent: boolean;
+  sourceContent?: boolean;
 }
 
 export const defaults: Options = {
@@ -19,7 +19,7 @@ export const defaults: Options = {
 };
 
 /** Generate the source map files of assets */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

@@ -9,13 +9,13 @@ import type { Loader, Page, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /** Attribute used to select the elements this plugin applies to */
-  attribute: string;
+  attribute?: string;
 
   /** List of extra attributes to copy if replacing the element */
-  copyAttributes: (string | RegExp)[];
+  copyAttributes?: (string | RegExp)[];
 }
 
 // Default options
@@ -31,7 +31,7 @@ const cache = new Map();
  * A plugin to inline the HTML assets,
  * like images, JavaScript, CSS, SVG, etc.
  */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

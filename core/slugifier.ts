@@ -1,22 +1,23 @@
 import { unidecode } from "../deps/unidecode.ts";
+import { merge } from "./utils.ts";
 
 export interface Options {
   /** Convert the paths to lower case */
-  lowercase: boolean;
+  lowercase?: boolean;
 
   /** Remove all non-alphanumeric characters */
-  alphanumeric: boolean;
+  alphanumeric?: boolean;
 
   /** Character used as word separator */
-  separator: string;
+  separator?: string;
 
   /** Characters to replace */
-  replace: {
+  replace?: {
     [index: string]: string;
   };
 
   /** Words to remove */
-  stopWords: string[];
+  stopWords?: string[];
 }
 
 export const defaults: Options = {
@@ -37,9 +38,9 @@ export const defaults: Options = {
 };
 
 export default function createSlugifier(
-  userOptions: Partial<Options> = defaults,
+  userOptions?: Options,
 ): (string: string) => string {
-  const options = { ...defaults, ...userOptions };
+  const options = merge(defaults, userOptions);
   const { lowercase, alphanumeric, separator, replace, stopWords } = options;
 
   return function (string) {

@@ -17,10 +17,10 @@ interface Source extends SourceFormat {
 
 export interface Options {
   /** The key name for the transformations definitions */
-  name: string;
+  name?: string;
 
   /** The priority order of the formats */
-  order: string[];
+  order?: string[];
 }
 
 // Default options
@@ -29,7 +29,7 @@ export const defaults: Options = {
   order: ["jxl", "avif", "webp", "png", "jpg"],
 };
 
-export default function (userOptions?: Partial<Options>): Plugin {
+export default function (userOptions?: Options): Plugin {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

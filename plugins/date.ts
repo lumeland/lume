@@ -6,13 +6,13 @@ import type { Helper, Site } from "../core.ts";
 
 export interface Options {
   /** The name of the helper */
-  name: string;
+  name?: string;
 
   /** The loaded locales */
-  locales: Record<string, Locale>;
+  locales?: Record<string, Locale>;
 
   /** Custom date formats */
-  formats: Record<string, string>;
+  formats?: Record<string, string>;
 }
 
 // Default options
@@ -30,7 +30,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to format Date values */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

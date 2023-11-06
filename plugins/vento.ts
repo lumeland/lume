@@ -7,7 +7,7 @@ import type { Data, Engine, FS, Helper, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /** Optional sub-extension for page files */
   pageSubExtension?: string;
@@ -16,7 +16,7 @@ export interface Options {
    * Custom includes path
    * @default `site.options.includes`
    */
-  includes: string;
+  includes?: string;
 
   /**
    * The options for the Vento engine
@@ -37,7 +37,6 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".vento", ".vto"],
-  includes: "",
   options: {
     dataVarname: "it",
     useWith: true,
@@ -99,7 +98,7 @@ export class VentoEngine implements Engine {
 }
 
 /** Register the plugin to support Vento files */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },

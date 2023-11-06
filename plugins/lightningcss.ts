@@ -5,7 +5,7 @@ import { Page } from "../core/filesystem.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { posix } from "../deps/path.ts";
 
-import type { DeepPartial, Site } from "../core.ts";
+import type { Site } from "../core.ts";
 import type {
   BundleAsyncOptions,
   CustomAtRules,
@@ -14,16 +14,16 @@ import type {
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /**
    * Custom includes path
    * @default `site.options.includes`
    */
-  includes: string | false;
+  includes?: string | false;
 
   /** Options passed to parcel_css */
-  options: Omit<BundleAsyncOptions<CustomAtRules>, "filename">;
+  options?: Omit<BundleAsyncOptions<CustomAtRules>, "filename">;
 }
 
 // Default options
@@ -49,7 +49,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to load all CSS files and process them using parcelCSS */
-export default function (userOptions?: DeepPartial<Options>) {
+export default function (userOptions?: Options) {
   return (site: Site) => {
     const options = merge<Options>(
       { ...defaults, includes: site.options.includes },

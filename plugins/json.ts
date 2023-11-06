@@ -5,7 +5,7 @@ import type { Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /** Optional sub-extension for page files */
   pageSubExtension?: string;
@@ -18,7 +18,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to add support for JSON files */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

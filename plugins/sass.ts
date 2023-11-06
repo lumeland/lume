@@ -17,33 +17,32 @@ type SassOptions = Omit<StringOptions<"async">, "url" | "syntax">;
 
 export interface Options {
   /** Extensions processed by this plugin */
-  extensions: string[];
+  extensions?: string[];
 
   /** Output format */
-  format: "compressed" | "expanded";
+  format?: "compressed" | "expanded";
 
   /**
    * SASS options
    * @see https://sass-lang.com/documentation/js-api/interfaces/options/
    */
-  options: SassOptions;
+  options?: SassOptions;
 
   /**
    * Custom includes paths
    * @default `site.options.includes`
    */
-  includes: string;
+  includes?: string;
 }
 
 export const defaults: Options = {
   extensions: [".scss", ".sass"],
   format: "compressed",
   options: {},
-  includes: "",
 };
 
 /** A plugin to use SASS in Lume */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },

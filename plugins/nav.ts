@@ -4,7 +4,7 @@ import type { Data, Searcher, Site } from "../core.ts";
 
 export interface Options {
   /** The helper name */
-  name: string;
+  name?: string;
 
   /** The default order for the children */
   order?: string;
@@ -15,7 +15,7 @@ export const defaults: Options = {
 };
 
 /** Register the plugin to enable the `search` helpers */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

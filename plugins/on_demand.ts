@@ -9,10 +9,10 @@ import type { Page, Site } from "../core.ts";
 
 export interface Options {
   /** The file path to save the routes */
-  routesPath: string;
+  routesPath?: string;
 
   /** The file path to save the preloaded modules */
-  preloadPath: string;
+  preloadPath?: string;
 
   /** Extra data to pass to the pages */
   extraData?: (request: Request) => Record<string, unknown>;
@@ -25,7 +25,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to generate pages on demand in the server side */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

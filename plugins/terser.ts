@@ -3,18 +3,18 @@ import { merge } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 
-import type { DeepPartial, Helper, Site } from "../core.ts";
+import type { Helper, Site } from "../core.ts";
 import type { MinifyOptions } from "../deps/terser.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[];
+  extensions?: string[];
 
   /**
    * Options passed to `terser`
    * @see https://terser.org/docs/api-reference/#minify-options
    */
-  options: MinifyOptions;
+  options?: MinifyOptions;
 }
 
 // Default options
@@ -28,7 +28,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to load all JavaScript files and minify them using Terser */
-export default function (userOptions?: DeepPartial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

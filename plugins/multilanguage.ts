@@ -7,7 +7,7 @@ import type { PageData, Plugin } from "../core.ts";
 
 export interface Options {
   /** The list of extensions used for this plugin */
-  extensions: string[];
+  extensions?: string[];
 
   /** Available languages */
   languages: string[];
@@ -22,7 +22,7 @@ export const defaults: Options = {
   languages: [],
 };
 
-export default function multilanguage(userOptions?: Partial<Options>): Plugin {
+export default function multilanguage(userOptions: Options): Plugin {
   const options = merge(defaults, userOptions);
 
   return (site) => {

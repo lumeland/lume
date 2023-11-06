@@ -165,11 +165,11 @@ export type DeepPartial<T> = T extends object ? {
 export function merge<Type>(
   defaults: Type,
   user?: Partial<Type> | DeepPartial<Type>,
-): Type {
+): Required<Type> {
   const merged = { ...defaults };
 
   if (!user) {
-    return merged;
+    return merged as unknown as Required<Type>;
   }
 
   for (const [key, value] of Object.entries(user)) {
@@ -188,7 +188,7 @@ export function merge<Type>(
     merged[key] = value;
   }
 
-  return merged;
+  return merged as unknown as Required<Type>;
 }
 
 const reactElement = Symbol.for("react.element");

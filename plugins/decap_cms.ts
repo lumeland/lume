@@ -13,19 +13,19 @@ export interface Options {
   previewStyle?: string;
 
   /** Directory path of the admin (by default /admin/) */
-  path: string;
+  path?: string;
 
   /** Data key of the configuration */
-  configKey: string;
+  configKey?: string;
 
   /** Whether use a identity method */
   identity?: "netlify";
 
   /** Custom HTML code to append in the index.html page */
-  extraHTML: string;
+  extraHTML?: string;
 
   /** Command to run the proxy server */
-  proxyCommand: string;
+  proxyCommand?: string;
 }
 
 export const defaults: Options = {
@@ -38,7 +38,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to use Decap CMS in Lume easily */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

@@ -4,55 +4,55 @@ import { Page } from "../core/filesystem.ts";
 import * as pagefind from "../deps/pagefind.ts";
 
 import type { CustomRecord } from "../deps/pagefind.ts";
-import type { DeepPartial, Site } from "../core.ts";
+import type { Site } from "../core.ts";
 
 export interface TranslationsOptions {
   /** English default: "Search" */
-  placeholder: string;
+  placeholder?: string;
   /** English default: "Clear" */
-  clear_search: string;
+  clear_search?: string;
   /** English default: "Load more results" */
-  load_more: string;
+  load_more?: string;
   /** English default: "Search this site" */
-  search_label: string;
+  search_label?: string;
   /** English default: "Filters" */
-  filters_label: string;
+  filters_label?: string;
   /** English default: "No results for [SEARCH_TERM]" */
-  zero_results: string;
+  zero_results?: string;
   /** English default: "[COUNT] results for [SEARCH_TERM]" */
-  many_results: string;
+  many_results?: string;
   /** English default: "[COUNT] result for [SEARCH_TERM]" */
-  one_result: string;
+  one_result?: string;
   /** English default: "No results for [SEARCH_TERM]. Showing results for [DIFFERENT_TERM] instead" */
-  alt_search: string;
+  alt_search?: string;
   /** English default: "No results for [SEARCH_TERM]. Try one of the following searches:" */
-  search_suggestion: string;
+  search_suggestion?: string;
   /** English default: "Searching for [SEARCH_TERM]..." */
-  searching: string;
+  searching?: string;
 }
 export interface UIOptions {
   /** The container id to insert the search */
-  containerId: string;
+  containerId?: string;
 
   /** Whether to show an image alongside each search result. */
-  showImages: boolean;
+  showImages?: boolean;
 
   /**
    * By default, Pagefind UI shows filters with no results alongside the count (0).
    * Pass false to hide filters that have no remaining results.
    */
-  showEmptyFilters: boolean;
+  showEmptyFilters?: boolean;
 
   /**
    * By default, Pagefind UI applies a CSS reset to itself.
    * Pass false to omit this and inherit from your site styles.
    */
-  resetStyles: boolean;
+  resetStyles?: boolean;
 
   /**
    * Include results from page subsections (based on headings with IDs).
    */
-  showSubResults: boolean;
+  showSubResults?: boolean;
 
   /**
    * The maximum number of characters to show in the excerpt.
@@ -91,13 +91,13 @@ export interface UIOptions {
 
 export interface Options {
   /** The path to the pagefind bundle directory */
-  outputPath: string;
+  outputPath?: string;
 
   /** Options for the UI interface or false to disable it */
-  ui: UIOptions | false;
+  ui?: UIOptions | false;
 
   /** Options for the indexing process */
-  indexing: pagefind.PagefindServiceConfig;
+  indexing?: pagefind.PagefindServiceConfig;
 
   /** Other custom records */
   customRecords?: CustomRecord[];
@@ -121,7 +121,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to generate a static full text search engine */
-export default function (userOptions?: DeepPartial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -187,7 +187,7 @@ export default function (userOptions?: DeepPartial<Options>) {
         if (!document) {
           return;
         }
-        const container = document.getElementById(containerId);
+        const container = document.getElementById(containerId!);
 
         // Insert UI styles and scripts
         if (container) {

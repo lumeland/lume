@@ -5,10 +5,10 @@ import type { Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions: string[] | {
-    pages: string[];
-    data: string[];
-  };
+  extensions?: string[];
+
+  /** Optional sub-extension for page files */
+  pageSubExtension?: string;
 }
 
 // Default options
@@ -17,14 +17,14 @@ export const defaults: Options = {
 };
 
 /** A plugin to add support for YAML files */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
-  const extensions = Array.isArray(options.extensions)
-    ? { pages: options.extensions, data: options.extensions }
-    : options.extensions;
 
   return (site: Site) => {
-    site.loadData(extensions.data, yaml);
-    site.loadPages(extensions.pages, { loader: yaml });
+    site.loadData(options.extensions, yaml);
+    site.loadPages(options.extensions, {
+      loader: yaml,
+      subExtension: options.pageSubExtension,
+    });
   };
 }

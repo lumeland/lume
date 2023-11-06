@@ -5,10 +5,10 @@ import type { Site } from "../core.ts";
 /** The options for the paginate helper */
 export interface PaginateOptions {
   /** The number of elements per page */
-  size: number;
+  size?: number;
 
   /** The function to generate the url of the pages */
-  url: (page: number) => string;
+  url?: (page: number) => string;
 
   /** Function to modify or add extra data to each page */
   each?: (data: PaginateResult<unknown>, page: number) => void;
@@ -53,22 +53,21 @@ export interface PaginateResult<T> {
 
 export interface Options {
   /** The helper name */
-  name: string;
+  name?: string;
 
   /** The default pagination options */
-  options: PaginateOptions;
+  options?: PaginateOptions;
 }
 
 export const defaults: Options = {
   name: "paginate",
   options: {
     size: 10,
-    url: () => "",
   },
 };
 
 /** Register the plugin to enable the `paginate` helper */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

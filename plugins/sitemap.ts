@@ -15,13 +15,13 @@ type ChangeFreq =
 
 export interface Options {
   /** The sitemap file name */
-  filename: string;
+  filename?: string;
 
   /** The query to search pages included in the sitemap */
-  query: string;
+  query?: string;
 
   /** The values to sort the sitemap */
-  sort: string;
+  sort?: string;
 
   /** The key to use for the lastmod field or a custom function */
   lastmod?: string | ((data: Data) => Date);
@@ -42,7 +42,7 @@ export const defaults: Options = {
 };
 
 /** A plugin to generate a sitemap.xml from page files after build */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

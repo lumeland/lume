@@ -1,9 +1,4 @@
-import {
-  DeepPartial,
-  getExtension,
-  getLumeVersion,
-  merge,
-} from "../core/utils.ts";
+import { getExtension, getLumeVersion, merge } from "../core/utils.ts";
 import { getDataValue } from "./utils.ts";
 import { $XML, stringify } from "../deps/xml.ts";
 import { Page } from "../core/filesystem.ts";
@@ -12,27 +7,27 @@ import type { Data, Site } from "../core.ts";
 
 export interface Options {
   /** The output filenames */
-  output: string | string[];
+  output?: string | string[];
 
   /** The query to search the pages */
-  query: string;
+  query?: string;
 
   /** The sort order */
-  sort: string;
+  sort?: string;
 
   /** The maximum number of items */
-  limit: number;
+  limit?: number;
 
   /** The feed info */
-  info: FeedInfoOptions;
+  info?: FeedInfoOptions;
 
   /** The feed items configuration */
-  items: FeedItemOptions;
+  items?: FeedItemOptions;
 }
 
 export interface FeedInfoOptions {
   /** The feed title */
-  title: string;
+  title?: string;
 
   /** The feed subtitle */
   subtitle?: string;
@@ -41,33 +36,33 @@ export interface FeedInfoOptions {
    * The feed published date
    * @default `new Date()`
    */
-  date: Date;
+  date?: Date;
 
   /** The feed description */
-  description: string;
+  description?: string;
 
   /** The feed language */
-  lang: string;
+  lang?: string;
 
   /** The feed generator. Set `true` to generate automatically */
-  generator: string | boolean;
+  generator?: string | boolean;
 }
 
 export interface FeedItemOptions {
   /** The item title */
-  title: string;
+  title?: string;
 
   /** The item description */
-  description: string;
+  description?: string;
 
   /** The item date */
-  date: string;
+  date?: string;
 
   /** The item content */
-  content: string;
+  content?: string;
 
   /** The item language */
-  lang: string;
+  lang?: string;
 }
 
 export const defaults: Options = {
@@ -121,7 +116,7 @@ export interface FeedItem {
 
 const defaultGenerator = `Lume ${getLumeVersion()}`;
 
-export default function (userOptions?: DeepPartial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

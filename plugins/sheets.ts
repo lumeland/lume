@@ -6,13 +6,13 @@ import type { Data, Site } from "../core.ts";
 
 export interface Options {
   /** Extensions processed by this plugin */
-  extensions: string[];
+  extensions?: string[];
 
   /** Return the first sheet only or all sheets if the document have more */
-  sheets: "first" | "auto";
+  sheets?: "first" | "auto";
 
   /** Options passed to Sheetjs */
-  options: ParsingOptions;
+  options?: ParsingOptions;
 }
 
 export const defaults: Options = {
@@ -22,7 +22,7 @@ export const defaults: Options = {
 };
 
 /** Register the plugin to add support for sheets documents to load data */
-export default function (userOptions?: Partial<Options>) {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   async function loader(path: string): Promise<Data> {
