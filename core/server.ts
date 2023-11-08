@@ -46,7 +46,7 @@ export default class Server {
   events: Events<ServerEvent> = new Events<ServerEvent>();
   options: Options;
   middlewares: Middleware[] = [];
-  #server?: Deno.Server;
+  #server?: Deno.HttpServer;
 
   constructor(options: Partial<Options> = {}) {
     this.options = { ...defaults, ...options };
