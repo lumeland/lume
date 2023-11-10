@@ -1,6 +1,6 @@
 import { posix } from "../deps/path.ts";
 
-import type { Data } from "./filesystem.ts";
+import type { Data } from "./file.ts";
 
 type EntryType = "file" | "directory";
 

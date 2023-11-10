@@ -2,7 +2,7 @@ import { posix } from "../deps/path.ts";
 import { isPlainObject } from "./utils.ts";
 
 import type { Entry } from "./fs.ts";
-import type { Data } from "./filesystem.ts";
+import type { Data } from "./file.ts";
 import type Formats from "./formats.ts";
 
 export interface Options {

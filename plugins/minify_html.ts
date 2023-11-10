@@ -3,7 +3,7 @@ import { merge } from "../core/utils.ts";
 
 import type { Options as MinifyOptions } from "../deps/minify_html.ts";
 import type Site from "../core/site.ts";
-import type { Page } from "../core/filesystem.ts";
+import type { Page } from "../core/file.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to. */

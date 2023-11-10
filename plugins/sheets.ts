@@ -3,7 +3,7 @@ import { merge } from "../core/utils.ts";
 import loadFile from "../core/loaders/binary.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/filesystem.ts";
+import type { Data } from "../core/file.ts";
 
 export interface Options {
   /** Extensions processed by this plugin */

@@ -16,12 +16,7 @@ import Writer from "./writer.ts";
 import textLoader from "./loaders/text.ts";
 
 import type { Component, Components } from "../core/component_loader.ts";
-import type {
-  Data,
-  MergeStrategy,
-  Page,
-  StaticFile,
-} from "../core/filesystem.ts";
+import type { Data, MergeStrategy, Page, StaticFile } from "../core/file.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { Event, EventListener, EventOptions } from "../core/events.ts";
 import type {

@@ -2,7 +2,7 @@ import { optimize } from "../deps/svgo.ts";
 import { merge } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
-import type { Page } from "../core/filesystem.ts";
+import type { Page } from "../core/file.ts";
 import type { Config } from "../deps/svgo.ts";
 
 export interface Options {

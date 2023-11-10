@@ -3,7 +3,7 @@ import { emptyDir, ensureDir } from "../deps/fs.ts";
 import { concurrent, log, sha1 } from "./utils.ts";
 import binaryLoader from "./loaders/binary.ts";
 
-import type { Page, StaticFile } from "./filesystem.ts";
+import type { Page, StaticFile } from "./file.ts";
 
 export interface Options {
   src: string;

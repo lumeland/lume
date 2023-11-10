@@ -3,7 +3,7 @@ import loader from "../core/loaders/text.ts";
 import { merge, normalizePath } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/filesystem.ts";
+import type { Data } from "../core/file.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
 import type FS from "../core/fs.ts";
 import type { Environment, Token } from "../deps/vento.ts";

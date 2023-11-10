@@ -1,10 +1,10 @@
 import { getExtension, getLumeVersion, merge } from "../core/utils.ts";
 import { getDataValue } from "./utils.ts";
 import { $XML, stringify } from "../deps/xml.ts";
-import { Page } from "../core/filesystem.ts";
+import { Page } from "../core/file.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/filesystem.ts";
+import type { Data } from "../core/file.ts";
 
 export interface Options {
   /** The output filenames */

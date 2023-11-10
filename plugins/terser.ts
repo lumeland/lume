@@ -1,6 +1,6 @@
 import { minify } from "../deps/terser.ts";
 import { merge } from "../core/utils.ts";
-import { Page } from "../core/filesystem.ts";
+import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 
 import type Site from "../core/site.ts";

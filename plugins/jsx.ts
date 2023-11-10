@@ -4,7 +4,7 @@ import { merge } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
-import type { Data } from "../core/filesystem.ts";
+import type { Data } from "../core/file.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

@@ -4,7 +4,7 @@ import { ImageMagick } from "../deps/imagick.ts";
 import Cache from "../core/cache.ts";
 
 import type Site from "../core/site.ts";
-import type { Page } from "../core/filesystem.ts";
+import type { Page } from "../core/file.ts";
 import type { IMagickImage, MagickFormat } from "../deps/imagick.ts";
 
 export interface Options {

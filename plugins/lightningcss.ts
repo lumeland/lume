@@ -1,7 +1,7 @@
 import { bundleAsync, transform } from "../deps/lightningcss.ts";
 import { merge, read, resolveInclude } from "../core/utils.ts";
 import textLoader from "../core/loaders/text.ts";
-import { Page } from "../core/filesystem.ts";
+import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { posix } from "../deps/path.ts";
 

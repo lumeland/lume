@@ -1,6 +1,6 @@
 import { isUrl, log, merge, normalizePath, read } from "../core/utils.ts";
 import { encodeBase64 } from "../deps/base64.ts";
-import { Page } from "../core/filesystem.ts";
+import { Page } from "../core/file.ts";
 import { basename, join, toFileUrl } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";

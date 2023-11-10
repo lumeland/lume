@@ -1,7 +1,7 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import metas from "../plugins/metas.ts";
 
-import type { Page } from "../core/filesystem.ts";
+import type { Page } from "../core/file.ts";
 
 Deno.test("metas plugin", async (t) => {
   const site = getSite({

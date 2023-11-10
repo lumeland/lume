@@ -1,7 +1,7 @@
 import { parse } from "../../deps/jsonc.ts";
 import { isPlainObject, read } from "../utils.ts";
 
-import type { Data } from "../filesystem.ts";
+import type { Data } from "../file.ts";
 
 /** Load and parse a JSON / JSONC file */
 export default async function json(path: string): Promise<Data> {

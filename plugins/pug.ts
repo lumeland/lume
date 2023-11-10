@@ -5,7 +5,7 @@ import { merge } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
-import type { Data } from "../core/filesystem.ts";
+import type { Data } from "../core/file.ts";
 import type { Options as PugOptions } from "../deps/pug.ts";
 
 export interface Options {

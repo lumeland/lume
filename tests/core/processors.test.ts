@@ -1,6 +1,6 @@
 import { assertEquals as equals } from "../../deps/assert.ts";
 import Processors from "../../core/processors.ts";
-import { Page } from "../../core/filesystem.ts";
+import { Page } from "../../core/file.ts";
 
 Deno.test("Processors", async (t) => {
   const processors = new Processors();

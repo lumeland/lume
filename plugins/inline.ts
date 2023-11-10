@@ -7,7 +7,7 @@ import { contentType } from "../deps/media_types.ts";
 
 import type Site from "../core/site.ts";
 import type { Loader } from "../core/fs.ts";
-import type { Page } from "../core/filesystem.ts";
+import type { Page } from "../core/file.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

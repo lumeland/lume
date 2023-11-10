@@ -11,7 +11,7 @@ import {
 import { build, BuildOptions, OutputFile, stop } from "../deps/esbuild.ts";
 import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
-import { Page } from "../core/filesystem.ts";
+import { Page } from "../core/file.ts";
 import textLoader from "../core/loaders/text.ts";
 
 import type Site from "../core/site.ts";

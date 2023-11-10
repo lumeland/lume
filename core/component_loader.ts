@@ -1,6 +1,6 @@
 import { Entry } from "./fs.ts";
 
-import type { Data } from "./filesystem.ts";
+import type { Data } from "./file.ts";
 import type Formats from "./formats.ts";
 
 export interface Options {

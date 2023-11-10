@@ -1,10 +1,10 @@
 import { posix } from "../deps/path.ts";
 import { normalizePath } from "./utils.ts";
-import { Page, StaticFile } from "./filesystem.ts";
+import { Page, StaticFile } from "./file.ts";
 import { Temporal } from "../deps/temporal.ts";
 
 import type { PageData } from "../core.ts";
-import type { Data } from "./filesystem.ts";
+import type { Data } from "./file.ts";
 import type { default as FS, Entry } from "./fs.ts";
 import type Formats from "./formats.ts";
 import type DataLoader from "./data_loader.ts";

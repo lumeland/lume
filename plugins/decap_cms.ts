@@ -1,4 +1,4 @@
-import { Page } from "../core/filesystem.ts";
+import { Page } from "../core/file.ts";
 import { merge } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
 import { stringify } from "../deps/yaml.ts";

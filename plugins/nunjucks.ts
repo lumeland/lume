@@ -4,7 +4,7 @@ import { merge, normalizePath, resolveInclude } from "../core/utils.ts";
 import { basename, join, posix } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/filesystem.ts";
+import type { Data } from "../core/file.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { ComponentFunction, ProxyComponents } from "../core/source.ts";
 

@@ -41,7 +41,7 @@ import type {
   Page,
   Src,
   StaticFile,
-} from "./core/filesystem.ts";
+} from "./core/file.ts";
 import type {
   ComponentFunction,
   default as Source,

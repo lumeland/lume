@@ -2,7 +2,7 @@ import { merge } from "../core/utils.ts";
 import binLoader from "../core/loaders/binary.ts";
 import textLoader from "../core/loaders/text.ts";
 import { ImageMagick, MagickFormat, MagickGeometry } from "../deps/imagick.ts";
-import { Page } from "../core/filesystem.ts";
+import { Page } from "../core/file.ts";
 import Cache from "../core/cache.ts";
 import { svg2png } from "../deps/svg2png.ts";
 

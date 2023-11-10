@@ -1,6 +1,6 @@
 import { merge } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
-import { Page } from "../core/filesystem.ts";
+import { Page } from "../core/file.ts";
 import * as pagefind from "../deps/pagefind.ts";
 
 import type { CustomRecord } from "../deps/pagefind.ts";

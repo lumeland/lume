@@ -1,9 +1,9 @@
 import { concurrent, isGenerator, resolveInclude } from "./utils.ts";
-import { Page } from "./filesystem.ts";
+import { Page } from "./file.ts";
 import { posix } from "../deps/path.ts";
 import { getDate, getUrl, mergeData } from "./source.ts";
 
-import type { Content, Data } from "./filesystem.ts";
+import type { Content, Data } from "./file.ts";
 import type Processors from "./processors.ts";
 import type Formats from "./formats.ts";
 import type FS from "./fs.ts";

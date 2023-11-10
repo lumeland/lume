@@ -4,7 +4,7 @@ import createSlugifier, {
 } from "../core/slugifier.ts";
 
 import type Site from "../core/site.ts";
-import type { Page } from "../core/filesystem.ts";
+import type { Page } from "../core/file.ts";
 import type { Helper } from "../core/renderer.ts";
 import type { Extensions } from "../core/processors.ts";
 import type { Options as SlugifierOptions } from "../core/slugifier.ts";
