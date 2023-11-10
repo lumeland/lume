@@ -3,15 +3,10 @@ import loader from "../core/loaders/text.ts";
 import { merge, normalizePath, resolveInclude } from "../core/utils.ts";
 import { basename, join, posix } from "../deps/path.ts";
 
-import type {
-  ComponentFunction,
-  Data,
-  Engine,
-  Helper,
-  HelperOptions,
-  ProxyComponents,
-  Site,
-} from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Data } from "../core/filesystem.ts";
+import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
+import type { ComponentFunction, ProxyComponents } from "../core/source.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

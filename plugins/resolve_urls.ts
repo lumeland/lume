@@ -2,7 +2,7 @@ import { posix } from "../deps/path.ts";
 import modifyUrls from "./modify_urls.ts";
 import { normalizePath } from "../core/utils.ts";
 
-import type { Site } from "../core.ts";
+import type Site from "../core/site.ts";
 
 /** A plugin to convert links to source files to the final page */
 export default function () {

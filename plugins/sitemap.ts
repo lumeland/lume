@@ -2,7 +2,8 @@ import { merge } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
 import { stringify } from "../deps/xml.ts";
 
-import type { Data, Site, StaticFile } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Data, StaticFile } from "../core/filesystem.ts";
 
 type ChangeFreq =
   | "always"

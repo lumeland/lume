@@ -3,17 +3,16 @@ import { normalizePath } from "./utils.ts";
 import { Page, StaticFile } from "./filesystem.ts";
 import { Temporal } from "../deps/temporal.ts";
 
+import type { PageData } from "../core.ts";
+import type { Data } from "./filesystem.ts";
+import type { default as FS, Entry } from "./fs.ts";
+import type Formats from "./formats.ts";
+import type DataLoader from "./data_loader.ts";
+import type { ScopeFilter } from "./scopes.ts";
 import type {
-  ComponentLoader,
   Components,
-  Data,
-  DataLoader,
-  Entry,
-  Formats,
-  FS,
-  PageData,
-  ScopeFilter,
-} from "../core.ts";
+  default as ComponentLoader,
+} from "./component_loader.ts";
 
 export interface Options {
   formats: Formats;

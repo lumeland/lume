@@ -1,4 +1,4 @@
-import type { Middleware } from "../core.ts";
+import type { Middleware } from "../core/server.ts";
 
 const HOUR = 3600000;
 const DAY = HOUR * 24;

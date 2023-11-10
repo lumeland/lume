@@ -9,7 +9,9 @@ import { Page } from "../core/filesystem.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import textLoader from "../core/loaders/text.ts";
 
-import type { Helper, Site, SourceMap } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Helper } from "../core/renderer.ts";
+import type { SourceMap } from "./source_maps.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

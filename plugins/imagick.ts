@@ -3,7 +3,8 @@ import binaryLoader from "../core/loaders/binary.ts";
 import { ImageMagick } from "../deps/imagick.ts";
 import Cache from "../core/cache.ts";
 
-import type { Page, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Page } from "../core/filesystem.ts";
 import type { IMagickImage, MagickFormat } from "../deps/imagick.ts";
 
 export interface Options {

@@ -4,7 +4,7 @@ import { ensureDir } from "../deps/fs.ts";
 import { isGenerator, isUrl, log } from "../core/utils.ts";
 import { createSite } from "./run.ts";
 
-import type { Archetype, Site } from "../core.ts";
+import type Site from "../core/site.ts";
 
 interface Options {
   config?: string;
@@ -109,4 +109,10 @@ async function saveFile(path: string, content: string | Uint8Array) {
       throw error;
     }
   }
+}
+
+/** Definition used to create a new Page */
+export interface Archetype {
+  path: string;
+  content: string | Record<string, unknown> | Uint8Array;
 }

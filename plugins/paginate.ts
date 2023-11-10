@@ -1,6 +1,6 @@
 import { merge } from "../core/utils.ts";
 
-import type { Site } from "../core.ts";
+import type Site from "../core/site.ts";
 
 /** The options for the paginate helper */
 export interface PaginateOptions {

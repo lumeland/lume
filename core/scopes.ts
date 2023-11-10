@@ -1,4 +1,4 @@
-import type { Entry } from "../core.ts";
+import type { Entry } from "./fs.ts";
 
 /**
  * Define independent updates scopes

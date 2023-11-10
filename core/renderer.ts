@@ -3,7 +3,10 @@ import { Page } from "./filesystem.ts";
 import { posix } from "../deps/path.ts";
 import { getDate, getUrl, mergeData } from "./source.ts";
 
-import type { Content, Data, Formats, FS, Processors } from "../core.ts";
+import type { Content, Data } from "./filesystem.ts";
+import type Processors from "./processors.ts";
+import type Formats from "./formats.ts";
+import type FS from "./fs.ts";
 
 export interface Options {
   includes: string;

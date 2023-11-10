@@ -3,7 +3,7 @@ import { merge } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
 import { stringify } from "../deps/yaml.ts";
 
-import type { Site } from "../core.ts";
+import type Site from "../core/site.ts";
 
 export interface Options {
   /** Force the local_backend option. By default is detected automatically. */

@@ -1,6 +1,6 @@
 import { serveFile } from "../core/server.ts";
 
-import type { Middleware, RequestHandler } from "../core.ts";
+import type { Middleware, RequestHandler } from "../core/server.ts";
 
 /** The options to configure the middleware server */
 export interface Options {

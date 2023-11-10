@@ -3,7 +3,8 @@ import { merge } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 
-import type { Helper, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Helper } from "../core/renderer.ts";
 import type { MinifyOptions } from "../deps/terser.ts";
 
 export interface Options {

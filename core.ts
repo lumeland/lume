@@ -7,6 +7,7 @@ import type {
 import type {
   ComponentsOptions,
   default as Site,
+  Plugin,
   ServerOptions,
   SiteEvent,
   SiteEventType,
@@ -21,6 +22,7 @@ import type {
   EventOptions,
 } from "./core/events.ts";
 
+import type { Archetype } from "./cli/create.ts";
 import type { default as Scripts, ScriptOrFunction } from "./core/scripts.ts";
 
 import type { default as FS, Entry, Loader } from "./core/fs.ts";
@@ -82,10 +84,8 @@ import type { SourceMap } from "./plugins/source_maps.ts";
 /** The method that installs a plugin */
 type PluginSetup = (options: unknown) => Plugin;
 
-/** A generic Lume plugin */
-type Plugin = (site: Site) => void;
-
 export type {
+  Archetype,
   Component,
   ComponentFunction,
   ComponentLoader,
@@ -263,10 +263,4 @@ export interface PageHelpers {
   htmlUrl: Helper;
 
   [key: string]: Helper | undefined;
-}
-
-/** Definition used to create a new Page */
-export interface Archetype {
-  path: string;
-  content: string | Record<string, unknown> | Uint8Array;
 }

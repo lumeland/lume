@@ -1,7 +1,8 @@
 import { posix } from "../deps/path.ts";
 import { contentType } from "../deps/media_types.ts";
 
-import type { Middleware, Site } from "../core.ts";
+import type { Middleware } from "../core/server.ts";
+import type Site from "../core/site.ts";
 
 export type Router = (url: URL) => string | undefined;
 

@@ -1,6 +1,6 @@
 import { brightGreen, dim, red } from "../deps/colors.ts";
 
-import type { Middleware } from "../core.ts";
+import type { Middleware } from "../core/server.ts";
 
 /** Log the request/responses */
 export default function log(): Middleware {

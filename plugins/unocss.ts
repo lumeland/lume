@@ -1,8 +1,8 @@
-import type { Site } from "../core.ts";
 import { merge, read } from "../core/utils.ts";
 import { Page } from "../core/filesystem.ts";
 import { createGenerator, presetUno, resetUrl } from "../deps/unocss.ts";
 
+import type Site from "../core/site.ts";
 import type { UserConfig } from "../deps/unocss.ts";
 
 export interface Options {

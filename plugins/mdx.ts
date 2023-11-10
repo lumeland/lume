@@ -3,7 +3,9 @@ import { merge } from "../core/utils.ts";
 import { compile, remarkGfm } from "../deps/mdx.ts";
 import { join, toFileUrl } from "../deps/path.ts";
 
-import type { Data, Engine, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Engine } from "../core/renderer.ts";
+import type { Data } from "../core/filesystem.ts";
 
 export interface Options {
   /** List of extensions this plugin applies to */

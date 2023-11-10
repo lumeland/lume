@@ -1,6 +1,7 @@
 import { merge } from "../core/utils.ts";
 
-import type { Data, Page, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Data, Page } from "../core/filesystem.ts";
 
 type RelationFilter = (data1: Data, data2: Data) => boolean;
 

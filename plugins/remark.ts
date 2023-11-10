@@ -10,7 +10,9 @@ import {
   unified,
 } from "../deps/remark.ts";
 
-import type { Data, Engine, Helper, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Engine, Helper } from "../core/renderer.ts";
+import type { Data } from "../core/filesystem.ts";
 
 export interface Options {
   /** List of extensions this plugin applies to */

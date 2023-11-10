@@ -1,6 +1,8 @@
 import { merge } from "../core/utils.ts";
 
-import type { Data, Searcher, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type Searcher from "../core/searcher.ts";
+import type { Data } from "../core/filesystem.ts";
 
 export interface Options {
   /** The helper name */

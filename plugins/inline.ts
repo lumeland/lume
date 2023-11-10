@@ -5,7 +5,9 @@ import binaryLoader from "../core/loaders/binary.ts";
 import textLoader from "../core/loaders/text.ts";
 import { contentType } from "../deps/media_types.ts";
 
-import type { Loader, Page, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Loader } from "../core/fs.ts";
+import type { Page } from "../core/filesystem.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

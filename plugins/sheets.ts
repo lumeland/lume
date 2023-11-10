@@ -2,7 +2,8 @@ import { ParsingOptions, read, utils } from "../deps/sheetjs.ts";
 import { merge } from "../core/utils.ts";
 import loadFile from "../core/loaders/binary.ts";
 
-import type { Data, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Data } from "../core/filesystem.ts";
 
 export interface Options {
   /** Extensions processed by this plugin */

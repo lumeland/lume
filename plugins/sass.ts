@@ -10,7 +10,7 @@ import { Page } from "../core/filesystem.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import textLoader from "../core/loaders/text.ts";
 
-import type { Site } from "../core.ts";
+import type Site from "../core/site.ts";
 import type { StringOptions } from "../deps/sass.ts";
 
 type SassOptions = Omit<StringOptions<"async">, "url" | "syntax">;

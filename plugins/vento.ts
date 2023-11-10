@@ -2,8 +2,11 @@ import { engine, FileLoader } from "../deps/vento.ts";
 import loader from "../core/loaders/text.ts";
 import { merge, normalizePath } from "../core/utils.ts";
 
+import type Site from "../core/site.ts";
+import type { Data } from "../core/filesystem.ts";
+import type { Engine, Helper } from "../core/renderer.ts";
+import type FS from "../core/fs.ts";
 import type { Environment, Token } from "../deps/vento.ts";
-import type { Data, Engine, FS, Helper, Site } from "../core.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

@@ -1,6 +1,7 @@
 import { assertEquals, assertStrictEquals as equals } from "../deps/assert.ts";
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
-import { SiteEvent } from "../core.ts";
+
+import type { SiteEvent } from "../core/site.ts";
 
 Deno.test("build a simple site", async (t) => {
   const site = getSite({

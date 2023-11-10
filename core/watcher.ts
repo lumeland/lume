@@ -2,7 +2,8 @@ import { join, relative } from "../deps/path.ts";
 import { normalizePath } from "./utils.ts";
 import Events from "./events.ts";
 
-import type { Event, EventListener, EventOptions, Site } from "../core.ts";
+import type Site from "./site.ts";
+import type { Event, EventListener, EventOptions } from "./events.ts";
 
 /** The options to configure the local server */
 export interface Options {

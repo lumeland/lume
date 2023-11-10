@@ -2,7 +2,7 @@ import lume from "../mod.ts";
 import { toFileUrl } from "../deps/path.ts";
 import { getConfigFile, isUrl, log } from "../core/utils.ts";
 
-import type { Site } from "../core.ts";
+import type Site from "../core/site.ts";
 
 interface Options {
   config?: string;

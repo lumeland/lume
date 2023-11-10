@@ -1,7 +1,8 @@
 import { posix } from "../deps/path.ts";
 import { documentToString, stringToDocument } from "./utils.ts";
 
-import type { PageData, ProxyComponents } from "../core.ts";
+import type { PageData } from "../core.ts";
+import type { ProxyComponents } from "./source.ts";
 import type { Entry } from "./fs.ts";
 
 /** A page of the site */

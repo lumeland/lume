@@ -3,7 +3,8 @@ import lume from "../mod.ts";
 import { basename, fromFileUrl, join } from "../deps/path.ts";
 import { DeepPartial } from "../core/utils.ts";
 
-import type { Site, SiteOptions, SourceMap } from "../core.ts";
+import type { default as Site, SiteOptions } from "../core/site.ts";
+import type { SourceMap } from "../plugins/source_maps.ts";
 
 const cwUrl = import.meta.resolve("./");
 const cwd = fromFileUrl(import.meta.resolve("./"));

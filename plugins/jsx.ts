@@ -2,7 +2,9 @@ import { React, ReactDOMServer } from "../deps/react.ts";
 import loader from "../core/loaders/module.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Data, Engine, Helper, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Engine, Helper } from "../core/renderer.ts";
+import type { Data } from "../core/filesystem.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

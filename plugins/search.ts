@@ -1,6 +1,6 @@
 import { merge } from "../core/utils.ts";
 
-import { Site } from "../core.ts";
+import type Site from "../core/site.ts";
 
 export interface Options {
   /** The helper name */

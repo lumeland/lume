@@ -4,7 +4,7 @@ import { Page } from "../core/filesystem.ts";
 import * as pagefind from "../deps/pagefind.ts";
 
 import type { CustomRecord } from "../deps/pagefind.ts";
-import type { Site } from "../core.ts";
+import type Site from "../core/site.ts";
 
 export interface TranslationsOptions {
   /** English default: "Search" */

@@ -3,7 +3,8 @@ import { getDataValue } from "./utils.ts";
 import { $XML, stringify } from "../deps/xml.ts";
 import { Page } from "../core/filesystem.ts";
 
-import type { Data, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Data } from "../core/filesystem.ts";
 
 export interface Options {
   /** The output filenames */

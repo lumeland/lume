@@ -6,7 +6,7 @@ import { Page } from "../core/filesystem.ts";
 import Cache from "../core/cache.ts";
 import { svg2png } from "../deps/svg2png.ts";
 
-import type { Plugin, Site } from "../core.ts";
+import type Site from "../core/site.ts";
 import type { IMagickImage } from "../deps/imagick.ts";
 
 export interface Options {
@@ -53,7 +53,7 @@ export interface Favicon {
   format: string;
 }
 
-export default function (userOptions?: Options): Plugin {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

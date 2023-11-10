@@ -1,7 +1,7 @@
 import json from "../core/loaders/json.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Site } from "../core.ts";
+import type Site from "../core/site.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

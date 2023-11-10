@@ -1,7 +1,7 @@
 import { parse } from "../../deps/toml.ts";
 import { isPlainObject, read } from "../utils.ts";
 
-import type { Data } from "../../core.ts";
+import type { Data } from "../filesystem.ts";
 
 /** Load and parse a TOML file */
 export default async function toml(path: string): Promise<Data> {

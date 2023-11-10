@@ -1,4 +1,4 @@
-import type { Middleware } from "../core.ts";
+import type { Middleware } from "../core/server.ts";
 
 /** Add a header to prevent the browser cache */
 export default function noCache(): Middleware {

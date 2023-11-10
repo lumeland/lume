@@ -1,7 +1,7 @@
 import { extract, test } from "../../deps/front_matter.ts";
 import { read } from "../utils.ts";
 
-import type { Data } from "../../core.ts";
+import type { Data } from "../filesystem.ts";
 
 /** Load a text file. Detect and parse the front matter */
 export default async function text(path: string): Promise<Data> {

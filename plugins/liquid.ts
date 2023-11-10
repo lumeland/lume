@@ -12,7 +12,9 @@ import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Data, Engine, Helper, HelperOptions, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
+import type { Data } from "../core/filesystem.ts";
 import type {
   Context,
   Emitter,

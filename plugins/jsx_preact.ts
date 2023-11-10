@@ -2,7 +2,9 @@ import { preact, renderToString } from "../deps/preact.ts";
 import loader from "../core/loaders/module.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Data, Engine, Helper, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Engine, Helper } from "../core/renderer.ts";
+import type { Data } from "../core/filesystem.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -66,6 +68,7 @@ export class PreactJsxEngine implements Engine {
           : content) as preact.VNode;
 
     if (element && typeof element === "object") {
+      // @ts-ignore - Preact types are not up to date
       element.toString = () => renderToString(element);
     }
 

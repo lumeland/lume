@@ -1,7 +1,7 @@
 import { normalizePath } from "../core/utils.ts";
 import reloadClient from "./reload_client.js";
 
-import type { Middleware } from "../core.ts";
+import type { Middleware } from "../core/server.ts";
 import type { Watcher } from "../core/watcher.ts";
 
 export interface Options {

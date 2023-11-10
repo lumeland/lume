@@ -1,6 +1,6 @@
 import { merge } from "../core/utils.ts";
 
-import type { Middleware, RequestHandler } from "../core.ts";
+import type { Middleware, RequestHandler } from "../core/server.ts";
 
 export interface Options {
   realm: string;

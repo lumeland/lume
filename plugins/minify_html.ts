@@ -2,7 +2,8 @@ import { minify } from "../deps/minify_html.ts";
 import { merge } from "../core/utils.ts";
 
 import type { Options as MinifyOptions } from "../deps/minify_html.ts";
-import type { Page, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Page } from "../core/filesystem.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to. */

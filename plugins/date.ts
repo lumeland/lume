@@ -1,8 +1,9 @@
 import { format } from "../deps/date.ts";
 import { merge } from "../core/utils.ts";
 
+import type Site from "../core/site.ts";
 import type { Locale } from "../deps/date.ts";
-import type { Helper, Site } from "../core.ts";
+import type { Helper } from "../core/renderer.ts";
 
 export interface Options {
   /** The name of the helper */

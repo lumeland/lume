@@ -3,7 +3,8 @@ import { isPlainObject, log, merge } from "../core/utils.ts";
 import { posix } from "../deps/path.ts";
 import { getUrl } from "../core/source.ts";
 
-import type { PageData, Plugin } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { PageData } from "../core.ts";
 
 export interface Options {
   /** The list of extensions used for this plugin */
@@ -22,10 +23,10 @@ export const defaults: Options = {
   languages: [],
 };
 
-export default function multilanguage(userOptions: Options): Plugin {
+export default function multilanguage(userOptions: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site) => {
+  return (site: Site) => {
     // Configure the merged keys
     options.languages.forEach((lang) => site.mergeKey(lang, "object"));
 

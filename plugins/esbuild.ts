@@ -14,7 +14,8 @@ import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/filesystem.ts";
 import textLoader from "../core/loaders/text.ts";
 
-import type { DenoConfig, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { DenoConfig } from "../core/utils.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

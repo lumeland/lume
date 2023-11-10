@@ -1,6 +1,6 @@
 import { merge } from "../core/utils.ts";
 
-import type { Site } from "../core.ts";
+import type Site from "../core/site.ts";
 
 export interface Options {
   /** The key name to store the reading info value and the filter */

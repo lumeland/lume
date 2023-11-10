@@ -5,7 +5,8 @@ import onDemand, {
 } from "../middlewares/on_demand.ts";
 import { posix } from "../deps/path.ts";
 
-import type { Page, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Page } from "../core/filesystem.ts";
 
 export interface Options {
   /** The file path to save the routes */

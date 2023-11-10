@@ -1,7 +1,7 @@
 import tailwind, { Config } from "../deps/tailwindcss.ts";
 import { getExtension, merge } from "../core/utils.ts";
 
-import type { Site } from "../core.ts";
+import type Site from "../core/site.ts";
 
 export interface Options {
   /** Extensions processed by this plugin to extract the utility classes */

@@ -1,7 +1,8 @@
 import { getLumeVersion, merge } from "../core/utils.ts";
 import { getDataValue } from "./utils.ts";
 
-import type { Page, Plugin, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Page } from "../core/filesystem.ts";
 
 export interface Options {
   /** The list extensions this plugin applies to */
@@ -57,7 +58,7 @@ const defaults: Options = {
 const defaultGenerator = `Lume ${getLumeVersion()}`;
 
 /** A plugin to insert meta tags for SEO and social media */
-export default function (userOptions?: Options): Plugin {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

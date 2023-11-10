@@ -5,7 +5,7 @@ import { posix } from "../deps/path.ts";
 import Events from "./events.ts";
 import { serveFile as HttpServeFile } from "../deps/http.ts";
 
-import type { Event, EventListener, EventOptions } from "../core.ts";
+import type { Event, EventListener, EventOptions } from "./events.ts";
 
 /** The options to configure the local server */
 export interface Options extends Deno.ServeOptions {

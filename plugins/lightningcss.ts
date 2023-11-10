@@ -5,7 +5,7 @@ import { Page } from "../core/filesystem.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { posix } from "../deps/path.ts";
 
-import type { Site } from "../core.ts";
+import type Site from "../core/site.ts";
 import type {
   BundleAsyncOptions,
   CustomAtRules,

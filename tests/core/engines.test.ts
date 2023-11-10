@@ -1,7 +1,8 @@
 import { assertStrictEquals as equals } from "../../deps/assert.ts";
 import Site from "../../core/site.ts";
 
-import type { Data, Engine } from "../../core.ts";
+import type { Data } from "../../core/filesystem.ts";
+import type { Engine } from "../../core/renderer.ts";
 
 Deno.test("Engines", async (t) => {
   const site = new Site();

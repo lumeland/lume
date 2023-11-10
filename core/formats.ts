@@ -1,4 +1,5 @@
-import type { Engine, Loader } from "../core.ts";
+import type { Engine } from "./renderer.ts";
+import type { Loader } from "./fs.ts";
 
 export interface Format {
   /** The file extension for this format */

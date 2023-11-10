@@ -3,7 +3,7 @@ import { getPathAndExtension, merge } from "../core/utils.ts";
 import { contentType } from "../deps/media_types.ts";
 
 import type { MagickFormat } from "../deps/imagick.ts";
-import type { Plugin, Site } from "../core.ts";
+import type Site from "../core/site.ts";
 
 interface SourceFormat {
   width?: number;
@@ -29,7 +29,7 @@ export const defaults: Options = {
   order: ["jxl", "avif", "webp", "png", "jpg"],
 };
 
-export default function (userOptions?: Options): Plugin {
+export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

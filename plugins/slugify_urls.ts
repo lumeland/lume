@@ -3,7 +3,10 @@ import createSlugifier, {
   defaults as slugifierDefaults,
 } from "../core/slugifier.ts";
 
-import type { Extensions, Helper, Page, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Page } from "../core/filesystem.ts";
+import type { Helper } from "../core/renderer.ts";
+import type { Extensions } from "../core/processors.ts";
 import type { Options as SlugifierOptions } from "../core/slugifier.ts";
 
 export interface Options extends SlugifierOptions {

@@ -1,6 +1,6 @@
 import { concurrent } from "./utils.ts";
 
-import type { Page } from "../core.ts";
+import type { Page } from "./filesystem.ts";
 
 export type Extensions = string[] | "*";
 

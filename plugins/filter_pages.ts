@@ -1,6 +1,8 @@
 import { merge } from "../core/utils.ts";
 
-import type { Extensions, Page, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Extensions } from "../core/processors.ts";
+import type { Page } from "../core/filesystem.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

@@ -15,28 +15,24 @@ import Scripts from "./scripts.ts";
 import Writer from "./writer.ts";
 import textLoader from "./loaders/text.ts";
 
+import type { Component, Components } from "../core/component_loader.ts";
 import type {
-  Component,
-  Components,
   Data,
-  Engine,
-  Event,
-  EventListener,
-  EventOptions,
-  Extensions,
-  Helper,
-  HelperOptions,
-  Loader,
   MergeStrategy,
-  Middleware,
-  MultiProcessor,
   Page,
-  Plugin,
-  Processor,
-  ScopeFilter,
-  ScriptOrFunction,
   StaticFile,
-} from "../core.ts";
+} from "../core/filesystem.ts";
+import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
+import type { Event, EventListener, EventOptions } from "../core/events.ts";
+import type {
+  Extensions,
+  MultiProcessor,
+  Processor,
+} from "../core/processors.ts";
+import type { Loader } from "../core/fs.ts";
+import type { Middleware } from "../core/server.ts";
+import type { ScopeFilter } from "../core/scopes.ts";
+import type { ScriptOrFunction } from "../core/scripts.ts";
 
 /** Default options of the site */
 const defaults: SiteOptions = {
@@ -907,3 +903,6 @@ export type SiteEvent<T extends SiteEventType = SiteEventType> =
 
 /** The available event types */
 export type SiteEventType = keyof SiteEventMap;
+
+/** A generic Lume plugin */
+export type Plugin = (site: Site) => void;

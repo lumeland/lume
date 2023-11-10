@@ -1,4 +1,4 @@
-import type { Middleware } from "../core.ts";
+import type { Middleware } from "../core/server.ts";
 
 export interface Options {
   add: boolean;

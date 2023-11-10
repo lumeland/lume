@@ -3,7 +3,7 @@ import { encodeBase64 } from "../deps/base64.ts";
 import { Page } from "../core/filesystem.ts";
 import { basename, join, toFileUrl } from "../deps/path.ts";
 
-import type { Site } from "../core.ts";
+import type Site from "../core/site.ts";
 
 export interface Options {
   /** Set true to inline the source map in the output file */

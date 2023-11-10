@@ -1,4 +1,4 @@
-import type { Data } from "../core.ts";
+import type { Data } from "../core/filesystem.ts";
 
 /**
  * Common utils used by several plugins

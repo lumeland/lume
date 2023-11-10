@@ -2,7 +2,8 @@ import { katex, KatexOptions } from "../deps/katex.ts";
 import { renderMathInElement } from "../deps/katex-auto-render/auto-render.ts";
 import { merge } from "../core/utils.ts";
 
-import type { Page, Site } from "../core.ts";
+import type Site from "../core/site.ts";
+import type { Page } from "../core/filesystem.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

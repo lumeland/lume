@@ -1,6 +1,7 @@
 import { globToRegExp } from "../deps/path.ts";
 import { normalizePath } from "./utils.ts";
-import { Data, Page, StaticFile } from "../core.ts";
+
+import type { Data, Page, StaticFile } from "./filesystem.ts";
 
 export interface Options {
   /** The pages array */
