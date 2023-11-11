@@ -112,6 +112,7 @@ export interface DenoConfig {
   compilerOptions?: {
     jsx?: "jsx" | "react-jsx";
     jsxImportSource?: string;
+    types?: string[];
   };
   [key: string]: unknown;
 }
@@ -355,6 +356,12 @@ export function updateLumeVersion(url: URL, denoConfig: DenoConfigResult) {
     tasks.serve = "deno task lume -s";
   }
   config.tasks = tasks;
+
+  // Configure the compiler options
+  const compilerOptions = config.compilerOptions || {};
+  compilerOptions.types = compilerOptions.types || [];
+  compilerOptions.types.push("lume/types.ts");
+  config.compilerOptions = compilerOptions;
 }
 
 /** Update the Deno configuration */
