@@ -16,7 +16,13 @@ import Writer from "./writer.ts";
 import textLoader from "./loaders/text.ts";
 
 import type { Component, Components } from "../core/component_loader.ts";
-import type { Data, MergeStrategy, Page, StaticFile } from "../core/file.ts";
+import type {
+  Data,
+  MergeStrategy,
+  Page,
+  RawData,
+  StaticFile,
+} from "../core/file.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { Event, EventListener, EventOptions } from "../core/events.ts";
 import type {
@@ -105,10 +111,10 @@ export default class Site {
   writer: Writer;
 
   /** Data assigned with site.data() */
-  scopedData = new Map<string, Data>([["/", {}]]);
+  scopedData = new Map<string, RawData>([["/", {}]]);
 
   /** Pages created with site.page() */
-  scopedPages = new Map<string, Data[]>();
+  scopedPages = new Map<string, RawData[]>();
 
   /** Components created with site.component() */
   scopedComponents = new Map<string, Components>();
@@ -204,7 +210,7 @@ export default class Site {
     this.fs.options.ignore = this.options.watcher.ignore;
   }
 
-  get globalData(): Data {
+  get globalData(): RawData {
     return this.scopedData.get("/")!;
   }
 
@@ -377,7 +383,7 @@ export default class Site {
   }
 
   /** Register a page */
-  page(data: Data, scope = "/"): this {
+  page(data: Partial<Data>, scope = "/"): this {
     const pages = this.scopedPages.get(scope) || [];
     pages.push(data);
     this.scopedPages.set(scope, pages);
@@ -597,11 +603,8 @@ export default class Site {
       0,
       this.pages.length,
       ...this.pages.filter((page) => {
-        if (page.data.url === false) {
-          return false;
-        }
-
         const shouldSkip = !page.content || page.data.ondemand;
+
         if (shouldSkip) {
           log.info(
             `[Lume] <cyan>Skipped page</cyan> ${page.data.url} (${

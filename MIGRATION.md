@@ -32,8 +32,8 @@
 - Removed `Error` class to print the errors. `Deno.inspect()` is used instead.
 - Refactor of `Server` function to work with `Deno.serve()` API #501.
 - Use the lib `dom` and `dom.iterable` types instead of `deno-dom`.
-- Improved plugin types.
 - Renamed `core/filesystem.ts` to `core/file.ts`.
+- Revamp of types
 
 ## `search` Plugin
 

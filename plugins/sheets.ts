@@ -3,7 +3,7 @@ import { merge } from "../core/utils.ts";
 import loadFile from "../core/loaders/binary.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/file.ts";
+import type { RawData } from "../core/file.ts";
 
 export interface Options {
   /** Extensions processed by this plugin */
@@ -26,14 +26,14 @@ export const defaults: Options = {
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  async function loader(path: string): Promise<Data> {
+  async function loader(path: string): Promise<RawData> {
     const { content } = await loadFile(path);
     const wb = read(content, options.options);
 
     // Return only the first sheet
     if (options.sheets === "first" || wb.SheetNames.length === 1) {
       const sheet = wb.Sheets[wb.SheetNames[0]];
-      return utils.sheet_to_json(sheet) as unknown as Data;
+      return utils.sheet_to_json(sheet) as unknown as RawData;
     }
 
     // Return all sheets by name

@@ -5,7 +5,6 @@ import createSlugifier, {
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
-import type { Helper } from "../core/renderer.ts";
 import type { Extensions } from "../core/processors.ts";
 import type { Options as SlugifierOptions } from "../core/slugifier.ts";
 
@@ -26,7 +25,7 @@ export default function (userOptions?: Options) {
   const slugify = createSlugifier(options);
 
   return (site: Site) => {
-    site.filter("slugify", slugify as Helper);
+    site.filter("slugify", slugify);
     site.preprocess(options.extensions, slugifyUrls);
 
     // Slugify the static files
@@ -46,4 +45,14 @@ export default function (userOptions?: Options) {
 
 function extensionMatches(path: string, extensions: Extensions): boolean {
   return extensions === "*" || extensions.some((ext) => path.endsWith(ext));
+}
+
+/** Extends PageHelpers interface */
+declare global {
+  namespace Lume {
+    export interface PageHelpers {
+      /** @see https://lume.land/plugins/slugify_urls/ */
+      slugify: (string: string) => string;
+    }
+  }
 }

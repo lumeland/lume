@@ -4,7 +4,6 @@ import { merge } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
-import type { Data } from "../core/file.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -25,9 +24,6 @@ export const defaults: Options = {
   extensions: [".jsx", ".tsx"],
 };
 
-// JSX children type
-export type Children = React.ReactNode | React.ReactNode[];
-
 /** Template engine to render JSX files */
 export class JsxEngine implements Engine {
   jsxImportSource = "npm:react";
@@ -42,7 +38,7 @@ export class JsxEngine implements Engine {
 
   deleteCache() {}
 
-  async render(content: unknown, data: Data = {}) {
+  async render(content: unknown, data: Record<string, unknown> = {}) {
     // The content is a string, so we have to convert to a React element
     if (typeof content === "string") {
       content = React.createElement("div", {
@@ -76,7 +72,10 @@ export class JsxEngine implements Engine {
     return element;
   }
 
-  renderComponent(content: unknown, data: Data = {}): { toString(): string } {
+  renderComponent(
+    content: unknown,
+    data: Record<string, unknown> = {},
+  ): { toString(): string } {
     const element = typeof content === "function"
       ? content(data, this.helpers)
       : content;
@@ -118,4 +117,17 @@ export default function (userOptions?: Options) {
       subExtension: options.pageSubExtension,
     });
   };
+}
+
+/** Extends PageData interface */
+declare global {
+  namespace Lume {
+    export interface PageData {
+      /**
+       * The JSX children elements
+       * @see https://lume.land/plugins/jsx/
+       */
+      children?: React.ReactNode | React.ReactNode[];
+    }
+  }
 }

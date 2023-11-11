@@ -4,7 +4,6 @@ import { merge } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
-import type { Data } from "../core/file.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -42,7 +41,7 @@ export class PreactJsxEngine implements Engine {
 
   deleteCache() {}
 
-  async render(content: unknown, data: Data = {}) {
+  async render(content: unknown, data: Record<string, unknown> = {}) {
     // The content is a string, so we have to convert it to a Preact element
     if (typeof content === "string") {
       content = preact.h("div", {
@@ -75,7 +74,7 @@ export class PreactJsxEngine implements Engine {
     return element;
   }
 
-  renderComponent(content: unknown, data: Data = {}) {
+  renderComponent(content: unknown, data: Record<string, unknown> = {}) {
     const element = typeof content === "function"
       ? content(data, this.helpers)
       : content;

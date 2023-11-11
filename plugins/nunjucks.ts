@@ -4,9 +4,8 @@ import { merge, normalizePath, resolveInclude } from "../core/utils.ts";
 import { basename, join, posix } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/file.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
-import type { ComponentFunction, ProxyComponents } from "../core/source.ts";
+import type { ProxyComponents } from "../core/source.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -70,7 +69,11 @@ export class NunjucksEngine implements Engine {
     });
   }
 
-  render(content: string, data?: Data, filename?: string) {
+  render(
+    content: string,
+    data?: Record<string, unknown>,
+    filename?: string,
+  ): Promise<string> {
     if (!filename) {
       return new Promise((resolve, reject) => {
         this.env.renderString(content, data, (err: Error, result: string) => {
@@ -96,7 +99,11 @@ export class NunjucksEngine implements Engine {
     });
   }
 
-  renderComponent(content: string, data?: Data, filename?: string): string {
+  renderComponent(
+    content: string,
+    data?: Record<string, unknown>,
+    filename?: string,
+  ): string {
     if (!filename) {
       return this.env.renderString(content, data);
     }
@@ -213,7 +220,7 @@ export default function (userOptions?: Options) {
     });
 
     // Register the njk filter
-    site.filter("njk", filter as Helper, true);
+    site.filter("njk", filter, true);
 
     // Register the component helper
     engine.addHelper("comp", (...args) => {
@@ -230,8 +237,7 @@ export default function (userOptions?: Options) {
       }
 
       const names = name.split(".") as string[];
-      let component: ProxyComponents | ComponentFunction | undefined =
-        components;
+      let component: ProxyComponents | undefined = components;
 
       while (names.length) {
         try {
@@ -252,7 +258,10 @@ export default function (userOptions?: Options) {
       body: true,
     });
 
-    function filter(string: string, data?: Data) {
+    function filter(
+      string: string,
+      data?: Record<string, unknown>,
+    ): Promise<string> {
       return engine.render(string, { ...site.scopedData.get("/"), ...data });
     }
   };
@@ -338,4 +347,14 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
   };
 
   return tagExtension;
+}
+
+/** Extends PageHelpers interface */
+declare global {
+  namespace Lume {
+    export interface PageHelpers {
+      /** @see https://lume.land/plugins/nunjucks/ */
+      njk: (string: string, data?: Record<string, unknown>) => Promise<string>;
+    }
+  }
 }

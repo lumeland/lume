@@ -164,3 +164,16 @@ function addMeta(
   document.head.appendChild(meta);
   document.head.appendChild(document.createTextNode("\n"));
 }
+
+/** Extends PageData interface */
+declare global {
+  namespace Lume {
+    export interface PageData {
+      /**
+       * Meta elements
+       * @see https://lume.land/plugins/metas/
+       */
+      metas?: MetaData;
+    }
+  }
+}

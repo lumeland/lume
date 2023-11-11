@@ -1,6 +1,6 @@
 import { posix } from "../deps/path.ts";
 
-import type { Data } from "./file.ts";
+import type { RawData } from "./file.ts";
 
 type EntryType = "file" | "directory";
 
@@ -9,7 +9,7 @@ export interface Options {
   ignore?: (string | ((path: string) => boolean))[];
 }
 
-export type Loader = (path: string) => Promise<Data>;
+export type Loader = (path: string) => Promise<RawData>;
 
 export class Entry {
   name: string;
@@ -18,7 +18,7 @@ export class Entry {
   src: string;
   children = new Map<string, Entry>();
   flags = new Set<string>();
-  #content = new Map<Loader, Promise<Data> | Data>();
+  #content = new Map<Loader, Promise<RawData> | RawData>();
   #info?: Deno.FileInfo;
 
   constructor(name: string, path: string, type: EntryType, src: string) {
@@ -34,7 +34,7 @@ export class Entry {
     this.flags.clear();
   }
 
-  getContent(loader: Loader): Promise<Data> | Data {
+  getContent(loader: Loader): Promise<RawData> | RawData {
     if (!this.#content.has(loader)) {
       this.#content.set(loader, loader(this.src));
     }

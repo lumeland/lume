@@ -125,3 +125,16 @@ export default function (userOptions?: Options) {
     });
   };
 }
+
+/** Extends PageData interface */
+declare global {
+  namespace Lume {
+    export interface PageData {
+      /**
+       * Decap CMS configuration
+       * @see https://lume.land/plugins/decap_cms/
+       */
+      decap_cms: Record<string, unknown>;
+    }
+  }
+}

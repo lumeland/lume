@@ -1,9 +1,9 @@
 import { isPlainObject, isUrl } from "../utils.ts";
 
-import type { Data } from "../file.ts";
+import type { RawData } from "../file.ts";
 
 /** Load a JavaScript/TypeScript file. Use a random hash to prevent caching */
-export default async function module(path: string): Promise<Data> {
+export default async function module(path: string): Promise<RawData> {
   const url = isUrl(path) ? path : `file://${path}`;
   const specifier = Deno.env.get("LUME_LIVE_RELOAD") === "true"
     ? `${url}#${Date.now()}`
@@ -13,9 +13,9 @@ export default async function module(path: string): Promise<Data> {
   return toData(mod);
 }
 
-/** Transform the imported module to Data */
-export function toData(mod: Record<string, unknown>): Data {
-  const data: Data = {};
+/** Transform the imported module to RawData */
+export function toData(mod: Record<string, unknown>): RawData {
+  const data: RawData = {};
 
   for (const [name, value] of Object.entries(mod)) {
     if (name === "default") {

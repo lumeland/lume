@@ -5,7 +5,6 @@ import { join, toFileUrl } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine } from "../core/renderer.ts";
-import type { Data } from "../core/file.ts";
 
 export interface Options {
   /** List of extensions this plugin applies to */
@@ -63,7 +62,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
 
   async render(
     content: string,
-    data?: Data,
+    data?: Record<string, unknown>,
     filename?: string,
   ) {
     const baseUrl = toFileUrl(join(this.baseUrl, filename!)).href;

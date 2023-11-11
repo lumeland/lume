@@ -1,6 +1,7 @@
 import { merge } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
+import type { Page } from "../core/file.ts";
 
 /** The options for the paginate helper */
 export interface PaginateOptions {
@@ -123,4 +124,29 @@ export function createPaginator(defaults: PaginateOptions): Paginator {
       };
     }
   };
+}
+
+/** Extends PageData interface */
+declare global {
+  namespace Lume {
+    export interface PageData {
+      /**
+       * The paginator helper
+       * @see https://lume.land/plugins/paginate/
+       */
+      paginate: Paginator;
+
+      /**
+       * The pagination info
+       * @see https://lume.land/plugins/paginate/
+       */
+      pagination?: PaginationInfo;
+
+      /**
+       * The pagination result
+       * @see https://lume.land/plugins/paginate/
+       */
+      results?: Page[];
+    }
+  }
 }

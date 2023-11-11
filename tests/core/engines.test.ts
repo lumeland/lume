@@ -1,7 +1,6 @@
 import { assertStrictEquals as equals } from "../../deps/assert.ts";
 import Site from "../../core/site.ts";
 
-import type { Data } from "../../core/file.ts";
 import type { Engine } from "../../core/renderer.ts";
 
 Deno.test("Engines", async (t) => {
@@ -17,10 +16,16 @@ Deno.test("Engines", async (t) => {
       {
         engine: new class implements Engine {
           includes = "";
-          render(content: string, data: Data): Promise<string> {
+          render(
+            content: string,
+            data: Record<string, unknown>,
+          ): Promise<string> {
             return Promise.resolve(this.renderComponent(content, data));
           }
-          renderComponent(content: string, data: Data): string {
+          renderComponent(
+            content: string,
+            data: Record<string, unknown>,
+          ): string {
             return content + data.foo;
           }
           addHelper() {}

@@ -5,7 +5,6 @@ import { merge } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
-import type { Data } from "../core/file.ts";
 import type { Options as PugOptions } from "../deps/pug.ts";
 
 export interface Options {
@@ -41,7 +40,7 @@ export class PugEngine implements Engine {
   options: PugOptions;
   compiler: Compiler;
   filters: Record<string, Helper> = {};
-  cache = new Map<string, (data?: Data) => string>();
+  cache = new Map<string, (data?: Record<string, unknown>) => string>();
   basePath: string;
   includes: string;
 
@@ -61,15 +60,23 @@ export class PugEngine implements Engine {
     this.cache.clear();
   }
 
-  render(content: string, data?: Data, filename?: string): string {
+  render(
+    content: string,
+    data?: Record<string, unknown>,
+    filename?: string,
+  ): string {
     return this.renderComponent(content, data, filename);
   }
 
-  renderComponent(content: string, data?: Data, filename?: string): string {
+  renderComponent(
+    content: string,
+    data?: Record<string, unknown>,
+    filename?: string,
+  ): string {
     const dataWithFilters = {
       ...data,
       filters: {
-        ...data?.filters,
+        ...data?.filters || {},
         ...this.filters,
       },
     };
@@ -137,10 +144,20 @@ export default function (userOptions?: Options) {
     });
 
     // Register the pug filter
-    site.filter("pug", filter as Helper, true);
+    site.filter("pug", filter);
 
-    function filter(string: string, data?: Data) {
+    function filter(string: string, data?: Record<string, unknown>): string {
       return engine.render(string, { ...site.scopedData.get("/"), ...data });
     }
   };
+}
+
+/** Extends PageHelpers interface */
+declare global {
+  namespace Lume {
+    export interface PageHelpers {
+      /** @see https://lume.land/plugins/pug/ */
+      pug: (string: string, data?: Record<string, unknown>) => string;
+    }
+  }
 }

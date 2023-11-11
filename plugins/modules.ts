@@ -3,7 +3,6 @@ import { merge } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
-import type { Data } from "../core/file.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -36,13 +35,16 @@ export class ModuleEngine implements Engine {
 
   deleteCache() {}
 
-  async render(content: unknown, data: Data): Promise<unknown> {
+  async render(
+    content: unknown,
+    data: Record<string, unknown>,
+  ): Promise<unknown> {
     return typeof content === "function"
       ? await content(data, this.helpers)
       : content;
   }
 
-  renderComponent(content: unknown, data: Data): string {
+  renderComponent(content: unknown, data: Record<string, unknown>): string {
     return typeof content === "function"
       ? content(data, this.helpers)
       : content;

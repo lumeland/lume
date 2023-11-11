@@ -12,7 +12,7 @@ import {
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
-import type { Data } from "../core/file.ts";
+import type { Page } from "../core/file.ts";
 
 export interface Options {
   /** List of extensions this plugin applies to */
@@ -57,20 +57,26 @@ export class MarkdownEngine implements Engine {
 
   async render(
     content: string,
-    data?: Data,
+    data?: Record<string, unknown>,
     filename?: string,
   ): Promise<string> {
+    const page = data?.page as Page | undefined;
     return (await this.engine.process({
       value: content,
-      data: data?.page?.data,
+      data: page?.data,
       path: filename,
     })).toString();
   }
 
-  renderComponent(content: string, data?: Data, filename?: string): string {
+  renderComponent(
+    content: string,
+    data?: Record<string, unknown>,
+    filename?: string,
+  ): string {
+    const page = data?.page as Page | undefined;
     return this.engine.processSync({
       value: content,
-      data: data?.page?.data,
+      data: page?.data,
       path: filename,
     }).toString();
   }

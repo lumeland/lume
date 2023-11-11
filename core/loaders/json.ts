@@ -1,10 +1,10 @@
 import { parse } from "../../deps/jsonc.ts";
 import { isPlainObject, read } from "../utils.ts";
 
-import type { Data } from "../file.ts";
+import type { RawData } from "../file.ts";
 
 /** Load and parse a JSON / JSONC file */
-export default async function json(path: string): Promise<Data> {
+export default async function json(path: string): Promise<RawData> {
   const text = await read(path, false);
   const content = path.endsWith(".jsonc") ? parse(text) : JSON.parse(text);
 
@@ -13,7 +13,7 @@ export default async function json(path: string): Promise<Data> {
   }
 
   if (isPlainObject(content)) {
-    return content as Data;
+    return content as RawData;
   }
 
   return { content };

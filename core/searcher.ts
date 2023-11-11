@@ -11,7 +11,7 @@ export interface Options {
   files: StaticFile[];
 
   /** Context data */
-  sourceData: Map<string, Data>;
+  sourceData: Map<string, Partial<Data>>;
 
   /** Filters to apply to all page searches */
   filters?: Filter[];
@@ -24,7 +24,7 @@ type Condition = [string, string, unknown];
 export default class Searcher {
   #pages: Page[];
   #files: StaticFile[];
-  #sourceData: Map<string, Data>;
+  #sourceData: Map<string, Partial<Data>>;
   #cache = new Map<string, Data[]>();
   #filters: Filter[];
 
@@ -43,7 +43,7 @@ export default class Searcher {
   /**
    * Return the data in the scope of a path (file or folder)
    */
-  data(path = "/"): Data | undefined {
+  data(path = "/"): Partial<Data> | undefined {
     const normalized = normalizePath(path);
     const dirData = this.#sourceData.get(normalized);
 

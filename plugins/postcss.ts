@@ -10,7 +10,6 @@ import { prepareAsset, saveAsset } from "./source_maps.ts";
 import textLoader from "../core/loaders/text.ts";
 
 import type Site from "../core/site.ts";
-import type { Helper } from "../core/renderer.ts";
 import type { SourceMap } from "./source_maps.ts";
 
 export interface Options {
@@ -74,7 +73,7 @@ export default function (userOptions?: Options) {
 
     site.loadAssets(options.extensions);
     site.process(options.extensions, postCss);
-    site.filter("postcss", filter as Helper, true);
+    site.filter("postcss", filter, true);
 
     async function postCss(file: Page) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
@@ -101,7 +100,7 @@ export default function (userOptions?: Options) {
       );
     }
 
-    async function filter(code: string) {
+    async function filter(code: string): Promise<string> {
       const result = await runner.process(code, { from: undefined });
       return result.css;
     }
@@ -124,4 +123,14 @@ function configureImport(site: Site, includes: string) {
       return await site.getContent(file, textLoader) as string;
     },
   });
+}
+
+/** Extends PageHelpers interface */
+declare global {
+  namespace Lume {
+    export interface PageHelpers {
+      /** @see https://lume.land/plugins/postcss/ */
+      postcss: (code: string) => Promise<string>;
+    }
+  }
 }

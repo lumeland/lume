@@ -4,7 +4,6 @@ import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 
 import type Site from "../core/site.ts";
-import type { Helper } from "../core/renderer.ts";
 import type { MinifyOptions } from "../deps/terser.ts";
 
 export interface Options {
@@ -35,7 +34,7 @@ export default function (userOptions?: Options) {
   return (site: Site) => {
     site.loadAssets(options.extensions);
     site.process(options.extensions, terser);
-    site.filter("terser", filter as Helper, true);
+    site.filter("terser", filter, true);
 
     async function terser(page: Page) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
@@ -70,9 +69,19 @@ export default function (userOptions?: Options) {
       }
     }
 
-    async function filter(code: string) {
+    async function filter(code: string): Promise<string | undefined> {
       const output = await minify(code, options.options);
       return output.code;
     }
   };
+}
+
+/** Extends PageHelpers interface */
+declare global {
+  namespace Lume {
+    export interface PageHelpers {
+      /** @see https://lume.land/plugins/terser/#the-terser-filter */
+      terser: (code: string) => Promise<string | undefined>;
+    }
+  }
 }

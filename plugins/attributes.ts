@@ -1,5 +1,4 @@
 import type Site from "../core/site.ts";
-import type { Helper } from "../core/renderer.ts";
 
 const escapeChars: Record<string, string> = {
   "&": "&amp;",
@@ -15,7 +14,7 @@ const escapeChars: Record<string, string> = {
  */
 export default function () {
   return (site: Site) => {
-    site.filter("attr", attributes as Helper);
+    site.filter("attr", attributes);
     site.filter("class", className);
   };
 }
@@ -127,4 +126,17 @@ function escape(value: string) {
 
 function isValid(name: string, validNames: string[]) {
   return name && (!validNames.length || validNames.includes(name));
+}
+
+/** Extends PageHelpers interface */
+declare global {
+  namespace Lume {
+    export interface PageHelpers {
+      /** @see https://lume.land/plugins/attributes/ */
+      attr: (values: unknown, ...validNames: string[]) => string;
+
+      /** @see https://lume.land/plugins/attributes/ */
+      class: (...names: unknown[]) => string;
+    }
+  }
 }

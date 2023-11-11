@@ -95,18 +95,18 @@ export default class Renderer {
         );
 
         let index = 0;
-        const basePath: string | false = typeof page.data.url === "string"
-          ? posix.dirname(page.data.url)
-          : false;
+        const basePath = posix.dirname(page.data.url);
 
         for await (const data of generator) {
           if (!data.content) {
             data.content = null;
           }
           const newPage = page.duplicate(index++, mergeData(page.data, data));
-          newPage.data.url = basePath
-            ? getUrl(newPage, this.prettyUrls, basePath)
-            : false;
+          const url = getUrl(newPage, this.prettyUrls, basePath);
+          if (!url) {
+            continue;
+          }
+          newPage.data.url = url;
           newPage.data.date = getDate(newPage);
           newPage._data.layout = "layout" in data
             ? data.layout
@@ -198,7 +198,7 @@ export default class Renderer {
   /** Render a template */
   async render<T>(
     content: unknown,
-    data: Data,
+    data: Record<string, unknown>,
     filename: string,
   ): Promise<T> {
     const engines = this.#getEngine(filename, data);
@@ -295,7 +295,7 @@ export default class Renderer {
   }
 
   /** Get the engines assigned to an extension or configured in the data */
-  #getEngine(path: string, data: Data): Engine[] | undefined {
+  #getEngine(path: string, data: Partial<Data>): Engine[] | undefined {
     let { templateEngine } = data;
 
     if (templateEngine) {
@@ -329,14 +329,14 @@ export interface Engine<T = string | { toString(): string }> {
   /** Render a template (used to render pages) */
   render(
     content: unknown,
-    data?: Data,
+    data?: Record<string, unknown>,
     filename?: string,
   ): T | Promise<T>;
 
   /** Render a component (it must be synchronous) */
   renderComponent(
     content: unknown,
-    data?: Data,
+    data?: Record<string, unknown>,
     filename?: string,
   ): T;
 

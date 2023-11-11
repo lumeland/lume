@@ -3,7 +3,6 @@ import loader from "../core/loaders/text.ts";
 import { merge, normalizePath } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/file.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
 import type FS from "../core/fs.ts";
 import type { Environment, Token } from "../deps/vento.ts";
@@ -85,12 +84,16 @@ export class VentoEngine implements Engine {
     this.engine.cache.delete(file);
   }
 
-  async render(content: string, data: Data = {}, filename?: string) {
+  async render(
+    content: string,
+    data?: Record<string, unknown>,
+    filename?: string,
+  ) {
     const result = await this.engine.runString(content, data, filename);
     return result.content;
   }
 
-  renderComponent(content: string, data: Data = {}): string {
+  renderComponent(content: string, data?: Record<string, unknown>): string {
     const result = this.engine.runStringSync(content, data);
     return result.content;
   }
@@ -131,7 +134,7 @@ export default function (userOptions?: Options) {
 
     site.filter("vto", filter as Helper, true);
 
-    async function filter(string: string, data?: Data) {
+    async function filter(string: string, data?: Record<string, unknown>) {
       const result = await vento.runString(string, {
         ...site.scopedData.get("/"),
         ...data,

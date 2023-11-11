@@ -3,7 +3,6 @@ import { merge } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
 import type { Locale } from "../deps/date.ts";
-import type { Helper } from "../core/renderer.ts";
 
 export interface Options {
   /** The name of the helper */
@@ -37,13 +36,13 @@ export default function (userOptions?: Options) {
   return (site: Site) => {
     const defaultLocale = Object.keys(options.locales).shift();
 
-    site.filter(options.name, filter as Helper);
+    site.filter(options.name, filter);
 
     function filter(
       date: string | Date,
       pattern = "DATE",
       lang = defaultLocale,
-    ) {
+    ): string | undefined {
       if (!date) {
         return;
       }
@@ -60,4 +59,18 @@ export default function (userOptions?: Options) {
       return format(date, patt, { locale });
     }
   };
+}
+
+/** Extends PageHelpers interface */
+declare global {
+  namespace Lume {
+    export interface PageHelpers {
+      /** @see https://lume.land/plugins/date/ */
+      date: (
+        date: string | Date,
+        pattern?: string,
+        lang?: string,
+      ) => string | undefined;
+    }
+  }
 }

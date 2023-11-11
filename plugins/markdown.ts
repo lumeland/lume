@@ -8,8 +8,7 @@ import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
-import type { Engine, Helper } from "../core/renderer.ts";
-import type { Data } from "../core/file.ts";
+import type { Engine } from "../core/renderer.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -62,11 +61,19 @@ export class MarkdownEngine implements Engine {
 
   deleteCache() {}
 
-  render(content: string, data?: Data, filename?: string): string {
+  render(
+    content: string,
+    data?: Record<string, unknown>,
+    filename?: string,
+  ): string {
     return this.renderComponent(content, data, filename);
   }
 
-  renderComponent(content: unknown, data?: Data, filename?: string): string {
+  renderComponent(
+    content: unknown,
+    data?: Record<string, unknown>,
+    filename?: string,
+  ): string {
     if (typeof content !== "string") {
       content = String(content);
     }
@@ -119,7 +126,7 @@ export default function (userOptions?: Options) {
     });
 
     // Register the md filter
-    site.filter("md", filter as Helper);
+    site.filter("md", filter);
 
     function filter(string: string, inline = false): string {
       return inline
@@ -127,4 +134,14 @@ export default function (userOptions?: Options) {
         : engine.render(string?.toString() || "").trim();
     }
   };
+}
+
+/** Extends PageHelpers interface */
+declare global {
+  namespace Lume {
+    export interface PageHelpers {
+      /** @see https://lume.land/plugins/markdown/ */
+      md: (string: string, inline?: boolean) => string;
+    }
+  }
 }

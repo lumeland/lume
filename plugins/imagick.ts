@@ -192,7 +192,7 @@ function transform(
 
 function rename(page: Page, transformation: Transformation): void {
   const { format, suffix } = transformation;
-  const url = page.data.url;
+  const url = page.data.url as string | undefined;
 
   if (!url) {
     return;
@@ -248,4 +248,17 @@ function removeDuplicatedTransformations(
   }
 
   return [...result.values()];
+}
+
+/** Extends PageData interface */
+declare global {
+  namespace Lume {
+    export interface PageData {
+      /**
+       * Image transformations
+       * @see https://lume.land/plugins/imagick/
+       */
+      imagick?: Transformation | Transformation[];
+    }
+  }
 }

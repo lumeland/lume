@@ -1,6 +1,7 @@
 import { merge } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
+import type Searcher from "../core/searcher.ts";
 
 export interface Options {
   /** The helper name */
@@ -18,4 +19,17 @@ export default function (userOptions?: Options) {
   return (site: Site) => {
     site.data(options.name, site.searcher);
   };
+}
+
+/** Extends PageData interface */
+declare global {
+  namespace Lume {
+    export interface PageData {
+      /**
+       * The searcher helper
+       * @see https://lume.land/plugins/search/
+       */
+      search: Searcher;
+    }
+  }
 }

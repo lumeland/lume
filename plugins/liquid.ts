@@ -14,7 +14,6 @@ import { merge } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
-import type { Data } from "../core/file.ts";
 import type {
   Context,
   Emitter,
@@ -67,7 +66,11 @@ export class LiquidEngine implements Engine {
     this.cache.delete(file);
   }
 
-  async render(content: string, data?: Data, filename?: string) {
+  async render(
+    content: string,
+    data?: Record<string, unknown>,
+    filename?: string,
+  ) {
     if (!filename) {
       return this.liquid.parseAndRender(content, data);
     }
@@ -76,7 +79,11 @@ export class LiquidEngine implements Engine {
     return await this.liquid.render(template, data);
   }
 
-  renderComponent(content: string, data?: Data, filename?: string) {
+  renderComponent(
+    content: string,
+    data?: Record<string, unknown>,
+    filename?: string,
+  ) {
     if (!filename) {
       return this.liquid.parseAndRenderSync(content, data);
     }
@@ -145,9 +152,12 @@ export default function (userOptions?: Options) {
     });
 
     // Register the liquid filter
-    site.filter("liquid", filter as Helper, true);
+    site.filter("liquid", filter, true);
 
-    function filter(string: string, data?: Data) {
+    function filter(
+      string: string,
+      data?: Record<string, unknown>,
+    ): Promise<string> {
       return engine.render(string, { ...site.scopedData.get("/"), ...data });
     }
   };
@@ -229,4 +239,17 @@ function createCustomTagWithBody(fn: Helper): TagClass {
       emitter.write(await fn(...args));
     }
   };
+}
+
+/** Extends PageHelpers interface */
+declare global {
+  namespace Lume {
+    export interface PageHelpers {
+      /** @see https://lume.land/plugins/liquid/ */
+      liquid: (
+        string: string,
+        data?: Record<string, unknown>,
+      ) => Promise<string>;
+    }
+  }
 }

@@ -181,3 +181,16 @@ function addSourceMap(url: string, sourceMap: string): string {
   // It's CSS
   return `\n/*# sourceMappingURL=${sourceMap} */`;
 }
+
+/** Extends PageData interface */
+declare global {
+  namespace Lume {
+    export interface PageData {
+      /**
+       * The source map data (if it's an asset)
+       * @see https://lume.land/plugins/source_maps/
+       */
+      sourceMap?: SourceMap;
+    }
+  }
+}

@@ -401,12 +401,9 @@ export function isAbsolutePath(path: string): boolean {
 }
 
 export function replaceExtension(
-  path: string | false,
+  path: string,
   ext: string,
-): string | false {
-  if (!path) {
-    return false;
-  }
+): string {
   return path.replace(/\.\w+$/, ext);
 }
 

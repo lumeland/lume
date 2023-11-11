@@ -5,7 +5,6 @@ import { merge } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
-import type { Data } from "../core/file.ts";
 import type { EtaConfig } from "../deps/eta.ts";
 
 export interface Options {
@@ -53,14 +52,18 @@ export class EtaEngine implements Engine {
     this.engine.templatesAsync.remove(path);
   }
 
-  render(content: string, data: Data, filename: string) {
+  render(content: string, data: Record<string, unknown>, filename: string) {
     const template = this.getTemplate(content, filename, true);
 
     data.filters = this.filters;
     return this.engine.renderAsync(template, data, { filepath: filename });
   }
 
-  renderComponent(content: string, data: Data, filename: string): string {
+  renderComponent(
+    content: string,
+    data: Record<string, unknown>,
+    filename: string,
+  ): string {
     const template = this.getTemplate(content, filename, false);
 
     data.filters = this.filters;

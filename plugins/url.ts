@@ -1,7 +1,6 @@
 import { merge } from "../core/utils.ts";
 
 import type Site from "../core/site.ts";
-import type { Helper } from "../core/renderer.ts";
 
 export interface Options {
   /** The url helper name */
@@ -26,18 +25,31 @@ export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.filter(options.names.url!, url as Helper);
-    site.filter(options.names.htmlUrl!, htmlUrl as Helper);
+    site.filter(options.names.url!, url);
+    site.filter(options.names.htmlUrl!, htmlUrl);
 
-    function url(path = "/", absolute = false) {
+    function url(path = "/", absolute = false): string {
       return typeof path === "string" ? site.url(path, absolute) : path;
     }
 
-    function htmlUrl(html = "", absolute = false) {
+    function htmlUrl(html = "", absolute = false): string {
       return html.replaceAll(
         /\s(href|src)="([^"]+)"/g,
         (_match, attr, value) => ` ${attr}="${url(value, absolute)}"`,
       );
     }
   };
+}
+
+/** Extends PageHelpers interface */
+declare global {
+  namespace Lume {
+    export interface PageHelpers {
+      /** @see https://lume.land/plugins/url/#url-filter */
+      url: (path: string, absolute?: boolean) => string;
+
+      /** @see https://lume.land/plugins/url/#htmlurl-filter */
+      htmlUrl: (html: string, absolute?: boolean) => string;
+    }
+  }
 }

@@ -3,8 +3,7 @@ import { normalizePath } from "./utils.ts";
 import { Page, StaticFile } from "./file.ts";
 import { Temporal } from "../deps/temporal.ts";
 
-import type { PageData } from "../core.ts";
-import type { Data } from "./file.ts";
+import type { Data, RawData } from "./file.ts";
 import type { default as FS, Entry } from "./fs.ts";
 import type Formats from "./formats.ts";
 import type DataLoader from "./data_loader.ts";
@@ -18,8 +17,8 @@ export interface Options {
   formats: Formats;
   dataLoader: DataLoader;
   componentLoader: ComponentLoader;
-  scopedData: Map<string, Data>;
-  scopedPages: Map<string, Data[]>;
+  scopedData: Map<string, RawData>;
+  scopedPages: Map<string, RawData[]>;
   scopedComponents: Map<string, Components>;
   fs: FS;
   prettyUrls: boolean;
@@ -54,10 +53,10 @@ export default class Source {
   filters: ScopeFilter[] = [];
 
   /** The data assigned per path */
-  scopedData: Map<string, Data>;
+  scopedData: Map<string, RawData>;
 
   /** The pages assigned per path */
-  scopedPages: Map<string, Data[]>;
+  scopedPages: Map<string, RawData[]>;
 
   /** The components assigned per path */
   scopedComponents: Map<string, Components>;
@@ -89,7 +88,7 @@ export default class Source {
   };
 
   /** The data assigned per path */
-  data = new Map<string, Data>();
+  data = new Map<string, Partial<Data>>();
 
   constructor(options: Options) {
     this.dataLoader = options.dataLoader;
@@ -146,7 +145,7 @@ export default class Source {
     dir: Entry,
     path: string,
     parentComponents: Components,
-    parentData: Data,
+    parentData: RawData,
     pages: Page[],
     staticFiles: StaticFile[],
   ) {
@@ -158,7 +157,7 @@ export default class Source {
     const [name, date] = parseDate(dir.name);
 
     // Load the _data files
-    const currentData: Data = date ? { date } : {};
+    const currentData: Partial<Data> = date ? { date } : {};
 
     for (const entry of dir.children.values()) {
       if (
@@ -219,7 +218,11 @@ export default class Source {
           data,
         );
 
-        page.data.url = getUrl(page, this.prettyUrls, path);
+        const url = getUrl(page, this.prettyUrls, path);
+        if (!url) {
+          continue;
+        }
+        page.data.url = url;
         page.data.date = getDate(page.data.date);
         page.data.page = page;
         pages.push(page);
@@ -336,9 +339,13 @@ export default class Source {
             date ? { date } : {},
             this.scopedData.get(entry.path) || {},
             pageData,
-          ) as PageData;
+          );
 
-          page.data.url = getUrl(page, this.prettyUrls, path);
+          const url = getUrl(page, this.prettyUrls, path);
+          if (!url) {
+            continue;
+          }
+          page.data.url = url;
           page.data.date = getDate(page.data.date, entry);
           page.data.page = page;
           page._data.layout = pageData.layout;
@@ -483,10 +490,11 @@ function toProxy(
 
 export type BuildFilter = (entry: Entry, page?: Page) => boolean;
 
-export type ComponentFunction = (props: Record<string, unknown>) => string;
+export type ComponentFunction = (props?: Record<string, unknown>) => string;
 
 export interface ProxyComponents {
-  [key: string]: ComponentFunction | ProxyComponents;
+  (props?: Record<string, unknown>): string;
+  [key: string]: ProxyComponents;
 }
 
 /** Merge the cascade components */
@@ -512,9 +520,9 @@ export function mergeComponents(...components: Components[]): Components {
 }
 
 /** Merge the cascade data */
-export function mergeData(...datas: Data[]): PageData {
+export function mergeData(...datas: RawData[]): Data {
   return datas.reduce((previous, current) => {
-    const data: Data = { ...previous, ...current };
+    const data: Data = { ...previous, ...current } as Data;
 
     // Merge special keys
     const mergedKeys: Record<string, string> = {
@@ -565,7 +573,7 @@ export function mergeData(...datas: Data[]): PageData {
     }
 
     return data;
-  }) as PageData;
+  }) as Data;
 }
 
 /**

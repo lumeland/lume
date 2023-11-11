@@ -4,7 +4,7 @@ import { posix } from "../deps/path.ts";
 import { getUrl } from "../core/source.ts";
 
 import type Site from "../core/site.ts";
-import type { PageData } from "../core.ts";
+import type { Data } from "../core/file.ts";
 
 export interface Options {
   /** The list of extensions used for this plugin */
@@ -64,16 +64,25 @@ export default function multilanguage(userOptions: Options) {
         : "";
 
       for (const lang of languages) {
-        const newData: PageData = { ...data, lang, id };
+        const newData: Data = { ...data, lang, id };
         const newPage = page.duplicate(undefined, newData);
         newPages.push(newPage);
 
         // Fix the url
-        const customUrl = newData[`url.${lang}`] || newData[lang]?.url;
+        const customUrl = (newData[`url.${lang}`] || newData[lang]?.url) as
+          | string
+          | undefined;
 
         if (customUrl) {
           newData.url = customUrl;
-          newData.url = getUrl(newPage, site.options.prettyUrls, basePath);
+          const url = getUrl(newPage, site.options.prettyUrls, basePath);
+          if (!url) {
+            log.warning(
+              `[multilanguage plugin] The page ${page.sourcePath} has a custom url "${customUrl}" that is not valid.`,
+            );
+          } else {
+            newData.url = url;
+          }
         } else if (newData.url) {
           newData.url = `/${lang}${newData.url}`;
         }
@@ -95,7 +104,7 @@ export default function multilanguage(userOptions: Options) {
         options.languages,
         lang,
         page.data,
-      ) as PageData;
+      ) as Data;
 
       for (const key of options.languages) {
         if (key in data) {
@@ -141,7 +150,7 @@ export default function multilanguage(userOptions: Options) {
         return;
       }
 
-      const alternates: PageData[] = [];
+      const alternates: Data[] = [];
       const alternatePages = pages.filter((page) => page.data.id == id);
 
       options.languages.forEach((lang) => {
@@ -223,4 +232,17 @@ function filterLanguage(
   }
 
   return result;
+}
+
+/** Extends PageData interface */
+declare global {
+  namespace Lume {
+    export interface PageData {
+      /**
+       * Alternate pages (for languages)
+       * @see https://lume.land/plugins/multilanguage/
+       */
+      alternates: PageData[];
+    }
+  }
 }

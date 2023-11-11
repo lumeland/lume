@@ -2,7 +2,7 @@ import { posix } from "../deps/path.ts";
 import { isPlainObject } from "./utils.ts";
 
 import type { Entry } from "./fs.ts";
-import type { Data } from "./file.ts";
+import type { RawData } from "./file.ts";
 import type Formats from "./formats.ts";
 
 export interface Options {
@@ -21,7 +21,7 @@ export default class DataLoader {
     this.formats = options.formats;
   }
 
-  load(entry: Entry): Promise<Data | undefined> {
+  load(entry: Entry): Promise<RawData | undefined> {
     if (entry.type === "directory") {
       return this.#loadDirectory(entry);
     }
@@ -30,7 +30,7 @@ export default class DataLoader {
   }
 
   /** Load a _data.* file */
-  async #loadFile(entry: Entry): Promise<Data | undefined> {
+  async #loadFile(entry: Entry): Promise<RawData | undefined> {
     const format = this.formats.search(entry.path);
 
     if (!format?.dataLoader) {
@@ -41,8 +41,8 @@ export default class DataLoader {
   }
 
   /** Load a _data directory */
-  async #loadDirectory(entry: Entry): Promise<Data> {
-    const data: Data = {};
+  async #loadDirectory(entry: Entry): Promise<RawData> {
+    const data: RawData = {};
 
     for await (const child of entry.children.values()) {
       await this.loadEntry(child, data);
@@ -55,7 +55,7 @@ export default class DataLoader {
    * Load a data entry inside a _data directory
    * and append the data to the data object
    */
-  async loadEntry(entry: Entry, data: Data) {
+  async loadEntry(entry: Entry, data: RawData) {
     if (entry.name.startsWith(".") || entry.name.startsWith("_")) {
       return;
     }

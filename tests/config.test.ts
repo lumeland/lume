@@ -2,6 +2,7 @@ import { assert, assertEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
 
 import type { Engine } from "../core/renderer.ts";
+import type { Data } from "../core/file.ts";
 
 Deno.test("default configuration", () => {
   const site = lume();
@@ -294,7 +295,7 @@ Deno.test("helpers configuration", () => {
 
 Deno.test("extra data", () => {
   const site = lume();
-  const globalData = site.scopedData.get("/") || {};
+  const globalData = site.scopedData.get("/") || {} as Data;
 
   equals(site.scopedData.size, 1);
   equals(Object.keys(globalData).length, 3);

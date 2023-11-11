@@ -1,12 +1,11 @@
 import { posix } from "../deps/path.ts";
 import { documentToString, stringToDocument } from "./utils.ts";
 
-import type { PageData } from "../core.ts";
 import type { ProxyComponents } from "./source.ts";
 import type { Entry } from "./fs.ts";
 
 /** A page of the site */
-export class Page<D extends PageData = PageData> {
+export class Page<D extends Data = Data> {
   /** The src info */
   src: Src;
 
@@ -35,7 +34,7 @@ export class Page<D extends PageData = PageData> {
       url = url.slice(0, -10);
     }
 
-    page.data = { url, content, page } as PageData;
+    page.data = { url, content, page } as Data;
     page.content = content;
 
     return page;
@@ -58,15 +57,15 @@ export class Page<D extends PageData = PageData> {
   }
 
   /** Duplicate this page. */
-  duplicate(index?: number, data: D = {} as D): Page {
-    const page = new Page({ ...this.src });
+  duplicate(index: number | undefined, data: D): Page<D> {
+    const page = new Page<D>({ ...this.src });
 
     if (index !== undefined) {
       page.src.path += `[${index}]`;
     }
 
+    data.page = page;
     page.data = data;
-    page.data.page = page;
 
     return page;
   }
@@ -162,13 +161,13 @@ export interface Src {
 export type Content = Uint8Array | string;
 export type MergeStrategy = "array" | "stringArray" | "object";
 
-/** The data of a page */
-export interface Data<D extends PageData = PageData> {
+/** The data of a page declared initially */
+export interface RawData {
   /** List of tags assigned to a page or folder */
-  tags?: string[];
+  tags?: string | string[];
 
   /** The url of a page */
-  url?: string | ((page: Page<D>) => string) | false;
+  url?: string | ((page: Page) => string) | false;
 
   /** The slug of a page */
   slug?: string;
@@ -177,7 +176,41 @@ export interface Data<D extends PageData = PageData> {
   draft?: boolean;
 
   /** The date creation of the page */
-  date?: Date;
+  date?: Date | string | number;
+
+  /** To configure the render order of a page */
+  renderOrder?: number;
+
+  /** The raw content of a page */
+  content?: unknown;
+
+  /** The layout used to render a page */
+  layout?: string;
+
+  /** To configure a different template engine(s) to render a page */
+  templateEngine?: string | string[];
+
+  /** To configure how some data keys will be merged with the parent */
+  mergedKeys?: Record<string, MergeStrategy>;
+
+  /** Whether render this page on demand or not */
+  ondemand?: boolean;
+
+  [index: string]: unknown;
+}
+
+export interface Data {
+  /** List of tags assigned to a page or folder */
+  tags: string[];
+
+  /** The url of a page */
+  url: string;
+
+  /** The slug of a page */
+  slug?: string;
+
+  /** The date creation of the page */
+  date: Date;
 
   /** To configure the render order of a page */
   renderOrder?: number;
@@ -198,11 +231,12 @@ export interface Data<D extends PageData = PageData> {
   ondemand?: boolean;
 
   /** The available components */
-  comp?: ProxyComponents;
+  comp: ProxyComponents;
 
   /** The page object */
-  page?: Page<D>;
+  page: Page;
 
+  /** The custom data */
   // deno-lint-ignore no-explicit-any
   [index: string]: any;
 }
