@@ -74,13 +74,6 @@ import type {
   WatchEventType,
 } from "./core/watcher.ts";
 
-// Plugins types
-import type { PaginationInfo, Paginator } from "./plugins/paginate.ts";
-import type { Transformation } from "./plugins/imagick.ts";
-import type { MetaData } from "./plugins/metas.ts";
-import type { Children } from "./plugins/jsx.ts";
-import type { SourceMap } from "./plugins/source_maps.ts";
-
 /** The method that installs a plugin */
 type PluginSetup = (options: unknown) => Plugin;
 
@@ -136,7 +129,6 @@ export type {
   SiteEventType,
   SiteOptions,
   Source,
-  SourceMap,
   Src,
   StaticFile,
   Watcher,
