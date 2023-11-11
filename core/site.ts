@@ -40,6 +40,7 @@ const defaults: SiteOptions = {
   cwd: Deno.cwd(),
   src: "./",
   dest: "./_site",
+  locationPathInDest: false,
   emptyDest: true,
   includes: "_includes",
   location: new URL("http://localhost"),
@@ -235,7 +236,10 @@ export default class Site {
    * Use the arguments to return a subpath
    */
   dest(...path: string[]): string {
-    return this.root(this.options.dest, ...path);
+    const subfolder = this.options.locationPathInDest
+      ? this.options.location.pathname
+      : "";
+    return this.root(this.options.dest, subfolder, ...path);
   }
 
   /** Add a listener to an event */
@@ -787,6 +791,13 @@ export interface SiteOptions {
 
   /** The path of the built destination */
   dest: string;
+
+  /**
+   * Reflect the pathname of the location in the dest folder
+   * For example, if the location is `http://example.com/blog/` and the dest is `_site`,
+   * the final destination will be `_site/blog/`
+   */
+  locationPathInDest: boolean;
 
   /** Whether the empty folder should be emptied before the build */
   emptyDest?: boolean;

@@ -86,7 +86,10 @@ export async function build(
 
   // Start the local server
   const { port, open, page404, middlewares } = site.options.server;
-  const server = new Server({ root: site.dest(), port });
+  const server = new Server({
+    root: site.root(site.options.dest),
+    port,
+  });
 
   server.addEventListener("start", () => {
     const ipAddr = localIp();
