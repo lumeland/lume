@@ -230,10 +230,13 @@ export interface Data {
   /** Whether render this page on demand or not */
   ondemand?: boolean;
 
-  /** The available components */
+  /**
+   * The available components
+   * @see https://lume.land/docs/core/components/
+   */
   comp: ProxyComponents;
 
-  /** The page object */
+  /** The page reference */
   page: Page;
 
   /** The custom data */

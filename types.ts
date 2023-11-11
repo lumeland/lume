@@ -1,8 +1,12 @@
 import type { Helper } from "./core/renderer.ts";
-import type { Data, Page } from "./core/file.ts";
+import type { Data } from "./core/file.ts";
+import type Site from "./core/site.ts";
+import type { Archetype } from "./cli/create.ts";
 
 declare global {
   namespace Lume {
+    export type { Archetype, Site };
+
     /** The data of a page */
     export interface PageData extends Data {
       /** The language(s) of the page */
@@ -10,19 +14,6 @@ declare global {
 
       /** The title of the page */
       title?: string;
-
-      /** The page url */
-      url: string;
-
-      /** The page reference */
-      page: Page;
-
-      /**
-       * The available components
-       * @see https://lume.land/docs/core/components/
-       */
-      // deno-lint-ignore no-explicit-any
-      comp?: any;
     }
 
     /** The page helpers */

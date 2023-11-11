@@ -120,7 +120,11 @@ function configureImport(site: Site, includes: string) {
 
     /** Load the content (using the Lume reader) */
     async load(file: string) {
-      return await site.getContent(file, textLoader) as string;
+      const content = await site.getContent(file, textLoader);
+      if (content === undefined) {
+        throw new Error(`File ${file} not found`);
+      }
+      return content;
     },
   });
 }
