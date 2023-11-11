@@ -360,7 +360,9 @@ export function updateLumeVersion(url: URL, denoConfig: DenoConfigResult) {
   // Configure the compiler options
   const compilerOptions = config.compilerOptions || {};
   compilerOptions.types = compilerOptions.types || [];
-  compilerOptions.types.push("lume/types.ts");
+  if (!compilerOptions.types.includes("lume/types.ts")) {
+    compilerOptions.types.push("lume/types.ts");
+  }
   config.compilerOptions = compilerOptions;
 }
 
