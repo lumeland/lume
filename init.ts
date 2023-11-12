@@ -1,16 +1,15 @@
 import { brightGreen, gray } from "./deps/colors.ts";
+import { checkDenoVersion, pluginNames } from "./core/utils.ts";
 import {
-  checkDenoVersion,
-  pluginNames,
   updateLumeVersion,
   writeDenoConfig,
-} from "./core/utils.ts";
+} from "./core/utils/deno_config.ts";
 import { Checkbox, Confirm, Select } from "./deps/cliffy.ts";
 import { outdent } from "./deps/outdent.ts";
 import { join } from "./deps/path.ts";
 import { ensureDir } from "./deps/fs.ts";
 
-import type { DenoConfigResult } from "./core/utils.ts";
+import type { DenoConfigResult } from "./core/utils/deno_config.ts";
 
 checkDenoVersion();
 const folder = Deno.args[0] || ".";

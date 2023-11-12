@@ -1,9 +1,4 @@
-import type {
-  DeepPartial,
-  DenoConfig,
-  DenoConfigResult,
-  ImportMap,
-} from "./core/utils.ts";
+import type { DeepPartial } from "./core/utils.ts";
 import type {
   ComponentsOptions,
   default as Site,
@@ -88,8 +83,6 @@ export type {
   Data,
   DataLoader,
   DeepPartial,
-  DenoConfig,
-  DenoConfigResult,
   Engine,
   Entry,
   Event,
@@ -102,7 +95,6 @@ export type {
   FS,
   Helper,
   HelperOptions,
-  ImportMap,
   Loader,
   MergeStrategy,
   Middleware,
