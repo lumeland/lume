@@ -1,8 +1,8 @@
 import { log } from "../core/utils/log.ts";
 import {
+  getCurrentVersion,
   getLatestDevelopmentVersion,
   getLatestVersion,
-  getLumeVersion,
 } from "../core/utils/lume_version.ts";
 import {
   readDenoConfig,
@@ -27,7 +27,7 @@ export async function upgrade(dev: boolean | string = false, version?: string) {
     : await getLatestVersion();
   const url = getVersionUrl(latest, dev);
 
-  if (latest === getLumeVersion()) {
+  if (latest === getCurrentVersion()) {
     const message = version
       ? `You're already using this version of Lume:`
       : dev

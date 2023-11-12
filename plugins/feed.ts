@@ -1,5 +1,5 @@
 import { getExtension, merge } from "../core/utils.ts";
-import { getLumeVersion } from "../core/utils/lume_version.ts";
+import { getCurrentVersion } from "../core/utils/lume_version.ts";
 import { getDataValue } from "./utils.ts";
 import { $XML, stringify } from "../deps/xml.ts";
 import { Page } from "../core/file.ts";
@@ -116,7 +116,7 @@ export interface FeedItem {
   lang: string;
 }
 
-const defaultGenerator = `Lume ${getLumeVersion()}`;
+const defaultGenerator = `Lume ${getCurrentVersion()}`;
 
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);

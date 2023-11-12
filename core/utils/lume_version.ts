@@ -19,7 +19,7 @@ export async function getLatestDevelopmentVersion(
 }
 
 /** Return the current installed version */
-export function getLumeVersion(
+export function getCurrentVersion(
   url = new URL(import.meta.resolve("../")),
 ): string {
   const { pathname } = url;
@@ -27,7 +27,7 @@ export function getLumeVersion(
 }
 
 /** Check the compatibility with the current Deno version */
-export function checkDenoVersion(): void {
+export function checkDenoSupport(): void {
   const minimum = "1.37.2";
   const current = Deno.version.deno;
 

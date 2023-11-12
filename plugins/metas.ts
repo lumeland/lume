@@ -1,5 +1,5 @@
 import { merge } from "../core/utils.ts";
-import { getLumeVersion } from "../core/utils/lume_version.ts";
+import { getCurrentVersion } from "../core/utils/lume_version.ts";
 import { getDataValue } from "./utils.ts";
 
 import type Site from "../core/site.ts";
@@ -56,7 +56,7 @@ const defaults: Options = {
   name: "metas",
 };
 
-const defaultGenerator = `Lume ${getLumeVersion()}`;
+const defaultGenerator = `Lume ${getCurrentVersion()}`;
 
 /** A plugin to insert meta tags for SEO and social media */
 export default function (userOptions?: Options) {

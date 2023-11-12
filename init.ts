@@ -1,6 +1,6 @@
 import { brightGreen, gray } from "./deps/colors.ts";
 import { pluginNames } from "./core/utils.ts";
-import { checkDenoVersion } from "./core/utils/lume_version.ts";
+import { checkDenoSupport } from "./core/utils/lume_version.ts";
 import {
   updateLumeVersion,
   writeDenoConfig,
@@ -12,7 +12,7 @@ import { ensureDir } from "./deps/fs.ts";
 
 import type { DenoConfigResult } from "./core/utils/deno_config.ts";
 
-checkDenoVersion();
+checkDenoSupport();
 const folder = Deno.args[0] || ".";
 
 /** Init Lume in the current directory */

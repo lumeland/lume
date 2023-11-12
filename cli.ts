@@ -1,5 +1,5 @@
 import { Command, CompletionsCommand, EnumType } from "./deps/cliffy.ts";
-import { getLumeVersion } from "./core/utils/lume_version.ts";
+import { getCurrentVersion } from "./core/utils/lume_version.ts";
 import upgradeCommand from "./cli/upgrade.ts";
 import runCommand from "./cli/run.ts";
 import buildCommand from "./cli/build.ts";
@@ -66,7 +66,7 @@ const run = new Command()
 
 const lume = new Command()
   .name("🔥lume")
-  .version(() => getLumeVersion())
+  .version(() => getCurrentVersion())
   .description(
     "A static site generator for Deno. \nDocs: https://lume.land",
   )
