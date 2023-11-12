@@ -1,4 +1,3 @@
-import type { DeepPartial } from "./core/utils.ts";
 import type {
   ComponentsOptions,
   default as Site,
@@ -82,7 +81,6 @@ export type {
   Content,
   Data,
   DataLoader,
-  DeepPartial,
   Engine,
   Entry,
   Event,

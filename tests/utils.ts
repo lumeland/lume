@@ -1,7 +1,7 @@
 import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
 import { basename, fromFileUrl, join } from "../deps/path.ts";
-import { DeepPartial } from "../core/utils.ts";
+import { DeepPartial } from "../core/utils/object.ts";
 
 import type { default as Site, SiteOptions } from "../core/site.ts";
 import type { SourceMap } from "../plugins/source_maps.ts";

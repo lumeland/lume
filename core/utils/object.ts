@@ -1,6 +1,12 @@
 const reactElement = Symbol.for("react.element");
 const objectConstructor = {}.constructor;
 
+/** TypeScript helper to create optional properties recursively */
+export type DeepPartial<T> = T extends object ? {
+    [P in keyof T]?: DeepPartial<T[P]>;
+  }
+  : T;
+
 /** Check if the argument passed is a plain object */
 export function isPlainObject(obj: unknown): obj is Record<string, unknown> {
   return typeof obj === "object" && obj !== null &&
