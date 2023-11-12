@@ -1,7 +1,7 @@
 import { posix } from "../deps/path.ts";
 import { normalizePath } from "./utils/path.ts";
+import { getGitDate, parseDate } from "./utils/date.ts";
 import { Page, StaticFile } from "./file.ts";
-import { Temporal } from "../deps/temporal.ts";
 
 import type { Data, RawData } from "./file.ts";
 import type { default as FS, Entry } from "./fs.ts";
@@ -154,7 +154,7 @@ export default class Source {
     }
 
     // Parse the date/time in the folder name
-    const [name, date] = parseDate(dir.name);
+    const [name, date] = parseDateFromFilename(dir.name);
 
     // Load the _data files
     const currentData: Partial<Data> = date ? { date } : {};
@@ -321,7 +321,7 @@ export default class Source {
           }
 
           const { ext } = format;
-          const [slug, date] = parseDate(entry.name);
+          const [slug, date] = parseDateFromFilename(entry.name);
 
           // Create the page
           const page = new Page({
@@ -582,28 +582,37 @@ export function mergeData(...datas: RawData[]): Partial<Data> {
  * Filenames can be prepended with a date (yyyy-mm-dd) or datetime
  * (yyyy-mm-dd-hh-ii-ss) followed by an underscore (_) or hyphen (-).
  */
-export function parseDate(slug: string): [string, Date | undefined] {
+export function parseDateFromFilename(
+  filename: string,
+): [string, Date | undefined] {
   const filenameRegex =
     /^(?<year>\d{4})-(?<month>\d\d)-(?<day>\d\d)(?:-(?<hour>\d\d)-(?<minute>\d\d)(?:-(?<second>\d\d))?)?(?:_|-)(?<slug>.*)/;
-  const fileNameParts = filenameRegex.exec(slug)?.groups;
+  const fileNameParts = filenameRegex.exec(filename)?.groups;
 
   if (fileNameParts) {
-    const { year, month, day, hour, minute, second, slug } = fileNameParts;
-    const date = new Date(Date.UTC(
-      parseInt(year),
-      parseInt(month) - 1,
-      parseInt(day),
-      hour ? parseInt(hour) : 0,
-      minute ? parseInt(minute) : 0,
-      second ? parseInt(second) : 0,
-    ));
+    const {
+      year,
+      month,
+      day,
+      hour = "00",
+      minute = "00",
+      second = "00",
+      slug,
+    } = fileNameParts;
 
-    if (date) {
+    try {
+      const date = parseDate(
+        `${year}-${month}-${day} ${hour}:${minute}:${second}`,
+      );
       return [slug, date];
+    } catch {
+      throw new Error(
+        `Invalid date: ${filename} (${year}-${month}-${day} ${hour}:${minute}:${second})`,
+      );
     }
   }
 
-  return [slug, undefined];
+  return [filename, undefined];
 }
 
 /** Returns the Date instance of a file */
@@ -630,39 +639,13 @@ export function getDate(date: unknown, entry?: Entry): Date {
     }
 
     try {
-      const parsed = parse(date);
-      return new Date(parsed.epochMilliseconds);
+      return parseDate(date);
     } catch {
       throw new Error(`Invalid date: ${date} (${entry?.src})`);
     }
   }
 
   return info?.birthtime || info?.mtime || new Date();
-}
-
-/**
- * Returns the result of a git command as Date
- * Thanks to https://github.com/11ty/eleventy/blob/8dd2a1012de92c5ee1eab7c37e6bf1b36183927e/src/Util/DateGitLastUpdated.js
- */
-export function getGitDate(
-  type: "created" | "modified",
-  file: string,
-): Date | undefined {
-  const args = type === "created"
-    ? ["log", "--diff-filter=A", "--follow", "-1", "--format=%at", "--", file]
-    : ["log", "-1", "--format=%at", "--", file];
-
-  const { stdout, success } = new Deno.Command("git", { args }).outputSync();
-
-  if (!success) {
-    return;
-  }
-  const str = new TextDecoder().decode(stdout);
-  const timestamp = parseInt(str) * 1000;
-
-  if (timestamp) {
-    return new Date(timestamp);
-  }
 }
 
 /** Returns the final URL assigned to a page */
@@ -759,12 +742,4 @@ export function getOutputPath(
   }
 
   return posix.join(path, entry.name);
-}
-
-function parse(date: string) {
-  try {
-    return Temporal.Instant.from(date).toZonedDateTimeISO("UTC");
-  } catch {
-    return Temporal.PlainDateTime.from(date).toZonedDateTime("UTC");
-  }
 }

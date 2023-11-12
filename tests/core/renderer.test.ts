@@ -1,6 +1,7 @@
 import { assert, assertStrictEquals as equals } from "../../deps/assert.ts";
 import { build, getSite } from "../utils.ts";
-import { getDate, getGitDate } from "../../core/source.ts";
+import { getDate } from "../../core/source.ts";
+import { getGitDate } from "../../core/utils/date.ts";
 
 Deno.test("Prepare page (Renderer)", async (t) => {
   const site = getSite({
