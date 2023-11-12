@@ -101,7 +101,7 @@ export default class Renderer {
           if (!data.content) {
             data.content = null;
           }
-          const newPage = page.duplicate(index++, mergeData(page.data, data));
+          const newPage = page.duplicate(index++, mergeData(page.data, data) as Data);
           const url = getUrl(newPage, this.prettyUrls, basePath);
           if (!url) {
             continue;

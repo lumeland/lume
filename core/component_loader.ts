@@ -22,7 +22,7 @@ export default class ComponentsLoader {
   /** Load a directory of components */
   async load(
     dirEntry: Entry,
-    data: Data,
+    data: Partial<Data>,
     components?: Components,
   ): Promise<Components> {
     if (!components) {
@@ -56,7 +56,7 @@ export default class ComponentsLoader {
   /** Load a component file */
   async #loadComponent(
     entry: Entry,
-    inheritData: Data,
+    inheritData: Partial<Data>,
   ): Promise<Component | undefined> {
     const format = this.formats.search(entry.name);
 

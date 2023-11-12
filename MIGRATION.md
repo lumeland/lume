@@ -31,9 +31,10 @@
 - Pretty URLs option doesn't affect to the `/404.html` page by default.
 - Removed `Error` class to print the errors. `Deno.inspect()` is used instead.
 - Refactor of `Server` function to work with `Deno.serve()` API #501.
-- Use the lib `dom` and `dom.iterable` types instead of `deno-dom`.
 - Renamed `core/filesystem.ts` to `core/file.ts`.
-- Revamp of types. New global namespace `Lume`.
+- Revamp of types.
+  - New global namespace `Lume`.
+  - Use the lib `dom` and `dom.iterable` types instead of `deno-dom`.
 - Added new option `locationPathInDest` to create the pathname of the location
   in the dest folder #381.
 

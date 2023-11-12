@@ -216,7 +216,7 @@ export default class Source {
           dirData,
           { date: new Date() },
           data,
-        );
+        ) as Data;
 
         const url = getUrl(page, this.prettyUrls, path);
         if (!url) {
@@ -339,7 +339,7 @@ export default class Source {
             date ? { date } : {},
             this.scopedData.get(entry.path) || {},
             pageData,
-          );
+          ) as Data;
 
           const url = getUrl(page, this.prettyUrls, path);
           if (!url) {
@@ -520,9 +520,9 @@ export function mergeComponents(...components: Components[]): Components {
 }
 
 /** Merge the cascade data */
-export function mergeData(...datas: RawData[]): Data {
+export function mergeData(...datas: RawData[]): Partial<Data> {
   return datas.reduce((previous, current) => {
-    const data: Data = { ...previous, ...current } as Data;
+    const data: Partial<Data> = { ...previous, ...current } as Data;
 
     // Merge special keys
     const mergedKeys: Record<string, string> = {

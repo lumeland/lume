@@ -1,5 +1,5 @@
 import { posix } from "../deps/path.ts";
-import { documentToString, stringToDocument } from "./utils.ts";
+import { documentToString, stringToDocument } from "./utils/dom.ts";
 
 import type { ProxyComponents } from "./source.ts";
 import type { Entry } from "./fs.ts";
@@ -206,7 +206,7 @@ export interface Data {
   /** The url of a page */
   url: string;
 
-  /** The slug of a page */
+  /** The slug of the page */
   slug?: string;
 
   /** The date creation of the page */
