@@ -1,5 +1,5 @@
 import { extract, test } from "../../deps/front_matter.ts";
-import { read } from "../utils.ts";
+import { read } from "../utils/read.ts";
 
 import type { RawData } from "../file.ts";
 

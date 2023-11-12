@@ -1,4 +1,5 @@
-import { merge, read } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
+import { read } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
 import { createGenerator, presetUno, resetUrl } from "../deps/unocss.ts";
 

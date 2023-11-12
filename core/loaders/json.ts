@@ -1,5 +1,6 @@
 import { parse } from "../../deps/jsonc.ts";
-import { isPlainObject, read } from "../utils.ts";
+import { isPlainObject } from "../utils.ts";
+import { read } from "../utils/read.ts";
 
 import type { RawData } from "../file.ts";
 

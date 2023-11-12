@@ -1,7 +1,7 @@
 // https://github.com/wilsonzlin/minify-html
 export { minify } from "https://wilsonl.in/minify-html/deno/0.11.1/index.js";
 import initWasm from "https://wilsonl.in/minify-html/deno/0.11.1/index.js";
-import { read } from "../core/utils.ts";
+import { read } from "../core/utils/read.ts";
 
 // Initialize the WASM module
 const url = "https://wilsonl.in/minify-html/deno/0.11.1/index_bg.wasm";

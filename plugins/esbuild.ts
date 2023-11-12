@@ -4,10 +4,10 @@ import {
   log,
   merge,
   normalizePath,
-  read,
   readDenoConfig,
   replaceExtension,
 } from "../core/utils.ts";
+import { read } from "../core/utils/read.ts";
 import { build, BuildOptions, OutputFile, stop } from "../deps/esbuild.ts";
 import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";

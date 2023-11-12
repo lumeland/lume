@@ -1,10 +1,5 @@
 import { assertEquals as equals } from "../deps/assert.ts";
-import {
-  isPlainObject,
-  merge,
-  readDenoConfig,
-  sha1,
-} from "../core/utils.ts";
+import { isPlainObject, merge, readDenoConfig, sha1 } from "../core/utils.ts";
 import { documentToString, stringToDocument } from "../core/utils/dom.ts";
 import { getPath } from "./utils.ts";
 import { React } from "../deps/react.ts";
