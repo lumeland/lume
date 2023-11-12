@@ -1,4 +1,3 @@
-import { DOMParser } from "../deps/dom.ts";
 import {
   bold,
   brightGreen,
@@ -234,33 +233,7 @@ export function normalizePath(path: string, rootToRemove?: string) {
     : absolute;
 }
 
-/** Convert an Document instance to a string */
-export function documentToString(document: Document) {
-  const { doctype, documentElement } = document;
 
-  if (!doctype) {
-    return `<!DOCTYPE html>\n${documentElement?.outerHTML || ""}`;
-  }
-
-  return `<!DOCTYPE ${doctype.name}` +
-    (doctype.publicId ? ` PUBLIC "${doctype.publicId}"` : "") +
-    (!doctype.publicId && doctype.systemId ? " SYSTEM" : "") +
-    (doctype.systemId ? ` "${doctype.systemId}"` : "") +
-    `>\n${documentElement?.outerHTML}`;
-}
-
-const parser = new DOMParser();
-
-/** Parse a string with HTML code and return a Document */
-export function stringToDocument(string: string): Document {
-  const document = parser.parseFromString(string, "text/html");
-
-  if (!document) {
-    throw new Error("Unable to parse the HTML code");
-  }
-
-  return document as unknown as Document;
-}
 
 /** Return the current installed version */
 export function getLumeVersion(
