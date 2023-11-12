@@ -1,4 +1,5 @@
-import { getExtension, getLumeVersion, merge } from "../core/utils.ts";
+import { getExtension, merge } from "../core/utils.ts";
+import { getLumeVersion } from "../core/utils/lume_version.ts";
 import { getDataValue } from "./utils.ts";
 import { $XML, stringify } from "../deps/xml.ts";
 import { Page } from "../core/file.ts";

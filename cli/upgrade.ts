@@ -3,7 +3,7 @@ import {
   getLatestDevelopmentVersion,
   getLatestVersion,
   getLumeVersion,
-} from "../core/utils.ts";
+} from "../core/utils/lume_version.ts";
 import {
   readDenoConfig,
   updateLumeVersion,

@@ -1,5 +1,5 @@
 import { Command, CompletionsCommand, EnumType } from "./deps/cliffy.ts";
-import { getLumeVersion } from "./core/utils.ts";
+import { getLumeVersion } from "./core/utils/lume_version.ts";
 import upgradeCommand from "./cli/upgrade.ts";
 import runCommand from "./cli/run.ts";
 import buildCommand from "./cli/build.ts";

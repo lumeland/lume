@@ -1,4 +1,3 @@
-import { cyan, green, red } from "../deps/colors.ts";
 import { posix, SEP } from "../deps/path.ts";
 
 /** A list of the available optional plugins */
@@ -49,40 +48,6 @@ export const pluginNames = [
   "unocss",
   "vento",
 ];
-
-/** Check the compatibility with the current Deno version */
-export function checkDenoVersion(): void {
-  const minimum = "1.37.2";
-  const current = Deno.version.deno;
-
-  if (current < minimum) {
-    console.log("----------------------------------------");
-    console.error(red("Your Deno version is not compatible with Lume"));
-    console.log(`Lume needs Deno ${green(minimum)} or greater`);
-    console.log(`Your current version is ${red(current)}`);
-    console.log(`Run ${cyan("deno upgrade")} and try again`);
-    console.log("----------------------------------------");
-    Deno.exit(1);
-  }
-}
-
-/** Return the latest stable version from the deno.land/x repository */
-export async function getLatestVersion(): Promise<string> {
-  const response = await fetch("https://cdn.deno.land/lume/meta/versions.json");
-  const versions = await response.json();
-  return versions.latest;
-}
-
-/** Return the hash of the latest commit from the GitHub repository */
-export async function getLatestDevelopmentVersion(
-  branch = "master",
-): Promise<string> {
-  const response = await fetch(
-    `https://api.github.com/repos/lumeland/lume/commits/${branch}`,
-  );
-  const commits = await response.json();
-  return commits.sha;
-}
 
 /** Run a callback concurrently with all the elements of an Iterable */
 export async function concurrent<Type>(
@@ -201,37 +166,6 @@ export function normalizePath(path: string, rootToRemove?: string) {
     : absolute;
 }
 
-/** Return the current installed version */
-export function getLumeVersion(
-  url = new URL(import.meta.resolve("../")),
-): string {
-  const { pathname } = url;
-  return pathname.match(/@([^/]+)/)?.[1] ?? `local (${pathname})`;
-}
-
-/** Returns the _config file of a site */
-export async function getConfigFile(
-  path?: string,
-): Promise<string | undefined> {
-  if (path) {
-    try {
-      return await Deno.realPath(path);
-    } catch {
-      throw new Error(`Config file not found (${path})`);
-    }
-  }
-
-  const paths = ["_config.js", "_config.ts"];
-
-  for (const path of paths) {
-    try {
-      return await Deno.realPath(path);
-    } catch {
-      // Ignore
-    }
-  }
-}
-
 export function isUrl(path: string): boolean {
   return !!path.match(/^(https?|file):\/\//);
 }
@@ -298,6 +232,29 @@ export function resolveInclude(
   return normalized.startsWith(normalizePath(posix.join(includesDir, "/")))
     ? normalized
     : normalizePath(posix.join(includesDir, normalized));
+}
+
+/** Returns the _config file of a site */
+export async function getConfigFile(
+  path?: string,
+): Promise<string | undefined> {
+  if (path) {
+    try {
+      return await Deno.realPath(path);
+    } catch {
+      throw new Error(`Config file not found (${path})`);
+    }
+  }
+
+  const paths = ["_config.js", "_config.ts"];
+
+  for (const path of paths) {
+    try {
+      return await Deno.realPath(path);
+    } catch {
+      // Ignore
+    }
+  }
 }
 
 export function env<T>(name: string): T | undefined {
