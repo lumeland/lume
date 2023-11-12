@@ -3,9 +3,9 @@ import {
   isUrl,
   merge,
   normalizePath,
-  readDenoConfig,
   replaceExtension,
 } from "../core/utils.ts";
+import { readDenoConfig } from "../core/utils/deno_config.ts";
 import { log } from "../core/utils/log.ts";
 import { read } from "../core/utils/read.ts";
 import { build, BuildOptions, OutputFile, stop } from "../deps/esbuild.ts";
@@ -15,7 +15,7 @@ import { Page } from "../core/file.ts";
 import textLoader from "../core/loaders/text.ts";
 
 import type Site from "../core/site.ts";
-import type { DenoConfig } from "../core/utils.ts";
+import type { DenoConfig } from "../core/utils/deno_config.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */

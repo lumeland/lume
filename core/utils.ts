@@ -1,6 +1,5 @@
-import { brightGreen, cyan, dim, gray, green, red } from "../deps/colors.ts";
-import { dirname, extname, join, posix, SEP } from "../deps/path.ts";
-import { parse } from "../deps/jsonc.ts";
+import { cyan, green, red } from "../deps/colors.ts";
+import { posix, SEP } from "../deps/path.ts";
 
 /** A list of the available optional plugins */
 export const pluginNames = [
@@ -83,24 +82,6 @@ export async function getLatestDevelopmentVersion(
   );
   const commits = await response.json();
   return commits.sha;
-}
-
-/** Import map file */
-export interface ImportMap {
-  imports: Record<string, string>;
-  scopes?: Record<string, Record<string, string>>;
-}
-
-/** Basic options for deno.json file */
-export interface DenoConfig {
-  importMap?: string;
-  tasks?: Record<string, string>;
-  compilerOptions?: {
-    jsx?: "jsx" | "react-jsx";
-    jsxImportSource?: string;
-    types?: string[];
-  };
-  [key: string]: unknown;
 }
 
 /** Run a callback concurrently with all the elements of an Iterable */
@@ -249,115 +230,6 @@ export async function getConfigFile(
       // Ignore
     }
   }
-}
-
-export interface DenoConfigResult {
-  file: string;
-  config: DenoConfig;
-  importMap?: ImportMap;
-}
-
-/** Detect and returns the Deno configuration */
-export async function readDenoConfig(): Promise<DenoConfigResult | undefined> {
-  for (const file of ["deno.json", "deno.jsonc"]) {
-    try {
-      const content = await Deno.readTextFile(file);
-      const config = parse(content) as DenoConfig;
-      let importMap: ImportMap | undefined;
-
-      if (config.importMap) {
-        importMap = isUrl(config.importMap)
-          ? await (await fetch(config.importMap)).json()
-          : await JSON.parse(await Deno.readTextFile(config.importMap));
-      } else if (config.imports) {
-        importMap = {
-          imports: config.imports as Record<string, string>,
-          scopes: config.scopes as Record<string, Record<string, string>>,
-        };
-      }
-      return { file, config, importMap };
-    } catch (err) {
-      if (err instanceof Deno.errors.NotFound) {
-        continue;
-      }
-
-      throw err;
-    }
-  }
-}
-
-export function updateLumeVersion(url: URL, denoConfig: DenoConfigResult) {
-  denoConfig.importMap ??= { imports: {} };
-
-  const { config, importMap } = denoConfig;
-
-  // Configure the import map
-  if (Deno.version.deno < "1.30.0") {
-    config.importMap ||= "./import_map.json";
-  }
-
-  const oldUrl = importMap.imports["lume/"];
-  const newUrl = new URL("./", url).href;
-  importMap.imports["lume/"] = newUrl;
-
-  for (const [specifier, url] of Object.entries(importMap.imports)) {
-    if (url.startsWith(oldUrl)) {
-      importMap.imports[specifier] = url.replace(oldUrl, newUrl);
-    }
-  }
-
-  // Configure lume tasks
-  const tasks = config.tasks || {};
-  if (!tasks.lume || !tasks.lume.includes(`echo "import 'lume/cli.ts'"`)) {
-    tasks.lume = `echo "import 'lume/cli.ts'" | deno run --unstable -A -`;
-    tasks.build = "deno task lume";
-    tasks.serve = "deno task lume -s";
-  }
-  config.tasks = tasks;
-
-  // Configure the compiler options
-  const compilerOptions = config.compilerOptions || {};
-  compilerOptions.types = compilerOptions.types || [];
-  if (!compilerOptions.types.includes("lume/types.ts")) {
-    compilerOptions.types.push("lume/types.ts");
-  }
-  config.compilerOptions = compilerOptions;
-}
-
-/** Update the Deno configuration */
-export async function writeDenoConfig(options: DenoConfigResult) {
-  const { file, config, importMap } = options;
-
-  if (importMap && !config.importMap) {
-    config.imports = importMap.imports;
-    config.scopes = importMap.scopes;
-  }
-
-  if (config.importMap) {
-    const importMapFile = join(dirname(file), config.importMap);
-    await Deno.writeTextFile(
-      importMapFile,
-      JSON.stringify(importMap, null, 2) + "\n",
-    );
-    console.log(brightGreen("Import map file saved:"), importMapFile);
-  }
-
-  if (extname(file) === ".jsonc") {
-    const save = confirm(
-      "Saving the deno.jsonc file will overwrite the comments. Continue?",
-    );
-
-    if (!save) {
-      console.log(
-        "You have to update your deno.jsonc file manually with the following content:",
-      );
-      console.log(dim(JSON.stringify(config, null, 2)));
-      console.log("Use deno.json to update it automatically without asking.");
-      return;
-    }
-  }
-  await Deno.writeTextFile(file, JSON.stringify(config, null, 2) + "\n");
-  console.log("Deno configuration file saved:", gray(file));
 }
 
 export function isUrl(path: string): boolean {

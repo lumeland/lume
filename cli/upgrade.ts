@@ -3,10 +3,12 @@ import {
   getLatestDevelopmentVersion,
   getLatestVersion,
   getLumeVersion,
+} from "../core/utils.ts";
+import {
   readDenoConfig,
   updateLumeVersion,
   writeDenoConfig,
-} from "../core/utils.ts";
+} from "../core/utils/deno_config.ts";
 
 interface Options {
   dev?: boolean | string;
