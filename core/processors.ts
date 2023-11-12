@@ -1,4 +1,4 @@
-import { concurrent } from "./utils.ts";
+import { concurrent } from "./utils/concurrent.ts";
 
 import type { Page } from "./file.ts";
 
