@@ -1,9 +1,10 @@
 import { resolveInclude } from "./utils/path.ts";
 import { isGenerator } from "./utils/generator.ts";
 import { concurrent } from "./utils/concurrent.ts";
+import { mergeData } from "./utils/merge_data.ts";
 import { Page } from "./file.ts";
 import { posix } from "../deps/path.ts";
-import { getDate, getUrl, mergeData } from "./source.ts";
+import { getDate, getUrl } from "./source.ts";
 
 import type { Content, Data } from "./file.ts";
 import type Processors from "./processors.ts";

@@ -19,13 +19,7 @@ import Writer from "./writer.ts";
 import textLoader from "./loaders/text.ts";
 
 import type { Component, Components } from "../core/component_loader.ts";
-import type {
-  Data,
-  MergeStrategy,
-  Page,
-  RawData,
-  StaticFile,
-} from "../core/file.ts";
+import type { Data, Page, RawData, StaticFile } from "../core/file.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { Event, EventListener, EventOptions } from "../core/events.ts";
 import type {
@@ -37,6 +31,7 @@ import type { Loader } from "../core/fs.ts";
 import type { Middleware } from "../core/server.ts";
 import type { ScopeFilter } from "../core/scopes.ts";
 import type { ScriptOrFunction } from "../core/scripts.ts";
+import type { MergeStrategy } from "../core/utils/merge_data.ts";
 
 /** Default options of the site */
 const defaults: SiteOptions = {

@@ -1,6 +1,7 @@
 import { posix } from "../deps/path.ts";
 import { documentToString, stringToDocument } from "./utils/dom.ts";
 
+import type { MergeStrategy } from "./utils/merge_data.ts";
 import type { ProxyComponents } from "./source.ts";
 import type { Entry } from "./fs.ts";
 
@@ -159,7 +160,6 @@ export interface Src {
 
 /** The .content property for a Page */
 export type Content = Uint8Array | string;
-export type MergeStrategy = "array" | "stringArray" | "object";
 
 /** The data of a page declared initially */
 export interface RawData {

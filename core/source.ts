@@ -1,5 +1,6 @@
 import { posix } from "../deps/path.ts";
 import { normalizePath } from "./utils/path.ts";
+import { mergeData } from "./utils/merge_data.ts";
 import { getGitDate, parseDate } from "./utils/date.ts";
 import { Page, StaticFile } from "./file.ts";
 
@@ -174,7 +175,7 @@ export default class Source {
       date ? { date } : {},
       this.scopedData.get(dir.path) || {},
       currentData,
-    );
+    ) as Partial<Data>;
 
     path = posix.join(path, dirData.slug ?? name);
     delete dirData.slug; // Slug doesn't have to propagate
@@ -517,63 +518,6 @@ export function mergeComponents(...components: Components[]): Components {
     }
     return components;
   });
-}
-
-/** Merge the cascade data */
-export function mergeData(...datas: RawData[]): Partial<Data> {
-  return datas.reduce((previous, current) => {
-    const data: Partial<Data> = { ...previous, ...current } as Data;
-
-    // Merge special keys
-    const mergedKeys: Record<string, string> = {
-      ...previous.mergedKeys,
-      ...current.mergedKeys,
-    };
-
-    for (const [key, type] of Object.entries(mergedKeys)) {
-      switch (type) {
-        case "stringArray":
-        case "array":
-          {
-            const currentValue: unknown[] = Array.isArray(current[key])
-              ? current[key] as unknown[]
-              : (key in current)
-              ? [current[key]]
-              : [];
-
-            const previousValue: unknown[] = Array.isArray(previous[key])
-              ? previous[key] as unknown[]
-              : (key in previous)
-              ? [previous[key]]
-              : [];
-
-            const merged = [...previousValue, ...currentValue];
-
-            data[key] = [
-              ...new Set(
-                type === "stringArray" ? merged.map(String) : merged,
-              ),
-            ];
-          }
-          break;
-
-        case "object":
-          {
-            const currentValue = current[key] as
-              | Record<string, unknown>
-              | undefined;
-            const previousValue = previous[key] as
-              | Record<string, unknown>
-              | undefined;
-
-            data[key] = { ...previousValue, ...currentValue };
-          }
-          break;
-      }
-    }
-
-    return data;
-  }) as Data;
 }
 
 /**
