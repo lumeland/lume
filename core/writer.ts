@@ -1,6 +1,7 @@
 import { posix } from "../deps/path.ts";
 import { emptyDir, ensureDir } from "../deps/fs.ts";
-import { concurrent, sha1 } from "./utils.ts";
+import { concurrent } from "./utils.ts";
+import { sha1 } from "./utils/digest.ts";
 import { log } from "./utils/log.ts";
 import binaryLoader from "./loaders/binary.ts";
 

@@ -1,9 +1,6 @@
-// deno-lint-ignore-file no-explicit-any
-
 import { emptyDir, ensureDir } from "../deps/fs.ts";
 import { posix } from "../deps/path.ts";
-import { crypto } from "../deps/crypto.ts";
-import { encodeHex } from "../deps/hex.ts";
+import { md5 } from "./utils/digest.ts";
 
 export interface Options {
   /** The folder to load the files from */
@@ -22,7 +19,7 @@ export default class Cache {
 
   async set(
     content: string | Uint8Array,
-    key: any,
+    key: unknown,
     result: string | Uint8Array,
   ): Promise<void> {
     const [dir, file] = await paths(content, key);
@@ -36,7 +33,10 @@ export default class Cache {
     }
   }
 
-  async get(content: any, key: any): Promise<Uint8Array | undefined> {
+  async get(
+    content: Uint8Array,
+    key: unknown,
+  ): Promise<Uint8Array | undefined> {
     const [dir, file] = await paths(content, key);
 
     try {
@@ -46,7 +46,7 @@ export default class Cache {
     }
   }
 
-  async getText(content: any, key: any): Promise<string | undefined> {
+  async getText(content: string, key: unknown): Promise<string | undefined> {
     const [dir, file] = await paths(content, key);
 
     try {
@@ -63,19 +63,10 @@ export default class Cache {
 
 function paths(
   content: string | Uint8Array,
-  key: any,
+  key: unknown,
 ): Promise<[string, string]> {
   return Promise.all([
-    hash(content),
-    hash(JSON.stringify(key)),
+    md5(content),
+    md5(JSON.stringify(key)),
   ]);
-}
-
-async function hash(content: string | Uint8Array): Promise<string> {
-  const hash = await crypto.subtle.digest(
-    "MD5",
-    typeof content === "string" ? new TextEncoder().encode(content) : content,
-  );
-
-  return encodeHex(hash);
 }

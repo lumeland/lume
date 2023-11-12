@@ -29,6 +29,7 @@ Deno.test("Plugins list in init", () => {
     "modify_urls",
     "multilanguage",
     "nav",
+    "nunjucks",
     "decap_cms",
     "on_demand",
     "pagefind",
@@ -51,6 +52,5 @@ Deno.test("Plugins list in init", () => {
     "terser",
     "toml",
     "unocss",
-    "vento",
   ]);
 });
