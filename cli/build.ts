@@ -1,4 +1,4 @@
-import { log } from "../core/utils.ts";
+import { log } from "../core/utils/log.ts";
 import Server from "../core/server.ts";
 import FSWatcher, { SiteWatcher } from "../core/watcher.ts";
 import logger from "../middlewares/logger.ts";

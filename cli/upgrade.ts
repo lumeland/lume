@@ -1,8 +1,8 @@
+import { log } from "../core/utils/log.ts";
 import {
   getLatestDevelopmentVersion,
   getLatestVersion,
   getLumeVersion,
-  log,
   readDenoConfig,
   updateLumeVersion,
   writeDenoConfig,

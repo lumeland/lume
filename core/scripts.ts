@@ -1,4 +1,4 @@
-import { log } from "./utils.ts";
+import { log } from "./utils/log.ts";
 
 export interface Options {
   /** The current working directory */

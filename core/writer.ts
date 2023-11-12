@@ -1,6 +1,7 @@
 import { posix } from "../deps/path.ts";
 import { emptyDir, ensureDir } from "../deps/fs.ts";
-import { concurrent, log, sha1 } from "./utils.ts";
+import { concurrent, sha1 } from "./utils.ts";
+import { log } from "./utils/log.ts";
 import binaryLoader from "./loaders/binary.ts";
 
 import type { Page, StaticFile } from "./file.ts";

@@ -1,5 +1,6 @@
 import { join, posix } from "../deps/path.ts";
-import { env, log, merge, normalizePath } from "./utils.ts";
+import { env, merge, normalizePath } from "./utils.ts";
+import { log } from "./utils/log.ts";
 
 import FS from "./fs.ts";
 import ComponentLoader from "./component_loader.ts";

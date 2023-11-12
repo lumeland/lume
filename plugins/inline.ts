@@ -1,6 +1,7 @@
 import { posix } from "../deps/path.ts";
 import { encodeBase64 } from "../deps/base64.ts";
-import { log, merge } from "../core/utils.ts";
+import { merge } from "../core/utils.ts";
+import { log } from "../core/utils/log.ts";
 import binaryLoader from "../core/loaders/binary.ts";
 import textLoader from "../core/loaders/text.ts";
 import { contentType } from "../deps/media_types.ts";

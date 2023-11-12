@@ -1,7 +1,8 @@
 import { stringify } from "../deps/yaml.ts";
 import { dirname, join, toFileUrl } from "../deps/path.ts";
 import { ensureDir } from "../deps/fs.ts";
-import { isGenerator, isUrl, log } from "../core/utils.ts";
+import { isGenerator, isUrl } from "../core/utils.ts";
+import { log } from "../core/utils/log.ts";
 import { createSite } from "./run.ts";
 
 import type Site from "../core/site.ts";
