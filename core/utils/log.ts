@@ -1,5 +1,5 @@
 import * as logger from "../../deps/log.ts";
-import { env } from "../utils.ts";
+import { env } from "./env.ts";
 import {
   bold,
   brightGreen,

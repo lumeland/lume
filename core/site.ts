@@ -1,5 +1,6 @@
 import { join, posix } from "../deps/path.ts";
-import { env, merge, normalizePath } from "./utils.ts";
+import { merge, normalizePath } from "./utils.ts";
+import { env } from "./utils/env.ts";
 import { log } from "./utils/log.ts";
 
 import FS from "./fs.ts";
