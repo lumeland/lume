@@ -1,54 +1,5 @@
 import { posix, SEP } from "../deps/path.ts";
 
-/** A list of the available optional plugins */
-export const pluginNames = [
-  "attributes",
-  "base_path",
-  "code_highlight",
-  "date",
-  "esbuild",
-  "eta",
-  "favicon",
-  "feed",
-  "filter_pages",
-  "imagick",
-  "inline",
-  "jsx",
-  "jsx_preact",
-  "katex",
-  "lightningcss",
-  "liquid",
-  "mdx",
-  "metas",
-  "minify_html",
-  "modify_urls",
-  "multilanguage",
-  "nav",
-  "decap_cms",
-  "on_demand",
-  "pagefind",
-  "picture",
-  "postcss",
-  "prism",
-  "pug",
-  "reading_info",
-  "relations",
-  "relative_urls",
-  "remark",
-  "resolve_urls",
-  "sass",
-  "sheets",
-  "sitemap",
-  "slugify_urls",
-  "source_maps",
-  "svgo",
-  "tailwindcss",
-  "terser",
-  "toml",
-  "unocss",
-  "vento",
-];
-
 /** Run a callback concurrently with all the elements of an Iterable */
 export async function concurrent<Type>(
   iterable: AsyncIterable<Type> | Iterable<Type>,
@@ -232,29 +183,6 @@ export function resolveInclude(
   return normalized.startsWith(normalizePath(posix.join(includesDir, "/")))
     ? normalized
     : normalizePath(posix.join(includesDir, normalized));
-}
-
-/** Returns the _config file of a site */
-export async function getConfigFile(
-  path?: string,
-): Promise<string | undefined> {
-  if (path) {
-    try {
-      return await Deno.realPath(path);
-    } catch {
-      throw new Error(`Config file not found (${path})`);
-    }
-  }
-
-  const paths = ["_config.js", "_config.ts"];
-
-  for (const path of paths) {
-    try {
-      return await Deno.realPath(path);
-    } catch {
-      // Ignore
-    }
-  }
 }
 
 export function env<T>(name: string): T | undefined {

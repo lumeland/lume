@@ -1,5 +1,5 @@
 import { brightGreen, gray } from "./deps/colors.ts";
-import { pluginNames } from "./core/utils.ts";
+import { pluginNames } from "./core/utils/lume_config.ts";
 import { checkDenoSupport } from "./core/utils/lume_version.ts";
 import {
   updateLumeVersion,
