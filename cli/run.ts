@@ -1,6 +1,6 @@
 import lume from "../mod.ts";
 import { toFileUrl } from "../deps/path.ts";
-import { isUrl } from "../core/utils.ts";
+import { isUrl } from "../core/utils/path.ts";
 import { getConfigFile } from "../core/utils/lume_config.ts";
 import { log } from "../core/utils/log.ts";
 

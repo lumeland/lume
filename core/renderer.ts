@@ -1,4 +1,5 @@
-import { isGenerator, resolveInclude } from "./utils.ts";
+import { resolveInclude } from "./utils/path.ts";
+import { isGenerator } from "./utils.ts";
 import { concurrent } from "./utils/concurrent.ts";
 import { Page } from "./file.ts";
 import { posix } from "../deps/path.ts";

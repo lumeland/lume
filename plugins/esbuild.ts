@@ -1,10 +1,10 @@
 import {
   isAbsolutePath,
   isUrl,
-  merge,
   normalizePath,
   replaceExtension,
-} from "../core/utils.ts";
+} from "../core/utils/path.ts";
+import { merge } from "../core/utils.ts";
 import { readDenoConfig } from "../core/utils/deno_config.ts";
 import { log } from "../core/utils/log.ts";
 import { read } from "../core/utils/read.ts";

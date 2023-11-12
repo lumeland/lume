@@ -1,4 +1,5 @@
-import { isPlainObject, isUrl } from "../utils.ts";
+import { isUrl } from "../utils/path.ts";
+import { isPlainObject } from "../utils.ts";
 
 import type { RawData } from "../file.ts";
 

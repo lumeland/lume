@@ -1,6 +1,6 @@
 import { posix } from "../deps/path.ts";
 import modifyUrls from "./modify_urls.ts";
-import { normalizePath } from "../core/utils.ts";
+import { normalizePath } from "../core/utils/path.ts";
 
 import type Site from "../core/site.ts";
 

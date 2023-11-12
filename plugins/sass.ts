@@ -1,9 +1,9 @@
 import {
-  merge,
   normalizePath,
   replaceExtension,
   resolveInclude,
-} from "../core/utils.ts";
+} from "../core/utils/path.ts";
+import { merge } from "../core/utils.ts";
 import { compileStringAsync } from "../deps/sass.ts";
 import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { Page } from "../core/file.ts";

@@ -1,5 +1,5 @@
 import { posix } from "../deps/path.ts";
-import { normalizePath } from "./utils.ts";
+import { normalizePath } from "./utils/path.ts";
 import { Page, StaticFile } from "./file.ts";
 import { Temporal } from "../deps/temporal.ts";
 

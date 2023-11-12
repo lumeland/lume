@@ -1,5 +1,6 @@
 import { posix } from "../deps/path.ts";
-import { getPathAndExtension, merge } from "../core/utils.ts";
+import { getPathAndExtension } from "../core/utils/path.ts";
+import { merge } from "../core/utils.ts";
 import { contentType } from "../deps/media_types.ts";
 
 import type { MagickFormat } from "../deps/imagick.ts";

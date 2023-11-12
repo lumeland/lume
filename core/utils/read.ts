@@ -1,4 +1,4 @@
-import { isUrl } from "../utils.ts";
+import { isUrl } from "./path.ts";
 
 /**
  * Read a local or remote file and return its content.

@@ -1,5 +1,3 @@
-import { posix, SEP } from "../deps/path.ts";
-
 /** Helper to create optional properties recursively */
 export type DeepPartial<T> = T extends object ? {
     [P in keyof T]?: DeepPartial<T[P]>;
@@ -53,60 +51,6 @@ export function isPlainObject(obj: unknown): obj is Record<string, unknown> {
 }
 
 /**
- * Convert the Windows paths (that use the separator "\")
- * to Posix paths (with the separator "/")
- * and ensure it starts with "/".
- */
-export function normalizePath(path: string, rootToRemove?: string) {
-  if (rootToRemove) {
-    path = path.replace(rootToRemove, "");
-  }
-
-  if (SEP !== "/") {
-    path = path.replaceAll(SEP, "/");
-
-    // Is absolute Windows path (C:/...)
-    if (path.includes(":/")) {
-      if (rootToRemove && path.startsWith(rootToRemove)) {
-        return posix.join("/", path.replace(rootToRemove, ""));
-      }
-
-      return path;
-    }
-  }
-
-  const absolute = posix.join("/", path);
-  return rootToRemove && absolute.startsWith(rootToRemove)
-    ? posix.join("/", absolute.replace(rootToRemove, ""))
-    : absolute;
-}
-
-export function isUrl(path: string): boolean {
-  return !!path.match(/^(https?|file):\/\//);
-}
-export function isAbsolutePath(path: string): boolean {
-  return SEP !== "/" ? /^\w:[\/\\]/.test(path) : path.startsWith("/");
-}
-
-export function replaceExtension(
-  path: string,
-  ext: string,
-): string {
-  return path.replace(/\.\w+$/, ext);
-}
-
-export function getPathAndExtension(path: string): [string, string] {
-  const extension = getExtension(path);
-  const pathWithoutExtension = path.slice(0, -extension.length);
-  return [pathWithoutExtension, extension];
-}
-
-export function getExtension(path: string): string {
-  const match = path.match(/\.\w+$/);
-  return match ? match[0] : "";
-}
-
-/**
  * Check if the content variable is a generator.
  */
 export function isGenerator(
@@ -118,33 +62,4 @@ export function isGenerator(
 
   const name = content.constructor.name;
   return (name === "GeneratorFunction" || name === "AsyncGeneratorFunction");
-}
-
-/**
- * Resolve the path of an included file
- * Used in the template engines and processors
- */
-export function resolveInclude(
-  path: string,
-  includesDir: string,
-  fromDir?: string,
-  rootToRemove?: string,
-): string {
-  if (isUrl(path)) {
-    return path;
-  }
-
-  if (path.startsWith(".")) {
-    if (!fromDir) {
-      throw new Error(`Cannot load "${path}" without a base directory`);
-    }
-
-    return normalizePath(posix.join(fromDir, path), rootToRemove);
-  }
-
-  const normalized = normalizePath(path, rootToRemove);
-
-  return normalized.startsWith(normalizePath(posix.join(includesDir, "/")))
-    ? normalized
-    : normalizePath(posix.join(includesDir, normalized));
 }

@@ -1,4 +1,4 @@
-import { normalizePath } from "../core/utils.ts";
+import { normalizePath } from "../core/utils/path.ts";
 import reloadClient from "./reload_client.js";
 
 import type { Middleware } from "../core/server.ts";

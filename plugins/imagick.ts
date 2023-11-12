@@ -1,4 +1,5 @@
-import { getPathAndExtension, merge } from "../core/utils.ts";
+import { getPathAndExtension } from "../core/utils/path.ts";
+import { merge } from "../core/utils.ts";
 import { log } from "../core/utils/log.ts";
 import binaryLoader from "../core/loaders/binary.ts";
 import { ImageMagick } from "../deps/imagick.ts";

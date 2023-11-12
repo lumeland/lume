@@ -1,5 +1,5 @@
 import { join, relative } from "../deps/path.ts";
-import { normalizePath } from "./utils.ts";
+import { normalizePath } from "./utils/path.ts";
 import Events from "./events.ts";
 
 import type Site from "./site.ts";

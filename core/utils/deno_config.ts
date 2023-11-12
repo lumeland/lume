@@ -1,7 +1,7 @@
 import { brightGreen, dim, gray } from "../../deps/colors.ts";
 import { dirname, extname, join } from "../../deps/path.ts";
 import { parse } from "../../deps/jsonc.ts";
-import { isUrl } from "../utils.ts";
+import { isUrl } from "../utils/path.ts";
 
 /** Import map file */
 export interface ImportMap {

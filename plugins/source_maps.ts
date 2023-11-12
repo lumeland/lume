@@ -1,4 +1,5 @@
-import { isUrl, merge, normalizePath } from "../core/utils.ts";
+import { isUrl, normalizePath } from "../core/utils/path.ts";
+import { merge } from "../core/utils.ts";
 import { log } from "../core/utils/log.ts";
 import { read } from "../core/utils/read.ts";
 import { encodeBase64 } from "../deps/base64.ts";

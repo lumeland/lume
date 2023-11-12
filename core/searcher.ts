@@ -1,5 +1,5 @@
 import { globToRegExp } from "../deps/path.ts";
-import { normalizePath } from "./utils.ts";
+import { normalizePath } from "./utils/path.ts";
 
 import type { Data, Page, StaticFile } from "./file.ts";
 
