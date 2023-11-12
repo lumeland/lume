@@ -1,6 +1,6 @@
 import { bundleAsync, transform } from "../deps/lightningcss.ts";
 import { resolveInclude } from "../core/utils/path.ts";
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 import { read } from "../core/utils/read.ts";
 import textLoader from "../core/loaders/text.ts";
 import { Page } from "../core/file.ts";

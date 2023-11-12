@@ -1,5 +1,5 @@
 import toml from "../core/loaders/toml.ts";
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
 

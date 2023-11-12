@@ -1,5 +1,5 @@
 import loader from "../core/loaders/text.ts";
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 import {
   rehypeRaw,
   rehypeSanitize,

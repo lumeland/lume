@@ -1,5 +1,5 @@
 import { join, posix } from "../deps/path.ts";
-import { merge } from "./utils.ts";
+import { merge } from "./utils/object.ts";
 import { normalizePath } from "./utils/path.ts";
 import { env } from "./utils/env.ts";
 import { log } from "./utils/log.ts";

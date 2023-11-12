@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 
 import type { Middleware, RequestHandler } from "../core/server.ts";
 

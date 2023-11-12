@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 import createSlugifier, {
   defaults as slugifierDefaults,
 } from "../core/slugifier.ts";

@@ -1,6 +1,6 @@
 import nunjucks from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 import { normalizePath, resolveInclude } from "../core/utils/path.ts";
 import { basename, join, posix } from "../deps/path.ts";
 

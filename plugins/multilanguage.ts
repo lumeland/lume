@@ -1,5 +1,5 @@
 import { Page } from "../core/file.ts";
-import { isPlainObject, merge } from "../core/utils.ts";
+import { isPlainObject, merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 import { posix } from "../deps/path.ts";
 import { getUrl } from "../core/source.ts";

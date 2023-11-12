@@ -1,5 +1,5 @@
 import { minify } from "../deps/minify_html.ts";
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 
 import type { Options as MinifyOptions } from "../deps/minify_html.ts";
 import type Site from "../core/site.ts";

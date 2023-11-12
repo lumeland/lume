@@ -1,6 +1,6 @@
 import { engine, FileLoader } from "../deps/vento.ts";
 import loader from "../core/loaders/text.ts";
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 import { normalizePath } from "../core/utils/path.ts";
 
 import type Site from "../core/site.ts";

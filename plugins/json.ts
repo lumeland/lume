@@ -1,5 +1,5 @@
 import json from "../core/loaders/json.ts";
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
 

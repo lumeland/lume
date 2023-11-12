@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 import binLoader from "../core/loaders/binary.ts";
 import textLoader from "../core/loaders/text.ts";
 import { ImageMagick, MagickFormat, MagickGeometry } from "../deps/imagick.ts";

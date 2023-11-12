@@ -1,5 +1,5 @@
 import yaml from "../core/loaders/yaml.ts";
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
 

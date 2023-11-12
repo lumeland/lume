@@ -1,6 +1,6 @@
 import tailwind, { Config } from "../deps/tailwindcss.ts";
 import { getExtension } from "../core/utils/path.ts";
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
 

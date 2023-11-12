@@ -4,7 +4,7 @@ import {
   postcssImport,
   postcssNesting,
 } from "../deps/postcss.ts";
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 import { resolveInclude } from "../core/utils/path.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";

@@ -1,6 +1,6 @@
 import { React, ReactDOMServer } from "../deps/react.ts";
 import loader from "../core/loaders/module.ts";
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper } from "../core/renderer.ts";

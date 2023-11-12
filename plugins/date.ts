@@ -1,5 +1,5 @@
 import { format } from "../deps/date.ts";
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
 import type { Locale } from "../deps/date.ts";

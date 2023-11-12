@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
 import type { Data, Page } from "../core/file.ts";

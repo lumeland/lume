@@ -1,5 +1,5 @@
 import { ParsingOptions, read, utils } from "../deps/sheetjs.ts";
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 import loadFile from "../core/loaders/binary.ts";
 
 import type Site from "../core/site.ts";

@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 import onDemand, {
   getRouter,

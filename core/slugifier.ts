@@ -1,5 +1,5 @@
 import { unidecode } from "../deps/unidecode.ts";
-import { merge } from "./utils.ts";
+import { merge } from "./utils/object.ts";
 
 export interface Options {
   /** Convert the paths to lower case */

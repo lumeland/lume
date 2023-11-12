@@ -9,7 +9,7 @@ import search, { Options as SearchOptions } from "./plugins/search.ts";
 import paginate, { Options as PaginateOptions } from "./plugins/paginate.ts";
 import toml, { Options as TomlOptions } from "./plugins/toml.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
-import { merge } from "./core/utils.ts";
+import { merge } from "./core/utils/object.ts";
 
 import type { DeepPartial } from "./core/utils.ts";
 import type { SiteOptions } from "./core/site.ts";

@@ -1,4 +1,4 @@
-import { merge } from "../core/utils.ts";
+import { merge } from "../core/utils/object.ts";
 import { Page } from "../core/file.ts";
 import { stringify } from "../deps/xml.ts";
 
