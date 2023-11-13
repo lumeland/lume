@@ -2,9 +2,10 @@ import { resolveInclude } from "./utils/path.ts";
 import { isGenerator } from "./utils/generator.ts";
 import { concurrent } from "./utils/concurrent.ts";
 import { mergeData } from "./utils/merge_data.ts";
+import { getPageUrl } from "./utils/page_url.ts";
+import { getPageDate } from "./utils/page_date.ts";
 import { Page } from "./file.ts";
 import { posix } from "../deps/path.ts";
-import { getDate, getUrl } from "./source.ts";
 
 import type { Content, Data } from "./file.ts";
 import type Processors from "./processors.ts";
@@ -108,12 +109,12 @@ export default class Renderer {
             index++,
             mergeData(page.data, data) as Data,
           );
-          const url = getUrl(newPage, this.prettyUrls, basePath);
+          const url = getPageUrl(newPage, this.prettyUrls, basePath);
           if (!url) {
             continue;
           }
           newPage.data.url = url;
-          newPage.data.date = getDate(newPage);
+          newPage.data.date = getPageDate(newPage);
           newPage._data.layout = "layout" in data
             ? data.layout
             : page._data.layout;

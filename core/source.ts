@@ -1,7 +1,9 @@
 import { posix } from "../deps/path.ts";
 import { normalizePath } from "./utils/path.ts";
 import { mergeData } from "./utils/merge_data.ts";
-import { getGitDate, parseDate } from "./utils/date.ts";
+import { parseDateFromFilename } from "./utils/date.ts";
+import { getPageUrl } from "./utils/page_url.ts";
+import { getPageDate } from "./utils/page_date.ts";
 import { Page, StaticFile } from "./file.ts";
 
 import type { Data, RawData } from "./file.ts";
@@ -219,12 +221,12 @@ export default class Source {
           data,
         ) as Data;
 
-        const url = getUrl(page, this.prettyUrls, path);
+        const url = getPageUrl(page, this.prettyUrls, path);
         if (!url) {
           continue;
         }
         page.data.url = url;
-        page.data.date = getDate(page.data.date);
+        page.data.date = getPageDate(page);
         page.data.page = page;
         pages.push(page);
       }
@@ -342,12 +344,12 @@ export default class Source {
             pageData,
           ) as Data;
 
-          const url = getUrl(page, this.prettyUrls, path);
+          const url = getPageUrl(page, this.prettyUrls, path);
           if (!url) {
             continue;
           }
           page.data.url = url;
-          page.data.date = getDate(page.data.date, entry);
+          page.data.date = getPageDate(page);
           page.data.page = page;
           page._data.layout = pageData.layout;
 
@@ -491,15 +493,13 @@ function toProxy(
 
 export type BuildFilter = (entry: Entry, page?: Page) => boolean;
 
-export type ComponentFunction = (props?: Record<string, unknown>) => string;
-
 export interface ProxyComponents {
   (props?: Record<string, unknown>): string;
   [key: string]: ProxyComponents;
 }
 
 /** Merge the cascade components */
-export function mergeComponents(...components: Components[]): Components {
+function mergeComponents(...components: Components[]): Components {
   return components.reduce((previous, current) => {
     const components = new Map(previous);
 
@@ -520,159 +520,7 @@ export function mergeComponents(...components: Components[]): Components {
   });
 }
 
-/**
- * Parse a date/datetime
- *
- * Filenames can be prepended with a date (yyyy-mm-dd) or datetime
- * (yyyy-mm-dd-hh-ii-ss) followed by an underscore (_) or hyphen (-).
- */
-export function parseDateFromFilename(
-  filename: string,
-): [string, Date | undefined] {
-  const filenameRegex =
-    /^(?<year>\d{4})-(?<month>\d\d)-(?<day>\d\d)(?:-(?<hour>\d\d)-(?<minute>\d\d)(?:-(?<second>\d\d))?)?(?:_|-)(?<slug>.*)/;
-  const fileNameParts = filenameRegex.exec(filename)?.groups;
-
-  if (fileNameParts) {
-    const {
-      year,
-      month,
-      day,
-      hour = "00",
-      minute = "00",
-      second = "00",
-      slug,
-    } = fileNameParts;
-
-    try {
-      const date = parseDate(
-        `${year}-${month}-${day} ${hour}:${minute}:${second}`,
-      );
-      return [slug, date];
-    } catch {
-      throw new Error(
-        `Invalid date: ${filename} (${year}-${month}-${day} ${hour}:${minute}:${second})`,
-      );
-    }
-  }
-
-  return [filename, undefined];
-}
-
-/** Returns the Date instance of a file */
-export function getDate(date: unknown, entry?: Entry): Date {
-  if (date instanceof Date) {
-    return date;
-  }
-
-  if (typeof date === "number") {
-    return new Date(date);
-  }
-
-  const info = entry?.getInfo();
-
-  if (typeof date === "string") {
-    if (entry && info) {
-      switch (date.toLowerCase()) {
-        case "git last modified":
-          return getGitDate("modified", entry.src) || info.mtime || new Date();
-        case "git created":
-          return getGitDate("created", entry.src) || info.birthtime ||
-            new Date();
-      }
-    }
-
-    try {
-      return parseDate(date);
-    } catch {
-      throw new Error(`Invalid date: ${date} (${entry?.src})`);
-    }
-  }
-
-  return info?.birthtime || info?.mtime || new Date();
-}
-
-/** Returns the final URL assigned to a page */
-export function getUrl(
-  page: Page,
-  prettyUrls: boolean,
-  parentPath: string,
-): string | false {
-  const { data } = page;
-  let url = data.url as
-    | string
-    | ((page: Page, defaultUrl: string) => string | false)
-    | false
-    | undefined;
-
-  if (url === false) {
-    return false;
-  }
-
-  if (typeof url === "function") {
-    url = url(page, getDefaultUrl(page, parentPath, prettyUrls));
-  }
-
-  if (typeof url === "string") {
-    // Relative URL
-    if (url.startsWith("./") || url.startsWith("../")) {
-      return normalizeUrl(posix.join(parentPath, url));
-    }
-
-    if (url.startsWith("/")) {
-      return normalizeUrl(url);
-    }
-
-    throw new Error(
-      `The url variable for the page ${page.sourcePath} (${url}) must start with "/", "./" or "../" `,
-    );
-  }
-
-  // If the user has provided a value which hasn't yielded a string then it is an invalid url.
-  if (url !== undefined) {
-    throw new Error(
-      `The url variable for the page ${page.sourcePath} is not correct. If specified, it should either be a string, or a function which returns a string. The provided url is of type: ${typeof url}.`,
-    );
-  }
-
-  return getDefaultUrl(page, parentPath, prettyUrls);
-}
-
-function getDefaultUrl(
-  page: Page,
-  parentPath: string,
-  prettyUrls: boolean,
-): string {
-  // Calculate the URL from the path
-  const url = posix.join(parentPath, page.data.slug ?? page.src.slug);
-
-  if (page.src.asset) {
-    return url + page.src.ext;
-  }
-
-  // Pretty URLs affects to all pages but 404
-  if (prettyUrls && url !== "/404") {
-    if (posix.basename(url) === "index") {
-      return posix.join(posix.dirname(url), "/");
-    }
-    return posix.join(url, "/");
-  }
-
-  return `${url}.html`;
-}
-
-/** Remove the /index.html part if exist and replace spaces */
-export function normalizeUrl(url: string): string {
-  url = encodeURI(url);
-
-  if (url.endsWith("/index.html")) {
-    return url.slice(0, -10);
-  }
-
-  return url;
-}
-
-export function getOutputPath(
+function getOutputPath(
   entry: Entry,
   path: string,
   dest?: string | ((path: string) => string),

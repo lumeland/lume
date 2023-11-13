@@ -1,8 +1,8 @@
 import { Page } from "../core/file.ts";
 import { isPlainObject, merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
+import { getPageUrl } from "../core/utils/page_url.ts";
 import { posix } from "../deps/path.ts";
-import { getUrl } from "../core/source.ts";
 
 import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
@@ -76,7 +76,7 @@ export default function multilanguage(userOptions: Options) {
 
         if (customUrl) {
           newData.url = customUrl;
-          const url = getUrl(newPage, site.options.prettyUrls, basePath);
+          const url = getPageUrl(newPage, site.options.prettyUrls, basePath);
           if (!url) {
             log.warning(
               `[multilanguage plugin] The page ${page.sourcePath} has a custom url "${customUrl}" that is not valid.`,

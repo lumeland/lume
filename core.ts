@@ -28,19 +28,8 @@ import type {
   Components,
   default as ComponentLoader,
 } from "./core/component_loader.ts";
-import type {
-  Content,
-  Data,
-  MergeStrategy,
-  Page,
-  Src,
-  StaticFile,
-} from "./core/file.ts";
-import type {
-  ComponentFunction,
-  default as Source,
-  ProxyComponents,
-} from "./core/source.ts";
+import type { Content, Data, Page, Src, StaticFile } from "./core/file.ts";
+import type { default as Source, ProxyComponents } from "./core/source.ts";
 import type {
   default as Renderer,
   Engine,
@@ -74,7 +63,6 @@ type PluginSetup = (options: unknown) => Plugin;
 export type {
   Archetype,
   Component,
-  ComponentFunction,
   ComponentLoader,
   Components,
   ComponentsOptions,
@@ -94,7 +82,6 @@ export type {
   Helper,
   HelperOptions,
   Loader,
-  MergeStrategy,
   Middleware,
   MultiProcessor,
   Page,
