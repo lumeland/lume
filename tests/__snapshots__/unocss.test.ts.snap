@@ -2596,7 +2596,7 @@ video {
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "styles",

@@ -123,7 +123,7 @@ snapshot[`Pagefind plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "en_1e3ac36",
@@ -141,7 +141,7 @@ snapshot[`Pagefind plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "en_4e982c2",
@@ -159,7 +159,7 @@ snapshot[`Pagefind plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "en_8a7583c",
@@ -177,7 +177,7 @@ snapshot[`Pagefind plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "pagefind-entry",
@@ -621,7 +621,7 @@ snapshot[`Pagefind plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "pagefind-modular-ui",
@@ -655,7 +655,7 @@ snapshot[`Pagefind plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "pagefind-modular-ui",
@@ -675,7 +675,7 @@ snapshot[`Pagefind plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "pagefind-ui",
@@ -697,7 +697,7 @@ snapshot[`Pagefind plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "pagefind-ui",
@@ -715,7 +715,7 @@ snapshot[`Pagefind plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "pagefind",
@@ -749,7 +749,7 @@ snapshot[`Pagefind plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "pagefind",
@@ -767,7 +767,7 @@ snapshot[`Pagefind plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "wasm",
@@ -785,7 +785,7 @@ snapshot[`Pagefind plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "wasm",

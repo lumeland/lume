@@ -134,7 +134,7 @@ Content of Page 1",
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "",

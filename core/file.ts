@@ -42,7 +42,7 @@ export class Page<D extends Data = Data> {
   }
 
   constructor(src?: Partial<Src>) {
-    this.src = { path: "", slug: "", asset: true, ...src };
+    this.src = { path: "", slug: "", ext: "", asset: true, ...src };
   }
 
   /**
@@ -92,7 +92,7 @@ export class Page<D extends Data = Data> {
       return "(generated)";
     }
 
-    return this.src.path + (this.src.ext || "");
+    return this.src.path + this.src.ext;
   }
 
   /** The content of this page */
@@ -140,9 +140,9 @@ export interface StaticFile {
   outputPath: string;
 }
 
-/** The .src property for a Page or Directory */
+/** The .src property for a Page */
 export interface Src {
-  /** The slug name of the file or directory */
+  /** The slug name of the file */
   slug: string;
 
   /** If the page was loaded as asset or not */
@@ -151,10 +151,10 @@ export interface Src {
   /** The path to the file (without extension) */
   path: string;
 
-  /** The extension of the file (undefined for folders) */
-  ext?: string;
+  /** The extension of the file */
+  ext: string;
 
-  /** The original entry instance */
+  /** The original entry instance (empty for pages generated dynamically) */
   entry?: Entry;
 }
 

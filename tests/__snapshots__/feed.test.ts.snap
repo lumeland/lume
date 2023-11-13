@@ -142,7 +142,7 @@ snapshot[`RSS plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "feed",
@@ -268,7 +268,7 @@ snapshot[`RSS plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "feed",

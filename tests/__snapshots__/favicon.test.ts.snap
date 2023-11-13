@@ -127,7 +127,7 @@ snapshot[`favicon plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "apple-touch-icon",
@@ -145,7 +145,7 @@ snapshot[`favicon plugin 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "favicon",

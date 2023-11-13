@@ -157,7 +157,7 @@ icon {
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "components",
@@ -191,7 +191,7 @@ console.log("Hello world, from the icon/User component");
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "components",

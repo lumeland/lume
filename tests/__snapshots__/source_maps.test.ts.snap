@@ -150,7 +150,7 @@ snapshot[`Source maps from CSS files 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "index",
@@ -169,7 +169,7 @@ snapshot[`Source maps from CSS files 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "index2",
@@ -188,7 +188,7 @@ snapshot[`Source maps from CSS files 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "styles",
@@ -425,7 +425,7 @@ snapshot[`Source maps from Js files 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "main",
@@ -444,7 +444,7 @@ snapshot[`Source maps from Js files 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "to_uppercase",
@@ -463,7 +463,7 @@ snapshot[`Source maps from Js files 3`] = `
     },
     src: {
       asset: true,
-      ext: undefined,
+      ext: "",
       path: "",
       remote: undefined,
       slug: "other",
