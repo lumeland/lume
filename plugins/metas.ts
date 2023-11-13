@@ -1,6 +1,6 @@
 import { merge } from "../core/utils/object.ts";
 import { getCurrentVersion } from "../core/utils/lume_version.ts";
-import { getDataValue } from "./utils.ts";
+import { getDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";

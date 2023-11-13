@@ -11,8 +11,11 @@ Deno.test("RSS plugin", async (t) => {
     feed({
       output: ["feed.json", "feed.rss"],
       info: {
-        date: new Date("2020-01-01"),
+        published: new Date("2020-01-01"),
         generator: "https://lume.land",
+      },
+      items: {
+        updated: "=date",
       },
     }),
   );

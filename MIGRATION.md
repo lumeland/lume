@@ -165,3 +165,9 @@
 ## `lightningcss` Plugin
 
 - The `includes` folder is automatically ignored.
+
+## `feed` Plugin
+
+- Renamed the option `info.date` to `info.updated`;
+- Renamed the option `item.date` to `item.updated`;
+- New option `item.published`;

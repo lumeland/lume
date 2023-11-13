@@ -4,7 +4,7 @@ import { pluginNames } from "../core/utils/lume_config.ts";
 const totalPlugins = Array.from(Deno.readDirSync("plugins")).length;
 
 Deno.test("Plugins list in init", () => {
-  equals(pluginNames.length, totalPlugins - 9);
+  equals(pluginNames.length, totalPlugins - 8);
 
   equals(pluginNames, [
     "attributes",

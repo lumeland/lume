@@ -1,7 +1,7 @@
 import { getExtension } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { getCurrentVersion } from "../core/utils/lume_version.ts";
-import { getDataValue } from "./utils.ts";
+import { getDataValue } from "../core/utils/data_values.ts";
 import { $XML, stringify } from "../deps/xml.ts";
 import { Page } from "../core/file.ts";
 
@@ -39,7 +39,7 @@ export interface FeedInfoOptions {
    * The feed published date
    * @default `new Date()`
    */
-  date?: Date;
+  published?: Date;
 
   /** The feed description */
   description?: string;
@@ -58,8 +58,11 @@ export interface FeedItemOptions {
   /** The item description */
   description?: string;
 
-  /** The item date */
-  date?: string;
+  /** The item published date */
+  published?: string;
+
+  /** The item updated date */
+  updated?: string;
 
   /** The item content */
   content?: string;
@@ -84,7 +87,7 @@ export const defaults: Options = {
   /** The feed info */
   info: {
     title: "My RSS Feed",
-    date: new Date(),
+    published: new Date(),
     description: "",
     lang: "en",
     generator: true,
@@ -92,7 +95,7 @@ export const defaults: Options = {
   items: {
     title: "=title",
     description: "=description",
-    date: "=date",
+    published: "=date",
     content: "=children",
     lang: "=lang",
   },
@@ -102,7 +105,7 @@ export interface FeedData {
   title: string;
   url: string;
   description: string;
-  date: Date;
+  published: Date;
   lang: string;
   generator?: string;
   items: FeedItem[];
@@ -112,7 +115,8 @@ export interface FeedItem {
   title: string;
   url: string;
   description: string;
-  date: Date;
+  published: Date;
+  updated?: Date;
   content: string;
   lang: string;
 }
@@ -140,7 +144,7 @@ export default function (userOptions?: Options) {
       const feed: FeedData = {
         title: getDataValue(rootData, info.title),
         description: getDataValue(rootData, info.description),
-        date: getDataValue(rootData, info.date),
+        published: getDataValue(rootData, info.published),
         lang: getDataValue(rootData, info.lang),
         url: site.url("", true),
         generator: info.generator === true
@@ -155,7 +159,8 @@ export default function (userOptions?: Options) {
             title: getDataValue(data, items.title),
             url: site.url(data.url as string, true),
             description: getDataValue(data, items.description),
-            date: getDataValue(data, items.date),
+            published: getDataValue(data, items.published),
+            updated: getDataValue(data, items.updated),
             content: fixedContent,
             lang: getDataValue(data, items.lang),
           };
@@ -207,7 +212,7 @@ function generateRss(data: FeedData, file: string): string {
       "@xmlns:sy": "http://purl.org/rss/1.0/modules/syndication/",
       "@xmlns:slash": "http://purl.org/rss/1.0/modules/slash/",
       "@version": "2.0",
-      channel: {
+      channel: clean({
         title: data.title,
         link: data.url,
         "atom:link": {
@@ -216,21 +221,24 @@ function generateRss(data: FeedData, file: string): string {
           "@type": "application/rss+xml",
         },
         description: data.description,
-        lastBuildDate: data.date.toUTCString(),
+        lastBuildDate: data.published.toUTCString(),
         language: data.lang,
         generator: data.generator,
-        item: data.items.map((item) => ({
-          title: item.title,
-          link: item.url,
-          guid: {
-            "@isPermaLink": false,
-            "#text": item.url,
-          },
-          description: item.description,
-          "content:encoded": item.content,
-          pubDate: item.date.toUTCString(),
-        })),
-      },
+        item: data.items.map((item) =>
+          clean({
+            title: item.title,
+            link: item.url,
+            guid: {
+              "@isPermaLink": false,
+              "#text": item.url,
+            },
+            description: item.description,
+            "content:encoded": item.content,
+            pubDate: item.published.toUTCString(),
+            "atom:updated": item.updated?.toISOString(),
+          })
+        ),
+      }),
     },
   };
 
@@ -238,20 +246,30 @@ function generateRss(data: FeedData, file: string): string {
 }
 
 function generateJson(data: FeedData, file: string): string {
-  const feed = {
+  const feed = clean({
     version: "https://jsonfeed.org/version/1",
     title: data.title,
     home_page_url: data.url,
     feed_url: file,
     description: data.description,
-    items: data.items.map((item) => ({
-      id: item.url,
-      url: item.url,
-      title: item.title,
-      content_html: item.content,
-      date_published: item.date.toUTCString(),
-    })),
-  };
+    items: data.items.map((item) =>
+      clean({
+        id: item.url,
+        url: item.url,
+        title: item.title,
+        content_html: item.content,
+        date_published: item.published.toUTCString(),
+        date_modified: item.updated?.toUTCString(),
+      })
+    ),
+  });
 
   return JSON.stringify(feed);
+}
+
+/** Remove undefined values of an object */
+function clean(obj: Record<string, unknown>) {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([, value]) => value !== undefined),
+  );
 }

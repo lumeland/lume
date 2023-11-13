@@ -1,12 +1,8 @@
-import type { Data } from "../core/file.ts";
-
-/**
- * Common utils used by several plugins
- */
+import type { Data } from "../file.ts";
 
 /**
  * Get the value of a page data
- * For example, if the value is "=title", it will return the value of the page data "title"
+ * For example, if the value is "=title", it returns the value of the page data "title"
  * If the value is "$.title", it will return the value of the element with the selector ".title"
  */
 export function getDataValue(data: Partial<Data>, value?: unknown) {
