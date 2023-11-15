@@ -118,6 +118,7 @@ snapshot[`render order property 3`] = `
 <p>Hello world</p>
 ",
     data: {
+      basename: "extra-page",
       children: "<p>Hello world</p>
 ",
       content: "Hello world
@@ -132,7 +133,6 @@ snapshot[`render order property 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "extra-page",
       tags: "Array(0)",
       url: "/extra-page/",
     },
@@ -147,6 +147,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 11",
     data: {
+      basename: "pages2",
       children: 11,
       content: 11,
       date: [],
@@ -160,7 +161,6 @@ snapshot[`render order property 3`] = `
       paginate: "paginate",
       renderOrder: 2,
       search: [],
-      slug: "pages2",
       tags: "Array(0)",
       url: "/articles/11/",
     },
@@ -175,6 +175,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 12",
     data: {
+      basename: "pages2",
       children: 12,
       content: 12,
       date: [],
@@ -188,7 +189,6 @@ snapshot[`render order property 3`] = `
       paginate: "paginate",
       renderOrder: 2,
       search: [],
-      slug: "pages2",
       tags: "Array(0)",
       url: "/articles/12/",
     },
@@ -203,6 +203,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 13",
     data: {
+      basename: "pages2",
       children: 13,
       content: 13,
       date: [],
@@ -216,7 +217,6 @@ snapshot[`render order property 3`] = `
       paginate: "paginate",
       renderOrder: 2,
       search: [],
-      slug: "pages2",
       tags: "Array(0)",
       url: "/articles/13/",
     },
@@ -231,6 +231,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 14",
     data: {
+      basename: "pages2",
       children: 14,
       content: 14,
       date: [],
@@ -244,7 +245,6 @@ snapshot[`render order property 3`] = `
       paginate: "paginate",
       renderOrder: 2,
       search: [],
-      slug: "pages2",
       tags: "Array(0)",
       url: "/articles/14/",
     },
@@ -259,6 +259,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 15",
     data: {
+      basename: "pages2",
       children: 15,
       content: 15,
       date: [],
@@ -272,7 +273,6 @@ snapshot[`render order property 3`] = `
       paginate: "paginate",
       renderOrder: 2,
       search: [],
-      slug: "pages2",
       tags: "Array(0)",
       url: "/articles/15/",
     },
@@ -287,6 +287,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 16",
     data: {
+      basename: "pages2",
       children: 16,
       content: 16,
       date: [],
@@ -300,7 +301,6 @@ snapshot[`render order property 3`] = `
       paginate: "paginate",
       renderOrder: 2,
       search: [],
-      slug: "pages2",
       tags: "Array(0)",
       url: "/articles/16/",
     },
@@ -315,6 +315,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 17",
     data: {
+      basename: "pages2",
       children: 17,
       content: 17,
       date: [],
@@ -328,7 +329,6 @@ snapshot[`render order property 3`] = `
       paginate: "paginate",
       renderOrder: 2,
       search: [],
-      slug: "pages2",
       tags: "Array(0)",
       url: "/articles/17/",
     },
@@ -343,6 +343,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 18",
     data: {
+      basename: "pages2",
       children: 18,
       content: 18,
       date: [],
@@ -356,7 +357,6 @@ snapshot[`render order property 3`] = `
       paginate: "paginate",
       renderOrder: 2,
       search: [],
-      slug: "pages2",
       tags: "Array(0)",
       url: "/articles/18/",
     },
@@ -371,6 +371,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 19",
     data: {
+      basename: "pages2",
       children: 19,
       content: 19,
       date: [],
@@ -384,7 +385,6 @@ snapshot[`render order property 3`] = `
       paginate: "paginate",
       renderOrder: 2,
       search: [],
-      slug: "pages2",
       tags: "Array(0)",
       url: "/articles/19/",
     },
@@ -399,6 +399,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 20",
     data: {
+      basename: "pages2",
       children: 20,
       content: 20,
       date: [],
@@ -412,7 +413,6 @@ snapshot[`render order property 3`] = `
       paginate: "paginate",
       renderOrder: 2,
       search: [],
-      slug: "pages2",
       tags: "Array(0)",
       url: "/articles/20/",
     },
@@ -427,6 +427,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 1",
     data: {
+      basename: "pages",
       children: 1,
       content: 1,
       date: [],
@@ -439,7 +440,6 @@ snapshot[`render order property 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "pages",
       tags: "Array(0)",
       url: "/articles/1/",
     },
@@ -454,6 +454,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 2",
     data: {
+      basename: "pages",
       children: 2,
       content: 2,
       date: [],
@@ -466,7 +467,6 @@ snapshot[`render order property 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "pages",
       tags: "Array(0)",
       url: "/articles/2/",
     },
@@ -481,6 +481,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 3",
     data: {
+      basename: "pages",
       children: 3,
       content: 3,
       date: [],
@@ -493,7 +494,6 @@ snapshot[`render order property 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "pages",
       tags: "Array(0)",
       url: "/articles/3/",
     },
@@ -508,6 +508,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 4",
     data: {
+      basename: "pages",
       children: 4,
       content: 4,
       date: [],
@@ -520,7 +521,6 @@ snapshot[`render order property 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "pages",
       tags: "Array(0)",
       url: "/articles/4/",
     },
@@ -535,6 +535,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 5",
     data: {
+      basename: "pages",
       children: 5,
       content: 5,
       date: [],
@@ -547,7 +548,6 @@ snapshot[`render order property 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "pages",
       tags: "Array(0)",
       url: "/articles/5/",
     },
@@ -562,6 +562,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 6",
     data: {
+      basename: "pages",
       children: 6,
       content: 6,
       date: [],
@@ -574,7 +575,6 @@ snapshot[`render order property 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "pages",
       tags: "Array(0)",
       url: "/articles/6/",
     },
@@ -589,6 +589,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 7",
     data: {
+      basename: "pages",
       children: 7,
       content: 7,
       date: [],
@@ -601,7 +602,6 @@ snapshot[`render order property 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "pages",
       tags: "Array(0)",
       url: "/articles/7/",
     },
@@ -616,6 +616,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 8",
     data: {
+      basename: "pages",
       children: 8,
       content: 8,
       date: [],
@@ -628,7 +629,6 @@ snapshot[`render order property 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "pages",
       tags: "Array(0)",
       url: "/articles/8/",
     },
@@ -643,6 +643,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 9",
     data: {
+      basename: "pages",
       children: 9,
       content: 9,
       date: [],
@@ -655,7 +656,6 @@ snapshot[`render order property 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "pages",
       tags: "Array(0)",
       url: "/articles/9/",
     },
@@ -670,6 +670,7 @@ snapshot[`render order property 3`] = `
     content: "<!DOCTYPE html>
 10",
     data: {
+      basename: "pages",
       children: 10,
       content: 10,
       date: [],
@@ -682,7 +683,6 @@ snapshot[`render order property 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "pages",
       tags: "Array(0)",
       url: "/articles/10/",
     },
@@ -697,6 +697,7 @@ snapshot[`render order property 3`] = `
     content: '<!DOCTYPE html>
 {"page":1,"totalPages":3,"totalResults":11,"previous":null,"next":"./page-2/index.html"}',
     data: {
+      basename: "pagination",
       children: null,
       content: null,
       date: [],
@@ -719,7 +720,6 @@ snapshot[`render order property 3`] = `
       renderOrder: 1,
       results: "Array(5)",
       search: [],
-      slug: "pagination",
       tags: "Array(0)",
       url: "/page-1/",
     },
@@ -734,6 +734,7 @@ snapshot[`render order property 3`] = `
     content: '<!DOCTYPE html>
 {"page":2,"totalPages":3,"totalResults":11,"previous":"./page-1/index.html","next":"./page-3/index.html"}',
     data: {
+      basename: "pagination",
       children: null,
       content: null,
       date: [],
@@ -756,7 +757,6 @@ snapshot[`render order property 3`] = `
       renderOrder: 1,
       results: "Array(5)",
       search: [],
-      slug: "pagination",
       tags: "Array(0)",
       url: "/page-2/",
     },
@@ -771,6 +771,7 @@ snapshot[`render order property 3`] = `
     content: '<!DOCTYPE html>
 {"page":3,"totalPages":3,"totalResults":11,"previous":"./page-2/index.html","next":null}',
     data: {
+      basename: "pagination",
       children: null,
       content: null,
       date: [],
@@ -793,7 +794,6 @@ snapshot[`render order property 3`] = `
       renderOrder: 1,
       results: "Array(1)",
       search: [],
-      slug: "pagination",
       tags: "Array(0)",
       url: "/page-3/",
     },

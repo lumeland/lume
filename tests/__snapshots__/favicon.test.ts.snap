@@ -118,12 +118,12 @@ snapshot[`favicon plugin 3`] = `
   {
     content: "Uint8Array(2172)",
     data: {
+      basename: "apple-touch-icon",
       content: "Uint8Array(2172)",
       page: [
         "src",
         "data",
       ],
-      slug: "apple-touch-icon",
       url: "/apple-touch-icon.png",
     },
     src: {
@@ -136,12 +136,12 @@ snapshot[`favicon plugin 3`] = `
   {
     content: "Uint8Array(4286)",
     data: {
+      basename: "favicon",
       content: "Uint8Array(4286)",
       page: [
         "src",
         "data",
       ],
-      slug: "favicon",
       url: "/favicon.ico",
     },
     src: {
@@ -154,6 +154,7 @@ snapshot[`favicon plugin 3`] = `
   {
     content: '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="none"><g fill="#000" clip-path="url(#a)"><path d="M32 31.997v28.001L7.486 46.013V17.997l24.514 14Z" opacity=".2"/><path fill-rule="evenodd" d="m60 15.969-28-16-28 16V48.03l28 16 28-16V15.969Zm-3.5 2.03-12.252-7h.002L32 18l-12.25-7 .003-.001L7.5 17.999v14l12.25 7v14L32 60V32l24.5-14Zm0 28-12.25 7V39l12.25-7v14Z" clip-rule="evenodd"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h64v64H0z"/></clipPath></defs></svg>',
     data: {
+      basename: "favicon",
       content: '<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_84_667)">
 <path opacity="0.2" d="M31.9999 31.9975V59.9982L7.48613 46.0132L7.48584 17.9971L31.9999 31.9975Z" fill="black"/>
@@ -176,7 +177,6 @@ snapshot[`favicon plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "favicon",
       tags: "Array(0)",
       url: "/favicon.svg",
     },
@@ -199,6 +199,7 @@ snapshot[`favicon plugin 3`] = `
   
 </body></html>',
     data: {
+      basename: "index",
       children: "<html>
   <head>
     <title>Hello world</title>
@@ -223,7 +224,6 @@ snapshot[`favicon plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       title: "Hello world",
       url: "/",

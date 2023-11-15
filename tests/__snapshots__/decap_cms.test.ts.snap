@@ -119,6 +119,7 @@ site_url: 'https://example.com/'
 local_backend: false
 ",
     data: {
+      basename: "config",
       content: "backend:
   name: git-gateway
   branch: master
@@ -131,7 +132,6 @@ local_backend: false
         "src",
         "data",
       ],
-      slug: "config",
       url: "/admin/config.yml",
     },
     src: {
@@ -156,6 +156,7 @@ local_backend: false
         </html>
         ',
     data: {
+      basename: "index",
       content: '
         <!DOCTYPE html>
         <html lang="en">
@@ -173,7 +174,6 @@ local_backend: false
         "src",
         "data",
       ],
-      slug: "index",
       url: "/admin/",
     },
     src: {

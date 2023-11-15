@@ -688,6 +688,7 @@ Daniels</th>
 ",
     data: {
       attendance_numbers: "Array(24)",
+      basename: "index",
       children: "<body>
 
   <table>
@@ -1276,7 +1277,6 @@ Daniels</th>
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/",
     },

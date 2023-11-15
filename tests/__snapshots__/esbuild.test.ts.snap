@@ -136,6 +136,7 @@ react-is/cjs/react-is.development.js:
 */
 ",
     data: {
+      basename: "main",
       content: '/// <reference lib="dom" />
 import toUppercase from "./modules/to_uppercase.ts";
 import data from "./data.json";
@@ -157,7 +158,6 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       ],
       paginate: "paginate",
       search: [],
-      slug: "main",
       tags: "Array(0)",
       url: "/main.js",
     },
@@ -176,6 +176,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
   </body>
   ",
     data: {
+      basename: "main",
       children: "Hello world",
       content: "Hello world",
       date: [],
@@ -189,7 +190,6 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       ],
       paginate: "paginate",
       search: [],
-      slug: "main",
       tags: "Array(0)",
       url: "/main/",
     },
@@ -204,6 +204,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     content: 'var n=Object.defineProperty;var t=(e,o)=>n(e,"name",{value:o,configurable:!0});function r(e){return e.toUpperCase()}t(r,"toUppercase");document.querySelectorAll(".other")?.forEach(e=>{e.innerHTML=r(e.innerHTML)});
 ',
     data: {
+      basename: "other",
       content: '/// <reference lib="dom" />
 import toUppercase from "./modules/to_uppercase.ts";
 
@@ -221,7 +222,6 @@ document.querySelectorAll(".other")?.forEach((el) => {
       ],
       paginate: "paginate",
       search: [],
-      slug: "other",
       tags: "Array(0)",
       url: "/other.js",
     },
@@ -358,12 +358,12 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
     content: 'var p=Object.defineProperty;var n=(e,t)=>p(e,"name",{value:t,configurable:!0});var a=(e,t)=>{for(var r in t)p(e,r,{get:t[r],enumerable:!0})};function o(e){return e.toUpperCase()}n(o,"toUppercase");export{n as a,a as b,o as c};
 ',
     data: {
+      basename: "chunk",
       content: "",
       page: [
         "src",
         "data",
       ],
-      slug: "chunk-OWCSNBH5",
       url: "/foo/chunk.js",
     },
     src: {
@@ -390,6 +390,7 @@ react-is/cjs/react-is.development.js:
 */
 ",
     data: {
+      basename: "main",
       content: '/// <reference lib="dom" />
 import toUppercase from "./modules/to_uppercase.ts";
 import data from "./data.json";
@@ -411,7 +412,6 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       ],
       paginate: "paginate",
       search: [],
-      slug: "main",
       tags: "Array(0)",
       url: "/foo/main.js",
     },
@@ -430,6 +430,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
   </body>
   ",
     data: {
+      basename: "main",
       children: "Hello world",
       content: "Hello world",
       date: [],
@@ -443,7 +444,6 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       ],
       paginate: "paginate",
       search: [],
-      slug: "main",
       tags: "Array(0)",
       url: "/main/",
     },
@@ -458,6 +458,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
     content: 'import{c as e}from"./chunk.js";document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
 ',
     data: {
+      basename: "other",
       content: '/// <reference lib="dom" />
 import toUppercase from "./modules/to_uppercase.ts";
 
@@ -475,7 +476,6 @@ document.querySelectorAll(".other")?.forEach((el) => {
       ],
       paginate: "paginate",
       search: [],
-      slug: "other",
       tags: "Array(0)",
       url: "/foo/other.js",
     },

@@ -127,6 +127,7 @@ snapshot[`JSON plugin 3`] = `
   </body>
 </html>",
     data: {
+      basename: "index",
       children: "Content of the index",
       content: "Content of the index",
       date: [],
@@ -144,7 +145,6 @@ snapshot[`JSON plugin 3`] = `
         "title",
         "description",
       ],
-      slug: "index",
       tags: "Array(0)",
       title: "Title of the index",
       url: "/",
@@ -164,6 +164,7 @@ snapshot[`JSON plugin 3`] = `
 <h1>Welcome</h1>
 ",
     data: {
+      basename: "page1",
       children: "<p>{
 &quot;title&quot;: &quot;First page&quot;
 }</p>
@@ -189,7 +190,6 @@ snapshot[`JSON plugin 3`] = `
         "title",
         "description",
       ],
-      slug: "page1",
       tags: "Array(0)",
       url: "/page1/",
     },

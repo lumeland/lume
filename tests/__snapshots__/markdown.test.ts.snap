@@ -126,6 +126,7 @@ snapshot[`Build a markdown site 3`] = `
 </ul>
 ",
     data: {
+      basename: "basic",
       children: "<h1>Normal page</h1>
 <ul>
 <li>List</li>
@@ -149,7 +150,6 @@ snapshot[`Build a markdown site 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "basic",
       tags: "Array(0)",
       title: "Basic page",
       url: "/basic/",
@@ -177,6 +177,7 @@ snapshot[`Build a markdown site 3`] = `
 </section>
 \`,
     data: {
+      basename: "footnote",
       children: \`<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
 <p>belong to the previous footnote.</p>
 <h4 class="mt-3">Footnotes</h4>
@@ -210,7 +211,6 @@ belong to the previous footnote.
       ],
       paginate: "paginate",
       search: [],
-      slug: "footnote",
       tags: "Array(0)",
       url: "/footnote/",
     },
@@ -226,6 +226,7 @@ belong to the previous footnote.
 <p><a href="#foo" target="_blank">link</a></p>
 ',
     data: {
+      basename: "with-attributes",
       children: '<p><a href="#foo" target="_blank">link</a></p>
 ',
       content: "[link](#foo){target=_blank}
@@ -240,7 +241,6 @@ belong to the previous footnote.
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-attributes",
       tags: "Array(0)",
       url: "/with-attributes/",
     },
@@ -260,6 +260,7 @@ belong to the previous footnote.
 <p>Not indented code</p>
 ',
     data: {
+      basename: "with-code",
       children: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
 </code></pre>
 <pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
@@ -286,7 +287,6 @@ belong to the previous footnote.
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-code",
       tags: "Array(0)",
       url: "/with-code/",
     },
@@ -309,6 +309,7 @@ belong to the previous footnote.
 </dl>
 ",
     data: {
+      basename: "with-deflist",
       children: "<!-- deno-fmt-ignore-file -->
 <dl>
 <dt>This is a definition title</dt>
@@ -336,7 +337,6 @@ Other title
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-deflist",
       tags: "Array(0)",
       url: "/with-deflist/",
     },
@@ -354,6 +354,7 @@ Other title
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
     data: {
+      basename: "with-filter",
       children: '<h1>Module <strong>example</strong></h1>
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
@@ -374,7 +375,6 @@ Other title
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-filter",
       tags: "Array(0)",
       title: "Module **example**",
       url: "/with-filter/",
@@ -392,6 +392,7 @@ Other title
 <p><a href="/">Back to home</a></p>
 ',
     data: {
+      basename: "with-module",
       children: '<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>
 ',
@@ -406,7 +407,6 @@ Other title
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-module",
       tags: "Array(0)",
       templateEngine: "js,md",
       title: "Module example",
@@ -431,6 +431,7 @@ Other title
 </ul>
 ',
     data: {
+      basename: "with-vento",
       children: '<!-- deno-fmt-ignore-file -->
 <h1>Module <strong>example</strong></h1>
 <p>Foo</p>
@@ -464,7 +465,6 @@ Foo
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-vento",
       tags: "Array(0)",
       templateEngine: "vto,md",
       title: "Module **example**",
@@ -606,6 +606,7 @@ snapshot[`Build a markdown with hooks 3`] = `
 </ul>
 ",
     data: {
+      basename: "basic",
       children: "<h1>Normal page</h1>
 <ul>
 <li>List</li>
@@ -629,7 +630,6 @@ snapshot[`Build a markdown with hooks 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "basic",
       tags: "Array(0)",
       title: "Basic page",
       url: "/basic/",
@@ -657,6 +657,7 @@ snapshot[`Build a markdown with hooks 3`] = `
 </section>
 \`,
     data: {
+      basename: "footnote",
       children: \`<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
 <p>belong to the previous footnote.</p>
 <h4 class="mt-3">Footnotes</h4>
@@ -690,7 +691,6 @@ belong to the previous footnote.
       ],
       paginate: "paginate",
       search: [],
-      slug: "footnote",
       tags: "Array(0)",
       url: "/footnote/",
     },
@@ -706,6 +706,7 @@ belong to the previous footnote.
 <p><a href="#foo" target="_blank">link</a></p>
 ',
     data: {
+      basename: "with-attributes",
       children: '<p><a href="#foo" target="_blank">link</a></p>
 ',
       content: "[link](#foo){target=_blank}
@@ -720,7 +721,6 @@ belong to the previous footnote.
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-attributes",
       tags: "Array(0)",
       url: "/with-attributes/",
     },
@@ -740,6 +740,7 @@ belong to the previous footnote.
 <p>Not indented code</p>
 ',
     data: {
+      basename: "with-code",
       children: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
 </code></pre>
 <pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
@@ -766,7 +767,6 @@ belong to the previous footnote.
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-code",
       tags: "Array(0)",
       url: "/with-code/",
     },
@@ -789,6 +789,7 @@ belong to the previous footnote.
 </dl>
 ",
     data: {
+      basename: "with-deflist",
       children: "<!-- deno-fmt-ignore-file -->
 <dl>
 <dt>This is a definition title</dt>
@@ -816,7 +817,6 @@ Other title
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-deflist",
       tags: "Array(0)",
       url: "/with-deflist/",
     },
@@ -834,6 +834,7 @@ Other title
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
     data: {
+      basename: "with-filter",
       children: '<h1>Module <strong>example</strong></h1>
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
@@ -854,7 +855,6 @@ Other title
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-filter",
       tags: "Array(0)",
       title: "Module **example**",
       url: "/with-filter/",
@@ -872,6 +872,7 @@ Other title
 <p><a href="/">Back to home</a></p>
 ',
     data: {
+      basename: "with-module",
       children: '<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>
 ',
@@ -886,7 +887,6 @@ Other title
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-module",
       tags: "Array(0)",
       templateEngine: "js,md",
       title: "Module example",
@@ -911,6 +911,7 @@ Other title
 </ul>
 ',
     data: {
+      basename: "with-vento",
       children: '<!-- deno-fmt-ignore-file -->
 <h1>Module <strong>example</strong></h1>
 <p>Foo</p>
@@ -944,7 +945,6 @@ Foo
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-vento",
       tags: "Array(0)",
       templateEngine: "vto,md",
       title: "Module **example**",

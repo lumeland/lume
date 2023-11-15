@@ -1,6 +1,6 @@
 ---
 title: Category 1
-slug: category-1
+basename: category-1
 renderOrder: -2
 ---
 

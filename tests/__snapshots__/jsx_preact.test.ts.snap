@@ -133,6 +133,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
     content: "<!DOCTYPE html>
 <html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
     data: {
+      basename: "index",
       children: [
         "type",
         "props",
@@ -184,7 +185,6 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       title: "This is the title",
       url: "/",
@@ -200,6 +200,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
     content: "<!DOCTYPE html>
 <html><head><title></title></head><body><main><div>1</div></main></body></html>",
     data: {
+      basename: "multiple",
       children: [
         "type",
         "props",
@@ -251,7 +252,6 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "multiple",
       tags: "Array(0)",
       url: "/page/1/",
     },
@@ -266,6 +266,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
     content: "<!DOCTYPE html>
 <html><head><title></title></head><body><main><div>2</div></main></body></html>",
     data: {
+      basename: "multiple",
       children: [
         "type",
         "props",
@@ -317,7 +318,6 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "multiple",
       tags: "Array(0)",
       url: "/page/2/",
     },
@@ -332,6 +332,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
     content: '<!DOCTYPE html>
 <html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
     data: {
+      basename: "with-function",
       children: [
         "type",
         "props",
@@ -366,7 +367,6 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-function",
       tags: "Array(0)",
       title: "This is the title",
       url: "/with-function/",
@@ -388,6 +388,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
 </code></pre>
 </div></main></body></html>',
     data: {
+      basename: "with-markdown",
       children: '<h1 class="foo">Hello world</h1>
 <p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
 <pre><code class="language-css">body {
@@ -420,7 +421,6 @@ body {
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-markdown",
       tags: "Array(0)",
       title: "Markdown combined with JSX",
       url: "/with-markdown/",

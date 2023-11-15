@@ -146,6 +146,7 @@ Título
 </html>
 ',
     data: {
+      basename: "index",
       children: '<h1>Título</h1>
 
 <a href="https://lume.land" class="btn btn-primary">
@@ -187,7 +188,6 @@ CUSTOM FILTER
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       title: "Título",
       url: "/",
@@ -203,6 +203,7 @@ CUSTOM FILTER
     content: "<!DOCTYPE html>
 <h1>VENTO FILTER EXAMPLE</h1>",
     data: {
+      basename: "vto-filter",
       children: "<h1>VENTO FILTER EXAMPLE</h1>",
       comp: [
         "_components",
@@ -219,7 +220,6 @@ CUSTOM FILTER
       ],
       paginate: "paginate",
       search: [],
-      slug: "vto-filter",
       tags: "Array(0)",
       title: "vento filter example",
       url: "/vto-filter/",

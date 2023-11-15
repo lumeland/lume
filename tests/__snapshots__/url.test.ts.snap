@@ -126,6 +126,7 @@ snapshot[`url and htmlUrl update href 3`] = `
     </html>
   ',
     data: {
+      basename: "default-filter",
       children: '
     <!DOCTYPE html>
     <html lang="en">
@@ -152,7 +153,6 @@ snapshot[`url and htmlUrl update href 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "default-filter",
       tags: "Array(0)",
       title: "Default Filter",
       url: "/default-filter/",
@@ -178,6 +178,7 @@ snapshot[`url and htmlUrl update href 3`] = `
     </html>
   ',
     data: {
+      basename: "renamed-filter",
       children: '
     <!DOCTYPE html>
     <html lang="en">
@@ -201,7 +202,6 @@ snapshot[`url and htmlUrl update href 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "renamed-filter",
       tags: "Array(0)",
       title: "Renamed Filter",
       url: "/renamed-filter/",
@@ -342,6 +342,7 @@ snapshot[`configure url and htmlUrl names 3`] = `
     </html>
   ',
     data: {
+      basename: "default-filter",
       children: '
     <!DOCTYPE html>
     <html lang="en">
@@ -368,7 +369,6 @@ snapshot[`configure url and htmlUrl names 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "default-filter",
       tags: "Array(0)",
       title: "Default Filter",
       url: "/default-filter/",
@@ -394,6 +394,7 @@ snapshot[`configure url and htmlUrl names 3`] = `
     </html>
   ',
     data: {
+      basename: "renamed-filter",
       children: '
     <!DOCTYPE html>
     <html lang="en">
@@ -417,7 +418,6 @@ snapshot[`configure url and htmlUrl names 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "renamed-filter",
       tags: "Array(0)",
       title: "Renamed Filter",
       url: "/renamed-filter/",

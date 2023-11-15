@@ -57,7 +57,7 @@ export function parseDateFromFilename(
   filename: string,
 ): [string, Date | undefined] {
   const filenameRegex =
-    /^(?<year>\d{4})-(?<month>\d\d)-(?<day>\d\d)(?:-(?<hour>\d\d)-(?<minute>\d\d)(?:-(?<second>\d\d))?)?(?:_|-)(?<slug>.*)/;
+    /^(?<year>\d{4})-(?<month>\d\d)-(?<day>\d\d)(?:-(?<hour>\d\d)-(?<minute>\d\d)(?:-(?<second>\d\d))?)?(?:_|-)(?<basename>.*)/;
   const fileNameParts = filenameRegex.exec(filename)?.groups;
 
   if (fileNameParts) {
@@ -68,7 +68,7 @@ export function parseDateFromFilename(
       hour = "00",
       minute = "00",
       second = "00",
-      slug,
+      basename,
     } = fileNameParts;
 
     try {
@@ -76,7 +76,7 @@ export function parseDateFromFilename(
         `${year}-${month}-${day} ${hour}:${minute}:${second}`,
       );
 
-      return [slug, date];
+      return [basename, date];
     } catch {
       throw new Error(
         `Invalid date: ${filename} (${year}-${month}-${day} ${hour}:${minute}:${second})`,

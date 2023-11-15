@@ -123,6 +123,7 @@ snapshot[`relative_url plugin 3`] = `
 </ul>
 </body></html>',
     data: {
+      basename: "contact",
       children: '<p>Contact</p>
 <ul>
 <li><a href="/">Index</a></li>
@@ -148,7 +149,6 @@ snapshot[`relative_url plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "contact",
       tags: "Array(0)",
       url: "/about-us/contact/",
     },
@@ -170,6 +170,7 @@ snapshot[`relative_url plugin 3`] = `
 </ul>
 </body></html>',
     data: {
+      basename: "index",
       children: '<p>About us</p>
 <ul>
 <li><a href="/">Index</a></li>
@@ -195,7 +196,6 @@ snapshot[`relative_url plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/about-us/",
     },
@@ -217,6 +217,7 @@ snapshot[`relative_url plugin 3`] = `
 </ul>
 </body></html>',
     data: {
+      basename: "presentation",
       children: '<p>Presentation</p>
 <ul>
 <li><a href="/">Index</a></li>
@@ -242,7 +243,6 @@ snapshot[`relative_url plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "presentation",
       tags: "Array(0)",
       url: "/about-us/presentation/",
     },
@@ -268,6 +268,7 @@ snapshot[`relative_url plugin 3`] = `
 </ul>
 </body></html>',
     data: {
+      basename: "index",
       children: '<p>Index</p>
 <ul>
 <li><a href="/">Index</a></li>
@@ -301,7 +302,6 @@ snapshot[`relative_url plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -438,6 +438,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
 </ul>
 </body></html>',
     data: {
+      basename: "contact",
       children: '<p>Contact</p>
 <ul>
 <li><a href="/">Index</a></li>
@@ -463,7 +464,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "contact",
       tags: "Array(0)",
       url: "/about-us/contact.html",
     },
@@ -485,6 +485,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
 </ul>
 </body></html>',
     data: {
+      basename: "index",
       children: '<p>About us</p>
 <ul>
 <li><a href="/">Index</a></li>
@@ -510,7 +511,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/about-us/index.html",
     },
@@ -532,6 +532,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
 </ul>
 </body></html>',
     data: {
+      basename: "presentation",
       children: '<p>Presentation</p>
 <ul>
 <li><a href="/">Index</a></li>
@@ -557,7 +558,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "presentation",
       tags: "Array(0)",
       url: "/about-us/presentation.html",
     },
@@ -583,6 +583,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
 </ul>
 </body></html>',
     data: {
+      basename: "index",
       children: '<p>Index</p>
 <ul>
 <li><a href="/">Index</a></li>
@@ -616,7 +617,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/index.html",
     },

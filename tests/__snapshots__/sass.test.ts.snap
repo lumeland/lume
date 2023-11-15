@@ -134,6 +134,7 @@ snapshot[`sass plugin 3`] = `
   {
     content: '@import"./styles.css";html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}li{margin:0;padding:0;list-style:none}',
     data: {
+      basename: "index",
       content: '@use "sass/bootstrap";
 
 @import "./styles.css";
@@ -154,7 +155,6 @@ li {
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/index.css",
     },
@@ -168,6 +168,7 @@ li {
   {
     content: "body{color:blue}",
     data: {
+      basename: "index2",
       content: '@import "sass/colors"
 
 body
@@ -183,7 +184,6 @@ body
       ],
       paginate: "paginate",
       search: [],
-      slug: "index2",
       tags: "Array(0)",
       url: "/index2.css",
     },

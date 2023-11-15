@@ -127,6 +127,7 @@ snapshot[`TOML plugin 3`] = `
   </body>
 </html>",
     data: {
+      basename: "index",
       children: "Content of the index",
       content: "Content of the index",
       date: [],
@@ -144,7 +145,6 @@ snapshot[`TOML plugin 3`] = `
         "title",
         "description",
       ],
-      slug: "index",
       tags: "Array(0)",
       title: "Title of the index",
       url: "/",
@@ -161,6 +161,7 @@ snapshot[`TOML plugin 3`] = `
 <h1>Welcome</h1>
 ",
     data: {
+      basename: "page1",
       children: "<h1>Welcome</h1>
 ",
       content: "# Welcome
@@ -179,7 +180,6 @@ snapshot[`TOML plugin 3`] = `
         "title",
         "description",
       ],
-      slug: "page1",
       tags: "Array(0)",
       title: "First page",
       url: "/page1/",

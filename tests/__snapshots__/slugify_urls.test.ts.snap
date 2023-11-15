@@ -131,6 +131,7 @@ snapshot[`slugify_urls plugin 3`] = `
 <p>Page 2</p>
 ",
     data: {
+      basename: "Chourizos ao viño",
       children: "<p>Page 2</p>
 ",
       content: "Page 2
@@ -145,7 +146,6 @@ snapshot[`slugify_urls plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "Chourizos ao viño",
       tags: "Array(0)",
       url: "/chourizos-ao-vino/",
     },
@@ -161,6 +161,7 @@ snapshot[`slugify_urls plugin 3`] = `
 <p>Page 1</p>
 ",
     data: {
+      basename: "Page 1",
       children: "<p>Page 1</p>
 ",
       content: "Page 1
@@ -175,7 +176,6 @@ snapshot[`slugify_urls plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "Page 1",
       tags: "Array(0)",
       url: "/page-1/",
     },
@@ -190,6 +190,7 @@ snapshot[`slugify_urls plugin 3`] = `
     content: "<!DOCTYPE html>
 Filloas con nocilla",
     data: {
+      basename: "generator",
       children: "Filloas con nocilla",
       content: "Filloas con nocilla",
       date: [],
@@ -202,7 +203,6 @@ Filloas con nocilla",
       ],
       paginate: "paginate",
       search: [],
-      slug: "generator",
       tags: "Array(0)",
       url: "/filloas-con-nocilla/",
     },
@@ -217,6 +217,7 @@ Filloas con nocilla",
     content: "<!DOCTYPE html>
 Foo",
     data: {
+      basename: "generator",
       children: "Foo",
       content: "Foo",
       date: [],
@@ -229,7 +230,6 @@ Foo",
       ],
       paginate: "paginate",
       search: [],
-      slug: "generator",
       tags: "Array(0)",
       url: "/803nfon-sfodij/-/",
     },
@@ -245,6 +245,7 @@ Foo",
 <p>Page 3</p>
 ",
     data: {
+      basename: "page-3",
       children: "<p>Page 3</p>
 ",
       content: "Page 3
@@ -259,7 +260,6 @@ Foo",
       ],
       paginate: "paginate",
       search: [],
-      slug: "page-3",
       tags: "Array(0)",
       url: "/paxina-numero/tres/",
     },
@@ -275,6 +275,7 @@ Foo",
 <p>Page 4</p>
 ",
     data: {
+      basename: "page-4",
       children: "<p>Page 4</p>
 ",
       content: "Page 4
@@ -289,7 +290,6 @@ Foo",
       ],
       paginate: "paginate",
       search: [],
-      slug: "page-4",
       tags: "Array(0)",
       url: "/paxina-4.html",
     },
@@ -434,6 +434,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
 <p>Page 2</p>
 ",
     data: {
+      basename: "Chourizos ao viño",
       children: "<p>Page 2</p>
 ",
       content: "Page 2
@@ -448,7 +449,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "Chourizos ao viño",
       tags: "Array(0)",
       url: "/chourizos-ao-vino/",
     },
@@ -464,6 +464,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
 <p>Page 1</p>
 ",
     data: {
+      basename: "Page 1",
       children: "<p>Page 1</p>
 ",
       content: "Page 1
@@ -478,7 +479,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "Page 1",
       tags: "Array(0)",
       url: "/page-1/",
     },
@@ -493,6 +493,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
     content: "<!DOCTYPE html>
 Filloas con nocilla",
     data: {
+      basename: "generator",
       children: "Filloas con nocilla",
       content: "Filloas con nocilla",
       date: [],
@@ -505,7 +506,6 @@ Filloas con nocilla",
       ],
       paginate: "paginate",
       search: [],
-      slug: "generator",
       tags: "Array(0)",
       url: "/filloas-con-nocilla/",
     },
@@ -520,6 +520,7 @@ Filloas con nocilla",
     content: "<!DOCTYPE html>
 Foo",
     data: {
+      basename: "generator",
       children: "Foo",
       content: "Foo",
       date: [],
@@ -532,7 +533,6 @@ Foo",
       ],
       paginate: "paginate",
       search: [],
-      slug: "generator",
       tags: "Array(0)",
       url: "/803nfon-sfodij/-/",
     },
@@ -548,6 +548,7 @@ Foo",
 <p>Page 3</p>
 ",
     data: {
+      basename: "page-3",
       children: "<p>Page 3</p>
 ",
       content: "Page 3
@@ -562,7 +563,6 @@ Foo",
       ],
       paginate: "paginate",
       search: [],
-      slug: "page-3",
       tags: "Array(0)",
       url: "/paxina-numero/tres/",
     },
@@ -578,6 +578,7 @@ Foo",
 <p>Page 4</p>
 ",
     data: {
+      basename: "page-4",
       children: "<p>Page 4</p>
 ",
       content: "Page 4
@@ -592,7 +593,6 @@ Foo",
       ],
       paginate: "paginate",
       search: [],
-      slug: "page-4",
       tags: "Array(0)",
       url: "/paxina-4.html",
     },

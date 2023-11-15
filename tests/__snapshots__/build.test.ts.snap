@@ -115,6 +115,7 @@ snapshot[`build a simple site 3`] = `
     content: "<!DOCTYPE html>
 Content of Page 1",
     data: {
+      basename: "dynamic",
       children: "Content of Page 1",
       content: "Content of {{ title }}",
       date: [],
@@ -127,7 +128,6 @@ Content of Page 1",
       ],
       paginate: "paginate",
       search: [],
-      slug: "dynamic",
       tags: "Array(0)",
       templateEngine: "vto",
       title: "Page 1",
@@ -145,6 +145,7 @@ Content of Page 1",
 <h1>Welcome</h1>
 ",
     data: {
+      basename: "foo",
       children: "<h1>Welcome</h1>
 ",
       content: "# Welcome
@@ -159,7 +160,6 @@ Content of Page 1",
       ],
       paginate: "paginate",
       search: [],
-      slug: "foo",
       tags: "Array(0)",
       title: "Second page",
       url: "/page2.html",
@@ -176,6 +176,7 @@ Content of Page 1",
 <h1>Welcome</h1>
 ",
     data: {
+      basename: "page1",
       children: "<h1>Welcome</h1>
 ",
       content: "# Welcome
@@ -190,7 +191,6 @@ Content of Page 1",
       ],
       paginate: "paginate",
       search: [],
-      slug: "page1",
       tags: "Array(0)",
       title: "First page",
       url: "/page1/",

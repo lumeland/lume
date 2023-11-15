@@ -135,6 +135,7 @@ snapshot[`inline plugin 3`] = `
     </g>
 </svg>',
     data: {
+      basename: "favicon",
       content: '<?xml version="1.0" encoding="UTF-8"?>
 <svg width="126px" height="126px" viewBox="0 0 126 126" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>favicon</title>
@@ -152,7 +153,6 @@ snapshot[`inline plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "favicon",
       tags: "Array(0)",
       url: "/favicon.svg",
     },
@@ -225,6 +225,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
 
 </body></html>',
     data: {
+      basename: "index",
       children: '<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -293,7 +294,6 @@ const a = 1, _b = 1 < a, _c = a > 4;
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -307,6 +307,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
   {
     content: "Uint8Array(1503)",
     data: {
+      basename: "other favicon",
       content: "Uint8Array(1503)",
       date: [],
       mergedKeys: [
@@ -318,7 +319,6 @@ const a = 1, _b = 1 < a, _c = a > 4;
       ],
       paginate: "paginate",
       search: [],
-      slug: "other favicon",
       tags: "Array(0)",
       url: "/other favicon.png",
     },
@@ -334,6 +334,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
 const a = 1, _b = 1 < a, _c = a > 4;
 ',
     data: {
+      basename: "script",
       content: 'console.log("Hello world");
 const a = 1, _b = 1 < a, _c = a > 4;
 ',
@@ -347,7 +348,6 @@ const a = 1, _b = 1 < a, _c = a > 4;
       ],
       paginate: "paginate",
       search: [],
-      slug: "script",
       tags: "Array(0)",
       url: "/script.js",
     },
@@ -364,6 +364,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
   color: #333;
 }",
     data: {
+      basename: "styles",
       content: "body {
   background: white;
   color: #333;
@@ -378,7 +379,6 @@ const a = 1, _b = 1 < a, _c = a > 4;
       ],
       paginate: "paginate",
       search: [],
-      slug: "styles",
       tags: "Array(0)",
       url: "/styles.css",
     },

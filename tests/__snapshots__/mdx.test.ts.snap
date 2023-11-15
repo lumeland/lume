@@ -137,6 +137,7 @@ snapshot[`Build a mdx site 3`] = `
 <p>This is a markdown file with the title <strong>Hello world</strong>.</p>
 <img src="https://via.placeholder.com/350x150" alt="foo"/>',
     data: {
+      basename: "index",
       children: [
         "type",
         "props",
@@ -180,7 +181,6 @@ This is a markdown file with the title **{ title }**.
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       title: "Hello world",
       url: "/",

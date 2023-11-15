@@ -120,6 +120,7 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
   {
     content: '@import "variables.css";@import "./text.css";',
     data: {
+      basename: "index",
       content: '@import "variables.css";
 @import "./text.css";
 ',
@@ -133,7 +134,6 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/index.css",
     },
@@ -147,6 +147,7 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
   {
     content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}",
     data: {
+      basename: "text",
       content: ".text {
   font-family: var(--font-family);
 
@@ -167,7 +168,6 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "text",
       tags: "Array(0)",
       url: "/text.css",
     },
@@ -301,6 +301,7 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
   {
     content: "::root{--color:#333;--background:#fff;--font-family:sans-serif}.text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}",
     data: {
+      basename: "index",
       content: '@import "variables.css";
 @import "./text.css";
 ',
@@ -314,7 +315,6 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/index.css",
     },
@@ -328,6 +328,7 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
   {
     content: ".text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);-webkit-backface-visibility:hidden;backface-visibility:hidden}",
     data: {
+      basename: "text",
       content: ".text {
   font-family: var(--font-family);
 
@@ -348,7 +349,6 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "text",
       tags: "Array(0)",
       url: "/text.css",
     },

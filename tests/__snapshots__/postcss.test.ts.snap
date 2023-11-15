@@ -142,6 +142,7 @@ snapshot[`postcss plugin 3`] = `
   }
 ",
     data: {
+      basename: "index.min",
       content: '@import "variables.css";
 @import "./text.css";
 ',
@@ -155,7 +156,6 @@ snapshot[`postcss plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index.min",
       tags: "Array(0)",
       url: "/index.min.css",
     },
@@ -178,6 +178,7 @@ snapshot[`postcss plugin 3`] = `
   }
 ",
     data: {
+      basename: "text",
       content: ".text {
   font-family: var(--font-family);
 
@@ -198,7 +199,6 @@ snapshot[`postcss plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "text",
       tags: "Array(0)",
       url: "/text.css",
     },
@@ -336,6 +336,7 @@ snapshot[`postcss plugin without includes 3`] = `
 @import "./text.css";
 ',
     data: {
+      basename: "index.min",
       content: '@import "variables.css";
 @import "./text.css";
 ',
@@ -349,7 +350,6 @@ snapshot[`postcss plugin without includes 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index.min",
       tags: "Array(0)",
       url: "/index.min.css",
     },
@@ -372,6 +372,7 @@ snapshot[`postcss plugin without includes 3`] = `
   }
 ",
     data: {
+      basename: "text",
       content: ".text {
   font-family: var(--font-family);
 
@@ -392,7 +393,6 @@ snapshot[`postcss plugin without includes 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "text",
       tags: "Array(0)",
       url: "/text.css",
     },
@@ -528,6 +528,7 @@ snapshot[`postcss plugin with hooks 3`] = `
   {
     content: ".foo{color:red}::root{--color:#333;--background:#fff;--font-family:sans-serif}.text{font-family:var(--font-family)}.text p{-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);box-shadow:0 0 .5em var(--background);color:var(--color)}",
     data: {
+      basename: "index.min",
       content: '@import "variables.css";
 @import "./text.css";
 ',
@@ -541,7 +542,6 @@ snapshot[`postcss plugin with hooks 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index.min",
       tags: "Array(0)",
       url: "/index.min.css",
     },
@@ -555,6 +555,7 @@ snapshot[`postcss plugin with hooks 3`] = `
   {
     content: ".text{font-family:var(--font-family)}.text p{-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);box-shadow:0 0 .5em var(--background);color:var(--color)}",
     data: {
+      basename: "text",
       content: ".text {
   font-family: var(--font-family);
 
@@ -575,7 +576,6 @@ snapshot[`postcss plugin with hooks 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "text",
       tags: "Array(0)",
       url: "/text.css",
     },

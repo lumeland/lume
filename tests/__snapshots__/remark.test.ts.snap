@@ -124,6 +124,7 @@ snapshot[`Build a markdown site 3`] = `
 <li>Elements</li>
 </ul>",
     data: {
+      basename: "basic",
       children: "<h1>Normal page</h1>
 <ul>
 <li>List</li>
@@ -146,7 +147,6 @@ snapshot[`Build a markdown site 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "basic",
       tags: "Array(0)",
       title: "Basic page",
       url: "/basic/",
@@ -162,6 +162,7 @@ snapshot[`Build a markdown site 3`] = `
     content: '<!DOCTYPE html>
 <p><a href="#foo">link</a>{target=_blank}</p>',
     data: {
+      basename: "with-attributes",
       children: '<p><a href="#foo">link</a>{target=_blank}</p>',
       content: "[link](#foo){target=_blank}
 ",
@@ -175,7 +176,6 @@ snapshot[`Build a markdown site 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-attributes",
       tags: "Array(0)",
       url: "/with-attributes/",
     },
@@ -193,6 +193,7 @@ snapshot[`Build a markdown site 3`] = `
 <pre><code>&#x3C;p>Example without color highlight&#x3C;/p>
 </code></pre>',
     data: {
+      basename: "with-code",
       children: '<pre><code class="language-html">&#x3C;p>Example&#x3C;/p>
 </code></pre>
 <pre><code>&#x3C;p>Example without color highlight&#x3C;/p>
@@ -215,7 +216,6 @@ snapshot[`Build a markdown site 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-code",
       tags: "Array(0)",
       url: "/with-code/",
     },
@@ -235,6 +235,7 @@ snapshot[`Build a markdown site 3`] = `
 <p>Other title
 : And other description</p>",
     data: {
+      basename: "with-deflist",
       children: "<!-- deno-fmt-ignore-file -->
 <p>This is a definition title
 : And this the description
@@ -259,7 +260,6 @@ Other title
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-deflist",
       tags: "Array(0)",
       url: "/with-deflist/",
     },
@@ -277,6 +277,7 @@ Other title
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
     data: {
+      basename: "with-filter",
       children: '<h1><p>Module <strong>example</strong></p></h1>
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
@@ -297,7 +298,6 @@ Other title
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-filter",
       tags: "Array(0)",
       title: "Module **example**",
       url: "/with-filter/",
@@ -314,6 +314,7 @@ Other title
 <h1>Module example</h1>
 <p><a href="/">Back to home</a></p>',
     data: {
+      basename: "with-module",
       children: '<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>',
       content: "default",
@@ -327,7 +328,6 @@ Other title
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-module",
       tags: "Array(0)",
       templateEngine: "js,md",
       title: "Module example",
@@ -351,6 +351,7 @@ Other title
 <li>three: <a href="/items/tres.html">tres</a></li>
 </ul>',
     data: {
+      basename: "with-vto",
       children: '<!-- deno-fmt-ignore-file -->
 <h1>Module <strong>example</strong></h1>
 <p>Foo</p>
@@ -383,7 +384,6 @@ Foo
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-vto",
       tags: "Array(0)",
       templateEngine: "vto,md",
       title: "Module **example**",

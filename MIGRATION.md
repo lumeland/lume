@@ -3,7 +3,7 @@
 ## Added
 
 - `includes` option to `module` and `mdx` plugins.
-- `slug` variable to change the final name of files/directories
+- `basename` variable to change the final name of files/directories
 
 ## Core
 
@@ -13,7 +13,7 @@
 - Removed `Page.src.lastModified` and `Page.src.created` because they are
   already in `Page.src.entry`.
 - Removed `Page.src.remote` because it's already in `Page.src.entry`.
-- Removed `Page.src.slug` and added `Page.data.slug`.
+- Removed `Page.src.slug` because it's already in `Page.data.basename`.
 - Removed `--dev` mode #244, #201.
   - Use the env variable `LUME_SHOW_DRAFTS=true` to output draft pages.
 - Removed `--quiet` argument

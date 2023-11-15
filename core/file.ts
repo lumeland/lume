@@ -28,14 +28,14 @@ export class Page<D extends Data = Data> {
 
   /** Convenient way to create a page dynamically with a url and content */
   static create(url: string, content: Content): Page {
-    const slug = posix.basename(url).replace(/\.[\w.]+$/, "");
+    const basename = posix.basename(url).replace(/\.[\w.]+$/, "");
     const page = new Page();
 
     if (url.endsWith("/index.html")) {
       url = url.slice(0, -10);
     }
 
-    page.data = { url, content, page, slug } as Data;
+    page.data = { url, content, page, basename } as Data;
     page.content = content;
 
     return page;
@@ -166,8 +166,8 @@ export interface RawData {
   /** The url of a page */
   url?: string | false | ((page: Page, url: string) => string | false);
 
-  /** The slug of a page */
-  slug?: string;
+  /** The basename of a page */
+  basename?: string;
 
   /** Mark the page as a draft */
   draft?: boolean;
@@ -203,8 +203,8 @@ export interface Data {
   /** The url of a page */
   url: string;
 
-  /** The slug of the page */
-  slug: string;
+  /** The basename of the page */
+  basename: string;
 
   /** The date creation of the page */
   date: Date;

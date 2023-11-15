@@ -128,6 +128,7 @@ snapshot[`Layouts 3`] = `
   </body>
 </html>",
     data: {
+      basename: "index",
       children: "<h1>Hello world</h1>
 ",
       content: "# Hello world
@@ -143,7 +144,6 @@ snapshot[`Layouts 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -159,6 +159,7 @@ snapshot[`Layouts 3`] = `
   color: blue;
 }",
     data: {
+      basename: "styles",
       content: "body {
   color: blue;
 }",
@@ -172,7 +173,6 @@ snapshot[`Layouts 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "styles",
       tags: "Array(0)",
       url: "/styles.css",
     },
@@ -190,6 +190,7 @@ snapshot[`Layouts 3`] = `
 }
 }",
     data: {
+      basename: "styles.2",
       children: "p {
   color: red;
 }",
@@ -207,7 +208,6 @@ snapshot[`Layouts 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "styles.2",
       tags: "Array(0)",
       url: "/styles.2.css",
     },

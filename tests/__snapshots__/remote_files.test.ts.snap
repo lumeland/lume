@@ -185,6 +185,7 @@ This is a local template
 This is a remote template
 ",
     data: {
+      basename: "local1",
       children: "<p>Hello world</p>
 ",
       content: "Hello world
@@ -200,7 +201,6 @@ This is a remote template
       ],
       paginate: "paginate",
       search: [],
-      slug: "local1",
       tags: "Array(0)",
       title: "Remote title",
       url: "/local1/",
@@ -219,6 +219,7 @@ body {
 }
 ",
     data: {
+      basename: "other-remote-style",
       content: "/* Other remote style */
 body {
   color: yellow;
@@ -234,7 +235,6 @@ body {
       ],
       paginate: "paginate",
       search: [],
-      slug: "other-remote-style",
       tags: "Array(0)",
       title: "Remote title",
       url: "/other-remote-style.css",
@@ -250,6 +250,7 @@ body {
     content: 'var r=Object.defineProperty;var e=(t,m)=>r(t,"name",{value:m,configurable:!0});var l="Name";function o(){console.log("hello",l)}e(o,"default");o();
 ',
     data: {
+      basename: "scripts",
       content: 'import hello from "./_includes/hello.js";
 
 hello();
@@ -264,7 +265,6 @@ hello();
       ],
       paginate: "paginate",
       search: [],
-      slug: "scripts",
       tags: "Array(0)",
       title: "Remote title",
       url: "/scripts.js",
@@ -287,6 +287,7 @@ body {
 }
 ",
     data: {
+      basename: "styles1",
       content: '@import "remote-style.css";
 @import "./other-remote-style.css";
 ',
@@ -300,7 +301,6 @@ body {
       ],
       paginate: "paginate",
       search: [],
-      slug: "styles1",
       tags: "Array(0)",
       title: "Remote title",
       url: "/styles1.css",
@@ -317,6 +317,7 @@ body {
   color: blue;
 }",
     data: {
+      basename: "styles2",
       content: "body {
   color: blue;
 }",
@@ -330,7 +331,6 @@ body {
       ],
       paginate: "paginate",
       search: [],
-      slug: "styles2",
       tags: "Array(0)",
       title: "Remote title",
       url: "/styles2.css",
@@ -345,6 +345,7 @@ body {
   {
     content: "body{color:blue}",
     data: {
+      basename: "styles3",
       content: '@import "variables";
 
 body {
@@ -361,7 +362,6 @@ body {
       ],
       paginate: "paginate",
       search: [],
-      slug: "styles3",
       tags: "Array(0)",
       title: "Remote title",
       url: "/styles3.css",

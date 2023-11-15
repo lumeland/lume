@@ -134,6 +134,7 @@ snapshot[`base_path plugin 3`] = `
 
 </body></html>',
     data: {
+      basename: "index",
       children: '<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -194,7 +195,6 @@ snapshot[`base_path plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/",
     },

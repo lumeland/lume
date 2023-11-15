@@ -250,6 +250,7 @@ snapshot[`nav plugin 3`] = `
   </body>
 </html>',
     data: {
+      basename: "docs",
       children: "",
       content: "",
       date: [],
@@ -264,7 +265,6 @@ snapshot[`nav plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "docs",
       tags: "Array(0)",
       title: "Docs",
       url: "/docs/",
@@ -409,6 +409,7 @@ snapshot[`nav plugin 3`] = `
   </body>
 </html>',
     data: {
+      basename: "about-docs",
       children: "",
       content: "",
       date: [],
@@ -424,7 +425,6 @@ snapshot[`nav plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "about-docs",
       tags: "Array(0)",
       title: "About docs",
       url: "/docs/about-docs/",
@@ -569,6 +569,7 @@ snapshot[`nav plugin 3`] = `
   </body>
 </html>',
     data: {
+      basename: "pages",
       children: "",
       content: "",
       date: [],
@@ -583,7 +584,6 @@ snapshot[`nav plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "pages",
       tags: "Array(0)",
       title: "About pages",
       url: "/docs/pages/",
@@ -730,6 +730,7 @@ snapshot[`nav plugin 3`] = `
   </body>
 </html>',
     data: {
+      basename: "first",
       children: "",
       content: "",
       date: [],
@@ -744,7 +745,6 @@ snapshot[`nav plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "first",
       tags: "Array(0)",
       title: "Pages first",
       url: "/docs/pages/first/",
@@ -891,6 +891,7 @@ snapshot[`nav plugin 3`] = `
   </body>
 </html>',
     data: {
+      basename: "second",
       children: "",
       content: "",
       date: [],
@@ -906,7 +907,6 @@ snapshot[`nav plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "second",
       tags: "Array(0)",
       title: "Pages second",
       url: "/docs/pages/second/",
@@ -1047,6 +1047,7 @@ snapshot[`nav plugin 3`] = `
   </body>
 </html>',
     data: {
+      basename: "index",
       children: "",
       content: "",
       date: [],
@@ -1061,7 +1062,6 @@ snapshot[`nav plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       title: "Home",
       url: "/",
@@ -1344,6 +1344,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   </body>
 </html>',
     data: {
+      basename: "docs",
       children: "",
       content: "",
       date: [],
@@ -1358,7 +1359,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "docs",
       tags: "Array(0)",
       title: "Docs",
       url: "/docs.html",
@@ -1521,6 +1521,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   </body>
 </html>',
     data: {
+      basename: "about-docs",
       children: "",
       content: "",
       date: [],
@@ -1536,7 +1537,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "about-docs",
       tags: "Array(0)",
       title: "About docs",
       url: "/docs/about-docs.html",
@@ -1699,6 +1699,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   </body>
 </html>',
     data: {
+      basename: "pages",
       children: "",
       content: "",
       date: [],
@@ -1713,7 +1714,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "pages",
       tags: "Array(0)",
       title: "About pages",
       url: "/docs/pages.html",
@@ -1878,6 +1878,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   </body>
 </html>',
     data: {
+      basename: "first",
       children: "",
       content: "",
       date: [],
@@ -1892,7 +1893,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "first",
       tags: "Array(0)",
       title: "Pages first",
       url: "/docs/pages/first.html",
@@ -2057,6 +2057,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   </body>
 </html>',
     data: {
+      basename: "second",
       children: "",
       content: "",
       date: [],
@@ -2072,7 +2073,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "second",
       tags: "Array(0)",
       title: "Pages second",
       url: "/docs/pages/second.html",
@@ -2229,6 +2229,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   </body>
 </html>',
     data: {
+      basename: "index",
       children: "",
       content: "",
       date: [],
@@ -2243,7 +2244,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       title: "Home",
       url: "/index.html",

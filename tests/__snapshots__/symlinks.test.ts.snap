@@ -134,6 +134,7 @@ snapshot[`follow symlinks 3`] = `
   </body>
 </html>",
     data: {
+      basename: "index",
       children: "<p>Hello wold</p>
 ",
       content: "Hello wold
@@ -149,7 +150,6 @@ snapshot[`follow symlinks 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       title: "Hello world",
       url: "/",

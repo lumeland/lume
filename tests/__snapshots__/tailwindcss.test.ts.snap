@@ -382,6 +382,7 @@ snapshot[`postcss plugin 3`] = `
 </html>
 \`,
     data: {
+      basename: "index",
       children: \`<!doctype html>
 <html lang="en">
 <head>
@@ -916,7 +917,6 @@ snapshot[`postcss plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -935,6 +935,7 @@ snapshot[`postcss plugin 3`] = `
 });
 ',
     data: {
+      basename: "script",
       content: 'menuButton.addEventListener("click", function () {
   const classList = document.getElementById("nav").classList;
   classList.toggle("gap-8");
@@ -951,7 +952,6 @@ snapshot[`postcss plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "script",
       tags: "Array(0)",
       url: "/script.js",
     },
@@ -1949,6 +1949,7 @@ video {
 }
 ",
     data: {
+      basename: "styles",
       content: "@tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -1963,7 +1964,6 @@ video {
       ],
       paginate: "paginate",
       search: [],
-      slug: "styles",
       tags: "Array(0)",
       url: "/styles.css",
     },

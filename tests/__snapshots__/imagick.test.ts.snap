@@ -130,6 +130,7 @@ snapshot[`imagick plugin 3`] = `
   {
     content: "Uint8Array(935)",
     data: {
+      basename: "lume",
       content: "Uint8Array(29014)",
       date: [],
       imagick: "undefined",
@@ -142,7 +143,6 @@ snapshot[`imagick plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "lume",
       tags: "Array(0)",
       url: "/lume-small.png",
     },
@@ -156,6 +156,7 @@ snapshot[`imagick plugin 3`] = `
   {
     content: "Uint8Array(935)",
     data: {
+      basename: "lume",
       content: "Uint8Array(29014)",
       date: [],
       imagick: "undefined",
@@ -168,7 +169,6 @@ snapshot[`imagick plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "lume",
       tags: "Array(0)",
       url: "/lume-big.png",
     },
@@ -182,6 +182,7 @@ snapshot[`imagick plugin 3`] = `
   {
     content: "Uint8Array(1231)",
     data: {
+      basename: "lume",
       content: "Uint8Array(29014)",
       date: [],
       imagick: "undefined",
@@ -194,7 +195,6 @@ snapshot[`imagick plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "lume",
       tags: "Array(0)",
       url: "/lume.jpg",
     },
@@ -208,6 +208,7 @@ snapshot[`imagick plugin 3`] = `
   {
     content: "Uint8Array(8648)",
     data: {
+      basename: "lume",
       content: "Uint8Array(29014)",
       date: [],
       imagick: "undefined",
@@ -220,7 +221,6 @@ snapshot[`imagick plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "lume",
       tags: "Array(0)",
       url: "/lume.webp",
     },
@@ -234,6 +234,7 @@ snapshot[`imagick plugin 3`] = `
   {
     content: "Uint8Array(14410)",
     data: {
+      basename: "lume",
       content: "Uint8Array(29014)",
       date: [],
       imagick: "undefined",
@@ -246,7 +247,6 @@ snapshot[`imagick plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "lume",
       tags: "Array(0)",
       url: "/lume.png",
     },

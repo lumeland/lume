@@ -123,6 +123,7 @@ snapshot[`build a site with pug 3`] = `
     content: '<!DOCTYPE html>
 <html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
     data: {
+      basename: "extends",
       children: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
       content: "extends /layout.pug
 block content
@@ -138,7 +139,6 @@ block content
       ],
       paginate: "paginate",
       search: [],
-      slug: "extends",
       tags: "Array(0)",
       title: "Pug example",
       url: "/extends/",
@@ -159,6 +159,7 @@ block content
 <li>Option 2</li>
 </ul><h1>Some dynamic content</h1></body></html>',
     data: {
+      basename: "filter",
       children: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
 <p>This is a paragraph</p>
 <ul>
@@ -188,7 +189,6 @@ block content
       ],
       paginate: "paginate",
       search: [],
-      slug: "filter",
       tags: "Array(0)",
       title: "Markdown content",
       url: "/article.html",
@@ -204,6 +204,7 @@ block content
     content: '<!DOCTYPE html>
 <html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><header><h1>Pug example</h1></header></body></html>',
     data: {
+      basename: "layout",
       children: "<header><h1>Pug example</h1></header>",
       content: "header
   h1 #{title}
@@ -219,7 +220,6 @@ block content
       ],
       paginate: "paginate",
       search: [],
-      slug: "layout",
       tags: "Array(0)",
       title: "Pug example",
       url: "/layout/",

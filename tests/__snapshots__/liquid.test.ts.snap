@@ -126,6 +126,7 @@ snapshot[`build a site with liquid 3`] = `
     content: '["red","green","blue"]
 ',
     data: {
+      basename: "data",
       colors: "Array(3)",
       content: "{{ colors | json }}
 ",
@@ -140,7 +141,6 @@ snapshot[`build a site with liquid 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "data",
       tags: "Array(0)",
       url: "/data.json",
     },
@@ -166,6 +166,7 @@ snapshot[`build a site with liquid 3`] = `
 </html>
 ',
     data: {
+      basename: "index",
       children: "<h1>Hello World</h1>
 ",
       content: "<h1>{{ title }}</h1>
@@ -181,7 +182,6 @@ snapshot[`build a site with liquid 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       title: "Hello World",
       url: "/",
@@ -207,6 +207,7 @@ snapshot[`build a site with liquid 3`] = `
 </html>
 ',
     data: {
+      basename: "liquid-filter",
       children: "<h1>LIQUID FILTER EXAMPLE</h1>",
       content: "default",
       date: [],
@@ -220,7 +221,6 @@ snapshot[`build a site with liquid 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "liquid-filter",
       tags: "Array(0)",
       title: "liquid filter example",
       url: "/liquid-filter/",
@@ -264,6 +264,7 @@ snapshot[`build a site with liquid 3`] = `
 </html>
 ',
     data: {
+      basename: "with-helpers",
       children: "<p><strong>THE TITLE</strong></p>
 <p><strong>THE TITLE</strong></p>
 <p><strong>THE TITLE</strong></p>
@@ -307,7 +308,6 @@ snapshot[`build a site with liquid 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "with-helpers",
       tags: "Array(0)",
       title: "The title",
       url: "/with-helpers/",

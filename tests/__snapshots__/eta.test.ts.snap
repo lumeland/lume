@@ -136,6 +136,7 @@ snapshot[`build a site with eta 3`] = `
 </html>
 \`,
     data: {
+      basename: "index",
       children: "<h1>Timothy's Eta source code!</h1>
 
 <footer>This is a footer of Timothy</footer>",
@@ -155,7 +156,6 @@ snapshot[`build a site with eta 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       title: "Eta example",
       url: "/",

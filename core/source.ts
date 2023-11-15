@@ -157,7 +157,7 @@ export default class Source {
     }
 
     // Parse the date/time in the folder name
-    const [slug, date] = parseDateFromFilename(dir.name);
+    const [basename, date] = parseDateFromFilename(dir.name);
 
     // Load the _data files
     const currentData: Partial<Data> = date ? { date } : {};
@@ -174,12 +174,12 @@ export default class Source {
     // Merge directory data
     const dirData = mergeData(
       parentData,
-      { slug },
+      { basename },
       this.scopedData.get(dir.path) || {},
       currentData,
     ) as Partial<Data>;
 
-    path = posix.join(path, dirData.slug!);
+    path = posix.join(path, dirData.basename!);
 
     // Directory components
     const scopedComponents = this.scopedComponents.get(dir.path);
@@ -213,14 +213,14 @@ export default class Source {
     // Load the pages assigned to the current path
     if (this.scopedPages.has(dir.path)) {
       for (const data of this.scopedPages.get(dir.path)!) {
-        const slug = posix.basename(data.url as string).replace(
+        const basename = posix.basename(data.url as string).replace(
           /\.[\w.]+$/,
           "",
         );
         const page = new Page();
         page.data = mergeData(
           dirData,
-          { slug, date: new Date() },
+          { basename, date: new Date() },
           data,
         ) as Data;
 
@@ -327,7 +327,7 @@ export default class Source {
           }
 
           const { ext } = format;
-          const [slug, date] = parseDateFromFilename(entry.name);
+          const [basename, date] = parseDateFromFilename(entry.name);
 
           // Create the page
           const page = new Page({
@@ -341,7 +341,7 @@ export default class Source {
           const pageData = await entry.getContent(loader);
           page.data = mergeData(
             dirData,
-            { slug: slug.slice(0, -ext.length) },
+            { basename: basename.slice(0, -ext.length) },
             date ? { date } : {},
             this.scopedData.get(entry.path) || {},
             pageData,

@@ -124,6 +124,7 @@ snapshot[`multilanguage plugin 3`] = `
 </body></html>',
     data: {
       alternates: "Array(2)",
+      basename: "index",
       children: "<p>Hello world</p>
 ",
       content: "Hello world
@@ -144,7 +145,6 @@ snapshot[`multilanguage plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       title: "Hello world",
       url: "/en/",
@@ -164,6 +164,7 @@ snapshot[`multilanguage plugin 3`] = `
 </body></html>',
     data: {
       alternates: "Array(2)",
+      basename: "index",
       children: "<p>Ola mundo</p>
 ",
       content: "Ola mundo",
@@ -183,7 +184,6 @@ snapshot[`multilanguage plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       title: "Ola mundo",
       url: "/gl/",
@@ -202,6 +202,7 @@ snapshot[`multilanguage plugin 3`] = `
 </head><body><p>Other page <a href="0">Link to index in Galego</a></p></body></html>',
     data: {
       alternates: "Array(2)",
+      basename: "other",
       children: '<p>Other page <a href="0">Link to index in Galego</a></p>',
       content: \`<p>Other page <a href="{{ '~/index.md(lang=gl)' | url }}">Link to index in Galego</a></p>\`,
       date: [],
@@ -220,7 +221,6 @@ snapshot[`multilanguage plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "other",
       tags: "Array(0)",
       title: "Other",
       url: "/en/other-page-english/",
@@ -239,6 +239,7 @@ snapshot[`multilanguage plugin 3`] = `
 </head><body><p>Other page <a href="0">Link to index in Galego</a></p></body></html>',
     data: {
       alternates: "Array(2)",
+      basename: "other",
       children: '<p>Other page <a href="0">Link to index in Galego</a></p>',
       content: \`<p>Other page <a href="{{ '~/index.md(lang=gl)' | url }}">Link to index in Galego</a></p>\`,
       date: [],
@@ -257,7 +258,6 @@ snapshot[`multilanguage plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "other",
       tags: "Array(0)",
       title: "Autre",
       url: "/fr/other-page-french.html",
@@ -278,6 +278,7 @@ snapshot[`multilanguage plugin 3`] = `
 </body></html>',
     data: {
       alternates: "Array(3)",
+      basename: "page1",
       children: "<p>Pagina 1</p>
 ",
       content: "Pagina 1
@@ -298,7 +299,6 @@ snapshot[`multilanguage plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "page1",
       tags: "Array(0)",
       title: "page-it",
       url: "/it/pagina-1/",
@@ -319,6 +319,7 @@ snapshot[`multilanguage plugin 3`] = `
 </body></html>',
     data: {
       alternates: "Array(3)",
+      basename: "page1_en",
       children: "<p>Page 1</p>
 ",
       content: "Page 1
@@ -339,7 +340,6 @@ snapshot[`multilanguage plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "page1_en",
       tags: "Array(0)",
       title: "page-en",
       url: "/en/page-1/",
@@ -360,6 +360,7 @@ snapshot[`multilanguage plugin 3`] = `
 </body></html>',
     data: {
       alternates: "Array(3)",
+      basename: "page1_gl",
       children: "<p>Páxina 1</p>
 ",
       content: "Páxina 1
@@ -380,7 +381,6 @@ snapshot[`multilanguage plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "page1_gl",
       tags: "Array(0)",
       title: "page-gl",
       url: "/gl/paxina-1/",
@@ -411,6 +411,7 @@ snapshot[`multilanguage plugin 3`] = `
 </body></html>',
     data: {
       alternates: "Array(2)",
+      basename: "pagination",
       children: null,
       content: null,
       date: [],
@@ -438,7 +439,6 @@ snapshot[`multilanguage plugin 3`] = `
       ],
       results: "Array(2)",
       search: [],
-      slug: "pagination",
       tags: "Array(0)",
       url: "/gl/page-1/",
     },
@@ -470,6 +470,7 @@ snapshot[`multilanguage plugin 3`] = `
 </body></html>',
     data: {
       alternates: "Array(2)",
+      basename: "pagination",
       children: null,
       content: null,
       date: [],
@@ -497,7 +498,6 @@ snapshot[`multilanguage plugin 3`] = `
       ],
       results: "Array(3)",
       search: [],
-      slug: "pagination",
       tags: "Array(0)",
       url: "/en/page-1/",
     },

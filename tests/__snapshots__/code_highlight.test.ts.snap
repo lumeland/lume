@@ -122,6 +122,7 @@ snapshot[`code_hightlight plugin 3`] = `
 </code></pre>
 </body></html>',
     data: {
+      basename: "index",
       children: '<h1>Code highlight plugin testing</h1>
 <pre><code class="language-html">&lt;p&gt;This is a HTML code&lt;/p&gt;
 </code></pre>
@@ -158,7 +159,6 @@ p {
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -179,6 +179,7 @@ p {
 
 </body></html>',
     data: {
+      basename: "other",
       children: '<html>
 <body>
   <pre>Code inside a PRE</pre>
@@ -205,7 +206,6 @@ p {
       ],
       paginate: "paginate",
       search: [],
-      slug: "other",
       tags: "Array(0)",
       url: "/other/",
     },

@@ -126,6 +126,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
   </html>
   ',
     data: {
+      basename: "multiple-async",
       children: "Async Page 1",
       content: "Async Page 1",
       date: [],
@@ -140,7 +141,6 @@ snapshot[`Build a site with js/ts modules 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "multiple-async",
       tags: "Array(1)",
       title: "Multiple page 1",
       url: "/async/1/",
@@ -166,6 +166,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
   </html>
   ',
     data: {
+      basename: "multiple-async",
       children: "Async Page 2",
       content: "Async Page 2",
       date: [],
@@ -180,7 +181,6 @@ snapshot[`Build a site with js/ts modules 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "multiple-async",
       tags: "Array(1)",
       title: "Multiple page 2",
       url: "/async/2/",
@@ -206,6 +206,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
   </html>
   ',
     data: {
+      basename: "multiple",
       children: "Content page 1",
       content: "Content page 1",
       date: [],
@@ -219,7 +220,6 @@ snapshot[`Build a site with js/ts modules 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "multiple",
       tags: "Array(1)",
       title: "Page 1",
       url: "/multiple/1.html",
@@ -245,6 +245,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
   </html>
   ',
     data: {
+      basename: "multiple",
       children: "Content page 2",
       content: "Content page 2",
       date: [],
@@ -258,7 +259,6 @@ snapshot[`Build a site with js/ts modules 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "multiple",
       tags: "Array(1)",
       url: "/multiple/2.html",
     },
@@ -283,6 +283,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
   </html>
   ',
     data: {
+      basename: "multiple",
       children: "Content page 3",
       content: "Content page 3",
       date: [],
@@ -296,7 +297,6 @@ snapshot[`Build a site with js/ts modules 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "multiple",
       tags: "Array(1)",
       url: "/multiple/3.html",
     },
@@ -333,6 +333,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
   </html>
   ',
     data: {
+      basename: "simple",
       children: '
     <h1>Module example</h1>
     <nav>
@@ -358,7 +359,6 @@ snapshot[`Build a site with js/ts modules 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "simple",
       tags: "Array(0)",
       title: "Module example",
       url: "/simple-page-new-permalink.html",

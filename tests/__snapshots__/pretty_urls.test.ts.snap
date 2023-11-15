@@ -116,6 +116,7 @@ snapshot[`Disabled pretty URLs 3`] = `
 <h1>Welcome</h1>
 ",
     data: {
+      basename: "foo",
       children: "<h1>Welcome</h1>
 ",
       content: "# Welcome
@@ -130,7 +131,6 @@ snapshot[`Disabled pretty URLs 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "foo",
       tags: "Array(0)",
       title: "Second page",
       url: "/page2.html",
@@ -147,6 +147,7 @@ snapshot[`Disabled pretty URLs 3`] = `
 <h1>Welcome</h1>
 ",
     data: {
+      basename: "page1",
       children: "<h1>Welcome</h1>
 ",
       content: "# Welcome
@@ -161,7 +162,6 @@ snapshot[`Disabled pretty URLs 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "page1",
       tags: "Array(0)",
       title: "First page",
       url: "/page1.html",

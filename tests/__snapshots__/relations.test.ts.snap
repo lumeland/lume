@@ -137,6 +137,7 @@ snapshot[`relations plugin 3`] = `
 </ul>
 ",
     data: {
+      basename: "category-1",
       children: "<p>This is the first category</p>
 ",
       content: "This is the first category
@@ -154,7 +155,6 @@ snapshot[`relations plugin 3`] = `
       post: "Array(1)",
       renderOrder: -2,
       search: [],
-      slug: "category-1",
       tags: "Array(0)",
       title: "Category 1",
       type: "category",
@@ -180,6 +180,7 @@ snapshot[`relations plugin 3`] = `
 </ul>
 ",
     data: {
+      basename: "category-2",
       children: "<p>This is the second category</p>
 ",
       content: "This is the second category
@@ -196,7 +197,6 @@ snapshot[`relations plugin 3`] = `
       paginate: "paginate",
       post: "Array(1)",
       search: [],
-      slug: "category-2",
       tags: "Array(0)",
       title: "Category 2",
       type: "category",
@@ -214,6 +214,7 @@ snapshot[`relations plugin 3`] = `
 <p>This is the first comment</p>
 ",
     data: {
+      basename: "comment-1",
       children: "<p>This is the first comment</p>
 ",
       content: "This is the first comment
@@ -230,7 +231,6 @@ snapshot[`relations plugin 3`] = `
       paginate: "paginate",
       post: "Array(1)",
       search: [],
-      slug: "comment-1",
       tags: "Array(0)",
       type: "comment",
       url: "/comments/comment-1/",
@@ -247,6 +247,7 @@ snapshot[`relations plugin 3`] = `
 <p>This is the second comment</p>
 ",
     data: {
+      basename: "comment-2",
       children: "<p>This is the second comment</p>
 ",
       content: "This is the second comment
@@ -264,7 +265,6 @@ snapshot[`relations plugin 3`] = `
       post: "Array(1)",
       renderOrder: -1,
       search: [],
-      slug: "comment-2",
       tags: "Array(0)",
       type: "comment",
       url: "/comments/comment-2/",
@@ -281,6 +281,7 @@ snapshot[`relations plugin 3`] = `
 <p>This is the third comment</p>
 ",
     data: {
+      basename: "comment-3",
       children: "<p>This is the third comment</p>
 ",
       content: "This is the third comment
@@ -297,7 +298,6 @@ snapshot[`relations plugin 3`] = `
       paginate: "paginate",
       post: "Array(1)",
       search: [],
-      slug: "comment-3",
       tags: "Array(0)",
       type: "comment",
       url: "/comments/comment-3/",
@@ -325,8 +325,9 @@ snapshot[`relations plugin 3`] = `
 </ul>
 ',
     data: {
+      basename: "post-1",
       category: [
-        "slug",
+        "basename",
         "mergedKeys",
         "paginate",
         "search",
@@ -361,7 +362,6 @@ snapshot[`relations plugin 3`] = `
       paginate: "paginate",
       renderOrder: 1,
       search: [],
-      slug: "post-1",
       tags: "Array(0)",
       type: "post",
       url: "/posts/post-1/",
@@ -389,8 +389,9 @@ snapshot[`relations plugin 3`] = `
 </ul>
 ',
     data: {
+      basename: "post-2",
       category: [
-        "slug",
+        "basename",
         "mergedKeys",
         "paginate",
         "search",
@@ -425,7 +426,6 @@ snapshot[`relations plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "post-2",
       tags: "Array(0)",
       type: "post",
       url: "/posts/post-2/",

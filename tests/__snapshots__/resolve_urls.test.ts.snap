@@ -133,6 +133,7 @@ snapshot[`relative_url plugin 3`] = `
 <a href="/">Go to index</a></p>
 </body></html>',
     data: {
+      basename: "article-1",
       children: '<!-- deno-fmt-ignore-file -->
 <p>First article</p>
 <p><a href="./article-2.md">Go to second</a>
@@ -158,7 +159,6 @@ First article
       ],
       paginate: "paginate",
       search: [],
-      slug: "article-1",
       tags: "Array(0)",
       url: "/articles/first-article/",
     },
@@ -178,6 +178,7 @@ First article
 <a href="/">Go to index</a></p>
 </body></html>',
     data: {
+      basename: "article-2",
       children: '<!-- deno-fmt-ignore-file -->
 <p>Second article</p>
 <p><a href="article-1.md">Go to first</a>
@@ -203,7 +204,6 @@ Second article
       ],
       paginate: "paginate",
       search: [],
-      slug: "article-2",
       tags: "Array(0)",
       url: "/drafts/second-article/",
     },
@@ -222,6 +222,7 @@ Second article
 <a href="/">Go to index</a></p>
 </body></html>',
     data: {
+      basename: "article-3",
       children: '<!-- deno-fmt-ignore-file -->
 <p>Third article</p>
 <p><a href="./article-2.md">Go to second</a>
@@ -246,7 +247,6 @@ Third article
       ],
       paginate: "paginate",
       search: [],
-      slug: "article-3",
       tags: "Array(0)",
       url: "/articles/third-article/",
     },
@@ -274,6 +274,7 @@ Third article
 <a href="/tilde-and-ene/">url</a></p>
 </body></html>',
     data: {
+      basename: "index",
       children: '<!-- deno-fmt-ignore-file -->
 <p><a href="/bar">url</a>
 <a href="foo">url</a>
@@ -314,7 +315,6 @@ Third article
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -331,6 +331,7 @@ Third article
 <p><a href="/robots.txt">See robots.txt</a></p>
 </body></html>',
     data: {
+      basename: "other",
       children: '<p>Other page</p>
 <p><a href="statics/robots.txt">See robots.txt</a></p>
 ',
@@ -348,7 +349,6 @@ Third article
       ],
       paginate: "paginate",
       search: [],
-      slug: "other",
       tags: "Array(0)",
       url: "/other/",
     },
@@ -364,6 +364,7 @@ Third article
 <html><head></head><body><p>Tilde and eñe</p>
 </body></html>",
     data: {
+      basename: "tílde-and-eñe",
       children: "<p>Tilde and eñe</p>
 ",
       content: "Tilde and eñe
@@ -378,7 +379,6 @@ Third article
       ],
       paginate: "paginate",
       search: [],
-      slug: "tílde-and-eñe",
       tags: "Array(0)",
       url: "/tilde-and-ene/",
     },
@@ -525,6 +525,7 @@ snapshot[`relative_url plugin (without slugify) 3`] = `
 <a href="/">Go to index</a></p>
 </body></html>',
     data: {
+      basename: "article-1",
       children: '<!-- deno-fmt-ignore-file -->
 <p>First article</p>
 <p><a href="./article-2.md">Go to second</a>
@@ -550,7 +551,6 @@ First article
       ],
       paginate: "paginate",
       search: [],
-      slug: "article-1",
       tags: "Array(0)",
       url: "/articles/first-article/",
     },
@@ -570,6 +570,7 @@ First article
 <a href="/">Go to index</a></p>
 </body></html>',
     data: {
+      basename: "article-2",
       children: '<!-- deno-fmt-ignore-file -->
 <p>Second article</p>
 <p><a href="article-1.md">Go to first</a>
@@ -595,7 +596,6 @@ Second article
       ],
       paginate: "paginate",
       search: [],
-      slug: "article-2",
       tags: "Array(0)",
       url: "/drafts/second-article/",
     },
@@ -614,6 +614,7 @@ Second article
 <a href="/">Go to index</a></p>
 </body></html>',
     data: {
+      basename: "article-3",
       children: '<!-- deno-fmt-ignore-file -->
 <p>Third article</p>
 <p><a href="./article-2.md">Go to second</a>
@@ -638,7 +639,6 @@ Third article
       ],
       paginate: "paginate",
       search: [],
-      slug: "article-3",
       tags: "Array(0)",
       url: "/articles/third%20article/",
     },
@@ -666,6 +666,7 @@ Third article
 <a href="/tílde-and-eñe/">url</a></p>
 </body></html>',
     data: {
+      basename: "index",
       children: '<!-- deno-fmt-ignore-file -->
 <p><a href="/bar">url</a>
 <a href="foo">url</a>
@@ -706,7 +707,6 @@ Third article
       ],
       paginate: "paginate",
       search: [],
-      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -723,6 +723,7 @@ Third article
 <p><a href="/robots.txt">See robots.txt</a></p>
 </body></html>',
     data: {
+      basename: "other",
       children: '<p>Other page</p>
 <p><a href="statics/robots.txt">See robots.txt</a></p>
 ',
@@ -740,7 +741,6 @@ Third article
       ],
       paginate: "paginate",
       search: [],
-      slug: "other",
       tags: "Array(0)",
       url: "/other/",
     },
@@ -756,6 +756,7 @@ Third article
 <html><head></head><body><p>Tilde and eñe</p>
 </body></html>",
     data: {
+      basename: "tílde-and-eñe",
       children: "<p>Tilde and eñe</p>
 ",
       content: "Tilde and eñe
@@ -770,7 +771,6 @@ Third article
       ],
       paginate: "paginate",
       search: [],
-      slug: "tílde-and-eñe",
       tags: "Array(0)",
       url: "/tílde-and-eñe/",
     },

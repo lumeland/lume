@@ -135,6 +135,7 @@ snapshot[`metas plugin 3`] = `
 
 </body></html>',
     data: {
+      basename: "page-1",
       children: "<html>
   <head>
   </head>
@@ -175,7 +176,6 @@ snapshot[`metas plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "page-1",
       tags: "Array(0)",
       url: "/page-1/",
     },
@@ -210,6 +210,7 @@ snapshot[`metas plugin 3`] = `
 
 </body></html>',
     data: {
+      basename: "page-2",
       children: "<html>
   <head>
   </head>
@@ -250,7 +251,6 @@ snapshot[`metas plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      slug: "page-2",
       tags: "Array(0)",
       url: "/page-2/",
     },
@@ -281,6 +281,7 @@ snapshot[`metas plugin 3`] = `
 <!--more-->
 </body></html>',
     data: {
+      basename: "page-3",
       children: "<p>This is page excerpt will be used as meta description.</p>
 <!--more-->
 ",
@@ -320,7 +321,6 @@ snapshot[`metas plugin 3`] = `
       paginate: "paginate",
       robots: "this robots will be overrided",
       search: [],
-      slug: "page-3",
       tags: "Array(0)",
       url: "/page-3/",
     },
