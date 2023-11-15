@@ -175,6 +175,7 @@ snapshot[`metas plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "page-1",
       tags: "Array(0)",
       url: "/page-1/",
     },
@@ -183,7 +184,6 @@ snapshot[`metas plugin 3`] = `
       ext: ".vto",
       path: "/page-1",
       remote: undefined,
-      slug: "page-1",
     },
   },
   {
@@ -250,6 +250,7 @@ snapshot[`metas plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "page-2",
       tags: "Array(0)",
       url: "/page-2/",
     },
@@ -258,7 +259,6 @@ snapshot[`metas plugin 3`] = `
       ext: ".vto",
       path: "/page-2",
       remote: undefined,
-      slug: "page-2",
     },
   },
   {
@@ -320,6 +320,7 @@ snapshot[`metas plugin 3`] = `
       paginate: "paginate",
       robots: "this robots will be overrided",
       search: [],
+      slug: "page-3",
       tags: "Array(0)",
       url: "/page-3/",
     },
@@ -328,7 +329,6 @@ snapshot[`metas plugin 3`] = `
       ext: ".md",
       path: "/page-3",
       remote: undefined,
-      slug: "page-3",
     },
   },
 ]

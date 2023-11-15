@@ -130,6 +130,7 @@ snapshot[`Disabled pretty URLs 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "foo",
       tags: "Array(0)",
       title: "Second page",
       url: "/page2.html",
@@ -139,7 +140,6 @@ snapshot[`Disabled pretty URLs 3`] = `
       ext: ".md",
       path: "/foo",
       remote: undefined,
-      slug: "foo",
     },
   },
   {
@@ -161,6 +161,7 @@ snapshot[`Disabled pretty URLs 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "page1",
       tags: "Array(0)",
       title: "First page",
       url: "/page1.html",
@@ -170,7 +171,6 @@ snapshot[`Disabled pretty URLs 3`] = `
       ext: ".md",
       path: "/page1",
       remote: undefined,
-      slug: "page1",
     },
   },
 ]

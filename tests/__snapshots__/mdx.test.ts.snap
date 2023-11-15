@@ -180,6 +180,7 @@ This is a markdown file with the title **{ title }**.
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       title: "Hello world",
       url: "/",
@@ -189,7 +190,6 @@ This is a markdown file with the title **{ title }**.
       ext: ".mdx",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
 ]

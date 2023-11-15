@@ -1276,6 +1276,7 @@ Daniels</th>
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -1284,7 +1285,6 @@ Daniels</th>
       ext: ".vto",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
 ]

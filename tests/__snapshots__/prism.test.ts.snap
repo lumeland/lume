@@ -216,6 +216,7 @@ console.log("foo");
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -224,7 +225,6 @@ console.log("foo");
       ext: ".md",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
 ]

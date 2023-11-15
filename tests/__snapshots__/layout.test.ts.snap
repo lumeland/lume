@@ -143,6 +143,7 @@ snapshot[`Layouts 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -151,7 +152,6 @@ snapshot[`Layouts 3`] = `
       ext: ".md",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
   {
@@ -172,6 +172,7 @@ snapshot[`Layouts 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "styles",
       tags: "Array(0)",
       url: "/styles.css",
     },
@@ -180,7 +181,6 @@ snapshot[`Layouts 3`] = `
       ext: ".css",
       path: "/styles",
       remote: undefined,
-      slug: "styles",
     },
   },
   {
@@ -207,6 +207,7 @@ snapshot[`Layouts 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "styles.2",
       tags: "Array(0)",
       url: "/styles.2.css",
     },
@@ -215,7 +216,6 @@ snapshot[`Layouts 3`] = `
       ext: ".css",
       path: "/styles.2",
       remote: undefined,
-      slug: "styles.2",
     },
   },
 ]

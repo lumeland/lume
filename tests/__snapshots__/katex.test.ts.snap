@@ -203,6 +203,7 @@ c = \\\\pm\\\\sqrt{a^2 + b^2}
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -211,7 +212,6 @@ c = \\\\pm\\\\sqrt{a^2 + b^2}
       ext: ".md",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
 ]

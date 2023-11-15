@@ -149,6 +149,7 @@ snapshot[`follow symlinks 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       title: "Hello world",
       url: "/",
@@ -158,7 +159,6 @@ snapshot[`follow symlinks 3`] = `
       ext: ".md",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
 ]

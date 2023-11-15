@@ -123,6 +123,7 @@ snapshot[`favicon plugin 3`] = `
         "src",
         "data",
       ],
+      slug: "apple-touch-icon",
       url: "/apple-touch-icon.png",
     },
     src: {
@@ -130,7 +131,6 @@ snapshot[`favicon plugin 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "apple-touch-icon",
     },
   },
   {
@@ -141,6 +141,7 @@ snapshot[`favicon plugin 3`] = `
         "src",
         "data",
       ],
+      slug: "favicon",
       url: "/favicon.ico",
     },
     src: {
@@ -148,7 +149,6 @@ snapshot[`favicon plugin 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "favicon",
     },
   },
   {
@@ -176,6 +176,7 @@ snapshot[`favicon plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "favicon",
       tags: "Array(0)",
       url: "/favicon.svg",
     },
@@ -184,7 +185,6 @@ snapshot[`favicon plugin 3`] = `
       ext: ".svg",
       path: "/favicon",
       remote: undefined,
-      slug: "favicon",
     },
   },
   {
@@ -223,6 +223,7 @@ snapshot[`favicon plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       title: "Hello world",
       url: "/",
@@ -232,7 +233,6 @@ snapshot[`favicon plugin 3`] = `
       ext: ".vto",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
 ]

@@ -119,6 +119,7 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
+      slug: "en_1e3ac36",
       url: "/pagefind/fragment/en_1e3ac36.pf_fragment",
     },
     src: {
@@ -126,7 +127,6 @@ snapshot[`Pagefind plugin 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "en_1e3ac36",
     },
   },
   {
@@ -137,6 +137,7 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
+      slug: "en_4e982c2",
       url: "/pagefind/fragment/en_4e982c2.pf_fragment",
     },
     src: {
@@ -144,7 +145,6 @@ snapshot[`Pagefind plugin 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "en_4e982c2",
     },
   },
   {
@@ -155,6 +155,7 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
+      slug: "en_8a7583c",
       url: "/pagefind/index/en_8a7583c.pf_index",
     },
     src: {
@@ -162,7 +163,6 @@ snapshot[`Pagefind plugin 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "en_8a7583c",
     },
   },
   {
@@ -173,6 +173,7 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
+      slug: "pagefind-entry",
       url: "/pagefind/pagefind-entry.json",
     },
     src: {
@@ -180,7 +181,6 @@ snapshot[`Pagefind plugin 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "pagefind-entry",
     },
   },
   {
@@ -617,6 +617,7 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
+      slug: "pagefind-modular-ui",
       url: "/pagefind/pagefind-modular-ui.css",
     },
     src: {
@@ -624,7 +625,6 @@ snapshot[`Pagefind plugin 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "pagefind-modular-ui",
     },
   },
   {
@@ -651,6 +651,7 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
+      slug: "pagefind-modular-ui",
       url: "/pagefind/pagefind-modular-ui.js",
     },
     src: {
@@ -658,7 +659,6 @@ snapshot[`Pagefind plugin 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "pagefind-modular-ui",
     },
   },
   {
@@ -671,6 +671,7 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
+      slug: "pagefind-ui",
       url: "/pagefind/pagefind-ui.css",
     },
     src: {
@@ -678,7 +679,6 @@ snapshot[`Pagefind plugin 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "pagefind-ui",
     },
   },
   {
@@ -693,6 +693,7 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
+      slug: "pagefind-ui",
       url: "/pagefind/pagefind-ui.js",
     },
     src: {
@@ -700,7 +701,6 @@ snapshot[`Pagefind plugin 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "pagefind-ui",
     },
   },
   {
@@ -711,6 +711,7 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
+      slug: "pagefind",
       url: "/pagefind/pagefind.en_972772da52.pf_meta",
     },
     src: {
@@ -718,7 +719,6 @@ snapshot[`Pagefind plugin 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "pagefind",
     },
   },
   {
@@ -745,6 +745,7 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
+      slug: "pagefind",
       url: "/pagefind/pagefind.js",
     },
     src: {
@@ -752,7 +753,6 @@ snapshot[`Pagefind plugin 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "pagefind",
     },
   },
   {
@@ -763,6 +763,7 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
+      slug: "wasm",
       url: "/pagefind/wasm.en.pagefind",
     },
     src: {
@@ -770,7 +771,6 @@ snapshot[`Pagefind plugin 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "wasm",
     },
   },
   {
@@ -781,6 +781,7 @@ snapshot[`Pagefind plugin 3`] = `
         "src",
         "data",
       ],
+      slug: "wasm",
       url: "/pagefind/wasm.unknown.pagefind",
     },
     src: {
@@ -788,7 +789,6 @@ snapshot[`Pagefind plugin 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "wasm",
     },
   },
   {
@@ -826,6 +826,7 @@ This is the first page
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       title: "First page",
       url: "/",
@@ -835,7 +836,6 @@ This is the first page
       ext: ".md",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
   {
@@ -873,6 +873,7 @@ This is the second page
       ],
       paginate: "paginate",
       search: [],
+      slug: "page2",
       tags: "Array(0)",
       title: "Second page",
       url: "/page2/",
@@ -882,7 +883,6 @@ This is the second page
       ext: ".md",
       path: "/page2",
       remote: undefined,
-      slug: "page2",
     },
   },
 ]

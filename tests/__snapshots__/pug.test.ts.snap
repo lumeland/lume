@@ -138,6 +138,7 @@ block content
       ],
       paginate: "paginate",
       search: [],
+      slug: "extends",
       tags: "Array(0)",
       title: "Pug example",
       url: "/extends/",
@@ -147,7 +148,6 @@ block content
       ext: ".pug",
       path: "/extends",
       remote: undefined,
-      slug: "extends",
     },
   },
   {
@@ -188,6 +188,7 @@ block content
       ],
       paginate: "paginate",
       search: [],
+      slug: "filter",
       tags: "Array(0)",
       title: "Markdown content",
       url: "/article.html",
@@ -197,7 +198,6 @@ block content
       ext: ".pug",
       path: "/filter",
       remote: undefined,
-      slug: "filter",
     },
   },
   {
@@ -219,6 +219,7 @@ block content
       ],
       paginate: "paginate",
       search: [],
+      slug: "layout",
       tags: "Array(0)",
       title: "Pug example",
       url: "/layout/",
@@ -228,7 +229,6 @@ block content
       ext: ".pug",
       path: "/layout",
       remote: undefined,
-      slug: "layout",
     },
   },
 ]

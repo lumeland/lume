@@ -165,7 +165,6 @@ snapshot[`relations plugin 3`] = `
       ext: ".md",
       path: "/categories/category-1",
       remote: undefined,
-      slug: "category-1",
     },
   },
   {
@@ -208,7 +207,6 @@ snapshot[`relations plugin 3`] = `
       ext: ".md",
       path: "/categories/category-2",
       remote: undefined,
-      slug: "category-2",
     },
   },
   {
@@ -232,6 +230,7 @@ snapshot[`relations plugin 3`] = `
       paginate: "paginate",
       post: "Array(1)",
       search: [],
+      slug: "comment-1",
       tags: "Array(0)",
       type: "comment",
       url: "/comments/comment-1/",
@@ -241,7 +240,6 @@ snapshot[`relations plugin 3`] = `
       ext: ".md",
       path: "/comments/comment-1",
       remote: undefined,
-      slug: "comment-1",
     },
   },
   {
@@ -266,6 +264,7 @@ snapshot[`relations plugin 3`] = `
       post: "Array(1)",
       renderOrder: -1,
       search: [],
+      slug: "comment-2",
       tags: "Array(0)",
       type: "comment",
       url: "/comments/comment-2/",
@@ -275,7 +274,6 @@ snapshot[`relations plugin 3`] = `
       ext: ".md",
       path: "/comments/comment-2",
       remote: undefined,
-      slug: "comment-2",
     },
   },
   {
@@ -299,6 +297,7 @@ snapshot[`relations plugin 3`] = `
       paginate: "paginate",
       post: "Array(1)",
       search: [],
+      slug: "comment-3",
       tags: "Array(0)",
       type: "comment",
       url: "/comments/comment-3/",
@@ -308,7 +307,6 @@ snapshot[`relations plugin 3`] = `
       ext: ".md",
       path: "/comments/comment-3",
       remote: undefined,
-      slug: "comment-3",
     },
   },
   {
@@ -328,6 +326,7 @@ snapshot[`relations plugin 3`] = `
 ',
     data: {
       category: [
+        "slug",
         "mergedKeys",
         "paginate",
         "search",
@@ -335,7 +334,6 @@ snapshot[`relations plugin 3`] = `
         "type",
         "layout",
         "title",
-        "slug",
         "content",
         "url",
         "date",
@@ -363,6 +361,7 @@ snapshot[`relations plugin 3`] = `
       paginate: "paginate",
       renderOrder: 1,
       search: [],
+      slug: "post-1",
       tags: "Array(0)",
       type: "post",
       url: "/posts/post-1/",
@@ -372,7 +371,6 @@ snapshot[`relations plugin 3`] = `
       ext: ".md",
       path: "/posts/post-1",
       remote: undefined,
-      slug: "post-1",
     },
   },
   {
@@ -392,6 +390,7 @@ snapshot[`relations plugin 3`] = `
 ',
     data: {
       category: [
+        "slug",
         "mergedKeys",
         "paginate",
         "search",
@@ -399,7 +398,6 @@ snapshot[`relations plugin 3`] = `
         "type",
         "layout",
         "title",
-        "slug",
         "renderOrder",
         "content",
         "url",
@@ -427,6 +425,7 @@ snapshot[`relations plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "post-2",
       tags: "Array(0)",
       type: "post",
       url: "/posts/post-2/",
@@ -436,7 +435,6 @@ snapshot[`relations plugin 3`] = `
       ext: ".md",
       path: "/posts/post-2",
       remote: undefined,
-      slug: "post-2",
     },
   },
 ]

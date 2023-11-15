@@ -131,6 +131,7 @@ local_backend: false
         "src",
         "data",
       ],
+      slug: "config",
       url: "/admin/config.yml",
     },
     src: {
@@ -138,7 +139,6 @@ local_backend: false
       ext: "",
       path: "",
       remote: undefined,
-      slug: "config",
     },
   },
   {
@@ -173,6 +173,7 @@ local_backend: false
         "src",
         "data",
       ],
+      slug: "index",
       url: "/admin/",
     },
     src: {
@@ -180,7 +181,6 @@ local_backend: false
       ext: "",
       path: "",
       remote: undefined,
-      slug: "index",
     },
   },
 ]

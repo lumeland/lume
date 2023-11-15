@@ -29,20 +29,20 @@ export class Page<D extends Data = Data> {
   /** Convenient way to create a page dynamically with a url and content */
   static create(url: string, content: Content): Page {
     const slug = posix.basename(url).replace(/\.[\w.]+$/, "");
-    const page = new Page({ slug });
+    const page = new Page();
 
     if (url.endsWith("/index.html")) {
       url = url.slice(0, -10);
     }
 
-    page.data = { url, content, page } as Data;
+    page.data = { url, content, page, slug } as Data;
     page.content = content;
 
     return page;
   }
 
   constructor(src?: Partial<Src>) {
-    this.src = { path: "", slug: "", ext: "", asset: true, ...src };
+    this.src = { path: "", ext: "", asset: true, ...src };
   }
 
   /**
@@ -142,9 +142,6 @@ export interface StaticFile {
 
 /** The .src property for a Page */
 export interface Src {
-  /** The slug name of the file */
-  slug: string;
-
   /** If the page was loaded as asset or not */
   asset: boolean;
 
@@ -207,7 +204,7 @@ export interface Data {
   url: string;
 
   /** The slug of the page */
-  slug?: string;
+  slug: string;
 
   /** The date creation of the page */
   date: Date;

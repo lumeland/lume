@@ -1422,6 +1422,7 @@ video {
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -1430,7 +1431,6 @@ video {
       ext: ".vto",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
 ]
@@ -2592,6 +2592,7 @@ video {
         "src",
         "data",
       ],
+      slug: "styles",
       url: "styles.css",
     },
     src: {
@@ -2599,7 +2600,6 @@ video {
       ext: "",
       path: "",
       remote: undefined,
-      slug: "styles",
     },
   },
   {
@@ -3396,6 +3396,7 @@ video {
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -3404,7 +3405,6 @@ video {
       ext: ".vto",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
 ]

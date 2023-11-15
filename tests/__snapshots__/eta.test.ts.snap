@@ -155,6 +155,7 @@ snapshot[`build a site with eta 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       title: "Eta example",
       url: "/",
@@ -164,7 +165,6 @@ snapshot[`build a site with eta 3`] = `
       ext: ".eta",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
 ]

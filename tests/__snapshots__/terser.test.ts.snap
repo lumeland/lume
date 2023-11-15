@@ -128,6 +128,7 @@ console.log(one() + two());
       ],
       paginate: "paginate",
       search: [],
+      slug: "main",
       tags: "Array(0)",
       url: "/main.js",
     },
@@ -136,7 +137,6 @@ console.log(one() + two());
       ext: ".js",
       path: "/main",
       remote: undefined,
-      slug: "main",
     },
   },
   {
@@ -166,6 +166,7 @@ export function two () {
       ],
       paginate: "paginate",
       search: [],
+      slug: "numbers",
       tags: "Array(0)",
       two: 2,
       url: "/numbers.js",
@@ -175,7 +176,6 @@ export function two () {
       ext: ".vto",
       path: "/numbers",
       remote: undefined,
-      slug: "numbers",
     },
   },
 ]

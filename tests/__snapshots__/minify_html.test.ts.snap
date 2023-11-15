@@ -185,6 +185,7 @@ snapshot[`minify_html plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -193,7 +194,6 @@ snapshot[`minify_html plugin 3`] = `
       ext: ".vto",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
 ]

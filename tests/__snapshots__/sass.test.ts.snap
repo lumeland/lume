@@ -154,6 +154,7 @@ li {
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       url: "/index.css",
     },
@@ -162,7 +163,6 @@ li {
       ext: ".scss",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
   {
@@ -183,6 +183,7 @@ body
       ],
       paginate: "paginate",
       search: [],
+      slug: "index2",
       tags: "Array(0)",
       url: "/index2.css",
     },
@@ -191,7 +192,6 @@ body
       ext: ".sass",
       path: "/index2",
       remote: undefined,
-      slug: "index2",
     },
   },
 ]

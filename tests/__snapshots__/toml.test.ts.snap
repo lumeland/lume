@@ -144,6 +144,7 @@ snapshot[`TOML plugin 3`] = `
         "title",
         "description",
       ],
+      slug: "index",
       tags: "Array(0)",
       title: "Title of the index",
       url: "/",
@@ -153,7 +154,6 @@ snapshot[`TOML plugin 3`] = `
       ext: ".toml",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
   {
@@ -179,6 +179,7 @@ snapshot[`TOML plugin 3`] = `
         "title",
         "description",
       ],
+      slug: "page1",
       tags: "Array(0)",
       title: "First page",
       url: "/page1/",
@@ -188,7 +189,6 @@ snapshot[`TOML plugin 3`] = `
       ext: ".md",
       path: "/page1",
       remote: undefined,
-      slug: "page1",
     },
   },
 ]

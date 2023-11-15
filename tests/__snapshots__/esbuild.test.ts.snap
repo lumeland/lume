@@ -157,6 +157,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       ],
       paginate: "paginate",
       search: [],
+      slug: "main",
       tags: "Array(0)",
       url: "/main.js",
     },
@@ -165,7 +166,6 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       ext: ".ts",
       path: "/main",
       remote: undefined,
-      slug: "main",
     },
   },
   {
@@ -189,6 +189,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       ],
       paginate: "paginate",
       search: [],
+      slug: "main",
       tags: "Array(0)",
       url: "/main/",
     },
@@ -197,7 +198,6 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       ext: ".vto",
       path: "/main",
       remote: undefined,
-      slug: "main",
     },
   },
   {
@@ -221,6 +221,7 @@ document.querySelectorAll(".other")?.forEach((el) => {
       ],
       paginate: "paginate",
       search: [],
+      slug: "other",
       tags: "Array(0)",
       url: "/other.js",
     },
@@ -229,7 +230,6 @@ document.querySelectorAll(".other")?.forEach((el) => {
       ext: ".ts",
       path: "/other",
       remote: undefined,
-      slug: "other",
     },
   },
 ]
@@ -363,6 +363,7 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
         "src",
         "data",
       ],
+      slug: "chunk-OWCSNBH5",
       url: "/foo/chunk.js",
     },
     src: {
@@ -370,7 +371,6 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
       ext: "",
       path: "",
       remote: undefined,
-      slug: "chunk",
     },
   },
   {
@@ -411,6 +411,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       ],
       paginate: "paginate",
       search: [],
+      slug: "main",
       tags: "Array(0)",
       url: "/foo/main.js",
     },
@@ -419,7 +420,6 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       ext: ".ts",
       path: "/main",
       remote: undefined,
-      slug: "main",
     },
   },
   {
@@ -443,6 +443,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       ],
       paginate: "paginate",
       search: [],
+      slug: "main",
       tags: "Array(0)",
       url: "/main/",
     },
@@ -451,7 +452,6 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       ext: ".vto",
       path: "/main",
       remote: undefined,
-      slug: "main",
     },
   },
   {
@@ -475,6 +475,7 @@ document.querySelectorAll(".other")?.forEach((el) => {
       ],
       paginate: "paginate",
       search: [],
+      slug: "other",
       tags: "Array(0)",
       url: "/foo/other.js",
     },
@@ -483,7 +484,6 @@ document.querySelectorAll(".other")?.forEach((el) => {
       ext: ".ts",
       path: "/other",
       remote: undefined,
-      slug: "other",
     },
   },
 ]

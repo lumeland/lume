@@ -157,7 +157,7 @@ export default class Source {
     }
 
     // Parse the date/time in the folder name
-    const [name, date] = parseDateFromFilename(dir.name);
+    const [slug, date] = parseDateFromFilename(dir.name);
 
     // Load the _data files
     const currentData: Partial<Data> = date ? { date } : {};
@@ -174,13 +174,12 @@ export default class Source {
     // Merge directory data
     const dirData = mergeData(
       parentData,
-      date ? { date } : {},
+      { slug },
       this.scopedData.get(dir.path) || {},
       currentData,
     ) as Partial<Data>;
 
-    path = posix.join(path, dirData.slug ?? name);
-    delete dirData.slug; // Slug doesn't have to propagate
+    path = posix.join(path, dirData.slug!);
 
     // Directory components
     const scopedComponents = this.scopedComponents.get(dir.path);
@@ -214,10 +213,14 @@ export default class Source {
     // Load the pages assigned to the current path
     if (this.scopedPages.has(dir.path)) {
       for (const data of this.scopedPages.get(dir.path)!) {
+        const slug = posix.basename(data.url as string).replace(
+          /\.[\w.]+$/,
+          "",
+        );
         const page = new Page();
         page.data = mergeData(
           dirData,
-          { date: new Date() },
+          { slug, date: new Date() },
           data,
         ) as Data;
 
@@ -331,7 +334,6 @@ export default class Source {
             path: entry.path.slice(0, -ext.length),
             ext,
             asset: format.pageType === "asset",
-            slug: slug.slice(0, -ext.length),
             entry,
           });
 
@@ -339,6 +341,7 @@ export default class Source {
           const pageData = await entry.getContent(loader);
           page.data = mergeData(
             dirData,
+            { slug: slug.slice(0, -ext.length) },
             date ? { date } : {},
             this.scopedData.get(entry.path) || {},
             pageData,

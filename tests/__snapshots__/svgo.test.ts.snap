@@ -134,6 +134,7 @@ snapshot[`terser plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "favicon",
       tags: "Array(0)",
       url: "/favicon.svg",
     },
@@ -142,7 +143,6 @@ snapshot[`terser plugin 3`] = `
       ext: ".svg",
       path: "/favicon",
       remote: undefined,
-      slug: "favicon",
     },
   },
 ]

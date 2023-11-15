@@ -916,6 +916,7 @@ snapshot[`postcss plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       url: "/",
     },
@@ -924,7 +925,6 @@ snapshot[`postcss plugin 3`] = `
       ext: ".vto",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
   {
@@ -951,6 +951,7 @@ snapshot[`postcss plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "script",
       tags: "Array(0)",
       url: "/script.js",
     },
@@ -959,7 +960,6 @@ snapshot[`postcss plugin 3`] = `
       ext: ".js",
       path: "/script",
       remote: undefined,
-      slug: "script",
     },
   },
   {
@@ -1963,6 +1963,7 @@ video {
       ],
       paginate: "paginate",
       search: [],
+      slug: "styles",
       tags: "Array(0)",
       url: "/styles.css",
     },
@@ -1971,7 +1972,6 @@ video {
       ext: ".css",
       path: "/styles",
       remote: undefined,
-      slug: "styles",
     },
   },
 ]

@@ -140,6 +140,7 @@ snapshot[`build a site with liquid 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "data",
       tags: "Array(0)",
       url: "/data.json",
     },
@@ -148,7 +149,6 @@ snapshot[`build a site with liquid 3`] = `
       ext: ".liquid",
       path: "/data",
       remote: undefined,
-      slug: "data",
     },
   },
   {
@@ -181,6 +181,7 @@ snapshot[`build a site with liquid 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       title: "Hello World",
       url: "/",
@@ -190,7 +191,6 @@ snapshot[`build a site with liquid 3`] = `
       ext: ".liquid",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
   {
@@ -220,6 +220,7 @@ snapshot[`build a site with liquid 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "liquid-filter",
       tags: "Array(0)",
       title: "liquid filter example",
       url: "/liquid-filter/",
@@ -229,7 +230,6 @@ snapshot[`build a site with liquid 3`] = `
       ext: ".page.js",
       path: "/liquid-filter",
       remote: undefined,
-      slug: "liquid-filter",
     },
   },
   {
@@ -307,6 +307,7 @@ snapshot[`build a site with liquid 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "with-helpers",
       tags: "Array(0)",
       title: "The title",
       url: "/with-helpers/",
@@ -316,7 +317,6 @@ snapshot[`build a site with liquid 3`] = `
       ext: ".liquid",
       path: "/with-helpers",
       remote: undefined,
-      slug: "with-helpers",
     },
   },
 ]

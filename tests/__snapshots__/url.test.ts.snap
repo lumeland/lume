@@ -152,6 +152,7 @@ snapshot[`url and htmlUrl update href 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "default-filter",
       tags: "Array(0)",
       title: "Default Filter",
       url: "/default-filter/",
@@ -161,7 +162,6 @@ snapshot[`url and htmlUrl update href 3`] = `
       ext: ".page.js",
       path: "/default-filter",
       remote: undefined,
-      slug: "default-filter",
     },
   },
   {
@@ -201,6 +201,7 @@ snapshot[`url and htmlUrl update href 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "renamed-filter",
       tags: "Array(0)",
       title: "Renamed Filter",
       url: "/renamed-filter/",
@@ -210,7 +211,6 @@ snapshot[`url and htmlUrl update href 3`] = `
       ext: ".page.js",
       path: "/renamed-filter",
       remote: undefined,
-      slug: "renamed-filter",
     },
   },
 ]
@@ -368,6 +368,7 @@ snapshot[`configure url and htmlUrl names 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "default-filter",
       tags: "Array(0)",
       title: "Default Filter",
       url: "/default-filter/",
@@ -377,7 +378,6 @@ snapshot[`configure url and htmlUrl names 3`] = `
       ext: ".page.js",
       path: "/default-filter",
       remote: undefined,
-      slug: "default-filter",
     },
   },
   {
@@ -417,6 +417,7 @@ snapshot[`configure url and htmlUrl names 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "renamed-filter",
       tags: "Array(0)",
       title: "Renamed Filter",
       url: "/renamed-filter/",
@@ -426,7 +427,6 @@ snapshot[`configure url and htmlUrl names 3`] = `
       ext: ".page.js",
       path: "/renamed-filter",
       remote: undefined,
-      slug: "renamed-filter",
     },
   },
 ]

@@ -45,7 +45,7 @@ Deno.test(
       if (!url) return;
       if (url.match(/chunk-[\w]{8}\.js/)) {
         page.data.url = url.replace(/chunk-[\w]{8}\.js/, "chunk.js");
-        page.src.slug = page.src.slug.replace(/chunk-[\w]{8}/, "chunk");
+        page.data.slug = page.data.slug.replace(/chunk-[\w]{8}\.js/, "chunk");
       } else {
         const content = page.content as string;
         page.content = content.replace(/chunk-[\w]{8}\.js/, "chunk.js");

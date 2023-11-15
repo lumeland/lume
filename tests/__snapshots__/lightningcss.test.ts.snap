@@ -133,6 +133,7 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       url: "/index.css",
     },
@@ -141,7 +142,6 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
       ext: ".css",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
   {
@@ -167,6 +167,7 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "text",
       tags: "Array(0)",
       url: "/text.css",
     },
@@ -175,7 +176,6 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
       ext: ".css",
       path: "/text",
       remote: undefined,
-      slug: "text",
     },
   },
 ]
@@ -314,6 +314,7 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       url: "/index.css",
     },
@@ -322,7 +323,6 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
       ext: ".css",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
   {
@@ -348,6 +348,7 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "text",
       tags: "Array(0)",
       url: "/text.css",
     },
@@ -356,7 +357,6 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
       ext: ".css",
       path: "/text",
       remote: undefined,
-      slug: "text",
     },
   },
 ]

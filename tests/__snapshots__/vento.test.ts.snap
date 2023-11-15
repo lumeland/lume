@@ -187,6 +187,7 @@ CUSTOM FILTER
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       title: "Título",
       url: "/",
@@ -196,7 +197,6 @@ CUSTOM FILTER
       ext: ".vto",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
   {
@@ -219,6 +219,7 @@ CUSTOM FILTER
       ],
       paginate: "paginate",
       search: [],
+      slug: "vto-filter",
       tags: "Array(0)",
       title: "vento filter example",
       url: "/vto-filter/",
@@ -228,7 +229,6 @@ CUSTOM FILTER
       ext: ".page.js",
       path: "/vto-filter",
       remote: undefined,
-      slug: "vto-filter",
     },
   },
 ]

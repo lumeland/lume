@@ -139,6 +139,7 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "multiple",
       tags: "Array(1)",
       title: "Page 1",
       url: "/multiple/1.html",
@@ -148,7 +149,6 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       ext: ".page.js",
       path: "/multiple[0]",
       remote: undefined,
-      slug: "multiple",
     },
   },
   {
@@ -178,6 +178,7 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "multiple",
       tags: "Array(1)",
       url: "/multiple/2.html",
     },
@@ -186,7 +187,6 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       ext: ".page.js",
       path: "/multiple[1]",
       remote: undefined,
-      slug: "multiple",
     },
   },
   {
@@ -216,6 +216,7 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       ],
       paginate: "paginate",
       search: [],
+      slug: "multiple",
       tags: "Array(1)",
       url: "/multiple/3.html",
     },
@@ -224,7 +225,6 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       ext: ".page.js",
       path: "/multiple[2]",
       remote: undefined,
-      slug: "multiple",
     },
   },
 ]

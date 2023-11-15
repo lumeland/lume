@@ -153,6 +153,7 @@ icon {
         "src",
         "data",
       ],
+      slug: "components",
       url: "/components.css",
     },
     src: {
@@ -160,7 +161,6 @@ icon {
       ext: "",
       path: "",
       remote: undefined,
-      slug: "components",
     },
   },
   {
@@ -187,6 +187,7 @@ console.log("Hello world, from the icon/User component");
         "src",
         "data",
       ],
+      slug: "components",
       url: "/components.js",
     },
     src: {
@@ -194,7 +195,6 @@ console.log("Hello world, from the icon/User component");
       ext: "",
       path: "",
       remote: undefined,
-      slug: "components",
     },
   },
   {
@@ -282,6 +282,7 @@ console.log("Hello world, from the icon/User component");
       ],
       paginate: "paginate",
       search: [],
+      slug: "components",
       tags: "Array(0)",
       url: "/components/",
     },
@@ -290,7 +291,6 @@ console.log("Hello world, from the icon/User component");
       ext: ".njk",
       path: "/components",
       remote: undefined,
-      slug: "components",
     },
   },
   {
@@ -315,6 +315,7 @@ console.log("Hello world, from the icon/User component");
       ],
       paginate: "paginate",
       search: [],
+      slug: "data",
       tags: "Array(0)",
       url: "/data.json",
     },
@@ -323,7 +324,6 @@ console.log("Hello world, from the icon/User component");
       ext: ".njk",
       path: "/data",
       remote: undefined,
-      slug: "data",
     },
   },
   {
@@ -360,6 +360,7 @@ console.log("Hello world, from the icon/User component");
       ],
       paginate: "paginate",
       search: [],
+      slug: "index",
       tags: "Array(0)",
       title: "Hello World",
       url: "/",
@@ -369,7 +370,6 @@ console.log("Hello world, from the icon/User component");
       ext: ".njk",
       path: "/index",
       remote: undefined,
-      slug: "index",
     },
   },
   {
@@ -403,6 +403,7 @@ console.log("Hello world, from the icon/User component");
       ],
       paginate: "paginate",
       search: [],
+      slug: "njk-filter",
       tags: "Array(0)",
       title: "njk filter example",
       url: "/njk-filter/",
@@ -412,7 +413,6 @@ console.log("Hello world, from the icon/User component");
       ext: ".page.js",
       path: "/njk-filter",
       remote: undefined,
-      slug: "njk-filter",
     },
   },
   {
@@ -494,6 +494,7 @@ console.log("Hello world, from the icon/User component");
       ],
       paginate: "paginate",
       search: [],
+      slug: "with-helpers",
       tags: "Array(0)",
       title: "The title",
       url: "/with-helpers/",
@@ -503,7 +504,6 @@ console.log("Hello world, from the icon/User component");
       ext: ".njk",
       path: "/with-helpers",
       remote: undefined,
-      slug: "with-helpers",
     },
   },
 ]

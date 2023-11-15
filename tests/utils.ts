@@ -165,7 +165,6 @@ export async function assertSiteSnapshot(
           ? page.sourcePath.replace(cwUrl, "")
           : undefined,
         asset: page.src.asset,
-        slug: page.src.slug,
       },
     };
   });
