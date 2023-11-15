@@ -43,24 +43,24 @@ export default class Searcher {
   /**
    * Return the data in the scope of a path (file or folder)
    */
-  data(path = "/"): Partial<Data> | undefined {
+  data<T>(path = "/"): T & Partial<Data> | undefined {
     const normalized = normalizePath(path);
     const dirData = this.#sourceData.get(normalized);
 
     if (dirData) {
-      return dirData;
+      return dirData as T & Partial<Data>;
     }
 
     const result = this.#pages.find((page) => page.data.url === normalized);
 
     if (result) {
-      return result.data;
+      return result.data as T & Partial<Data>;
     }
   }
 
   /** Search pages */
-  pages(query?: string, sort?: string, limit?: number): Data[] {
-    const result = this.#searchPages(query, sort);
+  pages<T>(query?: string, sort?: string, limit?: number): (Data & T)[] {
+    const result = this.#searchPages<T>(query, sort);
 
     if (!limit) {
       return result;
@@ -70,8 +70,8 @@ export default class Searcher {
   }
 
   /** Search and return the first page */
-  page(query?: string, sort?: string): Data | undefined {
-    return this.pages(query, sort)[0];
+  page<T>(query?: string, sort?: string): Data & T | undefined {
+    return this.pages<T>(query, sort)[0];
   }
 
   /** Search files using a glob */
@@ -109,26 +109,34 @@ export default class Searcher {
   }
 
   /** Return the next page of a search */
-  nextPage(url: string, query?: string, sort?: string): Data | undefined {
-    const pages = this.#searchPages(query, sort);
+  nextPage<T = unknown>(
+    url: string,
+    query?: string,
+    sort?: string,
+  ): Data & T | undefined {
+    const pages = this.#searchPages<T>(query, sort);
     const index = pages.findIndex((data) => data.url === url);
 
     return (index === -1) ? undefined : pages[index + 1];
   }
 
   /** Return the previous page of a search */
-  previousPage(url: string, query?: string, sort?: string): Data | undefined {
-    const pages = this.#searchPages(query, sort);
+  previousPage<T = unknown>(
+    url: string,
+    query?: string,
+    sort?: string,
+  ): Data & T | undefined {
+    const pages = this.#searchPages<T>(query, sort);
     const index = pages.findIndex((data) => data.url === url);
 
     return (index <= 0) ? undefined : pages[index - 1];
   }
 
-  #searchPages(query?: string, sort = "date"): Data[] {
+  #searchPages<T = unknown>(query?: string, sort = "date"): (Data & T)[] {
     const id = JSON.stringify([query, sort]);
 
     if (this.#cache.has(id)) {
-      return [...this.#cache.get(id)!];
+      return [...this.#cache.get(id)!] as (Data & T)[];
     }
 
     const compiledFilter = buildFilter(query);
@@ -142,7 +150,7 @@ export default class Searcher {
 
     result.sort(buildSort(sort));
     this.#cache.set(id, result);
-    return [...result];
+    return [...result] as (Data & T)[];
   }
 }
 

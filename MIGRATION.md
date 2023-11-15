@@ -47,6 +47,7 @@
   https://github.com/lumeland/lume/issues/251
 - Removed `search.tags()` function. Use `search.values("tags")`.
 - Removed `data` filter.
+- Added generics to `search` functions. For example: `search.pages<PageType>()`.
 
 ## `toml` Plugin
 
@@ -172,3 +173,7 @@
 - Renamed the option `info.date` to `info.updated`;
 - Renamed the option `item.date` to `item.updated`;
 - New option `item.published`;
+
+## `not_found` middleware
+
+- Added default options.

@@ -196,6 +196,7 @@ export interface RawData {
   [index: string]: unknown;
 }
 
+/** The data of a page/folder once loaded and processed */
 export interface Data {
   /** List of tags assigned to a page or folder */
   tags: string[];

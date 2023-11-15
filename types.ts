@@ -8,7 +8,9 @@ declare global {
     export type { Archetype, Page, Site };
 
     /** The data of a page */
-    export interface PageData extends Data {
+    // deno-lint-ignore no-explicit-any
+    export interface PageData<Type extends Record<any, any> = any>
+      extends Data, Type {
       /** The language(s) of the page */
       lang?: string;
 
