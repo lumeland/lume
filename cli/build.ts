@@ -131,7 +131,7 @@ export async function build(
     reload({ watcher: new SiteWatcher(site) }),
     noCache(),
     notFound({
-      root: site.dest(),
+      root: site.root(site.options.dest),
       page404,
       directoryIndex: true,
     }),
