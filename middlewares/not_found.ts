@@ -1,4 +1,5 @@
 import { join, posix } from "../deps/path.ts";
+import { merge } from "../core/utils/object.ts";
 
 import type { Middleware } from "../core/server.ts";
 
@@ -8,8 +9,15 @@ export interface Options {
   directoryIndex?: boolean;
 }
 
+export const defaults: Options = {
+  root: `${Deno.cwd()}/_site`,
+  page404: "/404.html",
+  directoryIndex: false,
+};
+
 /** Show a 404 page */
-export default function notFound(options: Options): Middleware {
+export default function notFound(userOptions?: Partial<Options>): Middleware {
+  const options = merge(defaults, userOptions);
   let { root, page404, directoryIndex } = options;
 
   if (page404.endsWith("/")) {
