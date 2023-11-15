@@ -1,7 +1,8 @@
-import tailwind, { Config } from "../deps/tailwindcss.ts";
+import tailwind from "../deps/tailwindcss.ts";
 import { getExtension } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 
+import type { Config } from "../deps/tailwindcss.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
