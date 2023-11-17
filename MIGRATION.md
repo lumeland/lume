@@ -1,5 +1,22 @@
 # Migration from Lume v1 to Lume v2
 
+## Updated deps:
+
+- std
+- deno_dom
+- lightningcss
+- liquidjs
+- nunjucks types
+- pagefind
+- preact
+- pug
+- svgo
+- terser
+- unocss
+- vento
+- xml
+- postcss
+
 ## Added
 
 - `includes` option to `module` and `mdx` plugins.
@@ -167,6 +184,10 @@
 ## `lightningcss` Plugin
 
 - The `includes` folder is automatically ignored.
+
+## `pagefind` Plugin
+
+- New option `highlightParam`.
 
 ## `feed` Plugin
 

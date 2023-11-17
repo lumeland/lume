@@ -55,6 +55,12 @@ export interface UIOptions {
   showSubResults?: boolean;
 
   /**
+   * Enable the ability to highlight search terms on the result pages.
+   * Configure the query parameter name.
+   */
+  highlightParam?: string;
+
+  /**
    * The maximum number of characters to show in the excerpt.
    * `0` means no limit
    */
@@ -218,6 +224,7 @@ export default function (userOptions?: Options) {
               `${posix.join(options.outputPath, "pagefind-ui.js")}`,
             ),
           );
+          document.head.append(script);
 
           const uiSettings = {
             element: `#${containerId}`,
@@ -232,10 +239,26 @@ export default function (userOptions?: Options) {
           const init = document.createElement("script");
           init.setAttribute("type", "text/javascript");
           init.innerHTML =
-            `window.addEventListener('DOMContentLoaded', () => { new PagefindUI(${
+            `window.addEventListener('DOMContentLoaded',()=>{new PagefindUI(${
               JSON.stringify(uiSettings)
-            }); });`;
-          document.head.append(script, init);
+            });});`;
+          document.head.append(init);
+
+          if (ui.highlightParam) {
+            const highlightScript = document.createElement("script");
+            highlightScript.setAttribute("type", "module");
+            highlightScript.innerHTML = `
+            import "${
+              site.url(
+                `${posix.join(options.outputPath, "pagefind-highlight.js")}`,
+              )
+            }";
+            new PagefindHighlight({ highlightParam: ${
+              JSON.stringify(ui.highlightParam)
+            } });
+            `;
+            document.head.append(highlightScript);
+          }
         }
       });
     }
