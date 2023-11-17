@@ -89,7 +89,9 @@ export default function (userOptions?: Options) {
       if (exists) {
         exists.content += `\n${css}`;
       } else {
-        site.pages.push(Page.create(options.cssFile as string, css));
+        site.pages.push(
+          Page.create(options.cssFile as string, { content: css }),
+        );
       }
     });
   };

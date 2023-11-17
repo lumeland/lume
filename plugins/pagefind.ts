@@ -176,7 +176,7 @@ export default function (userOptions?: Options) {
           : file.content;
 
         allPages.push(
-          Page.create(posix.join("/", options.outputPath, path), content),
+          Page.create(posix.join("/", options.outputPath, path), { content }),
         );
       }
 

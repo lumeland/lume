@@ -70,7 +70,7 @@ export default function (userOptions?: Options) {
       const url = file.outputPath + ".map";
       sourceMap.file = url;
       file.content += addSourceMap(file.outputPath!, `./${basename(url)}`);
-      files.push(Page.create(url, JSON.stringify(sourceMap)));
+      files.push(Page.create(url, { content: JSON.stringify(sourceMap) }));
     });
   };
 }

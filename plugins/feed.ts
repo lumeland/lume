@@ -175,11 +175,15 @@ export default function (userOptions?: Options) {
           case "rss":
           case "feed":
           case "xml":
-            site.pages.push(Page.create(filename, generateRss(feed, file)));
+            site.pages.push(
+              Page.create(filename, { content: generateRss(feed, file) }),
+            );
             break;
 
           case "json":
-            site.pages.push(Page.create(filename, generateJson(feed, file)));
+            site.pages.push(
+              Page.create(filename, { content: generateJson(feed, file) }),
+            );
             break;
 
           default:

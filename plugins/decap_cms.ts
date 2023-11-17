@@ -70,11 +70,13 @@ export default function (userOptions?: Options) {
 
       site.pages.push(Page.create(
         configUrl,
-        stringify({
-          ...config,
-          site_url: site.options.location.href,
-          local_backend,
-        }),
+        {
+          content: stringify({
+            ...config,
+            site_url: site.options.location.href,
+            local_backend,
+          }),
+        },
       ));
 
       // Create index.html
@@ -108,7 +110,8 @@ export default function (userOptions?: Options) {
 
       site.pages.push(Page.create(
         posix.join(options.path, "index.html"),
-        `
+        {
+          content: `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -121,6 +124,7 @@ export default function (userOptions?: Options) {
         </body>
         </html>
         `,
+        },
       ));
     });
   };

@@ -26,8 +26,8 @@ export class Page<D extends Data = Data> {
   /** The parsed HTML (only for HTML documents) */
   #document?: Document;
 
-  /** Convenient way to create a page dynamically with a url and content */
-  static create(url: string, content: Content): Page {
+  /** Convenient way to create a page dynamically */
+  static create(url: string, data?: Partial<Data>): Page {
     const basename = posix.basename(url).replace(/\.[\w.]+$/, "");
     const page = new Page();
 
@@ -35,8 +35,8 @@ export class Page<D extends Data = Data> {
       url = url.slice(0, -10);
     }
 
-    page.data = { url, content, page, basename } as Data;
-    page.content = content;
+    page.data = { ...data, url, page, basename } as Data;
+    page.content = data?.content;
 
     return page;
   }
@@ -214,7 +214,7 @@ export interface Data {
   renderOrder?: number;
 
   /** The raw content of a page */
-  content?: unknown;
+  content?: Content;
 
   /** The layout used to render a page */
   layout?: string;

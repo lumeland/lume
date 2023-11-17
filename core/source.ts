@@ -394,7 +394,9 @@ export default class Source {
       const code = this.extraCode.get(type);
 
       if (code && code.size) {
-        pages.push(Page.create(path, Array.from(code.values()).join("\n")));
+        pages.push(
+          Page.create(path, { content: Array.from(code.values()).join("\n") }),
+        );
       }
     }
 

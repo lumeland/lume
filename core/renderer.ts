@@ -103,7 +103,7 @@ export default class Renderer {
 
         for await (const data of generator) {
           if (!data.content) {
-            data.content = null;
+            data.content = undefined;
           }
           const newPage = page.duplicate(
             index++,

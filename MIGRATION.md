@@ -25,6 +25,9 @@
 ## Core
 
 - Removed output extension detection in the filename: #430
+- Changed the signature of `Page.create()`. The second argument is the page
+  data, instead of the page content.
+- New function `site.getOrCreatePage()`.
 - Removed `Page.dest` property #290.
   - This also removed `Page.updateDest` function.
 - Removed `Page.src.lastModified` and `Page.src.created` because they are

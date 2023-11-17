@@ -51,7 +51,11 @@ export default function (userOptions?: Options) {
       // Create the sitemap.xml page
       const sitemap = Page.create(
         options.filename,
-        generateSitemap(site.searcher.pages(options.query, options.sort)),
+        {
+          content: generateSitemap(
+            site.searcher.pages(options.query, options.sort),
+          ),
+        },
       );
 
       // Add to the sitemap page to pages
@@ -73,9 +77,11 @@ export default function (userOptions?: Options) {
         } else {
           site.pages.push(Page.create(
             "/robots.txt",
-            `User-agent: *\nAllow: /\n\nSitemap: ${
-              site.url("/sitemap.xml", true)
-            }`,
+            {
+              content: `User-agent: *\nAllow: /\n\nSitemap: ${
+                site.url("/sitemap.xml", true)
+              }`,
+            },
           ));
         }
       }

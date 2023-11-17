@@ -99,7 +99,7 @@ export default function (userOptions?: Options) {
         event.pages?.push(
           Page.create(
             favicon.url,
-            await buildIco(content, format, favicon.size, cache),
+            { content: await buildIco(content, format, favicon.size, cache) },
           ),
         );
       }
@@ -113,7 +113,12 @@ export default function (userOptions?: Options) {
         event.pages?.push(
           Page.create(
             options.input,
-            await site.getContent(options.input, textLoader) as string,
+            {
+              content: await site.getContent(
+                options.input,
+                textLoader,
+              ) as string,
+            },
           ),
         );
       }

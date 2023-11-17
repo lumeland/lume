@@ -16,10 +16,11 @@ import Formats from "./formats.ts";
 import Searcher from "./searcher.ts";
 import Scripts from "./scripts.ts";
 import Writer from "./writer.ts";
+import { Page } from "./file.ts";
 import textLoader from "./loaders/text.ts";
 
 import type { Component, Components } from "../core/component_loader.ts";
-import type { Data, Page, RawData, StaticFile } from "../core/file.ts";
+import type { Data, RawData, StaticFile } from "../core/file.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { Event, EventListener, EventOptions } from "../core/events.ts";
 import type {
@@ -722,6 +723,37 @@ export default class Site {
     }
 
     return absolute ? this.options.location.origin + path : path;
+  }
+
+  async getOrCreatePage(url: string, loader: Loader): Promise<Page> {
+    url = normalizePath(url);
+
+    // It's a page
+    const page = this.pages.find((page) => page.data.url === url);
+
+    if (page) {
+      return page;
+    }
+
+    // It's a static file
+    const index = this.files.findIndex((f) => f.outputPath === url);
+
+    if (index > -1) {
+      const { entry } = this.files.splice(index, 1)[0];
+      const data = await entry.getContent(loader) as Data;
+      return Page.create(url, data);
+    }
+
+    // Read the source files directly
+    const entry = this.fs.entries.get(url);
+    if (entry) {
+      return Page.create(
+        url,
+        await entry.getContent(loader) as Data,
+      );
+    }
+
+    return Page.create(url);
   }
 
   /**

@@ -308,7 +308,7 @@ export default function (userOptions?: Options) {
             saveAsset(site, entryPoint, file.text, map?.text);
           } else {
             // The page is a chunk
-            const page = Page.create(url, "");
+            const page = Page.create(url);
             saveAsset(site, page, file.text, map?.text);
             allPages.push(page);
           }
