@@ -1,5 +1,8 @@
 # 🔥Lume
 
+> This is the code of the incoming Lume v2.
+> Go to the [v1 branch](https://github.com/lumeland/lume/tree/v1) to see the code of the latest stable version.
+
 [![deno.land/x/lume](https://shield.deno.dev/x/lume)](https://deno.land/x/lume)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
