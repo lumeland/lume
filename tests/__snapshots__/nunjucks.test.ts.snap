@@ -140,16 +140,6 @@ icon {
 ",
     data: {
       basename: "components",
-      content: "
-button {
-  background-color: blue;
-}
-
-icon {
-  width: 48px;
-  height: 48px;
-}
-",
       page: [
         "src",
         "data",
@@ -175,15 +165,6 @@ console.log("Hello world, from the icon/User component");
 ',
     data: {
       basename: "components",
-      content: '
-document.querySelectorAll("button").forEach(button => {
-  button.addEventListener("click", () => {
-    alert("Hello world!");
-  });
-});
-
-console.log("Hello world, from the icon/User component");
-',
       page: [
         "src",
         "data",
