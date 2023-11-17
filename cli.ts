@@ -90,12 +90,12 @@ const lume = new Command()
     { default: "_site" },
   )
   .option(
-    "--location <location>",
+    "--location <type:string>",
     "The URL location of the site.",
     { default: "http://localhost" },
   )
   .option(
-    "-s, --serve [serve:boolean]",
+    "-s, --serve",
     "Start a live-reloading web server and watch changes.",
   )
   .option(
@@ -104,12 +104,12 @@ const lume = new Command()
     { default: 3000, depends: ["serve"] },
   )
   .option(
-    "-o, --open [open:boolean]",
+    "-o, --open",
     "Open the site in a browser.",
     { depends: ["serve"] },
   )
   .option(
-    "-w, --watch [watch:boolean]",
+    "-w, --watch",
     "Build and watch changes.",
   )
   .action(buildCommand)
