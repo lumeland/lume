@@ -412,8 +412,8 @@ snapshot[`multilanguage plugin 3`] = `
     data: {
       alternates: "Array(2)",
       basename: "pagination",
-      children: null,
-      content: null,
+      children: "undefined",
+      content: "undefined",
       date: [],
       id: "page-1",
       lang: "gl",
@@ -471,8 +471,8 @@ snapshot[`multilanguage plugin 3`] = `
     data: {
       alternates: "Array(2)",
       basename: "pagination",
-      children: null,
-      content: null,
+      children: "undefined",
+      content: "undefined",
       date: [],
       id: "page-1",
       lang: "en",

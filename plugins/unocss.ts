@@ -1,6 +1,5 @@
 import { merge } from "../core/utils/object.ts";
 import { read } from "../core/utils/read.ts";
-import { Page } from "../core/file.ts";
 import { createGenerator, presetUno, resetUrl } from "../deps/unocss.ts";
 
 import type Site from "../core/site.ts";
@@ -35,7 +34,7 @@ export const defaults: Options = {
 };
 
 export default function (userOptions?: Options) {
-  const options = merge(defaults, userOptions) as Options;
+  const options = merge(defaults, userOptions);
 
   return (site: Site) => {
     const uno = createGenerator(options.config);
@@ -81,17 +80,12 @@ export default function (userOptions?: Options) {
       const result = await uno.generate(classes);
       const css = reset ? `${reset}\n${result.css}` : result.css;
 
-      // output css as a page
-      const exists = site.pages.find((page) =>
-        page.outputPath === options.cssFile
-      );
-
-      if (exists) {
-        exists.content += `\n${css}`;
+      // Output the CSS file
+      const output = await site.getOrCreatePage(options.cssFile as string);
+      if (output.content) {
+        output.content += `\n${css}`;
       } else {
-        site.pages.push(
-          Page.create(options.cssFile as string, { content: css }),
-        );
+        output.content = css;
       }
     });
   };

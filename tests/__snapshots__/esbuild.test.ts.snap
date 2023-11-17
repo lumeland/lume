@@ -359,7 +359,6 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
 ',
     data: {
       basename: "chunk",
-      content: "",
       page: [
         "src",
         "data",

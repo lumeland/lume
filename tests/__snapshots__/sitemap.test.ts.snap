@@ -137,10 +137,6 @@ Allow: /
 Sitemap: https://example.com/sitemap.xml",
     data: {
       basename: "robots",
-      content: "User-agent: *
-Allow: /
-
-Sitemap: https://example.com/sitemap.xml",
       page: [
         "src",
         "data",
@@ -631,10 +627,6 @@ Allow: /
 Sitemap: https://example.com/sitemap.xml",
     data: {
       basename: "robots",
-      content: "User-agent: *
-Allow: /
-
-Sitemap: https://example.com/sitemap.xml",
       page: [
         "src",
         "data",
@@ -1062,8 +1054,8 @@ Sitemap: https://example.com/sitemap.xml",
     data: {
       alternates: "Array(2)",
       basename: "pagination",
-      children: null,
-      content: null,
+      children: "undefined",
+      content: "undefined",
       date: [],
       id: "page-1",
       lang: "gl",
@@ -1121,8 +1113,8 @@ Sitemap: https://example.com/sitemap.xml",
     data: {
       alternates: "Array(2)",
       basename: "pagination",
-      children: null,
-      content: null,
+      children: "undefined",
+      content: "undefined",
       date: [],
       id: "page-1",
       lang: "en",

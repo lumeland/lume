@@ -3,7 +3,7 @@ import { Page } from "../core/file.ts";
 import { stringify } from "../deps/xml.ts";
 
 import type Site from "../core/site.ts";
-import type { Data, StaticFile } from "../core/file.ts";
+import type { Data } from "../core/file.ts";
 
 type ChangeFreq =
   | "always"
@@ -47,7 +47,7 @@ export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.addEventListener("afterRender", () => {
+    site.addEventListener("afterRender", async () => {
       // Create the sitemap.xml page
       const sitemap = Page.create(
         options.filename,
@@ -58,33 +58,15 @@ export default function (userOptions?: Options) {
         },
       );
 
-      // Add to the sitemap page to pages
+      // Add the sitemap page to pages
       site.pages.push(sitemap);
 
-      // Search for the `robots.txt` file
-      const robots = site.files.some((file: StaticFile) =>
-        file.outputPath === "/robots.txt"
-      );
-
-      // If the `robots.txt` file doesn't exist, create it
-      if (!robots) {
-        const robots = site.pages.find((page: Page) =>
-          page.data.url === "/robots.txt"
-        );
-
-        if (robots) {
-          robots.content += `Sitemap: ${site.url(options.filename, true)}`;
-        } else {
-          site.pages.push(Page.create(
-            "/robots.txt",
-            {
-              content: `User-agent: *\nAllow: /\n\nSitemap: ${
-                site.url("/sitemap.xml", true)
-              }`,
-            },
-          ));
-        }
-      }
+      // Add or update `robots.txt` with the sitemap url
+      const robots = await site.getOrCreatePage("/robots.txt");
+      const content = robots.content as string || `User-agent: *\nAllow: /\n`;
+      robots.content = `${content}\nSitemap: ${
+        site.url(options.filename, true)
+      }`;
     });
 
     function generateSitemap(pages: Data[]): string {
