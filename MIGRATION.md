@@ -58,8 +58,6 @@
   - Removed `core.ts` and created `types.ts`.
   - New global namespace `Lume`.
   - Use the lib `dom` and `dom.iterable` types instead of `deno-dom`.
-- Added new option `locationPathInDest` to create the pathname of the location
-  in the dest folder #381.
 - Removed `lume/core/utils.ts` and moved all utilities to different files under
   `/lume/core/utils/` folder.
 

@@ -1,4 +1,4 @@
-import { parse } from "./deps/flags.ts";
+import { parseArgs } from "./deps/cli.ts";
 import Site from "./core/site.ts";
 import url, { Options as UrlOptions } from "./plugins/url.ts";
 import json, { Options as JsonOptions } from "./plugins/json.ts";
@@ -61,7 +61,7 @@ export default function lume(
 }
 
 function getOptionsFromCli(): DeepPartial<SiteOptions> {
-  const options = parse(Deno.args, {
+  const options = parseArgs(Deno.args, {
     string: ["src", "dest", "location", "port"],
     boolean: ["serve", "open"],
     alias: { dev: "d", serve: "s", port: "p", open: "o" },

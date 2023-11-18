@@ -8,7 +8,6 @@ import binaryLoader from "./loaders/binary.ts";
 import type { Page, StaticFile } from "./file.ts";
 
 export interface Options {
-  src: string;
   dest: string;
 }
 
@@ -17,13 +16,11 @@ export interface Options {
  * in the dest folder.
  */
 export default class Writer {
-  src: string;
   dest: string;
   #saveCount = 0;
   #outputs = new Map<string, [number, string, string]>();
 
   constructor(options: Options) {
-    this.src = options.src;
     this.dest = options.dest;
   }
 

@@ -86,10 +86,8 @@ export async function build(
 
   // Start the local server
   const { port, open, page404, middlewares } = site.options.server;
-  const server = new Server({
-    root: site.root(site.options.dest),
-    port,
-  });
+  const root = site.options.server.root || site.dest();
+  const server = new Server({ root, port });
 
   server.addEventListener("start", () => {
     const ipAddr = localIp();
@@ -131,7 +129,7 @@ export async function build(
     reload({ watcher: new SiteWatcher(site) }),
     noCache(),
     notFound({
-      root: site.root(site.options.dest),
+      root,
       page404,
       directoryIndex: true,
     }),

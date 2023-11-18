@@ -39,7 +39,6 @@ const defaults: SiteOptions = {
   cwd: Deno.cwd(),
   src: "./",
   dest: "./_site",
-  locationPathInDest: false,
   emptyDest: true,
   includes: "_includes",
   location: new URL("http://localhost"),
@@ -172,7 +171,7 @@ export default class Site {
     // Other stuff
     const events = new Events<SiteEvent>();
     const scripts = new Scripts({ cwd });
-    const writer = new Writer({ src, dest });
+    const writer = new Writer({ dest });
 
     const url404 = server.page404 ? normalizePath(server.page404) : undefined;
     const searcher = new Searcher({
@@ -235,10 +234,7 @@ export default class Site {
    * Use the arguments to return a subpath
    */
   dest(...path: string[]): string {
-    const subfolder = this.options.locationPathInDest
-      ? this.options.location.pathname
-      : "";
-    return this.root(this.options.dest, subfolder, ...path);
+    return this.root(this.options.dest, ...path);
   }
 
   /** Add a listener to an event */
@@ -828,13 +824,6 @@ export interface SiteOptions {
   /** The path of the built destination */
   dest: string;
 
-  /**
-   * Reflect the pathname of the location in the dest folder
-   * For example, if the location is `http://example.com/blog/` and the dest is `_site`,
-   * the final destination will be `_site/blog/`
-   */
-  locationPathInDest: boolean;
-
   /** Whether the empty folder should be emptied before the build */
   emptyDest?: boolean;
 
@@ -859,6 +848,12 @@ export interface SiteOptions {
 
 /** The options to configure the local server */
 export interface ServerOptions {
+  /**
+   * The root directory to serve.
+   * By default is the same as the site dest folder.
+   */
+  root?: string;
+
   /** The port to listen on */
   port: number;
 
