@@ -9,6 +9,7 @@
 - nunjucks types
 - pagefind
 - preact
+- react types
 - pug
 - svgo
 - terser
@@ -149,6 +150,7 @@
 - New option `pageSubExtension`.
 - Changed `extensions` option type to `string[]`.
 - The `includes` folder is automatically ignored.
+- Added `precompile` option for faster jsx transform.
 
 ## `liquid` Plugin
 

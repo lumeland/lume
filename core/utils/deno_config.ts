@@ -14,7 +14,7 @@ export interface DenoConfig extends Partial<ImportMap> {
   importMap?: string;
   tasks?: Record<string, string>;
   compilerOptions?: {
-    jsx?: "jsx" | "react-jsx";
+    jsx?: "jsx" | "react-jsx" | "precompile";
     jsxImportSource?: string;
     types?: string[];
   };

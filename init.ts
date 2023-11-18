@@ -188,17 +188,18 @@ function initPlugins(plugins: string[], denoConfig: DenoConfigResult) {
   if (plugins.includes("jsx")) {
     denoConfig.config.compilerOptions ||= {};
     denoConfig.config.compilerOptions.jsx = "react-jsx";
-    denoConfig.config.compilerOptions.jsxImportSource = "react";
+    denoConfig.config.compilerOptions.jsxImportSource = "npm:react";
 
-    // Add jsx-runtime import to import_map.
-    denoConfig.importMap ||= { imports: {} };
-    denoConfig.importMap.imports["react/jsx-runtime"] =
-      "https://esm.sh/react@18.2.0/jsx-runtime";
+    // Add React types:
+    denoConfig.config.compilerOptions.types ||= [];
+    denoConfig.config.compilerOptions.types.push(
+      "https://unpkg.com/@types/react@18.2.37/index.d.ts",
+    );
   }
 
   if (plugins.includes("jsx_preact")) {
     denoConfig.config.compilerOptions ||= {};
-    denoConfig.config.compilerOptions.jsx = "react-jsx";
+    denoConfig.config.compilerOptions.jsx = "precompile";
     denoConfig.config.compilerOptions.jsxImportSource = "npm:preact";
   }
 
