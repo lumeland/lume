@@ -1,11 +1,12 @@
 import type { Helper } from "./core/renderer.ts";
 import type { Data, Page } from "./core/file.ts";
-import type Site from "./core/site.ts";
+import type { default as Site, Plugin } from "./core/site.ts";
 import type { Archetype } from "./cli/create.ts";
+import type { Middleware, RequestHandler } from "./core/server.ts";
 
 declare global {
   namespace Lume {
-    export type { Archetype, Page, Site };
+    export type { Archetype, Middleware, Page, Plugin, RequestHandler, Site };
 
     /** The data of a page */
     // deno-lint-ignore no-explicit-any

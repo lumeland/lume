@@ -55,6 +55,7 @@
 - Refactor of `Server` function to work with `Deno.serve()` API #501.
 - Renamed `core/filesystem.ts` to `core/file.ts`.
 - Revamp of types.
+  - Removed `core.ts` and created `types.ts`.
   - New global namespace `Lume`.
   - Use the lib `dom` and `dom.iterable` types instead of `deno-dom`.
 - Added new option `locationPathInDest` to create the pathname of the location
