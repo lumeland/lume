@@ -124,24 +124,26 @@ export default function (userOptions?: Options) {
       }
     });
 
-    site.process([".html"], (page) => {
-      const document = page.document!;
+    site.process([".html"], (pages) => {
+      pages.forEach((page) => {
+        const document = page.document!;
 
-      if (options.input.endsWith(".svg")) {
-        addIcon(document, {
-          rel: "icon",
-          href: site.url(options.input),
-          type: "image/svg+xml",
-        });
-      }
+        if (options.input.endsWith(".svg")) {
+          addIcon(document, {
+            rel: "icon",
+            href: site.url(options.input),
+            type: "image/svg+xml",
+          });
+        }
 
-      for (const favicon of options.favicons) {
-        addIcon(document, {
-          rel: favicon.rel,
-          sizes: `${favicon.size}x${favicon.size}`,
-          href: site.url(favicon.url),
-        });
-      }
+        for (const favicon of options.favicons) {
+          addIcon(document, {
+            rel: favicon.rel,
+            sizes: `${favicon.size}x${favicon.size}`,
+            href: site.url(favicon.url),
+          });
+        }
+      });
     });
   };
 }

@@ -9,8 +9,11 @@ Deno.test("metas plugin", async (t) => {
   });
 
   site.use(metas());
-  site.preprocess([".md"], (page: Page) => {
-    page.data.excerpt ??= (page.data.content as string).split("<!--more-->")[0];
+  site.preprocess([".md"], (pages: Page[]) => {
+    pages.forEach((page) => {
+      page.data.excerpt ??=
+        (page.data.content as string).split("<!--more-->")[0];
+    });
   });
 
   await build(site);

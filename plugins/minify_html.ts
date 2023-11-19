@@ -46,7 +46,7 @@ export default function (userOptions?: Options) {
   }
 
   return (site: Site) => {
-    site.process(options.extensions, minifyHtml);
+    site.process(options.extensions, (pages) => pages.forEach(minifyHtml));
 
     const encoder = new TextEncoder();
     const decoder = new TextDecoder();

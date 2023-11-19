@@ -33,7 +33,7 @@ export default function (userOptions?: Options) {
 
   return (site: Site) => {
     site.loadAssets(options.extensions);
-    site.process(options.extensions, terser);
+    site.process(options.extensions, (pages) => pages.forEach(terser));
     site.filter("terser", filter, true);
 
     async function terser(page: Page) {

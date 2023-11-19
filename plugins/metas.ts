@@ -65,7 +65,7 @@ export default function (userOptions?: Options) {
   return (site: Site) => {
     // Configure the merged keys
     site.mergeKey(options.name, "object");
-    site.process(options.extensions, metas);
+    site.process(options.extensions, (pages) => pages.forEach(metas));
 
     function metas(page: Page) {
       const metas = page.data[options.name] as MetaData | undefined;

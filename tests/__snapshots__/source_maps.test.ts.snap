@@ -146,7 +146,6 @@ snapshot[`Source maps from CSS files 3`] = `
         "src",
         "data",
       ],
-      sourceMap: "undefined",
       url: "/index.css.map",
     },
     src: {
@@ -165,7 +164,6 @@ snapshot[`Source maps from CSS files 3`] = `
         "src",
         "data",
       ],
-      sourceMap: "undefined",
       url: "/index2.css.map",
     },
     src: {
@@ -184,7 +182,6 @@ snapshot[`Source maps from CSS files 3`] = `
         "src",
         "data",
       ],
-      sourceMap: "undefined",
       url: "/styles.css.map",
     },
     src: {
@@ -421,7 +418,6 @@ snapshot[`Source maps from Js files 3`] = `
         "src",
         "data",
       ],
-      sourceMap: "undefined",
       url: "/main.js.map",
     },
     src: {
@@ -440,7 +436,6 @@ snapshot[`Source maps from Js files 3`] = `
         "src",
         "data",
       ],
-      sourceMap: "undefined",
       url: "/modules/to_uppercase.js.map",
     },
     src: {
@@ -459,7 +454,6 @@ snapshot[`Source maps from Js files 3`] = `
         "src",
         "data",
       ],
-      sourceMap: "undefined",
       url: "/other.js.map",
     },
     src: {

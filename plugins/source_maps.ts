@@ -2,6 +2,7 @@ import { isUrl, normalizePath } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 import { read } from "../core/utils/read.ts";
+import { concurrent } from "../core/utils/concurrent.ts";
 import { encodeBase64 } from "../deps/base64.ts";
 import { Page } from "../core/file.ts";
 import { basename, join, toFileUrl } from "../deps/path.ts";
@@ -28,7 +29,13 @@ export default function (userOptions?: Options) {
   return (site: Site) => {
     site._data.enableSourceMap = true;
 
-    site.process("*", async (file: Page, files: Page[]) => {
+    site.process(
+      "*",
+      (pages, allPages) =>
+        concurrent(pages, (page) => processSourceMap(page, allPages)),
+    );
+
+    async function processSourceMap(file: Page, files: Page[]) {
       const sourceMap = file.data.sourceMap as SourceMap | undefined;
       file.data.sourceMap = undefined;
 
@@ -71,7 +78,7 @@ export default function (userOptions?: Options) {
       sourceMap.file = url;
       file.content += addSourceMap(file.outputPath!, `./${basename(url)}`);
       files.push(Page.create(url, { content: JSON.stringify(sourceMap) }));
-    });
+    }
   };
 }
 

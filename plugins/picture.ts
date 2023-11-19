@@ -36,73 +36,81 @@ export default function (userOptions?: Options) {
   return (site: Site) => {
     const transforms = new Map<string, Source>();
 
-    site.process([".html"], (page) => {
-      const { document } = page;
+    site.process([".html"], (pages) => {
+      pages.forEach((page) => {
+        const { document } = page;
 
-      if (!document) {
-        return;
-      }
-
-      const basePath = posix.dirname(page.outputPath!);
-      const images = document.querySelectorAll("img");
-
-      for (const img of Array.from(images)) {
-        const imagick = img.closest("[imagick]")?.getAttribute("imagick");
-
-        if (!imagick) {
-          continue;
+        if (!document) {
+          return;
         }
 
-        if (!img.getAttribute("src")) {
-          throw new Error("img element must have a src attribute");
-        }
+        const basePath = posix.dirname(page.outputPath!);
+        const images = document.querySelectorAll("img");
 
-        const picture = img.closest("picture");
+        for (const img of Array.from(images)) {
+          const imagick = img.closest("[imagick]")?.getAttribute("imagick");
 
-        if (picture) {
-          handlePicture(imagick, img, picture, basePath);
-          continue;
-        }
-
-        handleImg(imagick, img, basePath);
-      }
-    });
-
-    site.process([".html"], (page) => {
-      page.document?.querySelectorAll("[imagick]").forEach((element) => {
-        element.removeAttribute("imagick");
-      });
-    });
-
-    site.process("*", (page) => {
-      const path = page.outputPath!;
-
-      for (const { paths, width, scales, format } of transforms.values()) {
-        if (!paths.includes(path)) {
-          continue;
-        }
-
-        const { name } = options;
-        const imagick = page.data[name] = page.data[name]
-          ? Array.isArray(page.data[name]) ? page.data[name] : [page.data[name]]
-          : [];
-
-        for (const [suffix, scale] of Object.entries(scales)) {
-          if (width) {
-            imagick.push({
-              resize: width * scale,
-              suffix,
-              format: format as MagickFormat,
-            });
+          if (!imagick) {
             continue;
           }
 
-          imagick.push({
-            suffix,
-            format: format as MagickFormat,
-          });
+          if (!img.getAttribute("src")) {
+            throw new Error("img element must have a src attribute");
+          }
+
+          const picture = img.closest("picture");
+
+          if (picture) {
+            handlePicture(imagick, img, picture, basePath);
+            continue;
+          }
+
+          handleImg(imagick, img, basePath);
         }
-      }
+      });
+    });
+
+    site.process([".html"], (pages) => {
+      pages.forEach((page) => {
+        page.document?.querySelectorAll("[imagick]").forEach((element) => {
+          element.removeAttribute("imagick");
+        });
+      });
+    });
+
+    site.process("*", (pages) => {
+      pages.forEach((page) => {
+        const path = page.outputPath!;
+
+        for (const { paths, width, scales, format } of transforms.values()) {
+          if (!paths.includes(path)) {
+            continue;
+          }
+
+          const { name } = options;
+          const imagick = page.data[name] = page.data[name]
+            ? Array.isArray(page.data[name])
+              ? page.data[name]
+              : [page.data[name]]
+            : [];
+
+          for (const [suffix, scale] of Object.entries(scales)) {
+            if (width) {
+              imagick.push({
+                resize: width * scale,
+                suffix,
+                format: format as MagickFormat,
+              });
+              continue;
+            }
+
+            imagick.push({
+              suffix,
+              format: format as MagickFormat,
+            });
+          }
+        }
+      });
     });
 
     function handlePicture(

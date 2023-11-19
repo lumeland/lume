@@ -23,7 +23,7 @@ export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(options.extensions, prism);
+    site.process(options.extensions, (pages) => pages.forEach(prism));
 
     function prism(page: Page) {
       page.document!.querySelectorAll(options.cssSelector!)

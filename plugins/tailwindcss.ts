@@ -33,7 +33,7 @@ export default function (userOptions?: Options) {
       );
     }
 
-    site.processAll(options.extensions, (pages) => {
+    site.process(options.extensions, (pages) => {
       // Get the content of all HTML pages (sorted by path)
       const content = pages.sort((a, b) => a.src.path.localeCompare(b.src.path))
         .map((page) => ({

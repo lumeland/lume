@@ -5,6 +5,7 @@ import {
   postcssNesting,
 } from "../deps/postcss.ts";
 import { merge } from "../core/utils/object.ts";
+import { concurrent } from "../core/utils/concurrent.ts";
 import { resolveInclude } from "../core/utils/path.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
@@ -73,7 +74,7 @@ export default function (userOptions?: Options) {
     site.hooks.postcss = (callback) => callback(runner);
 
     site.loadAssets(options.extensions);
-    site.process(options.extensions, postCss);
+    site.process(options.extensions, (pages) => concurrent(pages, postCss));
     site.filter("postcss", filter, true);
 
     async function postCss(file: Page) {

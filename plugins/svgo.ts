@@ -24,7 +24,7 @@ export default function (userOptions?: Options) {
 
   return (site: Site) => {
     site.loadAssets(options.extensions);
-    site.process(options.extensions, svg);
+    site.process(options.extensions, (pages) => pages.forEach(svg));
 
     function svg(page: Page) {
       const path = site.src(page.outputPath!);

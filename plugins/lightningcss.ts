@@ -61,10 +61,13 @@ export default function (userOptions?: Options) {
     site.loadAssets(options.extensions);
 
     if (options.includes) {
-      site.processAll(options.extensions, lightningCSSBundler);
+      site.process(options.extensions, lightningCSSBundler);
       site.ignore(options.includes);
     } else {
-      site.process(options.extensions, lightningCSSTransformer);
+      site.process(
+        options.extensions,
+        (pages) => pages.forEach(lightningCSSTransformer),
+      );
     }
 
     function lightningCSSTransformer(file: Page) {

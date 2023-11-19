@@ -1,5 +1,6 @@
 import { getPathAndExtension } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
+import { concurrent } from "../core/utils/concurrent.ts";
 import { log } from "../core/utils/log.ts";
 import binaryLoader from "../core/loaders/binary.ts";
 import { ImageMagick } from "../deps/imagick.ts";
@@ -73,7 +74,10 @@ export default function (userOptions?: Options) {
 
   return (site: Site) => {
     site.loadAssets(options.extensions, binaryLoader);
-    site.process(options.extensions, imagick);
+    site.process(
+      options.extensions,
+      (pages, allPages) => concurrent(pages, (page) => imagick(page, allPages)),
+    );
 
     // Configure the cache folder
     const cacheFolder = options.cache === true ? "_cache" : options.cache;
@@ -142,7 +146,7 @@ export default function (userOptions?: Options) {
       }
 
       // Remove the original page
-      return false;
+      pages.splice(pages.indexOf(page), 1);
     }
   };
 }

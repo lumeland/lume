@@ -2,6 +2,7 @@ import { posix } from "../deps/path.ts";
 import { encodeBase64 } from "../deps/base64.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
+import { concurrent } from "../core/utils/concurrent.ts";
 import binaryLoader from "../core/loaders/binary.ts";
 import textLoader from "../core/loaders/text.ts";
 import { contentType } from "../deps/media_types.ts";
@@ -38,7 +39,7 @@ export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(options.extensions, inline);
+    site.process(options.extensions, (pages) => concurrent(pages, inline));
 
     site.addEventListener("beforeUpdate", () => cache.clear());
 

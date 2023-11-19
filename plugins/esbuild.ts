@@ -8,6 +8,7 @@ import { merge } from "../core/utils/object.ts";
 import { readDenoConfig } from "../core/utils/deno_config.ts";
 import { log } from "../core/utils/log.ts";
 import { read } from "../core/utils/read.ts";
+import { concurrent } from "../core/utils/concurrent.ts";
 import { build, BuildOptions, OutputFile, stop } from "../deps/esbuild.ts";
 import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
@@ -273,7 +274,7 @@ export default function (userOptions?: Options) {
       options.options.outbase ||= ".";
       const basePath = options.options.absWorkingDir;
 
-      site.processAll(options.extensions, async (pages, allPages) => {
+      site.process(options.extensions, async (pages, allPages) => {
         const [outputFiles, enableSourceMap] = await runEsbuild(pages);
 
         // Save the output code
@@ -316,25 +317,29 @@ export default function (userOptions?: Options) {
       });
     } else {
       // Normal mode runs esbuild for each page
-      site.process(options.extensions, async (page) => {
-        const [outputFiles] = await runEsbuild([page], {
-          outfile: replaceExtension(page.outputPath!, ".js") as string,
-        });
+      site.process(
+        options.extensions,
+        (pages) =>
+          concurrent(pages, async (page) => {
+            const [outputFiles] = await runEsbuild([page], {
+              outfile: replaceExtension(page.outputPath!, ".js") as string,
+            });
 
-        let mapFile: OutputFile | undefined;
-        let jsFile: OutputFile | undefined;
+            let mapFile: OutputFile | undefined;
+            let jsFile: OutputFile | undefined;
 
-        outputFiles?.forEach((file) => {
-          if (file.path.endsWith(".map")) {
-            mapFile = file;
-          } else {
-            jsFile = file;
-          }
-        });
+            outputFiles?.forEach((file) => {
+              if (file.path.endsWith(".map")) {
+                mapFile = file;
+              } else {
+                jsFile = file;
+              }
+            });
 
-        saveAsset(site, page, jsFile?.text!, mapFile?.text);
-        page.data.url = replaceExtension(page.data.url, ".js");
-      });
+            saveAsset(site, page, jsFile?.text!, mapFile?.text);
+            page.data.url = replaceExtension(page.data.url, ".js");
+          }),
+      );
     }
   };
 }

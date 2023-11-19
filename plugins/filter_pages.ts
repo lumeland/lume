@@ -26,9 +26,11 @@ export default function (userOptions: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(options.extensions, (page: Page) => {
-      if (!options.fn(page)) {
-        return false;
+    site.process(options.extensions, (pages, allPages) => {
+      for (const page of pages) {
+        if (!options.fn(page)) {
+          allPages.splice(allPages.indexOf(page), 1);
+        }
       }
     });
   };

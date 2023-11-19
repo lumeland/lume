@@ -43,7 +43,7 @@ export default function (userOptions?: Options) {
   }
 
   return (site: Site) => {
-    site.process(options.extensions, codeHighlight);
+    site.process(options.extensions, (pages) => pages.forEach(codeHighlight));
 
     function codeHighlight(page: Page) {
       page.document!.querySelectorAll(options.options.cssSelector)

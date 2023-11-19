@@ -26,7 +26,7 @@ export default function (userOptions?: Options) {
 
   return (site: Site) => {
     site.filter("slugify", slugify);
-    site.preprocess(options.extensions, slugifyUrls);
+    site.preprocess(options.extensions, (pages) => pages.forEach(slugifyUrls));
 
     // Slugify the static files
     site.addEventListener("beforeRender", () => {

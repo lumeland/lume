@@ -9,24 +9,28 @@ Deno.test("Processors", async (t) => {
 
   await t.step("Add processors", () => {
     const ext = [".foo"];
-    const fn = (page: Page) => {
-      const content = page.content as string;
-      page.content = content.toUpperCase();
+    const fn = (pages: Page[]) => {
+      pages.forEach((page) => {
+        const content = page.content as string;
+        page.content = content.toUpperCase();
+      });
     };
 
-    processors.set(ext, fn, false);
+    processors.set(ext, fn);
 
     equals(processors.processors.size, 1);
     const entry = Array.from(processors.processors)[0];
     equals(entry[0], fn);
-    equals(entry[1], { extensions: ext, multiple: false });
+    equals(entry[1], ext);
 
-    const asterisk = (page: Page) => {
-      const content = page.content as string;
-      page.content = content + "*";
+    const asterisk = (pages: Page[]) => {
+      pages.forEach((page) => {
+        const content = page.content as string;
+        page.content = content + "*";
+      });
     };
 
-    processors.set("*", asterisk, false);
+    processors.set("*", asterisk);
 
     equals(processors.processors.size, 2);
   });

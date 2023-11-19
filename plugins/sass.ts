@@ -4,6 +4,7 @@ import {
   resolveInclude,
 } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
+import { concurrent } from "../core/utils/concurrent.ts";
 import { compileStringAsync } from "../deps/sass.ts";
 import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { Page } from "../core/file.ts";
@@ -56,7 +57,7 @@ export default function (userOptions?: Options) {
 
     // Load & process the assets
     site.loadAssets(options.extensions);
-    site.process(options.extensions, sass);
+    site.process(options.extensions, (pages) => concurrent(pages, sass));
 
     const { entries } = site.fs;
     const basePath = site.src();

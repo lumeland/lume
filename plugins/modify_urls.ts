@@ -1,4 +1,5 @@
 import { merge } from "../core/utils/object.ts";
+import { concurrent } from "../core/utils/concurrent.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
@@ -48,51 +49,59 @@ export default function (userOptions: Options) {
   }
 
   return (site: Site) => {
-    site.process(options.extensions, async (page: Page) => {
-      const { document } = page;
+    site.process(
+      options.extensions,
+      (pages) =>
+        concurrent(pages, async (page: Page) => {
+          const { document } = page;
 
-      if (!document) {
-        return;
-      }
+          if (!document) {
+            return;
+          }
 
-      for (const element of document.querySelectorAll("[href]")) {
-        element.setAttribute(
-          "href",
-          await replace(element.getAttribute("href"), page, element),
-        );
-      }
+          for (const element of document.querySelectorAll("[href]")) {
+            element.setAttribute(
+              "href",
+              await replace(element.getAttribute("href"), page, element),
+            );
+          }
 
-      for (const element of document.querySelectorAll("[src]")) {
-        element.setAttribute(
-          "src",
-          await replace(element.getAttribute("src"), page, element),
-        );
-      }
+          for (const element of document.querySelectorAll("[src]")) {
+            element.setAttribute(
+              "src",
+              await replace(element.getAttribute("src"), page, element),
+            );
+          }
 
-      for (const element of document.querySelectorAll("video[poster]")) {
-        element.setAttribute(
-          "poster",
-          await replace(element.getAttribute("poster"), page, element),
-        );
-      }
+          for (const element of document.querySelectorAll("video[poster]")) {
+            element.setAttribute(
+              "poster",
+              await replace(element.getAttribute("poster"), page, element),
+            );
+          }
 
-      for (const element of document.querySelectorAll("[srcset]")) {
-        element.setAttribute(
-          "srcset",
-          await replaceSrcset(element.getAttribute("srcset"), page, element),
-        );
-      }
+          for (const element of document.querySelectorAll("[srcset]")) {
+            element.setAttribute(
+              "srcset",
+              await replaceSrcset(
+                element.getAttribute("srcset"),
+                page,
+                element,
+              ),
+            );
+          }
 
-      for (const element of document.querySelectorAll("[imagesrcset]")) {
-        element.setAttribute(
-          "imagesrcset",
-          await replaceSrcset(
-            element.getAttribute("imagesrcset"),
-            page,
-            element,
-          ),
-        );
-      }
-    });
+          for (const element of document.querySelectorAll("[imagesrcset]")) {
+            element.setAttribute(
+              "imagesrcset",
+              await replaceSrcset(
+                element.getAttribute("imagesrcset"),
+                page,
+                element,
+              ),
+            );
+          }
+        }),
+    );
   };
 }

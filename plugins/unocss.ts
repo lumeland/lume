@@ -41,7 +41,7 @@ export default function (userOptions?: Options) {
 
     if (options.cssFile === false) {
       // Insert a <style> tag for each page
-      site.processAll([".html"], async (pages) => {
+      site.process([".html"], async (pages) => {
         const reset = await getResetCss(options);
 
         Promise.all(pages.map(async (page) => {
@@ -62,7 +62,7 @@ export default function (userOptions?: Options) {
     }
 
     // Generate the stylesheets for all pages
-    site.processAll([".html"], async (pages) => {
+    site.process([".html"], async (pages) => {
       const classes = new Set<string>();
 
       await Promise.all(

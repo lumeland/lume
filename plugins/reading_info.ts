@@ -23,13 +23,15 @@ export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.preprocess(options.extensions, (page) => {
-      const { content, lang } = page.data;
+    site.preprocess(options.extensions, (pages) => {
+      pages.forEach((page) => {
+        const { content, lang } = page.data;
 
-      page.data[options.name] = readingInfo(
-        typeof content === "string" ? content : undefined,
-        lang as string,
-      );
+        page.data[options.name] = readingInfo(
+          typeof content === "string" ? content : undefined,
+          lang as string,
+        );
+      });
     });
 
     site.filter("readingInfo", readingInfo);

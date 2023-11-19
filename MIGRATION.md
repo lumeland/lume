@@ -28,6 +28,9 @@
 ## Core
 
 - Removed output extension detection in the filename: #430
+- Removed `processAll` and `preprocessAll`.
+  - Changed the signature of `process` and `preprocess` to behave like
+    `processAll` and `preprocessAll`.
 - Changed the signature of `Page.create()`. The second argument is the page
   data, instead of the page content.
 - New function `site.getOrCreatePage()`.
@@ -101,7 +104,7 @@
 
 ## `windi_css` Plugin
 
-- Replaced with `unocss`.
+- Replaced with `unocss` Plugin.
 
 ## `markdown` Plugin
 

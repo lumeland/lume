@@ -23,11 +23,7 @@ import type { Component, Components } from "../core/component_loader.ts";
 import type { Data, RawData, StaticFile } from "../core/file.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { Event, EventListener, EventOptions } from "../core/events.ts";
-import type {
-  Extensions,
-  MultiProcessor,
-  Processor,
-} from "../core/processors.ts";
+import type { Extensions, Processor } from "../core/processors.ts";
 import type { Loader } from "../core/fs.ts";
 import type { Middleware } from "../core/server.ts";
 import type { ScopeFilter } from "../core/scopes.ts";
@@ -340,25 +336,13 @@ export default class Site {
 
   /** Register a preprocessor for some extensions */
   preprocess(extensions: Extensions, preprocessor: Processor): this {
-    this.preprocessors.set(extensions, preprocessor, false);
-    return this;
-  }
-
-  /** Register a multi-preprocessor for some extensions */
-  preprocessAll(extensions: Extensions, processor: MultiProcessor): this {
-    this.preprocessors.set(extensions, processor, true);
+    this.preprocessors.set(extensions, preprocessor);
     return this;
   }
 
   /** Register a processor for some extensions */
   process(extensions: Extensions, processor: Processor): this {
-    this.processors.set(extensions, processor, false);
-    return this;
-  }
-
-  /** Register a multi-processor for some extensions */
-  processAll(extensions: Extensions, processor: MultiProcessor): this {
-    this.processors.set(extensions, processor, true);
+    this.processors.set(extensions, processor);
     return this;
   }
 

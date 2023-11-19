@@ -131,7 +131,7 @@ export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.processAll([".html"], async (pages, allPages) => {
+    site.process([".html"], async (pages, allPages) => {
       const { index } = await pagefind.createIndex(options.indexing);
 
       if (!index) {
@@ -188,78 +188,82 @@ export default function (userOptions?: Options) {
     if (options.ui) {
       const { containerId, ...ui } = options.ui;
 
-      site.process([".html"], (page) => {
-        const { document } = page;
-        if (!document) {
-          return;
-        }
-        const container = document.getElementById(containerId!);
-
-        // Insert UI styles and scripts
-        if (container) {
-          const styles = document.createElement("link");
-          styles.setAttribute("rel", "stylesheet");
-          styles.setAttribute(
-            "href",
-            site.url(
-              `${posix.join(options.outputPath, "pagefind-ui.css")}`,
-            ),
-          );
-
-          // Insert before other styles to allow overriding
-          const first = document.head.querySelector(
-            "link[rel=stylesheet],style",
-          );
-          if (first) {
-            document.head.insertBefore(styles, first);
-          } else {
-            document.head.append(styles);
+      site.process([".html"], (pages) => {
+        pages.forEach((page) => {
+          const { document } = page;
+          if (!document) {
+            return;
           }
+          const container = document.getElementById(containerId!);
 
-          const script = document.createElement("script");
-          script.setAttribute("type", "text/javascript");
-          script.setAttribute(
-            "src",
-            site.url(
-              `${posix.join(options.outputPath, "pagefind-ui.js")}`,
-            ),
-          );
-          document.head.append(script);
-
-          const uiSettings = {
-            element: `#${containerId}`,
-            ...ui,
-            bundlePath: site.url(posix.join(options.outputPath, "/")),
-            baseUrl: site.url("/"),
-            processTerm: ui.processTerm ? ui.processTerm.toString() : undefined,
-            processResult: ui.processResult
-              ? ui.processResult.toString()
-              : undefined,
-          };
-          const init = document.createElement("script");
-          init.setAttribute("type", "text/javascript");
-          init.innerHTML =
-            `window.addEventListener('DOMContentLoaded',()=>{new PagefindUI(${
-              JSON.stringify(uiSettings)
-            });});`;
-          document.head.append(init);
-
-          if (ui.highlightParam) {
-            const highlightScript = document.createElement("script");
-            highlightScript.setAttribute("type", "module");
-            highlightScript.innerHTML = `
-            import "${
+          // Insert UI styles and scripts
+          if (container) {
+            const styles = document.createElement("link");
+            styles.setAttribute("rel", "stylesheet");
+            styles.setAttribute(
+              "href",
               site.url(
-                `${posix.join(options.outputPath, "pagefind-highlight.js")}`,
-              )
-            }";
-            new PagefindHighlight({ highlightParam: ${
-              JSON.stringify(ui.highlightParam)
-            } });
-            `;
-            document.head.append(highlightScript);
+                `${posix.join(options.outputPath, "pagefind-ui.css")}`,
+              ),
+            );
+
+            // Insert before other styles to allow overriding
+            const first = document.head.querySelector(
+              "link[rel=stylesheet],style",
+            );
+            if (first) {
+              document.head.insertBefore(styles, first);
+            } else {
+              document.head.append(styles);
+            }
+
+            const script = document.createElement("script");
+            script.setAttribute("type", "text/javascript");
+            script.setAttribute(
+              "src",
+              site.url(
+                `${posix.join(options.outputPath, "pagefind-ui.js")}`,
+              ),
+            );
+            document.head.append(script);
+
+            const uiSettings = {
+              element: `#${containerId}`,
+              ...ui,
+              bundlePath: site.url(posix.join(options.outputPath, "/")),
+              baseUrl: site.url("/"),
+              processTerm: ui.processTerm
+                ? ui.processTerm.toString()
+                : undefined,
+              processResult: ui.processResult
+                ? ui.processResult.toString()
+                : undefined,
+            };
+            const init = document.createElement("script");
+            init.setAttribute("type", "text/javascript");
+            init.innerHTML =
+              `window.addEventListener('DOMContentLoaded',()=>{new PagefindUI(${
+                JSON.stringify(uiSettings)
+              });});`;
+            document.head.append(init);
+
+            if (ui.highlightParam) {
+              const highlightScript = document.createElement("script");
+              highlightScript.setAttribute("type", "module");
+              highlightScript.innerHTML = `
+              import "${
+                site.url(
+                  `${posix.join(options.outputPath, "pagefind-highlight.js")}`,
+                )
+              }";
+              new PagefindHighlight({ highlightParam: ${
+                JSON.stringify(ui.highlightParam)
+              } });
+              `;
+              document.head.append(highlightScript);
+            }
           }
-        }
+        });
       });
     }
   };
