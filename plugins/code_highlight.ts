@@ -1,5 +1,6 @@
 import hljs, { HLJSOptions, LanguageFn } from "../deps/highlight.ts";
 import { merge } from "../core/utils/object.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
@@ -43,20 +44,24 @@ export default function (userOptions?: Options) {
   }
 
   return (site: Site) => {
-    site.process(options.extensions, (pages) => pages.forEach(codeHighlight));
+    site.process(options.extensions, processCodeHighlight);
 
-    function codeHighlight(page: Page) {
-      page.document!.querySelectorAll(options.options.cssSelector)
-        .forEach((element) => {
-          try {
-            // deno-lint-ignore no-explicit-any
-            hljs.highlightElement(element as any);
-            // deno-lint-ignore no-explicit-any
-            (element as any).removeAttribute("data-highlighted");
-          } catch {
-            // Ignore
-          }
-        });
+    function processCodeHighlight(pages: Page[]) {
+      for (const page of pages) {
+        page.document!.querySelectorAll<HTMLElement>(
+          options.options.cssSelector,
+        )
+          .forEach((element) => {
+            try {
+              hljs.highlightElement(element);
+              element.removeAttribute("data-highlighted");
+            } catch (error) {
+              log.error(
+                `Error highlighting code block in ${page.sourcePath}: ${error}`,
+              );
+            }
+          });
+      }
     }
   };
 }

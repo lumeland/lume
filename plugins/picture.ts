@@ -37,7 +37,7 @@ export default function (userOptions?: Options) {
     const transforms = new Map<string, Source>();
 
     site.process([".html"], (pages) => {
-      pages.forEach((page) => {
+      for (const page of pages) {
         const { document } = page;
 
         if (!document) {
@@ -67,19 +67,19 @@ export default function (userOptions?: Options) {
 
           handleImg(imagick, img, basePath);
         }
-      });
+      }
     });
 
     site.process([".html"], (pages) => {
-      pages.forEach((page) => {
+      for (const page of pages) {
         page.document?.querySelectorAll("[imagick]").forEach((element) => {
           element.removeAttribute("imagick");
         });
-      });
+      }
     });
 
     site.process("*", (pages) => {
-      pages.forEach((page) => {
+      for (const page of pages) {
         const path = page.outputPath!;
 
         for (const { paths, width, scales, format } of transforms.values()) {
@@ -110,7 +110,7 @@ export default function (userOptions?: Options) {
             });
           }
         }
-      });
+      }
     });
 
     function handlePicture(

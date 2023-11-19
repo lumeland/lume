@@ -278,9 +278,9 @@ export default function (userOptions?: Options) {
         const [outputFiles, enableSourceMap] = await runEsbuild(pages);
 
         // Save the output code
-        outputFiles?.forEach((file) => {
+        for (const file of outputFiles) {
           if (file.path.endsWith(".map")) {
-            return;
+            continue;
           }
 
           // Search the entry point of this output file
@@ -313,7 +313,7 @@ export default function (userOptions?: Options) {
             saveAsset(site, page, file.text, map?.text);
             allPages.push(page);
           }
-        });
+        }
       });
     } else {
       // Normal mode runs esbuild for each page
@@ -328,13 +328,13 @@ export default function (userOptions?: Options) {
             let mapFile: OutputFile | undefined;
             let jsFile: OutputFile | undefined;
 
-            outputFiles?.forEach((file) => {
+            for (const file of outputFiles) {
               if (file.path.endsWith(".map")) {
                 mapFile = file;
               } else {
                 jsFile = file;
               }
-            });
+            }
 
             saveAsset(site, page, jsFile?.text!, mapFile?.text);
             page.data.url = replaceExtension(page.data.url, ".js");

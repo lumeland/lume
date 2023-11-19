@@ -125,7 +125,7 @@ export default function (userOptions?: Options) {
     });
 
     site.process([".html"], (pages) => {
-      pages.forEach((page) => {
+      for (const page of pages) {
         const document = page.document!;
 
         if (options.input.endsWith(".svg")) {
@@ -143,7 +143,7 @@ export default function (userOptions?: Options) {
             href: site.url(favicon.url),
           });
         }
-      });
+      }
     });
   };
 }

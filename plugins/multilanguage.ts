@@ -173,14 +173,14 @@ export default function multilanguage(userOptions: Options) {
 
     // Include automatically the <link rel="alternate"> elements
     // with the other languages
-    site.process(options.extensions, (pages) =>
-      pages.forEach((page) => {
+    site.process(options.extensions, (pages) => {
+      for (const page of pages) {
         const { document } = page;
         const alternates = page.data.alternates;
         const lang = page.data.lang as string | undefined;
 
         if (!document || !alternates || !lang) {
-          return;
+          continue;
         }
 
         // Include <html lang="${lang}"> attribute element if it's missing
@@ -197,7 +197,8 @@ export default function multilanguage(userOptions: Options) {
           document.head.appendChild(meta);
           document.head.appendChild(document.createTextNode("\n"));
         }
-      }));
+      }
+    });
   };
 }
 

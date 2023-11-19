@@ -189,10 +189,10 @@ export default function (userOptions?: Options) {
       const { containerId, ...ui } = options.ui;
 
       site.process([".html"], (pages) => {
-        pages.forEach((page) => {
+        for (const page of pages) {
           const { document } = page;
           if (!document) {
-            return;
+            continue;
           }
           const container = document.getElementById(containerId!);
 
@@ -263,7 +263,7 @@ export default function (userOptions?: Options) {
               document.head.append(highlightScript);
             }
           }
-        });
+        }
       });
     }
   };

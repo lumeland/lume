@@ -50,11 +50,11 @@ export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
   return (site: Site) => {
     site.process(options.extensions, (pages) => {
-      pages.forEach((page) => {
+      for (const page of pages) {
         const { document } = page;
 
         if (!document) {
-          return;
+          continue;
         }
 
         document.querySelectorAll(options.cssSelector)
@@ -85,7 +85,7 @@ export default function (userOptions?: Options) {
         if (options.options.delimiters) {
           renderMathInElement(document.body, options.options);
         }
-      });
+      }
     });
   };
 }
