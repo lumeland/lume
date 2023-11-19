@@ -12,6 +12,8 @@
 - react types
 - pug
 - svgo
+- esbuild
+- svgo
 - terser
 - unocss
 - vento
