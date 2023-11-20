@@ -36,7 +36,7 @@ export class Page<D extends Data = Data> {
     }
 
     page.data = { ...data, url, page, basename } as Data;
-    page.content = data?.content;
+    page.content = data?.content as Content | undefined;
 
     return page;
   }
@@ -193,11 +193,12 @@ export interface RawData {
   /** Whether render this page on demand or not */
   ondemand?: boolean;
 
-  [index: string]: unknown;
+  // deno-lint-ignore no-explicit-any
+  [index: string]: any;
 }
 
 /** The data of a page/folder once loaded and processed */
-export interface Data {
+export interface Data extends RawData {
   /** List of tags assigned to a page or folder */
   tags: string[];
 
@@ -210,24 +211,6 @@ export interface Data {
   /** The date creation of the page */
   date: Date;
 
-  /** To configure the render order of a page */
-  renderOrder?: number;
-
-  /** The raw content of a page */
-  content?: Content;
-
-  /** The layout used to render a page */
-  layout?: string;
-
-  /** To configure a different template engine(s) to render a page */
-  templateEngine?: string | string[];
-
-  /** To configure how some data keys will be merged with the parent */
-  mergedKeys?: Record<string, MergeStrategy>;
-
-  /** Whether render this page on demand or not */
-  ondemand?: boolean;
-
   /**
    * The available components
    * @see https://lume.land/docs/core/components/
@@ -236,8 +219,4 @@ export interface Data {
 
   /** The page reference */
   page: Page;
-
-  /** The custom data */
-  // deno-lint-ignore no-explicit-any
-  [index: string]: any;
 }
