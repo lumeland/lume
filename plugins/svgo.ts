@@ -27,7 +27,7 @@ export default function (userOptions?: Options) {
     site.process(options.extensions, (pages) => pages.forEach(svg));
 
     function svg(page: Page) {
-      const path = site.src(page.outputPath!);
+      const path = site.src(page.outputPath);
       const result = optimize(page.content as string, {
         path,
         ...options.options,

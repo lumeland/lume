@@ -141,7 +141,7 @@ export default function (userOptions?: Options) {
       // Page indexing
       for (const page of pages) {
         const { errors } = await index.addHTMLFile({
-          url: page.data.url as string,
+          url: page.data.url,
           content: page.content as string,
         });
 

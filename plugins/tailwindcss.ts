@@ -38,7 +38,7 @@ export default function (userOptions?: Options) {
       const content = pages.sort((a, b) => a.src.path.localeCompare(b.src.path))
         .map((page) => ({
           raw: page.content as string,
-          extension: getExtension(page.outputPath || "").substring(1),
+          extension: getExtension(page.outputPath).substring(1),
         }));
 
       // Create Tailwind plugin

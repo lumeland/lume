@@ -108,7 +108,7 @@ export class JsonRouterCollector {
 
     pages.forEach((page) => {
       this.routes.set(
-        page.data.url as string,
+        page.data.url,
         page.src.path + (page.src.ext || ""),
       );
     });

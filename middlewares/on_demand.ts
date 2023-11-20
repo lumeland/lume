@@ -42,12 +42,12 @@ export default function onDemand(options: Options): Middleware {
     const data = extraData?.(request) ?? {};
     const page = await site.renderPage(file, data);
 
-    if (!page || !page.outputPath) {
+    if (!page) {
       return response;
     }
 
     // Redirect /example to /example/
-    const pageUrl = page.data.url as string;
+    const pageUrl = page.data.url;
     if (!url.pathname.endsWith("/") && pageUrl.endsWith("/")) {
       return new Response(null, {
         status: 301,

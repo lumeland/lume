@@ -61,9 +61,7 @@ export default function multilanguage(userOptions: Options) {
         // Create a new page per language
         const newPages: Page[] = [];
         const id: string = data.id || page.src.path.slice(1);
-        const basePath: string = typeof page.data.url === "string"
-          ? posix.dirname(page.data.url)
-          : "";
+        const basePath = posix.dirname(page.data.url);
 
         for (const lang of languages) {
           const newData: Data = { ...data, lang, id };
@@ -131,11 +129,7 @@ export default function multilanguage(userOptions: Options) {
           return;
         }
 
-        const url = page.data.url as string | undefined;
-
-        if (!url) {
-          return;
-        }
+        const url = page.data.url;
 
         if (!url.startsWith(`/${lang}/`) && lang !== options.defaultLanguage) {
           page.data.url = `/${lang}${url}`;
@@ -193,7 +187,7 @@ export default function multilanguage(userOptions: Options) {
           const meta = document.createElement("link");
           meta.setAttribute("rel", "alternate");
           meta.setAttribute("hreflang", data.lang as string);
-          meta.setAttribute("href", site.url(data.url as string, true));
+          meta.setAttribute("href", site.url(data.url, true));
           document.head.appendChild(meta);
           document.head.appendChild(document.createTextNode("\n"));
         }

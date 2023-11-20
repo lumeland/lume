@@ -8,7 +8,7 @@ Deno.test("Filter pages (allow only /multiple/*)", async (t) => {
 
   site.use(filter_pages({
     fn(page) {
-      return page.data.url.toString().startsWith("/multiple/");
+      return page.data.url.startsWith("/multiple/");
     },
   }));
 

@@ -79,7 +79,7 @@ export default function (userOptions?: Options) {
           "@xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9",
           url: pages.map((data) => {
             const node: UrlItem = {
-              loc: site.url(data.url as string, true),
+              loc: site.url(data.url, true),
             };
 
             const lastmod = getValue<Date>(data, options.lastmod)
@@ -102,7 +102,7 @@ export default function (userOptions?: Options) {
               node["xhtml:link"] = data.alternates.map((alternate: Data) => ({
                 "@rel": "alternate",
                 "@hreflang": alternate.lang,
-                "@href": site.url(alternate.url as string, true),
+                "@href": site.url(alternate.url, true),
               }));
             }
             return node;

@@ -40,9 +40,9 @@ Deno.test(
     await build(site);
 
     // Normalize chunk name
-    site.pages.forEach((page) => {
+    for (const page of site.pages) {
       const url = page.data.url;
-      if (!url) return;
+
       if (url.match(/chunk-[\w]{8}\.js/)) {
         page.data.url = url.replace(/chunk-[\w]{8}\.js/, "chunk.js");
         page.data.basename = page.data.basename.replace(
@@ -53,7 +53,7 @@ Deno.test(
         const content = page.content as string;
         page.content = content.replace(/chunk-[\w]{8}\.js/, "chunk.js");
       }
-    });
+    }
 
     await assertSiteSnapshot(t, site);
   },

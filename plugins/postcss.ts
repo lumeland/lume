@@ -82,7 +82,7 @@ export default function (userOptions?: Options) {
         site,
         file,
       );
-      const to = site.dest(file.outputPath!);
+      const to = site.dest(file.outputPath);
       const map = enableSourceMap
         ? {
           inline: false,

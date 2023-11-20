@@ -152,12 +152,12 @@ export default function (userOptions?: Options) {
           : info.generator || undefined,
         items: pages.map((data): FeedItem => {
           const content = getDataValue(data, items.content)?.toString();
-          const pageUrl = site.url(data.url as string, true);
+          const pageUrl = site.url(data.url, true);
           const fixedContent = fixUrls(new URL(pageUrl), content || "");
 
           return {
             title: getDataValue(data, items.title),
-            url: site.url(data.url as string, true),
+            url: site.url(data.url, true),
             description: getDataValue(data, items.description),
             published: getDataValue(data, items.published),
             updated: getDataValue(data, items.updated),

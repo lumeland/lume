@@ -72,13 +72,8 @@ export class Page<D extends Data = Data> {
   }
 
   /** Returns the output path of this page */
-  get outputPath(): string | undefined {
+  get outputPath(): string {
     const url = this.data.url;
-
-    if (!url) {
-      return undefined;
-    }
-
     return decodeURI(url.endsWith("/") ? url + "index.html" : url);
   }
 
@@ -119,12 +114,13 @@ export class Page<D extends Data = Data> {
   }
 
   get document(): Document | undefined {
-    const url = this.data.url as string;
+    if (this.#document) {
+      return this.#document;
+    }
 
-    if (
-      !this.#document && this.#content &&
-      (url.endsWith(".html") || url.endsWith("/"))
-    ) {
+    const url = this.outputPath;
+
+    if (this.#content && url.endsWith(".html")) {
       this.#document = stringToDocument(this.#content.toString());
     }
 

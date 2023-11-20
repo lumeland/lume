@@ -109,7 +109,7 @@ export default function (userOptions?: Options) {
       for (const transformation of transformations) {
         if (transformation.matches) {
           const regex = new RegExp(transformation.matches);
-          if (!regex.test(page.data.url as string)) {
+          if (!regex.test(page.data.url)) {
             continue;
           }
         }
@@ -198,13 +198,7 @@ function transform(
 
 function rename(page: Page, transformation: Transformation): void {
   const { format, suffix } = transformation;
-  const url = page.data.url as string | undefined;
-
-  if (!url) {
-    return;
-  }
-
-  let [path, ext] = getPathAndExtension(url);
+  let [path, ext] = getPathAndExtension(page.data.url);
 
   if (format) {
     ext = `.${format}`;

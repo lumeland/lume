@@ -112,13 +112,13 @@ export async function assertSiteSnapshot(
 
   // Sort pages and files alphabetically
   pages.sort((a, b) =>
-    compare(a.src.path, b.src.path) || compare(a.outputPath!, b.outputPath!)
+    compare(a.src.path, b.src.path) || compare(a.outputPath, b.outputPath)
   );
   files.sort((a, b) => compare(a.entry.path, b.entry.path));
 
   // Normalize data of the pages
   const normalizedPages = pages.map((page) => {
-    const isSourceMap = page.outputPath?.endsWith(".map");
+    const isSourceMap = page.outputPath.endsWith(".map");
     return {
       data: Object.fromEntries(
         Object.entries(page.data).map(([key, value]) => {

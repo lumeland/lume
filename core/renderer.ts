@@ -137,7 +137,7 @@ export default class Renderer {
             // Save the children to render the layout later
             // (Only HTML pages and pages with the layout in the frontmatter)
             // This prevents to call the layout for every page (like css, js, etc)
-            if (page.outputPath?.endsWith(".html") || page._data.layout) {
+            if (page.outputPath.endsWith(".html") || page._data.layout) {
               page.data.children = content;
               renderedPages.push(page);
             } else {
@@ -163,7 +163,7 @@ export default class Renderer {
 
             // Ensure all HTML pages have the DOCTYPE declaration
             if (
-              page.outputPath?.endsWith(".html") &&
+              page.outputPath.endsWith(".html") &&
               typeof page.content === "string"
             ) {
               const trim = page.content.trim();

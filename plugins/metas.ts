@@ -78,7 +78,7 @@ export default function (userOptions?: Options) {
       const metaIcon = getDataValue(data, metas["icon"]);
       const metaImage = getDataValue(data, metas["image"]);
 
-      const url = site.url(page.data.url as string, true);
+      const url = site.url(page.data.url, true);
       const icon = metaIcon ? new URL(site.url(metaIcon), url).href : undefined;
       const image = metaImage
         ? new URL(site.url(metaImage), url).href

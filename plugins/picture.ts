@@ -44,7 +44,7 @@ export default function (userOptions?: Options) {
           return;
         }
 
-        const basePath = posix.dirname(page.outputPath!);
+        const basePath = posix.dirname(page.outputPath);
         const images = document.querySelectorAll("img");
 
         for (const img of Array.from(images)) {
@@ -80,7 +80,7 @@ export default function (userOptions?: Options) {
 
     site.process("*", (pages) => {
       for (const page of pages) {
-        const path = page.outputPath!;
+        const path = page.outputPath;
 
         for (const { paths, width, scales, format } of transforms.values()) {
           if (!paths.includes(path)) {

@@ -77,7 +77,7 @@ export default class Searcher {
   /** Search files using a glob */
   files(globOrRegexp?: RegExp | string): string[] {
     const files = this.#files.map((file) => file.outputPath);
-    const pages = this.#pages.map((page) => page.outputPath as string);
+    const pages = this.#pages.map((page) => page.outputPath);
     const allFiles = [...files, ...pages];
 
     if (!globOrRegexp) {
@@ -88,7 +88,7 @@ export default class Searcher {
       ? globToRegExp(globOrRegexp)
       : globOrRegexp;
 
-    return allFiles.filter((file) => file && regexp.test(file));
+    return allFiles.filter((file) => regexp.test(file));
   }
 
   /** Returns all values from the same key of a search */

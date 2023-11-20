@@ -50,9 +50,5 @@ function pageMatches(exts: Extensions, page: Page): boolean {
 
   const url = page.outputPath;
 
-  if (typeof url === "string" && exts.some((ext) => url.endsWith(ext))) {
-    return true;
-  }
-
-  return false;
+  return exts.some((ext) => url.endsWith(ext));
 }

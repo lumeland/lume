@@ -175,7 +175,7 @@ export default class Site {
       files: this.files,
       sourceData: source.data,
       filters: [
-        (data: Data) => data.page?.outputPath?.endsWith(".html") ?? false, // only html pages
+        (data: Data) => data.page.outputPath.endsWith(".html") ?? false, // only html pages
         (data: Data) => !url404 || data.url !== url404, // not the 404 page
       ],
     });
@@ -520,10 +520,10 @@ export default class Site {
       // Remove pages or static files depending on this entry
       const pages = this.pages.filter((page) => page.src.entry === entry).map((
         page,
-      ) => page.outputPath) as string[];
+      ) => page.outputPath);
       const files = this.files.filter((file) => file.entry === entry).map((
         file,
-      ) => file.outputPath) as string[];
+      ) => file.outputPath);
       this.writer.removeFiles([...pages, ...files]);
     }
 
@@ -675,7 +675,7 @@ export default class Site {
       );
 
       if (page) {
-        path = page.data.url as string;
+        path = page.data.url;
       } else {
         // It's a static file
         const file = this.files.find((file) => file.entry.path === path);

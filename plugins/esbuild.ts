@@ -292,7 +292,7 @@ export default function (userOptions?: Options) {
             const outdir = posix.join(
               "/",
               options.options.outdir || ".",
-              pathWithoutExtension(page.data.url as string),
+              pathWithoutExtension(page.data.url),
             );
 
             return outdir === urlWithoutExt;
@@ -322,7 +322,7 @@ export default function (userOptions?: Options) {
         (pages) =>
           concurrent(pages, async (page) => {
             const [outputFiles] = await runEsbuild([page], {
-              outfile: replaceExtension(page.outputPath!, ".js") as string,
+              outfile: replaceExtension(page.outputPath, ".js"),
             });
 
             let mapFile: OutputFile | undefined;

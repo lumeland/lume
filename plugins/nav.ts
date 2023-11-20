@@ -78,11 +78,6 @@ export class Nav {
 
     for (const data of dataPages) {
       const url = data.page?.outputPath;
-
-      if (!url) {
-        continue;
-      }
-
       const parts = url.split("/").filter((part) => part !== "");
       let part = parts.shift();
       let current = nav;

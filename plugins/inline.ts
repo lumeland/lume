@@ -58,7 +58,7 @@ export default function (userOptions?: Options) {
           ...templateElements,
         ]
       ) {
-        await runInline(page.data.url as string, element);
+        await runInline(page.data.url, element);
         element.removeAttribute(options.attribute);
       }
     }
