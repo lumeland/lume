@@ -10,6 +10,8 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Fixed
 - Tailwind: Fix types for `options`.
 - Favicon: Better error if the source file is missing [#504].
+- Esbuild: Fix npm specifiers in the import map.
+- Esbuild: Fix subextension support (ex: `.client.jsx`).
 
 ## [1.19.3] - 2023-10-29
 ### Changed

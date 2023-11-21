@@ -72,7 +72,9 @@ export default function (userOptions?: Partial<Options>) {
 
   // Configure jsx automatically
   if (
-    options.extensions.includes(".tsx") || options.extensions.includes(".jsx")
+    options.extensions.some((ext) =>
+      ext.endsWith(".tsx") || ext.endsWith(".jsx")
+    )
   ) {
     options.options = {
       ...buildJsxConfig(denoConfig?.config),
@@ -92,6 +94,49 @@ export default function (userOptions?: Partial<Options>) {
 
     const prefix = toFileUrl(site.src()).href;
 
+    function resolve(path: string) {
+      path = import.meta.resolve(path);
+
+      if (!path.startsWith("npm:")) {
+        return {
+          path,
+          namespace: "deno",
+        };
+      }
+
+      const name = path.replace(/^npm:/, "");
+      const url = new URL(`https://esm.sh/${name}`);
+
+      if (options.esm.dev) {
+        url.searchParams.set("dev", "true");
+      }
+
+      // cjs exports
+      const cjs_exports = options.esm.cjsExports?.[name];
+
+      if (cjs_exports) {
+        url.searchParams.set(
+          "cjs-exports",
+          Array.isArray(cjs_exports) ? cjs_exports.join(",") : cjs_exports,
+        );
+      }
+
+      // deps
+      const deps = options.esm.deps?.[name];
+
+      if (deps) {
+        url.searchParams.set(
+          "deps",
+          Array.isArray(deps) ? deps.join(",") : deps,
+        );
+      }
+
+      return {
+        path: url.href,
+        namespace: "deno",
+      };
+    }
+
     const lumeLoaderPlugin = {
       name: "lumeLoader",
       // deno-lint-ignore no-explicit-any
@@ -102,70 +147,24 @@ export default function (userOptions?: Partial<Options>) {
 
           // Absolute url
           if (isUrl(path)) {
-            return {
-              path: import.meta.resolve(path),
-              namespace: "deno",
-            };
+            return resolve(path);
           }
 
           // Resolve the relative url
           if (isUrl(importer) && path.match(/^[./]/)) {
-            return {
-              path: import.meta.resolve(new URL(path, importer).href),
-              namespace: "deno",
-            };
+            return resolve(new URL(path, importer).href);
           }
 
           // It's a npm package
           if (path.startsWith("npm:")) {
-            const name = path.replace(/^npm:/, "");
-            const url = new URL(`https://esm.sh/${name}`);
-
-            if (options.esm.dev) {
-              url.searchParams.set("dev", "true");
-            }
-
-            // cjs exports
-            const cjs_exports = options.esm.cjsExports?.[name];
-
-            if (cjs_exports) {
-              url.searchParams.set(
-                "cjs-exports",
-                Array.isArray(cjs_exports)
-                  ? cjs_exports.join(",")
-                  : cjs_exports,
-              );
-            }
-
-            // deps
-            const deps = options.esm.deps?.[name];
-
-            if (deps) {
-              url.searchParams.set(
-                "deps",
-                Array.isArray(deps) ? deps.join(",") : deps,
-              );
-            }
-
-            return {
-              path: url.href,
-              namespace: "deno",
-            };
+            return resolve(path);
           }
 
           if (!isUrl(path)) {
-            return {
-              path: isAbsolutePath(path)
-                ? toFileUrl(path).href
-                : import.meta.resolve(path),
-              namespace: "deno",
-            };
+            return resolve(isAbsolutePath(path) ? toFileUrl(path).href : path);
           }
 
-          return {
-            path: import.meta.resolve(path),
-            namespace: "deno",
-          };
+          return resolve(path);
         });
 
         build.onLoad({ filter: /.*/ }, async (args: LoadArguments) => {
