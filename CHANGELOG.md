@@ -12,6 +12,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Favicon: Better error if the source file is missing [#504].
 - Esbuild: Fix npm specifiers in the import map.
 - Esbuild: Fix subextension support (ex: `.client.jsx`).
+- Updated deps: `std`, `deno-dom`, `esbuild`, `vento`, `xml`, `terser`, `lightningcss`, `pagefind`, `preact`, `pug`, `svgo`.
 
 ## [1.19.3] - 2023-10-29
 ### Changed
