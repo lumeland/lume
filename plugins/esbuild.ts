@@ -95,7 +95,10 @@ export default function (userOptions?: Partial<Options>) {
     const prefix = toFileUrl(site.src()).href;
 
     function resolve(path: string) {
-      path = import.meta.resolve(path);
+      // "npm:" specifiers are currently not supported in import.meta.resolve()
+      if (!path.startsWith("npm:")) {
+        path = import.meta.resolve(path);
+      }
 
       if (!path.startsWith("npm:")) {
         return {
