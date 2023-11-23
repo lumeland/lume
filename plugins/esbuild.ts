@@ -100,6 +100,7 @@ export default function (userOptions?: Partial<Options>) {
         path = import.meta.resolve(path);
       }
 
+      // https://github.com/denoland/deno/issues/21298
       if (!path.startsWith("npm:")) {
         return {
           path,
