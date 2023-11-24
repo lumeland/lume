@@ -479,7 +479,7 @@ export default class Site {
     this.fs.init();
 
     // Get the site content
-    const showDrafts = env<boolean>("LUME_SHOW_DRAFTS");
+    const showDrafts = env<boolean>("LUME_DRAFTS");
     const [_pages, _staticFiles] = await this.source.build(
       (_, page) => !page?.data.draft || showDrafts === true,
     );
@@ -528,7 +528,7 @@ export default class Site {
     }
 
     // Get the site content
-    const showDrafts = env<boolean>("LUME_SHOW_DRAFTS");
+    const showDrafts = env<boolean>("LUME_DRAFTS");
     const [_pages, _staticFiles] = await this.source.build(
       (_, page) => !page?.data.draft || showDrafts === true,
       this.scopes.getFilter(files),

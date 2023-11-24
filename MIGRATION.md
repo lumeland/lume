@@ -42,9 +42,9 @@
 - Removed `Page.src.remote` because it's already in `Page.src.entry`.
 - Removed `Page.src.slug` because it's already in `Page.data.basename`.
 - Removed `--dev` mode #244, #201.
-  - Use the env variable `LUME_SHOW_DRAFTS=true` to output draft pages.
+  - Use the env variable `LUME_DRAFTS=true` to output draft pages.
 - Removed `--quiet` argument
-  - Use the env variable `LUME_LOG_LEVEL=DEBUG|INFO|WARNING|ERROR|CRITICAL`.
+  - Use the env variable `LUME_LOG=DEBUG|INFO|WARNING|ERROR|CRITICAL`.
 - Renamed the interface method `Engine.renderSync` to `Engine.renderComponent`.
 - Removed `site.includes()` function.
 - Changed the `Format` interface.
