@@ -16,7 +16,8 @@ export function getPageUrl(
   }
 
   if (typeof url === "function") {
-    url = url(page, getDefaultUrl(page, parentPath, prettyUrls));
+    page.data.url = getDefaultUrl(page, parentPath, prettyUrls);
+    url = url(page);
   }
 
   if (url === false) {

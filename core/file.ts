@@ -160,7 +160,7 @@ export interface RawData {
   tags?: string | string[];
 
   /** The url of a page */
-  url?: string | false | ((page: Page, url: string) => string | false);
+  url?: string | false | ((page: Page) => string | false);
 
   /** The basename of a page */
   basename?: string;
