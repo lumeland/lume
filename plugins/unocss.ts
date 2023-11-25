@@ -1,103 +1,72 @@
+import unocss, { presetUno } from "../deps/unocss.ts";
+import { getExtension } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
-import { read } from "../core/utils/read.ts";
-import { createGenerator, presetUno, resetUrl } from "../deps/unocss.ts";
 
-import type Site from "../core/site.ts";
 import type { UserConfig } from "../deps/unocss.ts";
+import type Site from "../core/site.ts";
 
 export interface Options {
+  /** Extensions processed by this plugin to extract the utility classes */
+  extensions?: string[];
+
   /**
-   * Configurations for UnoCSS.
-   * @see {@link https://unocss.dev/guide/config-file}
+   * Options passed to UnoCSS.
+   * @see https://unocss.dev/guide/config-file
    */
-  config?: UserConfig;
-  /**
-   * Set the css filename for all generated styles,
-   * Set to `false` to insert a <style> tag per page.
-   * @defaultValue `false`
-   */
-  cssFile?: false | string;
-  /**
-   * Supported CSS reset options.
-   * @see {@link https://github.com/unocss/unocss/tree/main/packages/reset}
-   * @defaultValue `tailwind`
-   */
-  reset?: false | "tailwind" | "tailwind-compat" | "eric-meyer";
+  options?: Omit<UserConfig, "content">;
 }
 
 export const defaults: Options = {
-  config: {
+  extensions: [".html"],
+  options: {
     presets: [presetUno()],
   },
-  cssFile: false,
-  reset: "tailwind",
 };
 
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    const uno = createGenerator(options.config);
+    // deno-lint-ignore no-explicit-any
+    let unoPlugins: any[];
 
-    if (options.cssFile === false) {
-      // Insert a <style> tag for each page
-      site.process([".html"], async (pages) => {
-        const reset = await getResetCss(options);
-
-        Promise.all(pages.map(async (page) => {
-          const document = page.document!;
-          const result = await uno.generate(
-            document.documentElement?.innerHTML ?? "",
-          );
-          const css = reset ? `${reset}\n${result.css}` : result.css;
-
-          if (css) {
-            const style = document.createElement("style");
-            style.innerText = css;
-            page.document?.head?.appendChild(style);
-          }
-        }));
-      });
-      return;
+    if (site.hooks.postcss) {
+      throw new Error(
+        "PostCSS plugin is required to be installed AFTER UnoCSS plugin",
+      );
     }
 
-    // Generate the stylesheets for all pages
-    site.process([".html"], async (pages) => {
-      const classes = new Set<string>();
+    site.process(options.extensions, (pages) => {
+      // Get the content of all HTML pages (sorted by path)
+      const content = pages.sort((a, b) => a.src.path.localeCompare(b.src.path))
+        .map((page) => ({
+          raw: page.content as string,
+          extension: getExtension(page.outputPath).substring(1),
+        }));
 
-      await Promise.all(
-        pages.map(async (page) =>
-          await uno.generate(
-            page.document?.documentElement?.innerHTML ?? "",
-          )
-            .then((res) => res.matched)
-            .then((matched) => matched.forEach((match) => classes.add(match)))
-        ),
-      );
+      // Create UnoCSS plugin
+      // @ts-ignore: This expression is not callable.
+      const plugin = unocss({
+        configOrPath: options.options,
+        content,
+      });
 
-      // Create & merge stylesheets for all pages
-      const reset = await getResetCss(options);
-      const result = await uno.generate(classes);
-      const css = reset ? `${reset}\n${result.css}` : result.css;
-
-      // Output the CSS file
-      const output = await site.getOrCreatePage(options.cssFile as string);
-      if (output.content) {
-        output.content += `\n${css}`;
-      } else {
-        output.content = css;
+      // Ensure PostCSS plugin is installed
+      if (!site.hooks.postcss) {
+        throw new Error(
+          "PostCSS plugin is required to be installed AFTER UnoCSS plugin",
+        );
       }
+
+      // Replace the old UnoCSS plugin configuration from PostCSS plugins
+      // deno-lint-ignore no-explicit-any
+      site.hooks.postcss((runner: any) => {
+        unoPlugins?.forEach((plugin) => {
+          runner.plugins.splice(runner.plugins.indexOf(plugin), 1);
+        });
+        unoPlugins = runner.normalize([plugin]);
+        runner.plugins = runner.plugins.concat(unoPlugins);
+      });
     });
   };
-}
-
-/**
- * TODO: Replace with CSS Modules Import
- * @remarks Deno does not currently support CSS Modules.
- * @see {@link https://github.com/denoland/deno/issues/11961}
- */
-async function getResetCss(options: Options) {
-  return options.reset === false
-    ? ""
-    : await read(`${resetUrl}/${options.reset}.css`, false);
 }

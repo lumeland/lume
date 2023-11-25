@@ -1,4 +1,5 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
+import postcss from "../plugins/postcss.ts";
 import unocss from "../plugins/unocss.ts";
 
 Deno.test("Unocss plugin", async (t) => {
@@ -7,19 +8,7 @@ Deno.test("Unocss plugin", async (t) => {
   });
 
   site.use(unocss());
-
-  await build(site);
-  await assertSiteSnapshot(t, site);
-});
-
-Deno.test("Unocss plugin (css file)", async (t) => {
-  const site = getSite({
-    src: "unocss",
-  });
-
-  site.use(unocss({
-    cssFile: "styles.css",
-  }));
+  site.use(postcss());
 
   await build(site);
   await assertSiteSnapshot(t, site);
