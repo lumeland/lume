@@ -215,10 +215,14 @@ function fixPluginOrder(plugins: string[], plugin1: string, plugin2: string) {
     const pos1 = plugins.indexOf(plugin1);
     const pos2 = plugins.indexOf(plugin2);
 
-    if (pos2 !== -1) {
-      plugins.splice(pos2, 1);
+    if (pos2 === -1) {
+      plugins.splice(pos1 + 1, 0, plugin2);
+      return;
     }
 
-    plugins.splice(pos1, 1, plugin1, plugin2);
+    if (pos1 > pos2) {
+      plugins[pos2] = plugin1;
+      plugins[pos1] = plugin2;
+    }
   }
 }

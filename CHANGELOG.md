@@ -10,6 +10,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 ### Fixed
 - Tailwind: Fix types for `options`.
 - Favicon: Better error if the source file is missing [#504].
+- A bug in fixPluginOrder that duplicated plugins in the config file [#514].
 
 ## [1.19.3] - 2023-10-29
 ### Changed
