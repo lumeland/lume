@@ -12,6 +12,7 @@ Any BREAKING CHANGE between minor versions will be documented here in upper case
 - Favicon: Better error if the source file is missing [#504].
 - Esbuild: Fix npm specifiers in the import map.
 - Esbuild: Fix subextension support (ex: `.client.jsx`).
+- A bug in fixPluginOrder that duplicated plugins in the config file [#514].
 - Updated deps: `std`, `deno-dom`, `esbuild`, `vento`, `xml`, `terser`, `lightningcss`, `pagefind`, `preact`, `pug`, `svgo`.
 
 ## [1.19.3] - 2023-10-29
@@ -2477,6 +2478,7 @@ The first version.
 [#496]: https://github.com/lumeland/lume/issues/496
 [#502]: https://github.com/lumeland/lume/issues/502
 [#504]: https://github.com/lumeland/lume/issues/504
+[#514]: https://github.com/lumeland/lume/issues/514
 
 [1.19.4]: https://github.com/lumeland/lume/compare/v1.19.3...HEAD
 [1.19.3]: https://github.com/lumeland/lume/compare/v1.19.2...v1.19.3
