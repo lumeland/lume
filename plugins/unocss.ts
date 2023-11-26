@@ -3,7 +3,11 @@ import { read } from "../core/utils/read.ts";
 import { createGenerator, presetUno, resetUrl } from "../deps/unocss.ts";
 
 import type Site from "../core/site.ts";
-import type { UserConfig } from "../deps/unocss.ts";
+import type {
+  PluginOptions,
+  UnocssPluginContext,
+  UserConfig,
+} from "../deps/unocss.ts";
 
 export interface Options {
   /**
@@ -17,6 +21,11 @@ export interface Options {
    * @defaultValue `false`
    */
   cssFile?: false | string;
+  /**
+   * Process CSS files using UnoCSS transformers.
+   * @defaultValue `undefined`
+   */
+  cssFileTransformers?: PluginOptions["transformers"];
   /**
    * Supported CSS reset options.
    * @see {@link https://github.com/unocss/unocss/tree/main/packages/reset}
@@ -38,6 +47,27 @@ export default function (userOptions?: Options) {
 
   return (site: Site) => {
     const uno = createGenerator(options.config);
+
+    if (Array.isArray(options.cssFileTransformers)) {
+      site.process([".css"], async (files) => {
+        const { default: MagicString } = await import(
+          "npm:magic-string@0.30.5"
+        );
+        for await (const file of files) {
+          if (file.content) {
+            const code = new MagicString(file.content.toString());
+            for await (const { transform } of options.cssFileTransformers!) {
+              await transform(
+                code,
+                file.src.path,
+                { uno } as unknown as UnocssPluginContext,
+              );
+            }
+            file.content = code.toString();
+          }
+        }
+      });
+    }
 
     if (options.cssFile === false) {
       // Insert a <style> tag for each page
