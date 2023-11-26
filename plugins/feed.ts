@@ -132,7 +132,7 @@ export default function (userOptions?: Options) {
         ? options.output
         : [options.output];
 
-      const pages = site.searcher.pages(
+      const pages = site.search.pages(
         options.query,
         options.sort,
         options.limit,

@@ -53,7 +53,7 @@ export default function (userOptions?: Options) {
         options.filename,
         {
           content: generateSitemap(
-            site.searcher.pages(options.query, options.sort),
+            site.search.pages(options.query, options.sort),
           ),
         },
       );

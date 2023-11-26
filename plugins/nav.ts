@@ -21,7 +21,7 @@ export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    const nav = new Nav(site.searcher);
+    const nav = new Nav(site.search);
     site.data(options.name, nav);
     site.addEventListener("beforeUpdate", () => nav.deleteCache());
   };

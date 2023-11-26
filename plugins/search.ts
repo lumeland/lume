@@ -17,7 +17,7 @@ export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.data(options.name, site.searcher);
+    site.data(options.name, site.search);
   };
 }
 

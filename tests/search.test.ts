@@ -198,9 +198,9 @@ Deno.test("Test the file searcher", async (t) => {
 
   await build(site);
 
-  const { searcher } = site;
+  const { search } = site;
 
-  await assertSnapshot(t, searcher.files().sort());
-  await assertSnapshot(t, searcher.files("/*.png").sort());
-  await assertSnapshot(t, searcher.files(/\.png$/).sort());
+  await assertSnapshot(t, search.files().sort());
+  await assertSnapshot(t, search.files("/*.png").sort());
+  await assertSnapshot(t, search.files(/\.png$/).sort());
 });

@@ -100,7 +100,7 @@ export default class Site {
   scripts: Scripts;
 
   /** To search pages */
-  searcher: Searcher;
+  search: Searcher;
 
   /** To write the generated pages in the dest folder */
   writer: Writer;
@@ -192,7 +192,7 @@ export default class Site {
     this.renderer = renderer;
     this.events = events;
     this.scripts = scripts;
-    this.searcher = searcher;
+    this.search = searcher;
     this.writer = writer;
 
     // Ignore the "dest" directory if it's inside src
@@ -505,7 +505,7 @@ export default class Site {
       return;
     }
 
-    this.searcher.deleteCache();
+    this.search.deleteCache();
 
     // Reload the changed files
     for (const file of files) {
@@ -666,7 +666,7 @@ export default class Site {
       const match = path.match(/^(.*)\s*\(([^)]+)\)$/);
       const srcPath = match ? match[1] : path;
       const pages = match
-        ? this.searcher.pages(match[2]).map<Page>((data) => data.page!)
+        ? this.search.pages(match[2]).map<Page>((data) => data.page!)
         : this.pages;
 
       // It's a page
