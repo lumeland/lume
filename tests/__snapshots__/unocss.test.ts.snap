@@ -2941,7 +2941,7 @@ video {
 ]
 `;
 
-snapshot[`Unocss plugin (with Transformers) 1`] = `
+snapshot[`Unocss plugin (with transformers) 1`] = `
 {
   formats: [
     {
@@ -3046,9 +3046,9 @@ snapshot[`Unocss plugin (with Transformers) 1`] = `
 }
 `;
 
-snapshot[`Unocss plugin (with Transformers) 2`] = `[]`;
+snapshot[`Unocss plugin (with transformers) 2`] = `[]`;
 
-snapshot[`Unocss plugin (with Transformers) 3`] = `
+snapshot[`Unocss plugin (with transformers) 3`] = `
 [
   {
     content: "/* https://unocss.dev/transformers/directives#usage */
