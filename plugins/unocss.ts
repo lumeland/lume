@@ -11,7 +11,7 @@ import {
 
 import type Site from "../core/site.ts";
 import type {
-  PluginOptions,
+  SourceCodeTransformer,
   UnocssPluginContext,
   UserConfig,
 } from "../deps/unocss.ts";
@@ -32,7 +32,7 @@ export interface Options {
    * Process CSS files using UnoCSS transformers.
    * @defaultValue `[transformerVariantGroup(), transformerDirectives()]`
    */
-  cssFileTransformers: PluginOptions["transformers"];
+  cssFileTransformers: SourceCodeTransformer[];
   /**
    * Supported CSS reset options.
    * @see {@link https://github.com/unocss/unocss/tree/main/packages/reset}

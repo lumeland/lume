@@ -4,7 +4,7 @@ import transformerDirectivesImport from "npm:@unocss/transformer-directives@0.57
 
 export {
   createGenerator,
-  type PluginOptions,
+  type SourceCodeTransformer,
   type UnocssPluginContext,
   type UserConfig,
 } from "npm:@unocss/core@0.57.7";
