@@ -1549,7 +1549,7 @@ snapshot[`Unocss plugin (css file) 3`] = `
   {
     content: "/* https://unocss.dev/transformers/directives#usage */
 .custom-div {
-  @apply: text-center my-0 font-medium;
+  @apply text-center my-0 font-medium;
   --at-apply: \\"hover:text-red\\";
 }
 
@@ -2097,7 +2097,7 @@ video {
       basename: "styles",
       content: '/* https://unocss.dev/transformers/directives#usage */
 .custom-div {
-  @apply: text-center my-0 font-medium;
+  @apply text-center my-0 font-medium;
   --at-apply: "hover:text-red";
 }
 
@@ -3053,7 +3053,7 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
   {
     content: "/* https://unocss.dev/transformers/directives#usage */
 .custom-div {
-  @apply: text-center my-0 font-medium;
+  @apply text-center my-0 font-medium;
   --at-apply: \\"hover:text-red\\";
 }
 
@@ -3601,7 +3601,7 @@ video {
       basename: "styles",
       content: '/* https://unocss.dev/transformers/directives#usage */
 .custom-div {
-  @apply: text-center my-0 font-medium;
+  @apply text-center my-0 font-medium;
   --at-apply: "hover:text-red";
 }
 
