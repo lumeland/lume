@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
+## [Unreleased]
+### Fixed
+- Infinite recursion of `multilanguage` plugin combined with pagination with the returnPageData option as `true`.
+
 ## [1.19.4] - 2023-11-27
 ### Fixed
 - Tailwind: Fix types for `options`.
@@ -2480,6 +2484,7 @@ The first version.
 [#504]: https://github.com/lumeland/lume/issues/504
 [#514]: https://github.com/lumeland/lume/issues/514
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v1.19.4...HEAD
 [1.19.4]: https://github.com/lumeland/lume/compare/v1.19.3...v1.19.4
 [1.19.3]: https://github.com/lumeland/lume/compare/v1.19.2...v1.19.3
 [1.19.2]: https://github.com/lumeland/lume/compare/v1.19.1...v1.19.2

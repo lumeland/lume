@@ -41,7 +41,7 @@ export default function multilanguage(userOptions?: Partial<Options>): Plugin {
 
       // Create a new page per language
       const newPages: Page[] = [];
-      const id: string = data.id || page.src.path.slice(1);
+      const id: string | number = data.id ?? page.src.path.slice(1);
       const basePath: string = typeof page.data.url === "string"
         ? posix.dirname(page.data.url)
         : "";
@@ -194,10 +194,18 @@ function filterLanguage(
       continue;
     }
 
+    if (value instanceof Page) {
+      continue;
+    }
+
+    // @ts-ignore: avoid recursive filtering of pages
     if (isPlainObject(value)) {
       result[name] = filterLanguage(langs, lang, value);
     } else if (Array.isArray(value)) {
       result[name] = value.map((item) => {
+        if (item instanceof Page) {
+          return item;
+        }
         return isPlainObject(item) ? filterLanguage(langs, lang, item) : item;
       });
     } else {
