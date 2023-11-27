@@ -195,6 +195,9 @@ export interface RawData {
 
 /** The data of a page/folder once loaded and processed */
 export interface Data extends RawData {
+  /** The language of the page */
+  lang?: string;
+
   /** List of tags assigned to a page or folder */
   tags: string[];
 

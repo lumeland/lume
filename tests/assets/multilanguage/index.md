@@ -1,8 +1,6 @@
 ---
-lang: [en, gl]
-title: Hello world
-title.gl: Ola mundo
-content.gl: Ola mundo
+lang: en
+id: index
 ---
 
 Hello world
