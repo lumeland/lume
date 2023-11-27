@@ -1,6 +1,13 @@
 import { merge } from "../core/utils/object.ts";
 import { read } from "../core/utils/read.ts";
-import { createGenerator, presetUno, resetUrl } from "../deps/unocss.ts";
+import {
+  createGenerator,
+  MagicString,
+  presetUno,
+  resetUrl,
+  transformerDirectives,
+  transformerVariantGroup,
+} from "../deps/unocss.ts";
 
 import type Site from "../core/site.ts";
 import type {
@@ -14,7 +21,7 @@ export interface Options {
    * Configurations for UnoCSS.
    * @see {@link https://unocss.dev/guide/config-file}
    */
-  config?: UserConfig;
+  config: UserConfig;
   /**
    * Set the css filename for all generated styles,
    * Set to `false` to insert a <style> tag per page.
@@ -23,9 +30,9 @@ export interface Options {
   cssFile?: false | string;
   /**
    * Process CSS files using UnoCSS transformers.
-   * @defaultValue `undefined`
+   * @defaultValue `[transformerVariantGroup(), transformerDirectives()]`
    */
-  cssFileTransformers?: PluginOptions["transformers"];
+  cssFileTransformers: PluginOptions["transformers"];
   /**
    * Supported CSS reset options.
    * @see {@link https://github.com/unocss/unocss/tree/main/packages/reset}
@@ -39,21 +46,22 @@ export const defaults: Options = {
     presets: [presetUno()],
   },
   cssFile: false,
+  cssFileTransformers: [
+    transformerVariantGroup(),
+    transformerDirectives(),
+  ],
   reset: "tailwind",
 };
 
-export default function (userOptions?: Options) {
-  const options = merge(defaults, userOptions);
+export default function (userOptions?: Partial<Options>) {
+  const options: Options = merge(defaults, userOptions);
 
   return (site: Site) => {
     const uno = createGenerator(options.config);
 
-    if (Array.isArray(options.cssFileTransformers)) {
+    if (options.cssFileTransformers!.length > 0) {
       site.process([".css"], async (files) => {
-        const { default: MagicString } = await import(
-          "npm:magic-string@0.30.5"
-        );
-        for await (const file of files) {
+        for (const file of files) {
           if (file.content) {
             const code = new MagicString(file.content.toString());
             for await (const { transform } of options.cssFileTransformers!) {

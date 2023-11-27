@@ -9,7 +9,9 @@ Deno.test("Unocss plugin", async (t) => {
     src: "unocss",
   });
 
-  site.use(unocss());
+  site.use(unocss({
+    cssFileTransformers: [],
+  }));
 
   await build(site);
   await assertSiteSnapshot(t, site);
