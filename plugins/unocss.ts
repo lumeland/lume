@@ -28,6 +28,8 @@ export interface Options {
    * @defaultValue `false`
    */
   cssFile?: false | string;
+  /** The list of extensions this plugin applies to */
+  cssFileExtensions: string[];
   /**
    * Process CSS files using UnoCSS transformers.
    * @defaultValue `[transformerVariantGroup(), transformerDirectives()]`
@@ -46,6 +48,7 @@ export const defaults: Options = {
     presets: [presetUno()],
   },
   cssFile: false,
+  cssFileExtensions: [".css"],
   cssFileTransformers: [
     transformerVariantGroup(),
     transformerDirectives(),
@@ -60,8 +63,8 @@ export default function (userOptions?: Partial<Options>) {
     const uno = createGenerator(options.config);
 
     if (options.cssFileTransformers!.length > 0) {
-      site.loadAssets([".css"]);
-      site.process([".css"], async (files) => {
+      site.loadAssets(options.cssFileExtensions);
+      site.process(options.cssFileExtensions, async (files) => {
         for (const file of files) {
           if (file.content) {
             const code = new MagicString(file.content.toString());
