@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.19.4] - Unreleased
+## [1.19.4] - 2023-11-27
 ### Fixed
 - Tailwind: Fix types for `options`.
 - Favicon: Better error if the source file is missing [#504].
@@ -2480,7 +2480,7 @@ The first version.
 [#504]: https://github.com/lumeland/lume/issues/504
 [#514]: https://github.com/lumeland/lume/issues/514
 
-[1.19.4]: https://github.com/lumeland/lume/compare/v1.19.3...HEAD
+[1.19.4]: https://github.com/lumeland/lume/compare/v1.19.3...v1.19.4
 [1.19.3]: https://github.com/lumeland/lume/compare/v1.19.2...v1.19.3
 [1.19.2]: https://github.com/lumeland/lume/compare/v1.19.1...v1.19.2
 [1.19.1]: https://github.com/lumeland/lume/compare/v1.19.0...v1.19.1
