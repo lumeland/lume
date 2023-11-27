@@ -60,6 +60,7 @@ export default function (userOptions?: Partial<Options>) {
     const uno = createGenerator(options.config);
 
     if (options.cssFileTransformers!.length > 0) {
+      site.loadAssets([".css"]);
       site.process([".css"], async (files) => {
         for (const file of files) {
           if (file.content) {
