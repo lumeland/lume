@@ -101,7 +101,7 @@ export default function (userOptions?: Options) {
             if (data.alternates?.length) {
               node["xhtml:link"] = data.alternates.map((alternate: Data) => ({
                 "@rel": "alternate",
-                "@hreflang": alternate.lang,
+                "@hreflang": alternate.lang!,
                 "@href": site.url(alternate.url, true),
               }));
             }
