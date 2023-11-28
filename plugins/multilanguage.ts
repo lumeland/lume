@@ -1,5 +1,8 @@
-import { merge } from "../core/utils/object.ts";
+import { Page } from "../core/file.ts";
+import { isPlainObject, merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
+import { getPageUrl } from "../core/utils/page_url.ts";
+import { posix } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
@@ -29,41 +32,81 @@ export default function multilanguage(userOptions: Options) {
     options.languages.forEach((lang) => site.mergeKey(lang, "object"));
 
     // Preprocessor to setup multilanguage pages
-    site.preprocess(options.extensions, (pages) => {
+    site.preprocess(options.extensions, (pages, allPages) => {
       pages.forEach((page) => {
-        const lang = page.data.lang;
+        const { data } = page;
+        const languages = data.lang as string | string[] | undefined;
 
         // If the "lang" variable is not defined, use the default language
-        if (lang === undefined) {
-          page.data.lang = options.defaultLanguage;
+        if (languages === undefined) {
+          data.lang = options.defaultLanguage;
           return;
         }
 
         // If the "lang" variable is a string, check if it's a valid language
-        if (typeof lang === "string") {
-          if (!options.languages.includes(lang)) {
+        if (typeof languages === "string") {
+          if (!options.languages.includes(languages)) {
             log.warning(
-              `[multilanguage plugin] The language "${lang}" in the page ${page.sourcePath} is not defined in the "languages" option.`,
+              `[multilanguage plugin] The language "${languages}" in the page ${page.sourcePath} is not defined in the "languages" option.`,
             );
           }
           return;
         }
 
-        throw new Error(`Invalid "lang" variable in ${page.sourcePath}.`);
+        // The "lang" variable of the pages must be an array
+        if (!Array.isArray(languages)) {
+          return;
+        }
+
+        // Create a new page per language
+        const newPages: Page[] = [];
+        const id: string = data.id || page.src.path.slice(1);
+        const basePath = posix.dirname(page.data.url);
+
+        for (const lang of languages) {
+          const newData: Data = { ...data, lang, id };
+          const newPage = page.duplicate(undefined, newData);
+          newPages.push(newPage);
+
+          // Fix the url
+          const customUrl = (newData[`url.${lang}`] || newData[lang]?.url) as
+            | string
+            | undefined;
+
+          if (customUrl) {
+            newData.url = customUrl;
+            const url = getPageUrl(newPage, site.options.prettyUrls, basePath);
+            if (!url) {
+              log.warning(
+                `[multilanguage plugin] The page ${page.sourcePath} has a custom url "${customUrl}" that is not valid.`,
+              );
+            } else {
+              newData.url = url;
+            }
+          } else if (newData.url) {
+            newData.url = `/${lang}${newData.url}`;
+          }
+        }
+        // Replace the current page with the multiple language versions
+        allPages.splice(allPages.indexOf(page), 1, ...newPages);
       });
     });
 
-    // Preprocessor to assign the data of the page language
+    // Preprocessor to process the multilanguage data
     site.preprocess(options.extensions, (pages) => {
       pages.forEach((page) => {
-        const data = page.data;
-        const { lang } = data;
+        const lang = page.data.lang;
 
         if (typeof lang !== "string") {
           return;
         }
 
-        // Merge the language data with the page data
+        const data = filterLanguage(
+          options.languages,
+          lang,
+          page.data,
+        ) as Data;
+
         for (const key of options.languages) {
           if (key in data) {
             if (key === lang) {
@@ -72,6 +115,8 @@ export default function multilanguage(userOptions: Options) {
             delete data[key];
           }
         }
+
+        page.data = data;
       });
     });
 
@@ -100,14 +145,14 @@ export default function multilanguage(userOptions: Options) {
     site.preprocess(options.extensions, (pages, allPages) => {
       pages.forEach((page) => {
         const { data } = page;
-        const id = data.id as string | undefined;
+        const id = data.id as string | number | undefined;
 
         if (data.alternates || !id) {
           return;
         }
 
         const alternates: Data[] = [];
-        const alternatePages = allPages.filter((page) => page.data.id === id);
+        const alternatePages = allPages.filter((page) => page.data.id == id);
 
         options.languages.forEach((lang) => {
           const page = alternatePages.find((page) => page.data.lang === lang);
@@ -151,13 +196,52 @@ export default function multilanguage(userOptions: Options) {
   };
 }
 
+/**
+ * Remove the entries from all "langs" except the "lang" value
+ */
+function filterLanguage(
+  langs: string[],
+  lang: string,
+  data: Record<string, unknown>,
+): Record<string, unknown> {
+  const result: Record<string, unknown> = {};
+
+  for (const [name, value] of Object.entries(data)) {
+    const parts = name.match(/^(.*)\.([^.]+)$/);
+
+    if (parts) {
+      const [, key, l] = parts;
+
+      if (lang === l) {
+        result[key] = value;
+        continue;
+      } else if (langs.includes(l)) {
+        continue;
+      }
+    }
+
+    if (name in result) {
+      continue;
+    }
+
+    if (isPlainObject(value)) {
+      result[name] = filterLanguage(langs, lang, value);
+    } else if (Array.isArray(value)) {
+      result[name] = value.map((item) => {
+        return isPlainObject(item) ? filterLanguage(langs, lang, item) : item;
+      });
+    } else {
+      result[name] = value;
+    }
+  }
+
+  return result;
+}
+
 /** Extends PageData interface */
 declare global {
   namespace Lume {
     export interface PageData {
-      /** The id of the page (used to relate with other pages) */
-      id: string;
-
       /**
        * Alternate pages (for languages)
        * @see https://lume.land/plugins/multilanguage/

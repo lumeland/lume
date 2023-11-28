@@ -603,12 +603,10 @@ snapshot[`Sitemap plugin with a multilanguage plugin 1`] = `
   ],
   src: [
     "/",
-    "/_data.yml",
     "/_includes",
     "/_includes/layout.vto",
     "/index.md",
-    "/index_fr.md",
-    "/index_gl.md",
+    "/other.vto",
     "/pages",
     "/pages/page1.md",
     "/pages/page1_en.md",
@@ -648,8 +646,12 @@ Sitemap: https://example.com/sitemap.xml",
   <url>
     <loc>https://example.com/en/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://example.com/fr/index_fr/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/index_gl/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/other-page-english/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/other-page-english/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://example.com/fr/other-page-french.html"/>
   </url>
   <url>
     <loc>https://example.com/en/page-1/</loc>
@@ -663,16 +665,14 @@ Sitemap: https://example.com/sitemap.xml",
     <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/page-1/"/>
   </url>
   <url>
-    <loc>https://example.com/fr/index_fr/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://example.com/fr/index_fr/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/index_gl/"/>
+    <loc>https://example.com/fr/other-page-french.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/other-page-english/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://example.com/fr/other-page-french.html"/>
   </url>
   <url>
-    <loc>https://example.com/gl/index_gl/</loc>
+    <loc>https://example.com/gl/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://example.com/fr/index_fr/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/index_gl/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/"/>
   </url>
   <url>
     <loc>https://example.com/gl/page-1/</loc>
@@ -699,8 +699,12 @@ Sitemap: https://example.com/sitemap.xml",
   <url>
     <loc>https://example.com/en/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://example.com/fr/index_fr/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/index_gl/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/"/>
+  </url>
+  <url>
+    <loc>https://example.com/en/other-page-english/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/other-page-english/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://example.com/fr/other-page-french.html"/>
   </url>
   <url>
     <loc>https://example.com/en/page-1/</loc>
@@ -714,16 +718,14 @@ Sitemap: https://example.com/sitemap.xml",
     <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/page-1/"/>
   </url>
   <url>
-    <loc>https://example.com/fr/index_fr/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://example.com/fr/index_fr/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/index_gl/"/>
+    <loc>https://example.com/fr/other-page-french.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/other-page-english/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://example.com/fr/other-page-french.html"/>
   </url>
   <url>
-    <loc>https://example.com/gl/index_gl/</loc>
+    <loc>https://example.com/gl/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://example.com/fr/index_fr/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/index_gl/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/"/>
   </url>
   <url>
     <loc>https://example.com/gl/page-1/</loc>
@@ -759,12 +761,11 @@ Sitemap: https://example.com/sitemap.xml",
   {
     content: '<!DOCTYPE html>
 <html lang="en"><head><link rel="alternate" hreflang="en" href="https://example.com/en/">
-<link rel="alternate" hreflang="fr" href="https://example.com/fr/index_fr/">
-<link rel="alternate" hreflang="gl" href="https://example.com/gl/index_gl/">
+<link rel="alternate" hreflang="gl" href="https://example.com/gl/">
 </head><body><p>Hello world</p>
 </body></html>',
     data: {
-      alternates: "Array(3)",
+      alternates: "Array(2)",
       basename: "index",
       children: "<p>Hello world</p>
 ",
@@ -787,7 +788,7 @@ Sitemap: https://example.com/sitemap.xml",
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Other",
+      title: "Hello world",
       url: "/en/",
     },
     src: {
@@ -799,59 +800,16 @@ Sitemap: https://example.com/sitemap.xml",
   },
   {
     content: '<!DOCTYPE html>
-<html lang="fr"><head><link rel="alternate" hreflang="en" href="https://example.com/en/">
-<link rel="alternate" hreflang="fr" href="https://example.com/fr/index_fr/">
-<link rel="alternate" hreflang="gl" href="https://example.com/gl/index_gl/">
-</head><body><p>Salut monde</p>
-</body></html>',
-    data: {
-      alternates: "Array(3)",
-      basename: "index_fr",
-      children: "<p>Salut monde</p>
-",
-      content: "Salut monde
-",
-      date: [],
-      id: "index",
-      lang: "fr",
-      mergedKeys: [
-        "tags",
-        "en",
-        "fr",
-        "it",
-        "gl",
-      ],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Autre",
-      url: "/fr/index_fr/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/index_fr",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<!DOCTYPE html>
 <html lang="gl"><head><link rel="alternate" hreflang="en" href="https://example.com/en/">
-<link rel="alternate" hreflang="fr" href="https://example.com/fr/index_fr/">
-<link rel="alternate" hreflang="gl" href="https://example.com/gl/index_gl/">
+<link rel="alternate" hreflang="gl" href="https://example.com/gl/">
 </head><body><p>Ola mundo</p>
 </body></html>',
     data: {
-      alternates: "Array(3)",
-      basename: "index_gl",
+      alternates: "Array(2)",
+      basename: "index",
       children: "<p>Ola mundo</p>
 ",
-      content: "Ola mundo
-",
+      content: "Ola mundo",
       date: [],
       id: "index",
       lang: "gl",
@@ -869,13 +827,87 @@ Sitemap: https://example.com/sitemap.xml",
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Outro",
-      url: "/gl/index_gl/",
+      title: "Ola mundo",
+      url: "/gl/",
     },
     src: {
       asset: false,
       ext: ".md",
-      path: "/index_gl",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="en" href="https://example.com/en/other-page-english/">
+<link rel="alternate" hreflang="fr" href="https://example.com/fr/other-page-french.html">
+</head><body><p>Other page <a href="0">Link to index in Galego</a></p></body></html>',
+    data: {
+      alternates: "Array(2)",
+      basename: "other",
+      children: '<p>Other page <a href="0">Link to index in Galego</a></p>',
+      content: \`<p>Other page <a href="{{ '~/index.md(lang=gl)' | url }}">Link to index in Galego</a></p>\`,
+      date: [],
+      id: "other",
+      lang: "en",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Other",
+      url: "/en/other-page-english/",
+    },
+    src: {
+      asset: false,
+      ext: ".vto",
+      path: "/other",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="fr"><head><link rel="alternate" hreflang="en" href="https://example.com/en/other-page-english/">
+<link rel="alternate" hreflang="fr" href="https://example.com/fr/other-page-french.html">
+</head><body><p>Other page <a href="0">Link to index in Galego</a></p></body></html>',
+    data: {
+      alternates: "Array(2)",
+      basename: "other",
+      children: '<p>Other page <a href="0">Link to index in Galego</a></p>',
+      content: \`<p>Other page <a href="{{ '~/index.md(lang=gl)' | url }}">Link to index in Galego</a></p>\`,
+      date: [],
+      id: "other",
+      lang: "fr",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Autre",
+      url: "/fr/other-page-french.html",
+    },
+    src: {
+      asset: false,
+      ext: ".vto",
+      path: "/other",
       remote: undefined,
     },
   },
@@ -951,7 +983,7 @@ Sitemap: https://example.com/sitemap.xml",
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Other",
+      title: "page-en",
       url: "/en/page-1/",
     },
     src: {
@@ -992,7 +1024,7 @@ Sitemap: https://example.com/sitemap.xml",
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Outro",
+      title: "page-gl",
       url: "/gl/paxina-1/",
     },
     src: {
@@ -1008,15 +1040,15 @@ Sitemap: https://example.com/sitemap.xml",
 <link rel="alternate" hreflang="gl" href="https://example.com/gl/page-1/">
 </head><body><nav>
 
-  <a href="/en/page-1/" hreflang="en" class="alternate">Other</a>
+  <a href="/en/page-1/" hreflang="en" class="alternate"></a>
 
-  <a href="/gl/page-1/" hreflang="gl" class="alternate">Outro</a>
+  <a href="/gl/page-1/" hreflang="gl" class="alternate"></a>
 
 </nav>
 
-  <li>Outro</li>
+  <li>Ola mundo</li>
 
-  <li>Outro</li>
+  <li>page-gl</li>
 
 </body></html>',
     data: {
@@ -1050,7 +1082,6 @@ Sitemap: https://example.com/sitemap.xml",
       results: "Array(2)",
       search: [],
       tags: "Array(0)",
-      title: "Outro",
       url: "/gl/page-1/",
     },
     src: {
@@ -1066,15 +1097,17 @@ Sitemap: https://example.com/sitemap.xml",
 <link rel="alternate" hreflang="gl" href="https://example.com/gl/page-1/">
 </head><body><nav>
 
-  <a href="/en/page-1/" hreflang="en" class="alternate">Other</a>
+  <a href="/en/page-1/" hreflang="en" class="alternate"></a>
 
-  <a href="/gl/page-1/" hreflang="gl" class="alternate">Outro</a>
+  <a href="/gl/page-1/" hreflang="gl" class="alternate"></a>
 
 </nav>
 
-  <li>Other</li>
+  <li>Hello world</li>
 
   <li>Other</li>
+
+  <li>page-en</li>
 
 </body></html>',
     data: {
@@ -1105,10 +1138,9 @@ Sitemap: https://example.com/sitemap.xml",
         "previous",
         "next",
       ],
-      results: "Array(2)",
+      results: "Array(3)",
       search: [],
       tags: "Array(0)",
-      title: "Other",
       url: "/en/page-1/",
     },
     src: {

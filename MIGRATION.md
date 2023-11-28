@@ -187,7 +187,6 @@
 ## `multilanguage` Plugin
 
 - Apply the default language to all pages without defined language.
-- Removed the ability to create multiple language pages from the same file.
 
 ## `sass` Plugin
 

@@ -12,6 +12,9 @@ declare global {
     // deno-lint-ignore no-explicit-any
     export interface PageData<Type extends Record<any, any> = any>
       extends Data, Type {
+      /** The language(s) of the page */
+      lang?: string;
+
       /** The title of the page */
       title?: string;
     }
