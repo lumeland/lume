@@ -195,6 +195,12 @@ export interface RawData {
 
 /** The data of a page/folder once loaded and processed */
 export interface Data extends RawData {
+  /** The language of the page */
+  lang?: string;
+
+  /** The id of the page (used to join different pages as versions of the same content) */
+  id?: string | number;
+
   /** List of tags assigned to a page or folder */
   tags: string[];
 
@@ -215,4 +221,10 @@ export interface Data extends RawData {
 
   /** The page reference */
   page: Page;
+
+  /**
+   * Alternate pages (for languages)
+   * @see https://lume.land/plugins/multilanguage/
+   */
+  alternates?: Data[];
 }

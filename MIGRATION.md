@@ -187,6 +187,7 @@
 ## `multilanguage` Plugin
 
 - Apply the default language to all pages without defined language.
+- Removed the ability to insert translations in the middle of the data object.
 
 ## `sass` Plugin
 

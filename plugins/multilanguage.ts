@@ -1,8 +1,6 @@
 import { Page } from "../core/file.ts";
-import { isPlainObject, merge } from "../core/utils/object.ts";
+import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
-import { getPageUrl } from "../core/utils/page_url.ts";
-import { posix } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
@@ -33,14 +31,14 @@ export default function multilanguage(userOptions: Options) {
 
     // Preprocessor to setup multilanguage pages
     site.preprocess(options.extensions, (pages, allPages) => {
-      pages.forEach((page) => {
+      for (const page of pages) {
         const { data } = page;
         const languages = data.lang as string | string[] | undefined;
 
         // If the "lang" variable is not defined, use the default language
         if (languages === undefined) {
           data.lang = options.defaultLanguage;
-          return;
+          continue;
         }
 
         // If the "lang" variable is a string, check if it's a valid language
@@ -50,105 +48,73 @@ export default function multilanguage(userOptions: Options) {
               `[multilanguage plugin] The language "${languages}" in the page ${page.sourcePath} is not defined in the "languages" option.`,
             );
           }
-          return;
+          continue;
         }
 
         // The "lang" variable of the pages must be an array
         if (!Array.isArray(languages)) {
-          return;
+          throw new Error(`Invalid "lang" variable in ${page.sourcePath}`);
+        }
+
+        // Check if it's a valid language
+        if (!options.languages.some((lang) => !languages.includes(lang))) {
+          log.warning(
+            `[multilanguage plugin] One or more languages in the page ${page.sourcePath} are not defined in the "languages" option.`,
+          );
+          continue;
         }
 
         // Create a new page per language
         const newPages: Page[] = [];
-        const id: string = data.id || page.src.path.slice(1);
-        const basePath = posix.dirname(page.data.url);
+        const id = data.id ?? page.src.path.slice(1);
 
         for (const lang of languages) {
           const newData: Data = { ...data, lang, id };
           const newPage = page.duplicate(undefined, newData);
           newPages.push(newPage);
-
-          // Fix the url
-          const customUrl = (newData[`url.${lang}`] || newData[lang]?.url) as
-            | string
-            | undefined;
-
-          if (customUrl) {
-            newData.url = customUrl;
-            const url = getPageUrl(newPage, site.options.prettyUrls, basePath);
-            if (!url) {
-              log.warning(
-                `[multilanguage plugin] The page ${page.sourcePath} has a custom url "${customUrl}" that is not valid.`,
-              );
-            } else {
-              newData.url = url;
-            }
-          } else if (newData.url) {
-            newData.url = `/${lang}${newData.url}`;
-          }
         }
+
         // Replace the current page with the multiple language versions
         allPages.splice(allPages.indexOf(page), 1, ...newPages);
-      });
+      }
     });
 
     // Preprocessor to process the multilanguage data
-    site.preprocess(options.extensions, (pages) => {
-      pages.forEach((page) => {
-        const lang = page.data.lang;
+    site.preprocess(options.extensions, (pages, allPages) => {
+      for (const page of pages) {
+        const data = page.data;
+        const { lang } = data;
 
         if (typeof lang !== "string") {
-          return;
+          continue;
         }
 
-        const data = filterLanguage(
-          options.languages,
-          lang,
-          page.data,
-        ) as Data;
-
+        // Resolve the language data
         for (const key of options.languages) {
           if (key in data) {
+            // If the language is the default one, merge the data
             if (key === lang) {
               Object.assign(data, data[key]);
             }
+            // Otherwise, delete the data
             delete data[key];
           }
         }
 
-        page.data = data;
-      });
-    });
-
-    // Preprocessor to (un)prefix all urls with the language code
-    site.preprocess(options.extensions, (pages) => {
-      pages.forEach((page) => {
-        const { lang } = page.data;
-
-        if (typeof lang !== "string") {
-          return;
-        }
-
-        const url = page.data.url;
-
+        // Preprocessor to (un)prefix all urls with the language code
+        const { url } = data;
         if (!url.startsWith(`/${lang}/`) && lang !== options.defaultLanguage) {
-          page.data.url = `/${lang}${url}`;
+          data.url = `/${lang}${url}`;
         } else if (
-          url.startsWith(`/${lang}/`) && lang === options.defaultLanguage
+          data.url.startsWith(`/${lang}/`) && lang === options.defaultLanguage
         ) {
-          page.data.url = url.slice(lang.length + 1);
+          data.url = url.slice(lang.length + 1);
         }
-      });
-    });
 
-    // Preprocessor to build the alternates object
-    site.preprocess(options.extensions, (pages, allPages) => {
-      pages.forEach((page) => {
-        const { data } = page;
-        const id = data.id as string | number | undefined;
-
-        if (data.alternates || !id) {
-          return;
+        // Create the alternates object if it doesn't exist
+        const { id } = data;
+        if (data.alternates || id === undefined) {
+          continue;
         }
 
         const alternates: Data[] = [];
@@ -162,7 +128,7 @@ export default function multilanguage(userOptions: Options) {
             page.data.alternates = alternates;
           }
         });
-      });
+      }
     });
 
     // Include automatically the <link rel="alternate"> elements
@@ -194,59 +160,4 @@ export default function multilanguage(userOptions: Options) {
       }
     });
   };
-}
-
-/**
- * Remove the entries from all "langs" except the "lang" value
- */
-function filterLanguage(
-  langs: string[],
-  lang: string,
-  data: Record<string, unknown>,
-): Record<string, unknown> {
-  const result: Record<string, unknown> = {};
-
-  for (const [name, value] of Object.entries(data)) {
-    const parts = name.match(/^(.*)\.([^.]+)$/);
-
-    if (parts) {
-      const [, key, l] = parts;
-
-      if (lang === l) {
-        result[key] = value;
-        continue;
-      } else if (langs.includes(l)) {
-        continue;
-      }
-    }
-
-    if (name in result) {
-      continue;
-    }
-
-    if (isPlainObject(value)) {
-      result[name] = filterLanguage(langs, lang, value);
-    } else if (Array.isArray(value)) {
-      result[name] = value.map((item) => {
-        return isPlainObject(item) ? filterLanguage(langs, lang, item) : item;
-      });
-    } else {
-      result[name] = value;
-    }
-  }
-
-  return result;
-}
-
-/** Extends PageData interface */
-declare global {
-  namespace Lume {
-    export interface PageData {
-      /**
-       * Alternate pages (for languages)
-       * @see https://lume.land/plugins/multilanguage/
-       */
-      alternates: PageData[];
-    }
-  }
 }
