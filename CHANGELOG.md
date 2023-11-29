@@ -6,7 +6,11 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/),
 but not always is possible (due the use of unstable features from Deno).
 Any BREAKING CHANGE between minor versions will be documented here in upper case.
 
-## [1.19.4] - Unreleased
+## [1.19.5]
+### Added
+- `remark` plugin: Support for passing custom configuration through to `remark-rehype`
+
+## [1.19.4] - 2023-11-29
 ### Fixed
 - Tailwind: Fix types for `options`.
 - Favicon: Better error if the source file is missing [#504].
