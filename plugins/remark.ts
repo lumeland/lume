@@ -27,6 +27,9 @@ export interface Options {
   /** List of rehype plugins to use */
   rehypePlugins?: unknown[];
 
+  /** Configuration for remark-rehype */
+  remarkRehype?: object;
+
   /** Flag to turn on HTML sanitization to prevent XSS */
   sanitize?: boolean;
 
@@ -38,6 +41,7 @@ export interface Options {
 export const defaults: Options = {
   extensions: [".md"],
   sanitize: false,
+  remarkRehype: { allowDangerousHtml: true },
   useDefaultPlugins: true,
 };
 
@@ -106,7 +110,7 @@ export default function (userOptions?: Options) {
     plugins.push(...options.remarkPlugins);
 
     // Add remark-rehype to generate HAST
-    plugins.push([remarkRehype, { allowDangerousHtml: true }]);
+    plugins.push([remarkRehype, options.remarkRehype]);
 
     if (options.sanitize) {
       // Add rehype-raw to convert raw HTML to HAST
