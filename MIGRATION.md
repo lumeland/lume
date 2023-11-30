@@ -4,6 +4,7 @@
 
 - std
 - deno_dom
+- eta
 - lightningcss
 - liquidjs
 - nunjucks types
