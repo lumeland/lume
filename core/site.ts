@@ -286,7 +286,10 @@ export default class Site {
   /**
    * Register a page loader for some extensions
    */
-  loadPages(extensions: string[], options: LoadPagesOptions | Loader): this {
+  loadPages(
+    extensions: string[],
+    options: LoadPagesOptions | Loader = {},
+  ): this {
     if (typeof options === "function") {
       options = { loader: options };
     }
