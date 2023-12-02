@@ -4,6 +4,12 @@ snapshot[`Sitemap plugin 1`] = `
 {
   formats: [
     {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
       engines: 1,
       ext: ".page.ts",
       loader: [AsyncFunction: module],
@@ -80,7 +86,6 @@ snapshot[`Sitemap plugin 1`] = `
       engines: 0,
       ext: ".toml",
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
@@ -508,6 +513,12 @@ snapshot[`Sitemap plugin with a multilanguage plugin 1`] = `
 {
   formats: [
     {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
       engines: 1,
       ext: ".page.ts",
       loader: [AsyncFunction: module],
@@ -584,7 +595,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 1`] = `
       engines: 0,
       ext: ".toml",
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],

@@ -4,6 +4,12 @@ snapshot[`postcss plugin 1`] = `
 {
   formats: [
     {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
       engines: 1,
       ext: ".page.ts",
       loader: [AsyncFunction: module],
@@ -80,7 +86,6 @@ snapshot[`postcss plugin 1`] = `
       engines: 0,
       ext: ".toml",
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
@@ -216,6 +221,12 @@ snapshot[`postcss plugin without includes 1`] = `
 {
   formats: [
     {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
       engines: 1,
       ext: ".page.ts",
       loader: [AsyncFunction: module],
@@ -292,7 +303,6 @@ snapshot[`postcss plugin without includes 1`] = `
       engines: 0,
       ext: ".toml",
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
@@ -410,6 +420,12 @@ snapshot[`postcss plugin with hooks 1`] = `
 {
   formats: [
     {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
       engines: 1,
       ext: ".page.ts",
       loader: [AsyncFunction: module],
@@ -486,7 +502,6 @@ snapshot[`postcss plugin with hooks 1`] = `
       engines: 0,
       ext: ".toml",
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],

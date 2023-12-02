@@ -4,6 +4,12 @@ snapshot[`url and htmlUrl update href 1`] = `
 {
   formats: [
     {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
       engines: 1,
       ext: ".page.ts",
       loader: [AsyncFunction: module],
@@ -80,7 +86,6 @@ snapshot[`url and htmlUrl update href 1`] = `
       engines: 0,
       ext: ".toml",
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
@@ -220,6 +225,12 @@ snapshot[`configure url and htmlUrl names 1`] = `
 {
   formats: [
     {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
       engines: 1,
       ext: ".page.ts",
       loader: [AsyncFunction: module],
@@ -296,7 +307,6 @@ snapshot[`configure url and htmlUrl names 1`] = `
       engines: 0,
       ext: ".toml",
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],

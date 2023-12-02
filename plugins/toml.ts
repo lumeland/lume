@@ -14,6 +14,7 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".toml"],
+  pageSubExtension: ".page",
 };
 
 /** A plugin to add support for TOML files */

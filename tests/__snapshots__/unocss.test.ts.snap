@@ -4,6 +4,12 @@ snapshot[`Unocss plugin 1`] = `
 {
   formats: [
     {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
       engines: 1,
       ext: ".page.ts",
       loader: [AsyncFunction: module],
@@ -80,7 +86,6 @@ snapshot[`Unocss plugin 1`] = `
       engines: 0,
       ext: ".toml",
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
@@ -1441,6 +1446,12 @@ snapshot[`Unocss plugin (css file) 1`] = `
 {
   formats: [
     {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
       engines: 1,
       ext: ".page.ts",
       loader: [AsyncFunction: module],
@@ -1517,7 +1528,6 @@ snapshot[`Unocss plugin (css file) 1`] = `
       engines: 0,
       ext: ".toml",
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
@@ -2945,6 +2955,12 @@ snapshot[`Unocss plugin (with transformers) 1`] = `
 {
   formats: [
     {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
       engines: 1,
       ext: ".page.ts",
       loader: [AsyncFunction: module],
@@ -3021,7 +3037,6 @@ snapshot[`Unocss plugin (with transformers) 1`] = `
       engines: 0,
       ext: ".toml",
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],

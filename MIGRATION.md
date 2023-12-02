@@ -80,7 +80,7 @@
 ## `toml` Plugin
 
 - It's installed by default
-- New option `pageSubExtension`.
+- New option `pageSubExtension` with the default value `.page`.
 - Changed `extensions` option type to `string[]`.
 
 ## `yaml` Plugin

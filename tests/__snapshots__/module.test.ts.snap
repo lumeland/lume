@@ -4,6 +4,12 @@ snapshot[`Build a site with js/ts modules 1`] = `
 {
   formats: [
     {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
       engines: 1,
       ext: ".page.ts",
       loader: [AsyncFunction: module],
@@ -80,7 +86,6 @@ snapshot[`Build a site with js/ts modules 1`] = `
       engines: 0,
       ext: ".toml",
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
