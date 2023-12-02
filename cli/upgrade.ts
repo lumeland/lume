@@ -11,7 +11,7 @@ import {
 } from "../core/utils/deno_config.ts";
 
 interface Options {
-  dev?: boolean | string;
+  dev?: boolean;
   version?: string;
 }
 export default function ({ dev, version }: Options) {
@@ -20,10 +20,10 @@ export default function ({ dev, version }: Options) {
 
 /** Upgrade the Lume installation to the latest version */
 export async function upgrade(dev: boolean | string = false, version?: string) {
-  const latest = version ? version : dev
-    ? await getLatestDevelopmentVersion(
-      typeof dev === "string" ? dev : undefined,
-    )
+  const latest = version
+    ? version
+    : dev
+    ? await getLatestDevelopmentVersion()
     : await getLatestVersion();
   const url = getVersionUrl(latest, dev);
 
