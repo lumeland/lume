@@ -112,13 +112,15 @@ export default function multilanguage(userOptions: Options) {
         }
 
         // Create the alternates object if it doesn't exist
-        const { id } = data;
+        const { id, type } = data;
         if (data.alternates || id === undefined) {
           continue;
         }
 
         const alternates: Data[] = [];
-        const alternatePages = allPages.filter((page) => page.data.id == id);
+        const alternatePages = allPages.filter((page) =>
+          page.data.id == id && page.data.type === type
+        );
 
         options.languages.forEach((lang) => {
           const page = alternatePages.find((page) => page.data.lang === lang);

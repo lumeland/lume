@@ -171,7 +171,7 @@ export interface RawData {
   /** The date creation of the page */
   date?: Date | string | number;
 
-  /** To configure the render order of a page */
+  /** To configure the rendering order of a page */
   renderOrder?: number;
 
   /** The raw content of a page */
@@ -187,7 +187,7 @@ export interface RawData {
   mergedKeys?: Record<string, MergeStrategy>;
 
   /** Whether render this page on demand or not */
-  ondemand?: boolean;
+  onDemand?: boolean;
 
   // deno-lint-ignore no-explicit-any
   [index: string]: any;
@@ -198,7 +198,10 @@ export interface Data extends RawData {
   /** The language of the page */
   lang?: string;
 
-  /** The id of the page (used to join different pages as versions of the same content) */
+  /** The type of the page (used to group pages in collections) */
+  type?: string;
+
+  /** The id of the page (used to identify a page in a collection) */
   id?: string | number;
 
   /** List of tags assigned to a page or folder */

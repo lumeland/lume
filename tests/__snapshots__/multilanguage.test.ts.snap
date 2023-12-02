@@ -108,6 +108,11 @@ snapshot[`multilanguage plugin 1`] = `
     "/pages/page1_en.md",
     "/pages/page1_gl.md",
     "/pagination.page.js",
+    "/types",
+    "/types/article.md",
+    "/types/article_gl.md",
+    "/types/post.md",
+    "/types/post_gl.md",
   ],
 }
 `;
@@ -408,6 +413,10 @@ snapshot[`multilanguage plugin 3`] = `
 
   <li>page-gl</li>
 
+  <li>article 1</li>
+
+  <li>post 1</li>
+
 </body></html>',
     data: {
       alternates: "Array(2)",
@@ -437,7 +446,7 @@ snapshot[`multilanguage plugin 3`] = `
         "previous",
         "next",
       ],
-      results: "Array(2)",
+      results: "Array(4)",
       search: [],
       tags: "Array(0)",
       url: "/gl/page-1/",
@@ -466,6 +475,8 @@ snapshot[`multilanguage plugin 3`] = `
   <li>Other</li>
 
   <li>page-en</li>
+
+  <li>post 1</li>
 
 </body></html>',
     data: {
@@ -496,7 +507,7 @@ snapshot[`multilanguage plugin 3`] = `
         "previous",
         "next",
       ],
-      results: "Array(3)",
+      results: "Array(4)",
       search: [],
       tags: "Array(0)",
       url: "/en/page-1/",
@@ -505,6 +516,170 @@ snapshot[`multilanguage plugin 3`] = `
       asset: false,
       ext: ".page.js",
       path: "/pagination[1]",
+      remote: undefined,
+    },
+  },
+  {
+    content: \`<!DOCTYPE html>
+<html lang="it"><head><link rel="alternate" hreflang="it" href="http://localhost/it/types/article/">
+<link rel="alternate" hreflang="gl" href="http://localhost/gl/types/article_gl/">
+</head><body><p>Questo è l'articolo 1</p>
+</body></html>\`,
+    data: {
+      alternates: "Array(2)",
+      basename: "article",
+      children: "<p>Questo è l'articolo 1</p>
+",
+      content: "Questo è l'articolo 1
+",
+      date: [],
+      id: 1,
+      lang: "it",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "article 1",
+      type: "article",
+      url: "/it/types/article/",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/types/article",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="it" href="http://localhost/it/types/article/">
+<link rel="alternate" hreflang="gl" href="http://localhost/gl/types/article_gl/">
+</head><body><p>Este é o artigo 1</p>
+</body></html>',
+    data: {
+      alternates: "Array(2)",
+      basename: "article_gl",
+      children: "<p>Este é o artigo 1</p>
+",
+      content: "Este é o artigo 1
+",
+      date: [],
+      id: 1,
+      lang: "gl",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "article 1",
+      type: "article",
+      url: "/gl/types/article_gl/",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/types/article_gl",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/types/post/">
+<link rel="alternate" hreflang="gl" href="http://localhost/gl/types/post_gl/">
+</head><body><p>This is the post 1</p>
+</body></html>',
+    data: {
+      alternates: "Array(2)",
+      basename: "post",
+      children: "<p>This is the post 1</p>
+",
+      content: "This is the post 1
+",
+      date: [],
+      id: 1,
+      lang: "en",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "post 1",
+      type: "post",
+      url: "/en/types/post/",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/types/post",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/types/post/">
+<link rel="alternate" hreflang="gl" href="http://localhost/gl/types/post_gl/">
+</head><body><p>Este é o post 1</p>
+</body></html>',
+    data: {
+      alternates: "Array(2)",
+      basename: "post_gl",
+      children: "<p>Este é o post 1</p>
+",
+      content: "Este é o post 1
+",
+      date: [],
+      id: 1,
+      lang: "gl",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "post 1",
+      type: "post",
+      url: "/gl/types/post_gl/",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/types/post_gl",
       remote: undefined,
     },
   },

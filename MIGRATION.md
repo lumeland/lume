@@ -189,6 +189,7 @@
 
 - Apply the default language to all pages without defined language.
 - Removed the ability to insert translations in the middle of the data object.
+- The uniqueness of a page is defined by the combination of id + type.
 
 ## `sass` Plugin
 
