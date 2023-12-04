@@ -121,6 +121,9 @@ snapshot[`Copy static files 1`] = `
   src: [
     "/",
     "/_headers",
+    "/_static",
+    "/_static/inner",
+    "/_static/inner/yes.txt",
     "/four.no",
     "/one.yes",
     "/other",
@@ -169,6 +172,11 @@ snapshot[`Copy static files 2`] = `
     entry: "/_headers",
     flags: [],
     outputPath: "/_headers",
+  },
+  {
+    entry: "/_static/inner/yes.txt",
+    flags: [],
+    outputPath: "/inner/yes.txt",
   },
   {
     entry: "/other/one",

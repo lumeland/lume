@@ -245,32 +245,26 @@ export default class Source {
       if (this.staticPaths.has(entry.path)) {
         const { dest, dirOnly } = this.staticPaths.get(entry.path)!;
 
-        if (entry.type === "file") {
-          if (dirOnly) {
-            continue;
+        staticFiles.push(...this.#getStaticFiles(path, entry, dest, dirOnly));
+        continue;
+      }
+
+      // Check if the entry should be ignored
+      if (
+        entry.name.startsWith(".") || entry.name.startsWith("_") ||
+        this.ignored.has(entry.path)
+      ) {
+        for (const [staticSrc, { dest, dirOnly }] of this.staticPaths) {
+          if (staticSrc.startsWith(entry.path)) {
+            const staticEntry = this.fs.entries.get(staticSrc)!;
+            const staticPath = posix.dirname(
+              posix.join(path, staticEntry.path.slice(entry.path.length)),
+            );
+            staticFiles.push(
+              ...this.#getStaticFiles(staticPath, staticEntry, dest, dirOnly),
+            );
           }
-          staticFiles.push({
-            entry,
-            outputPath: getOutputPath(entry, path, dest),
-          });
-          continue;
         }
-
-        staticFiles.push(...this.#getStaticFiles(
-          entry,
-          typeof dest === "string" ? dest : posix.join(path, entry.name),
-          typeof dest === "function" ? dest : undefined,
-        ));
-        continue;
-      }
-
-      // Ignore .filename and _filename
-      if (entry.name.startsWith(".") || entry.name.startsWith("_")) {
-        continue;
-      }
-
-      // Check if the file should be ignored
-      if (this.ignored.has(entry.path)) {
         continue;
       }
 
@@ -288,14 +282,13 @@ export default class Source {
             const dest = this.copyRemainingFiles(entry.path);
 
             if (dest) {
-              staticFiles.push({
-                entry,
-                outputPath: getOutputPath(
-                  entry,
+              staticFiles.push(
+                ...this.#getStaticFiles(
                   path,
+                  entry,
                   typeof dest === "string" ? dest : undefined,
                 ),
-              });
+              );
             }
           }
           continue;
@@ -303,14 +296,13 @@ export default class Source {
 
         // The file is a static file
         if (format.copy) {
-          staticFiles.push({
-            entry,
-            outputPath: getOutputPath(
-              entry,
+          staticFiles.push(
+            ...this.#getStaticFiles(
               path,
+              entry,
               typeof format.copy === "function" ? format.copy : undefined,
             ),
-          });
+          );
           continue;
         }
 
@@ -404,7 +396,7 @@ export default class Source {
   }
 
   /** Scan the static files in a directory */
-  *#getStaticFiles(
+  *#scanStaticFiles(
     dirEntry: Entry,
     destPath: string,
     destFn?: (file: string) => string,
@@ -429,13 +421,36 @@ export default class Source {
       }
 
       if (entry.type === "directory") {
-        yield* this.#getStaticFiles(
+        yield* this.#scanStaticFiles(
           entry,
           posix.join(destPath, entry.name),
           destFn,
         );
       }
     }
+  }
+
+  #getStaticFiles(
+    path: string,
+    entry: Entry,
+    dest: string | ((path: string) => string) | undefined,
+    dirOnly = false,
+  ): StaticFile[] {
+    if (entry.type === "file") {
+      if (!dirOnly) {
+        return [{
+          entry,
+          outputPath: getOutputPath(entry, path, dest),
+        }];
+      }
+      return [];
+    }
+
+    return Array.from(this.#scanStaticFiles(
+      entry,
+      typeof dest === "string" ? dest : posix.join(path, entry.name),
+      typeof dest === "function" ? dest : undefined,
+    ));
   }
 }
 

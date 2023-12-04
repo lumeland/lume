@@ -27,6 +27,9 @@ Deno.test("Copy static files", async (t) => {
   // not copied because of the trailing slash
   site.copy("three.no/");
 
+  // Copy a directory inside a ignored directory
+  site.copy("_static/inner", "inner");
+
   await build(site);
   await assertSiteSnapshot(t, site);
 });

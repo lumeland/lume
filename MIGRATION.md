@@ -68,6 +68,7 @@
   - Use the lib `dom` and `dom.iterable` types instead of `deno-dom`.
 - Removed `lume/core/utils.ts` and moved all utilities to different files under
   `/lume/core/utils/` folder.
+- Allow to copy files/directories inside ignored directories #520
 
 ## `search` Plugin
 
