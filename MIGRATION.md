@@ -125,6 +125,7 @@
 
 - Updated to MDX v3.
 - New option `useDefaultPlugins` that it's `true` by default.
+- New option `recmaPlugins` #521.
 - Removed `overrideDefaultPlugins`
 - Removed `pragma` option.
 - The `includes` folder is automatically ignored.
@@ -132,6 +133,7 @@
 ## `remark` Plugin
 
 - New option `useDefaultPlugins` that it's `true` by default.
+- New option `remarkOptions` #518.
 - Removed `overrideDefaultPlugins`
 
 ## `module` Plugin

@@ -13,6 +13,7 @@ import {
 import type Site from "../core/site.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
 import type { Page } from "../core/file.ts";
+import type { RehypeOptions } from "../deps/remark.ts";
 
 export interface Options {
   /** List of extensions this plugin applies to */
@@ -23,6 +24,9 @@ export interface Options {
    * @default `[remarkGfm]`
    */
   remarkPlugins?: unknown[];
+
+  /** Options to pass to rehype */
+  rehypeOptions?: RehypeOptions;
 
   /** List of rehype plugins to use */
   rehypePlugins?: unknown[];
@@ -39,6 +43,9 @@ export const defaults: Options = {
   extensions: [".md"],
   sanitize: false,
   useDefaultPlugins: true,
+  rehypeOptions: {
+    allowDangerousHtml: true,
+  },
 };
 
 const remarkDefaultPlugins = [
@@ -89,9 +96,6 @@ export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return function (site: Site) {
-    // @ts-ignore: This expression is not callable
-    const engine = unified.unified();
-
     const plugins = [];
 
     // Add remark-parse to generate MDAST
@@ -106,7 +110,7 @@ export default function (userOptions?: Options) {
     plugins.push(...options.remarkPlugins);
 
     // Add remark-rehype to generate HAST
-    plugins.push([remarkRehype, { allowDangerousHtml: true }]);
+    plugins.push([remarkRehype, options.rehypeOptions ?? {}]);
 
     if (options.sanitize) {
       // Add rehype-raw to convert raw HTML to HAST
@@ -125,6 +129,8 @@ export default function (userOptions?: Options) {
       // Add rehype-stringify to output HTML
       plugins.push([rehypeStringify, { allowDangerousHtml: true }]);
     }
+
+    const engine = unified.unified();
 
     // Register all plugins
     // @ts-ignore: let unified take care of loading all the plugins
