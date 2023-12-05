@@ -10,6 +10,10 @@ export interface Options {
   /** List of extensions this plugin applies to */
   extensions?: string[];
 
+  /** List of recma plugins to use */
+  // deno-lint-ignore no-explicit-any
+  recmaPlugins?: any[];
+
   /**
    * List of remark plugins to use
    * @default `[remarkGfm]`
@@ -73,6 +77,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
       jsx: true,
       format: "mdx",
       outputFormat: "function-body",
+      recmaPlugins: this.options.recmaPlugins,
       remarkPlugins: this.options.remarkPlugins,
       rehypePlugins: this.options.rehypePlugins,
     });
