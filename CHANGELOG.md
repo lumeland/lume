@@ -104,9 +104,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - SASS plugin: The `includes` folder is automatically ignored.
 - LightningCSS plugin: The `includes` folder is automatically ignored.
 - Feed plugin
-  - Renamed the option `info.date` to `info.updated`;
-  - Renamed the option `item.date` to `item.updated`;
-  - New option `item.published`;
+  - Renamed the option `info.date` to `info.published`;
+  - Renamed the option `item.date` to `item.published`;
+  - New option `item.updated`;
 
 ### Removed
 - Removed output extension detection in the filename: [#430]
