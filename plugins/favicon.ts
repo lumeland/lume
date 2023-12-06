@@ -97,10 +97,10 @@ export default function (userOptions?: Options) {
       for (const favicon of options.favicons) {
         const format = favicon.format.toUpperCase() as MagickFormat;
         event.pages?.push(
-          Page.create(
-            favicon.url,
-            { content: await buildIco(content, format, favicon.size, cache) },
-          ),
+          Page.create({
+            url: favicon.url,
+            content: await buildIco(content, format, favicon.size, cache),
+          }),
         );
       }
 
@@ -111,15 +111,13 @@ export default function (userOptions?: Options) {
         !site.files.find((file) => file.outputPath === options.input)
       ) {
         event.pages?.push(
-          Page.create(
-            options.input,
-            {
-              content: await site.getContent(
-                options.input,
-                textLoader,
-              ) as string,
-            },
-          ),
+          Page.create({
+            url: options.input,
+            content: await site.getContent(
+              options.input,
+              textLoader,
+            ) as string,
+          }),
         );
       }
     });

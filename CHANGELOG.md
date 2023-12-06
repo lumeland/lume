@@ -47,8 +47,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - Use the lib `dom` and `dom.iterable` types instead of `deno-dom`.
 - Changed the signature of `process` and `preprocess` to behave like
     `processAll` and `preprocessAll`.
-- Changed the signature of `Page.create()`. The second argument is the page
-  data, instead of the page content.
+- Changed the signature of `Page.create()`. It has a single argument with an object with the page content.
 - Renamed the interface method `Engine.renderSync` to `Engine.renderComponent`.
 - Changed the `Format` interface.
 - Pretty URLs option doesn't affect to the `/404.html` page by default.

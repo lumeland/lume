@@ -387,7 +387,10 @@ export default class Source {
 
       if (code && code.size) {
         pages.push(
-          Page.create(path, { content: Array.from(code.values()).join("\n") }),
+          Page.create({
+            url: path,
+            content: Array.from(code.values()).join("\n"),
+          }),
         );
       }
     }

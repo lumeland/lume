@@ -49,14 +49,12 @@ export default function (userOptions?: Options) {
   return (site: Site) => {
     site.addEventListener("afterRender", async () => {
       // Create the sitemap.xml page
-      const sitemap = Page.create(
-        options.filename,
-        {
-          content: generateSitemap(
-            site.search.pages(options.query, options.sort),
-          ),
-        },
-      );
+      const sitemap = Page.create({
+        url: options.filename,
+        content: generateSitemap(
+          site.search.pages(options.query, options.sort),
+        ),
+      });
 
       // Add the sitemap page to pages
       site.pages.push(sitemap);

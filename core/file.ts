@@ -27,7 +27,8 @@ export class Page<D extends Data = Data> {
   #document?: Document;
 
   /** Convenient way to create a page dynamically */
-  static create(url: string, data?: Partial<Data>): Page {
+  static create(data: Partial<Data> & { url: string }): Page {
+    let { url, ...rest } = data;
     const basename = posix.basename(url).replace(/\.[\w.]+$/, "");
     const page = new Page();
 
@@ -35,8 +36,8 @@ export class Page<D extends Data = Data> {
       url = url.slice(0, -10);
     }
 
-    page.data = { ...data, url, page, basename } as Data;
-    page.content = data?.content as Content | undefined;
+    page.data = { ...rest, url, page, basename } as Data;
+    page.content = data.content as Content | undefined;
 
     return page;
   }

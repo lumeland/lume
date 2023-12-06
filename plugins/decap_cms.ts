@@ -68,16 +68,14 @@ export default function (userOptions?: Options) {
       // Create config.yml
       const configUrl = posix.join(options.path, "config.yml");
 
-      site.pages.push(Page.create(
-        configUrl,
-        {
-          content: stringify({
-            ...config,
-            site_url: site.options.location.href,
-            local_backend,
-          }),
-        },
-      ));
+      site.pages.push(Page.create({
+        url: configUrl,
+        content: stringify({
+          ...config,
+          site_url: site.options.location.href,
+          local_backend,
+        }),
+      }));
 
       // Create index.html
       const code = [];
@@ -108,10 +106,9 @@ export default function (userOptions?: Options) {
         );
       }
 
-      site.pages.push(Page.create(
-        posix.join(options.path, "index.html"),
-        {
-          content: `
+      site.pages.push(Page.create({
+        url: posix.join(options.path, "index.html"),
+        content: `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -124,8 +121,7 @@ export default function (userOptions?: Options) {
         </body>
         </html>
         `,
-        },
-      ));
+      }));
     });
   };
 }

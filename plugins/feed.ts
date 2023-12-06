@@ -176,13 +176,13 @@ export default function (userOptions?: Options) {
           case "feed":
           case "xml":
             site.pages.push(
-              Page.create(filename, { content: generateRss(feed, file) }),
+              Page.create({ url: filename, content: generateRss(feed, file) }),
             );
             break;
 
           case "json":
             site.pages.push(
-              Page.create(filename, { content: generateJson(feed, file) }),
+              Page.create({ url: filename, content: generateJson(feed, file) }),
             );
             break;
 

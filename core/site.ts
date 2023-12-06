@@ -724,7 +724,7 @@ export default class Site {
     if (index > -1) {
       const { entry } = this.files.splice(index, 1)[0];
       const data = await entry.getContent(loader) as Data;
-      const page = Page.create(url, data);
+      const page = Page.create({ ...data, url });
       this.pages.push(page);
       return page;
     }
@@ -732,15 +732,13 @@ export default class Site {
     // Read the source files directly
     const entry = this.fs.entries.get(url);
     if (entry) {
-      const page = Page.create(
-        url,
-        await entry.getContent(loader) as Data,
-      );
+      const data = await entry.getContent(loader) as Data;
+      const page = Page.create({ ...data, url });
       this.pages.push(page);
       return page;
     }
 
-    const newPage = Page.create(url);
+    const newPage = Page.create({ url });
     this.pages.push(newPage);
     return newPage;
   }
