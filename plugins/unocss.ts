@@ -53,7 +53,7 @@ export const defaults: Options = {
     transformerVariantGroup(),
     transformerDirectives(),
   ],
-  reset: "tailwind",
+  reset: false,
 };
 
 export default function (userOptions?: Options) {

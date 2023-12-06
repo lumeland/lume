@@ -87,6 +87,10 @@ function getOptionsFromCli(): DeepPartial<SiteOptions> {
 
   if (options.port) {
     (overrides.server ||= {}).port = parseInt(options.port);
+
+    if (overrides.location) {
+      overrides.location.port = options.port;
+    }
   }
 
   if (options.open) {
