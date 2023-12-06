@@ -1,5 +1,5 @@
 import { Page } from "../core/file.ts";
-import { merge } from "../core/utils/object.ts";
+import { assign, merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
@@ -57,7 +57,7 @@ export default function multilanguage(userOptions: Options) {
         }
 
         // Check if it's a valid language
-        if (!options.languages.some((lang) => !languages.includes(lang))) {
+        if (languages.some((lang) => !options.languages.includes(lang))) {
           log.warning(
             `[multilanguage plugin] One or more languages in the page ${page.sourcePath} are not defined in the "languages" option.`,
           );
@@ -94,7 +94,7 @@ export default function multilanguage(userOptions: Options) {
           if (key in data) {
             // If the language is the default one, merge the data
             if (key === lang) {
-              Object.assign(data, data[key]);
+              assign(data, data[key]);
             }
             // Otherwise, delete the data
             delete data[key];

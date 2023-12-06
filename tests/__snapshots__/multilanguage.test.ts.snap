@@ -209,12 +209,21 @@ snapshot[`multilanguage plugin 3`] = `
     content: '<!DOCTYPE html>
 <html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/other-page-english/">
 <link rel="alternate" hreflang="fr" href="http://localhost/fr/other-page-french.html">
-</head><body><p>Other page <a href="0">Link to index in Galego</a></p></body></html>',
+</head><body><h1>English subtitle</h1>
+<p>Common description</p>
+<p>Other page <a href="/gl/">Link to index in Galego</a></p>
+</body></html>',
     data: {
       alternates: "Array(2)",
       basename: "other",
-      children: '<p>Other page <a href="0">Link to index in Galego</a></p>',
-      content: \`<p>Other page <a href="{{ '~/index.md(lang=gl)' | url }}">Link to index in Galego</a></p>\`,
+      children: '<h1>English subtitle</h1>
+<p>Common description</p>
+<p>Other page <a href="/gl/">Link to index in Galego</a></p>
+',
+      content: \`<h1>{{ metas.subtitle }}</h1>
+<p>{{ metas.description }}</p>
+<p>Other page <a href="{{ '~/index.md(lang=gl)' |> url }}">Link to index in Galego</a></p>
+\`,
       date: [],
       id: "other",
       lang: "en",
@@ -224,6 +233,10 @@ snapshot[`multilanguage plugin 3`] = `
         "fr",
         "it",
         "gl",
+      ],
+      metas: [
+        "subtitle",
+        "description",
       ],
       page: [
         "src",
@@ -246,12 +259,21 @@ snapshot[`multilanguage plugin 3`] = `
     content: '<!DOCTYPE html>
 <html lang="fr"><head><link rel="alternate" hreflang="en" href="http://localhost/en/other-page-english/">
 <link rel="alternate" hreflang="fr" href="http://localhost/fr/other-page-french.html">
-</head><body><p>Other page <a href="0">Link to index in Galego</a></p></body></html>',
+</head><body><h1>Sous-titre français</h1>
+<p>Common description</p>
+<p>Other page <a href="/gl/">Link to index in Galego</a></p>
+</body></html>',
     data: {
       alternates: "Array(2)",
       basename: "other",
-      children: '<p>Other page <a href="0">Link to index in Galego</a></p>',
-      content: \`<p>Other page <a href="{{ '~/index.md(lang=gl)' | url }}">Link to index in Galego</a></p>\`,
+      children: '<h1>Sous-titre français</h1>
+<p>Common description</p>
+<p>Other page <a href="/gl/">Link to index in Galego</a></p>
+',
+      content: \`<h1>{{ metas.subtitle }}</h1>
+<p>{{ metas.description }}</p>
+<p>Other page <a href="{{ '~/index.md(lang=gl)' |> url }}">Link to index in Galego</a></p>
+\`,
       date: [],
       id: "other",
       lang: "fr",
@@ -261,6 +283,10 @@ snapshot[`multilanguage plugin 3`] = `
         "fr",
         "it",
         "gl",
+      ],
+      metas: [
+        "subtitle",
+        "description",
       ],
       page: [
         "src",

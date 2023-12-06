@@ -52,7 +52,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Changed the `Format` interface.
 - Pretty URLs option doesn't affect to the `/404.html` page by default.
 - Replace `fn-date` with `Temporal` polyfill to convert dates.
-- Refactor of `Server` function to work with `Deno.serve()` API [#501].
+- Refactor of `Server` class to work with `Deno.serve()` API [#501].
 - Renamed `core/filesystem.ts` to `core/file.ts`.
 - TOML plugin:
   - is installed by default

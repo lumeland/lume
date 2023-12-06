@@ -1,11 +1,17 @@
 ---
 lang: [en, fr]
+title: Other
+metas:
+  subtitle: English subtitle
+  description: Common description
 en:
-  title: Other
   url: /other-page-english/
 fr:
   title: Autre
+  metas:
+    subtitle: Sous-titre français
   url: /other-page-french.html
 ---
-
-<p>Other page <a href="{{ '~/index.md(lang=gl)' | url }}">Link to index in Galego</a></p>
+<h1>{{ metas.subtitle }}</h1>
+<p>{{ metas.description }}</p>
+<p>Other page <a href="{{ '~/index.md(lang=gl)' |> url }}">Link to index in Galego</a></p>
