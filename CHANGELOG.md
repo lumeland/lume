@@ -146,6 +146,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - Removed `pragma` option.
 - Remark plugin: Removed `overrideDefaultPlugins` option
 
+### Fixed
+- Updated dependencies: `std`, `deno_dom`, `eta`, `lightningcss`, `liquidjs`, `nunjucks types`, `pagefind`, `preact`, `react types`, `pug`, `svgo`, `esbuild`, `svgo`, `terser`, `unocss`, `vento`, `xml`, `postcss`, `markdown-it-defllist`.
+
 [#201]: https://github.com/lumeland/lume/issues/201
 [#244]: https://github.com/lumeland/lume/issues/244
 [#251]: https://github.com/lumeland/lume/issues/251
