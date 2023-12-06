@@ -21,20 +21,21 @@ export interface Options {
    * Configurations for UnoCSS.
    * @see {@link https://unocss.dev/guide/config-file}
    */
-  config: UserConfig;
+  options?: UserConfig;
+
   /**
    * Set the css filename for all generated styles,
    * Set to `false` to insert a <style> tag per page.
    * @defaultValue `false`
    */
+
   cssFile?: false | string;
-  /** The list of extensions this plugin applies to */
-  cssFileExtensions: string[];
   /**
    * Process CSS files using UnoCSS transformers.
    * @defaultValue `[transformerVariantGroup(), transformerDirectives()]`
    */
-  cssFileTransformers: SourceCodeTransformer[];
+  transformers?: SourceCodeTransformer[];
+
   /**
    * Supported CSS reset options.
    * @see {@link https://github.com/unocss/unocss/tree/main/packages/reset}
@@ -44,31 +45,31 @@ export interface Options {
 }
 
 export const defaults: Options = {
-  config: {
+  options: {
     presets: [presetUno()],
   },
-  cssFile: false,
-  cssFileExtensions: [".css"],
-  cssFileTransformers: [
+  cssFile: "/unocss.css",
+  transformers: [
     transformerVariantGroup(),
     transformerDirectives(),
   ],
   reset: "tailwind",
 };
 
-export default function (userOptions?: Partial<Options>) {
-  const options: Options = merge(defaults, userOptions);
+export default function (userOptions?: Options) {
+  const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    const uno = createGenerator(options.config);
+    const uno = createGenerator(options.options);
+    const { transformers, cssFile, reset } = options;
 
-    if (options.cssFileTransformers!.length > 0) {
-      site.loadAssets(options.cssFileExtensions);
-      site.process(options.cssFileExtensions, async (files) => {
+    if (transformers.length > 0) {
+      site.loadAssets([".css"]);
+      site.process([".css"], async (files) => {
         for (const file of files) {
           if (file.content) {
             const code = new MagicString(file.content.toString());
-            for await (const { transform } of options.cssFileTransformers!) {
+            for await (const { transform } of transformers) {
               await transform(
                 code,
                 file.src.path,
@@ -81,17 +82,17 @@ export default function (userOptions?: Partial<Options>) {
       });
     }
 
-    if (options.cssFile === false) {
+    if (cssFile === false) {
       // Insert a <style> tag for each page
       site.process([".html"], async (pages) => {
-        const reset = await getResetCss(options);
+        const resetCss = await getResetCss(reset);
 
         Promise.all(pages.map(async (page) => {
           const document = page.document!;
           const result = await uno.generate(
             document.documentElement?.innerHTML ?? "",
           );
-          const css = reset ? `${reset}\n${result.css}` : result.css;
+          const css = resetCss ? `${resetCss}\n${result.css}` : result.css;
 
           if (css) {
             const style = document.createElement("style");
@@ -118,12 +119,12 @@ export default function (userOptions?: Partial<Options>) {
       );
 
       // Create & merge stylesheets for all pages
-      const reset = await getResetCss(options);
+      const resetCss = await getResetCss(reset);
       const result = await uno.generate(classes);
-      const css = reset ? `${reset}\n${result.css}` : result.css;
+      const css = resetCss ? `${resetCss}\n${result.css}` : result.css;
 
       // Output the CSS file
-      const output = await site.getOrCreatePage(options.cssFile as string);
+      const output = await site.getOrCreatePage(cssFile);
       if (output.content) {
         output.content += `\n${css}`;
       } else {
@@ -138,8 +139,6 @@ export default function (userOptions?: Partial<Options>) {
  * @remarks Deno does not currently support CSS Modules.
  * @see {@link https://github.com/denoland/deno/issues/11961}
  */
-async function getResetCss(options: Options) {
-  return options.reset === false
-    ? ""
-    : await read(`${resetUrl}/${options.reset}.css`, false);
+async function getResetCss(reset: Options["reset"]) {
+  return reset === false ? "" : await read(`${resetUrl}/${reset}.css`, false);
 }
