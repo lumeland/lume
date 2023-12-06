@@ -294,12 +294,12 @@ export default class Site {
       options = { loader: options };
     }
 
-    const { engine, subExtension } = options;
+    const { engine, pageSubExtension } = options;
     const loader = options.loader || textLoader;
     const engines = Array.isArray(engine) ? engine : engine ? [engine] : [];
 
-    const pageExtensions = subExtension
-      ? extensions.map((ext) => subExtension + ext)
+    const pageExtensions = pageSubExtension
+      ? extensions.map((ext) => pageSubExtension + ext)
       : extensions;
 
     pageExtensions.forEach((ext) => {
@@ -311,7 +311,7 @@ export default class Site {
       });
     });
 
-    if (subExtension) {
+    if (pageSubExtension) {
       extensions.forEach((ext) => this.formats.set({ ext, loader, engines }));
     }
 
@@ -919,7 +919,7 @@ export type SiteEventMap = {
 export interface LoadPagesOptions {
   loader?: Loader;
   engine?: Engine | Engine[];
-  subExtension?: string;
+  pageSubExtension?: string;
 }
 
 /** Custom events for site build */

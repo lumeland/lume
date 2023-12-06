@@ -9,6 +9,7 @@ Deno.test("Unocss plugin", async (t) => {
   site.use(unocss({
     cssFile: false,
     transformers: [],
+    reset: "tailwind",
   }));
 
   await build(site);
@@ -23,6 +24,7 @@ Deno.test("Unocss plugin (css file)", async (t) => {
   site.use(unocss({
     cssFile: "styles.css",
     transformers: [],
+    reset: "tailwind",
   }));
 
   await build(site);

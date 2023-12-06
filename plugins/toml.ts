@@ -25,7 +25,7 @@ export default function (userOptions?: Options) {
     site.loadData(options.extensions, toml);
     site.loadPages(options.extensions, {
       loader: toml,
-      subExtension: options.pageSubExtension,
+      pageSubExtension: options.pageSubExtension,
     });
   };
 }

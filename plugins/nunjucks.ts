@@ -217,7 +217,7 @@ export default function (userOptions?: Options) {
     site.loadPages(options.extensions, {
       loader,
       engine,
-      subExtension: options.pageSubExtension,
+      pageSubExtension: options.pageSubExtension,
     });
 
     // Register the njk filter

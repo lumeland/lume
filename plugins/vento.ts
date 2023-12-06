@@ -130,7 +130,7 @@ export default function (userOptions?: Options) {
     site.loadPages(options.extensions, {
       loader,
       engine: ventoEngine,
-      subExtension: options.pageSubExtension,
+      pageSubExtension: options.pageSubExtension,
     });
 
     site.filter("vto", filter as Helper, true);

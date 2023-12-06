@@ -24,7 +24,7 @@ export default function (userOptions?: Options) {
   return (site: Site) => {
     site.loadData(options.extensions, json);
     site.loadPages(options.extensions, {
-      subExtension: options.pageSubExtension,
+      pageSubExtension: options.pageSubExtension,
       loader: json,
     });
   };

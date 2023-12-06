@@ -24,7 +24,7 @@ export default function (userOptions?: Options) {
     site.loadData(options.extensions, yaml);
     site.loadPages(options.extensions, {
       loader: yaml,
-      subExtension: options.pageSubExtension,
+      pageSubExtension: options.pageSubExtension,
     });
   };
 }
