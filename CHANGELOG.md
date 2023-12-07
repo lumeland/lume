@@ -14,6 +14,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New function `site.getOrCreatePage()`.
 - Allow to copy files/directories inside ignored directories [#520]
 - Added generics to `search` functions. For example: `search.pages<PageType>()`.
+- New environment variable `LUME_NOCACHE` to disable the cache of the remote files.
 - TOML plugin: New option `pageSubExtension` with the default value `.page`.
 - YAML plugin: New option `pageSubExtension`.
 - JSX plugin: New option `pageSubExtension`.

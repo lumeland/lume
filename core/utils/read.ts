@@ -1,4 +1,7 @@
 import { isUrl } from "./path.ts";
+import { env } from "./env.ts";
+
+const useCache = env<boolean>("LUME_NOCACHE") !== true;
 
 /**
  * Read a local or remote file and return its content.
@@ -39,6 +42,14 @@ export async function read(
 
   if (url.protocol === "file:") {
     return isBinary ? Deno.readFile(url) : Deno.readTextFile(url);
+  }
+
+  if (!useCache) {
+    const response = await fetch(url, init);
+
+    return isBinary
+      ? new Uint8Array(await response.arrayBuffer())
+      : response.text();
   }
 
   const cache = await caches.open("lume_remote_files");
