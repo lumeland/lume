@@ -31,13 +31,13 @@ export const defaults: Options = {
   favicons: [
     {
       url: "/favicon.ico",
-      size: 32,
+      size: [16, 32],
       rel: "icon",
       format: "ico",
     },
     {
       url: "/apple-touch-icon.png",
-      size: 180,
+      size: [180],
       rel: "apple-touch-icon",
       format: "png",
     },
@@ -46,7 +46,7 @@ export const defaults: Options = {
 
 export interface Favicon {
   url: string;
-  size: number;
+  size: number[];
   rel: string;
   format: string;
 }
@@ -128,7 +128,7 @@ export default function (userOptions?: Options) {
         for (const favicon of options.favicons) {
           addIcon(document, {
             rel: favicon.rel,
-            sizes: `${favicon.size}x${favicon.size}`,
+            sizes: favicon.size.map((s) => `${s}x${s}`).join(" "),
             href: site.url(favicon.url),
           });
         }
@@ -149,7 +149,7 @@ function addIcon(document: Document, attributes: Record<string, string>) {
 async function buildIco(
   content: Uint8Array,
   format: keyof sharp.FormatEnum | "ico",
-  size: number,
+  size: number[],
   cache?: Cache,
 ): Promise<Uint8Array> {
   if (cache) {
@@ -166,12 +166,11 @@ async function buildIco(
     const resizeOptions = { background: { r: 0, g: 0, b: 0, alpha: 0 } };
     const img = sharp(content);
     image = await sharpsToIco(
-      img.clone().resize(16, 16, resizeOptions),
-      img.clone().resize(32, 32, resizeOptions),
+      ...size.map((size) => img.clone().resize(size, size, resizeOptions)),
     );
   } else {
     image = await sharp(content)
-      .resize(size, size)
+      .resize(size[0], size[0])
       .toFormat(format)
       .toBuffer();
   }

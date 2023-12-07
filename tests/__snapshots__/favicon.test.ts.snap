@@ -197,7 +197,7 @@ snapshot[`favicon plugin 3`] = `
 <html><head>
     <title>Hello world</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" sizes="32x32" href="/favicon.ico">
+<link rel="icon" sizes="16x16 32x32" href="/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
   <body>
