@@ -1,5 +1,5 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
-import imagick from "../plugins/imagick.ts";
+import transformImages from "../plugins/transform_images.ts";
 import picture from "../plugins/picture.ts";
 
 Deno.test("picture plugin", async (t) => {
@@ -8,7 +8,7 @@ Deno.test("picture plugin", async (t) => {
   });
 
   site.use(picture());
-  site.use(imagick({
+  site.use(transformImages({
     cache: false,
   }));
 

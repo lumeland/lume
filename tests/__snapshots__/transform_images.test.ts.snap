@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`imagick plugin 1`] = `
+snapshot[`Image transform plugin 1`] = `
 {
   formats: [
     {
@@ -128,121 +128,17 @@ snapshot[`imagick plugin 1`] = `
 }
 `;
 
-snapshot[`imagick plugin 2`] = `[]`;
+snapshot[`Image transform plugin 2`] = `[]`;
 
-snapshot[`imagick plugin 3`] = `
+snapshot[`Image transform plugin 3`] = `
 [
   {
-    content: "Uint8Array(935)",
+    content: "Uint8Array(29014)",
     data: {
       basename: "lume",
       content: "Uint8Array(29014)",
       date: [],
-      imagick: "undefined",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/lume-small.png",
-    },
-    src: {
-      asset: true,
-      ext: ".png",
-      path: "/lume[0]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(935)",
-    data: {
-      basename: "lume",
-      content: "Uint8Array(29014)",
-      date: [],
-      imagick: "undefined",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/lume-big.png",
-    },
-    src: {
-      asset: true,
-      ext: ".png",
-      path: "/lume[1]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(1231)",
-    data: {
-      basename: "lume",
-      content: "Uint8Array(29014)",
-      date: [],
-      imagick: "undefined",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/lume.jpg",
-    },
-    src: {
-      asset: true,
-      ext: ".png",
-      path: "/lume[2]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(8648)",
-    data: {
-      basename: "lume",
-      content: "Uint8Array(29014)",
-      date: [],
-      imagick: "undefined",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/lume.webp",
-    },
-    src: {
-      asset: true,
-      ext: ".png",
-      path: "/lume[3]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(14410)",
-    data: {
-      basename: "lume",
-      content: "Uint8Array(29014)",
-      date: [],
-      imagick: "undefined",
+      imageTransform: "Array(5)",
       mergedKeys: [
         "tags",
       ],
@@ -258,7 +154,7 @@ snapshot[`imagick plugin 3`] = `
     src: {
       asset: true,
       ext: ".png",
-      path: "/lume[4]",
+      path: "/lume",
       remote: undefined,
     },
   },

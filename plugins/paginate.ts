@@ -126,10 +126,10 @@ export function createPaginator(defaults: PaginateOptions): Paginator {
   };
 }
 
-/** Extends PageData interface */
+/** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface PageData {
+    export interface Data {
       /**
        * The paginator helper
        * @see https://lume.land/plugins/paginate/

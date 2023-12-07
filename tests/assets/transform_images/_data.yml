@@ -1,4 +1,4 @@
-imagick:
+imageTransform:
   - suffix: -small
     resize: 20
     blur: 10
@@ -6,7 +6,10 @@ imagick:
     resize: 20
     blur: 10
     matches: \.png$
-  - format: [jpg, webp]
+  - format:
+    - format: jpg
+      progressive: true
+    - webp
   - format: png
   - format: jpg
     suffix: -never

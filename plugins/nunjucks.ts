@@ -350,10 +350,10 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
   return tagExtension;
 }
 
-/** Extends PageHelpers interface */
+/** Extends Helpers interface */
 declare global {
   namespace Lume {
-    export interface PageHelpers {
+    export interface Helpers {
       /** @see https://lume.land/plugins/nunjucks/ */
       njk: (string: string, data?: Record<string, unknown>) => Promise<string>;
     }

@@ -241,10 +241,10 @@ function createCustomTagWithBody(fn: Helper): TagClass {
   };
 }
 
-/** Extends PageHelpers interface */
+/** Extends Helpers interface */
 declare global {
   namespace Lume {
-    export interface PageHelpers {
+    export interface Helpers {
       /** @see https://lume.land/plugins/liquid/ */
       liquid: (
         string: string,

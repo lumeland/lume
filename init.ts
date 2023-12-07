@@ -206,8 +206,8 @@ function initPlugins(plugins: string[], denoConfig: DenoConfigResult) {
   // Ensure that tailwindcss is loaded before postcss
   fixPluginOrder(plugins, "tailwindcss", "postcss");
 
-  // Ensure that picture is loaded before imagick
-  fixPluginOrder(plugins, "picture", "imagick");
+  // Ensure that picture is loaded before transform_images
+  fixPluginOrder(plugins, "picture", "transform_images");
 }
 
 function fixPluginOrder(plugins: string[], plugin1: string, plugin2: string) {

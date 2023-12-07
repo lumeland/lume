@@ -166,10 +166,10 @@ function addMeta(
   document.head.appendChild(document.createTextNode("\n"));
 }
 
-/** Extends PageData interface */
+/** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface PageData {
+    export interface Data {
       /**
        * Meta elements
        * @see https://lume.land/plugins/metas/

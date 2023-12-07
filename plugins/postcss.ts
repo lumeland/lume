@@ -131,10 +131,10 @@ function configureImport(site: Site, includes: string) {
   });
 }
 
-/** Extends PageHelpers interface */
+/** Extends Helpers interface */
 declare global {
   namespace Lume {
-    export interface PageHelpers {
+    export interface Helpers {
       /** @see https://lume.land/plugins/postcss/ */
       postcss: (code: string) => Promise<string>;
     }

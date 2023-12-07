@@ -1,13 +1,11 @@
 import { merge } from "../core/utils/object.ts";
 import binLoader from "../core/loaders/binary.ts";
 import textLoader from "../core/loaders/text.ts";
-import { ImageMagick, MagickFormat, MagickGeometry } from "../deps/imagick.ts";
 import { Page } from "../core/file.ts";
 import Cache from "../core/cache.ts";
-import { svg2png } from "../deps/svg2png.ts";
+import sharp, { sharpsToIco } from "../deps/sharp.ts";
 
 import type Site from "../core/site.ts";
-import type { IMagickImage } from "../deps/imagick.ts";
 
 export interface Options {
   /**
@@ -35,13 +33,13 @@ export const defaults: Options = {
       url: "/favicon.ico",
       size: 32,
       rel: "icon",
-      format: MagickFormat.Ico,
+      format: "ico",
     },
     {
       url: "/apple-touch-icon.png",
       size: 180,
       rel: "apple-touch-icon",
-      format: MagickFormat.Png,
+      format: "png",
     },
   ],
 };
@@ -69,37 +67,30 @@ export default function (userOptions?: Options) {
     }
 
     async function getContent(): Promise<Uint8Array> {
-      const path = options.input;
+      const content = await site.getContent(options.input, binLoader);
 
-      // Convert the SVG to PNG
-      if (path.endsWith(".svg")) {
-        const content = await site.getContent(path, textLoader) as
-          | string
-          | undefined;
-
-        if (!content) {
-          throw new Error(`Favicon: ${path} not found`);
-        }
-
-        return await svg2png(content, { width: 180, height: 180 });
+      if (!content) {
+        throw new Error(`File not found: ${options.input}`);
       }
 
-      return await site.getContent(path, binLoader) as Uint8Array;
+      return typeof content === "string"
+        ? new TextEncoder().encode(content)
+        : content;
     }
 
     site.addEventListener("afterRender", async (event) => {
       const content = await getContent();
 
-      if (!(content instanceof Uint8Array)) {
-        throw new Error(`Favicon: ${options.input} not found`);
-      }
-
       for (const favicon of options.favicons) {
-        const format = favicon.format.toUpperCase() as MagickFormat;
         event.pages?.push(
           Page.create({
             url: favicon.url,
-            content: await buildIco(content, format, favicon.size, cache),
+            content: await buildIco(
+              content,
+              favicon.format as keyof sharp.FormatEnum,
+              favicon.size,
+              cache,
+            ),
           }),
         );
       }
@@ -157,7 +148,7 @@ function addIcon(document: Document, attributes: Record<string, string>) {
 
 async function buildIco(
   content: Uint8Array,
-  format: MagickFormat,
+  format: keyof sharp.FormatEnum | "ico",
   size: number,
   cache?: Cache,
 ): Promise<Uint8Array> {
@@ -169,17 +160,25 @@ async function buildIco(
     }
   }
 
-  return new Promise((resolve) => {
-    ImageMagick.read(content, (image: IMagickImage) => {
-      const geometry = new MagickGeometry(size, size);
-      image.resize(geometry);
+  let image: Uint8Array;
 
-      image.write(format, (output: Uint8Array) => {
-        if (cache) {
-          cache.set(content, { format, size }, output);
-        }
-        resolve(new Uint8Array(output));
-      });
-    });
-  });
+  if (format === "ico") {
+    const resizeOptions = { background: { r: 0, g: 0, b: 0, alpha: 0 } };
+    const img = sharp(content);
+    image = await sharpsToIco(
+      img.clone().resize(16, 16, resizeOptions),
+      img.clone().resize(32, 32, resizeOptions),
+    );
+  } else {
+    image = await sharp(content)
+      .resize(size, size)
+      .toFormat(format)
+      .toBuffer();
+  }
+
+  if (cache) {
+    cache.set(content, { format, size }, image);
+  }
+
+  return image;
 }

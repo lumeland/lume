@@ -8,7 +8,7 @@ export interface Options {
 }
 
 /**
- * Class to cache the content transformations (like imagick manipulations)
+ * Class to cache the content transformations (like transform_images manipulations)
  */
 export default class Cache {
   #folder: string;

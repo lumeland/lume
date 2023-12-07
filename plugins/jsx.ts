@@ -119,10 +119,10 @@ export default function (userOptions?: Options) {
   };
 }
 
-/** Extends PageData interface */
+/** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface PageData {
+    export interface Data {
       /**
        * The JSX children elements
        * @see https://lume.land/plugins/jsx/

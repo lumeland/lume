@@ -128,10 +128,10 @@ function isValid(name: string, validNames: string[]) {
   return name && (!validNames.length || validNames.includes(name));
 }
 
-/** Extends PageHelpers interface */
+/** Extends Helpers interface */
 declare global {
   namespace Lume {
-    export interface PageHelpers {
+    export interface Helpers {
       /** @see https://lume.land/plugins/attributes/ */
       attr: (values: unknown, ...validNames: string[]) => string;
 

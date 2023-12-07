@@ -47,10 +47,10 @@ function extensionMatches(path: string, extensions: Extensions): boolean {
   return extensions === "*" || extensions.some((ext) => path.endsWith(ext));
 }
 
-/** Extends PageHelpers interface */
+/** Extends Helpers interface */
 declare global {
   namespace Lume {
-    export interface PageHelpers {
+    export interface Helpers {
       /** @see https://lume.land/plugins/slugify_urls/ */
       slugify: (string: string) => string;
     }

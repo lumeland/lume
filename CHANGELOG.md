@@ -7,7 +7,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## 2.0.0 - Unreleased
 ### Added
-- New plugin UnoCSS, to replace WindiCSS.
+- New plugin `unocss`, to replace WindiCSS.
+- New plugin `transform_images`, to replace Imagick.
 - New option `server.root` to `Site`.
 - New `basename` variable to change the final name of files/directories
 - New function `site.getOrCreatePage()`.
@@ -54,6 +55,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Replace `fn-date` with `Temporal` polyfill to convert dates.
 - Refactor of `Server` class to work with `Deno.serve()` API [#501].
 - Renamed `core/filesystem.ts` to `core/file.ts`.
+- Picture plugin: Renamed the attribute `imagick` to `transform-images`.
 - TOML plugin:
   - is installed by default
   - Changed `extensions` option type to `string[]`.
@@ -109,6 +111,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - New option `item.updated`;
 
 ### Removed
+- Removed plugin `windi_css`. Use `unocss` instead.
+- Removed plugin `imagick`. Use `transform_images` instead.
 - Removed output extension detection in the filename: [#430]
 - Removed `processAll` and `preprocessAll`.
 - Removed `Page.dest` property [#290].

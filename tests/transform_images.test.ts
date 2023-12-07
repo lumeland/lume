@@ -1,12 +1,12 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
-import imagick from "../plugins/imagick.ts";
+import imageTransform from "../plugins/transform_images.ts";
 
-Deno.test("imagick plugin", async (t) => {
+Deno.test("Image transform plugin", async (t) => {
   const site = getSite({
-    src: "imagick",
+    src: "transform_images",
   });
 
-  site.use(imagick({
+  site.use(imageTransform({
     cache: false,
   }));
 

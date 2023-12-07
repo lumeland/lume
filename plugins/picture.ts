@@ -3,7 +3,6 @@ import { getPathAndExtension } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { contentType } from "../deps/media_types.ts";
 
-import type { MagickFormat } from "../deps/imagick.ts";
 import type Site from "../core/site.ts";
 
 interface SourceFormat {
@@ -26,7 +25,7 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
-  name: "imagick",
+  name: "transformImages",
   order: ["jxl", "avif", "webp", "png", "jpg"],
 };
 
@@ -48,9 +47,12 @@ export default function (userOptions?: Options) {
         const images = document.querySelectorAll("img");
 
         for (const img of Array.from(images)) {
-          const imagick = img.closest("[imagick]")?.getAttribute("imagick");
+          const transformImages = img.closest("[image-transform]")
+            ?.getAttribute(
+              "image-transform",
+            );
 
-          if (!imagick) {
+          if (!transformImages) {
             continue;
           }
 
@@ -61,20 +63,21 @@ export default function (userOptions?: Options) {
           const picture = img.closest("picture");
 
           if (picture) {
-            handlePicture(imagick, img, picture, basePath);
+            handlePicture(transformImages, img, picture, basePath);
             continue;
           }
 
-          handleImg(imagick, img, basePath);
+          handleImg(transformImages, img, basePath);
         }
       }
-    });
 
-    site.process([".html"], (pages) => {
+      // Remove the image-transform attribute from the HTML
       for (const page of pages) {
-        page.document?.querySelectorAll("[imagick]").forEach((element) => {
-          element.removeAttribute("imagick");
-        });
+        page.document?.querySelectorAll("[image-transform]").forEach(
+          (element) => {
+            element.removeAttribute("image-transform");
+          },
+        );
       }
     });
 
@@ -88,7 +91,7 @@ export default function (userOptions?: Options) {
           }
 
           const { name } = options;
-          const imagick = page.data[name] = page.data[name]
+          const transformImages = page.data[name] = page.data[name]
             ? Array.isArray(page.data[name])
               ? page.data[name]
               : [page.data[name]]
@@ -96,17 +99,17 @@ export default function (userOptions?: Options) {
 
           for (const [suffix, scale] of Object.entries(scales)) {
             if (width) {
-              imagick.push({
+              transformImages.push({
                 resize: width * scale,
                 suffix,
-                format: format as MagickFormat,
+                format,
               });
               continue;
             }
 
-            imagick.push({
+            transformImages.push({
               suffix,
-              format: format as MagickFormat,
+              format,
             });
           }
         }
@@ -114,14 +117,14 @@ export default function (userOptions?: Options) {
     });
 
     function handlePicture(
-      imagick: string,
+      transformImages: string,
       img: Element,
       picture: Element,
       basePath: string,
     ) {
       const src = img.getAttribute("src") as string;
       const sizes = img.getAttribute("sizes");
-      const sourceFormats = saveTransform(basePath, src, imagick);
+      const sourceFormats = saveTransform(basePath, src, transformImages);
 
       sortSources(sourceFormats);
       const last = sourceFormats[sourceFormats.length - 1];
@@ -141,10 +144,14 @@ export default function (userOptions?: Options) {
       }
     }
 
-    function handleImg(imagick: string, img: Element, basePath: string) {
+    function handleImg(
+      transformImages: string,
+      img: Element,
+      basePath: string,
+    ) {
       const src = img.getAttribute("src") as string;
       const sizes = img.getAttribute("sizes");
-      const sourceFormats = saveTransform(basePath, src, imagick);
+      const sourceFormats = saveTransform(basePath, src, transformImages);
 
       sortSources(sourceFormats);
 
@@ -200,13 +207,13 @@ export default function (userOptions?: Options) {
     function saveTransform(
       basePath: string,
       src: string,
-      imagick: string,
+      transformImages: string,
     ): SourceFormat[] {
       const path = src.startsWith("/") ? src : posix.join(basePath, src);
       const sizes: string[] = [];
       const formats: string[] = [];
 
-      imagick.trim().split(/\s+/).forEach((piece) => {
+      transformImages.trim().split(/\s+/).forEach((piece) => {
         if (piece.match(/^\d/)) {
           sizes.push(piece);
         } else {

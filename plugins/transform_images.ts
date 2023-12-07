@@ -1,31 +1,30 @@
 import { getPathAndExtension } from "../core/utils/path.ts";
+import { log } from "../core/utils/log.ts";
 import { merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
-import { log } from "../core/utils/log.ts";
 import binaryLoader from "../core/loaders/binary.ts";
-import { ImageMagick } from "../deps/imagick.ts";
+import sharp from "../deps/sharp.ts";
 import Cache from "../core/cache.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
-import type { IMagickImage, MagickFormat } from "../deps/imagick.ts";
 
 export interface Options {
   /** The list extensions this plugin applies to */
-  extensions?: string[];
+  extensions: string[];
 
   /** The key name for the transformations definitions */
-  name?: string;
+  name: string;
 
   /** The cache folder */
-  cache?: string | boolean;
+  cache: string | boolean;
 
   /** Custom transform functions */
-  functions?: Record<string, TransformationFunction>;
+  functions: Record<string, TransformationFunction>;
 }
 
 export type TransformationFunction = (
-  image: IMagickImage,
+  image: sharp.Sharp,
   // deno-lint-ignore no-explicit-any
   ...args: any[]
 ) => void;
@@ -33,51 +32,59 @@ export type TransformationFunction = (
 // Default options
 export const defaults: Options = {
   extensions: [".jpg", ".jpeg", ".png"],
-  name: "imagick",
+  name: "transformImages",
   cache: true,
   functions: {
-    resize(image: IMagickImage, width: number, height = width): void {
-      image.resize(width, height);
+    resize(
+      image: sharp.Sharp,
+      width: number,
+      height?: number,
+      options?: sharp.ResizeOptions,
+    ): void {
+      image.resize(width, height, options);
     },
-    crop(image: IMagickImage, width: number, height = width): void {
-      image.crop(width, height);
+    blur(image: sharp.Sharp, sigma?: number | boolean): void {
+      image.blur(sigma);
     },
-    blur(image: IMagickImage, radius: number, sigma: number): void {
-      image.blur(radius, sigma);
-    },
-    sharpen(image: IMagickImage, radius: number, sigma: number): void {
-      image.sharpen(radius, sigma);
-    },
-    rotate(image: IMagickImage, degrees: number): void {
+    rotate(image: sharp.Sharp, degrees: number): void {
       image.rotate(degrees);
-    },
-    autoOrient(image: IMagickImage): void {
-      image.autoOrient();
     },
   },
 };
 
+export type Format =
+  | "jpeg"
+  | "jp2"
+  | "jxl"
+  | "png"
+  | "webp"
+  | "gif"
+  | "avif"
+  | "heif"
+  | "tiff";
+export interface FormatOptions {
+  format: Format;
+  [key: string]: unknown;
+}
+
 export interface Transformation {
   suffix?: string;
-  format?: MagickFormat | MagickFormat[];
+  format?: Format | Format[] | FormatOptions | FormatOptions[];
   matches?: RegExp | string;
   // deno-lint-ignore no-explicit-any
   [key: string]: any;
 }
 interface SingleTransformation extends Transformation {
-  format?: MagickFormat;
+  format?: Format | FormatOptions;
 }
 
 /** A plugin to transform images in Lume */
-export default function (userOptions?: Options) {
+export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
     site.loadAssets(options.extensions, binaryLoader);
-    site.process(
-      options.extensions,
-      (pages, allPages) => concurrent(pages, (page) => imagick(page, allPages)),
-    );
+    site.process(options.extensions, process);
 
     // Configure the cache folder
     const cacheFolder = options.cache === true ? "_cache" : options.cache;
@@ -90,26 +97,32 @@ export default function (userOptions?: Options) {
       site.options.watcher.ignore.push(cacheFolder);
     }
 
-    async function imagick(page: Page, pages: Page[]) {
-      const imagick = page.data[options.name] as
+    async function process(pages: Page[], allPages: Page[]) {
+      await concurrent(
+        pages,
+        (page) => processPage(page, allPages),
+      );
+    }
+    async function processPage(page: Page, allPages: Page[]) {
+      const transData = page.data[options.name] as
         | Transformation
         | Transformation[]
         | undefined;
 
-      if (!imagick) {
+      if (!transData) {
         return;
       }
 
       const content = page.content as Uint8Array;
       const transformations = removeDuplicatedTransformations(
-        getTransformations(imagick),
+        getTransformations(transData),
       );
       let transformed = false;
       let index = 0;
       for (const transformation of transformations) {
         if (transformation.matches) {
           const regex = new RegExp(transformation.matches);
-          if (!regex.test(page.data.url)) {
+          if (!regex.test(page.data.url as string)) {
             continue;
           }
         }
@@ -127,81 +140,75 @@ export default function (userOptions?: Options) {
           if (result) {
             output.content = result;
           } else {
-            transform(content, output, transformation, options);
+            await transform(content, output, transformation, options);
             transformed = true;
             await cache.set(content, transformation, output.content!);
           }
         } else {
-          transform(content, output, transformation, options);
+          await transform(content, output, transformation, options);
           transformed = true;
         }
 
         if (output !== page) {
-          pages.push(output);
+          allPages.push(output);
         }
       }
 
       if (transformed) {
-        log.info(`[imagick plugin] Processed ${page.sourcePath}`);
+        log.info(`[transform_images plugin] Processed ${page.sourcePath}`);
       }
 
       // Remove the original page
-      pages.splice(pages.indexOf(page), 1);
+      allPages.splice(allPages.indexOf(page), 1);
     }
   };
 }
 
-function transform(
+async function transform(
   content: Uint8Array,
   page: Page,
   transformation: Transformation,
-  options: Required<Options>,
-): void {
-  let format: MagickFormat | undefined = undefined;
+  options: Options,
+): Promise<void> {
+  const image = sharp(content);
 
-  ImageMagick.read(content, (image: IMagickImage) => {
-    for (const [name, args] of Object.entries(transformation)) {
-      switch (name) {
-        case "suffix":
-        case "matches":
-          break;
+  for (const [name, args] of Object.entries(transformation)) {
+    switch (name) {
+      case "suffix":
+      case "matches":
+        break;
 
-        case "format":
-          format = args;
-          break;
+      case "format":
+        if (typeof args === "string") {
+          image.toFormat(args as Format);
+        } else {
+          const { format, ...options } = args as Record<string, unknown>;
+          image.toFormat(format as Format, options);
+        }
+        break;
 
-        default:
-          if (!options.functions[name]) {
-            throw new Error(`Unknown transformation: ${name}`);
-          }
+      default:
+        if (!options.functions[name]) {
+          throw new Error(`Unknown transformation: ${name}`);
+        }
 
-          if (Array.isArray(args)) {
-            options.functions[name](image, ...args);
-          } else {
-            options.functions[name](image, args);
-          }
-      }
+        if (Array.isArray(args)) {
+          options.functions[name](image, ...args);
+        } else {
+          options.functions[name](image, args);
+        }
     }
+  }
 
-    if (format) {
-      image.write(
-        format,
-        (content: Uint8Array) => page.content = new Uint8Array(content),
-      );
-    } else {
-      image.write((content: Uint8Array) =>
-        page.content = new Uint8Array(content)
-      );
-    }
-  });
+  page.content = new Uint8Array(await image.toBuffer());
 }
 
-function rename(page: Page, transformation: Transformation): void {
+function rename(page: Page, transformation: SingleTransformation): void {
   const { format, suffix } = transformation;
   let [path, ext] = getPathAndExtension(page.data.url);
 
   if (format) {
-    ext = `.${format}`;
+    ext = typeof format === "string" ? `.${format}` : `.${format.format}`;
   }
 
   if (suffix) {
@@ -250,15 +257,15 @@ function removeDuplicatedTransformations(
   return [...result.values()];
 }
 
-/** Extends PageData interface */
+/** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface PageData {
+    export interface Data {
       /**
        * Image transformations
-       * @see https://lume.land/plugins/imagick/
+       * @see https://lume.land/plugins/transform_images/
        */
-      imagick?: Transformation | Transformation[];
+      transformImages?: Transformation | Transformation[];
     }
   }
 }

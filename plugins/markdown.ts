@@ -136,10 +136,10 @@ export default function (userOptions?: Options) {
   };
 }
 
-/** Extends PageHelpers interface */
+/** Extends Helpers interface */
 declare global {
   namespace Lume {
-    export interface PageHelpers {
+    export interface Helpers {
       /** @see https://lume.land/plugins/markdown/ */
       md: (string: string, inline?: boolean) => string;
     }

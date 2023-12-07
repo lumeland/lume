@@ -61,10 +61,10 @@ export default function (userOptions?: Options) {
   };
 }
 
-/** Extends PageHelpers interface */
+/** Extends Helpers interface */
 declare global {
   namespace Lume {
-    export interface PageHelpers {
+    export interface Helpers {
       /** @see https://lume.land/plugins/date/ */
       date: (
         date: string | Date,

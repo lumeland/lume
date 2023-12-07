@@ -182,33 +182,33 @@ snapshot[`picture plugin 3`] = `
 <body>
 
   <!-- without sizes -->
-  <div imagick="png 600@2">
+  <div image-transform="png 600@2">
     <img src="/kevin schmid unsplash.jpg">
   </div>
 
 
-  <picture imagick="avif webp jpg 600@2">
+  <picture image-transform="avif webp jpg 600@2">
     <img src="/kevin schmid unsplash.jpg">
   </picture>
 
   <!-- This image will be converted to a picture -->
-  <img src="/kevin schmid unsplash.jpg" imagick="avif webp jpg 300@2">
+  <img src="/kevin schmid unsplash.jpg" image-transform="avif webp jpg 300@2">
 
   <!-- This image won't be converted to a picture -->
-  <img src="/kevin schmid unsplash.jpg" imagick="avif">
+  <img src="/kevin schmid unsplash.jpg" image-transform="avif">
 
   <!-- with sizes -->
-  <div imagick="png 600@2">
+  <div image-transform="png 600@2">
     <img src="/kevin schmid unsplash.jpg" sizes="600px">
   </div>
 
 
-  <picture imagick="avif webp jpg 600@2">
+  <picture image-transform="avif webp jpg 600@2">
     <img src="/kevin schmid unsplash.jpg" sizes="600px">
   </picture>
 
   <!-- This image will be converted to a picture -->
-  <img src="/kevin schmid unsplash.jpg" imagick="avif webp jpg 300@2" sizes="600px">
+  <img src="/kevin schmid unsplash.jpg" image-transform="avif webp jpg 300@2" sizes="600px">
 </body>
 </html>
 \`,
@@ -221,33 +221,33 @@ snapshot[`picture plugin 3`] = `
 <body>
 
   <!-- without sizes -->
-  <div imagick="png 600@2">
+  <div image-transform="png 600@2">
     <img src="/kevin schmid unsplash.jpg">
   </div>
 
 
-  <picture imagick="avif webp jpg 600@2">
+  <picture image-transform="avif webp jpg 600@2">
     <img src="/kevin schmid unsplash.jpg">
   </picture>
 
   <!-- This image will be converted to a picture -->
-  <img src="/kevin schmid unsplash.jpg" imagick="avif webp jpg 300@2">
+  <img src="/kevin schmid unsplash.jpg" image-transform="avif webp jpg 300@2">
 
   <!-- This image won't be converted to a picture -->
-  <img src="/kevin schmid unsplash.jpg" imagick="avif">
+  <img src="/kevin schmid unsplash.jpg" image-transform="avif">
 
   <!-- with sizes -->
-  <div imagick="png 600@2">
+  <div image-transform="png 600@2">
     <img src="/kevin schmid unsplash.jpg" sizes="600px">
   </div>
 
 
-  <picture imagick="avif webp jpg 600@2">
+  <picture image-transform="avif webp jpg 600@2">
     <img src="/kevin schmid unsplash.jpg" sizes="600px">
   </picture>
 
   <!-- This image will be converted to a picture -->
-  <img src="/kevin schmid unsplash.jpg" imagick="avif webp jpg 300@2" sizes="600px">
+  <img src="/kevin schmid unsplash.jpg" image-transform="avif webp jpg 300@2" sizes="600px">
 </body>
 </html>
 \`,
@@ -272,12 +272,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(191297)",
+    content: "Uint8Array(281995)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -288,6 +287,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash-600w.png",
     },
     src: {
@@ -298,12 +298,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(6338)",
+    content: "Uint8Array(3368)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -314,6 +313,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash-300w.webp",
     },
     src: {
@@ -324,12 +324,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(10764)",
+    content: "Uint8Array(8056)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -340,6 +339,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash-300w@2.webp",
     },
     src: {
@@ -350,12 +350,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(9526)",
+    content: "Uint8Array(6615)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -366,6 +365,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash-300w.jpg",
     },
     src: {
@@ -376,12 +376,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(19816)",
+    content: "Uint8Array(17393)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -392,6 +391,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash-300w@2.jpg",
     },
     src: {
@@ -402,12 +402,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(15548)",
+    content: "Uint8Array(12701)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -418,6 +417,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash.avif",
     },
     src: {
@@ -428,12 +428,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(551915)",
+    content: "Uint8Array(822727)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -444,6 +443,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash-600w@2.png",
     },
     src: {
@@ -454,12 +454,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(6723)",
+    content: "Uint8Array(3717)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -470,6 +469,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash-600w.avif",
     },
     src: {
@@ -480,12 +480,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(10306)",
+    content: "Uint8Array(7369)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -496,6 +495,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash-600w@2.avif",
     },
     src: {
@@ -506,12 +506,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(10764)",
+    content: "Uint8Array(8056)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -522,6 +521,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash-600w.webp",
     },
     src: {
@@ -532,12 +532,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(21016)",
+    content: "Uint8Array(19756)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -548,6 +547,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash-600w@2.webp",
     },
     src: {
@@ -558,12 +558,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(19816)",
+    content: "Uint8Array(17393)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -574,6 +573,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash-600w.jpg",
     },
     src: {
@@ -584,12 +584,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(47837)",
+    content: "Uint8Array(46947)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -600,6 +599,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash-600w@2.jpg",
     },
     src: {
@@ -610,12 +610,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(5067)",
+    content: "Uint8Array(1952)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -626,6 +625,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash-300w.avif",
     },
     src: {
@@ -636,12 +636,11 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(6723)",
+    content: "Uint8Array(3717)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
       date: [],
-      imagick: "undefined",
       mergedKeys: [
         "tags",
       ],
@@ -652,6 +651,7 @@ snapshot[`picture plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
       url: "/kevin schmid unsplash-300w@2.avif",
     },
     src: {
