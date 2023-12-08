@@ -11,8 +11,7 @@
   "tasks": {
     "test": "TZ=Z LUME_LOGS=ERROR deno test -A",
     "test:update": "deno task test -- --update",
-    "install": "deno run -A install.ts",
-    "changelog": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.3.0/bin.ts",
+    "changelog": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.5.3/bin.ts",
     "update-deps": "deno run -A --quiet 'https://deno.land/x/udd@0.8.2/main.ts' deps/*.ts",
     "rollback-exp-deps": "git checkout deps/react.ts && git checkout deps/tailwindcss.ts && git checkout deps/cliffy.ts && git checkout deps/date.ts"
   }
