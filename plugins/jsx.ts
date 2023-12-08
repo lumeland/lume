@@ -1,4 +1,4 @@
-import { React, ReactDOMServer } from "../deps/react.ts";
+import { React, ReactDOMServer, specifier } from "../deps/react.ts";
 import loader from "../core/loaders/module.ts";
 import { merge } from "../core/utils/object.ts";
 
@@ -26,7 +26,7 @@ export const defaults: Options = {
 
 /** Template engine to render JSX files */
 export class JsxEngine implements Engine {
-  jsxImportSource = "npm:react";
+  jsxImportSource = specifier;
   helpers: Record<string, Helper> = {};
   basePath: string;
   includes: string;

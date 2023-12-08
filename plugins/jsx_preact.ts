@@ -1,4 +1,4 @@
-import { preact, renderToString } from "../deps/preact.ts";
+import { preact, renderToString, specifier } from "../deps/preact.ts";
 import loader from "../core/loaders/module.ts";
 import { merge } from "../core/utils/object.ts";
 
@@ -29,7 +29,7 @@ export type Children = preact.ComponentChildren;
 
 /** Template engine to render JSX files using Preact */
 export class PreactJsxEngine implements Engine {
-  jsxImportSource = "npm:preact";
+  jsxImportSource = specifier;
   helpers: Record<string, Helper> = {};
   basePath: string;
   includes: string;
