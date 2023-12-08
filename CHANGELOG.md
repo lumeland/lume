@@ -125,7 +125,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Removed `--dev` mode [#244], [#201].
   Use the env variable `LUME_DRAFTS=true` to output draft pages.
 - Removed `--quiet` argument
-  Use the env variable `LUME_LOG=DEBUG|INFO|WARNING|ERROR|CRITICAL`.
+  Use the env variable `LUME_LOGS=DEBUG|INFO|WARNING|ERROR|CRITICAL`.
 - Removed `site.includes()` function.
 - Renamed `site.searcher` to `site.search`.
 - The `pageSubExtension` is used only to load pages, but not for layouts,

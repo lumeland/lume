@@ -478,6 +478,8 @@ export default class Site {
       await this.clear();
     }
 
+    performance.mark("start-loadfiles");
+
     // Load source files
     this.fs.init();
 
@@ -485,6 +487,16 @@ export default class Site {
     const showDrafts = env<boolean>("LUME_DRAFTS");
     const [_pages, _staticFiles] = await this.source.build(
       (_, page) => !page?.data.draft || showDrafts === true,
+    );
+
+    performance.mark("end-loadfiles");
+
+    log.debug(
+      `Pages loaded in ${
+        (performance.measure("duration", "start-loadfiles", "end-loadfiles")
+          .duration /
+          1000).toFixed(2)
+      } seconds`,
     );
 
     // Save static files into site.files
@@ -564,6 +576,7 @@ export default class Site {
     if (await this.dispatchEvent({ type: "beforeRender", pages }) === false) {
       return false;
     }
+    performance.mark("start-render");
 
     // Render the pages
     this.pages.splice(0);
@@ -601,6 +614,17 @@ export default class Site {
       }),
     );
 
+    performance.mark("end-render");
+
+    log.debug(
+      `Pages rendered in ${
+        (performance.measure("duration", "start-render", "end-render")
+          .duration /
+          1000).toFixed(2)
+      } seconds`,
+    );
+
+    performance.mark("start-process");
     if (
       await this.events.dispatchEvent({
         type: "afterRender",
@@ -612,6 +636,15 @@ export default class Site {
 
     // Run the processors to the pages
     await this.processors.run(this.pages);
+    performance.mark("end-process");
+
+    log.debug(
+      `Pages processed in ${
+        (performance.measure("duration", "start-process", "end-process")
+          .duration /
+          1000).toFixed(2)
+      } seconds`,
+    );
 
     return await this.dispatchEvent({ type: "beforeSave" });
   }

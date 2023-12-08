@@ -12,8 +12,8 @@ import {
 
 import type { LevelName, LogRecord } from "../../deps/log.ts";
 
-// Get the log level from the environment variable LUME_LOG
-let level = env<LevelName>("LUME_LOG")?.toUpperCase() as
+// Get the log level from the environment variable LUME_LOGS
+let level = env<LevelName>("LUME_LOGS")?.toUpperCase() as
   | LevelName
   | undefined;
 
