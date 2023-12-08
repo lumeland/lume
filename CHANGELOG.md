@@ -5,12 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## 2.0.0 - Unreleased
+## [2.0.0] - 2023-12-08
 ### Added
-- New plugin `unocss`, to replace WindiCSS.
-- New plugin `transform_images`, to replace Imagick.
+- New plugin `unocss`, to replace `windi_css`.
+- New plugin `transform_images`, to replace `imagick`.
 - New option `server.root` to `Site`.
-- New `basename` variable to change the final name of files/directories
+- New `basename` variable to change the final name of files/directories. [#494]
 - New function `site.getOrCreatePage()`.
 - Allow to copy files/directories inside ignored directories [#520]
 - Added generics to `search` functions. For example: `search.pages<PageType>()`.
@@ -40,7 +40,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Not found middleware: Added default options.
 - Remark plugin:
   - New option `useDefaultPlugins` that it's `true` by default.
-  - New option `remarkOptions` [#518].
+  - New option `remarkOptions` [#517] [#518].
 
 ### Changed
 - Revamp of types.
@@ -162,7 +162,11 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#376]: https://github.com/lumeland/lume/issues/376
 [#430]: https://github.com/lumeland/lume/issues/430
 [#447]: https://github.com/lumeland/lume/issues/447
+[#494]: https://github.com/lumeland/lume/issues/494
 [#501]: https://github.com/lumeland/lume/issues/501
+[#517]: https://github.com/lumeland/lume/issues/517
 [#518]: https://github.com/lumeland/lume/issues/518
 [#520]: https://github.com/lumeland/lume/issues/520
 [#521]: https://github.com/lumeland/lume/issues/521
+
+[2.0.0]: https://github.com/lumeland/lume/releases/tag/v2.0.0
