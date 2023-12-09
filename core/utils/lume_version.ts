@@ -26,7 +26,7 @@ export function getCurrentVersion(
 
 /** Check the compatibility with the current Deno version */
 export function checkDenoSupport(): void {
-  const minimum = "1.37.2";
+  const minimum = "1.38.0";
   const current = Deno.version.deno;
 
   if (current < minimum) {

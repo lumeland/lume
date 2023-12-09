@@ -109,7 +109,7 @@ export default function (userOptions?: Options) {
           file,
         );
 
-        const { includes } = site.options;
+        const includes = options.includes as string;
 
         // Process the code with lightningCSS
         const bundleOptions: BundleAsyncOptions<CustomAtRules> = {

@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.0.1] - Unreleased
+### Fixed
+- `lightningcss` plugin: use the correct includes folder [#523].
+- Lume needs Deno >= 1.38.
+
 ## [2.0.0] - 2023-12-08
 ### Added
 - New plugin `unocss`, to replace `windi_css`.
@@ -168,5 +173,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#518]: https://github.com/lumeland/lume/issues/518
 [#520]: https://github.com/lumeland/lume/issues/520
 [#521]: https://github.com/lumeland/lume/issues/521
+[#523]: https://github.com/lumeland/lume/issues/523
 
+[2.0.1]: https://github.com/lumeland/lume/compare/v2.0.0...HEAD
 [2.0.0]: https://github.com/lumeland/lume/releases/tag/v2.0.0
