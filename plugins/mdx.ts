@@ -5,25 +5,26 @@ import { join, toFileUrl } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine } from "../core/renderer.ts";
+import type { PluggableList, RehypeOptions } from "../deps/remark.ts";
 
 export interface Options {
   /** List of extensions this plugin applies to */
   extensions?: string[];
 
   /** List of recma plugins to use */
-  // deno-lint-ignore no-explicit-any
-  recmaPlugins?: any[];
+  recmaPlugins?: PluggableList;
 
   /**
    * List of remark plugins to use
    * @default `[remarkGfm]`
    */
-  // deno-lint-ignore no-explicit-any
-  remarkPlugins?: any[];
+  remarkPlugins?: PluggableList;
+
+  /** Options to pass to rehype */
+  rehypeOptions?: RehypeOptions;
 
   /** List of rehype plugins to use */
-  // deno-lint-ignore no-explicit-any
-  rehypePlugins?: any[];
+  rehypePlugins?: PluggableList;
 
   /** Set `false` to remove the default plugins */
   useDefaultPlugins?: boolean;
@@ -80,6 +81,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
       recmaPlugins: this.options.recmaPlugins,
       remarkPlugins: this.options.remarkPlugins,
       rehypePlugins: this.options.rehypePlugins,
+      remarkRehypeOptions: this.options.rehypeOptions,
     });
 
     const destructure = `{${Object.keys(data!).join(",")}}`;

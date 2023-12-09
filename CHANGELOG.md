@@ -6,8 +6,12 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.0.1] - Unreleased
+### Added
+- `mdx` plugin: New `rehypeOptions` option [#517]
+
 ### Fixed
 - `lightningcss` plugin: use the correct includes folder [#523].
+- `mdx` and `remark` plugins: improved types.
 - Lume needs Deno >= 1.38.
 
 ## [2.0.0] - 2023-12-08

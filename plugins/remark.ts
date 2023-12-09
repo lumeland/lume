@@ -13,7 +13,7 @@ import {
 import type Site from "../core/site.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
 import type { Page } from "../core/file.ts";
-import type { RehypeOptions } from "../deps/remark.ts";
+import type { PluggableList, RehypeOptions } from "../deps/remark.ts";
 
 export interface Options {
   /** List of extensions this plugin applies to */
@@ -23,13 +23,13 @@ export interface Options {
    * List of remark plugins to use
    * @default `[remarkGfm]`
    */
-  remarkPlugins?: unknown[];
+  remarkPlugins?: PluggableList;
 
   /** Options to pass to rehype */
   rehypeOptions?: RehypeOptions;
 
   /** List of rehype plugins to use */
-  rehypePlugins?: unknown[];
+  rehypePlugins?: PluggableList;
 
   /** Flag to turn on HTML sanitization to prevent XSS */
   sanitize?: boolean;
