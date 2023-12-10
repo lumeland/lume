@@ -47,9 +47,9 @@ export default function (userOptions?: Options) {
         const images = document.querySelectorAll("img");
 
         for (const img of Array.from(images)) {
-          const transformImages = img.closest("[image-transform]")
+          const transformImages = img.closest("[transform-images]")
             ?.getAttribute(
-              "image-transform",
+              "transform-images",
             );
 
           if (!transformImages) {
@@ -73,9 +73,9 @@ export default function (userOptions?: Options) {
 
       // Remove the image-transform attribute from the HTML
       for (const page of pages) {
-        page.document?.querySelectorAll("[image-transform]").forEach(
+        page.document?.querySelectorAll("[transform-images]").forEach(
           (element) => {
-            element.removeAttribute("image-transform");
+            element.removeAttribute("transform-images");
           },
         );
       }

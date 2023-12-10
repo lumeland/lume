@@ -182,33 +182,33 @@ snapshot[`picture plugin 3`] = `
 <body>
 
   <!-- without sizes -->
-  <div image-transform="png 600@2">
+  <div transform-images="png 600@2">
     <img src="/kevin schmid unsplash.jpg">
   </div>
 
 
-  <picture image-transform="avif webp jpg 600@2">
+  <picture transform-images="avif webp jpg 600@2">
     <img src="/kevin schmid unsplash.jpg">
   </picture>
 
   <!-- This image will be converted to a picture -->
-  <img src="/kevin schmid unsplash.jpg" image-transform="avif webp jpg 300@2">
+  <img src="/kevin schmid unsplash.jpg" transform-images="avif webp jpg 300@2">
 
   <!-- This image won't be converted to a picture -->
-  <img src="/kevin schmid unsplash.jpg" image-transform="avif">
+  <img src="/kevin schmid unsplash.jpg" transform-images="avif">
 
   <!-- with sizes -->
-  <div image-transform="png 600@2">
+  <div transform-images="png 600@2">
     <img src="/kevin schmid unsplash.jpg" sizes="600px">
   </div>
 
 
-  <picture image-transform="avif webp jpg 600@2">
+  <picture transform-images="avif webp jpg 600@2">
     <img src="/kevin schmid unsplash.jpg" sizes="600px">
   </picture>
 
   <!-- This image will be converted to a picture -->
-  <img src="/kevin schmid unsplash.jpg" image-transform="avif webp jpg 300@2" sizes="600px">
+  <img src="/kevin schmid unsplash.jpg" transform-images="avif webp jpg 300@2" sizes="600px">
 </body>
 </html>
 \`,
@@ -221,33 +221,33 @@ snapshot[`picture plugin 3`] = `
 <body>
 
   <!-- without sizes -->
-  <div image-transform="png 600@2">
+  <div transform-images="png 600@2">
     <img src="/kevin schmid unsplash.jpg">
   </div>
 
 
-  <picture image-transform="avif webp jpg 600@2">
+  <picture transform-images="avif webp jpg 600@2">
     <img src="/kevin schmid unsplash.jpg">
   </picture>
 
   <!-- This image will be converted to a picture -->
-  <img src="/kevin schmid unsplash.jpg" image-transform="avif webp jpg 300@2">
+  <img src="/kevin schmid unsplash.jpg" transform-images="avif webp jpg 300@2">
 
   <!-- This image won't be converted to a picture -->
-  <img src="/kevin schmid unsplash.jpg" image-transform="avif">
+  <img src="/kevin schmid unsplash.jpg" transform-images="avif">
 
   <!-- with sizes -->
-  <div image-transform="png 600@2">
+  <div transform-images="png 600@2">
     <img src="/kevin schmid unsplash.jpg" sizes="600px">
   </div>
 
 
-  <picture image-transform="avif webp jpg 600@2">
+  <picture transform-images="avif webp jpg 600@2">
     <img src="/kevin schmid unsplash.jpg" sizes="600px">
   </picture>
 
   <!-- This image will be converted to a picture -->
-  <img src="/kevin schmid unsplash.jpg" image-transform="avif webp jpg 300@2" sizes="600px">
+  <img src="/kevin schmid unsplash.jpg" transform-images="avif webp jpg 300@2" sizes="600px">
 </body>
 </html>
 \`,

@@ -15,6 +15,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Lume needs Deno >= 1.38.
 - Type of `Lume.Data.results`.
 - Improved log messages of empty and ondemand pages [#525].
+- `picture` plugin using the wrong attribute name [#526].
 
 ## [2.0.0] - 2023-12-08
 ### Added
@@ -181,6 +182,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#521]: https://github.com/lumeland/lume/issues/521
 [#523]: https://github.com/lumeland/lume/issues/523
 [#525]: https://github.com/lumeland/lume/issues/525
+[#526]: https://github.com/lumeland/lume/issues/526
 
 [2.0.1]: https://github.com/lumeland/lume/compare/v2.0.0...HEAD
 [2.0.0]: https://github.com/lumeland/lume/releases/tag/v2.0.0
