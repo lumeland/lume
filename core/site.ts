@@ -599,18 +599,19 @@ export default class Site {
       0,
       this.pages.length,
       ...this.pages.filter((page) => {
-        const shouldSkip = !page.content || page.data.ondemand;
-
-        if (shouldSkip) {
-          log.info(
-            `[Lume] <cyan>Skipped page</cyan> ${page.data.url} (${
-              page.data.ondemand
-                ? "page is build only on demand"
-                : "file content is empty"
-            })`,
+        if (page.data.ondemand) {
+          log.debug(
+            `[Lume] <cyan>Skipped page</cyan> ${page.data.url} (page is build only on demand)`,
           );
+          return false;
         }
-        return !shouldSkip;
+
+        if (!page.content) {
+          log.warning(
+            `[Lume] <cyan>Skipped page</cyan> ${page.data.url} (file content is empty)`,
+          );
+          return false;
+        }
       }),
     );
 
