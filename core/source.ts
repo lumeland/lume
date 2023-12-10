@@ -517,7 +517,8 @@ function toProxy(
 export type BuildFilter = (entry: Entry, page?: Page) => boolean;
 
 export interface ProxyComponents {
-  (props?: Record<string, unknown>): string;
+  // deno-lint-ignore no-explicit-any
+  (props?: Record<string, unknown>): any;
   [key: string]: ProxyComponents;
 }
 
