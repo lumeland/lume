@@ -13,6 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `lightningcss` plugin: use the correct includes folder [#523].
 - `mdx` and `remark` plugins: improved types.
 - Lume needs Deno >= 1.38.
+- Type of `Lume.Data.results`.
 
 ## [2.0.0] - 2023-12-08
 ### Added

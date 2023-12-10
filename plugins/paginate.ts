@@ -1,7 +1,6 @@
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
-import type { Page } from "../core/file.ts";
 
 /** The options for the paginate helper */
 export interface PaginateOptions {
@@ -146,7 +145,7 @@ declare global {
        * The pagination result
        * @see https://lume.land/plugins/paginate/
        */
-      results?: Page[];
+      results?: Data[];
     }
   }
 }
