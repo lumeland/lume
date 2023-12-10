@@ -612,6 +612,8 @@ export default class Site {
           );
           return false;
         }
+
+        return true;
       }),
     );
 
