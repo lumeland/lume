@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.0.3] - Unreleased
+### Fixed
+- `sitemap` plugin: Add the `xmlns` namespace for localized urls.
+
 ## [2.0.1] - 2023-12-10
 ### Added
 - `mdx` plugin: New `rehypeOptions` option [#517]
@@ -185,5 +189,6 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#525]: https://github.com/lumeland/lume/issues/525
 [#526]: https://github.com/lumeland/lume/issues/526
 
+[2.0.3]: https://github.com/lumeland/lume/compare/v2.0.1...HEAD
 [2.0.1]: https://github.com/lumeland/lume/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/lumeland/lume/releases/tag/v2.0.0
