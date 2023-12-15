@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `multilanguage` plugin:
   - Fix error of two pages with the same id, type and lang.
   - Fix the error of a page with lang, but undefined id.
+- Removed unused `imagick` dependency.
 
 ## [2.0.1] - 2023-12-10
 ### Added
