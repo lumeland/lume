@@ -83,11 +83,7 @@ export default function multilanguage(userOptions: Options) {
     site.preprocess(options.extensions, (pages, allPages) => {
       for (const page of pages) {
         const data = page.data;
-        const { lang } = data;
-
-        if (typeof lang !== "string") {
-          continue;
-        }
+        const lang = data.lang!;
 
         // Resolve the language data
         for (const key of options.languages) {
@@ -118,18 +114,18 @@ export default function multilanguage(userOptions: Options) {
         }
 
         const alternates: Data[] = [];
-        const alternatePages = allPages.filter((page) =>
-          page.data.id == id && page.data.type === type
-        );
 
-        options.languages.forEach((lang) => {
-          const page = alternatePages.find((page) => page.data.lang === lang);
-
-          if (page) {
+        allPages.filter((page) => page.data.id == id && page.data.type === type)
+          .forEach((page) => {
             alternates.push(page.data);
             page.data.alternates = alternates;
-          }
-        });
+          });
+
+        // Sort the alternates by language
+        alternates.sort((a, b) =>
+          options.languages.indexOf(a.lang!) -
+          options.languages.indexOf(b.lang!)
+        );
       }
     });
 
