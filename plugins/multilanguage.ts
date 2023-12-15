@@ -110,6 +110,7 @@ export default function multilanguage(userOptions: Options) {
         // Create the alternates object if it doesn't exist
         const { id, type } = data;
         if (data.alternates || id === undefined) {
+          data.alternates ??= [data];
           continue;
         }
 
