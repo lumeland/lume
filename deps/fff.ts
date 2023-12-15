@@ -1,5 +1,5 @@
 export type {
-  FFFFlavoredFrontmatter
+  FFFFlavoredFrontmatter,
 } from "https://deno.land/x/fff@v1.1.0/src/types.ts";
 
 export {
