@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.0.3] - Unreleased
 ### Fixed
 - `sitemap` plugin: Add the `xmlns` namespace for localized urls.
+- `multilanguage` plugin: Fix error of two pages with the same id, type and lang.
 
 ## [2.0.1] - 2023-12-10
 ### Added
