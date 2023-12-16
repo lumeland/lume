@@ -128,6 +128,8 @@ export function createPaginator(defaults: PaginateOptions): Paginator {
 /** Extends Data interface */
 declare global {
   namespace Lume {
+    export type { PaginateResult };
+
     export interface Data {
       /**
        * The paginator helper
