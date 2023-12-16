@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.0.3] - Unreleased
+### Changed
+- `decap_cms` plugin: Add a script in the homepage to redirect to /admin/
+  when an invite token or recovery token is detected from netlify identity.
+
 ### Fixed
 - `sitemap` plugin: Add the `xmlns` namespace for localized urls.
 - `multilanguage` plugin:

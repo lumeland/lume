@@ -122,6 +122,21 @@ export default function (userOptions?: Options) {
         </html>
         `,
       }));
+
+      // Redirect to the admin page from the home page if the URL has a token
+      if (options.identity === "netlify") {
+        const homePage = site.pages.find((page) => page.data.url === "/");
+        const document = homePage?.document;
+
+        if (document) {
+          const script = document.createElement("script");
+          script.innerHTML =
+            `if (document.location.hash.startsWith("#invite_token=") || document.location.hash.startsWith("#recovery_token=")) { document.location = "${
+              site.url(options.path)
+            }" + document.location.hash; }`;
+          document.head.appendChild(script);
+        }
+      }
     });
   };
 }

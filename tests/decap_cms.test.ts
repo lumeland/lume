@@ -9,6 +9,7 @@ Deno.test("Decap CMS plugin", async (t) => {
 
   site.use(decapCMS({
     local: false,
+    identity: "netlify",
   }));
 
   await build(site);
