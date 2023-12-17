@@ -48,6 +48,12 @@ export async function createSite(config?: string): Promise<Site> {
   if (url) {
     log.info(`Loading config file <dim>${url}</dim>`);
     const mod = await import(url);
+    if (!mod.default) {
+      log.critical(
+        `[Lume] Missing Site instance! Ensure your config file does export the Site instance as default.`,
+      );
+      throw new Error("Site instance is not found");
+    }
     return mod.default;
   }
 
