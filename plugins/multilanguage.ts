@@ -115,9 +115,18 @@ export default function multilanguage(userOptions: Options) {
         }
 
         const alternates: Data[] = [];
+        const ids = new Map<string, Page>();
 
         allPages.filter((page) => page.data.id == id && page.data.type === type)
           .forEach((page) => {
+            const id = `${page.data.lang}-${page.data.id}-${page.data.type}`;
+            const existing = ids.get(id);
+            if (existing) {
+              log.warning(
+                `[multilanguage] The pages ${existing.sourcePath} and ${page.sourcePath} have the same id, type and language.`,
+              );
+            }
+            ids.set(id, page);
             alternates.push(page.data);
             page.data.alternates = alternates;
           });
