@@ -160,15 +160,22 @@ export default class Source {
     const [basename, date] = parseDateFromFilename(dir.name);
 
     // Load the _data files
-    const currentData: Partial<Data> = date ? { date } : {};
+    const dirDatas: RawData[] = [];
 
     for (const entry of dir.children.values()) {
       if (
         (entry.type === "file" && entry.name.startsWith("_data.")) ||
         (entry.type === "directory" && entry.name === "_data")
       ) {
-        Object.assign(currentData, await this.dataLoader.load(entry));
+        const loaded = await this.dataLoader.load(entry);
+        if (loaded) {
+          dirDatas.push(loaded);
+        }
       }
+    }
+
+    if (date) {
+      dirDatas.push({ date });
     }
 
     // Merge directory data
@@ -176,7 +183,7 @@ export default class Source {
       parentData,
       { basename },
       this.scopedData.get(dir.path) || {},
-      currentData,
+      ...dirDatas,
     ) as Partial<Data>;
 
     path = posix.join(path, dirData.basename!);

@@ -5,9 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [2.0.3] - Unreleased
+## [2.0.2] - Unreleased
 ### Added
-- add critical log on rare case where developer forget to export the Site instance in the `_config.ts`
+- Add critical log on rare case where developer forget to export the Site instance in the `_config.ts`
 
 ### Changed
 - `decap_cms` plugin: Add a script in the homepage to redirect to /admin/
@@ -20,6 +20,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - Fix the error of a page with lang, but undefined id.
 - Removed unused `imagick` dependency.
 - Added `Lume.PaginateResult` type.
+- Apply merge data strategies between multiple _data files/folders in the same folder.
 
 ## [2.0.1] - 2023-12-10
 ### Added
@@ -201,6 +202,6 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#525]: https://github.com/lumeland/lume/issues/525
 [#526]: https://github.com/lumeland/lume/issues/526
 
-[2.0.3]: https://github.com/lumeland/lume/compare/v2.0.1...HEAD
+[2.0.2]: https://github.com/lumeland/lume/compare/v2.0.1...HEAD
 [2.0.1]: https://github.com/lumeland/lume/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/lumeland/lume/releases/tag/v2.0.0

@@ -88,11 +88,9 @@ export default function multilanguage(userOptions: Options) {
         // Resolve the language data
         for (const key of options.languages) {
           if (key in data) {
-            // If the language is the default one, merge the data
             if (key === lang) {
               assign(data, data[key]);
             }
-            // Otherwise, delete the data
             delete data[key];
           }
         }
