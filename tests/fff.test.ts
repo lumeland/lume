@@ -24,8 +24,8 @@ Deno.test("FFF plugin", async (t) => {
 
   const { pages } = site;
 
-  const page5 = pages.find(page => page.src.path === "/page5")!
+  const page5 = pages.find((page) => page.src.path === "/page5")!;
 
-  assertEquals(page5.data.date, page5.data.published)
-  assertEquals(page5.data.content, page5.data.summary)
+  assertEquals(page5.data.date, page5.data.published);
+  assertEquals(page5.data.content, page5.data.summary);
 });
