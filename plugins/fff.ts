@@ -1,3 +1,4 @@
+import type Site from "../core/site.ts";
 import { merge } from "../core/utils/object.ts";
 
 import {
@@ -23,7 +24,7 @@ export const defaults: Options = {
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
-  return (site: Lume.Site) => {
+  return (site: Site) => {
     site.preprocess([".html"], (pages) =>
       pages.forEach((page) => {
         page.data = transform(page.data, [
