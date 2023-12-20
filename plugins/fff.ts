@@ -11,6 +11,7 @@ import {
 export interface Options {
   presets: FFFTransformPreset[];
   strict: false | StrictPresetOptions;
+  date?: "created" | "updated" | "published";
 }
 
 // Default options
@@ -27,6 +28,7 @@ export default function (userOptions?: Partial<Options>) {
       pages.forEach((page) => {
         page.data = transform(page.data, [
           ...options.presets,
+          ...(options.date ? [{ "date": options.date }] : []),
           ...(options.strict === false ? [] : [strict(options.strict)]),
         ]);
       }));
