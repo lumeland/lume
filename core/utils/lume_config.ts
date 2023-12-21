@@ -30,6 +30,7 @@ export const pluginNames = [
   "prism",
   "pug",
   "reading_info",
+  "redirects",
   "relations",
   "relative_urls",
   "remark",

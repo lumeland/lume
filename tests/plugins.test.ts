@@ -37,6 +37,7 @@ Deno.test("Plugins list in init", () => {
     "prism",
     "pug",
     "reading_info",
+    "redirects",
     "relations",
     "relative_urls",
     "remark",
