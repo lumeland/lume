@@ -37,3 +37,16 @@ Deno.test("redirects plugin for vercel", async (t) => {
   await build(site);
   await assertSiteSnapshot(t, site);
 });
+
+Deno.test("redirects plugin for json", async (t) => {
+  const site = getSite({
+    src: "redirects",
+  });
+
+  site.use(redirects({
+    output: "json",
+  }));
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});

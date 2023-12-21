@@ -20,12 +20,11 @@ type OutputStrategy = (
 ) => Promise<void> | void;
 
 export const defaults: Options = {
-  output: "json",
+  output: "html",
   defaultStatus: 301,
 };
 
-/** Export strategies */
-
+/** Output strategies */
 const outputs: Record<string, OutputStrategy> = {
   async netlify(redirects: Redirect[], site: Site) {
     const content = redirects.map(([from, to, code]) => `${from} ${to} ${code}`)
@@ -115,6 +114,8 @@ export default function (userOptions?: Options) {
         log.error(`[redirects] Invalid output format: ${options.output}`);
         throw new Error(`Invalid output format: ${options.output}`);
       }
+
+      redirects.sort((a, b) => a[0].localeCompare(b[0]));
 
       return outputFn(redirects, site);
     });
