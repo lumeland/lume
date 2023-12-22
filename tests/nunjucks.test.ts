@@ -43,6 +43,20 @@ Deno.test("build a site with nunjucks", async (t) => {
     { type: "tag", body: true, async: true },
   );
 
+  site.filter("fromPage", function (key) {
+    return this.data[key];
+  });
+  site.filter("fromPageAsync", function (key) {
+    return Promise.resolve(this.data[key]);
+  }, true);
+  site.helper(
+    "fromPageTagAsync",
+    function (key) {
+      return Promise.resolve(`<strong>${this.data[key]}</strong>`);
+    },
+    { type: "tag", body: true, async: true },
+  );
+
   await build(site);
   await assertSiteSnapshot(t, site);
 });

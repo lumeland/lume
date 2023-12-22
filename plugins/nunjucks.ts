@@ -5,7 +5,12 @@ import { normalizePath, resolveInclude } from "../core/utils/path.ts";
 import { basename, join, posix } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
-import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
+import type {
+  Engine,
+  Helper,
+  HelperOptions,
+  HelperThis,
+} from "../core/renderer.ts";
 import type { ProxyComponents } from "../core/source.ts";
 
 export interface Options {
@@ -140,7 +145,9 @@ export class NunjucksEngine implements Engine {
           return;
         }
 
-        this.env.addFilter(name, fn);
+        this.env.addFilter(name, function (this: any, ...args: unknown[]) {
+          return fn.apply({ data: this.ctx }, args);
+        });
     }
   }
 }
@@ -274,11 +281,11 @@ export default function (userOptions?: Options) {
  * https://mozilla.github.io/nunjucks/api.html#custom-filters
  */
 function createAsyncFilter(fn: Helper) {
-  return async function (...args: unknown[]) {
+  return async function (this: any, ...args: unknown[]) {
     const cb = args.pop() as (err: unknown, result?: unknown) => void;
 
     try {
-      const result = await fn(...args);
+      const result = await fn.apply({ data: this.ctx }, args);
       cb(null, result);
     } catch (err) {
       cb(err);
@@ -324,7 +331,7 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
     },
 
     // @ts-ignore: There's no types for Nunjucks
-    run(_context: unknown, ...args) {
+    run(context: any, ...args) {
       if (options.body) {
         const [body] = args.splice(
           options.async ? args.length - 2 : args.length - 1,
@@ -334,16 +341,18 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
       }
 
       if (!options.async) {
-        const string = fn(...args);
+        const string = fn.apply({ data: context.ctx }, args);
         return new nunjucks.runtime.SafeString(string);
       }
 
       const callback = args.pop();
 
-      (fn(...args) as Promise<string>).then((string: string) => {
-        const result = new nunjucks.runtime.SafeString(string);
-        callback(null, result);
-      });
+      (fn.apply({ data: context.ctx }, args) as Promise<string>).then(
+        (string: string) => {
+          const result = new nunjucks.runtime.SafeString(string);
+          callback(null, result);
+        },
+      );
     },
   };
 
