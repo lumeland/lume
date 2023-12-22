@@ -428,7 +428,10 @@ console.log("Hello world, from the icon/User component");
   <li>This is a partial</li>
   <li>async helper in a partial (async)</li>
 </ul>
-</main>
+
+<strong>The title</strong>
+<strong>The title</strong>
+<p><strong>The title</strong></p></main>
   </body>
 </html>
 ',
@@ -452,7 +455,10 @@ console.log("Hello world, from the icon/User component");
   <li>This is a partial</li>
   <li>async helper in a partial (async)</li>
 </ul>
-",
+
+<strong>The title</strong>
+<strong>The title</strong>
+<p><strong>The title</strong></p>",
       comp: [
         "_components",
         "_proxies",
@@ -469,7 +475,10 @@ console.log("Hello world, from the icon/User component");
 
 {% include "partial.njk" %}
 {% include "./_includes/partial.njk" %}
-',
+
+<strong>{{ "title" | fromPage }}</strong>
+<strong>{{ "title" | fromPageAsync }}</strong>
+<p>{% fromPageTagAsync %}title{% endfromPageTagAsync %}</p>',
       date: [],
       layout: "basic.njk",
       mergedKeys: [
