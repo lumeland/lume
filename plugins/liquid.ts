@@ -12,6 +12,7 @@ import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils/object.ts";
 
+import type { Data } from "../core/file.ts";
 import type Site from "../core/site.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type {
@@ -105,7 +106,10 @@ export class LiquidEngine implements Engine {
   addHelper(name: string, fn: Helper, options: HelperOptions) {
     switch (options.type) {
       case "filter":
-        this.liquid.registerFilter(name, fn);
+        // deno-lint-ignore no-explicit-any
+        this.liquid.registerFilter(name, function (this: any, ...args) {
+          return fn.apply({ data: this.context.environments }, args);
+        });
         break;
 
       case "tag":
@@ -182,7 +186,7 @@ function createCustomTag(fn: Helper): TagClass {
 
     async render(ctx: Context, emitter: Emitter) {
       const str = await toPromise(this.#value.value(ctx, false));
-      emitter.write(await fn(str));
+      emitter.write(await fn.call({ data: ctx.environments as Data }, str));
     }
   };
 }
@@ -236,7 +240,7 @@ function createCustomTagWithBody(fn: Helper): TagClass {
         args.push(await toPromise(evalToken(arg, ctx)));
       }
 
-      emitter.write(await fn(...args));
+      emitter.write(await fn.apply({ data: ctx.environments as Data }, args));
     }
   };
 }

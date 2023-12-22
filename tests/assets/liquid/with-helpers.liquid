@@ -13,3 +13,7 @@ title: The title
 
 {% include "partial.liquid" %}
 {% include "./_includes/partial.liquid" %}
+
+<strong>{{ "title" | fromPage }}</strong>
+<strong>{{ "title" | fromPageAsync }}</strong>
+<p>{% fromPageTagAsync %}title{% endfromPageTagAsync %}</p>
