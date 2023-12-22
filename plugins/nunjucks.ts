@@ -5,12 +5,7 @@ import { normalizePath, resolveInclude } from "../core/utils/path.ts";
 import { basename, join, posix } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
-import type {
-  Engine,
-  Helper,
-  HelperOptions,
-  HelperThis,
-} from "../core/renderer.ts";
+import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { ProxyComponents } from "../core/source.ts";
 
 export interface Options {
@@ -145,6 +140,7 @@ export class NunjucksEngine implements Engine {
           return;
         }
 
+        // deno-lint-ignore no-explicit-any
         this.env.addFilter(name, function (this: any, ...args: unknown[]) {
           return fn.apply({ data: this.ctx }, args);
         });
@@ -281,6 +277,7 @@ export default function (userOptions?: Options) {
  * https://mozilla.github.io/nunjucks/api.html#custom-filters
  */
 function createAsyncFilter(fn: Helper) {
+  // deno-lint-ignore no-explicit-any
   return async function (this: any, ...args: unknown[]) {
     const cb = args.pop() as (err: unknown, result?: unknown) => void;
 
@@ -330,8 +327,8 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
       return new nodes.CallExtension(tagExtension, "run", args, extraArgs);
     },
 
-    // @ts-ignore: There's no types for Nunjucks
-    run(context: any, ...args) {
+    // deno-lint-ignore no-explicit-any
+    run(context: any, ...args: any[]) {
       if (options.body) {
         const [body] = args.splice(
           options.async ? args.length - 2 : args.length - 1,
