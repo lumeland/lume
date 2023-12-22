@@ -29,7 +29,13 @@ export default function multilanguage(userOptions: Options) {
     // Configure the merged keys
     options.languages.forEach((lang) => site.mergeKey(lang, "object"));
 
-    // Preprocessor to setup multilanguage pages
+    /**
+     * Preprocessor to setup multilanguage pages
+     *
+     * + prevent incorrect data type of "page.data.lang"
+     * + display guidance (warning log) to some bug-potential cases
+     * + convert "page.data.lang" array type page (if yes) to string type page
+     */
     site.preprocess(options.extensions, (pages, allPages) => {
       for (const page of pages) {
         const { data } = page;
@@ -56,7 +62,7 @@ export default function multilanguage(userOptions: Options) {
           throw new Error(`Invalid "lang" variable in ${page.sourcePath}`);
         }
 
-        // Check if it's a valid language
+        // Check if these "languages" are all valid language codes
         if (languages.some((lang) => !options.languages.includes(lang))) {
           log.warning(
             `[multilanguage plugin] One or more languages in the page ${page.sourcePath} are not defined in the "languages" option.`,
@@ -79,11 +85,17 @@ export default function multilanguage(userOptions: Options) {
       }
     });
 
-    // Preprocessor to process the multilanguage data
+    /**
+     * Preprocessor to process the multilanguage data
+     *
+     * + set language url
+     * + create the alternates
+     * + sort the alternates
+     */
     site.preprocess(options.extensions, (pages, allPages) => {
       for (const page of pages) {
-        const data = page.data;
-        const lang = data.lang!;
+        const { data } = page;
+        const { lang } = data;
 
         // Resolve the language data
         for (const key of options.languages) {
@@ -95,13 +107,14 @@ export default function multilanguage(userOptions: Options) {
           }
         }
 
-        // Preprocessor to (un)prefix all urls with the language code
         const { url } = data;
-        if (!url.startsWith(`/${lang}/`) && lang !== options.defaultLanguage) {
+        const isLangUrl = url.startsWith(`/${lang}/`);
+        const isDefaultLang = lang === options.defaultLanguage;
+        if (!isLangUrl && !isDefaultLang) {
+          // Preprocess to prefix all urls with the language code
           data.url = `/${lang}${url}`;
-        } else if (
-          data.url.startsWith(`/${lang}/`) && lang === options.defaultLanguage
-        ) {
+        } else if (isLangUrl && isDefaultLang) {
+          // Preprocess to unprefix all urls with the default language code
           data.url = url.slice(lang.length + 1);
         }
 
