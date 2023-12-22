@@ -264,6 +264,10 @@ snapshot[`build a site with liquid 3`] = `
   <li>This is a partial</li>
   <li>async helper in a partial (async)</li>
 </ul>
+
+<strong>The title</strong>
+<strong>The title</strong>
+<p><strong>The title</strong></p>
 </main>
   </body>
 </html>
@@ -288,6 +292,10 @@ snapshot[`build a site with liquid 3`] = `
   <li>This is a partial</li>
   <li>async helper in a partial (async)</li>
 </ul>
+
+<strong>The title</strong>
+<strong>The title</strong>
+<p><strong>The title</strong></p>
 ",
       content: '<p>{% upperCase title %}</p>
 <p>{% upperCase "The title" %}</p>
@@ -301,6 +309,10 @@ snapshot[`build a site with liquid 3`] = `
 
 {% include "partial.liquid" %}
 {% include "./_includes/partial.liquid" %}
+
+<strong>{{ "title" | fromPage }}</strong>
+<strong>{{ "title" | fromPageAsync }}</strong>
+<p>{% fromPageTagAsync %}title{% endfromPageTagAsync %}</p>
 ',
       date: [],
       layout: "basic.liquid",
