@@ -359,8 +359,9 @@ export interface Engine<T = string | { toString(): string }> {
 export interface HelperThis {
   data: Data;
 }
+
 // deno-lint-ignore no-explicit-any
-export type Helper = (this: HelperThis, ...args: any[]) => any;
+export type Helper = (this: HelperThis | void, ...args: any[]) => any;
 
 /** The options for a template helper */
 export interface HelperOptions {

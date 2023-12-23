@@ -102,7 +102,10 @@ export class PugEngine implements Engine {
       case "filter": {
         this.options.filters ||= {};
 
-        const filter: Helper = (text: string, opt: Record<string, unknown>) => {
+        const filter: Helper = function (
+          text: string,
+          opt: Record<string, unknown>,
+        ) {
           delete opt.filename;
           const args = Object.values(opt);
           return fn(text, ...args);

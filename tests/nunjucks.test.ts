@@ -44,15 +44,15 @@ Deno.test("build a site with nunjucks", async (t) => {
   );
 
   site.filter("fromPage", function (key) {
-    return this.data[key];
+    return this?.data[key];
   });
   site.filter("fromPageAsync", function (key) {
-    return Promise.resolve(this.data[key]);
+    return Promise.resolve(this?.data[key]);
   }, true);
   site.helper(
     "fromPageTagAsync",
     function (key) {
-      return Promise.resolve(`<strong>${this.data[key]}</strong>`);
+      return Promise.resolve(`<strong>${this?.data[key]}</strong>`);
     },
     { type: "tag", body: true, async: true },
   );
