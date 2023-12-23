@@ -33,10 +33,12 @@ export default class Processors {
   }
 }
 
-/** A (pre)processor */
+/**
+ * Processor callback is used in both (pre)process methods.
+ */
 export type Processor = (
-  pages: Page[],
-  allpages: Page[],
+  filteredPages: Page[],
+  allPages: Page[],
 ) => void | false | Promise<void | false>;
 
 function pageMatches(exts: Extensions, page: Page): boolean {
