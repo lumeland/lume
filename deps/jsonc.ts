@@ -1,1 +1,1 @@
-export * from "https://deno.land/std@0.209.0/jsonc/mod.ts";
+export * from "https://deno.land/std@0.210.0/jsonc/mod.ts";
