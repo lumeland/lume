@@ -22,7 +22,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Removed unused `imagick` dependency.
 - Added `Lume.PaginateResult` type.
 - Apply merge data strategies between multiple _data files/folders in the same folder.
-- Updated dependencies: `std`, `date-fns`, `esbuild`, `liquid`, `postcssNesting`, `react-dom` types, `sharp`, `svgo`, `vento`, `tailwindcss`, `minify_html`.
+- Updated dependencies: `std`, `esbuild`, `liquid`, `postcssNesting`, `react-dom` types, `sharp`, `svgo`, `vento`, `tailwindcss`, `minify_html`.
 
 ## [2.0.1] - 2023-12-10
 ### Added
