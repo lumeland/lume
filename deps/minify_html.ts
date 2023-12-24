@@ -1,10 +1,10 @@
 // https://github.com/wilsonzlin/minify-html
-export { minify } from "https://wilsonl.in/minify-html/deno/0.11.1/index.js";
-import initWasm from "https://wilsonl.in/minify-html/deno/0.11.1/index.js";
+export { minify } from "https://wilsonl.in/minify-html/deno/0.15.0/index.js";
+import initWasm from "https://wilsonl.in/minify-html/deno/0.15.0/index.js";
 import { read } from "../core/utils/read.ts";
 
 // Initialize the WASM module
-const url = "https://wilsonl.in/minify-html/deno/0.11.1/index_bg.wasm";
+const url = "https://wilsonl.in/minify-html/deno/0.15.0/index_bg.wasm";
 const wasm = await read(url, true);
 await initWasm(wasm);
 
@@ -26,6 +26,15 @@ export interface Options {
 
   /** Keep all comments. */
   keep_comments?: boolean;
+
+  /** Keep SSI comments. */
+  keep_ssi_comments?: boolean;
+
+  /** When `{{`, `{#`, or `{%` are seen in content, all source code until the subsequent matching closing `}}`, `#}`, or `%}` respectively gets piped through untouched. */
+  preserve_brace_template_syntax?: boolean;
+
+  /** When `<%` is seen in content, all source code until the subsequent matching closing `%>` gets piped through untouched. */
+  preserve_chevron_percent_template_syntax?: boolean;
 
   /** If enabled, content in `<script>` tags with a JS or no [MIME type](https://mimesniff.spec.whatwg.org/#javascript-mime-type) will be minified using [minify-js](https://github.com/wilsonzlin/minify-js). */
   minify_js?: boolean;

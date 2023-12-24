@@ -12,7 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Changed
 - `decap_cms` plugin: Add a script in the homepage to redirect to /admin/
   when an invite token or recovery token is detected from netlify identity.
-- `getOptionsFromCli` is moved from `mod.ts` to `utils/cli_options.ts`.
+- `getOptionsFromCli` is moved from `mod.ts` to `utils/cli_options.ts` #535, #540.
 
 ### Fixed
 - `sitemap` plugin: Add the `xmlns` namespace for localized urls.
@@ -22,7 +22,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Removed unused `imagick` dependency.
 - Added `Lume.PaginateResult` type.
 - Apply merge data strategies between multiple _data files/folders in the same folder.
-- Updated dependencies: `std`, `date-fns`, `esbuild`, `liquid`, `postcssNesting`, `react-dom` types, `sharp`, `svgo`, `vento`, `tailwindcss`.
+- Updated dependencies: `std`, `date-fns`, `esbuild`, `liquid`, `postcssNesting`, `react-dom` types, `sharp`, `svgo`, `vento`, `tailwindcss`, `minify_html`.
 
 ## [2.0.1] - 2023-12-10
 ### Added
