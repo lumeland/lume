@@ -1,12 +1,8 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
 import date from "../plugins/date.ts";
-import _gl from "npm:date-fns@2.30.0/locale/gl/index.js";
-import _pt from "npm:date-fns@2.30.0/locale/pt/index.js";
-
-// date-fns provides wrong types under node16 module resolution
-const gl = _gl as Locale;
-const pt = _pt as Locale;
+import { gl } from "npm:date-fns@3.0.6/locale/gl";
+import { pt } from "npm:date-fns@3.0.6/locale/pt";
 
 const date0 = new Date(0);
 
