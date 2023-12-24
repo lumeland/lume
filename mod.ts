@@ -1,4 +1,3 @@
-import { parseArgs } from "./deps/cli.ts";
 import Site from "./core/site.ts";
 import url, { Options as UrlOptions } from "./plugins/url.ts";
 import json, { Options as JsonOptions } from "./plugins/json.ts";
@@ -13,6 +12,7 @@ import { merge } from "./core/utils/object.ts";
 
 import type { DeepPartial } from "./core/utils/object.ts";
 import type { SiteOptions } from "./core/site.ts";
+import { getOptionsFromCli } from "./core/utils/cli_options.ts";
 
 export interface PluginOptions {
   url?: UrlOptions;
@@ -59,43 +59,4 @@ export default function lume(
     .use(search(pluginOptions.search))
     .use(toml(pluginOptions.toml))
     .use(yaml(pluginOptions.yaml));
-}
-
-function getOptionsFromCli(): DeepPartial<SiteOptions> {
-  const options = parseArgs(Deno.args, {
-    string: ["src", "dest", "location", "port"],
-    boolean: ["serve", "open"],
-    alias: { dev: "d", serve: "s", port: "p", open: "o" },
-    ["--"]: true,
-  });
-
-  const overrides: DeepPartial<SiteOptions> = {};
-
-  if (options.src) {
-    overrides.src = options.src;
-  }
-
-  if (options.dest) {
-    overrides.dest = options.dest;
-  }
-
-  if (options.location) {
-    overrides.location = new URL(options.location);
-  } else if (options.serve) {
-    overrides.location = new URL(`http://localhost:${options.port || 3000}/`);
-  }
-
-  if (options.port) {
-    (overrides.server ||= {}).port = parseInt(options.port);
-
-    if (overrides.location) {
-      overrides.location.port = options.port;
-    }
-  }
-
-  if (options.open) {
-    (overrides.server ||= {}).open = options.open;
-  }
-
-  return overrides;
 }

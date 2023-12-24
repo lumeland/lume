@@ -12,6 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Changed
 - `decap_cms` plugin: Add a script in the homepage to redirect to /admin/
   when an invite token or recovery token is detected from netlify identity.
+- `getOptionsFromCli` is moved from `mod.ts` to `utils/cli_options.ts`.
 
 ### Fixed
 - `sitemap` plugin: Add the `xmlns` namespace for localized urls.
