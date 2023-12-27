@@ -16,6 +16,7 @@ Deno.test("Plugins list in init", () => {
     "eta",
     "favicon",
     "feed",
+    "fff",
     "filter_pages",
     "inline",
     "jsx",
