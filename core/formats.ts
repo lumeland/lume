@@ -37,7 +37,7 @@ export default class Formats {
 
   /** Assign a value to a extension */
   set(format: Format, override = true): void {
-    const { ext } = format;
+    const ext = format.ext.toLowerCase();
     const existing = this.entries.get(ext);
 
     if (existing) {
@@ -70,21 +70,23 @@ export default class Formats {
 
   /** Returns a format by extension */
   get(extension: string): Format | undefined {
-    return this.entries.get(extension);
+    return this.entries.get(extension.toLowerCase());
   }
 
   /** Delete a format */
   delete(extension: string): void {
-    this.entries.delete(extension);
+    this.entries.delete(extension.toLowerCase());
   }
 
   /** Returns if a format exists */
   has(extension: string): boolean {
-    return this.entries.has(extension);
+    return this.entries.has(extension.toLowerCase());
   }
 
   /** Search and return the associated format for a path */
   search(path: string): Format | undefined {
+    path = path.toLowerCase();
+
     for (const format of this.entries.values()) {
       if (path.endsWith(format.ext)) {
         return format;

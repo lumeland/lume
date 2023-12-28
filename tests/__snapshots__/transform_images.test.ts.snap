@@ -123,7 +123,7 @@ snapshot[`Image transform plugin 1`] = `
   src: [
     "/",
     "/_data.yml",
-    "/lume.png",
+    "/lume.PNG",
   ],
 }
 `;
