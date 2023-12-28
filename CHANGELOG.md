@@ -12,10 +12,11 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Changed
 - `decap_cms` plugin: Add a script in the homepage to redirect to /admin/
   when an invite token or recovery token is detected from netlify identity.
-- `getOptionsFromCli` is moved from `mod.ts` to `utils/cli_options.ts` #535, #540.
+- `getOptionsFromCli` is moved from `mod.ts` to `utils/cli_options.ts` [#535], [#540].
 
 ### Fixed
 - `sitemap` plugin: Add the `xmlns` namespace for localized urls.
+- Files with all caps extensions are ignored [#542].
 - `multilanguage` plugin:
   - Fix error of two pages with the same id, type and lang.
   - Fix the error of a page with lang, but undefined id.
@@ -203,6 +204,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#523]: https://github.com/lumeland/lume/issues/523
 [#525]: https://github.com/lumeland/lume/issues/525
 [#526]: https://github.com/lumeland/lume/issues/526
+[#535]: https://github.com/lumeland/lume/issues/535
+[#540]: https://github.com/lumeland/lume/issues/540
+[#542]: https://github.com/lumeland/lume/issues/542
 
 [2.0.2]: https://github.com/lumeland/lume/compare/v2.0.1...HEAD
 [2.0.1]: https://github.com/lumeland/lume/compare/v2.0.0...v2.0.1
