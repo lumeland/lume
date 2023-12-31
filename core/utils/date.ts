@@ -20,7 +20,7 @@ export function getGitDate(
   const str = new TextDecoder().decode(stdout);
 
   if (str) {
-    return parseDate(parseInt(str));
+    return parseDate(parseInt(str) * 1000);
   }
 }
 
