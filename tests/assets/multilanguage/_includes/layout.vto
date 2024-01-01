@@ -2,6 +2,7 @@
 {{ for item of alternates }}
   <a href="{{ item.url }}" hreflang={{ item.lang }} class="alternate">{{ item.title }}</a>
 {{ /for }}
+  <a href="{{ unmatchedLangUrl }}" hreflang="x-default" class="alternate">Unmatched Language Page</a>
 </nav
 
 <ul>

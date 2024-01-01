@@ -104,6 +104,14 @@ export default function (userOptions?: Options) {
                 "@href": site.url(alternate.url, true),
               }));
             }
+            if (data.unmatchedLangUrl) {
+              node["xhtml:link"]?.push({
+                "@rel": "alternate",
+                "@hreflang": "x-default",
+                "@href": site.url(data.unmatchedLangUrl, true),
+              });
+            }
+
             return node;
           }),
         },

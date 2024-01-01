@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.1.0] - Unreleased
+### Added
+- Support `x-default` for unmatched languages #528 & #532
+  - `multilanguage` plugin
+  - `sitemap` plugin
+
 ## [2.0.2] - 2024-01-01
 ### Added
 - Add critical log on rare case where developer forget to export the Site instance in the `_config.ts`

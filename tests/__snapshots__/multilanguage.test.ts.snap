@@ -104,9 +104,11 @@ snapshot[`multilanguage plugin 1`] = `
   ],
   src: [
     "/",
+    "/_data.json",
     "/_includes",
     "/_includes/layout.vto",
     "/index.md",
+    "/lang-selector.md",
     "/other.vto",
     "/pages",
     "/pages/page1.md",
@@ -129,7 +131,7 @@ snapshot[`multilanguage plugin 3`] = `
   {
     content: '<!DOCTYPE html>
 <html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/">
-<link rel="alternate" hreflang="gl" href="http://localhost/gl/">
+<link rel="alternate" hreflang="gl" href="http://localhost/">
 </head><body><p>Hello world</p>
 </body></html>',
     data: {
@@ -157,6 +159,7 @@ snapshot[`multilanguage plugin 3`] = `
       search: [],
       tags: "Array(0)",
       title: "Hello world",
+      unmatchedLangUrl: "undefined",
       url: "/en/",
     },
     src: {
@@ -169,7 +172,7 @@ snapshot[`multilanguage plugin 3`] = `
   {
     content: '<!DOCTYPE html>
 <html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/">
-<link rel="alternate" hreflang="gl" href="http://localhost/gl/">
+<link rel="alternate" hreflang="gl" href="http://localhost/">
 </head><body><p>Ola mundo</p>
 </body></html>',
     data: {
@@ -196,7 +199,8 @@ snapshot[`multilanguage plugin 3`] = `
       search: [],
       tags: "Array(0)",
       title: "Ola mundo",
-      url: "/gl/",
+      unmatchedLangUrl: "undefined",
+      url: "/",
     },
     src: {
       asset: false,
@@ -207,18 +211,58 @@ snapshot[`multilanguage plugin 3`] = `
   },
   {
     content: '<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="gl" href="http://localhost/lang-selector/">
+</head><body><p>Select your languages...</p>
+</body></html>',
+    data: {
+      alternates: "Array(1)",
+      basename: "lang-selector",
+      children: "<p>Select your languages...</p>
+",
+      content: "Select your languages...
+",
+      date: [],
+      lang: "gl",
+      mergedKeys: [
+        "tags",
+        "en",
+        "fr",
+        "it",
+        "gl",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Language Selector Page",
+      unmatchedLangUrl: "undefined",
+      url: "/lang-selector/",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/lang-selector",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
 <html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/other-page-english/">
 <link rel="alternate" hreflang="fr" href="http://localhost/fr/other-page-french.html">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/other-page-english/">
 </head><body><h1>English subtitle</h1>
 <p>Common description</p>
-<p>Other page <a href="/gl/">Link to index in Galego</a></p>
+<p>Other page <a href="/">Link to index in Galego</a></p>
 </body></html>',
     data: {
       alternates: "Array(2)",
       basename: "other",
       children: '<h1>English subtitle</h1>
 <p>Common description</p>
-<p>Other page <a href="/gl/">Link to index in Galego</a></p>
+<p>Other page <a href="/">Link to index in Galego</a></p>
 ',
       content: \`<h1>{{ metas.subtitle }}</h1>
 <p>{{ metas.description }}</p>
@@ -246,6 +290,7 @@ snapshot[`multilanguage plugin 3`] = `
       search: [],
       tags: "Array(0)",
       title: "Other",
+      unmatchedLangUrl: "/en/other-page-english/",
       url: "/en/other-page-english/",
     },
     src: {
@@ -259,16 +304,17 @@ snapshot[`multilanguage plugin 3`] = `
     content: '<!DOCTYPE html>
 <html lang="fr"><head><link rel="alternate" hreflang="en" href="http://localhost/en/other-page-english/">
 <link rel="alternate" hreflang="fr" href="http://localhost/fr/other-page-french.html">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/other-page-english/">
 </head><body><h1>Sous-titre français</h1>
 <p>Common description</p>
-<p>Other page <a href="/gl/">Link to index in Galego</a></p>
+<p>Other page <a href="/">Link to index in Galego</a></p>
 </body></html>',
     data: {
       alternates: "Array(2)",
       basename: "other",
       children: '<h1>Sous-titre français</h1>
 <p>Common description</p>
-<p>Other page <a href="/gl/">Link to index in Galego</a></p>
+<p>Other page <a href="/">Link to index in Galego</a></p>
 ',
       content: \`<h1>{{ metas.subtitle }}</h1>
 <p>{{ metas.description }}</p>
@@ -296,6 +342,7 @@ snapshot[`multilanguage plugin 3`] = `
       search: [],
       tags: "Array(0)",
       title: "Autre",
+      unmatchedLangUrl: "/en/other-page-english/",
       url: "/fr/other-page-french.html",
     },
     src: {
@@ -309,7 +356,8 @@ snapshot[`multilanguage plugin 3`] = `
     content: '<!DOCTYPE html>
 <html lang="it"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
 <link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
-<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-1/">
+<link rel="alternate" hreflang="gl" href="http://localhost/paxina-1/">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/page-1/">
 </head><body><p>Pagina 1</p>
 </body></html>',
     data: {
@@ -337,6 +385,7 @@ snapshot[`multilanguage plugin 3`] = `
       search: [],
       tags: "Array(0)",
       title: "page-it",
+      unmatchedLangUrl: "/en/page-1/",
       url: "/it/pagina-1/",
     },
     src: {
@@ -350,7 +399,8 @@ snapshot[`multilanguage plugin 3`] = `
     content: '<!DOCTYPE html>
 <html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
 <link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
-<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-1/">
+<link rel="alternate" hreflang="gl" href="http://localhost/paxina-1/">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/page-1/">
 </head><body><p>Page 1</p>
 </body></html>',
     data: {
@@ -378,6 +428,7 @@ snapshot[`multilanguage plugin 3`] = `
       search: [],
       tags: "Array(0)",
       title: "page-en",
+      unmatchedLangUrl: "/en/page-1/",
       url: "/en/page-1/",
     },
     src: {
@@ -391,7 +442,8 @@ snapshot[`multilanguage plugin 3`] = `
     content: '<!DOCTYPE html>
 <html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
 <link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
-<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-1/">
+<link rel="alternate" hreflang="gl" href="http://localhost/paxina-1/">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/page-1/">
 </head><body><p>Páxina 1</p>
 </body></html>',
     data: {
@@ -419,7 +471,8 @@ snapshot[`multilanguage plugin 3`] = `
       search: [],
       tags: "Array(0)",
       title: "page-gl",
-      url: "/gl/paxina-1/",
+      unmatchedLangUrl: "/en/page-1/",
+      url: "/paxina-1/",
     },
     src: {
       asset: false,
@@ -431,16 +484,20 @@ snapshot[`multilanguage plugin 3`] = `
   {
     content: '<!DOCTYPE html>
 <html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
-<link rel="alternate" hreflang="gl" href="http://localhost/gl/page-1/">
+<link rel="alternate" hreflang="gl" href="http://localhost/page-1/">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/page-1/">
 </head><body><nav>
 
   <a href="/en/page-1/" hreflang="en" class="alternate"></a>
 
-  <a href="/gl/page-1/" hreflang="gl" class="alternate"></a>
+  <a href="/page-1/" hreflang="gl" class="alternate"></a>
 
+  <a href="/en/page-1/" hreflang="x-default" class="alternate">Unmatched Language Page</a>
 </nav>
 
   <li>Ola mundo</li>
+
+  <li>Language Selector Page</li>
 
   <li>page-gl</li>
 
@@ -477,10 +534,11 @@ snapshot[`multilanguage plugin 3`] = `
         "previous",
         "next",
       ],
-      results: "Array(4)",
+      results: "Array(5)",
       search: [],
       tags: "Array(0)",
-      url: "/gl/page-1/",
+      unmatchedLangUrl: "/en/page-1/",
+      url: "/page-1/",
     },
     src: {
       asset: false,
@@ -492,13 +550,15 @@ snapshot[`multilanguage plugin 3`] = `
   {
     content: '<!DOCTYPE html>
 <html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
-<link rel="alternate" hreflang="gl" href="http://localhost/gl/page-1/">
+<link rel="alternate" hreflang="gl" href="http://localhost/page-1/">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/page-1/">
 </head><body><nav>
 
   <a href="/en/page-1/" hreflang="en" class="alternate"></a>
 
-  <a href="/gl/page-1/" hreflang="gl" class="alternate"></a>
+  <a href="/page-1/" hreflang="gl" class="alternate"></a>
 
+  <a href="/en/page-1/" hreflang="x-default" class="alternate">Unmatched Language Page</a>
 </nav>
 
   <li>Hello world</li>
@@ -541,6 +601,7 @@ snapshot[`multilanguage plugin 3`] = `
       results: "Array(4)",
       search: [],
       tags: "Array(0)",
+      unmatchedLangUrl: "/en/page-1/",
       url: "/en/page-1/",
     },
     src: {
@@ -553,7 +614,7 @@ snapshot[`multilanguage plugin 3`] = `
   {
     content: \`<!DOCTYPE html>
 <html lang="it"><head><link rel="alternate" hreflang="it" href="http://localhost/it/types/article/">
-<link rel="alternate" hreflang="gl" href="http://localhost/gl/types/article_gl/">
+<link rel="alternate" hreflang="gl" href="http://localhost/types/article_gl/">
 </head><body><p>Questo è l'articolo 1</p>
 </body></html>\`,
     data: {
@@ -582,6 +643,7 @@ snapshot[`multilanguage plugin 3`] = `
       tags: "Array(0)",
       title: "article 1",
       type: "article",
+      unmatchedLangUrl: "undefined",
       url: "/it/types/article/",
     },
     src: {
@@ -594,7 +656,7 @@ snapshot[`multilanguage plugin 3`] = `
   {
     content: '<!DOCTYPE html>
 <html lang="gl"><head><link rel="alternate" hreflang="it" href="http://localhost/it/types/article/">
-<link rel="alternate" hreflang="gl" href="http://localhost/gl/types/article_gl/">
+<link rel="alternate" hreflang="gl" href="http://localhost/types/article_gl/">
 </head><body><p>Este é o artigo 1</p>
 </body></html>',
     data: {
@@ -623,7 +685,8 @@ snapshot[`multilanguage plugin 3`] = `
       tags: "Array(0)",
       title: "article 1",
       type: "article",
-      url: "/gl/types/article_gl/",
+      unmatchedLangUrl: "undefined",
+      url: "/types/article_gl/",
     },
     src: {
       asset: false,
@@ -635,7 +698,8 @@ snapshot[`multilanguage plugin 3`] = `
   {
     content: '<!DOCTYPE html>
 <html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/types/post/">
-<link rel="alternate" hreflang="gl" href="http://localhost/gl/types/post_gl/">
+<link rel="alternate" hreflang="gl" href="http://localhost/types/post_gl/">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/types/post/">
 </head><body><p>This is the post 1</p>
 </body></html>',
     data: {
@@ -664,6 +728,7 @@ snapshot[`multilanguage plugin 3`] = `
       tags: "Array(0)",
       title: "post 1",
       type: "post",
+      unmatchedLangUrl: "/en/types/post/",
       url: "/en/types/post/",
     },
     src: {
@@ -676,7 +741,8 @@ snapshot[`multilanguage plugin 3`] = `
   {
     content: '<!DOCTYPE html>
 <html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/types/post/">
-<link rel="alternate" hreflang="gl" href="http://localhost/gl/types/post_gl/">
+<link rel="alternate" hreflang="gl" href="http://localhost/types/post_gl/">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/types/post/">
 </head><body><p>Este é o post 1</p>
 </body></html>',
     data: {
@@ -705,7 +771,8 @@ snapshot[`multilanguage plugin 3`] = `
       tags: "Array(0)",
       title: "post 1",
       type: "post",
-      url: "/gl/types/post_gl/",
+      unmatchedLangUrl: "/en/types/post/",
+      url: "/types/post_gl/",
     },
     src: {
       asset: false,
