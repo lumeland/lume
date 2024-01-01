@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [2.0.2] - Unreleased
+## [2.0.2] - 2024-01-01
 ### Added
 - Add critical log on rare case where developer forget to export the Site instance in the `_config.ts`
 
@@ -23,7 +23,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Removed unused `imagick` dependency.
 - Added `Lume.PaginateResult` type.
 - Apply merge data strategies between multiple _data files/folders in the same folder.
-- Updated dependencies: `std`, `esbuild`, `liquid`, `postcssNesting`, `react-dom` types, `sharp`, `svgo`, `vento`, `tailwindcss`, `minify_html`.
+- Date recovery from Git repositories [#544].
+- Updated dependencies: `std`, `esbuild`, `liquid`, `postcssNesting`, `react-dom` types, `sharp`, `svgo`, `vento`, `tailwindcss`, `minify_html`, `unocss`, `sass`.
 
 ## [2.0.1] - 2023-12-10
 ### Added
@@ -207,7 +208,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#535]: https://github.com/lumeland/lume/issues/535
 [#540]: https://github.com/lumeland/lume/issues/540
 [#542]: https://github.com/lumeland/lume/issues/542
+[#544]: https://github.com/lumeland/lume/issues/544
 
-[2.0.2]: https://github.com/lumeland/lume/compare/v2.0.1...HEAD
+[2.0.2]: https://github.com/lumeland/lume/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/lumeland/lume/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/lumeland/lume/releases/tag/v2.0.0
