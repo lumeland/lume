@@ -1,5 +1,6 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import esbuild from "../plugins/esbuild.ts";
+import jsx from "../plugins/jsx.ts";
 
 // Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
 Deno.test(
@@ -55,6 +56,28 @@ Deno.test(
       }
     }
 
+    await assertSiteSnapshot(t, site);
+  },
+);
+
+// Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
+Deno.test(
+  "esbuild plugin with JSX",
+  { sanitizeOps: false, sanitizeResources: false },
+  async (t) => {
+    const site = getSite({
+      src: "esbuild_jsx",
+    });
+
+    site.use(jsx({
+      pageSubExtension: ".page",
+    }));
+
+    site.use(esbuild({
+      extensions: [".jsx", ".tsx"],
+    }));
+
+    await build(site);
     await assertSiteSnapshot(t, site);
   },
 );
