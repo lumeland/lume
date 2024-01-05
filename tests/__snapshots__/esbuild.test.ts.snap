@@ -725,13 +725,13 @@ react-dom/cjs/react-dom.production.min.js:
 ",
     data: {
       basename: "main",
-      content: 'import React from "npm:react"
-import ReactDOM from "npm:react-dom/client"
+      content: 'import React from "npm:react";
+import ReactDOM from "npm:react-dom/client";
 
 ReactDOM.createRoot(document.getElementById("app")).render(
   <React.StrictMode>
-      <div>qqqqqqqqq</div>
-  </React.StrictMode>
+    <div>qqqqqqqqq</div>
+  </React.StrictMode>,
 );
 ',
       date: [],
