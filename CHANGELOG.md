@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - esbuild plugin: Fix support for subextensions added to JSX files.
   For example: `file.client.jsx`.
+- Conflict between `jsx` and esbuild plugin with `jsx` [#547].
 
 ## [2.0.2] - 2024-01-01
 ### Added
@@ -214,6 +215,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#540]: https://github.com/lumeland/lume/issues/540
 [#542]: https://github.com/lumeland/lume/issues/542
 [#544]: https://github.com/lumeland/lume/issues/544
+[#547]: https://github.com/lumeland/lume/issues/547
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.0.2...HEAD
 [2.0.2]: https://github.com/lumeland/lume/compare/v2.0.1...v2.0.2
