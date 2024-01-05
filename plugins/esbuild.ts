@@ -75,7 +75,9 @@ export default function (userOptions?: Options) {
 
   // Configure jsx automatically
   if (
-    options.extensions.includes(".tsx") || options.extensions.includes(".jsx")
+    options.extensions.some((ext) =>
+      ext.endsWith(".tsx") || ext.endsWith(".jsx")
+    )
   ) {
     options.options = {
       ...buildJsxConfig(denoConfig?.config),

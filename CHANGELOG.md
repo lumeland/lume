@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [Unreleased]
+### Fixed
+- esbuild plugin: Fix support for subextensions added to JSX files.
+  For example: `file.client.jsx`.
+
 ## [2.0.2] - 2024-01-01
 ### Added
 - Add critical log on rare case where developer forget to export the Site instance in the `_config.ts`
@@ -210,6 +215,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#542]: https://github.com/lumeland/lume/issues/542
 [#544]: https://github.com/lumeland/lume/issues/544
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v2.0.2...HEAD
 [2.0.2]: https://github.com/lumeland/lume/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/lumeland/lume/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/lumeland/lume/releases/tag/v2.0.0
