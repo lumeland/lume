@@ -334,8 +334,8 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
+    content: \`<!DOCTYPE html>
+<html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p onclick="alert('Hello')">This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>\`,
     data: {
       basename: "with-function",
       children: [
