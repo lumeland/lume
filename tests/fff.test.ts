@@ -4,17 +4,23 @@ import fff from "../plugins/fff.ts";
 
 Deno.test("FFF plugin", async (t) => {
   const site = getSite({
-    src: "normal",
+    src: "fff",
     location: new URL("https://example.com/"),
   });
 
   site.use(fff({
+    date: "published",
     presets: [{
-      published: "date",
       summary: "content",
     }],
+    strict: {
+      categories: false,
+      media: {
+        array: false,
+        type: "object",
+      },
+    },
   }));
-  site.ignore("static.yml");
 
   // build page
   await build(site);
@@ -24,8 +30,16 @@ Deno.test("FFF plugin", async (t) => {
 
   const { pages } = site;
 
-  const page5 = pages.find((page) => page.src.path === "/page5")!;
+  // published => date
+  const date = pages.find((page) => page.src.path === "/date")!;
+  assertEquals(date.data.date, date.data.published);
 
-  assertEquals(page5.data.date, page5.data.published);
-  assertEquals(page5.data.content, page5.data.summary);
+  // images (string media) => image (object media)
+  const image = pages.find((page) => page.src.path === "/image")!;
+  assertEquals(image.data.image.alt, "FFF Image Test");
+  assertEquals(image.data.image.src, "/my-image.png");
+
+  // categories => tags
+  const tags = pages.find((page) => page.src.path === "/tags")!;
+  assertEquals(tags.data.tags, ["foo", "bar", "baz", "qux"]);
 });
