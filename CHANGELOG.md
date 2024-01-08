@@ -6,6 +6,9 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [Unreleased]
+### Added
+- `metas` & `feed` plugins: Suppport for functions to configure the data fields.
+
 ### Fixed
 - esbuild plugin: Fix support for subextensions added to JSX files.
   For example: `file.client.jsx`.

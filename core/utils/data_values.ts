@@ -31,5 +31,9 @@ export function getDataValue(data: Partial<Data>, value?: unknown) {
     }
   }
 
+  if (typeof value === "function") {
+    return value(data);
+  }
+
   return value;
 }

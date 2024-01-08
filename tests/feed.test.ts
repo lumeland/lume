@@ -15,6 +15,7 @@ Deno.test("RSS plugin", async (t) => {
         generator: "https://lume.land",
       },
       items: {
+        title: (data) => data.title?.toUpperCase(),
         updated: "=date",
       },
     }),
