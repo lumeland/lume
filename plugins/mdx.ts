@@ -4,7 +4,7 @@ import { compile, remarkGfm } from "../deps/mdx.ts";
 import { join, toFileUrl } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
-import type { Engine } from "../core/renderer.ts";
+import type { Engine, Helper } from "../core/renderer.ts";
 import type { PluggableList, RehypeOptions } from "../deps/remark.ts";
 
 export interface Options {
@@ -145,5 +145,21 @@ export default function (userOptions?: Options) {
       loader,
       engine,
     });
+
+    // Register the filter
+    const filter = async (content: string): Promise<string> =>
+      (await engine.render(content)).toString().trim();
+
+    site.filter("mdx", filter, true);
   };
+}
+
+/** Extends Helpers interface */
+declare global {
+  namespace Lume {
+    export interface Helpers {
+      /** @see https://lume.land/plugins/mdx/ */
+      mdx: (content: string) => Promise<string>;
+    }
+  }
 }
