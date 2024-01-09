@@ -4,7 +4,7 @@ import { compile, remarkGfm } from "../deps/mdx.ts";
 import { join, toFileUrl } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
-import type { Engine, Helper } from "../core/renderer.ts";
+import type { Engine } from "../core/renderer.ts";
 import type { PluggableList, RehypeOptions } from "../deps/remark.ts";
 
 export interface Options {
