@@ -1,12 +1,13 @@
 import { isUrl } from "../utils/path.ts";
 import { isPlainObject } from "../utils/object.ts";
+import { env } from "../utils/env.ts";
 
 import type { RawData } from "../file.ts";
 
 /** Load a JavaScript/TypeScript file. Use a random hash to prevent caching */
 export default async function module(path: string): Promise<RawData> {
   const url = isUrl(path) ? path : `file://${path}`;
-  const specifier = Deno.env.get("LUME_LIVE_RELOAD") === "true"
+  const specifier = env<boolean>("LUME_LIVE_RELOAD")
     ? `${url}#${Date.now()}`
     : url;
 

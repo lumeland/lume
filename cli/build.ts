@@ -1,4 +1,5 @@
 import { log } from "../core/utils/log.ts";
+import { setEnv } from "../core/utils/env.ts";
 import Server from "../core/server.ts";
 import FSWatcher, { SiteWatcher } from "../core/watcher.ts";
 import logger from "../middlewares/logger.ts";
@@ -52,7 +53,7 @@ export async function build(
   }
 
   // Set the live reload environment variable to add hash to the URLs in the module loader
-  Deno.env.set("LUME_LIVE_RELOAD", "true");
+  setEnv("LUME_LIVE_RELOAD", "true");
 
   // Start the watcher
   const watcher = new FSWatcher({
