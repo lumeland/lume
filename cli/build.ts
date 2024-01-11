@@ -11,14 +11,9 @@ interface Options {
   config?: string;
   serve?: boolean;
   watch?: boolean;
-  dev?: boolean;
 }
 
-export default function ({ config, serve, watch, dev }: Options) {
-  if (dev) {
-    Deno.env.set("LUME_ENV", "development");
-  }
-
+export default function ({ config, serve, watch }: Options) {
   return build(config, serve, watch);
 }
 
