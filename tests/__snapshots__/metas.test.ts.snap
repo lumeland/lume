@@ -104,7 +104,7 @@ snapshot[`metas plugin 1`] = `
   ],
   src: [
     "/",
-    "/_data.yml",
+    "/_data.js",
     "/page-1.vto",
     "/page-2.vto",
     "/page-3.md",
@@ -272,12 +272,12 @@ snapshot[`metas plugin 3`] = `
 <meta property="og:site_name" content="My site">
 <meta property="og:locale" content="gl">
 <meta property="og:title" content="Title from page data">
-<meta property="og:description" content="This is page excerpt will be used as meta description.">
+<meta property="og:description" content="THIS IS PAGE EXCERPT WILL BE USED AS META DESCRIPTION.">
 <meta property="og:url" content="http://localhost/page-3/">
 <meta property="og:image" content="http://localhost/page-3/use-cover-as-meta-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@myUser">
-<meta name="description" content="This is page excerpt will be used as meta description.">
+<meta name="description" content="THIS IS PAGE EXCERPT WILL BE USED AS META DESCRIPTION.">
 <meta name="keywords" content="one, two">
 <meta name="robots" content="this robots will be overrided">
 <meta name="theme-color" content="black">

@@ -51,7 +51,7 @@ export default class Writer {
   async savePage(page: Page): Promise<boolean> {
     // Ignore empty pages
     if (!page.content) {
-      log.warning(
+      log.warn(
         `[Lume] <cyan>Skipped page</cyan> ${page.data.url} (file content is empty)`,
       );
       return false;

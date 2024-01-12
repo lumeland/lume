@@ -106,7 +106,7 @@ async function saveFile(path: string, content: string | Uint8Array) {
     log.info(`✔️ Created file: <dim>${path}</dim>`);
   } catch (error) {
     if (error instanceof Deno.errors.AlreadyExists) {
-      log.warning(`⚠️ File already exists: <dim>${path}</dim>`);
+      log.warn(`⚠️ File already exists: <dim>${path}</dim>`);
     } else {
       throw error;
     }

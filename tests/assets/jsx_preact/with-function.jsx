@@ -7,7 +7,7 @@ export const title = "This is the title";
 export default ({ title }, { url }) => (
   <>
     <h1>{title}</h1>
-    <p>
+    <p onclick="alert('Hello')">
       This is a JSX page <a href={url("/")}>Go to home</a>
     </p>
   </>

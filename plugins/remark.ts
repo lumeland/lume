@@ -144,10 +144,10 @@ export default function (userOptions?: Options) {
     });
 
     // Register the filter
-    site.filter("md", filter as Helper);
+    site.filter("md", filter as Helper, true);
 
-    function filter(content: string): string {
-      return remarkEngine.renderComponent(content).trim();
+    async function filter(content: string): Promise<string> {
+      return (await remarkEngine.render(content)).trim();
     }
   };
 }

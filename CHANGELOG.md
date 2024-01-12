@@ -11,6 +11,22 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - `multilanguage` plugin
   - `sitemap` plugin
 
+## [2.0.3] - 2024-01-12
+### Added
+- `metas` & `feed` plugins: Suppport for functions to configure the data fields.
+- `mdx` plugin: New `mdx` filter [#550].
+
+### Changed
+- `md` filter from `remark` plugin is async.
+
+### Fixed
+- esbuild plugin: Fix support for subextensions added to JSX files.
+  For example: `file.client.jsx`.
+- Conflict between `jsx` and esbuild plugin with `jsx` [#547].
+- Don't break if env variables are not granted [#551].
+- Nested components doesn't work in Vento [#552]
+- Updated deps: `std`, `unocss`, `svgo`, `sass`, `postcss`, `postcss-import`, `vento`, `tailwindcss`, `react` types, `remark`, `sharp`.
+
 ## [2.0.2] - 2024-01-01
 ### Added
 - Add critical log on rare case where developer forget to export the Site instance in the `_config.ts`
@@ -215,7 +231,12 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#540]: https://github.com/lumeland/lume/issues/540
 [#542]: https://github.com/lumeland/lume/issues/542
 [#544]: https://github.com/lumeland/lume/issues/544
+[#547]: https://github.com/lumeland/lume/issues/547
+[#550]: https://github.com/lumeland/lume/issues/550
+[#551]: https://github.com/lumeland/lume/issues/551
+[#552]: https://github.com/lumeland/lume/issues/552
 
+[2.0.3]: https://github.com/lumeland/lume/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/lumeland/lume/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/lumeland/lume/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/lumeland/lume/releases/tag/v2.0.0

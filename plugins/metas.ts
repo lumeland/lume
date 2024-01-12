@@ -3,7 +3,7 @@ import { getCurrentVersion } from "../core/utils/lume_version.ts";
 import { getDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
-import type { Page } from "../core/file.ts";
+import type { Data, Page } from "../core/file.ts";
 
 export interface Options {
   /** The list extensions this plugin applies to */
@@ -15,40 +15,40 @@ export interface Options {
 
 export interface MetaData {
   /** The type of the site default is website */
-  type?: string;
+  type?: string | ((data: Data) => string | undefined);
 
   /** The name of the site */
-  site?: string;
+  site?: string | ((data: Data) => string | undefined);
 
   /** The title of the page */
-  title?: string;
+  title?: string | ((data: Data) => string | undefined);
 
   /** The page language */
-  lang?: string;
+  lang?: string | ((data: Data) => string | undefined);
 
   /** The description of the page */
-  description?: string;
+  description?: string | ((data: Data) => string | undefined);
 
   /** The image of the page */
-  image?: string;
+  image?: string | ((data: Data) => string | undefined);
 
   /** The icon of the site */
-  icon?: string;
+  icon?: string | ((data: Data) => string | undefined);
 
   /** The page keywords */
-  keywords?: string[];
+  keywords?: string[] | ((data: Data) => string[] | undefined);
 
   /** The twitter username */
-  twitter?: string;
+  twitter?: string | ((data: Data) => string | undefined);
 
   /** The color theme */
-  color?: string;
+  color?: string | ((data: Data) => string | undefined);
 
   /** Robots configuration (Boolean to enable/disable, String for a custom value) */
-  robots?: string | boolean;
+  robots?: string | boolean | ((data: Data) => string | boolean | undefined);
 
   /** Whether include the generator or not (Boolean to enable/disable, String for a custom value) */
-  generator?: string | boolean;
+  generator?: string | boolean | ((data: Data) => string | boolean | undefined);
 }
 
 const defaults: Options = {

@@ -454,7 +454,7 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(3717)",
+    content: "Uint8Array(3653)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
@@ -610,7 +610,7 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(1952)",
+    content: "Uint8Array(1980)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",
@@ -636,7 +636,7 @@ snapshot[`picture plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(3717)",
+    content: "Uint8Array(3653)",
     data: {
       basename: "kevin schmid unsplash",
       content: "Uint8Array(139102)",

@@ -171,9 +171,10 @@ function compTag(
   }
 
   const compiled: string[] = [];
+  const tmpOutput = `__content_${tokens.length}`;
   compiled.push("{");
-  compiled.push(`let __content = ""`);
-  compiled.push(...env.compileTokens(tokens, "__content", ["/comp"]));
+  compiled.push(`let ${tmpOutput} = ""`);
+  compiled.push(...env.compileTokens(tokens, tmpOutput, ["/comp"]));
 
   if (tokens.length && (tokens[0][0] !== "tag" || tokens[0][1] !== "/comp")) {
     throw new Error(`Missing closing tag for component tag: ${code}`);
@@ -183,8 +184,9 @@ function compTag(
   compiled.push(
     `${output} += await comp.${comp}({...${
       args || "{}"
-    }, content: __content});`,
+    }, content: ${tmpOutput}});`,
   );
   compiled.push("}");
+
   return compiled.join("\n");
 }

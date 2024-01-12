@@ -127,6 +127,7 @@ snapshot[`Build a mdx site 1`] = `
     "/_includes",
     "/_includes/Image.tsx",
     "/index.mdx",
+    "/mdx-filter.page.ts",
   ],
 }
 `;
@@ -195,6 +196,52 @@ This is a markdown file with the title **{ title }**.
       asset: false,
       ext: ".mdx",
       path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<hr/>
+<h2>title: Hello world
+description: This is a description</h2>
+
+<header><h1>Hello world</h1><p>This is a description</p></header>
+<h2>Hello world</h2>
+<p>This is a markdown file with the title <strong>Hello world</strong>.</p>
+<img src="https://via.placeholder.com/350x150" alt="foo"/>',
+    data: {
+      basename: "mdx-filter",
+      children: '<hr/>
+<h2>title: Hello world
+description: This is a description</h2>
+
+<header><h1>Hello world</h1><p>This is a description</p></header>
+<h2>Hello world</h2>
+<p>This is a markdown file with the title <strong>Hello world</strong>.</p>
+<img src="https://via.placeholder.com/350x150" alt="foo"/>',
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "default",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "mdx filter example",
+      url: "/mdx-filter/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.ts",
+      path: "/mdx-filter",
       remote: undefined,
     },
   },

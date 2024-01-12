@@ -53,22 +53,22 @@ export interface FeedInfoOptions {
 
 export interface FeedItemOptions {
   /** The item title */
-  title?: string;
+  title?: string | ((data: Data) => string | undefined);
 
   /** The item description */
-  description?: string;
+  description?: string | ((data: Data) => string | undefined);
 
   /** The item published date */
-  published?: string;
+  published?: string | ((data: Data) => Date | undefined);
 
   /** The item updated date */
-  updated?: string;
+  updated?: string | ((data: Data) => Date | undefined);
 
   /** The item content */
-  content?: string;
+  content?: string | ((data: Data) => string | undefined);
 
   /** The item language */
-  lang?: string;
+  lang?: string | ((data: Data) => string | undefined);
 }
 
 export const defaults: Options = {

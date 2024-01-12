@@ -106,6 +106,7 @@ snapshot[`build a site with vento 1`] = `
     "/",
     "/_components",
     "/_components/Button.vto",
+    "/_components/container.vto",
     "/_includes",
     "/_includes/footer.vto",
     "/_includes/layout.vto",
@@ -138,8 +139,10 @@ snapshot[`build a site with vento 3`] = `
 
 
 
-<a href="https://example.com/blog/" class="btn btn-primary">Go to Lume</a>
+<section class="container">
+  <a href="https://example.com/blog/" class="btn btn-primary">Go to Lume</a>
 
+</section>
 
 CUSTOM FILTER
 
@@ -161,8 +164,10 @@ Título
 
 
 
-<a href="https://example.com/blog/" class="btn btn-primary">Go to Lume</a>
+<section class="container">
+  <a href="https://example.com/blog/" class="btn btn-primary">Go to Lume</a>
 
+</section>
 
 CUSTOM FILTER
 ',
@@ -178,7 +183,9 @@ CUSTOM FILTER
 
 {{ set href = "/" |> url(true) }}
 
-{{ comp button {href, content: "Go to Lume"} /}}
+{{ comp container }}
+  {{ comp button {href, content: "Go to Lume"} /}}
+{{ /comp }}
 
 {{ "custom filter" |> upper }}
 ',

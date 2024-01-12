@@ -193,7 +193,7 @@ function initPlugins(plugins: string[], denoConfig: DenoConfigResult) {
     // Add React types:
     denoConfig.config.compilerOptions.types ||= [];
     denoConfig.config.compilerOptions.types.push(
-      "https://unpkg.com/@types/react@18.2.37/index.d.ts",
+      "https://unpkg.com/@types/react@18.2.47/index.d.ts",
     );
   }
 

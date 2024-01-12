@@ -1,4 +1,5 @@
 import { log } from "../core/utils/log.ts";
+import { setEnv } from "../core/utils/env.ts";
 import Server from "../core/server.ts";
 import FSWatcher, { SiteWatcher } from "../core/watcher.ts";
 import logger from "../middlewares/logger.ts";
@@ -11,14 +12,9 @@ interface Options {
   config?: string;
   serve?: boolean;
   watch?: boolean;
-  dev?: boolean;
 }
 
-export default function ({ config, serve, watch, dev }: Options) {
-  if (dev) {
-    Deno.env.set("LUME_ENV", "development");
-  }
-
+export default function ({ config, serve, watch }: Options) {
   return build(config, serve, watch);
 }
 
@@ -45,10 +41,10 @@ export async function build(
   if (!serve && !watch) {
     // Prevent possible timers to keep the process alive forever (wait preventively 10 seconds)
     const id = setTimeout(() => {
-      log.warning(
+      log.warn(
         "After waiting 10 seconds, there are some timers that avoid ending the process.",
       );
-      log.warning("They have been forcibly closed.");
+      log.warn("They have been forcibly closed.");
       Deno.exit(0);
     }, 10000);
 
@@ -57,7 +53,7 @@ export async function build(
   }
 
   // Set the live reload environment variable to add hash to the URLs in the module loader
-  Deno.env.set("LUME_LIVE_RELOAD", "true");
+  setEnv("LUME_LIVE_RELOAD", "true");
 
   // Start the watcher
   const watcher = new FSWatcher({

@@ -207,8 +207,9 @@ export default class Renderer {
     content: unknown,
     data: Record<string, unknown>,
     filename: string,
+    isLayout = false,
   ): Promise<T> {
-    const engines = this.#getEngine(filename, data);
+    const engines = this.#getEngine(filename, data, isLayout);
 
     if (engines) {
       for (const engine of engines) {
@@ -293,6 +294,7 @@ export default class Renderer {
         layoutData.content,
         data,
         layoutPath,
+        true,
       );
       layout = layoutData.layout;
       path = layoutPath;
@@ -302,7 +304,11 @@ export default class Renderer {
   }
 
   /** Get the engines assigned to an extension or configured in the data */
-  #getEngine(path: string, data: Partial<Data>): Engine[] | undefined {
+  #getEngine(
+    path: string,
+    data: Partial<Data>,
+    isLayout: boolean,
+  ): Engine[] | undefined {
     let { templateEngine } = data;
 
     if (templateEngine) {
@@ -321,7 +327,11 @@ export default class Renderer {
       }, [] as Engine[]);
     }
 
-    return this.formats.search(path)?.engines;
+    const format = this.formats.search(path);
+
+    if (isLayout || format?.pageType === "page") {
+      return format?.engines;
+    }
   }
 }
 
