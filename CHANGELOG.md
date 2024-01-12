@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [Unreleased]
 ### Added
 - `metas` & `feed` plugins: Suppport for functions to configure the data fields.
+- `mdx` plugin: New `mdx` filter [#550].
 
 ### Changed
 - `md` filter from `remark` plugin is async.
@@ -224,6 +225,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#542]: https://github.com/lumeland/lume/issues/542
 [#544]: https://github.com/lumeland/lume/issues/544
 [#547]: https://github.com/lumeland/lume/issues/547
+[#550]: https://github.com/lumeland/lume/issues/550
 [#551]: https://github.com/lumeland/lume/issues/551
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.0.2...HEAD
