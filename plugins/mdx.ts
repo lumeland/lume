@@ -147,8 +147,11 @@ export default function (userOptions?: Options) {
     });
 
     // Register the filter
-    const filter = async (content: string): Promise<string> =>
-      (await engine.render(content)).toString().trim();
+    const filter = async (
+      content: string,
+      data?: Record<string, unknown>,
+    ): Promise<string> =>
+      (await engine.render(content, data, "filter.mdx")).toString().trim();
 
     site.filter("mdx", filter, true);
   };
@@ -159,7 +162,7 @@ declare global {
   namespace Lume {
     export interface Helpers {
       /** @see https://lume.land/plugins/mdx/ */
-      mdx: (content: string) => Promise<string>;
+      mdx: (content: string, data?: Record<string, unknown>) => Promise<string>;
     }
   }
 }
