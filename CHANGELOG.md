@@ -19,7 +19,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Conflict between `jsx` and esbuild plugin with `jsx` [#547].
 - Don't break if env variables are not granted [#551].
 - Nested components doesn't work in Vento [#552]
-- Updated deps: `std`, `unocss`, `svgo`, `sass`, `postcss`, `postcss-import`, `vento`, `tailwindcss`.
+- Updated deps: `std`, `unocss`, `svgo`, `sass`, `postcss`, `postcss-import`, `vento`, `tailwindcss`, `react` types, `remark`, `sharp`.
 
 ## [2.0.2] - 2024-01-01
 ### Added

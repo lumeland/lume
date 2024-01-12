@@ -111,7 +111,7 @@ export default function (userOptions?: Options) {
       const type = contentType(ext);
 
       if (!type) {
-        log.warning(`[Inline plugin] Unknown file format ${path}`);
+        log.warn(`[Inline plugin] Unknown file format ${path}`);
         return;
       }
 

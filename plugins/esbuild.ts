@@ -258,7 +258,7 @@ export default function (userOptions?: Options) {
       }
 
       if (warnings.length) {
-        log.warning(
+        log.warn(
           `[esbuild plugin] Build warnings: \n${warnings.join("\n")}`,
         );
       }

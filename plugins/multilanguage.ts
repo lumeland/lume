@@ -50,7 +50,7 @@ export default function multilanguage(userOptions: Options) {
         // If the "lang" variable is a string, check if it's a valid language
         if (typeof languages === "string") {
           if (!options.languages.includes(languages)) {
-            log.warning(
+            log.warn(
               `[multilanguage plugin] The language "${languages}" in the page ${page.sourcePath} is not defined in the "languages" option.`,
             );
           }
@@ -64,7 +64,7 @@ export default function multilanguage(userOptions: Options) {
 
         // Check if these "languages" are all valid language codes
         if (languages.some((lang) => !options.languages.includes(lang))) {
-          log.warning(
+          log.warn(
             `[multilanguage plugin] One or more languages in the page ${page.sourcePath} are not defined in the "languages" option.`,
           );
           continue;
@@ -133,7 +133,7 @@ export default function multilanguage(userOptions: Options) {
             const id = `${page.data.lang}-${page.data.id}-${page.data.type}`;
             const existing = ids.get(id);
             if (existing) {
-              log.warning(
+              log.warn(
                 `[multilanguage] The pages ${existing.sourcePath} and ${page.sourcePath} have the same id, type and language.`,
               );
             }

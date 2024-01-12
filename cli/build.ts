@@ -41,10 +41,10 @@ export async function build(
   if (!serve && !watch) {
     // Prevent possible timers to keep the process alive forever (wait preventively 10 seconds)
     const id = setTimeout(() => {
-      log.warning(
+      log.warn(
         "After waiting 10 seconds, there are some timers that avoid ending the process.",
       );
-      log.warning("They have been forcibly closed.");
+      log.warn("They have been forcibly closed.");
       Deno.exit(0);
     }, 10000);
 
