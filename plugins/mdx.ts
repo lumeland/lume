@@ -70,7 +70,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
     data?: Record<string, unknown>,
     filename?: string,
   ) {
-    const baseUrl = toFileUrl(join(this.baseUrl, filename!)).href;
+    const baseUrl = toFileUrl(join(this.baseUrl, filename || "/")).href;
     // @ts-ignore: special case for jsx engines
     const pragma = `/** @jsxImportSource ${this.jsxEngine.jsxImportSource} */`;
     const result = await compile(content, {
@@ -151,7 +151,7 @@ export default function (userOptions?: Options) {
       content: string,
       data?: Record<string, unknown>,
     ): Promise<string> =>
-      (await engine.render(content, data, "filter.mdx")).toString().trim();
+      (await engine.render(content, data)).toString().trim();
 
     site.filter("mdx", filter, true);
   };
