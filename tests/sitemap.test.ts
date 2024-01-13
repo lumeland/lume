@@ -40,6 +40,7 @@ Deno.test("Sitemap plugin with filter_pages plugin", async (t) => {
   });
 
   site.use(sitemap());
+  site.ignore("static.yml");
   site.use(filterPages({
     fn: (page) => page.data.url !== "/pages/new-name/page7/",
   }));

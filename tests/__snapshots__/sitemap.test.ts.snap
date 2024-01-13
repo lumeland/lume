@@ -1578,10 +1578,6 @@ Sitemap: https://example.com/sitemap.xml",
     <loc>https://example.com/pages/page6/</loc>
     <lastmod>2022-01-01T00:00:00.000Z</lastmod>
   </url>
-  <url>
-    <loc>https://example.com/static/</loc>
-    <lastmod>2021-09-13T13:38:59.474Z</lastmod>
-  </url>
 </urlset>',
     data: {
       basename: "sitemap",
@@ -1602,10 +1598,6 @@ Sitemap: https://example.com/sitemap.xml",
   <url>
     <loc>https://example.com/pages/page6/</loc>
     <lastmod>2022-01-01T00:00:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://example.com/static/</loc>
-    <lastmod>2021-09-13T13:38:59.474Z</lastmod>
   </url>
 </urlset>',
       page: [
@@ -1865,41 +1857,6 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       asset: false,
       ext: ".page.js",
       path: "/pages/page3",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-This yaml should be ignored because it's copied statically",
-    data: {
-      basename: "static",
-      children: "This yaml should be ignored because it's copied statically",
-      content: "This yaml should be ignored because it's copied statically",
-      date: [],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Default site name",
-      tags: "Array(0)",
-      url: "/static/",
-    },
-    src: {
-      asset: false,
-      ext: ".yml",
-      path: "/static",
       remote: undefined,
     },
   },
