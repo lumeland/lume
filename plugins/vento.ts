@@ -4,6 +4,7 @@ import { merge } from "../core/utils/object.ts";
 import { normalizePath } from "../core/utils/path.ts";
 
 import type Site from "../core/site.ts";
+import type { Data } from "../core/file.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
 import type FS from "../core/fs.ts";
 import type { Environment, Token } from "../deps/vento.ts";
@@ -100,7 +101,9 @@ export class VentoEngine implements Engine {
   }
 
   addHelper(name: string, fn: Helper) {
-    this.engine.filters[name] = fn;
+    this.engine.filters[name] = function (...args: unknown[]) {
+      return fn.apply({ data: this.data as Data }, args);
+    };
   }
 }
 

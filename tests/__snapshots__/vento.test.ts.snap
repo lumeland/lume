@@ -146,6 +146,9 @@ snapshot[`build a site with vento 3`] = `
 
 CUSTOM FILTER
 
+<strong>Título</strong>
+<strong>Título</strong>
+
 
   <footer>
 Título
@@ -170,6 +173,9 @@ Título
 </section>
 
 CUSTOM FILTER
+
+<strong>Título</strong>
+<strong>Título</strong>
 ',
       comp: [
         "_components",
@@ -188,6 +194,9 @@ CUSTOM FILTER
 {{ /comp }}
 
 {{ "custom filter" |> upper }}
+
+<strong>{{ "title" |> fromPage }}</strong>
+<strong>{{ "title" |> await fromPageAsync }}</strong>
 ',
       date: [],
       layout: "layout.vto",

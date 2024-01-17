@@ -140,7 +140,10 @@ export class NunjucksEngine implements Engine {
           return;
         }
 
-        this.env.addFilter(name, fn);
+        // deno-lint-ignore no-explicit-any
+        this.env.addFilter(name, function (this: any, ...args: unknown[]) {
+          return fn.apply({ data: this.ctx }, args);
+        });
     }
   }
 }
@@ -274,11 +277,12 @@ export default function (userOptions?: Options) {
  * https://mozilla.github.io/nunjucks/api.html#custom-filters
  */
 function createAsyncFilter(fn: Helper) {
-  return async function (...args: unknown[]) {
+  // deno-lint-ignore no-explicit-any
+  return async function (this: any, ...args: unknown[]) {
     const cb = args.pop() as (err: unknown, result?: unknown) => void;
 
     try {
-      const result = await fn(...args);
+      const result = await fn.apply({ data: this.ctx }, args);
       cb(null, result);
     } catch (err) {
       cb(err);
@@ -323,8 +327,8 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
       return new nodes.CallExtension(tagExtension, "run", args, extraArgs);
     },
 
-    // @ts-ignore: There's no types for Nunjucks
-    run(_context: unknown, ...args) {
+    // deno-lint-ignore no-explicit-any
+    run(context: any, ...args: any[]) {
       if (options.body) {
         const [body] = args.splice(
           options.async ? args.length - 2 : args.length - 1,
@@ -334,16 +338,18 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
       }
 
       if (!options.async) {
-        const string = fn(...args);
+        const string = fn.apply({ data: context.ctx }, args);
         return new nunjucks.runtime.SafeString(string);
       }
 
       const callback = args.pop();
 
-      (fn(...args) as Promise<string>).then((string: string) => {
-        const result = new nunjucks.runtime.SafeString(string);
-        callback(null, result);
-      });
+      (fn.apply({ data: context.ctx }, args) as Promise<string>).then(
+        (string: string) => {
+          const result = new nunjucks.runtime.SafeString(string);
+          callback(null, result);
+        },
+      );
     },
   };
 
