@@ -6,6 +6,17 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.1.0] - Unreleased
+### Changed
+- BREAKING: Upgrade `date-fns` dependency to version 3 [#541].
+  This affects to how to import locales in the _config file:
+  ```js
+  // Old
+  import gl from "npm:date-fns/locale/gl";
+
+  // New
+  import { gl } from "npm:date-fns/locale/gl";
+  ```
+
 ### Fixed
 - Pages filtered with `filter_pages` plugin are exported to the sitemap.
 - Updated dependencies: `lightningcss`, `vento`.
@@ -228,6 +239,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#526]: https://github.com/lumeland/lume/issues/526
 [#535]: https://github.com/lumeland/lume/issues/535
 [#540]: https://github.com/lumeland/lume/issues/540
+[#541]: https://github.com/lumeland/lume/issues/541
 [#542]: https://github.com/lumeland/lume/issues/542
 [#544]: https://github.com/lumeland/lume/issues/544
 [#547]: https://github.com/lumeland/lume/issues/547
