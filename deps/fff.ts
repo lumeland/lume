@@ -3,6 +3,10 @@ export type {
 } from "https://deno.land/x/fff@v1.2.0/src/types.ts";
 
 export {
+  postTypeDiscovery,
+} from "https://deno.land/x/fff@v1.2.0/src/utils/ptd.ts";
+
+export {
   type FFFTransformPreset,
   transform,
 } from "https://deno.land/x/fff@v1.2.0/src/utils/transform.ts";
