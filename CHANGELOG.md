@@ -19,7 +19,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Pages filtered with `filter_pages` plugin are exported to the sitemap.
-- Updated dependencies: `lightningcss`, `vento`.
+- Updated dependencies: `lightningcss`, `vento`, `terser`, `autoprefixer`.
 
 ## [2.0.3] - 2024-01-12
 ### Added
