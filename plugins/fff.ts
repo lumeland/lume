@@ -12,6 +12,8 @@ import {
 } from "../deps/fff.ts";
 
 export interface Options {
+  /** The list extensions this plugin applies to */
+  extensions: string[];
   presets: FFFTransformPreset[];
   strict: false | StrictPresetOptions;
   date?: "created" | "updated" | "published";
@@ -21,6 +23,7 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
+  extensions: [".html"],
   presets: [],
   strict: false,
 };
@@ -29,7 +32,7 @@ export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.preprocess([".html"], (pages) =>
+    site.preprocess(options.extensions, (pages) =>
       pages.forEach((page) => {
         if (options.getGitDate && page.src.entry) {
           page.data.created = getGitDate("created", page.src.entry.src);
