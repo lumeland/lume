@@ -43,6 +43,7 @@ const defaults: SiteOptions = {
     port: 3000,
     open: false,
     page404: "/404.html",
+    middlewares: [],
   },
   watcher: {
     ignore: [],
@@ -885,7 +886,7 @@ export interface ServerOptions {
   page404: string;
 
   /** Optional for the server */
-  middlewares?: Middleware[];
+  middlewares: Middleware[];
 }
 
 /** The options to configure the local watcher */
