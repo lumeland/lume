@@ -24,10 +24,7 @@ export function getDataValue(data: Partial<Data>, value?: unknown) {
     }
 
     if (value.startsWith("$")) {
-      const document = data.page?.document;
-      const query = value.slice(1);
-      const element = document?.querySelector(query);
-      return element?.innerHTML;
+      return queryCss(value, data.page?.document);
     }
   }
 
@@ -36,4 +33,19 @@ export function getDataValue(data: Partial<Data>, value?: unknown) {
   }
 
   return value;
+}
+
+function queryCss(value: string, document?: Document) {
+  // https://regexr.com/7qnot
+  const checkForAttrPattern = /^\$(.+)\s+(?:attr\(([\w\-]+)\))$/;
+  const checkResult = value.match(checkForAttrPattern);
+
+  const hasAttr = checkResult?.[0];
+  if (hasAttr) {
+    const [_, query, name] = checkResult;
+    return document?.querySelector(query)?.getAttribute(name);
+  }
+
+  const query = value.slice(1);
+  return document?.querySelector(query)?.innerHTML;
 }
