@@ -9,6 +9,7 @@ export const pluginNames = [
   "eta",
   "favicon",
   "feed",
+  "fff",
   "filter_pages",
   "inline",
   "jsx",

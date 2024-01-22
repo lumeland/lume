@@ -6,6 +6,9 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.1.0] - Unreleased
+### Added
+- New plugin: `fff` [#529].
+
 ### Changed
 - BREAKING: Upgrade `date-fns` dependency to version 3 [#541].
   This affects to how to import locales in the _config file:
@@ -240,6 +243,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#523]: https://github.com/lumeland/lume/issues/523
 [#525]: https://github.com/lumeland/lume/issues/525
 [#526]: https://github.com/lumeland/lume/issues/526
+[#529]: https://github.com/lumeland/lume/issues/529
 [#535]: https://github.com/lumeland/lume/issues/535
 [#540]: https://github.com/lumeland/lume/issues/540
 [#541]: https://github.com/lumeland/lume/issues/541
