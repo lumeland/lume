@@ -103,8 +103,8 @@ export default function (userOptions?: Options) {
     );
 
     // Hook to add markdown-it plugins
-    site.hooks.addMarkdownItPlugin = (plugin, options) => {
-      engine.use(plugin, options);
+    site.hooks.addMarkdownItPlugin = (plugin, ...options) => {
+      engine.use(plugin, ...options);
     };
 
     // Register custom rules
