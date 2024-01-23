@@ -1,6 +1,4 @@
-export type {
-  FFFFlavoredFrontmatter,
-} from "https://deno.land/x/fff@v1.2.1/src/types.ts";
+export type * from "https://deno.land/x/fff@v1.2.1/src/types.ts";
 
 export {
   postTypeDiscovery,
