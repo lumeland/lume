@@ -39,7 +39,7 @@ export default function onDemand(options: Options): Middleware {
       return response;
     }
 
-    const data = extraData?.(request) ?? {};
+    const data = await extraData?.(request) ?? {};
     const page = await site.renderPage(file, data);
 
     if (!page) {

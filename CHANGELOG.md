@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.1.0] - Unreleased
 ### Added
 - New plugin: `fff` [#529].
+- `onDemand` plugin: support async extraData function.
 
 ### Changed
 - BREAKING: Upgrade `date-fns` dependency to version 3 [#541].
