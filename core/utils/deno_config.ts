@@ -111,7 +111,7 @@ export function updateLumeVersion(url: URL, denoConfig: DenoConfigResult) {
   // Configure lume tasks
   const tasks = config.tasks || {};
   if (!tasks.lume || !tasks.lume.includes(`echo "import 'lume/cli.ts'"`)) {
-    tasks.lume = `echo "import 'lume/cli.ts'" | deno run --unstable -A -`;
+    tasks.lume = `echo "import 'lume/cli.ts'" | deno run -A -`;
     tasks.build = "deno task lume";
     tasks.serve = "deno task lume -s";
   }

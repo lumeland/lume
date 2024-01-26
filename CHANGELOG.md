@@ -12,6 +12,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `onDemand` plugin: support async extraData function.
 
 ### Changed
+- BREAKING: Removed deprecated `--unstable` flag to the default `lume` task.
+  Use the [`unstable` configuration in `deno.json`](https://docs.deno.com/runtime/manual/tools/unstable_flags).
 - BREAKING: Upgrade `date-fns` dependency to version 3 [#541].
   This affects to how to import locales in the _config file:
   ```js
