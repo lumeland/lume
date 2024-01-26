@@ -24,6 +24,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   import { gl } from "npm:date-fns/locale/gl";
   ```
 - Allow to get value from attribute in CSS query of `getDataValue()` function. See `metas` plugin for a clear example.
+- Use native `Temporal` API if it's available.
 
 ### Fixed
 - Pages filtered with `filter_pages` plugin are exported to the sitemap.
