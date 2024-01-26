@@ -214,12 +214,6 @@ export interface Data extends RawData {
   /** The url of a page */
   url: string;
 
-  /**
-   * The old url(s) of a page
-   * @see https://lume.land/plugins/redirects/
-   */
-  oldUrl?: string | string[];
-
   /** The basename of the page */
   basename: string;
 
