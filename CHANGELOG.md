@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.1.0] - Unreleased
 ### Added
 - New plugin: `fff` [#529].
+- New plugin: `redirects` [#534].
 - `onDemand` plugin: support async extraData function.
 
 ### Changed
@@ -245,6 +246,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#525]: https://github.com/lumeland/lume/issues/525
 [#526]: https://github.com/lumeland/lume/issues/526
 [#529]: https://github.com/lumeland/lume/issues/529
+[#534]: https://github.com/lumeland/lume/issues/534
 [#535]: https://github.com/lumeland/lume/issues/535
 [#540]: https://github.com/lumeland/lume/issues/540
 [#541]: https://github.com/lumeland/lume/issues/541
