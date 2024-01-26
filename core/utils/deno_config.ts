@@ -98,11 +98,6 @@ export function updateLumeVersion(url: URL, denoConfig: DenoConfigResult) {
 
   const { config, importMap } = denoConfig;
 
-  // Configure the import map
-  if (Deno.version.deno < "1.30.0") {
-    config.importMap ||= "./import_map.json";
-  }
-
   const oldUrl = importMap.imports["lume/"];
   const newUrl = new URL("./", url).href;
   importMap.imports["lume/"] = newUrl;
