@@ -120,6 +120,7 @@ export default function (userOptions?: Options) {
         if (options.input.endsWith(".svg")) {
           addIcon(document, {
             rel: "icon",
+            sizes: "any",
             href: site.url(options.input),
             type: "image/svg+xml",
           });
