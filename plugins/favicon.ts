@@ -117,20 +117,20 @@ export default function (userOptions?: Options) {
       for (const page of pages) {
         const document = page.document!;
 
+        for (const favicon of options.favicons) {
+          addIcon(document, {
+            rel: favicon.rel,
+            sizes: favicon.size.map((s) => `${s}x${s}`).join(" "),
+            href: site.url(favicon.url),
+          });
+        }
+
         if (options.input.endsWith(".svg")) {
           addIcon(document, {
             rel: "icon",
             sizes: "any",
             href: site.url(options.input),
             type: "image/svg+xml",
-          });
-        }
-
-        for (const favicon of options.favicons) {
-          addIcon(document, {
-            rel: favicon.rel,
-            sizes: favicon.size.map((s) => `${s}x${s}`).join(" "),
-            href: site.url(favicon.url),
           });
         }
       }
