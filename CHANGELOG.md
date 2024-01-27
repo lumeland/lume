@@ -10,6 +10,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `fff` [#529].
 - New plugin: `redirects` [#534].
 - `onDemand` plugin: support async extraData function.
+- `favicon` plugin: [#562]
+  - Default ico size changed to 48.
+  - Add `sizes="any"` to the svg icon.
+  - Place the svg icon at end.
 
 ### Changed
 - BREAKING: Removed deprecated `--unstable` flag to the default `lume` task.
@@ -258,6 +262,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#550]: https://github.com/lumeland/lume/issues/550
 [#551]: https://github.com/lumeland/lume/issues/551
 [#552]: https://github.com/lumeland/lume/issues/552
+[#562]: https://github.com/lumeland/lume/issues/562
 
 [2.1.0]: https://github.com/lumeland/lume/compare/v2.0.3...HEAD
 [2.0.3]: https://github.com/lumeland/lume/compare/v2.0.2...v2.0.3
