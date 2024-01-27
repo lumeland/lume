@@ -9,11 +9,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - New plugin: `fff` [#529].
 - New plugin: `redirects` [#534].
+- New `--preview` build mode, to generate the site in memory,
+  instead of saving the files in the dest folder.
 - `onDemand` plugin: support async extraData function.
-- `favicon` plugin: [#562]
-  - Default ico size changed to 48.
-  - Add `sizes="any"` to the svg icon.
-  - Place the svg icon at end.
 
 ### Changed
 - BREAKING: Removed deprecated `--unstable` flag to the default `lume` task.
@@ -28,6 +26,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
   import { gl } from "npm:date-fns/locale/gl";
   ```
 - Allow to get value from attribute in CSS query of `getDataValue()` function. See `metas` plugin for a clear example.
+- `favicon` plugin: [#562]
+  - Default ico size changed to 48.
+  - Add `sizes="any"` to the svg icon.
+  - Place the svg icon at end.
 
 ### Fixed
 - Pages filtered with `filter_pages` plugin are exported to the sitemap.

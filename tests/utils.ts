@@ -2,6 +2,7 @@ import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
 import { basename, fromFileUrl, join } from "../deps/path.ts";
 import { DeepPartial } from "../core/utils/object.ts";
+import { PreviewWriter } from "../core/writer.ts";
 
 import type { default as Site, SiteOptions } from "../core/site.ts";
 import type { SourceMap } from "../plugins/source_maps.ts";
@@ -21,6 +22,7 @@ export function getSite(
   options.cwd = getPath("assets");
 
   const site = lume(options, pluginOptions, false);
+  site.writer = new PreviewWriter();
 
   return site;
 }
@@ -38,9 +40,6 @@ export function getPage(site: Site, path: string) {
 
 /** Build a site and print errors */
 export async function build(site: Site) {
-  // Don't save the site to disk
-  site.addEventListener("beforeSave", () => false);
-
   try {
     await site.build();
   } catch (error) {

@@ -1,21 +1,24 @@
 import { log } from "../core/utils/log.ts";
 import { setEnv } from "../core/utils/env.ts";
 import Server from "../core/server.ts";
+import { PreviewWriter } from "../core/writer.ts";
 import FSWatcher, { SiteWatcher } from "../core/watcher.ts";
 import logger from "../middlewares/logger.ts";
 import noCache from "../middlewares/no_cache.ts";
 import notFound from "../middlewares/not_found.ts";
 import reload from "../middlewares/reload.ts";
+import serveMap from "../middlewares/serve_map.ts";
 import { createSite } from "./run.ts";
 
 interface Options {
   config?: string;
   serve?: boolean;
   watch?: boolean;
+  preview?: boolean;
 }
 
-export default function ({ config, serve, watch }: Options) {
-  return build(config, serve, watch);
+export default function ({ config, serve, watch, preview }: Options) {
+  return build(config, serve, watch, preview);
 }
 
 /** Build the website and optionally watch changes and serve the site */
@@ -23,8 +26,13 @@ export async function build(
   config: string | undefined,
   serve?: boolean,
   watch?: boolean,
+  preview?: boolean,
 ) {
   const site = await createSite(config);
+
+  if (preview) {
+    site.writer = new PreviewWriter();
+  }
 
   performance.mark("start");
   await site.build();
@@ -133,6 +141,11 @@ export async function build(
 
   if (middlewares) {
     server.use(...middlewares);
+  }
+
+  if (preview) {
+    const writer = site.writer as PreviewWriter;
+    server.use(serveMap({ map: writer.files }));
   }
 
   server.start();

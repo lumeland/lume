@@ -169,6 +169,7 @@ snapshot[`render remote files 2`] = `
     entry: "/asset.txt",
     flags: [
       "remote",
+      "saved",
     ],
     outputPath: "/asset.txt",
   },

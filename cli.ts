@@ -103,6 +103,11 @@ const lume = new Command()
     { default: 3000, depends: ["serve"] },
   )
   .option(
+    "--preview",
+    "Run Lume in preview mode.",
+    { depends: ["serve"] },
+  )
+  .option(
     "-o, --open",
     "Open the site in a browser.",
     { depends: ["serve"] },

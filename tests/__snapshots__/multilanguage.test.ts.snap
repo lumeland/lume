@@ -307,9 +307,9 @@ snapshot[`multilanguage plugin 3`] = `
   },
   {
     content: '<!DOCTYPE html>
-<html lang="it"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
+<html lang="it"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-one/">
 <link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
-<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-1/">
+<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-un/">
 </head><body><p>Pagina 1</p>
 </body></html>',
     data: {
@@ -348,9 +348,9 @@ snapshot[`multilanguage plugin 3`] = `
   },
   {
     content: '<!DOCTYPE html>
-<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
+<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-one/">
 <link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
-<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-1/">
+<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-un/">
 </head><body><p>Page 1</p>
 </body></html>',
     data: {
@@ -378,7 +378,7 @@ snapshot[`multilanguage plugin 3`] = `
       search: [],
       tags: "Array(0)",
       title: "page-en",
-      url: "/en/page-1/",
+      url: "/en/page-one/",
     },
     src: {
       asset: false,
@@ -389,9 +389,9 @@ snapshot[`multilanguage plugin 3`] = `
   },
   {
     content: '<!DOCTYPE html>
-<html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
+<html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-one/">
 <link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
-<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-1/">
+<link rel="alternate" hreflang="gl" href="http://localhost/gl/paxina-un/">
 </head><body><p>Páxina 1</p>
 </body></html>',
     data: {
@@ -419,7 +419,7 @@ snapshot[`multilanguage plugin 3`] = `
       search: [],
       tags: "Array(0)",
       title: "page-gl",
-      url: "/gl/paxina-1/",
+      url: "/gl/paxina-un/",
     },
     src: {
       asset: false,

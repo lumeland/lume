@@ -11,7 +11,7 @@ export interface Options {
   after?: boolean;
 }
 
-export default function serverFolder(options: Options): Middleware {
+export default function serveFolder(options: Options): Middleware {
   return async function (
     request: Request,
     next: RequestHandler,

@@ -147,7 +147,9 @@ snapshot[`Load the pages of a site 2`] = `
 [
   {
     entry: "/static.yml",
-    flags: [],
+    flags: [
+      "saved",
+    ],
     outputPath: "/static.yml",
   },
 ]

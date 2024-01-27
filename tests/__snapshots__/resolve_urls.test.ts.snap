@@ -121,7 +121,9 @@ snapshot[`relative_url plugin 2`] = `
 [
   {
     entry: "/statics/robots.txt",
-    flags: [],
+    flags: [
+      "saved",
+    ],
     outputPath: "/robots.txt",
   },
 ]
@@ -518,7 +520,9 @@ snapshot[`relative_url plugin (without slugify) 2`] = `
 [
   {
     entry: "/statics/robots.txt",
-    flags: [],
+    flags: [
+      "saved",
+    ],
     outputPath: "/robots.txt",
   },
 ]
