@@ -20,6 +20,9 @@ export interface Writer {
   removeFiles(files: string[]): Promise<void>;
 }
 
+const fmt = ({ from, to }: { from: string; to: string }) =>
+  `🔥 ${to} <dim>${from}</dim>`;
+
 class BaseWritter {
   #saveCount = 0;
   #outputs = new Map<string, [number, string, string]>();
@@ -62,7 +65,7 @@ class BaseWritter {
       }
     }
 
-    log.info(`🔥 ${page.data.url} <dim>${sourcePath}</dim>`);
+    log.info(fmt({ from: sourcePath, to: page.data.url }));
     return true;
   }
 }
@@ -163,11 +166,10 @@ export class FSWriter extends BaseWritter implements Writer {
         // Copy file https://github.com/denoland/deno/issues/19425
         Deno.writeFileSync(pathTo, Deno.readFileSync(entry.src));
       }
-      log.info(
-        `🔥 ${file.outputPath} <dim>${
-          entry.flags.has("remote") ? entry.src : entry.path
-        }</dim>`,
-      );
+      log.info(fmt({
+        from: entry.flags.has("remote") ? entry.src : entry.path,
+        to: file.outputPath,
+      }));
       return true;
     } catch {
       // Ignored
@@ -225,11 +227,10 @@ export class PreviewWriter extends BaseWritter implements Writer {
       entry.flags.add("saved");
       this.files.set(outputPath, entry);
       copied.push(file);
-      log.info(
-        `🔥 ${file.outputPath} <dim>${
-          entry.flags.has("remote") ? entry.src : entry.path
-        }</dim>`,
-      );
+      log.info(fmt({
+        from: entry.flags.has("remote") ? entry.src : entry.path,
+        to: file.outputPath,
+      }));
     }
 
     return Promise.resolve(copied);
