@@ -21,7 +21,7 @@ export interface Writer {
 }
 
 const fmt = ({ from, to }: { from: string; to: string }) =>
-  `🔥 ${to} <dim>${from}</dim>`;
+  `🔥 <bold>${to}</bold> <dim>${from}</dim>`;
 
 class BaseWritter {
   #saveCount = 0;
