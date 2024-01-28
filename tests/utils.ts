@@ -2,8 +2,8 @@ import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
 import { basename, fromFileUrl, join } from "../deps/path.ts";
 import { DeepPartial } from "../core/utils/object.ts";
-import { PreviewWriter } from "../core/writer.ts";
 
+import type { Writer } from "../core/writer.ts";
 import type { default as Site, SiteOptions } from "../core/site.ts";
 import type { SourceMap } from "../plugins/source_maps.ts";
 
@@ -14,6 +14,24 @@ export function getPath(path: string): string {
   return join(cwd, path);
 }
 
+class TestWriter implements Writer {
+  savePages() {
+    return Promise.resolve([]);
+  }
+
+  copyFiles() {
+    return Promise.resolve([]);
+  }
+
+  clear() {
+    return Promise.resolve();
+  }
+
+  removeFiles() {
+    return Promise.resolve();
+  }
+}
+
 /** Create a new lume site using the "assets" path as cwd */
 export function getSite(
   options: DeepPartial<SiteOptions> = {},
@@ -22,7 +40,7 @@ export function getSite(
   options.cwd = getPath("assets");
 
   const site = lume(options, pluginOptions, false);
-  site.writer = new PreviewWriter();
+  site.writer = new TestWriter();
 
   return site;
 }
