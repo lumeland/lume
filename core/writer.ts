@@ -197,7 +197,7 @@ export class FSWriter extends BaseWritter implements Writer {
 }
 
 export class PreviewWriter extends BaseWritter implements Writer {
-  files = new Map<string, string | Uint8Array | Entry>();
+  files = new Map<string, [string, string | Uint8Array | Entry]>();
 
   async savePages(pages: Page[]) {
     this.incrementSaveCount();
@@ -205,7 +205,7 @@ export class PreviewWriter extends BaseWritter implements Writer {
 
     for (const page of pages) {
       if (await this.checkPage(page)) {
-        this.files.set(page.outputPath, page.content!);
+        this.files.set(page.outputPath, [page.sourcePath, page.content!]);
         saved.push(page);
       }
     }
@@ -223,7 +223,7 @@ export class PreviewWriter extends BaseWritter implements Writer {
       }
 
       entry.flags.add("saved");
-      this.files.set(outputPath, entry);
+      this.files.set(outputPath, [entry.path, entry]);
       copied.push(file);
       log.info(
         `🔥 ${file.outputPath} <dim>${

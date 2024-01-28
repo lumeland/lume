@@ -8,7 +8,7 @@ import type { Entry } from "../core/fs.ts";
 /** The options to configure the middleware server */
 export interface Options {
   /** The map with the files to serve */
-  map: Map<string, string | Uint8Array | Entry>;
+  map: Map<string, [string, string | Uint8Array | Entry]>;
 
   /** Serve the file as a fallback of the main middleware */
   after?: boolean;
@@ -35,11 +35,12 @@ export default function serveMap(options: Options): Middleware {
       path += "index.html";
     }
 
-    const entry = options.map.get(path);
+    const file = options.map.get(path);
 
-    if (!entry) {
+    if (!file) {
       return mainResponse || next(request);
     }
+    const [src, entry] = file;
 
     if (typeof entry === "string" || entry instanceof Uint8Array) {
       return createResponse(path, entry);
@@ -47,7 +48,7 @@ export default function serveMap(options: Options): Middleware {
 
     const content = (await entry.getContent(binaryLoader))
       .content as Uint8Array;
-    options.map.set(path, content);
+    options.map.set(path, [src, content]);
     return createResponse(path, content);
   };
 }
