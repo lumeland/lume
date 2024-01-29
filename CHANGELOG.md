@@ -10,6 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `fff` [#529].
 - New plugin: `redirects` [#534].
 - `onDemand` plugin: support async extraData function.
+- `lume:*` global events.
 
 ### Changed
 - BREAKING: Removed deprecated `--unstable` flag to the default `lume` task.
