@@ -34,24 +34,27 @@ export default class Events<E extends Event> {
     const { type } = event;
     const listeners = this.listeners.get(type);
 
-    if (!listeners) {
-      return true;
-    }
+    if (listeners) {
+      for (const listener of listeners) {
+        const [listenerFn, listenerOptions] = listener;
 
-    for (const listener of listeners) {
-      const [listenerFn, listenerOptions] = listener;
+        // Remove the listener if it's a once listener
+        if (listenerOptions?.once) {
+          listeners.delete(listener);
+        }
 
-      // Remove the listener if it's a once listener
-      if (listenerOptions?.once) {
-        listeners.delete(listener);
-      }
-
-      if (await listenerFn(event) === false) {
-        return false;
+        if (await listenerFn(event) === false) {
+          return false;
+        }
       }
     }
 
-    return true;
+    const customEvent = new CustomEvent(`lume:${type}`, {
+      cancelable: true,
+      detail: event,
+    });
+
+    return dispatchEvent(customEvent);
   }
 }
 

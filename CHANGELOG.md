@@ -9,9 +9,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - New plugin: `fff` [#529].
 - New plugin: `redirects` [#534].
-- New `--preview` build mode, to generate the site in memory,
-  instead of saving the files in the dest folder.
 - `onDemand` plugin: support async extraData function.
+- `lume:*` global events.
 
 ### Changed
 - BREAKING: Removed deprecated `--unstable` flag to the default `lume` task.

@@ -123,9 +123,7 @@ snapshot[`slugify_urls plugin 2`] = `
 [
   {
     entry: "/UI Styles.css",
-    flags: [
-      "saved",
-    ],
+    flags: [],
     outputPath: "/ui-styles.css",
   },
 ]
@@ -433,9 +431,7 @@ snapshot[`slugify_urls plugin (static files) 2`] = `
 [
   {
     entry: "/UI Styles.css",
-    flags: [
-      "saved",
-    ],
+    flags: [],
     outputPath: "/ui-styles.css",
   },
 ]
