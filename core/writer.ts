@@ -87,7 +87,7 @@ export class FSWriter implements Writer {
       }
     }
 
-    log.info(`🔥 ${page.data.url} <dim>${sourcePath}</dim>`);
+    log.info(`🔥 ${page.data.url} <- <gray>${sourcePath}</gray>`);
 
     const filename = posix.join(this.dest, page.outputPath);
     await ensureDir(posix.dirname(filename));
@@ -143,11 +143,10 @@ export class FSWriter implements Writer {
         // Copy file https://github.com/denoland/deno/issues/19425
         Deno.writeFileSync(pathTo, Deno.readFileSync(entry.src));
       }
-      log.info(
-        `🔥 ${file.outputPath} <dim>${
-          entry.flags.has("remote") ? entry.src : entry.path
-        }</dim>`,
-      );
+      log.info(fmt({
+        from: entry.flags.has("remote") ? entry.src : entry.path,
+        to: file.outputPath,
+      }));
       return true;
     } catch {
       // Ignored

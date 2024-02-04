@@ -29,6 +29,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - Default ico size changed to 48.
   - Add `sizes="any"` to the svg icon.
   - Place the svg icon at end.
+- logging: URL transformation direction is more visually distinct.
 
 ### Fixed
 - Pages filtered with `filter_pages` plugin are exported to the sitemap.
