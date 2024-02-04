@@ -143,10 +143,11 @@ export class FSWriter implements Writer {
         // Copy file https://github.com/denoland/deno/issues/19425
         Deno.writeFileSync(pathTo, Deno.readFileSync(entry.src));
       }
-      log.info(fmt({
-        from: entry.flags.has("remote") ? entry.src : entry.path,
-        to: file.outputPath,
-      }));
+      log.info(
+        `🔥 ${file.outputPath} <- <gray>${
+          entry.flags.has("remote") ? entry.src : entry.path
+        }</gray>`,
+      );
       return true;
     } catch {
       // Ignored
