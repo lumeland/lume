@@ -87,7 +87,7 @@ export class FSWriter implements Writer {
       }
     }
 
-    log.info(`🔥 ${page.data.url} <dim>${sourcePath}</dim>`);
+    log.info(`🔥 ${page.data.url} <- <gray>${sourcePath}</gray>`);
 
     const filename = posix.join(this.dest, page.outputPath);
     await ensureDir(posix.dirname(filename));
