@@ -11,14 +11,23 @@ export interface Options {
   dest: string;
 }
 
+/** Generic interface for Writer */
+export interface Writer {
+  savePages(pages: Page[]): Promise<Page[]>;
+  copyFiles(files: StaticFile[]): Promise<StaticFile[]>;
+  clear(): Promise<void>;
+  removeFiles(files: string[]): Promise<void>;
+}
+
 /**
  * Class to write the generated pages and static files
  * in the dest folder.
  */
-export default class Writer {
+export class FSWriter implements Writer {
   dest: string;
-  #saveCount = 0;
+
   #outputs = new Map<string, [number, string, string]>();
+  #saveCount = 0;
 
   constructor(options: Options) {
     this.dest = options.dest;
@@ -49,17 +58,17 @@ export default class Writer {
    * Returns a boolean indicating if the page has saved
    */
   async savePage(page: Page): Promise<boolean> {
+    const { sourcePath, outputPath, content } = page;
     // Ignore empty pages
-    if (!page.content) {
+    if (!content) {
       log.warn(
         `[Lume] <cyan>Skipped page</cyan> ${page.data.url} (file content is empty)`,
       );
       return false;
     }
 
-    const { sourcePath, outputPath } = page;
     const id = outputPath.toLowerCase();
-    const hash = await sha1(page.content);
+    const hash = await sha1(content);
     const previous = this.#outputs.get(id);
     this.#outputs.set(id, [this.#saveCount, sourcePath, hash]);
 
@@ -78,14 +87,14 @@ export default class Writer {
       }
     }
 
-    log.info(`🔥 ${page.data.url} <dim>${sourcePath}</dim>`);
+    log.info(`🔥 ${page.data.url} <- <gray>${sourcePath}</gray>`);
 
-    const filename = posix.join(this.dest, outputPath);
+    const filename = posix.join(this.dest, page.outputPath);
     await ensureDir(posix.dirname(filename));
 
     page.content instanceof Uint8Array
       ? await Deno.writeFile(filename, page.content)
-      : await Deno.writeTextFile(filename, page.content);
+      : await Deno.writeTextFile(filename, page.content as string);
 
     return true;
   }
@@ -120,7 +129,6 @@ export default class Writer {
     }
 
     entry.flags.add("saved");
-
     const pathTo = posix.join(this.dest, file.outputPath);
 
     try {
@@ -136,9 +144,9 @@ export default class Writer {
         Deno.writeFileSync(pathTo, Deno.readFileSync(entry.src));
       }
       log.info(
-        `🔥 ${file.outputPath} <dim>${
+        `🔥 ${file.outputPath} <- <gray>${
           entry.flags.has("remote") ? entry.src : entry.path
-        }</dim>`,
+        }</gray>`,
       );
       return true;
     } catch {

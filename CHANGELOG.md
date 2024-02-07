@@ -10,6 +10,37 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Support `x-default` for unmatched languages #528 & #532
   - `multilanguage` plugin
   - `sitemap` plugin
+- New plugin: `fff` [#529].
+- New plugin: `redirects` [#534].
+- New plugin: `og_images` [#534].
+- New command `lume cms`.
+- `onDemand` plugin: support async extraData function.
+- `lume:*` global events.
+
+### Changed
+- BREAKING: Removed deprecated `--unstable` flag to the default `lume` task.
+  Use the [`unstable` configuration in `deno.json`](https://docs.deno.com/runtime/manual/tools/unstable_flags).
+- BREAKING: Upgrade `date-fns` dependency to version 3 [#541].
+  This affects to how to import locales in the _config file:
+  ```js
+  // Old
+  import gl from "npm:date-fns/locale/gl";
+
+  // New
+  import { gl } from "npm:date-fns/locale/gl";
+  ```
+- Allow to get value from attribute in CSS query of `getDataValue()` function. See `metas` plugin for a clear example.
+- `favicon` plugin: [#562]
+  - Default ico size changed to 48.
+  - Add `sizes="any"` to the svg icon.
+  - Place the svg icon at end.
+- logging: URL transformation direction is more visually distinct.
+
+### Fixed
+- Pages filtered with `filter_pages` plugin are exported to the sitemap.
+- Ensure `site.options.server.middlewares` array is always defined.
+- Updated dependencies: `std`, `date-fns`, `lightningcss`, `vento`, `terser`, `autoprefixer`, `esbuild`, `sass`, `unocss`.
+- `site.hooks.addMarkdownItPlugin` accepts multiple options
 
 ## [2.0.3] - 2024-01-12
 ### Added
@@ -227,15 +258,20 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#523]: https://github.com/lumeland/lume/issues/523
 [#525]: https://github.com/lumeland/lume/issues/525
 [#526]: https://github.com/lumeland/lume/issues/526
+[#529]: https://github.com/lumeland/lume/issues/529
+[#534]: https://github.com/lumeland/lume/issues/534
 [#535]: https://github.com/lumeland/lume/issues/535
 [#540]: https://github.com/lumeland/lume/issues/540
+[#541]: https://github.com/lumeland/lume/issues/541
 [#542]: https://github.com/lumeland/lume/issues/542
 [#544]: https://github.com/lumeland/lume/issues/544
 [#547]: https://github.com/lumeland/lume/issues/547
 [#550]: https://github.com/lumeland/lume/issues/550
 [#551]: https://github.com/lumeland/lume/issues/551
 [#552]: https://github.com/lumeland/lume/issues/552
+[#562]: https://github.com/lumeland/lume/issues/562
 
+[2.1.0]: https://github.com/lumeland/lume/compare/v2.0.3...HEAD
 [2.0.3]: https://github.com/lumeland/lume/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/lumeland/lume/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/lumeland/lume/compare/v2.0.0...v2.0.1

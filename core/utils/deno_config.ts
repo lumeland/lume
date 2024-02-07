@@ -98,11 +98,6 @@ export function updateLumeVersion(url: URL, denoConfig: DenoConfigResult) {
 
   const { config, importMap } = denoConfig;
 
-  // Configure the import map
-  if (Deno.version.deno < "1.30.0") {
-    config.importMap ||= "./import_map.json";
-  }
-
   const oldUrl = importMap.imports["lume/"];
   const newUrl = new URL("./", url).href;
   importMap.imports["lume/"] = newUrl;
@@ -116,7 +111,7 @@ export function updateLumeVersion(url: URL, denoConfig: DenoConfigResult) {
   // Configure lume tasks
   const tasks = config.tasks || {};
   if (!tasks.lume || !tasks.lume.includes(`echo "import 'lume/cli.ts'"`)) {
-    tasks.lume = `echo "import 'lume/cli.ts'" | deno run --unstable -A -`;
+    tasks.lume = `echo "import 'lume/cli.ts'" | deno run -A -`;
     tasks.build = "deno task lume";
     tasks.serve = "deno task lume -s";
   }

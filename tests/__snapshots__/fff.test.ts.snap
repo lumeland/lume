@@ -1,0 +1,262 @@
+export const snapshot = {};
+
+snapshot[`FFF plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+  ],
+  src: [
+    "/",
+    "/date.md",
+    "/image.md",
+    "/tags.md",
+  ],
+}
+`;
+
+snapshot[`FFF plugin 2`] = `[]`;
+
+snapshot[`FFF plugin 3`] = `
+[
+  {
+    content: "<!DOCTYPE html>
+<p>The <code>published</code> should be used as <code>date</code>.</p>
+",
+    data: {
+      alt: "undefined",
+      audio: "undefined",
+      basename: "date",
+      categories: "undefined",
+      children: "<p>The <code>published</code> should be used as <code>date</code>.</p>
+",
+      content: "The \`published\` should be used as \`date\`.
+",
+      created: [],
+      date: [],
+      draft: "undefined",
+      flags: "undefined",
+      image: "undefined",
+      images: "Array(0)",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      published: [],
+      search: [],
+      summary: "The \`published\` should be used as \`date\`.
+",
+      tags: "Array(0)",
+      title: "FFF Date Test",
+      type: "article",
+      updated: [],
+      url: "/date/",
+      video: "undefined",
+      visibility: "undefined",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/date",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<p>FFF Image Test</p>
+",
+    data: {
+      alt: "FFF Image Test",
+      audio: "undefined",
+      basename: "image",
+      categories: "undefined",
+      children: "<p>FFF Image Test</p>
+",
+      content: "FFF Image Test
+",
+      created: [],
+      date: [],
+      draft: "undefined",
+      flags: "undefined",
+      image: [
+        "alt",
+        "src",
+      ],
+      images: "Array(1)",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      summary: "FFF Image Test
+",
+      tags: "Array(0)",
+      type: "photo",
+      updated: [],
+      url: "/image/",
+      video: "undefined",
+      visibility: "undefined",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/image",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<p>FFF Tags Test</p>
+<p>The <code>categories</code> should be merged into <code>tags</code>.</p>
+",
+    data: {
+      alt: "undefined",
+      audio: "undefined",
+      basename: "tags",
+      categories: "Array(2)",
+      children: "<p>FFF Tags Test</p>
+<p>The <code>categories</code> should be merged into <code>tags</code>.</p>
+",
+      content: "FFF Tags Test
+
+The \`categories\` should be merged into \`tags\`.
+",
+      created: [],
+      date: [],
+      draft: "undefined",
+      flags: "undefined",
+      image: "undefined",
+      images: "Array(0)",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      summary: "FFF Tags Test
+
+The \`categories\` should be merged into \`tags\`.
+",
+      tags: "Array(4)",
+      type: "photo",
+      updated: [],
+      url: "/tags/",
+      video: "undefined",
+      visibility: "undefined",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/tags",
+      remote: undefined,
+    },
+  },
+]
+`;

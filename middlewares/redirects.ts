@@ -6,7 +6,7 @@ export interface Options {
 
 export interface Redirect {
   to: string;
-  code: 301 | 302 | 307 | 308 | 200;
+  code: 301 | 302 | 303 | 307 | 308 | 200;
 }
 
 /** Implements redirects */

@@ -47,7 +47,7 @@ export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.addEventListener("afterRender", async () => {
+    site.addEventListener("beforeSave", async () => {
       // Create the sitemap.xml page
       const sitemap = Page.create({
         url: options.filename,

@@ -15,20 +15,21 @@ import Events from "./events.ts";
 import Formats from "./formats.ts";
 import Searcher from "./searcher.ts";
 import Scripts from "./scripts.ts";
-import Writer from "./writer.ts";
+import { FSWriter } from "./writer.ts";
 import { Page } from "./file.ts";
 import textLoader from "./loaders/text.ts";
 
-import type { Component, Components } from "../core/component_loader.ts";
-import type { Data, RawData, StaticFile } from "../core/file.ts";
-import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
-import type { Event, EventListener, EventOptions } from "../core/events.ts";
-import type { Extensions, Processor } from "../core/processors.ts";
-import type { Loader } from "../core/fs.ts";
-import type { Middleware } from "../core/server.ts";
-import type { ScopeFilter } from "../core/scopes.ts";
-import type { ScriptOrFunction } from "../core/scripts.ts";
-import type { MergeStrategy } from "../core/utils/merge_data.ts";
+import type { Component, Components } from "./component_loader.ts";
+import type { Data, RawData, StaticFile } from "./file.ts";
+import type { Engine, Helper, HelperOptions } from "./renderer.ts";
+import type { Event, EventListener, EventOptions } from "./events.ts";
+import type { Extensions, Processor } from "./processors.ts";
+import type { Loader } from "./fs.ts";
+import type { Writer } from "./writer.ts";
+import type { Middleware } from "./server.ts";
+import type { ScopeFilter } from "./scopes.ts";
+import type { ScriptOrFunction } from "./scripts.ts";
+import type { MergeStrategy } from "./utils/merge_data.ts";
 
 /** Default options of the site */
 const defaults: SiteOptions = {
@@ -43,6 +44,7 @@ const defaults: SiteOptions = {
     port: 3000,
     open: false,
     page404: "/404.html",
+    middlewares: [],
   },
   watcher: {
     ignore: [],
@@ -167,7 +169,7 @@ export default class Site {
     // Other stuff
     const events = new Events<SiteEvent>();
     const scripts = new Scripts({ cwd });
-    const writer = new Writer({ dest });
+    const writer = new FSWriter({ dest });
 
     const url404 = server.page404 ? normalizePath(server.page404) : undefined;
     const searcher = new Searcher({
@@ -848,6 +850,9 @@ export interface SiteOptions {
   /** Whether the empty folder should be emptied before the build */
   emptyDest?: boolean;
 
+  /** Whether the site is in preview mode */
+  preview?: boolean;
+
   /** The default includes path */
   includes: string;
 
@@ -885,7 +890,7 @@ export interface ServerOptions {
   page404: string;
 
   /** Optional for the server */
-  middlewares?: Middleware[];
+  middlewares: Middleware[];
 }
 
 /** The options to configure the local watcher */

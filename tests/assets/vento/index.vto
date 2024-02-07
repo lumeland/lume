@@ -16,3 +16,6 @@ layout: layout.vto
 {{ /comp }}
 
 {{ "custom filter" |> upper }}
+
+<strong>{{ "title" |> fromPage }}</strong>
+<strong>{{ "title" |> await fromPageAsync }}</strong>
