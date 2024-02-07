@@ -679,15 +679,15 @@ Sitemap: https://example.com/sitemap.xml",
   <url>
     <loc>https://example.com/en/page-1/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/paxina-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/page-1/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/page-1/"/>
   </url>
   <url>
-    <loc>https://example.com/en/page-1/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/page-1/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/page-1/"/>
+    <loc>https://example.com/en/page-one/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-one/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/paxina-un/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/page-one/"/>
   </url>
   <url>
     <loc>https://example.com/en/types/post/</loc>
@@ -702,20 +702,11 @@ Sitemap: https://example.com/sitemap.xml",
     <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/other-page-english/"/>
   </url>
   <url>
-    <loc>https://example.com/gl/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/"/>
-  </url>
-  <url>
-    <loc>https://example.com/gl/page-1/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/page-1/"/>
-  </url>
-  <url>
-    <loc>https://example.com/gl/paxina-un/</loc>
+    <loc>https://example.com/it/pagina-1/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-one/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/paxina-un/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/paxina-un/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/page-one/"/>
   </url>
   <url>
     <loc>https://example.com/it/types/article/</loc>
@@ -733,11 +724,11 @@ Sitemap: https://example.com/sitemap.xml",
     <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/page-1/"/>
   </url>
   <url>
-    <loc>https://example.com/paxina-1/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
+    <loc>https://example.com/paxina-un/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-one/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/paxina-1/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/page-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/paxina-un/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/page-one/"/>
   </url>
   <url>
     <loc>https://example.com/types/article_gl/</loc>
@@ -774,13 +765,15 @@ Sitemap: https://example.com/sitemap.xml",
   <url>
     <loc>https://example.com/en/page-1/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/page-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/page-1/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/page-1/"/>
   </url>
   <url>
     <loc>https://example.com/en/page-one/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-one/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/paxina-un/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/paxina-un/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/page-one/"/>
   </url>
   <url>
     <loc>https://example.com/en/types/post/</loc>
@@ -795,20 +788,11 @@ Sitemap: https://example.com/sitemap.xml",
     <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/other-page-english/"/>
   </url>
   <url>
-    <loc>https://example.com/gl/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/"/>
-  </url>
-  <url>
-    <loc>https://example.com/gl/page-1/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/page-1/"/>
-  </url>
-  <url>
-    <loc>https://example.com/gl/paxina-un/</loc>
+    <loc>https://example.com/it/pagina-1/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-one/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/gl/paxina-un/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/paxina-un/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/page-one/"/>
   </url>
   <url>
     <loc>https://example.com/it/types/article/</loc>
@@ -826,11 +810,11 @@ Sitemap: https://example.com/sitemap.xml",
     <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/page-1/"/>
   </url>
   <url>
-    <loc>https://example.com/paxina-1/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-1/"/>
+    <loc>https://example.com/paxina-un/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/page-one/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/"/>
-    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/paxina-1/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/page-1/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/paxina-un/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/page-one/"/>
   </url>
   <url>
     <loc>https://example.com/types/article_gl/</loc>
@@ -1085,8 +1069,8 @@ Sitemap: https://example.com/sitemap.xml",
     content: '<!DOCTYPE html>
 <html lang="it"><head><link rel="alternate" hreflang="en" href="https://example.com/en/page-one/">
 <link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/">
-<link rel="alternate" hreflang="gl" href="https://example.com/paxina-1/">
-<link rel="alternate" hreflang="x-default" href="https://example.com/en/page-1/">
+<link rel="alternate" hreflang="gl" href="https://example.com/paxina-un/">
+<link rel="alternate" hreflang="x-default" href="https://example.com/en/page-one/">
 </head><body><p>Pagina 1</p>
 </body></html>',
     data: {
@@ -1114,7 +1098,7 @@ Sitemap: https://example.com/sitemap.xml",
       search: [],
       tags: "Array(0)",
       title: "page-it",
-      unmatchedLangUrl: "/en/page-1/",
+      unmatchedLangUrl: "/en/page-one/",
       url: "/it/pagina-1/",
     },
     src: {
@@ -1128,8 +1112,8 @@ Sitemap: https://example.com/sitemap.xml",
     content: '<!DOCTYPE html>
 <html lang="en"><head><link rel="alternate" hreflang="en" href="https://example.com/en/page-one/">
 <link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/">
-<link rel="alternate" hreflang="gl" href="https://example.com/paxina-1/">
-<link rel="alternate" hreflang="x-default" href="https://example.com/en/page-1/">
+<link rel="alternate" hreflang="gl" href="https://example.com/paxina-un/">
+<link rel="alternate" hreflang="x-default" href="https://example.com/en/page-one/">
 </head><body><p>Page 1</p>
 </body></html>',
     data: {
@@ -1157,7 +1141,7 @@ Sitemap: https://example.com/sitemap.xml",
       search: [],
       tags: "Array(0)",
       title: "page-en",
-      unmatchedLangUrl: "/en/page-1/",
+      unmatchedLangUrl: "/en/page-one/",
       url: "/en/page-one/",
     },
     src: {
@@ -1171,8 +1155,8 @@ Sitemap: https://example.com/sitemap.xml",
     content: '<!DOCTYPE html>
 <html lang="gl"><head><link rel="alternate" hreflang="en" href="https://example.com/en/page-one/">
 <link rel="alternate" hreflang="it" href="https://example.com/it/pagina-1/">
-<link rel="alternate" hreflang="gl" href="https://example.com/paxina-1/">
-<link rel="alternate" hreflang="x-default" href="https://example.com/en/page-1/">
+<link rel="alternate" hreflang="gl" href="https://example.com/paxina-un/">
+<link rel="alternate" hreflang="x-default" href="https://example.com/en/page-one/">
 </head><body><p>Páxina 1</p>
 </body></html>',
     data: {
@@ -1200,8 +1184,8 @@ Sitemap: https://example.com/sitemap.xml",
       search: [],
       tags: "Array(0)",
       title: "page-gl",
-      unmatchedLangUrl: "/en/page-1/",
-      url: "/paxina-1/",
+      unmatchedLangUrl: "/en/page-one/",
+      url: "/paxina-un/",
     },
     src: {
       asset: false,
