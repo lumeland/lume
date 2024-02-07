@@ -4,6 +4,7 @@ import upgradeCommand from "./cli/upgrade.ts";
 import runCommand from "./cli/run.ts";
 import buildCommand from "./cli/build.ts";
 import createCommand from "./cli/create.ts";
+import cmsCommand from "./cli/cms.ts";
 
 const upgrade = new Command()
   .description("Upgrade your Lume executable to the latest version.")
@@ -63,6 +64,29 @@ const run = new Command()
   )
   .action(runCommand);
 
+const cms = new Command()
+  .description("Run Lume CMS.")
+  .option(
+    "--config <config:string>",
+    "The config file path.",
+  )
+  .option(
+    "--src <src:string>",
+    "The source directory for your site.",
+    { default: "./" },
+  )
+  .option(
+    "--dest <dest:string>",
+    "The build destination.",
+    { default: "_site" },
+  )
+  .option(
+    "--location <location>",
+    "The URL location of the site.",
+    { default: "http://localhost" },
+  )
+  .action(cmsCommand);
+
 const lume = new Command()
   .name("🔥lume")
   .version(() => getCurrentVersion())
@@ -115,6 +139,7 @@ const lume = new Command()
   .command("new <archetype> [arguments...]", create)
   .command("upgrade", upgrade)
   .command("run <script...>", run)
+  .command("cms", cms)
   .command("completions", new CompletionsCommand());
 
 try {

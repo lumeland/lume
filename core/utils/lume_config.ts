@@ -52,6 +52,7 @@ export const pluginNames = [
 /** Returns the _config file of a site */
 export async function getConfigFile(
   path?: string,
+  defaultPaths: string[] = ["_config.js", "_config.ts"],
 ): Promise<string | undefined> {
   if (path) {
     try {
@@ -61,9 +62,7 @@ export async function getConfigFile(
     }
   }
 
-  const paths = ["_config.js", "_config.ts"];
-
-  for (const path of paths) {
+  for (const path of defaultPaths) {
     try {
       return await Deno.realPath(path);
     } catch {
