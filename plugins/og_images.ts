@@ -1,18 +1,25 @@
 import satori, { SatoriOptions } from "../deps/satori.ts";
 import sharp from "../deps/sharp.ts";
 import Cache from "../core/cache.ts";
+import { posix } from "../deps/path.ts";
+import { resolveInclude } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { read } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
+import loader from "../core/loaders/module.ts";
 
 import type { React } from "../deps/react.ts";
 import "../types.ts";
 
-type OGImageTemplate = (data: Lume.Data) => React.ReactNode;
-
 export interface Options {
   /** The list of extensions this plugin applies to */
   extensions?: string[];
+
+  /**
+   * Custom includes path for `postcss-import`
+   * @default `site.options.includes`
+   */
+  includes?: string;
 
   /** The cache folder */
   cache: string | boolean;
@@ -35,9 +42,12 @@ export const defaults: Options = {
 };
 
 export default function (userOptions?: Options) {
-  const options = merge(defaults, userOptions);
-
   return (site: Lume.Site) => {
+    const options = merge(
+      { ...defaults, includes: site.options.includes },
+      userOptions,
+    );
+
     // Configure the cache folder
     const cacheFolder = options.cache === true ? "_cache" : options.cache;
     const cache = cacheFolder
@@ -56,10 +66,31 @@ export default function (userOptions?: Options) {
 
       for (const page of pages) {
         const { data } = page;
-        const template = data.ogImageTemplate;
+        const layout = data.openGraphLayout;
 
-        if (!template) {
+        if (!layout) {
           continue;
+        }
+
+        const layoutPath = resolveInclude(
+          layout,
+          options.includes,
+          posix.dirname(page.sourcePath),
+        );
+
+        const entry = site.fs.entries.get(layoutPath);
+
+        if (!entry) {
+          throw new Error(`The layout file "${layoutPath}" doesn't exist`);
+        }
+
+        const layoutData = await entry.getContent(loader);
+        const template = layoutData.content;
+
+        if (typeof template !== "function") {
+          throw new Error(
+            `The layout file "${layoutPath}" doesn't have a default export`,
+          );
         }
 
         const jsx = await template(data);
@@ -127,10 +158,10 @@ declare global {
   namespace Lume {
     export interface Data {
       /**
-       * Template to generate the og_image
+       * The layout to generate the Open Graph Image
        * @see https://lume.land/plugins/og_image/
        */
-      ogImageTemplate?: OGImageTemplate;
+      openGraphLayout?: string;
     }
   }
 }

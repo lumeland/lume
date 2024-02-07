@@ -104,7 +104,7 @@ snapshot[`OpenGraph images 1`] = `
   ],
   src: [
     "/",
-    "/_data.js",
+    "/_data.yml",
     "/_includes",
     "/_includes/og_template.jsx",
     "/page1.md",
@@ -152,7 +152,7 @@ snapshot[`OpenGraph images 3`] = `
       metas: [
         "image",
       ],
-      ogImageTemplate: "default",
+      openGraphLayout: "og_template.jsx",
       page: [
         "src",
         "data",
