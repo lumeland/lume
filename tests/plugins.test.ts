@@ -31,6 +31,7 @@ Deno.test("Plugins list in init", () => {
     "multilanguage",
     "nav",
     "nunjucks",
+    "og_images",
     "on_demand",
     "pagefind",
     "picture",
