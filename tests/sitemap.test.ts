@@ -23,6 +23,7 @@ Deno.test("Sitemap plugin with a multilanguage plugin", async (t) => {
   });
 
   site.use(multilanguage({
+    defaultLanguage: "gl",
     languages: ["en", "fr", "it", "gl"],
   }));
   site.use(sitemap({

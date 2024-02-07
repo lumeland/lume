@@ -199,9 +199,6 @@ export interface Data extends RawData {
   /** The title of the page */
   title?: string;
 
-  /** The language of the page */
-  lang?: string;
-
   /** The type of the page (used to group pages in collections) */
   type?: string;
 
@@ -228,6 +225,23 @@ export interface Data extends RawData {
 
   /** The page reference */
   page: Page;
+
+  /** The language of the page */
+  lang?: string;
+
+  /**
+   * Unmatched Language URL
+   * The url for when the user's language doesn't match with any of the site's available languages.
+   *
+   * Valid values are:
+   * - External URL string (http, https), which is language selector page
+   * - Source path string (/), which is language selector page
+   * - Language code (en, gl, vi), which is fallback language page
+   *
+   * This option is made for x-default feature.
+   * @see https://developers.google.com/search/docs/specialty/international/localized-versions#xdefault
+   */
+  unmatchedLangUrl?: string;
 
   /**
    * Alternate pages (for languages)

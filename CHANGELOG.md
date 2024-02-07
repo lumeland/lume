@@ -7,6 +7,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.1.0] - Unreleased
 ### Added
+- Support `x-default` for unmatched languages #528 & #532
+  - `multilanguage` plugin
+  - `sitemap` plugin
 - New plugin: `fff` [#529].
 - New plugin: `redirects` [#534].
 - New plugin: `og_images` [#534].

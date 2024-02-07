@@ -36,8 +36,8 @@ export default function multilanguage(userOptions: Options) {
      * + display guidance (warning log) to some bug-potential cases
      * + convert "page.data.lang" array type page (if yes) to string type page
      */
-    site.preprocess(options.extensions, (pages, allPages) => {
-      for (const page of pages) {
+    site.preprocess(options.extensions, (filteredPages, allPages) => {
+      for (const page of filteredPages) {
         const { data } = page;
         const languages = data.lang as string | string[] | undefined;
 
@@ -88,12 +88,12 @@ export default function multilanguage(userOptions: Options) {
     /**
      * Preprocessor to process the multilanguage data
      *
-     * + set language url
+     * + convert plain url to language url
      * + create the alternates
      * + sort the alternates
      */
-    site.preprocess(options.extensions, (pages, allPages) => {
-      for (const page of pages) {
+    site.preprocess(options.extensions, (filteredPages, allPages) => {
+      for (const page of filteredPages) {
         const { data } = page;
         const { lang } = data;
 
@@ -134,7 +134,7 @@ export default function multilanguage(userOptions: Options) {
             const existing = ids.get(id);
             if (existing) {
               log.warn(
-                `[multilanguage] The pages ${existing.sourcePath} and ${page.sourcePath} have the same id, type and language.`,
+                `[multilanguage plugin] The pages ${existing.sourcePath} and ${page.sourcePath} have the same id, type and language.`,
               );
             }
             ids.set(id, page);
@@ -146,6 +146,20 @@ export default function multilanguage(userOptions: Options) {
         alternates.sort((a, b) =>
           options.languages.indexOf(a.lang!) -
           options.languages.indexOf(b.lang!)
+        );
+      }
+    });
+
+    /**
+     * Preprocessor to process the Unmatched Language URL
+     *
+     * + convert unmatchedLangUrl any value to URL string value
+     */
+    site.preprocess(options.extensions, (filteredPages) => {
+      for (const page of filteredPages) {
+        page.data.unmatchedLangUrl = getUnmatchedLangPath(
+          page,
+          filteredPages,
         );
       }
     });
@@ -176,7 +190,62 @@ export default function multilanguage(userOptions: Options) {
           document.head.appendChild(meta);
           document.head.appendChild(document.createTextNode("\n"));
         }
+
+        if (page.data.unmatchedLangUrl) {
+          appendHreflang(
+            "x-default",
+            site.url(page.data.unmatchedLangUrl, true),
+            document,
+          );
+        }
       }
     });
   };
+}
+
+function getUnmatchedLangPath(
+  currentPage: Page<Data>,
+  filteredPages: Page<Data>[],
+): string | undefined {
+  const { sourcePath } = currentPage;
+  const { unmatchedLangUrl, alternates } = currentPage.data;
+
+  if (!unmatchedLangUrl) return void 0;
+
+  // If unmatchedLang is an external URL string
+  if (URL.canParse(unmatchedLangUrl)) {
+    return unmatchedLangUrl;
+  }
+
+  // If unmatchedLang is an source path string
+  if (unmatchedLangUrl.startsWith("/")) {
+    const langSelectorPage = filteredPages.some(
+      (page) => page.data.url === unmatchedLangUrl,
+    );
+
+    if (!langSelectorPage) {
+      log.warning(
+        `[multilanguage plugin] The URL <cyan>${unmatchedLangUrl}</cyan> of unmatchedLangUrl option is not found in ${sourcePath}.`,
+      );
+    }
+    return langSelectorPage ? unmatchedLangUrl : void 0;
+  }
+
+  // If unmatchedLang is language code → resolve to URL of that language
+  const lang = alternates?.find((data) => data.lang === unmatchedLangUrl);
+  if (!lang) {
+    log.warning(
+      `[multilanguage plugin] The URL for lang code "${unmatchedLangUrl}" of unmatchedLangUrl option is not found in ${sourcePath}.`,
+    );
+  }
+  return lang?.url;
+}
+
+function appendHreflang(lang: string, url: string, document: Document) {
+  const meta = document.createElement("link");
+  meta.setAttribute("rel", "alternate");
+  meta.setAttribute("hreflang", lang);
+  meta.setAttribute("href", url);
+  document.head.appendChild(meta);
+  document.head.appendChild(document.createTextNode("\n"));
 }

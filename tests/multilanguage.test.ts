@@ -7,6 +7,7 @@ Deno.test("multilanguage plugin", async (t) => {
   });
 
   site.use(multilanguage({
+    defaultLanguage: "gl",
     languages: ["en", "fr", "it", "gl"],
   }));
 
