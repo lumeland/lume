@@ -35,6 +35,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - Add `sizes="any"` to the svg icon.
   - Place the svg icon at end.
 - logging: URL transformation direction is more visually distinct.
+- `deno task lume upgrade` removes the `deno.lock` file [#527].
 
 ### Fixed
 - Pages filtered with `filter_pages` plugin are exported to the sitemap.
@@ -259,6 +260,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#523]: https://github.com/lumeland/lume/issues/523
 [#525]: https://github.com/lumeland/lume/issues/525
 [#526]: https://github.com/lumeland/lume/issues/526
+[#527]: https://github.com/lumeland/lume/issues/527
 [#528]: https://github.com/lumeland/lume/issues/528
 [#529]: https://github.com/lumeland/lume/issues/529
 [#532]: https://github.com/lumeland/lume/issues/532
