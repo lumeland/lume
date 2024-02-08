@@ -224,7 +224,7 @@ function getUnmatchedLangPath(
     );
 
     if (!langSelectorPage) {
-      log.warning(
+      log.warn(
         `[multilanguage plugin] The URL <cyan>${unmatchedLangUrl}</cyan> of unmatchedLangUrl option is not found in ${sourcePath}.`,
       );
     }
@@ -234,7 +234,7 @@ function getUnmatchedLangPath(
   // If unmatchedLang is language code → resolve to URL of that language
   const lang = alternates?.find((data) => data.lang === unmatchedLangUrl);
   if (!lang) {
-    log.warning(
+    log.warn(
       `[multilanguage plugin] The URL for lang code "${unmatchedLangUrl}" of unmatchedLangUrl option is not found in ${sourcePath}.`,
     );
   }

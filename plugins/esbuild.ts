@@ -9,7 +9,7 @@ import { readDenoConfig } from "../core/utils/deno_config.ts";
 import { log } from "../core/utils/log.ts";
 import { read } from "../core/utils/read.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
-import { build, BuildOptions, OutputFile, stop } from "../deps/esbuild.ts";
+import { build, BuildOptions, OutputFile } from "../deps/esbuild.ts";
 import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/file.ts";
@@ -265,8 +265,6 @@ export default function (userOptions?: Options) {
 
       return [outputFiles || [], enableAllSourceMaps];
     }
-
-    site.addEventListener("beforeSave", () => stop());
 
     // Splitting mode needs to run esbuild with all pages at the same time
     if (options.options.splitting) {

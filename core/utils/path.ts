@@ -1,4 +1,4 @@
-import { posix, SEP } from "../../deps/path.ts";
+import { posix, SEPARATOR } from "../../deps/path.ts";
 
 /**
  * Convert the Windows paths (that use the separator "\")
@@ -10,8 +10,8 @@ export function normalizePath(path: string, rootToRemove?: string) {
     path = path.replace(rootToRemove, "");
   }
 
-  if (SEP !== "/") {
-    path = path.replaceAll(SEP, "/");
+  if (SEPARATOR !== "/") {
+    path = path.replaceAll(SEPARATOR, "/");
 
     // Is absolute Windows path (C:/...)
     if (path.includes(":/")) {
@@ -36,7 +36,7 @@ export function isUrl(path: string): boolean {
 
 /** Check if the path is absolute */
 export function isAbsolutePath(path: string): boolean {
-  return SEP !== "/" ? /^\w:[\/\\]/.test(path) : path.startsWith("/");
+  return SEPARATOR !== "/" ? /^\w:[\/\\]/.test(path) : path.startsWith("/");
 }
 
 /** Replace the extension of a path */

@@ -23,7 +23,6 @@ Deno.test(
 // Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
 Deno.test(
   "esbuild plugin with splitting as true",
-  { sanitizeOps: false, sanitizeResources: false },
   async (t) => {
     const site = getSite({
       src: "esbuild",
@@ -63,7 +62,6 @@ Deno.test(
 // Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
 Deno.test(
   "esbuild plugin with JSX",
-  { sanitizeOps: false, sanitizeResources: false },
   async (t) => {
     const site = getSite({
       src: "esbuild_jsx",

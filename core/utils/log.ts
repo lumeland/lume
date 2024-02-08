@@ -26,13 +26,13 @@ if (!level || level === "NOTSET") {
  * This is the default logger. It will output color coded log messages to the
  * console via `console.log()`.
  */
-class ConsoleHandler extends logger.handlers.BaseHandler {
+class ConsoleHandler extends logger.BaseHandler {
   override format(logRecord: LogRecord): string {
     let { msg } = logRecord;
 
     switch (logRecord.level) {
-      case logger.LogLevels.WARNING:
-        msg = `<yellow>WARNING</yellow> ${msg}`;
+      case logger.LogLevels.WARN:
+        msg = `<yellow>WARN</yellow> ${msg}`;
         break;
       case logger.LogLevels.ERROR:
         msg = `<red>ERROR</red> ${msg}`;

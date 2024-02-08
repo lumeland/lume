@@ -40,7 +40,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - Pages filtered with `filter_pages` plugin are exported to the sitemap.
 - Ensure `site.options.server.middlewares` array is always defined.
-- Updated dependencies: `std`, `date-fns`, `lightningcss`, `vento`, `terser`, `autoprefixer`, `esbuild`, `sass`, `unocss`.
+- Updated dependencies: `std`, `date-fns`, `lightningcss`, `vento`, `terser`, `autoprefixer`, `esbuild`, `sass`, `unocss`, `deno-dom`,  `esbuild`, `postcss`, `preact`, `react` types.
 - `site.hooks.addMarkdownItPlugin` accepts multiple options
 - `cli` commands are loaded dynamically.
 
