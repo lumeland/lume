@@ -36,7 +36,7 @@ export const defaults: Options = {
   cache: true,
   satori: {
     width: 1200,
-    height: 627,
+    height: 600,
     fonts: [],
   },
 };
