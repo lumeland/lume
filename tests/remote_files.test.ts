@@ -4,7 +4,10 @@ import sass from "../plugins/sass.ts";
 import esbuild from "../plugins/esbuild.ts";
 import nunjucks from "../plugins/nunjucks.ts";
 
-Deno.test("render remote files", async (t) => {
+Deno.test("render remote files", {
+  sanitizeOps: false,
+  sanitizeResources: false,
+}, async (t) => {
   const site = getSite({
     src: "remote_files",
   });

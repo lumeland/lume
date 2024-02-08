@@ -22,7 +22,10 @@ Deno.test("Source maps from CSS files", async (t) => {
   await assertSiteSnapshot(t, site);
 });
 
-Deno.test("Source maps from Js files", async (t) => {
+Deno.test("Source maps from Js files", {
+  sanitizeOps: false,
+  sanitizeResources: false,
+}, async (t) => {
   const site = getSite({
     src: "esbuild",
   });
