@@ -1,10 +1,5 @@
 import { Command, CompletionsCommand } from "./deps/cliffy.ts";
 import { getCurrentVersion } from "./core/utils/lume_version.ts";
-import upgradeCommand from "./cli/upgrade.ts";
-import runCommand from "./cli/run.ts";
-import buildCommand from "./cli/build.ts";
-import createCommand from "./cli/create.ts";
-import cmsCommand from "./cli/cms.ts";
 
 const upgrade = new Command()
   .description("Upgrade your Lume executable to the latest version.")
@@ -18,7 +13,10 @@ const upgrade = new Command()
   )
   .example("lume upgrade -g", "Upgrades to the latest stable version.")
   .example("lume upgrade --dev", "Upgrades to the latest development version.")
-  .action(upgradeCommand);
+  .action(async ({ dev, version }) => {
+    const { upgrade } = await import("./cli/upgrade.ts");
+    await upgrade(dev, version);
+  });
 
 const create = new Command()
   .description("Run an archetype to create more files.")
@@ -27,7 +25,10 @@ const create = new Command()
     "Create a new post file using the _archetypes/post.ts archetype.",
   )
   // @ts-ignore: todo: fix this
-  .action(createCommand);
+  .action(async ({ config }, name, ...args) => {
+    const { create } = await import("./cli/create.ts");
+    await create(config, name, args);
+  });
 
 const run = new Command()
   .description("Run one or more scripts from the config file.")
@@ -62,7 +63,10 @@ const run = new Command()
     "The URL location of the site.",
     { default: "http://localhost" },
   )
-  .action(runCommand);
+  .action(async ({ config }, ...scripts) => {
+    const { run } = await import("./cli/run.ts");
+    await run(config, scripts);
+  });
 
 const cms = new Command()
   .description("Run Lume CMS.")
@@ -85,7 +89,10 @@ const cms = new Command()
     "The URL location of the site.",
     { default: "http://localhost" },
   )
-  .action(cmsCommand);
+  .action(async ({ config }) => {
+    const { runCms } = await import("./cli/cms.ts");
+    await runCms(config);
+  });
 
 const lume = new Command()
   .name("🔥lume")
@@ -135,7 +142,10 @@ const lume = new Command()
     "-w, --watch",
     "Build and watch changes.",
   )
-  .action(buildCommand)
+  .action(async ({ config, serve, watch }) => {
+    const { build } = await import("./cli/build.ts");
+    await build(config, serve, watch);
+  })
   .command("new <archetype> [arguments...]", create)
   .command("upgrade", upgrade)
   .command("run <script...>", run)

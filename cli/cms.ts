@@ -3,14 +3,6 @@ import { getConfigFile } from "../core/utils/lume_config.ts";
 import { createSite } from "./run.ts";
 import { adapter } from "../deps/cms.ts";
 
-interface Options {
-  config?: string;
-}
-
-export default function ({ config }: Options) {
-  return runCms(config);
-}
-
 export async function runCms(
   config: string | undefined,
 ) {

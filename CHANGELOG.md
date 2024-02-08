@@ -7,7 +7,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.1.0] - Unreleased
 ### Added
-- Support `x-default` for unmatched languages #528 & #532
+- Support `x-default` for unmatched languages [#528] & [#532]
   - `multilanguage` plugin
   - `sitemap` plugin
 - New plugin: `fff` [#529].
@@ -41,6 +41,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Ensure `site.options.server.middlewares` array is always defined.
 - Updated dependencies: `std`, `date-fns`, `lightningcss`, `vento`, `terser`, `autoprefixer`, `esbuild`, `sass`, `unocss`.
 - `site.hooks.addMarkdownItPlugin` accepts multiple options
+- `cli` commands are loaded dynamically.
 
 ## [2.0.3] - 2024-01-12
 ### Added
@@ -258,7 +259,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#523]: https://github.com/lumeland/lume/issues/523
 [#525]: https://github.com/lumeland/lume/issues/525
 [#526]: https://github.com/lumeland/lume/issues/526
+[#528]: https://github.com/lumeland/lume/issues/528
 [#529]: https://github.com/lumeland/lume/issues/529
+[#532]: https://github.com/lumeland/lume/issues/532
 [#534]: https://github.com/lumeland/lume/issues/534
 [#535]: https://github.com/lumeland/lume/issues/535
 [#540]: https://github.com/lumeland/lume/issues/540

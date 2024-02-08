@@ -8,14 +8,6 @@ import { createSite } from "./run.ts";
 
 import type Site from "../core/site.ts";
 
-interface Options {
-  config?: string;
-}
-
-export default function ({ config }: Options, name: string, ...args: string[]) {
-  return create(config, name, args);
-}
-
 /** Run an archetype */
 export async function create(
   config: string | undefined,

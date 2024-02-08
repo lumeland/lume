@@ -6,14 +6,6 @@ import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 
-interface Options {
-  config?: string;
-}
-
-export default function ({ config }: Options, ...scripts: string[]) {
-  return run(config, scripts);
-}
-
 /** Run one or more custom scripts */
 export async function run(
   config: string | undefined,

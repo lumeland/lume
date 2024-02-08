@@ -14,10 +14,6 @@ interface Options {
   watch?: boolean;
 }
 
-export default function ({ config, serve, watch }: Options) {
-  return build(config, serve, watch);
-}
-
 /** Build the website and optionally watch changes and serve the site */
 export async function build(
   config: string | undefined,
