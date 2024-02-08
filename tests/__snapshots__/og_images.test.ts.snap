@@ -117,10 +117,10 @@ snapshot[`OpenGraph images 2`] = `[]`;
 snapshot[`OpenGraph images 3`] = `
 [
   {
-    content: "Uint8Array(19182)",
+    content: "Uint8Array(18987)",
     data: {
       basename: "index",
-      content: "Uint8Array(19182)",
+      content: "Uint8Array(18987)",
       page: [
         "src",
         "data",
