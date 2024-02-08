@@ -1,7 +1,7 @@
 import { toFileUrl } from "../deps/path.ts";
 import { getConfigFile } from "../core/utils/lume_config.ts";
 import { createSite } from "./run.ts";
-import lume from "../../cms/adapters/lume.ts";
+import { adapter } from "../deps/cms.ts";
 
 interface Options {
   config?: string;
@@ -28,7 +28,7 @@ export async function runCms(
   }
 
   const cms = mod.default;
-  const app = await lume({ site, cms });
+  const app = await adapter({ site, cms });
 
   Deno.serve({
     port: site.options.server.port,
