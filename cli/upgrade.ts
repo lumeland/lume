@@ -51,6 +51,14 @@ export async function upgrade(dev: boolean | string = false, version?: string) {
   }
 
   updateLumeVersion(url, denoConfig);
+
+  // Remove deno.lock file
+  try {
+    await Deno.remove("deno.lock");
+  } catch {
+    // Ignore
+  }
+
   await writeDenoConfig(denoConfig);
 
   log.info("Update successful!");
