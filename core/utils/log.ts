@@ -73,6 +73,7 @@ const logFormats: Record<string, (str: string) => string> = {
   red,
   Red: (str: string) => bold(red(str)),
   gray,
+  Gray: (str: string) => bold(gray(str)),
   dim,
   Dim: (str: string) => bold(dim(str)),
   green: brightGreen,
