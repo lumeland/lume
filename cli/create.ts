@@ -95,10 +95,10 @@ async function saveFile(path: string, content: string | Uint8Array) {
       ? await Deno.writeFile(path, content, { createNew: true })
       : await Deno.writeTextFile(path, content, { createNew: true });
 
-    log.info(`✔️ Created file: <dim>${path}</dim>`);
+    log.info(`✔️ Created file: <gray>${path}</gray>`);
   } catch (error) {
     if (error instanceof Deno.errors.AlreadyExists) {
-      log.warn(`⚠️ File already exists: <dim>${path}</dim>`);
+      log.warn(`⚠️ File already exists: <gray>${path}</gray>`);
     } else {
       throw error;
     }

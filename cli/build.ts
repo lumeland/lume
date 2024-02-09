@@ -26,12 +26,12 @@ export async function build(
   await site.build();
   performance.mark("end");
 
-  log.info(`🍾 Site built into <dim>${site.options.dest}</dim>`);
+  log.info(`🍾 Site built into <gray>${site.options.dest}</gray>`);
   const duration = performance.measure("duration", "start", "end").duration /
     1000;
   const total = site.pages.length + site.files.length;
   log.info(
-    `  <dim>${total} files generated in ${duration.toFixed(2)} seconds</dim>`,
+    `  <gray>${total} files generated in ${duration.toFixed(2)} seconds</gray>`,
   );
 
   if (!serve && !watch) {
@@ -62,7 +62,7 @@ export async function build(
     const files = event.files!;
 
     log.info("Changes detected:");
-    files.forEach((file) => log.info(`- <dim>${file}</dim>`));
+    files.forEach((file) => log.info(`- <gray>${file}</gray>`));
     return site.update(files);
   });
 

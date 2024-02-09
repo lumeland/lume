@@ -132,7 +132,7 @@ export class JsonRouterCollector {
     await Deno.writeTextFile(routesFile, `${JSON.stringify(data, null, 2)}\n`);
 
     log.info(
-      `[on_demand plugin] Routes saved at <dim>${routesFile}</dim>`,
+      `[on_demand plugin] Routes saved at <gray>${routesFile}</gray>`,
     );
 
     // Write the preload file
@@ -154,7 +154,7 @@ export class JsonRouterCollector {
       await Deno.writeTextFile(preloadFile, code);
 
       log.info(
-        `[on_demand plugin] Preloader saved at <dim>${preloadFile}</dim>`,
+        `[on_demand plugin] Preloader saved at <gray>${preloadFile}</gray>`,
       );
     }
   }

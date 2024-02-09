@@ -1,4 +1,4 @@
-import { brightGreen, dim, gray } from "../../deps/colors.ts";
+import { brightGreen, gray } from "../../deps/colors.ts";
 import { dirname, extname, join } from "../../deps/path.ts";
 import { parse } from "../../deps/jsonc.ts";
 import { isUrl } from "../utils/path.ts";
@@ -83,7 +83,7 @@ export async function writeDenoConfig(options: DenoConfigResult) {
       console.log(
         "You have to update your deno.jsonc file manually with the following content:",
       );
-      console.log(dim(JSON.stringify(config, null, 2)));
+      console.log(gray(JSON.stringify(config, null, 2)));
       console.log("Use deno.json to update it automatically without asking.");
       return;
     }
