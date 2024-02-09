@@ -1,4 +1,4 @@
-import { brightGreen, dim, red } from "../deps/colors.ts";
+import { brightGreen, gray, red } from "../deps/colors.ts";
 
 import type { Middleware } from "../core/server.ts";
 
@@ -17,14 +17,14 @@ export default function log(): Middleware {
         console.log(`${brightGreen(status.toString())} ${pathname}`);
       } else if (status === 301 || status === 302) {
         console.log(
-          `${dim(status.toString())} ${pathname} => ${
+          `${gray(status.toString())} ${pathname} => ${
             response.headers?.get(
               "location",
             )
           }`,
         );
       } else {
-        console.log(`${dim(status.toString())} ${pathname}`);
+        console.log(`${gray(status.toString())} ${pathname}`);
       }
 
       return response;
