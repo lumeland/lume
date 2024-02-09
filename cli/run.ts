@@ -38,7 +38,7 @@ export async function createSite(config?: string): Promise<Site> {
   }
 
   if (url) {
-    log.info(`Loading config file <dim>${url}</dim>`);
+    log.info(`Loading config file <gray>${url}</gray>`);
     const mod = await import(url);
     if (!mod.default) {
       log.critical(

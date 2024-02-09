@@ -148,7 +148,7 @@ export default function (userOptions?: Options) {
         element.replaceWith(style);
       } catch (cause) {
         log.error(
-          `[Inline plugin] Unable to inline the file <dim>${path}</dim> in the page <dim>${url}</dim> (${cause.message})})`,
+          `[Inline plugin] Unable to inline the file <gray>${path}</gray> in the page <gray>${url}</gray> (${cause.message})})`,
         );
       }
     }
@@ -161,7 +161,7 @@ export default function (userOptions?: Options) {
         element.removeAttribute("src");
       } catch (cause) {
         log.error(
-          `[Inline plugin] Unable to inline the file <dim>${path}</dim> in the page <dim>${url}</dim> (${cause.message})})`,
+          `[Inline plugin] Unable to inline the file <gray>${path}</gray> in the page <gray>${url}</gray> (${cause.message})})`,
         );
       }
     }
@@ -212,7 +212,7 @@ export default function (userOptions?: Options) {
         element.setAttribute("src", await getContent(path, true));
       } catch (cause) {
         log.error(
-          `[Inline plugin] Unable to inline the file <dim>${path}</dim> in the page <dim>${url}</dim> (${cause.message})})`,
+          `[Inline plugin] Unable to inline the file <gray>${path}</gray> in the page <gray>${url}</gray> (${cause.message})})`,
         );
       }
     }
@@ -224,7 +224,7 @@ export default function (userOptions?: Options) {
         element.setAttribute("href", await getContent(path, true));
       } catch (cause) {
         log.error(
-          `[Inline plugin] Unable to inline the file <dim>${path}</dim> in the page <dim>${url}</dim> (${cause.message})})`,
+          `[Inline plugin] Unable to inline the file <gray>${path}</gray> in the page <gray>${url}</gray> (${cause.message})})`,
         );
       }
     }
