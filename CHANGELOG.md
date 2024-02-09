@@ -34,7 +34,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - Default ico size changed to 48.
   - Add `sizes="any"` to the svg icon.
   - Place the svg icon at end.
-- logging: URL transformation direction is more visually distinct.
+- logging: 
+  - URL transformation direction is more visually distinct. [#563]
+  - colors replaced to `gray` to support terminals that does not support `dim` colors. [#566]
 - `deno task lume upgrade` removes the `deno.lock` file [#527].
 
 ### Fixed
@@ -275,6 +277,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#551]: https://github.com/lumeland/lume/issues/551
 [#552]: https://github.com/lumeland/lume/issues/552
 [#562]: https://github.com/lumeland/lume/issues/562
+[#563]: https://github.com/lumeland/lume/issues/563
+[#566]: https://github.com/lumeland/lume/issues/566
 
 [2.1.0]: https://github.com/lumeland/lume/compare/v2.0.3...HEAD
 [2.0.3]: https://github.com/lumeland/lume/compare/v2.0.2...v2.0.3
