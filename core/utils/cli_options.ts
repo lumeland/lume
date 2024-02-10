@@ -22,7 +22,7 @@ export function getOptionsFromCli(): DeepPartial<SiteOptions> {
 
   if (options.location) {
     overrides.location = new URL(options.location);
-  } else if (options.serve) {
+  } else if (options.serve || options._[0] === "cms") {
     overrides.location = new URL(`http://localhost:${options.port || 3000}/`);
   }
 
