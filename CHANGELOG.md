@@ -45,6 +45,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Updated dependencies: `std`, `date-fns`, `lightningcss`, `vento`, `terser`, `autoprefixer`, `esbuild`, `sass`, `unocss`, `deno-dom`,  `esbuild`, `postcss`, `preact`, `react` types.
 - `site.hooks.addMarkdownItPlugin` accepts multiple options
 - `cli` commands are loaded dynamically.
+- Added missing `Lume.Data.nav` variable #567.
 
 ## [2.0.3] - 2024-01-12
 ### Added
