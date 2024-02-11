@@ -165,3 +165,13 @@ function convert(temp: TempNavData, parent?: NavData, order?: string): NavData {
 
   return data;
 }
+
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data {
+      /** @see https://lume.land/plugins/nav/ */
+      nav: Nav;
+    }
+  }
+}
