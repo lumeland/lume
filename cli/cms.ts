@@ -1,3 +1,5 @@
+import { log } from "../core/utils/log.ts";
+import { localIp } from "../core/utils/net.ts";
 import { toFileUrl } from "../deps/path.ts";
 import { getConfigFile } from "../core/utils/lume_config.ts";
 import { setEnv } from "../core/utils/env.ts";
@@ -25,9 +27,23 @@ export async function runCms(
 
   const cms = mod.default;
   const app = await adapter({ site, cms });
+  const { port } = site.options.server;
+  const { basePath } = cms.options;
 
   Deno.serve({
-    port: site.options.server.port,
+    port,
     handler: app.fetch,
+    onListen() {
+      const ipAddr = localIp();
+
+      log.info("  CMS server started at:");
+      log.info(`  <green>http://localhost:${port}${basePath}</green> (local)`);
+
+      if (ipAddr) {
+        log.info(
+          `  <green>http://${ipAddr}:${port}${basePath}</green> (network)`,
+        );
+      }
+    },
   });
 }

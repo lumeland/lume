@@ -1,4 +1,5 @@
 import { log } from "../core/utils/log.ts";
+import { localIp } from "../core/utils/net.ts";
 import { setEnv } from "../core/utils/env.ts";
 import Server from "../core/server.ts";
 import FSWatcher, { SiteWatcher } from "../core/watcher.ts";
@@ -126,14 +127,4 @@ export async function build(
   }
 
   server.start();
-}
-
-function localIp(): string | undefined {
-  for (const info of Deno.networkInterfaces()) {
-    if (info.family !== "IPv4" || info.address.startsWith("127.")) {
-      continue;
-    }
-
-    return info.address;
-  }
 }
