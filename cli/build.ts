@@ -8,12 +8,6 @@ import notFound from "../middlewares/not_found.ts";
 import reload from "../middlewares/reload.ts";
 import { createSite } from "./run.ts";
 
-interface Options {
-  config?: string;
-  serve?: boolean;
-  watch?: boolean;
-}
-
 /** Build the website and optionally watch changes and serve the site */
 export async function build(
   config: string | undefined,
