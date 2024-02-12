@@ -112,6 +112,7 @@ snapshot[`slugify_urls plugin 1`] = `
     "/Chourizos ao viño.md",
     "/Page 1.md",
     "/UI Styles.css",
+    "/_headers",
     "/generator.page.js",
     "/page-3.md",
     "/page-4.md",
@@ -124,7 +125,12 @@ snapshot[`slugify_urls plugin 2`] = `
   {
     entry: "/UI Styles.css",
     flags: [],
-    outputPath: "/ui-styles.css",
+    outputPath: "/UI Styles.css",
+  },
+  {
+    entry: "/_headers",
+    flags: [],
+    outputPath: "/_headers",
   },
 ]
 `;
@@ -420,6 +426,7 @@ snapshot[`slugify_urls plugin (static files) 1`] = `
     "/Chourizos ao viño.md",
     "/Page 1.md",
     "/UI Styles.css",
+    "/_headers",
     "/generator.page.js",
     "/page-3.md",
     "/page-4.md",
@@ -433,6 +440,11 @@ snapshot[`slugify_urls plugin (static files) 2`] = `
     entry: "/UI Styles.css",
     flags: [],
     outputPath: "/ui-styles.css",
+  },
+  {
+    entry: "/_headers",
+    flags: [],
+    outputPath: "/headers",
   },
 ]
 `;

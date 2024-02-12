@@ -34,7 +34,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - Default ico size changed to 48.
   - Add `sizes="any"` to the svg icon.
   - Place the svg icon at end.
-- logging: 
+- logging:
   - URL transformation direction is more visually distinct. [#563]
   - colors replaced to `gray` to support terminals that does not support `dim` colors. [#566]
 - `deno task lume upgrade` removes the `deno.lock` file [#527].
@@ -45,7 +45,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Updated dependencies: `std`, `date-fns`, `lightningcss`, `vento`, `terser`, `autoprefixer`, `esbuild`, `sass`, `unocss`, `deno-dom`,  `esbuild`, `postcss`, `preact`, `react` types.
 - `site.hooks.addMarkdownItPlugin` accepts multiple options
 - `cli` commands are loaded dynamically.
-- Added missing `Lume.Data.nav` variable #567.
+- Added missing `Lume.Data.nav` variable [#567].
+- BREAKING: `slugify_urls` plugin only slugify `.html` files by default.
+  The reason is to avoid unexpected behaviors like renaming the `_headers` file [#569].
+  Use `extensions` option to add more file extensions.
 
 ## [2.0.3] - 2024-01-12
 ### Added
@@ -280,6 +283,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#562]: https://github.com/lumeland/lume/issues/562
 [#563]: https://github.com/lumeland/lume/issues/563
 [#566]: https://github.com/lumeland/lume/issues/566
+[#567]: https://github.com/lumeland/lume/issues/567
+[#569]: https://github.com/lumeland/lume/issues/569
 
 [2.1.0]: https://github.com/lumeland/lume/compare/v2.0.3...HEAD
 [2.0.3]: https://github.com/lumeland/lume/compare/v2.0.2...v2.0.3

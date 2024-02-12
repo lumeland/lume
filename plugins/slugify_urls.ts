@@ -16,7 +16,7 @@ export interface Options extends SlugifierOptions {
 
 // Default options
 export const defaults: Options = {
-  extensions: "*",
+  extensions: [".html"],
   ...slugifierDefaults,
 };
 

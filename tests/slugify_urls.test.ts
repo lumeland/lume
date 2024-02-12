@@ -10,6 +10,7 @@ Deno.test("slugify_urls plugin", async (t) => {
 
   site.use(slugifyUrls());
   site.copy([".css"]);
+  site.copy("_headers");
 
   await build(site);
   await assertSiteSnapshot(t, site);
@@ -24,6 +25,7 @@ Deno.test("slugify_urls plugin (static files)", async (t) => {
     extensions: "*",
   }));
   site.copy([".css"]);
+  site.copy("_headers");
 
   await build(site);
   await assertSiteSnapshot(t, site);
