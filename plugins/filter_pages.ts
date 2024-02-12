@@ -1,7 +1,7 @@
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
-import type { Extensions } from "../core/processors.ts";
+import type { Extensions } from "../core/utils/path.ts";
 import type { Page } from "../core/file.ts";
 
 export interface Options {

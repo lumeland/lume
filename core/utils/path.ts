@@ -60,6 +60,16 @@ export function getExtension(path: string): string {
   return match ? match[0] : "";
 }
 
+export type Extensions = string[] | "*";
+
+export function matchExtension(exts: Extensions, path: string): boolean {
+  if (exts === "*") {
+    return true;
+  }
+
+  return exts.some((ext) => path.endsWith(ext));
+}
+
 /**
  * Resolve the path of an included file
  * Used in the template engines and processors

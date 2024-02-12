@@ -1,6 +1,7 @@
-import type { Page } from "./file.ts";
+import { matchExtension } from "./utils/path.ts";
 
-export type Extensions = string[] | "*";
+import type { Extensions } from "./utils/path.ts";
+import type { Page } from "./file.ts";
 
 /**
  * Class to store and run the (pre)processors
@@ -52,5 +53,5 @@ function pageMatches(exts: Extensions, page: Page): boolean {
 
   const url = page.outputPath;
 
-  return exts.some((ext) => url.endsWith(ext));
+  return matchExtension(exts, url);
 }

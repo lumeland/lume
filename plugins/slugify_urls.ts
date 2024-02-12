@@ -1,11 +1,12 @@
 import { merge } from "../core/utils/object.ts";
+import { matchExtension } from "../core/utils/path.ts";
 import createSlugifier, {
   defaults as slugifierDefaults,
 } from "../core/slugifier.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
-import type { Extensions } from "../core/processors.ts";
+import type { Extensions } from "../core/utils/path.ts";
 import type { Options as SlugifierOptions } from "../core/slugifier.ts";
 
 export interface Options extends SlugifierOptions {
@@ -31,7 +32,7 @@ export default function (userOptions?: Options) {
     // Slugify the static files
     site.addEventListener("beforeRender", () => {
       site.files
-        .filter((file) => extensionMatches(file.outputPath, options.extensions))
+        .filter((file) => matchExtension(options.extensions, file.outputPath))
         .forEach((file) => file.outputPath = slugify(file.outputPath));
     });
   };
@@ -41,10 +42,6 @@ export default function (userOptions?: Options) {
       page.data.url = slugify(page.data.url);
     }
   }
-}
-
-function extensionMatches(path: string, extensions: Extensions): boolean {
-  return extensions === "*" || extensions.some((ext) => path.endsWith(ext));
 }
 
 /** Extends Helpers interface */
