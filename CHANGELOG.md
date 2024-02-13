@@ -13,6 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `fff` [#529].
 - New plugin: `redirects` [#534].
 - New plugin: `og_images` [#534].
+- New plugin: `robots` [#570].
 - New command `lume cms`.
 - `onDemand` plugin: support async extraData function.
 - `lume:*` global events.
@@ -285,6 +286,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#566]: https://github.com/lumeland/lume/issues/566
 [#567]: https://github.com/lumeland/lume/issues/567
 [#569]: https://github.com/lumeland/lume/issues/569
+[#570]: https://github.com/lumeland/lume/issues/570
 
 [2.1.0]: https://github.com/lumeland/lume/compare/v2.0.3...HEAD
 [2.0.3]: https://github.com/lumeland/lume/compare/v2.0.2...v2.0.3
