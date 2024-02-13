@@ -37,6 +37,7 @@ export const pluginNames = [
   "relative_urls",
   "remark",
   "resolve_urls",
+  "robots",
   "sass",
   "sheets",
   "sitemap",
