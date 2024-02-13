@@ -52,8 +52,8 @@ export default (userOptions?: Partial<Options>) => {
   const options: Options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.addEventListener("beforeSave", async () => {
-      let rules: Rule[] = [];
+    site.addEventListener("beforeSave", () => {
+      const rules: Rule[] = [];
 
       options.allow?.forEach((userAgent) =>
         rules.push({
