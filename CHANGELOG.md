@@ -50,6 +50,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - BREAKING: `slugify_urls` plugin only slugify `.html` files by default.
   The reason is to avoid unexpected behaviors like renaming the `_headers` file [#569].
   Use `extensions` option to add more file extensions.
+- Bug in `multilanguage` plugin that add non-html pages in the list of alternates.
 
 ## [2.0.3] - 2024-01-12
 ### Added

@@ -92,8 +92,8 @@ export default function multilanguage(userOptions: Options) {
      * + create the alternates
      * + sort the alternates
      */
-    site.preprocess(options.extensions, (filteredPages, allPages) => {
-      for (const page of filteredPages) {
+    site.preprocess(options.extensions, (pages) => {
+      for (const page of pages) {
         const { data } = page;
         const { lang } = data;
 
@@ -128,7 +128,7 @@ export default function multilanguage(userOptions: Options) {
         const alternates: Data[] = [];
         const ids = new Map<string, Page>();
 
-        allPages.filter((page) => page.data.id == id && page.data.type === type)
+        pages.filter((page) => page.data.id == id && page.data.type === type)
           .forEach((page) => {
             const id = `${page.data.lang}-${page.data.id}-${page.data.type}`;
             const existing = ids.get(id);
@@ -155,11 +155,11 @@ export default function multilanguage(userOptions: Options) {
      *
      * + convert unmatchedLangUrl any value to URL string value
      */
-    site.preprocess(options.extensions, (filteredPages) => {
-      for (const page of filteredPages) {
+    site.preprocess(options.extensions, (pages) => {
+      for (const page of pages) {
         page.data.unmatchedLangUrl = getUnmatchedLangPath(
           page,
-          filteredPages,
+          pages,
         );
       }
     });
