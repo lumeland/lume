@@ -86,7 +86,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
 
     const destructure = `{${Object.keys(data!).join(",")}}`;
     const code = result.toString()
-      .replace("/*@jsxRuntime automatic @jsxImportSource react*/\n", pragma)
+      .replace("/*@jsxRuntime automatic*/\n/*@jsxImportSource react*/", pragma)
       .replace(
         '"use strict";\n',
         `export default async function (${destructure}) {`,
