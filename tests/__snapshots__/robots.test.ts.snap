@@ -140,8 +140,6 @@ snapshot[`Robots plugin 3`] = `
 Allow: /",
     data: {
       basename: "robots",
-      content: "User-agent: *
-Allow: /",
       page: [
         "src",
         "data",
@@ -590,11 +588,6 @@ User-agent: Bingbot
 Allow: /",
     data: {
       basename: "robots",
-      content: "User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /",
       page: [
         "src",
         "data",
@@ -1043,11 +1036,6 @@ User-agent: ChatGPT-User
 Disallow: /",
     data: {
       basename: "robots",
-      content: "User-agent: *
-Allow: /
-
-User-agent: ChatGPT-User
-Disallow: /",
       page: [
         "src",
         "data",
@@ -1498,13 +1486,6 @@ Disallow: /admin
 Sitemap: https://example.com/sitemap.xml",
     data: {
       basename: "robots",
-      content: "User-agent: *
-Allow: /
-
-User-agent: *
-Disallow: /admin
-
-Sitemap: https://example.com/sitemap.xml",
       page: [
         "src",
         "data",

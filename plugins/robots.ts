@@ -1,5 +1,4 @@
 import { merge } from "../core/utils/object.ts";
-import { Page } from "../core/file.ts";
 
 import type Site from "../core/site.ts";
 
@@ -52,7 +51,7 @@ export default (userOptions?: Partial<Options>) => {
   const options: Options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.addEventListener("beforeSave", () => {
+    site.addEventListener("beforeSave", async () => {
       const rules: Rule[] = [];
 
       options.allow?.forEach((userAgent) =>
@@ -72,25 +71,22 @@ export default (userOptions?: Partial<Options>) => {
       rules.push(...(options.rules ?? []));
 
       // Create the robots.txt page
-      const robots = Page.create({
-        url: options.filename,
-        content: rules
-          .map((rule) =>
-            Object.entries(rule)
-              .sort(([keyA], [keyB]) =>
-                ruleSort.indexOf(keyA) - ruleSort.indexOf(keyB)
-              )
-              .map(([key, value]) =>
-                `${key.charAt(0).toUpperCase()}${
-                  key.slice(1).replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()
-                }: ${value}`
-              )
-              .join("\n")
-          ).join("\n\n"),
-      });
+      const robots = await site.getOrCreatePage(options.filename);
+      const existingContent = robots.content ? `${robots.content}\n` : "";
 
-      // Add the robots.txt to pages
-      site.pages.push(robots);
+      robots.content = existingContent + rules
+        .map((rule) =>
+          Object.entries(rule)
+            .sort(([keyA], [keyB]) =>
+              ruleSort.indexOf(keyA) - ruleSort.indexOf(keyB)
+            )
+            .map(([key, value]) =>
+              `${key.charAt(0).toUpperCase()}${
+                key.slice(1).replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()
+              }: ${value}`
+            )
+            .join("\n")
+        ).join("\n\n");
     });
   };
 };
