@@ -52,11 +52,31 @@ code.push("");
 code.push("export default site;");
 code.push("");
 
+// Generate the code for the cms config file
+const cmsConfig = await getCms(configFile);
+const cmsCode: string[] = [];
+
+if (cmsConfig) {
+  cmsCode.push(
+    'import lumeCMS from "lume/deps/cms.ts";',
+    "",
+    "const cms = lumeCMS();",
+    "",
+    "export default cms;",
+    "",
+  );
+}
+
 // Write the code to the file
 await ensureDir(folder);
 await Deno.writeTextFile(configFile, code.join("\n"));
 console.log();
 console.log("Lume configuration file saved:", gray(configFile));
+
+if (cmsConfig) {
+  await Deno.writeTextFile(cmsConfig, cmsCode.join("\n"));
+  console.log("CMS configuration file saved:", gray(cmsConfig));
+}
 
 const url = new URL(import.meta.resolve("./"));
 updateLumeVersion(url, denoConfig);
@@ -141,6 +161,46 @@ async function getConfigFile(folder: string): Promise<string | false> {
   });
 
   const path = join(folder, file);
+
+  try {
+    await Deno.lstat(path);
+    const override = await Confirm.prompt({
+      message: `The file "${path}" already exist. Override?`,
+      default: false,
+    });
+
+    return override ? path : false;
+  } catch (err) {
+    if (err instanceof Deno.errors.NotFound) {
+      return path;
+    }
+
+    throw err;
+  }
+}
+
+/** Question to get the cms config file */
+async function getCms(configPath: string): Promise<string | false> {
+  const useCms = await Select.prompt({
+    message: "Do you want to setup a CMS?",
+    options: [
+      {
+        name: "Yes",
+        value: "yes",
+      },
+      {
+        name: "Maybe later",
+        value: "no",
+      },
+    ],
+    hint: "More info at https://lume.land/cms/",
+  });
+
+  if (!useCms) {
+    return false;
+  }
+
+  const path = configPath.replace(/_config\.(ts|js)$/, "_cms.$1");
 
   try {
     await Deno.lstat(path);
