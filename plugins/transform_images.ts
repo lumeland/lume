@@ -39,7 +39,7 @@ export const defaults: Options = {
       image: sharp.Sharp,
       width: number,
       height?: number,
-      options?: sharp.ResizeOptions,
+      options: sharp.ResizeOptions = { withoutEnlargement: true },
     ): void {
       image.resize(width, height, options);
     },

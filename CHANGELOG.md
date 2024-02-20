@@ -39,6 +39,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - URL transformation direction is more visually distinct. [#563]
   - colors replaced to `gray` to support terminals that does not support `dim` colors. [#566]
 - `deno task lume upgrade` removes the `deno.lock` file [#527].
+- `transform_images` plugin: don't enlarge images by default [#530].
 
 ### Fixed
 - Pages filtered with `filter_pages` plugin are exported to the sitemap.
@@ -271,6 +272,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#527]: https://github.com/lumeland/lume/issues/527
 [#528]: https://github.com/lumeland/lume/issues/528
 [#529]: https://github.com/lumeland/lume/issues/529
+[#530]: https://github.com/lumeland/lume/issues/530
 [#532]: https://github.com/lumeland/lume/issues/532
 [#534]: https://github.com/lumeland/lume/issues/534
 [#535]: https://github.com/lumeland/lume/issues/535
