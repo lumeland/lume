@@ -36,7 +36,7 @@ Deno.test("Robots plugin with disallow", async (t) => {
   });
 
   site.use(robots({
-    disallow: ["ChatGPT-User"],
+    disallow: "ChatGPT-User",
   }));
   site.ignore("static.yml");
 

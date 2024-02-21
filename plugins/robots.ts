@@ -35,15 +35,15 @@ const ruleSort = [
 export interface Options {
   /** The robots.txt file name */
   filename: string;
-  allow?: string[];
-  disallow?: string[];
+  allow?: string[] | string;
+  disallow?: string[] | string;
   rules?: Rule[];
 }
 
 // Default options
 export const defaults: Options = {
   filename: "/robots.txt",
-  allow: ["*"],
+  allow: "*",
 };
 
 /** A plugin to generate a robots.txt after build */
@@ -53,15 +53,21 @@ export default (userOptions?: Partial<Options>) => {
   return (site: Site) => {
     site.addEventListener("beforeSave", async () => {
       const rules: Rule[] = [];
+      const allow = typeof options.allow === "string"
+        ? [options.allow]
+        : options.allow;
+      const disallow = typeof options.disallow === "string"
+        ? [options.disallow]
+        : options.disallow;
 
-      options.allow?.forEach((userAgent) =>
+      allow?.forEach((userAgent) =>
         rules.push({
           userAgent,
           allow: "/",
         })
       );
 
-      options.disallow?.forEach((userAgent) =>
+      disallow?.forEach((userAgent) =>
         rules.push({
           userAgent,
           disallow: "/",
