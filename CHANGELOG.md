@@ -15,7 +15,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `og_images` [#534].
 - New plugin: `robots` [#570].
 - New command `lume cms`.
-- `onDemand` plugin: support async extraData function.
+- `onDemand` plugin: support async extraData function  [#560],  [#561].
 - `lume:*` global events.
 
 ### Changed
@@ -30,7 +30,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
   // New
   import { gl } from "npm:date-fns/locale/gl";
   ```
-- Allow to get value from attribute in CSS query of `getDataValue()` function. See `metas` plugin for a clear example.
+- Allow to get value from attribute in CSS query of `getDataValue()` function [#556], [#558].
+  See `metas` plugin for a clear example.
 - `favicon` plugin: [#562]
   - Default ico size changed to 48.
   - Add `sizes="any"` to the svg icon.
@@ -44,7 +45,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - Pages filtered with `filter_pages` plugin are exported to the sitemap.
 - Ensure `site.options.server.middlewares` array is always defined.
-- Updated dependencies: `std`, `date-fns`, `lightningcss`, `vento`, `terser`, `autoprefixer`, `esbuild`, `sass`, `unocss`, `deno-dom`,  `esbuild`, `postcss`, `postcss-import`, `preact`, `mdx`, `liquid`, `react` types.
+- Updated dependencies: `std`, `date-fns`, `lightningcss`, `vento`, `terser`, `autoprefixer`, `esbuild`, `sass`, `unocss`, `deno-dom`,  `esbuild`, `postcss`, `postcss-import`, `preact`, `preact-render-to-string`, `mdx`, `terser`, `liquid`, `react` types.
 - `site.hooks.addMarkdownItPlugin` accepts multiple options
 - `cli` commands are loaded dynamically.
 - Added missing `Lume.Data.nav` variable [#567].
@@ -284,6 +285,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#550]: https://github.com/lumeland/lume/issues/550
 [#551]: https://github.com/lumeland/lume/issues/551
 [#552]: https://github.com/lumeland/lume/issues/552
+[#556]: https://github.com/lumeland/lume/issues/556
+[#558]: https://github.com/lumeland/lume/issues/558
+[#560]: https://github.com/lumeland/lume/issues/560
+[#561]: https://github.com/lumeland/lume/issues/561
 [#562]: https://github.com/lumeland/lume/issues/562
 [#563]: https://github.com/lumeland/lume/issues/563
 [#566]: https://github.com/lumeland/lume/issues/566
