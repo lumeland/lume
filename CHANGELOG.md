@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [2.1.0] - Unreleased
+## [2.1.0] - 2024-02-22
 ### Added
 - Support `x-default` for unmatched languages [#528] & [#532]
   - `multilanguage` plugin
@@ -297,7 +297,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#569]: https://github.com/lumeland/lume/issues/569
 [#570]: https://github.com/lumeland/lume/issues/570
 
-[2.1.0]: https://github.com/lumeland/lume/compare/v2.0.3...HEAD
+[2.1.0]: https://github.com/lumeland/lume/compare/v2.0.3...v2.1.0
 [2.0.3]: https://github.com/lumeland/lume/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/lumeland/lume/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/lumeland/lume/compare/v2.0.0...v2.0.1
