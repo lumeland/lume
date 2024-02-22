@@ -15,6 +15,7 @@ import Events from "./events.ts";
 import Formats from "./formats.ts";
 import Searcher from "./searcher.ts";
 import Scripts from "./scripts.ts";
+import FSWatcher from "../core/watcher.ts";
 import { FSWriter } from "./writer.ts";
 import { Page } from "./file.ts";
 import textLoader from "./loaders/text.ts";
@@ -30,6 +31,7 @@ import type { Writer } from "./writer.ts";
 import type { Middleware } from "./server.ts";
 import type { ScopeFilter } from "./scopes.ts";
 import type { ScriptOrFunction } from "./scripts.ts";
+import type { Watcher } from "./watcher.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
 
 /** Default options of the site */
@@ -825,6 +827,15 @@ export default class Site {
     } catch {
       // Ignore error
     }
+  }
+
+  /** Returns a File system watcher of the site */
+  getWatcher(): Watcher {
+    return new FSWatcher({
+      root: this.src(),
+      ignore: this.options.watcher.ignore,
+      debounce: this.options.watcher.debounce,
+    });
   }
 }
 

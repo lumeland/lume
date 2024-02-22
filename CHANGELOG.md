@@ -16,7 +16,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `robots` [#570].
 - New command `lume cms`.
 - `onDemand` plugin: support async extraData function  [#560],  [#561].
-- `lume:*` global events.
+- Core: `lume:*` global events.
+- Core: `lume.getWatcher()` function.
 
 ### Changed
 - BREAKING: Removed deprecated `--unstable` flag to the default `lume` task.

@@ -2,7 +2,7 @@ import { log } from "../core/utils/log.ts";
 import { localIp } from "../core/utils/net.ts";
 import { setEnv } from "../core/utils/env.ts";
 import Server from "../core/server.ts";
-import FSWatcher, { SiteWatcher } from "../core/watcher.ts";
+import { SiteWatcher } from "../core/watcher.ts";
 import logger from "../middlewares/logger.ts";
 import noCache from "../middlewares/no_cache.ts";
 import notFound from "../middlewares/not_found.ts";
@@ -47,11 +47,7 @@ export async function build(
   setEnv("LUME_LIVE_RELOAD", "true");
 
   // Start the watcher
-  const watcher = new FSWatcher({
-    root: site.src(),
-    ignore: site.options.watcher.ignore,
-    debounce: site.options.watcher.debounce,
-  });
+  const watcher = site.getWatcher();
 
   watcher.addEventListener("change", (event) => {
     const files = event.files!;
