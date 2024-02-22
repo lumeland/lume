@@ -4,7 +4,7 @@ import { toFileUrl } from "../deps/path.ts";
 import { getConfigFile } from "../core/utils/lume_config.ts";
 import { setEnv } from "../core/utils/env.ts";
 import { createSite } from "./run.ts";
-import { adapter } from "../deps/cms.ts";
+import { adapter } from "../cms.ts";
 
 export async function runCms(
   config: string | undefined,
