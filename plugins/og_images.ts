@@ -16,7 +16,7 @@ export interface Options {
   extensions?: string[];
 
   /**
-   * Custom includes path for `postcss-import`
+   * Custom includes path to load the layout
    * @default `site.options.includes`
    */
   includes?: string;
