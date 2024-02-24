@@ -58,7 +58,7 @@ const cmsCode: string[] = [];
 
 if (cmsConfig) {
   cmsCode.push(
-    'import lumeCMS from "lume/deps/cms.ts";',
+    'import lumeCMS from "lume/cms.ts";',
     "",
     "const cms = lumeCMS();",
     "",
