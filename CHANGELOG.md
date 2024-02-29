@@ -8,7 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.1.1] - Unreleased
 ### Fixed
 - Bug on init command generating the _cms.ts file [#575]
-- Updated dependencies: `lightningcss`, `terser`, `cms`.
+- Updated dependencies: `lightningcss`, `terser`, `cms`, `postcss-nesting`.
 
 ## [2.1.0] - 2024-02-22
 ### Added
