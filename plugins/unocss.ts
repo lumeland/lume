@@ -87,7 +87,7 @@ export default function (userOptions?: Options) {
       site.process([".html"], async (pages) => {
         const resetCss = await getResetCss(reset);
 
-        Promise.all(pages.map(async (page) => {
+        await Promise.all(pages.map(async (page) => {
           const document = page.document!;
           const result = await uno.generate(
             document.documentElement?.innerHTML ?? "",

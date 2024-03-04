@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.1.2] - Unreleased
+### Fixed
+- UnoCSS plugin: the async process of adding `<style>` elements is not awaited [#578].
+
 ## [2.1.1] - 2024-03-01
 ### Fixed
 - Bug on init command generating the _cms.ts file [#575]
@@ -302,7 +306,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#569]: https://github.com/lumeland/lume/issues/569
 [#570]: https://github.com/lumeland/lume/issues/570
 [#575]: https://github.com/lumeland/lume/issues/575
+[#578]: https://github.com/lumeland/lume/issues/578
 
+[2.1.2]: https://github.com/lumeland/lume/compare/v2.1.1...HEAD
 [2.1.1]: https://github.com/lumeland/lume/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/lumeland/lume/compare/v2.0.3...v2.1.0
 [2.0.3]: https://github.com/lumeland/lume/compare/v2.0.2...v2.0.3
