@@ -9,7 +9,7 @@ export {
   type UserConfig,
 } from "npm:@unocss/core@0.58.5";
 export { presetUno } from "npm:@unocss/preset-uno@0.58.5";
-export { default as MagicString } from "npm:magic-string@0.30.7";
+export { default as MagicString } from "npm:magic-string@0.30.8";
 
 // https://github.com/denoland/deno/issues/16458#issuecomment-1295003089
 export const transformerVariantGroup =
