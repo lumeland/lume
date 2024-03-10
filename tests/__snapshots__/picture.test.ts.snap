@@ -119,6 +119,12 @@ snapshot[`picture plugin 1`] = `
       ext: ".png",
       pageType: "asset",
     },
+    {
+      assetLoader: [AsyncFunction: binary],
+      engines: undefined,
+      ext: ".webp",
+      pageType: "asset",
+    },
   ],
   src: [
     "/",

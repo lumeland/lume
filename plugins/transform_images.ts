@@ -31,7 +31,7 @@ export type TransformationFunction = (
 
 // Default options
 export const defaults: Options = {
-  extensions: [".jpg", ".jpeg", ".png"],
+  extensions: [".jpg", ".jpeg", ".png", ".webp"],
   name: "transformImages",
   cache: true,
   functions: {
