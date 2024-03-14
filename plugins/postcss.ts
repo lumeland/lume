@@ -32,12 +32,16 @@ export interface Options {
 
   /** Set `false` to remove the default plugins */
   useDefaultPlugins?: boolean;
+
+  /** The name of the helper */
+  name?: string;
 }
 
 // Default options
 export const defaults: Options = {
   extensions: [".css"],
   useDefaultPlugins: true,
+  name: "postcss",
 };
 
 const defaultPlugins = [
@@ -74,7 +78,7 @@ export default function (userOptions?: Options) {
 
     site.loadAssets(options.extensions);
     site.process(options.extensions, (pages) => concurrent(pages, postCss));
-    site.filter("postcss", filter, true);
+    site.filter(options.name, filter, true);
 
     async function postCss(file: Page) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
