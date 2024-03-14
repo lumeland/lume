@@ -7,7 +7,7 @@ import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type FS from "../core/fs.ts";
-import type { Environment, Token } from "../deps/vento.ts";
+import type { Environment, Plugin, Token } from "../deps/vento.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -21,6 +21,11 @@ export interface Options {
    * @default `site.options.includes`
    */
   includes?: string;
+
+  /**
+   * Plugins to use by vento
+   */
+  plugins?: Plugin[];
 
   /**
    * The options for the Vento engine
@@ -127,6 +132,12 @@ export default function (userOptions?: Options) {
     });
 
     vento.tags.push(compTag);
+    options.plugins?.forEach((plugin) => vento.use(plugin));
+
+    site.hooks.addVentoPlugin = (plugin: Plugin) => {
+      vento.use(plugin);
+    };
+    site.hooks.vento = (callback) => callback(vento);
 
     const ventoEngine = new VentoEngine(vento, options.includes);
 

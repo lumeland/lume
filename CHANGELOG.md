@@ -5,9 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [2.1.2] - Unreleased
+## [2.1.2] - 2024-03-14
 ### Added
 - `transform_images` plugin: added the `.webp` extension to the default options.
+- `vento` plugin: New option `plugins` to use Vento plugins.
+- Added `vento` and `addVentoPlugin` hooks.
 
 ### Fixed
 - UnoCSS plugin: the async process of adding `<style>` elements is not awaited [#578].
@@ -314,7 +316,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#575]: https://github.com/lumeland/lume/issues/575
 [#578]: https://github.com/lumeland/lume/issues/578
 
-[2.1.2]: https://github.com/lumeland/lume/compare/v2.1.1...HEAD
+[2.1.2]: https://github.com/lumeland/lume/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/lumeland/lume/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/lumeland/lume/compare/v2.0.3...v2.1.0
 [2.0.3]: https://github.com/lumeland/lume/compare/v2.0.2...v2.0.3
