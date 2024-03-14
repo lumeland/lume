@@ -1,1 +1,1 @@
-export { default as unidecode } from "npm:unidecode@0.1.8";
+export { default as unidecode } from "npm:unidecode@1.0.1";

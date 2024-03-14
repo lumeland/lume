@@ -1,2 +1,2 @@
-export { format } from "npm:date-fns@3.3.1/format";
-export type { Locale } from "npm:date-fns@3.3.1/locale";
+export { format } from "npm:date-fns@3.4.0/format";
+export type { Locale } from "npm:date-fns@3.4.0/locale";

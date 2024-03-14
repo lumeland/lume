@@ -11,7 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - UnoCSS plugin: the async process of adding `<style>` elements is not awaited [#578].
-- Updated dependencies: `std`, `terser`, `cms`, `postcss`, `react` types, `unocss`, `vento`.
+- Updated dependencies: `std`, `terser`, `cms`, `postcss`, `react` types, `unocss`, `vento`, `date-fns`, `sass`, `terser`.
 - Replace Sharp with `svg2png` as the library to convert svg to png.
 
 ## [2.1.1] - 2024-03-01
