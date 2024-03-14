@@ -196,7 +196,7 @@ async function getCms(configPath: string): Promise<string | false> {
     hint: "More info at https://lume.land/cms/",
   });
 
-  if (!useCms) {
+  if (useCms === "no") {
     return false;
   }
 
