@@ -1,5 +1,5 @@
 import satori, { SatoriOptions } from "../deps/satori.ts";
-import sharp from "../deps/sharp.ts";
+import { svg2png } from "../deps/svg2png.ts";
 import Cache from "../core/cache.ts";
 import { posix } from "../deps/path.ts";
 import { resolveInclude } from "../core/utils/path.ts";
@@ -119,7 +119,7 @@ export default function (userOptions?: Options) {
       }
 
       const svg = await satori(jsx, options.satori);
-      const content = await sharp(new TextEncoder().encode(svg)).toBuffer();
+      const content = await svg2png(svg);
 
       if (cache) {
         await cache.set(new Uint8Array(), jsx, content);
