@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [Unreleased]
+### Added
+- PostCSS plugin: new option `name` with the default value `postcss`.
+
 ## [2.1.2] - 2024-03-14
 ### Added
 - `transform_images` plugin: added the `.webp` extension to the default options.
