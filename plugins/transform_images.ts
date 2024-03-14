@@ -3,7 +3,7 @@ import { log } from "../core/utils/log.ts";
 import { merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import binaryLoader from "../core/loaders/binary.ts";
-import sharp from "../deps/sharp.ts";
+import sharp, { create } from "../deps/sharp.ts";
 import Cache from "../core/cache.ts";
 
 import type Site from "../core/site.ts";
@@ -113,7 +113,7 @@ export default function (userOptions?: Partial<Options>) {
         return;
       }
 
-      const content = page.content as Uint8Array;
+      const content = page.content as Uint8Array | string;
       const transformations = removeDuplicatedTransformations(
         getTransformations(transData),
       );
@@ -165,12 +165,12 @@ export default function (userOptions?: Partial<Options>) {
 }
 
 async function transform(
-  content: Uint8Array,
+  content: Uint8Array | string,
   page: Page,
   transformation: Transformation,
   options: Options,
 ): Promise<void> {
-  const image = sharp(content);
+  const image = await create(content);
 
   for (const [name, args] of Object.entries(transformation)) {
     switch (name) {

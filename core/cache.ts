@@ -34,7 +34,7 @@ export default class Cache {
   }
 
   async get(
-    content: Uint8Array,
+    content: Uint8Array | string,
     key: unknown,
   ): Promise<Uint8Array | undefined> {
     const [dir, file] = await paths(content, key);

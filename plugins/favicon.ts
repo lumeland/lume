@@ -3,7 +3,7 @@ import binLoader from "../core/loaders/binary.ts";
 import textLoader from "../core/loaders/text.ts";
 import { Page } from "../core/file.ts";
 import Cache from "../core/cache.ts";
-import sharp, { sharpsToIco } from "../deps/sharp.ts";
+import sharp, { create, sharpsToIco } from "../deps/sharp.ts";
 
 import type Site from "../core/site.ts";
 
@@ -66,16 +66,16 @@ export default function (userOptions?: Options) {
       site.options.watcher.ignore.push(cacheFolder);
     }
 
-    async function getContent(): Promise<Uint8Array> {
-      const content = await site.getContent(options.input, binLoader);
+    async function getContent(): Promise<Uint8Array | string> {
+      const content = options.input.endsWith(".svg")
+        ? await site.getContent(options.input, textLoader)
+        : await site.getContent(options.input, binLoader);
 
       if (!content) {
         throw new Error(`File not found: ${options.input}`);
       }
 
-      return typeof content === "string"
-        ? new TextEncoder().encode(content)
-        : content;
+      return content;
     }
 
     site.addEventListener("afterRender", async (event) => {
@@ -148,7 +148,7 @@ function addIcon(document: Document, attributes: Record<string, string>) {
 }
 
 async function buildIco(
-  content: Uint8Array,
+  content: Uint8Array | string,
   format: keyof sharp.FormatEnum | "ico",
   size: number[],
   cache?: Cache,
@@ -165,12 +165,12 @@ async function buildIco(
 
   if (format === "ico") {
     const resizeOptions = { background: { r: 0, g: 0, b: 0, alpha: 0 } };
-    const img = sharp(content);
+    const img = await create(content);
     image = await sharpsToIco(
       ...size.map((size) => img.clone().resize(size, size, resizeOptions)),
     );
   } else {
-    image = await sharp(content)
+    image = await (await create(content))
       .resize(size[0], size[0])
       .toFormat(format)
       .toBuffer();
