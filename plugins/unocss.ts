@@ -19,7 +19,7 @@ import type {
 export interface Options {
   /**
    * Configurations for UnoCSS.
-   * @see {@link https://unocss.dev/guide/config-file}
+   * @see https://unocss.dev/guide/config-file
    */
   options?: UserConfig;
 
@@ -38,7 +38,7 @@ export interface Options {
 
   /**
    * Supported CSS reset options.
-   * @see {@link https://github.com/unocss/unocss/tree/main/packages/reset}
+   * @see https://github.com/unocss/unocss/tree/main/packages/reset
    * @defaultValue `tailwind`
    */
   reset?: false | "tailwind" | "tailwind-compat" | "eric-meyer";
@@ -137,7 +137,7 @@ export default function (userOptions?: Options) {
 /**
  * TODO: Replace with CSS Modules Import
  * @remarks Deno does not currently support CSS Modules.
- * @see {@link https://github.com/denoland/deno/issues/11961}
+ * @see https://github.com/denoland/deno/issues/11961
  */
 async function getResetCss(reset: Options["reset"]) {
   return reset === false ? "" : await read(`${resetUrl}/${reset}.css`, false);
