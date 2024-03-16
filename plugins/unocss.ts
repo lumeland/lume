@@ -33,7 +33,7 @@ export interface Options {
    * @default "unocss.css"
    */
   cssFile?: false | string;
-  
+
   /**
    * Process CSS files using UnoCSS transformers.
    * @default
