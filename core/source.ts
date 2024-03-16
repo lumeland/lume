@@ -258,7 +258,8 @@ export default class Source {
 
       // Check if the entry should be ignored
       if (
-        entry.name.startsWith(".") || entry.name.startsWith("_") ||
+        (entry.name.startsWith(".") && !isWellKnownDir(entry)) ||
+        entry.name.startsWith("_") ||
         this.ignored.has(entry.path)
       ) {
         for (const [staticSrc, { dest, dirOnly }] of this.staticPaths) {
@@ -565,4 +566,8 @@ function getOutputPath(
   }
 
   return posix.join(path, entry.name);
+}
+
+function isWellKnownDir(entry: Entry) {
+  return entry.type === "directory" && entry.path === "/.well-known";
 }

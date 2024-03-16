@@ -9,6 +9,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - PostCSS plugin: new option `name` with the default value `postcss` [#582].
 
+### Changed
+- Do not ignore the `/.well-known` folder by default [#585].
+
 ### Fixed
 - Updated dependencies: `std`, `esbuild`, `lightningcss`, `unocss`, `date-fns`.
 
@@ -323,6 +326,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#575]: https://github.com/lumeland/lume/issues/575
 [#578]: https://github.com/lumeland/lume/issues/578
 [#582]: https://github.com/lumeland/lume/issues/582
+[#585]: https://github.com/lumeland/lume/issues/585
 
 [2.1.3]: https://github.com/lumeland/lume/compare/v2.1.2...HEAD
 [2.1.2]: https://github.com/lumeland/lume/compare/v2.1.1...v2.1.2
