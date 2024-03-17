@@ -20,26 +20,34 @@ export interface Options {
   /**
    * Configurations for UnoCSS.
    * @see https://unocss.dev/guide/config-file
+   * @default
+   * {
+   *  presets: [presetUno()]
+   * }
    */
   options?: UserConfig;
 
   /**
    * Set the css filename for all generated styles,
    * Set to `false` to insert a <style> tag per page.
-   * @defaultValue `false`
+   * @default "unocss.css"
    */
-
   cssFile?: false | string;
+
   /**
    * Process CSS files using UnoCSS transformers.
-   * @defaultValue `[transformerVariantGroup(), transformerDirectives()]`
+   * @default
+   * [
+   *  transformerVariantGroup(),
+   *  transformerDirectives()
+   * ]
    */
   transformers?: SourceCodeTransformer[];
 
   /**
    * Supported CSS reset options.
    * @see https://github.com/unocss/unocss/tree/main/packages/reset
-   * @defaultValue `tailwind`
+   * @default false
    */
   reset?: false | "tailwind" | "tailwind-compat" | "eric-meyer";
 }
