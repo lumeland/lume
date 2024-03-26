@@ -1,4 +1,8 @@
-import { format } from "../deps/date.ts";
+import {
+  format,
+  formatDistanceToNow,
+  formatDistanceToNowStrict,
+} from "../deps/date.ts";
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
@@ -56,7 +60,13 @@ export default function (userOptions?: Options) {
       const patt = options.formats[pattern] || pattern;
       const locale = lang ? options.locales[lang] : undefined;
 
-      return format(date, patt, { locale });
+      if (pattern === "HUMAN_SINCE") {
+        return formatDistanceToNow(date, { locale });
+      } else if (pattern === "HUMAN_SINCE_STRICT") {
+        return formatDistanceToNowStrict(date, { locale });
+      } else {
+        return format(date, patt, { locale });
+      }
     }
   };
 }

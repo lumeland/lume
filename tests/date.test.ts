@@ -35,6 +35,23 @@ Deno.test("date plugin", () => {
   equals(format(date0, "CUSTOM"), "1970_01");
 });
 
+Deno.test("date plugin formats: HUMAN_SINCE and HUMAN_SINCE_STRICT", () => {
+  const site = lume();
+  site.use(date());
+
+  const { helpers } = site.renderer;
+  assert(helpers.has("date"));
+  const [format] = helpers.get("date")!;
+
+  const aBitMoreThanAYearFromNow = new Date(
+    Date.now() + 367 * 24 * 60 * 60 * 1000,
+  );
+  // See https://date-fns.org/v3.6.0/docs/formatDistanceToNow
+  equals(format(aBitMoreThanAYearFromNow, "HUMAN_SINCE"), "about 1 year");
+  // See https://date-fns.org/v3.6.0/docs/formatDistanceToNowStrict
+  equals(format(aBitMoreThanAYearFromNow, "HUMAN_SINCE_STRICT"), "1 year");
+});
+
 Deno.test("date plugin with custom locale", async () => {
   const site = lume();
   site.use(date({
