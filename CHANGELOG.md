@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.1.3] - Unreleased
 ### Added
 - PostCSS plugin: new option `name` with the default value `postcss` [#582].
+- date plugin: new formats `HUMAN_SINCE` and `HUMAN_SINCE_STRICT` expose [`formatDistanceToNow`](https://date-fns.org/v3.6.0/docs/formatDistanceToNow) and [`formatDistanceToNowStrict`](https://date-fns.org/v3.6.0/docs/formatDistanceToNowStrict) in the [date-fns](https://date-fns.org/) package, so you can refer to the amount of time that has passed since the an article was last written/modified, rather than just the date it was written.
 
 ### Changed
 - Do not ignore the `/.well-known` folder by default [#585].
