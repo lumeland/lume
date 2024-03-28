@@ -67,7 +67,8 @@ export class FSWriter implements Writer {
       return false;
     }
 
-    const id = outputPath.toLowerCase();
+    const filename = posix.join(this.dest, outputPath);
+    const id = filename.toLowerCase();
     const hash = await sha1(content);
     const previous = this.#outputs.get(id);
     this.#outputs.set(id, [this.#saveCount, sourcePath, hash]);
@@ -89,7 +90,6 @@ export class FSWriter implements Writer {
 
     log.info(`🔥 ${page.data.url} <- <gray>${sourcePath}</gray>`);
 
-    const filename = posix.join(this.dest, page.outputPath);
     await ensureDir(posix.dirname(filename));
 
     page.content instanceof Uint8Array
@@ -167,7 +167,9 @@ export class FSWriter implements Writer {
       files,
       async (file) => {
         try {
-          await Deno.remove(posix.join(this.dest, file));
+          const outputPath = posix.join(this.dest, file);
+          this.#outputs.delete(outputPath.toLowerCase());
+          await Deno.remove(outputPath);
         } catch {
           // Ignored
         }

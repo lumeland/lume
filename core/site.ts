@@ -544,7 +544,7 @@ export default class Site {
       const files = this.files.filter((file) => file.entry === entry).map((
         file,
       ) => file.outputPath);
-      this.writer.removeFiles([...pages, ...files]);
+      await this.writer.removeFiles([...pages, ...files]);
     }
 
     // Get the site content

@@ -14,6 +14,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Do not ignore the `/.well-known` folder by default [#585].
 
 ### Fixed
+- Reload site on rename/delete file.
 - Updated dependencies: `std`, `esbuild`, `lightningcss`, `unocss`, `date-fns`, `cms`, `eta`, `katex`, `liquid`, `markdown-it`, `postcss`, `postcss-import`, `autoprefixer`, `preact`, `sharp`.
 
 ## [2.1.2] - 2024-03-14
