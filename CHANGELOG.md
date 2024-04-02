@@ -5,10 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.1.4] - Unreleased
+### Fixed
+- `esbuild` timeout [#591].
+
 ## [2.1.3] - 2024-03-28
 ### Added
 - PostCSS plugin: new option `name` with the default value `postcss` [#582].
-- date plugin: new formats `HUMAN_SINCE` and `HUMAN_SINCE_STRICT` expose [`formatDistanceToNow`](https://date-fns.org/v3.6.0/docs/formatDistanceToNow) and [`formatDistanceToNowStrict`](https://date-fns.org/v3.6.0/docs/formatDistanceToNowStrict) in the [date-fns](https://date-fns.org/) package, so you can refer to the amount of time that has passed since the an article was last written/modified, rather than just the date it was written.
+- date plugin: new formats `HUMAN_SINCE` and `HUMAN_SINCE_STRICT` expose [`formatDistanceToNow`](https://date-fns.org/v3.6.0/docs/formatDistanceToNow) and [`formatDistanceToNowStrict`](https://date-fns.org/v3.6.0/docs/formatDistanceToNowStrict) in the [date-fns](https://date-fns.org/) package, so you can refer to the amount of time that has passed since the an article was last written/modified, rather than just the date it was written [#589].
 
 ### Changed
 - Do not ignore the `/.well-known` folder by default [#585].
@@ -329,7 +333,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#578]: https://github.com/lumeland/lume/issues/578
 [#582]: https://github.com/lumeland/lume/issues/582
 [#585]: https://github.com/lumeland/lume/issues/585
+[#589]: https://github.com/lumeland/lume/issues/589
+[#591]: https://github.com/lumeland/lume/issues/591
 
+[2.1.4]: https://github.com/lumeland/lume/compare/v2.1.3...HEAD
 [2.1.3]: https://github.com/lumeland/lume/compare/v2.1.2...v2.1.3
 [2.1.2]: https://github.com/lumeland/lume/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/lumeland/lume/compare/v2.1.0...v2.1.1
