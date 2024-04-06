@@ -1,20 +1,12 @@
-// https://github.com/denoland/deno/issues/19096
-import transformerVariantGroupImport from "npm:@unocss/transformer-variant-group@0.58.8";
-import transformerDirectivesImport from "npm:@unocss/transformer-directives@0.58.8";
-
 export {
   createGenerator,
   type SourceCodeTransformer,
   type UnocssPluginContext,
   type UserConfig,
-} from "npm:@unocss/core@0.58.8";
-export { presetUno } from "npm:@unocss/preset-uno@0.58.8";
-export { default as MagicString } from "npm:magic-string@0.30.8";
+} from "npm:@unocss/core@0.59.0";
+export { presetUno } from "npm:@unocss/preset-uno@0.59.0";
+export { default as transformerVariantGroup } from "npm:@unocss/transformer-variant-group@0.59.0";
+export { default as transformerDirectives } from "npm:@unocss/transformer-directives@0.59.0";
+export { default as MagicString } from "npm:magic-string@0.30.9";
 
-// https://github.com/denoland/deno/issues/16458#issuecomment-1295003089
-export const transformerVariantGroup =
-  transformerVariantGroupImport as unknown as typeof transformerDirectivesImport.default;
-export const transformerDirectives =
-  transformerDirectivesImport as unknown as typeof transformerDirectivesImport.default;
-
-export const resetUrl = "https://unpkg.com/@unocss/reset@0.58.8";
+export const resetUrl = "https://unpkg.com/@unocss/reset@0.59.0";
