@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.1.4] - Unreleased
 ### Fixed
 - `esbuild` timeout [#591].
+- Updated dependencies: `unocss`.
 
 ## [2.1.3] - 2024-03-28
 ### Added
