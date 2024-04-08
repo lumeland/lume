@@ -6,6 +6,9 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.1.4] - Unreleased
+### Added
+- Pagefind plugin: Updated the `ui` object with the new options introduced in v1.1.0.
+
 ### Fixed
 - `esbuild` timeout [#591].
 - Updated dependencies: `unocss`, `pagefind`, `postcss-nesting`, `sass`, `terser`, `vento`.
