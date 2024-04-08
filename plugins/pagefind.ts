@@ -1,64 +1,31 @@
 import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
 import { Page } from "../core/file.ts";
-import * as pagefind from "../deps/pagefind.ts";
+import { pagefind } from "../deps/pagefind.ts";
 
-import type { CustomRecord } from "../deps/pagefind.ts";
+import type { CustomRecord, TranslationsOptions } from "../deps/pagefind.ts";
 import type Site from "../core/site.ts";
 
-export interface TranslationsOptions {
-  /** English default: "Search" */
-  placeholder?: string;
-  /** English default: "Clear" */
-  clear_search?: string;
-  /** English default: "Load more results" */
-  load_more?: string;
-  /** English default: "Search this site" */
-  search_label?: string;
-  /** English default: "Filters" */
-  filters_label?: string;
-  /** English default: "No results for [SEARCH_TERM]" */
-  zero_results?: string;
-  /** English default: "[COUNT] results for [SEARCH_TERM]" */
-  many_results?: string;
-  /** English default: "[COUNT] result for [SEARCH_TERM]" */
-  one_result?: string;
-  /** English default: "No results for [SEARCH_TERM]. Showing results for [DIFFERENT_TERM] instead" */
-  alt_search?: string;
-  /** English default: "No results for [SEARCH_TERM]. Try one of the following searches:" */
-  search_suggestion?: string;
-  /** English default: "Searching for [SEARCH_TERM]..." */
-  searching?: string;
-}
 export interface UIOptions {
-  /** The container id to insert the search */
+  /**
+   * The container id to insert the search
+   * @default "search"
+   */
   containerId?: string;
 
-  /** Whether to show an image alongside each search result. */
-  showImages?: boolean;
-
   /**
-   * By default, Pagefind UI shows filters with no results alongside the count (0).
-   * Pass false to hide filters that have no remaining results.
+   * The number of search results to load at once, before a “Load more” button is shown.
+   * @default 5
    */
-  showEmptyFilters?: boolean;
-
-  /**
-   * By default, Pagefind UI applies a CSS reset to itself.
-   * Pass false to omit this and inherit from your site styles.
-   */
-  resetStyles?: boolean;
+  pageSize?: number;
 
   /**
    * Include results from page subsections (based on headings with IDs).
    */
   showSubResults?: boolean;
 
-  /**
-   * Enable the ability to highlight search terms on the result pages.
-   * Configure the query parameter name.
-   */
-  highlightParam?: string;
+  /** Whether to show an image alongside each search result. */
+  showImages?: boolean;
 
   /**
    * The maximum number of characters to show in the excerpt.
@@ -67,11 +34,10 @@ export interface UIOptions {
   excerptLength?: number;
 
   /**
-   * A set of custom ui strings to use instead of the automatically detected language strings.
-   * See https://github.com/CloudCannon/pagefind/blob/main/pagefind_ui/translations/en.json for all available keys and initial values.
-   * The items in square brackets such as SEARCH_TERM will be substituted dynamically when the text is used.
+   * A function that Pagefind UI calls before performing a search.
+   * This can be used to normalize search terms to match your content.
    */
-  translations?: TranslationsOptions;
+  processTerm?: (term: string) => string;
 
   /**
    * A function that Pagefind UI calls before displaying each result.
@@ -82,10 +48,21 @@ export interface UIOptions {
   processResult?: (result: unknown) => unknown;
 
   /**
-   * A function that Pagefind UI calls before performing a search.
-   * This can be used to normalize search terms to match your content.
+   * By default, Pagefind UI shows filters with no results alongside the count (0).
+   * Pass false to hide filters that have no remaining results.
    */
-  processTerm?: (term: string) => string;
+  showEmptyFilters?: boolean;
+
+  /**
+   * The default behavior of the filter display is to show values only when there is one filter with six or fewer values. When you include a filter name in openFilters it will open by default, regardless of the number of filters or values present.
+   */
+  openFilters?: string[];
+
+  /**
+   * By default, Pagefind UI applies a CSS reset to itself.
+   * Pass false to omit this and inherit from your site styles.
+   */
+  resetStyles?: boolean;
 
   /**
    * The number of milliseconds to wait after a user stops typing before performing a search.
@@ -93,6 +70,33 @@ export interface UIOptions {
    * @default 300
    */
   debounceTimeoutMs?: number;
+
+  /**
+   * A set of custom ui strings to use instead of the automatically detected language strings.
+   * See https://github.com/CloudCannon/pagefind/blob/main/pagefind_ui/translations/en.json for all available keys and initial values.
+   * The items in square brackets such as SEARCH_TERM will be substituted dynamically when the text is used.
+   */
+  translations?: TranslationsOptions;
+
+  /**
+   * Enabling autofocus automatically directs attention to the search input field for
+   * enhanced user convenience, particularly beneficial when the UI is loaded within a modal dialog.
+   * However, exercise caution, as using autofocus indiscriminately may pose potential
+   * accessibility challenges.
+   */
+  autofocus?: boolean;
+
+  /**
+   * Passes sort options to Pagefind for ranking.
+   * Note that using a sort will override all ranking by relevance.
+   */
+  sort?: Record<string, "asc" | "desc">;
+
+  /**
+   * Enable the ability to highlight search terms on the result pages.
+   * Configure the query parameter name.
+   */
+  highlightParam?: string;
 }
 
 export interface Options {
