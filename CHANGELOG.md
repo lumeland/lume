@@ -9,6 +9,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - Pagefind plugin: Updated the `ui` object with the new options introduced in v1.1.0.
 
+### Deprecated
+- `init.ts` file.
+
 ### Fixed
 - `esbuild` timeout [#591].
 - Updated dependencies: `unocss`, `pagefind`, `postcss-nesting`, `sass`, `terser`, `vento`, `std`, `preact`, `unocss`, `liquid`, `react` types, `sass`, `tailwind`.
