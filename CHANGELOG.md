@@ -14,7 +14,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - `esbuild` timeout [#591].
-- Updated dependencies: `unocss`, `pagefind`, `postcss-nesting`, `sass`, `terser`, `vento`, `std`, `preact`, `unocss`, `liquid`, `react` types, `sass`, `tailwind`.
+- Updated dependencies: `unocss`, `pagefind`, `postcss-nesting`, `sass`, `terser`, `vento`, `std`, `preact`, `unocss`, `liquid`, `react` types, `sass`, `tailwind`, `magic-string`.
 
 ## [2.1.3] - 2024-03-28
 ### Added
