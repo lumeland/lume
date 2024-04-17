@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [2.1.4] - Unreleased
+## [2.1.4] - 2024-04-17
 ### Added
 - Pagefind plugin: Updated the `ui` object with the new options introduced in v1.1.0.
 
@@ -343,7 +343,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#589]: https://github.com/lumeland/lume/issues/589
 [#591]: https://github.com/lumeland/lume/issues/591
 
-[2.1.4]: https://github.com/lumeland/lume/compare/v2.1.3...HEAD
+[2.1.4]: https://github.com/lumeland/lume/compare/v2.1.3...v2.1.4
 [2.1.3]: https://github.com/lumeland/lume/compare/v2.1.2...v2.1.3
 [2.1.2]: https://github.com/lumeland/lume/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/lumeland/lume/compare/v2.1.0...v2.1.1
