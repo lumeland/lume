@@ -69,6 +69,9 @@ export interface FeedItemOptions {
 
   /** The item language */
   lang?: string | ((data: Data) => string | undefined);
+
+  /** The item image */
+  image?: string | ((data: Data) => string | undefined);
 }
 
 export const defaults: Options = {
@@ -119,6 +122,7 @@ export interface FeedItem {
   updated?: Date;
   content: string;
   lang: string;
+  image?: string;
 }
 
 const defaultGenerator = `Lume ${getCurrentVersion()}`;
@@ -154,6 +158,10 @@ export default function (userOptions?: Options) {
           const content = getDataValue(data, items.content)?.toString();
           const pageUrl = site.url(data.url, true);
           const fixedContent = fixUrls(new URL(pageUrl), content || "");
+          const imagePath = getDataValue(data, items.image);
+          const image = imagePath !== undefined
+            ? site.url(imagePath, true)
+            : undefined;
 
           return {
             title: getDataValue(data, items.title),
@@ -163,6 +171,7 @@ export default function (userOptions?: Options) {
             updated: getDataValue(data, items.updated),
             content: fixedContent,
             lang: getDataValue(data, items.lang),
+            image,
           };
         }),
       };
@@ -240,6 +249,9 @@ function generateRss(data: FeedData, file: string): string {
             "content:encoded": item.content,
             pubDate: item.published.toUTCString(),
             "atom:updated": item.updated?.toISOString(),
+            meta: item.image
+              ? { "@property": "og:image", "@content": item.image }
+              : undefined,
           })
         ),
       }),
@@ -264,6 +276,7 @@ function generateJson(data: FeedData, file: string): string {
         content_html: item.content,
         date_published: item.published.toUTCString(),
         date_modified: item.updated?.toUTCString(),
+        image: item.image,
       })
     ),
   });
