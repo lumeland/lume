@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [X.X.X] - TODO
+### Added
+- Feed plugin: Add image support.
+
 ## [2.1.4] - 2024-04-17
 ### Added
 - Pagefind plugin: Updated the `ui` object with the new options introduced in v1.1.0.
