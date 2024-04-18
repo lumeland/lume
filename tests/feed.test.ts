@@ -17,6 +17,7 @@ Deno.test("RSS plugin", async (t) => {
       items: {
         title: (data) => data.title?.toUpperCase(),
         updated: "=date",
+        image: "=metas.image",
       },
     }),
   );
