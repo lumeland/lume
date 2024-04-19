@@ -5,9 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [X.X.X] - TODO
+## [2.2.0] - Unreleased
 ### Added
-- Feed plugin: Add image support.
+- Feed plugin: Add image support [#599], [#598].
+- New middleware `shutdown`.
 
 ## [2.1.4] - 2024-04-17
 ### Added
@@ -346,7 +347,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#585]: https://github.com/lumeland/lume/issues/585
 [#589]: https://github.com/lumeland/lume/issues/589
 [#591]: https://github.com/lumeland/lume/issues/591
+[#598]: https://github.com/lumeland/lume/issues/598
+[#599]: https://github.com/lumeland/lume/issues/599
 
+[2.2.0]: https://github.com/lumeland/lume/compare/v2.1.4...HEAD
 [2.1.4]: https://github.com/lumeland/lume/compare/v2.1.3...v2.1.4
 [2.1.3]: https://github.com/lumeland/lume/compare/v2.1.2...v2.1.3
 [2.1.2]: https://github.com/lumeland/lume/compare/v2.1.1...v2.1.2
