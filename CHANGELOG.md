@@ -10,6 +10,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Feed plugin: Add image support [#599], [#598].
 - New middleware `shutdown`.
 
+### Fixed
+- Updated dependencies: `unocss`.
+
 ## [2.1.4] - 2024-04-17
 ### Added
 - Pagefind plugin: Updated the `ui` object with the new options introduced in v1.1.0.
