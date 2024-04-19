@@ -107,6 +107,8 @@ snapshot[`Sitemap plugin 1`] = `
     "/404.md",
     "/_data.yml",
     "/favicon.png",
+    "/images",
+    "/images/avatar.jpg",
     "/page5.yaml",
     "/pages",
     "/pages/2020-06-21_page2.page.json",
@@ -314,6 +316,7 @@ Content of Page 2",
       metas: [
         "title",
         "description",
+        "image",
       ],
       names: "Array(2)",
       page: [
@@ -1604,6 +1607,8 @@ snapshot[`Sitemap plugin with filter_pages plugin 1`] = `
     "/404.md",
     "/_data.yml",
     "/favicon.png",
+    "/images",
+    "/images/avatar.jpg",
     "/page5.yaml",
     "/pages",
     "/pages/2020-06-21_page2.page.json",
@@ -1803,6 +1808,7 @@ Content of Page 2",
       metas: [
         "title",
         "description",
+        "image",
       ],
       names: "Array(2)",
       page: [
