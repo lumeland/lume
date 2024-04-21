@@ -124,7 +124,10 @@ export class LiquidEngine implements Engine {
   }
 }
 
-/** Register the plugin to add support for Liquid files */
+/**
+ * Register the plugin to add support for Liquid files
+ * @deprecated Use Vento or Nunjucks instead (see https://github.com/lumeland/lume/issues/600)
+ */
 export default function (userOptions?: Options) {
   return function (site: Site) {
     const options = merge(

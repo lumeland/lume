@@ -13,8 +13,11 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Changed
 - For better predictability, the `_cache` folder is generated in the root folder, instead of `src` folder.
 
+### Deprecated
+- `liquid` plugin. It never worked fine with `search.pages()` [#600].
+
 ### Fixed
-- Updated dependencies: `unocss`.
+- Updated dependencies: `unocss`, `liquid`, `postcss-nesting`.
 
 ## [2.1.4] - 2024-04-17
 ### Added
@@ -355,6 +358,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#591]: https://github.com/lumeland/lume/issues/591
 [#598]: https://github.com/lumeland/lume/issues/598
 [#599]: https://github.com/lumeland/lume/issues/599
+[#600]: https://github.com/lumeland/lume/issues/600
 
 [2.2.0]: https://github.com/lumeland/lume/compare/v2.1.4...HEAD
 [2.1.4]: https://github.com/lumeland/lume/compare/v2.1.3...v2.1.4
