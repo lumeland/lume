@@ -10,6 +10,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Feed plugin: Add image support [#599], [#598].
 - New middleware `shutdown`.
 
+### Changed
+- For better predictability, the `_cache` folder is generated in the root folder, instead of `src` folder.
+
 ### Fixed
 - Updated dependencies: `unocss`.
 

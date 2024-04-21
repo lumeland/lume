@@ -58,7 +58,7 @@ export default function (userOptions?: Options) {
     // Configure the cache folder
     const cacheFolder = options.cache === true ? "_cache" : options.cache;
     const cache = cacheFolder
-      ? new Cache({ folder: site.src(cacheFolder) })
+      ? new Cache({ folder: site.root(cacheFolder) })
       : undefined;
 
     if (cacheFolder) {
