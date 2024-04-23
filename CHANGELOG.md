@@ -17,7 +17,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `liquid` plugin. It never worked fine with `search.pages()` [#600].
 
 ### Fixed
-- Updated dependencies: `unocss`, `liquid`, `postcss-nesting`.
+- Updated dependencies: `unocss`, `liquid`, `postcss-nesting`, `terser`, `xml`.
 
 ## [2.1.4] - 2024-04-17
 ### Added
