@@ -18,6 +18,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Updated dependencies: `unocss`, `liquid`, `postcss-nesting`, `terser`, `xml`, `react`, `std`.
+- FFF plugin: fix `getGitDate` priority. [#603]
 
 ## [2.1.4] - 2024-04-17
 ### Added
@@ -359,6 +360,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#598]: https://github.com/lumeland/lume/issues/598
 [#599]: https://github.com/lumeland/lume/issues/599
 [#600]: https://github.com/lumeland/lume/issues/600
+[#603]: https://github.com/lumeland/lume/issues/603
 
 [2.2.0]: https://github.com/lumeland/lume/compare/v2.1.4...HEAD
 [2.1.4]: https://github.com/lumeland/lume/compare/v2.1.3...v2.1.4
