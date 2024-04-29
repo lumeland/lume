@@ -35,8 +35,12 @@ export default function (userOptions?: Partial<Options>) {
     site.preprocess(options.extensions, (pages) =>
       pages.forEach((page) => {
         if (options.getGitDate && page.src.entry) {
-          page.data.created = getGitDate("created", page.src.entry.src);
-          page.data.updated = getGitDate("modified", page.src.entry.src);
+          if (!page.data.created) {
+            page.data.created = getGitDate("created", page.src.entry.src);
+          }
+          if (!page.data.updated) {
+            page.data.updated = getGitDate("modified", page.src.entry.src);
+          }
         }
 
         page.data = transform(page.data, [
