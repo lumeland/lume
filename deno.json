@@ -9,9 +9,9 @@
     ]
   },
   "tasks": {
-    "test": "TZ=Z LUME_LOGS=ERROR deno test -A",
+    "test": "TZ=Z LUME_LOGS=ERROR DENO_FUTURE=1 deno test -A",
     "test:update": "deno task test -- --update",
     "changelog": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.5.3/bin.ts",
-    "update-deps": "deno run -A --quiet 'https://deno.land/x/nudd@v0.1.1/cli.ts' deps/*.ts cms.ts"
+    "update-deps": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.0/cli.ts' update deps/*.ts cms.ts deno.json"
   }
 }
