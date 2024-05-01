@@ -59,7 +59,6 @@ export default function (userOptions?: Partial<Options>) {
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    // deno-lint-ignore no-empty-interface
     export interface Data
       extends Omit<FFFFlavoredFrontmatter, "lang" | "tags"> {}
   }
