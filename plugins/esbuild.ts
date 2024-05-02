@@ -96,21 +96,21 @@ export default function (userOptions?: Options) {
     site.loadAssets(options.extensions);
 
     function resolve(path: string) {
-      // "npm:" specifiers are currently not supported in import.meta.resolve()
-      // https://github.com/denoland/deno/issues/21298
-      if (!path.startsWith("npm:")) {
-        path = import.meta.resolve(path);
-      }
+      path = import.meta.resolve(path);
+      const match = path.match(/^(npm|jsr):(.*)$/);
 
-      if (!path.startsWith("npm:")) {
+      if (!match) {
         return {
           path,
           namespace: "deno",
         };
       }
 
-      const name = path.replace(/^npm:/, "");
-      const url = new URL(`https://esm.sh/${name}`);
+      const [, prefix, name] = match;
+
+      const url = prefix === "npm"
+        ? new URL(`https://esm.sh/${name}`)
+        : new URL(`https://esm.sh/jsr/${name}`);
 
       if (options.esm.dev) {
         url.searchParams.set("dev", "true");

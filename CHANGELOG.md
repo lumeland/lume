@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - Feed plugin: Add image support [#599], [#598].
 - New middleware `shutdown`.
+- Esbuild plugin: support for `jsr:` specifiers.
 
 ### Changed
 - For better predictability, the `_cache` folder is generated in the root folder, instead of `src` folder.
@@ -18,7 +19,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Updated dependencies: `unocss`, `liquid`, `postcss-nesting`, `terser`, `xml`, `react`, `std`, `sass`, `preact`.
-- FFF plugin: fix `getGitDate` priority. [#603]
+- FFF plugin: fix `getGitDate` priority [#603].
+- Esbuild plugin: resolve bare specifiers mapped to `npm:`.
 
 ## [2.1.4] - 2024-04-17
 ### Added
