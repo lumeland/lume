@@ -13,6 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Changed
 - For better predictability, the `_cache` folder is generated in the root folder, instead of `src` folder.
+- Simplified Esbuild plugin.
 
 ### Deprecated
 - `liquid` plugin. It never worked fine with `search.pages()` [#600].
@@ -20,7 +21,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - Updated dependencies: `unocss`, `liquid`, `postcss-nesting`, `terser`, `xml`, `react`, `std`, `sass`, `preact`.
 - FFF plugin: fix `getGitDate` priority [#603].
-- Esbuild plugin: resolve bare specifiers mapped to `npm:`.
+- Esbuild plugin:
+  - Resolve bare specifiers mapped to `npm:`.
+  - Renamed imports to `.js` when bundle is `false` [#594].
 
 ## [2.1.4] - 2024-04-17
 ### Added
@@ -359,6 +362,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#585]: https://github.com/lumeland/lume/issues/585
 [#589]: https://github.com/lumeland/lume/issues/589
 [#591]: https://github.com/lumeland/lume/issues/591
+[#594]: https://github.com/lumeland/lume/issues/594
 [#598]: https://github.com/lumeland/lume/issues/598
 [#599]: https://github.com/lumeland/lume/issues/599
 [#600]: https://github.com/lumeland/lume/issues/600

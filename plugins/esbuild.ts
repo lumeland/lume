@@ -8,7 +8,6 @@ import { merge } from "../core/utils/object.ts";
 import { readDenoConfig } from "../core/utils/deno_config.ts";
 import { log } from "../core/utils/log.ts";
 import { read } from "../core/utils/read.ts";
-import { concurrent } from "../core/utils/concurrent.ts";
 import { build, BuildOptions, OutputFile, stop } from "../deps/esbuild.ts";
 import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
@@ -61,14 +60,10 @@ export const defaults: Options = {
     platform: "browser",
     target: "esnext",
     treeShaking: true,
+    outdir: "./",
+    outbase: ".",
   },
 };
-
-const contentSymbol = Symbol.for("contentSymbol");
-
-interface LumeBuildOptions extends BuildOptions {
-  [contentSymbol]: Record<string, string>;
-}
 
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
@@ -97,126 +92,16 @@ export default function (userOptions?: Options) {
 
     function resolve(path: string) {
       path = import.meta.resolve(path);
-      const match = path.match(/^(npm|jsr):(.*)$/);
-
-      if (!match) {
-        return {
-          path,
-          namespace: "deno",
-        };
-      }
-
-      const [, prefix, name] = match;
-
-      const url = prefix === "npm"
-        ? new URL(`https://esm.sh/${name}`)
-        : new URL(`https://esm.sh/jsr/${name}`);
-
-      if (options.esm.dev) {
-        url.searchParams.set("dev", "true");
-      }
-
-      // cjs exports
-      const cjs_exports = options.esm.cjsExports?.[name];
-
-      if (cjs_exports) {
-        url.searchParams.set(
-          "cjs-exports",
-          Array.isArray(cjs_exports) ? cjs_exports.join(",") : cjs_exports,
-        );
-      }
-
-      // deps
-      const deps = options.esm.deps?.[name];
-
-      if (deps) {
-        url.searchParams.set(
-          "deps",
-          Array.isArray(deps) ? deps.join(",") : deps,
-        );
-      }
+      const esmSpecifier = handleEsm(path, options.esm);
 
       return {
-        path: url.href,
+        path: esmSpecifier || path,
         namespace: "deno",
       };
     }
 
-    const prefix = toFileUrl(site.src()).href;
-    const lumeLoaderPlugin = {
-      name: "lumeLoader",
-      // deno-lint-ignore no-explicit-any
-      setup(build: any) {
-        const { initialOptions } = build;
-        build.onResolve({ filter: /.*/ }, (args: ResolveArguments) => {
-          const { path, importer } = args;
-
-          // Absolute url
-          if (isUrl(path)) {
-            return resolve(path);
-          }
-
-          // Resolve the relative url
-          if (isUrl(importer) && path.match(/^[./]/)) {
-            return resolve(new URL(path, importer).href);
-          }
-
-          // It's a npm package
-          if (path.startsWith("npm:")) {
-            return resolve(path);
-          }
-
-          if (!isUrl(path)) {
-            return resolve(isAbsolutePath(path) ? toFileUrl(path).href : path);
-          }
-
-          return resolve(path);
-        });
-
-        build.onLoad({ filter: /.*/ }, async (args: LoadArguments) => {
-          let { path, namespace } = args;
-
-          // It's one of the entry point files
-          if (initialOptions[contentSymbol][path]) {
-            return {
-              contents: initialOptions[contentSymbol][path],
-              loader: getLoader(path),
-            };
-          }
-
-          // Read files from Lume
-          if (namespace === "deno") {
-            if (path.startsWith(prefix)) {
-              const file = path.replace(prefix, "");
-              const content = await site.getContent(file, textLoader);
-
-              if (content) {
-                return {
-                  contents: content,
-                  loader: getLoader(path),
-                };
-              }
-            }
-          }
-
-          // Convert file:// urls to paths
-          if (path.startsWith("file://")) {
-            path = normalizePath(fromFileUrl(path));
-          }
-
-          // Read other files from the filesystem/url
-          const content = await readFile(path);
-          return {
-            contents: content,
-            loader: getLoader(path),
-          };
-        });
-      },
-    };
-    options.options.plugins?.push(lumeLoaderPlugin);
-
     site.hooks.addEsbuildPlugin = (plugin) => {
-      options.options.plugins?.unshift(plugin);
+      options.options.plugins!.unshift(plugin);
     };
 
     site.addEventListener("beforeSave", stop);
@@ -239,19 +124,89 @@ export default function (userOptions?: Options) {
         entryContent[toFileUrl(filename).href] = content;
       });
 
-      const buildOptions: LumeBuildOptions = {
+      const buildOptions: BuildOptions = {
         ...options.options,
         write: false,
         metafile: false,
         entryPoints,
         sourcemap: enableAllSourceMaps ? "external" : undefined,
         ...extraOptions,
-        [contentSymbol]: entryContent,
       };
 
+      const prefix = toFileUrl(site.src()).href;
+      buildOptions.plugins!.push({
+        name: "lume-loader",
+        // deno-lint-ignore no-explicit-any
+        setup(build: any) {
+          build.onResolve({ filter: /.*/ }, (args: ResolveArguments) => {
+            const { path, importer } = args;
+
+            // Absolute url
+            if (isUrl(path)) {
+              return resolve(path);
+            }
+
+            // Resolve the relative url
+            if (isUrl(importer) && path.match(/^[./]/)) {
+              return resolve(new URL(path, importer).href);
+            }
+
+            // It's a npm package
+            if (path.startsWith("npm:")) {
+              return resolve(path);
+            }
+
+            if (!isUrl(path)) {
+              return resolve(
+                isAbsolutePath(path) ? toFileUrl(path).href : path,
+              );
+            }
+
+            return resolve(path);
+          });
+
+          build.onLoad({ filter: /.*/ }, async (args: LoadArguments) => {
+            let { path, namespace } = args;
+
+            // It's one of the entry point files
+            if (entryContent[path]) {
+              return {
+                contents: entryContent[path],
+                loader: getLoader(path),
+              };
+            }
+
+            // Read files from Lume
+            if (namespace === "deno") {
+              if (path.startsWith(prefix)) {
+                const file = path.replace(prefix, "");
+                const content = await site.getContent(file, textLoader);
+
+                if (content) {
+                  return {
+                    contents: content,
+                    loader: getLoader(path),
+                  };
+                }
+              }
+            }
+
+            // Convert file:// urls to paths
+            if (path.startsWith("file://")) {
+              path = normalizePath(fromFileUrl(path));
+            }
+
+            // Read other files from the filesystem/url
+            const content = await readFile(path);
+            return {
+              contents: content,
+              loader: getLoader(path),
+            };
+          });
+        },
+      });
+
       const { outputFiles, warnings, errors } = await build(
-        // @ts-expect-error: esbuild uses a SameShape type to prevent the passing
-        // of extra options (which we use to pass the entryContent)
         buildOptions,
       );
 
@@ -268,81 +223,57 @@ export default function (userOptions?: Options) {
       return [outputFiles || [], enableAllSourceMaps];
     }
 
-    // Splitting mode needs to run esbuild with all pages at the same time
-    if (options.options.splitting) {
-      // Define default options for splitting mode
-      options.options.absWorkingDir ||= site.src();
-      options.options.outdir ||= "./";
-      options.options.outbase ||= ".";
-      const basePath = options.options.absWorkingDir;
+    // Define default options for splitting mode
+    options.options.absWorkingDir ||= site.src();
+    const basePath = options.options.absWorkingDir;
 
-      site.process(options.extensions, async (pages, allPages) => {
-        const [outputFiles, enableSourceMap] = await runEsbuild(pages);
+    site.process(options.extensions, async (pages, allPages) => {
+      const [outputFiles, enableSourceMap] = await runEsbuild(pages);
 
-        // Save the output code
-        for (const file of outputFiles) {
-          if (file.path.endsWith(".map")) {
-            continue;
-          }
-
-          // Search the entry point of this output file
-          const url = normalizePath(
-            normalizePath(file.path).replace(basePath, ""),
-          );
-          const urlWithoutExt = pathWithoutExtension(url);
-          const entryPoint = pages.find((page) => {
-            const outdir = posix.join(
-              "/",
-              options.options.outdir || ".",
-              pathWithoutExtension(page.data.url),
-            );
-
-            return outdir === urlWithoutExt;
-          });
-
-          // Get the associated source map
-          const map = enableSourceMap
-            ? outputFiles.find((f) => f.path === `${file.path}.map`)
-            : undefined;
-
-          // The page is an entry point
-          if (entryPoint) {
-            entryPoint.data.url = url; // Update the url to .js extension
-            saveAsset(site, entryPoint, file.text, map?.text);
-          } else {
-            // The page is a chunk
-            const page = Page.create({ url });
-            saveAsset(site, page, file.text, map?.text);
-            allPages.push(page);
-          }
+      // Save the output code
+      for (const file of outputFiles) {
+        if (file.path.endsWith(".map")) {
+          continue;
         }
-      });
-    } else {
-      // Normal mode runs esbuild for each page
-      site.process(
-        options.extensions,
-        (pages) =>
-          concurrent(pages, async (page) => {
-            const [outputFiles] = await runEsbuild([page], {
-              outfile: replaceExtension(page.outputPath, ".js"),
-            });
 
-            let mapFile: OutputFile | undefined;
-            let jsFile: OutputFile | undefined;
+        // Replace .tsx and .jsx extensions with .js
+        const content = (!options.options.splitting && !options.options.bundle)
+          ? resolveImports(file.text, options.esm)
+          : file.text;
 
-            for (const file of outputFiles) {
-              if (file.path.endsWith(".map")) {
-                mapFile = file;
-              } else {
-                jsFile = file;
-              }
-            }
+        // Search the entry point of this output file
+        const url = normalizePath(
+          normalizePath(file.path).replace(basePath, ""),
+        );
+        const urlWithoutExt = pathWithoutExtension(url);
+        const entryPoint = pages.find((page) => {
+          const outdir = posix.join(
+            "/",
+            options.options.outdir || ".",
+            pathWithoutExtension(page.data.url),
+          );
 
-            saveAsset(site, page, jsFile?.text!, mapFile?.text);
-            page.data.url = replaceExtension(page.data.url, ".js");
-          }),
-      );
-    }
+          return outdir === urlWithoutExt;
+        });
+
+        // Get the associated source map
+        const map = enableSourceMap
+          ? outputFiles.find((f) => f.path === `${file.path}.map`)
+          : undefined;
+
+        // The page is an entry point
+        if (entryPoint) {
+          entryPoint.data.url = url; // Update the url to .js extension
+          saveAsset(site, entryPoint, content, map?.text);
+        } else {
+          // The page is a chunk
+          const page = Page.create({ url });
+          saveAsset(site, page, content, map?.text);
+          allPages.push(page);
+        }
+      }
+      console.log(pages.map((p) => p.data.url));
+    });
   };
 }
 
@@ -406,4 +337,59 @@ export async function readFile(path: string): Promise<string> {
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/115.0",
     },
   });
+}
+
+function resolveImports(content: string, esm: EsmOptions): string {
+  return content.replaceAll(
+    /(from\s*)["']([^"']+)["']/g,
+    (_, from, path) => {
+      if (path.startsWith(".") || path.startsWith("/")) {
+        const resolved = path.endsWith(".json")
+          ? path
+          : replaceExtension(path, ".js");
+        return `${from}"${resolved}"`;
+      }
+      const resolved = import.meta.resolve(path);
+      return `${from}"${handleEsm(resolved, esm) || resolved}"`;
+    },
+  );
+}
+
+function handleEsm(path: string, options: EsmOptions): string | undefined {
+  const match = path.match(/^(npm|jsr):(.*)$/);
+
+  if (!match) {
+    return;
+  }
+
+  const [, prefix, name] = match;
+  const url = prefix === "npm"
+    ? new URL(`https://esm.sh/${name}`)
+    : new URL(`https://esm.sh/jsr/${name}`);
+
+  if (options.dev) {
+    url.searchParams.set("dev", "true");
+  }
+
+  // cjs exports
+  const cjs_exports = options.cjsExports?.[name];
+
+  if (cjs_exports) {
+    url.searchParams.set(
+      "cjs-exports",
+      Array.isArray(cjs_exports) ? cjs_exports.join(",") : cjs_exports,
+    );
+  }
+
+  // deps
+  const deps = options.deps?.[name];
+
+  if (deps) {
+    url.searchParams.set(
+      "deps",
+      Array.isArray(deps) ? deps.join(",") : deps,
+    );
+  }
+
+  return url.href;
 }
