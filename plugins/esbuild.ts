@@ -272,7 +272,6 @@ export default function (userOptions?: Options) {
           allPages.push(page);
         }
       }
-      console.log(pages.map((p) => p.data.url));
     });
   };
 }
