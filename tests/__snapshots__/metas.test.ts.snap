@@ -133,8 +133,8 @@ snapshot[`metas plugin 3`] = `
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="black">
 <meta name="generator" content="Lume testing">
-<meta name="label1" content="Reading time">
-<meta name="data1" content="1 minute">
+<meta name="twitter:label1" content="Reading time">
+<meta name="twitter:data1" content="1 minute">
 </head>
   <body>
     Hello world
@@ -211,8 +211,8 @@ snapshot[`metas plugin 3`] = `
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="theme-color" content="black">
 <meta name="generator" content="Lume testing">
-<meta name="label1" content="Reading time">
-<meta name="data1" content="1 minute">
+<meta name="twitter:label1" content="Reading time">
+<meta name="twitter:data1" content="1 minute">
 </head>
   <body>
     Hello world
@@ -288,8 +288,8 @@ snapshot[`metas plugin 3`] = `
 <meta name="robots" content="this robots will be overrided">
 <meta name="theme-color" content="black">
 <meta name="generator" content="Lume testing">
-<meta name="label1" content="Reading time">
-<meta name="data1" content="1 minute">
+<meta name="twitter:label1" content="Reading time">
+<meta name="twitter:data1" content="1 minute">
 </head><body><p>This is page excerpt will be used as meta description.</p>
 <!--more-->
 </body></html>',
