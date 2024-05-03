@@ -49,6 +49,9 @@ export interface MetaData {
 
   /** Whether include the generator or not (Boolean to enable/disable, String for a custom value) */
   generator?: string | boolean | ((data: Data) => string | boolean | undefined);
+
+  /** Other meta tags */
+  other?: Record<string, string | ((data: Data) => string | undefined)>;
 }
 
 const defaults: Options = {
@@ -59,7 +62,7 @@ const defaults: Options = {
 const defaultGenerator = `Lume ${getCurrentVersion()}`;
 
 /** A plugin to insert meta tags for SEO and social media */
-export default function (userOptions?: Options) {
+export default function(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -94,6 +97,7 @@ export default function (userOptions?: Options) {
       const robots = getDataValue(data, metas["robots"]);
       const color = getDataValue(data, metas["color"]);
       const generator = getDataValue(data, metas["generator"]);
+      const other = metas.other;
 
       // Open graph
       addMeta(document, "property", "og:type", type || "website");
@@ -135,6 +139,13 @@ export default function (userOptions?: Options) {
           "generator",
           generator === true ? defaultGenerator : generator,
         );
+      }
+
+      if (other) {
+        for (const key in other) {
+          const value = getDataValue(data, other[key]);
+          addMeta(document, "name", key, value);
+        }
       }
     }
   };
