@@ -8,8 +8,8 @@ metas:
   robots: "=robots"
   image: "=cover"
   other:
-    twitter:label1: Reading time
-    twitter:data1: 1 minute
+    "twitter:label1": Reading time
+    "twitter:data1": 1 minute
 ---
 
 This is page excerpt will be used as meta description.
