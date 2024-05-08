@@ -46,7 +46,12 @@ export default function (userOptions?: Options) {
           const oldUrls = Array.isArray(oldUrl) ? oldUrl : [oldUrl];
 
           for (const old of oldUrls) {
-            const redirect = parseRedirection(url, old, options.defaultStatus);
+            const redirect = parseRedirection(
+              url,
+              old,
+              options.defaultStatus,
+              site,
+            );
             if (redirect) {
               redirects.push(redirect);
             }
@@ -80,7 +85,11 @@ function parseRedirection(
   newUrl: string,
   oldUrl: string,
   defaultCode: Status,
+  site: Site,
 ): [string, string, Status] | undefined {
+  // Resolve the full URL when the site's base URL is not at the root
+  const to = site.url(newUrl);
+
   const [from, code] = oldUrl.split(/\s+/);
   const parsedCode = code ? parseInt(code) : defaultCode;
 
@@ -91,7 +100,7 @@ function parseRedirection(
     return;
   }
 
-  return [from, newUrl, parsedCode as Status];
+  return [from, to, parsedCode as Status];
 }
 
 /** HTML redirect */
