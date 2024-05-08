@@ -95,11 +95,7 @@ export default function (userOptions?: Options) {
         posix.relative(site.options.location.pathname, path),
       );
 
-      const content = await getFileContent(
-        site,
-        url,
-        asDataUrl ? binaryLoader : textLoader,
-      );
+      const content = await getFileContent(site, url, asDataUrl);
 
       // Return the raw content
       if (!asDataUrl) {
@@ -235,8 +231,9 @@ export default function (userOptions?: Options) {
 async function getFileContent(
   site: Site,
   url: string,
-  loader: Loader,
+  binary: boolean,
 ): Promise<string | Uint8Array> {
+  const loader = binary ? binaryLoader : textLoader;
   const content = await site.getContent(url, loader);
 
   if (!content) {
