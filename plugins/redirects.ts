@@ -1,7 +1,6 @@
 import { merge } from "../core/utils/object.ts";
 import { Page } from "../core/file.ts";
 import { log } from "../core/utils/log.ts";
-import { join as joinUrl } from "../deps/url.ts";
 
 import type Site from "../core/site.ts";
 
@@ -47,7 +46,12 @@ export default function (userOptions?: Options) {
           const oldUrls = Array.isArray(oldUrl) ? oldUrl : [oldUrl];
 
           for (const old of oldUrls) {
-            const redirect = parseRedirection(url, old, options.defaultStatus);
+            const redirect = parseRedirection(
+              url,
+              old,
+              options.defaultStatus,
+              site,
+            );
             if (redirect) {
               redirects.push(redirect);
             }
@@ -81,7 +85,11 @@ function parseRedirection(
   newUrl: string,
   oldUrl: string,
   defaultCode: Status,
+  site: Site,
 ): [string, string, Status] | undefined {
+  // Resolve the full URL when the site's base URL is not at the root
+  const to = site.url(newUrl);
+
   const [from, code] = oldUrl.split(/\s+/);
   const parsedCode = code ? parseInt(code) : defaultCode;
 
@@ -92,24 +100,23 @@ function parseRedirection(
     return;
   }
 
-  return [from, newUrl, parsedCode as Status];
+  return [from, to, parsedCode as Status];
 }
 
 /** HTML redirect */
 function html(redirects: Redirect[], site: Site): void {
   for (const [url, to, statusCode] of redirects) {
     const timeout = (statusCode === 301 || statusCode === 308) ? 0 : 1;
-    const revisedTo = joinUrl(site.options.location, to).pathname;
     const content = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Redirecting…</title>
-  <meta http-equiv="refresh" content="${timeout}; url=${revisedTo}">
+  <meta http-equiv="refresh" content="${timeout}; url=${to}">
 </head>
 <body>
   <h1>Redirecting…</h1>
-  <a href="${revisedTo}">Click here if you are not redirected.</a>
+  <a href="${to}">Click here if you are not redirected.</a>
 </body>
 </html>`;
     const page = Page.create({ url, content });
