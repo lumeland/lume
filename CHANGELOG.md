@@ -16,7 +16,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Simplified Esbuild plugin.
 
 ### Deprecated
-- `liquid` plugin. It never worked fine with `search.pages()` [#600].
+- `liquid` plugin. It never worked well with `search.pages()` [#600].
 
 ### Fixed
 - Updated dependencies: `unocss`, `liquid`, `postcss-nesting`, `terser`, `xml`, `react`, `std`, `sass`, `preact`.
@@ -24,6 +24,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Esbuild plugin:
   - Resolve bare specifiers mapped to `npm:`.
   - Renamed imports to `.js` when bundle is `false` [#594].
+- Redirect plugin: resolve urls when site location has a subfolder [#606].
 
 ## [2.1.4] - 2024-04-17
 ### Added
@@ -367,6 +368,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#599]: https://github.com/lumeland/lume/issues/599
 [#600]: https://github.com/lumeland/lume/issues/600
 [#603]: https://github.com/lumeland/lume/issues/603
+[#606]: https://github.com/lumeland/lume/issues/606
 
 [2.2.0]: https://github.com/lumeland/lume/compare/v2.1.4...HEAD
 [2.1.4]: https://github.com/lumeland/lume/compare/v2.1.3...v2.1.4
