@@ -1,6 +1,7 @@
 import { merge } from "../core/utils/object.ts";
 import { Page } from "../core/file.ts";
 import { log } from "../core/utils/log.ts";
+import { join as joinUrl } from "../deps/url.ts";
 
 import type Site from "../core/site.ts";
 
@@ -98,16 +99,17 @@ function parseRedirection(
 function html(redirects: Redirect[], site: Site): void {
   for (const [url, to, statusCode] of redirects) {
     const timeout = (statusCode === 301 || statusCode === 308) ? 0 : 1;
+    const revisedTo = joinUrl(site.options.location, to).pathname;
     const content = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Redirecting…</title>
-  <meta http-equiv="refresh" content="${timeout}; url=${to}">
+  <meta http-equiv="refresh" content="${timeout}; url=${revisedTo}">
 </head>
 <body>
   <h1>Redirecting…</h1>
-  <a href="${to}">Click here if you are not redirected.</a>
+  <a href="${revisedTo}">Click here if you are not redirected.</a>
 </body>
 </html>`;
     const page = Page.create({ url, content });
