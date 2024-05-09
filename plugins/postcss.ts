@@ -1,9 +1,4 @@
-import {
-  autoprefixer,
-  postcss,
-  postcssImport,
-  postcssNesting,
-} from "../deps/postcss.ts";
+import { autoprefixer, postcss, postcssImport } from "../deps/postcss.ts";
 import { merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import { resolveInclude } from "../core/utils/path.ts";
@@ -26,7 +21,7 @@ export interface Options {
 
   /**
    * Plugins to use by postcss
-   * @default `[postcssNesting(), autoprefixer()]`
+   * @default `[autoprefixer()]`
    */
   plugins?: unknown[];
 
@@ -45,7 +40,6 @@ export const defaults: Options = {
 };
 
 const defaultPlugins = [
-  postcssNesting(),
   autoprefixer(),
 ];
 

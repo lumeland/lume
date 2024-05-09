@@ -22,6 +22,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Deprecated
 - `liquid` plugin. It never worked well with `search.pages()` [#600].
 
+### Deleted
+- PostCSS plugin: Don't use nesting plugin by default since CSS nesting feature works across the latest devices and browser versions.
+
 ### Fixed
 - Updated dependencies: `unocss`, `liquid`, `postcss-nesting`, `terser`, `xml`, `react`, `std`, `sass`, `preact`, `esbuild`, `svgo`, `cms`, `sheetjs`.
 - FFF plugin: fix `getGitDate` priority [#603].
