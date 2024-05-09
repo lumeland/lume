@@ -12,8 +12,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Esbuild plugin: support for `jsr:` specifiers.
 
 ### Changed
+- The minimum Deno version supported is `1.43`.
 - For better predictability, the `_cache` folder is generated in the root folder, instead of `src` folder.
 - Simplified Esbuild plugin.
+- Import `std` packages from `jsr` because they are not longer updated on `land/x`.
 
 ### Deprecated
 - `liquid` plugin. It never worked well with `search.pages()` [#600].

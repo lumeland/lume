@@ -1,1 +1,1 @@
-export * from "https://deno.land/std@0.224.0/assert/mod.ts";
+export * from "jsr:@std/assert@0.225.1";

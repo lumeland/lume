@@ -1,2 +1,2 @@
-export * from "https://deno.land/std@0.224.0/path/mod.ts";
-export * as posix from "https://deno.land/std@0.224.0/path/posix/mod.ts";
+export * from "jsr:@std/path@0.225.0";
+export * as posix from "jsr:@std/path@0.225.0/posix";
