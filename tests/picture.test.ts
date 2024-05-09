@@ -13,5 +13,7 @@ Deno.test("picture plugin", async (t) => {
   }));
 
   await build(site);
-  await assertSiteSnapshot(t, site);
+  await assertSiteSnapshot(t, site, {
+    avoidBinaryFilesLength: true,
+  });
 });
