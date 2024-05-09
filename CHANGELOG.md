@@ -19,7 +19,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `liquid` plugin. It never worked well with `search.pages()` [#600].
 
 ### Fixed
-- Updated dependencies: `unocss`, `liquid`, `postcss-nesting`, `terser`, `xml`, `react`, `std`, `sass`, `preact`, `esbuild`, `svgo`, `cms`.
+- Updated dependencies: `unocss`, `liquid`, `postcss-nesting`, `terser`, `xml`, `react`, `std`, `sass`, `preact`, `esbuild`, `svgo`, `cms`, `sheetjs`.
 - FFF plugin: fix `getGitDate` priority [#603].
 - Esbuild plugin:
   - Resolve bare specifiers mapped to `npm:`.
