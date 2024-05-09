@@ -1,6 +1,7 @@
 import { posix } from "../deps/path.ts";
 
 import type { RawData } from "./file.ts";
+import type { Loader } from "./loaders/mod.ts";
 
 type EntryType = "file" | "directory";
 
@@ -8,8 +9,6 @@ export interface Options {
   root: string;
   ignore?: (string | ((path: string) => boolean))[];
 }
-
-export type Loader = (path: string) => Promise<RawData>;
 
 export class Entry {
   name: string;

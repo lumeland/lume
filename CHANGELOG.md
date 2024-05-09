@@ -10,6 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Feed plugin: Add image support [#599], [#598].
 - New middleware `shutdown`.
 - Esbuild plugin: support for `jsr:` specifiers.
+- New `Lume.Loader` type.
 
 ### Changed
 - The minimum Deno version supported is `1.43`.

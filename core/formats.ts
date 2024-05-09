@@ -1,5 +1,5 @@
 import type { Engine } from "./renderer.ts";
-import type { Loader } from "./fs.ts";
+import type { Loader } from "./loaders/mod.ts";
 
 export interface Format {
   /** The file extension for this format */

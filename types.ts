@@ -1,5 +1,6 @@
 import type { Engine, Helper } from "./core/renderer.ts";
 import type { Data as PageData, Page } from "./core/file.ts";
+import type { Loader } from "./core/loaders/mod.ts";
 import type { default as Site, Plugin } from "./core/site.ts";
 import type { Archetype } from "./cli/create.ts";
 import type { Middleware, RequestHandler } from "./core/server.ts";
@@ -9,6 +10,7 @@ declare global {
     export type {
       Archetype,
       Engine,
+      Loader,
       Middleware,
       Page,
       Plugin,

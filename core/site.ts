@@ -19,6 +19,7 @@ import FSWatcher from "../core/watcher.ts";
 import { FSWriter } from "./writer.ts";
 import { Page } from "./file.ts";
 import textLoader from "./loaders/text.ts";
+import type { Loader } from "./loaders/mod.ts";
 
 import type { Component, Components } from "./component_loader.ts";
 import type { Data, RawData, StaticFile } from "./file.ts";
@@ -26,7 +27,6 @@ import type { Engine, Helper, HelperOptions } from "./renderer.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
 import type { Processor } from "./processors.ts";
 import type { Extensions } from "./utils/path.ts";
-import type { Loader } from "./fs.ts";
 import type { Writer } from "./writer.ts";
 import type { Middleware } from "./server.ts";
 import type { ScopeFilter } from "./scopes.ts";
