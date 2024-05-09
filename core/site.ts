@@ -488,6 +488,10 @@ export default class Site {
     // Load source files
     this.fs.init();
 
+    if (await this.dispatchEvent({ type: "afterLoad" }) === false) {
+      return;
+    }
+
     // Get the site content
     const showDrafts = env<boolean>("LUME_DRAFTS");
     const [_pages, _staticFiles] = await this.source.build(
@@ -545,6 +549,10 @@ export default class Site {
         file,
       ) => file.outputPath);
       await this.writer.removeFiles([...pages, ...files]);
+    }
+
+    if (await this.dispatchEvent({ type: "afterLoad" }) === false) {
+      return;
     }
 
     // Get the site content
@@ -927,6 +935,8 @@ export interface ComponentsOptions {
 }
 
 export type SiteEventMap = {
+  // deno-lint-ignore ban-types
+  afterLoad: {};
   beforeBuild: {
     /** the list of pages that have been saved */
     pages: Page[];
@@ -950,11 +960,11 @@ export type SiteEventMap = {
     staticFiles: StaticFile[];
   };
   beforeRender: {
-    /** the list of pages that have been saved */
+    /** the list of pages that are about to render */
     pages: Page[];
   };
   afterRender: {
-    /** the list of pages that have been saved */
+    /** the list of pages that have been rendered */
     pages: Page[];
   };
   beforeRenderOnDemand: {

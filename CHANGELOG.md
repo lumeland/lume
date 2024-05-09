@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New middleware `shutdown`.
 - Esbuild plugin: support for `jsr:` specifiers.
 - New `Lume.Loader` type.
+- New `afterLoad` event, triggered just after all files are (re)loaded.
 
 ### Changed
 - The minimum Deno version supported is `1.43`.
