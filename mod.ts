@@ -8,7 +8,6 @@ import search, { Options as SearchOptions } from "./plugins/search.ts";
 import paginate, { Options as PaginateOptions } from "./plugins/paginate.ts";
 import toml, { Options as TomlOptions } from "./plugins/toml.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
-import { merge } from "./core/utils/object.ts";
 
 import type { DeepPartial } from "./core/utils/object.ts";
 import type { SiteOptions } from "./core/site.ts";
@@ -32,7 +31,7 @@ export default function lume(
   cliOptions = true,
 ): Site {
   if (cliOptions) {
-    options = merge(options, getOptionsFromCli());
+    getOptionsFromCli(options);
   }
 
   const site = new Site(options as Partial<SiteOptions>);

@@ -131,7 +131,7 @@ const lume = new Command()
   .option(
     "-p, --port <port:number>",
     "The port where the server runs.",
-    { default: 3000, depends: ["serve"] },
+    { default: 3000 },
   )
   .option(
     "-o, --open",

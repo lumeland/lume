@@ -22,7 +22,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Deprecated
 - `liquid` plugin. It never worked well with `search.pages()` [#600].
 
-### Deleted
+### Removed
 - PostCSS plugin: Don't use nesting plugin by default since CSS nesting feature works across the latest devices and browser versions.
 
 ### Fixed
@@ -32,6 +32,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - Resolve bare specifiers mapped to `npm:`.
   - Renamed imports to `.js` when bundle is `false` [#594].
 - Redirect plugin: resolve urls when site location has a subfolder [#606].
+- Bug merging options from CLI and _config file [#607].
+- The option `--port` no longer depends on `--serve`.
 
 ## [2.1.4] - 2024-04-17
 ### Added
@@ -376,6 +378,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#600]: https://github.com/lumeland/lume/issues/600
 [#603]: https://github.com/lumeland/lume/issues/603
 [#606]: https://github.com/lumeland/lume/issues/606
+[#607]: https://github.com/lumeland/lume/issues/607
 
 [2.2.0]: https://github.com/lumeland/lume/compare/v2.1.4...HEAD
 [2.1.4]: https://github.com/lumeland/lume/compare/v2.1.3...v2.1.4
