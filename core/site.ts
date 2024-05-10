@@ -134,7 +134,6 @@ export default class Site {
 
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);
-    this.options.location.port ||= this.options.server.port.toString();
 
     const src = this.src();
     const dest = this.dest();

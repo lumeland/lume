@@ -13,7 +13,7 @@ Deno.test("default configuration", () => {
   equals(options.dest, "./_site");
   equals(options.location.href, "http://localhost/");
   equals(options.prettyUrls, true);
-  equals(options.server.port, 3000);
+  equals(options.server.port, 80);
   equals(options.server.page404, "/404.html");
   equals(options.server.open, false);
 });

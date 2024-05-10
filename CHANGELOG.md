@@ -18,6 +18,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - For better predictability, the `_cache` folder is generated in the root folder, instead of `src` folder.
 - Simplified Esbuild plugin.
 - Import `std` packages from `jsr` because they are not longer updated on `land/x`.
+- The default port when lume build the site (not serving) is `80` or `443`, depending whether the location protocol is http or https. Previously it was `3000`.
 
 ### Deprecated
 - `liquid` plugin. It never worked well with `search.pages()` [#600].
