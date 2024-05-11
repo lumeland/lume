@@ -14,9 +14,15 @@ import {
 export interface Options {
   /** The list extensions this plugin applies to */
   extensions: string[];
+  /**
+   * The list of presets to apply
+   * @see https://fff.js.org/concepts/flavor-transform.html#fff-transform-preset
+   */
   presets: FFFTransformPreset[];
   strict: false | StrictPresetOptions;
+  /** To convert the generic `date` field to one of these values */
   date?: "created" | "updated" | "published";
+  /** Get the date from the git history */
   getGitDate?: boolean;
   postTypeDiscovery?: boolean;
 }
