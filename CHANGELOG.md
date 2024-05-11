@@ -14,6 +14,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New `afterLoad` event, triggered just after all files are (re)loaded.
 
 ### Changed
+- BREAKING: Removed `lume/cms.ts` module. Use import maps instead.
 - The minimum Deno version supported is `1.43`.
 - For better predictability, the `_cache` folder is generated in the root folder, instead of `src` folder.
 - Simplified Esbuild plugin.

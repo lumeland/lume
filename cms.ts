@@ -1,5 +1,13 @@
-export { default as adapter } from "https://cdn.jsdelivr.net/gh/lumeland/cms@v0.3.11/adapters/lume.ts";
-export { default } from "https://cdn.jsdelivr.net/gh/lumeland/cms@v0.3.11/mod.ts";
-export { default as Kv } from "https://cdn.jsdelivr.net/gh/lumeland/cms@v0.3.11/storage/kv.ts";
-export { default as Fs } from "https://cdn.jsdelivr.net/gh/lumeland/cms@v0.3.11/storage/fs.ts";
-export { default as GitHub } from "https://cdn.jsdelivr.net/gh/lumeland/cms@v0.3.11/storage/github.ts";
+import { yellow } from "./deps/colors.ts";
+const specifier = "https://cdn.jsdelivr.net/gh/lumeland/cms@v0.3.11/";
+
+throw new Error(`
+  This module is not longer available.
+  Please, add this import to your import map:
+
+  ${yellow(`"lume/cms/": "${specifier}"`)}
+
+  And then, replace the import statement in your code:
+
+  ${yellow(`import lumeCMS from "lume/cms/mod.ts";`)}
+`);

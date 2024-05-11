@@ -4,7 +4,6 @@ import { toFileUrl } from "../deps/path.ts";
 import { getConfigFile } from "../core/utils/lume_config.ts";
 import { setEnv } from "../core/utils/env.ts";
 import { createSite } from "./run.ts";
-import { adapter } from "../cms.ts";
 
 export async function runCms(
   config: string | undefined,
@@ -25,6 +24,7 @@ export async function runCms(
   // Enable drafts in the CMS
   setEnv("LUME_DRAFTS", "true");
 
+  const { default: adapter } = await import("lume/cms/adapters/lume.ts");
   const cms = mod.default;
   const app = await adapter({ site, cms });
   const { port } = site.options.server;
