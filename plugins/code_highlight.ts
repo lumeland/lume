@@ -1,4 +1,8 @@
-import hljs, { HLJSOptions, LanguageFn } from "../deps/highlight.ts";
+import hljs, {
+  HLJSOptions,
+  LanguageFn,
+  themesPath,
+} from "../deps/highlight.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 
@@ -17,6 +21,17 @@ export interface Options {
    * @see https://highlightjs.readthedocs.io/en/latest/api.html#configure
    */
   options?: Omit<HLJSOptions, "__emitter">;
+
+  /** The list of themes to download */
+  theme?: Theme | Theme[];
+}
+
+interface Theme {
+  /** The name of the theme */
+  name: string;
+
+  /** The path to the theme file */
+  path: string;
 }
 
 // Default options
@@ -45,6 +60,19 @@ export default function (userOptions?: Options) {
 
   return (site: Site) => {
     site.process(options.extensions, processCodeHighlight);
+
+    if (options.theme) {
+      const themes = Array.isArray(options.theme)
+        ? options.theme
+        : [options.theme];
+
+      for (const { name, path } of themes) {
+        site.remoteFile(
+          path,
+          `${themesPath}${name}.min.css`,
+        );
+      }
+    }
 
     function processCodeHighlight(pages: Page[]) {
       for (const page of pages) {
