@@ -149,8 +149,8 @@ export class FSWriter implements Writer {
         }</gray>`,
       );
       return true;
-    } catch {
-      // Ignored
+    } catch (error) {
+      log.error(`Failed to copy file: ${file.outputPath}: ${error.message}`);
     }
 
     return false;

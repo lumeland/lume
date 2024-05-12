@@ -12,6 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Esbuild plugin: support for `jsr:` specifiers.
 - New `Lume.Loader` type.
 - New `afterLoad` event, triggered just after all files are (re)loaded.
+- Show the error if a file cannot be copied.
 
 ### Changed
 - BREAKING: Removed `lume/cms.ts` module. Use import maps instead.

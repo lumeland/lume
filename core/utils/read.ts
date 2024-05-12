@@ -47,6 +47,10 @@ export async function read(
   if (!useCache) {
     const response = await fetch(url, init);
 
+    if (!response.ok) {
+      throw new Error(`Failed to fetch "${url}"`);
+    }
+
     return isBinary
       ? new Uint8Array(await response.arrayBuffer())
       : response.text();
@@ -68,6 +72,11 @@ export async function read(
   }
 
   const response = await fetch(url, init);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch "${url}"`);
+  }
+
   await cache.put(url, response.clone());
 
   return isBinary
