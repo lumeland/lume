@@ -3922,7 +3922,7 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
     content: '/* https://unocss.dev/transformers/directives#usage */
 .custom-div {
   margin-top:0;margin-bottom:0;text-align:center;font-weight:500;
-  ;
+  
 }.custom-div:hover{--un-text-opacity:1;color:rgb(248 113 113 / var(--un-text-opacity));}
 
 .grid {
@@ -3931,7 +3931,7 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
 
 @media (min-width: 640px) {
   .grid {
-    grid-template-columns:repeat(3,minmax(0,1fr));;
+    grid-template-columns:repeat(3,minmax(0,1fr));
   }
 }
 
