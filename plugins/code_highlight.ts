@@ -22,7 +22,10 @@ export interface Options {
    */
   options?: Omit<HLJSOptions, "__emitter">;
 
-  /** The list of themes to download */
+  /**
+   * The theme or themes to download
+   * @see https://highlightjs.org/examples
+   */
   theme?: Theme | Theme[];
 }
 

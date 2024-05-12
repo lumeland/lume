@@ -1,4 +1,4 @@
-import Prism from "../deps/prism.ts";
+import Prism, { themesPath } from "../deps/prism.ts";
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
@@ -10,6 +10,20 @@ export interface Options {
 
   /** The css selector to apply prism */
   cssSelector?: string;
+
+  /**
+   * The theme or themes to download
+   * @see https://cdn.jsdelivr.net/npm/prismjs/themes/
+   */
+  theme?: Theme | Theme[];
+}
+
+interface Theme {
+  /** The name of the theme */
+  name: string;
+
+  /** The path to the theme file */
+  path: string;
 }
 
 // Default options
@@ -24,6 +38,19 @@ export default function (userOptions?: Options) {
 
   return (site: Site) => {
     site.process(options.extensions, (pages) => pages.forEach(prism));
+
+    if (options.theme) {
+      const themes = Array.isArray(options.theme)
+        ? options.theme
+        : [options.theme];
+
+      for (const { name, path } of themes) {
+        site.remoteFile(
+          path,
+          `${themesPath}prism-${name}.min.css`,
+        );
+      }
+    }
 
     function prism(page: Page) {
       page.document!.querySelectorAll(options.cssSelector!)

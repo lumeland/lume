@@ -7,7 +7,12 @@ Deno.test("Prism plugin", async (t) => {
     src: "prism",
   });
 
-  site.use(prism());
+  site.use(prism({
+    theme: {
+      name: "dark",
+      path: "_includes/code-theme.css",
+    },
+  }));
 
   await build(site);
   await assertSiteSnapshot(t, site);

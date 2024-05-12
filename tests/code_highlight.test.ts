@@ -6,7 +6,12 @@ Deno.test("code_hightlight plugin", async (t) => {
     src: "code_highlight",
   });
 
-  site.use(codeHighlight());
+  site.use(codeHighlight({
+    theme: {
+      name: "a11y-dark",
+      path: "_includes/code-theme.css",
+    },
+  }));
 
   await build(site);
   await assertSiteSnapshot(t, site);

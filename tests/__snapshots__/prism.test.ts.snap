@@ -104,6 +104,8 @@ snapshot[`Prism plugin 1`] = `
   ],
   src: [
     "/",
+    "/_includes",
+    "/_includes/code-theme.css",
     "/index.md",
   ],
 }

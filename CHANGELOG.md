@@ -13,7 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New `Lume.Loader` type.
 - New `afterLoad` event, triggered just after all files are (re)loaded.
 - Show the error if a file cannot be copied.
-- Code Highlight plugin: New option `theme` to download the theme CSS file automatically.
+- New option `theme` to download the theme CSS file automatically for the `prism` and `code_highlight` plugins.
 
 ### Changed
 - BREAKING: Removed `lume/cms.ts` module. Use import maps instead.
