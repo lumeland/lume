@@ -14,7 +14,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New `afterLoad` event, triggered just after all files are (re)loaded.
 - Show the error if a file cannot be copied.
 - New option `theme` to download the theme CSS file automatically for the `prism` and `code_highlight` plugins.
-- Metas plugin: allow to add custom metas [#604].
+- Metas plugin: allow to add custom metas [#604], [#608].
 
 ### Changed
 - BREAKING: Removed `lume/cms.ts` module. Use import maps instead.
@@ -382,8 +382,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#599]: https://github.com/lumeland/lume/issues/599
 [#600]: https://github.com/lumeland/lume/issues/600
 [#603]: https://github.com/lumeland/lume/issues/603
+[#604]: https://github.com/lumeland/lume/issues/604
 [#606]: https://github.com/lumeland/lume/issues/606
 [#607]: https://github.com/lumeland/lume/issues/607
+[#608]: https://github.com/lumeland/lume/issues/608
 
 [2.2.0]: https://github.com/lumeland/lume/compare/v2.1.4...HEAD
 [2.1.4]: https://github.com/lumeland/lume/compare/v2.1.3...v2.1.4
