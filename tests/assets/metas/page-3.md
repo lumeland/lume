@@ -7,6 +7,8 @@ metas:
   title: "=header.title"
   robots: "=robots"
   image: "=cover"
+  "twitter:label1": Reading time
+  "twitter:data1": 1 minute
 ---
 
 This is page excerpt will be used as meta description.
