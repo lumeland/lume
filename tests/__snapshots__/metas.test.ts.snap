@@ -176,7 +176,8 @@ snapshot[`metas plugin 3`] = `
         "lang",
         "color",
         "generator",
-        "other",
+        "twitter:label1",
+        "twitter:data1",
       ],
       page: [
         "src",
@@ -254,7 +255,8 @@ snapshot[`metas plugin 3`] = `
         "lang",
         "color",
         "generator",
-        "other",
+        "twitter:label1",
+        "twitter:data1",
       ],
       page: [
         "src",
@@ -326,7 +328,8 @@ snapshot[`metas plugin 3`] = `
         "lang",
         "color",
         "generator",
-        "other",
+        "twitter:label1",
+        "twitter:data1",
       ],
       page: [
         "src",

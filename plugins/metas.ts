@@ -51,7 +51,8 @@ export interface MetaData {
   generator?: string | boolean | ((data: Data) => string | boolean | undefined);
 
   /** Other meta tags */
-  other?: Record<string, string | ((data: Data) => string | undefined)>;
+  // deno-lint-ignore no-explicit-any
+  [name: string]: any;
 }
 
 const defaults: Options = {
@@ -78,8 +79,9 @@ export default function (userOptions?: Options) {
       }
 
       const { document, data } = page;
-      const metaIcon = getDataValue(data, metas["icon"]);
-      const metaImage = getDataValue(data, metas["image"]);
+      const [main, other] = getMetas(metas);
+      const metaIcon = getDataValue(data, main["icon"]);
+      const metaImage = getDataValue(data, main["image"]);
 
       const url = site.url(page.data.url, true);
       const icon = metaIcon ? new URL(site.url(metaIcon), url).href : undefined;
@@ -87,17 +89,16 @@ export default function (userOptions?: Options) {
         ? new URL(site.url(metaImage), url).href
         : undefined;
 
-      const type = getDataValue(data, metas["type"]);
-      const site_name = getDataValue(data, metas["site"]);
-      const lang = getDataValue(data, metas["lang"]);
-      const title = getDataValue(data, metas["title"]);
-      const description = getDataValue(data, metas["description"]);
-      const twitter = getDataValue(data, metas["twitter"]);
-      const keywords = getDataValue(data, metas["keywords"]);
-      const robots = getDataValue(data, metas["robots"]);
-      const color = getDataValue(data, metas["color"]);
-      const generator = getDataValue(data, metas["generator"]);
-      const other = metas.other;
+      const type = getDataValue(data, main["type"]);
+      const site_name = getDataValue(data, main["site"]);
+      const lang = getDataValue(data, main["lang"]);
+      const title = getDataValue(data, main["title"]);
+      const description = getDataValue(data, main["description"]);
+      const twitter = getDataValue(data, main["twitter"]);
+      const keywords = getDataValue(data, main["keywords"]);
+      const robots = getDataValue(data, main["robots"]);
+      const color = getDataValue(data, main["color"]);
+      const generator = getDataValue(data, main["generator"]);
 
       // Open graph
       addMeta(document, "property", "og:type", type || "website");
@@ -141,11 +142,8 @@ export default function (userOptions?: Options) {
         );
       }
 
-      if (other) {
-        for (const key in other) {
-          const value = getDataValue(data, other[key]);
-          addMeta(document, "name", key, value);
-        }
+      for (const [name, value] of Object.entries(other)) {
+        addMeta(document, "name", name, getDataValue(data, value));
       }
     }
   };
@@ -167,7 +165,7 @@ function addMeta(
     .trim();
 
   if (limit && content.length > limit) {
-    content = content.substr(0, limit - 1).trimEnd() + "…";
+    content = content.substring(0, limit - 1).trimEnd() + "…";
   }
 
   const meta = document.createElement("meta");
@@ -188,4 +186,36 @@ declare global {
       metas?: MetaData;
     }
   }
+}
+
+function getMetas(metas: MetaData): [MetaData, Record<string, unknown>] {
+  const {
+    type,
+    site,
+    title,
+    lang,
+    description,
+    image,
+    icon,
+    keywords,
+    twitter,
+    color,
+    robots,
+    generator,
+    ...other
+  } = metas;
+  return [{
+    type,
+    site,
+    title,
+    lang,
+    description,
+    image,
+    icon,
+    keywords,
+    twitter,
+    color,
+    robots,
+    generator,
+  }, other];
 }
