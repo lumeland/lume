@@ -1,5 +1,5 @@
 import { yellow } from "./deps/colors.ts";
-const specifier = "https://cdn.jsdelivr.net/gh/lumeland/cms@v0.3.11/";
+const specifier = "https://cdn.jsdelivr.net/gh/lumeland/cms@v0.4.1/";
 
 throw new Error(`
   This module is not longer available.
