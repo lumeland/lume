@@ -5,7 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [2.2.0] - Unreleased
+## [2.2.0] - 2024-05-17
+[Luísa Villalta](https://galicianliterature.com/villalta) edition.
+
 ### Added
 - Feed plugin: Add image support [#599], [#598].
 - New middleware `shutdown`.
@@ -387,7 +389,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#607]: https://github.com/lumeland/lume/issues/607
 [#608]: https://github.com/lumeland/lume/issues/608
 
-[2.2.0]: https://github.com/lumeland/lume/compare/v2.1.4...HEAD
+[2.2.0]: https://github.com/lumeland/lume/compare/v2.1.4...v2.2.0
 [2.1.4]: https://github.com/lumeland/lume/compare/v2.1.3...v2.1.4
 [2.1.3]: https://github.com/lumeland/lume/compare/v2.1.2...v2.1.3
 [2.1.2]: https://github.com/lumeland/lume/compare/v2.1.1...v2.1.2
