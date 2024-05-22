@@ -92,9 +92,9 @@ export class FSWriter implements Writer {
 
     await ensureDir(posix.dirname(filename));
 
-    page.content instanceof Uint8Array
-      ? await Deno.writeFile(filename, page.content)
-      : await Deno.writeTextFile(filename, page.content as string);
+    content instanceof Uint8Array
+      ? await Deno.writeFile(filename, content)
+      : await Deno.writeTextFile(filename, content);
 
     return true;
   }
