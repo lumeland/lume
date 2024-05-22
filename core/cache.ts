@@ -33,24 +33,29 @@ export default class Cache {
     }
   }
 
+  async getFile(
+    content: Uint8Array | string,
+    key: unknown,
+  ): Promise<string> {
+    const [dir, file] = await paths(content, key);
+
+    return posix.join(this.#folder, dir, file);
+  }
+
   async get(
     content: Uint8Array | string,
     key: unknown,
   ): Promise<Uint8Array | undefined> {
-    const [dir, file] = await paths(content, key);
-
     try {
-      return await Deno.readFile(posix.join(this.#folder, dir, file));
+      return await Deno.readFile(await this.getFile(content, key));
     } catch {
       // Ignore
     }
   }
 
   async getText(content: string, key: unknown): Promise<string | undefined> {
-    const [dir, file] = await paths(content, key);
-
     try {
-      return await Deno.readTextFile(posix.join(this.#folder, dir, file));
+      return await Deno.readTextFile(await this.getFile(content, key));
     } catch {
       // Ignore
     }
