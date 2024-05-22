@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.2.1] - Unreleased
 ### Fixed
 - Show an error when trying to copy a file from outside the src folder [#610].
+- Updated dependencies: `std`, `preact-render-to-string`, `vento`, `lightningcss`, `unocss`.
 
 ## [2.2.0] - 2024-05-17
 [Luísa Villalta](https://galicianliterature.com/villalta) edition.
