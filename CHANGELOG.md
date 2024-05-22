@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.2.1] - Unreleased
+### Fixed
+- Show an error when trying to copy a file from outside the src folder [#610].
+
 ## [2.2.0] - 2024-05-17
 [Luísa Villalta](https://galicianliterature.com/villalta) edition.
 
@@ -388,7 +392,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#606]: https://github.com/lumeland/lume/issues/606
 [#607]: https://github.com/lumeland/lume/issues/607
 [#608]: https://github.com/lumeland/lume/issues/608
+[#610]: https://github.com/lumeland/lume/issues/610
 
+[2.2.1]: https://github.com/lumeland/lume/compare/v2.2.0...HEAD
 [2.2.0]: https://github.com/lumeland/lume/compare/v2.1.4...v2.2.0
 [2.1.4]: https://github.com/lumeland/lume/compare/v2.1.3...v2.1.4
 [2.1.3]: https://github.com/lumeland/lume/compare/v2.1.2...v2.1.3

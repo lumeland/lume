@@ -114,6 +114,12 @@ export default class Source {
   }
 
   addStaticPath(from: string, to?: string | ((path: string) => string)) {
+    if (from.startsWith("../")) {
+      throw new Error(
+        `It's not possible to copy files outsite the src directory ("${from}")`,
+      );
+    }
+
     this.staticPaths.set(
       normalizePath(from.replace(/\/$/, "")),
       {
