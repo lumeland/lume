@@ -545,7 +545,7 @@ export default class Site {
       const pages = this.pages.filter((page) => page.src.entry === entry).map((
         page,
       ) => page.outputPath);
-      const files = this.files.filter((file) => file.entry === entry).map((
+      const files = this.files.filter((file) => file.src.entry === entry).map((
         file,
       ) => file.outputPath);
       await this.writer.removeFiles([...pages, ...files]);
@@ -730,7 +730,7 @@ export default class Site {
         path = page.data.url;
       } else {
         // It's a static file
-        const file = this.files.find((file) => file.entry.path === path);
+        const file = this.files.find((file) => file.src.entry.path === path);
 
         if (file) {
           path = file.outputPath;
@@ -771,7 +771,7 @@ export default class Site {
     const index = this.files.findIndex((f) => f.outputPath === url);
 
     if (index > -1) {
-      const { entry } = this.files.splice(index, 1)[0];
+      const { entry } = this.files.splice(index, 1)[0].src;
       const data = await entry.getContent(loader) as Data;
       const page = Page.create({ ...data, url });
       this.pages.push(page);
@@ -821,7 +821,7 @@ export default class Site {
     const staticFile = this.files.find((f) => f.outputPath === file);
 
     if (staticFile) {
-      return (await staticFile.entry.getContent(loader)).content as
+      return (await staticFile.src.entry.getContent(loader)).content as
         | string
         | Uint8Array;
     }

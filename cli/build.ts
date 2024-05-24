@@ -92,6 +92,7 @@ export async function build(
         solaris: "xdg-open",
         illumos: "xdg-open",
         windows: "explorer",
+        android: "xdg-open",
       };
 
       new Deno.Command(commands[Deno.build.os], {

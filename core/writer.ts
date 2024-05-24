@@ -122,7 +122,7 @@ export class FSWriter implements Writer {
    * Returns a boolean indicating if the file has saved
    */
   async copyFile(file: StaticFile): Promise<boolean> {
-    const { entry } = file;
+    const { entry } = file.src;
 
     if (entry.flags.has("saved")) {
       return false;

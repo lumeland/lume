@@ -131,7 +131,7 @@ export async function assertSiteSnapshot(
   pages.sort((a, b) =>
     compare(a.src.path, b.src.path) || compare(a.outputPath, b.outputPath)
   );
-  files.sort((a, b) => compare(a.entry.path, b.entry.path));
+  files.sort((a, b) => compare(a.src.entry.path, b.src.entry.path));
 
   // Normalize data of the pages
   const normalizedPages = pages.map((page) => {
@@ -188,9 +188,9 @@ export async function assertSiteSnapshot(
 
   const normalizedFiles = files.map((file) => {
     return {
-      ...file,
-      entry: file.entry.path,
-      flags: [...file.entry.flags],
+      outputPath: file.outputPath,
+      entry: file.src.entry.path,
+      flags: [...file.src.entry.flags],
     };
   });
 
