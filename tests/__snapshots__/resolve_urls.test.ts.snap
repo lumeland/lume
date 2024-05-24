@@ -161,6 +161,7 @@ First article
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -206,6 +207,7 @@ Second article
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -249,6 +251,7 @@ Third article
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -317,6 +320,7 @@ Third article
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -351,6 +355,7 @@ Third article
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -381,6 +386,7 @@ Third article
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -558,6 +564,7 @@ First article
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -603,6 +610,7 @@ Second article
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -646,6 +654,7 @@ Third article
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -714,6 +723,7 @@ Third article
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -748,6 +758,7 @@ Third article
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -778,6 +789,7 @@ Third article
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

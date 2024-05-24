@@ -124,6 +124,7 @@ snapshot[`Pagefind plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/pagefind/fragment/en_1e3ac36.pf_fragment",
     },
@@ -142,6 +143,7 @@ snapshot[`Pagefind plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/pagefind/fragment/en_4e982c2.pf_fragment",
     },
@@ -160,6 +162,7 @@ snapshot[`Pagefind plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/pagefind/index/en_8a7583c.pf_index",
     },
@@ -178,6 +181,7 @@ snapshot[`Pagefind plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/pagefind/pagefind-entry.json",
     },
@@ -2334,6 +2338,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/pagefind/pagefind-highlight.js",
     },
@@ -2778,6 +2783,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/pagefind/pagefind-modular-ui.css",
     },
@@ -2812,6 +2818,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/pagefind/pagefind-modular-ui.js",
     },
@@ -2832,6 +2839,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/pagefind/pagefind-ui.css",
     },
@@ -2854,6 +2862,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/pagefind/pagefind-ui.js",
     },
@@ -2872,6 +2881,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/pagefind/pagefind.en_2315aa1937.pf_meta",
     },
@@ -2906,6 +2916,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/pagefind/pagefind.js",
     },
@@ -2924,6 +2935,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/pagefind/wasm.en.pagefind",
     },
@@ -2942,6 +2954,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/pagefind/wasm.unknown.pagefind",
     },
@@ -2985,6 +2998,7 @@ This is the first page
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -3032,6 +3046,7 @@ This is the second page
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

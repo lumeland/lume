@@ -158,6 +158,7 @@ snapshot[`postcss plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -202,6 +203,7 @@ snapshot[`postcss plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -358,6 +360,7 @@ snapshot[`postcss plugin without includes 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -402,6 +405,7 @@ snapshot[`postcss plugin without includes 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -556,6 +560,7 @@ snapshot[`postcss plugin with hooks 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -590,6 +595,7 @@ snapshot[`postcss plugin with hooks 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

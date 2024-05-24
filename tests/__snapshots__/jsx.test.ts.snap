@@ -169,6 +169,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -219,6 +220,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -268,6 +270,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -309,6 +312,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -349,6 +353,7 @@ This is a **markdown** text. [Go home](/)
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

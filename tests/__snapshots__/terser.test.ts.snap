@@ -131,6 +131,7 @@ console.log(one() + two());
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -169,6 +170,7 @@ export function two () {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

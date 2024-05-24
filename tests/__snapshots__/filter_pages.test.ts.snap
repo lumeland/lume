@@ -142,6 +142,7 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -181,6 +182,7 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -219,6 +221,7 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

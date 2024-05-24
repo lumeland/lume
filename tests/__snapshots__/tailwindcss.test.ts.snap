@@ -919,6 +919,7 @@ snapshot[`postcss plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -954,6 +955,7 @@ snapshot[`postcss plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1982,6 +1984,7 @@ video {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

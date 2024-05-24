@@ -203,6 +203,7 @@ This is a remote template
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -237,6 +238,7 @@ body {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -267,6 +269,7 @@ hello();
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -303,6 +306,7 @@ body {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -333,6 +337,7 @@ body {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -364,6 +369,7 @@ body {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

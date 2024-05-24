@@ -140,6 +140,7 @@ snapshot[`FFF plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       published: [],
@@ -189,6 +190,7 @@ snapshot[`FFF plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -237,6 +239,7 @@ The \`categories\` should be merged into \`tags\`.
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

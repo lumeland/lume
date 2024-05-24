@@ -339,9 +339,9 @@ export default class Source {
           const page = new Page({
             path: entry.path.slice(0, -ext.length),
             ext,
-            asset: format.pageType === "asset",
             entry,
           });
+          page.asset = format.pageType === "asset";
 
           // Load and merge the page data
           const pageData = await entry.getContent(loader);

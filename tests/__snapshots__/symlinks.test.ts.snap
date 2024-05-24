@@ -152,6 +152,7 @@ snapshot[`follow symlinks 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

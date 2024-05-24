@@ -206,6 +206,7 @@ CUSTOM FILTER
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -238,6 +239,7 @@ CUSTOM FILTER
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

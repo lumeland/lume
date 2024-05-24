@@ -157,6 +157,7 @@ li {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -186,6 +187,7 @@ body
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

@@ -137,6 +137,7 @@ local_backend: false
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/admin/config.yml",
     },
@@ -179,6 +180,7 @@ local_backend: false
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/admin/",
     },
@@ -211,6 +213,7 @@ local_backend: false
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

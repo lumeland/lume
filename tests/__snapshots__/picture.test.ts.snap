@@ -264,6 +264,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -289,6 +290,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -315,6 +317,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -341,6 +344,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -367,6 +371,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -393,6 +398,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -419,6 +425,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -445,6 +452,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -471,6 +479,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -497,6 +506,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -523,6 +533,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -549,6 +560,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -575,6 +587,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -601,6 +614,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -627,6 +641,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -653,6 +668,7 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

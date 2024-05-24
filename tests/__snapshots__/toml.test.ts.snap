@@ -143,6 +143,7 @@ snapshot[`TOML plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -178,6 +179,7 @@ snapshot[`TOML plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

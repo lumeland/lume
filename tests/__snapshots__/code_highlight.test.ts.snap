@@ -163,6 +163,7 @@ p {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -210,6 +211,7 @@ p {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

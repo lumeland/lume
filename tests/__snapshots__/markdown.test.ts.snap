@@ -152,6 +152,7 @@ snapshot[`Build a markdown site 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -213,6 +214,7 @@ belong to the previous footnote.
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -243,6 +245,7 @@ belong to the previous footnote.
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -289,6 +292,7 @@ belong to the previous footnote.
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -339,6 +343,7 @@ Other title
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -377,6 +382,7 @@ Other title
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -409,6 +415,7 @@ Other title
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -467,6 +474,7 @@ Foo
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -637,6 +645,7 @@ snapshot[`Build a markdown with hooks 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -698,6 +707,7 @@ belong to the previous footnote.
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -728,6 +738,7 @@ belong to the previous footnote.
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -774,6 +785,7 @@ belong to the previous footnote.
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -824,6 +836,7 @@ Other title
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -862,6 +875,7 @@ Other title
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -894,6 +908,7 @@ Other title
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -952,6 +967,7 @@ Foo
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

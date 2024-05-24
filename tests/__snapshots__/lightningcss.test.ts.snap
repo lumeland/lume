@@ -136,6 +136,7 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -170,6 +171,7 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -322,6 +324,7 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -356,6 +359,7 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

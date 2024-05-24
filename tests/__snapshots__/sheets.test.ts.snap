@@ -1279,6 +1279,7 @@ Daniels</th>
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

@@ -58,7 +58,7 @@ function getDefaultUrl(
   // Calculate the URL from the path
   const url = posix.join(parentPath, page.data.basename);
 
-  if (page.src.asset) {
+  if (page.asset) {
     return url + page.src.ext;
   }
 

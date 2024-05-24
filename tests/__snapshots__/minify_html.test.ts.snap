@@ -188,6 +188,7 @@ snapshot[`minify_html plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

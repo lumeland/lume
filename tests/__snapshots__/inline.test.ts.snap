@@ -155,6 +155,7 @@ snapshot[`inline plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -296,6 +297,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -321,6 +323,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -350,6 +353,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -381,6 +385,7 @@ const a = 1, _b = 1 < a, _c = a > 4;
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

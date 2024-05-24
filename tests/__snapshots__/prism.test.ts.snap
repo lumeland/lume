@@ -221,6 +221,7 @@ console.log("foo");
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

@@ -10,10 +10,11 @@ export class Page<D extends Data = Data> {
   /** The src info */
   src: Src;
 
-  /**
-   * Used to save the page data
-   */
+  /** Used to save the page data */
   data: D = {} as D;
+
+  /** If the page is an asset or not */
+  asset = true;
 
   /**
    * Internal data. Used to save arbitrary data by plugins and processors
@@ -43,7 +44,7 @@ export class Page<D extends Data = Data> {
   }
 
   constructor(src?: Partial<Src>) {
-    this.src = { path: "", ext: "", asset: true, ...src };
+    this.src = { path: "", ext: "", ...src };
   }
 
   /**
@@ -61,6 +62,7 @@ export class Page<D extends Data = Data> {
   /** Duplicate this page. */
   duplicate(index: number | undefined, data: D): Page<D> {
     const page = new Page<D>({ ...this.src });
+    page.asset = this.asset;
 
     if (index !== undefined) {
       page.src.path += `[${index}]`;
@@ -139,9 +141,6 @@ export interface StaticFile {
 
 /** The .src property for a Page */
 export interface Src {
-  /** If the page was loaded as asset or not */
-  asset: boolean;
-
   /** The path to the file (without extension) */
   path: string;
 

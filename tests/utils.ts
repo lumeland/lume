@@ -181,7 +181,7 @@ export async function assertSiteSnapshot(
         remote: page.src.entry?.flags.has("remote")
           ? page.sourcePath.replace(cwUrl, "")
           : undefined,
-        asset: page.src.asset,
+        asset: page.asset,
       },
     };
   });

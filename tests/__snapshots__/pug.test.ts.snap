@@ -141,6 +141,7 @@ block content
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -191,6 +192,7 @@ block content
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -222,6 +224,7 @@ block content
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

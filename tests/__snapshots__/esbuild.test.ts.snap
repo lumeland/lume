@@ -160,6 +160,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -192,6 +193,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -224,6 +226,7 @@ document.querySelectorAll(".other")?.forEach((el) => {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -372,6 +375,7 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/foo/chunk.js",
     },
@@ -418,6 +422,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -450,6 +455,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -482,6 +488,7 @@ document.querySelectorAll(".other")?.forEach((el) => {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -692,6 +699,7 @@ react-dom/cjs/react-dom.production.min.js:
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/_.._/esbuild_jsx/main.js",
     },
@@ -725,6 +733,7 @@ react-dom/cjs/react-dom.production.min.js:
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -766,6 +775,7 @@ ReactDOM.createRoot(document.getElementById("app")).render(
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

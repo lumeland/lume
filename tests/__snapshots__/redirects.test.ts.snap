@@ -144,6 +144,7 @@ snapshot[`redirects plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/old-page1/",
     },
@@ -184,6 +185,7 @@ snapshot[`redirects plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/old-page2/",
     },
@@ -224,6 +226,7 @@ snapshot[`redirects plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/other-old-page2/",
     },
@@ -249,6 +252,7 @@ Page 1",
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -280,6 +284,7 @@ Page 2
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -419,6 +424,7 @@ snapshot[`redirects plugin for netlify 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/_redirects",
     },
@@ -444,6 +450,7 @@ Page 1",
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -475,6 +482,7 @@ Page 2
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -630,6 +638,7 @@ snapshot[`redirects plugin for vercel 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/vercel.json",
     },
@@ -655,6 +664,7 @@ Page 1",
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -686,6 +696,7 @@ Page 2
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -838,6 +849,7 @@ snapshot[`redirects plugin for json 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "_redirects.json",
     },
@@ -863,6 +875,7 @@ Page 1",
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -894,6 +907,7 @@ Page 2
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

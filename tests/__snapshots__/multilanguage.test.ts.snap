@@ -154,6 +154,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -194,6 +195,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -233,6 +235,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -285,6 +288,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -337,6 +341,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -380,6 +385,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -423,6 +429,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -466,6 +473,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -525,6 +533,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       pagination: [
@@ -589,6 +598,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       pagination: [
@@ -637,6 +647,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -679,6 +690,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -722,6 +734,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -765,6 +778,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

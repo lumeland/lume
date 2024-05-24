@@ -267,6 +267,7 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -427,6 +428,7 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -586,6 +588,7 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -747,6 +750,7 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -909,6 +913,7 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1064,6 +1069,7 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1366,6 +1372,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1544,6 +1551,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1721,6 +1729,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1900,6 +1909,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -2080,6 +2090,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -2251,6 +2262,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

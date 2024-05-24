@@ -148,6 +148,7 @@ icon {
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/components.css",
     },
@@ -173,6 +174,7 @@ console.log("Hello world, from the icon/User component");
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/components.js",
     },
@@ -266,6 +268,7 @@ console.log("Hello world, from the icon/User component");
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -299,6 +302,7 @@ console.log("Hello world, from the icon/User component");
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -344,6 +348,7 @@ console.log("Hello world, from the icon/User component");
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -387,6 +392,7 @@ console.log("Hello world, from the icon/User component");
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -487,6 +493,7 @@ console.log("Hello world, from the icon/User component");
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

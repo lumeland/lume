@@ -143,6 +143,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -183,6 +184,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -222,6 +224,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -261,6 +264,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -299,6 +303,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -361,6 +366,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

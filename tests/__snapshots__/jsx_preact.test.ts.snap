@@ -187,6 +187,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -254,6 +255,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -320,6 +322,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -369,6 +372,7 @@ snapshot[`build a site with jsx/tsx modules using Preact 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -423,6 +427,7 @@ body {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

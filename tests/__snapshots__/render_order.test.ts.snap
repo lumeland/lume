@@ -135,6 +135,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -162,6 +163,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -190,6 +192,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -218,6 +221,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -246,6 +250,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -274,6 +279,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -302,6 +308,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -330,6 +337,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -358,6 +366,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -386,6 +395,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -414,6 +424,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -442,6 +453,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -469,6 +481,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -496,6 +509,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -523,6 +537,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -550,6 +565,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -577,6 +593,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -604,6 +621,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -631,6 +649,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -658,6 +677,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -685,6 +705,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -713,6 +734,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       pagination: [
@@ -750,6 +772,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       pagination: [
@@ -787,6 +810,7 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       pagination: [

@@ -151,6 +151,7 @@ snapshot[`relative_url plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -198,6 +199,7 @@ snapshot[`relative_url plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -245,6 +247,7 @@ snapshot[`relative_url plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -304,6 +307,7 @@ snapshot[`relative_url plugin 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -471,6 +475,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -518,6 +523,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -565,6 +571,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -624,6 +631,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

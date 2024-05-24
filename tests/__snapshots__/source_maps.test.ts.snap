@@ -150,6 +150,7 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/index.css.map",
     },
@@ -168,6 +169,7 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/index2.css.map",
     },
@@ -186,6 +188,7 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/styles.css.map",
     },
@@ -218,6 +221,7 @@ li {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -249,6 +253,7 @@ body
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -278,6 +283,7 @@ body
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -427,6 +433,7 @@ snapshot[`Source maps from Js files 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/main.js.map",
     },
@@ -445,6 +452,7 @@ snapshot[`Source maps from Js files 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/modules/to_uppercase.js.map",
     },
@@ -463,6 +471,7 @@ snapshot[`Source maps from Js files 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/other.js.map",
     },
@@ -508,6 +517,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -541,6 +551,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -571,6 +582,7 @@ document.querySelectorAll("h1")?.forEach((h1) => {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -604,6 +616,7 @@ document.querySelectorAll(".other")?.forEach((el) => {
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

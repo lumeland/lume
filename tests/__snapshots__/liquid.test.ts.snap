@@ -143,6 +143,7 @@ snapshot[`build a site with liquid 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -184,6 +185,7 @@ snapshot[`build a site with liquid 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -223,6 +225,7 @@ snapshot[`build a site with liquid 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -322,6 +325,7 @@ snapshot[`build a site with liquid 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

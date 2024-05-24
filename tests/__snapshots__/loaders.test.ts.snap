@@ -181,6 +181,7 @@ snapshot[`Load the pages of a site 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -214,6 +215,7 @@ snapshot[`Load the pages of a site 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -249,6 +251,7 @@ Content of Page 5",
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -293,6 +296,7 @@ Content of Page 2",
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -336,6 +340,7 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -382,6 +387,7 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -429,6 +435,7 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -470,6 +477,7 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -513,6 +521,7 @@ Content of Page 7",
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -555,6 +564,7 @@ Content of Page 7",
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

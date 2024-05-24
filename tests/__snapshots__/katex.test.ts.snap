@@ -206,6 +206,7 @@ c = \\\\pm\\\\sqrt{a^2 + b^2}
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

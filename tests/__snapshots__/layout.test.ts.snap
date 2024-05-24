@@ -146,6 +146,7 @@ snapshot[`Layouts 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -175,6 +176,7 @@ snapshot[`Layouts 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -210,6 +212,7 @@ snapshot[`Layouts 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

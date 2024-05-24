@@ -1447,6 +1447,7 @@ Make elements with the HTML hidden attribute stay hidden by default.
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -2175,6 +2176,7 @@ Make elements with the HTML hidden attribute stay hidden by default.
       page: [
         "src",
         "data",
+        "asset",
       ],
       url: "/styles.css",
     },
@@ -2977,6 +2979,7 @@ Make elements with the HTML hidden attribute stay hidden by default.
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -3905,6 +3908,7 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -4133,6 +4137,7 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],

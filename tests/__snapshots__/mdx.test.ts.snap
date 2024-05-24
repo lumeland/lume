@@ -185,6 +185,7 @@ This is a markdown file with the title **{ title }**.
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -231,6 +232,7 @@ description: This is a description</h2>
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       search: [],
