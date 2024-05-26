@@ -435,14 +435,14 @@ export default class Source {
 
         const outputPath = getOutputPath(entry, destPath, destFn);
         const ext = posix.extname(entry.name);
-        yield {
+        yield new StaticFile(
           outputPath,
-          src: {
+          {
             ext,
             path: entry.path.slice(1, -ext.length),
             entry,
           },
-        };
+        );
       }
 
       if (entry.type === "directory") {
@@ -464,14 +464,16 @@ export default class Source {
     if (entry.type === "file") {
       if (!dirOnly) {
         const ext = posix.extname(entry.name);
-        return [{
-          outputPath: getOutputPath(entry, path, dest),
-          src: {
-            ext,
-            path: entry.path.slice(1, -ext.length),
-            entry,
-          },
-        }];
+        return [
+          new StaticFile(
+            getOutputPath(entry, path, dest),
+            {
+              ext,
+              path: entry.path.slice(1, -ext.length),
+              entry,
+            },
+          ),
+        ];
       }
       return [];
     }

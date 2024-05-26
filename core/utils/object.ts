@@ -7,9 +7,6 @@ export type DeepPartial<T> = T extends object ? {
   }
   : T;
 
-/** TypeScript helper to make a single property optional */
-export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
-
 /** Check if the argument passed is a plain object */
 export function isPlainObject(obj: unknown): obj is Record<string, unknown> {
   return typeof obj === "object" && obj !== null &&

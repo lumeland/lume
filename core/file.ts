@@ -4,12 +4,11 @@ import { documentToString, stringToDocument } from "./utils/dom.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
 import type { ProxyComponents } from "./source.ts";
 import type { Entry } from "./fs.ts";
-import type { Optional } from "./utils/object.ts";
 
 /** A page of the site */
 export class Page<D extends Data = Data> {
   /** The src info */
-  src: Optional<Src, "entry">;
+  src: Src;
 
   /** Used to save the page data */
   data: D = {} as D;
@@ -132,12 +131,14 @@ export class Page<D extends Data = Data> {
   }
 }
 
-export interface StaticFile {
-  /** The final url destination */
+export class StaticFile {
   outputPath: string;
+  src: Required<Src>;
 
-  /** The Src info */
-  src: Src;
+  constructor(outputPath: string, src: Required<Src>) {
+    this.outputPath = outputPath;
+    this.src = src;
+  }
 }
 
 /** The .src property for a Page or StaticFile */
@@ -149,7 +150,7 @@ export interface Src {
   ext: string;
 
   /** The original entry instance */
-  entry: Entry;
+  entry?: Entry;
 }
 
 /** The .content property for a Page */
