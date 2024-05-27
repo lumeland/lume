@@ -20,9 +20,11 @@ export function getOptionsFromCli(
     options.dest = cli.dest;
   }
 
+  const serveMode = cli.serve || cli._[0] === "cms";
+
   if (cli.port) {
     (options.server ||= {}).port = parseInt(cli.port);
-  } else if (cli.serve) {
+  } else if (serveMode) {
     (options.server ||= {}).port = 3000;
   }
 
@@ -30,7 +32,7 @@ export function getOptionsFromCli(
 
   if (cli.location) {
     location = new URL(cli.location);
-  } else if (options.location && !cli.server) {
+  } else if (options.location && !serveMode) {
     location = options.location as URL;
   } else {
     location = new URL("http://localhost");
