@@ -7,6 +7,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.2.1] - Unreleased
 ### Fixed
+- Port detection in `lume cms` command.
 - Show an error when trying to copy a file from outside the src folder [#610].
 - Updated dependencies: `std`, `preact-render-to-string`, `vento`, `lightningcss`, `unocss`, `pug`, `cms`, `liquid`, `lightningcss`, `esbuild`, `react-types`.
 
