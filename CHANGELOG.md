@@ -6,6 +6,9 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.2.1] - Unreleased
+### Added
+- Allow to run a server with `deno serve -A _config.ts`.
+
 ### Fixed
 - Port detection in `lume cms` command.
 - Show an error when trying to copy a file from outside the src folder [#610].

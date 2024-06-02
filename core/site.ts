@@ -19,8 +19,10 @@ import FSWatcher from "../core/watcher.ts";
 import { FSWriter } from "./writer.ts";
 import { Page } from "./file.ts";
 import textLoader from "./loaders/text.ts";
-import type { Loader } from "./loaders/mod.ts";
+import Server from "./server.ts";
+import notFound from "../middlewares/not_found.ts";
 
+import type { Loader } from "./loaders/mod.ts";
 import type { Component, Components } from "./component_loader.ts";
 import type { Data, RawData, StaticFile } from "./file.ts";
 import type { Engine, Helper, HelperOptions } from "./renderer.ts";
@@ -132,6 +134,8 @@ export default class Site {
   /** The static files to be copied are stored here */
   readonly files: StaticFile[] = [];
 
+  fetch: Deno.ServeHandler;
+
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);
 
@@ -208,6 +212,17 @@ export default class Site {
     // Ignore the dest folder by the watcher
     this.options.watcher.ignore.push(normalizePath(this.options.dest));
     this.fs.options.ignore = this.options.watcher.ignore;
+
+    // Create the fetch function for `deno serve`
+    let fetchServer: Server | undefined;
+
+    this.fetch = (request: Request, info: Deno.ServeHandlerInfo) => {
+      if (!fetchServer) {
+        fetchServer = this.server();
+      }
+
+      return fetchServer.handle(request, info);
+    };
   }
 
   get globalData(): RawData {
@@ -579,6 +594,24 @@ export default class Site {
       pages,
       staticFiles,
     });
+  }
+
+  /** Returns a server */
+  server(): Server {
+    const { port, page404, middlewares } = this.options.server;
+    const root = this.options.server.root || this.dest();
+    const server = new Server({ root, port });
+
+    server.use(notFound({
+      root,
+      page404,
+    }));
+
+    if (middlewares) {
+      server.use(...middlewares);
+    }
+
+    return server;
   }
 
   /**
