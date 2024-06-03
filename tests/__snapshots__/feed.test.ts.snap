@@ -163,7 +163,7 @@ snapshot[`RSS plugin 3`] = `
     <title>My RSS Feed</title>
     <link>https://example.com/</link>
     <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
-    <description></description>
+    <description/>
     <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
     <language>en</language>
     <generator>https://lume.land</generator>
@@ -178,10 +178,8 @@ snapshot[`RSS plugin 3`] = `
       <title>PAGE 6</title>
       <link>https://example.com/pages/page6/</link>
       <guid isPermaLink="false">https://example.com/pages/page6/</guid>
-      <content:encoded>
-        <![CDATA[<p>Content of Page 6</p>
-        ]]>
-      </content:encoded>
+      <content:encoded><![CDATA[<p>Content of Page 6</p>
+]]></content:encoded>
       <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
       <atom:updated>2022-01-01T00:00:00.000Z</atom:updated>
     </item>
@@ -220,7 +218,7 @@ snapshot[`RSS plugin 3`] = `
     <title>My RSS Feed</title>
     <link>https://example.com/</link>
     <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
-    <description></description>
+    <description/>
     <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
     <language>en</language>
     <generator>https://lume.land</generator>
@@ -235,10 +233,8 @@ snapshot[`RSS plugin 3`] = `
       <title>PAGE 6</title>
       <link>https://example.com/pages/page6/</link>
       <guid isPermaLink="false">https://example.com/pages/page6/</guid>
-      <content:encoded>
-        <![CDATA[<p>Content of Page 6</p>
-        ]]>
-      </content:encoded>
+      <content:encoded><![CDATA[<p>Content of Page 6</p>
+]]></content:encoded>
       <pubDate>Sat, 01 Jan 2022 00:00:00 GMT</pubDate>
       <atom:updated>2022-01-01T00:00:00.000Z</atom:updated>
     </item>

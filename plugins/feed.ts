@@ -2,7 +2,7 @@ import { getExtension } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { getCurrentVersion } from "../core/utils/lume_version.ts";
 import { getDataValue } from "../core/utils/data_values.ts";
-import { $XML, stringify } from "../deps/xml.ts";
+import { cdata, stringify } from "../deps/xml.ts";
 import { Page } from "../core/file.ts";
 
 import type Site from "../core/site.ts";
@@ -212,11 +212,8 @@ function fixUrls(base: URL, html: string): string {
 
 function generateRss(data: FeedData, file: string): string {
   const feed = {
-    [$XML]: { cdata: [["rss", "channel", "item", "content:encoded"]] },
-    xml: {
-      "@version": "1.0",
-      "@encoding": "UTF-8",
-    },
+    "@version": "1.0",
+    "@encoding": "UTF-8",
     rss: {
       "@xmlns:content": "http://purl.org/rss/1.0/modules/content/",
       "@xmlns:wfw": "http://wellformedweb.org/CommentAPI/",
@@ -246,7 +243,7 @@ function generateRss(data: FeedData, file: string): string {
               "#text": item.url,
             },
             description: item.description,
-            "content:encoded": item.content,
+            "content:encoded": cdata(item.content),
             pubDate: item.published.toUTCString(),
             "atom:updated": item.updated?.toISOString(),
             meta: item.image

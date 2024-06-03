@@ -1,1 +1,1 @@
-export * from "https://deno.land/x/xml@4.0.0/mod.ts";
+export * from "jsr:@libs/xml@5.4.2";
