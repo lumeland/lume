@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.2.1] - Unreleased
 ### Added
 - Allow to run a server with `deno serve -A _config.ts`.
+- New `noCors` middleware to prevent CORS errors during development.
 
 ### Fixed
 - Port detection in `lume cms` command.

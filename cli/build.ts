@@ -5,6 +5,7 @@ import Server from "../core/server.ts";
 import { SiteWatcher } from "../core/watcher.ts";
 import logger from "../middlewares/logger.ts";
 import noCache from "../middlewares/no_cache.ts";
+import noCors from "../middlewares/no_cors.ts";
 import notFound from "../middlewares/not_found.ts";
 import reload from "../middlewares/reload.ts";
 import { createSite } from "./run.ts";
@@ -112,6 +113,7 @@ export async function build(
   server.use(
     reload({ watcher: new SiteWatcher(site) }),
     noCache(),
+    noCors(),
     notFound({
       root,
       page404,
