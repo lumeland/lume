@@ -1,11 +1,6 @@
 import { upgrade } from "../deps/init.ts";
 
-interface Options {
-  dev?: boolean;
-  version?: string;
-}
-
-export default function ({ dev, version }: Options) {
+export default async function (dev?: boolean, version?: string) {
   const process = upgrade({ path: ".", dev, version });
-  process.run();
+  await process.run();
 }

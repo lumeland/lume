@@ -14,7 +14,7 @@ const upgrade = new Command()
   .example("lume upgrade -g", "Upgrades to the latest stable version.")
   .example("lume upgrade --dev", "Upgrades to the latest development version.")
   .action(async ({ dev, version }) => {
-    const { upgrade } = await import("./cli/upgrade.ts");
+    const { default: upgrade } = await import("./cli/upgrade.ts");
     await upgrade(dev, version);
   });
 
