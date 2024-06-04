@@ -6,5 +6,6 @@ interface Options {
 }
 
 export default function ({ dev, version }: Options) {
-  return upgrade({ dev, version });
+  const process = upgrade({ path: ".", dev, version });
+  process.run();
 }
