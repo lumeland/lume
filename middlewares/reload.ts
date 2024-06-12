@@ -21,7 +21,11 @@ export default function reload(options: Options): Middleware {
     const files = event.files!;
     const urls = Array.from(files).map((file) => normalizePath(file));
     const message = JSON.stringify(urls);
-    sockets.forEach((socket) => socket.send(message));
+    sockets.forEach((socket) => {
+      if (socket.readyState === WebSocket.OPEN) {
+        socket.send(message);
+      }
+    });
     console.log("Changes sent to the browser");
   });
 
