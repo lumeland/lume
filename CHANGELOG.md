@@ -7,6 +7,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.2.2] - Unreleased
 ### Fixed
+- Hot reload: Ensure sockets are open before send updates [#614], [#615].
 - Updated dependencies: `tailwindcss`.
 
 ## [2.2.1] - 2024-06-04
@@ -406,6 +407,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#607]: https://github.com/lumeland/lume/issues/607
 [#608]: https://github.com/lumeland/lume/issues/608
 [#610]: https://github.com/lumeland/lume/issues/610
+[#614]: https://github.com/lumeland/lume/issues/614
+[#615]: https://github.com/lumeland/lume/issues/615
 
 [2.2.2]: https://github.com/lumeland/lume/compare/v2.2.1...HEAD
 [2.2.1]: https://github.com/lumeland/lume/compare/v2.2.0...v2.2.1
