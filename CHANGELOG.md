@@ -8,7 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.2.2] - Unreleased
 ### Fixed
 - Hot reload: Ensure sockets are open before send updates [#614], [#615].
-- Updated dependencies: `tailwindcss`.
+- Updated dependencies: `tailwindcss`, `terser`, `sass`, `std`, `react-render-to-string`, `xml`, `esbuild`, `vento`, `unocss`.
 
 ## [2.2.1] - 2024-06-04
 ### Added
