@@ -179,7 +179,8 @@ snapshot[`Layouts 3`] = `
       basename: "page",
       children: "<p>Content</p>
 ",
-      content: "Content",
+      content: "Content
+",
       css_file: "Array(1)",
       date: [],
       layout: "layout-2.vto",
