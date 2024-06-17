@@ -248,7 +248,8 @@ document.querySelectorAll(".other")?.forEach((el) => {
 ',
     data: {
       basename: "script",
-      content: 'console.log("Hello from script.ts!")',
+      content: 'console.log("Hello from script.ts!");
+',
       date: [],
       mergedKeys: [
         "tags",
@@ -540,7 +541,8 @@ document.querySelectorAll(".other")?.forEach((el) => {
 ',
     data: {
       basename: "script",
-      content: 'console.log("Hello from script.ts!")',
+      content: 'console.log("Hello from script.ts!");
+',
       date: [],
       mergedKeys: [
         "tags",
