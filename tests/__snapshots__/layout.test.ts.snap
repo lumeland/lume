@@ -111,9 +111,12 @@ snapshot[`Layouts 1`] = `
   src: [
     "/",
     "/_includes",
+    "/_includes/layout-2.vto",
+    "/_includes/layout-3.vto",
     "/_includes/page.vto",
     "/_includes/style.vto",
     "/index.md",
+    "/page.md",
     "/styles.2.css",
     "/styles.css",
   ],
@@ -157,6 +160,46 @@ snapshot[`Layouts 3`] = `
       asset: false,
       ext: ".md",
       path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<h2>From Layout 3</h2>
+/file-1.css,/file-2.css,/file-3.css
+
+<h2>From Layout 2</h2>
+/file-1.css,/file-2.css
+
+<p>Content</p>
+
+
+",
+    data: {
+      basename: "page",
+      children: "<p>Content</p>
+",
+      content: "Content",
+      css_file: "Array(1)",
+      date: [],
+      layout: "layout-2.vto",
+      mergedKeys: [
+        "css_file",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page/",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/page",
       remote: undefined,
     },
   },

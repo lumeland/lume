@@ -1,0 +1,11 @@
+---
+css_file: 
+  - /file-1.css
+  - /file-2.css
+  - /file-3.css
+---
+
+<h2>From Layout 3</h2>
+{{ css_file.join(",") }}
+
+{{ content }}

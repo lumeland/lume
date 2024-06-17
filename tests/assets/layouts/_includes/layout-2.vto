@@ -1,0 +1,11 @@
+---
+layout: layout-3.vto
+css_file: 
+  - /file-1.css
+  - /file-2.css
+---
+
+<h2>From Layout 2</h2>
+{{ css_file.join(",") }}
+
+{{ content }}

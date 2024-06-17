@@ -284,11 +284,11 @@ export default class Renderer {
       delete data.layout;
       delete data.templateEngine;
 
-      data = {
-        ...layoutData,
-        ...data,
-        content,
-      };
+      data = mergeData(
+        layoutData,
+        data,
+        { content },
+      ) as Data;
 
       content = await this.render<Content>(
         layoutData.content,
