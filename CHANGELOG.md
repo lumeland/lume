@@ -18,7 +18,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New `noCors` middleware to prevent CORS errors during development.
 
 ### Changed
-- Use `lume_init` depenency to upgrade Lume
+- Use `lume_init` dependency to upgrade Lume
 
 ### Fixed
 - Port detection in `lume cms` command.
