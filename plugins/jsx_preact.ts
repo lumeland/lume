@@ -114,3 +114,16 @@ export default function (userOptions?: Options) {
     });
   };
 }
+
+/** Extends HTMLAttributes interface */
+declare global {
+  namespace preact.JSX {
+    interface HTMLAttributes {
+      /** Custom attribute used by inline plugin */
+      inline?: boolean | undefined;
+
+      /** Custom attribute used by transform images plugin */
+      "transform-images"?: string | undefined;
+    }
+  }
+}
