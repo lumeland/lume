@@ -7,6 +7,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.2.2] - Unreleased
 ### Fixed
+- esbuild plugin: Fixed `basename` support [#617].
 - Apply `mergedKeys` configuration in layouts [#618].
 - Extended Preact types with Lume's custom attributes [#619].
 - Hot reload: Ensure sockets are open before send updates [#614], [#615].
@@ -411,6 +412,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#610]: https://github.com/lumeland/lume/issues/610
 [#614]: https://github.com/lumeland/lume/issues/614
 [#615]: https://github.com/lumeland/lume/issues/615
+[#617]: https://github.com/lumeland/lume/issues/617
 [#618]: https://github.com/lumeland/lume/issues/618
 [#619]: https://github.com/lumeland/lume/issues/619
 

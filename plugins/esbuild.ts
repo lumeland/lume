@@ -245,12 +245,13 @@ export default function (userOptions?: Options) {
         const url = normalizePath(
           normalizePath(file.path).replace(basePath, ""),
         );
+
         const urlWithoutExt = pathWithoutExtension(url);
         const entryPoint = pages.find((page) => {
           const outdir = posix.join(
             "/",
             options.options.outdir || ".",
-            pathWithoutExtension(page.data.url),
+            pathWithoutExtension(page.sourcePath),
           );
 
           return outdir === urlWithoutExt;
@@ -263,7 +264,11 @@ export default function (userOptions?: Options) {
 
         // The page is an entry point
         if (entryPoint) {
-          entryPoint.data.url = url; // Update the url to .js extension
+          entryPoint.data.url = posix.join(
+            "/",
+            options.options.outdir || ".",
+            replaceExtension(entryPoint.data.url, ".js"),
+          );
           saveAsset(site, entryPoint, content, map?.text);
         } else {
           // The page is a chunk
