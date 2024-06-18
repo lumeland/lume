@@ -12,7 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Apply `mergedKeys` configuration in layouts [#618].
 - Extended Preact types with Lume's custom attributes [#619].
 - Hot reload: Ensure sockets are open before send updates [#614], [#615].
-- Updated dependencies: `tailwindcss`, `terser`, `sass`, `std`, `react-render-to-string`, `xml`, `esbuild`, `vento`, `unocss`.
+- Updated dependencies: `tailwindcss`, `terser`, `sass`, `std`, `react-render-to-string`, `xml`, `esbuild`, `vento`, `unocss`, `liquidjs`.
 
 ## [2.2.1] - 2024-06-04
 ### Added
