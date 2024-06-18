@@ -7,6 +7,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.2.2] - Unreleased
 ### Fixed
+- `search.data()` doesn't return data for source files (like `search.data("index.md")`).
 - esbuild plugin: Fixed `basename` support [#617].
 - Apply `mergedKeys` configuration in layouts [#618].
 - Extended Preact types with Lume's custom attributes [#619].

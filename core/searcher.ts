@@ -51,7 +51,9 @@ export default class Searcher {
       return dirData as T & Partial<Data>;
     }
 
-    const result = this.#pages.find((page) => page.data.url === normalized);
+    const result = this.#pages.find((page) =>
+      page.data.url === normalized || page.data.sourcePath === normalized
+    );
 
     if (result) {
       return result.data as T & Partial<Data>;
