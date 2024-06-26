@@ -111,6 +111,7 @@ snapshot[`relative_url plugin 1`] = `
     "/index.md",
     "/other.md",
     "/statics",
+    "/statics/asset.md",
     "/statics/robots.txt",
     "/tílde-and-eñe.md",
   ],
@@ -119,6 +120,11 @@ snapshot[`relative_url plugin 1`] = `
 
 snapshot[`relative_url plugin 2`] = `
 [
+  {
+    entry: "/statics/asset.md",
+    flags: [],
+    outputPath: "/asset.md",
+  },
   {
     entry: "/statics/robots.txt",
     flags: [],
@@ -279,7 +285,9 @@ Third article
 <a href="/other/?tab=1">url</a>
 <a href="/other/#tab-1">url</a>
 <a href="/robots.txt">url</a>
-<a href="/tilde-and-ene/">url</a></p>
+<a href="/tilde-and-ene/">url</a>
+<a href="robots.txt">static-file</a>
+<a href="/asset.md">static-file</a></p>
 </body></html>',
     data: {
       basename: "index",
@@ -296,7 +304,9 @@ Third article
 <a href="other.md?tab=1">url</a>
 <a href="other.md#tab-1">url</a>
 <a href="~/statics/robots.txt">url</a>
-<a href="t%C3%ADlde-and-e%C3%B1e.md">url</a></p>
+<a href="t%C3%ADlde-and-e%C3%B1e.md">url</a>
+<a href="robots.txt">static-file</a>
+<a href="statics/asset.md">static-file</a></p>
 ',
       content: "<!-- deno-fmt-ignore-file -->
 [url](/bar)
@@ -312,6 +322,8 @@ Third article
 [url](other.md#tab-1)
 [url](~/statics/robots.txt)
 [url](tílde-and-eñe.md)
+[static-file](robots.txt)
+[static-file](statics/asset.md)
 ",
       date: [],
       mergedKeys: [
@@ -514,6 +526,7 @@ snapshot[`relative_url plugin (without slugify) 1`] = `
     "/index.md",
     "/other.md",
     "/statics",
+    "/statics/asset.md",
     "/statics/robots.txt",
     "/tílde-and-eñe.md",
   ],
@@ -522,6 +535,11 @@ snapshot[`relative_url plugin (without slugify) 1`] = `
 
 snapshot[`relative_url plugin (without slugify) 2`] = `
 [
+  {
+    entry: "/statics/asset.md",
+    flags: [],
+    outputPath: "/asset.md",
+  },
   {
     entry: "/statics/robots.txt",
     flags: [],
@@ -682,7 +700,9 @@ Third article
 <a href="/other/?tab=1">url</a>
 <a href="/other/#tab-1">url</a>
 <a href="/robots.txt">url</a>
-<a href="/tílde-and-eñe/">url</a></p>
+<a href="/tílde-and-eñe/">url</a>
+<a href="robots.txt">static-file</a>
+<a href="/asset.md">static-file</a></p>
 </body></html>',
     data: {
       basename: "index",
@@ -699,7 +719,9 @@ Third article
 <a href="other.md?tab=1">url</a>
 <a href="other.md#tab-1">url</a>
 <a href="~/statics/robots.txt">url</a>
-<a href="t%C3%ADlde-and-e%C3%B1e.md">url</a></p>
+<a href="t%C3%ADlde-and-e%C3%B1e.md">url</a>
+<a href="robots.txt">static-file</a>
+<a href="statics/asset.md">static-file</a></p>
 ',
       content: "<!-- deno-fmt-ignore-file -->
 [url](/bar)
@@ -715,6 +737,8 @@ Third article
 [url](other.md#tab-1)
 [url](~/statics/robots.txt)
 [url](tílde-and-eñe.md)
+[static-file](robots.txt)
+[static-file](statics/asset.md)
 ",
       date: [],
       mergedKeys: [
