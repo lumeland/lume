@@ -1,1 +1,1 @@
-export * from "jsr:@std/media-types@0.224.1";
+export * from "jsr:@std/media-types@1.0.0";

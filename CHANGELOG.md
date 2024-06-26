@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.2.3] - Unreleased
+### Fixed
+- Updated dependencies: `std`.
+
 ## [2.2.2] - 2024-06-21
 ### Fixed
 - `search.data()` doesn't return data for source files (like `search.data("index.md")`).
@@ -417,6 +421,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#618]: https://github.com/lumeland/lume/issues/618
 [#619]: https://github.com/lumeland/lume/issues/619
 
+[2.2.3]: https://github.com/lumeland/lume/compare/v2.2.2...HEAD
 [2.2.2]: https://github.com/lumeland/lume/compare/v2.2.1...v2.2.2
 [2.2.1]: https://github.com/lumeland/lume/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/lumeland/lume/compare/v2.1.4...v2.2.0
