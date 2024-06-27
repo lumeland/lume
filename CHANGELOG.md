@@ -6,6 +6,9 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.2.3] - Unreleased
+### Added
+- New option `caseSensitiveUrls` to allow to export two urls with the same name but different cases [#625].
+
 ### Fixed
 - Updated dependencies: `std`.
 
@@ -420,6 +423,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#617]: https://github.com/lumeland/lume/issues/617
 [#618]: https://github.com/lumeland/lume/issues/618
 [#619]: https://github.com/lumeland/lume/issues/619
+[#625]: https://github.com/lumeland/lume/issues/625
 
 [2.2.3]: https://github.com/lumeland/lume/compare/v2.2.2...HEAD
 [2.2.2]: https://github.com/lumeland/lume/compare/v2.2.1...v2.2.2

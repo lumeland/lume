@@ -9,6 +9,7 @@ import type { Page, StaticFile } from "./file.ts";
 
 export interface Options {
   dest: string;
+  caseSensitiveUrls: boolean;
 }
 
 /** Generic interface for Writer */
@@ -25,12 +26,14 @@ export interface Writer {
  */
 export class FSWriter implements Writer {
   dest: string;
+  caseSensitiveUrls: boolean;
 
   #outputs = new Map<string, [number, string, string]>();
   #saveCount = 0;
 
   constructor(options: Options) {
     this.dest = options.dest;
+    this.caseSensitiveUrls = options.caseSensitiveUrls;
   }
 
   /**
@@ -68,7 +71,7 @@ export class FSWriter implements Writer {
     }
 
     const filename = posix.join(this.dest, outputPath);
-    const id = filename.toLowerCase();
+    const id = this.caseSensitiveUrls ? filename : filename.toLowerCase();
     const hash = await sha1(content);
     const previous = this.#outputs.get(id);
     this.#outputs.set(id, [this.#saveCount, sourcePath, hash]);

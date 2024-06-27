@@ -42,6 +42,7 @@ const defaults: SiteOptions = {
   src: "./",
   dest: "./_site",
   emptyDest: true,
+  caseSensitiveUrls: false,
   includes: "_includes",
   location: new URL("http://localhost"),
   prettyUrls: true,
@@ -141,7 +142,8 @@ export default class Site {
 
     const src = this.src();
     const dest = this.dest();
-    const { includes, cwd, prettyUrls, components, server } = this.options;
+    const { includes, cwd, prettyUrls, components, server, caseSensitiveUrls } =
+      this.options;
 
     // To load source files
     const fs = new FS({ root: src });
@@ -176,7 +178,7 @@ export default class Site {
     // Other stuff
     const events = new Events<SiteEvent>();
     const scripts = new Scripts({ cwd });
-    const writer = new FSWriter({ dest });
+    const writer = new FSWriter({ dest, caseSensitiveUrls });
 
     const url404 = server.page404 ? normalizePath(server.page404) : undefined;
     const searcher = new Searcher({
@@ -914,6 +916,9 @@ export interface SiteOptions {
 
   /** Set true to generate pretty urls (`/about-me/`) */
   prettyUrls: boolean;
+
+  /** Set true to don't consider two urls the equal if the only difference is the case */
+  caseSensitiveUrls: boolean;
 
   /** The local server options */
   server: ServerOptions;
