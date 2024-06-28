@@ -110,7 +110,7 @@ export class Nav {
       }
     }
 
-    return convert(nav);
+    return convert(nav, undefined, sort);
   }
 }
 
