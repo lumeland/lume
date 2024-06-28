@@ -157,29 +157,11 @@ snapshot[`nav plugin 3`] = `
   
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
-
-  </li>
-  
-  <li>
-    
 <a href="/docs/pages/">About pages</a>
 
 
 
 <ul>
-  
-  <li>
-    
-<a href="/docs/pages/first/">Pages first</a>
-
-
-
-
-  </li>
   
   <li>
     
@@ -190,7 +172,25 @@ snapshot[`nav plugin 3`] = `
 
   </li>
   
+  <li>
+    
+<a href="/docs/pages/first/">Pages first</a>
+
+
+
+
+  </li>
+  
 </ul>
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
 
 
   </li>
@@ -317,29 +317,11 @@ snapshot[`nav plugin 3`] = `
   
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
-
-  </li>
-  
-  <li>
-    
 <a href="/docs/pages/">About pages</a>
 
 
 
 <ul>
-  
-  <li>
-    
-<a href="/docs/pages/first/">Pages first</a>
-
-
-
-
-  </li>
   
   <li>
     
@@ -350,7 +332,25 @@ snapshot[`nav plugin 3`] = `
 
   </li>
   
+  <li>
+    
+<a href="/docs/pages/first/">Pages first</a>
+
+
+
+
+  </li>
+  
 </ul>
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
 
 
   </li>
@@ -425,6 +425,7 @@ snapshot[`nav plugin 3`] = `
         "tags",
       ],
       nav: [],
+      order: 1,
       page: [
         "src",
         "data",
@@ -478,29 +479,11 @@ snapshot[`nav plugin 3`] = `
   
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
-
-  </li>
-  
-  <li>
-    
 <a href="/docs/pages/">About pages</a>
 
 
 
 <ul>
-  
-  <li>
-    
-<a href="/docs/pages/first/">Pages first</a>
-
-
-
-
-  </li>
   
   <li>
     
@@ -511,7 +494,25 @@ snapshot[`nav plugin 3`] = `
 
   </li>
   
+  <li>
+    
+<a href="/docs/pages/first/">Pages first</a>
+
+
+
+
+  </li>
+  
 </ul>
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
 
 
   </li>
@@ -585,6 +586,7 @@ snapshot[`nav plugin 3`] = `
         "tags",
       ],
       nav: [],
+      order: 0,
       page: [
         "src",
         "data",
@@ -640,29 +642,11 @@ snapshot[`nav plugin 3`] = `
   
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
-
-  </li>
-  
-  <li>
-    
 <a href="/docs/pages/">About pages</a>
 
 
 
 <ul>
-  
-  <li>
-    
-<a href="/docs/pages/first/">Pages first</a>
-
-
-
-
-  </li>
   
   <li>
     
@@ -673,7 +657,25 @@ snapshot[`nav plugin 3`] = `
 
   </li>
   
+  <li>
+    
+<a href="/docs/pages/first/">Pages first</a>
+
+
+
+
+  </li>
+  
 </ul>
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
 
 
   </li>
@@ -747,6 +749,7 @@ snapshot[`nav plugin 3`] = `
         "tags",
       ],
       nav: [],
+      order: 1,
       page: [
         "src",
         "data",
@@ -802,29 +805,11 @@ snapshot[`nav plugin 3`] = `
   
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
-
-  </li>
-  
-  <li>
-    
 <a href="/docs/pages/">About pages</a>
 
 
 
 <ul>
-  
-  <li>
-    
-<a href="/docs/pages/first/">Pages first</a>
-
-
-
-
-  </li>
   
   <li>
     
@@ -835,7 +820,25 @@ snapshot[`nav plugin 3`] = `
 
   </li>
   
+  <li>
+    
+<a href="/docs/pages/first/">Pages first</a>
+
+
+
+
+  </li>
+  
 </ul>
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
 
 
   </li>
@@ -910,6 +913,7 @@ snapshot[`nav plugin 3`] = `
         "tags",
       ],
       nav: [],
+      order: 0,
       page: [
         "src",
         "data",
@@ -959,29 +963,11 @@ snapshot[`nav plugin 3`] = `
   
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
-
-  </li>
-  
-  <li>
-    
 <a href="/docs/pages/">About pages</a>
 
 
 
 <ul>
-  
-  <li>
-    
-<a href="/docs/pages/first/">Pages first</a>
-
-
-
-
-  </li>
   
   <li>
     
@@ -992,7 +978,25 @@ snapshot[`nav plugin 3`] = `
 
   </li>
   
+  <li>
+    
+<a href="/docs/pages/first/">Pages first</a>
+
+
+
+
+  </li>
+  
 </ul>
+
+
+  </li>
+  
+  <li>
+    
+<a href="/docs/about-docs/">About docs</a>
+
+
 
 
   </li>
@@ -1244,7 +1248,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
+<a href="/docs/pages.html">About pages</a>
 
 
 
@@ -1261,7 +1265,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages/first.html">Pages first</a>
+<a href="/docs/pages/second.html">Pages second</a>
 
 
 
@@ -1270,7 +1274,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
+<a href="/docs/pages/first.html">Pages first</a>
 
 
 
@@ -1284,7 +1288,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages.html">About pages</a>
+<a href="/docs/about-docs.html">About docs</a>
 
 
 
@@ -1422,7 +1426,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
+<a href="/docs/pages.html">About pages</a>
 
 
 
@@ -1439,7 +1443,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages/first.html">Pages first</a>
+<a href="/docs/pages/second.html">Pages second</a>
 
 
 
@@ -1448,7 +1452,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
+<a href="/docs/pages/first.html">Pages first</a>
 
 
 
@@ -1462,7 +1466,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages.html">About pages</a>
+<a href="/docs/about-docs.html">About docs</a>
 
 
 
@@ -1548,6 +1552,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         "tags",
       ],
       nav: [],
+      order: 1,
       page: [
         "src",
         "data",
@@ -1601,7 +1606,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
+<a href="/docs/pages.html">About pages</a>
 
 
 
@@ -1618,7 +1623,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages/first.html">Pages first</a>
+<a href="/docs/pages/second.html">Pages second</a>
 
 
 
@@ -1627,7 +1632,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
+<a href="/docs/pages/first.html">Pages first</a>
 
 
 
@@ -1641,7 +1646,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages.html">About pages</a>
+<a href="/docs/about-docs.html">About docs</a>
 
 
 
@@ -1726,6 +1731,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         "tags",
       ],
       nav: [],
+      order: 0,
       page: [
         "src",
         "data",
@@ -1781,7 +1787,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
+<a href="/docs/pages.html">About pages</a>
 
 
 
@@ -1798,7 +1804,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages/first.html">Pages first</a>
+<a href="/docs/pages/second.html">Pages second</a>
 
 
 
@@ -1807,7 +1813,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
+<a href="/docs/pages/first.html">Pages first</a>
 
 
 
@@ -1821,7 +1827,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages.html">About pages</a>
+<a href="/docs/about-docs.html">About docs</a>
 
 
 
@@ -1906,6 +1912,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         "tags",
       ],
       nav: [],
+      order: 1,
       page: [
         "src",
         "data",
@@ -1961,7 +1968,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
+<a href="/docs/pages.html">About pages</a>
 
 
 
@@ -1978,7 +1985,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages/first.html">Pages first</a>
+<a href="/docs/pages/second.html">Pages second</a>
 
 
 
@@ -1987,7 +1994,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
+<a href="/docs/pages/first.html">Pages first</a>
 
 
 
@@ -2001,7 +2008,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages.html">About pages</a>
+<a href="/docs/about-docs.html">About docs</a>
 
 
 
@@ -2087,6 +2094,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         "tags",
       ],
       nav: [],
+      order: 0,
       page: [
         "src",
         "data",
@@ -2134,7 +2142,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
+<a href="/docs/pages.html">About pages</a>
 
 
 
@@ -2151,7 +2159,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages/first.html">Pages first</a>
+<a href="/docs/pages/second.html">Pages second</a>
 
 
 
@@ -2160,7 +2168,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
+<a href="/docs/pages/first.html">Pages first</a>
 
 
 
@@ -2174,7 +2182,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   
   <li>
     
-<a href="/docs/pages.html">About pages</a>
+<a href="/docs/about-docs.html">About docs</a>
 
 
 
