@@ -16,21 +16,21 @@
 
     <nav>
       <ul>
-      {{ for item of nav.menu("/", "", "order basename").children }}
+      {{- for item of nav.menu("/", "", "order basename").children }}
         <li>
           {{ include "./step.vto" { item } }}
         </li>
-      {{ /for }}
+      {{- /for }}
       </ul>
     </nav>
 
     <nav>
       <ul>
-      {{ for item of nav.menu("/", "menu=true").children }}
+      {{- for item of nav.menu("/", "menu=true", "basename").children }}
         <li>
           {{ include "./step.vto" { item } }}
         </li>
-      {{ /for }}
+      {{- /for }}
       </ul>
     </nav>
   </body>

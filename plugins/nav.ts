@@ -161,7 +161,7 @@ function convert(
     ? Object.values(temp.children)
       .map((child) => convert(child, order, data))
       .sort((a, b) => {
-        if (a.data && b.data && order) {
+        if (a.data && b.data) {
           return order(a.data, b.data);
         }
         return a.slug < b.slug ? -1 : 1;

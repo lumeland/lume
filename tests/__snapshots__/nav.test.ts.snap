@@ -146,110 +146,64 @@ snapshot[`nav plugin 3`] = `
 
     <nav>
       <ul>
-      
         <li>
           
 <a href="/docs/">Docs</a>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/">About pages</a>
-
-
-
+<a href="/docs/pages/">About pages (0)</a>
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second/">Pages second</a>
-
-
-
+<a href="/docs/pages/second/">Pages second (0)</a>
 
   </li>
-  
   <li>
     
-<a href="/docs/pages/first/">Pages first</a>
-
-
-
+<a href="/docs/pages/first/">Pages first (1)</a>
 
   </li>
-  
 </ul>
 
-
   </li>
-  
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
+<a href="/docs/about-docs/">About docs (1)</a>
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
+<a href="/docs/about-docs/">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second/">Pages second</a>
-
-
-
+<a href="/docs/pages/second/">Pages second (0)</a>
 
   </li>
-  
 </ul>
-
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
   </body>
@@ -286,7 +240,7 @@ snapshot[`nav plugin 3`] = `
     content: '<!DOCTYPE html>
 <html>
   <head>
-    <title>About docs</title>
+    <title>About docs (1)</title>
   </head>
 
   <body>
@@ -297,119 +251,73 @@ snapshot[`nav plugin 3`] = `
         
         <li><a href="/docs/">Docs</a></li>
         
-        <li><a href="/docs/about-docs/">About docs</a></li>
+        <li><a href="/docs/about-docs/">About docs (1)</a></li>
         
       </ul>
     </nav>
 
-    <h1>About docs</h1>
+    <h1>About docs (1)</h1>
 
     <nav>
       <ul>
-      
         <li>
           
 <a href="/docs/">Docs</a>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/">About pages</a>
-
-
-
+<a href="/docs/pages/">About pages (0)</a>
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second/">Pages second</a>
-
-
-
+<a href="/docs/pages/second/">Pages second (0)</a>
 
   </li>
-  
   <li>
     
-<a href="/docs/pages/first/">Pages first</a>
-
-
-
+<a href="/docs/pages/first/">Pages first (1)</a>
 
   </li>
-  
 </ul>
 
-
   </li>
-  
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
+<a href="/docs/about-docs/">About docs (1)</a>
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
+<a href="/docs/about-docs/">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second/">Pages second</a>
-
-
-
+<a href="/docs/pages/second/">Pages second (0)</a>
 
   </li>
-  
 </ul>
-
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
   </body>
@@ -434,7 +342,7 @@ snapshot[`nav plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "About docs",
+      title: "About docs (1)",
       url: "/docs/about-docs/",
     },
     src: {
@@ -448,7 +356,7 @@ snapshot[`nav plugin 3`] = `
     content: '<!DOCTYPE html>
 <html>
   <head>
-    <title>About pages</title>
+    <title>About pages (0)</title>
   </head>
 
   <body>
@@ -459,119 +367,73 @@ snapshot[`nav plugin 3`] = `
         
         <li><a href="/docs/">Docs</a></li>
         
-        <li><a href="/docs/pages/">About pages</a></li>
+        <li><a href="/docs/pages/">About pages (0)</a></li>
         
       </ul>
     </nav>
 
-    <h1>About pages</h1>
+    <h1>About pages (0)</h1>
 
     <nav>
       <ul>
-      
         <li>
           
 <a href="/docs/">Docs</a>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/">About pages</a>
-
-
-
+<a href="/docs/pages/">About pages (0)</a>
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second/">Pages second</a>
-
-
-
+<a href="/docs/pages/second/">Pages second (0)</a>
 
   </li>
-  
   <li>
     
-<a href="/docs/pages/first/">Pages first</a>
-
-
-
+<a href="/docs/pages/first/">Pages first (1)</a>
 
   </li>
-  
 </ul>
 
-
   </li>
-  
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
+<a href="/docs/about-docs/">About docs (1)</a>
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
+<a href="/docs/about-docs/">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second/">Pages second</a>
-
-
-
+<a href="/docs/pages/second/">Pages second (0)</a>
 
   </li>
-  
 </ul>
-
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
   </body>
@@ -595,7 +457,7 @@ snapshot[`nav plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "About pages",
+      title: "About pages (0)",
       url: "/docs/pages/",
     },
     src: {
@@ -609,7 +471,7 @@ snapshot[`nav plugin 3`] = `
     content: '<!DOCTYPE html>
 <html>
   <head>
-    <title>Pages first</title>
+    <title>Pages first (1)</title>
   </head>
 
   <body>
@@ -620,121 +482,75 @@ snapshot[`nav plugin 3`] = `
         
         <li><a href="/docs/">Docs</a></li>
         
-        <li><a href="/docs/pages/">About pages</a></li>
+        <li><a href="/docs/pages/">About pages (0)</a></li>
         
-        <li><a href="/docs/pages/first/">Pages first</a></li>
+        <li><a href="/docs/pages/first/">Pages first (1)</a></li>
         
       </ul>
     </nav>
 
-    <h1>Pages first</h1>
+    <h1>Pages first (1)</h1>
 
     <nav>
       <ul>
-      
         <li>
           
 <a href="/docs/">Docs</a>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/">About pages</a>
-
-
-
+<a href="/docs/pages/">About pages (0)</a>
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second/">Pages second</a>
-
-
-
+<a href="/docs/pages/second/">Pages second (0)</a>
 
   </li>
-  
   <li>
     
-<a href="/docs/pages/first/">Pages first</a>
-
-
-
+<a href="/docs/pages/first/">Pages first (1)</a>
 
   </li>
-  
 </ul>
 
-
   </li>
-  
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
+<a href="/docs/about-docs/">About docs (1)</a>
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
+<a href="/docs/about-docs/">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second/">Pages second</a>
-
-
-
+<a href="/docs/pages/second/">Pages second (0)</a>
 
   </li>
-  
 </ul>
-
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
   </body>
@@ -758,7 +574,7 @@ snapshot[`nav plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Pages first",
+      title: "Pages first (1)",
       url: "/docs/pages/first/",
     },
     src: {
@@ -772,7 +588,7 @@ snapshot[`nav plugin 3`] = `
     content: '<!DOCTYPE html>
 <html>
   <head>
-    <title>Pages second</title>
+    <title>Pages second (0)</title>
   </head>
 
   <body>
@@ -783,121 +599,75 @@ snapshot[`nav plugin 3`] = `
         
         <li><a href="/docs/">Docs</a></li>
         
-        <li><a href="/docs/pages/">About pages</a></li>
+        <li><a href="/docs/pages/">About pages (0)</a></li>
         
-        <li><a href="/docs/pages/second/">Pages second</a></li>
+        <li><a href="/docs/pages/second/">Pages second (0)</a></li>
         
       </ul>
     </nav>
 
-    <h1>Pages second</h1>
+    <h1>Pages second (0)</h1>
 
     <nav>
       <ul>
-      
         <li>
           
 <a href="/docs/">Docs</a>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/">About pages</a>
-
-
-
+<a href="/docs/pages/">About pages (0)</a>
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second/">Pages second</a>
-
-
-
+<a href="/docs/pages/second/">Pages second (0)</a>
 
   </li>
-  
   <li>
     
-<a href="/docs/pages/first/">Pages first</a>
-
-
-
+<a href="/docs/pages/first/">Pages first (1)</a>
 
   </li>
-  
 </ul>
 
-
   </li>
-  
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
+<a href="/docs/about-docs/">About docs (1)</a>
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
+<a href="/docs/about-docs/">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second/">Pages second</a>
-
-
-
+<a href="/docs/pages/second/">Pages second (0)</a>
 
   </li>
-  
 </ul>
-
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
   </body>
@@ -922,7 +692,7 @@ snapshot[`nav plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Pages second",
+      title: "Pages second (0)",
       url: "/docs/pages/second/",
     },
     src: {
@@ -952,110 +722,64 @@ snapshot[`nav plugin 3`] = `
 
     <nav>
       <ul>
-      
         <li>
           
 <a href="/docs/">Docs</a>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/">About pages</a>
-
-
-
+<a href="/docs/pages/">About pages (0)</a>
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second/">Pages second</a>
-
-
-
+<a href="/docs/pages/second/">Pages second (0)</a>
 
   </li>
-  
   <li>
     
-<a href="/docs/pages/first/">Pages first</a>
-
-
-
+<a href="/docs/pages/first/">Pages first (1)</a>
 
   </li>
-  
 </ul>
 
-
   </li>
-  
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
+<a href="/docs/about-docs/">About docs (1)</a>
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs/">About docs</a>
-
-
-
+<a href="/docs/about-docs/">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second/">Pages second</a>
-
-
-
+<a href="/docs/pages/second/">Pages second (0)</a>
 
   </li>
-  
 </ul>
-
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
   </body>
@@ -1237,128 +961,74 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
-
-
-
+<a href="/docs/about-docs.html">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
-
-
-
+<a href="/docs/pages/second.html">Pages second (0)</a>
 
   </li>
-  
   <li>
     
-<a href="/docs/pages/first.html">Pages first</a>
-
-
-
+<a href="/docs/pages/first.html">Pages first (1)</a>
 
   </li>
-  
 </ul>
 
-
   </li>
-  
   <li>
     
-<a href="/docs/pages.html">About pages</a>
-
-
-
+<a href="/docs/pages.html">About pages (0)</a>
 
   </li>
-  
 </ul>
-
 
         </li>
-      
         <li>
           
 <a href="/docs.html">Docs</a>
 
-
-
-
         </li>
-      
       </ul>
     </nav>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
-
-
-
+<a href="/docs/about-docs.html">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
-
-
-
+<a href="/docs/pages/second.html">Pages second (0)</a>
 
   </li>
-  
 </ul>
-
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
   </body>
@@ -1395,7 +1065,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
     content: '<!DOCTYPE html>
 <html>
   <head>
-    <title>About docs</title>
+    <title>About docs (1)</title>
   </head>
 
   <body>
@@ -1406,137 +1076,83 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         
         <li><a href=""></a></li>
         
-        <li><a href="/docs/about-docs.html">About docs</a></li>
+        <li><a href="/docs/about-docs.html">About docs (1)</a></li>
         
       </ul>
     </nav>
 
-    <h1>About docs</h1>
+    <h1>About docs (1)</h1>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
-
-
-
+<a href="/docs/about-docs.html">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
-
-
-
+<a href="/docs/pages/second.html">Pages second (0)</a>
 
   </li>
-  
   <li>
     
-<a href="/docs/pages/first.html">Pages first</a>
-
-
-
+<a href="/docs/pages/first.html">Pages first (1)</a>
 
   </li>
-  
 </ul>
 
-
   </li>
-  
   <li>
     
-<a href="/docs/pages.html">About pages</a>
-
-
-
+<a href="/docs/pages.html">About pages (0)</a>
 
   </li>
-  
 </ul>
-
 
         </li>
-      
         <li>
           
 <a href="/docs.html">Docs</a>
 
-
-
-
         </li>
-      
       </ul>
     </nav>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
-
-
-
+<a href="/docs/about-docs.html">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
-
-
-
+<a href="/docs/pages/second.html">Pages second (0)</a>
 
   </li>
-  
 </ul>
-
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
   </body>
@@ -1561,7 +1177,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "About docs",
+      title: "About docs (1)",
       url: "/docs/about-docs.html",
     },
     src: {
@@ -1575,7 +1191,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
     content: '<!DOCTYPE html>
 <html>
   <head>
-    <title>About pages</title>
+    <title>About pages (0)</title>
   </head>
 
   <body>
@@ -1586,137 +1202,83 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         
         <li><a href=""></a></li>
         
-        <li><a href="/docs/pages.html">About pages</a></li>
+        <li><a href="/docs/pages.html">About pages (0)</a></li>
         
       </ul>
     </nav>
 
-    <h1>About pages</h1>
+    <h1>About pages (0)</h1>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
-
-
-
+<a href="/docs/about-docs.html">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
-
-
-
+<a href="/docs/pages/second.html">Pages second (0)</a>
 
   </li>
-  
   <li>
     
-<a href="/docs/pages/first.html">Pages first</a>
-
-
-
+<a href="/docs/pages/first.html">Pages first (1)</a>
 
   </li>
-  
 </ul>
 
-
   </li>
-  
   <li>
     
-<a href="/docs/pages.html">About pages</a>
-
-
-
+<a href="/docs/pages.html">About pages (0)</a>
 
   </li>
-  
 </ul>
-
 
         </li>
-      
         <li>
           
 <a href="/docs.html">Docs</a>
 
-
-
-
         </li>
-      
       </ul>
     </nav>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
-
-
-
+<a href="/docs/about-docs.html">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
-
-
-
+<a href="/docs/pages/second.html">Pages second (0)</a>
 
   </li>
-  
 </ul>
-
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
   </body>
@@ -1740,7 +1302,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "About pages",
+      title: "About pages (0)",
       url: "/docs/pages.html",
     },
     src: {
@@ -1754,7 +1316,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
     content: '<!DOCTYPE html>
 <html>
   <head>
-    <title>Pages first</title>
+    <title>Pages first (1)</title>
   </head>
 
   <body>
@@ -1767,137 +1329,83 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         
         <li><a href=""></a></li>
         
-        <li><a href="/docs/pages/first.html">Pages first</a></li>
+        <li><a href="/docs/pages/first.html">Pages first (1)</a></li>
         
       </ul>
     </nav>
 
-    <h1>Pages first</h1>
+    <h1>Pages first (1)</h1>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
-
-
-
+<a href="/docs/about-docs.html">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
-
-
-
+<a href="/docs/pages/second.html">Pages second (0)</a>
 
   </li>
-  
   <li>
     
-<a href="/docs/pages/first.html">Pages first</a>
-
-
-
+<a href="/docs/pages/first.html">Pages first (1)</a>
 
   </li>
-  
 </ul>
 
-
   </li>
-  
   <li>
     
-<a href="/docs/pages.html">About pages</a>
-
-
-
+<a href="/docs/pages.html">About pages (0)</a>
 
   </li>
-  
 </ul>
-
 
         </li>
-      
         <li>
           
 <a href="/docs.html">Docs</a>
 
-
-
-
         </li>
-      
       </ul>
     </nav>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
-
-
-
+<a href="/docs/about-docs.html">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
-
-
-
+<a href="/docs/pages/second.html">Pages second (0)</a>
 
   </li>
-  
 </ul>
-
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
   </body>
@@ -1921,7 +1429,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Pages first",
+      title: "Pages first (1)",
       url: "/docs/pages/first.html",
     },
     src: {
@@ -1935,7 +1443,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
     content: '<!DOCTYPE html>
 <html>
   <head>
-    <title>Pages second</title>
+    <title>Pages second (0)</title>
   </head>
 
   <body>
@@ -1948,137 +1456,83 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         
         <li><a href=""></a></li>
         
-        <li><a href="/docs/pages/second.html">Pages second</a></li>
+        <li><a href="/docs/pages/second.html">Pages second (0)</a></li>
         
       </ul>
     </nav>
 
-    <h1>Pages second</h1>
+    <h1>Pages second (0)</h1>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
-
-
-
+<a href="/docs/about-docs.html">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
-
-
-
+<a href="/docs/pages/second.html">Pages second (0)</a>
 
   </li>
-  
   <li>
     
-<a href="/docs/pages/first.html">Pages first</a>
-
-
-
+<a href="/docs/pages/first.html">Pages first (1)</a>
 
   </li>
-  
 </ul>
 
-
   </li>
-  
   <li>
     
-<a href="/docs/pages.html">About pages</a>
-
-
-
+<a href="/docs/pages.html">About pages (0)</a>
 
   </li>
-  
 </ul>
-
 
         </li>
-      
         <li>
           
 <a href="/docs.html">Docs</a>
 
-
-
-
         </li>
-      
       </ul>
     </nav>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
-
-
-
+<a href="/docs/about-docs.html">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
-
-
-
+<a href="/docs/pages/second.html">Pages second (0)</a>
 
   </li>
-  
 </ul>
-
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
   </body>
@@ -2103,7 +1557,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Pages second",
+      title: "Pages second (0)",
       url: "/docs/pages/second.html",
     },
     src: {
@@ -2131,128 +1585,74 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
-
-
-
+<a href="/docs/about-docs.html">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
-
-
-
+<a href="/docs/pages/second.html">Pages second (0)</a>
 
   </li>
-  
   <li>
     
-<a href="/docs/pages/first.html">Pages first</a>
-
-
-
+<a href="/docs/pages/first.html">Pages first (1)</a>
 
   </li>
-  
 </ul>
 
-
   </li>
-  
   <li>
     
-<a href="/docs/pages.html">About pages</a>
-
-
-
+<a href="/docs/pages.html">About pages (0)</a>
 
   </li>
-  
 </ul>
-
 
         </li>
-      
         <li>
           
 <a href="/docs.html">Docs</a>
 
-
-
-
         </li>
-      
       </ul>
     </nav>
 
     <nav>
       <ul>
-      
         <li>
           
 <strong>docs</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/about-docs.html">About docs</a>
-
-
-
+<a href="/docs/about-docs.html">About docs (1)</a>
 
   </li>
-  
   <li>
     
 <strong>pages</strong>
-
-
-
 <ul>
-  
   <li>
     
-<a href="/docs/pages/second.html">Pages second</a>
-
-
-
+<a href="/docs/pages/second.html">Pages second (0)</a>
 
   </li>
-  
 </ul>
-
 
   </li>
-  
 </ul>
-
 
         </li>
-      
       </ul>
     </nav>
   </body>
