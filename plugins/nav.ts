@@ -1,4 +1,5 @@
 import { merge } from "../core/utils/object.ts";
+import { buildSort } from "../core/searcher.ts";
 
 import type Site from "../core/site.ts";
 import type Searcher from "../core/searcher.ts";
@@ -74,7 +75,7 @@ export class Nav {
       slug: "",
     };
 
-    const dataPages = this.#search.pages(query, sort);
+    const dataPages = this.#search.pages(query);
 
     for (const data of dataPages) {
       const url = data.page?.outputPath;
@@ -109,8 +110,8 @@ export class Nav {
         part = parts.shift();
       }
     }
-
-    return convert(nav, undefined, sort);
+    const sortfn = buildSort(sort || "basename");
+    return convert(nav, undefined, sortfn);
   }
 }
 
@@ -145,7 +146,7 @@ function searchData(parts: string[], menu: NavData): NavData | undefined {
 }
 
 // Convert TempNavData to NavData
-function convert(temp: TempNavData, parent?: NavData, order?: string): NavData {
+function convert(temp: TempNavData, parent?: NavData, order?: (a: Data, b: Data) => number): NavData {
   const data: NavData = {
     slug: temp.slug,
     data: temp.data,
@@ -156,10 +157,10 @@ function convert(temp: TempNavData, parent?: NavData, order?: string): NavData {
     ? Object.values(temp.children)
       .map((child) => convert(child, data, order))
       .sort((a, b) => {
-        if (!order) {
-          return a.slug < b.slug ? -1 : 1;
+        if (a.data && b.data && order) {
+          return order(a.data, b.data);
         }
-        return a.data?.[order] < b.data?.[order] ? -1 : 1;
+        return a.slug < b.slug ? -1 : 1;
       })
     : undefined;
 
