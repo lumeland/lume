@@ -146,7 +146,11 @@ function searchData(parts: string[], menu: NavData): NavData | undefined {
 }
 
 // Convert TempNavData to NavData
-function convert(temp: TempNavData, parent?: NavData, order?: (a: Data, b: Data) => number): NavData {
+function convert(
+  temp: TempNavData,
+  parent?: NavData,
+  order?: (a: Data, b: Data) => number,
+): NavData {
   const data: NavData = {
     slug: temp.slug,
     data: temp.data,
