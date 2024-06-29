@@ -16,7 +16,7 @@
 
     <nav>
       <ul>
-      {{ for item of nav.menu("/", "", "order").children }}
+      {{ for item of nav.menu("/", "", "order basename").children }}
         <li>
           {{ include "./step.vto" { item } }}
         </li>

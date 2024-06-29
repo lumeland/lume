@@ -110,8 +110,8 @@ export class Nav {
         part = parts.shift();
       }
     }
-    const sortfn = buildSort(sort || "basename");
-    return convert(nav, undefined, sortfn);
+
+    return convert(nav, buildSort(sort || "basename"));
   }
 }
 
@@ -148,8 +148,8 @@ function searchData(parts: string[], menu: NavData): NavData | undefined {
 // Convert TempNavData to NavData
 function convert(
   temp: TempNavData,
+  order: (a: Data, b: Data) => number,
   parent?: NavData,
-  order?: (a: Data, b: Data) => number,
 ): NavData {
   const data: NavData = {
     slug: temp.slug,
@@ -159,7 +159,7 @@ function convert(
 
   data.children = temp.children
     ? Object.values(temp.children)
-      .map((child) => convert(child, data, order))
+      .map((child) => convert(child, order, data))
       .sort((a, b) => {
         if (a.data && b.data && order) {
           return order(a.data, b.data);
