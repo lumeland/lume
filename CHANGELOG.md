@@ -9,6 +9,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - New option `caseSensitiveUrls` to allow to export two urls with the same name but different cases [#625].
 
+### Changed
+- Nav plugin: Improved behavior for sites with pretty urls disabled.
+
 ### Fixed
 - Nav plugin: the `order` option is not applied.
 - Updated dependencies: `std`.

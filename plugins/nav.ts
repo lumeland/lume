@@ -88,6 +88,9 @@ export class Nav {
           current.data = data;
           break;
         }
+        if (part.endsWith(".html") && parts.length === 0) {
+          part = part.slice(0, -5);
+        }
 
         if (!current.children) {
           current.children = {};
@@ -130,10 +133,14 @@ export interface NavData {
 }
 
 function searchData(parts: string[], menu: NavData): NavData | undefined {
-  const part = parts.shift();
+  let part = parts.shift();
 
   if (!part) {
     return menu;
+  }
+
+  if (part.endsWith(".html") && parts.length === 0) {
+    part = part.slice(0, -5);
   }
 
   if (menu.children?.length) {
