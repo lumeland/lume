@@ -2,6 +2,7 @@ import { autoprefixer, postcss, postcssImport } from "../deps/postcss.ts";
 import { merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import { resolveInclude } from "../core/utils/path.ts";
+import { readFile } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import textLoader from "../core/loaders/text.ts";
@@ -114,11 +115,20 @@ function configureImport(site: Site, includes: string) {
   return postcssImport({
     /** Resolve the import path */
     resolve(id: string, basedir: string) {
+      if (id.startsWith("npm:")) {
+        return "/" + id;
+      }
+
       return resolveInclude(id, includes, basedir);
     },
 
     /** Load the content (using the Lume reader) */
     async load(file: string) {
+      if (file.startsWith("/npm:")) {
+        const url = `https://esm.sh/${file.slice(5)}`;
+        return await readFile(url);
+      }
+
       const content = await site.getContent(file, textLoader);
       if (content === undefined) {
         throw new Error(`File ${file} not found`);

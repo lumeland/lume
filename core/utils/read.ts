@@ -84,6 +84,16 @@ export async function read(
     : response.text();
 }
 
+/** Read a text file like a browser */
+export async function readFile(path: string): Promise<string> {
+  return await read(path, false, {
+    headers: {
+      "User-Agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/115.0",
+    },
+  });
+}
+
 /**
  * Clear the cache of remote files.
  */

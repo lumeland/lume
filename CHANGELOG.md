@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.2.3] - Unreleased
 ### Added
 - New option `caseSensitiveUrls` to allow to export two urls with the same name but different cases [#625].
+- Support for `npm` specifiers to postcss and lightningcss plugins [#621].
 
 ### Changed
 - Nav plugin: Improved behavior for sites with pretty urls disabled.
@@ -427,6 +428,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#617]: https://github.com/lumeland/lume/issues/617
 [#618]: https://github.com/lumeland/lume/issues/618
 [#619]: https://github.com/lumeland/lume/issues/619
+[#621]: https://github.com/lumeland/lume/issues/621
 [#625]: https://github.com/lumeland/lume/issues/625
 
 [2.2.3]: https://github.com/lumeland/lume/compare/v2.2.2...HEAD

@@ -1,7 +1,7 @@
 import { bundleAsync, transform } from "../deps/lightningcss.ts";
 import { resolveInclude } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
-import { read } from "../core/utils/read.ts";
+import { readFile } from "../core/utils/read.ts";
 import textLoader from "../core/loaders/text.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
@@ -119,6 +119,9 @@ export default function (userOptions?: Options) {
           ...options.options,
           resolver: {
             resolve(id: string, from: string) {
+              if (id.startsWith("npm:")) {
+                return `https://esm.sh/${id.slice(4)}`;
+              }
               return resolveInclude(id, includes, posix.dirname(from));
             },
             async read(file: string) {
@@ -127,12 +130,7 @@ export default function (userOptions?: Options) {
               }
 
               if (file.startsWith("http")) {
-                return read(file, false, {
-                  headers: {
-                    "User-Agent":
-                      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/115.0",
-                  },
-                });
+                return readFile(file);
               }
 
               return await site.getContent(file, textLoader) as string;

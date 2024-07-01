@@ -7,7 +7,7 @@ import {
 import { merge } from "../core/utils/object.ts";
 import { readDenoConfig } from "../core/utils/deno_config.ts";
 import { log } from "../core/utils/log.ts";
-import { read } from "../core/utils/read.ts";
+import { readFile } from "../core/utils/read.ts";
 import { build, BuildOptions, OutputFile, stop } from "../deps/esbuild.ts";
 import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
@@ -332,15 +332,6 @@ function buildJsxConfig(config?: DenoConfig): BuildOptions | undefined {
 
 function pathWithoutExtension(path: string): string {
   return path.replace(/\.\w+$/, "");
-}
-
-export async function readFile(path: string): Promise<string> {
-  return await read(path, false, {
-    headers: {
-      "User-Agent":
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/115.0",
-    },
-  });
 }
 
 function resolveImports(content: string, esm: EsmOptions): string {
