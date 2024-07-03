@@ -177,7 +177,7 @@ function compTag(
   }
 
   const match = code.match(
-    /^comp\s+([\w.]+)(?:\s+(\{.*\}))?(?:\s+(\/))?$/,
+    /^comp\s+([\w.]+)(?:\s+([\s\S]+[^/]))?(?:\s+(\/))?$/,
   );
 
   if (!match) {
