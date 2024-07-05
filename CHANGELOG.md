@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [2.2.3] - Unreleased
+## [2.2.3] - 2024-07-05
 ### Added
 - New option `caseSensitiveUrls` to allow to export two urls with the same name but different cases [#625].
 - Support for `npm` specifiers to postcss and lightningcss plugins [#621].
@@ -435,7 +435,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#625]: https://github.com/lumeland/lume/issues/625
 [#630]: https://github.com/lumeland/lume/issues/630
 
-[2.2.3]: https://github.com/lumeland/lume/compare/v2.2.2...HEAD
+[2.2.3]: https://github.com/lumeland/lume/compare/v2.2.2...v2.2.3
 [2.2.2]: https://github.com/lumeland/lume/compare/v2.2.1...v2.2.2
 [2.2.1]: https://github.com/lumeland/lume/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/lumeland/lume/compare/v2.1.4...v2.2.0
