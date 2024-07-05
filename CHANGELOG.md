@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - New option `caseSensitiveUrls` to allow to export two urls with the same name but different cases [#625].
 - Support for `npm` specifiers to postcss and lightningcss plugins [#621].
+- Redirects middleware: added `strict` option.
 
 ### Changed
 - Nav plugin: Improved behavior for sites with pretty urls disabled.

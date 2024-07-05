@@ -1,7 +1,10 @@
 import type { Middleware } from "../core/server.ts";
 
 export interface Options {
+  /** A map of redirects */
   redirects: Record<string, string | Redirect>;
+  /** Whether distinguish the trailing slash or not */
+  strict?: boolean;
 }
 
 export interface Redirect {
@@ -17,9 +20,21 @@ export default function redirects(options: Options): Middleware {
     redirects.set(from, buildRedirects(to));
   }
 
+  const strict = options.strict ?? true;
+
+  function findRedirect(url: string): Redirect | undefined {
+    if (strict) {
+      return redirects.get(url);
+    }
+
+    // Remove the trailing slash
+    const cleaned = url === "/" ? url : url.replace(/\/$/, "");
+    return redirects.get(cleaned) || redirects.get(cleaned + "/");
+  }
+
   return async (request, next) => {
     const url = new URL(request.url);
-    const redirect = redirects.get(url.pathname) || redirects.get(url.href);
+    const redirect = findRedirect(url.pathname) || findRedirect(url.href);
 
     if (!redirect) {
       return await next(request);
