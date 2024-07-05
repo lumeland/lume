@@ -16,7 +16,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Nav plugin: the `order` option is not applied.
-- Updated dependencies: `std`, `postcss`, `esbuild`, `katex`, `preact`, `xml`.
+- Updated dependencies: `std`, `postcss`, `esbuild`, `katex`, `preact`, `xml`, `vento`, `satori`, `unocss`.
 - Vento plugin for component doesn't support multiline code.
 
 ## [2.2.2] - 2024-06-21
