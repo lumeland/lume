@@ -55,7 +55,7 @@ export const defaults: Options = {
 export type Format =
   | "jpeg"
   | "jp2"
-  | "jxl"
+  // | "jxl" Not supported by sharp https://github.com/lumeland/lume/issues/630
   | "png"
   | "webp"
   | "gif"

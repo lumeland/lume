@@ -26,7 +26,7 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   name: "transformImages",
-  order: ["jxl", "avif", "webp", "png", "jpg"],
+  order: ["avif", "webp", "png", "jpg"],
 };
 
 export default function (userOptions?: Options) {

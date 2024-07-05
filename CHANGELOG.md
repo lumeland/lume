@@ -9,7 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - New option `caseSensitiveUrls` to allow to export two urls with the same name but different cases [#625].
 - Support for `npm` specifiers to postcss and lightningcss plugins [#621].
-- Redirects middleware: added `strict` option.
+- Redirects middleware: added `strict` option to configure whether distinguish the trailing slash or not. For backward compatibility is `true` by default.
 
 ### Changed
 - Nav plugin: Improved behavior for sites with pretty urls disabled.
@@ -18,6 +18,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Nav plugin: the `order` option is not applied.
 - Updated dependencies: `std`, `postcss`, `esbuild`, `katex`, `preact`, `xml`, `vento`, `satori`, `unocss`.
 - Vento plugin for component doesn't support multiline code.
+- Removed `jxl` in `transform_images` plugin because it's not supported by Sharp [#630].
 
 ## [2.2.2] - 2024-06-21
 ### Fixed
@@ -432,6 +433,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#619]: https://github.com/lumeland/lume/issues/619
 [#621]: https://github.com/lumeland/lume/issues/621
 [#625]: https://github.com/lumeland/lume/issues/625
+[#630]: https://github.com/lumeland/lume/issues/630
 
 [2.2.3]: https://github.com/lumeland/lume/compare/v2.2.2...HEAD
 [2.2.2]: https://github.com/lumeland/lume/compare/v2.2.1...v2.2.2
