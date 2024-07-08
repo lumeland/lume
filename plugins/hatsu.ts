@@ -45,7 +45,7 @@ export default (userOptions: Options) => {
         pages.forEach((page) => {
           if (
             page.document &&
-            ((options.matches).some((match) =>
+            (options.matches.some((match) =>
               match instanceof RegExp
                 ? page.data.url.match(match)
                 : page.data.url.includes(match)
