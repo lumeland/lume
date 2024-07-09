@@ -46,7 +46,7 @@ export interface Options {
 }
 
 export const defaults: Options = {
-  instance: new URL('https://hatsu.local'),
+  instance: new URL("https://hatsu.local"),
   matches: [/^\/posts\/(.+)$/],
 };
 
@@ -82,4 +82,4 @@ export default (userOptions: Options): Middleware => {
       return await next(req);
     }
   };
-}
+};
