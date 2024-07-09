@@ -1,3 +1,5 @@
+import { merge } from "../core/utils/object.ts";
+
 import type { Middleware } from "../core/server.ts";
 
 export interface Options {
@@ -43,32 +45,41 @@ export interface Options {
   location?: URL;
 }
 
-export default (options: Options): Middleware => async (req, next) => {
-  const accept = req.headers.get("accept");
-  const { origin, pathname, search } = new URL(req.url);
-
-  // redirect .well-known
-  if (pathname.startsWith("/.well-known/")) {
-    return Response.redirect(
-      new URL(pathname + search, options.instance),
-    );
-  } else if (
-    // redirect application/activity+json request
-    accept?.includes("application/activity+json") &&
-    (!options.matches ||
-      (options.matches.some((match) =>
-        match instanceof RegExp
-          ? pathname.match(match)
-          : pathname.includes(match)
-      )))
-  ) {
-    return Response.redirect(
-      new URL(
-        `/posts/${origin + pathname}`,
-        options.instance,
-      ),
-    );
-  } else {
-    return await next(req);
-  }
+export const defaults: Options = {
+  instance: new URL('https://hatsu.local'),
+  matches: [/^\/posts\/(.+)$/],
 };
+
+export default (userOptions: Options): Middleware => {
+  const options = merge(defaults, userOptions);
+
+  return async (req, next) => {
+    const accept = req.headers.get("accept");
+    const { origin, pathname, search } = new URL(req.url);
+
+    // redirect .well-known
+    if (pathname.startsWith("/.well-known/")) {
+      return Response.redirect(
+        new URL(pathname + search, options.instance),
+      );
+    } else if (
+      // redirect application/activity+json request
+      accept?.includes("application/activity+json") &&
+      (!options.matches ||
+        (options.matches.some((match) =>
+          match instanceof RegExp
+            ? pathname.match(match)
+            : pathname.includes(match)
+        )))
+    ) {
+      return Response.redirect(
+        new URL(
+          `/posts/${origin + pathname}`,
+          options.instance,
+        ),
+      );
+    } else {
+      return await next(req);
+    }
+  };
+}
