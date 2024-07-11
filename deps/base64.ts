@@ -1,1 +1,1 @@
-export * from "jsr:@std/encoding@1.0.0/base64";
+export * from "jsr:@std/encoding@1.0.1/base64";

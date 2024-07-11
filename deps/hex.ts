@@ -1,1 +1,1 @@
-export * from "jsr:@std/encoding@1.0.0/hex";
+export * from "jsr:@std/encoding@1.0.1/hex";

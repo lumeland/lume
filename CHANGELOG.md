@@ -8,6 +8,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.2.4] - Unreleased
 ### Fixed
 - Vento components must be sync.
+- Updated dependencies: `std`, `terser`, `sass`, `xml`, `liquid`, `highlight.js`, `unocss`, `decap_cms`.
+- Use a pinned version of `npm:decap-server` package for stability.
+- DecapCMS script: switch from `unpkg` to `jsDelivr` for performance.
+
 
 ## [2.2.3] - 2024-07-05
 ### Added

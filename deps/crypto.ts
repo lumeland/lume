@@ -1,1 +1,1 @@
-export * from "jsr:@std/crypto@1.0.0";
+export * from "jsr:@std/crypto@1.0.1";
