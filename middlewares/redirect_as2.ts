@@ -1,6 +1,8 @@
 import type { Middleware } from "../core/server.ts";
 
-export type Options = (url: URL) => Promise<URL> | URL | undefined | void;
+export interface Options {
+  rewriteUrl: (url: URL) => Promise<URL> | URL | undefined | void;
+}
 
 export interface CommonOptions {
   /**
@@ -33,7 +35,7 @@ export interface BridgyFedOptions extends CommonOptions {
   instance?: URL["host"];
 }
 
-export const hatsu = (options: HatsuOptions): Options => (url: URL) => {
+export const hatsu = (options: HatsuOptions): Options['rewriteUrl'] => (url: URL) => {
   const { pathname } = url;
   const host = options.host ?? url.host;
   if (url.pathname === "/") {
@@ -47,7 +49,7 @@ export const hatsu = (options: HatsuOptions): Options => (url: URL) => {
 };
 
 export const bridgyFed =
-  (options?: BridgyFedOptions): Options => (url: URL) => {
+  (options?: BridgyFedOptions): Options['rewriteUrl'] => (url: URL) => {
     const { pathname } = url;
     const host = options?.host ?? url.host;
     const instance = options?.instance ?? "fed.brid.gy";
@@ -55,7 +57,7 @@ export const bridgyFed =
     else return new URL(`https://${host}${pathname}`, `https://${instance}/r/`);
   };
 
-export default (rewriteUrl: Options): Middleware => async (req, next) => {
+export default (options: Options): Middleware => async (req, next) => {
   const accept = req.headers.get("accept");
   if (
     accept && [
@@ -64,7 +66,7 @@ export default (rewriteUrl: Options): Middleware => async (req, next) => {
       'application/ld+json; profile="http://www.w3.org/ns/activitystreams"',
     ].some((type) => (accept.includes(type)))
   ) {
-    const dest = await rewriteUrl(new URL(req.url));
+    const dest = await options.rewriteUrl(new URL(req.url));
     if (dest) return Response.redirect(dest);
   }
 
