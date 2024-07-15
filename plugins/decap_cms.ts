@@ -1,3 +1,4 @@
+import { decapUrl, serverUrl } from "../deps/decap.ts";
 import { Page } from "../core/file.ts";
 import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
@@ -34,7 +35,7 @@ export const defaults: Options = {
   configKey: "decap_cms",
   extraHTML: "",
   proxyCommand:
-    "deno run --allow-read --allow-net=0.0.0.0 --allow-write --allow-env npm:decap-server",
+    `deno run --allow-read --allow-net=0.0.0.0 --allow-write --allow-env ${serverUrl}`,
 };
 
 /** A plugin to use Decap CMS in Lume easily */
@@ -85,7 +86,7 @@ export default function (userOptions?: Options) {
         }" type="text/yaml" rel="cms-config-url">`,
       );
       code.push(
-        `<script src="https://unpkg.com/decap-cms@3.0.12/dist/decap-cms.js"></script>`,
+        `<script src="${decapUrl}"></script>`,
       );
 
       if (options.identity === "netlify") {

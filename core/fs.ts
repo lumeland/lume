@@ -27,12 +27,6 @@ export class Entry {
     this.src = src;
   }
 
-  removeCache() {
-    this.#content.clear();
-    this.#info = undefined;
-    this.flags.clear();
-  }
-
   getContent(loader: Loader): Promise<RawData> | RawData {
     if (!this.#content.has(loader)) {
       this.#content.set(loader, loader(this.src));
@@ -73,7 +67,8 @@ export default class FS {
   /** Update the entry and returns it if it was removed */
   update(path: string): Entry | undefined {
     const exist = this.entries.get(path);
-    const entry = exist || this.addEntry({ path });
+    this.entries.delete(path);
+    const entry = this.addEntry({ path });
 
     // New directory, walk it
     if (!exist && entry.type === "directory") {
@@ -82,11 +77,16 @@ export default class FS {
     }
 
     try {
-      entry.removeCache();
       entry.getInfo();
     } catch (error) {
       // Remove if it doesn't exist
       if (error instanceof Deno.errors.NotFound) {
+        const src = this.remoteFiles.get(path);
+        if (src) {
+          entry.flags.add("remote");
+          entry.src = src;
+          return;
+        }
         this.removeEntry(path);
         return exist;
       }

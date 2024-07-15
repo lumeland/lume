@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.2.4] - Unreleased
+### Fixed
+- Reload remote files [#633].
+- Vento components must be sync.
+- Updated dependencies: `std`, `terser`, `sass`, `xml`, `liquid`, `highlight.js`, `unocss`, `decap_cms`.
+- Use a pinned version of `npm:decap-server` package for stability.
+- DecapCMS script: switch from `unpkg` to `jsDelivr` for performance.
+
 ## [2.2.3] - 2024-07-05
 ### Added
 - New option `caseSensitiveUrls` to allow to export two urls with the same name but different cases [#625].
@@ -434,7 +442,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#621]: https://github.com/lumeland/lume/issues/621
 [#625]: https://github.com/lumeland/lume/issues/625
 [#630]: https://github.com/lumeland/lume/issues/630
+[#633]: https://github.com/lumeland/lume/issues/633
 
+[2.2.4]: https://github.com/lumeland/lume/compare/v2.2.3...HEAD
 [2.2.3]: https://github.com/lumeland/lume/compare/v2.2.2...v2.2.3
 [2.2.2]: https://github.com/lumeland/lume/compare/v2.2.1...v2.2.2
 [2.2.1]: https://github.com/lumeland/lume/compare/v2.2.0...v2.2.1

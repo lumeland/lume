@@ -27,8 +27,6 @@ Deno.test("Scripts", async (t) => {
     equals(entry.flags.size, 0);
     entry.flags.add("foo");
     equals(entry.flags.size, 1);
-    entry.removeCache();
-    equals(entry.flags.size, 0);
   });
 
   await t.step("Add scopes", () => {

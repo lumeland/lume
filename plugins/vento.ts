@@ -187,7 +187,7 @@ function compTag(
   const [_, comp, args, closed] = match;
 
   if (closed) {
-    return `${output} += await comp.${comp}(${args || ""});`;
+    return `${output} += comp.${comp}(${args || ""});`;
   }
 
   const compiled: string[] = [];
@@ -202,9 +202,7 @@ function compTag(
 
   tokens.shift();
   compiled.push(
-    `${output} += await comp.${comp}({...${
-      args || "{}"
-    }, content: ${tmpOutput}});`,
+    `${output} += comp.${comp}({...${args || "{}"}, content: ${tmpOutput}});`,
   );
   compiled.push("}");
 
