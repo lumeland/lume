@@ -1,10 +1,26 @@
 import type { Middleware } from "../core/server.ts";
 
-export interface Options {
-  rewriteUrl: (url: URL) => Promise<URL> | URL | undefined | void;
+export interface Data {
+  /**
+   * User domain.
+   * @default
+   * ```ts
+   * new URL(req.url).host
+   * ```
+   * @example
+   * ```ts
+   * site.options.location.host
+   * ```
+   */
+  host?: URL["host"];
 }
-
-export interface CommonOptions {
+export interface Options extends Data {
+  /**
+   * Rewrite URL function.
+   * @param url req.url
+   * @returns Rewritten URLs or empty
+   */
+  rewriteUrl: (url: URL, data: Data) => Promise<URL> | URL | undefined | void;
   /**
    * User domain.
    * @default
@@ -19,41 +35,25 @@ export interface CommonOptions {
   host?: URL["host"];
 }
 
-export interface HatsuOptions extends CommonOptions {
-  /**
-   * Hatsu instance.
-   * @default `hatsu.local`
-   */
-  instance: URL["host"];
-}
-
-export interface BridgyFedOptions extends CommonOptions {
-  /**
-   * BridgyFed instance.
-   * @default `fed.brid.gy`
-   */
-  instance?: URL["host"];
-}
-
 export const hatsu =
-  (options: HatsuOptions): Options["rewriteUrl"] => (url: URL) => {
+  (instance: URL["host"]): Options["rewriteUrl"] => (url, data) => {
     const { pathname } = url;
-    const host = options.host ?? url.host;
+    const host = data.host ?? url.host;
     if (url.pathname === "/") {
-      return new URL(`https://${options.instance}/users/${host}`);
+      return new URL(`https://${instance}/users/${host}`);
     } else {
       return new URL(
         `https://${host}${pathname}`,
-        `https://${options.instance}/posts/`,
+        `https://${instance}/posts/`,
       );
     }
   };
 
 export const bridgyFed =
-  (options?: BridgyFedOptions): Options["rewriteUrl"] => (url: URL) => {
+  (instance: URL["host"] = "fed.brid.gy"): Options["rewriteUrl"] =>
+  (url, data) => {
     const { pathname } = url;
-    const host = options?.host ?? url.host;
-    const instance = options?.instance ?? "fed.brid.gy";
+    const host = data.host ?? url.host;
     if (pathname === "/") return new URL(`https://${instance}/${host}`);
     else return new URL(`https://${host}${pathname}`, `https://${instance}/r/`);
   };
@@ -67,7 +67,9 @@ export default (options: Options): Middleware => async (req, next) => {
       'application/ld+json; profile="http://www.w3.org/ns/activitystreams"',
     ].some((type) => (accept.includes(type)))
   ) {
-    const dest = await options.rewriteUrl(new URL(req.url));
+    const dest = await options.rewriteUrl(new URL(req.url), {
+      host: options.host,
+    });
     if (dest) return Response.redirect(dest);
   }
 
