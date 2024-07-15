@@ -34,21 +34,25 @@ export interface BridgyFedOptions extends CommonOptions {
 }
 
 export const hatsu = (options: HatsuOptions): Options => (url: URL) => {
-  const { host, origin, pathname } = new URL(url);
-  if (pathname === "/") {
-    return new URL(`https://${options.instance}/users/${options.host ?? host}`);
-  } else {return new URL(
-      `${origin}${pathname}`,
+  const { pathname } = url;
+  const host = options.host ?? url.host;
+  if (url.pathname === "/") {
+    return new URL(`https://${options.instance}/users/${host}`);
+  } else {
+    return new URL(
+      `https://${host}${pathname}`,
       `https://${options.instance}/posts/`,
-    );}
+    );
+  }
 };
 
 export const bridgyFed =
   (options?: BridgyFedOptions): Options => (url: URL) => {
-    const { host, origin, pathname } = new URL(url);
+    const { pathname } = url;
+    const host = options?.host ?? url.host;
     const instance = options?.instance ?? "fed.brid.gy";
     if (pathname === "/") return new URL(`https://${instance}/${host}`);
-    else return new URL(`${origin}${pathname}`, `https://${instance}/r/`);
+    else return new URL(`https://${host}${pathname}`, `https://${instance}/r/`);
   };
 
 export default (rewriteUrl: Options): Middleware => async (req, next) => {
