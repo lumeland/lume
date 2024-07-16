@@ -52,6 +52,11 @@ export default class Server {
     this.options = { ...defaults, ...options };
   }
 
+  /** The local address this server is listening on. */
+  get addr(): Deno.Addr | undefined {
+    return this.#server?.addr;
+  }
+
   /** Register one or more middlewares */
   use(...middleware: Middleware[]) {
     this.middlewares.push(...middleware);
