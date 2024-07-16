@@ -12,6 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Updated dependencies: `std`, `terser`, `sass`, `xml`, `liquid`, `highlight.js`, `unocss`, `decap_cms`.
 - Use a pinned version of `npm:decap-server` package for stability.
 - DecapCMS script: switch from `unpkg` to `jsDelivr` for performance.
+- Add `Server.addr` for getting local address.
 
 ## [2.2.3] - 2024-07-05
 ### Added
