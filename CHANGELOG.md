@@ -9,7 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - Reload remote files [#633].
 - Vento components must be sync.
-- Updated dependencies: `std`, `terser`, `sass`, `xml`, `liquid`, `highlight.js`, `unocss`, `decap_cms`.
+- Updated dependencies: `std`, `terser`, `sass`, `xml`, `liquid`, `highlight.js`, `unocss`, `decap_cms`, `tailwindcss`, `vento`.
 - Use a pinned version of `npm:decap-server` package for stability.
 - DecapCMS script: switch from `unpkg` to `jsDelivr` for performance.
 - Add `Server.addr` for getting local address.
