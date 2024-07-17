@@ -112,7 +112,7 @@ export function prepareAsset(site: Site, page: Page): PrepareResult {
     ? page.data.sourceMap as SourceMap | undefined
     : undefined;
   const filename = page.src.path
-    ? site.src(page.sourcePath)
+    ? site.src(page.src.path + page.src.ext) // Don't use page.sourcePath because it can be remote
     : site.src(page.outputPath);
   return { content, sourceMap, filename, enableSourceMap };
 }

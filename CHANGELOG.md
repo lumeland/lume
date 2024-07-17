@@ -13,6 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Use a pinned version of `npm:decap-server` package for stability.
 - DecapCMS script: switch from `unpkg` to `jsDelivr` for performance.
 - Add `Server.addr` for getting local address.
+- Bug calculating the filename of remote files.
 
 ## [2.2.3] - 2024-07-05
 ### Added
