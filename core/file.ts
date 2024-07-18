@@ -82,10 +82,6 @@ export class Page<D extends Data = Data> {
 
   /** Returns the source path of this page */
   get sourcePath(): string {
-    if (this.src.entry?.flags.has("remote")) {
-      return this.src.entry.src;
-    }
-
     if (!this.src.path) {
       return "(generated)";
     }

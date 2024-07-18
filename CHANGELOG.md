@@ -10,6 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New middleware `redirect_as2` [#632].
 
 ### Fixed
+- `page.sourcePath` wrongly returns the remote url instead of the path for remote files.
 - Reload remote files [#633].
 - Vento components must be sync.
 - Updated dependencies: `std`, `terser`, `sass`, `xml`, `liquid`, `highlight.js`, `unocss`, `decap_cms`, `tailwindcss`, `vento`, `preact-render-to-string`.

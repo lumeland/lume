@@ -179,7 +179,7 @@ export async function assertSiteSnapshot(
         path: page.src.path,
         ext: page.src.ext,
         remote: page.src.entry?.flags.has("remote")
-          ? page.sourcePath.replace(cwUrl, "")
+          ? page.src.entry.src.replace(cwUrl, "")
           : undefined,
         asset: page.asset,
       },
