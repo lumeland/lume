@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [Unreleased]
+### Fixed
+- Updated deps: `std`, `liquidjs`, `preact`.
+
 ## [2.2.4] - 2024-07-18
 ### Added
 - New middleware `redirect_as2` [#632].
@@ -452,6 +456,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#633]: https://github.com/lumeland/lume/issues/633
 [#634]: https://github.com/lumeland/lume/issues/634
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v2.2.4...HEAD
 [2.2.4]: https://github.com/lumeland/lume/compare/v2.2.3...v2.2.4
 [2.2.3]: https://github.com/lumeland/lume/compare/v2.2.2...v2.2.3
 [2.2.2]: https://github.com/lumeland/lume/compare/v2.2.1...v2.2.2

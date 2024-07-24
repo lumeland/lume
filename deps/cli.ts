@@ -1,1 +1,1 @@
-export * from "jsr:@std/cli@0.224.7";
+export * from "jsr:@std/cli@1.0.0";
