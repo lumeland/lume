@@ -67,12 +67,22 @@ export default class FS {
   /** Update the entry and returns it if it was removed */
   update(path: string): Entry | undefined {
     const exist = this.entries.get(path);
-    this.entries.delete(path);
-    const entry = this.addEntry({ path });
+    let entry: Entry;
+    if (exist && exist.type !== "directory") {
+      this.entries.delete(path);
+      entry = this.addEntry({ path });
+    } else if (exist) {
+      entry = exist;
+    } else {
+      entry = this.addEntry({ path });
+    }
 
     // New directory, walk it
-    if (!exist && entry.type === "directory") {
-      this.#walkFs(entry);
+    if (entry.type === "directory") {
+      if (!exist) {
+        this.#walkFs(entry);
+      }
+
       return;
     }
 
@@ -182,7 +192,7 @@ export default class FS {
 
     if (!data.type) {
       try {
-        const info = Deno.statSync(data.src);
+        const info = Deno.statSync(data.src!);
         data.type = info.isDirectory ? "directory" : "file";
       } catch {
         data.type = "file";
@@ -215,7 +225,7 @@ export default class FS {
       name,
       data.path,
       data.type,
-      data.src,
+      data.src!,
     );
     children.set(name, entry);
     this.entries.set(entry.path, entry);
