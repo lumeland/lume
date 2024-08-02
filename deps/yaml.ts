@@ -1,1 +1,1 @@
-export * from "jsr:@std/yaml@0.224.3";
+export * from "jsr:@std/yaml@1.0.1";

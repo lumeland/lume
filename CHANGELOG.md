@@ -7,7 +7,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [Unreleased]
 ### Fixed
-- Updated deps: `std`, `liquidjs`, `preact`.
+- Updated deps: `std`, `liquidjs`, `preact`, `tailwindcss`, `xml`, `postcss`, `autoprefixer`, `unocss`.
+- Remove empty directories in `dest` folder.
 
 ## [2.2.4] - 2024-07-18
 ### Added

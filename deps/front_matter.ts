@@ -1,2 +1,2 @@
-export * from "jsr:@std/front-matter@0.224.3/any";
-export { test } from "jsr:@std/front-matter@0.224.3";
+export * from "jsr:@std/front-matter@1.0.1/any";
+export { test } from "jsr:@std/front-matter@1.0.1";
