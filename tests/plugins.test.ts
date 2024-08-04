@@ -50,6 +50,7 @@ Deno.test("Plugins list in init", () => {
     "sitemap",
     "slugify_urls",
     "source_maps",
+    "sri",
     "svgo",
     "tailwindcss",
     "terser",

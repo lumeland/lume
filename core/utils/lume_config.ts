@@ -43,6 +43,7 @@ export const pluginNames = [
   "sitemap",
   "slugify_urls",
   "source_maps",
+  "sri",
   "svgo",
   "tailwindcss",
   "terser",
