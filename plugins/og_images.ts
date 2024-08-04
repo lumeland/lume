@@ -41,6 +41,10 @@ export const defaults: Options = {
   },
 };
 
+/**
+ * A plugin to generate Open Graph images for your pages
+ * @see https://lume.land/plugins/og_images/
+ */
 export default function (userOptions?: Options) {
   return (site: Lume.Site) => {
     const options = merge(

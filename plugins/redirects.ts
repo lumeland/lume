@@ -32,6 +32,10 @@ const outputs: Record<string, OutputStrategy> = {
   vercel,
 };
 
+/**
+ * A plugin to create redirections
+ * @see https://lume.land/plugins/redirects/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

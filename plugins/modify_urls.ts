@@ -21,7 +21,10 @@ export const defaults: Options = {
   fn: (url) => url,
 };
 
-/** A plugin to modify all URLs found in the HTML documents */
+/**
+ * A plugin to modify all URLs found in the HTML documents
+ * @see https://lume.land/plugins/modify_urls/
+ */
 export default function (userOptions: Options) {
   const options = merge(defaults, userOptions);
 

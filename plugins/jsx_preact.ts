@@ -91,7 +91,10 @@ export class PreactJsxEngine implements Engine {
   }
 }
 
-/** Register the plugin to support JSX and TSX files */
+/**
+ * A plugin to render JSX files using Preact
+ * @see https://lume.land/plugins/jsx_preact/
+ */
 export default function (userOptions?: Options) {
   return (site: Site) => {
     const options = merge(

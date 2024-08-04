@@ -17,7 +17,10 @@ export const defaults: Options = {
   name: "nav",
 };
 
-/** Register the plugin to enable the `search` helpers */
+/**
+ * A plugin to generate a navigation tree and breadcrumbs
+ * @see https://lume.land/plugins/nav/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

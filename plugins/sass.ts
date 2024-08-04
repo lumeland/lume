@@ -42,7 +42,10 @@ export const defaults: Options = {
   options: {},
 };
 
-/** A plugin to use SASS in Lume */
+/**
+ * A plugin to process SASS and SCSS files
+ * @see https://lume.land/plugins/sass/
+ */
 export default function (userOptions?: Options) {
   return (site: Site) => {
     const options = merge(

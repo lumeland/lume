@@ -95,7 +95,10 @@ export class JsxEngine implements Engine {
   }
 }
 
-/** Register the plugin to support JSX and TSX files */
+/**
+ * A plugin to render JSX files using React
+ * @see https://lume.land/plugins/jsx/
+ */
 export default function (userOptions?: Options) {
   return (site: Site) => {
     const options = merge(

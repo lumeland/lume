@@ -34,6 +34,10 @@ export const defaults: Options = {
   strict: false,
 };
 
+/**
+ * A plugin to transform frontmatter using FFF
+ * @see https://lume.land/plugins/fff/
+ */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 

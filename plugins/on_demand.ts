@@ -26,7 +26,10 @@ export const defaults: Options = {
   preloadPath: "/_preload.ts",
 };
 
-/** A plugin to generate pages on demand in the server side */
+/**
+ * A plugin to generate pages on demand on server side
+ * @see https://lume.land/plugins/on_demand/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

@@ -21,6 +21,10 @@ export const defaults: Options = {
 
 const cache = new Map<string, string>();
 
+/**
+ * A plugin to add the Subresource Integrity (SRI) attribute to the script and link elements
+ * @see https://lume.land/plugins/sri/
+ */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 

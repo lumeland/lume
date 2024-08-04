@@ -2,7 +2,10 @@ import modifyUrls from "./modify_urls.ts";
 
 import type Site from "../core/site.ts";
 
-/** A plugin to prepend a base path to all internal URLs */
+/**
+ * A plugin to prepend a base path to all internal URLs
+ * @see https://lume.land/plugins/base_path/
+ */
 export default function () {
   return (site: Site) => {
     site.use(modifyUrls({

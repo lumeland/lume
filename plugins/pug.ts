@@ -119,7 +119,10 @@ export class PugEngine implements Engine {
   }
 }
 
-/** Register the plugin to use Pug as a template engine */
+/**
+ * A plugin to render Pug templates
+ * @see https://lume.land/plugins/pug/
+ */
 export default function (userOptions?: Options) {
   return (site: Site) => {
     const options = merge(

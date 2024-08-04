@@ -44,7 +44,10 @@ const defaultPlugins = [
   autoprefixer(),
 ];
 
-/** A plugin to load all CSS files and process them using PostCSS */
+/**
+ * A plugin to load all CSS files and process them using PostCSS
+ * @see https://lume.land/plugins/postcss/
+ */
 export default function (userOptions?: Options) {
   return (site: Site) => {
     const options = merge<Options>(

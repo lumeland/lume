@@ -46,7 +46,10 @@ export const defaults: Options = {
   allow: "*",
 };
 
-/** A plugin to generate a robots.txt after build */
+/**
+ * A plugin to generate a robots.txt after build
+ * @see https://lume.land/plugins/robots/
+ */
 export default (userOptions?: Partial<Options>) => {
   const options: Options = merge(defaults, userOptions);
 

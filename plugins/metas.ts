@@ -62,7 +62,10 @@ const defaults: Options = {
 
 const defaultGenerator = `Lume ${getCurrentVersion()}`;
 
-/** A plugin to insert meta tags for SEO and social media */
+/**
+ * A plugin to insert meta tags for SEO and social media
+ * @see https://lume.land/plugins/metas/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

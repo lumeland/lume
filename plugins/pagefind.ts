@@ -130,7 +130,10 @@ export const defaults: Options = {
   },
 };
 
-/** A plugin to generate a static full text search engine */
+/**
+ * A plugin to generate a static full text search engine
+ * @see https://lume.land/plugins/pagefind/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

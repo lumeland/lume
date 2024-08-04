@@ -32,7 +32,10 @@ export const defaults: Options = {
   cssSelector: "pre code",
 };
 
-/** A plugin to syntax-highlight code using the prism library */
+/**
+ * A plugin to syntax-highlight code using Prism library
+ * @see https://lume.land/plugins/prism/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

@@ -50,7 +50,10 @@ export const defaults: Options = {
   },
 };
 
-/** A plugin to load all CSS files and process them using parcelCSS */
+/**
+ * A plugin to process CSS files with lightningcss
+ * @see https://lume.land/plugins/lightningcss/
+ */
 export default function (userOptions?: Options) {
   return (site: Site) => {
     const options = merge<Options>(

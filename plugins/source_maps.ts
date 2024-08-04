@@ -22,7 +22,10 @@ export const defaults: Options = {
   sourceContent: false,
 };
 
-/** Generate the source map files of assets */
+/**
+ * A plugin to manage source maps
+ * @see https://lume.land/plugins/source_maps/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

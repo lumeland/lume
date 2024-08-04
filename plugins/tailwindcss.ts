@@ -20,6 +20,10 @@ export const defaults: Options = {
   extensions: [".html"],
 };
 
+/**
+ * A plugin to extract the utility classes from HTML pages and apply TailwindCSS
+ * @see https://lume.land/plugins/tailwindcss/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

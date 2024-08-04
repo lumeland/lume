@@ -65,6 +65,10 @@ export const defaults: Options = {
   },
 };
 
+/**
+ * A plugin to use esbuild in Lume
+ * @see https://lume.land/plugins/esbuild/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

@@ -21,7 +21,10 @@ export const defaults: Options = {
   fn: () => true,
 };
 
-/** A plugin to filter only some pages */
+/**
+ * A plugin to filter pages
+ * @see https://lume.land/plugins/filter_pages/
+ */
 export default function (userOptions: Options) {
   const options = merge(defaults, userOptions);
 

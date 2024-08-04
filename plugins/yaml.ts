@@ -16,7 +16,11 @@ export const defaults: Options = {
   extensions: [".yaml", ".yml"],
 };
 
-/** A plugin to add support for YAML files */
+/**
+ * A plugin to load YAML data files and pages
+ * Installed by default
+ * @see https://lume.land/plugins/yaml/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

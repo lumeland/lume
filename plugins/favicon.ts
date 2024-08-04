@@ -51,6 +51,10 @@ export interface Favicon {
   format: string;
 }
 
+/**
+ * A plugin to generate favicons from an SVG or PNG file
+ * @see https://lume.land/plugins/favicon/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

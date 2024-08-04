@@ -22,7 +22,10 @@ export const defaults: Options = {
   options: {},
 };
 
-/** Register the plugin to add support for sheets documents to load data */
+/**
+ * A plugin to load Excel, Numbers, and CSV files
+ * @see https://lume.land/plugins/sheets/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

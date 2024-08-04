@@ -188,7 +188,10 @@ class LumeLoader extends nunjucks.Loader implements nunjucks.ILoaderAsync {
   }
 }
 
-/** Register the plugin to use Nunjucks as a template engine */
+/**
+ * A plugin to use Nunjucks as a template engine
+ * @see https://lume.land/plugins/nunjucks/
+ */
 export default function (userOptions?: Options) {
   return (site: Site) => {
     const options = merge(

@@ -27,7 +27,10 @@ export const defaults: Options = {
   },
 };
 
-/** A plugin to load all JavaScript files and minify them using Terser */
+/**
+ * A plugin to load all JavaScript files and minify them using Terser
+ * @see https://lume.land/plugins/terser/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

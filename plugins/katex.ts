@@ -46,6 +46,10 @@ export const defaults: Options = {
   },
 };
 
+/**
+ * A plugin to render math equations using katex
+ * @see https://lume.land/plugins/katex/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
   return (site: Site) => {

@@ -33,6 +33,7 @@ const cache = new Map();
 /**
  * A plugin to inline the HTML assets,
  * like images, JavaScript, CSS, SVG, etc.
+ * @see https://lume.land/plugins/inline/
  */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);

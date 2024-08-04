@@ -22,6 +22,10 @@ export const defaults: Options = {
   languages: [],
 };
 
+/**
+ * A plugin to create multilanguage websites
+ * @see https://lume.land/plugins/multilanguage/
+ */
 export default function multilanguage(userOptions: Options) {
   const options = merge(defaults, userOptions);
 

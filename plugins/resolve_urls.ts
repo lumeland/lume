@@ -4,7 +4,10 @@ import { normalizePath } from "../core/utils/path.ts";
 
 import type Site from "../core/site.ts";
 
-/** A plugin to convert links to source files to the final page */
+/**
+ * A plugin to convert links to source files to the final page
+ * @see https://lume.land/plugins/resolve_urls/
+ */
 export default function () {
   return (site: Site) => {
     const cache = new Map<string, string | null>();

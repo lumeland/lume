@@ -42,7 +42,10 @@ export const defaults: Options = {
   lastmod: "date",
 };
 
-/** A plugin to generate a sitemap.xml from page files after build */
+/**
+ * A plugin to generate a sitemap.xml from page files after build
+ * @see https://lume.land/plugins/sitemap/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

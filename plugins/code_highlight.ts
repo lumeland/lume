@@ -50,7 +50,10 @@ export const defaults: Options = {
   },
 };
 
-/** A plugin to syntax-highlight code using the highlight.js library */
+/**
+ * A plugin to syntax-highlight code using the highlight.js library
+ * @see https://lume.land/plugins/code_highlight/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
   hljs.configure(options.options);

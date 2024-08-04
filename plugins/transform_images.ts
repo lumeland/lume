@@ -78,7 +78,10 @@ interface SingleTransformation extends Transformation {
   format?: Format | FormatOptions;
 }
 
-/** A plugin to transform images in Lume */
+/**
+ * A plugin to transform images in Lume
+ * @see https://lume.land/plugins/transform_images/
+ */
 export default function (userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 

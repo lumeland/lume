@@ -125,7 +125,8 @@ export class LiquidEngine implements Engine {
 }
 
 /**
- * Register the plugin to add support for Liquid files
+ * A plugin to render Liquid files
+ * @see https://lume.land/plugins/liquid/
  * @deprecated Use Vento or Nunjucks instead (see https://github.com/lumeland/lume/issues/600)
  */
 export default function (userOptions?: Options) {

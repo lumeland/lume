@@ -111,7 +111,10 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
   addHelper() {}
 }
 
-/** Register the plugin to support MDX */
+/**
+ * A plugin to render MDX files
+ * @see https://lume.land/plugins/mdx/
+ */
 export default function (userOptions?: Options) {
   return function (site: Site) {
     const options = merge(

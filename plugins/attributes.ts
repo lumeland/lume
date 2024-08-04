@@ -9,8 +9,8 @@ const escapeChars: Record<string, string> = {
 };
 
 /**
- * A plugin to register the filters "attrs" and "class",
- * which allow to handle HTML attributes and class names easily
+ * Plugin to provide helpers to manage attributes and class names of HTML elements
+ * @see https://lume.land/plugins/attributes/
  */
 export default function () {
   return (site: Site) => {

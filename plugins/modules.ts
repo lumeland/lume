@@ -55,7 +55,11 @@ export class ModuleEngine implements Engine {
   }
 }
 
-/** Register the plugin to load JavaScript/TypeScript modules */
+/**
+ * A plugin to load js/ts files as data and pages
+ * Installed by default
+ * @see https://lume.land/plugins/modules/
+ */
 export default function (userOptions?: Options) {
   return (site: Site) => {
     const options = merge(

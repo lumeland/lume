@@ -29,6 +29,10 @@ export const defaults: Options = {
   order: ["avif", "webp", "png", "jpg"],
 };
 
+/**
+ * A plugin to transform images to different formats and sizes
+ * @see https://lume.land/plugins/picture/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

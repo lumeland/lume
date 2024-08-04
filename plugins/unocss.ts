@@ -64,6 +64,10 @@ export const defaults: Options = {
   reset: false,
 };
 
+/**
+ * A plugin to generate CSS using UnoCSS
+ * @see https://lume.land/plugins/unocss/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

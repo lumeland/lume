@@ -17,7 +17,10 @@ export const defaults: Options = {
   pageSubExtension: ".page",
 };
 
-/** A plugin to add support for TOML files */
+/**
+ * A plugin to load TOML data files and pages
+ * @see https://lume.land/plugins/toml/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

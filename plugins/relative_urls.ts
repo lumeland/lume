@@ -3,7 +3,10 @@ import modifyUrls from "./modify_urls.ts";
 
 import type Site from "../core/site.ts";
 
-/** A plugin to convert all internal URLs to relative */
+/**
+ * A plugin to convert all internal URLs to relative
+ * @see https://lume.land/plugins/relative_urls/
+ */
 export default function () {
   return (site: Site) => {
     const basePath = site.options.location.pathname;

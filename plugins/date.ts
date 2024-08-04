@@ -33,7 +33,10 @@ export const defaults: Options = {
   },
 };
 
-/** A plugin to format Date values */
+/**
+ * A plugin to format Date values
+ * @see https://lume.land/plugins/date/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

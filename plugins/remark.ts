@@ -91,7 +91,10 @@ export class MarkdownEngine implements Engine {
   addHelper() {}
 }
 
-/** Register the plugin to support Markdown */
+/**
+ * A plugin to load all Markdown files and process them using Remark
+ * @see https://lume.land/plugins/remark/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

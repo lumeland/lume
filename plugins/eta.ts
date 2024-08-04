@@ -97,7 +97,10 @@ export class EtaEngine implements Engine {
   }
 }
 
-/** Register the plugin to use Eta as a template engine */
+/**
+ * A plugin to render Eta templates
+ * @see https://lume.land/plugins/eta/
+ */
 export default function (userOptions?: Options) {
   return (site: Site) => {
     const options = merge(

@@ -35,6 +35,10 @@ export const defaults: Options = {
   foreignKeys: {},
 };
 
+/**
+ * A plugin to create relations between pages
+ * @see https://lume.land/plugins/relations/
+ */
 export default function (userOptions: Options) {
   const options = merge(defaults, userOptions);
 

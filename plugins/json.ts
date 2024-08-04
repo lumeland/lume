@@ -17,7 +17,11 @@ export const defaults: Options = {
   pageSubExtension: ".page",
 };
 
-/** A plugin to add support for JSON files */
+/**
+ * A plugin to load JSON files as data and pages
+ * Installed by default
+ * @see https://lume.land/plugins/json/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

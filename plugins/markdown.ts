@@ -83,7 +83,11 @@ export class MarkdownEngine implements Engine {
   addHelper() {}
 }
 
-/** Register the plugin to support Markdown */
+/**
+ * A plugin to render Markdown files using markdown-it
+ * Installed by default
+ * @see https://lume.land/plugins/markdown
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

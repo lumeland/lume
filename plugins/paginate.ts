@@ -66,7 +66,11 @@ export const defaults: Options = {
   },
 };
 
-/** Register the plugin to enable the `paginate` helper */
+/**
+ * A plugin to paginate pages
+ * Installed by default
+ * @see https://lume.land/plugins/paginate/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

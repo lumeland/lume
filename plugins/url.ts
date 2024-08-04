@@ -20,6 +20,8 @@ export const defaults: Options = {
 /**
  * A plugin to register the filters "url" and "htmlUrl"
  * for normalizing URLs in the templates
+ * Installed by default
+ * @see https://lume.land/plugins/url/
  */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);

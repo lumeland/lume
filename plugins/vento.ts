@@ -118,7 +118,11 @@ export class VentoEngine implements Engine {
   }
 }
 
-/** Register the plugin to support Vento files */
+/**
+ * A plugin to use the Vento template engine
+ * Installed by default
+ * @see https://lume.land/plugins/vento/
+ */
 export default function (userOptions?: Options) {
   return (site: Site) => {
     const options = merge(

@@ -18,7 +18,10 @@ export const defaults: Options = {
   extensions: [".svg"],
 };
 
-/** A plugin to load all SVG files and minify them using SVGO */
+/**
+ * A plugin to load all SVG files and minify them using SVGO
+ * @see https://lume.land/plugins/svgo/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

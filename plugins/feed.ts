@@ -127,6 +127,10 @@ export interface FeedItem {
 
 const defaultGenerator = `Lume ${getCurrentVersion()}`;
 
+/**
+ * A plugin to generate RSS and JSON feeds
+ * @see https://lume.land/plugins/feed/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

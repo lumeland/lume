@@ -38,7 +38,10 @@ export const defaults: Options = {
     `deno run --allow-read --allow-net=0.0.0.0 --allow-write --allow-env ${serverUrl}`,
 };
 
-/** A plugin to use Decap CMS in Lume easily */
+/**
+ * A plugin to use Decap CMS in Lume easily
+ * @see https://lume.land/plugins/decap_cms/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 

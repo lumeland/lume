@@ -12,7 +12,11 @@ export const defaults: Options = {
   name: "search",
 };
 
-/** Register the plugin to enable the `search` helpers */
+/**
+ * A plugin to add a search helper to the data
+ * Installed by default
+ * @see https://lume.land/plugins/search/
+ */
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
