@@ -205,6 +205,14 @@ snapshot[`nav plugin 3`] = `
 
         </li>
       </ul>
+
+      
+      
+
+      
+        <a href="/docs/about-docs/">Next page</a>
+      
+      
     </nav>
   </body>
 </html>',
@@ -319,6 +327,14 @@ snapshot[`nav plugin 3`] = `
 
         </li>
       </ul>
+
+      
+      
+
+      
+        <a href="/docs/pages/">Next page</a>
+      
+      
     </nav>
   </body>
 </html>',
@@ -435,6 +451,16 @@ snapshot[`nav plugin 3`] = `
 
         </li>
       </ul>
+
+      
+      
+
+      
+        <a href="/docs/pages/first/">Next page</a>
+      
+      
+        <a href="/docs/about-docs/">Previous page</a>
+      
     </nav>
   </body>
 </html>',
@@ -552,6 +578,16 @@ snapshot[`nav plugin 3`] = `
 
         </li>
       </ul>
+
+      
+      
+
+      
+        <a href="/docs/pages/second/">Next page</a>
+      
+      
+        <a href="/docs/about-docs/">Previous page</a>
+      
     </nav>
   </body>
 </html>',
@@ -669,6 +705,14 @@ snapshot[`nav plugin 3`] = `
 
         </li>
       </ul>
+
+      
+      
+
+      
+      
+        <a href="/docs/pages/first/">Previous page</a>
+      
     </nav>
   </body>
 </html>',
@@ -781,6 +825,14 @@ snapshot[`nav plugin 3`] = `
 
         </li>
       </ul>
+
+      
+      
+
+      
+        <a href="/docs/">Next page</a>
+      
+      
     </nav>
   </body>
 </html>',
@@ -1020,6 +1072,14 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
         </li>
       </ul>
+
+      
+      
+
+      
+        <a href="/docs/about-docs.html">Next page</a>
+      
+      
     </nav>
   </body>
 </html>',
@@ -1134,6 +1194,14 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
         </li>
       </ul>
+
+      
+      
+
+      
+        <a href="/docs/pages.html">Next page</a>
+      
+      
     </nav>
   </body>
 </html>',
@@ -1250,6 +1318,16 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
         </li>
       </ul>
+
+      
+      
+
+      
+        <a href="/docs/pages/first.html">Next page</a>
+      
+      
+        <a href="/docs/about-docs.html">Previous page</a>
+      
     </nav>
   </body>
 </html>',
@@ -1367,6 +1445,16 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
         </li>
       </ul>
+
+      
+      
+
+      
+        <a href="/docs/pages/second.html">Next page</a>
+      
+      
+        <a href="/docs/about-docs.html">Previous page</a>
+      
     </nav>
   </body>
 </html>',
@@ -1484,6 +1572,14 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
         </li>
       </ul>
+
+      
+      
+
+      
+      
+        <a href="/docs/pages/first.html">Previous page</a>
+      
     </nav>
   </body>
 </html>',
@@ -1594,6 +1690,12 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
         </li>
       </ul>
+
+      
+      
+
+      
+      
     </nav>
   </body>
 </html>',

@@ -72,6 +72,59 @@ export class Nav {
     return breadcrumb;
   }
 
+  nextPage(url: string, query?: string, sort?: string): Data | undefined {
+    const nav = this.menu(url, query, sort)!;
+    const children = nav?.parent?.children;
+
+    // Top level -> return the first child
+    if (!children) {
+      const child = nav?.children?.[0];
+      return child ? getNextChild(child) : undefined;
+    }
+
+    const index = children.indexOf(nav);
+
+    if (index === -1) {
+      return;
+    }
+
+    // Last child -> return next parent sibling
+    if (index === children.length - 1) {
+      if (nav.children?.length) {
+        return getNextChild(nav.children[0]);
+      }
+
+      const parent = getNextParent(nav);
+      return parent ? getNextChild(parent) : undefined;
+    }
+
+    return getNextChild(children[index + 1]);
+  }
+
+  previousPage(url: string, query?: string, sort?: string): Data | undefined {
+    const nav = this.menu(url, query, sort)!;
+    const children = nav?.parent?.children;
+
+    // Top level -> return none
+    if (!children) {
+      return;
+    }
+
+    const index = children.indexOf(nav);
+
+    if (index === -1) {
+      return;
+    }
+
+    // First child -> return the last child of the previous parent sibling
+    if (index === 0) {
+      const parent = getPreviousParent(nav);
+      return parent ? getPreviousChild(parent) : undefined;
+    }
+
+    return getPreviousChild(children[index - 1]);
+  }
+
   /* Build the entire navigation tree */
   #buildNav(query?: string, sort?: string): NavData {
     const nav: TempNavData = {
@@ -133,6 +186,64 @@ export interface NavData {
   data?: Data;
   children?: NavData[];
   parent?: NavData;
+}
+
+function getNextChild(item: NavData): Data | undefined {
+  if (item.data) {
+    return item.data;
+  }
+
+  const children = item.children;
+
+  if (children) {
+    return getNextChild(children[0]);
+  }
+}
+
+function getNextParent(item: NavData): NavData | undefined {
+  const parent = item.parent;
+
+  if (!parent) {
+    return;
+  }
+
+  const children = parent.children!;
+  const index = children.indexOf(item);
+
+  if (index === children.length - 1) {
+    return getNextParent(parent);
+  }
+
+  return children[index + 1];
+}
+
+function getPreviousChild(item: NavData): Data | undefined {
+  if (item.data) {
+    return item.data;
+  }
+
+  const children = item.children;
+
+  if (children) {
+    return getPreviousChild(children[children.length - 1]);
+  }
+}
+
+function getPreviousParent(item: NavData): NavData | undefined {
+  const parent = item.parent;
+
+  if (!parent) {
+    return;
+  }
+
+  const children = parent.children!;
+  const index = children.indexOf(item);
+
+  if (index === 0) {
+    return getPreviousParent(parent);
+  }
+
+  return children[index - 1];
 }
 
 function searchData(parts: string[], menu: NavData): NavData | undefined {
