@@ -1,7 +1,6 @@
 import { posix } from "../deps/path.ts";
 import { normalizePath } from "./utils/path.ts";
 import { mergeData } from "./utils/merge_data.ts";
-import { parseDateFromFilename } from "./utils/date.ts";
 import { getPageUrl } from "./utils/page_url.ts";
 import { getPageDate } from "./utils/page_date.ts";
 import { Page, StaticFile } from "./file.ts";
@@ -23,6 +22,7 @@ export interface Options {
   scopedData: Map<string, RawData>;
   scopedPages: Map<string, RawData[]>;
   scopedComponents: Map<string, Components>;
+  filenameParsers: FilenameParser[];
   fs: FS;
   prettyUrls: boolean;
   components: {
@@ -93,6 +93,9 @@ export default class Source {
   /** The data assigned per path */
   data = new Map<string, Partial<Data>>();
 
+  /** Custom parsers for filenames */
+  filenameParsers: FilenameParser[] = [];
+
   constructor(options: Options) {
     this.dataLoader = options.dataLoader;
     this.componentLoader = options.componentLoader;
@@ -103,6 +106,7 @@ export default class Source {
     this.scopedPages = options.scopedPages;
     this.scopedComponents = options.scopedComponents;
     this.prettyUrls = options.prettyUrls;
+    this.filenameParsers = options.filenameParsers;
   }
 
   addIgnoredPath(path: string) {
@@ -162,8 +166,11 @@ export default class Source {
       return;
     }
 
-    // Parse the date/time in the folder name
-    const [basename, date] = parseDateFromFilename(dir.name);
+    const parsedData: RawData = {};
+    const basename = this.filenameParsers.reduce(
+      (name, parser) => parser(name, parsedData),
+      dir.name,
+    );
 
     // Load the _data files
     const dirDatas: RawData[] = [];
@@ -180,15 +187,12 @@ export default class Source {
       }
     }
 
-    if (date) {
-      dirDatas.push({ date });
-    }
-
     // Merge directory data
     const dirData = mergeData(
       parentData,
       { basename },
       this.scopedData.get(dir.path) || {},
+      parsedData,
       ...dirDatas,
     ) as Partial<Data>;
 
@@ -333,7 +337,11 @@ export default class Source {
           }
 
           const { ext } = format;
-          const [basename, date] = parseDateFromFilename(entry.name);
+          const parsedData: RawData = {};
+          const basename = this.filenameParsers.reduce(
+            (name, parser) => parser(name, parsedData),
+            entry.name.slice(0, -ext.length),
+          );
 
           // Create the page
           const page = new Page({
@@ -347,9 +355,9 @@ export default class Source {
           const pageData = await entry.getContent(loader);
           page.data = mergeData(
             dirData,
-            { basename: basename.slice(0, -ext.length) },
-            date ? { date } : {},
+            { basename },
             this.scopedData.get(entry.path) || {},
+            parsedData,
             pageData,
           ) as Data;
 
@@ -544,6 +552,8 @@ function toProxy(
 }
 
 export type BuildFilter = (entry: Entry, page?: Page) => boolean;
+
+export type FilenameParser = (filename: string, data: RawData) => string;
 
 export interface ProxyComponents {
   // deno-lint-ignore no-explicit-any

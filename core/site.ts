@@ -23,6 +23,7 @@ import Server from "./server.ts";
 import notFound from "../middlewares/not_found.ts";
 
 import type { Loader } from "./loaders/mod.ts";
+import type { FilenameParser } from "./source.ts";
 import type { Component, Components } from "./component_loader.ts";
 import type { Data, RawData, StaticFile } from "./file.ts";
 import type { Engine, Helper, HelperOptions } from "./renderer.ts";
@@ -161,6 +162,7 @@ export default class Site {
       scopedPages: this.scopedPages,
       scopedComponents: this.scopedComponents,
       prettyUrls,
+      filenameParsers: [],
     });
 
     // To render pages
@@ -379,6 +381,12 @@ export default class Site {
   /** Register a template helper */
   helper(name: string, fn: Helper, options: HelperOptions): this {
     this.renderer.addHelper(name, fn, options);
+    return this;
+  }
+
+  /** Register a filename parser */
+  parseFilename(parser: FilenameParser): this {
+    this.source.filenameParsers.push(parser);
     return this;
   }
 

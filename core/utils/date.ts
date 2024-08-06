@@ -1,4 +1,5 @@
 import { Temporal } from "../../deps/temporal.ts";
+import type { RawData } from "../file.ts";
 
 /**
  * Returns the date of the git commit that created or modified the file.
@@ -55,7 +56,8 @@ export function getZonedDateTime(
  */
 export function parseDateFromFilename(
   filename: string,
-): [string, Date | undefined] {
+  data: RawData,
+): string {
   const filenameRegex =
     /^(?<year>\d{4})-(?<month>\d\d)-(?<day>\d\d)(?:-(?<hour>\d\d)-(?<minute>\d\d)(?:-(?<second>\d\d))?)?(?:_|-)(?<basename>.*)/;
   const fileNameParts = filenameRegex.exec(filename)?.groups;
@@ -76,7 +78,8 @@ export function parseDateFromFilename(
         `${year}-${month}-${day} ${hour}:${minute}:${second}`,
       );
 
-      return [basename, date];
+      data.date = date;
+      return basename;
     } catch {
       throw new Error(
         `Invalid date: ${filename} (${year}-${month}-${day} ${hour}:${minute}:${second})`,
@@ -84,5 +87,5 @@ export function parseDateFromFilename(
     }
   }
 
-  return [filename, undefined];
+  return filename;
 }
