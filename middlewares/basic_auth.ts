@@ -51,4 +51,4 @@ function checkAuthorization(
   return false;
 }
 
-export default basicAuth
+export default basicAuth;

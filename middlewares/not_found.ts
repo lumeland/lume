@@ -113,4 +113,4 @@ async function getDirectoryIndex(root: string, file: string): Promise<string> {
   </html>`;
 }
 
-export default notFound
+export default notFound;

@@ -36,4 +36,4 @@ export function serveFolder(options: Options): Middleware {
   };
 }
 
-export default serveFolder
+export default serveFolder;

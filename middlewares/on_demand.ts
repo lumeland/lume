@@ -98,4 +98,4 @@ export interface MiddlewareOptions {
   routesFile?: string;
 }
 
-export default onDemand
+export default onDemand;

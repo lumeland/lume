@@ -39,4 +39,4 @@ function isHtml(request: Request) {
   return accept && accept.includes("text/html");
 }
 
-export default shutdown
+export default shutdown;

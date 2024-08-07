@@ -41,4 +41,4 @@ export function www(userOptions?: Partial<Options>): Middleware {
   };
 }
 
-export default www
+export default www;

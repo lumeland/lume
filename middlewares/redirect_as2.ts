@@ -75,7 +75,7 @@ export function redirectAS2(options: Options): Middleware {
     }
 
     return await next(req);
-  }
-};
+  };
+}
 
-export default redirectAS2
+export default redirectAS2;

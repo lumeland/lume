@@ -41,4 +41,4 @@ export function expires(userOptions?: Partial<Options>): Middleware {
   };
 }
 
-export default expires
+export default expires;

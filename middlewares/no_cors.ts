@@ -10,4 +10,4 @@ export function noCors(): Middleware {
   };
 }
 
-export default noCors
+export default noCors;

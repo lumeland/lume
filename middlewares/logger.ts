@@ -37,4 +37,4 @@ export function log(): Middleware {
   };
 }
 
-export default log
+export default log;

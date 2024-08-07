@@ -29,4 +29,4 @@ export function cacheBusting(options?: Partial<Options>): Middleware {
   };
 }
 
-export default cacheBusting
+export default cacheBusting;

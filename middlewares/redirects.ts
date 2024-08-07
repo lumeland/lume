@@ -74,4 +74,4 @@ function buildRedirects(redirect: string | Redirect): Redirect {
   return redirect;
 }
 
-export default redirects
+export default redirects;

@@ -13,4 +13,4 @@ export function noCache(): Middleware {
   };
 }
 
-export default noCache
+export default noCache;

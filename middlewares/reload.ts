@@ -75,4 +75,4 @@ export function reload(options: Options): Middleware {
   };
 }
 
-export default reload
+export default reload;
