@@ -32,3 +32,5 @@ export function yaml(userOptions?: Options) {
     });
   };
 }
+
+export default yaml;
