@@ -35,7 +35,7 @@ const cache = new Map();
  * like images, JavaScript, CSS, SVG, etc.
  * @see https://lume.land/plugins/inline/
  */
-export default function (userOptions?: Options) {
+export function inline(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -242,3 +242,5 @@ async function getFileContent(
 
   return content;
 }
+
+export default inline
