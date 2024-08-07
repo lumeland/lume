@@ -8,7 +8,7 @@ import type Site from "../core/site.ts";
  * A plugin to convert links to source files to the final page
  * @see https://lume.land/plugins/resolve_urls/
  */
-export default function () {
+export function resolveUrls() {
   return (site: Site) => {
     const cache = new Map<string, string | null>();
 
@@ -79,3 +79,5 @@ function ignore(url: string) {
     url.includes("//") ||
     (url.endsWith("/") && !url.startsWith("~")); // Pretty url
 }
+
+export default resolveUrls;

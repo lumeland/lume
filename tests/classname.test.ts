@@ -1,5 +1,5 @@
 import { assertStrictEquals as equals } from "../deps/assert.ts";
-import { attributes, className } from "../plugins/attributes.ts";
+import { attr, className } from "../plugins/attributes.ts";
 
 Deno.test("classname filter", () => {
   equals("one two", className("one", "two"));
@@ -21,48 +21,48 @@ Deno.test("classname filter", () => {
   equals("one two", className([{ one: true, two: true }]));
 });
 
-Deno.test("attributes filter", () => {
-  equals("one two", attributes(["one", "two"]));
-  equals('one="two"', attributes({ one: "two" }));
-  equals("one", attributes({ one: true }));
-  equals("two", attributes({ one: null, two: true }));
+Deno.test("attr filter", () => {
+  equals("one two", attr(["one", "two"]));
+  equals('one="two"', attr({ one: "two" }));
+  equals("one", attr({ one: true }));
+  equals("two", attr({ one: null, two: true }));
   equals(
     "one two",
-    attributes([{ one: null, two: true }, { one: true }]),
+    attr([{ one: null, two: true }, { one: true }]),
   );
-  equals('foo="&#34;bar&#34;"', attributes({ foo: '"bar"' }));
-  equals('class="foo bar"', attributes({ class: "foo bar" }));
-  equals('class="foo bar"', attributes({ class: ["foo bar"] }));
-  equals('class="foo"', attributes({ class: ["foo", { bar: false }] }));
+  equals('foo="&#34;bar&#34;"', attr({ foo: '"bar"' }));
+  equals('class="foo bar"', attr({ class: "foo bar" }));
+  equals('class="foo bar"', attr({ class: ["foo bar"] }));
+  equals('class="foo"', attr({ class: ["foo", { bar: false }] }));
   equals(
     'class="foo bar"',
-    attributes({ class: ["foo", { bar: true }] }),
+    attr({ class: ["foo", { bar: true }] }),
   );
   equals(
     'required class="foo bar"',
-    attributes(["required", { class: ["foo", { bar: true }] }]),
+    attr(["required", { class: ["foo", { bar: true }] }]),
   );
   equals(
     'required class="foo bar"',
-    attributes(["required", { class: ["foo", { bar: true }] }]),
+    attr(["required", { class: ["foo", { bar: true }] }]),
   );
   equals(
     'required class="foo bar"',
-    attributes([{ required: true }, { class: ["foo", { bar: true }] }]),
+    attr([{ required: true }, { class: ["foo", { bar: true }] }]),
   );
   equals(
     'required class="foo bar"',
-    attributes([{ required: true, class: ["foo", { bar: true }] }]),
+    attr([{ required: true, class: ["foo", { bar: true }] }]),
   );
   equals(
     'required class="foo bar"',
-    attributes(
+    attr(
       ["required", { class: "foo" }, { class: ["bar", { other: false }] }],
     ),
   );
   equals(
     'required class="foo" title="bar"',
-    attributes(
+    attr(
       ["required", { class: "foo" }, { id: "one", title: "bar" }],
       "required",
       "class",
@@ -71,7 +71,7 @@ Deno.test("attributes filter", () => {
   );
   equals(
     'id="one"',
-    attributes(
+    attr(
       ["required", { class: "foo" }, { id: "one", title: "bar" }],
       "id",
     ),

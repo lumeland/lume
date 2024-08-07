@@ -46,7 +46,7 @@ export const defaults: Options = {
  * A plugin to process SASS and SCSS files
  * @see https://lume.land/plugins/sass/
  */
-export default function (userOptions?: Options) {
+export function sass(userOptions?: Options) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
@@ -162,3 +162,5 @@ function getPathsToLook(path: string): string[] {
     ];
   }
 }
+
+export default sass;

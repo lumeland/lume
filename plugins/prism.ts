@@ -36,7 +36,7 @@ export const defaults: Options = {
  * A plugin to syntax-highlight code using Prism library
  * @see https://lume.land/plugins/prism/
  */
-export default function (userOptions?: Options) {
+export function prism(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -61,3 +61,5 @@ export default function (userOptions?: Options) {
     }
   };
 }
+
+export default prism;

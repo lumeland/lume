@@ -42,7 +42,7 @@ export const defaults: Options = {
  * A plugin to use Decap CMS in Lume easily
  * @see https://lume.land/plugins/decap_cms/
  */
-export default function (userOptions?: Options) {
+export function decapCMS(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -157,3 +157,5 @@ declare global {
     }
   }
 }
+
+export default decapCMS;

@@ -25,7 +25,7 @@ export const defaults: Options = {
  * A plugin to modify all URLs found in the HTML documents
  * @see https://lume.land/plugins/modify_urls/
  */
-export default function (userOptions: Options) {
+export function modifyUrls(userOptions: Options) {
   const options = merge(defaults, userOptions);
 
   function replace(
@@ -108,3 +108,5 @@ export default function (userOptions: Options) {
     );
   };
 }
+
+export default modifyUrls;

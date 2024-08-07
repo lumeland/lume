@@ -38,7 +38,7 @@ export const defaults: Options = {
  * A plugin to transform frontmatter using FFF
  * @see https://lume.land/plugins/fff/
  */
-export default function (userOptions?: Partial<Options>) {
+export function fff(userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -65,6 +65,8 @@ export default function (userOptions?: Partial<Options>) {
       }));
   };
 }
+
+export default fff;
 
 /** Extends Data interface */
 declare global {

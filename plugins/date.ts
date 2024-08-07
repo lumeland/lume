@@ -37,7 +37,7 @@ export const defaults: Options = {
  * A plugin to format Date values
  * @see https://lume.land/plugins/date/
  */
-export default function (userOptions?: Options) {
+export function date(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -73,6 +73,8 @@ export default function (userOptions?: Options) {
     }
   };
 }
+
+export default date;
 
 /** Extends Helpers interface */
 declare global {

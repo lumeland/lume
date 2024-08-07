@@ -55,7 +55,7 @@ export interface Favicon {
  * A plugin to generate favicons from an SVG or PNG file
  * @see https://lume.land/plugins/favicon/
  */
-export default function (userOptions?: Options) {
+export function favicon(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -186,3 +186,5 @@ async function buildIco(
 
   return image;
 }
+
+export default favicon;

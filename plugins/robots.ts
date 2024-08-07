@@ -50,7 +50,7 @@ export const defaults: Options = {
  * A plugin to generate a robots.txt after build
  * @see https://lume.land/plugins/robots/
  */
-export default (userOptions?: Partial<Options>) => {
+export function robots(userOptions?: Partial<Options>) {
   const options: Options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -98,4 +98,6 @@ export default (userOptions?: Partial<Options>) => {
         ).join("\n\n");
     });
   };
-};
+}
+
+export default robots;

@@ -17,13 +17,15 @@ export const defaults: Options = {
  * Installed by default
  * @see https://lume.land/plugins/search/
  */
-export default function (userOptions?: Options) {
+export function search(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
     site.data(options.name, site.search);
   };
 }
+
+export default search;
 
 /** Extends Data interface */
 declare global {

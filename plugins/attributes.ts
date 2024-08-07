@@ -12,14 +12,14 @@ const escapeChars: Record<string, string> = {
  * Plugin to provide helpers to manage attributes and class names of HTML elements
  * @see https://lume.land/plugins/attributes/
  */
-export default function () {
+export function attributes() {
   return (site: Site) => {
-    site.filter("attr", attributes);
+    site.filter("attr", attr);
     site.filter("class", className);
   };
 }
 
-export function attributes(values: unknown, ...validNames: string[]): string {
+export function attr(values: unknown, ...validNames: string[]): string {
   const attributes = new Map();
 
   handleAttributes(attributes, values, validNames);
@@ -127,6 +127,8 @@ function escape(value: string) {
 function isValid(name: string, validNames: string[]) {
   return name && (!validNames.length || validNames.includes(name));
 }
+
+export default attributes;
 
 /** Extends Helpers interface */
 declare global {

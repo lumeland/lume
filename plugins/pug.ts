@@ -123,7 +123,7 @@ export class PugEngine implements Engine {
  * A plugin to render Pug templates
  * @see https://lume.land/plugins/pug/
  */
-export default function (userOptions?: Options) {
+export function pug(userOptions?: Options) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
@@ -157,6 +157,8 @@ export default function (userOptions?: Options) {
     }
   };
 }
+
+export default pug;
 
 /** Extends Helpers interface */
 declare global {

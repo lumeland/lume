@@ -1,6 +1,6 @@
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
-import onDemand, {
+import OnDemand, {
   getRouter,
   MiddlewareOptions,
 } from "../middlewares/on_demand.ts";
@@ -30,7 +30,7 @@ export const defaults: Options = {
  * A plugin to generate pages on demand on server side
  * @see https://lume.land/plugins/on_demand/
  */
-export default function (userOptions?: Options) {
+export function onDemand(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -77,7 +77,7 @@ export default function (userOptions?: Options) {
       routesFile: site.root(options.routesPath),
     } as MiddlewareOptions;
 
-    site.options.server.middlewares.push(onDemand({
+    site.options.server.middlewares.push(OnDemand({
       site,
       router: getRouter(collector.routes),
     }));
@@ -162,3 +162,5 @@ export class JsonRouterCollector {
     }
   }
 }
+
+export default onDemand;

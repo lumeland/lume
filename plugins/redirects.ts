@@ -36,7 +36,7 @@ const outputs: Record<string, OutputStrategy> = {
  * A plugin to create redirections
  * @see https://lume.land/plugins/redirects/
  */
-export default function (userOptions?: Options) {
+export function redirects(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -165,6 +165,8 @@ async function vercel(redirects: Redirect[], site: Site): Promise<void> {
   Object.assign(content, config);
   page.content = JSON.stringify(content, null, 2);
 }
+
+export default redirects;
 
 /** Extends Data interface */
 declare global {

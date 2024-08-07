@@ -1,4 +1,4 @@
-import yaml from "../core/loaders/yaml.ts";
+import yamlLoader from "../core/loaders/yaml.ts";
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
@@ -21,14 +21,16 @@ export const defaults: Options = {
  * Installed by default
  * @see https://lume.land/plugins/yaml/
  */
-export default function (userOptions?: Options) {
+export function yaml(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.loadData(options.extensions, yaml);
+    site.loadData(options.extensions, yamlLoader);
     site.loadPages(options.extensions, {
-      loader: yaml,
+      loader: yamlLoader,
       pageSubExtension: options.pageSubExtension,
     });
   };
 }
+
+export default yaml;

@@ -45,7 +45,7 @@ export const defaults: Options = {
  * A plugin to generate Open Graph images for your pages
  * @see https://lume.land/plugins/og_images/
  */
-export default function (userOptions?: Options) {
+export function ogImages(userOptions?: Options) {
   return (site: Lume.Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
@@ -156,6 +156,8 @@ async function defaultFonts(): Promise<SatoriOptions["fonts"]> {
     },
   ];
 }
+
+export default ogImages;
 
 /** Extends Data interface */
 declare global {

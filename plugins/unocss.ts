@@ -68,7 +68,7 @@ export const defaults: Options = {
  * A plugin to generate CSS using UnoCSS
  * @see https://lume.land/plugins/unocss/
  */
-export default function (userOptions?: Options) {
+export function unoCSS(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -154,3 +154,5 @@ export default function (userOptions?: Options) {
 async function getResetCss(reset: Options["reset"]) {
   return reset === false ? "" : await read(`${resetUrl}/${reset}.css`, false);
 }
+
+export default unoCSS;

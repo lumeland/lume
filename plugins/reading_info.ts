@@ -23,7 +23,7 @@ export const defaults: Options = {
  * A plugin to calculate the reading time of a content
  * @see https://lume.land/plugins/reading_info/
  */
-export default function (userOptions?: Options) {
+export function readingInfo(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -72,6 +72,8 @@ export default function (userOptions?: Options) {
     };
   }
 }
+
+export default readingInfo;
 
 export interface ReadingInfo {
   /** The number of words in the content */

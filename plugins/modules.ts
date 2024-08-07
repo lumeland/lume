@@ -60,7 +60,7 @@ export class ModuleEngine implements Engine {
  * Installed by default
  * @see https://lume.land/plugins/modules/
  */
-export default function (userOptions?: Options) {
+export function modules(userOptions?: Options) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
@@ -85,3 +85,5 @@ export default function (userOptions?: Options) {
     });
   };
 }
+
+export default modules;

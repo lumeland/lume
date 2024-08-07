@@ -1,7 +1,7 @@
 import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
 import { Page } from "../core/file.ts";
-import { pagefind } from "../deps/pagefind.ts";
+import { pagefind as Pagefind } from "../deps/pagefind.ts";
 
 import type { CustomRecord, TranslationsOptions } from "../deps/pagefind.ts";
 import type Site from "../core/site.ts";
@@ -107,7 +107,7 @@ export interface Options {
   ui?: UIOptions | false;
 
   /** Options for the indexing process */
-  indexing?: pagefind.PagefindServiceConfig;
+  indexing?: Pagefind.PagefindServiceConfig;
 
   /** Other custom records */
   customRecords?: CustomRecord[];
@@ -134,12 +134,12 @@ export const defaults: Options = {
  * A plugin to generate a static full text search engine
  * @see https://lume.land/plugins/pagefind/
  */
-export default function (userOptions?: Options) {
+export function pagefind(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
     site.process([".html"], async (pages, allPages) => {
-      const { index } = await pagefind.createIndex(options.indexing);
+      const { index } = await Pagefind.createIndex(options.indexing);
 
       if (!index) {
         throw new Error("Pagefind index not created");
@@ -192,7 +192,7 @@ export default function (userOptions?: Options) {
 
       // Cleanup
       await index.deleteIndex();
-      await pagefind.close();
+      await Pagefind.close();
     });
 
     if (options.ui) {
@@ -278,3 +278,5 @@ export default function (userOptions?: Options) {
     }
   };
 }
+
+export default pagefind;

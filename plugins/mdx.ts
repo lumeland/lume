@@ -115,7 +115,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
  * A plugin to render MDX files
  * @see https://lume.land/plugins/mdx/
  */
-export default function (userOptions?: Options) {
+export function mdx(userOptions?: Options) {
   return function (site: Site) {
     const options = merge(
       { ...defaults, includes: site.options.includes },
@@ -159,6 +159,8 @@ export default function (userOptions?: Options) {
     site.filter("mdx", filter, true);
   };
 }
+
+export default mdx;
 
 /** Extends Helpers interface */
 declare global {

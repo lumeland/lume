@@ -26,7 +26,7 @@ export const defaults: Options = {
  * A plugin to manage source maps
  * @see https://lume.land/plugins/source_maps/
  */
-export default function (userOptions?: Options) {
+export function sourceMaps(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -194,6 +194,8 @@ function addSourceMap(url: string, sourceMap: string): string {
   // It's CSS
   return `\n/*# sourceMappingURL=${sourceMap} */`;
 }
+
+export default sourceMaps;
 
 /** Extends Data interface */
 declare global {

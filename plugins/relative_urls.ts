@@ -7,7 +7,7 @@ import type Site from "../core/site.ts";
  * A plugin to convert all internal URLs to relative
  * @see https://lume.land/plugins/relative_urls/
  */
-export default function () {
+export function relativeUrls() {
   return (site: Site) => {
     const basePath = site.options.location.pathname;
 
@@ -27,3 +27,5 @@ export default function () {
     }));
   };
 }
+
+export default relativeUrls;

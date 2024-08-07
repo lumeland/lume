@@ -123,7 +123,7 @@ export class VentoEngine implements Engine {
  * Installed by default
  * @see https://lume.land/plugins/vento/
  */
-export default function (userOptions?: Options) {
+export function vento(userOptions?: Options) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
@@ -212,3 +212,5 @@ function compTag(
 
   return compiled.join("\n");
 }
+
+export default vento;

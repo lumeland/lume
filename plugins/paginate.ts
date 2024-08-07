@@ -71,7 +71,7 @@ export const defaults: Options = {
  * Installed by default
  * @see https://lume.land/plugins/paginate/
  */
-export default function (userOptions?: Options) {
+export function paginate(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -128,6 +128,8 @@ export function createPaginator(defaults: PaginateOptions): Paginator {
     }
   };
 }
+
+export default paginate;
 
 /** Extends Data interface */
 declare global {

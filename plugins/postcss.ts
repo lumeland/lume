@@ -48,7 +48,7 @@ const defaultPlugins = [
  * A plugin to load all CSS files and process them using PostCSS
  * @see https://lume.land/plugins/postcss/
  */
-export default function (userOptions?: Options) {
+export function postCSS(userOptions?: Options) {
   return (site: Site) => {
     const options = merge<Options>(
       { ...defaults, includes: site.options.includes },
@@ -140,6 +140,8 @@ function configureImport(site: Site, includes: string) {
     },
   });
 }
+
+export default postCSS;
 
 /** Extends Helpers interface */
 declare global {

@@ -31,7 +31,7 @@ export const defaults: Options = {
  * A plugin to load all JavaScript files and minify them using Terser
  * @see https://lume.land/plugins/terser/
  */
-export default function (userOptions?: Options) {
+export function terser(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -78,6 +78,8 @@ export default function (userOptions?: Options) {
     }
   };
 }
+
+export default terser;
 
 /** Extends Helpers interface */
 declare global {

@@ -129,7 +129,7 @@ export class LiquidEngine implements Engine {
  * @see https://lume.land/plugins/liquid/
  * @deprecated Use Vento or Nunjucks instead (see https://github.com/lumeland/lume/issues/600)
  */
-export default function (userOptions?: Options) {
+export function liquid(userOptions?: Options) {
   return function (site: Site) {
     const options = merge(
       { ...defaults, includes: site.options.includes },
@@ -248,6 +248,8 @@ function createCustomTagWithBody(fn: Helper): TagClass {
     }
   };
 }
+
+export default liquid;
 
 /** Extends Helpers interface */
 declare global {

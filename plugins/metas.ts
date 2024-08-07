@@ -66,7 +66,7 @@ const defaultGenerator = `Lume ${getCurrentVersion()}`;
  * A plugin to insert meta tags for SEO and social media
  * @see https://lume.land/plugins/metas/
  */
-export default function (userOptions?: Options) {
+export function metas(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -177,6 +177,8 @@ function addMeta(
   document.head.appendChild(meta);
   document.head.appendChild(document.createTextNode("\n"));
 }
+
+export default metas;
 
 /** Extends Data interface */
 declare global {

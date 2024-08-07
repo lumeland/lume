@@ -33,7 +33,7 @@ export const defaults: Options = {
  * A plugin to transform images to different formats and sizes
  * @see https://lume.land/plugins/picture/
  */
-export default function (userOptions?: Options) {
+export function picture(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -372,3 +372,5 @@ function editImg(
     img.setAttribute("sizes", sizes);
   }
 }
+
+export default picture;

@@ -131,7 +131,7 @@ const defaultGenerator = `Lume ${getCurrentVersion()}`;
  * A plugin to generate RSS and JSON feeds
  * @see https://lume.land/plugins/feed/
  */
-export default function (userOptions?: Options) {
+export function feed(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -291,3 +291,5 @@ function clean(obj: Record<string, unknown>) {
     Object.entries(obj).filter(([, value]) => value !== undefined),
   );
 }
+
+export default feed;

@@ -25,7 +25,7 @@ const cache = new Map<string, string>();
  * A plugin to add the Subresource Integrity (SRI) attribute to the script and link elements
  * @see https://lume.land/plugins/sri/
  */
-export default function (userOptions?: Partial<Options>) {
+export function sri(userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -87,3 +87,5 @@ function digestName(algorithm: Options["algorithm"]) {
       return "SHA-384";
   }
 }
+
+export default sri;

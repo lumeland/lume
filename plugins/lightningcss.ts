@@ -54,7 +54,7 @@ export const defaults: Options = {
  * A plugin to process CSS files with lightningcss
  * @see https://lume.land/plugins/lightningcss/
  */
-export default function (userOptions?: Options) {
+export function lightningCSS(userOptions?: Options) {
   return (site: Site) => {
     const options = merge<Options>(
       { ...defaults, includes: site.options.includes },
@@ -161,3 +161,5 @@ export default function (userOptions?: Options) {
 export function version(major: number, minor = 0, patch = 0): number {
   return (major << 16) | (minor << 8) | patch;
 }
+
+export default lightningCSS;
