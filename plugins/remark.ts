@@ -95,10 +95,10 @@ export class MarkdownEngine implements Engine {
  * A plugin to load all Markdown files and process them using Remark
  * @see https://lume.land/plugins/remark/
  */
-export default function (userOptions?: Options) {
+export function remark(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return function (site: Site) {
+  return (site: Site) => {
     const plugins = [];
 
     // Add remark-parse to generate MDAST
@@ -154,3 +154,5 @@ export default function (userOptions?: Options) {
     }
   };
 }
+
+export default remark
