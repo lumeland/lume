@@ -23,7 +23,7 @@ export const defaults: Options = {
  * Installed by default
  * @see https://lume.land/plugins/url/
  */
-export default function (userOptions?: Options) {
+export function url(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -42,6 +42,8 @@ export default function (userOptions?: Options) {
     }
   };
 }
+
+export default url
 
 /** Extends Helpers interface */
 declare global {
