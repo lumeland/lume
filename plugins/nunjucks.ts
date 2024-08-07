@@ -1,4 +1,4 @@
-import nunjucks from "../deps/nunjucks.ts";
+import Nunjucks from "../deps/nunjucks.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils/object.ts";
 import { normalizePath, resolveInclude } from "../core/utils/path.ts";
@@ -25,11 +25,11 @@ export interface Options {
    * Options passed to Nunjucks
    * @see https://mozilla.github.io/nunjucks/api.html#configure
    */
-  options?: nunjucks.ConfigureOptions;
+  options?: Nunjucks.ConfigureOptions;
 
   /** Plugins loaded by Nunjucks */
   plugins?: {
-    [index: string]: nunjucks.Extension;
+    [index: string]: Nunjucks.Extension;
   };
 }
 
@@ -148,7 +148,7 @@ export class NunjucksEngine implements Engine {
   }
 }
 
-class LumeLoader extends nunjucks.Loader implements nunjucks.ILoaderAsync {
+class LumeLoader extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
   includes: string;
 
   constructor(private site: Site, includes: string) {
@@ -160,7 +160,7 @@ class LumeLoader extends nunjucks.Loader implements nunjucks.ILoaderAsync {
 
   getSource(
     id: string,
-    callback: nunjucks.Callback<Error, nunjucks.LoaderSource>,
+    callback: Nunjucks.Callback<Error, Nunjucks.LoaderSource>,
   ) {
     const rootToRemove = this.site.src();
     let path = normalizePath(id, rootToRemove);
@@ -192,14 +192,14 @@ class LumeLoader extends nunjucks.Loader implements nunjucks.ILoaderAsync {
  * A plugin to use Nunjucks as a template engine
  * @see https://lume.land/plugins/nunjucks/
  */
-export default function (userOptions?: Options) {
+export function nunjucks(userOptions?: Options) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
     );
 
-    const env = new nunjucks.Environment(
+    const env = new Nunjucks.Environment(
       [new LumeLoader(site, options.includes)],
       options.options,
     );
@@ -342,14 +342,14 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
 
       if (!options.async) {
         const string = fn.apply({ data: context.ctx }, args);
-        return new nunjucks.runtime.SafeString(string);
+        return new Nunjucks.runtime.SafeString(string);
       }
 
       const callback = args.pop();
 
       (fn.apply({ data: context.ctx }, args) as Promise<string>).then(
         (string: string) => {
-          const result = new nunjucks.runtime.SafeString(string);
+          const result = new Nunjucks.runtime.SafeString(string);
           callback(null, result);
         },
       );
@@ -358,6 +358,8 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
 
   return tagExtension;
 }
+
+export default nunjucks
 
 /** Extends Helpers interface */
 declare global {
