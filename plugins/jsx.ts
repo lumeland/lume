@@ -99,7 +99,7 @@ export class JsxEngine implements Engine {
  * A plugin to render JSX files using React
  * @see https://lume.land/plugins/jsx/
  */
-export default function (userOptions?: Options) {
+export function jsx(userOptions?: Options) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
@@ -121,6 +121,8 @@ export default function (userOptions?: Options) {
     });
   };
 }
+
+export default jsx
 
 /** Extends Data interface */
 declare global {
