@@ -47,7 +47,7 @@ export function slugifyUrls(userOptions?: Options) {
   }
 }
 
-export default slugifyUrls
+export default slugifyUrls;
 
 /** Extends Helpers interface */
 declare global {

@@ -162,4 +162,4 @@ export function version(major: number, minor = 0, patch = 0): number {
   return (major << 16) | (minor << 8) | patch;
 }
 
-export default lightningCSS
+export default lightningCSS;

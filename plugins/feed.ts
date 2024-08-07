@@ -292,4 +292,4 @@ function clean(obj: Record<string, unknown>) {
   );
 }
 
-export default feed
+export default feed;

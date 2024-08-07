@@ -123,7 +123,7 @@ export function sitemap(userOptions?: Options) {
   };
 }
 
-export default sitemap
+export default sitemap;
 
 interface UrlItem {
   loc: string;

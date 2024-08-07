@@ -178,7 +178,7 @@ function addMeta(
   document.head.appendChild(document.createTextNode("\n"));
 }
 
-export default metas
+export default metas;
 
 /** Extends Data interface */
 declare global {

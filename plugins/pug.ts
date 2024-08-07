@@ -158,7 +158,7 @@ export function pug(userOptions?: Options) {
   };
 }
 
-export default pug
+export default pug;
 
 /** Extends Helpers interface */
 declare global {

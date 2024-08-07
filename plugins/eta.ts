@@ -130,4 +130,4 @@ export function eta(userOptions?: Options) {
   };
 }
 
-export default eta
+export default eta;

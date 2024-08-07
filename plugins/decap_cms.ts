@@ -158,4 +158,4 @@ declare global {
   }
 }
 
-export default decapCMS
+export default decapCMS;

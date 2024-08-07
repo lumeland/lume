@@ -72,4 +72,4 @@ export function tailwindCSS(userOptions?: Options) {
   };
 }
 
-export default tailwindCSS
+export default tailwindCSS;

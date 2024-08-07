@@ -25,7 +25,7 @@ export function search(userOptions?: Options) {
   };
 }
 
-export default search
+export default search;
 
 /** Extends Data interface */
 declare global {

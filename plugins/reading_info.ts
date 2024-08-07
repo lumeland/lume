@@ -73,7 +73,7 @@ export function readingInfo(userOptions?: Options) {
   }
 }
 
-export default readingInfo
+export default readingInfo;
 
 export interface ReadingInfo {
   /** The number of words in the content */

@@ -393,4 +393,4 @@ function handleEsm(path: string, options: EsmOptions): string | undefined {
   return url.href;
 }
 
-export default esbuild
+export default esbuild;

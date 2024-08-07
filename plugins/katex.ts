@@ -94,4 +94,4 @@ export function katex(userOptions?: Options) {
   };
 }
 
-export default katex
+export default katex;

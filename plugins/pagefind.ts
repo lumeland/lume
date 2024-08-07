@@ -279,4 +279,4 @@ export function pagefind(userOptions?: Options) {
   };
 }
 
-export default pagefind
+export default pagefind;

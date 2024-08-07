@@ -62,4 +62,4 @@ export function prism(userOptions?: Options) {
   };
 }
 
-export default prism
+export default prism;

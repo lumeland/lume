@@ -64,4 +64,4 @@ export function minifyHTML(userOptions?: Options) {
   };
 }
 
-export default minifyHTML
+export default minifyHTML;

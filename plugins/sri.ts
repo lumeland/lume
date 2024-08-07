@@ -88,4 +88,4 @@ function digestName(algorithm: Options["algorithm"]) {
   }
 }
 
-export default sri
+export default sri;

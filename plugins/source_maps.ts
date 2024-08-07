@@ -195,7 +195,7 @@ function addSourceMap(url: string, sourceMap: string): string {
   return `\n/*# sourceMappingURL=${sourceMap} */`;
 }
 
-export default sourceMaps
+export default sourceMaps;
 
 /** Extends Data interface */
 declare global {

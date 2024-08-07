@@ -141,7 +141,7 @@ function configureImport(site: Site, includes: string) {
   });
 }
 
-export default postCSS
+export default postCSS;
 
 /** Extends Helpers interface */
 declare global {

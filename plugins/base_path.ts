@@ -14,4 +14,4 @@ export function basePath() {
   };
 }
 
-export default basePath
+export default basePath;

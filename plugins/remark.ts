@@ -155,4 +155,4 @@ export function remark(userOptions?: Options) {
   };
 }
 
-export default remark
+export default remark;

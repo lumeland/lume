@@ -129,7 +129,7 @@ export function createPaginator(defaults: PaginateOptions): Paginator {
   };
 }
 
-export default paginate
+export default paginate;
 
 /** Extends Data interface */
 declare global {

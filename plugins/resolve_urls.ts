@@ -80,4 +80,4 @@ function ignore(url: string) {
     (url.endsWith("/") && !url.startsWith("~")); // Pretty url
 }
 
-export default resolveUrls
+export default resolveUrls;

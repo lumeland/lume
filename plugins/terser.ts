@@ -79,7 +79,7 @@ export function terser(userOptions?: Options) {
   };
 }
 
-export default terser
+export default terser;
 
 /** Extends Helpers interface */
 declare global {

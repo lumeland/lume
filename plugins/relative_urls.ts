@@ -28,4 +28,4 @@ export function relativeUrls() {
   };
 }
 
-export default relativeUrls
+export default relativeUrls;

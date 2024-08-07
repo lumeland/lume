@@ -163,4 +163,4 @@ function getPathsToLook(path: string): string[] {
   }
 }
 
-export default sass
+export default sass;

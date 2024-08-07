@@ -157,7 +157,7 @@ async function defaultFonts(): Promise<SatoriOptions["fonts"]> {
   ];
 }
 
-export default ogImages
+export default ogImages;
 
 /** Extends Data interface */
 declare global {

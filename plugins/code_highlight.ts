@@ -100,4 +100,4 @@ export function codeHighlight(userOptions?: Options) {
   };
 }
 
-export default codeHighlight
+export default codeHighlight;

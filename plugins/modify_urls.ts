@@ -109,4 +109,4 @@ export function modifyUrls(userOptions: Options) {
   };
 }
 
-export default modifyUrls
+export default modifyUrls;

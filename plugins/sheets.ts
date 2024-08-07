@@ -60,4 +60,4 @@ export function sheets(userOptions?: Options) {
   };
 }
 
-export default sheets
+export default sheets;

@@ -34,4 +34,4 @@ export function json(userOptions?: Options) {
   };
 }
 
-export default json
+export default json;

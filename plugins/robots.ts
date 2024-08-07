@@ -98,6 +98,6 @@ export function robots(userOptions?: Partial<Options>) {
         ).join("\n\n");
     });
   };
-};
+}
 
-export default robots
+export default robots;

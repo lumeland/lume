@@ -163,4 +163,4 @@ export class JsonRouterCollector {
   }
 }
 
-export default onDemand
+export default onDemand;

@@ -160,7 +160,7 @@ export function mdx(userOptions?: Options) {
   };
 }
 
-export default mdx
+export default mdx;
 
 /** Extends Helpers interface */
 declare global {

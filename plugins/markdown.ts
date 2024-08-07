@@ -140,7 +140,7 @@ export function markdown(userOptions?: Options) {
   };
 }
 
-export default markdown
+export default markdown;
 
 /** Extends Helpers interface */
 declare global {

@@ -66,7 +66,7 @@ export function fff(userOptions?: Partial<Options>) {
   };
 }
 
-export default fff
+export default fff;
 
 /** Extends Data interface */
 declare global {

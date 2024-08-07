@@ -243,4 +243,4 @@ async function getFileContent(
   return content;
 }
 
-export default inline
+export default inline;

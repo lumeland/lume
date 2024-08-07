@@ -155,4 +155,4 @@ async function getResetCss(reset: Options["reset"]) {
   return reset === false ? "" : await read(`${resetUrl}/${reset}.css`, false);
 }
 
-export default unoCSS
+export default unoCSS;

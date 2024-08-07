@@ -249,7 +249,7 @@ function createCustomTagWithBody(fn: Helper): TagClass {
   };
 }
 
-export default liquid
+export default liquid;
 
 /** Extends Helpers interface */
 declare global {

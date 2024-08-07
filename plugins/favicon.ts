@@ -187,4 +187,4 @@ async function buildIco(
   return image;
 }
 
-export default favicon
+export default favicon;

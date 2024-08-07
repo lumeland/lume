@@ -254,4 +254,4 @@ function appendHreflang(lang: string, url: string, document: Document) {
   document.head.appendChild(document.createTextNode("\n"));
 }
 
-export default multilanguage
+export default multilanguage;

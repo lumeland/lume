@@ -122,7 +122,7 @@ export function jsx(userOptions?: Options) {
   };
 }
 
-export default jsx
+export default jsx;
 
 /** Extends Data interface */
 declare global {

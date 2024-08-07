@@ -292,7 +292,7 @@ function convert(
   return data;
 }
 
-export default nav
+export default nav;
 
 /** Extends Data interface */
 declare global {

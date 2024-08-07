@@ -205,4 +205,4 @@ export function relations(userOptions: Options) {
   }
 }
 
-export default relations
+export default relations;

@@ -118,7 +118,7 @@ export function jsxPreact(userOptions?: Options) {
   };
 }
 
-export default jsxPreact
+export default jsxPreact;
 
 /** Extends HTMLAttributes interface */
 declare global {

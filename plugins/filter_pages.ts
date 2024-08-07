@@ -39,4 +39,4 @@ export function filterPages(userOptions: Options) {
   };
 }
 
-export default filterPages
+export default filterPages;

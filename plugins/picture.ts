@@ -373,4 +373,4 @@ function editImg(
   }
 }
 
-export default picture
+export default picture;

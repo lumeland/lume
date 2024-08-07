@@ -260,7 +260,7 @@ function removeDuplicatedTransformations(
   return [...result.values()];
 }
 
-export default transformImages
+export default transformImages;
 
 /** Extends Data interface */
 declare global {

@@ -41,4 +41,4 @@ export function svgo(userOptions?: Options) {
   };
 }
 
-export default svgo
+export default svgo;

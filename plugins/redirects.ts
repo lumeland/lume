@@ -166,7 +166,7 @@ async function vercel(redirects: Redirect[], site: Site): Promise<void> {
   page.content = JSON.stringify(content, null, 2);
 }
 
-export default redirects
+export default redirects;
 
 /** Extends Data interface */
 declare global {

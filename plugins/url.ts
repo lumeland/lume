@@ -43,7 +43,7 @@ export function url(userOptions?: Options) {
   };
 }
 
-export default url
+export default url;
 
 /** Extends Helpers interface */
 declare global {

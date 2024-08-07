@@ -359,7 +359,7 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
   return tagExtension;
 }
 
-export default nunjucks
+export default nunjucks;
 
 /** Extends Helpers interface */
 declare global {

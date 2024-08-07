@@ -213,4 +213,4 @@ function compTag(
   return compiled.join("\n");
 }
 
-export default vento
+export default vento;

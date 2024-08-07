@@ -74,7 +74,7 @@ export function date(userOptions?: Options) {
   };
 }
 
-export default date
+export default date;
 
 /** Extends Helpers interface */
 declare global {

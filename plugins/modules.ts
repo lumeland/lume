@@ -86,4 +86,4 @@ export function modules(userOptions?: Options) {
   };
 }
 
-export default modules
+export default modules;
