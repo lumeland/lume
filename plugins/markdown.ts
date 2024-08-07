@@ -88,7 +88,7 @@ export class MarkdownEngine implements Engine {
  * Installed by default
  * @see https://lume.land/plugins/markdown
  */
-export default function (userOptions?: Options) {
+export function markdown(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   if (options.useDefaultPlugins) {
@@ -139,6 +139,8 @@ export default function (userOptions?: Options) {
     }
   };
 }
+
+export default markdown
 
 /** Extends Helpers interface */
 declare global {
