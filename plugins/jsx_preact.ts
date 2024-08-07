@@ -95,7 +95,7 @@ export class PreactJsxEngine implements Engine {
  * A plugin to render JSX files using Preact
  * @see https://lume.land/plugins/jsx_preact/
  */
-export default function (userOptions?: Options) {
+export function jsxPreact(userOptions?: Options) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
@@ -117,6 +117,8 @@ export default function (userOptions?: Options) {
     });
   };
 }
+
+export default jsxPreact
 
 /** Extends HTMLAttributes interface */
 declare global {
