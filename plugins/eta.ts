@@ -101,7 +101,7 @@ export class EtaEngine implements Engine {
  * A plugin to render Eta templates
  * @see https://lume.land/plugins/eta/
  */
-export default function (userOptions?: Options) {
+export function eta(userOptions?: Options) {
   return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
@@ -129,3 +129,5 @@ export default function (userOptions?: Options) {
     });
   };
 }
+
+export default eta
