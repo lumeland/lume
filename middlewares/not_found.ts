@@ -16,7 +16,7 @@ export const defaults: Options = {
 };
 
 /** Show a 404 page */
-export default function notFound(userOptions?: Partial<Options>): Middleware {
+export function notFound(userOptions?: Partial<Options>): Middleware {
   const options = merge(defaults, userOptions);
   let { root, page404, directoryIndex } = options;
 
@@ -112,3 +112,5 @@ async function getDirectoryIndex(root: string, file: string): Promise<string> {
     </body>
   </html>`;
 }
+
+export default notFound
