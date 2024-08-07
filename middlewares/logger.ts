@@ -3,7 +3,7 @@ import { brightGreen, gray, red } from "../deps/colors.ts";
 import type { Middleware } from "../core/server.ts";
 
 /** Log the request/responses */
-export default function log(): Middleware {
+export function log(): Middleware {
   return async (request, next) => {
     try {
       const response = await next(request);
@@ -36,3 +36,5 @@ export default function log(): Middleware {
     }
   };
 }
+
+export default log
