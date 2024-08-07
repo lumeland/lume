@@ -39,7 +39,7 @@ export const defaults: Options = {
  * A plugin to create relations between pages
  * @see https://lume.land/plugins/relations/
  */
-export default function (userOptions: Options) {
+export function relations(userOptions: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -204,3 +204,5 @@ export default function (userOptions: Options) {
     ];
   }
 }
+
+export default relations
