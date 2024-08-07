@@ -1,4 +1,4 @@
-import json from "../core/loaders/json.ts";
+import jsonLoader from "../core/loaders/json.ts";
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
@@ -22,14 +22,16 @@ export const defaults: Options = {
  * Installed by default
  * @see https://lume.land/plugins/json/
  */
-export default function (userOptions?: Options) {
+export function json(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.loadData(options.extensions, json);
+    site.loadData(options.extensions, jsonLoader);
     site.loadPages(options.extensions, {
       pageSubExtension: options.pageSubExtension,
-      loader: json,
+      loader: jsonLoader,
     });
   };
 }
+
+export default json
