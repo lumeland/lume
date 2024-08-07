@@ -26,7 +26,7 @@ export const defaults: Options = {
  * A plugin to create multilanguage websites
  * @see https://lume.land/plugins/multilanguage/
  */
-export default function multilanguage(userOptions: Options) {
+export function multilanguage(userOptions: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -253,3 +253,5 @@ function appendHreflang(lang: string, url: string, document: Document) {
   document.head.appendChild(meta);
   document.head.appendChild(document.createTextNode("\n"));
 }
+
+export default multilanguage
