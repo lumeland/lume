@@ -82,7 +82,7 @@ interface SingleTransformation extends Transformation {
  * A plugin to transform images in Lume
  * @see https://lume.land/plugins/transform_images/
  */
-export default function (userOptions?: Partial<Options>) {
+export function transformImages(userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -259,6 +259,8 @@ function removeDuplicatedTransformations(
 
   return [...result.values()];
 }
+
+export default transformImages
 
 /** Extends Data interface */
 declare global {
