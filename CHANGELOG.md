@@ -7,7 +7,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [Unreleased]
 ### Added
-- New function `site.parseFilename`, to register new custom parsers to extract data from filenames.
+- New function `site.parseBasename`, to register new custom parsers to extract data from basenames.
 - Reload the build after change the `_config.ts` file.
 - New plugin `sri`.
 - Improved plugin docs with links to the online documentation.

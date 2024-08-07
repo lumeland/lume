@@ -22,7 +22,7 @@ export interface Options {
   scopedData: Map<string, RawData>;
   scopedPages: Map<string, RawData[]>;
   scopedComponents: Map<string, Components>;
-  filenameParsers: FilenameParser[];
+  basenameParsers: BasenameParser[];
   fs: FS;
   prettyUrls: boolean;
   components: {
@@ -93,8 +93,8 @@ export default class Source {
   /** The data assigned per path */
   data = new Map<string, Partial<Data>>();
 
-  /** Custom parsers for filenames */
-  filenameParsers: FilenameParser[] = [];
+  /** Custom parsers for basenames */
+  basenameParsers: BasenameParser[] = [];
 
   constructor(options: Options) {
     this.dataLoader = options.dataLoader;
@@ -106,7 +106,7 @@ export default class Source {
     this.scopedPages = options.scopedPages;
     this.scopedComponents = options.scopedComponents;
     this.prettyUrls = options.prettyUrls;
-    this.filenameParsers = options.filenameParsers;
+    this.basenameParsers = options.basenameParsers;
   }
 
   addIgnoredPath(path: string) {
@@ -167,7 +167,7 @@ export default class Source {
     }
 
     const parsedData: RawData = {};
-    const basename = this.filenameParsers.reduce(
+    const basename = this.basenameParsers.reduce(
       (name, parser) => parser(name, parsedData),
       dir.name,
     );
@@ -338,7 +338,7 @@ export default class Source {
 
           const { ext } = format;
           const parsedData: RawData = {};
-          const basename = this.filenameParsers.reduce(
+          const basename = this.basenameParsers.reduce(
             (name, parser) => parser(name, parsedData),
             entry.name.slice(0, -ext.length),
           );
@@ -553,7 +553,7 @@ function toProxy(
 
 export type BuildFilter = (entry: Entry, page?: Page) => boolean;
 
-export type FilenameParser = (filename: string, data: RawData) => string;
+export type BasenameParser = (filename: string, data: RawData) => string;
 
 export interface ProxyComponents {
   // deno-lint-ignore no-explicit-any

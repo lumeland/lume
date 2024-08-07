@@ -23,7 +23,7 @@ import Server from "./server.ts";
 import notFound from "../middlewares/not_found.ts";
 
 import type { Loader } from "./loaders/mod.ts";
-import type { FilenameParser } from "./source.ts";
+import type { BasenameParser } from "./source.ts";
 import type { Component, Components } from "./component_loader.ts";
 import type { Data, RawData, StaticFile } from "./file.ts";
 import type { Engine, Helper, HelperOptions } from "./renderer.ts";
@@ -162,7 +162,7 @@ export default class Site {
       scopedPages: this.scopedPages,
       scopedComponents: this.scopedComponents,
       prettyUrls,
-      filenameParsers: [],
+      basenameParsers: [],
     });
 
     // To render pages
@@ -384,9 +384,9 @@ export default class Site {
     return this;
   }
 
-  /** Register a filename parser */
-  parseFilename(parser: FilenameParser): this {
-    this.source.filenameParsers.push(parser);
+  /** Register a basename parser */
+  parseBasename(parser: BasenameParser): this {
+    this.source.basenameParsers.push(parser);
     return this;
   }
 

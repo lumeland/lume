@@ -49,20 +49,20 @@ export function getZonedDateTime(
 }
 
 /**
- * Parse a date/datetime from a filename.
+ * Parse a date/datetime from a basename.
  *
- * Filenames can be prepended with a date (yyyy-mm-dd) or datetime
+ * Basenames can be prepended with a date (yyyy-mm-dd) or datetime
  * (yyyy-mm-dd-hh-ii-ss) followed by an underscore (_) or hyphen (-).
  */
-export function parseDateFromFilename(
-  filename: string,
+export function parseDateFromBasename(
+  basename: string,
   data: RawData,
 ): string {
-  const filenameRegex =
+  const basenameRegex =
     /^(?<year>\d{4})-(?<month>\d\d)-(?<day>\d\d)(?:-(?<hour>\d\d)-(?<minute>\d\d)(?:-(?<second>\d\d))?)?(?:_|-)(?<basename>.*)/;
-  const fileNameParts = filenameRegex.exec(filename)?.groups;
+  const basenameParts = basenameRegex.exec(basename)?.groups;
 
-  if (fileNameParts) {
+  if (basenameParts) {
     const {
       year,
       month,
@@ -71,7 +71,7 @@ export function parseDateFromFilename(
       minute = "00",
       second = "00",
       basename,
-    } = fileNameParts;
+    } = basenameParts;
 
     try {
       const date = parseDate(
@@ -82,10 +82,10 @@ export function parseDateFromFilename(
       return basename;
     } catch {
       throw new Error(
-        `Invalid date: ${filename} (${year}-${month}-${day} ${hour}:${minute}:${second})`,
+        `Invalid date: ${basename} (${year}-${month}-${day} ${hour}:${minute}:${second})`,
       );
     }
   }
 
-  return filename;
+  return basename;
 }

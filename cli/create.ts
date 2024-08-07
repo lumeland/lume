@@ -4,7 +4,7 @@ import { ensureDir } from "../deps/fs.ts";
 import { isGenerator } from "../core/utils/generator.ts";
 import { isUrl } from "../core/utils/path.ts";
 import { log } from "../core/utils/log.ts";
-import { createSite } from "./run.ts";
+import { createSite } from "./utils.ts";
 
 import type Site from "../core/site.ts";
 
