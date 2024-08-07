@@ -24,7 +24,7 @@ export const defaults: Options = {
  * A plugin to slugify all URLs, replacing non-URL-safe characters
  * @see https://lume.land/plugins/slugify_urls/
  */
-export default function (userOptions?: Options) {
+export function slugifyUrls(userOptions?: Options) {
   const options = merge(defaults, userOptions);
   const slugify = createSlugifier(options);
 
@@ -46,6 +46,8 @@ export default function (userOptions?: Options) {
     }
   }
 }
+
+export default slugifyUrls
 
 /** Extends Helpers interface */
 declare global {
