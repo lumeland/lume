@@ -22,7 +22,7 @@ export const defaults: Options = {
  * A plugin to load all SVG files and minify them using SVGO
  * @see https://lume.land/plugins/svgo/
  */
-export default function (userOptions?: Options) {
+export function svgo(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -40,3 +40,5 @@ export default function (userOptions?: Options) {
     }
   };
 }
+
+export default svgo
