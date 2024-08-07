@@ -11,7 +11,7 @@ export interface Options {
   after?: boolean;
 }
 
-export default function serveFolder(options: Options): Middleware {
+export function serveFolder(options: Options): Middleware {
   return async function (
     request: Request,
     next: RequestHandler,
@@ -35,3 +35,5 @@ export default function serveFolder(options: Options): Middleware {
     return mainResponse || next(request);
   };
 }
+
+export default serveFolder
