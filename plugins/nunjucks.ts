@@ -118,7 +118,7 @@ export class NunjucksEngine implements Engine {
       this.cache.set(
         filename,
         // @ts-ignore: The type definition of nunjucks is wrong
-        nunjucks.compile(content, this.env, join(this.basePath, filename)),
+        Nunjucks.compile(content, this.env, join(this.basePath, filename)),
       );
     }
 
