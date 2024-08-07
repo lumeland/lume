@@ -13,7 +13,7 @@ export const defaults: Options = {
 };
 
 // Code from https://deno.land/x/basic_auth@v1.0.1/mod.ts
-export default function BasicAuth(
+export function basicAuth(
   userOptions?: Partial<Options>,
 ): Middleware {
   const options = merge(defaults, userOptions);
@@ -50,3 +50,5 @@ function checkAuthorization(
 
   return false;
 }
+
+export default basicAuth
