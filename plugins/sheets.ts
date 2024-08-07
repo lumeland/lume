@@ -26,7 +26,7 @@ export const defaults: Options = {
  * A plugin to load Excel, Numbers, and CSV files
  * @see https://lume.land/plugins/sheets/
  */
-export default function (userOptions?: Options) {
+export function sheets(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   async function loader(path: string): Promise<RawData> {
@@ -59,3 +59,5 @@ export default function (userOptions?: Options) {
     }
   };
 }
+
+export default sheets
