@@ -9,7 +9,7 @@ export interface Options {
 }
 
 /** Middleware to hot reload changes */
-export default function reload(options: Options): Middleware {
+export function reload(options: Options): Middleware {
   const sockets = new Set<WebSocket>();
   const { watcher } = options;
 
@@ -74,3 +74,5 @@ export default function reload(options: Options): Middleware {
     return response;
   };
 }
+
+export default reload
