@@ -32,3 +32,5 @@ export function toml(userOptions?: Options) {
     });
   };
 }
+
+export default toml
