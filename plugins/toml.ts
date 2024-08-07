@@ -1,4 +1,4 @@
-import toml from "../core/loaders/toml.ts";
+import tomlLoader from "../core/loaders/toml.ts";
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
@@ -21,13 +21,13 @@ export const defaults: Options = {
  * A plugin to load TOML data files and pages
  * @see https://lume.land/plugins/toml/
  */
-export default function (userOptions?: Options) {
+export function toml(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.loadData(options.extensions, toml);
+    site.loadData(options.extensions, tomlLoader);
     site.loadPages(options.extensions, {
-      loader: toml,
+      loader: tomlLoader,
       pageSubExtension: options.pageSubExtension,
     });
   };
