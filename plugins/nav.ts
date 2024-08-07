@@ -21,7 +21,7 @@ export const defaults: Options = {
  * A plugin to generate a navigation tree and breadcrumbs
  * @see https://lume.land/plugins/nav/
  */
-export default function (userOptions?: Options) {
+export function nav(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -291,6 +291,8 @@ function convert(
 
   return data;
 }
+
+export default nav
 
 /** Extends Data interface */
 declare global {
