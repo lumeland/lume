@@ -46,7 +46,7 @@ export const defaults: Options = {
  * A plugin to generate a sitemap.xml from page files after build
  * @see https://lume.land/plugins/sitemap/
  */
-export default function (userOptions?: Options) {
+export function sitemap(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -122,6 +122,8 @@ export default function (userOptions?: Options) {
     }
   };
 }
+
+export default sitemap
 
 interface UrlItem {
   loc: string;
