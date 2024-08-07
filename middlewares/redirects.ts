@@ -13,7 +13,7 @@ export interface Redirect {
 }
 
 /** Implements redirects */
-export default function redirects(options: Options): Middleware {
+export function redirects(options: Options): Middleware {
   const redirects = new Map<string, Redirect>();
 
   for (const [from, to] of Object.entries(options.redirects)) {
@@ -73,3 +73,5 @@ function buildRedirects(redirect: string | Redirect): Redirect {
 
   return redirect;
 }
+
+export default redirects;

@@ -11,7 +11,7 @@ export const defaults: Options = {
 };
 
 /** Middleware to add/remove the www. domain */
-export default function www(userOptions?: Partial<Options>): Middleware {
+export function www(userOptions?: Partial<Options>): Middleware {
   const options = { ...defaults, ...userOptions };
 
   return async (request, next) => {
@@ -40,3 +40,5 @@ export default function www(userOptions?: Partial<Options>): Middleware {
     return await next(request);
   };
 }
+
+export default www;

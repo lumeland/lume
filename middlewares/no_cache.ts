@@ -1,7 +1,7 @@
 import type { Middleware } from "../core/server.ts";
 
 /** Add a header to prevent the browser cache */
-export default function noCache(): Middleware {
+export function noCache(): Middleware {
   return async (request, next) => {
     const response = await next(request);
     const { headers } = response;
@@ -12,3 +12,5 @@ export default function noCache(): Middleware {
     return response;
   };
 }
+
+export default noCache;

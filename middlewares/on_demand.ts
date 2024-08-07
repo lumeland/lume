@@ -12,7 +12,7 @@ export interface Options {
 }
 
 /** Render pages on demand */
-export default function onDemand(options: Options): Middleware {
+export function onDemand(options: Options): Middleware {
   const site = options.site;
   let router = options.router;
 
@@ -97,3 +97,5 @@ export interface MiddlewareOptions {
   extraData?: (request: Request) => Record<string, unknown>;
   routesFile?: string;
 }
+
+export default onDemand;

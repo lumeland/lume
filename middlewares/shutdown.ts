@@ -10,7 +10,7 @@ const defaults: Options = {
   retryAfter: 60 * 60 * 24, // 24 hours
 };
 
-export default function shutdown(
+export function shutdown(
   userOptions?: Partial<Options>,
 ): Middleware {
   const options = { ...defaults, ...userOptions };
@@ -38,3 +38,5 @@ function isHtml(request: Request) {
   const accept = request.headers.get("accept");
   return accept && accept.includes("text/html");
 }
+
+export default shutdown;

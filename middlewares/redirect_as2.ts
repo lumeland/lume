@@ -58,20 +58,24 @@ export const bridgyFed =
     else return new URL(`https://${host}${pathname}`, `https://${instance}/r/`);
   };
 
-export default (options: Options): Middleware => async (req, next) => {
-  const accept = req.headers.get("accept");
-  if (
-    accept && [
-      "application/activity+json",
-      'application/ld+json;profile="http://www.w3.org/ns/activitystreams"',
-      'application/ld+json; profile="http://www.w3.org/ns/activitystreams"',
-    ].some((type) => (accept.includes(type)))
-  ) {
-    const dest = await options.rewriteUrl(new URL(req.url), {
-      host: options.host,
-    });
-    if (dest) return Response.redirect(dest);
-  }
+export function redirectAS2(options: Options): Middleware {
+  return async (req, next) => {
+    const accept = req.headers.get("accept");
+    if (
+      accept && [
+        "application/activity+json",
+        'application/ld+json;profile="http://www.w3.org/ns/activitystreams"',
+        'application/ld+json; profile="http://www.w3.org/ns/activitystreams"',
+      ].some((type) => (accept.includes(type)))
+    ) {
+      const dest = await options.rewriteUrl(new URL(req.url), {
+        host: options.host,
+      });
+      if (dest) return Response.redirect(dest);
+    }
 
-  return await next(req);
-};
+    return await next(req);
+  };
+}
+
+export default redirectAS2;
