@@ -33,4 +33,4 @@ export function toml(userOptions?: Options) {
   };
 }
 
-export default toml
+export default toml;
