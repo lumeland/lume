@@ -1,5 +1,5 @@
 import { assertStrictEquals as equals } from "../deps/assert.ts";
-import { attr, className } from "../plugins/attr.ts";
+import { attr, className } from "../plugins/attributes.ts";
 
 Deno.test("classname filter", () => {
   equals("one two", className("one", "two"));
