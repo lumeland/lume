@@ -1,4 +1,4 @@
-import { katex, KatexOptions } from "../deps/katex.ts";
+import { katex as Katex, KatexOptions } from "../deps/katex.ts";
 import { renderMathInElement } from "../deps/katex-auto-render/auto-render.ts";
 import { merge } from "../core/utils/object.ts";
 
@@ -50,7 +50,7 @@ export const defaults: Options = {
  * A plugin to render math equations using katex
  * @see https://lume.land/plugins/katex/
  */
-export default function (userOptions?: Options) {
+export function katex(userOptions?: Options) {
   const options = merge(defaults, userOptions);
   return (site: Site) => {
     site.process(options.extensions, (pages) => {
@@ -64,7 +64,7 @@ export default function (userOptions?: Options) {
         document.querySelectorAll(options.cssSelector)
           .forEach((element) => {
             try {
-              const rendered = katex.renderToString(
+              const rendered = Katex.renderToString(
                 element.textContent,
                 options.options,
               );
@@ -93,3 +93,5 @@ export default function (userOptions?: Options) {
     });
   };
 }
+
+export default katex
