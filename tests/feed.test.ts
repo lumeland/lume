@@ -3,7 +3,7 @@ import feed from "../plugins/feed.ts";
 
 Deno.test("RSS plugin", async (t) => {
   const site = getSite({
-    src: "normal",
+    src: "feed",
     location: new URL("https://example.com/"),
   });
 
@@ -17,7 +17,7 @@ Deno.test("RSS plugin", async (t) => {
       items: {
         title: (data) => data.title?.toUpperCase(),
         updated: "=date",
-        image: "=metas.image",
+        published: "=published",
       },
     }),
   );

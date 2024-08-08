@@ -4,6 +4,7 @@ import { getCurrentVersion } from "../core/utils/lume_version.ts";
 import { getDataValue } from "../core/utils/data_values.ts";
 import { cdata, stringify } from "../deps/xml.ts";
 import { Page } from "../core/file.ts";
+import { parseDate } from "../core/utils/date.ts";
 
 import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
@@ -171,8 +172,9 @@ export function feed(userOptions?: Options) {
             title: getDataValue(data, items.title),
             url: site.url(data.url, true),
             description: getDataValue(data, items.description),
-            published: getDataValue(data, items.published),
-            updated: getDataValue(data, items.updated),
+            published: toDate(getDataValue(data, items.published)) ||
+              new Date(),
+            updated: toDate(getDataValue(data, items.updated)),
             content: fixedContent,
             lang: getDataValue(data, items.lang),
             image,
@@ -290,6 +292,16 @@ function clean(obj: Record<string, unknown>) {
   return Object.fromEntries(
     Object.entries(obj).filter(([, value]) => value !== undefined),
   );
+}
+
+function toDate(date?: string | number | Date): Date | undefined {
+  if (date instanceof Date) {
+    return date;
+  }
+  if (date === undefined) {
+    return;
+  }
+  return parseDate(date);
 }
 
 export default feed;
