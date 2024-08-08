@@ -3,7 +3,7 @@ import { localIp } from "../core/utils/net.ts";
 import { toFileUrl } from "../deps/path.ts";
 import { getConfigFile } from "../core/utils/lume_config.ts";
 import { setEnv } from "../core/utils/env.ts";
-import { createSite } from "./run.ts";
+import { createSite } from "./utils.ts";
 
 export async function runCms(
   config: string | undefined,
