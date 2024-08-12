@@ -1,7 +1,7 @@
-{{- if item.data }}
+{{- if item.data.url }}
 <a href="{{ item.data.url }}">{{ item.data.title }}</a>
 {{- else }}
-<strong>{{ item.slug }}</strong>
+<strong>{{ item.data.basename }}</strong>
 {{- /if }}
 
 {{- if item.children }}

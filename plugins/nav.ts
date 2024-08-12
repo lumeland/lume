@@ -15,6 +15,7 @@ export interface Options {
 
 export const defaults: Options = {
   name: "nav",
+  order: "basename=asc-locale",
 };
 
 /**
@@ -128,7 +129,7 @@ export class Nav {
   /* Build the entire navigation tree */
   #buildNav(query?: string, sort?: string): NavData {
     const nav: TempNavData = {
-      slug: "",
+      data: { basename: "" } as Data,
     };
 
     const dataPages = this.#search.pages(query);
@@ -154,7 +155,7 @@ export class Nav {
 
         if (!current.children[part]) {
           current = current.children[part] = {
-            slug: part,
+            data: { basename: part } as Data,
             parent: current,
           };
         } else {
@@ -175,21 +176,19 @@ export class Nav {
 }
 
 export interface TempNavData {
-  slug: string;
-  data?: Data;
+  data: Data;
   children?: Record<string, TempNavData>;
   parent?: TempNavData;
 }
 
 export interface NavData {
-  slug: string;
-  data?: Data;
+  data: Data;
   children?: NavData[];
   parent?: NavData;
 }
 
 function getNextChild(item: NavData): Data | undefined {
-  if (item.data) {
+  if (item.data.url) {
     return item.data;
   }
 
@@ -218,7 +217,7 @@ function getNextParent(item: NavData): NavData | undefined {
 }
 
 function getPreviousChild(item: NavData): Data | undefined {
-  if (item.data) {
+  if (item.data?.url) {
     return item.data;
   }
 
@@ -259,7 +258,7 @@ function searchData(parts: string[], menu: NavData): NavData | undefined {
 
   if (menu.children?.length) {
     for (const child of menu.children) {
-      if (child.slug === part) {
+      if (child.data.basename === part) {
         return searchData(parts, child);
       }
     }
@@ -273,7 +272,6 @@ function convert(
   parent?: NavData,
 ): NavData {
   const data: NavData = {
-    slug: temp.slug,
     data: temp.data,
     parent,
   };
@@ -281,12 +279,7 @@ function convert(
   data.children = temp.children
     ? Object.values(temp.children)
       .map((child) => convert(child, order, data))
-      .sort((a, b) => {
-        if (a.data && b.data) {
-          return order(a.data, b.data);
-        }
-        return a.slug < b.slug ? -1 : 1;
-      })
+      .sort((a, b) => order(a.data, b.data))
     : undefined;
 
   return data;

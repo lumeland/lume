@@ -14,6 +14,28 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New functions `nav.nextPage()` and `nav.previousPage()` for `nav` plugin.
 - New sort options `asc-locale` and `desc-locale`.
 
+### Changed
+- BREAKING CHANGES in the `nav` plugin:
+  - The `child.slug` property was deleted. Use `child.data.basename`.
+  - All nav elements has the `data` attribute.
+  - To check if a nav item corresponds to a page:
+    ```js
+    // Lume 2.2
+    if (item.data) {
+      return `<a href="{{ item.data.url }}">{{ item.data.title }}</a>`
+    } else {
+      return `<strong>{{ item.slug }}</strong>`
+    }
+
+    // Lume 2.3
+    if (item.data.url) {
+      return `<a href="{{ item.data.url }}">{{ item.data.title }}</a>`
+    } else {
+      return `<strong>{{ item.data.basename }}</strong>`
+    }
+    ```
+  - These changes improve the sorting of the elements in the nav tree.
+
 ### Removed
 - `cms.ts` file.
 
