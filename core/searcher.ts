@@ -417,11 +417,12 @@ function compileValue(value: string): unknown {
  */
 export function buildSort(sort: string): (a: Data, b: Data) => number {
   let fn = "0";
+  let init = "";
 
   const pieces = sort.split(/\s+/).filter((arg) => arg);
 
   pieces.reverse().forEach((arg) => {
-    const match = arg.match(/([\w.-]+)(?:=(asc|desc))?/);
+    const match = arg.match(/([\w.-]+)(?:=(asc-locale|desc-locale|asc|desc))?/);
 
     if (!match) {
       return;
@@ -429,10 +430,28 @@ export function buildSort(sort: string): (a: Data, b: Data) => number {
 
     let [, key, direction] = match;
     key = key.replaceAll(".", "?.");
-    const operator = direction === "desc" ? ">" : "<";
-    fn =
-      `(a.${key} == b.${key} ? ${fn} : (a.${key} ${operator} b.${key} ? -1 : 1))`;
+    switch (direction) {
+      case "asc-locale":
+        init = "const collator = new Intl.Collator();";
+        fn =
+          `(a.${key} == b.${key} ? ${fn} : collator.compare(a.${key} || "", b.${key} || ""))`;
+        break;
+      case "desc-locale":
+        init = "const collator = new Intl.Collator();";
+        fn =
+          `(a.${key} == b.${key} ? ${fn} : collator.compare(b.${key} || "", a.${key} || ""))`;
+        break;
+      case "desc":
+        fn = `(a.${key} == b.${key} ? ${fn} : a.${key} < b.${key} ? 1 : -1)`;
+        break;
+      default:
+        fn = `(a.${key} == b.${key} ? ${fn} : a.${key} > b.${key} ? 1 : -1)`;
+        break;
+    }
   });
 
-  return new Function("a", "b", `return ${fn}`) as (a: Data, b: Data) => number;
+  return new Function(`${init} return function (a, b) { return ${fn}; }`)() as (
+    a: Data,
+    b: Data,
+  ) => number;
 }

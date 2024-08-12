@@ -54,13 +54,15 @@ snapshot[`Search Date by upper than 1`] = `"(data) => data.foo?.getTime() > valu
 
 snapshot[`Search Date by upper or equals than 1`] = `"(data) => data.foo?.getTime() >= value0.getTime()"`;
 
-snapshot[`Sort by one field 1`] = `[Function: anonymous]`;
+snapshot[`Sort by one field 1`] = `[Function (anonymous)]`;
 
-snapshot[`Sort by one field DESC 1`] = `[Function: anonymous]`;
+snapshot[`Sort by one field DESC 1`] = `[Function (anonymous)]`;
 
-snapshot[`Sort by two fields 1`] = `[Function: anonymous]`;
+snapshot[`Sort by two fields 1`] = `[Function (anonymous)]`;
 
-snapshot[`Sort by two fields, second is DESC 1`] = `[Function: anonymous]`;
+snapshot[`Sort by two fields, second is DESC 1`] = `[Function (anonymous)]`;
+
+snapshot[`Sort by two locale fields 1`] = `'function (a, b) { return (a.order == b.order ? (a.title == b.title ? 0 : collator.compare(b.title || "", a.title || "")) : collator.compare(a.order || "", b.order || "")); }'`;
 
 snapshot[`Test the file searcher 1`] = `
 [

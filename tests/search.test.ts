@@ -188,6 +188,12 @@ Deno.test("Sort by two fields, second is DESC", async (t) => {
   await assertSnapshot(t, sort);
 });
 
+Deno.test("Sort by two locale fields", async (t) => {
+  const sort = buildSort("order=asc-locale title=desc-locale");
+
+  await assertSnapshot(t, sort.toString());
+});
+
 Deno.test("Test the file searcher", async (t) => {
   const site = getSite({
     src: "normal",
