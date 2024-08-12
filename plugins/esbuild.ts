@@ -111,12 +111,13 @@ export function esbuild(userOptions?: Options) {
     site.addEventListener("beforeSave", stop);
 
     /** Run esbuild and returns the output files */
+    const entryContent: Record<string, string> = {};
+
     async function runEsbuild(
       pages: Page[],
       extraOptions: BuildOptions = {},
     ): Promise<[OutputFile[], boolean]> {
       let enableAllSourceMaps = false;
-      const entryContent: Record<string, string> = {};
       const entryPoints: string[] = [];
 
       pages.forEach((page) => {

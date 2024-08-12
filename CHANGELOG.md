@@ -21,6 +21,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Remove empty directories in `dest` folder.
 - Watcher new files on Windows.
 - Feed plugin: error when the updated/published value is a string [#638].
+- Fixed esbuild reload [#647].
 
 ## [2.2.4] - 2024-07-18
 ### Added
@@ -469,6 +470,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#633]: https://github.com/lumeland/lume/issues/633
 [#634]: https://github.com/lumeland/lume/issues/634
 [#638]: https://github.com/lumeland/lume/issues/638
+[#647]: https://github.com/lumeland/lume/issues/647
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.2.4...HEAD
 [2.2.4]: https://github.com/lumeland/lume/compare/v2.2.3...v2.2.4
