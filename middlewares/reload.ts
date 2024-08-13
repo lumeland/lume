@@ -13,14 +13,33 @@ export function reload(options: Options): Middleware {
   const sockets = new Set<WebSocket>();
   const { watcher } = options;
 
+  // Keep track of the change revision. A watch change
+  // can be dispatched in-between the browser loading
+  // the HTML and before it has established a WebSocket
+  // connection. In this case the browser is out of sync
+  // and shows an old version of the page. Upon establishing
+  // a websocket connection we send the latest revision
+  // and the browser can potentially refresh itself when
+  // it has an older revision. The initial revision is
+  // sent to the browser as part of the HTML.
+  let revision = 0;
+  let lastAcknowledgedRevision = 0;
+
   watcher.addEventListener("change", (event) => {
+    revision++;
+
     if (!sockets.size) {
       return;
     }
 
+    lastAcknowledgedRevision = revision;
+
     const files = event.files!;
-    const urls = Array.from(files).map((file) => normalizePath(file));
-    const message = JSON.stringify(urls);
+    const message = JSON.stringify({
+      type: "update",
+      revision,
+      files: Array.from(files).map((file) => normalizePath(file)),
+    });
     sockets.forEach((socket) => {
       if (socket.readyState === WebSocket.OPEN) {
         socket.send(message);
@@ -36,7 +55,19 @@ export function reload(options: Options): Middleware {
     if (request.headers.get("upgrade") === "websocket") {
       const { socket, response } = Deno.upgradeWebSocket(request);
 
-      socket.onopen = () => sockets.add(socket);
+      socket.onopen = () => {
+        // Browser was in the process of being reloaded. Notify
+        // the user that the latest changes were sent.
+        if (lastAcknowledgedRevision < revision) {
+          lastAcknowledgedRevision = revision;
+          console.log("Changes sent to the browser");
+        }
+
+        // Tell the browser about the most recent revision
+        socket.send(JSON.stringify({ type: "init", revision }));
+
+        sockets.add(socket);
+      };
       socket.onclose = () => sockets.delete(socket);
       socket.onerror = (e) => console.log("Socket errored", e);
 
@@ -63,8 +94,9 @@ export function reload(options: Options): Middleware {
         result = await reader.read();
       }
 
+      // Add live reload script and pass initial revision
       body +=
-        `<script type="module" id="lume-live-reload">${reloadClient}; liveReload();</script>`;
+        `<script type="module" id="lume-live-reload">${reloadClient}; liveReload(${revision});</script>`;
 
       const { status, statusText, headers } = response;
 
