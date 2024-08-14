@@ -21,6 +21,8 @@ if (!level || level === "NOTSET") {
   level = "INFO";
 }
 
+const COLOR_TAG_REG = /<(\w+)>([^<]+)<\/\1>/g;
+
 /**
  * This is the default logger. It will output color coded log messages to the
  * console via `console.log()`.
@@ -42,7 +44,7 @@ class ConsoleHandler extends logger.BaseHandler {
     }
 
     return msg.replaceAll(
-      /<(\w+)>([^<]+)<\/\1>/g,
+      COLOR_TAG_REG,
       (_, name, content) => logFormats[name]!(content),
     );
   }
