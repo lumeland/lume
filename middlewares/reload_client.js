@@ -1,6 +1,7 @@
-export default function liveReload() {
+export default function liveReload(initRevision) {
   let ws;
   let wasClosed = false;
+  let revision = initRevision;
 
   function socket() {
     if (ws && ws.readyState !== 3) {
@@ -26,14 +27,26 @@ export default function liveReload() {
       }
     };
     ws.onmessage = (e) => {
-      const files = JSON.parse(e.data);
+      const message = JSON.parse(e.data);
 
-      if (!Array.isArray(files)) {
-        console.log(e.data);
+      if (message.type === "init" && message.revision > revision) {
+        location.reload();
         return;
       }
 
-      refresh(files);
+      // Always update revision
+      revision = message.revision;
+
+      if (message.type === "update") {
+        const files = message.files;
+
+        if (!Array.isArray(message.files)) {
+          console.log(e.data);
+          return;
+        }
+
+        refresh(files);
+      }
     };
     ws.onclose = () => {
       wasClosed = true;

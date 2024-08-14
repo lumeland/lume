@@ -77,30 +77,31 @@ export default class FSWatcher implements Watcher {
   async start() {
     const { root, ignore, debounce } = this.options;
     const watcher = Deno.watchFs(root);
-    const changes = new Set<string>();
+    const changeQueue: Set<string>[] = [];
     let timer = 0;
     let runningCallback = false;
 
     await this.dispatchEvent({ type: "start" });
 
     const callback = async () => {
-      if (!changes.size || runningCallback) {
-        return;
-      }
-
-      const files = new Set(changes);
-      changes.clear();
-
       runningCallback = true;
 
-      try {
-        const result = await this.dispatchEvent({ type: "change", files });
-        if (false === result) {
-          return watcher.close();
+      let changes: Set<string> | undefined;
+      while ((changes = changeQueue.pop()) !== undefined) {
+        try {
+          const result = await this.dispatchEvent({
+            type: "change",
+            files: changes,
+          });
+          if (false === result) {
+            runningCallback = false;
+            return watcher.close();
+          }
+        } catch (error) {
+          await this.dispatchEvent({ type: "error", error });
         }
-      } catch (error) {
-        await this.dispatchEvent({ type: "error", error });
       }
+
       runningCallback = false;
     };
 
@@ -123,11 +124,24 @@ export default class FSWatcher implements Watcher {
         continue;
       }
 
+      const changes = new Set<string>();
       paths.forEach((path) => changes.add(normalizePath(relative(root, path))));
 
-      // Debounce
-      clearTimeout(timer);
-      timer = setTimeout(callback, debounce ?? 100);
+      // If we're already processing and have a pending
+      // queue item, we can merge all future changes together
+      if (runningCallback && changeQueue.length > 0) {
+        const last = changeQueue[changeQueue.length - 1];
+        changeQueue[changeQueue.length - 1] = last.union(changes);
+      } else {
+        changeQueue.unshift(changes);
+
+        // Only start if processing queue is not already running
+        if (!runningCallback) {
+          // Debounce
+          clearTimeout(timer);
+          timer = setTimeout(callback, debounce ?? 100);
+        }
+      }
     }
   }
 }
