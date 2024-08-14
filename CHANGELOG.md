@@ -45,6 +45,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Watcher new files on Windows.
 - Feed plugin: error when the updated/published value is a string [#638].
 - Fixed esbuild reload [#647].
+- Fixed serve showing stale pages [#649].
 
 ## [2.2.4] - 2024-07-18
 ### Added
