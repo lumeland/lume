@@ -46,6 +46,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Feed plugin: error when the updated/published value is a string [#638].
 - Fixed esbuild reload [#647].
 - Fixed serve showing stale pages [#649].
+- Speed up logging to console with colors [#651]
 
 ## [2.2.4] - 2024-07-18
 ### Added
