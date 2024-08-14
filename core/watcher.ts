@@ -128,22 +128,19 @@ export default class FSWatcher implements Watcher {
       paths.forEach((path) => changes.add(normalizePath(relative(root, path))));
 
       // If we're already processing and have a pending
-      // queue item, we can potentially batch the two
-      // together.
+      // queue item, we can merge all future changes together
       if (runningCallback && changeQueue.length > 0) {
         const last = changeQueue[changeQueue.length - 1];
-        const newChanges = Array.from(changes.values());
-        if (newChanges.every((change) => last.has(change))) {
-          continue;
-        }
-      }
-      changeQueue.unshift(changes);
+        changeQueue[changeQueue.length - 1] = last.union(changes);
+      } else {
+        changeQueue.unshift(changes);
 
-      // Only start if processing queue is not already running
-      if (!runningCallback) {
-        // Debounce
-        clearTimeout(timer);
-        timer = setTimeout(callback, debounce ?? 100);
+        // Only start if processing queue is not already running
+        if (!runningCallback) {
+          // Debounce
+          clearTimeout(timer);
+          timer = setTimeout(callback, debounce ?? 100);
+        }
       }
     }
   }
