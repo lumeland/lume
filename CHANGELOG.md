@@ -40,7 +40,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `cms.ts` file.
 
 ### Fixed
-- Updated deps: `std`, `liquidjs`, `preact`, `tailwindcss`, `xml`, `postcss`, `autoprefixer`, `unocss`.
+- Updated deps: `std`, `liquidjs`, `preact`, `tailwindcss`, `xml`, `postcss`, `autoprefixer`, `unocss`, `terser`, `eta`, `lightningcss`, `markdown-it-attrs`, `decap-server`.
 - Remove empty directories in `dest` folder.
 - Watcher new files on Windows.
 - Feed plugin: error when the updated/published value is a string [#638].
@@ -61,6 +61,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - DecapCMS script: switch from `unpkg` to `jsDelivr` for performance.
 - Add `Server.addr` for getting local address [#634].
 - Bug calculating the filename of remote files.
+- Replaced `unpkg` with `jsdelivr` for stability and response times.
 
 ## [2.2.3] - 2024-07-05
 ### Added
@@ -496,6 +497,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#634]: https://github.com/lumeland/lume/issues/634
 [#638]: https://github.com/lumeland/lume/issues/638
 [#647]: https://github.com/lumeland/lume/issues/647
+[#649]: https://github.com/lumeland/lume/issues/649
+[#651]: https://github.com/lumeland/lume/issues/651
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.2.4...HEAD
 [2.2.4]: https://github.com/lumeland/lume/compare/v2.2.3...v2.2.4
