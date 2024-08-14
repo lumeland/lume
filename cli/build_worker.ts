@@ -27,13 +27,13 @@ onmessage = async (event) => {
 
   // Start the watcher
   const watcher = site.getWatcher();
-  const configFile = normalizePath(
+  const _config = normalizePath(
     fromFileUrl(site._data.configFile as string),
     site.root(),
   );
 
   function mustReload(files: Set<string>): boolean {
-    if (files.has(configFile)) {
+    if (files.has(_config)) {
       return true;
     }
     return false;
