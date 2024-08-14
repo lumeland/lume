@@ -30,7 +30,7 @@ faster, simpler and easier to use and configure, besides being super flexible.
 
 Make sure you have [Deno installed](https://deno.land/#installation).
 
-Create your first page, for example, using the Nunjucks file `index.njk`:
+Create your first page, for example, using the Vento file `index.vto`:
 
 ```html
 ---
