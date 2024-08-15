@@ -6,7 +6,7 @@ Deno.test("nav plugin", async (t) => {
     src: "nav",
   });
 
-  site.use(nav());
+  site.use(nav({ order: "order basename" }));
 
   await build(site);
   await assertSiteSnapshot(t, site);
@@ -18,7 +18,7 @@ Deno.test("nav plugin with pretty urls disabled", async (t) => {
     prettyUrls: false,
   });
 
-  site.use(nav());
+  site.use(nav({ order: "order basename" }));
 
   await build(site);
   await assertSiteSnapshot(t, site);
