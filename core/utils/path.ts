@@ -98,3 +98,10 @@ export function resolveInclude(
     ? normalized
     : normalizePath(posix.join(includesDir, normalized));
 }
+
+/**
+ * decodeURI() can't decode the `%` character, as it is used in any encoded character
+ */
+export function decodeURIComponentSafe(path: string): string{
+  return decodeURIComponent(path.replace(/%(?![0-9a-fA-F]+)/g, '%25'));
+}

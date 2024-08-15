@@ -6,6 +6,7 @@ import Events from "./events.ts";
 import { serveFile as HttpServeFile } from "../deps/http.ts";
 
 import type { Event, EventListener, EventOptions } from "./events.ts";
+import { decodeURIComponentSafe } from "./utils/path.ts";
 
 /** The options to configure the local server */
 export interface Options extends Deno.ServeOptions {
@@ -128,10 +129,7 @@ export async function serveFile(
   request: Request,
 ): Promise<Response> {
   const url = new URL(request.url);
-  const percentEscapedPathname = url.pathname.replace(/%(?![0-9a-fA-F]+)/g, '%25');
-  console.log("🚀 ~ url.pathname:", url.pathname)
-  console.log("🚀 ~ percentEscapedPathname:", percentEscapedPathname)
-  const pathname = decodeURIComponent(percentEscapedPathname);
+  const pathname = decodeURIComponentSafe(url.pathname)
   const path = posix.join(root, pathname);
 
   try {
