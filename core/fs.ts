@@ -118,8 +118,15 @@ export default class FS {
 
   #walkFs(dir: Entry) {
     const dirPath = posix.join(this.options.root, dir.path);
+    let dirEntries
 
-    for (const dirEntry of Deno.readDirSync(dirPath)) {
+    try {
+      dirEntries = Deno.readDirSync(dirPath);
+    } catch {
+      console.error(`Error: The system cannot find the path at ${dirPath}.`)
+      Deno.exit()
+    }
+    for (const dirEntry of dirEntries) {
       const path = posix.join(dir.path, dirEntry.name);
 
       if (dirEntry.isSymlink) {

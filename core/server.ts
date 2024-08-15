@@ -128,7 +128,9 @@ export async function serveFile(
   request: Request,
 ): Promise<Response> {
   const url = new URL(request.url);
-  const percentEscapedPathname = url.pathname.replace(/%(?![0-9][0-9a-fA-F]+)/g, '%25');
+  const percentEscapedPathname = url.pathname.replace(/%(?![0-9a-fA-F]+)/g, '%25');
+  console.log("🚀 ~ url.pathname:", url.pathname)
+  console.log("🚀 ~ percentEscapedPathname:", percentEscapedPathname)
   const pathname = decodeURIComponent(percentEscapedPathname);
   const path = posix.join(root, pathname);
 

@@ -78,7 +78,7 @@ export class Page<D extends Data = Data> {
   get outputPath(): string {
     const url = this.data.url;
     const outputPath = url.endsWith("/") ? url + "index.html" : url;
-    const outputPathPercentEscaped = outputPath.replace(/%(?![0-9][0-9a-fA-F]+)/g, "%25")
+    const outputPathPercentEscaped = outputPath.replace(/%(?![0-9a-fA-F]+)/g, "%25")
     return decodeURIComponent(outputPathPercentEscaped);
   }
 
