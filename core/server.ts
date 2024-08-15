@@ -122,13 +122,14 @@ export default class Server {
   }
 }
 
-/** Server a static file */
+/** Serve a static file */
 export async function serveFile(
   root: string,
   request: Request,
 ): Promise<Response> {
   const url = new URL(request.url);
-  const pathname = decodeURIComponent(url.pathname);
+  const percentEscapedPathname = url.pathname.replace(/%(?![0-9][0-9a-fA-F]+)/g, '%25');
+  const pathname = decodeURIComponent(percentEscapedPathname);
   const path = posix.join(root, pathname);
 
   try {
