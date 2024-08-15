@@ -26,7 +26,7 @@ export function nav(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    const nav = new Nav(site.search);
+    const nav = new Nav(site.search, options.order);
     site.data(options.name, nav);
     site.addEventListener("beforeUpdate", () => nav.deleteCache());
   };
@@ -36,9 +36,11 @@ export function nav(userOptions?: Options) {
 export class Nav {
   #cache = new Map<string, NavData>();
   #search: Searcher;
+  #defaultOrder?: string;
 
-  constructor(searcher: Searcher) {
+  constructor(searcher: Searcher, defaultOrder?: string) {
     this.#search = searcher;
+    this.#defaultOrder = defaultOrder;
   }
 
   /** Clear the cache (used after a change in watch mode) */
@@ -171,7 +173,7 @@ export class Nav {
       }
     }
 
-    return convert(nav, buildSort(sort || "basename"));
+    return convert(nav, buildSort(sort || this.#defaultOrder || "basename"));
   }
 }
 
