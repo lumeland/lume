@@ -4,6 +4,7 @@ import { documentToString, stringToDocument } from "./utils/dom.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
 import type { ProxyComponents } from "./source.ts";
 import type { Entry } from "./fs.ts";
+import { decodeURIComponentSafe } from "./utils/path.ts";
 
 /** A page of the site */
 export class Page<D extends Data = Data> {
@@ -77,7 +78,8 @@ export class Page<D extends Data = Data> {
   /** Returns the output path of this page */
   get outputPath(): string {
     const url = this.data.url;
-    return decodeURI(url.endsWith("/") ? url + "index.html" : url);
+    const outputPath = url.endsWith("/") ? url + "index.html" : url;
+    return decodeURIComponentSafe(outputPath)
   }
 
   /** Returns the source path of this page */

@@ -6,6 +6,7 @@ import Events from "./events.ts";
 import { serveFile as HttpServeFile } from "../deps/http.ts";
 
 import type { Event, EventListener, EventOptions } from "./events.ts";
+import { decodeURIComponentSafe } from "./utils/path.ts";
 
 /** The options to configure the local server */
 export interface Options extends Deno.ServeOptions {
@@ -122,13 +123,13 @@ export default class Server {
   }
 }
 
-/** Server a static file */
+/** Serve a static file */
 export async function serveFile(
   root: string,
   request: Request,
 ): Promise<Response> {
   const url = new URL(request.url);
-  const pathname = decodeURIComponent(url.pathname);
+  const pathname = decodeURIComponentSafe(url.pathname)
   const path = posix.join(root, pathname);
 
   try {
