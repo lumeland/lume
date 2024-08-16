@@ -79,7 +79,7 @@ export class Page<D extends Data = Data> {
   get outputPath(): string {
     const url = this.data.url;
     const outputPath = url.endsWith("/") ? url + "index.html" : url;
-    return decodeURIComponentSafe(outputPath)
+    return decodeURIComponentSafe(outputPath);
   }
 
   /** Returns the source path of this page */

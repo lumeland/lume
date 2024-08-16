@@ -129,7 +129,7 @@ export async function serveFile(
   request: Request,
 ): Promise<Response> {
   const url = new URL(request.url);
-  const pathname = decodeURIComponentSafe(url.pathname)
+  const pathname = decodeURIComponentSafe(url.pathname);
   const path = posix.join(root, pathname);
 
   try {

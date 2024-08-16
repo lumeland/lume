@@ -40,7 +40,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `cms.ts` file.
 
 ### Fixed
-- Escape the `%` character in the URI.
+- Escape the `%` character in the URI [#652].
 - Updated deps: `std`, `liquidjs`, `preact`, `tailwindcss`, `xml`, `postcss`, `autoprefixer`, `unocss`, `terser`, `eta`, `lightningcss`, `markdown-it-attrs`, `decap-server`.
 - Remove empty directories in `dest` folder.
 - Watcher new files on Windows.
@@ -500,6 +500,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#647]: https://github.com/lumeland/lume/issues/647
 [#649]: https://github.com/lumeland/lume/issues/649
 [#651]: https://github.com/lumeland/lume/issues/651
+[#652]: https://github.com/lumeland/lume/issues/652
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.2.4...HEAD
 [2.2.4]: https://github.com/lumeland/lume/compare/v2.2.3...v2.2.4
