@@ -215,7 +215,8 @@ snapshot[`nav plugin 3`] = `
       
     </nav>
   </body>
-</html>',
+</html>
+',
     data: {
       basename: "docs",
       children: "",
@@ -337,7 +338,8 @@ snapshot[`nav plugin 3`] = `
       
     </nav>
   </body>
-</html>',
+</html>
+',
     data: {
       basename: "about-docs",
       children: "",
@@ -463,7 +465,8 @@ snapshot[`nav plugin 3`] = `
       
     </nav>
   </body>
-</html>',
+</html>
+',
     data: {
       basename: "pages",
       children: "",
@@ -590,7 +593,8 @@ snapshot[`nav plugin 3`] = `
       
     </nav>
   </body>
-</html>',
+</html>
+',
     data: {
       basename: "first",
       children: "",
@@ -715,7 +719,8 @@ snapshot[`nav plugin 3`] = `
       
     </nav>
   </body>
-</html>',
+</html>
+',
     data: {
       basename: "second",
       children: "",
@@ -835,7 +840,8 @@ snapshot[`nav plugin 3`] = `
       
     </nav>
   </body>
-</html>',
+</html>
+',
     data: {
       basename: "index",
       children: "",
@@ -1082,7 +1088,8 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       
     </nav>
   </body>
-</html>',
+</html>
+',
     data: {
       basename: "docs",
       children: "",
@@ -1204,7 +1211,8 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       
     </nav>
   </body>
-</html>',
+</html>
+',
     data: {
       basename: "about-docs",
       children: "",
@@ -1330,7 +1338,8 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       
     </nav>
   </body>
-</html>',
+</html>
+',
     data: {
       basename: "pages",
       children: "",
@@ -1457,7 +1466,8 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       
     </nav>
   </body>
-</html>',
+</html>
+',
     data: {
       basename: "first",
       children: "",
@@ -1582,7 +1592,8 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       
     </nav>
   </body>
-</html>',
+</html>
+',
     data: {
       basename: "second",
       children: "",
@@ -1698,7 +1709,8 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       
     </nav>
   </body>
-</html>',
+</html>
+',
     data: {
       basename: "index",
       children: "",
