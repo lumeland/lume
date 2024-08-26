@@ -170,14 +170,15 @@ snapshot[`Build a markdown site 3`] = `
   {
     content: \`<!DOCTYPE html>
 <p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<p>belong to the previous footnote.</p>
+<!-- deno-fmt-ignore -->
+<p>Subsequent paragraphs are indented to show that they
+belong to the previous footnote.</p>
 <h4 class="mt-3">Footnotes</h4>
 <section class="footnotes">
 <ol class="footnotes-list">
 <li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks.</p>
-<p>Subsequent paragraphs are indented to show that they <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
@@ -185,14 +186,15 @@ snapshot[`Build a markdown site 3`] = `
     data: {
       basename: "footnote",
       children: \`<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<p>belong to the previous footnote.</p>
+<!-- deno-fmt-ignore -->
+<p>Subsequent paragraphs are indented to show that they
+belong to the previous footnote.</p>
 <h4 class="mt-3">Footnotes</h4>
 <section class="footnotes">
 <ol class="footnotes-list">
 <li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks.</p>
-<p>Subsequent paragraphs are indented to show that they <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
@@ -203,9 +205,9 @@ snapshot[`Build a markdown site 3`] = `
 
 [^longnote]: Here's one with multiple blocks.
 
+<!-- deno-fmt-ignore -->
     Subsequent paragraphs are indented to show that they
-
-belong to the previous footnote.
+    belong to the previous footnote.
 ",
       date: [],
       mergedKeys: [
@@ -663,14 +665,15 @@ snapshot[`Build a markdown with hooks 3`] = `
   {
     content: \`<!DOCTYPE html>
 <p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<p>belong to the previous footnote.</p>
+<!-- deno-fmt-ignore -->
+<p>Subsequent paragraphs are indented to show that they
+belong to the previous footnote.</p>
 <h4 class="mt-3">Footnotes</h4>
 <section class="footnotes">
 <ol class="footnotes-list">
 <li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks.</p>
-<p>Subsequent paragraphs are indented to show that they <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
@@ -678,14 +681,15 @@ snapshot[`Build a markdown with hooks 3`] = `
     data: {
       basename: "footnote",
       children: \`<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<p>belong to the previous footnote.</p>
+<!-- deno-fmt-ignore -->
+<p>Subsequent paragraphs are indented to show that they
+belong to the previous footnote.</p>
 <h4 class="mt-3">Footnotes</h4>
 <section class="footnotes">
 <ol class="footnotes-list">
 <li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks.</p>
-<p>Subsequent paragraphs are indented to show that they <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
@@ -696,9 +700,9 @@ snapshot[`Build a markdown with hooks 3`] = `
 
 [^longnote]: Here's one with multiple blocks.
 
+<!-- deno-fmt-ignore -->
     Subsequent paragraphs are indented to show that they
-
-belong to the previous footnote.
+    belong to the previous footnote.
 ",
       date: [],
       mergedKeys: [
