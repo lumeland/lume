@@ -12,6 +12,12 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin `sri`.
 - Improved plugin docs with links to the online documentation.
 - New functions `nav.nextPage()` and `nav.previousPage()` for `nav` plugin.
+- New method `toJSON()` added to the result of `nav.menu()` for `nav` plugin.
+  For example:
+  ```js
+  const menu = nav.menu();
+  JSON.stringify(menu);
+  ```
 - New sort options `asc-locale` and `desc-locale`.
 
 ### Changed

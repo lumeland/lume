@@ -187,6 +187,16 @@ export interface NavData {
   data: Data;
   children?: NavData[];
   parent?: NavData;
+  toJSON(): NavJSON;
+}
+
+export interface NavJSON {
+  data: {
+    title?: string;
+    url?: string;
+    basename: string;
+  };
+  children?: NavJSON[];
 }
 
 function getNextChild(item: NavData): Data | undefined {
@@ -276,6 +286,16 @@ function convert(
   const data: NavData = {
     data: temp.data,
     parent,
+    toJSON() {
+      return {
+        data: {
+          title: this.data.title,
+          url: this.data.url,
+          basename: this.data.basename,
+        },
+        children: this.children?.map((child) => child.toJSON()),
+      };
+    },
   };
 
   data.children = temp.children
