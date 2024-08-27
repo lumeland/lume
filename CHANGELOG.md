@@ -47,7 +47,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Escape the `%` character in the URI [#652].
-- Updated deps: `std`, `liquidjs`, `preact`, `tailwindcss`, `xml`, `postcss`, `autoprefixer`, `unocss`, `terser`, `eta`, `lightningcss`, `markdown-it-attrs`, `decap-server`.
+- Updated deps: `std`, `liquidjs`, `preact`, `tailwindcss`, `xml`, `postcss`, `autoprefixer`, `unocss`, `terser`, `eta`, `lightningcss`, `markdown-it-attrs`, `decap-server`, `liquidjs`, `preact-render-to-string`, `esbuild`, `react` types, `sharp`.
 - Remove empty directories in `dest` folder.
 - Watcher new files on Windows.
 - Feed plugin: error when the updated/published value is a string [#638].

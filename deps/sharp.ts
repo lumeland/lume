@@ -1,5 +1,5 @@
-export { default } from "npm:sharp@0.33.4";
-import sharp from "npm:sharp@0.33.4";
+export { default } from "npm:sharp@0.33.5";
+import sharp from "npm:sharp@0.33.5";
 import icoEndec from "npm:ico-endec@0.1.6";
 import { svg2png } from "./svg2png.ts";
 
