@@ -54,7 +54,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Fixed esbuild reload [#647].
 - Fixed serve showing stale pages [#649].
 - Speed up logging to console with colors [#651]
-- Nav plugin: did ignore default order option.
+- Nav plugin: did ignore default order option [#655].
 
 ## [2.2.4] - 2024-07-18
 ### Added
@@ -508,6 +508,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#649]: https://github.com/lumeland/lume/issues/649
 [#651]: https://github.com/lumeland/lume/issues/651
 [#652]: https://github.com/lumeland/lume/issues/652
+[#655]: https://github.com/lumeland/lume/issues/655
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.2.4...HEAD
 [2.2.4]: https://github.com/lumeland/lume/compare/v2.2.3...v2.2.4
