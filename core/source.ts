@@ -166,10 +166,9 @@ export default class Source {
       return;
     }
 
-    const parsedData: RawData = {};
-    const basename = this.basenameParsers.reduce(
-      (name, parser) => parser(name, parsedData),
+    const { basename, ...parsedData } = runBasenameParsers(
       dir.name,
+      this.basenameParsers,
     );
 
     // Load the _data files
@@ -337,10 +336,9 @@ export default class Source {
           }
 
           const { ext } = format;
-          const parsedData: RawData = {};
-          const basename = this.basenameParsers.reduce(
-            (name, parser) => parser(name, parsedData),
+          const { basename, ...parsedData } = runBasenameParsers(
             entry.name.slice(0, -ext.length),
+            this.basenameParsers,
           );
 
           // Create the page
@@ -553,7 +551,7 @@ function toProxy(
 
 export type BuildFilter = (entry: Entry, page?: Page) => boolean;
 
-export type BasenameParser = (filename: string, data: RawData) => string;
+export type BasenameParser = (filename: string) => RawData | undefined;
 
 export interface ProxyComponents {
   // deno-lint-ignore no-explicit-any
@@ -601,4 +599,25 @@ function getOutputPath(
 
 function isWellKnownDir(entry: Entry) {
   return entry.type === "directory" && entry.path === "/.well-known";
+}
+
+function runBasenameParsers(
+  basename: string,
+  basenameParsers: BasenameParser[],
+): RawData {
+  const data: RawData = { basename };
+
+  for (const parser of basenameParsers) {
+    const res = parser(basename);
+    if (res === undefined) {
+      continue;
+    }
+    res.basename ??= basename;
+    Object.assign(data, res);
+    if (res.basename === "") {
+      break;
+    }
+  }
+
+  return data;
 }
