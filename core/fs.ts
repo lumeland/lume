@@ -1,4 +1,5 @@
 import { posix } from "../deps/path.ts";
+import { toFileUrl } from "../deps/path.ts";
 
 import type { RawData } from "./file.ts";
 import type { Loader } from "./loaders/mod.ts";
@@ -67,7 +68,7 @@ export default class FS {
   /** Update the entry and returns it if it was removed */
   update(path: string): Entry | undefined {
     // Check if it's a remote file
-    const src = posix.toFileUrl(posix.join(this.options.root, path)).href;
+    const src = toFileUrl(posix.join(this.options.root, path)).href;
     const remote = findMapByValue(this.remoteFiles, src);
     if (remote) {
       path = remote;
