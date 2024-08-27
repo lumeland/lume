@@ -66,7 +66,15 @@ export default class FS {
 
   /** Update the entry and returns it if it was removed */
   update(path: string): Entry | undefined {
+    // Check if it's a remote file
+    const src = posix.toFileUrl(posix.join(this.options.root, path)).href;
+    const remote = findMapByValue(this.remoteFiles, src);
+    if (remote) {
+      path = remote;
+    }
+
     const exist = this.entries.get(path);
+
     let entry: Entry;
     if (exist && exist.type !== "directory") {
       this.entries.delete(path);
@@ -75,6 +83,12 @@ export default class FS {
       entry = exist;
     } else {
       entry = this.addEntry({ path });
+    }
+
+    // Handle remote files
+    if (remote) {
+      entry.flags.add("remote");
+      entry.src = src;
     }
 
     // New directory, walk it
@@ -275,4 +289,12 @@ function createFileInfo(type: EntryType): Deno.FileInfo {
     blksize: null,
     blocks: null,
   };
+}
+
+function findMapByValue<K, V>(map: Map<K, V>, value: V): K | undefined {
+  for (const [key, val] of map.entries()) {
+    if (val === value) {
+      return key;
+    }
+  }
 }
