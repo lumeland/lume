@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [Unreleased]
+## [2.3.0] - 2024-08-30
 ### Added
 - New function `site.parseBasename`, to register new custom parsers to extract data from basenames.
 - Restart after changing the `_config.ts` or `_cms.ts` files.
@@ -512,7 +512,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#652]: https://github.com/lumeland/lume/issues/652
 [#655]: https://github.com/lumeland/lume/issues/655
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v2.2.4...HEAD
+[2.3.0]: https://github.com/lumeland/lume/compare/v2.2.4...v2.3.0
 [2.2.4]: https://github.com/lumeland/lume/compare/v2.2.3...v2.2.4
 [2.2.3]: https://github.com/lumeland/lume/compare/v2.2.2...v2.2.3
 [2.2.2]: https://github.com/lumeland/lume/compare/v2.2.1...v2.2.2
