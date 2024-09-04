@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.3.1] - Unreleased
+### Fixed
+- Updated deps: `sass`, `std`, `pagefind`, `xml`, `postcss`, `decap-cms`.
+
 ## [2.3.0] - 2024-08-30
 ### Added
 - New function `site.parseBasename`, to register new custom parsers to extract data from basenames.
@@ -512,6 +516,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#652]: https://github.com/lumeland/lume/issues/652
 [#655]: https://github.com/lumeland/lume/issues/655
 
+[2.3.1]: https://github.com/lumeland/lume/compare/v2.3.0...HEAD
 [2.3.0]: https://github.com/lumeland/lume/compare/v2.2.4...v2.3.0
 [2.2.4]: https://github.com/lumeland/lume/compare/v2.2.3...v2.2.4
 [2.2.3]: https://github.com/lumeland/lume/compare/v2.2.2...v2.2.3
