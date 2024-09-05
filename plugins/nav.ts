@@ -273,6 +273,9 @@ function searchData(parts: string[], menu: NavData): NavData | undefined {
       if (child.data.basename === part) {
         return searchData(parts, child);
       }
+      if (child.data.basename === "index" && menu.data.basename === part) {
+        return searchData(parts, child);
+      }
     }
   }
 }
