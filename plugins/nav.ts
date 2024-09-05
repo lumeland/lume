@@ -131,6 +131,7 @@ export class Nav {
   /* Build the entire navigation tree */
   #buildNav(query?: string, sort?: string): NavData {
     const nav: TempNavData = {
+      slug: "",
       data: { basename: "" } as Data,
     };
 
@@ -157,6 +158,7 @@ export class Nav {
 
         if (!current.children[part]) {
           current = current.children[part] = {
+            slug: part,
             data: { basename: part } as Data,
             parent: current,
           };
@@ -179,12 +181,14 @@ export class Nav {
 
 export interface TempNavData {
   data: Data;
+  slug: string;
   children?: Record<string, TempNavData>;
   parent?: TempNavData;
 }
 
 export interface NavData {
   data: Data;
+  slug: string;
   children?: NavData[];
   parent?: NavData;
   toJSON(): NavJSON;
@@ -270,10 +274,7 @@ function searchData(parts: string[], menu: NavData): NavData | undefined {
 
   if (menu.children?.length) {
     for (const child of menu.children) {
-      if (child.data.basename === part) {
-        return searchData(parts, child);
-      }
-      if (child.data.basename === "index" && menu.data.basename === part) {
+      if (child.slug === part) {
         return searchData(parts, child);
       }
     }
@@ -288,6 +289,7 @@ function convert(
 ): NavData {
   const data: NavData = {
     data: temp.data,
+    slug: temp.slug,
     parent,
     toJSON() {
       return {
