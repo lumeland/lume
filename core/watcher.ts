@@ -103,8 +103,8 @@ export default class FSWatcher implements Watcher {
           runningCallback = false;
           return watcher.close();
         }
-      } catch (error) {
-        await this.dispatchEvent({ type: "error", error });
+      } catch (err) {
+        await this.dispatchEvent({ type: "error", error: err as Error });
       }
 
       runningCallback = false;

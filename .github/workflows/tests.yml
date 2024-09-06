@@ -28,7 +28,7 @@ jobs:
         run: deno lint
 
       - name: Run tests
-        run: deno task test
+        run: deno run test
 
       - name: Test upgrade
         run: deno run -A cli.ts upgrade

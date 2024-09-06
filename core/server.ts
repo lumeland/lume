@@ -12,6 +12,7 @@ import { decodeURIComponentSafe } from "./utils/path.ts";
 export interface Options extends Deno.ServeOptions {
   /** The root path */
   root: string;
+  port?: number;
 }
 
 export const defaults: Options = {
@@ -92,10 +93,10 @@ export default class Server {
   stop() {
     try {
       this.#server?.shutdown();
-    } catch (error) {
+    } catch (err) {
       this.dispatchEvent({
         type: "error",
-        error,
+        error: err as Error,
       });
     }
   }

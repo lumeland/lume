@@ -30,9 +30,5 @@ const binaryFormats = new Set<string>([
 ]);
 
 export default function getLoader(extension: string): Loader {
-  if (binaryFormats.has(extension)) {
-    return binaryLoader;
-  }
-
-  return textLoader;
+  return binaryFormats.has(extension) ? binaryLoader : textLoader;
 }

@@ -10,9 +10,9 @@
   },
   "tasks": {
     "test": "TZ=Z LUME_LOGS=ERROR DENO_FUTURE=1 deno test -A",
-    "test:update": "deno task test -- --update",
-    "changelog": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.5.3/bin.ts",
-    "update-deps": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.8/cli.ts' update deps/*.ts deno.json"
+    "test:update": "deno run test -- --update",
+    "changelog": "deno --allow-read --allow-write https://deno.land/x/changelog@v2.5.3/bin.ts",
+    "update-deps": "deno -A --quiet 'https://deno.land/x/nudd@v0.2.8/cli.ts' update deps/*.ts deno.json"
   },
   "imports": {
     "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.5.10/"

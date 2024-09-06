@@ -32,12 +32,7 @@ onmessage = async (event) => {
     site.root(),
   );
 
-  function mustReload(files: Set<string>): boolean {
-    if (files.has(_config)) {
-      return true;
-    }
-    return false;
-  }
+  const mustReload = (files: Set<string>): boolean => files.has(_config);
 
   watcher.addEventListener("change", (event) => {
     const files = event.files!;
