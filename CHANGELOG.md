@@ -5,11 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [2.3.1] - Unreleased
+## [2.3.1] - 2024-09-09
 ### Added
 - New option `watcher.include` to add extra external paths to the watcher.
 
 ### Fixed
+- Nav plugin: revert `child.slug` property removal.
 - Updated deps: `sass`, `std`, `pagefind`, `xml`, `postcss`, `decap-cms`, `terser`, `deno-dom`.
 - Nav plugin: Search for pages with basename as `index`.
 - Reload on edit `_config.ts` and `_cms.ts` files if they are out of the src directory.
@@ -523,7 +524,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#655]: https://github.com/lumeland/lume/issues/655
 [#662]: https://github.com/lumeland/lume/issues/662
 
-[2.3.1]: https://github.com/lumeland/lume/compare/v2.3.0...HEAD
+[2.3.1]: https://github.com/lumeland/lume/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/lumeland/lume/compare/v2.2.4...v2.3.0
 [2.2.4]: https://github.com/lumeland/lume/compare/v2.2.3...v2.2.4
 [2.2.3]: https://github.com/lumeland/lume/compare/v2.2.2...v2.2.3
