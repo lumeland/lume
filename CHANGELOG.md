@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - Updated deps: `sass`, `std`, `pagefind`, `xml`, `postcss`, `decap-cms`.
 - Nav plugin: Search for pages with basename as `index`.
+- Code improvements [#662].
 
 ## [2.3.0] - 2024-08-30
 ### Added
@@ -516,6 +517,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#651]: https://github.com/lumeland/lume/issues/651
 [#652]: https://github.com/lumeland/lume/issues/652
 [#655]: https://github.com/lumeland/lume/issues/655
+[#662]: https://github.com/lumeland/lume/issues/662
 
 [2.3.1]: https://github.com/lumeland/lume/compare/v2.3.0...HEAD
 [2.3.0]: https://github.com/lumeland/lume/compare/v2.2.4...v2.3.0
