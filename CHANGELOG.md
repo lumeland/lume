@@ -10,7 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New option `watcher.include` to add extra external paths to the watcher.
 
 ### Fixed
-- Updated deps: `sass`, `std`, `pagefind`, `xml`, `postcss`, `decap-cms`.
+- Updated deps: `sass`, `std`, `pagefind`, `xml`, `postcss`, `decap-cms`, `terser`, `deno-dom`.
 - Nav plugin: Search for pages with basename as `index`.
 - Reload on edit `_config.ts` and `_cms.ts` files if they are out of the src directory.
 - Code improvements [#662].
