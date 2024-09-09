@@ -43,12 +43,8 @@ onmessage = async (event) => {
     site.root(),
   );
 
-  function mustReload(files: Set<string>): boolean {
-    if (files.has(_config) || files.has(_cms)) {
-      return true;
-    }
-    return false;
-  }
+  const mustReload = (files: Set<string>): boolean =>
+    files.has(_config) || files.has(_cms);
 
   site.addEventListener("beforeUpdate", (ev) => {
     if (mustReload(ev.files)) {
