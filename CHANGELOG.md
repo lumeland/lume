@@ -226,7 +226,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - logging:
   - URL transformation direction is more visually distinct. [#563]
   - colors replaced to `gray` to support terminals that does not support `dim` colors. [#566]
-- `deno run lume upgrade` removes the `deno.lock` file [#527].
+- `deno task lume upgrade` removes the `deno.lock` file [#527].
 - `transform_images` plugin: don't enlarge images by default [#530].
 
 ### Fixed
