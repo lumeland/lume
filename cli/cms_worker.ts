@@ -28,6 +28,9 @@ onmessage = async (event) => {
     throw new Error("CMS instance is not found");
   }
 
+  // Add the CMS config file to the watcher
+  site.options.watcher.include.push(cmsConfig);
+
   // Enable drafts in the CMS
   setEnv("LUME_DRAFTS", "true");
 

@@ -10,6 +10,9 @@ export interface Options {
   /** The folder root to watch */
   root: string;
 
+  /** Extra files to watch */
+  paths?: string[];
+
   /** Paths ignored by the watcher */
   ignore?: (string | ((path: string) => boolean))[];
 
@@ -75,8 +78,8 @@ export default class FSWatcher implements Watcher {
 
   /** Start the file watcher */
   async start() {
-    const { root, ignore, debounce } = this.options;
-    const watcher = Deno.watchFs(root);
+    const { root, paths, ignore, debounce } = this.options;
+    const watcher = Deno.watchFs([root, ...paths ?? []]);
     const changes = new Set<string>();
     let timer = 0;
     let runningCallback = false;

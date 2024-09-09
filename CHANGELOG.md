@@ -6,9 +6,13 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.3.1] - Unreleased
+### Added
+- New option `watcher.include` to add extra external paths to the watcher.
+
 ### Fixed
 - Updated deps: `sass`, `std`, `pagefind`, `xml`, `postcss`, `decap-cms`.
 - Nav plugin: Search for pages with basename as `index`.
+- Reload on edit `_config.ts` and `_cms.ts` files if they are out of the src directory.
 - Code improvements [#662].
 
 ## [2.3.0] - 2024-08-30

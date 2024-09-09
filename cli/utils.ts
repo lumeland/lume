@@ -8,6 +8,7 @@ import Site from "../core/site.ts";
 /** Create a site instance */
 export async function createSite(config?: string): Promise<Site> {
   let url: string | undefined;
+  const watchInclude = [];
 
   if (config && isUrl(config)) {
     url = config;
@@ -15,6 +16,7 @@ export async function createSite(config?: string): Promise<Site> {
     const path = await getConfigFile(config);
 
     if (path) {
+      watchInclude.push(path);
       url = toFileUrl(path).href;
     }
   }
@@ -31,6 +33,7 @@ export async function createSite(config?: string): Promise<Site> {
     }
 
     site._data.configFile = url;
+    site.options.watcher.include.push(...watchInclude);
     return site;
   }
 

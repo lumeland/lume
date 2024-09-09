@@ -56,6 +56,7 @@ const defaults: SiteOptions = {
   watcher: {
     ignore: [],
     debounce: 100,
+    include: [],
   },
   components: {
     variable: "comp",
@@ -884,6 +885,7 @@ export default class Site {
   getWatcher(): Watcher {
     return new FSWatcher({
       root: this.src(),
+      paths: this.options.watcher.include,
       ignore: this.options.watcher.ignore,
       debounce: this.options.watcher.debounce,
     });
@@ -966,6 +968,9 @@ export interface WatcherOptions {
 
   /** The interval in milliseconds to check for changes */
   debounce: number;
+
+  /** Extra files and folders to watch (ouside the src folder) */
+  include: string[];
 }
 
 /** The options to configure the components */
