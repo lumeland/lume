@@ -35,7 +35,7 @@ export const defaults: Options = {
   configKey: "decap_cms",
   extraHTML: "",
   proxyCommand:
-    `deno --allow-read --allow-net=0.0.0.0 --allow-write --allow-env ${serverUrl}`,
+    `deno run --allow-read --allow-net=0.0.0.0 --allow-write --allow-env ${serverUrl}`,
 };
 
 /**
