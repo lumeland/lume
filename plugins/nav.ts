@@ -195,6 +195,7 @@ export interface NavData {
 }
 
 export interface NavJSON {
+  slug: string;
   data: {
     title?: string;
     url?: string;
@@ -293,6 +294,7 @@ function convert(
     parent,
     toJSON() {
       return {
+        slug: this.slug,
         data: {
           title: this.data.title,
           url: this.data.url,

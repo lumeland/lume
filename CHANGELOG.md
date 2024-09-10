@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.3.2] - 2024-09-10
+### Fixed
+- Nav plugin: include `slug` in the `toJSON` export.
+
 ## [2.3.1] - 2024-09-09
 ### Added
 - New option `watcher.include` to add extra external paths to the watcher.
@@ -524,6 +528,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#655]: https://github.com/lumeland/lume/issues/655
 [#662]: https://github.com/lumeland/lume/issues/662
 
+[2.3.2]: https://github.com/lumeland/lume/compare/v2.3.1...v2.3.2
 [2.3.1]: https://github.com/lumeland/lume/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/lumeland/lume/compare/v2.2.4...v2.3.0
 [2.2.4]: https://github.com/lumeland/lume/compare/v2.2.3...v2.2.4
