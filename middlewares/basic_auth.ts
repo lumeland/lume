@@ -5,11 +5,13 @@ import type { Middleware, RequestHandler } from "../core/server.ts";
 export interface Options {
   realm: string;
   users: Record<string, string>;
+  errorMessage: string;
 }
 
 export const defaults: Options = {
   realm: "Basic Authentication",
   users: {},
+  errorMessage: "401 Unauthorized",
 };
 
 // Code from https://deno.land/x/basic_auth@v1.0.1/mod.ts
@@ -24,7 +26,7 @@ export function basicAuth(
       return await next(request);
     }
 
-    return new Response("401 Unauthorized", {
+    return new Response(options.errorMessage, {
       status: 401,
       statusText: "Unauthorized",
       headers: {
