@@ -1,7 +1,7 @@
-export * from "npm:liquidjs@10.16.7";
+export * from "npm:liquidjs@10.17.0";
 
-export type { LiquidOptions, Template } from "npm:liquidjs@10.16.7";
+export type { LiquidOptions, Template } from "npm:liquidjs@10.17.0";
 export type {
   TagClass,
   TagImplOptions,
-} from "npm:liquidjs@10.16.7/dist/template";
+} from "npm:liquidjs@10.17.0/dist/template";

@@ -8,6 +8,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.3.3] - Unreleased
 ### Added
 - Basic auth middleware: Added `errorMessage` option.
+### Fixed
+- Updated dependencies: `linkedom`, `sass`, `satori`, `terser`, `liquidjs`, `tailwind`, `date-fns`, `std`, `esbuild`, `preact`, `lightningcss`, `postcss`, `remark-rehype`, `react` types, `unocss`.
 
 ## [2.3.2] - 2024-09-10
 ### Fixed
