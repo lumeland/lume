@@ -24,7 +24,12 @@ export function getPageDate(page: Page): Date {
         case "git last modified":
           return getGitDate("modified", entry.src) || info.mtime || new Date();
         case "git created":
-          return getGitDate("created", entry.src) || info.birthtime ||
+          // getGitDate("created", ...) uses `git log --diff-filter=A`
+          // which returns nothing for files where the latest commit had a merge conflict.
+          // Therefore we fallback to last modified time from git history,
+          // which is more reliable than file system creation time under most CI environments.
+          return getGitDate("created", entry.src) ||
+            getGitDate("modified", entry.src) || info.birthtime ||
             new Date();
       }
     }
