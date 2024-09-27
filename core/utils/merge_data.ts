@@ -1,4 +1,4 @@
-export type MergeStrategy = "array" | "stringArray" | "object";
+export type MergeStrategy = "array" | "stringArray" | "object" | "none";
 
 interface DataToMerge {
   mergedKeys?: Record<string, MergeStrategy>;
