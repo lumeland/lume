@@ -113,10 +113,7 @@ export function esbuild(userOptions?: Options) {
     /** Run esbuild and returns the output files */
     const entryContent: Record<string, string> = {};
 
-    async function runEsbuild(
-      pages: Page[],
-      extraOptions: BuildOptions = {},
-    ): Promise<[OutputFile[], boolean]> {
+    async function runEsbuild(pages: Page[]): Promise<[OutputFile[], boolean]> {
       let enableAllSourceMaps = false;
       const entryPoints: string[] = [];
 
@@ -135,7 +132,7 @@ export function esbuild(userOptions?: Options) {
         metafile: false,
         entryPoints,
         sourcemap: enableAllSourceMaps ? "external" : undefined,
-        ...extraOptions,
+        outExtension: undefined,
       };
 
       const prefix = toFileUrl(site.src()).href;
@@ -234,6 +231,7 @@ export function esbuild(userOptions?: Options) {
 
     site.process(options.extensions, async (pages, allPages) => {
       const [outputFiles, enableSourceMap] = await runEsbuild(pages);
+      const { outExtension } = options.options;
 
       // Save the output code
       for (const file of outputFiles) {
@@ -243,7 +241,7 @@ export function esbuild(userOptions?: Options) {
 
         // Replace .tsx and .jsx extensions with .js
         const content = (!options.options.splitting && !options.options.bundle)
-          ? resolveImports(file.text, options.esm)
+          ? resolveImports(file.text, options.esm, outExtension)
           : file.text;
 
         // Search the entry point of this output file
@@ -251,12 +249,12 @@ export function esbuild(userOptions?: Options) {
           normalizePath(file.path).replace(basePath, ""),
         );
 
-        const urlWithoutExt = pathWithoutExtension(url);
+        const [urlWithoutExt, ext] = pathAndExtension(url);
         const entryPoint = pages.find((page) => {
           const outdir = posix.join(
             "/",
             options.options.outdir || ".",
-            pathWithoutExtension(page.sourcePath),
+            pathAndExtension(page.sourcePath)[0],
           );
 
           return outdir === urlWithoutExt;
@@ -269,18 +267,20 @@ export function esbuild(userOptions?: Options) {
 
         // The page is an entry point
         if (entryPoint) {
+          const outExt = getOutExtension(ext, outExtension);
           entryPoint.data.url = posix.join(
             "/",
             options.options.outdir || ".",
-            replaceExtension(entryPoint.data.url, ".js"),
+            replaceExtension(entryPoint.data.url, outExt),
           );
           saveAsset(site, entryPoint, content, map?.text);
-        } else {
-          // The page is a chunk
-          const page = Page.create({ url });
-          saveAsset(site, page, content, map?.text);
-          allPages.push(page);
+          continue;
         }
+
+        // The page is a chunk
+        const page = Page.create({ url });
+        saveAsset(site, page, content, map?.text);
+        allPages.push(page);
       }
     });
   };
@@ -335,18 +335,40 @@ function buildJsxConfig(config?: DenoConfig): BuildOptions | undefined {
   }
 }
 
-function pathWithoutExtension(path: string): string {
-  return path.replace(/\.\w+$/, "");
+function pathAndExtension(path: string): [string, string] {
+  const match = path.match(/(.*)(\.\w+)$/);
+
+  if (!match) {
+    return [path, ""];
+  }
+  return [match[1], match[2]];
 }
 
-function resolveImports(content: string, esm: EsmOptions): string {
+function getOutExtension(ext: string, outExtension?: Record<string, string>) {
+  const out = outExtension?.[ext];
+  if (out) {
+    return out;
+  }
+
+  switch (ext) {
+    case ".json":
+      return ".json";
+    default:
+      return ".js";
+  }
+}
+
+function resolveImports(
+  content: string,
+  esm: EsmOptions,
+  outExtension?: Record<string, string>,
+): string {
   return content.replaceAll(
     /(from\s*)["']([^"']+)["']/g,
     (_, from, path) => {
       if (path.startsWith(".") || path.startsWith("/")) {
-        const resolved = path.endsWith(".json")
-          ? path
-          : replaceExtension(path, ".js");
+        const [url, ext] = pathAndExtension(path);
+        const resolved = url + getOutExtension(ext, outExtension);
         return `${from}"${resolved}"`;
       }
       const resolved = import.meta.resolve(path);

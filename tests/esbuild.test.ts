@@ -81,3 +81,23 @@ Deno.test(
     await assertSiteSnapshot(t, site);
   },
 );
+
+// Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
+Deno.test(
+  "esbuild plugin with outExtension",
+  { sanitizeOps: false, sanitizeResources: false },
+  async (t) => {
+    const site = getSite({
+      src: "esbuild",
+    });
+
+    site.use(esbuild({
+      options: {
+        outExtension: { ".js": ".min.js" },
+      },
+    }));
+
+    await build(site);
+    await assertSiteSnapshot(t, site);
+  },
+);

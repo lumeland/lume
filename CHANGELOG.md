@@ -9,9 +9,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - Basic auth middleware: Added `errorMessage` option.
 - Added "none" merge strategy to reset a previously defined strategy.
+- Esbuild plugin: added support for `outExtension` [#668].
 
 ### Fixed
-- When using special value `git created` for `date` variable, it will fall back to `git modified` first, then filesystem last modified date #667.
+- When using special value `git created` for `date` variable, it will fall back to `git modified` first, then filesystem last modified date [#667].
 - Updated dependencies: `linkedom`, `sass`, `satori`, `terser`, `liquidjs`, `tailwind`, `date-fns`, `std`, `esbuild`, `preact`, `lightningcss`, `postcss`, `remark-rehype`, `react` types, `unocss`.
 
 ## [2.3.2] - 2024-09-10
@@ -536,6 +537,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#652]: https://github.com/lumeland/lume/issues/652
 [#655]: https://github.com/lumeland/lume/issues/655
 [#662]: https://github.com/lumeland/lume/issues/662
+[#667]: https://github.com/lumeland/lume/issues/667
+[#668]: https://github.com/lumeland/lume/issues/668
 
 [2.3.3]: https://github.com/lumeland/lume/compare/v2.3.2...HEAD
 [2.3.2]: https://github.com/lumeland/lume/compare/v2.3.1...v2.3.2
