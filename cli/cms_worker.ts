@@ -14,8 +14,6 @@ interface CMSOptions {
 
 onmessage = async (event) => {
   const { type, config } = event.data as CMSOptions;
-
-  const site = await createSite(config);
   const cmsConfig = await getConfigFile(undefined, ["_cms.ts", "_cms.js"]);
 
   if (!cmsConfig) {
@@ -28,11 +26,14 @@ onmessage = async (event) => {
     throw new Error("CMS instance is not found");
   }
 
-  // Add the CMS config file to the watcher
-  site.options.watcher.include.push(cmsConfig);
-
   // Enable drafts in the CMS
   setEnv("LUME_DRAFTS", "true");
+  setEnv("LUME_CMS", "true");
+
+  const site = await createSite(config);
+
+  // Add the CMS config file to the watcher
+  site.options.watcher.include.push(cmsConfig);
 
   const { default: adapter } = await import("lume/cms/adapters/lume.ts");
   const cms = mod.default;
