@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Added "none" merge strategy to reset a previously defined strategy.
 - Esbuild plugin: added support for `outExtension` [#668].
 - New environment variable `LUME_CMS` to check whether the site is built by CMS.
+- Support for `localStorage` and `sessionStorage` in watch mode.
 
 ### Fixed
 - When using special value `git created` for `date` variable, it will fall back to `git modified` first, then filesystem last modified date [#667].
