@@ -6,6 +6,7 @@ import { normalizePath } from "../core/utils/path.ts";
 import { fromFileUrl } from "../deps/path.ts";
 import { setEnv } from "../core/utils/env.ts";
 import { createSite } from "./utils.ts";
+import "./missing_worker_apis.ts";
 
 interface CMSOptions {
   type: "build" | "rebuild";

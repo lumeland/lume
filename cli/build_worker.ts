@@ -11,6 +11,7 @@ import noCors from "../middlewares/no_cors.ts";
 import notFound from "../middlewares/not_found.ts";
 import reload from "../middlewares/reload.ts";
 import { buildSite } from "./utils.ts";
+import "./missing_worker_apis.ts";
 
 interface BuildOptions {
   type: "build" | "rebuild";

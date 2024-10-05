@@ -13,6 +13,10 @@ export function runCms(
     }
 
     worker = new Worker(workerUrl, { type: "module" });
+    worker.postMessage({
+      type: "localStorage",
+      data: { ...localStorage },
+    });
 
     worker.postMessage({
       type,
@@ -20,8 +24,16 @@ export function runCms(
     });
 
     worker.onmessage = (event) => {
-      if (event.data.type === "reload") {
-        init();
+      switch (event.data.type) {
+        case "reload":
+          init();
+          break;
+
+        case "localStorage": {
+          const { method, args } = event.data;
+          localStorage[method](...args);
+          break;
+        }
       }
     };
   }
