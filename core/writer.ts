@@ -71,6 +71,7 @@ export class FSWriter implements Writer {
     }
 
     const filename = posix.join(this.dest, outputPath);
+    console.log(page.data.url, page.src);
     const id = this.caseSensitiveUrls ? filename : filename.toLowerCase();
     const hash = await sha1(content);
     const previous = this.#outputs.get(id);

@@ -52,16 +52,15 @@ class S implements Storage {
   }
 }
 
-globalThis.addEventListener("message", (event) => {
-  if (event.data.type === "localStorage") {
-    const storage = new S("localStorage");
-
-    for (const [key, value] of Object.entries(event.data.data)) {
-      storage.setItem(key, value);
-    }
-
-    globalThis.localStorage = storage;
-  }
-});
-
+// sessionStorage is always empty
 globalThis.sessionStorage = new S();
+
+export function initLocalStorage(data: Record<string, string>) {
+  const storage = new S("localStorage");
+
+  for (const [key, value] of Object.entries(data)) {
+    storage.setItem(key, value);
+  }
+
+  globalThis.localStorage = storage;
+}

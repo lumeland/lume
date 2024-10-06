@@ -11,7 +11,19 @@ import noCors from "../middlewares/no_cors.ts";
 import notFound from "../middlewares/not_found.ts";
 import reload from "../middlewares/reload.ts";
 import { buildSite } from "./utils.ts";
-import "./missing_worker_apis.ts";
+import { initLocalStorage } from "./missing_worker_apis.ts";
+
+addEventListener("message", (event) => {
+  const { type } = event.data;
+
+  if (type === "build" || type === "rebuild") {
+    return build(event.data);
+  }
+
+  if (type === "localStorage") {
+    return initLocalStorage(event.data.data);
+  }
+});
 
 interface BuildOptions {
   type: "build" | "rebuild";
@@ -19,8 +31,7 @@ interface BuildOptions {
   serve?: boolean;
 }
 
-onmessage = async (event) => {
-  const { type, config, serve } = event.data as BuildOptions;
+async function build({ type, config, serve }: BuildOptions) {
   const site = await buildSite(config);
 
   // Set the live reload environment variable to add hash to the URLs in the module loader
@@ -122,4 +133,4 @@ onmessage = async (event) => {
   }
 
   server.start();
-};
+}

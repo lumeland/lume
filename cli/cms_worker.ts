@@ -6,15 +6,26 @@ import { normalizePath } from "../core/utils/path.ts";
 import { fromFileUrl } from "../deps/path.ts";
 import { setEnv } from "../core/utils/env.ts";
 import { createSite } from "./utils.ts";
-import "./missing_worker_apis.ts";
+import { initLocalStorage } from "./missing_worker_apis.ts";
+
+addEventListener("message", (event) => {
+  const { type } = event.data;
+
+  if (type === "build" || type === "rebuild") {
+    return build(event.data);
+  }
+
+  if (type === "localStorage") {
+    return initLocalStorage(event.data.data);
+  }
+});
 
 interface CMSOptions {
   type: "build" | "rebuild";
   config?: string;
 }
 
-onmessage = async (event) => {
-  const { type, config } = event.data as CMSOptions;
+async function build({ type, config }: CMSOptions) {
   const cmsConfig = await getConfigFile(undefined, ["_cms.ts", "_cms.js"]);
 
   if (!cmsConfig) {
@@ -79,4 +90,4 @@ onmessage = async (event) => {
       }
     },
   });
-};
+}
