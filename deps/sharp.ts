@@ -19,5 +19,5 @@ export async function create(
     return sharp(await svg2png(content));
   }
 
-  return sharp(content);
+  return sharp(content, { pages: -1 });
 }

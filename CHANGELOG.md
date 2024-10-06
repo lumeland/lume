@@ -14,6 +14,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Support for `localStorage` and `sessionStorage` in watch mode.
 
 ### Fixed
+- Transform images plugin with animated images [#671]
 - When using special value `git created` for `date` variable, it will fall back to `git modified` first, then filesystem last modified date [#667].
 - Environment variables defined in `_cms.ts` are available in `_config.ts`.
 - Updated dependencies: `linkedom`, `sass`, `satori`, `terser`, `liquidjs`, `tailwind`, `date-fns`, `std`, `esbuild`, `preact`, `lightningcss`, `postcss`, `remark-rehype`, `rehype-stringify`, `react` types, `unocss`.
@@ -542,6 +543,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#662]: https://github.com/lumeland/lume/issues/662
 [#667]: https://github.com/lumeland/lume/issues/667
 [#668]: https://github.com/lumeland/lume/issues/668
+[#671]: https://github.com/lumeland/lume/issues/671
 
 [2.3.3]: https://github.com/lumeland/lume/compare/v2.3.2...HEAD
 [2.3.2]: https://github.com/lumeland/lume/compare/v2.3.1...v2.3.2
