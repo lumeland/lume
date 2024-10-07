@@ -10,10 +10,11 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Basic auth middleware: Added `errorMessage` option.
 - Added "none" merge strategy to reset a previously defined strategy.
 - Esbuild plugin: added support for `outExtension` [#668].
-- New environment variable `LUME_CMS` to check whether the site is built by CMS.
+- New environment variable `LUME_CMS` to check whether the site is built by the CMS.
 - Support for `localStorage` and `sessionStorage` in watch mode.
 
 ### Fixed
+- Multilanguage plugin: The 404 page must be ignored.
 - Transform images plugin with animated images [#671]
 - When using special value `git created` for `date` variable, it will fall back to `git modified` first, then filesystem last modified date [#667].
 - Environment variables defined in `_cms.ts` are available in `_config.ts`.

@@ -1,6 +1,7 @@
 import { Page } from "../core/file.ts";
 import { assign, merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
+import { filter404page } from "../core/utils/page_url.ts";
 
 import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
@@ -30,6 +31,8 @@ export function multilanguage(userOptions: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
+    const isNot404page = filter404page(site.options.server.page404);
+
     // Configure the merged keys
     options.languages.forEach((lang) => site.mergeKey(lang, "object"));
 
@@ -48,6 +51,14 @@ export function multilanguage(userOptions: Options) {
         // If the "lang" variable is not defined, use the default language
         if (languages === undefined) {
           data.lang = options.defaultLanguage;
+          continue;
+        }
+
+        // 404 pages should not be multilanguage
+        if (!isNot404page(data)) {
+          if (Array.isArray(languages)) {
+            data.lang = options.defaultLanguage;
+          }
           continue;
         }
 
@@ -111,15 +122,17 @@ export function multilanguage(userOptions: Options) {
           }
         }
 
-        const { url } = data;
-        const isLangUrl = url.startsWith(`/${lang}/`);
-        const isDefaultLang = lang === options.defaultLanguage;
-        if (!isLangUrl && !isDefaultLang) {
-          // Preprocess to prefix all urls with the language code
-          data.url = `/${lang}${url}`;
-        } else if (isLangUrl && isDefaultLang) {
-          // Preprocess to unprefix all urls with the default language code
-          data.url = url.slice(lang.length + 1);
+        if (isNot404page(data)) {
+          const { url } = data;
+          const isLangUrl = url.startsWith(`/${lang}/`);
+          const isDefaultLang = lang === options.defaultLanguage;
+          if (!isLangUrl && !isDefaultLang) {
+            // Preprocess to prefix all urls with the language code
+            data.url = `/${lang}${url}`;
+          } else if (isLangUrl && isDefaultLang) {
+            // Preprocess to unprefix all urls with the default language code
+            data.url = url.slice(lang.length + 1);
+          }
         }
 
         // Create the alternates object if it doesn't exist

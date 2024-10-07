@@ -3,6 +3,7 @@ import { merge } from "./utils/object.ts";
 import { normalizePath } from "./utils/path.ts";
 import { env } from "./utils/env.ts";
 import { log } from "./utils/log.ts";
+import { filter404page } from "./utils/page_url.ts";
 
 import FS from "./fs.ts";
 import ComponentLoader from "./component_loader.ts";
@@ -183,14 +184,13 @@ export default class Site {
     const scripts = new Scripts({ cwd });
     const writer = new FSWriter({ dest, caseSensitiveUrls });
 
-    const url404 = server.page404 ? normalizePath(server.page404) : undefined;
     const searcher = new Searcher({
       pages: this.pages,
       files: this.files,
       sourceData: source.data,
       filters: [
         (data: Data) => data.page.outputPath.endsWith(".html") ?? false, // only html pages
-        (data: Data) => !url404 || data.url !== url404, // not the 404 page
+        filter404page(server.page404), // not the 404 page
       ],
     });
 
