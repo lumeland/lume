@@ -7,6 +7,9 @@ jobs:
     name: Run tests
     strategy:
       matrix:
+        deno_version:
+          - 1.x
+          - 2.x
         os:
           - ubuntu-latest
           - macos-latest
@@ -18,7 +21,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Deno environment
-        uses: denoland/setup-deno@v1
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: ${{ matrix.deno_version }}
 
       - name: Verify formatting
         if: matrix.os == 'ubuntu-latest'
