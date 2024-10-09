@@ -2,8 +2,7 @@
   "lock": false,
   "fmt": {
     "exclude": [
-      "tests/assets/json/page1.md",
-      "tests/assets/toml/page1.md",
+      "tests/assets",
       "deps/katex-auto-render",
       "CHANGELOG.md"
     ]

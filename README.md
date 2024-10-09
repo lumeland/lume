@@ -32,7 +32,7 @@ Make sure you have [Deno installed](https://deno.land/#installation).
 
 Create your first page, for example, using the Vento file `index.vto`:
 
-```html
+```vto
 ---
 title: Welcome to my page
 ---

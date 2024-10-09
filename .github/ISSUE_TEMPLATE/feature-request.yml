@@ -10,8 +10,8 @@ body:
         something related to your idea.
   - type: textarea
     attributes:
-      label: 'Enter your suggestions in details:'
+      label: "Enter your suggestions in details:"
       placeholder: |
-       Your great idea!
+        Your great idea!
     validations:
       required: true
