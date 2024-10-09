@@ -61,7 +61,7 @@ class LumeLoader extends FileLoader {
     this.fs = fs;
   }
 
-  async load(file: string) {
+  override async load(file: string) {
     const entry = this.fs.entries.get(normalizePath(file));
 
     if (!entry) {

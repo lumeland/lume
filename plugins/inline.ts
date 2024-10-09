@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { posix } from "../deps/path.ts";
 import { encodeBase64 } from "../deps/base64.ts";
 import { merge } from "../core/utils/object.ts";
@@ -142,7 +143,7 @@ export function inline(userOptions?: Options) {
         }
         style.innerHTML = content;
         element.replaceWith(style);
-      } catch (cause) {
+      } catch (cause: any) {
         log.error(
           `[Inline plugin] Unable to inline the file <gray>${path}</gray> in the page <gray>${url}</gray> (${cause.message})})`,
         );
@@ -155,7 +156,7 @@ export function inline(userOptions?: Options) {
       try {
         element.textContent = await getContent(path);
         element.removeAttribute("src");
-      } catch (cause) {
+      } catch (cause: any) {
         log.error(
           `[Inline plugin] Unable to inline the file <gray>${path}</gray> in the page <gray>${url}</gray> (${cause.message})})`,
         );
@@ -206,7 +207,7 @@ export function inline(userOptions?: Options) {
         }
 
         element.setAttribute("src", await getContent(path, true));
-      } catch (cause) {
+      } catch (cause: any) {
         log.error(
           `[Inline plugin] Unable to inline the file <gray>${path}</gray> in the page <gray>${url}</gray> (${cause.message})})`,
         );
@@ -218,7 +219,7 @@ export function inline(userOptions?: Options) {
 
       try {
         element.setAttribute("href", await getContent(path, true));
-      } catch (cause) {
+      } catch (cause: any) {
         log.error(
           `[Inline plugin] Unable to inline the file <gray>${path}</gray> in the page <gray>${url}</gray> (${cause.message})})`,
         );

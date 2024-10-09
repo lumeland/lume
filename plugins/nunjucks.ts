@@ -183,7 +183,7 @@ class LumeLoader extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
     });
   }
 
-  resolve(from: string, to: string): string {
+  override resolve(from: string, to: string): string {
     return posix.join(posix.dirname(from), to);
   }
 }

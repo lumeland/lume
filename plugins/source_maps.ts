@@ -58,7 +58,7 @@ export function sourceMaps(userOptions?: Options) {
           );
         }
       } catch (err) {
-        log.error(`${err.message}\n${sourceMap.sources.join("\n")}`);
+        log.error(`${(err as Error).message}\n${sourceMap.sources.join("\n")}`);
       }
 
       // Relative paths (eg. "../bar") look better in the dev-tools.
