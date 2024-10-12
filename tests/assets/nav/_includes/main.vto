@@ -7,7 +7,7 @@
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
         {{ for item of nav.breadcrumb(url) }}
-        <li><a href="{{ item.data?.url }}">{{ item.data?.title }}</a></li>
+        <li><a href="{{ item.data?.url }}">{{ item.data?.title || item.slug }}</a></li>
         {{ /for }}
       </ul>
     </nav>

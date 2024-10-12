@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [Unreleased]
+### Fixed
+- Nav plugin: Breadcrumb with urls with CJK characters.
+
 ## [2.3.3] - 2024-10-07
 ### Added
 - Basic auth middleware: Added `errorMessage` option.
@@ -546,6 +550,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#668]: https://github.com/lumeland/lume/issues/668
 [#671]: https://github.com/lumeland/lume/issues/671
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v2.3.3...HEAD
 [2.3.3]: https://github.com/lumeland/lume/compare/v2.3.2...v2.3.3
 [2.3.2]: https://github.com/lumeland/lume/compare/v2.3.1...v2.3.2
 [2.3.1]: https://github.com/lumeland/lume/compare/v2.3.0...v2.3.1

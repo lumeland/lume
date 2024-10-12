@@ -1,5 +1,6 @@
 import { merge } from "../core/utils/object.ts";
 import { buildSort } from "../core/searcher.ts";
+import { decodeURIComponentSafe } from "../core/utils/path.ts";
 
 import type Site from "../core/site.ts";
 import type Searcher from "../core/searcher.ts";
@@ -59,7 +60,9 @@ export class Nav {
       this.#cache.set(id, nav);
     }
 
-    const parts = url.split("/").filter((part) => part !== "");
+    const parts = url.split("/").filter((part) => part !== "").map(
+      decodeURIComponentSafe,
+    );
     return searchData(parts, nav);
   }
 

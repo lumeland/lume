@@ -137,7 +137,9 @@ snapshot[`nav plugin 3`] = `
         
         <li><a href="/">Home</a></li>
         
-        <li><a href="/docs/">Docs</a></li>
+        <li><a href="">防災</a></li>
+        
+        <li><a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a></li>
         
       </ul>
     </nav>
@@ -148,7 +150,7 @@ snapshot[`nav plugin 3`] = `
       <ul>
         <li>
           
-<a href="/docs/">Docs</a>
+<strong>docs</strong>
 <ul>
   <li>
     
@@ -170,6 +172,18 @@ snapshot[`nav plugin 3`] = `
   <li>
     
 <a href="/docs/about-docs/">About docs (1)</a>
+
+  </li>
+</ul>
+
+        </li>
+        <li>
+          
+<strong>防災</strong>
+<ul>
+  <li>
+    
+<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
 
   </li>
 </ul>
@@ -210,8 +224,8 @@ snapshot[`nav plugin 3`] = `
       
 
       
-        <a href="/docs/about-docs/">Next page</a>
       
+        <a href="/docs/pages/">Previous page</a>
       
     </nav>
   </body>
@@ -236,7 +250,7 @@ snapshot[`nav plugin 3`] = `
       search: [],
       tags: "Array(0)",
       title: "Docs",
-      url: "/docs/",
+      url: "/%E9%98%B2%E7%81%BD/esolia-bousai-links/",
     },
     src: {
       asset: false,
@@ -258,7 +272,7 @@ snapshot[`nav plugin 3`] = `
         
         <li><a href="/">Home</a></li>
         
-        <li><a href="/docs/">Docs</a></li>
+        <li><a href="">docs</a></li>
         
         <li><a href="/docs/about-docs/">About docs (1)</a></li>
         
@@ -271,7 +285,7 @@ snapshot[`nav plugin 3`] = `
       <ul>
         <li>
           
-<a href="/docs/">Docs</a>
+<strong>docs</strong>
 <ul>
   <li>
     
@@ -293,6 +307,18 @@ snapshot[`nav plugin 3`] = `
   <li>
     
 <a href="/docs/about-docs/">About docs (1)</a>
+
+  </li>
+</ul>
+
+        </li>
+        <li>
+          
+<strong>防災</strong>
+<ul>
+  <li>
+    
+<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
 
   </li>
 </ul>
@@ -383,7 +409,7 @@ snapshot[`nav plugin 3`] = `
         
         <li><a href="/">Home</a></li>
         
-        <li><a href="/docs/">Docs</a></li>
+        <li><a href="">docs</a></li>
         
         <li><a href="/docs/pages/">About pages (0)</a></li>
         
@@ -396,7 +422,7 @@ snapshot[`nav plugin 3`] = `
       <ul>
         <li>
           
-<a href="/docs/">Docs</a>
+<strong>docs</strong>
 <ul>
   <li>
     
@@ -418,6 +444,18 @@ snapshot[`nav plugin 3`] = `
   <li>
     
 <a href="/docs/about-docs/">About docs (1)</a>
+
+  </li>
+</ul>
+
+        </li>
+        <li>
+          
+<strong>防災</strong>
+<ul>
+  <li>
+    
+<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
 
   </li>
 </ul>
@@ -509,7 +547,7 @@ snapshot[`nav plugin 3`] = `
         
         <li><a href="/">Home</a></li>
         
-        <li><a href="/docs/">Docs</a></li>
+        <li><a href="">docs</a></li>
         
         <li><a href="/docs/pages/">About pages (0)</a></li>
         
@@ -524,7 +562,7 @@ snapshot[`nav plugin 3`] = `
       <ul>
         <li>
           
-<a href="/docs/">Docs</a>
+<strong>docs</strong>
 <ul>
   <li>
     
@@ -546,6 +584,18 @@ snapshot[`nav plugin 3`] = `
   <li>
     
 <a href="/docs/about-docs/">About docs (1)</a>
+
+  </li>
+</ul>
+
+        </li>
+        <li>
+          
+<strong>防災</strong>
+<ul>
+  <li>
+    
+<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
 
   </li>
 </ul>
@@ -637,7 +687,7 @@ snapshot[`nav plugin 3`] = `
         
         <li><a href="/">Home</a></li>
         
-        <li><a href="/docs/">Docs</a></li>
+        <li><a href="">docs</a></li>
         
         <li><a href="/docs/pages/">About pages (0)</a></li>
         
@@ -652,7 +702,7 @@ snapshot[`nav plugin 3`] = `
       <ul>
         <li>
           
-<a href="/docs/">Docs</a>
+<strong>docs</strong>
 <ul>
   <li>
     
@@ -674,6 +724,18 @@ snapshot[`nav plugin 3`] = `
   <li>
     
 <a href="/docs/about-docs/">About docs (1)</a>
+
+  </li>
+</ul>
+
+        </li>
+        <li>
+          
+<strong>防災</strong>
+<ul>
+  <li>
+    
+<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
 
   </li>
 </ul>
@@ -713,6 +775,8 @@ snapshot[`nav plugin 3`] = `
       
       
 
+      
+        <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Next page</a>
       
       
         <a href="/docs/pages/first/">Previous page</a>
@@ -773,7 +837,7 @@ snapshot[`nav plugin 3`] = `
       <ul>
         <li>
           
-<a href="/docs/">Docs</a>
+<strong>docs</strong>
 <ul>
   <li>
     
@@ -795,6 +859,18 @@ snapshot[`nav plugin 3`] = `
   <li>
     
 <a href="/docs/about-docs/">About docs (1)</a>
+
+  </li>
+</ul>
+
+        </li>
+        <li>
+          
+<strong>防災</strong>
+<ul>
+  <li>
+    
+<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
 
   </li>
 </ul>
@@ -835,7 +911,7 @@ snapshot[`nav plugin 3`] = `
       
 
       
-        <a href="/docs/">Next page</a>
+        <a href="/docs/about-docs/">Next page</a>
       
       
     </nav>
@@ -1010,7 +1086,9 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         
         <li><a href="/index.html">Home</a></li>
         
-        <li><a href="/docs.html">Docs</a></li>
+        <li><a href="">防災</a></li>
+        
+        <li><a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a></li>
         
       </ul>
     </nav>
@@ -1021,7 +1099,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       <ul>
         <li>
           
-<a href="/docs.html">Docs</a>
+<strong>docs</strong>
 <ul>
   <li>
     
@@ -1043,6 +1121,18 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   <li>
     
 <a href="/docs/about-docs.html">About docs (1)</a>
+
+  </li>
+</ul>
+
+        </li>
+        <li>
+          
+<strong>防災</strong>
+<ul>
+  <li>
+    
+<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
 
   </li>
 </ul>
@@ -1083,8 +1173,8 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       
 
       
-        <a href="/docs/about-docs.html">Next page</a>
       
+        <a href="/docs/pages.html">Previous page</a>
       
     </nav>
   </body>
@@ -1109,7 +1199,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       search: [],
       tags: "Array(0)",
       title: "Docs",
-      url: "/docs.html",
+      url: "/%E9%98%B2%E7%81%BD/esolia-bousai-links/",
     },
     src: {
       asset: false,
@@ -1131,7 +1221,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         
         <li><a href="/index.html">Home</a></li>
         
-        <li><a href="/docs.html">Docs</a></li>
+        <li><a href="">docs</a></li>
         
         <li><a href="/docs/about-docs.html">About docs (1)</a></li>
         
@@ -1144,7 +1234,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       <ul>
         <li>
           
-<a href="/docs.html">Docs</a>
+<strong>docs</strong>
 <ul>
   <li>
     
@@ -1166,6 +1256,18 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   <li>
     
 <a href="/docs/about-docs.html">About docs (1)</a>
+
+  </li>
+</ul>
+
+        </li>
+        <li>
+          
+<strong>防災</strong>
+<ul>
+  <li>
+    
+<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
 
   </li>
 </ul>
@@ -1256,7 +1358,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         
         <li><a href="/index.html">Home</a></li>
         
-        <li><a href="/docs.html">Docs</a></li>
+        <li><a href="">docs</a></li>
         
         <li><a href="/docs/pages.html">About pages (0)</a></li>
         
@@ -1269,7 +1371,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       <ul>
         <li>
           
-<a href="/docs.html">Docs</a>
+<strong>docs</strong>
 <ul>
   <li>
     
@@ -1291,6 +1393,18 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   <li>
     
 <a href="/docs/about-docs.html">About docs (1)</a>
+
+  </li>
+</ul>
+
+        </li>
+        <li>
+          
+<strong>防災</strong>
+<ul>
+  <li>
+    
+<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
 
   </li>
 </ul>
@@ -1382,7 +1496,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         
         <li><a href="/index.html">Home</a></li>
         
-        <li><a href="/docs.html">Docs</a></li>
+        <li><a href="">docs</a></li>
         
         <li><a href="/docs/pages.html">About pages (0)</a></li>
         
@@ -1397,7 +1511,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       <ul>
         <li>
           
-<a href="/docs.html">Docs</a>
+<strong>docs</strong>
 <ul>
   <li>
     
@@ -1419,6 +1533,18 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   <li>
     
 <a href="/docs/about-docs.html">About docs (1)</a>
+
+  </li>
+</ul>
+
+        </li>
+        <li>
+          
+<strong>防災</strong>
+<ul>
+  <li>
+    
+<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
 
   </li>
 </ul>
@@ -1510,7 +1636,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         
         <li><a href="/index.html">Home</a></li>
         
-        <li><a href="/docs.html">Docs</a></li>
+        <li><a href="">docs</a></li>
         
         <li><a href="/docs/pages.html">About pages (0)</a></li>
         
@@ -1525,7 +1651,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       <ul>
         <li>
           
-<a href="/docs.html">Docs</a>
+<strong>docs</strong>
 <ul>
   <li>
     
@@ -1547,6 +1673,18 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   <li>
     
 <a href="/docs/about-docs.html">About docs (1)</a>
+
+  </li>
+</ul>
+
+        </li>
+        <li>
+          
+<strong>防災</strong>
+<ul>
+  <li>
+    
+<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
 
   </li>
 </ul>
@@ -1586,6 +1724,8 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       
       
 
+      
+        <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Next page</a>
       
       
         <a href="/docs/pages/first.html">Previous page</a>
@@ -1644,7 +1784,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       <ul>
         <li>
           
-<a href="/docs.html">Docs</a>
+<strong>docs</strong>
 <ul>
   <li>
     
@@ -1666,6 +1806,18 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   <li>
     
 <a href="/docs/about-docs.html">About docs (1)</a>
+
+  </li>
+</ul>
+
+        </li>
+        <li>
+          
+<strong>防災</strong>
+<ul>
+  <li>
+    
+<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
 
   </li>
 </ul>
