@@ -2,6 +2,7 @@
 export const pluginNames = [
   "attributes",
   "base_path",
+  "check_urls",
   "code_highlight",
   "date",
   "decap_cms",

@@ -9,6 +9,7 @@ Deno.test("Plugins list in init", () => {
   equals(pluginNames, [
     "attributes",
     "base_path",
+    "check_urls",
     "code_highlight",
     "date",
     "decap_cms",

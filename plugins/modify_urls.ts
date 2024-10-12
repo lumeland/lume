@@ -1,5 +1,6 @@
 import { merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
+import { parseSrcset, searchLinks } from "../core/utils/dom_links.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
@@ -37,17 +38,14 @@ export function modifyUrls(userOptions: Options) {
   }
 
   async function replaceSrcset(
-    attr: string | null,
+    attr: string,
     page: Page,
     element: Element,
   ): Promise<string> {
-    const srcset = attr ? attr.trim().split(",") : [];
     const replaced: string[] = [];
-    for (const src of srcset) {
-      const [, url, rest] = src.trim().match(/^(\S+)(.*)/)!;
+    for (const [url, rest] of parseSrcset(attr)) {
       replaced.push(await replace(url, page, element) + rest);
     }
-
     return replaced.join(", ");
   }
 
@@ -62,46 +60,18 @@ export function modifyUrls(userOptions: Options) {
             return;
           }
 
-          for (const element of document.querySelectorAll("[href]")) {
-            element.setAttribute(
-              "href",
-              await replace(element.getAttribute("href"), page, element),
-            );
-          }
+          for (const { element, attribute, value } of searchLinks(document)) {
+            if (attribute === "srcset" || attribute === "imagesrcset") {
+              element.setAttribute(
+                attribute,
+                await replaceSrcset(value, page, element),
+              );
+              continue;
+            }
 
-          for (const element of document.querySelectorAll("[src]")) {
             element.setAttribute(
-              "src",
-              await replace(element.getAttribute("src"), page, element),
-            );
-          }
-
-          for (const element of document.querySelectorAll("video[poster]")) {
-            element.setAttribute(
-              "poster",
-              await replace(element.getAttribute("poster"), page, element),
-            );
-          }
-
-          for (const element of document.querySelectorAll("[srcset]")) {
-            element.setAttribute(
-              "srcset",
-              await replaceSrcset(
-                element.getAttribute("srcset"),
-                page,
-                element,
-              ),
-            );
-          }
-
-          for (const element of document.querySelectorAll("[imagesrcset]")) {
-            element.setAttribute(
-              "imagesrcset",
-              await replaceSrcset(
-                element.getAttribute("imagesrcset"),
-                page,
-                element,
-              ),
+              attribute,
+              await replace(value, page, element),
             );
           }
         }),
