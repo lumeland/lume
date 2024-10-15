@@ -150,7 +150,7 @@ function outputResults(
 ) {
   const content = JSON.stringify(
     Object.fromEntries(
-      notFound.entries().map(([url, refs]) => [url, Array.from(refs)]),
+      Array.from(notFound.entries()).map(([url, refs]) => [url, Array.from(refs)]),
     ),
     null,
     2,
