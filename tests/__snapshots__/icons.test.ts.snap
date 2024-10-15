@@ -1,0 +1,734 @@
+export const snapshot = {};
+
+snapshot[`icons plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+  ],
+  src: [
+    "/",
+    "/index.vto",
+  ],
+}
+`;
+
+snapshot[`icons plugin 2`] = `[]`;
+
+snapshot[`icons plugin 3`] = `
+[
+  {
+    content: '<svg viewBox="64 64 896 896" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zM648.3 426.8l-87.7 161.1h45.7c5.5 0 10 4.5 10 10v21.3c0 5.5-4.5 10-10 10h-63.4v29.7h63.4c5.5 0 10 4.5 10 10v21.3c0 5.5-4.5 10-10 10h-63.4V752c0 5.5-4.5 10-10 10h-41.3c-5.5 0-10-4.5-10-10v-51.8h-63.1c-5.5 0-10-4.5-10-10v-21.3c0-5.5 4.5-10 10-10h63.1v-29.7h-63.1c-5.5 0-10-4.5-10-10v-21.3c0-5.5 4.5-10 10-10h45.2l-88-161.1c-2.6-4.8-.9-10.9 4-13.6 1.5-.8 3.1-1.2 4.8-1.2h46c3.8 0 7.2 2.1 8.9 5.5l72.9 144.3 73.2-144.3a10 10 0 018.9-5.5h45c5.5 0 10 4.5 10 10 .1 1.7-.3 3.3-1.1 4.8z" /></svg>',
+    data: {
+      basename: "account-book-filled",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/ant/account-book-filled.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-0-circle" viewBox="0 0 16 16">
+  <path d="M7.988 12.158c-1.851 0-2.941-1.57-2.941-3.99V7.84c0-2.408 1.101-3.996 2.965-3.996 1.857 0 2.935 1.57 2.935 3.996v.328c0 2.408-1.101 3.99-2.959 3.99M8 4.951c-1.008 0-1.629 1.09-1.629 2.895v.31c0 1.81.627 2.895 1.629 2.895s1.623-1.09 1.623-2.895v-.31c0-1.8-.621-2.895-1.623-2.895"/>
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8"/>
+</svg>',
+    data: {
+      basename: "0-circle",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/bootstrap/0-circle.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C7.51 2 4 4.2 4 7v10c0 2.8 3.51 5 8 5s8-2.2 8-5V7c0-2.8-3.51-5-8-5zm0 18c-3.54 0-6-1.58-6-3v-6.67A10.52 10.52 0 0 0 12 12a10.52 10.52 0 0 0 6-1.67V17c0 1.42-2.46 3-6 3zm0-10c-3.54 0-6-1.58-6-3s2.46-3 6-3 6 1.58 6 3-2.46 3-6 3z"/><ellipse cx="12" cy="7" rx="3" ry="1.71"/></svg>',
+    data: {
+      basename: "sushi-regular",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/boxicons/sushi-regular.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6.99 8.6A.5.5 0 0 1 6 8.4a1.29 1.29 0 0 1 .07-.24 2 2 0 0 1 .25-.46c.26-.35.71-.7 1.42-.7A1.7 1.7 0 0 1 9.5 8.75c0 .35-.07.65-.2.9a1.8 1.8 0 0 1-.51.6c-.16.11-.33.22-.48.3l-.06.04c-.17.1-.3.19-.42.29-.4.34-.66.7-.77 1.12H9a.5.5 0 0 1 0 1H6.5a.5.5 0 0 1-.5-.5c0-1.01.47-1.77 1.17-2.38.2-.16.4-.29.57-.4l.06-.03.38-.24a.8.8 0 0 0 .23-.26c.05-.1.09-.23.09-.44a.8.8 0 0 0-.19-.53.7.7 0 0 0-.56-.22.7.7 0 0 0-.61.3 1 1 0 0 0-.15.3ZM11 7c.28 0 .5.22.5.5V10H13V7.5a.5.5 0 0 1 1 0v5a.5.5 0 0 1-1 0V11h-2a.5.5 0 0 1-.5-.5v-3c0-.28.22-.5.5-.5Zm-1-5a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm-7 8a7 7 0 1 1 14 0 7 7 0 0 1-14 0Z"/></svg>',
+    data: {
+      basename: "access_time_20-outlined",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/fluent/access_time_20-outlined.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z"/>
+</svg>
+',
+    data: {
+      basename: "face-smile-outline",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/heroicons/face-smile-outline.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13L9 17L19 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+',
+    data: {
+      basename: "check-regular",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/iconoir/check-regular.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!-- @license lucide-static v0.441.0 - ISC -->
+<svg
+  class="lucide lucide-alarm-clock"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="13" r="8" />
+  <path d="M12 9v4l2 2" />
+  <path d="M5 3 2 6" />
+  <path d="m22 6-3-3" />
+  <path d="M6.38 18.7 4 21" />
+  <path d="M17.64 18.67 20 21" />
+</svg>
+',
+    data: {
+      basename: "alarm-clock",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/lucide/alarm-clock.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 -960 960 960"><path d="M294-376h25v-208H214v25h80v183Zm114 0h93q11.15 0 18.58-7.42Q527-390.85 527-402v-156q0-11.15-7.42-18.58Q512.15-584 501-584h-93q-12.02 0-19.01 7.42Q382-569.15 382-558v156q0 11.15 6.99 18.58Q395.98-376 408-376Zm-1-25v-158h95v158h-95Zm184 25h25v-96l102 96h40L642-482l116-102h-38l-104 94v-94h-25v208ZM226-172q-22.77 0-38.39-15.61Q172-203.23 172-226v-508q0-22.78 15.61-38.39Q203.23-788 226-788h508q22.78 0 38.39 15.61T788-734v508q0 22.77-15.61 38.39Q756.78-172 734-172H226Zm0-22h508q12 0 22-10t10-22v-508q0-12-10-22t-22-10H226q-12 0-22 10t-10 22v508q0 12 10 22t22 10Zm-32-572v572-572Z"/></svg>',
+    data: {
+      basename: "10k-outlined",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/material-100/10k-outlined.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 -960 960 960"><path d="M292.15-372.31h30.77v-215.38H206.15v30.77h86v184.61Zm115.39 0h95.54q11.81 0 19.71-7.9t7.9-19.71v-159.93q0-11.91-7.9-19.88-7.9-7.96-19.71-7.96h-95.54q-12.49 0-20.05 7.96-7.57 7.97-7.57 19.88v159.93q0 11.81 7.57 19.71 7.56 7.9 20.05 7.9Zm3.15-30.77v-153.84h89.23v153.84h-89.23Zm177.77 30.77h30.77v-94.61l97.85 94.61h46L648-481.54l115.08-106.15h-44.46l-99.39 93.07v-93.07h-30.77v215.38ZM215.38-160q-23.05 0-39.22-16.16Q160-192.33 160-215.38v-529.24q0-23.05 16.16-39.22Q192.33-800 215.38-800h529.24q23.05 0 39.22 16.16Q800-767.67 800-744.62v529.24q0 23.05-16.16 39.22Q767.67-160 744.62-160H215.38Zm0-30.77h529.24q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-529.24q0-9.23-7.69-16.92-7.69-7.69-16.92-7.69H215.38q-9.23 0-16.92 7.69-7.69 7.69-7.69 16.92v529.24q0 9.23 7.69 16.92 7.69 7.69 16.92 7.69Zm-24.61-578.46v578.46-578.46Z"/></svg>',
+    data: {
+      basename: "10k-outlined",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/material-200/10k-outlined.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 -960 960 960"><path d="M289.08-366.15h40.38v-227.7H193.08v40.39h96v187.31Zm117.69 0h99.77q12.92 0 21.61-8.7 8.7-8.69 8.7-21.61v-166.46q0-13.18-8.7-22.05-8.69-8.88-21.61-8.88h-99.77q-13.26 0-21.78 8.88-8.53 8.87-8.53 22.05v166.46q0 12.92 8.53 21.61 8.52 8.7 21.78 8.7Zm10.08-40.39v-146.92h79.61v146.92h-79.61Zm167.38 40.39h40.38v-92.31l90.93 92.31h56L658-480.77l113.54-113.08h-55.23l-91.7 91.54v-91.54h-40.38v227.7ZM197.69-140q-23.53 0-40.61-17.08T140-197.69v-564.62q0-23.53 17.08-40.61T197.69-820h564.62q23.53 0 40.61 17.08T820-762.31v564.62q0 23.53-17.08 40.61T762.31-140H197.69Zm0-45.39h564.62q4.61 0 8.46-3.84 3.84-3.85 3.84-8.46v-564.62q0-4.61-3.84-8.46-3.85-3.84-8.46-3.84H197.69q-4.61 0-8.46 3.84-3.84 3.85-3.84 8.46v564.62q0 4.61 3.84 8.46 3.85 3.84 8.46 3.84Zm-12.3-589.22v589.22-589.22Z"/></svg>',
+    data: {
+      basename: "10k-outlined",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/material-300/10k-outlined.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 -960 960 960"><path d="M286-360h50v-240H180v50h106v190Zm120 0h104q14.03 0 23.51-9.49Q543-378.98 543-393v-173q0-14.45-9.49-24.22Q524.03-600 510-600H406q-14.02 0-23.51 9.78Q373-580.45 373-566v173q0 14.02 9.49 23.51Q391.98-360 406-360Zm17-50v-140h70v140h-70Zm157 50h50v-90l84 90h66L668-480l112-120h-66l-84 90v-90h-50v240ZM180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm0-60h600v-600H180v600Zm0-600v600-600Z"/></svg>',
+    data: {
+      basename: "10k-outlined",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/material-400/10k-outlined.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 -960 960 960"><path d="M287.2-360h50v-240H182.15v50H287.2v190Zm118.8 0h104q14.03 0 23.51-9.49Q543-378.98 543-393v-173q0-14.45-9.49-24.22Q524.03-600 510-600H406q-14.02 0-23.51 9.78Q373-580.45 373-566v173q0 14.02 9.49 23.51Q391.98-360 406-360Zm17-50v-140h70v140h-70Zm155.33 50h50v-90l84 90h65.52L666.33-480l111.52-120h-65.52l-84 90v-90h-50v240ZM182.15-114.02q-27.6 0-47.86-20.27-20.27-20.26-20.27-47.86v-595.7q0-27.7 20.27-48.03 20.26-20.34 47.86-20.34h595.7q27.7 0 48.03 20.34 20.34 20.33 20.34 48.03v595.7q0 27.6-20.34 47.86-20.33 20.27-48.03 20.27h-595.7Zm0-68.13h595.7v-595.7h-595.7v595.7Zm0-595.7v595.7-595.7Z"/></svg>',
+    data: {
+      basename: "10k-outlined",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/material-500/10k-outlined.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 -960 960 960"><path d="M288.83-360h50v-240H185.09v50h103.74v190ZM406-360h104q14.03 0 23.51-9.49Q543-378.98 543-393v-173q0-14.45-9.49-24.22Q524.03-600 510-600H406q-14.02 0-23.51 9.78Q373-580.45 373-566v173q0 14.02 9.49 23.51Q391.98-360 406-360Zm17-50v-140h70v140h-70Zm153.04 50h50v-90l84 90h64.87L664.04-480l110.87-120h-64.87l-84 90v-90h-50v240ZM185.09-105.87q-32.51 0-55.87-23.35-23.35-23.36-23.35-55.87v-589.82q0-32.74 23.35-56.26 23.36-23.53 55.87-23.53h589.82q32.74 0 56.26 23.53 23.53 23.52 23.53 56.26v589.82q0 32.51-23.53 55.87-23.52 23.35-56.26 23.35H185.09Zm0-79.22h589.82v-589.82H185.09v589.82Zm0-589.82v589.82-589.82Z"/></svg>',
+    data: {
+      basename: "10k-outlined",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/material-600/10k-outlined.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 -960 960 960"><path d="M291-360h50v-240H189v50h102v190Zm115 0h104q14.03 0 23.51-9.49Q543-378.98 543-393v-173q0-14.45-9.49-24.22Q524.03-600 510-600H406q-14.02 0-23.51 9.78Q373-580.45 373-566v173q0 14.02 9.49 23.51Q391.98-360 406-360Zm17-50v-140h70v140h-70Zm150 50h50v-90l84 90h64L661-480l110-120h-64l-84 90v-90h-50v240ZM189-95q-39.05 0-66.53-27.47Q95-149.95 95-189v-582q0-39.46 27.47-67.23Q149.95-866 189-866h582q39.46 0 67.23 27.77Q866-810.46 866-771v582q0 39.05-27.77 66.53Q810.46-95 771-95H189Zm0-94h582v-582H189v582Zm0-582v582-582Z"/></svg>',
+    data: {
+      basename: "10k-outlined",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/material-700/10k-outlined.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 10.5h1.5v3H10zM19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7.5 15H6v-4.5H4.5V9h3v6zm5.5-1c0 .55-.45 1-1 1H9.5c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1H12c.55 0 1 .45 1 1v4zm6.5 1h-1.75L16 12.75V15h-1.5V9H16v2.25L17.75 9h1.75l-2.25 3 2.25 3z"/></svg>',
+    data: {
+      basename: "10k-filled",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/material/10k-filled.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0h24ZM12.594 23.258l-.012.002-.071.035-.02.004-.014-.004-.071-.036c-.01-.003-.019 0-.024.006l-.004.01-.017.428.005.02.01.013.104.074.015.004.012-.004.104-.074.012-.016.004-.017-.017-.427c-.002-.01-.009-.017-.016-.018Zm.264-.113-.014.002-.184.093-.01.01-.003.011.018.43.005.012.008.008.201.092c.012.004.023 0 .029-.008l.004-.014-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014-.034.614c0 .012.007.02.017.024l.015-.002.201-.093.01-.008.003-.011.018-.43-.003-.012-.01-.01-.184-.092Z"/><path fill="#09244B" d="M12.06 5.94a1.5 1.5 0 0 1 0 2.12L8.122 12l3.94 3.94a1.5 1.5 0 0 1-2.122 2.12l-5-5a1.5 1.5 0 0 1 0-2.12l5-5a1.5 1.5 0 0 1 2.122 0Zm6 0a1.5 1.5 0 0 1 0 2.12L14.122 12l3.94 3.94a1.5 1.5 0 0 1-2.122 2.12l-5-5a1.5 1.5 0 0 1 0-2.12l5-5a1.5 1.5 0 0 1 2.122 0Z"/></g></svg>',
+    data: {
+      basename: "arrows_left_fill",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/mingcute/arrow/arrows_left_fill.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 13.667 7 7l-2.5 6.667m5 0L10.75 17M9.5 13.667h-5M3.25 17l1.25-3.333M17.25 7.5v9m3.5-3.5-3.5 3.5-3.5-3.5"/></svg>',
+    data: {
+      basename: "a-arrow-down-regular",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/myna/a-arrow-down-regular.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M1.5 4.25c0-.966.784-1.75 1.75-1.75h17.5c.966 0 1.75.784 1.75 1.75v12.5a1.75 1.75 0 0 1-1.75 1.75h-9.69l-3.573 3.573A1.458 1.458 0 0 1 5 21.043V18.5H3.25a1.75 1.75 0 0 1-1.75-1.75ZM3.25 4a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h2.5a.75.75 0 0 1 .75.75v3.19l3.72-3.72a.749.749 0 0 1 .53-.22h10a.25.25 0 0 0 .25-.25V4.25a.25.25 0 0 0-.25-.25Z"/></svg>',
+    data: {
+      basename: "comment-24",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/octicons/comment-24.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg id="emoji" viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g id="color">
+    <rect x="11" y="11" rx="3" width="50" height="50" fill="#61b2e4"/>
+    <rect x="20" y="30" width="6" height="21" fill="#fff"/>
+    <circle cx="23" cy="22" r="3.5" fill="#fff"/>
+    <path fill="#fff" d="m42.5 35c-2.209 0-4 1.168-4 4.5v11.5h-6v-21h6v2.21h-0.0016a7.981 7.981 0 0 1 6.002-2.71c4.418 0 8 3.3 8 9v12.5h-6v-11.5c0-3.332-1.791-4.5-4-4.5"/>
+  </g>
+  <g id="line">
+    <rect x="11" y="11" rx="3" width="50" height="50" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+    <rect x="20" y="30" width="6" height="21" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <circle cx="23" cy="22" r="3.5" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m42.5 35c-2.209 0-4 1.168-4 4.5v11.5h-6v-21h6v2.21h-0.0016a7.981 7.981 0 0 1 6.002-2.71c4.418 0 8 3.3 8 9v12.5h-6v-11.5c0-3.332-1.791-4.5-4-4.5"/>
+  </g>
+</svg>
+',
+    data: {
+      basename: "E046-color",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/openmoji/E046-color.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M236,104a60.07,60.07,0,0,0-60-60H140.4A20,20,0,0,1,160,28a12,12,0,0,0,0-24,44.06,44.06,0,0,0-43.81,40H80a60.07,60.07,0,0,0-60,60,20,20,0,0,0,8,16v8c0,37.45,34,64.71,61.23,86.61,10.22,8.2,25.63,20.58,26.77,25.56a12,12,0,0,0,24,0c1.14-5,16.55-17.36,26.77-25.56C194.05,192.71,228,165.45,228,128v-8A20,20,0,0,0,236,104ZM80,68h96a36.06,36.06,0,0,1,35.78,32H44.22A36.06,36.06,0,0,1,80,68Zm71.74,127.9c-9.17,7.36-17.46,14-23.74,20.55-6.28-6.53-14.57-13.19-23.74-20.55C81,177.2,52,153.94,52,128v-4H204v4C204,153.94,175,177.2,151.74,195.9Z"/></svg>',
+    data: {
+      basename: "acorn-bold",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/phosphor/acorn-bold.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13 12V20H11V12H4L12 4L20 12H13Z"/></svg>',
+    data: {
+      basename: "arrow-up-fill",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/remix/arrows/arrow-up-fill.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M6 12h12m-6 6V6"/></svg>',
+    data: {
+      basename: "add-duotone",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/sargam/add-duotone.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>',
+    data: {
+      basename: "facebook",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/simpleicons/facebook.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="currentColor"
+  class="icon icon-tabler icons-tabler-filled icon-tabler-alien"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12.004 2c4.942 0 8.288 2.503 8.85 6.444a12.884 12.884 0 0 1 -2.163 9.308a11.794 11.794 0 0 1 -3.51 3.356c-1.982 1.19 -4.376 1.19 -6.373 -.008a11.763 11.763 0 0 1 -3.489 -3.34a12.808 12.808 0 0 1 -2.171 -9.306c.564 -3.95 3.91 -6.454 8.856 -6.454zm1.913 14.6a1 1 0 0 0 -1.317 -.517l-.146 .055a1.5 1.5 0 0 1 -1.054 -.055l-.11 -.04a1 1 0 0 0 -.69 1.874a3.5 3.5 0 0 0 2.8 0a1 1 0 0 0 .517 -1.317zm-5.304 -6.39a1 1 0 0 0 -1.32 1.497l2 2l.094 .083a1 1 0 0 0 1.32 -1.497l-2 -2zm8.094 .083a1 1 0 0 0 -1.414 0l-2 2l-.083 .094a1 1 0 0 0 1.497 1.32l2 -2l.083 -.094a1 1 0 0 0 -.083 -1.32z" />
+</svg>',
+    data: {
+      basename: "alien-filled",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/tabler/alien-filled.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <img src="icons/phosphor/acorn-bold.svg">
+  <img src="icons/phosphor/acorn-bold.svg">
+  <img src="icons/phosphor/acorn-bold.svg">
+  <img src="icons/simpleicons/facebook.svg">
+  <img src="icons/heroicons/face-smile-outline.svg">
+  <img src="icons/material/10k-filled.svg">
+  <img src="icons/material-100/10k-outlined.svg">
+  <img src="icons/material-200/10k-outlined.svg">
+  <img src="icons/material-300/10k-outlined.svg">
+  <img src="icons/material-400/10k-outlined.svg">
+  <img src="icons/material-500/10k-outlined.svg">
+  <img src="icons/material-600/10k-outlined.svg">
+  <img src="icons/material-700/10k-outlined.svg">
+  <img src="icons/lucide/alarm-clock.svg">
+  <img src="icons/tabler/alien-filled.svg">
+  <img src="icons/mingcute/arrow/arrows_left_fill.svg">
+  <img src="icons/remix/arrows/arrow-up-fill.svg">
+  <img src="icons/bootstrap/0-circle.svg">
+  <img src="icons/myna/a-arrow-down-regular.svg">
+  <img src="icons/iconoir/check-regular.svg">
+  <img src="icons/sargam/add-duotone.svg">
+  <img src="icons/boxicons/sushi-regular.svg">
+  <img src="icons/ant/account-book-filled.svg">
+  <img src="icons/fluent/access_time_20-outlined.svg">
+  <img src="icons/octicons/comment-24.svg">
+  <img src="icons/openmoji/E046-color.svg">
+</body>
+</html>',
+    data: {
+      basename: "index",
+      children: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <img src="icons/phosphor/acorn-bold.svg">
+  <img src="icons/phosphor/acorn-bold.svg">
+  <img src="icons/phosphor/acorn-bold.svg">
+  <img src="icons/simpleicons/facebook.svg">
+  <img src="icons/heroicons/face-smile-outline.svg">
+  <img src="icons/material/10k-filled.svg">
+  <img src="icons/material-100/10k-outlined.svg">
+  <img src="icons/material-200/10k-outlined.svg">
+  <img src="icons/material-300/10k-outlined.svg">
+  <img src="icons/material-400/10k-outlined.svg">
+  <img src="icons/material-500/10k-outlined.svg">
+  <img src="icons/material-600/10k-outlined.svg">
+  <img src="icons/material-700/10k-outlined.svg">
+  <img src="icons/lucide/alarm-clock.svg">
+  <img src="icons/tabler/alien-filled.svg">
+  <img src="icons/mingcute/arrow/arrows_left_fill.svg">
+  <img src="icons/remix/arrows/arrow-up-fill.svg">
+  <img src="icons/bootstrap/0-circle.svg">
+  <img src="icons/myna/a-arrow-down-regular.svg">
+  <img src="icons/iconoir/check-regular.svg">
+  <img src="icons/sargam/add-duotone.svg">
+  <img src="icons/boxicons/sushi-regular.svg">
+  <img src="icons/ant/account-book-filled.svg">
+  <img src="icons/fluent/access_time_20-outlined.svg">
+  <img src="icons/octicons/comment-24.svg">
+  <img src="icons/openmoji/E046-color.svg">
+</body>
+</html>',
+      content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <img src="{{ "acorn" |> icon("phosphor") }}">
+  <img src="{{ "acorn" |> icon("phosphor", "duotone") }}">
+  <img src="{{ "acorn:duotone" |> icon("phosphor") }}">
+  <img src="{{ "facebook" |> icon("simpleicons") }}">
+  <img src="{{ "face-smile" |> icon("heroicons") }}">
+  <img src="{{ "10k" |> icon("material") }}">
+  <img src="{{ "10k" |> icon("material-100") }}">
+  <img src="{{ "10k" |> icon("material-200") }}">
+  <img src="{{ "10k" |> icon("material-300") }}">
+  <img src="{{ "10k" |> icon("material-400") }}">
+  <img src="{{ "10k" |> icon("material-500") }}">
+  <img src="{{ "10k" |> icon("material-600") }}">
+  <img src="{{ "10k" |> icon("material-700") }}">
+  <img src="{{ "alarm-clock" |> icon("lucide") }}">
+  <img src="{{ "alien" |> icon("tabler") }}">
+  <img src="{{ "arrow/arrows_left_fill" |> icon("mingcute") }}">
+  <img src="{{ "arrows/arrow-up-fill" |> icon("remix") }}">
+  <img src="{{ "0-circle" |> icon("bootstrap") }}">
+  <img src="{{ "a-arrow-down" |> icon("myna") }}">
+  <img src="{{ "check" |> icon("iconoir") }}">
+  <img src="{{ "add" |> icon("sargam") }}">
+  <img src="{{ "sushi" |> icon("boxicons") }}">
+  <img src="{{ "account-book" |> icon("ant") }}">
+  <img src="{{ "access_time_20" |> icon("fluent") }}">
+  <img src="{{ "comment" |> icon("octicons") }}">
+  <img src="{{ "E046" |> icon("openmoji") }}">
+</body>
+</html>',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/",
+    },
+    src: {
+      asset: false,
+      ext: ".vto",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+]
+`;

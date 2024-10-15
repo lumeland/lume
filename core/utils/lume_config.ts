@@ -29,6 +29,7 @@ export const pluginNames = [
   "on_demand",
   "pagefind",
   "picture",
+  "plugins",
   "postcss",
   "prism",
   "pug",

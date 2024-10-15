@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [Unreleased]
+### Added
+- New plugin: `check_urls` to detect broken links [#675].
+- New plugin: `icons` to load automatically icons from popular icon catalogs.
+
 ### Fixed
 - Nav plugin: Breadcrumb with urls with CJK characters.
 
@@ -549,6 +553,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#667]: https://github.com/lumeland/lume/issues/667
 [#668]: https://github.com/lumeland/lume/issues/668
 [#671]: https://github.com/lumeland/lume/issues/671
+[#675]: https://github.com/lumeland/lume/issues/675
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.3.3...HEAD
 [2.3.3]: https://github.com/lumeland/lume/compare/v2.3.2...v2.3.3
