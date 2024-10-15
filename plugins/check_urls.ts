@@ -1,6 +1,7 @@
 import { merge } from "../core/utils/object.ts";
 import { parseSrcset, searchLinks } from "../core/utils/dom_links.ts";
 import { gray, green, red } from "../deps/colors.ts";
+import { Page } from "../core/file.ts";
 
 import type Site from "../core/site.ts";
 
@@ -8,17 +9,20 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions?: string[];
 
-  /** Whether distinguish the trailing slash or not (only for internal links) */
+  /** True to distinguish trailing slashes and oldUrl values (only for internal links) */
   strict?: boolean;
 
   /** The list of URLs to ignore */
   ignore?: string[];
+
+  /** To output the list to a json file */
+  output?: string;
 }
 
 /** Default options */
 export const defaults: Options = {
   extensions: [".html"],
-  strict: true,
+  strict: false,
   ignore: [],
 };
 
@@ -43,8 +47,9 @@ export default function (userOptions?: Options) {
   }
 
   return (site: Site) => {
-    const urls = new Set<string>(); // Set is more performant than arrays
-    const notFound = new Map<string, string[]>();
+    const urls = new Set<string>(); // All valid URLs
+    const redirects = new Set<string>(); // All URLs that are redirects
+    const notFound = new Map<string, Set<string>>();
 
     function findPath(path: string): boolean {
       if (options.strict) {
@@ -52,7 +57,9 @@ export default function (userOptions?: Options) {
       }
 
       const cleaned = path === "/" ? path : path.replace(/\/$/, "");
-      return urls.has(cleaned) || urls.has(cleaned + "/");
+
+      return urls.has(cleaned) || urls.has(cleaned + "/") ||
+        redirects.has(cleaned) || redirects.has(cleaned + "/");
     }
 
     function scan(url: string, pageUrl: URL): void {
@@ -68,8 +75,8 @@ export default function (userOptions?: Options) {
       }
 
       if (!findPath(fullUrl.pathname)) {
-        const ref = notFound.get(fullUrl.pathname) || [];
-        ref.push(pageUrl.pathname);
+        const ref = notFound.get(fullUrl.pathname) || new Set();
+        ref.add(pageUrl.pathname);
         notFound.set(fullUrl.pathname, ref);
       }
     }
@@ -81,7 +88,18 @@ export default function (userOptions?: Options) {
 
       for (const page of pages) {
         urls.add(page.data.url);
+
+        if (page.data.oldUrl) {
+          if (Array.isArray(page.data.oldUrl)) {
+            for (const oldUrl of page.data.oldUrl) {
+              redirects.add(oldUrl);
+            }
+          } else {
+            redirects.add(page.data.oldUrl);
+          }
+        }
       }
+
       for (const file of site.files) {
         urls.add(file.outputPath);
       }
@@ -113,26 +131,48 @@ export default function (userOptions?: Options) {
       },
     );
 
-    function showResults() {
-      if (notFound.size === 0) {
-        console.log(green("All links are OK!"));
-        return;
-      }
-
-      console.log("");
-      console.log(`⛓️‍💥 ${notFound.size} Broken links:`);
-      for (const [url, refs] of notFound) {
-        console.log("");
-        console.log(red(url));
-        console.log("  In the page(s):");
-        for (const ref of refs) {
-          console.log(`  ${gray(ref)}`);
-        }
-      }
-      console.log("");
+    if (options.output) {
+      site.addEventListener(
+        "beforeSave",
+        () => outputResults(notFound, options.output, site),
+      );
+    } else {
+      site.addEventListener("afterUpdate", () => showResults(notFound));
+      site.addEventListener("afterBuild", () => showResults(notFound));
     }
-
-    site.addEventListener("afterUpdate", showResults);
-    site.addEventListener("afterBuild", showResults);
   };
+}
+
+function outputResults(
+  notFound: Map<string, Set<string>>,
+  url: string,
+  site: Site,
+) {
+  const content = JSON.stringify(
+    Object.fromEntries(
+      notFound.entries().map(([url, refs]) => [url, Array.from(refs)]),
+    ),
+    null,
+    2,
+  );
+  site.pages.push(Page.create({ content, url }));
+}
+
+function showResults(notFound: Map<string, Set<string>>) {
+  if (notFound.size === 0) {
+    console.log(green("All links are OK!"));
+    return;
+  }
+
+  console.log("");
+  console.log(`${notFound.size} Broken links:`);
+  for (const [url, refs] of notFound) {
+    console.log("");
+    console.log("⛓️‍💥", red(url));
+    console.log("  In the page(s):");
+    for (const ref of refs) {
+      console.log(`  ${gray(ref)}`);
+    }
+  }
+  console.log("");
 }
