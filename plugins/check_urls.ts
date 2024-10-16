@@ -2,6 +2,7 @@ import { merge } from "../core/utils/object.ts";
 import { parseSrcset, searchLinks } from "../core/utils/dom_links.ts";
 import { gray, green, red } from "../deps/colors.ts";
 import { Page } from "../core/file.ts";
+import { concurrent } from "../core/utils/concurrent.ts";
 
 import type Site from "../core/site.ts";
 
@@ -15,6 +16,9 @@ export interface Options {
   /** The list of URLs to ignore */
   ignore?: string[];
 
+  /** True to check external links */
+  external?: boolean;
+
   /** To output the list to a json file */
   output?: string;
 }
@@ -24,7 +28,10 @@ export const defaults: Options = {
   extensions: [".html"],
   strict: false,
   ignore: [],
+  external: false,
 };
+
+const cacheExternalUrls = new Map<string, Promise<boolean>>();
 
 /**
  * This plugin checks broken links in *.html output files.
@@ -47,8 +54,9 @@ export default function (userOptions?: Options) {
   }
 
   return (site: Site) => {
-    const urls = new Set<string>(); // All valid URLs
+    const urls = new Set<string>(); // All valid URLs (internal)
     const redirects = new Set<string>(); // All URLs that are redirects
+    const external = new Map<string, Set<string>>(); // All external URLs found
     const notFound = new Map<string, Set<string>>();
 
     function findPath(path: string): boolean {
@@ -71,20 +79,33 @@ export default function (userOptions?: Options) {
 
       // External links
       if (fullUrl.origin != pageUrl.origin) {
-        return; // Skip external links
+        if (options.external) {
+          fullUrl.hash = "";
+          saveRef(external, fullUrl.href, pageUrl.pathname);
+        }
+        return;
       }
 
       if (!findPath(fullUrl.pathname)) {
-        const ref = notFound.get(fullUrl.pathname) || new Set();
-        ref.add(pageUrl.pathname);
-        notFound.set(fullUrl.pathname, ref);
+        saveRef(notFound, fullUrl.pathname, pageUrl.pathname);
       }
+    }
+
+    function saveRef(
+      map: Map<string, Set<string>>,
+      href: string,
+      pageUrl: string,
+    ) {
+      const ref = map.get(href) || new Set();
+      ref.add(pageUrl);
+      map.set(href, ref);
     }
 
     site.process("*", (pages) => {
       // Clear on rebuild
       urls.clear();
       notFound.clear();
+      external.clear();
 
       for (const page of pages) {
         urls.add(page.data.url);
@@ -107,7 +128,7 @@ export default function (userOptions?: Options) {
 
     site.process(
       options.extensions,
-      (pages) => {
+      async (pages) => {
         for (const page of pages) {
           const { document } = page;
 
@@ -128,6 +149,19 @@ export default function (userOptions?: Options) {
             scan(value, pageURL);
           }
         }
+
+        // Check external links
+        await concurrent(
+          external,
+          async ([url, pages]) => {
+            if (await checkExternalUrl(url) === false) {
+              for (const pageUrl of pages) {
+                saveRef(notFound, url, pageUrl);
+              }
+            }
+          },
+          20,
+        );
       },
     );
 
@@ -141,6 +175,24 @@ export default function (userOptions?: Options) {
       site.addEventListener("afterBuild", () => showResults(notFound));
     }
   };
+}
+
+function checkExternalUrl(url: string): Promise<boolean> {
+  let result = cacheExternalUrls.get(url);
+
+  if (!result) {
+    result = fetch(url, {
+      method: "HEAD",
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/115.0",
+        Accept: "text/html,*/*;q=0.8",
+      },
+    }).then((response) => response.status !== 404).catch(() => false);
+    cacheExternalUrls.set(url, result);
+  }
+
+  return result;
 }
 
 function outputResults(
