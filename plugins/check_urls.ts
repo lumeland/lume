@@ -1,7 +1,7 @@
 import { merge } from "../core/utils/object.ts";
 import { parseSrcset, searchLinks } from "../core/utils/dom_links.ts";
 import { gray, green, red } from "../deps/colors.ts";
-import { Page } from "../core/file.ts";
+import { join } from "../deps/path.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 
 import type Site from "../core/site.ts";
@@ -10,7 +10,7 @@ export interface Options {
   /** The list of extensions this plugin applies to */
   extensions?: string[];
 
-  /** True to distinguish trailing slashes and oldUrl values (only for internal links) */
+  /** True to require trailing slashes and ignore redirections (oldUrl variables) */
   strict?: boolean;
 
   /** The list of URLs to ignore */
@@ -20,7 +20,7 @@ export interface Options {
   external?: boolean;
 
   /** To output the list to a json file */
-  output?: string;
+  output?: string | ((notFoundUrls: Map<string, Set<string>>) => void);
 }
 
 /** Default options */
@@ -32,6 +32,7 @@ export const defaults: Options = {
 };
 
 const cacheExternalUrls = new Map<string, Promise<boolean>>();
+const cacheInternalUrls = new Map<string, Promise<boolean>>();
 
 /**
  * This plugin checks broken links in *.html output files.
@@ -54,21 +55,8 @@ export default function (userOptions?: Options) {
   }
 
   return (site: Site) => {
-    const urls = new Set<string>(); // All valid URLs (internal)
-    const redirects = new Set<string>(); // All URLs that are redirects
-    const external = new Map<string, Set<string>>(); // All external URLs found
-    const notFound = new Map<string, Set<string>>();
-
-    function findPath(path: string): boolean {
-      if (options.strict) {
-        return urls.has(path);
-      }
-
-      const cleaned = path === "/" ? path : path.replace(/\/$/, "");
-
-      return urls.has(cleaned) || urls.has(cleaned + "/") ||
-        redirects.has(cleaned) || redirects.has(cleaned + "/");
-    }
+    const urls = new Map<string, Set<string>>(); // All URLs found
+    const redirects = new Set<string>(); // All URLs that redirect
 
     function scan(url: string, pageUrl: URL): void {
       if (ignore(url)) { // ignore empty, hash, search, etc
@@ -81,14 +69,12 @@ export default function (userOptions?: Options) {
       if (fullUrl.origin != pageUrl.origin) {
         if (options.external) {
           fullUrl.hash = "";
-          saveRef(external, fullUrl.href, pageUrl.pathname);
+          saveRef(urls, fullUrl.href, pageUrl.pathname);
         }
         return;
       }
 
-      if (!findPath(fullUrl.pathname)) {
-        saveRef(notFound, fullUrl.pathname, pageUrl.pathname);
-      }
+      saveRef(urls, fullUrl.pathname, pageUrl.pathname);
     }
 
     function saveRef(
@@ -101,34 +87,27 @@ export default function (userOptions?: Options) {
       map.set(href, ref);
     }
 
-    site.process("*", (pages) => {
-      // Clear on rebuild
-      urls.clear();
-      notFound.clear();
-      external.clear();
-
-      for (const page of pages) {
-        urls.add(page.data.url);
-
-        if (page.data.oldUrl) {
-          if (Array.isArray(page.data.oldUrl)) {
-            for (const oldUrl of page.data.oldUrl) {
-              redirects.add(oldUrl);
+    // Search for redirect URLs non-strict mode
+    if (!options.strict) {
+      site.process("*", (pages) => {
+        for (const page of pages) {
+          if (page.data.oldUrl) {
+            if (Array.isArray(page.data.oldUrl)) {
+              for (const oldUrl of page.data.oldUrl) {
+                redirects.add(oldUrl);
+              }
+            } else {
+              redirects.add(page.data.oldUrl);
             }
-          } else {
-            redirects.add(page.data.oldUrl);
           }
         }
-      }
+      });
+    }
 
-      for (const file of site.files) {
-        urls.add(file.outputPath);
-      }
-    });
-
+    // Search for URLs in all pages
     site.process(
       options.extensions,
-      async (pages) => {
+      (pages) => {
         for (const page of pages) {
           const { document } = page;
 
@@ -149,33 +128,95 @@ export default function (userOptions?: Options) {
             scan(value, pageURL);
           }
         }
-
-        // Check external links
-        await concurrent(
-          external,
-          async ([url, pages]) => {
-            if (await checkExternalUrl(url) === false) {
-              for (const pageUrl of pages) {
-                saveRef(notFound, url, pageUrl);
-              }
-            }
-          },
-          20,
-        );
       },
     );
 
-    if (options.output) {
-      site.addEventListener(
-        "beforeSave",
-        () => outputResults(notFound, options.output, site),
+    async function checkUrls(): Promise<void> {
+      const strict = options.strict;
+      const notFound = new Map<string, Set<string>>();
+      const dest = site.dest();
+
+      await concurrent(
+        urls,
+        async ([url, refs]) => {
+          if (url.startsWith("http")) {
+            if (!await checkExternalUrl(url)) {
+              notFound.set(url, refs);
+            }
+            return;
+          }
+
+          if (!strict) {
+            const cleaned = url === "/" ? url : url.replace(/\/$/, "");
+            if (url === "/foo/") {
+              console.log("cleaned", cleaned);
+              console.log("redirects", redirects);
+            }
+            if (redirects.has(cleaned) || redirects.has(cleaned + "/")) {
+              return;
+            }
+          }
+
+          if (!await checkInternalUrl(url, dest, strict)) {
+            notFound.set(url, refs);
+          }
+        },
       );
-    } else {
-      site.addEventListener("afterUpdate", () => showResults(notFound));
-      site.addEventListener("afterBuild", () => showResults(notFound));
+
+      // Output
+      if (typeof options.output === "function") {
+        options.output(notFound);
+      } else if (typeof options.output === "string") {
+        outputFile(notFound, options.output);
+      } else {
+        outputConsole(notFound);
+      }
+
+      // Clear cache
+      cacheInternalUrls.clear();
+      urls.clear();
+      redirects.clear();
     }
+
+    site.addEventListener("afterUpdate", checkUrls);
+    site.addEventListener("afterBuild", checkUrls);
   };
 }
+
+function checkInternalUrl(
+  url: string,
+  dest: string,
+  strict: boolean,
+): Promise<boolean> {
+  let result = cacheInternalUrls.get(url);
+
+  if (!result) {
+    if (url.endsWith("/")) {
+      result = Deno.stat(join(dest, url, "index.html")).then(() => true).catch(
+        () => false,
+      );
+    } else {
+      result = Deno.stat(join(dest, url)).then(() => true).catch(() => {
+        if (strict) {
+          return false;
+        }
+
+        return Deno.stat(join(dest, url, "/index.html"))
+          .then(() => true)
+          .catch(() => false);
+      });
+    }
+    cacheInternalUrls.set(url, result);
+  }
+
+  return result;
+}
+
+const headers = {
+  "User-Agent":
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/115.0",
+  Accept: "text/html,*/*;q=0.8",
+};
 
 function checkExternalUrl(url: string): Promise<boolean> {
   let result = cacheExternalUrls.get(url);
@@ -183,22 +224,25 @@ function checkExternalUrl(url: string): Promise<boolean> {
   if (!result) {
     result = fetch(url, {
       method: "HEAD",
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/115.0",
-        Accept: "text/html,*/*;q=0.8",
-      },
-    }).then((response) => response.status !== 404).catch(() => false);
+      headers,
+    }).then((response) => {
+      if (response.status !== 404) {
+        return true;
+      }
+      // Retry again with GET method (some servers don't support HEAD)
+      return fetch(url, { method: "GET", headers }).then((response) =>
+        response.status !== 404
+      );
+    }).catch(() => false);
     cacheExternalUrls.set(url, result);
   }
 
   return result;
 }
 
-function outputResults(
+function outputFile(
   notFound: Map<string, Set<string>>,
-  url: string,
-  site: Site,
+  file: string,
 ) {
   const content = JSON.stringify(
     Object.fromEntries(
@@ -208,10 +252,10 @@ function outputResults(
     null,
     2,
   );
-  site.pages.push(Page.create({ content, url }));
+  Deno.writeTextFileSync(file, content);
 }
 
-function showResults(notFound: Map<string, Set<string>>) {
+function outputConsole(notFound: Map<string, Set<string>>) {
   if (notFound.size === 0) {
     console.log(green("All links are OK!"));
     return;
@@ -222,9 +266,9 @@ function showResults(notFound: Map<string, Set<string>>) {
   for (const [url, refs] of notFound) {
     console.log("");
     console.log("⛓️‍💥", red(url));
-    console.log("  In the page(s):");
+    console.log("   Found in:");
     for (const ref of refs) {
-      console.log(`  ${gray(ref)}`);
+      console.log(`   ${gray(ref)}`);
     }
   }
   console.log("");
