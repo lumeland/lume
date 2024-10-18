@@ -356,7 +356,7 @@ body {
     content: "body{color:blue}",
     data: {
       basename: "styles3",
-      content: '@import "variables";
+      content: '@use "variables" as *;
 
 body {
   color: \$color;
