@@ -123,7 +123,6 @@ snapshot[`sass plugin 1`] = `
     "/_includes/sass/button",
     "/_includes/sass/button/index.scss",
     "/_includes/sass/colors.scss",
-    "/_includes/sass/fourth.scss",
     "/_includes/sass/third.scss",
     "/index.scss",
     "/index2.sass",
@@ -137,14 +136,13 @@ snapshot[`sass plugin 2`] = `[]`;
 snapshot[`sass plugin 3`] = `
 [
   {
-    content: '@import"./styles.css";html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:blue}body{font:100% Helvetica,sans-serif;color:#333}li{margin:0;padding:0;list-style:none}',
+    content: '@import"./styles.css";html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}body{font:100% Helvetica,sans-serif;color:#333}li{margin:0;padding:0;list-style:none}',
     data: {
       basename: "index",
       content: '@use "sass/bootstrap";
-
+@use "sass/button";
+@use "./_includes/sass/colors";
 @import "./styles.css";
-@import "./_includes/sass/colors";
-@import "sass/button";
 
 li {
   @include bootstrap.list-reset;
@@ -175,7 +173,7 @@ li {
     content: "body{color:blue}",
     data: {
       basename: "index2",
-      content: '@import "sass/colors"
+      content: '@use "sass/colors" as *
 
 body
   color: \$primary-color

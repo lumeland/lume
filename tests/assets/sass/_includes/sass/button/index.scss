@@ -1,5 +1,4 @@
-@import "../third.scss";
-@import "../fourth";
+@use "../third.scss";
 
 $font-stack: Helvetica, sans-serif;
 $primary-color: #333;

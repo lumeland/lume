@@ -1,8 +1,7 @@
 @use "sass/bootstrap";
-
+@use "sass/button";
+@use "./_includes/sass/colors";
 @import "./styles.css";
-@import "./_includes/sass/colors";
-@import "sass/button";
 
 li {
   @include bootstrap.list-reset;

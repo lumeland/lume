@@ -12,6 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Nav plugin: Breadcrumb with urls with CJK characters.
+- Updated dependencies: `sass`, `terser`, `liquid`, `tailwindcss`, `std`, `preact`, `mdx`, `xml`, `satori`, `react` types, `unocss`, `magic-string`.
 
 ## [2.3.3] - 2024-10-07
 ### Added
