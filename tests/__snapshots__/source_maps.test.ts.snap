@@ -129,7 +129,6 @@ snapshot[`Source maps from CSS files 1`] = `
     "/_includes/sass/button",
     "/_includes/sass/button/index.scss",
     "/_includes/sass/colors.scss",
-    "/_includes/sass/fourth.scss",
     "/_includes/sass/third.scss",
     "/index.scss",
     "/index2.sass",
@@ -143,10 +142,10 @@ snapshot[`Source maps from CSS files 2`] = `[]`;
 snapshot[`Source maps from CSS files 3`] = `
 [
   {
-    content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BDEQ,2DGFR,cEMA,+CLAA","sources":["index.scss","styles.css","third.scss","fourth.scss","colors.scss","index.scss","_list.scss"],"sourcesContent":["","","","","","",""],"names":[],"file":"index.css.map"}',
+    content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BCEA,2DCGA,+CHAA","sources":["index.scss","styles.css","third.scss","index.scss","_list.scss"],"sourcesContent":["","","","",""],"names":[],"file":"index.css.map"}',
     data: {
       basename: "index",
-      content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BDEQ,2DGFR,cEMA,+CLAA","sources":["index.scss","styles.css","third.scss","fourth.scss","colors.scss","index.scss","_list.scss"],"sourcesContent":["","","","","","",""],"names":[],"file":"index.css.map"}',
+      content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BCEA,2DCGA,+CHAA","sources":["index.scss","styles.css","third.scss","index.scss","_list.scss"],"sourcesContent":["","","","",""],"names":[],"file":"index.css.map"}',
       page: [
         "src",
         "data",
@@ -200,15 +199,14 @@ snapshot[`Source maps from CSS files 3`] = `
     },
   },
   {
-    content: "body{font-family:sans-serif}html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}hr{color:#00f}body{color:#333;font:100% Helvetica,sans-serif}li{margin:0;padding:0;list-style:none}
+    content: "body{font-family:sans-serif}html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}body{color:#333;font:100% Helvetica,sans-serif}li{margin:0;padding:0;list-style:none}
 /*# sourceMappingURL=./index.css.map */",
     data: {
       basename: "index",
       content: '@use "sass/bootstrap";
-
+@use "sass/button";
+@use "./_includes/sass/colors";
 @import "./styles.css";
-@import "./_includes/sass/colors";
-@import "sass/button";
 
 li {
   @include bootstrap.list-reset;
@@ -241,7 +239,7 @@ li {
 /*# sourceMappingURL=./index2.css.map */",
     data: {
       basename: "index2",
-      content: '@import "sass/colors"
+      content: '@use "sass/colors" as *
 
 body
   color: \$primary-color
