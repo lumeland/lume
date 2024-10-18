@@ -12,6 +12,7 @@ export const pluginNames = [
   "feed",
   "fff",
   "filter_pages",
+  "hatsu",
   "inline",
   "jsx",
   "jsx_preact",
