@@ -12,6 +12,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Nav plugin: Breadcrumb with urls with CJK characters.
+- Enable tests for `sri` and `reading_info` plugins [#677].
+- Fix tests for `esbuild` plugin [#676].
 - Updated dependencies: `sass`, `terser`, `liquid`, `tailwindcss`, `std`, `preact`, `mdx`, `xml`, `satori`, `react` types, `unocss`, `magic-string`.
 
 ## [2.3.3] - 2024-10-07
@@ -555,6 +557,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#668]: https://github.com/lumeland/lume/issues/668
 [#671]: https://github.com/lumeland/lume/issues/671
 [#675]: https://github.com/lumeland/lume/issues/675
+[#676]: https://github.com/lumeland/lume/issues/676
+[#677]: https://github.com/lumeland/lume/issues/677
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.3.3...HEAD
 [2.3.3]: https://github.com/lumeland/lume/compare/v2.3.2...v2.3.3
