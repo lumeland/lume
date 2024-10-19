@@ -4,81 +4,108 @@ snapshot[`Reading info plugin 1`] = `
 {
   formats: [
     {
-      engines: 1,
-      ext: ".tmpl.ts",
-      pageLoader: [AsyncFunction: module],
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
     },
     {
       engines: 1,
-      ext: ".tmpl.js",
-      pageLoader: [AsyncFunction: module],
+      ext: ".page.ts",
+      loader: [AsyncFunction: module],
+      pageType: "page",
     },
     {
-      engines: undefined,
-      ext: ".tmpl.jsonc",
-      pageLoader: [AsyncFunction: json],
+      engines: 1,
+      ext: ".page.js",
+      loader: [AsyncFunction: module],
+      pageType: "page",
     },
     {
-      engines: undefined,
-      ext: ".tmpl.json",
-      pageLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".page.jsonc",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      loader: [AsyncFunction: json],
+      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
-      engines: undefined,
+      engines: 0,
       ext: ".json",
+      loader: [AsyncFunction: json],
     },
     {
       dataLoader: [AsyncFunction: json],
-      engines: undefined,
+      engines: 0,
       ext: ".jsonc",
+      loader: [AsyncFunction: json],
     },
     {
       engines: 1,
       ext: ".md",
-      pageLoader: [AsyncFunction: text],
+      loader: [AsyncFunction: text],
+      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
-      pageLoader: [AsyncFunction: text],
+      loader: [AsyncFunction: text],
+      pageType: "page",
     },
     {
-      componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
+      loader: [AsyncFunction: module],
     },
     {
-      componentLoader: [AsyncFunction: module],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".ts",
+      loader: [AsyncFunction: module],
     },
     {
-      componentLoader: [AsyncFunction: text],
       engines: 1,
-      ext: ".njk",
-      includesPath: "_includes",
-      pageLoader: [AsyncFunction: text],
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engines: undefined,
+      engines: 0,
       ext: ".yaml",
-      pageLoader: [AsyncFunction: yaml],
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
-      engines: undefined,
+      engines: 0,
       ext: ".yml",
-      pageLoader: [AsyncFunction: yaml],
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
     },
   ],
   src: [
     "/",
     "/_includes",
-    "/_includes/layout.njk",
+    "/_includes/layout.vto",
     "/page.md",
   ],
 }
@@ -127,6 +154,7 @@ loop on focusing solely on the bottom line.</p>
 </html>',
     data: {
       author: "Óscar Otero",
+      basename: "page",
       children: '<p>Leverage agile frameworks to provide a robust synopsis for high level overviews.
 Iterative approaches to corporate strategy foster collaborative thinking to
 further the overall value proposition. Organically grow the holistic world view
@@ -184,13 +212,14 @@ DevOps. Nanotechnology immersion along the information highway will close the
 loop on focusing solely on the bottom line.
 ',
       date: [],
-      layout: "layout.njk",
+      layout: "layout.vto",
       mergedKeys: [
         "tags",
       ],
       page: [
         "src",
         "data",
+        "asset",
       ],
       paginate: "paginate",
       readingInfo: [
@@ -204,11 +233,10 @@ loop on focusing solely on the bottom line.
       url: "/page/",
     },
     src: {
-      asset: undefined,
+      asset: false,
       ext: ".md",
       path: "/page",
       remote: undefined,
-      slug: "page",
     },
   },
 ]
