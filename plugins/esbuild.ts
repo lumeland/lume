@@ -110,6 +110,8 @@ export function esbuild(userOptions?: Options) {
 
     site.addEventListener("beforeSave", stop);
 
+    const basePath = options.options.absWorkingDir || site.src();
+
     /** Run esbuild and returns the output files */
     const entryContent: Record<string, string> = {};
 
@@ -130,6 +132,7 @@ export function esbuild(userOptions?: Options) {
         ...options.options,
         write: false,
         metafile: false,
+        absWorkingDir: basePath,
         entryPoints,
         sourcemap: enableAllSourceMaps ? "external" : undefined,
         outExtension: undefined,
@@ -224,10 +227,6 @@ export function esbuild(userOptions?: Options) {
 
       return [outputFiles || [], enableAllSourceMaps];
     }
-
-    // Define default options for splitting mode
-    options.options.absWorkingDir ||= site.src();
-    const basePath = options.options.absWorkingDir;
 
     site.process(options.extensions, async (pages, allPages) => {
       const [outputFiles, enableSourceMap] = await runEsbuild(pages);
