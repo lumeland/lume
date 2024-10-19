@@ -15,6 +15,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Enable tests for `sri` and `reading_info` plugins [#677].
 - Fix tests for `esbuild` plugin [#676].
 - Updated dependencies: `sass`, `terser`, `liquid`, `tailwindcss`, `std`, `preact`, `mdx`, `xml`, `satori`, `react` types, `unocss`, `magic-string`.
+- esbuild plugin: Add support for `entryNames` option [#678].
 
 ## [2.3.3] - 2024-10-07
 ### Added
@@ -559,6 +560,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#675]: https://github.com/lumeland/lume/issues/675
 [#676]: https://github.com/lumeland/lume/issues/676
 [#677]: https://github.com/lumeland/lume/issues/677
+[#678]: https://github.com/lumeland/lume/issues/678
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.3.3...HEAD
 [2.3.3]: https://github.com/lumeland/lume/compare/v2.3.2...v2.3.3

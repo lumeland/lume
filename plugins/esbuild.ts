@@ -8,8 +8,14 @@ import { merge } from "../core/utils/object.ts";
 import { readDenoConfig } from "../core/utils/deno_config.ts";
 import { log } from "../core/utils/log.ts";
 import { readFile } from "../core/utils/read.ts";
-import { build, BuildOptions, OutputFile, stop } from "../deps/esbuild.ts";
-import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
+import {
+  build,
+  BuildOptions,
+  Metafile,
+  OutputFile,
+  stop,
+} from "../deps/esbuild.ts";
+import { dirname, extname, fromFileUrl, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/file.ts";
 import textLoader from "../core/loaders/text.ts";
@@ -112,10 +118,14 @@ export function esbuild(userOptions?: Options) {
 
     const basePath = options.options.absWorkingDir || site.src();
 
+    const prefix = toFileUrl(site.src()).href;
+
     /** Run esbuild and returns the output files */
     const entryContent: Record<string, string> = {};
 
-    async function runEsbuild(pages: Page[]): Promise<[OutputFile[], boolean]> {
+    async function runEsbuild(
+      pages: Page[],
+    ): Promise<[OutputFile[], Metafile, boolean]> {
       let enableAllSourceMaps = false;
       const entryPoints: string[] = [];
 
@@ -131,14 +141,12 @@ export function esbuild(userOptions?: Options) {
       const buildOptions: BuildOptions = {
         ...options.options,
         write: false,
-        metafile: false,
+        metafile: true,
         absWorkingDir: basePath,
         entryPoints,
         sourcemap: enableAllSourceMaps ? "external" : undefined,
-        outExtension: undefined,
       };
 
-      const prefix = toFileUrl(site.src()).href;
       buildOptions.plugins!.push({
         name: "lume-loader",
         // deno-lint-ignore no-explicit-any
@@ -211,7 +219,7 @@ export function esbuild(userOptions?: Options) {
         },
       });
 
-      const { outputFiles, warnings, errors } = await build(
+      const { outputFiles, metafile, warnings, errors } = await build(
         buildOptions,
       );
 
@@ -225,61 +233,87 @@ export function esbuild(userOptions?: Options) {
         );
       }
 
-      return [outputFiles || [], enableAllSourceMaps];
+      return [outputFiles || [], metafile!, enableAllSourceMaps];
     }
 
     site.process(options.extensions, async (pages, allPages) => {
-      const [outputFiles, enableSourceMap] = await runEsbuild(pages);
-      const { outExtension } = options.options;
+      const [outputFiles, metafile, enableSourceMap] = await runEsbuild(pages);
 
       // Save the output code
-      for (const file of outputFiles) {
-        if (file.path.endsWith(".map")) {
+      for (const [outputPath, output] of Object.entries(metafile.outputs)) {
+        if (outputPath.endsWith(".map")) {
+          continue;
+        }
+
+        const normalizedOutPath = normalizePath(outputPath);
+        const outputFile = outputFiles.find((file) => {
+          const relativeFilePath = normalizePath(
+            normalizePath(file.path).replace(basePath, ""),
+          );
+
+          return relativeFilePath === normalizedOutPath;
+        });
+        if (!outputFile) {
+          log.error(
+            `[esbuild plugin] Could not match the metafile ${normalizedOutPath} to an output file.`,
+          );
           continue;
         }
 
         // Replace .tsx and .jsx extensions with .js
         const content = (!options.options.splitting && !options.options.bundle)
-          ? resolveImports(file.text, options.esm, outExtension)
-          : file.text;
-
-        // Search the entry point of this output file
-        const url = normalizePath(
-          normalizePath(file.path).replace(basePath, ""),
-        );
-
-        const [urlWithoutExt, ext] = pathAndExtension(url);
-        const entryPoint = pages.find((page) => {
-          const outdir = posix.join(
-            "/",
-            options.options.outdir || ".",
-            pathAndExtension(page.sourcePath)[0],
-          );
-
-          return outdir === urlWithoutExt;
-        });
+          ? resolveImports(outputFile.text, options.esm)
+          : outputFile.text;
 
         // Get the associated source map
         const map = enableSourceMap
-          ? outputFiles.find((f) => f.path === `${file.path}.map`)
+          ? outputFiles.find((f) => f.path === `${outputFile.path}.map`)
           : undefined;
 
-        // The page is an entry point
-        if (entryPoint) {
-          const outExt = getOutExtension(ext, outExtension);
-          entryPoint.data.url = posix.join(
-            "/",
-            options.options.outdir || ".",
-            replaceExtension(entryPoint.data.url, outExt),
-          );
-          saveAsset(site, entryPoint, content, map?.text);
+        // The page is a chunk
+        if (!output.entryPoint) {
+          const page = Page.create({ url: normalizedOutPath });
+          saveAsset(site, page, content, map?.text);
+          allPages.push(page);
           continue;
         }
 
-        // The page is a chunk
-        const page = Page.create({ url });
-        saveAsset(site, page, content, map?.text);
-        allPages.push(page);
+        let outputRelativeEntryPoint = output.entryPoint;
+        if (outputRelativeEntryPoint.startsWith("deno:")) {
+          outputRelativeEntryPoint = outputRelativeEntryPoint.slice(
+            "deno:".length,
+          );
+        }
+        if (outputRelativeEntryPoint.startsWith(prefix)) {
+          outputRelativeEntryPoint = outputRelativeEntryPoint.slice(
+            prefix.length,
+          );
+        }
+        if (outputRelativeEntryPoint.startsWith("file://")) {
+          outputRelativeEntryPoint = fromFileUrl(outputRelativeEntryPoint);
+        }
+        outputRelativeEntryPoint = normalizePath(
+          outputRelativeEntryPoint,
+          basePath,
+        );
+
+        // Search the entry point of this output file
+        const entryPoint = pages.find((page) =>
+          page.sourcePath === outputRelativeEntryPoint
+        );
+        if (!entryPoint) {
+          log.error(
+            `[esbuild plugin] Could not match the entrypoint ${outputRelativeEntryPoint} of metafile ${normalizedOutPath} to an page.`,
+          );
+          continue;
+        }
+
+        // The page is an entry point
+        entryPoint.data.url = normalizedOutPath.replaceAll(
+          dirname(entryPoint.sourcePath) + "/",
+          dirname(entryPoint.data.url) + "/",
+        );
+        saveAsset(site, entryPoint, content, map?.text);
       }
     });
   };
@@ -334,40 +368,17 @@ function buildJsxConfig(config?: DenoConfig): BuildOptions | undefined {
   }
 }
 
-function pathAndExtension(path: string): [string, string] {
-  const match = path.match(/(.*)(\.\w+)$/);
-
-  if (!match) {
-    return [path, ""];
-  }
-  return [match[1], match[2]];
-}
-
-function getOutExtension(ext: string, outExtension?: Record<string, string>) {
-  const out = outExtension?.[ext];
-  if (out) {
-    return out;
-  }
-
-  switch (ext) {
-    case ".json":
-      return ".json";
-    default:
-      return ".js";
-  }
-}
-
 function resolveImports(
   content: string,
   esm: EsmOptions,
-  outExtension?: Record<string, string>,
 ): string {
   return content.replaceAll(
     /(from\s*)["']([^"']+)["']/g,
     (_, from, path) => {
       if (path.startsWith(".") || path.startsWith("/")) {
-        const [url, ext] = pathAndExtension(path);
-        const resolved = url + getOutExtension(ext, outExtension);
+        const resolved = path.endsWith(".json")
+          ? path
+          : replaceExtension(path, ".js");
         return `${from}"${resolved}"`;
       }
       const resolved = import.meta.resolve(path);
