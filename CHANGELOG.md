@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - New plugin: `check_urls` to detect broken links [#675].
 - New plugin: `icons` to load automatically icons from popular icon catalogs.
+- New plugin: `google_fonts` to download and self-host automatically fonts from Google Fonts.
 
 ### Fixed
 - Nav plugin: Breadcrumb with urls with CJK characters.
