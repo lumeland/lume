@@ -101,3 +101,43 @@ Deno.test(
     await assertSiteSnapshot(t, site);
   },
 );
+
+// Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
+Deno.test(
+  "esbuild plugin with entryNames simple",
+  { sanitizeOps: false, sanitizeResources: false },
+  async (t) => {
+    const site = getSite({
+      src: "esbuild",
+    });
+
+    site.use(esbuild({
+      options: {
+        entryNames: "js/[name].hash",
+      },
+    }));
+
+    await build(site);
+    await assertSiteSnapshot(t, site);
+  },
+);
+
+// Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
+Deno.test(
+  "esbuild plugin with entryNames complex",
+  { sanitizeOps: false, sanitizeResources: false },
+  async (t) => {
+    const site = getSite({
+      src: "esbuild",
+    });
+
+    site.use(esbuild({
+      options: {
+        entryNames: "one/[dir]/two/[name]/hash",
+      },
+    }));
+
+    await build(site);
+    await assertSiteSnapshot(t, site);
+  },
+);
