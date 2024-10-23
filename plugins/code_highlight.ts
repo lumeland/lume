@@ -20,7 +20,7 @@ export interface Options {
    * Options passed to highlight.js.
    * @see https://highlightjs.readthedocs.io/en/latest/api.html#configure
    */
-  options?: Omit<HLJSOptions, "__emitter">;
+  options?: Partial<Omit<HLJSOptions, "__emitter">>;
 
   /**
    * The theme or themes to download
