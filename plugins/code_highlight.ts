@@ -83,7 +83,7 @@ export function codeHighlight(userOptions?: Options) {
     function processCodeHighlight(pages: Page[]) {
       for (const page of pages) {
         page.document!.querySelectorAll<HTMLElement>(
-          options.options.cssSelector,
+          options.options.cssSelector!,
         )
           .forEach((element) => {
             try {
