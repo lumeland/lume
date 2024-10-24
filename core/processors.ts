@@ -42,7 +42,7 @@ export type Processor = (
   allPages: Page[],
 ) => void | false | Promise<void | false>;
 
-function pageMatches(exts: Extensions, page: Page): boolean {
+export function pageMatches(exts: Extensions, page: Page): boolean {
   if (exts === "*") {
     return true;
   }
