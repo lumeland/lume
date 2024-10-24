@@ -1,0 +1,1866 @@
+export const snapshot = {};
+
+snapshot[`gzip plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      assetLoader: [AsyncFunction: text],
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+      pageType: "asset",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+    {
+      assetLoader: [AsyncFunction: text],
+      engines: undefined,
+      ext: ".css",
+      pageType: "asset",
+    },
+    {
+      copy: true,
+      engines: undefined,
+      ext: ".png",
+    },
+  ],
+  src: [
+    "/",
+    "/404.md",
+    "/_data.yml",
+    "/favicon.png",
+    "/images",
+    "/images/avatar.jpg",
+    "/page5.yaml",
+    "/pages",
+    "/pages/2020-06-21_page2.page.json",
+    "/pages/2021-01-02-18-32_page4.page.ts",
+    "/pages/_data",
+    "/pages/_data.yml",
+    "/pages/_data/colors.yml",
+    "/pages/_data/documents.ts",
+    "/pages/_data/drinks.js",
+    "/pages/_data/names.json",
+    "/pages/ghost",
+    "/pages/ghost/2021-12-29-page6.md",
+    "/pages/ghost/_data.yml",
+    "/pages/page1.md",
+    "/pages/page3.page.js",
+    "/pages/subpage",
+    "/pages/subpage/_data.yml",
+    "/pages/subpage/page7.page.js",
+    "/static.yml",
+    "/styles.css",
+  ],
+}
+`;
+
+snapshot[`gzip plugin 2`] = `
+[
+  {
+    entry: "/favicon.png",
+    flags: [],
+    outputPath: "/favicon.png",
+  },
+]
+`;
+
+snapshot[`gzip plugin 3`] = `
+[
+  {
+    content: "Uint8Array(105)",
+    data: {
+      basename: "404",
+      content: "Uint8Array(105)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/404.html.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(56)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(56)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/overrided-page2/index.html.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(56)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(56)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/page5/index.html.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(56)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(56)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/pages/new-name/page7/index.html.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(119)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(119)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/pages/page4/index.html.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(64)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(64)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/pages/page6/index.html.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(97)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(97)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/static/index.html.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(75)",
+    data: {
+      basename: "styles",
+      content: "Uint8Array(75)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/styles.css.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+",
+    data: {
+      basename: "404",
+      children: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+",
+      content: "This page is exported to \`/404.html\`, not \`/404/index.html\`
+",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      url: "/404.html",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/404",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+Content of Page 5",
+    data: {
+      basename: "page5",
+      children: "Content of Page 5",
+      content: "Content of Page 5",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      title: "Page 5",
+      url: "/page5/",
+    },
+    src: {
+      asset: false,
+      ext: ".yaml",
+      path: "/page5",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+Content of Page 2",
+    data: {
+      basename: "page2",
+      children: "Content of Page 2",
+      colors: "Array(3)",
+      content: "Content of Page 2",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+        "image",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(1)",
+      title: "Page 2",
+      url: "/overrided-page2/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.json",
+      path: "/pages/2020-06-21_page2",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+    data: {
+      basename: "page4",
+      children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+      colors: "Array(3)",
+      content: "default",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Overrided site name",
+      tags: "Array(1)",
+      title: "Page 4",
+      url: "/pages/page4/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.ts",
+      path: "/pages/2021-01-02-18-32_page4",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<p>Content of Page 6</p>
+",
+    data: {
+      basename: "page6",
+      children: "<p>Content of Page 6</p>
+",
+      colors: "Array(3)",
+      content: "Content of Page 6
+",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(2)",
+      title: "Page 6",
+      url: "/pages/page6/",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/pages/ghost/2021-12-29-page6",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 3",
+    data: {
+      basename: "page3",
+      colors: "Array(3)",
+      content: "Content of Page 3",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(1)",
+      title: "Page 3",
+      url: "/page_3",
+    },
+    src: {
+      asset: false,
+      ext: ".page.js",
+      path: "/pages/page3",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+Content of Page 7",
+    data: {
+      basename: "page7",
+      children: "Content of Page 7",
+      colors: "Array(3)",
+      content: "Content of Page 7",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(3)",
+      url: "/pages/new-name/page7/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.js",
+      path: "/pages/subpage/page7",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+This yaml should be ignored because it's copied statically",
+    data: {
+      basename: "static",
+      children: "This yaml should be ignored because it's copied statically",
+      content: "This yaml should be ignored because it's copied statically",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      url: "/static/",
+    },
+    src: {
+      asset: false,
+      ext: ".yml",
+      path: "/static",
+      remote: undefined,
+    },
+  },
+  {
+    content: "body {
+  font-family: sans-serif;
+  color: black;
+}
+",
+    data: {
+      basename: "styles",
+      content: "body {
+  font-family: sans-serif;
+  color: black;
+}
+",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      url: "/styles.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/styles",
+      remote: undefined,
+    },
+  },
+]
+`;
+
+snapshot[`gzip plugin with options 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+    {
+      assetLoader: [AsyncFunction: text],
+      engines: undefined,
+      ext: ".css",
+      pageType: "asset",
+    },
+  ],
+  src: [
+    "/",
+    "/index.vto",
+    "/styles.css",
+  ],
+}
+`;
+
+snapshot[`gzip plugin with options 2`] = `[]`;
+
+snapshot[`gzip plugin with options 3`] = `
+[
+  {
+    content: "Uint8Array(2834)",
+    data: {
+      basename: "styles",
+      content: "Uint8Array(2834)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/styles.css.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: \`<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>essential</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;1,400&amp;family=Work+Sans:wght@200;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+</head>
+<body class="font-sans antialiased bg-gray-100 text-gray-700">
+    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
+        <div>
+            <a href="/" class="lowercase font-normal text-xl">essential</a>
+        </div>
+        <div class="flex items-center justify-center font-normal relative z-10">
+            <button class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-white h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <div class="hidden md:flex items-center justify-center">
+                <a href="/products" class="mx-6">Shop</a>
+                <a href="/about" class="mx-6">About</a>
+                <a href="/blog" class="mx-6">Articles</a>
+            </div>
+        </div>
+        <div class="flex">
+            <a href="#" class="ml-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+            </a>
+            <a href="#" class="ml-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="fixed inset-0 w-screen h-screen md:hidden flex flex-col items-center justify-center text-2xl space-y-4 bg-blue-100 text-white z-40">
+            <button class="absolute top-0 right-0 mt-12 mr-12 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <a href="/products" class="mx-6">Shop</a>
+            <a href="/about" class="mx-6">About</a>
+            <a href="/blog" class="mx-6">Articles</a>
+        </div>
+    </div>
+    <div class="-mt-32 relative w-full h-screen bg-blue-100 flex items-center justify-center">
+        <div class="relative z-10 text-center text-white text-center px-6">
+            <div class="text-xs uppercase tracking-widest">Clean and affordable beauty</div>
+            <h1 class="text-3xl md:text-5xl font-display font-semibold mt-2">Beautiful, natural skin</h1>
+            <p class="mt-4">A unique layout with a striking design</p>
+            <div class="max-w-sm mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
+                <a href="#" class="inline-block bg-gray-100 text-gray-700 text-sm tracking-widest font-heading px-8 py-4">Learn more</a>
+            </div>
+        </div>
+        <img class="w-full h-full absolute inset-0 object-cover opacity-95">
+    </div>
+    <div class="container mx-auto px-6 flex flex-wrap items-center py-24">
+        <div class="w-full lg:flex-1">
+            <div class="uppercase text-sm text-gray-700 tracking-widest">Why Cheslsea?</div>
+            <h2 class="text-3xl md:text-4xl font-semibold font-display mt-3">Natural and organic is the future of skincare and life as we know it.</h2>
+        </div>
+        <div class="w-full lg:w-auto text-center">
+            <svg class="inline-block w-32 h-32 -mb-10 -mt-4 lg:mt-0 lg:mb-0 lg:transform lg:rotate-90 lg:-ml-8" x="0px" y="0px" viewbox="0 0 100 125">
+                <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"></path>
+            </svg>
+        </div>
+        <div class="w-full lg:flex-1">
+            <p>Let's face it. Many cosmetics are bad for your skin. We use only natural ingredients and still provide consistently great tanning results.</p>
+            <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-4">Learn more</a>
+        </div>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-5 grid-rows-2 gap-4 md:h-screen">
+        <a href="#" class="relative block bg-black text-white md:col-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Best Sellers</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1527632911563-ee5b6d53465b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-1">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Limited</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1531646317777-0619c7c5d1d3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2550&amp;q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-2 lg:row-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">New In</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1527633412983-d80af308e660?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1834&amp;q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-2 lg:col-span-1">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Sale</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1533017568856-f6085fef5f1f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2550&amp;q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-5 lg:col-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Half Price</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1603001790877-2733c25430d7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1834&amp;q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+    </div>
+    <div class="text-center py-12">
+        <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
+        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
+            <div class="relative z-10 p-12">
+                <div class="uppercase text-sm text-gray-700 tracking-widest">Limited Run</div>
+                <h3 class="font-display font-semibold text-3xl mt-2">Moisturise</h3>
+                <p class="mt-3 mx-auto max-w-md">Whether in the sun or on the couch, hydration is key to maintaining happy, healthy skin.</p>
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
+            </div>
+        </div>
+        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
+            <img src="https://images.unsplash.com/photo-1597931752949-98c74b5b159f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1834&amp;q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1607602175460-c5dff74d7909?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1482&amp;q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1598282780498-8eda08ec1941?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1834&amp;q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+    </div>
+    <div class="container mx-auto px-6 py-12">
+        <h2 class="font-display font-semibold text-3xl">Testimonials</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24 mt-12">
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewbox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"></path>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewbox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"></path>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"></path>
+                </svg>
+            </div>
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewbox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"></path>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewbox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"></path>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"></path>
+                </svg>
+            </div>
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewbox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"></path>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewbox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"></path>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
+        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
+            <img src="https://images.unsplash.com/photo-1605204376600-72ed73f1f9ec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2551&amp;q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
+            <div class="relative z-10 p-12">
+                <div class="uppercase text-sm text-gray-700 tracking-widest">Only the best</div>
+                <h3 class="font-display font-semibold text-3xl mt-2">Cleansers</h3>
+                <p class="mt-3 mx-auto max-w-md">We're humans too and we understand that skin care and cosmetics should rejuvenate and rehydrate in the short and long run.</p>
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
+            </div>
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2550&amp;q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1585652757146-e9d00bf2810c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1834&amp;q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+    </div>
+    <div class="text-gray-800 text-opacity-40 font-semibold text-xs tracking-widest px-12">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 py-24">
+            <div>
+                <div class="text-gray-900 text-4xl font-display">essential</div>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">More Info</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Helpful Links</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Find out more</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
+
+</body></html>\`,
+    data: {
+      basename: "index",
+      children: \`<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>essential</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;1,400&family=Work+Sans:wght@200;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+</head>
+<body class="font-sans antialiased bg-gray-100 text-gray-700">
+    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
+        <div>
+            <a href="/" class="lowercase font-normal text-xl">essential</a>
+        </div>
+        <div class="flex items-center justify-center font-normal relative z-10">
+            <button class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+            <div class="hidden md:flex items-center justify-center">
+                <a href="/products" class="mx-6">Shop</a>
+                <a href="/about" class="mx-6">About</a>
+                <a href="/blog" class="mx-6">Articles</a>
+            </div>
+        </div>
+        <div class="flex">
+            <a href="#" class="ml-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+            </a>
+            <a href="#" class="ml-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="fixed inset-0 w-screen h-screen md:hidden flex flex-col items-center justify-center text-2xl space-y-4 bg-blue-100 text-white z-40">
+            <button class="absolute top-0 right-0 mt-12 mr-12 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <a href="/products" class="mx-6">Shop</a>
+            <a href="/about" class="mx-6">About</a>
+            <a href="/blog" class="mx-6">Articles</a>
+        </div>
+    </div>
+    <div class="-mt-32 relative w-full h-screen bg-blue-100 flex items-center justify-center">
+        <div class="relative z-10 text-center text-white text-center px-6">
+            <div class="text-xs uppercase tracking-widest">Clean and affordable beauty</div>
+            <h1 class="text-3xl md:text-5xl font-display font-semibold mt-2">Beautiful, natural skin</h1>
+            <p class="mt-4">A unique layout with a striking design</p>
+            <div class="max-w-sm mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
+                <a href="#" class="inline-block bg-gray-100 text-gray-700 text-sm tracking-widest font-heading px-8 py-4">Learn more</a>
+            </div>
+        </div>
+        <img class="w-full h-full absolute inset-0 object-cover opacity-95">
+    </div>
+    <div class="container mx-auto px-6 flex flex-wrap items-center py-24">
+        <div class="w-full lg:flex-1">
+            <div class="uppercase text-sm text-gray-700 tracking-widest">Why Cheslsea?</div>
+            <h2 class="text-3xl md:text-4xl font-semibold font-display mt-3">Natural and organic is the future of skincare and life as we know it.</h2>
+        </div>
+        <div class="w-full lg:w-auto text-center">
+            <svg class="inline-block w-32 h-32 -mb-10 -mt-4 lg:mt-0 lg:mb-0 lg:transform lg:rotate-90 lg:-ml-8" x="0px" y="0px" viewBox="0 0 100 125">
+                <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+            </svg>
+        </div>
+        <div class="w-full lg:flex-1">
+            <p>Let's face it. Many cosmetics are bad for your skin. We use only natural ingredients and still provide consistently great tanning results.</p>
+            <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-4">Learn more</a>
+        </div>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-5 grid-rows-2 gap-4 md:h-screen">
+        <a href="#" class="relative block bg-black text-white md:col-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Best Sellers</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1527632911563-ee5b6d53465b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-1">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Limited</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1531646317777-0619c7c5d1d3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-2 lg:row-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">New In</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1527633412983-d80af308e660?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-2 lg:col-span-1">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Sale</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1533017568856-f6085fef5f1f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-5 lg:col-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Half Price</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1603001790877-2733c25430d7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+    </div>
+    <div class="text-center py-12">
+        <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
+        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
+            <div class="relative z-10 p-12">
+                <div class="uppercase text-sm text-gray-700 tracking-widest">Limited Run</div>
+                <h3 class="font-display font-semibold text-3xl mt-2">Moisturise</h3>
+                <p class="mt-3 mx-auto max-w-md">Whether in the sun or on the couch, hydration is key to maintaining happy, healthy skin.</p>
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
+            </div>
+        </div>
+        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
+            <img src="https://images.unsplash.com/photo-1597931752949-98c74b5b159f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1607602175460-c5dff74d7909?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1482&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1598282780498-8eda08ec1941?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+    </div>
+    <div class="container mx-auto px-6 py-12">
+        <h2 class="font-display font-semibold text-3xl">Testimonials</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24 mt-12">
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
+        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
+            <img src="https://images.unsplash.com/photo-1605204376600-72ed73f1f9ec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2551&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
+            <div class="relative z-10 p-12">
+                <div class="uppercase text-sm text-gray-700 tracking-widest">Only the best</div>
+                <h3 class="font-display font-semibold text-3xl mt-2">Cleansers</h3>
+                <p class="mt-3 mx-auto max-w-md">We're humans too and we understand that skin care and cosmetics should rejuvenate and rehydrate in the short and long run.</p>
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
+            </div>
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1585652757146-e9d00bf2810c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+    </div>
+    <div class="text-gray-800 text-opacity-40 font-semibold text-xs tracking-widest px-12">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 py-24">
+            <div>
+                <div class="text-gray-900 text-4xl font-display">essential</div>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">More Info</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Helpful Links</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Find out more</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
+</body>
+</html>\`,
+      content: \`<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>essential</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;1,400&family=Work+Sans:wght@200;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+</head>
+<body class="font-sans antialiased bg-gray-100 text-gray-700">
+    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
+        <div>
+            <a href="/" class="lowercase font-normal text-xl">essential</a>
+        </div>
+        <div class="flex items-center justify-center font-normal relative z-10">
+            <button class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+            <div class="hidden md:flex items-center justify-center">
+                <a href="/products" class="mx-6">Shop</a>
+                <a href="/about" class="mx-6">About</a>
+                <a href="/blog" class="mx-6">Articles</a>
+            </div>
+        </div>
+        <div class="flex">
+            <a href="#" class="ml-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+            </a>
+            <a href="#" class="ml-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="fixed inset-0 w-screen h-screen md:hidden flex flex-col items-center justify-center text-2xl space-y-4 bg-blue-100 text-white z-40">
+            <button class="absolute top-0 right-0 mt-12 mr-12 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <a href="/products" class="mx-6">Shop</a>
+            <a href="/about" class="mx-6">About</a>
+            <a href="/blog" class="mx-6">Articles</a>
+        </div>
+    </div>
+    <div class="-mt-32 relative w-full h-screen bg-blue-100 flex items-center justify-center">
+        <div class="relative z-10 text-center text-white text-center px-6">
+            <div class="text-xs uppercase tracking-widest">Clean and affordable beauty</div>
+            <h1 class="text-3xl md:text-5xl font-display font-semibold mt-2">Beautiful, natural skin</h1>
+            <p class="mt-4">A unique layout with a striking design</p>
+            <div class="max-w-sm mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
+                <a href="#" class="inline-block bg-gray-100 text-gray-700 text-sm tracking-widest font-heading px-8 py-4">Learn more</a>
+            </div>
+        </div>
+        <img class="w-full h-full absolute inset-0 object-cover opacity-95">
+    </div>
+    <div class="container mx-auto px-6 flex flex-wrap items-center py-24">
+        <div class="w-full lg:flex-1">
+            <div class="uppercase text-sm text-gray-700 tracking-widest">Why Cheslsea?</div>
+            <h2 class="text-3xl md:text-4xl font-semibold font-display mt-3">Natural and organic is the future of skincare and life as we know it.</h2>
+        </div>
+        <div class="w-full lg:w-auto text-center">
+            <svg class="inline-block w-32 h-32 -mb-10 -mt-4 lg:mt-0 lg:mb-0 lg:transform lg:rotate-90 lg:-ml-8" x="0px" y="0px" viewBox="0 0 100 125">
+                <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+            </svg>
+        </div>
+        <div class="w-full lg:flex-1">
+            <p>Let's face it. Many cosmetics are bad for your skin. We use only natural ingredients and still provide consistently great tanning results.</p>
+            <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-4">Learn more</a>
+        </div>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-5 grid-rows-2 gap-4 md:h-screen">
+        <a href="#" class="relative block bg-black text-white md:col-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Best Sellers</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1527632911563-ee5b6d53465b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-1">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Limited</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1531646317777-0619c7c5d1d3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-3 lg:col-span-2 lg:row-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">New In</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1527633412983-d80af308e660?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-2 lg:col-span-1">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Sale</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1533017568856-f6085fef5f1f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+        <a href="#" class="relative block bg-black text-white md:col-span-5 lg:col-span-2">
+            <div class="relative z-10 p-12">
+                <h3 class="font-display text-2xl">Half Price</h3>
+                <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur.</p>
+                <div class="inline-block bg-white text-gray-700 text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1603001790877-2733c25430d7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover opacity-75">
+        </a>
+    </div>
+    <div class="text-center py-12">
+        <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4">Shop now</a>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
+        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
+            <div class="relative z-10 p-12">
+                <div class="uppercase text-sm text-gray-700 tracking-widest">Limited Run</div>
+                <h3 class="font-display font-semibold text-3xl mt-2">Moisturise</h3>
+                <p class="mt-3 mx-auto max-w-md">Whether in the sun or on the couch, hydration is key to maintaining happy, healthy skin.</p>
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
+            </div>
+        </div>
+        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
+            <img src="https://images.unsplash.com/photo-1597931752949-98c74b5b159f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1607602175460-c5dff74d7909?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1482&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1598282780498-8eda08ec1941?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+    </div>
+    <div class="container mx-auto px-6 py-12">
+        <h2 class="font-display font-semibold text-3xl">Testimonials</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24 mt-12">
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="p-4 grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:h-screen">
+        <div class="h-64 md:h-auto md:col-span-2 md:row-span-2 relative">
+            <img src="https://images.unsplash.com/photo-1605204376600-72ed73f1f9ec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2551&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="text-gray-700 text-center md:col-span-2 flex items-center justify-center">
+            <div class="relative z-10 p-12">
+                <div class="uppercase text-sm text-gray-700 tracking-widest">Only the best</div>
+                <h3 class="font-display font-semibold text-3xl mt-2">Cleansers</h3>
+                <p class="mt-3 mx-auto max-w-md">We're humans too and we understand that skin care and cosmetics should rejuvenate and rehydrate in the short and long run.</p>
+                <a href="#" class="inline-block bg-blue-200 text-white text-sm tracking-widest font-heading px-8 py-4 mt-6">Shop now</a>
+            </div>
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+        <div class="h-64 md:h-auto col-span-1 row-span-1 relative">
+            <img src="https://images.unsplash.com/photo-1585652757146-e9d00bf2810c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80" class="absolute inset-0 w-full h-full object-cover">
+        </div>
+    </div>
+    <div class="text-gray-800 text-opacity-40 font-semibold text-xs tracking-widest px-12">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 py-24">
+            <div>
+                <div class="text-gray-900 text-4xl font-display">essential</div>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">More Info</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Helpful Links</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+            <div>
+                <div class="font-display text-gray-900 text-sm tracking-widest mb-6">Find out more</div>
+                <a href="#" class="block mb-4">Shop</a>
+                <a href="#" class="block mb-4">About</a>
+                <a href="#" class="block mb-4">Info</a>
+                <a href="#" class="block mb-4">FAQ</a>
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
+</body>
+</html>\`,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/",
+    },
+    src: {
+      asset: false,
+      ext: ".vto",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: '/* https://unocss.dev/transformers/directives#usage */
+.custom-div {
+  margin-top:0;margin-bottom:0;text-align:center;font-weight:500;
+  ;
+}.custom-div:hover{--un-text-opacity:1;color:rgb(248 113 113 / var(--un-text-opacity));}
+
+.grid {
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+}
+
+@media (min-width: 640px){
+  .grid {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+
+.btn-blue {
+  background-color: #3b82f6;
+}
+
+/* https://unocss.dev/transformers/variant-group#usage */
+.variant-group {
+  font-weight:300;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}.variant-group:hover{--un-bg-opacity:1;background-color:rgb(156 163 175 / var(--un-bg-opacity));font-weight:500;}
+
+/* layer: preflights */
+*,::before,::after{--un-rotate:0;--un-rotate-x:0;--un-rotate-y:0;--un-rotate-z:0;--un-scale-x:1;--un-scale-y:1;--un-scale-z:1;--un-skew-x:0;--un-skew-y:0;--un-translate-x:0;--un-translate-y:0;--un-translate-z:0;--un-pan-x: ;--un-pan-y: ;--un-pinch-zoom: ;--un-scroll-snap-strictness:proximity;--un-ordinal: ;--un-slashed-zero: ;--un-numeric-figure: ;--un-numeric-spacing: ;--un-numeric-fraction: ;--un-border-spacing-x:0;--un-border-spacing-y:0;--un-ring-offset-shadow:0 0 rgb(0 0 0 / 0);--un-ring-shadow:0 0 rgb(0 0 0 / 0);--un-shadow-inset: ;--un-shadow:0 0 rgb(0 0 0 / 0);--un-ring-inset: ;--un-ring-offset-width:0px;--un-ring-offset-color:#fff;--un-ring-width:0px;--un-ring-color:rgb(147 197 253 / 0.5);--un-blur: ;--un-brightness: ;--un-contrast: ;--un-drop-shadow: ;--un-grayscale: ;--un-hue-rotate: ;--un-invert: ;--un-saturate: ;--un-sepia: ;--un-backdrop-blur: ;--un-backdrop-brightness: ;--un-backdrop-contrast: ;--un-backdrop-grayscale: ;--un-backdrop-hue-rotate: ;--un-backdrop-invert: ;--un-backdrop-opacity: ;--un-backdrop-saturate: ;--un-backdrop-sepia: ;}::backdrop{--un-rotate:0;--un-rotate-x:0;--un-rotate-y:0;--un-rotate-z:0;--un-scale-x:1;--un-scale-y:1;--un-scale-z:1;--un-skew-x:0;--un-skew-y:0;--un-translate-x:0;--un-translate-y:0;--un-translate-z:0;--un-pan-x: ;--un-pan-y: ;--un-pinch-zoom: ;--un-scroll-snap-strictness:proximity;--un-ordinal: ;--un-slashed-zero: ;--un-numeric-figure: ;--un-numeric-spacing: ;--un-numeric-fraction: ;--un-border-spacing-x:0;--un-border-spacing-y:0;--un-ring-offset-shadow:0 0 rgb(0 0 0 / 0);--un-ring-shadow:0 0 rgb(0 0 0 / 0);--un-shadow-inset: ;--un-shadow:0 0 rgb(0 0 0 / 0);--un-ring-inset: ;--un-ring-offset-width:0px;--un-ring-offset-color:#fff;--un-ring-width:0px;--un-ring-color:rgb(147 197 253 / 0.5);--un-blur: ;--un-brightness: ;--un-contrast: ;--un-drop-shadow: ;--un-grayscale: ;--un-hue-rotate: ;--un-invert: ;--un-saturate: ;--un-sepia: ;--un-backdrop-blur: ;--un-backdrop-brightness: ;--un-backdrop-contrast: ;--un-backdrop-grayscale: ;--un-backdrop-hue-rotate: ;--un-backdrop-invert: ;--un-backdrop-opacity: ;--un-backdrop-saturate: ;--un-backdrop-sepia: ;}
+/* layer: shortcuts */
+.container{width:100%;}
+@media (min-width: 640px){
+.container{max-width:640px;}
+}
+@media (min-width: 768px){
+.container{max-width:768px;}
+}
+@media (min-width: 1024px){
+.container{max-width:1024px;}
+}
+@media (min-width: 1280px){
+.container{max-width:1280px;}
+}
+@media (min-width: 1536px){
+.container{max-width:1536px;}
+}
+/* layer: default */
+.absolute{position:absolute;}
+.fixed{position:fixed;}
+.relative{position:relative;}
+.inset-0{inset:0;}
+.left-0{left:0;}
+.right-0{right:0;}
+.top-0{top:0;}
+.z-10{z-index:10;}
+.z-40{z-index:40;}
+.grid{display:grid;}
+.col-span-1{grid-column:span 1/span 1;}
+.row-span-1{grid-row:span 1/span 1;}
+.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr));}
+.grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr));}
+.mx-6{margin-left:1.5rem;margin-right:1.5rem;}
+.mx-auto{margin-left:auto;margin-right:auto;}
+.-mb-10{margin-bottom:-2.5rem;}
+.-mb-8{margin-bottom:-2rem;}
+.-ml-8{margin-left:-2rem;}
+.-mt-10{margin-top:-2.5rem;}
+.-mt-32{margin-top:-8rem;}
+.-mt-4{margin-top:-1rem;}
+.mb-4{margin-bottom:1rem;}
+.mb-6{margin-bottom:1.5rem;}
+.ml-4{margin-left:1rem;}
+.mr-12{margin-right:3rem;}
+.mt-12{margin-top:3rem;}
+.mt-2{margin-top:0.5rem;}
+.mt-3{margin-top:0.75rem;}
+.mt-4{margin-top:1rem;}
+.mt-6{margin-top:1.5rem;}
+.block{display:block;}
+.inline-block{display:inline-block;}
+.hidden{display:none;}
+.h-10{height:2.5rem;}
+.h-24{height:6rem;}
+.h-28{height:7rem;}
+.h-32{height:8rem;}
+.h-6{height:1.5rem;}
+.h-64{height:16rem;}
+.h-8{height:2rem;}
+.h-full{height:100%;}
+.h-screen{height:100vh;}
+.max-w-md{max-width:28rem;}
+.max-w-sm{max-width:24rem;}
+.w-10{width:2.5rem;}
+.w-28{width:7rem;}
+.w-32{width:8rem;}
+.w-6{width:1.5rem;}
+.w-full{width:100%;}
+.w-screen{width:100vw;}
+.flex{display:flex;}
+.flex-col{flex-direction:column;}
+.flex-wrap{flex-wrap:wrap;}
+.items-center{align-items:center;}
+.justify-end{justify-content:flex-end;}
+.justify-center{justify-content:center;}
+.justify-between{justify-content:space-between;}
+.gap-12{gap:3rem;}
+.gap-4{gap:1rem;}
+.gap-6{gap:1.5rem;}
+.space-y-4>:not([hidden])~:not([hidden]){--un-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--un-space-y-reverse)));margin-bottom:calc(1rem * var(--un-space-y-reverse));}
+.bg-black{--un-bg-opacity:1;background-color:rgb(0 0 0 / var(--un-bg-opacity));}
+.bg-blue-100{--un-bg-opacity:1;background-color:rgb(219 234 254 / var(--un-bg-opacity));}
+.bg-blue-200{--un-bg-opacity:1;background-color:rgb(191 219 254 / var(--un-bg-opacity));}
+.bg-gray-100{--un-bg-opacity:1;background-color:rgb(243 244 246 / var(--un-bg-opacity));}
+.bg-gray-200{--un-bg-opacity:1;background-color:rgb(229 231 235 / var(--un-bg-opacity));}
+.bg-white{--un-bg-opacity:1;background-color:rgb(255 255 255 / var(--un-bg-opacity));}
+.object-cover{object-fit:cover;}
+.p-12{padding:3rem;}
+.p-4{padding:1rem;}
+.px-12{padding-left:3rem;padding-right:3rem;}
+.px-6{padding-left:1.5rem;padding-right:1.5rem;}
+.px-8{padding-left:2rem;padding-right:2rem;}
+.py-12{padding-top:3rem;padding-bottom:3rem;}
+.py-24{padding-top:6rem;padding-bottom:6rem;}
+.py-4{padding-top:1rem;padding-bottom:1rem;}
+.text-center{text-align:center;}
+.text-justify{text-align:justify;}
+.text-2xl{font-size:1.5rem;line-height:2rem;}
+.text-3xl{font-size:1.875rem;line-height:2.25rem;}
+.text-4xl{font-size:2.25rem;line-height:2.5rem;}
+.text-sm{font-size:0.875rem;line-height:1.25rem;}
+.text-xl{font-size:1.25rem;line-height:1.75rem;}
+.text-xs{font-size:0.75rem;line-height:1rem;}
+.text-blue-900{--un-text-opacity:1;color:rgb(30 58 138 / var(--un-text-opacity));}
+.text-gray-500{--un-text-opacity:1;color:rgb(107 114 128 / var(--un-text-opacity));}
+.text-gray-700{--un-text-opacity:1;color:rgb(55 65 81 / var(--un-text-opacity));}
+.text-gray-800{--un-text-opacity:1;color:rgb(31 41 55 / var(--un-text-opacity));}
+.text-gray-900{--un-text-opacity:1;color:rgb(17 24 39 / var(--un-text-opacity));}
+.text-white{--un-text-opacity:1;color:rgb(255 255 255 / var(--un-text-opacity));}
+.text-opacity-40{--un-text-opacity:0.4;}
+.font-light{font-weight:300;}
+.font-normal{font-weight:400;}
+.font-semibold{font-weight:600;}
+.tracking-wider{letter-spacing:0.05em;}
+.tracking-widest{letter-spacing:0.1em;}
+.font-sans{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";}
+.uppercase{text-transform:uppercase;}
+.lowercase{text-transform:lowercase;}
+.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.opacity-5{opacity:0.05;}
+.opacity-75{opacity:0.75;}
+.opacity-95{opacity:0.95;}
+@media (min-width: 768px){
+.md\\\\:col-span-2{grid-column:span 2/span 2;}
+.md\\\\:col-span-3{grid-column:span 3/span 3;}
+.md\\\\:col-span-5{grid-column:span 5/span 5;}
+.md\\\\:row-span-2{grid-row:span 2/span 2;}
+.md\\\\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr));}
+.md\\\\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr));}
+.md\\\\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr));}
+.md\\\\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr));}
+.md\\\\:grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr));}
+.md\\\\:hidden{display:none;}
+.md\\\\:h-auto{height:auto;}
+.md\\\\:h-screen{height:100vh;}
+.md\\\\:flex{display:flex;}
+.md\\\\:gap-24{gap:6rem;}
+.md\\\\:text-4xl{font-size:2.25rem;line-height:2.5rem;}
+.md\\\\:text-5xl{font-size:3rem;line-height:1;}
+}
+@media (min-width: 1024px){
+.lg\\\\:col-span-1{grid-column:span 1/span 1;}
+.lg\\\\:col-span-2{grid-column:span 2/span 2;}
+.lg\\\\:row-span-2{grid-row:span 2/span 2;}
+.lg\\\\:-ml-8{margin-left:-2rem;}
+.lg\\\\:mb-0{margin-bottom:0;}
+.lg\\\\:mt-0{margin-top:0;}
+.lg\\\\:w-auto{width:auto;}
+.lg\\\\:flex-1{flex:1 1 0%;}
+.lg\\\\:rotate-90{--un-rotate-x:0;--un-rotate-y:0;--un-rotate-z:0;--un-rotate:90deg;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));}
+.lg\\\\:transform{transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));}
+.lg\\\\:text-base{font-size:1rem;line-height:1.5rem;}
+}',
+    data: {
+      basename: "styles",
+      content: '/* https://unocss.dev/transformers/directives#usage */
+.custom-div {
+  @apply text-center my-0 font-medium;
+  --at-apply: "hover:text-red";
+}
+
+.grid {
+  --uno: grid grid-cols-2;
+}
+
+@screen sm {
+  .grid {
+    --uno: grid-cols-3;
+  }
+}
+
+.btn-blue {
+  background-color: theme("colors.blue.500");
+}
+
+/* https://unocss.dev/transformers/variant-group#usage */
+.variant-group {
+  @apply hover:(bg-gray-400 font-medium) font-(light mono);
+}
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/styles.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/styles",
+      remote: undefined,
+    },
+  },
+]
+`;
