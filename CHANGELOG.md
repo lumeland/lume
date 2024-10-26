@@ -12,6 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `google_fonts` to download and self-host automatically fonts from Google Fonts.
 - New plugin: `brotli` to compress files. [#681]
 - New plugin: `gzip` to compress files. [#680]
+- New `precompress` middleware, to serve precompressed files. [#664]
 
 ### Fixed
 - Nav plugin: Breadcrumb with urls with CJK characters.
@@ -558,6 +559,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#652]: https://github.com/lumeland/lume/issues/652
 [#655]: https://github.com/lumeland/lume/issues/655
 [#662]: https://github.com/lumeland/lume/issues/662
+[#664]: https://github.com/lumeland/lume/issues/664
 [#667]: https://github.com/lumeland/lume/issues/667
 [#668]: https://github.com/lumeland/lume/issues/668
 [#671]: https://github.com/lumeland/lume/issues/671
@@ -566,8 +568,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#677]: https://github.com/lumeland/lume/issues/677
 [#678]: https://github.com/lumeland/lume/issues/678
 [#679]: https://github.com/lumeland/lume/issues/679
-[#681]: https://github.com/lumeland/lume/issues/681
 [#680]: https://github.com/lumeland/lume/issues/680
+[#681]: https://github.com/lumeland/lume/issues/681
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.3.3...HEAD
 [2.3.3]: https://github.com/lumeland/lume/compare/v2.3.2...v2.3.3
