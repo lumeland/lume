@@ -10,6 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `check_urls` to detect broken links [#675].
 - New plugin: `icons` to load automatically icons from popular icon catalogs.
 - New plugin: `google_fonts` to download and self-host automatically fonts from Google Fonts.
+- New plugin: `brotli` to compress files. [#681]
 - New plugin: `gzip` to compress files. [#680]
 
 ### Fixed
@@ -565,6 +566,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#677]: https://github.com/lumeland/lume/issues/677
 [#678]: https://github.com/lumeland/lume/issues/678
 [#679]: https://github.com/lumeland/lume/issues/679
+[#681]: https://github.com/lumeland/lume/issues/681
 [#680]: https://github.com/lumeland/lume/issues/680
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.3.3...HEAD
