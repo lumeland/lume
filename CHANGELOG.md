@@ -13,6 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `brotli` to compress files. [#681]
 - New plugin: `gzip` to compress files. [#680]
 - New `precompress` middleware, to serve precompressed files. [#664]
+- Allow to specify fallbacks for `metas` and `feed` plugins [#683].
 
 ### Fixed
 - Nav plugin: Breadcrumb with urls with CJK characters.
@@ -570,6 +571,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#679]: https://github.com/lumeland/lume/issues/679
 [#680]: https://github.com/lumeland/lume/issues/680
 [#681]: https://github.com/lumeland/lume/issues/681
+[#683]: https://github.com/lumeland/lume/issues/683
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.3.3...HEAD
 [2.3.3]: https://github.com/lumeland/lume/compare/v2.3.2...v2.3.3

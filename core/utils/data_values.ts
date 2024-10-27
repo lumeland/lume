@@ -8,24 +8,7 @@ import type { Data } from "../file.ts";
 export function getDataValue(data: Partial<Data>, value?: unknown) {
   // Get the value from the page data
   if (typeof value === "string") {
-    if (value.startsWith("=")) {
-      const key = value.slice(1);
-
-      if (!key.includes(".")) {
-        return data[key];
-      }
-
-      const keys = key.split(".");
-      let val = data;
-      for (const key of keys) {
-        val = val?.[key];
-      }
-      return val;
-    }
-
-    if (value.startsWith("$")) {
-      return queryCss(value, data.page?.document);
-    }
+    return searchValue(data, value);
   }
 
   if (typeof value === "function") {
@@ -35,10 +18,58 @@ export function getDataValue(data: Partial<Data>, value?: unknown) {
   return value;
 }
 
-function queryCss(value: string, document?: Document) {
-  // https://regexr.com/7qnot
-  const checkForAttrPattern = /^\$(.+)\s+(?:attr\(([\w\-]+)\))$/;
-  const checkResult = value.match(checkForAttrPattern);
+function searchValue(data: Partial<Data>, value: string): unknown {
+  if (!value) {
+    return;
+  }
+
+  if (value.startsWith("=")) {
+    let key = value.slice(1);
+    [key, value] = parseFallback(key);
+
+    if (!key.includes(".")) {
+      return data[key] ?? searchValue(data, value);
+    }
+
+    const keys = key.split(".");
+    let val = data;
+    for (const key of keys) {
+      val = val?.[key];
+    }
+    return val ?? searchValue(data, value);
+  }
+
+  if (value.startsWith("$")) {
+    let selector = value.slice(1);
+    [selector, value] = parseFallback(selector);
+
+    return queryCss(selector, data.page?.document) ?? searchValue(data, value);
+  }
+
+  return value;
+}
+
+function parseFallback(key: string): [string, string] {
+  const fallback = key.indexOf("||");
+
+  if (fallback !== -1) {
+    return [
+      key.slice(0, fallback).trim(),
+      key.slice(fallback + 2).trim(),
+    ];
+  }
+
+  return [
+    key,
+    "",
+  ];
+}
+
+// https://regexr.com/7qnot
+const checkForAttrPattern = /^(.+)\s+(?:attr\(([\w\-]+)\))$/;
+
+function queryCss(query: string, document?: Document) {
+  const checkResult = query.match(checkForAttrPattern);
 
   const hasAttr = checkResult?.[0];
   if (hasAttr) {
@@ -46,6 +77,5 @@ function queryCss(value: string, document?: Document) {
     return document?.querySelector(query)?.getAttribute(name);
   }
 
-  const query = value.slice(1);
   return document?.querySelector(query)?.innerHTML;
 }

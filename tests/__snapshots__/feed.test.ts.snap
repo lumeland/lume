@@ -117,10 +117,10 @@ snapshot[`RSS plugin 2`] = `[]`;
 snapshot[`RSS plugin 3`] = `
 [
   {
-    content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","description":"","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
+    content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
     data: {
       basename: "feed",
-      content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","description":"","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
+      content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
       page: [
         "src",
         "data",
@@ -142,7 +142,6 @@ snapshot[`RSS plugin 3`] = `
     <title>My RSS Feed</title>
     <link>https://example.com/</link>
     <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
-    <description/>
     <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
     <language>en</language>
     <generator>https://lume.land</generator>
@@ -164,7 +163,6 @@ snapshot[`RSS plugin 3`] = `
     <title>My RSS Feed</title>
     <link>https://example.com/</link>
     <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
-    <description/>
     <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
     <language>en</language>
     <generator>https://lume.land</generator>
@@ -225,7 +223,7 @@ snapshot[`RSS plugin 3`] = `
   },
   {
     content: "<!DOCTYPE html>
-Content of Page 5",
+<html><head></head><body>Content of Page 5</body></html>",
     data: {
       basename: "page5",
       children: "Content of Page 5",
