@@ -18,12 +18,13 @@ export function googleFonts(userOptions: Options) {
   const options = { ...defaults, ...userOptions } as Required<Options>;
 
   return (site: Site) => {
+    let cssCode = "";
+    const cssFile = posix.join("/", options.cssFile);
+
     site.addEventListener("beforeBuild", async () => {
       const fonts = typeof options.fonts === "string"
         ? { "": options.fonts }
         : options.fonts;
-      let cssCode = "";
-      const cssFile = posix.join("/", options.cssFile);
       const relativePath = posix.relative(
         posix.dirname(cssFile),
         posix.join(options.folder),
@@ -43,11 +44,17 @@ export function googleFonts(userOptions: Options) {
 
         cssCode += generateCss(fontFaces, relativePath);
       }
+    });
 
-      site.page({
-        content: cssCode,
-        url: cssFile,
-      });
+    site.addEventListener("afterRender", async () => {
+      // Output the CSS file
+      const output = await site.getOrCreatePage(cssFile);
+
+      if (output.content) {
+        output.content += `\n${cssCode}`;
+      } else {
+        output.content = cssCode;
+      }
     });
   };
 }
