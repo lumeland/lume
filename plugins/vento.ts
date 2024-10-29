@@ -1,4 +1,5 @@
-import { engine, FileLoader } from "../deps/vento.ts";
+import { engine } from "../deps/vento.ts";
+import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils/object.ts";
 import { normalizePath } from "../core/utils/path.ts";
@@ -7,7 +8,7 @@ import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type FS from "../core/fs.ts";
-import type { Environment, Plugin, Token } from "../deps/vento.ts";
+import type { Environment, Plugin, Token, Loader } from "../deps/vento.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -53,15 +54,16 @@ export const defaults: Options = {
   },
 };
 
-class LumeLoader extends FileLoader {
+class LumeLoader implements Loader {
   fs: FS;
+  #root: string;
 
-  constructor(includes: string, fs: FS) {
-    super(includes);
+  constructor(root: string, fs: FS) {
+    this.#root = root;
     this.fs = fs;
   }
 
-  override async load(file: string) {
+  async load(file: string) {
     const entry = this.fs.entries.get(normalizePath(file));
 
     if (!entry) {
@@ -74,6 +76,18 @@ class LumeLoader extends FileLoader {
       source: data.content as string,
       data: data,
     };
+  }
+
+  resolve(from: string, file: string): string {
+      if (file.startsWith(".")) {
+        return normalizePath(posix.join(posix.dirname(from), file));
+      }
+  
+      if (file.startsWith(this.#root)) {
+        return normalizePath(file);
+      }
+  
+      return normalizePath(posix.join(this.#root, file));
   }
 }
 

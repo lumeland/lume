@@ -16,6 +16,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Allow to specify fallbacks for `metas` and `feed` plugins [#683].
 
 ### Fixed
+- Vento plugin: Cache invalidation on Windows.
 - Nav plugin: Breadcrumb with urls with CJK characters.
 - Enable tests for `sri` and `reading_info` plugins [#677].
 - Fix tests for `esbuild` plugin [#676].
