@@ -8,7 +8,7 @@ import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type FS from "../core/fs.ts";
-import type { Environment, Plugin, Token, Loader } from "../deps/vento.ts";
+import type { Environment, Loader, Plugin, Token } from "../deps/vento.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -79,15 +79,15 @@ class LumeLoader implements Loader {
   }
 
   resolve(from: string, file: string): string {
-      if (file.startsWith(".")) {
-        return normalizePath(posix.join(posix.dirname(from), file));
-      }
-  
-      if (file.startsWith(this.#root)) {
-        return normalizePath(file);
-      }
-  
-      return normalizePath(posix.join(this.#root, file));
+    if (file.startsWith(".")) {
+      return normalizePath(posix.join(posix.dirname(from), file));
+    }
+
+    if (file.startsWith(this.#root)) {
+      return normalizePath(file);
+    }
+
+    return normalizePath(posix.join(this.#root, file));
   }
 }
 
