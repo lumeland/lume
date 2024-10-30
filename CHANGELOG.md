@@ -14,6 +14,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `gzip` to compress files. [#680]
 - New `precompress` middleware, to serve precompressed files. [#664]
 - Allow to specify fallbacks for `metas` and `feed` plugins [#683].
+- Feed plugin: Add support for author [#601].
 
 ### Fixed
 - Vento plugin: Cache invalidation on Windows.
@@ -536,6 +537,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#598]: https://github.com/lumeland/lume/issues/598
 [#599]: https://github.com/lumeland/lume/issues/599
 [#600]: https://github.com/lumeland/lume/issues/600
+[#601]: https://github.com/lumeland/lume/issues/601
 [#603]: https://github.com/lumeland/lume/issues/603
 [#604]: https://github.com/lumeland/lume/issues/604
 [#606]: https://github.com/lumeland/lume/issues/606

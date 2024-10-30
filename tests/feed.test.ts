@@ -13,11 +13,14 @@ Deno.test("RSS plugin", async (t) => {
       info: {
         published: new Date("2020-01-01"),
         generator: "https://lume.land",
+        authorName: "Laura Rubio",
       },
       items: {
         title: (data) => data.title?.toUpperCase(),
         updated: "=date || $.date",
         published: "$.not-found || =published",
+        authorName: "=author.name",
+        authorUrl: "=author.url",
       },
     }),
   );

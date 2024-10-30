@@ -1,5 +1,5 @@
 import { getExtension } from "../core/utils/path.ts";
-import { merge } from "../core/utils/object.ts";
+import { isPlainObject, merge } from "../core/utils/object.ts";
 import { getCurrentVersion } from "../core/utils/lume_version.ts";
 import { getDataValue } from "../core/utils/data_values.ts";
 import { cdata, stringify } from "../deps/xml.ts";
@@ -50,6 +50,12 @@ export interface FeedInfoOptions {
 
   /** The feed generator. Set `true` to generate automatically */
   generator?: string | boolean;
+
+  /** The feed author name */
+  authorName?: string;
+
+  /** The feed author URL */
+  authorUrl?: string;
 }
 
 export interface FeedItemOptions {
@@ -73,6 +79,12 @@ export interface FeedItemOptions {
 
   /** The item image */
   image?: string | ((data: Data) => string | undefined);
+
+  /** The item author name */
+  authorName?: string;
+
+  /** The item author URL */
+  authorUrl?: string;
 }
 
 export const defaults: Options = {
@@ -105,6 +117,11 @@ export const defaults: Options = {
   },
 };
 
+export interface Author {
+  name?: string;
+  url?: string;
+}
+
 export interface FeedData {
   title: string;
   url: string;
@@ -113,6 +130,7 @@ export interface FeedData {
   lang: string;
   generator?: string;
   items: FeedItem[];
+  author?: Author;
 }
 
 export interface FeedItem {
@@ -124,6 +142,7 @@ export interface FeedItem {
   content: string;
   lang: string;
   image?: string;
+  author?: Author;
 }
 
 const defaultGenerator = `Lume ${getCurrentVersion()}`;
@@ -159,6 +178,7 @@ export function feed(userOptions?: Options) {
         generator: info.generator === true
           ? defaultGenerator
           : info.generator || undefined,
+        author: getAuthor(rootData, info),
         items: pages.map((data): FeedItem => {
           const content = getDataValue(data, items.content)?.toString();
           const pageUrl = site.url(data.url, true);
@@ -172,6 +192,7 @@ export function feed(userOptions?: Options) {
             title: getDataValue(data, items.title),
             url: site.url(data.url, true),
             description: getDataValue(data, items.description),
+            author: getAuthor(data, items),
             published: toDate(getDataValue(data, items.published)) ||
               new Date(),
             updated: toDate(getDataValue(data, items.updated)),
@@ -209,6 +230,18 @@ export function feed(userOptions?: Options) {
   };
 }
 
+function getAuthor(
+  data: Partial<Data>,
+  info: FeedInfoOptions | FeedItemOptions,
+): Author | undefined {
+  const name = getDataValue(data, info.authorName);
+  const url = getDataValue(data, info.authorUrl);
+
+  if (name || url) {
+    return { name, url };
+  }
+}
+
 function fixUrls(base: URL, html: string): string {
   return html.replaceAll(
     /\s(href|src)="([^"]+)"/g,
@@ -228,7 +261,7 @@ function generateRss(data: FeedData, file: string): string {
       "@xmlns:sy": "http://purl.org/rss/1.0/modules/syndication/",
       "@xmlns:slash": "http://purl.org/rss/1.0/modules/slash/",
       "@version": "2.0",
-      channel: clean({
+      channel: {
         title: data.title,
         link: data.url,
         "atom:link": {
@@ -240,57 +273,83 @@ function generateRss(data: FeedData, file: string): string {
         lastBuildDate: data.published.toUTCString(),
         language: data.lang,
         generator: data.generator,
-        item: data.items.map((item) =>
-          clean({
-            title: item.title,
-            link: item.url,
-            guid: {
-              "@isPermaLink": false,
-              "#text": item.url,
-            },
-            description: item.description,
-            "content:encoded": cdata(item.content),
-            pubDate: item.published.toUTCString(),
-            "atom:updated": item.updated?.toISOString(),
-            meta: item.image
-              ? { "@property": "og:image", "@content": item.image }
-              : undefined,
-          })
-        ),
-      }),
+        author: {
+          name: data.author?.name,
+          uri: data.author?.url,
+        },
+        item: data.items.map((item) => ({
+          title: item.title,
+          link: item.url,
+          guid: {
+            "@isPermaLink": false,
+            "#text": item.url,
+          },
+          author: {
+            name: item.author?.name,
+            uri: item.author?.url,
+          },
+          description: item.description,
+          "content:encoded": cdata(item.content),
+          pubDate: item.published.toUTCString(),
+          "atom:updated": item.updated?.toISOString(),
+          meta: item.image
+            ? { "@property": "og:image", "@content": item.image }
+            : undefined,
+        })),
+      },
     },
   };
 
-  return stringify(feed);
+  return stringify(clean(feed));
 }
 
 function generateJson(data: FeedData, file: string): string {
-  const feed = clean({
+  const feed = {
     version: "https://jsonfeed.org/version/1",
     title: data.title,
     home_page_url: data.url,
     feed_url: file,
     description: data.description,
-    items: data.items.map((item) =>
-      clean({
-        id: item.url,
-        url: item.url,
-        title: item.title,
-        content_html: item.content,
-        date_published: item.published.toUTCString(),
-        date_modified: item.updated?.toUTCString(),
-        image: item.image,
-      })
-    ),
-  });
+    author: data.author,
+    items: data.items.map((item) => ({
+      id: item.url,
+      url: item.url,
+      title: item.title,
+      author: item.author,
+      content_html: item.content,
+      date_published: item.published.toUTCString(),
+      date_modified: item.updated?.toUTCString(),
+      image: item.image,
+    })),
+  };
 
-  return JSON.stringify(feed);
+  return JSON.stringify(clean(feed));
 }
 
-/** Remove undefined values of an object */
-function clean(obj: Record<string, unknown>) {
+/** Remove undefined values of an object recursively */
+function clean(obj: Record<string, unknown>): Record<string, unknown> {
   return Object.fromEntries(
-    Object.entries(obj).filter(([, value]) => value !== undefined),
+    Object.entries(obj)
+      .map(([key, value]): [string, unknown] => {
+        if (isPlainObject(value)) {
+          const cleanValue = clean(value);
+          return [
+            key,
+            Object.keys(cleanValue).length > 0 ? cleanValue : undefined,
+          ];
+        }
+        if (Array.isArray(value)) {
+          const cleanValue = value
+            .map((v) => isPlainObject(v) ? clean(v) : v)
+            .filter((v) => v !== undefined);
+          return [
+            key,
+            cleanValue.length > 0 ? cleanValue : undefined,
+          ];
+        }
+        return [key, value];
+      })
+      .filter(([, value]) => value !== undefined),
   );
 }
 
