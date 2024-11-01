@@ -83,6 +83,11 @@ function next(code: string, index = 0): Position | undefined {
   if (found[0] === "url") {
     const start = code.indexOf("(", found[1]) + 1;
     const end = code.indexOf(")", start);
-    return ["url", code.slice(start + 1, end - 1), start, end];
+    let url = code.slice(start, end).trim();
+    // Remove quotes
+    if (url.startsWith('"') || url.startsWith("'")) {
+      url = url.slice(1, -1);
+    }
+    return ["url", url, start, end];
   }
 }

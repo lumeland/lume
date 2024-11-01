@@ -101,10 +101,17 @@ snapshot[`base_path plugin 1`] = `
       loader: [AsyncFunction: yaml],
       pageType: "page",
     },
+    {
+      assetLoader: [AsyncFunction: text],
+      engines: undefined,
+      ext: ".css",
+      pageType: "asset",
+    },
   ],
   src: [
     "/",
     "/index.vto",
+    "/styles.css",
   ],
 }
 `;
@@ -208,6 +215,76 @@ snapshot[`base_path plugin 3`] = `
       asset: false,
       ext: ".vto",
       path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: '@import "/blog/style.css";
+@import "other-styles.css";
+@import "./other-styles.css";
+@import "/blog/style.css";
+@import "other-styles.css";
+@import "./other-styles.css";
+@import url("/blog/style.css");
+@import url("other-styles.css");
+@import url("./other-styles.css");
+@import url("/blog/style.css");
+@import url("other-styles.css");
+@import url("./other-styles.css");
+
+@font-face {
+  font-family: "foo";
+  src: url("/blog/fonts/cicle_fina-webfont.woff2");
+}
+
+div {
+  background-image: url("/blog/img/avatar.png");
+
+}
+',
+    data: {
+      basename: "styles",
+      content: \`@import "/style.css";
+@import "other-styles.css";
+@import "./other-styles.css";
+@import '/style.css';
+@import 'other-styles.css';
+@import './other-styles.css';
+@import url('/style.css');
+@import url('other-styles.css');
+@import url('./other-styles.css');
+@import url(/style.css);
+@import url(other-styles.css);
+@import url(./other-styles.css);
+
+@font-face {
+  font-family: "foo";
+  src: url("/fonts/cicle_fina-webfont.woff2");
+}
+
+div {
+  background-image: url("/img/avatar.png");
+
+}
+\`,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/styles.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/styles",
       remote: undefined,
     },
   },
