@@ -1,6 +1,7 @@
 import { merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import { parseSrcset, searchLinks } from "../core/utils/dom_links.ts";
+import { walkUrls } from "../core/utils/css_urls.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
@@ -13,7 +14,7 @@ export interface Options {
    * The function to generate the new url
    * @default `(url) => url`
    */
-  fn: (url: string, page: Page, element: Element) => string | Promise<string>;
+  fn: (url: string, page: Page, element?: Element) => string | Promise<string>;
 }
 
 // Default options
@@ -32,7 +33,7 @@ export function modifyUrls(userOptions: Options) {
   function replace(
     url: string | null,
     page: Page,
-    element: Element,
+    element?: Element,
   ): string | Promise<string> {
     return url ? options.fn(url, page, element) : "";
   }
@@ -54,6 +55,20 @@ export function modifyUrls(userOptions: Options) {
       options.extensions,
       (pages) =>
         concurrent(pages, async (page: Page) => {
+          if (page.outputPath.endsWith(".css")) {
+            page.content = await walkUrls(
+              page.content as string,
+              async (url, type) => {
+                if (type === "url") {
+                  return await replace(url, page);
+                }
+
+                return url;
+              },
+            );
+            return;
+          }
+
           const { document } = page;
 
           if (!document) {
