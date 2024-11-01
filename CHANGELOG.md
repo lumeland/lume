@@ -15,6 +15,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New `precompress` middleware, to serve precompressed files. [#664]
 - Allow to specify fallbacks for `metas` and `feed` plugins [#683].
 - Feed plugin: Add support for author [#601].
+- `base_path`, `modify_urls` `relative_urls`: Add support for CSS files.
 
 ### Fixed
 - Vento plugin: Cache invalidation on Windows.
