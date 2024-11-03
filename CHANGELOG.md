@@ -26,6 +26,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `code_highlight` plugin: configuration type must be Partial [#679].
 - Updated dependencies: `sass`, `terser`, `liquid`, `tailwindcss`, `std`, `preact`, `mdx`, `xml`, `satori`, `react` types, `unocss`, `magic-string`.
 - esbuild plugin: Add support for `entryNames` option [#678].
+- Enable `--port` argument to `lume cms` command [#686].
 
 ## [2.3.3] - 2024-10-07
 ### Added
@@ -577,6 +578,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#680]: https://github.com/lumeland/lume/issues/680
 [#681]: https://github.com/lumeland/lume/issues/681
 [#683]: https://github.com/lumeland/lume/issues/683
+[#686]: https://github.com/lumeland/lume/issues/686
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.3.3...HEAD
 [2.3.3]: https://github.com/lumeland/lume/compare/v2.3.2...v2.3.3

@@ -89,9 +89,14 @@ const cms = new Command()
     "The URL location of the site.",
     { default: "http://localhost" },
   )
+  .option(
+    "-p, --port <port:number>",
+    "The port where the server runs.",
+    { default: 3000 },
+  )
   .action(async ({ config }) => {
     const { runCms } = await import("./cli/cms.ts");
-    await runCms(config);
+    runCms(config);
   });
 
 const lume = new Command()
@@ -144,7 +149,7 @@ const lume = new Command()
   )
   .action(async ({ config, serve, watch }) => {
     const { build } = await import("./cli/build.ts");
-    await build(config, serve, watch);
+    build(config, serve, watch);
   })
   .command("new <archetype> [arguments...]", create)
   .command("upgrade", upgrade)
