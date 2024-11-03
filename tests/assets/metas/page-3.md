@@ -9,6 +9,7 @@ metas:
   image: "=cover"
   "twitter:label1": Reading time
   "twitter:data1": 1 minute
+  fediverse: "@lume@fosstodon.org"
 ---
 
 This is page excerpt will be used as meta description.

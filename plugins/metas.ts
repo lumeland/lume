@@ -41,6 +41,9 @@ export interface MetaData {
   /** The twitter username */
   twitter?: string | ((data: Data) => string | undefined);
 
+  /** The fediverse username (for author attribution) */
+  fediverse?: string | ((data: Data) => string | undefined);
+
   /** The color theme */
   color?: string | ((data: Data) => string | undefined);
 
@@ -98,6 +101,7 @@ export function metas(userOptions?: Options) {
       const title = getDataValue(data, main["title"]);
       const description = getDataValue(data, main["description"]);
       const twitter = getDataValue(data, main["twitter"]);
+      const fediverse = getDataValue(data, main["fediverse"]);
       const keywords = getDataValue(data, main["keywords"]);
       const robots = getDataValue(data, main["robots"]);
       const color = getDataValue(data, main["color"]);
@@ -120,6 +124,9 @@ export function metas(userOptions?: Options) {
         image ? "summary_large_image" : "summary",
       );
       addMeta(document, "name", "twitter:site", twitter);
+
+      // Fediverse
+      addMeta(document, "name", "fediverse:creator", fediverse);
 
       // SEO
       addMeta(document, "name", "description", description, 155);
@@ -204,6 +211,7 @@ function getMetas(metas: MetaData): [MetaData, Record<string, unknown>] {
     icon,
     keywords,
     twitter,
+    fediverse,
     color,
     robots,
     generator,
@@ -219,6 +227,7 @@ function getMetas(metas: MetaData): [MetaData, Record<string, unknown>] {
     icon,
     keywords,
     twitter,
+    fediverse,
     color,
     robots,
     generator,

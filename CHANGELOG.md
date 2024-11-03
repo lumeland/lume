@@ -16,6 +16,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Allow to specify fallbacks for `metas` and `feed` plugins [#683].
 - Feed plugin: Add support for author [#601].
 - `base_path`, `modify_urls` `relative_urls`: Add support for CSS files.
+- Metas plugin: New property `fediverse` to create the `fediverse:creator` meta tag.
 
 ### Fixed
 - Vento plugin: Cache invalidation on Windows.
