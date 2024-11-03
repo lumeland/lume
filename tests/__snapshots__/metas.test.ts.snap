@@ -287,6 +287,7 @@ snapshot[`metas plugin 3`] = `
 <meta property="og:image" content="http://localhost/page-3/use-cover-as-meta-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@myUser">
+<meta name="fediverse:creator" content="@lume@fosstodon.org">
 <meta name="description" content="THIS IS PAGE EXCERPT WILL BE USED AS META DESCRIPTION.">
 <meta name="keywords" content="one, two">
 <meta name="robots" content="this robots will be overrided">
@@ -332,6 +333,7 @@ snapshot[`metas plugin 3`] = `
         "generator",
         "twitter:label1",
         "twitter:data1",
+        "fediverse",
       ],
       page: [
         "src",
