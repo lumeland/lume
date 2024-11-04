@@ -24,7 +24,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Enable tests for `sri` and `reading_info` plugins [#677].
 - Fix tests for `esbuild` plugin [#676].
 - `code_highlight` plugin: configuration type must be Partial [#679].
-- Updated dependencies: `sass`, `terser`, `liquid`, `tailwindcss`, `std`, `preact`, `mdx`, `xml`, `satori`, `react` types, `unocss`, `magic-string`.
+- Updated dependencies: `sass`, `terser`, `liquid`, `tailwindcss`, `std`, `preact`, `mdx`, `xml`, `satori`, `react` types, `unocss`, `magic-string`, `vento`, `lightningcss`.
 - esbuild plugin: Add support for `entryNames` option [#678].
 - Enable `--port` argument to `lume cms` command [#686].
 
