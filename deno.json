@@ -14,6 +14,6 @@
     "update-deps": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.8/cli.ts' update deps/*.ts deno.json"
   },
   "imports": {
-    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.7.0/"
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.7.2/"
   }
 }
