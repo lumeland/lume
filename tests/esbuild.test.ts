@@ -11,6 +11,8 @@ Deno.test(
       src: "esbuild",
     });
 
+    site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+
     // Test ignore with a function filter
     site.ignore((path) => path === "/modules" || path.startsWith("/modules/"));
     site.use(esbuild());
@@ -29,6 +31,8 @@ Deno.test(
       src: "esbuild",
     });
 
+    site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+
     // Test ignore with a function filter
     site.ignore((path) => path === "/modules" || path.startsWith("/modules/"));
     site.use(esbuild({
@@ -41,19 +45,35 @@ Deno.test(
     await build(site);
 
     // Normalize chunk name
+    let chunkIndex = 0;
+    const chunkMap: { [chunk: string]: string } = {};
     for (const page of site.pages) {
       const url = page.data.url;
 
-      if (url.match(/chunk-[\w]{8}\.js/)) {
-        page.data.url = url.replace(/chunk-[\w]{8}\.js/, "chunk.js");
-        page.data.basename = page.data.basename.replace(
-          /chunk-[\w]{8}/,
-          "chunk",
-        );
-      } else {
-        const content = page.content as string;
-        page.content = content.replace(/chunk-[\w]{8}\.js/, "chunk.js");
+      const match = url.match(/chunk-[\w]{8}\.js/);
+      if (!match) {
+        continue;
       }
+
+      page.data.url = url.replace(
+        /chunk-[\w]{8}\.js/,
+        `chunk-${chunkIndex}.js`,
+      );
+      page.data.basename = page.data.basename.replace(
+        /chunk-[\w]{8}/,
+        `chunk-${chunkIndex}`,
+      );
+      chunkMap[match[0]] = `chunk-${chunkIndex}.js`;
+      chunkIndex += 1;
+    }
+    for (const page of site.pages) {
+      let content = page.content as string;
+      for (
+        const [originalChunkName, newChunkName] of Object.entries(chunkMap)
+      ) {
+        content = content.replace(originalChunkName, newChunkName);
+      }
+      page.content = content;
     }
 
     await assertSiteSnapshot(t, site);
@@ -68,6 +88,8 @@ Deno.test(
     const site = getSite({
       src: "esbuild_jsx",
     });
+
+    site.data("basename", "util/toLower", "/other/to_lowercase.ts");
 
     site.use(jsx({
       pageSubExtension: ".page",
@@ -91,6 +113,8 @@ Deno.test(
       src: "esbuild",
     });
 
+    site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+
     site.use(esbuild({
       options: {
         outExtension: { ".js": ".min.js" },
@@ -110,6 +134,8 @@ Deno.test(
     const site = getSite({
       src: "esbuild",
     });
+
+    site.data("basename", "util/toLower", "/other/to_lowercase.ts");
 
     site.use(esbuild({
       options: {
@@ -131,9 +157,35 @@ Deno.test(
       src: "esbuild",
     });
 
+    site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+
     site.use(esbuild({
       options: {
         entryNames: "one/[dir]/two/[name]/hash",
+      },
+    }));
+
+    await build(site);
+    await assertSiteSnapshot(t, site);
+  },
+);
+
+// Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
+Deno.test(
+  "esbuild plugin without bundle",
+  { sanitizeOps: false, sanitizeResources: false },
+  async (t) => {
+    const site = getSite({
+      src: "esbuild",
+    });
+
+    site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+
+    site.use(esbuild({
+      options: {
+        bundle: false,
+        entryNames: "[dir]/[name].hash",
+        outExtension: { ".js": ".min.js" },
       },
     }));
 

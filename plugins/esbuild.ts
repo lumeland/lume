@@ -1,8 +1,8 @@
 import {
+  getPathAndExtension,
   isAbsolutePath,
   isUrl,
   normalizePath,
-  replaceExtension,
 } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { readDenoConfig } from "../core/utils/deno_config.ts";
@@ -15,7 +15,7 @@ import {
   OutputFile,
   stop,
 } from "../deps/esbuild.ts";
-import { dirname, extname, fromFileUrl, toFileUrl } from "../deps/path.ts";
+import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/file.ts";
 import textLoader from "../core/loaders/text.ts";
@@ -127,14 +127,20 @@ export function esbuild(userOptions?: Options) {
       pages: Page[],
     ): Promise<[OutputFile[], Metafile, boolean]> {
       let enableAllSourceMaps = false;
-      const entryPoints: string[] = [];
+      const entryPoints: { in: string; out: string }[] = [];
 
       pages.forEach((page) => {
         const { content, filename, enableSourceMap } = prepareAsset(site, page);
         if (enableSourceMap) {
           enableAllSourceMaps = true;
         }
-        entryPoints.push(filename);
+
+        let outUri = getPathAndExtension(page.data.url)[0];
+        if (outUri.startsWith("/")) {
+          outUri = outUri.slice(1);
+        }
+
+        entryPoints.push({ in: filename, out: outUri });
         entryContent[toFileUrl(filename).href] = content;
       });
 
@@ -261,8 +267,17 @@ export function esbuild(userOptions?: Options) {
         }
 
         // Replace .tsx and .jsx extensions with .js
-        const content = (!options.options.splitting && !options.options.bundle)
-          ? resolveImports(outputFile.text, options.esm)
+        const content = !options.options.bundle
+          ? resolveImports(
+            outputFile.text,
+            output.entryPoint
+              ? relativePathFromUri(output.entryPoint, basePath)
+              : outputPath,
+            outputPath,
+            basePath,
+            options.esm,
+            metafile,
+          )
           : outputFile.text;
 
         // Get the associated source map
@@ -278,22 +293,8 @@ export function esbuild(userOptions?: Options) {
           continue;
         }
 
-        let outputRelativeEntryPoint = output.entryPoint;
-        if (outputRelativeEntryPoint.startsWith("deno:")) {
-          outputRelativeEntryPoint = outputRelativeEntryPoint.slice(
-            "deno:".length,
-          );
-        }
-        if (outputRelativeEntryPoint.startsWith(prefix)) {
-          outputRelativeEntryPoint = outputRelativeEntryPoint.slice(
-            prefix.length,
-          );
-        }
-        if (outputRelativeEntryPoint.startsWith("file://")) {
-          outputRelativeEntryPoint = fromFileUrl(outputRelativeEntryPoint);
-        }
-        outputRelativeEntryPoint = normalizePath(
-          outputRelativeEntryPoint,
+        const outputRelativeEntryPoint = relativePathFromUri(
+          output.entryPoint,
           basePath,
         );
 
@@ -309,10 +310,7 @@ export function esbuild(userOptions?: Options) {
         }
 
         // The page is an entry point
-        entryPoint.data.url = normalizedOutPath.replaceAll(
-          dirname(entryPoint.sourcePath) + "/",
-          dirname(entryPoint.data.url) + "/",
-        );
+        entryPoint.data.url = normalizedOutPath;
         saveAsset(site, entryPoint, content, map?.text);
       }
     });
@@ -368,23 +366,97 @@ function buildJsxConfig(config?: DenoConfig): BuildOptions | undefined {
   }
 }
 
+function relativePathFromUri(uri: string, basePath?: string): string {
+  if (uri.startsWith("deno:")) {
+    uri = uri.slice("deno:".length);
+  }
+
+  if (uri.startsWith("file://")) {
+    uri = fromFileUrl(uri);
+  }
+
+  return normalizePath(uri, basePath);
+}
+
 function resolveImports(
-  content: string,
+  source: string,
+  sourcePath: string,
+  outputPath: string,
+  basePath: string,
   esm: EsmOptions,
+  metafile: Metafile,
 ): string {
-  return content.replaceAll(
-    /(from\s*)["']([^"']+)["']/g,
-    (_, from, path) => {
-      if (path.startsWith(".") || path.startsWith("/")) {
-        const resolved = path.endsWith(".json")
-          ? path
-          : replaceExtension(path, ".js");
-        return `${from}"${resolved}"`;
-      }
-      const resolved = import.meta.resolve(path);
-      return `${from}"${handleEsm(resolved, esm) || resolved}"`;
-    },
+  source = source.replaceAll(
+    /\bfrom\s*["']([^"']+)["']/g,
+    (_, path) =>
+      `from "${
+        resolveImport(path, sourcePath, outputPath, basePath, esm, metafile)
+      }"`,
   );
+
+  source = source.replaceAll(
+    /\bimport\s*["']([^"']+)["']/g,
+    (_, path) =>
+      `import "${
+        resolveImport(path, sourcePath, outputPath, basePath, esm, metafile)
+      }"`,
+  );
+
+  source = source.replaceAll(
+    /\bimport\([\s\n]*["']([^"']+)["'](?=[\s\n]*[,)])/g,
+    (_, path) =>
+      `import("${
+        resolveImport(path, sourcePath, outputPath, basePath, esm, metafile)
+      }"`,
+  );
+
+  return source;
+}
+
+function resolveImport(
+  importPath: string,
+  sourcePath: string,
+  outputPath: string,
+  basePath: string,
+  esm: EsmOptions,
+  metafile: Metafile,
+): string {
+  if (importPath.startsWith(".") || importPath.startsWith("/")) {
+    const sourcePathOfImport = posix.join(
+      "/",
+      posix.dirname(sourcePath),
+      importPath,
+    );
+
+    const outputOfImport = Object.entries(metafile.outputs)
+      .find(([_, output]) => {
+        if (!output.entryPoint) {
+          return false;
+        }
+
+        const outputRelativeEntryPoint = relativePathFromUri(
+          output.entryPoint,
+          basePath,
+        );
+
+        return outputRelativeEntryPoint === sourcePathOfImport;
+      });
+
+    if (!outputOfImport) {
+      return importPath;
+    }
+
+    const outputPathOfImport = outputOfImport[0];
+    const relativeOutputPathOfImport = posix.relative(
+      posix.dirname(outputPath),
+      outputPathOfImport,
+    );
+
+    return "./" + relativeOutputPathOfImport;
+  }
+
+  const resolved = import.meta.resolve(importPath);
+  return handleEsm(resolved, esm) || resolved;
 }
 
 function handleEsm(path: string, options: EsmOptions): string | undefined {
