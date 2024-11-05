@@ -6,12 +6,14 @@ export interface Options {
   fonts: string | Record<string, string>;
   folder?: string;
   cssFile?: string;
+  placeholder?: string;
 }
 
 export const defaults: Options = {
   fonts: "",
   folder: "/fonts",
   cssFile: "/fonts.css",
+  placeholder: "",
 };
 
 export function googleFonts(userOptions: Options) {
@@ -51,7 +53,14 @@ export function googleFonts(userOptions: Options) {
       const output = await site.getOrCreatePage(cssFile);
 
       if (output.content) {
-        output.content += `\n${cssCode}`;
+        if (options.placeholder) {
+          output.content = (output.content as string).replace(
+            options.placeholder,
+            cssCode,
+          );
+        } else {
+          output.content += `\n${cssCode}`;
+        }
       } else {
         output.content = cssCode;
       }

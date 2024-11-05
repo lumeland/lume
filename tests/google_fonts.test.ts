@@ -33,3 +33,23 @@ Deno.test("Download and rename fonts from Google fonts", async (t) => {
   await build(site);
   await assertSiteSnapshot(t, site);
 });
+
+Deno.test("Use a placeholder", async (t) => {
+  const site = getSite({
+    src: "google-fonts",
+  });
+
+  site.use(googleFonts({
+    cssFile: "/styles.css",
+    placeholder: "/* google-fonts */",
+    fonts: {
+      "ui-font":
+        "https://fonts.google.com/share?selection.family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900",
+      "display-font":
+        "https://fonts.google.com/share?selection.family=Londrina+Sketch",
+    },
+  }));
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});
