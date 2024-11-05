@@ -809,10 +809,10 @@ snapshot[`gzip plugin with options 2`] = `[]`;
 snapshot[`gzip plugin with options 3`] = `
 [
   {
-    content: "Uint8Array(2390)",
+    content: "Uint8Array(2405)",
     data: {
       basename: "styles",
-      content: "Uint8Array(2390)",
+      content: "Uint8Array(2405)",
       page: [
         "src",
         "data",
@@ -1634,7 +1634,9 @@ snapshot[`gzip plugin with options 3`] = `
     },
   },
   {
-    content: '/* https://unocss.dev/transformers/directives#usage */
+    content: '/* unocss-placeholder */
+
+/* https://unocss.dev/transformers/directives#usage */
 .custom-div {
   margin-top:0;margin-bottom:0;text-align:center;font-weight:500;
   ;
@@ -1816,7 +1818,9 @@ snapshot[`gzip plugin with options 3`] = `
 }',
     data: {
       basename: "styles",
-      content: '/* https://unocss.dev/transformers/directives#usage */
+      content: '/* unocss-placeholder */
+
+/* https://unocss.dev/transformers/directives#usage */
 .custom-div {
   @apply text-center my-0 font-medium;
   --at-apply: "hover:text-red";

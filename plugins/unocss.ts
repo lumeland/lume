@@ -35,6 +35,12 @@ export interface Options {
   cssFile?: false | string;
 
   /**
+   * A placeholder to replace with the generated CSS.
+   * Only used when `cssFile` is set.
+   */
+  placeholder?: string;
+
+  /**
    * Process CSS files using UnoCSS transformers.
    * @default
    * [
@@ -138,7 +144,14 @@ export function unoCSS(userOptions?: Options) {
       // Output the CSS file
       const output = await site.getOrCreatePage(cssFile);
       if (output.content) {
-        output.content += `\n${css}`;
+        if (options.placeholder) {
+          output.content = (output.content as string).replace(
+            options.placeholder,
+            css,
+          );
+        } else {
+          output.content += `\n${css}`;
+        }
       } else {
         output.content = css;
       }

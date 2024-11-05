@@ -43,3 +43,17 @@ Deno.test("Unocss plugin (with transformers)", async (t) => {
   await build(site);
   await assertSiteSnapshot(t, site);
 });
+
+Deno.test("Unocss with placeholder", async (t) => {
+  const site = getSite({
+    src: "unocss",
+  });
+
+  site.use(unocss({
+    cssFile: "styles.css",
+    placeholder: "/* unocss-placeholder */",
+  }));
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});

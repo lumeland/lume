@@ -1,3 +1,5 @@
+/* unocss-placeholder */
+
 /* https://unocss.dev/transformers/directives#usage */
 .custom-div {
   @apply text-center my-0 font-medium;

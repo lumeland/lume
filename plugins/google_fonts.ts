@@ -3,9 +3,16 @@ import { posix } from "../deps/path.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
+  /** The Share URL of the fonts to download (like `https://fonts.google.com/share?selection.family=...`) */
   fonts: string | Record<string, string>;
+
+  /** The folder to save the fonts */
   folder?: string;
+
+  /** The CSS file to output the font-face rules */
   cssFile?: string;
+
+  /** A placeholder to replace with the generated CSS */
   placeholder?: string;
 }
 
