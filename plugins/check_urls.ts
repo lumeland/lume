@@ -3,6 +3,7 @@ import { parseSrcset, searchLinks } from "../core/utils/dom_links.ts";
 import { gray, green, red } from "../deps/colors.ts";
 import { join } from "../deps/path.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 
@@ -57,6 +58,11 @@ export default function (userOptions?: Options) {
   return (site: Site) => {
     const urls = new Map<string, Set<string>>(); // All URLs found
     const redirects = new Set<string>(); // All URLs that redirect
+
+    // Ignore the ouput file to avoid infinite build loop
+    if (typeof options.output === "string") {
+      site.options.watcher.ignore.push(options.output);
+    }
 
     function scan(url: string, pageUrl: URL): void {
       if (ignore(url)) { // ignore empty, hash, search, etc
@@ -253,6 +259,14 @@ function outputFile(
     2,
   );
   Deno.writeTextFileSync(file, content);
+
+  if (notFound.size === 0) {
+    log.info("No broken links found!");
+  } else {
+    log.info(
+      `⛓️‍💥 ${notFound.size} broken links saved to <gray>${file}</gray>`,
+    );
+  }
 }
 
 function outputConsole(notFound: Map<string, Set<string>>) {
