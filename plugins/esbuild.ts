@@ -135,9 +135,9 @@ export function esbuild(userOptions?: Options) {
           enableAllSourceMaps = true;
         }
 
-        let outUri = getPathAndExtension(page.data.url)[0];
+        let outUri = getPathAndExtension(page.outputPath)[0];
         if (outUri.startsWith("/")) {
-          outUri = outUri.slice(1);
+          outUri = outUri.slice(1); // To prevent Esbuild to generate urls with _.._/_.._/
         }
 
         entryPoints.push({ in: filename, out: outUri });
@@ -230,12 +230,12 @@ export function esbuild(userOptions?: Options) {
       );
 
       if (errors.length) {
-        log.error(`[esbuild plugin] Build errors: \n${errors.join("\n")}`);
+        log.error(`[esbuild plugin] ${errors.length} errors `);
       }
 
       if (warnings.length) {
         log.warn(
-          `[esbuild plugin] Build warnings: \n${warnings.join("\n")}`,
+          `[esbuild plugin] ${warnings.length} warnings`,
         );
       }
 
@@ -286,7 +286,10 @@ export function esbuild(userOptions?: Options) {
           : undefined;
 
         // The page is a chunk
-        if (!output.entryPoint) {
+        if (
+          !output.entryPoint || output.entryPoint.startsWith("deno:http://") ||
+          output.entryPoint.startsWith("deno:https://")
+        ) {
           const page = Page.create({ url: normalizedOutPath });
           saveAsset(site, page, content, map?.text);
           allPages.push(page);
