@@ -137,7 +137,7 @@ export function esbuild(userOptions?: Options) {
 
         let outUri = getPathAndExtension(page.outputPath)[0];
         if (outUri.startsWith("/")) {
-          outUri = outUri.slice(1); // To prevent Esbuild to generate urls with _.._/_.._/
+          outUri = outUri.slice(1); // This prevents Esbuild to generate urls with _.._/_.._/
         }
 
         entryPoints.push({ in: filename, out: outUri });
@@ -259,6 +259,7 @@ export function esbuild(userOptions?: Options) {
 
           return relativeFilePath === normalizedOutPath;
         });
+
         if (!outputFile) {
           log.error(
             `[esbuild plugin] Could not match the metafile ${normalizedOutPath} to an output file.`,
@@ -267,8 +268,9 @@ export function esbuild(userOptions?: Options) {
         }
 
         // Replace .tsx and .jsx extensions with .js
-        const content = !options.options.bundle
-          ? resolveImports(
+        const content = options.options.bundle
+          ? outputFile.text
+          : resolveImports(
             outputFile.text,
             output.entryPoint
               ? relativePathFromUri(output.entryPoint, basePath)
@@ -277,38 +279,32 @@ export function esbuild(userOptions?: Options) {
             basePath,
             options.esm,
             metafile,
-          )
-          : outputFile.text;
+          );
 
         // Get the associated source map
         const map = enableSourceMap
           ? outputFiles.find((f) => f.path === `${outputFile.path}.map`)
           : undefined;
 
+        // Search the entry point of this output file
+        let entryPoint: Page | undefined;
+
+        if (output.entryPoint) {
+          const outputRelativeEntryPoint = relativePathFromUri(
+            output.entryPoint,
+            basePath,
+          );
+
+          entryPoint = pages.find((page) =>
+            page.sourcePath === outputRelativeEntryPoint
+          );
+        }
+
         // The page is a chunk
-        if (
-          !output.entryPoint || output.entryPoint.startsWith("deno:http://") ||
-          output.entryPoint.startsWith("deno:https://")
-        ) {
+        if (!entryPoint) {
           const page = Page.create({ url: normalizedOutPath });
           saveAsset(site, page, content, map?.text);
           allPages.push(page);
-          continue;
-        }
-
-        const outputRelativeEntryPoint = relativePathFromUri(
-          output.entryPoint,
-          basePath,
-        );
-
-        // Search the entry point of this output file
-        const entryPoint = pages.find((page) =>
-          page.sourcePath === outputRelativeEntryPoint
-        );
-        if (!entryPoint) {
-          log.error(
-            `[esbuild plugin] Could not match the entrypoint ${outputRelativeEntryPoint} of metafile ${normalizedOutPath} to an page.`,
-          );
           continue;
         }
 
