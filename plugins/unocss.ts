@@ -1,5 +1,6 @@
 import { merge } from "../core/utils/object.ts";
 import { read } from "../core/utils/read.ts";
+import { insertContent } from "../core/utils/page_content.ts";
 import {
   createGenerator,
   MagicString,
@@ -143,18 +144,7 @@ export function unoCSS(userOptions?: Options) {
 
       // Output the CSS file
       const output = await site.getOrCreatePage(cssFile);
-      if (output.content) {
-        if (options.placeholder) {
-          output.content = (output.content as string).replace(
-            options.placeholder,
-            css,
-          );
-        } else {
-          output.content += `\n${css}`;
-        }
-      } else {
-        output.content = css;
-      }
+      insertContent(output, css, options.placeholder);
     });
   };
 }

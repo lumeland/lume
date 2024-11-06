@@ -1,4 +1,5 @@
 import { read, readFile } from "../core/utils/read.ts";
+import { insertContent } from "../core/utils/page_content.ts";
 import { posix } from "../deps/path.ts";
 import type Site from "../core/site.ts";
 
@@ -55,22 +56,10 @@ export function googleFonts(userOptions: Options) {
       }
     });
 
+    // Output the CSS file
     site.addEventListener("afterRender", async () => {
-      // Output the CSS file
-      const output = await site.getOrCreatePage(cssFile);
-
-      if (output.content) {
-        if (options.placeholder) {
-          output.content = (output.content as string).replace(
-            options.placeholder,
-            cssCode,
-          );
-        } else {
-          output.content += `\n${cssCode}`;
-        }
-      } else {
-        output.content = cssCode;
-      }
+      const page = await site.getOrCreatePage(cssFile);
+      insertContent(page, cssCode, options.placeholder);
     });
   };
 }
