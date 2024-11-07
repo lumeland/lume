@@ -7,7 +7,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.4.1] - Unreleased
 ### Fixed
-- `icons` plugin: The URL returned must start with `/`.
+- `icons` plugin: Broken urls because don't start with `/`.
+- `icons` plugin: Options types.
 
 ## [2.4.0] - 2024-11-06
 ### Added

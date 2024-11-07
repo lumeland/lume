@@ -9,7 +9,7 @@ export type { Catalog, Variant };
 
 export interface Options {
   folder?: string;
-  catalogs: Catalog[];
+  catalogs?: Catalog[];
 }
 
 export const defaults: Options = {
