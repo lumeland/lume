@@ -86,7 +86,7 @@ function getNameAndVariant(
   }
 
   const found = catalog.variants.find((v) => {
-    return [name, typeof v === "string" ? v === variant : v.id === variant];
+    return typeof v === "string" ? v === variant : v.id === variant;
   });
 
   if (!found) {

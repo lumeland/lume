@@ -7,8 +7,16 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.4.1] - Unreleased
 ### Fixed
-- `icons` plugin: Broken urls because don't start with `/`.
-- `icons` plugin: Options types.
+- Several bugs in the `icons` plugin:
+  - Broken urls because don't start with `/`.
+  - Options types.
+  - The default variant of Phosphor must be `regular`.
+  - The variant argument doesn't work.
+- Some bugs in the `check_urls` plugin:
+  - Report the exact URL for external links.
+  - Show a `Searchign for broken links...` message to provide some feedback for sites with many links.
+  - The ignore option doesn't qwork for external links.
+- Updated dependencies: `pagefind` and `unocss`.
 
 ## [2.4.0] - 2024-11-06
 ### Added

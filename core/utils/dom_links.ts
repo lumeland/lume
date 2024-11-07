@@ -18,7 +18,7 @@ export function* searchLinks(document: Document): Iterable<Link> {
       yield {
         element,
         attribute,
-        value: element.getAttribute(attribute) ?? "",
+        value: element.getAttribute(attribute)?.trim() ?? "",
       };
     }
   }

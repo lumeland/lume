@@ -105,7 +105,7 @@ export const catalogs: Catalog[] = [
       const suffix = variant?.id === "regular" ? "" : `-${variant?.id}`;
       return `${name}${suffix}`;
     },
-    variants: ["bold", "duotone", "fill", "light", "regular", "thin"],
+    variants: ["regular", "bold", "duotone", "fill", "light", "thin"],
   },
   {
     // https://remixicon.com/

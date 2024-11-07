@@ -45,8 +45,8 @@ export default function (userOptions?: Options) {
   function ignore(url: string) {
     const scheme = url.match(schemeRegex)?.[0];
 
-    if (scheme) {
-      return !["http:", "https:"].includes(scheme);
+    if (scheme && !["http:", "https:"].includes(scheme)) {
+      return true;
     }
 
     return !url ||
@@ -72,10 +72,10 @@ export default function (userOptions?: Options) {
       const fullUrl = new URL(url, pageUrl);
 
       // External links
-      if (fullUrl.origin != pageUrl.origin) {
+      if (fullUrl.origin !== pageUrl.origin) {
         if (options.external) {
           fullUrl.hash = "";
-          saveRef(urls, fullUrl.href, pageUrl.pathname);
+          saveRef(urls, url, pageUrl.pathname);
         }
         return;
       }
@@ -141,6 +141,8 @@ export default function (userOptions?: Options) {
       const strict = options.strict;
       const notFound = new Map<string, Set<string>>();
       const dest = site.dest();
+
+      log.info("Searching for broken links...");
 
       await concurrent(
         urls,

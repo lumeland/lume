@@ -499,15 +499,33 @@ snapshot[`icons plugin 3`] = `
     },
   },
   {
-    content: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M236,104a60.07,60.07,0,0,0-60-60H140.4A20,20,0,0,1,160,28a12,12,0,0,0,0-24,44.06,44.06,0,0,0-43.81,40H80a60.07,60.07,0,0,0-60,60,20,20,0,0,0,8,16v8c0,37.45,34,64.71,61.23,86.61,10.22,8.2,25.63,20.58,26.77,25.56a12,12,0,0,0,24,0c1.14-5,16.55-17.36,26.77-25.56C194.05,192.71,228,165.45,228,128v-8A20,20,0,0,0,236,104ZM80,68h96a36.06,36.06,0,0,1,35.78,32H44.22A36.06,36.06,0,0,1,80,68Zm71.74,127.9c-9.17,7.36-17.46,14-23.74,20.55-6.28-6.53-14.57-13.19-23.74-20.55C81,177.2,52,153.94,52,128v-4H204v4C204,153.94,175,177.2,151.74,195.9Z"/></svg>',
+    content: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,112v16c0,53-88,88-88,112,0-24-88-59-88-112V112Z" opacity="0.2"/><path d="M232,104a56.06,56.06,0,0,0-56-56H136a24,24,0,0,1,24-24,8,8,0,0,0,0-16,40,40,0,0,0-40,40H80a56.06,56.06,0,0,0-56,56,16,16,0,0,0,8,13.83V128c0,35.53,33.12,62.12,59.74,83.49C103.66,221.07,120,234.18,120,240a8,8,0,0,0,16,0c0-5.82,16.34-18.93,28.26-28.51C190.88,190.12,224,163.53,224,128V117.83A16,16,0,0,0,232,104ZM80,64h96a40.06,40.06,0,0,1,40,40H40A40,40,0,0,1,80,64Zm74.25,135c-10.62,8.52-20,16-26.25,23.37-6.25-7.32-15.63-14.85-26.25-23.37C77.8,179.79,48,155.86,48,128v-8H208v8C208,155.86,178.2,179.79,154.25,199Z"/></svg>',
     data: {
-      basename: "acorn-bold",
+      basename: "acorn-duotone",
       page: [
         "src",
         "data",
         "asset",
       ],
-      url: "/icons/phosphor/acorn-bold.svg",
+      url: "/icons/phosphor/acorn-duotone.svg",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232,104a56.06,56.06,0,0,0-56-56H136a24,24,0,0,1,24-24,8,8,0,0,0,0-16,40,40,0,0,0-40,40H80a56.06,56.06,0,0,0-56,56,16,16,0,0,0,8,13.83V128c0,35.53,33.12,62.12,59.74,83.49C103.66,221.07,120,234.18,120,240a8,8,0,0,0,16,0c0-5.82,16.34-18.93,28.26-28.51C190.88,190.12,224,163.53,224,128V117.83A16,16,0,0,0,232,104ZM80,64h96a40.06,40.06,0,0,1,40,40H40A40,40,0,0,1,80,64Zm74.25,135c-10.62,8.52-20,16-26.25,23.37-6.25-7.32-15.63-14.85-26.25-23.37C77.8,179.79,48,155.86,48,128v-8H208v8C208,155.86,178.2,179.79,154.25,199Z"/></svg>',
+    data: {
+      basename: "acorn-regular",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/icons/phosphor/acorn-regular.svg",
     },
     src: {
       asset: true,
@@ -607,9 +625,9 @@ snapshot[`icons plugin 3`] = `
   <title>Document</title>
 </head>
 <body>
-  <img src="/icons/phosphor/acorn-bold.svg">
-  <img src="/icons/phosphor/acorn-bold.svg">
-  <img src="/icons/phosphor/acorn-bold.svg">
+  <img src="/icons/phosphor/acorn-regular.svg">
+  <img src="/icons/phosphor/acorn-duotone.svg">
+  <img src="/icons/phosphor/acorn-duotone.svg">
   <img src="/icons/simpleicons/facebook.svg">
   <img src="/icons/heroicons/face-smile-outline.svg">
   <img src="/icons/material/10k-filled.svg">
@@ -645,9 +663,9 @@ snapshot[`icons plugin 3`] = `
   <title>Document</title>
 </head>
 <body>
-  <img src="/icons/phosphor/acorn-bold.svg">
-  <img src="/icons/phosphor/acorn-bold.svg">
-  <img src="/icons/phosphor/acorn-bold.svg">
+  <img src="/icons/phosphor/acorn-regular.svg">
+  <img src="/icons/phosphor/acorn-duotone.svg">
+  <img src="/icons/phosphor/acorn-duotone.svg">
   <img src="/icons/simpleicons/facebook.svg">
   <img src="/icons/heroicons/face-smile-outline.svg">
   <img src="/icons/material/10k-filled.svg">
