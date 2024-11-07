@@ -607,32 +607,32 @@ snapshot[`icons plugin 3`] = `
   <title>Document</title>
 </head>
 <body>
-  <img src="icons/phosphor/acorn-bold.svg">
-  <img src="icons/phosphor/acorn-bold.svg">
-  <img src="icons/phosphor/acorn-bold.svg">
-  <img src="icons/simpleicons/facebook.svg">
-  <img src="icons/heroicons/face-smile-outline.svg">
-  <img src="icons/material/10k-filled.svg">
-  <img src="icons/material-100/10k-outlined.svg">
-  <img src="icons/material-200/10k-outlined.svg">
-  <img src="icons/material-300/10k-outlined.svg">
-  <img src="icons/material-400/10k-outlined.svg">
-  <img src="icons/material-500/10k-outlined.svg">
-  <img src="icons/material-600/10k-outlined.svg">
-  <img src="icons/material-700/10k-outlined.svg">
-  <img src="icons/lucide/alarm-clock.svg">
-  <img src="icons/tabler/alien-filled.svg">
-  <img src="icons/mingcute/arrow/arrows_left_fill.svg">
-  <img src="icons/remix/arrows/arrow-up-fill.svg">
-  <img src="icons/bootstrap/0-circle.svg">
-  <img src="icons/myna/a-arrow-down-regular.svg">
-  <img src="icons/iconoir/check-regular.svg">
-  <img src="icons/sargam/add-duotone.svg">
-  <img src="icons/boxicons/sushi-regular.svg">
-  <img src="icons/ant/account-book-filled.svg">
-  <img src="icons/fluent/access_time_20-outlined.svg">
-  <img src="icons/octicons/comment-24.svg">
-  <img src="icons/openmoji/E046-color.svg">
+  <img src="/icons/phosphor/acorn-bold.svg">
+  <img src="/icons/phosphor/acorn-bold.svg">
+  <img src="/icons/phosphor/acorn-bold.svg">
+  <img src="/icons/simpleicons/facebook.svg">
+  <img src="/icons/heroicons/face-smile-outline.svg">
+  <img src="/icons/material/10k-filled.svg">
+  <img src="/icons/material-100/10k-outlined.svg">
+  <img src="/icons/material-200/10k-outlined.svg">
+  <img src="/icons/material-300/10k-outlined.svg">
+  <img src="/icons/material-400/10k-outlined.svg">
+  <img src="/icons/material-500/10k-outlined.svg">
+  <img src="/icons/material-600/10k-outlined.svg">
+  <img src="/icons/material-700/10k-outlined.svg">
+  <img src="/icons/lucide/alarm-clock.svg">
+  <img src="/icons/tabler/alien-filled.svg">
+  <img src="/icons/mingcute/arrow/arrows_left_fill.svg">
+  <img src="/icons/remix/arrows/arrow-up-fill.svg">
+  <img src="/icons/bootstrap/0-circle.svg">
+  <img src="/icons/myna/a-arrow-down-regular.svg">
+  <img src="/icons/iconoir/check-regular.svg">
+  <img src="/icons/sargam/add-duotone.svg">
+  <img src="/icons/boxicons/sushi-regular.svg">
+  <img src="/icons/ant/account-book-filled.svg">
+  <img src="/icons/fluent/access_time_20-outlined.svg">
+  <img src="/icons/octicons/comment-24.svg">
+  <img src="/icons/openmoji/E046-color.svg">
 </body>
 </html>',
     data: {
@@ -645,32 +645,32 @@ snapshot[`icons plugin 3`] = `
   <title>Document</title>
 </head>
 <body>
-  <img src="icons/phosphor/acorn-bold.svg">
-  <img src="icons/phosphor/acorn-bold.svg">
-  <img src="icons/phosphor/acorn-bold.svg">
-  <img src="icons/simpleicons/facebook.svg">
-  <img src="icons/heroicons/face-smile-outline.svg">
-  <img src="icons/material/10k-filled.svg">
-  <img src="icons/material-100/10k-outlined.svg">
-  <img src="icons/material-200/10k-outlined.svg">
-  <img src="icons/material-300/10k-outlined.svg">
-  <img src="icons/material-400/10k-outlined.svg">
-  <img src="icons/material-500/10k-outlined.svg">
-  <img src="icons/material-600/10k-outlined.svg">
-  <img src="icons/material-700/10k-outlined.svg">
-  <img src="icons/lucide/alarm-clock.svg">
-  <img src="icons/tabler/alien-filled.svg">
-  <img src="icons/mingcute/arrow/arrows_left_fill.svg">
-  <img src="icons/remix/arrows/arrow-up-fill.svg">
-  <img src="icons/bootstrap/0-circle.svg">
-  <img src="icons/myna/a-arrow-down-regular.svg">
-  <img src="icons/iconoir/check-regular.svg">
-  <img src="icons/sargam/add-duotone.svg">
-  <img src="icons/boxicons/sushi-regular.svg">
-  <img src="icons/ant/account-book-filled.svg">
-  <img src="icons/fluent/access_time_20-outlined.svg">
-  <img src="icons/octicons/comment-24.svg">
-  <img src="icons/openmoji/E046-color.svg">
+  <img src="/icons/phosphor/acorn-bold.svg">
+  <img src="/icons/phosphor/acorn-bold.svg">
+  <img src="/icons/phosphor/acorn-bold.svg">
+  <img src="/icons/simpleicons/facebook.svg">
+  <img src="/icons/heroicons/face-smile-outline.svg">
+  <img src="/icons/material/10k-filled.svg">
+  <img src="/icons/material-100/10k-outlined.svg">
+  <img src="/icons/material-200/10k-outlined.svg">
+  <img src="/icons/material-300/10k-outlined.svg">
+  <img src="/icons/material-400/10k-outlined.svg">
+  <img src="/icons/material-500/10k-outlined.svg">
+  <img src="/icons/material-600/10k-outlined.svg">
+  <img src="/icons/material-700/10k-outlined.svg">
+  <img src="/icons/lucide/alarm-clock.svg">
+  <img src="/icons/tabler/alien-filled.svg">
+  <img src="/icons/mingcute/arrow/arrows_left_fill.svg">
+  <img src="/icons/remix/arrows/arrow-up-fill.svg">
+  <img src="/icons/bootstrap/0-circle.svg">
+  <img src="/icons/myna/a-arrow-down-regular.svg">
+  <img src="/icons/iconoir/check-regular.svg">
+  <img src="/icons/sargam/add-duotone.svg">
+  <img src="/icons/boxicons/sushi-regular.svg">
+  <img src="/icons/ant/account-book-filled.svg">
+  <img src="/icons/fluent/access_time_20-outlined.svg">
+  <img src="/icons/octicons/comment-24.svg">
+  <img src="/icons/openmoji/E046-color.svg">
 </body>
 </html>',
       content: '<!DOCTYPE html>

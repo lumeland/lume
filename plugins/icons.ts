@@ -13,7 +13,7 @@ export interface Options {
 }
 
 export const defaults: Options = {
-  folder: "icons",
+  folder: "/icons",
   catalogs,
 };
 
@@ -57,7 +57,7 @@ function iconPath(
   variant?: Variant,
 ): string {
   const file = `${catalog.id}/${name}${variant ? `-${variant.id}` : ""}.svg`;
-  return posix.join(folder, file);
+  return posix.join("/", folder, file);
 }
 
 function getNameAndVariant(

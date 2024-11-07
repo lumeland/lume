@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.4.1] - Unreleased
+### Fixed
+- `icons` plugin: The URL returned must start with `/`.
+
 ## [2.4.0] - 2024-11-06
 ### Added
 - New plugin: `check_urls` to detect broken links [#675].
@@ -584,6 +588,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#685]: https://github.com/lumeland/lume/issues/685
 [#686]: https://github.com/lumeland/lume/issues/686
 
+[2.4.1]: https://github.com/lumeland/lume/compare/v2.4.0...HEAD
 [2.4.0]: https://github.com/lumeland/lume/compare/v2.3.3...v2.4.0
 [2.3.3]: https://github.com/lumeland/lume/compare/v2.3.2...v2.3.3
 [2.3.2]: https://github.com/lumeland/lume/compare/v2.3.1...v2.3.2
