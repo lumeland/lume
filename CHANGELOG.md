@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [Unreleased]
+### Added
+- New plugin: `json_ld` for generating JSON-LD tags in the output [#453]
+
 ## [2.4.1] - 2024-11-07
 ### Fixed
 - Several bugs in the `icons` plugin:
@@ -512,6 +516,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#376]: https://github.com/lumeland/lume/issues/376
 [#430]: https://github.com/lumeland/lume/issues/430
 [#447]: https://github.com/lumeland/lume/issues/447
+[#453]: https://github.com/lumeland/lume/issues/453
 [#494]: https://github.com/lumeland/lume/issues/494
 [#501]: https://github.com/lumeland/lume/issues/501
 [#517]: https://github.com/lumeland/lume/issues/517
