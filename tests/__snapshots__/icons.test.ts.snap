@@ -231,7 +231,7 @@ snapshot[`icons plugin 3`] = `
     },
   },
   {
-    content: '<!-- @license lucide-static v0.454.0 - ISC -->
+    content: '
 <svg
   class="lucide lucide-alarm-clock"
   xmlns="http://www.w3.org/2000/svg"

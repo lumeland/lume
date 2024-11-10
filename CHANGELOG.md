@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.4.2] - Unreleased
+### Fixed
+- Restore `minify_html` dependency creating a copy on deno.land/x [#689].
+- Updated icon catalogs to the latest version.
+- Removed license comment of lucide icon collection.
+
 ## [2.4.1] - 2024-11-07
 ### Fixed
 - Several bugs in the `icons` plugin:
@@ -596,7 +602,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#683]: https://github.com/lumeland/lume/issues/683
 [#685]: https://github.com/lumeland/lume/issues/685
 [#686]: https://github.com/lumeland/lume/issues/686
+[#689]: https://github.com/lumeland/lume/issues/689
 
+[2.4.2]: https://github.com/lumeland/lume/compare/v2.4.1...HEAD
 [2.4.1]: https://github.com/lumeland/lume/compare/v2.4.0...v2.4.1
 [2.4.0]: https://github.com/lumeland/lume/compare/v2.3.3...v2.4.0
 [2.3.3]: https://github.com/lumeland/lume/compare/v2.3.2...v2.3.3

@@ -17,6 +17,8 @@ export const defaults: Options = {
   catalogs,
 };
 
+const commentRegexp = /<!--[\s\S]*?-->/;
+
 export function icons(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
@@ -42,7 +44,7 @@ export function icons(userOptions?: Options) {
       for (const [file, url] of icons) {
         const content = await readFile(url);
         const page = await site.getOrCreatePage(file);
-        page.content = content;
+        page.content = content.replace(commentRegexp, ""); // Remove comment
       }
     });
   };
