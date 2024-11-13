@@ -122,7 +122,7 @@ export const catalogs: Catalog[] = [
     // https://tabler.io/icons
     id: "tabler",
     src:
-      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.21.0/icons/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.22.0/icons/{variant}/{name}.svg",
     variants: ["filled", "outline"],
   },
   {
@@ -139,7 +139,7 @@ export const catalogs: Catalog[] = [
     // https://iconoir.com/
     id: "iconoir",
     src:
-      "https://cdn.jsdelivr.net/npm/iconoir@7.9.0/icons/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/iconoir@7.10.0/icons/{variant}/{name}.svg",
     variants: ["regular", "solid"],
   },
   {
