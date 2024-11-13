@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.4.3] - Unreleased
+### Fixed
+- Ensure `LUME_LIVE_RELOAD` env variable is available in the _config file.
+
 ## [2.4.2] - 2024-11-10
 ### Fixed
 - Restore `minify_html` dependency creating a copy on deno.land/x [#689].
@@ -604,6 +608,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#686]: https://github.com/lumeland/lume/issues/686
 [#689]: https://github.com/lumeland/lume/issues/689
 
+[2.4.3]: https://github.com/lumeland/lume/compare/v2.4.2...HEAD
 [2.4.2]: https://github.com/lumeland/lume/compare/v2.4.1...v2.4.2
 [2.4.1]: https://github.com/lumeland/lume/compare/v2.4.0...v2.4.1
 [2.4.0]: https://github.com/lumeland/lume/compare/v2.3.3...v2.4.0

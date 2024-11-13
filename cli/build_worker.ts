@@ -32,10 +32,10 @@ interface BuildOptions {
 }
 
 async function build({ type, config, serve }: BuildOptions) {
-  const site = await buildSite(config);
-
   // Set the live reload environment variable to add hash to the URLs in the module loader
   setEnv("LUME_LIVE_RELOAD", "true");
+
+  const site = await buildSite(config);
 
   // Start the watcher
   const watcher = site.getWatcher();
