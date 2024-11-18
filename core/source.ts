@@ -247,6 +247,10 @@ export default class Source {
         page.data.url = url;
         page.data.date = getPageDate(page);
         page.data.page = page;
+
+        if (buildFilters.some((filter) => !filter(dir, page))) {
+          continue;
+        }
         pages.push(page);
       }
     }

@@ -715,8 +715,9 @@ export default class Site {
 
     // Get the site content
     const [pages] = await this.source.build(
-      (entry) =>
-        (entry.type === "directory" && file.startsWith(entry.path)) ||
+      (entry, page) =>
+        (entry.type === "directory" && file.startsWith(entry.path) && (!page ||
+          page.sourcePath === file)) ||
         entry.path === file,
     );
 
