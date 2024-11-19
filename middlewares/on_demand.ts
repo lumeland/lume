@@ -94,7 +94,9 @@ export function getRouter(routes: Map<string, string>): Router {
 }
 
 export interface MiddlewareOptions {
-  extraData?: (request: Request) => Record<string, unknown>;
+  extraData?: (
+    request: Request,
+  ) => Record<string, unknown> | Promise<Record<string, unknown>>;
   routesFile?: string;
 }
 

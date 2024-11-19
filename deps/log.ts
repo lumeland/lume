@@ -1,1 +1,1 @@
-export * from "jsr:@std/log@0.224.9";
+export * from "jsr:@std/log@0.224.10";
