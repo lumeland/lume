@@ -22,7 +22,7 @@ export const catalogs: Catalog[] = [
   {
     // https://heroicons.com/
     id: "heroicons",
-    src: "https://cdn.jsdelivr.net/npm/heroicons@2.1.5/{variant}/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/heroicons@2.2.0/{variant}/{name}.svg",
     variants: [
       { id: "outline", path: "24/outline" },
       { id: "solid", path: "24/solid" },
@@ -33,55 +33,55 @@ export const catalogs: Catalog[] = [
   {
     // https://lucide.dev/
     id: "lucide",
-    src: "https://cdn.jsdelivr.net/npm/lucide-static@0.456.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/{name}.svg",
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-100",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-100@0.26.0/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-100@0.27.0/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-200",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-200@0.26.0/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-200@0.27.0/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-300",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-300@0.26.0/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-300@0.27.0/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-400",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-400@0.26.0/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-400@0.27.0/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-500",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-500@0.26.0/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-500@0.27.0/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-600",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-600@0.26.0/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-600@0.27.0/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-700",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-700@0.26.0/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-700@0.27.0/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
@@ -116,7 +116,7 @@ export const catalogs: Catalog[] = [
   {
     // https://simpleicons.org/
     id: "simpleicons",
-    src: "https://cdn.jsdelivr.net/npm/simple-icons@13.16.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/simple-icons@13.17.0/icons/{name}.svg",
   },
   {
     // https://tabler.io/icons

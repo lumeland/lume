@@ -10,7 +10,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Ensure `LUME_LIVE_RELOAD` env variable is available in the _config file.
 - `on_demand` middleware types.
 - `on_demand` plugin doesn't filter scoped pages.
-- Updates dependencies: `std`, `sass`, `postcss`, `decap-cms` and some icons.
+- Added test for `check_urls` plugin.
+- Updates dependencies: `std`, `sass`, `liquidjs`, `tailwindcss`, `postcss`, `decap-cms`, `unocss`, `magic-string` and some icons.
 
 ## [2.4.2] - 2024-11-10
 ### Fixed
