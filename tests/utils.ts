@@ -201,14 +201,14 @@ export async function assertSiteSnapshot(
 }
 
 export function getServer(
-  handler?: ((request: Request) => Promise<Response>) | undefined,
+  handler?: ((request: Request) => Response | Promise<Response>) | undefined,
 ) {
   handler ??= () => Promise.resolve(new Response("OK", { status: 200 }));
 
   return new Server({
     port: 80,
-    serveFile(_, request) {
-      return handler(request);
+    async serveFile(_, request) {
+      return await handler(request);
     },
   });
 }
