@@ -6,11 +6,15 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.4.3] - Unreleased
+### Added
+- New option `finalHandler` to `Server` class.
+
 ### Fixed
 - Ensure `LUME_LIVE_RELOAD` env variable is available in the _config file.
 - `on_demand` middleware types.
 - `on_demand` plugin doesn't filter scoped pages.
 - Added test for `check_urls` plugin.
+- Added tests for middlewares.
 - Updates dependencies: `std`, `sass`, `liquidjs`, `tailwindcss`, `postcss`, `decap-cms`, `unocss`, `magic-string` and some icons.
 
 ## [2.4.2] - 2024-11-10
