@@ -16,6 +16,7 @@ export const pluginNames = [
   "google_fonts",
   "gzip",
   "inline",
+  "json_ld",
   "jsx",
   "jsx_preact",
   "katex",

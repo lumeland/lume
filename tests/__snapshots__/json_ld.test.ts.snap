@@ -1,0 +1,226 @@
+export const snapshot = {};
+
+snapshot[`json_ld plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+  ],
+  src: [
+    "/",
+    "/page-1.md",
+    "/page-2.vto",
+  ],
+}
+`;
+
+snapshot[`json_ld plugin 2`] = `[]`;
+
+snapshot[`json_ld plugin 3`] = `
+[
+  {
+    content: '<!DOCTYPE html>
+<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","url":"http://localhost/","name":"Title from page data","inLanguage":"gl","publisher":{"@type":"Organization","name":"Title from page data","logo":{"@type":"ImageObject","url":"http://localhost/page-1/use-cover-as-meta-image.png"}},"image":"http://localhost/my-image.png","keywords":["one","two"]}</script>
+</head><body><h1>Welcome to my website</h1>
+<p>This is my first page using <strong>Lume,</strong> a static site generator for Deno.
+<a href="/test/">test link</a>
+I hope you enjoy it.</p>
+</body></html>',
+    data: {
+      basename: "page-1",
+      children: '<h1>Welcome to my website</h1>
+<p>This is my first page using <strong>Lume,</strong> a static site generator for Deno.
+<a href="/test/">test link</a>
+I hope you enjoy it.</p>
+',
+      content: "# Welcome to my website
+
+This is my first page using **Lume,** a static site generator for Deno.
+[test link](/test/)
+I hope you enjoy it.
+",
+      cover: "./use-cover-as-meta-image.png",
+      date: [],
+      header: [
+        "title",
+      ],
+      jsonLd: [
+        "@context",
+        "@type",
+        "url",
+        "name",
+        "inLanguage",
+        "publisher",
+        "image",
+        "keywords",
+        "emptyThing",
+      ],
+      mergedKeys: [
+        "tags",
+        "jsonLd",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page-1/",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/page-1",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<html><head>
+  </head>
+  <body>
+    Pages without jsonld
+  
+
+</body></html>",
+    data: {
+      basename: "page-2",
+      children: "<html>
+  <head>
+  </head>
+  <body>
+    Pages without jsonld
+  </body>
+</html>
+",
+      content: "<html>
+  <head>
+  </head>
+  <body>
+    Pages without jsonld
+  </body>
+</html>
+",
+      date: [],
+      jsonLd: [],
+      mergedKeys: [
+        "tags",
+        "jsonLd",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page-2/",
+    },
+    src: {
+      asset: false,
+      ext: ".vto",
+      path: "/page-2",
+      remote: undefined,
+    },
+  },
+]
+`;
