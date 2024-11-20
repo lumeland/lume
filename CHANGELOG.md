@@ -10,6 +10,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `json_ld` for generating JSON-LD tags in the output [#453]
 
 ## [2.4.3] - Unreleased
+### Added
+- New plugin: `purgecss` to remove unused CSS. [#693]
+
 ### Fixed
 - Ensure `LUME_LIVE_RELOAD` env variable is available in the _config file.
 - `on_demand` middleware types.
@@ -616,6 +619,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#685]: https://github.com/lumeland/lume/issues/685
 [#686]: https://github.com/lumeland/lume/issues/686
 [#689]: https://github.com/lumeland/lume/issues/689
+[#693]: https://github.com/lumeland/lume/issues/693
 
 [2.4.3]: https://github.com/lumeland/lume/compare/v2.4.2...HEAD
 [2.4.2]: https://github.com/lumeland/lume/compare/v2.4.1...v2.4.2
