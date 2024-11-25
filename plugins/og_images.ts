@@ -25,7 +25,7 @@ export interface Options {
   cache: string | boolean;
 
   /**
-   * The options for Satory to generate the SVG image.
+   * The options for Satori to generate the SVG image.
    * @see https://github.com/vercel/satori
    */
   satori?: SatoriOptions;
