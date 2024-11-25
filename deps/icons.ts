@@ -116,7 +116,7 @@ export const catalogs: Catalog[] = [
   {
     // https://simpleicons.org/
     id: "simpleicons",
-    src: "https://cdn.jsdelivr.net/npm/simple-icons@13.17.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/simple-icons@13.18.0/icons/{name}.svg",
   },
   {
     // https://tabler.io/icons
@@ -129,7 +129,7 @@ export const catalogs: Catalog[] = [
     // https://mynaui.com/icons
     id: "myna",
     src:
-      "https://cdn.jsdelivr.net/npm/@mynaui/icons@0.3.2/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@mynaui/icons@0.3.3/{variant}/{name}.svg",
     variants: [
       { id: "regular", path: "icons" },
       { id: "solid", path: "icons-solid" },
@@ -175,7 +175,7 @@ export const catalogs: Catalog[] = [
     // https://react.fluentui.dev/?path=/docs/icons-catalog--docs
     id: "fluent",
     src:
-      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.265/icons/{name}_{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.266/icons/{name}_{variant}.svg",
     variants: [
       { id: "outlined", path: "regular" },
       "filled",

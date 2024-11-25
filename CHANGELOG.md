@@ -16,7 +16,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Added test for `check_urls` plugin.
 - Added tests for middlewares.
 - Types errors in Deno 2.1.
-- Updates dependencies: `std`, `sass`, `liquidjs`, `tailwindcss`, `postcss`, `decap-cms`, `unocss`, `magic-string`, `vento`, `satori` and some icons.
+- Updates dependencies: `std`, `sass`, `liquidjs`, `tailwindcss`, `postcss`, `lightningcss`, `preact`, `decap-cms`, `unocss`, `magic-string`, `vento`, `satori` and some icons.
 
 ## [2.4.2] - 2024-11-10
 ### Fixed
