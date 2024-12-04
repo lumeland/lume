@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         Do you have an idea to improve Lume? That's cool!
-        Before submitting your idea, please take a look at the existing issues if there is already
+        Before submitting your idea, please search existing issues to confirm if there is already
         something related to your idea.
   - type: textarea
     attributes:
