@@ -99,9 +99,9 @@ sustained inappropriate behavior.
 
 **Consequence**: A temporary ban from any sort of interaction or public
 communication with the community for a specified period of time, to be decided
-by community leaders. No public or private interaction with the people involved, 
-including unsolicited interaction with those enforcing the Code of Conduct, 
-is allowed during this period. Violating these terms may lead to a permanent ban.
+by community leaders. No public or private interaction with the people involved,
+including unsolicited interaction with those enforcing the Code of Conduct, is
+allowed during this period. Violating these terms may lead to a permanent ban.
 
 ### 4. Permanent Ban
 
