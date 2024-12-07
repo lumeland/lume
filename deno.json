@@ -8,10 +8,26 @@
     ]
   },
   "tasks": {
-    "test": "TZ=Z LUME_LOGS=ERROR DENO_FUTURE=1 deno test -A",
-    "test:update": "deno task test -- --update",
-    "changelog": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.5.3/bin.ts",
-    "update-deps": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.8/cli.ts' update deps/*.ts deno.json"
+    "test": {
+      "description": "Run all Lume tests. You can run only one test with `deno task test tests/<filename>`",
+      "command": "TZ=Z LUME_LOGS=ERROR DENO_FUTURE=1 deno test -A"
+    },
+    "test:update": {
+      "description": "Update all tests snapshots",
+      "command": "deno task test -- --update"
+    },
+    "changelog": {
+      "description": "Run the changelog utility to format the CHANGELOG.md file",
+      "command": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.5.3/bin.ts"
+    },
+    "update": {
+      "description": "Run the nudd utility to update dependencies. I.e. `deno task update deps/dom.ts`",
+      "command": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.8/cli.ts' update"
+    },
+    "update-deps": {
+      "description": "Update all dependencies to the latest version. Add `--dry-run` to don't write the changes",
+      "command": "deno task update deps/*.ts deno.json"
+    }
   },
   "imports": {
     "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.7.3/"

@@ -17,7 +17,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Added tests for middlewares.
 - Types errors in Deno 2.1.
 - `og_images` plugin: make satori options type partial.
-- Fixed `--port` configuration [#704] on serve mode.
+- Fixed `--port` configuration on serve mode [#704].
 - Updates dependencies: `std`, `sass`, `liquidjs`, `tailwindcss`, `postcss`, `lightningcss`, `preact`, `decap-cms`, `unocss`, `magic-string`, `vento`, `satori`, `terser`, `markdown-it-attrs` and some icons.
 
 ## [2.4.2] - 2024-11-10
