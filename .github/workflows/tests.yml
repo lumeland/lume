@@ -8,8 +8,8 @@ jobs:
     strategy:
       matrix:
         deno_version:
-          - 1.x
-          - 2.x
+          - 2.1
+          - latest
         os:
           - ubuntu-latest
           - macos-latest
