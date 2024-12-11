@@ -8,6 +8,11 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.4.3] - Unreleased
 ### Added
 - New option `finalHandler` to `Server` class.
+- `metas` plugin: Support for light and dark theme colors using an array.
+  Example:
+  ```yml
+  color: ["white", "black"]
+  ```
 
 ### Fixed
 - Ensure `LUME_LIVE_RELOAD` env variable is available in the _config file.

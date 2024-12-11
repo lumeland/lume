@@ -131,7 +131,8 @@ snapshot[`metas plugin 3`] = `
 <meta name="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
 <meta name="keywords" content="one, two">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="black">
+<meta name="theme-color" content="#ccc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#333" media="(prefers-color-scheme: dark)">
 <meta name="generator" content="Lume testing">
 <meta name="twitter:label1" content="Reading time">
 <meta name="twitter:data1" content="1 minute">
