@@ -142,8 +142,12 @@ export function metas(userOptions?: Options) {
 
       // Color
       if (Array.isArray(color)) {
-        addMeta(document, "name", "theme-color", color.shift()!, undefined, { media: "(prefers-color-scheme: light)" });
-        addMeta(document, "name", "theme-color", color.shift()!, undefined, { media: "(prefers-color-scheme: dark)" });
+        addMeta(document, "name", "theme-color", color.shift()!, undefined, {
+          media: "(prefers-color-scheme: light)",
+        });
+        addMeta(document, "name", "theme-color", color.shift()!, undefined, {
+          media: "(prefers-color-scheme: dark)",
+        });
       } else {
         addMeta(document, "name", "theme-color", color);
       }
