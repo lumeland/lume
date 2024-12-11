@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [2.4.3] - Unreleased
+## [2.4.3] - 2024-12-11
 ### Added
 - New option `finalHandler` to `Server` class.
 - `metas` plugin: Support for light and dark theme colors using an array.
@@ -625,7 +625,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#689]: https://github.com/lumeland/lume/issues/689
 [#704]: https://github.com/lumeland/lume/issues/704
 
-[2.4.3]: https://github.com/lumeland/lume/compare/v2.4.2...HEAD
+[2.4.3]: https://github.com/lumeland/lume/compare/v2.4.2...v2.4.3
 [2.4.2]: https://github.com/lumeland/lume/compare/v2.4.1...v2.4.2
 [2.4.1]: https://github.com/lumeland/lume/compare/v2.4.0...v2.4.1
 [2.4.0]: https://github.com/lumeland/lume/compare/v2.3.3...v2.4.0
