@@ -30,6 +30,6 @@
     }
   },
   "imports": {
-    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.7.3/"
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.7.4/"
   }
 }
