@@ -45,7 +45,7 @@ export interface MetaData {
   fediverse?: string | ((data: Data) => string | undefined);
 
   /** The color theme */
-  color?: string | ((data: Data) => string | undefined);
+  color?: string | string[] | ((data: Data) => string | string[] | undefined);
 
   /** Robots configuration (Boolean to enable/disable, String for a custom value) */
   robots?: string | boolean | ((data: Data) => string | boolean | undefined);
@@ -140,9 +140,19 @@ export function metas(userOptions?: Options) {
         addMeta(document, "name", "robots", robots);
       }
 
-      // Misc
-      addMeta(document, "name", "theme-color", color);
+      // Color
+      if (Array.isArray(color)) {
+        addMeta(document, "name", "theme-color", color.shift()!, undefined, {
+          media: "(prefers-color-scheme: light)",
+        });
+        addMeta(document, "name", "theme-color", color.shift()!, undefined, {
+          media: "(prefers-color-scheme: dark)",
+        });
+      } else {
+        addMeta(document, "name", "theme-color", color);
+      }
 
+      // Generator
       if (generator) {
         addMeta(
           document,
@@ -152,6 +162,7 @@ export function metas(userOptions?: Options) {
         );
       }
 
+      // Other meta tags
       for (const [name, value] of Object.entries(other)) {
         addMeta(document, "name", name, getDataValue(data, value));
       }
@@ -165,6 +176,7 @@ function addMeta(
   propValue: string,
   content?: string,
   limit?: number,
+  extraAttrs?: Record<string, string>,
 ) {
   if (!content) {
     return;
@@ -181,6 +193,13 @@ function addMeta(
   const meta = document.createElement("meta");
   meta.setAttribute(propName, propValue);
   meta.setAttribute("content", content);
+
+  if (extraAttrs) {
+    for (const [name, value] of Object.entries(extraAttrs)) {
+      meta.setAttribute(name, value);
+    }
+  }
+
   document.head.appendChild(meta);
   document.head.appendChild(document.createTextNode("\n"));
 }

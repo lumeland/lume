@@ -1,0 +1,73 @@
+export const snapshot = {};
+
+snapshot[`www middleware 1`] = `
+{
+  body: "",
+  headers: {
+    location: "http://localhost/",
+  },
+  request: "http://www.localhost/",
+  status: 301,
+  statusText: "",
+}
+`;
+
+snapshot[`www middleware 2`] = `
+{
+  body: "OK",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  request: "http://localhost/",
+  status: 200,
+  statusText: "",
+}
+`;
+
+snapshot[`www middleware 3`] = `
+{
+  body: "",
+  headers: {
+    location: "https://localhost/",
+  },
+  request: "https://www.localhost/",
+  status: 301,
+  statusText: "",
+}
+`;
+
+snapshot[`www middleware (add www) 1`] = `
+{
+  body: "OK",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  request: "http://www.localhost/",
+  status: 200,
+  statusText: "",
+}
+`;
+
+snapshot[`www middleware (add www) 2`] = `
+{
+  body: "",
+  headers: {
+    location: "http://www.localhost/",
+  },
+  request: "http://localhost/",
+  status: 301,
+  statusText: "",
+}
+`;
+
+snapshot[`www middleware (add www) 3`] = `
+{
+  body: "OK",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  request: "https://www.localhost/",
+  status: 200,
+  statusText: "",
+}
+`;

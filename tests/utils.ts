@@ -1,5 +1,6 @@
 import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
+import Server from "../core/server.ts";
 import { basename, fromFileUrl, join } from "../deps/path.ts";
 import { DeepPartial } from "../core/utils/object.ts";
 
@@ -197,6 +198,49 @@ export async function assertSiteSnapshot(
   // Test static files
   await assertSnapshot(context, normalizedFiles);
   await assertSnapshot(context, normalizedPages);
+}
+
+export function getServer(
+  handler?: ((request: Request) => Response | Promise<Response>) | undefined,
+) {
+  handler ??= () => Promise.resolve(new Response("OK", { status: 200 }));
+
+  return new Server({
+    port: 80,
+    async serveFile(_, request) {
+      return await handler(request);
+    },
+  });
+}
+
+export function runRequest(server: Server, request: Request) {
+  return server.handle(request, {
+    remoteAddr: {
+      transport: "tcp",
+      hostname: "localhost",
+      port: 3000,
+    },
+    completed: Promise.resolve(),
+  });
+}
+
+export async function assertResponseSnapshot(
+  context: Deno.TestContext,
+  server: Server,
+  request?: Request | undefined,
+) {
+  request ??= new Request("http://localhost");
+  const response = await runRequest(server, request);
+  const body = await response.text();
+  const headers = Object.fromEntries(response.headers.entries());
+
+  await assertSnapshot(context, {
+    request: request.url,
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+    body,
+  });
 }
 
 function compare(a: string, b: string): number {

@@ -1,23 +1,23 @@
-/// <reference lib="deno.unstable" />
-// Deno.Server.shutdown() is unstable
-
 import { posix } from "../deps/path.ts";
 import Events from "./events.ts";
 import { serveFile as HttpServeFile } from "../deps/http.ts";
 
 import type { Event, EventListener, EventOptions } from "./events.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
+import { merge } from "./utils/object.ts";
 
 /** The options to configure the local server */
 export interface Options extends Deno.ServeOptions {
   /** The root path */
   root: string;
   port?: number;
+  serveFile?: (root: string, request: Request) => Promise<Response>;
 }
 
 export const defaults: Options = {
   root: `${Deno.cwd()}/_site`,
   port: 8000,
+  serveFile,
 };
 
 export type RequestHandler = (req: Request) => Promise<Response>;
@@ -46,12 +46,12 @@ export type ServerEventType =
 
 export default class Server {
   events: Events<ServerEvent> = new Events<ServerEvent>();
-  options: Options;
+  options: Required<Options>;
   middlewares: Middleware[] = [];
   #server?: Deno.HttpServer;
 
   constructor(options: Partial<Options> = {}) {
-    this.options = { ...defaults, ...options };
+    this.options = merge(defaults, options);
   }
 
   /** The local address this server is listening on. */
@@ -117,7 +117,7 @@ export default class Server {
         return await middleware(request, next, info);
       }
 
-      return await serveFile(this.options.root, request);
+      return await this.options.serveFile(this.options.root, request);
     };
 
     return await next(request);

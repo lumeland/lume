@@ -25,10 +25,10 @@ export interface Options {
   cache: string | boolean;
 
   /**
-   * The options for Satory to generate the SVG image.
+   * The options for Satori to generate the SVG image.
    * @see https://github.com/vercel/satori
    */
-  satori?: SatoriOptions;
+  satori?: Partial<SatoriOptions>;
 }
 
 export const defaults: Options = {
@@ -51,6 +51,7 @@ export function ogImages(userOptions?: Options) {
       { ...defaults, includes: site.options.includes },
       userOptions,
     );
+    const satoriOptions = options.satori as SatoriOptions;
 
     // Configure the cache folder
     const cacheFolder = options.cache === true ? "_cache" : options.cache;
@@ -64,8 +65,8 @@ export function ogImages(userOptions?: Options) {
     }
 
     site.process(options.extensions, async (pages, allPages) => {
-      if (!options.satori.fonts.length) {
-        options.satori.fonts.push(...await defaultFonts());
+      if (!satoriOptions.fonts.length) {
+        satoriOptions.fonts.push(...await defaultFonts());
       }
 
       for (const page of pages) {
@@ -122,7 +123,7 @@ export function ogImages(userOptions?: Options) {
         }
       }
 
-      const svg = await satori(jsx, options.satori);
+      const svg = await satori(jsx, satoriOptions);
       const content = await (await create(svg)).toBuffer();
 
       if (cache) {
