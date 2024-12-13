@@ -7,6 +7,7 @@ snapshot[`no cache middleware 1`] = `
     "cache-control": "no-cache no-store must-revalidate",
     "content-type": "text/plain;charset=UTF-8",
   },
+  method: "GET",
   request: "http://localhost/",
   status: 200,
   statusText: "",

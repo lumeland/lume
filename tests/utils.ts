@@ -236,6 +236,7 @@ export async function assertResponseSnapshot(
 
   await assertSnapshot(context, {
     request: request.url,
+    method: request.method,
     status: response.status,
     statusText: response.statusText,
     headers,

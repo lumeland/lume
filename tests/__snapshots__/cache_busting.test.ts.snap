@@ -6,6 +6,7 @@ snapshot[`cache busting middleware 1`] = `
   headers: {
     "content-type": "text/plain;charset=UTF-8",
   },
+  method: "GET",
   request: "http://localhost/v1/styles.css",
   status: 200,
   statusText: "",
@@ -18,6 +19,7 @@ snapshot[`cache busting middleware 2`] = `
   headers: {
     "content-type": "text/plain;charset=UTF-8",
   },
+  method: "GET",
   request: "http://localhost/v2873/scripts.js",
   status: 200,
   statusText: "",

@@ -1,0 +1,222 @@
+export const snapshot = {};
+
+snapshot[`simple routes 1`] = `
+{
+  body: "Hello World from GET",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "GET",
+  request: "http://localhost/hello",
+  status: 200,
+  statusText: "",
+}
+`;
+
+snapshot[`simple routes 2`] = `
+{
+  body: "Hello World from GET",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "GET",
+  request: "http://example.com/hello",
+  status: 200,
+  statusText: "",
+}
+`;
+
+snapshot[`simple routes 3`] = `
+{
+  body: "Hello World from POST",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "POST",
+  request: "http://localhost/hello",
+  status: 200,
+  statusText: "",
+}
+`;
+
+snapshot[`simple routes 4`] = `
+{
+  body: "Hello World from POST",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "POST",
+  request: "http://example.com:1234/hello",
+  status: 200,
+  statusText: "",
+}
+`;
+
+snapshot[`simple routes 5`] = `
+{
+  body: "Hello World from PUT",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "PUT",
+  request: "http://localhost/hello",
+  status: 200,
+  statusText: "",
+}
+`;
+
+snapshot[`simple routes 6`] = `
+{
+  body: "Hello World from DELETE",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "DELETE",
+  request: "http://localhost/hello",
+  status: 200,
+  statusText: "",
+}
+`;
+
+snapshot[`simple routes with base path 1`] = `
+{
+  body: "Not Found",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "GET",
+  request: "http://localhost/hello",
+  status: 404,
+  statusText: "",
+}
+`;
+
+snapshot[`simple routes with base path 2`] = `
+{
+  body: "Hello World from GET",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "GET",
+  request: "http://example.com/api/hello",
+  status: 200,
+  statusText: "",
+}
+`;
+
+snapshot[`simple routes with base path 3`] = `
+{
+  body: "Hello World from GET",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "GET",
+  request: "http://example.com:1234/api/hello",
+  status: 200,
+  statusText: "",
+}
+`;
+
+snapshot[`routes with parameters 1`] = `
+{
+  body: "Not Found",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "GET",
+  request: "http://localhost/hello",
+  status: 404,
+  statusText: "",
+}
+`;
+
+snapshot[`routes with parameters 2`] = `
+{
+  body: "Hello oscar",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "GET",
+  request: "http://localhost/hello/oscar",
+  status: 200,
+  statusText: "",
+}
+`;
+
+snapshot[`routes with parameters 3`] = `
+{
+  body: "Not Found",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "GET",
+  request: "http://localhost/hello/oscar/",
+  status: 404,
+  statusText: "",
+}
+`;
+
+snapshot[`routes with parameters and strict = false 1`] = `
+{
+  body: "Not Found",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "GET",
+  request: "http://localhost/hello",
+  status: 404,
+  statusText: "",
+}
+`;
+
+snapshot[`routes with parameters and strict = false 2`] = `
+{
+  body: "Hello oscar / null",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "GET",
+  request: "http://localhost/hello/oscar",
+  status: 200,
+  statusText: "",
+}
+`;
+
+snapshot[`routes with parameters and strict = false 3`] = `
+{
+  body: "Hello oscar / null",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "GET",
+  request: "http://localhost/hello/oscar/",
+  status: 200,
+  statusText: "",
+}
+`;
+
+snapshot[`routes with parameters and strict = false 4`] = `
+{
+  body: "Hello oscar / foo",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "GET",
+  request: "http://localhost/hello/oscar/?query=foo",
+  status: 200,
+  statusText: "",
+}
+`;
+
+snapshot[`routes with parameters and strict = false 5`] = `
+{
+  body: "Hello oscar / foo",
+  headers: {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  method: "GET",
+  request: "http://localhost/hello/oscar?query=foo",
+  status: 200,
+  statusText: "",
+}
+`;
