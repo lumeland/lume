@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [Unreleased]
+### Added
+- New plugin: `json_ld` for generating JSON-LD tags in the output [#453]
+- New plugin: `purgecss` to remove unused CSS. [#693]
+
 ## [2.4.3] - 2024-12-11
 ### Added
 - New option `finalHandler` to `Server` class.
@@ -538,6 +543,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#376]: https://github.com/lumeland/lume/issues/376
 [#430]: https://github.com/lumeland/lume/issues/430
 [#447]: https://github.com/lumeland/lume/issues/447
+[#453]: https://github.com/lumeland/lume/issues/453
 [#494]: https://github.com/lumeland/lume/issues/494
 [#501]: https://github.com/lumeland/lume/issues/501
 [#517]: https://github.com/lumeland/lume/issues/517
@@ -623,8 +629,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#685]: https://github.com/lumeland/lume/issues/685
 [#686]: https://github.com/lumeland/lume/issues/686
 [#689]: https://github.com/lumeland/lume/issues/689
+[#693]: https://github.com/lumeland/lume/issues/693
 [#704]: https://github.com/lumeland/lume/issues/704
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v2.4.3...HEAD
 [2.4.3]: https://github.com/lumeland/lume/compare/v2.4.2...v2.4.3
 [2.4.2]: https://github.com/lumeland/lume/compare/v2.4.1...v2.4.2
 [2.4.1]: https://github.com/lumeland/lume/compare/v2.4.0...v2.4.1

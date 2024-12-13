@@ -1,0 +1,854 @@
+export const snapshot = {};
+
+snapshot[`purgecss plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      assetLoader: [AsyncFunction: text],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+      pageType: "asset",
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+    {
+      assetLoader: [AsyncFunction: text],
+      engines: undefined,
+      ext: ".css",
+      pageType: "asset",
+    },
+  ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/footer.vto",
+    "/_includes/layout.vto",
+    "/index.vto",
+    "/pages",
+    "/pages/page1.md",
+    "/pages/page2.page.js",
+    "/script.js",
+    "/static",
+    "/static/static.html",
+    "/styles.css",
+  ],
+}
+`;
+
+snapshot[`purgecss plugin 2`] = `
+[
+  {
+    entry: "/static/static.html",
+    flags: [],
+    outputPath: "/static.html",
+  },
+]
+`;
+
+snapshot[`purgecss plugin 3`] = `
+[
+  {
+    content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TÍTULO</title>
+</head>
+<body>
+  <h1>Título</h1>
+
+<strong>strong</strong>
+
+<div class="content-vento" tabindex="0">Content</div>
+
+
+  <footer>
+Título
+</footer>
+</body>
+</html>
+',
+    data: {
+      basename: "index",
+      children: '<h1>Título</h1>
+
+<strong>strong</strong>
+
+<div class="content-vento" tabindex="0">Content</div>
+',
+      content: '<h1>{{ title }}</h1>
+
+<strong>strong</strong>
+
+<div class="content-vento" tabindex="0">Content</div>
+',
+      date: [],
+      layout: "layout.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Título",
+      url: "/",
+    },
+    src: {
+      asset: false,
+      ext: ".vto",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<p>Content of Page 1</p>
+",
+    data: {
+      basename: "page1",
+      children: "<p>Content of Page 1</p>
+",
+      content: "Content of Page 1
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Page 1",
+      url: "/pages/page1/",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/pages/page1",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<div class="content-dynamic">Content of Page 2</div>',
+    data: {
+      basename: "page2",
+      children: '<div class="content-dynamic">Content of Page 2</div>',
+      content: '<div class="content-dynamic">Content of Page 2</div>',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Page 2",
+      url: "/page_2/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.js",
+      path: "/pages/page2",
+      remote: undefined,
+    },
+  },
+  {
+    content: "document.querySelector('.dynamic-js')
+  .addEventListener('click', (event) => {
+    event.target.classList.add('dynamic-jssub-open');
+  });
+",
+    data: {
+      basename: "script",
+      content: "document.querySelector('.dynamic-js')
+  .addEventListener('click', (event) => {
+    event.target.classList.add('dynamic-jssub-open');
+  });
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/script.js",
+    },
+    src: {
+      asset: true,
+      ext: ".js",
+      path: "/script",
+      remote: undefined,
+    },
+  },
+  {
+    content: "::root {
+  --font-family: sans-serif;
+}
+
+body {
+  font-family: sans-serif;
+  color: black;
+}
+
+strong {
+  font-weight: bolder;
+}
+
+ html > * .content-vento {
+  max-width: 800px;
+}
+
+.content-vento:not(.test):focus-visible {
+  outline: 2px solid blue;
+}
+
+.content-dynamic {
+  display: flex;
+}
+
+.content-dynamic:focus-visible {
+  outline: 2px solid lightblue;
+}
+
+.dynamic-js {
+  opacity: 0;
+}
+
+.dynamic-jssub-open {
+  opacity: 1;
+}
+",
+    data: {
+      basename: "styles",
+      content: "::root {
+  --font-family: sans-serif;
+}
+
+body {
+  font-family: sans-serif;
+  color: black;
+}
+
+.unused {
+  margin-top: 30px;
+}
+
+strong {
+  font-weight: bolder;
+}
+
+em {
+  font-style: italic;
+}
+
+a[href] {
+  text-decoration: underline;
+}
+
+html > body .no-such-element .content-vento, html > * .content-vento {
+  max-width: 800px;
+}
+
+.content-vento:not(.test):focus-visible {
+  outline: 2px solid blue;
+}
+
+.content-dynamic {
+  display: flex;
+}
+
+.content-dynamic:focus-visible {
+  outline: 2px solid lightblue;
+}
+
+.content-static {
+  margin-top: 25px;
+}
+
+.content-other {
+  padding: 20px 5px;
+}
+
+.dynamic-js {
+  opacity: 0;
+}
+
+.dynamic-jssub {
+  display: none;
+}
+
+.dynamic-jssub-open {
+  opacity: 1;
+}
+
+#img-option {
+  max-width: 100%;
+}
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/styles.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/styles",
+      remote: undefined,
+    },
+  },
+]
+`;
+
+snapshot[`purgecss plugin with options 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      assetLoader: [AsyncFunction: text],
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+      pageType: "asset",
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+    {
+      assetLoader: [AsyncFunction: text],
+      engines: undefined,
+      ext: ".css",
+      pageType: "asset",
+    },
+  ],
+  src: [
+    "/",
+    "/_includes",
+    "/_includes/footer.vto",
+    "/_includes/layout.vto",
+    "/index.vto",
+    "/pages",
+    "/pages/page1.md",
+    "/pages/page2.page.js",
+    "/script.js",
+    "/static",
+    "/static/static.html",
+    "/styles.css",
+  ],
+}
+`;
+
+snapshot[`purgecss plugin with options 2`] = `
+[
+  {
+    entry: "/static/static.html",
+    flags: [],
+    outputPath: "/static.html",
+  },
+]
+`;
+
+snapshot[`purgecss plugin with options 3`] = `
+[
+  {
+    content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TÍTULO</title>
+</head>
+<body>
+  <h1>Título</h1>
+
+<strong>strong</strong>
+
+<div class="content-vento" tabindex="0">Content</div>
+
+
+  <footer>
+Título
+</footer>
+</body>
+</html>
+',
+    data: {
+      basename: "index",
+      children: '<h1>Título</h1>
+
+<strong>strong</strong>
+
+<div class="content-vento" tabindex="0">Content</div>
+',
+      content: '<h1>{{ title }}</h1>
+
+<strong>strong</strong>
+
+<div class="content-vento" tabindex="0">Content</div>
+',
+      date: [],
+      layout: "layout.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Título",
+      url: "/",
+    },
+    src: {
+      asset: false,
+      ext: ".vto",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<p>Content of Page 1</p>
+",
+    data: {
+      basename: "page1",
+      children: "<p>Content of Page 1</p>
+",
+      content: "Content of Page 1
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Page 1",
+      url: "/pages/page1/",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/pages/page1",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<div class="content-dynamic">Content of Page 2</div>',
+    data: {
+      basename: "page2",
+      children: '<div class="content-dynamic">Content of Page 2</div>',
+      content: '<div class="content-dynamic">Content of Page 2</div>',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Page 2",
+      url: "/page_2/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.js",
+      path: "/pages/page2",
+      remote: undefined,
+    },
+  },
+  {
+    content: "document.querySelector('.dynamic-js')
+  .addEventListener('click', (event) => {
+    event.target.classList.add('dynamic-jssub-open');
+  });
+",
+    data: {
+      basename: "script",
+      content: "document.querySelector('.dynamic-js')
+  .addEventListener('click', (event) => {
+    event.target.classList.add('dynamic-jssub-open');
+  });
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/script.js",
+    },
+    src: {
+      asset: true,
+      ext: ".js",
+      path: "/script",
+      remote: undefined,
+    },
+  },
+  {
+    content: "::root {
+}
+
+body {
+  font-family: sans-serif;
+  color: black;
+}
+
+.unused {
+  margin-top: 30px;
+}
+
+ html > * .content-vento {
+  max-width: 800px;
+}
+
+.content-vento:not(.test):focus-visible {
+  outline: 2px solid blue;
+}
+
+.content-dynamic {
+  display: flex;
+}
+
+.content-dynamic:focus-visible {
+  outline: 2px solid lightblue;
+}
+
+.content-static {
+  margin-top: 25px;
+}
+
+.dynamic-js {
+  opacity: 0;
+}
+
+.dynamic-jssub-open {
+  opacity: 1;
+}
+
+#img-option {
+  max-width: 100%;
+}
+",
+    data: {
+      basename: "styles",
+      content: "::root {
+  --font-family: sans-serif;
+}
+
+body {
+  font-family: sans-serif;
+  color: black;
+}
+
+.unused {
+  margin-top: 30px;
+}
+
+strong {
+  font-weight: bolder;
+}
+
+em {
+  font-style: italic;
+}
+
+a[href] {
+  text-decoration: underline;
+}
+
+html > body .no-such-element .content-vento, html > * .content-vento {
+  max-width: 800px;
+}
+
+.content-vento:not(.test):focus-visible {
+  outline: 2px solid blue;
+}
+
+.content-dynamic {
+  display: flex;
+}
+
+.content-dynamic:focus-visible {
+  outline: 2px solid lightblue;
+}
+
+.content-static {
+  margin-top: 25px;
+}
+
+.content-other {
+  padding: 20px 5px;
+}
+
+.dynamic-js {
+  opacity: 0;
+}
+
+.dynamic-jssub {
+  display: none;
+}
+
+.dynamic-jssub-open {
+  opacity: 1;
+}
+
+#img-option {
+  max-width: 100%;
+}
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/styles.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/styles",
+      remote: undefined,
+    },
+  },
+]
+`;
