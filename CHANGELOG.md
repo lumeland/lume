@@ -11,6 +11,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `purgecss` to remove unused CSS. [#693]
 - New middleware `router`.
 
+### Fixed
+- Updated deps: `sass`, `preact`, `xml` and some plugins.
+
 ## [2.4.3] - 2024-12-11
 ### Added
 - New option `finalHandler` to `Server` class.

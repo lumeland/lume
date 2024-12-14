@@ -26,10 +26,10 @@
     },
     "update-deps": {
       "description": "Update all dependencies to the latest version. Add `--dry-run` to don't write the changes",
-      "command": "deno task update deps/*.ts deno.json"
+      "command": "deno task update 'deps/*.ts' deno.json"
     }
   },
   "imports": {
-    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.7.4/"
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.7.5/"
   }
 }
