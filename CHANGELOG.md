@@ -11,6 +11,13 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `purgecss` to remove unused CSS. [#693]
 - New middleware `router`.
 
+### Changed
+- `lighningcss`: Upload default browser versions:
+  - Chromium browsers: 100 (from 98)
+  - Safari desktop & iOS: 16 (from 15)
+  - Firefox: 100 (from 97)
+  - Samsung: 19 (from 16)
+
 ### Fixed
 - Updated deps: `sass`, `preact`, `xml` and some plugins.
 
