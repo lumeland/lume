@@ -15,6 +15,9 @@ export interface Options {
 
   /** A placeholder to replace with the generated CSS */
   placeholder?: string;
+
+  /** The font subsets to download (latin, cyrillic, etc) */
+  subsets?: string[];
 }
 
 export const defaults: Options = {
@@ -42,7 +45,8 @@ export function googleFonts(userOptions: Options) {
 
       for (const [name, url] of Object.entries(fonts)) {
         const css = await readFile(getCssUrl(url));
-        const fontFaces = extractFontFaces(css, name);
+        const fontFaces = extractFontFaces(css, name)
+          .filter((fontFace) => options.subsets?.includes(fontFace.subset) ?? true);
 
         await Promise.all(fontFaces.map(async (fontFace) => {
           const content = await read(fontFace.src, true);
@@ -114,7 +118,8 @@ function extractFontFaces(css: string, name: string): FontFace[] {
 
 function generateCss(fontFaces: FontFace[], fontsFolder: string): string {
   return fontFaces.map((fontFace) => {
-    return `@font-face {
+    return `/* ${fontFace.subset} */
+@font-face {
   font-family: '${fontFace.family}';
   font-style: ${fontFace.style};
   font-weight: ${fontFace.weight};

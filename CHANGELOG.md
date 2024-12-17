@@ -10,6 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `json_ld` for generating JSON-LD tags in the output [#453]
 - New plugin: `purgecss` to remove unused CSS. [#693]
 - New middleware `router`.
+- `google_fonts`: Added `subset` option to filter character ranges. [#692]
 
 ### Changed
 - `lighningcss`: Upload default browser versions:
@@ -640,6 +641,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#685]: https://github.com/lumeland/lume/issues/685
 [#686]: https://github.com/lumeland/lume/issues/686
 [#689]: https://github.com/lumeland/lume/issues/689
+[#692]: https://github.com/lumeland/lume/issues/692
 [#693]: https://github.com/lumeland/lume/issues/693
 [#704]: https://github.com/lumeland/lume/issues/704
 
