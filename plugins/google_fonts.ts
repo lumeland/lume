@@ -46,7 +46,9 @@ export function googleFonts(userOptions: Options) {
       for (const [name, url] of Object.entries(fonts)) {
         const css = await readFile(getCssUrl(url));
         const fontFaces = extractFontFaces(css, name)
-          .filter((fontFace) => options.subsets?.includes(fontFace.subset) ?? true);
+          .filter((fontFace) =>
+            options.subsets?.includes(fontFace.subset) ?? true
+          );
 
         await Promise.all(fontFaces.map(async (fontFace) => {
           const content = await read(fontFace.src, true);
