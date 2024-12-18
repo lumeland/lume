@@ -49,6 +49,7 @@ export default function lume(
     .ignore("deno.json")
     .ignore("deno.jsonc")
     .ignore("deno.lock")
+    .ignore((path) => path.endsWith(".d.ts"))
     .mergeKey("tags", "stringArray")
     .parseBasename(parseDateFromBasename)
     .use(url(pluginOptions.url))

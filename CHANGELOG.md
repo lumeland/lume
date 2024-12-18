@@ -13,6 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `google_fonts`: Added `subset` option to filter character ranges. [#692]
 
 ### Changed
+- Files with extension `.d.ts` are ignored by default [#707].
 - `lighningcss`: Upload default browser versions:
   - Chromium browsers: 100 (from 98)
   - Safari desktop & iOS: 16 (from 15)
@@ -644,6 +645,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#692]: https://github.com/lumeland/lume/issues/692
 [#693]: https://github.com/lumeland/lume/issues/693
 [#704]: https://github.com/lumeland/lume/issues/704
+[#707]: https://github.com/lumeland/lume/issues/707
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.4.3...HEAD
 [2.4.3]: https://github.com/lumeland/lume/compare/v2.4.2...v2.4.3
