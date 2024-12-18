@@ -110,19 +110,19 @@ export const catalogs: Catalog[] = [
   {
     // https://remixicon.com/
     id: "remix",
-    src: "https://cdn.jsdelivr.net/npm/remixicon@4.5.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/remixicon@4.6.0/icons/{name}.svg",
     name: capitalize,
   },
   {
     // https://simpleicons.org/
     id: "simpleicons",
-    src: "https://cdn.jsdelivr.net/npm/simple-icons@13.20.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/{name}.svg",
   },
   {
     // https://tabler.io/icons
     id: "tabler",
     src:
-      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.24.0/icons/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.26.0/icons/{variant}/{name}.svg",
     variants: ["filled", "outline"],
   },
   {
@@ -193,7 +193,7 @@ export const catalogs: Catalog[] = [
     // https://openmoji.org/
     id: "openmoji",
     src:
-      "https://cdn.jsdelivr.net/npm/openmoji@15.0.0/{variant}/svg/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/openmoji@15.1.0/{variant}/svg/{name}.svg",
     variants: ["color", "black"],
   },
 ];

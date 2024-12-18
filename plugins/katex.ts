@@ -11,7 +11,13 @@ export interface Options {
   /** The css selector to apply katex */
   cssSelector?: string;
 
-  /** Configuration to pass to katex */
+  /**
+   * Documentation for katex options:
+   * @see https://katex.org/docs/options.html
+   *
+   * Documentation for auto-render options:
+   * @see https://katex.org/docs/autorender.html
+   */
   options?: KatexOptions;
 }
 
@@ -65,7 +71,7 @@ export function katex(userOptions?: Options) {
           .forEach((element) => {
             try {
               const rendered = Katex.renderToString(
-                element.textContent,
+                element.textContent || "",
                 options.options,
               );
               const div = document.createElement("div");

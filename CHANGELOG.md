@@ -21,7 +21,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - Samsung: 19 (from 16)
 
 ### Fixed
-- Updated deps: `sass`, `preact`, `xml` and some plugins.
+- Updated deps: `sass`, `preact`, `xml`, `katex`, `jsr`, `pagefind`, `highlight.js`, `tailwindcss`, `magic-string` and some icons.
 - `esbuild`: JSR using import maps [#706].
 
 ## [2.4.3] - 2024-12-11
