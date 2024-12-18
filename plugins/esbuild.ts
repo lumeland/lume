@@ -466,9 +466,9 @@ function handleEsm(path: string, options: EsmOptions): string | undefined {
   }
 
   const [, prefix, name] = match;
-  const url = prefix === "npm"
-    ? new URL(`https://esm.sh/${name}`)
-    : new URL(`https://esm.sh/jsr/${name}`);
+  const url = new URL(
+    `https://esm.sh${posix.join(prefix === "npm" ? "/" : "/jsr", name)}`,
+  );
 
   if (options.dev) {
     url.searchParams.set("dev", "true");

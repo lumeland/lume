@@ -22,6 +22,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Updated deps: `sass`, `preact`, `xml` and some plugins.
+- `esbuild`: JSR using import maps [#706].
 
 ## [2.4.3] - 2024-12-11
 ### Added
@@ -645,6 +646,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#692]: https://github.com/lumeland/lume/issues/692
 [#693]: https://github.com/lumeland/lume/issues/693
 [#704]: https://github.com/lumeland/lume/issues/704
+[#706]: https://github.com/lumeland/lume/issues/706
 [#707]: https://github.com/lumeland/lume/issues/707
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.4.3...HEAD
