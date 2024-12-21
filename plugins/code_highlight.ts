@@ -5,6 +5,8 @@ import hljs, {
 } from "../deps/highlight.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
+import { readFile } from "../core/utils/read.ts";
+import { insertContent } from "../core/utils/page_content.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
@@ -33,8 +35,17 @@ interface Theme {
   /** The name of the theme */
   name: string;
 
-  /** The path to the theme file */
-  path: string;
+  /**
+   * The path to the theme file
+   * @deprecated Use cssFile instead
+   */
+  path?: string;
+
+  /** The CSS file to output the font-face rules */
+  cssFile?: string;
+
+  /** A placeholder to replace with the generated CSS (only for cssFile) */
+  placeholder?: string;
 }
 
 // Default options
@@ -72,11 +83,21 @@ export function codeHighlight(userOptions?: Options) {
         ? options.theme
         : [options.theme];
 
-      for (const { name, path } of themes) {
-        site.remoteFile(
-          path,
-          `${themesPath}${name}.min.css`,
-        );
+      for (const { name, path, cssFile, placeholder } of themes) {
+        if (cssFile) {
+          site.addEventListener("afterRender", async () => {
+            const cssCode = await readFile(`${themesPath}${name}.min.css`);
+            const page = await site.getOrCreatePage(cssFile);
+            insertContent(page, cssCode, placeholder);
+          });
+          return;
+        }
+
+        if (path) {
+          site.remoteFile(path, `${themesPath}${name}.min.css`);
+        } else {
+          throw new Error(`The theme ${name} must have a path or cssFile`);
+        }
       }
     }
 

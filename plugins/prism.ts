@@ -1,5 +1,7 @@
 import Prism, { themesPath } from "../deps/prism.ts";
 import { merge } from "../core/utils/object.ts";
+import { readFile } from "../core/utils/read.ts";
+import { insertContent } from "../core/utils/page_content.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
@@ -22,8 +24,17 @@ interface Theme {
   /** The name of the theme */
   name: string;
 
-  /** The path to the theme file */
-  path: string;
+  /**
+   * The path to the theme file
+   * @deprecated Use cssFile instead
+   */
+  path?: string;
+
+  /** The CSS file to output the font-face rules */
+  cssFile?: string;
+
+  /** A placeholder to replace with the generated CSS (only for cssFile) */
+  placeholder?: string;
 }
 
 // Default options
@@ -47,11 +58,21 @@ export function prism(userOptions?: Options) {
         ? options.theme
         : [options.theme];
 
-      for (const { name, path } of themes) {
-        site.remoteFile(
-          path,
-          `${themesPath}prism-${name}.min.css`,
-        );
+      for (const { name, path, cssFile, placeholder } of themes) {
+        if (cssFile) {
+          site.addEventListener("afterRender", async () => {
+            const cssCode = await readFile(getCssUrl(name));
+            const page = await site.getOrCreatePage(cssFile);
+            insertContent(page, cssCode, placeholder);
+          });
+          return;
+        }
+
+        if (path) {
+          site.remoteFile(path, getCssUrl(name));
+        } else {
+          throw new Error(`The theme ${name} must have a path or cssFile`);
+        }
       }
     }
 
@@ -63,3 +84,11 @@ export function prism(userOptions?: Options) {
 }
 
 export default prism;
+
+function getCssUrl(name: string) {
+  if (name === "default") {
+    return `${themesPath}prism.min.css`;
+  }
+
+  return `${themesPath}prism-${name}.min.css`;
+}

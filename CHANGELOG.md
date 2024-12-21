@@ -11,6 +11,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `purgecss` to remove unused CSS. [#693]
 - New middleware `router`.
 - `google_fonts`: Added `subset` option to filter character ranges. [#692]
+- `prism` plugin: Added `cssFile` and `placeholder` option to themes.
+- `code_highlight` plugin: Added `cssFile` and `placeholder` option to themes.
 
 ### Changed
 - Files with extension `.d.ts` are ignored by default [#707].
@@ -19,6 +21,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - Safari desktop & iOS: 16 (from 15)
   - Firefox: 100 (from 97)
   - Samsung: 19 (from 16)
+
+### Deprecated
+- `theme.path` option of `prism` plugin.
+- `theme.path` option of `code_highlight` plugin.
 
 ### Fixed
 - Updated deps: `sass`, `preact`, `xml`, `katex`, `jsr`, `pagefind`, `highlight.js`, `tailwindcss`, `magic-string` and some icons.
