@@ -17,3 +17,24 @@ Deno.test(
     });
   },
 );
+
+Deno.test(
+  "Pagefind plugin with global variable",
+  { ignore: Deno.build.os !== "darwin" },
+  async (t) => {
+    const site = getSite({
+      src: "pagefind",
+    });
+
+    site.use(pagefind({
+      ui: {
+        globalVariable: "pagefind",
+      },
+    }));
+
+    await build(site);
+    await assertSiteSnapshot(t, site, {
+      avoidBinaryFilesLength: true,
+    });
+  },
+);

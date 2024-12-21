@@ -97,6 +97,12 @@ export interface UIOptions {
    * Configure the query parameter name.
    */
   highlightParam?: string;
+
+  /**
+   * The global variable name to use for the Pagefind UI instance.
+   * This is useful if you need to interact with the UI programmatically.
+   */
+  globalVariable?: string;
 }
 
 export interface Options {
@@ -196,7 +202,7 @@ export function pagefind(userOptions?: Options) {
     });
 
     if (options.ui) {
-      const { containerId, ...ui } = options.ui;
+      const { containerId, globalVariable, ...ui } = options.ui;
 
       site.process([".html"], (pages) => {
         for (const page of pages) {
@@ -249,12 +255,14 @@ export function pagefind(userOptions?: Options) {
                 ? ui.processResult.toString()
                 : undefined,
             };
+            let code = `new PagefindUI(${JSON.stringify(uiSettings)});`;
+            if (globalVariable) {
+              code = `window["${globalVariable}"] = ${code}`;
+            }
             const init = document.createElement("script");
             init.setAttribute("type", "text/javascript");
             init.innerHTML =
-              `window.addEventListener('DOMContentLoaded',()=>{new PagefindUI(${
-                JSON.stringify(uiSettings)
-              });});`;
+              `window.addEventListener('DOMContentLoaded',()=>{${code}});`;
             document.head.append(init);
 
             if (ui.highlightParam) {

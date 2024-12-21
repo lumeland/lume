@@ -13,6 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `google_fonts`: Added `subset` option to filter character ranges. [#692]
 - `prism` plugin: Added `cssFile` and `placeholder` option to themes.
 - `code_highlight` plugin: Added `cssFile` and `placeholder` option to themes.
+- `pagefind` plugin: New `ui.globalVariable` option.
 
 ### Changed
 - Files with extension `.d.ts` are ignored by default [#707].
