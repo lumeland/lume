@@ -27,7 +27,7 @@ export function icons(userOptions?: Options) {
     site.filter("icon", icon);
 
     function icon(key: string, catalogId: string, rest?: string) {
-      const catalog = catalogs.find((c) => c.id === catalogId);
+      const catalog = options.catalogs.find((c) => c.id === catalogId);
 
       if (!catalog) {
         throw new Error(`Catalog "${catalogId}" not found`);

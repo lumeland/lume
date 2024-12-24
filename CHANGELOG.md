@@ -30,6 +30,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - Updated deps: `sass`, `preact`, `xml`, `katex`, `jsr`, `pagefind`, `highlight.js`, `tailwindcss`, `magic-string` and some icons.
 - `esbuild`: JSR using import maps [#706].
+- `icons` plugin: Bug when using custom catalog for options
 
 ## [2.4.3] - 2024-12-11
 ### Added
