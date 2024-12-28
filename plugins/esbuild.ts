@@ -296,7 +296,9 @@ export function esbuild(userOptions?: Options) {
           );
 
           entryPoint = pages.find((page) =>
-            page.sourcePath === outputRelativeEntryPoint
+            page.sourcePath === outputRelativeEntryPoint ||
+            (page.sourcePath === "(generated)" &&
+              page.outputPath === outputRelativeEntryPoint)
           );
         }
 
