@@ -33,7 +33,7 @@ export const catalogs: Catalog[] = [
   {
     // https://lucide.dev/
     id: "lucide",
-    src: "https://cdn.jsdelivr.net/npm/lucide-static@0.468.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/lucide-static@0.469.0/icons/{name}.svg",
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
@@ -116,7 +116,7 @@ export const catalogs: Catalog[] = [
   {
     // https://simpleicons.org/
     id: "simpleicons",
-    src: "https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/simple-icons@14.0.0/icons/{name}.svg",
   },
   {
     // https://tabler.io/icons
@@ -175,7 +175,7 @@ export const catalogs: Catalog[] = [
     // https://react.fluentui.dev/?path=/docs/icons-catalog--docs
     id: "fluent",
     src:
-      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.269/icons/{name}_{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.271/icons/{name}_{variant}.svg",
     variants: [
       { id: "outlined", path: "regular" },
       "filled",
