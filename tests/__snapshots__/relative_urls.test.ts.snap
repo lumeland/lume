@@ -130,7 +130,7 @@ snapshot[`relative_url plugin 3`] = `
 <ul>
 <li><a href="../..">Index</a></li>
 <li><a href="..">About us</a></li>
-<li><a href="">Contact</a></li>
+<li><a href=".">Contact</a></li>
 <li><a href="../presentation">Presentation</a></li>
 </ul>
 </body></html>',
@@ -177,7 +177,7 @@ snapshot[`relative_url plugin 3`] = `
 <html><head></head><body><p>About us</p>
 <ul>
 <li><a href="..">Index</a></li>
-<li><a href="">About us</a></li>
+<li><a href=".">About us</a></li>
 <li><a href="contact">Contact</a></li>
 <li><a href="presentation">Presentation</a></li>
 </ul>
@@ -227,7 +227,7 @@ snapshot[`relative_url plugin 3`] = `
 <li><a href="../..">Index</a></li>
 <li><a href="..">About us</a></li>
 <li><a href="../contact">Contact</a></li>
-<li><a href="">Presentation</a></li>
+<li><a href=".">Presentation</a></li>
 </ul>
 </body></html>',
     data: {
@@ -272,7 +272,7 @@ snapshot[`relative_url plugin 3`] = `
     content: '<!DOCTYPE html>
 <html><head></head><body><p>Index</p>
 <ul>
-<li><a href="">Index</a></li>
+<li><a href=".">Index</a></li>
 <li><a href="about-us">About us</a></li>
 <li><a href="./about-us/contact">Contact</a></li>
 <li><a href="about-us/presentation">Presentation</a></li>
@@ -524,7 +524,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
 <html><head></head><body><p>Contact</p>
 <ul>
 <li><a href="..">Index</a></li>
-<li><a href="">About us</a></li>
+<li><a href=".">About us</a></li>
 <li><a href="contact">Contact</a></li>
 <li><a href="presentation">Presentation</a></li>
 </ul>
@@ -572,7 +572,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
 <html><head></head><body><p>About us</p>
 <ul>
 <li><a href="..">Index</a></li>
-<li><a href="">About us</a></li>
+<li><a href=".">About us</a></li>
 <li><a href="contact">Contact</a></li>
 <li><a href="presentation">Presentation</a></li>
 </ul>
@@ -620,7 +620,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
 <html><head></head><body><p>Presentation</p>
 <ul>
 <li><a href="..">Index</a></li>
-<li><a href="">About us</a></li>
+<li><a href=".">About us</a></li>
 <li><a href="contact">Contact</a></li>
 <li><a href="presentation">Presentation</a></li>
 </ul>
@@ -667,7 +667,7 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
     content: '<!DOCTYPE html>
 <html><head></head><body><p>Index</p>
 <ul>
-<li><a href="">Index</a></li>
+<li><a href=".">Index</a></li>
 <li><a href="about-us">About us</a></li>
 <li><a href="./about-us/contact">Contact</a></li>
 <li><a href="about-us/presentation">Presentation</a></li>

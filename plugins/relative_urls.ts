@@ -36,7 +36,7 @@ export function relativeUrls(userOptions?: Options) {
         }
 
         const from = site.url(page.outputPath);
-        return posix.relative(posix.dirname(from), url);
+        return posix.join(".", posix.relative(posix.dirname(from), url));
       },
     }));
   };

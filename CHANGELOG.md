@@ -28,6 +28,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `theme.path` option of `code_highlight` plugin.
 
 ### Fixed
+- `relative_urls` plugin with no pretty urls [#711].
 - Updated deps: `sass`, `preact`, `xml`, `katex`, `jsr`, `pagefind`, `highlight.js`, `tailwindcss`, `magic-string`, `std`, `esbuild`, `liquid`, `markdown-it-attrs`, `unocss`, `vento` and some icons.
 - `esbuild`: JSR using import maps [#706].
 - `esbuild`: duplicated pages with [generated js files](https://github.com/lumeland/theme-simple-wiki/issues/20).
@@ -657,6 +658,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#704]: https://github.com/lumeland/lume/issues/704
 [#706]: https://github.com/lumeland/lume/issues/706
 [#707]: https://github.com/lumeland/lume/issues/707
+[#711]: https://github.com/lumeland/lume/issues/711
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.4.3...HEAD
 [2.4.3]: https://github.com/lumeland/lume/compare/v2.4.2...v2.4.3
