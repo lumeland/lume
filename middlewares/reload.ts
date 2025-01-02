@@ -1,3 +1,5 @@
+import { encodeBase64 } from "jsr:@std/encoding@1.0.5/base64";
+
 import { normalizePath } from "../core/utils/path.ts";
 import reloadClient from "./reload_client.js";
 
@@ -94,9 +96,12 @@ export function reload(options: Options): Middleware {
         result = await reader.read();
       }
 
+      const source = `${reloadClient}; liveReload(${revision});`;
+      const integrity = await computeSourceIntegrity(source);
+
       // Add live reload script and pass initial revision
       body +=
-        `<script type="module" id="lume-live-reload">${reloadClient}; liveReload(${revision});</script>`;
+        `<script type="module" id="lume-live-reload" integrity="${integrity}">${source};</script>`;
 
       const { status, statusText, headers } = response;
 
@@ -105,6 +110,12 @@ export function reload(options: Options): Middleware {
 
     return response;
   };
+}
+
+async function computeSourceIntegrity(source: string) {
+  const bytes = new TextEncoder().encode(source);
+  const hash = await crypto.subtle.digest("SHA-384", bytes);
+  return `sha384-${encodeBase64(hash)}`;
 }
 
 export default reload;
