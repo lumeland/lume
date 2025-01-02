@@ -1,4 +1,4 @@
-import { encodeBase64 } from "jsr:@std/encoding@1.0.5/base64";
+import { encodeBase64 } from "../deps/base64.ts";
 
 import { normalizePath } from "../core/utils/path.ts";
 import reloadClient from "./reload_client.js";
