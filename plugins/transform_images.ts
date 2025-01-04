@@ -173,7 +173,14 @@ async function transform(
   transformation: Transformation,
   options: Options,
 ): Promise<void> {
-  const image = await create(content);
+  const ext = page.src.ext;
+  const format = transformation.format;
+
+  const ops = ext === ".gif" && (!format || format === "gif")
+    ? { pages: -1 }
+    : {};
+
+  const image = await create(content, ops);
 
   for (const [name, args] of Object.entries(transformation)) {
     switch (name) {

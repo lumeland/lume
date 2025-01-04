@@ -34,6 +34,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `esbuild`: JSR using import maps [#706].
 - `esbuild`: duplicated pages with [generated js files](https://github.com/lumeland/theme-simple-wiki/issues/20).
 - `icons` plugin: Bug when using custom catalog for options
+- `transform_images`: Conversion from animated gif to static format like jpg or png.
 
 ## [2.4.3] - 2024-12-11
 ### Added
