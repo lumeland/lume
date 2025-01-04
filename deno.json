@@ -4,7 +4,8 @@
     "exclude": [
       "tests/assets",
       "deps/katex-auto-render",
-      "CHANGELOG.md"
+      "CHANGELOG.md",
+      "CHANGELOGv3.md"
     ]
   },
   "tasks": {

@@ -288,7 +288,12 @@ export default class Source {
           // Check if there's an inner entry that must be copied
           for (const path of this.staticPaths.keys()) {
             if (path.startsWith(entry.path)) {
-              this.#searchStaticFiles(buildFilters, entry, dirPath, staticFiles);
+              this.#searchStaticFiles(
+                buildFilters,
+                entry,
+                dirPath,
+                staticFiles,
+              );
               break;
             }
           }
@@ -377,7 +382,13 @@ export default class Source {
         // Check if a inner entry must be copied
         for (const path of this.staticPaths.keys()) {
           if (path.startsWith(entry.path)) {
-            this.#searchStaticFiles(buildFilters, entry, dirPath, staticFiles, copy);
+            this.#searchStaticFiles(
+              buildFilters,
+              entry,
+              dirPath,
+              staticFiles,
+              copy,
+            );
             break;
           }
         }
