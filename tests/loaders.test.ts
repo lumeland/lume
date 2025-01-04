@@ -36,11 +36,12 @@ Deno.test("ignored draft pages on dev=false", async () => {
     src: "normal",
   });
 
+  // This file is loaded even if it's copied because it's a known extension
   site.copy("static.yml");
 
   await build(site);
 
-  assertStrictEquals(site.pages.length, 7);
+  assertStrictEquals(site.pages.length, 8);
 });
 
 Deno.test("textLoader with frontmatter containing just a comment", async () => {
