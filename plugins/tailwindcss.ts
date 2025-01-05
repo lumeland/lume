@@ -1,23 +1,21 @@
-import tailwind from "../deps/tailwindcss.ts";
-import { getExtension } from "../core/utils/path.ts";
+import { getBinary } from "../deps/tailwindcss.ts";
 import { merge } from "../core/utils/object.ts";
+import { log } from "../core/utils/log.ts";
+import { dirname } from "../deps/path.ts";
 
-import type { Config } from "../deps/tailwindcss.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
-  /** Extensions processed by this plugin to extract the utility classes */
+  /** Extensions processed by this plugin */
   extensions?: string[];
 
-  /**
-   * Options passed to TailwindCSS.
-   * @see https://tailwindcss.com/docs/configuration
-   */
-  options?: Omit<Config, "content">;
+  /** Optimization level of the CSS code */
+  optimize?: false | "optimize" | "minify";
 }
 
 export const defaults: Options = {
-  extensions: [".html"],
+  extensions: [".css"],
+  optimize: "minify",
 };
 
 /**
@@ -25,49 +23,56 @@ export const defaults: Options = {
  * @see https://lume.land/plugins/tailwindcss/
  */
 export function tailwindCSS(userOptions?: Options) {
-  const options = merge(defaults, userOptions);
-
   return (site: Site) => {
-    // deno-lint-ignore no-explicit-any
-    let tailwindPlugins: any[];
+    const options = merge(defaults, userOptions);
 
-    if (site.hooks.postcss) {
-      throw new Error(
-        "PostCSS plugin is required to be installed AFTER TailwindCSS plugin",
-      );
+    site.loadAssets(options.extensions);
+    const cache = site.root("_cache/tailwindcss");
+    let binary: string;
+
+    const args = [
+      "--input=-",
+    ];
+
+    if (options.optimize === "optimize") {
+      args.push("--optimize");
+    } else if (options.optimize === "minify") {
+      args.push("--minify");
     }
 
-    site.process(options.extensions, (pages) => {
-      // Get the content of all HTML pages (sorted by path)
-      const content = pages.sort((a, b) => a.src.path.localeCompare(b.src.path))
-        .map((page) => ({
-          raw: page.content as string,
-          extension: getExtension(page.outputPath).substring(1),
-        }));
+    log.info(`Running TailwindCSS with args <gray>${args.join(" ")}</gray>`);
 
-      // Create Tailwind plugin
-      // @ts-ignore: This expression is not callable.
-      const plugin = tailwind({
-        ...options.options,
-        content,
-      });
-
-      // Ensure PostCSS plugin is installed
-      if (!site.hooks.postcss) {
-        throw new Error(
-          "PostCSS plugin is required to be installed AFTER TailwindCSS plugin",
-        );
+    site.process(options.extensions, async (pages) => {
+      if (!binary) {
+        binary = await getBinary(cache);
       }
 
-      // Replace the old Tailwind plugin configuration from PostCSS plugins
-      // deno-lint-ignore no-explicit-any
-      site.hooks.postcss((runner: any) => {
-        tailwindPlugins?.forEach((plugin) => {
-          runner.plugins.splice(runner.plugins.indexOf(plugin), 1);
+      for (const page of pages) {
+        const command = new Deno.Command(binary, {
+          stdin: "piped",
+          stdout: "piped",
+          stderr: "piped",
+          args,
+          cwd: site.src(dirname(page.src.path)),
         });
-        tailwindPlugins = runner.normalize([plugin]);
-        runner.plugins = runner.plugins.concat(tailwindPlugins);
-      });
+        const process = command.spawn();
+        const stdin = process.stdin;
+        const content = new TextEncoder().encode(page.content as string);
+        const writter = stdin.getWriter();
+        writter.write(content);
+        writter.close();
+        const { stdout, stderr, success } = await process.output();
+
+        if (!success) {
+          log.info(
+            `Error running TailwindCSS on <cyan>${page.outputPath}</cyan>: <red>${
+              new TextDecoder().decode(stderr)
+            }</red>`,
+          );
+        }
+
+        page.content = new TextDecoder().decode(stdout);
+      }
     });
   };
 }
