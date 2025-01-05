@@ -138,28 +138,14 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
 <html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
     data: {
       basename: "index",
-      children: [
-        "\$\$typeof",
-        "type",
-        "key",
-        "ref",
-        "props",
-        "_owner",
-        "_store",
-        "toString",
-      ],
+      children: "<h1>Hello world</h1><p>This is a JSX page</p>",
       comp: [
         "_components",
         "_proxies",
       ],
       content: [
-        "\$\$typeof",
         "type",
-        "key",
-        "ref",
         "props",
-        "_owner",
-        "_store",
       ],
       date: [],
       layout: "layout.jsx",
@@ -189,28 +175,14 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
 <html><head><title></title></head><body><main><div>1</div></main></body></html>",
     data: {
       basename: "multiple",
-      children: [
-        "\$\$typeof",
-        "type",
-        "key",
-        "ref",
-        "props",
-        "_owner",
-        "_store",
-        "toString",
-      ],
+      children: "<div>1</div>",
       comp: [
         "_components",
         "_proxies",
       ],
       content: [
-        "\$\$typeof",
         "type",
-        "key",
-        "ref",
         "props",
-        "_owner",
-        "_store",
       ],
       date: [],
       layout: "layout.jsx",
@@ -239,28 +211,14 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
 <html><head><title></title></head><body><main><div>2</div></main></body></html>",
     data: {
       basename: "multiple",
-      children: [
-        "\$\$typeof",
-        "type",
-        "key",
-        "ref",
-        "props",
-        "_owner",
-        "_store",
-        "toString",
-      ],
+      children: "<div>2</div>",
       comp: [
         "_components",
         "_proxies",
       ],
       content: [
-        "\$\$typeof",
         "type",
-        "key",
-        "ref",
         "props",
-        "_owner",
-        "_store",
       ],
       date: [],
       layout: "layout.jsx",
@@ -289,16 +247,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
 <html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p></main></body></html>',
     data: {
       basename: "with-function",
-      children: [
-        "\$\$typeof",
-        "type",
-        "key",
-        "ref",
-        "props",
-        "_owner",
-        "_store",
-        "toString",
-      ],
+      children: '<h1>This is the title</h1><p>This is a JSX page <a href="/blog/">Go to home</a></p>',
       comp: [
         "_components",
         "_proxies",
@@ -329,9 +278,9 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
   },
   {
     content: '<!DOCTYPE html>
-<html><head><title>Markdown combined with JSX</title></head><body><main><div><h1 class="foo">Hello world</h1>
+<html><head><title>Markdown combined with JSX</title></head><body><main><h1 class="foo">Hello world</h1>
 <p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
-</div></main></body></html>',
+</main></body></html>',
     data: {
       basename: "with-markdown",
       children: '<h1 class="foo">Hello world</h1>

@@ -74,18 +74,6 @@ export class PreactJsxEngine implements Engine {
     return element;
   }
 
-  renderComponent(content: unknown, data: Record<string, unknown> = {}) {
-    const element = typeof content === "function"
-      ? content(data, this.helpers)
-      : content;
-
-    if (element && typeof element === "object") {
-      element.toString = () => renderToString(element);
-    }
-
-    return element;
-  }
-
   addHelper(name: string, fn: Helper) {
     this.helpers[name] = fn;
   }

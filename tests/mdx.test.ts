@@ -1,6 +1,6 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import mdx from "../plugins/mdx.ts";
-import jsx from "../plugins/jsx_preact.ts";
+import jsx from "../plugins/jsx.ts";
 
 Deno.test("Build a mdx site", async (t) => {
   const site = getSite({

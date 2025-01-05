@@ -1,5 +1,3 @@
-/** @jsxImportSource npm:preact */
-
 interface Options {
   src: string;
   alt: string;

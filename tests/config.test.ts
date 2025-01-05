@@ -168,9 +168,6 @@ Deno.test("pages configuration", () => {
     render() {
       return "";
     }
-    renderComponent() {
-      return "";
-    }
     addHelper() {}
   }();
 
