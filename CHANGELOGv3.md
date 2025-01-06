@@ -17,3 +17,4 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Lume's components are now async.
 - `jsx` plugin uses SSX library instead of React.
 - `mdx` plugin no longer depends on a `jsx` plugin installed before.
+- Upgraded tailwind to v4 and removed the dependency on `postcss` plugin.

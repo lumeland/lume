@@ -2,3 +2,4 @@ tests/coverage
 _binary
 TODO
 deno.lock
+_cache
