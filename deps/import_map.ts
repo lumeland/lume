@@ -12,10 +12,13 @@ export function getResolver(
   fixImportMap(resolvedImportMap);
 
   return function resolveSpecifier(specifier: string, fromURL?: string) {
+    const from = fromURL && URL.canParse(fromURL)
+      ? new URL(fromURL)
+      : importMapBaseURL;
     return resolveModuleSpecifier(
       specifier,
       resolvedImportMap,
-      importMapBaseURL,
+      from,
     );
   };
 }
