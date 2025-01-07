@@ -1,5 +1,3 @@
-/** @jsxImportSource npm:react@18.2.0 */
-
 export const name = "button_jsx";
 export const css = `
 .button_jsx {
@@ -9,5 +7,5 @@ export const css = `
 `;
 
 export default function ({ text }) {
-  return <button className="button_jsx">{text}</button>;
+  return <button class="button_jsx">{text}</button>;
 }

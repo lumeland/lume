@@ -25,7 +25,6 @@ Deno.test("Plugins list in init", () => {
     "inline",
     "json_ld",
     "jsx",
-    "jsx_preact",
     "katex",
     "lightningcss",
     "liquid",

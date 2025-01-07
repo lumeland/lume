@@ -1,1 +1,1 @@
-This file is copied statically.
+This file is a page.

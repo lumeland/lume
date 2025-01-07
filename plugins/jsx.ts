@@ -1,4 +1,4 @@
-import { React, ReactDOMServer, specifier } from "../deps/react.ts";
+import { isComponent, renderComponent, specifier } from "../deps/ssx.ts";
 import loader from "../core/loaders/module.ts";
 import { merge } from "../core/utils/object.ts";
 
@@ -39,55 +39,24 @@ export class JsxEngine implements Engine {
   deleteCache() {}
 
   async render(content: unknown, data: Record<string, unknown> = {}) {
-    // The content is a string, so we have to convert to a React element
+    // If content is a string, convert to a JSX element
     if (typeof content === "string") {
-      content = React.createElement("div", {
-        dangerouslySetInnerHTML: { __html: content },
-      });
+      content = { __html: content };
     }
 
     // Create the children property
     let children = data.content;
 
-    // If the children is a string, convert it to a React element
+    // If the children is a string, convert to a JSX element
     if (typeof children === "string") {
-      children = React.createElement("div", {
-        dangerouslySetInnerHTML: { __html: children },
-      });
+      children = { __html: children };
     }
 
-    const element = typeof content === "object" && React.isValidElement(content)
-      ? content
-      : ((typeof content === "function"
-        ? await content({ ...data, children }, this.helpers)
-        : content) as React.ReactElement);
-
-    if (React.isValidElement(element)) {
-      return {
-        ...element,
-        toString: () => ReactDOMServer.renderToStaticMarkup(element),
-      };
-    }
-
-    return element;
-  }
-
-  renderComponent(
-    content: unknown,
-    data: Record<string, unknown> = {},
-  ): { toString(): string } {
-    const element = typeof content === "function"
-      ? content(data, this.helpers)
+    const result = typeof content === "function"
+      ? await content({ ...data, children }, this.helpers)
       : content;
-
-    if (React.isValidElement(element)) {
-      return {
-        ...element,
-        toString: () => ReactDOMServer.renderToStaticMarkup(element),
-      };
-    }
-
-    return element;
+    // deno-lint-ignore no-explicit-any
+    return isComponent(result) ? renderComponent(result as any) : result;
   }
 
   addHelper(name: string, fn: Helper) {
@@ -96,7 +65,7 @@ export class JsxEngine implements Engine {
 }
 
 /**
- * A plugin to render JSX files using React
+ * A plugin to render JSX files to HTML
  * @see https://lume.land/plugins/jsx/
  */
 export function jsx(userOptions?: Options) {
@@ -132,7 +101,7 @@ declare global {
        * The JSX children elements
        * @see https://lume.land/plugins/jsx/
        */
-      children?: React.ReactNode | React.ReactNode[];
+      children?: JSX.Children;
     }
   }
 }

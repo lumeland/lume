@@ -75,19 +75,6 @@ export class MarkdownEngine implements Engine {
     })).toString();
   }
 
-  renderComponent(
-    content: string,
-    data?: Record<string, unknown>,
-    filename?: string,
-  ): string {
-    const page = data?.page as Page | undefined;
-    return this.engine.processSync({
-      value: content,
-      data: page?.data,
-      path: filename,
-    }).toString();
-  }
-
   addHelper() {}
 }
 

@@ -80,19 +80,6 @@ export class LiquidEngine implements Engine {
     return await this.liquid.render(template, data);
   }
 
-  renderComponent(
-    content: string,
-    data?: Record<string, unknown>,
-    filename?: string,
-  ) {
-    if (!filename) {
-      return this.liquid.parseAndRenderSync(content, data);
-    }
-
-    const template = this.getTemplate(content, filename);
-    return this.liquid.renderSync(template, data);
-  }
-
   getTemplate(content: string, filename: string): Template[] {
     if (!this.cache.has(filename)) {
       this.cache.set(

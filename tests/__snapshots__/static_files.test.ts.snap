@@ -254,6 +254,11 @@ snapshot[`Copy static files 2`] = `
     outputPath: "/script/app/main.js",
   },
   {
+    entry: "/static/_redirects",
+    flags: [],
+    outputPath: "/_redirects",
+  },
+  {
     entry: "/static/one.yes",
     flags: [],
     outputPath: "/one.yes",

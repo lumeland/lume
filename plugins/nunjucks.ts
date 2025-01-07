@@ -100,19 +100,6 @@ export class NunjucksEngine implements Engine {
     });
   }
 
-  renderComponent(
-    content: string,
-    data?: Record<string, unknown>,
-    filename?: string,
-  ): string {
-    if (!filename) {
-      return this.env.renderString(content, data);
-    }
-
-    const template = this.getTemplate(content, filename);
-    return template.render(data);
-  }
-
   getTemplate(content: string, filename: string) {
     if (!this.cache.has(filename)) {
       this.cache.set(
@@ -229,8 +216,10 @@ export function nunjucks(userOptions?: Options) {
     // Register the njk filter
     site.filter("njk", filter, true);
 
+    site.filter("await", async (value) => await value, true);
+
     // Register the component helper
-    engine.addHelper("comp", (...args) => {
+    engine.addHelper("comp", async (...args) => {
       const components = site.source.data.get("/")
         ?.[site.options.components.variable] as
           | ProxyComponents
@@ -242,7 +231,6 @@ export function nunjucks(userOptions?: Options) {
       if (!components) {
         throw new Error(`Component "${name}" not found`);
       }
-
       const names = name.split(".") as string[];
       let component: ProxyComponents | undefined = components;
 
@@ -256,13 +244,14 @@ export function nunjucks(userOptions?: Options) {
       }
 
       if (typeof component === "function") {
-        return component(props);
+        return await component(props);
       }
 
       throw new Error(`Component "${name}" not found`);
     }, {
       type: "tag",
       body: true,
+      async: true,
     });
 
     function filter(
@@ -318,39 +307,52 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
         parser.advanceAfterBlockEnd();
       }
 
-      if (options.async) {
-        return new nodes.CallExtensionAsync(
-          tagExtension,
-          "run",
-          args,
-          extraArgs,
-        );
-      }
-
-      return new nodes.CallExtension(tagExtension, "run", args, extraArgs);
+      return new nodes.CallExtensionAsync(
+        tagExtension,
+        "run",
+        args,
+        extraArgs,
+      );
     },
 
     // deno-lint-ignore no-explicit-any
     run(context: any, ...args: any[]) {
+      const thisArg = { data: context.ctx };
+      const callback = args.pop();
+
       if (options.body) {
-        const [body] = args.splice(
-          options.async ? args.length - 2 : args.length - 1,
-          1,
-        );
-        args.unshift(body());
+        const body = args.pop();
+
+        body(function (e: Error, bodyContent: string) {
+          if (e) {
+            throw e;
+          }
+
+          if (!options.async) {
+            const string = fn.apply(thisArg, [bodyContent, ...args]);
+            callback(null, new Nunjucks.runtime.SafeString(string));
+            return;
+          }
+
+          (fn.apply(thisArg, [bodyContent, ...args]) as Promise<string>).then(
+            (string: string) => {
+              callback(null, new Nunjucks.runtime.SafeString(string));
+            },
+          );
+        });
+
+        return;
       }
 
       if (!options.async) {
-        const string = fn.apply({ data: context.ctx }, args);
-        return new Nunjucks.runtime.SafeString(string);
+        const string = fn.apply(thisArg, args);
+        callback(null, new Nunjucks.runtime.SafeString(string));
+        return;
       }
 
-      const callback = args.pop();
-
-      (fn.apply({ data: context.ctx }, args) as Promise<string>).then(
+      (fn.apply(thisArg, args) as Promise<string>).then(
         (string: string) => {
-          const result = new Nunjucks.runtime.SafeString(string);
-          callback(null, result);
+          callback(null, new Nunjucks.runtime.SafeString(string));
         },
       );
     },

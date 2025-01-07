@@ -121,11 +121,6 @@ snapshot[`relative_url plugin 1`] = `
 snapshot[`relative_url plugin 2`] = `
 [
   {
-    entry: "/statics/asset.md",
-    flags: [],
-    outputPath: "/asset.md",
-  },
-  {
     entry: "/statics/robots.txt",
     flags: [],
     outputPath: "/robots.txt",
@@ -287,7 +282,7 @@ Third article
 <a href="/robots.txt">url</a>
 <a href="/tilde-and-ene/">url</a>
 <a href="robots.txt">static-file</a>
-<a href="/asset.md">static-file</a></p>
+<a href="/asset/">static-file</a></p>
 </body></html>',
     data: {
       basename: "index",
@@ -378,6 +373,37 @@ Third article
       asset: false,
       ext: ".md",
       path: "/other",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<html><head></head><body><p>This file is a page.</p>
+</body></html>",
+    data: {
+      basename: "asset",
+      children: "<p>This file is a page.</p>
+",
+      content: "This file is a page.
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/asset/",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/statics/asset",
       remote: undefined,
     },
   },
@@ -535,11 +561,6 @@ snapshot[`relative_url plugin (without slugify) 1`] = `
 
 snapshot[`relative_url plugin (without slugify) 2`] = `
 [
-  {
-    entry: "/statics/asset.md",
-    flags: [],
-    outputPath: "/asset.md",
-  },
   {
     entry: "/statics/robots.txt",
     flags: [],
@@ -702,7 +723,7 @@ Third article
 <a href="/robots.txt">url</a>
 <a href="/tílde-and-eñe/">url</a>
 <a href="robots.txt">static-file</a>
-<a href="/asset.md">static-file</a></p>
+<a href="/asset/">static-file</a></p>
 </body></html>',
     data: {
       basename: "index",
@@ -793,6 +814,37 @@ Third article
       asset: false,
       ext: ".md",
       path: "/other",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<html><head></head><body><p>This file is a page.</p>
+</body></html>",
+    data: {
+      basename: "asset",
+      children: "<p>This file is a page.</p>
+",
+      content: "This file is a page.
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/asset/",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/statics/asset",
       remote: undefined,
     },
   },

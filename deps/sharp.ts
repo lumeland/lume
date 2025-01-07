@@ -8,7 +8,8 @@ export async function sharpsToIco(...images: sharp.Sharp[]) {
     images.map((image) => image.toFormat("png").toBuffer()),
   );
 
-  return icoEndec.encode(buffers.map((buffer) => buffer.buffer));
+  // deno-lint-ignore no-explicit-any
+  return icoEndec.encode(buffers.map((buffer: any) => buffer.buffer));
 }
 
 export async function create(

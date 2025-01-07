@@ -2,6 +2,7 @@ import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils/object.ts";
 import { compile, remarkGfm } from "../deps/mdx.ts";
 import { join, toFileUrl } from "../deps/path.ts";
+import { renderComponent, specifier } from "../deps/ssx.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine } from "../core/renderer.ts";
@@ -53,13 +54,11 @@ const remarkDefaultPlugins = [
 export class MDXEngine implements Engine<string | { toString(): string }> {
   baseUrl: string;
   options: Required<Options>;
-  jsxEngine: Engine;
   includes: string;
 
-  constructor(baseUrl: string, options: Required<Options>, jsxEngine: Engine) {
+  constructor(baseUrl: string, options: Required<Options>) {
     this.baseUrl = baseUrl;
     this.options = options;
-    this.jsxEngine = jsxEngine;
     this.includes = options.includes;
   }
 
@@ -72,7 +71,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
   ) {
     const baseUrl = toFileUrl(join(this.baseUrl, filename || "/")).href;
     // @ts-ignore: special case for jsx engines
-    const pragma = `/** @jsxImportSource ${this.jsxEngine.jsxImportSource} */`;
+    const pragma = `/** @jsxImportSource ${specifier} */`;
     const result = await compile(content, {
       baseUrl,
       jsx: true,
@@ -101,11 +100,8 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
     const body = mdxContext({
       components: { comp: data?.comp, ...this.options.components },
     });
-    return this.jsxEngine.renderComponent(body);
-  }
 
-  renderComponent(content: string) {
-    return content;
+    return renderComponent(body);
   }
 
   addHelper() {}
@@ -127,16 +123,7 @@ export function mdx(userOptions?: Options) {
       options.remarkPlugins.unshift(...remarkDefaultPlugins);
     }
 
-    // Get the JSX stringify
-    const format = site.formats.get(".jsx") || site.formats.get(".tsx");
-
-    if (!format?.engines) {
-      throw new Error(
-        "The JSX format is required to use the MDX plugin. Use jsx or jsx_preact plugins.",
-      );
-    }
-
-    const engine = new MDXEngine(site.src(), options, format.engines[0]);
+    const engine = new MDXEngine(site.src(), options);
 
     // Ignore includes folder
     if (options.includes) {

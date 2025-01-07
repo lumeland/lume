@@ -350,13 +350,6 @@ export interface Engine<T = string | { toString(): string }> {
     filename?: string,
   ): T | Promise<T>;
 
-  /** Render a component (it must be synchronous) */
-  renderComponent(
-    content: unknown,
-    data?: Record<string, unknown>,
-    filename?: string,
-  ): T;
-
   /** Add a helper to the template engine */
   addHelper(
     name: string,

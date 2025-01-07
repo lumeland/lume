@@ -4,7 +4,15 @@
     "exclude": [
       "tests/assets",
       "deps/katex-auto-render",
-      "CHANGELOG.md"
+      "CHANGELOG.md",
+      "CHANGELOGv3.md"
+    ]
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "npm:@lumeland/ssx@0.1.2-beta.3",
+    "types": [
+      "./types.ts"
     ]
   },
   "tasks": {

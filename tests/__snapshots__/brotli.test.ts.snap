@@ -273,10 +273,10 @@ snapshot[`brotli plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(59)",
+    content: "Uint8Array(28)",
     data: {
       basename: "index",
-      content: "Uint8Array(59)",
+      content: "Uint8Array(28)",
       page: [
         "src",
         "data",
@@ -609,11 +609,11 @@ Content of Page 7",
   },
   {
     content: "<!DOCTYPE html>
-This yaml should be ignored because it's copied statically",
+This is a page",
     data: {
       basename: "static",
-      children: "This yaml should be ignored because it's copied statically",
-      content: "This yaml should be ignored because it's copied statically",
+      children: "This is a page",
+      content: "This is a page",
       date: [],
       imagick: "Array(1)",
       mergedKeys: [
@@ -1164,11 +1164,11 @@ Content of Page 7",
   },
   {
     content: "<!DOCTYPE html>
-This yaml should be ignored because it's copied statically",
+This is a page",
     data: {
       basename: "static",
-      children: "This yaml should be ignored because it's copied statically",
-      content: "This yaml should be ignored because it's copied statically",
+      children: "This is a page",
+      content: "This is a page",
       date: [],
       imagick: "Array(1)",
       mergedKeys: [

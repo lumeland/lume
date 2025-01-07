@@ -7,7 +7,7 @@ import { Page, StaticFile } from "./file.ts";
 
 import type { Data, RawData } from "./file.ts";
 import type { default as FS, Entry } from "./fs.ts";
-import type Formats from "./formats.ts";
+import type { default as Formats, Format } from "./formats.ts";
 import type DataLoader from "./data_loader.ts";
 import type { ScopeFilter } from "./scopes.ts";
 import type {
@@ -137,7 +137,7 @@ export default class Source {
     const pages: Page[] = [];
     const staticFiles: StaticFile[] = [];
 
-    await this.#build(
+    await this.#load(
       buildFilters,
       this.fs.entries.get("/")!,
       "/",
@@ -153,25 +153,258 @@ export default class Source {
     ];
   }
 
-  async #build(
+  async #load(
     buildFilters: BuildFilter[],
     dir: Entry,
-    path: string,
+    parentPath: string,
     parentComponents: Components,
     parentData: RawData,
     pages: Page[],
     staticFiles: StaticFile[],
-  ) {
+    copy?: (path: string) => string,
+  ): Promise<void> {
     if (buildFilters.some((filter) => !filter(dir))) {
       return;
     }
 
+    // Load _data
+    const dirData = await this.#loadDirData(dir, parentData);
+    let dirPath = posix.join(parentPath, dirData.basename!);
+
+    // Load _components
+    const dirComponents = await this.#loadDirComponents(
+      dir,
+      parentComponents,
+      dirData,
+    );
+
+    // Create the components proxy only if new components were found
+    if (dirComponents !== parentComponents) {
+      dirData[this.components.variable] = toProxy(
+        dirComponents,
+        this.extraCode,
+      );
+    }
+
+    // Store the root data to be used by other plugins
+    this.data.set(dirPath, dirData);
+
+    // Load pages created with `site.page()`
+    for await (const page of this.#getDirPages(dirPath, dirData)) {
+      if (buildFilters.some((filter) => !filter(dir, page))) {
+        continue;
+      }
+      pages.push(page);
+    }
+
+    // The folder is copied with `site.copy("folder")`
+    const copyExplicit = this.staticPaths.get(dir.path) ||
+      this.staticPaths.get(dirPath);
+
+    if (copyExplicit) {
+      const { dest } = copyExplicit;
+
+      if (typeof dest === "function") {
+        const previousCopy = copy;
+        copy = previousCopy ? (path: string) => dest(previousCopy(path)) : dest;
+      } else {
+        dirPath = dest ?? dirPath;
+        copy ??= (path: string) => path;
+      }
+    }
+
+    // Iterate over the directory entries
+    for (const entry of dir.children.values()) {
+      if (buildFilters.some((filter) => !filter(entry))) {
+        continue;
+      }
+
+      if (entry.type === "file") {
+        let copyExplicit = this.staticPaths.get(entry.path);
+
+        if (copyExplicit?.dirOnly) {
+          // the explicit copy must be a directory and this is a file
+          copyExplicit = undefined;
+        }
+
+        // Check if the file must be ignored
+        if (!copyExplicit && this.#isIgnored(entry)) {
+          continue;
+        }
+
+        const format = this.formats.search(entry.path);
+
+        // It's an unknown file format
+        if (!format) {
+          // Copy the file
+          if (copyExplicit || copy) {
+            const ext = posix.extname(entry.name);
+            staticFiles.push(
+              this.#copyFile(entry, dirPath, ext, copyExplicit?.dest, copy),
+            );
+          }
+          continue;
+        }
+
+        // The format is a page `site.loadPages([".ext"])` or `site.loadAssets([".ext"])`
+        if (format.pageType) {
+          const page = await this.#loadPage(entry, format, dirData, dirPath);
+
+          if (
+            page &&
+            (!buildFilters.length ||
+              buildFilters.every((filter) => filter(entry, page)))
+          ) {
+            pages.push(page);
+          }
+
+          continue;
+        }
+
+        // The format is copied with `site.copy([".ext"])`
+        if (format.copy) {
+          staticFiles.push(
+            this.#copyFile(
+              entry,
+              dirPath,
+              format.ext,
+              typeof format.copy === "function" ? format.copy : undefined,
+            ),
+          );
+          continue;
+        }
+
+        // Ignore the file
+        continue;
+      }
+
+      if (entry.type === "directory") {
+        // Check if the folder must be ignored
+        if (
+          !copyExplicit &&
+          this.#isIgnored(entry) &&
+          entry.path !== "/.well-known"
+        ) {
+          // Check if there's an inner entry that must be copied
+          for (const path of this.staticPaths.keys()) {
+            if (path.startsWith(entry.path)) {
+              this.#searchStaticFiles(
+                buildFilters,
+                entry,
+                dirPath,
+                staticFiles,
+              );
+              break;
+            }
+          }
+          continue;
+        }
+
+        await this.#load(
+          buildFilters,
+          entry,
+          dirPath,
+          dirComponents,
+          dirData,
+          pages,
+          staticFiles,
+          copy,
+        );
+      }
+    }
+  }
+
+  #isIgnored(entry: Entry) {
+    return entry.name.startsWith(".") ||
+      entry.name.startsWith("_") ||
+      this.ignored.has(entry.path) ||
+      this.filters.some((filter) => filter(entry.path));
+  }
+
+  #searchStaticFiles(
+    buildFilters: BuildFilter[],
+    dir: Entry,
+    parentPath: string,
+    staticFiles: StaticFile[],
+    copy?: (path: string) => string,
+  ): void {
+    if (buildFilters.some((filter) => !filter(dir))) {
+      return;
+    }
+
+    let dirPath = posix.join(parentPath, dir.name);
+
+    // The folder is copied with `site.copy("folder")`
+    const copyExplicit = this.staticPaths.get(dir.path);
+
+    if (copyExplicit) {
+      const { dest } = copyExplicit;
+
+      if (typeof dest === "function") {
+        const previousCopy = copy;
+        copy = previousCopy ? (path: string) => dest(previousCopy(path)) : dest;
+      } else {
+        dirPath = dest ?? dirPath;
+        copy ??= (path: string) => path;
+      }
+    }
+
+    // Iterate over the directory entries
+    for (const entry of dir.children.values()) {
+      if (buildFilters.some((filter) => !filter(entry))) {
+        continue;
+      }
+
+      if (entry.type === "file") {
+        let copyExplicit = this.staticPaths.get(entry.path);
+
+        if (copyExplicit?.dirOnly) {
+          // the explicit copy must be a directory and this is a file
+          copyExplicit = undefined;
+        }
+
+        // Check if the file must be ignored
+        if (!copyExplicit && this.#isIgnored(entry)) {
+          continue;
+        }
+
+        // Copy the file
+        if (copyExplicit || copy) {
+          const ext = posix.extname(entry.name);
+          staticFiles.push(
+            this.#copyFile(entry, dirPath, ext, copyExplicit?.dest, copy),
+          );
+        }
+        continue;
+      }
+
+      if (entry.type === "directory") {
+        // Check if a inner entry must be copied
+        for (const path of this.staticPaths.keys()) {
+          if (path.startsWith(entry.path)) {
+            this.#searchStaticFiles(
+              buildFilters,
+              entry,
+              dirPath,
+              staticFiles,
+              copy,
+            );
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  /** Load a folder's _data and merge it with the parent data  */
+  async #loadDirData(dir: Entry, parentData: RawData): Promise<Partial<Data>> {
+    // Parse the directory's basename
     const { basename, ...parsedData } = runBasenameParsers(
       dir.name,
       this.basenameParsers,
     );
 
-    // Load the _data files
+    // Load _data files
     const dirDatas: RawData[] = [];
 
     for (const entry of dir.children.values()) {
@@ -186,25 +419,36 @@ export default class Source {
       }
     }
 
+    // Data registered from site.data()
+    const scopedData = this.scopedData.get(dir.path) || {};
+
     // Merge directory data
-    const dirData = mergeData(
+    return mergeData(
       parentData,
       { basename },
-      this.scopedData.get(dir.path) || {},
+      scopedData,
       parsedData,
       ...dirDatas,
     ) as Partial<Data>;
+  }
 
-    path = posix.join(path, dirData.basename!);
-
-    // Directory components
+  /**
+   * Load _components, merge them with the parent components
+   * and store on the data object
+   */
+  async #loadDirComponents(
+    dir: Entry,
+    parentComponents: Components,
+    data: Partial<Data>,
+  ): Promise<Components> {
+    // Components registered from site.component()
     const scopedComponents = this.scopedComponents.get(dir.path);
     let loadedComponents: Components | undefined;
 
     // Load _components files
     for (const entry of dir.children.values()) {
       if (entry.type === "directory" && entry.name === "_components") {
-        loadedComponents = await this.componentLoader.load(entry, dirData);
+        loadedComponents = await this.componentLoader.load(entry, data);
         break;
       }
     }
@@ -216,186 +460,123 @@ export default class Source {
         scopedComponents || new Map(),
         loadedComponents || new Map(),
       );
+    }
 
-      dirData[this.components.variable] = toProxy(
-        parentComponents,
-        this.extraCode,
+    return parentComponents;
+  }
+
+  async *#getDirPages(
+    path: string,
+    dirData: Partial<Data>,
+  ): AsyncGenerator<Page> {
+    const pages = this.scopedPages.get(path);
+    if (!pages) {
+      return;
+    }
+
+    for (const data of pages) {
+      const basename = posix.basename(data.url as string).replace(
+        /\.[\w.]+$/,
+        "",
+      );
+      const page = new Page();
+      page.data = mergeData(
+        dirData,
+        { basename, date: new Date() },
+        data,
+      ) as Data;
+
+      const url = getPageUrl(page, this.prettyUrls, path);
+      if (!url) {
+        continue;
+      }
+      page.data.url = url;
+      page.data.date = getPageDate(page);
+      page.data.page = page;
+      yield page;
+    }
+  }
+
+  /** Load a page from a file entry */
+  async #loadPage(
+    entry: Entry,
+    format: Format,
+    dirData: Partial<Data>,
+    dirPath: string,
+  ): Promise<Page | undefined> {
+    const loader = format.pageType === "asset"
+      ? format.assetLoader
+      : format.loader;
+
+    if (!loader) {
+      throw new Error(
+        `Missing loader for ${format.pageType} page type (${entry.path}))`,
       );
     }
 
-    // Store the root data to be used by other plugins
-    this.data.set(path, dirData);
+    const { ext } = format;
+    const { basename, ...parsedData } = runBasenameParsers(
+      entry.name.slice(0, -ext.length),
+      this.basenameParsers,
+    );
 
-    // Load the pages assigned to the current path
-    if (this.scopedPages.has(dir.path)) {
-      for (const data of this.scopedPages.get(dir.path)!) {
-        const basename = posix.basename(data.url as string).replace(
-          /\.[\w.]+$/,
-          "",
-        );
-        const page = new Page();
-        page.data = mergeData(
-          dirData,
-          { basename, date: new Date() },
-          data,
-        ) as Data;
+    // Create the page
+    const page = new Page({
+      path: entry.path.slice(0, -ext.length),
+      ext,
+      entry,
+    });
+    page.asset = format.pageType === "asset";
 
-        const url = getPageUrl(page, this.prettyUrls, path);
-        if (!url) {
-          continue;
-        }
-        page.data.url = url;
-        page.data.date = getPageDate(page);
-        page.data.page = page;
+    // Load and merge the page data
+    const pageData = await entry.getContent(loader);
+    page.data = mergeData(
+      dirData,
+      { basename },
+      this.scopedData.get(entry.path) || {},
+      parsedData,
+      pageData,
+    ) as Data;
 
-        if (buildFilters.some((filter) => !filter(dir, page))) {
-          continue;
-        }
-        pages.push(page);
-      }
+    // Calculate the page URL
+    const url = getPageUrl(page, this.prettyUrls, dirPath);
+    if (!url) {
+      return;
     }
+    page.data.url = url;
 
-    // Load the pages and static files
-    for (const entry of dir.children.values()) {
-      if (buildFilters.some((filter) => !filter(entry))) {
-        continue;
-      }
+    // Calculate the page date
+    page.data.date = getPageDate(page);
 
-      // Static files
-      if (this.staticPaths.has(entry.path)) {
-        const { dest, dirOnly } = this.staticPaths.get(entry.path)!;
+    // Save the page object in the data object
+    page.data.page = page;
 
-        staticFiles.push(...this.#getStaticFiles(path, entry, dest, dirOnly));
-        continue;
-      }
+    // Save whether the layout was directly assigned
+    page._data.layout = pageData.layout;
 
-      // Check if the entry should be ignored
-      if (
-        (entry.name.startsWith(".") && !isWellKnownDir(entry)) ||
-        entry.name.startsWith("_") ||
-        this.ignored.has(entry.path)
-      ) {
-        for (const [staticSrc, { dest, dirOnly }] of this.staticPaths) {
-          if (staticSrc.startsWith(entry.path)) {
-            const staticEntry = this.fs.entries.get(staticSrc)!;
-            const staticPath = posix.dirname(
-              posix.join(path, staticEntry.path.slice(entry.path.length)),
-            );
-            staticFiles.push(
-              ...this.#getStaticFiles(staticPath, staticEntry, dest, dirOnly),
-            );
-          }
-        }
-        continue;
-      }
+    return page;
+  }
 
-      if (this.filters.some((filter) => filter(entry.path))) {
-        continue;
-      }
-
-      if (entry.type === "file") {
-        const format = this.formats.search(entry.path);
-
-        // Unknown file format
-        if (!format) {
-          // Remaining files
-          if (this.copyRemainingFiles) {
-            const dest = this.copyRemainingFiles(entry.path);
-
-            if (dest) {
-              staticFiles.push(
-                ...this.#getStaticFiles(
-                  path,
-                  entry,
-                  typeof dest === "string" ? dest : undefined,
-                ),
-              );
-            }
-          }
-          continue;
-        }
-
-        // The file is a static file
-        if (format.copy) {
-          staticFiles.push(
-            ...this.#getStaticFiles(
-              path,
-              entry,
-              typeof format.copy === "function" ? format.copy : undefined,
-            ),
-          );
-          continue;
-        }
-
-        // The file is a page
-        if (format.pageType) {
-          const loader = format.pageType === "asset"
-            ? format.assetLoader
-            : format.loader;
-
-          if (!loader) {
-            throw new Error(
-              `Missing loader for ${format.pageType} page type (${entry.path}))`,
-            );
-          }
-
-          const { ext } = format;
-          const { basename, ...parsedData } = runBasenameParsers(
-            entry.name.slice(0, -ext.length),
-            this.basenameParsers,
-          );
-
-          // Create the page
-          const page = new Page({
-            path: entry.path.slice(0, -ext.length),
-            ext,
-            entry,
-          });
-          page.asset = format.pageType === "asset";
-
-          // Load and merge the page data
-          const pageData = await entry.getContent(loader);
-          page.data = mergeData(
-            dirData,
-            { basename },
-            this.scopedData.get(entry.path) || {},
-            parsedData,
-            pageData,
-          ) as Data;
-
-          const url = getPageUrl(page, this.prettyUrls, path);
-          if (!url) {
-            continue;
-          }
-          page.data.url = url;
-          page.data.date = getPageDate(page);
-          page.data.page = page;
-          page._data.layout = pageData.layout;
-
-          if (buildFilters.some((filter) => !filter(entry, page))) {
-            continue;
-          }
-
-          pages.push(page);
-          continue;
-        }
-      }
-
-      // Load recursively the directory
-      if (entry.type === "directory") {
-        await this.#build(
-          buildFilters,
-          entry,
-          path,
-          parentComponents,
-          dirData,
-          pages,
-          staticFiles,
-        );
-      }
-    }
-
-    return [pages, staticFiles];
+  #copyFile(
+    entry: Entry,
+    dirPath: string,
+    ext: string,
+    dest?: string | ((path: string) => string),
+    copy?: (path: string) => string,
+  ): StaticFile {
+    return new StaticFile(
+      getOutputPath(
+        entry,
+        dirPath,
+        dest,
+        copy,
+      ),
+      {
+        ext,
+        path: entry.path.slice(1, -ext.length),
+        entry,
+      },
+    );
   }
 
   /** Returns the pages with extra code generated by the components */
@@ -419,79 +600,6 @@ export default class Source {
     }
 
     return pages;
-  }
-
-  /** Scan the static files in a directory */
-  *#scanStaticFiles(
-    dirEntry: Entry,
-    destPath: string,
-    destFn?: (file: string) => string,
-  ): Generator<StaticFile> {
-    for (const entry of dirEntry.children.values()) {
-      if (entry.type === "file") {
-        if (entry.name.startsWith(".") || entry.name.startsWith("_")) {
-          continue;
-        }
-
-        // Check if the file should be ignored
-        if (this.ignored.has(entry.path)) {
-          continue;
-        }
-
-        if (this.filters.some((filter) => filter(entry.path))) {
-          continue;
-        }
-
-        const outputPath = getOutputPath(entry, destPath, destFn);
-        const ext = posix.extname(entry.name);
-        yield new StaticFile(
-          outputPath,
-          {
-            ext,
-            path: entry.path.slice(1, -ext.length),
-            entry,
-          },
-        );
-      }
-
-      if (entry.type === "directory") {
-        yield* this.#scanStaticFiles(
-          entry,
-          posix.join(destPath, entry.name),
-          destFn,
-        );
-      }
-    }
-  }
-
-  #getStaticFiles(
-    path: string,
-    entry: Entry,
-    dest: string | ((path: string) => string) | undefined,
-    dirOnly = false,
-  ): StaticFile[] {
-    if (entry.type === "file") {
-      if (!dirOnly) {
-        const ext = posix.extname(entry.name);
-        return [
-          new StaticFile(
-            getOutputPath(entry, path, dest),
-            {
-              ext,
-              path: entry.path.slice(1, -ext.length),
-              entry,
-            },
-          ),
-        ];
-      }
-      return [];
-    }
-
-    return Array.from(this.#scanStaticFiles(
-      entry,
-      typeof dest === "string" ? dest : posix.join(path, entry.name),
-      typeof dest === "function" ? dest : undefined,
-    ));
   }
 }
 
@@ -588,20 +696,19 @@ function getOutputPath(
   entry: Entry,
   path: string,
   dest?: string | ((path: string) => string),
+  copy?: (path: string) => string,
 ): string {
-  if (typeof dest === "function") {
-    return dest(posix.join(path, entry.name));
-  }
-
   if (typeof dest === "string") {
     return dest;
   }
 
-  return posix.join(path, entry.name);
-}
+  let output = posix.join(path, entry.name);
 
-function isWellKnownDir(entry: Entry) {
-  return entry.type === "directory" && entry.path === "/.well-known";
+  if (copy) {
+    output = copy(output);
+  }
+
+  return typeof dest === "function" ? dest(output) : output;
 }
 
 function runBasenameParsers(

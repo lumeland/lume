@@ -8,7 +8,6 @@ import { read } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
 import loader from "../core/loaders/module.ts";
 
-import type { React } from "../deps/react.ts";
 import "../types.ts";
 
 export interface Options {
@@ -113,7 +112,7 @@ export function ogImages(userOptions?: Options) {
     });
 
     async function render(
-      jsx: React.ReactNode,
+      jsx: unknown,
     ): Promise<Uint8Array | undefined> {
       if (cache) {
         const result = await cache.get(new Uint8Array(), jsx);

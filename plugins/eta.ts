@@ -59,17 +59,6 @@ export class EtaEngine implements Engine {
     return this.engine.renderAsync(template, data, { filepath: filename });
   }
 
-  renderComponent(
-    content: string,
-    data: Record<string, unknown>,
-    filename: string,
-  ): string {
-    const template = this.getTemplate(content, filename, false);
-
-    data.filters = this.filters;
-    return this.engine.render(template, data, { filepath: filename });
-  }
-
   getTemplate(content: string, filename: string, async?: boolean) {
     filename = posix.join(this.basePath, filename);
 

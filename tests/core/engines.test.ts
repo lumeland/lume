@@ -19,12 +19,6 @@ Deno.test("Engines", async (t) => {
           render(
             content: string,
             data: Record<string, unknown>,
-          ): Promise<string> {
-            return Promise.resolve(this.renderComponent(content, data));
-          }
-          renderComponent(
-            content: string,
-            data: Record<string, unknown>,
           ): string {
             return content + data.foo;
           }
@@ -55,10 +49,7 @@ Deno.test("Engines", async (t) => {
       {
         engine: new class implements Engine {
           includes = "";
-          render(content: string): Promise<string> {
-            return Promise.resolve(this.renderComponent(content));
-          }
-          renderComponent(content: string): string {
+          render(content: string): string {
             return content.toUpperCase();
           }
           addHelper() {}
