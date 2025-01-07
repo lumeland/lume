@@ -16,12 +16,16 @@ import {
   stop,
 } from "../deps/esbuild.ts";
 import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
+import {
+  ImportMap as ParsedImportMap,
+  parseFromJson,
+} from "../deps/import_map.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/file.ts";
 import textLoader from "../core/loaders/text.ts";
 
 import type Site from "../core/site.ts";
-import type { DenoConfig } from "../core/utils/deno_config.ts";
+import type { DenoConfig, ImportMap } from "../core/utils/deno_config.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -38,6 +42,12 @@ export interface Options {
    * @see https://esbuild.github.io/api/#general-options
    */
   options?: BuildOptions;
+
+  /**
+   * The import map to use
+   * By default, it reads the import map from the deno.json file
+   */
+  importMap?: ImportMap | false;
 }
 
 export interface EsmOptions {
@@ -71,6 +81,8 @@ export const defaults: Options = {
   },
 };
 
+let importMap: ParsedImportMap | undefined;
+
 /**
  * A plugin to use esbuild in Lume
  * @see https://lume.land/plugins/esbuild/
@@ -100,14 +112,21 @@ export function esbuild(userOptions?: Options) {
   return (site: Site) => {
     site.loadAssets(options.extensions);
 
-    function resolve(path: string) {
-      path = import.meta.resolve(path);
-      const esmSpecifier = handleEsm(path, options.esm);
-
-      return {
-        path: esmSpecifier || path,
-        namespace: "deno",
-      };
+    // Load the import map
+    if (options.importMap !== false) {
+      site.addEventListener("beforeBuild", async () => {
+        if (options.importMap) {
+          importMap = await parseFromJson(
+            toFileUrl(site.root()),
+            options.importMap,
+          );
+        } else if (denoConfig?.importMap) {
+          importMap = await parseFromJson(
+            toFileUrl(site.root(denoConfig.file)),
+            denoConfig.importMap,
+          );
+        }
+      });
     }
 
     site.hooks.addEsbuildPlugin = (plugin) => {
@@ -162,26 +181,32 @@ export function esbuild(userOptions?: Options) {
 
             // Absolute url
             if (isUrl(path)) {
-              return resolve(path);
+              return resolve(path, importer, options.esm);
             }
 
             // Resolve the relative url
             if (isUrl(importer) && path.match(/^[./]/)) {
-              return resolve(new URL(path, importer).href);
+              return resolve(
+                new URL(path, importer).href,
+                importer,
+                options.esm,
+              );
             }
 
             // It's a npm package
             if (path.startsWith("npm:")) {
-              return resolve(path);
+              return resolve(path, importer, options.esm);
             }
 
             if (!isUrl(path)) {
               return resolve(
                 isAbsolutePath(path) ? toFileUrl(path).href : path,
+                importer,
+                options.esm,
               );
             }
 
-            return resolve(path);
+            return resolve(path, importer, options.esm);
           });
 
           build.onLoad({ filter: /.*/ }, async (args: LoadArguments) => {
@@ -456,8 +481,18 @@ function resolveImport(
     return "./" + relativeOutputPathOfImport;
   }
 
-  const resolved = import.meta.resolve(importPath);
-  return handleEsm(resolved, esm) || resolved;
+  return resolve(importPath, "", esm).path;
+}
+
+function resolve(path: string, referrer: string, esm: EsmOptions) {
+  if (referrer) {
+    path = importMap?.resolve(path, referrer) || path;
+  }
+
+  return {
+    path: handleEsm(path, esm) || path,
+    namespace: "deno",
+  };
 }
 
 function handleEsm(path: string, options: EsmOptions): string | undefined {

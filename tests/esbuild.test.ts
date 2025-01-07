@@ -97,6 +97,12 @@ Deno.test(
 
     site.use(esbuild({
       extensions: [".jsx", ".tsx"],
+      importMap: {
+        imports: {
+          react: "npm:react@18.2.0",
+          "react-dom": "npm:react-dom@18.2.0/client",
+        },
+      },
     }));
 
     await build(site);

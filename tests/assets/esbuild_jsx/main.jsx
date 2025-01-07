@@ -1,5 +1,5 @@
-import React from "npm:react";
-import ReactDOM from "npm:react-dom/client";
+import React from "react";
+import ReactDOM from "react-dom";
 
 ReactDOM.createRoot(document.getElementById("app")).render(
   <React.StrictMode>
