@@ -3,7 +3,8 @@ import { getDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
-import { Graph, Thing } from "npm:schema-dts@1.1.2";
+import type { Graph, Thing } from "../deps/schema-dts.ts";
+
 export interface Options {
   /** The list extensions this plugin applies to */
   extensions?: string[];
