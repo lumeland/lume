@@ -106,6 +106,7 @@ snapshot[`json_ld plugin 1`] = `
     "/",
     "/page-1.md",
     "/page-2.vto",
+    "/page-3.page.ts",
   ],
 }
 `;
@@ -116,7 +117,7 @@ snapshot[`json_ld plugin 3`] = `
 [
   {
     content: '<!DOCTYPE html>
-<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","url":"http://localhost/","name":"Title from page data","inLanguage":"gl","publisher":{"@type":"Organization","name":"Title from page data","logo":{"@type":"ImageObject","url":"http://localhost/page-1/use-cover-as-meta-image.png"}},"image":"http://localhost/my-image.png","keywords":["one","two"]}</script>
+<html><head><script type="application/ld+json">{"@type":"WebSite","url":"http://localhost/","name":"Title from page data","inLanguage":"gl","publisher":{"@type":"Organization","name":"Title from page data","logo":{"@type":"ImageObject","url":"http://localhost/page-1/use-cover-as-meta-image.png"}},"image":"http://localhost/my-image.png","keywords":["one","two"],"@context":"https://schema.org"}</script>
 </head><body><h1>Welcome to my website</h1>
 <p>This is my first page using <strong>Lume,</strong> a static site generator for Deno.
 <a href="/test/">test link</a>
@@ -141,7 +142,6 @@ I hope you enjoy it.
         "title",
       ],
       jsonLd: [
-        "@context",
         "@type",
         "url",
         "name",
@@ -219,6 +219,44 @@ I hope you enjoy it.
       asset: false,
       ext: ".vto",
       path: "/page-2",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html><head><script type="application/ld+json">{"@type":"WebSite","url":"http://localhost/","headline":"Óscar Otero - Web designer and developer","description":"I’m just a designer and web developer","name":"Óscar Otero","author":{"@type":"Person","name":"Óscar Otero"},"@context":"https://schema.org"}</script>
+</head><body>Page content</body></html>',
+    data: {
+      basename: "page-3",
+      children: "Page content",
+      content: "default",
+      date: [],
+      jsonLd: [
+        "@type",
+        "url",
+        "headline",
+        "description",
+        "name",
+        "author",
+      ],
+      mergedKeys: [
+        "tags",
+        "jsonLd",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page-3/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.ts",
+      path: "/page-3",
       remote: undefined,
     },
   },

@@ -3,7 +3,6 @@ header:
   title: Title from page data
 cover: ./use-cover-as-meta-image.png
 jsonLd:
-  "@context": "https://schema.org"
   "@type": "WebSite"
   url: "/"
   name: "=header.title"

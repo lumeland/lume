@@ -238,8 +238,13 @@ export function jsonLd(userOptions?: Options) {
         }
         return value;
       }
-      jsonLdData = traverse(undefined, jsonLdData) as JsonldData;
+
+      jsonLdData = traverse(undefined, jsonLdData) as Graph;
+
       if (jsonLdData || Object.keys(jsonLdData ?? {}).length !== 0) {
+        if (jsonLdData["@context"] === undefined) {
+          jsonLdData["@context"] = "https://schema.org";
+        }
         const script = document.createElement("script");
         script.setAttribute("type", "application/ld+json");
         script.textContent = JSON.stringify(jsonLdData);
