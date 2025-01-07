@@ -16,10 +16,8 @@ import {
   stop,
 } from "../deps/esbuild.ts";
 import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
-import {
-  ImportMap as ParsedImportMap,
-  parseFromJson,
-} from "../deps/import_map.ts";
+import { getResolver } from "../deps/import_map.ts";
+
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/file.ts";
 import textLoader from "../core/loaders/text.ts";
@@ -81,7 +79,7 @@ export const defaults: Options = {
   },
 };
 
-let importMap: ParsedImportMap | undefined;
+let resolver: ((specifier: string, referrer?: string) => string) | undefined;
 
 /**
  * A plugin to use esbuild in Lume
@@ -110,24 +108,20 @@ export function esbuild(userOptions?: Options) {
   }
 
   return (site: Site) => {
-    site.loadAssets(options.extensions);
-
-    // Load the import map
-    if (options.importMap !== false) {
-      site.addEventListener("beforeBuild", async () => {
-        if (options.importMap) {
-          importMap = await parseFromJson(
-            toFileUrl(site.root()),
-            options.importMap,
-          );
-        } else if (denoConfig?.importMap) {
-          importMap = await parseFromJson(
-            toFileUrl(site.root(denoConfig.file)),
-            denoConfig.importMap,
-          );
-        }
-      });
+    // Get the import map resolver
+    if (options.importMap) {
+      resolver = getResolver(
+        toFileUrl(site.root()),
+        options.importMap,
+      );
+    } else if (denoConfig?.importMap) {
+      resolver = getResolver(
+        toFileUrl(site.root(denoConfig.file)),
+        denoConfig.importMap,
+      );
     }
+
+    site.loadAssets(options.extensions);
 
     site.hooks.addEsbuildPlugin = (plugin) => {
       options.options.plugins!.unshift(plugin);
@@ -485,8 +479,8 @@ function resolveImport(
 }
 
 function resolve(path: string, referrer: string, esm: EsmOptions) {
-  if (referrer) {
-    path = importMap?.resolve(path, referrer) || path;
+  if (referrer && resolver) {
+    path = resolver(path, referrer) || path;
   }
 
   return {
