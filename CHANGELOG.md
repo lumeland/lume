@@ -15,6 +15,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `code_highlight` plugin: Added `cssFile` and `placeholder` option to themes.
 - `pagefind` plugin: New `ui.globalVariable` option.
 - Hot reload inline script tag includes integrity hash.
+- `esbuild`:
+  - New `importMap` option to configure a import map instead of using deno.json.
+  - New `esm.target` option.
+  - The `esm.deps` accepts the key `*` to add dependencies to all imports.
 
 ### Changed
 - Files with extension `.d.ts` are ignored by default [#707].
@@ -31,8 +35,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - `relative_urls` plugin with no pretty urls [#711].
 - Updated deps: `sass`, `preact`, `xml`, `katex`, `jsr`, `pagefind`, `highlight.js`, `tailwindcss`, `magic-string`, `std`, `esbuild`, `liquid`, `markdown-it-attrs`, `unocss`, `vento`, `deno_dom` and some icons.
-- `esbuild`: JSR using import maps [#706].
-- `esbuild`: duplicated pages with [generated js files](https://github.com/lumeland/theme-simple-wiki/issues/20).
+- Several changes on `esbuild` plugin:
+  - JSR using import maps [#706].
+  - duplicated pages with [generated js files](https://github.com/lumeland/theme-simple-wiki/issues/20).
+  - Use a custom module resolver instead of `import.meta.resolve()` [#715].
 - `icons` plugin: Bug when using custom catalog for options
 - `transform_images`: Conversion from animated gif to static format like jpg or png.
 
@@ -661,6 +667,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#706]: https://github.com/lumeland/lume/issues/706
 [#707]: https://github.com/lumeland/lume/issues/707
 [#711]: https://github.com/lumeland/lume/issues/711
+[#715]: https://github.com/lumeland/lume/issues/715
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.4.3...HEAD
 [2.4.3]: https://github.com/lumeland/lume/compare/v2.4.2...v2.4.3

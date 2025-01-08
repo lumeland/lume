@@ -57,6 +57,9 @@ export interface EsmOptions {
 
   /** Configure the deps for each package */
   deps?: Record<string, string[] | string>;
+
+  /** Configure the target for each package */
+  target?: "es2015" | "es2022" | "esnext" | "deno" | "denonext";
 }
 
 const denoConfig = await readDenoConfig();
@@ -64,7 +67,9 @@ const denoConfig = await readDenoConfig();
 // Default options
 export const defaults: Options = {
   extensions: [".ts", ".js"],
-  esm: {},
+  esm: {
+    target: "esnext",
+  },
   options: {
     plugins: [],
     bundle: true,
@@ -515,14 +520,29 @@ function handleEsm(path: string, options: EsmOptions): string | undefined {
     );
   }
 
-  // deps
-  const deps = options.deps?.[name];
+  // Target
+  if (options.target) {
+    url.searchParams.set("target", options.target);
+  }
 
-  if (deps) {
-    url.searchParams.set(
-      "deps",
-      Array.isArray(deps) ? deps.join(",") : deps,
-    );
+  // Deps
+  for (const key of [name, "*"]) {
+    const deps = options.deps?.[key];
+
+    if (deps) {
+      const current = url.searchParams.get("deps") || "";
+      const value = new Set(current.split(","));
+      if (Array.isArray(deps)) {
+        deps.forEach((v) => value.add(v));
+      } else {
+        value.add(deps);
+      }
+
+      url.searchParams.set(
+        "deps",
+        [...value].filter((v) => v).join(","),
+      );
+    }
   }
 
   return url.href;
