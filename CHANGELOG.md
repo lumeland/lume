@@ -34,7 +34,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - `relative_urls` plugin with no pretty urls [#711].
-- Updated deps: `sass`, `preact`, `xml`, `katex`, `jsr`, `pagefind`, `highlight.js`, `tailwindcss`, `magic-string`, `std`, `esbuild`, `liquid`, `markdown-it-attrs`, `unocss`, `vento`, `deno_dom` and some icons.
+- Updated deps: `sass`, `preact`, `xml`, `katex`, `jsr`, `pagefind`, `highlight.js`, `tailwindcss`, `magic-string`, `std`, `esbuild`, `liquid`, `markdown-it-attrs`, `unocss`, `vento`, `deno_dom`, `unocss`, `satori` and some icons.
 - Several changes on `esbuild` plugin:
   - JSR using import maps [#706].
   - duplicated pages with [generated js files](https://github.com/lumeland/theme-simple-wiki/issues/20).

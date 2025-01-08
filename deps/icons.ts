@@ -122,7 +122,7 @@ export const catalogs: Catalog[] = [
     // https://tabler.io/icons
     id: "tabler",
     src:
-      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.26.0/icons/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.28.1/icons/{variant}/{name}.svg",
     variants: ["filled", "outline"],
   },
   {
