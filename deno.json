@@ -22,11 +22,11 @@
     },
     "update": {
       "description": "Run the nudd utility to update dependencies. I.e. `deno task update deps/dom.ts`",
-      "command": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.8/cli.ts' update"
+      "command": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.9/cli.ts' update"
     },
     "update-deps": {
       "description": "Update all dependencies to the latest version. Add `--dry-run` to don't write the changes",
-      "command": "deno task update 'deps/*.ts' deno.json"
+      "command": "deno task update 'deps/*.ts' deno.json && git checkout deps/react.ts"
     }
   },
   "imports": {
