@@ -1,6 +1,6 @@
 import { merge } from "../core/utils/object.ts";
 import { getCurrentVersion } from "../core/utils/lume_version.ts";
-import { getDataValue } from "../core/utils/data_values.ts";
+import { getDataValue, getPlainDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
 import type { Data, Page } from "../core/file.ts";
@@ -96,12 +96,12 @@ export function metas(userOptions?: Options) {
         : undefined;
 
       const type = getDataValue(data, main["type"]);
-      const site_name = getDataValue(data, main["site"]);
+      const site_name = getPlainDataValue(data, main["site"]);
       const lang = getDataValue(data, main["lang"]);
-      const title = getDataValue(data, main["title"]);
-      const description = getDataValue(data, main["description"]);
-      const twitter = getDataValue(data, main["twitter"]);
-      const fediverse = getDataValue(data, main["fediverse"]);
+      const title = getPlainDataValue(data, main["title"]);
+      const description = getPlainDataValue(data, main["description"]);
+      const twitter = getPlainDataValue(data, main["twitter"]);
+      const fediverse = getPlainDataValue(data, main["fediverse"]);
       const keywords = getDataValue(data, main["keywords"]);
       const robots = getDataValue(data, main["robots"]);
       const color = getDataValue(data, main["color"]);
@@ -181,10 +181,6 @@ function addMeta(
   if (!content) {
     return;
   }
-  content = content
-    .replaceAll(/<[^>]*>/g, "")
-    .replaceAll(/\s+/g, " ")
-    .trim();
 
   if (limit && content.length > limit) {
     content = content.substring(0, limit - 1).trimEnd() + "…";

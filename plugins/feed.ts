@@ -1,7 +1,7 @@
 import { getExtension } from "../core/utils/path.ts";
 import { isPlainObject, merge } from "../core/utils/object.ts";
 import { getCurrentVersion } from "../core/utils/lume_version.ts";
-import { getDataValue } from "../core/utils/data_values.ts";
+import { getDataValue, getPlainDataValue } from "../core/utils/data_values.ts";
 import { cdata, stringify } from "../deps/xml.ts";
 import { Page } from "../core/file.ts";
 import { parseDate } from "../core/utils/date.ts";
@@ -170,8 +170,8 @@ export function feed(userOptions?: Options) {
       const rootData = site.source.data.get("/") || {};
 
       const feed: FeedData = {
-        title: getDataValue(rootData, info.title),
-        description: getDataValue(rootData, info.description),
+        title: getPlainDataValue(rootData, info.title),
+        description: getPlainDataValue(rootData, info.description),
         published: getDataValue(rootData, info.published),
         lang: getDataValue(rootData, info.lang),
         url: site.url("", true),
@@ -189,9 +189,9 @@ export function feed(userOptions?: Options) {
             : undefined;
 
           return {
-            title: getDataValue(data, items.title),
+            title: getPlainDataValue(data, items.title),
             url: site.url(data.url, true),
-            description: getDataValue(data, items.description),
+            description: getPlainDataValue(data, items.description),
             author: getAuthor(data, items),
             published: toDate(getDataValue(data, items.published)) ||
               new Date(),
@@ -234,7 +234,7 @@ function getAuthor(
   data: Partial<Data>,
   info: FeedInfoOptions | FeedItemOptions,
 ): Author | undefined {
-  const name = getDataValue(data, info.authorName);
+  const name = getPlainDataValue(data, info.authorName);
   const url = getDataValue(data, info.authorUrl);
 
   if (name || url) {

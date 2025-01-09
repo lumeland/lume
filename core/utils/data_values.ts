@@ -1,3 +1,5 @@
+import { plainText } from "../../deps/remove-markdown.ts";
+
 import type { Data } from "../file.ts";
 
 /**
@@ -16,6 +18,16 @@ export function getDataValue(data: Partial<Data>, value?: unknown) {
   }
 
   return value;
+}
+
+export function getPlainDataValue(data: Partial<Data>, value?: unknown) {
+  const val = getDataValue(data, value);
+
+  if (typeof val === "string") {
+    return plainText(val);
+  }
+
+  return val;
 }
 
 function searchValue(data: Partial<Data>, value: string): unknown {

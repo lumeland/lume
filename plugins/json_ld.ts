@@ -1,5 +1,5 @@
 import { isPlainObject, merge } from "../core/utils/object.ts";
-import { getDataValue } from "../core/utils/data_values.ts";
+import { getPlainDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
@@ -205,7 +205,7 @@ export function jsonLd(userOptions?: Options) {
       // Recursive function to traverse and process JSON-LD data
       function traverse(key: string | undefined, value: unknown): unknown {
         if (typeof value === "string") {
-          const dataValue = getDataValue(data, value);
+          const dataValue = getPlainDataValue(data, value);
           // Check if the value is a URL or ID that needs to be processed
           if (
             key &&
