@@ -10,11 +10,11 @@
   "tasks": {
     "test": {
       "description": "Run all Lume tests. You can run only one test with `deno task test tests/<filename>`",
-      "command": "TZ=Z LUME_LOGS=ERROR DENO_FUTURE=1 deno test -A"
+      "command": "TZ=Z LUME_LOGS=ERROR LUME_NOCACHE=true deno test -A"
     },
     "test:update": {
       "description": "Update all tests snapshots",
-      "command": "deno task test -- --update"
+      "command": "TZ=Z LUME_NOCACHE=true deno task test -- --update"
     },
     "changelog": {
       "description": "Run the changelog utility to format the CHANGELOG.md file",
