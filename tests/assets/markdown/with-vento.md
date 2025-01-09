@@ -13,4 +13,4 @@ Foo
 
 {{ for title, no of myData }}
 - {{ title }}: [{{ no }}](/items/{{ no }}.html)
-{{- /for }}
+{{ /for }}

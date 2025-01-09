@@ -495,24 +495,15 @@ snapshot[`multilanguage plugin 3`] = `
 <link rel="alternate" hreflang="gl" href="http://localhost/page-1/">
 <link rel="alternate" hreflang="x-default" href="http://localhost/en/page-1/">
 </head><body><nav>
-
   <a href="/en/page-1/" hreflang="en" class="alternate"></a>
-
   <a href="/page-1/" hreflang="gl" class="alternate"></a>
-
   <a href="/en/page-1/" hreflang="x-default" class="alternate">Unmatched Language Page</a>
 </nav>
-
   <li>Ola mundo</li>
-
   <li>Language Selector Page</li>
-
   <li>page-gl</li>
-
   <li>article 1</li>
-
   <li>post 1</li>
-
 </body></html>',
     data: {
       alternates: "Array(2)",
@@ -562,22 +553,14 @@ snapshot[`multilanguage plugin 3`] = `
 <link rel="alternate" hreflang="gl" href="http://localhost/page-1/">
 <link rel="alternate" hreflang="x-default" href="http://localhost/en/page-1/">
 </head><body><nav>
-
   <a href="/en/page-1/" hreflang="en" class="alternate"></a>
-
   <a href="/page-1/" hreflang="gl" class="alternate"></a>
-
   <a href="/en/page-1/" hreflang="x-default" class="alternate">Unmatched Language Page</a>
 </nav>
-
   <li>Hello world</li>
-
   <li>Other</li>
-
   <li>page-en</li>
-
   <li>post 1</li>
-
 </body></html>',
     data: {
       alternates: "Array(2)",

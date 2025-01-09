@@ -1,4 +1,5 @@
 export { default as engine } from "https://deno.land/x/vento@v1.12.14/mod.ts";
+export { default as autotrim } from "https://deno.land/x/vento@v1.12.14/plugins/auto_trim.ts";
 
 export type {
   Environment,

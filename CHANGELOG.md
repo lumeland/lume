@@ -21,6 +21,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - The `esm.deps` accepts the key `*` to add dependencies to all imports.
 
 ### Changed
+- `autotrim` plugin enabled by default for Vento.
 - Files with extension `.d.ts` are ignored by default [#707].
 - `lighningcss`: Upload default browser versions:
   - Chromium browsers: 100 (from 98)

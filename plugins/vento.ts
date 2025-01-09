@@ -1,4 +1,4 @@
-import { engine } from "../deps/vento.ts";
+import { autotrim, engine } from "../deps/vento.ts";
 import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils/object.ts";
@@ -29,6 +29,11 @@ export interface Options {
   plugins?: Plugin[];
 
   /**
+   * Whether or not to auto-trim the templates
+   */
+  autoTrim?: boolean;
+
+  /**
    * The options for the Vento engine
    * @see https://vento.js.org/configuration/
    */
@@ -47,6 +52,7 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".vento", ".vto"],
+  autoTrim: true,
   options: {
     dataVarname: "it",
     useWith: true,
@@ -150,6 +156,11 @@ export function vento(userOptions?: Options) {
     });
 
     vento.tags.push(compTag);
+
+    if (options.autoTrim) {
+      vento.use(autotrim());
+    }
+
     options.plugins?.forEach((plugin) => vento.use(plugin));
 
     site.hooks.addVentoPlugin = (plugin: Plugin) => {

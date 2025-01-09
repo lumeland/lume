@@ -134,99 +134,45 @@ snapshot[`nav plugin 3`] = `
   <body>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        
         <li><a href="/">Home</a></li>
-        
         <li><a href="">防災</a></li>
-        
         <li><a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a></li>
-        
       </ul>
     </nav>
 
     <h1>Docs</h1>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/">About pages (0)</a>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second/">Pages second (0)</a>
-
-  </li>
-  <li>
-    
-<a href="/docs/pages/first/">Pages first (1)</a>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    
-<a href="/docs/about-docs/">About docs (1)</a>
-
-  </li>
-</ul>
-
-        </li>
-        <li>
-          
-<strong>防災</strong>
-<ul>
-  <li>
-    
-<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first/">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
     </nav>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/about-docs/">About docs (1)</a>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
 
-  </li>
-  <li>
-    
-<strong>pages</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second/">Pages second (0)</a>
 
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
-
-      
-      
-
-      
-      
         <a href="/docs/pages/">Previous page</a>
-      
     </nav>
   </body>
 </html>
@@ -269,99 +215,45 @@ snapshot[`nav plugin 3`] = `
   <body>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        
         <li><a href="/">Home</a></li>
-        
         <li><a href="">docs</a></li>
-        
         <li><a href="/docs/about-docs/">About docs (1)</a></li>
-        
       </ul>
     </nav>
 
     <h1>About docs (1)</h1>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/">About pages (0)</a>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second/">Pages second (0)</a>
-
-  </li>
-  <li>
-    
-<a href="/docs/pages/first/">Pages first (1)</a>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    
-<a href="/docs/about-docs/">About docs (1)</a>
-
-  </li>
-</ul>
-
-        </li>
-        <li>
-          
-<strong>防災</strong>
-<ul>
-  <li>
-    
-<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first/">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
     </nav>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/about-docs/">About docs (1)</a>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
 
-  </li>
-  <li>
-    
-<strong>pages</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second/">Pages second (0)</a>
 
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
-
-      
-      
-
-      
         <a href="/docs/pages/">Next page</a>
-      
-      
     </nav>
   </body>
 </html>
@@ -406,101 +298,46 @@ snapshot[`nav plugin 3`] = `
   <body>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        
         <li><a href="/">Home</a></li>
-        
         <li><a href="">docs</a></li>
-        
         <li><a href="/docs/pages/">About pages (0)</a></li>
-        
       </ul>
     </nav>
 
     <h1>About pages (0)</h1>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/">About pages (0)</a>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second/">Pages second (0)</a>
-
-  </li>
-  <li>
-    
-<a href="/docs/pages/first/">Pages first (1)</a>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    
-<a href="/docs/about-docs/">About docs (1)</a>
-
-  </li>
-</ul>
-
-        </li>
-        <li>
-          
-<strong>防災</strong>
-<ul>
-  <li>
-    
-<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first/">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
     </nav>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/about-docs/">About docs (1)</a>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
 
-  </li>
-  <li>
-    
-<strong>pages</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second/">Pages second (0)</a>
 
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
-
-      
-      
-
-      
         <a href="/docs/pages/first/">Next page</a>
-      
-      
         <a href="/docs/about-docs/">Previous page</a>
-      
     </nav>
   </body>
 </html>
@@ -544,103 +381,47 @@ snapshot[`nav plugin 3`] = `
   <body>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        
         <li><a href="/">Home</a></li>
-        
         <li><a href="">docs</a></li>
-        
         <li><a href="/docs/pages/">About pages (0)</a></li>
-        
         <li><a href="/docs/pages/first/">Pages first (1)</a></li>
-        
       </ul>
     </nav>
 
     <h1>Pages first (1)</h1>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/">About pages (0)</a>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second/">Pages second (0)</a>
-
-  </li>
-  <li>
-    
-<a href="/docs/pages/first/">Pages first (1)</a>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    
-<a href="/docs/about-docs/">About docs (1)</a>
-
-  </li>
-</ul>
-
-        </li>
-        <li>
-          
-<strong>防災</strong>
-<ul>
-  <li>
-    
-<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first/">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
     </nav>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/about-docs/">About docs (1)</a>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
 
-  </li>
-  <li>
-    
-<strong>pages</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second/">Pages second (0)</a>
 
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
-
-      
-      
-
-      
         <a href="/docs/pages/second/">Next page</a>
-      
-      
         <a href="/docs/about-docs/">Previous page</a>
-      
     </nav>
   </body>
 </html>
@@ -684,103 +465,47 @@ snapshot[`nav plugin 3`] = `
   <body>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        
         <li><a href="/">Home</a></li>
-        
         <li><a href="">docs</a></li>
-        
         <li><a href="/docs/pages/">About pages (0)</a></li>
-        
         <li><a href="/docs/pages/second/">Pages second (0)</a></li>
-        
       </ul>
     </nav>
 
     <h1>Pages second (0)</h1>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/">About pages (0)</a>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second/">Pages second (0)</a>
-
-  </li>
-  <li>
-    
-<a href="/docs/pages/first/">Pages first (1)</a>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    
-<a href="/docs/about-docs/">About docs (1)</a>
-
-  </li>
-</ul>
-
-        </li>
-        <li>
-          
-<strong>防災</strong>
-<ul>
-  <li>
-    
-<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first/">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
     </nav>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/about-docs/">About docs (1)</a>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
 
-  </li>
-  <li>
-    
-<strong>pages</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second/">Pages second (0)</a>
 
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
-
-      
-      
-
-      
         <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Next page</a>
-      
-      
         <a href="/docs/pages/first/">Previous page</a>
-      
     </nav>
   </body>
 </html>
@@ -825,95 +550,43 @@ snapshot[`nav plugin 3`] = `
   <body>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        
         <li><a href="/">Home</a></li>
-        
       </ul>
     </nav>
 
     <h1>Home</h1>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/">About pages (0)</a>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second/">Pages second (0)</a>
-
-  </li>
-  <li>
-    
-<a href="/docs/pages/first/">Pages first (1)</a>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    
-<a href="/docs/about-docs/">About docs (1)</a>
-
-  </li>
-</ul>
-
-        </li>
-        <li>
-          
-<strong>防災</strong>
-<ul>
-  <li>
-    
-<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first/">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
     </nav>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/about-docs/">About docs (1)</a>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
 
-  </li>
-  <li>
-    
-<strong>pages</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second/">Pages second (0)</a>
 
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
-
-      
-      
-
-      
         <a href="/docs/about-docs/">Next page</a>
-      
-      
     </nav>
   </body>
 </html>
@@ -1083,99 +756,45 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   <body>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        
         <li><a href="/index.html">Home</a></li>
-        
         <li><a href="">防災</a></li>
-        
         <li><a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a></li>
-        
       </ul>
     </nav>
 
     <h1>Docs</h1>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages.html">About pages (0)</a>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second.html">Pages second (0)</a>
-
-  </li>
-  <li>
-    
-<a href="/docs/pages/first.html">Pages first (1)</a>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    
-<a href="/docs/about-docs.html">About docs (1)</a>
-
-  </li>
-</ul>
-
-        </li>
-        <li>
-          
-<strong>防災</strong>
-<ul>
-  <li>
-    
-<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages.html">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second.html">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first.html">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs.html">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
     </nav>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/about-docs.html">About docs (1)</a>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs.html">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second.html">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
 
-  </li>
-  <li>
-    
-<strong>pages</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second.html">Pages second (0)</a>
 
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
-
-      
-      
-
-      
-      
         <a href="/docs/pages.html">Previous page</a>
-      
     </nav>
   </body>
 </html>
@@ -1218,99 +837,45 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   <body>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        
         <li><a href="/index.html">Home</a></li>
-        
         <li><a href="">docs</a></li>
-        
         <li><a href="/docs/about-docs.html">About docs (1)</a></li>
-        
       </ul>
     </nav>
 
     <h1>About docs (1)</h1>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages.html">About pages (0)</a>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second.html">Pages second (0)</a>
-
-  </li>
-  <li>
-    
-<a href="/docs/pages/first.html">Pages first (1)</a>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    
-<a href="/docs/about-docs.html">About docs (1)</a>
-
-  </li>
-</ul>
-
-        </li>
-        <li>
-          
-<strong>防災</strong>
-<ul>
-  <li>
-    
-<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages.html">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second.html">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first.html">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs.html">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
     </nav>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/about-docs.html">About docs (1)</a>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs.html">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second.html">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
 
-  </li>
-  <li>
-    
-<strong>pages</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second.html">Pages second (0)</a>
 
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
-
-      
-      
-
-      
         <a href="/docs/pages.html">Next page</a>
-      
-      
     </nav>
   </body>
 </html>
@@ -1355,101 +920,46 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   <body>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        
         <li><a href="/index.html">Home</a></li>
-        
         <li><a href="">docs</a></li>
-        
         <li><a href="/docs/pages.html">About pages (0)</a></li>
-        
       </ul>
     </nav>
 
     <h1>About pages (0)</h1>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages.html">About pages (0)</a>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second.html">Pages second (0)</a>
-
-  </li>
-  <li>
-    
-<a href="/docs/pages/first.html">Pages first (1)</a>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    
-<a href="/docs/about-docs.html">About docs (1)</a>
-
-  </li>
-</ul>
-
-        </li>
-        <li>
-          
-<strong>防災</strong>
-<ul>
-  <li>
-    
-<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages.html">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second.html">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first.html">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs.html">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
     </nav>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/about-docs.html">About docs (1)</a>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs.html">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second.html">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
 
-  </li>
-  <li>
-    
-<strong>pages</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second.html">Pages second (0)</a>
 
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
-
-      
-      
-
-      
         <a href="/docs/pages/first.html">Next page</a>
-      
-      
         <a href="/docs/about-docs.html">Previous page</a>
-      
     </nav>
   </body>
 </html>
@@ -1493,103 +1003,47 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   <body>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        
         <li><a href="/index.html">Home</a></li>
-        
         <li><a href="">docs</a></li>
-        
         <li><a href="/docs/pages.html">About pages (0)</a></li>
-        
         <li><a href="/docs/pages/first.html">Pages first (1)</a></li>
-        
       </ul>
     </nav>
 
     <h1>Pages first (1)</h1>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages.html">About pages (0)</a>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second.html">Pages second (0)</a>
-
-  </li>
-  <li>
-    
-<a href="/docs/pages/first.html">Pages first (1)</a>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    
-<a href="/docs/about-docs.html">About docs (1)</a>
-
-  </li>
-</ul>
-
-        </li>
-        <li>
-          
-<strong>防災</strong>
-<ul>
-  <li>
-    
-<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages.html">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second.html">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first.html">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs.html">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
     </nav>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/about-docs.html">About docs (1)</a>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs.html">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second.html">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
 
-  </li>
-  <li>
-    
-<strong>pages</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second.html">Pages second (0)</a>
 
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
-
-      
-      
-
-      
         <a href="/docs/pages/second.html">Next page</a>
-      
-      
         <a href="/docs/about-docs.html">Previous page</a>
-      
     </nav>
   </body>
 </html>
@@ -1633,103 +1087,47 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   <body>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        
         <li><a href="/index.html">Home</a></li>
-        
         <li><a href="">docs</a></li>
-        
         <li><a href="/docs/pages.html">About pages (0)</a></li>
-        
         <li><a href="/docs/pages/second.html">Pages second (0)</a></li>
-        
       </ul>
     </nav>
 
     <h1>Pages second (0)</h1>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages.html">About pages (0)</a>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second.html">Pages second (0)</a>
-
-  </li>
-  <li>
-    
-<a href="/docs/pages/first.html">Pages first (1)</a>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    
-<a href="/docs/about-docs.html">About docs (1)</a>
-
-  </li>
-</ul>
-
-        </li>
-        <li>
-          
-<strong>防災</strong>
-<ul>
-  <li>
-    
-<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages.html">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second.html">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first.html">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs.html">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
     </nav>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/about-docs.html">About docs (1)</a>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs.html">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second.html">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
 
-  </li>
-  <li>
-    
-<strong>pages</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second.html">Pages second (0)</a>
 
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
-
-      
-      
-
-      
         <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Next page</a>
-      
-      
         <a href="/docs/pages/first.html">Previous page</a>
-      
     </nav>
   </body>
 </html>
@@ -1774,91 +1172,41 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   <body>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        
       </ul>
     </nav>
 
     <h1>Home</h1>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages.html">About pages (0)</a>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second.html">Pages second (0)</a>
-
-  </li>
-  <li>
-    
-<a href="/docs/pages/first.html">Pages first (1)</a>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    
-<a href="/docs/about-docs.html">About docs (1)</a>
-
-  </li>
-</ul>
-
-        </li>
-        <li>
-          
-<strong>防災</strong>
-<ul>
-  <li>
-    
-<a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages.html">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second.html">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first.html">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs.html">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
     </nav>
 
     <nav>
-      <ul>
-        <li>
-          
-<strong>docs</strong>
-<ul>
-  <li>
-    
-<a href="/docs/about-docs.html">About docs (1)</a>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs.html">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second.html">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
 
-  </li>
-  <li>
-    
-<strong>pages</strong>
-<ul>
-  <li>
-    
-<a href="/docs/pages/second.html">Pages second (0)</a>
 
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-        </li>
-      </ul>
-
-      
-      
-
-      
-      
     </nav>
   </body>
 </html>

@@ -138,7 +138,6 @@ snapshot[`relations plugin 3`] = `
 
 <h2>Posts</h2>
 <ul>
-
 </ul>
 ",
     data: {
@@ -182,7 +181,6 @@ snapshot[`relations plugin 3`] = `
 
 <h2>Posts</h2>
 <ul>
-
 </ul>
 ",
     data: {
@@ -324,14 +322,11 @@ snapshot[`relations plugin 3`] = `
 <div><p>First post with category 2 and comments 1 and 3</p>
 </div>
 
-
 <h2>Category:</h2>
 <a href="/categories/category-2/">Category 2</a>
 <p>This is the second category</p>
 
-
 <ul>
-
 </ul>
 ',
     data: {
@@ -389,14 +384,11 @@ snapshot[`relations plugin 3`] = `
 <div><p>Second post with category 1 and comment 2</p>
 </div>
 
-
 <h2>Category:</h2>
 <a href="/categories/category-1/">Category 1</a>
 <p>This is the first category</p>
 
-
 <ul>
-
 </ul>
 ',
     data: {
