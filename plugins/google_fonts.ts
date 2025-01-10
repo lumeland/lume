@@ -76,6 +76,7 @@ interface FontFace {
   family: string;
   style: string;
   weight: string;
+  stretch?: string;
   src: string;
   file: string;
   range: string;
@@ -90,6 +91,7 @@ function extractFontFaces(css: string, name: string): FontFace[] {
     let family = fontFace.match(/font-family: '([^']+)'/)?.[1];
     const style = fontFace.match(/font-style: ([^;]+);/)?.[1];
     const weight = fontFace.match(/font-weight: ([^;]+);/)?.[1];
+    const stretch = fontFace.match(/font-stretch: ([^;]+);/)?.[1];
     const src = fontFace.match(/src: url\('?([^']+)'?\)/)?.[1];
     const range = fontFace.match(/unicode-range: ([^;]+);/)?.[1];
 
@@ -101,16 +103,14 @@ function extractFontFaces(css: string, name: string): FontFace[] {
       family = name;
     }
 
-    const file = `${family}-${style}-${weight}-${subset}.woff2`.replaceAll(
-      " ",
-      "_",
-    ).toLowerCase();
+    const file = getFontName([family, stretch, style, weight, subset]);
 
     return {
       subset,
       family,
       style,
       weight,
+      stretch,
       src,
       range,
       file,
@@ -122,10 +122,11 @@ function generateCss(fontFaces: FontFace[], fontsFolder: string): string {
   return fontFaces.map((fontFace) => {
     return `/* ${fontFace.subset} */
 @font-face {
-  font-family: '${fontFace.family}';
+  font-family: "${fontFace.family}";
   font-style: ${fontFace.style};
   font-weight: ${fontFace.weight};
-  src: url('${posix.join(fontsFolder, fontFace.file)}') format('woff2');
+  font-stretch: ${fontFace.stretch ?? "normal"};
+  src: url("${posix.join(fontsFolder, fontFace.file)}") format("woff2");
   unicode-range: ${fontFace.range};
 }
 `;
@@ -155,4 +156,12 @@ function getCssUrl(fonts: string): string {
   }
 
   throw new Error(`Invalid Google Fonts URL: ${fonts}`);
+}
+
+function getFontName(parts: (string | undefined)[]): string {
+  const name = parts
+    .filter((part) => part !== undefined)
+    .map((part) => part.replace(" ", "-").replaceAll(/[^\w-]/g, ""))
+    .join("-");
+  return name.replaceAll(" ", "_").toLowerCase() + ".woff2";
 }

@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin: `purgecss` to remove unused CSS. [#693]
 - New middleware `router`.
 - `google_fonts`: Added `subset` option to filter character ranges. [#692]
+- `google_fonts`: Added support for `font-stretch`.
 - `prism` plugin: Added `cssFile` and `placeholder` option to themes.
 - `code_highlight` plugin: Added `cssFile` and `placeholder` option to themes.
 - `pagefind` plugin: New `ui.globalVariable` option.
