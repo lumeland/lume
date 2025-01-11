@@ -1,0 +1,209 @@
+export const snapshot = {};
+
+snapshot[`Plain text filter 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+  ],
+  src: [
+    "/",
+    "/index.vto",
+  ],
+}
+`;
+
+snapshot[`Plain text filter 2`] = `[]`;
+
+snapshot[`Plain text filter 3`] = `
+[
+  {
+    content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello world</title>
+  <meta name="description" content="This is a description in multiple lines With list elements and links">
+</head>
+<body>
+  <h1>Hello <strong>world</strong></h1>
+
+  <p>This is a   description<br>
+in multiple lines</p>
+<ul>
+<li>With</li>
+<li>list</li>
+<li>elements</li>
+<li><a href="#url">and     links</a></li>
+</ul>
+</body>
+</html>
+',
+    data: {
+      basename: "index",
+      children: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello world</title>
+  <meta name="description" content="This is a description in multiple lines With list elements and links">
+</head>
+<body>
+  <h1>Hello <strong>world</strong></h1>
+
+  <p>This is a   description<br>
+in multiple lines</p>
+<ul>
+<li>With</li>
+<li>list</li>
+<li>elements</li>
+<li><a href="#url">and     links</a></li>
+</ul>
+</body>
+</html>
+',
+      content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title |> plaintext }}</title>
+  <meta name="description" content="{{ description |> plaintext }}">
+</head>
+<body>
+  <h1>{{ title |> md(true) }}</h1>
+
+  {{ description |> md }}
+</body>
+</html>
+',
+      date: [],
+      description: "This is a   description<br>
+in multiple lines
+
+- With
+- list
+- elements
+- [and     links](#url)
+",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Hello **world**",
+      url: "/",
+    },
+    src: {
+      asset: false,
+      ext: ".vto",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+]
+`;

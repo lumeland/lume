@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - New plugin: `json_ld` for generating JSON-LD tags in the output [#453]
 - New plugin: `purgecss` to remove unused CSS. [#693]
+- New plugin: `plaintext` to remove Markdown and HTML syntax.
 - New middleware `router`.
 - `google_fonts`: Added `subset` option to filter character ranges. [#692]
 - `google_fonts`: Added support for `font-stretch`.

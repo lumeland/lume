@@ -40,6 +40,7 @@ Deno.test("Plugins list in init", () => {
     "on_demand",
     "pagefind",
     "picture",
+    "plaintext",
     "plugins",
     "postcss",
     "prism",
