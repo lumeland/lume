@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [Unreleased]
+## [2.5.0] - 2025-01-11
 ### Added
 - New plugin: `json_ld` for generating JSON-LD tags in the output [#453]
 - New plugin: `purgecss` to remove unused CSS. [#693]
@@ -673,7 +673,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#711]: https://github.com/lumeland/lume/issues/711
 [#715]: https://github.com/lumeland/lume/issues/715
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v2.4.3...HEAD
+[2.5.0]: https://github.com/lumeland/lume/compare/v2.4.3...v2.5.0
 [2.4.3]: https://github.com/lumeland/lume/compare/v2.4.2...v2.4.3
 [2.4.2]: https://github.com/lumeland/lume/compare/v2.4.1...v2.4.2
 [2.4.1]: https://github.com/lumeland/lume/compare/v2.4.0...v2.4.1
