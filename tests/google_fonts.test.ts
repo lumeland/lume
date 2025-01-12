@@ -42,12 +42,14 @@ Deno.test("Use a placeholder", async (t) => {
   site.use(googleFonts({
     cssFile: "/styles.css",
     placeholder: "/* google-fonts */",
-    subsets: ["latin"],
+    subsets: ["latin", "[2]"],
     fonts: {
       "ui-font":
         "https://fonts.google.com/share?selection.family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900",
       "display-font":
         "https://fonts.google.com/share?selection.family=Londrina+Sketch",
+      "jp-font":
+        "https://fonts.google.com/share?selection.family=Zen+Maru+Gothic:wght@700&display=swap",
     },
   }));
 
