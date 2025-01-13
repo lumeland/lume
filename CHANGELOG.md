@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.5.1] - Unreleased
 ### Fixed
 - `google_fonts`: Fixed subset names for `[1]`, `[2]`, etc [#692].
+- Updated dependencies: `katex`, `preact-render-to-string`, `unocss`, `vento` and some icons.
 
 ## [2.5.0] - 2025-01-11
 ### Added
