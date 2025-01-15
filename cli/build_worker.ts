@@ -1,5 +1,5 @@
 import { log } from "../core/utils/log.ts";
-import { localIp } from "../core/utils/net.ts";
+import { localIp, openBrowser } from "../core/utils/net.ts";
 import { setEnv } from "../core/utils/env.ts";
 import Server from "../core/server.ts";
 import { normalizePath } from "../core/utils/path.ts";
@@ -74,39 +74,23 @@ async function build({ type, config, serve }: BuildOptions) {
   }
 
   // Start the local server
-  const { port, open, page404, middlewares } = site.options.server;
+  const { port, hostname, open, page404, middlewares } = site.options.server;
   const root = site.options.server.root || site.dest();
-  const server = new Server({ root, port });
+  const server = new Server({ root, port, hostname });
 
   server.addEventListener("start", () => {
     if (type === "build") {
       const ipAddr = localIp();
 
       log.info("  Server started at:");
-      log.info(`  <green>http://localhost:${port}/</green> (local)`);
+      log.info(`  <green>http://${hostname}:${port}/</green> (local)`);
 
       if (ipAddr) {
         log.info(`  <green>http://${ipAddr}:${port}/</green> (network)`);
       }
 
       if (open) {
-        const commands: Record<typeof Deno.build.os, string> = {
-          darwin: "open",
-          linux: "xdg-open",
-          freebsd: "xdg-open",
-          netbsd: "xdg-open",
-          aix: "xdg-open",
-          solaris: "xdg-open",
-          illumos: "xdg-open",
-          windows: "explorer",
-          android: "xdg-open",
-        };
-
-        new Deno.Command(commands[Deno.build.os], {
-          args: [`http://localhost:${port}/`],
-          stdout: "inherit",
-          stderr: "inherit",
-        }).output();
+        openBrowser(`http://${hostname}:${port}/`);
       }
     }
 

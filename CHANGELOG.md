@@ -8,6 +8,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [2.5.1] - Unreleased
 ### Added
 - Support for LumeCMS v0.9, that can perform git operations and restart the build.
+- New `--hostname` argument to `lume --serve` and `lume cms` to change the default
+  `localhost` value to something else.
+- New `--open, -o` argument to `lume cms` to open automatically in the browser.
 
 ### Fixed
 - `google_fonts`: Fixed subset names for `[1]`, `[2]`, etc [#692].

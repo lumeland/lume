@@ -94,6 +94,15 @@ const cms = new Command()
     "The port where the server runs.",
     { default: 3000 },
   )
+  .option(
+    "--hostname <hostname>",
+    "The hostname where the server runs.",
+    { default: "localhost" },
+  )
+  .option(
+    "-o, --open",
+    "Open the CMS in a browser.",
+  )
   .action(async ({ config }) => {
     const { runCms } = await import("./cli/cms.ts");
     runCms(config);
@@ -137,6 +146,11 @@ const lume = new Command()
     "-p, --port <port:number>",
     "The port where the server runs.",
     { default: 3000 },
+  )
+  .option(
+    "--hostname <hostname>",
+    "The hostname where the server runs.",
+    { default: "localhost" },
   )
   .option(
     "-o, --open",

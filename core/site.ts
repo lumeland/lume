@@ -51,6 +51,7 @@ const defaults: SiteOptions = {
   prettyUrls: true,
   server: {
     port: 3000,
+    hostname: "localhost",
     open: false,
     page404: "/404.html",
     middlewares: [],
@@ -947,6 +948,9 @@ export interface ServerOptions {
 
   /** The port to listen on */
   port: number;
+
+  /** The hostname to listen on */
+  hostname: string;
 
   /** To open the server in a browser */
   open: boolean;

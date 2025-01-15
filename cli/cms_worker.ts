@@ -1,5 +1,5 @@
 import { log } from "../core/utils/log.ts";
-import { localIp } from "../core/utils/net.ts";
+import { localIp, openBrowser } from "../core/utils/net.ts";
 import { toFileUrl } from "../deps/path.ts";
 import { getConfigFile } from "../core/utils/lume_config.ts";
 import { normalizePath } from "../core/utils/path.ts";
@@ -50,7 +50,7 @@ async function build({ type, config }: CMSOptions) {
   const { default: adapter } = await import("lume/cms/adapters/lume.ts");
   const cms = mod.default;
   const app = await adapter({ site, cms });
-  const { port } = site.options.server;
+  const { port, hostname, open } = site.options.server;
   const { basePath } = cms.options;
 
   const _cms = normalizePath(cmsConfig, site.root());
@@ -72,13 +72,14 @@ async function build({ type, config }: CMSOptions) {
 
   Deno.serve({
     port,
+    hostname,
     async handler(request) {
       const response = await app.fetch(request);
       // Reload if the response header tells us to
       if (response.headers.get("X-Lume-CMS") === "reload") {
         log.info("Reloading the site...");
         postMessage({ type: "reload" });
-        return getWaitResponse(`http://localhost:${port}${basePath}`);
+        return getWaitResponse(`http://${hostname}:${port}${basePath}`);
       }
       return response;
     },
@@ -88,13 +89,17 @@ async function build({ type, config }: CMSOptions) {
 
         log.info("  CMS server started at:");
         log.info(
-          `  <green>http://localhost:${port}${basePath}</green> (local)`,
+          `  <green>http://${hostname}:${port}${basePath}</green> (local)`,
         );
 
         if (ipAddr) {
           log.info(
             `  <green>http://${ipAddr}:${port}${basePath}</green> (network)`,
           );
+        }
+
+        if (open) {
+          openBrowser(`http://${hostname}:${port}${basePath}`);
         }
       }
     },

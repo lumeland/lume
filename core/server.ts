@@ -11,6 +11,7 @@ export interface Options extends Deno.ServeOptions {
   /** The root path */
   root: string;
   port?: number;
+  hostname?: string;
   serveFile?: (root: string, request: Request) => Promise<Response>;
 }
 
