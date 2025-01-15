@@ -72,7 +72,16 @@ async function build({ type, config }: CMSOptions) {
 
   Deno.serve({
     port,
-    handler: app.fetch,
+    async handler(request) {
+      const response = await app.fetch(request);
+      // Reload if the response header tells us to
+      if (response.headers.get("X-Lume-CMS") === "reload") {
+        log.info("Reloading the site...");
+        postMessage({ type: "reload" });
+        return getWaitResponse(`http://localhost:${port}${basePath}`);
+      }
+      return response;
+    },
     onListen() {
       if (type === "build") {
         const ipAddr = localIp();
@@ -90,4 +99,36 @@ async function build({ type, config }: CMSOptions) {
       }
     },
   });
+}
+
+function getWaitResponse(url: string): Response {
+  return new Response(
+    `<html>
+    <head>
+      <title>Please wait...</title>
+      <style>body{font-family:sans-serif;margin:0;display:flex;align-items:center;justify-content:center;min-height:100vh}</style>
+    </head>
+    <body>
+    <p>Please wait...</p>
+    <script type="module">
+      // Wait for the server to start
+      let timeout = 0;
+      while (true) {
+        try {
+          await fetch("${url}");
+          document.location = "${url}";
+          break;
+        } catch {
+          timeout += 1000;
+          await new Promise((resolve) => setTimeout(resolve, timeout));
+        }
+      }
+    </script>
+    </body>
+    </html>`,
+    {
+      status: 200,
+      headers: { "content-type": "text/html" },
+    },
+  );
 }

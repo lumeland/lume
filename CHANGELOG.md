@@ -6,6 +6,9 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.5.1] - Unreleased
+### Added
+- Support for LumeCMS v0.9, that can perform git operations and restart the build.
+
 ### Fixed
 - `google_fonts`: Fixed subset names for `[1]`, `[2]`, etc [#692].
 - Updated dependencies: `katex`, `preact-render-to-string`, `unocss`, `vento` and some icons.
