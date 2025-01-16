@@ -14,7 +14,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - `google_fonts`: Fixed subset names for `[1]`, `[2]`, etc [#692].
-- Updated dependencies: `katex`, `preact-render-to-string`, `unocss`, `vento` and some icons.
+- Normalize watcher ignored paths [#716]
+- Updated dependencies: `katex`, `preact-render-to-string`, `unocss`, `vento`, `decap-cms`, `postcss`, `sass` and some icons.
 
 ## [2.5.0] - 2025-01-11
 ### Added
@@ -683,6 +684,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#707]: https://github.com/lumeland/lume/issues/707
 [#711]: https://github.com/lumeland/lume/issues/711
 [#715]: https://github.com/lumeland/lume/issues/715
+[#716]: https://github.com/lumeland/lume/issues/716
 
 [2.5.1]: https://github.com/lumeland/lume/compare/v2.5.0...HEAD
 [2.5.0]: https://github.com/lumeland/lume/compare/v2.4.3...v2.5.0
