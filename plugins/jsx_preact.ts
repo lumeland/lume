@@ -120,15 +120,27 @@ export function jsxPreact(userOptions?: Options) {
 
 export default jsxPreact;
 
-/** Extends HTMLAttributes interface */
 declare global {
   namespace preact.JSX {
+    /** Extends HTMLAttributes interface */
     interface HTMLAttributes {
       /** Custom attribute used by inline plugin */
       inline?: boolean | undefined;
 
       /** Custom attribute used by transform images plugin */
       "transform-images"?: string | undefined;
+    }
+  }
+
+  /** Extends Data interface */
+  namespace Lume {
+    export interface Data {
+      /**
+       * The JSX children elements
+       * @see https://lume.land/plugins/jsx_preact/
+       */
+      // @ts-ignore - jsx and jsx_preact conflict
+      children?: preact.ComponentChildren;
     }
   }
 }
