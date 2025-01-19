@@ -12,6 +12,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
   `localhost` value to something else.
 - New `--open, -o` argument to `lume cms` to open automatically in the browser.
 
+### Changed
+- `inline`: Append classes to existing ones. [#722]
+
 ### Fixed
 - `google_fonts`: Fixed subset names for `[1]`, `[2]`, etc [#692].
 - Normalize watcher ignored paths [#716]
