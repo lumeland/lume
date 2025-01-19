@@ -50,12 +50,14 @@ export function inline(userOptions?: Options) {
       const templateElements = Array.from(
         page.document!.querySelectorAll("template"),
       ).flatMap((template) =>
-        Array.from(template.content.querySelectorAll(selector)),
+        Array.from(template.content.querySelectorAll(selector))
       );
-      for (const element of [
-        ...Array.from(page.document!.querySelectorAll(selector)),
-        ...templateElements,
-      ]) {
+      for (
+        const element of [
+          ...Array.from(page.document!.querySelectorAll(selector)),
+          ...templateElements,
+        ]
+      ) {
         await runInline(page.data.url, element);
         element.removeAttribute(options.attribute);
       }
