@@ -49,16 +49,13 @@ export function inline(userOptions?: Options) {
     async function inline(page: Page) {
       const templateElements = Array.from(
         page.document!.querySelectorAll("template"),
-      )
-        .flatMap((template) =>
-          Array.from(template.content.querySelectorAll(selector))
-        );
-      for (
-        const element of [
-          ...Array.from(page.document!.querySelectorAll(selector)),
-          ...templateElements,
-        ]
-      ) {
+      ).flatMap((template) =>
+        Array.from(template.content.querySelectorAll(selector)),
+      );
+      for (const element of [
+        ...Array.from(page.document!.querySelectorAll(selector)),
+        ...templateElements,
+      ]) {
         await runInline(page.data.url, element);
         element.removeAttribute(options.attribute);
       }
@@ -122,9 +119,18 @@ export function inline(userOptions?: Options) {
     ) {
       for (const { name, value } of Array.from(from.attributes)) {
         const shouldCopy = [...attributes, ...options.copyAttributes].some(
-          (attr) => attr instanceof RegExp ? attr.test(name) : attr === name,
+          (attr) => (attr instanceof RegExp ? attr.test(name) : attr === name),
         );
-        if (shouldCopy && !to.hasAttribute(name)) {
+
+        if (!shouldCopy) {
+          continue;
+        }
+
+        if (name == "class") {
+          to.classList.add(
+            ...value.split(" ").filter((value: string) => value != ""),
+          );
+        } else if (!to.hasAttribute(name)) {
           to.setAttribute(name, value);
         }
       }
