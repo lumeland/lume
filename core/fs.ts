@@ -267,7 +267,7 @@ export default class FS {
   }
 }
 
-function createFileInfo(type: EntryType): Deno.FileInfo & { ctime: Date } {
+function createFileInfo(type: EntryType): Deno.FileInfo {
   return {
     isFile: type === "file",
     isDirectory: type === "directory",
