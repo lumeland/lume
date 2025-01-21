@@ -468,14 +468,6 @@ export default class Site {
     return this;
   }
 
-  /** Copy the remaining files */
-  copyRemainingFiles(
-    filter: (path: string) => string | boolean = () => true,
-  ): this {
-    this.source.copyRemainingFiles = filter;
-    return this;
-  }
-
   /** Ignore one or several files or directories */
   ignore(...paths: (string | ScopeFilter)[]): this {
     paths.forEach((path) => {
