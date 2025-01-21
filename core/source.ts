@@ -183,7 +183,7 @@ export default class Source {
       );
     }
 
-    // Store the root data to be used by other plugins
+    // Store the directory data to be used by other plugins
     this.data.set(dirPath, dirData);
 
     // Load pages created with `site.page()`
