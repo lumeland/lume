@@ -65,14 +65,6 @@ export class PugEngine implements Engine {
     data?: Record<string, unknown>,
     filename?: string,
   ): string {
-    return this.renderComponent(content, data, filename);
-  }
-
-  renderComponent(
-    content: string,
-    data?: Record<string, unknown>,
-    filename?: string,
-  ): string {
     const dataWithFilters = {
       ...data,
       filters: {

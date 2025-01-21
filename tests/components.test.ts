@@ -58,75 +58,77 @@ Deno.test("Components", async (t) => {
     assert(subcomp.button_ts);
   });
 
-  await t.step("Nunjucks components", () => {
-    const result = comp.button_njk({ text: "Hello world" });
+  await t.step("Nunjucks components", async () => {
+    const result = await comp.button_njk({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_njk">Hello world</button>`,
     );
   });
 
-  await t.step("Vento components", () => {
-    const result = comp.button_vto({ text: "Hello world" });
+  await t.step("Vento components", async () => {
+    const result = await comp.button_vto({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_vto">Hello world</button>`,
     );
   });
 
-  await t.step("Inherit and not inherit data for components", () => {
+  await t.step("Inherit and not inherit data for components", async () => {
     assertEquals(
-      comp.inherit().trim(),
+      (await comp.inherit()).trim(),
       `<p>Inherit: Hello from _data.yml</p>`,
     );
     assertEquals(
-      comp.not_inherit().trim(),
+      (await comp.not_inherit()).trim(),
       `<p>Not inherit: </p>`,
     );
   });
 
-  await t.step("Liquid components", () => {
-    const result = comp.button_liquid({ text: "Hello world" });
+  await t.step("Liquid components", async () => {
+    const result = await comp.button_liquid({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_liquid">Hello world</button>`,
     );
   });
 
-  await t.step("Module components", () => {
-    const result = subcomp.button_ts({ text: "Hello world" });
+  await t.step("Module components", async () => {
+    const result = await subcomp.button_ts({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_ts">Hello world</button>`,
     );
   });
 
-  await t.step("Eta components", () => {
-    const result = comp.button_eta({ text: "Hello world" });
+  await t.step("Eta components", async () => {
+    const result = await comp.button_eta({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_eta">Hello world</button>`,
     );
   });
 
-  await t.step("Pug components", () => {
-    const result = subcomp.button_pug({ text: "Hello world" });
+  await t.step("Pug components", async () => {
+    const result = await subcomp.button_pug({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_pug">Hello world</button>`,
     );
   });
 
-  await t.step("JSX components", () => {
-    const result = comp.button_jsx({ text: "Hello world" });
+  await t.step("JSX components", async () => {
+    const result = await comp.button_jsx({ text: "Hello world" });
+
     assertEquals(
       result.toString().trim(),
       `<button class="button_jsx">Hello world</button>`,
     );
   });
 
-  await t.step("JS inner components", () => {
-    const result = subcomp.innerButton({ text: "Inner button" });
+  await t.step("JS inner components", async () => {
+    const result = await subcomp.innerButton({ text: "Inner button" });
+
     assertEquals(
       result.toString().trim(),
       `<div><button class="button_jsx">Inner button</button></div>`,

@@ -84,12 +84,12 @@ export default class ComponentsLoader {
 
     return {
       name: component.name ?? entry.name.slice(0, -format.ext.length),
-      render(data) {
-        return format.engines!.reduce(
-          (content, engine) =>
-            engine.renderComponent(content, getData(data), entry.path),
-          content,
-        );
+      async render(data) {
+        let result = content;
+        for (const engine of format.engines!) {
+          result = await engine.render(content, getData(data), entry.path);
+        }
+        return result;
       },
       css: component.css,
       js: component.js,
@@ -103,8 +103,8 @@ export interface Component {
   /** Name of the component (used to get it from templates) */
   name: string;
 
-  /** The function that will be called to render the component */
-  render: (props: Record<string, unknown>) => string;
+  /** The function to render the component */
+  render: (props: Record<string, unknown>) => string | Promise<string>;
 
   /** Optional CSS code needed to style the component (global, only inserted once) */
   css?: string;

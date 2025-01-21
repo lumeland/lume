@@ -62,14 +62,6 @@ export class MarkdownEngine implements Engine {
   deleteCache() {}
 
   render(
-    content: string,
-    data?: Record<string, unknown>,
-    filename?: string,
-  ): string {
-    return this.renderComponent(content, data, filename);
-  }
-
-  renderComponent(
     content: unknown,
     data?: Record<string, unknown>,
     filename?: string,

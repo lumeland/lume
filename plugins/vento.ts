@@ -120,11 +120,6 @@ export class VentoEngine implements Engine {
     return result.content;
   }
 
-  renderComponent(content: string, data?: Record<string, unknown>): string {
-    const result = this.engine.runStringSync(content, data);
-    return result.content;
-  }
-
   addHelper(name: string, fn: Helper, options: HelperOptions) {
     if (options.async) {
       this.engine.filters[name] = async function (...args: unknown[]) {
@@ -216,7 +211,7 @@ function compTag(
   const [_, comp, args, closed] = match;
 
   if (closed) {
-    return `${output} += comp.${comp}(${args || ""});`;
+    return `${output} += await comp.${comp}(${args || ""});`;
   }
 
   const compiled: string[] = [];
@@ -231,7 +226,9 @@ function compTag(
 
   tokens.shift();
   compiled.push(
-    `${output} += comp.${comp}({...${args || "{}"}, content: ${tmpOutput}});`,
+    `${output} += await comp.${comp}({...${
+      args || "{}"
+    }, content: ${tmpOutput}});`,
   );
   compiled.push("}");
 

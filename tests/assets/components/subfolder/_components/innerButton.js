@@ -1,3 +1,3 @@
-export default function ({ comp, text }) {
-  return `<div>${comp.button_jsx({ text })}</div>`;
+export default async function ({ comp, text }) {
+  return `<div>${await comp.button_jsx({ text })}</div>`;
 }

@@ -1,5 +1,3 @@
-/** @jsxImportSource npm:react@18.2.0 */
-
 export const layout = "layout.jsx";
 export const title = "This is the title";
 

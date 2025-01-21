@@ -8,6 +8,13 @@
       "CHANGELOGv3.md"
     ]
   },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "npm:@lumeland/ssx@0.1.2-beta.3",
+    "types": [
+      "./types.ts"
+    ]
+  },
   "tasks": {
     "test": {
       "description": "Run all Lume tests. You can run only one test with `deno task test tests/<filename>`",
