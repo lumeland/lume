@@ -12,3 +12,15 @@ Deno.test("build a site with jsx/tsx modules", async (t) => {
   await build(site);
   await assertSiteSnapshot(t, site);
 });
+
+Deno.test("Previous preact test with SSX", async (t) => {
+  const site = getSite({
+    src: "jsx_preact",
+    location: new URL("https://example.com/blog"),
+  });
+
+  site.use(jsx());
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});
