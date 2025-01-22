@@ -14,6 +14,9 @@ Deno.test("RSS plugin", async (t) => {
         published: new Date("2020-01-01"),
         generator: "https://lume.land",
         authorName: "Laura Rubio",
+        icon: "https://example.com/icon.svg",
+        image: "https://example.com/image.png",
+        color: "#ff0000",
       },
       items: {
         title: (data) => data.title?.toUpperCase(),

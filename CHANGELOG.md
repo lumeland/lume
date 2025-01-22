@@ -11,6 +11,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New `--hostname` argument to `lume --serve` and `lume cms` to change the default
   `localhost` value to something else.
 - New `--open, -o` argument to `lume cms` to open automatically in the browser.
+- Feed plugin
+  - New option `info.image`
+  - New option `info.icon`
+  - New option `info.color`
 
 ### Changed
 - `inline`: Append classes to existing ones. [#722]
