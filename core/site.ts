@@ -47,6 +47,8 @@ const defaults: SiteOptions = {
   emptyDest: true,
   caseSensitiveUrls: false,
   includes: "_includes",
+  cssFile: "/styles.css",
+  jsFile: "/scripts.js",
   location: new URL("http://localhost"),
   prettyUrls: true,
   server: {
@@ -914,6 +916,12 @@ export interface SiteOptions {
 
   /** The default includes path */
   includes: string;
+
+  /** The default css file */
+  cssFile: string;
+
+  /** The default js file */
+  jsFile: string;
 
   /** The site location (used to generate final urls) */
   location: URL;

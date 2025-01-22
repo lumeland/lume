@@ -63,7 +63,6 @@ export const defaults: Options = {
   options: {
     presets: [presetUno()],
   },
-  cssFile: "/unocss.css",
   transformers: [
     transformerVariantGroup(),
     transformerDirectives(),
@@ -86,7 +85,7 @@ export function unoCSS(userOptions?: Options) {
       }
       return uno;
     }
-    const { transformers, cssFile, reset } = options;
+    const { transformers, cssFile = site.options.cssFile, reset } = options;
 
     if (transformers.length > 0) {
       site.loadAssets([".css"]);

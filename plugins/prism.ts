@@ -24,12 +24,6 @@ interface Theme {
   /** The name of the theme */
   name: string;
 
-  /**
-   * The path to the theme file
-   * @deprecated Use cssFile instead
-   */
-  path?: string;
-
   /** The CSS file to output the font-face rules */
   cssFile?: string;
 
@@ -58,21 +52,14 @@ export function prism(userOptions?: Options) {
         ? options.theme
         : [options.theme];
 
-      for (const { name, path, cssFile, placeholder } of themes) {
-        if (cssFile) {
-          site.process("*", async () => {
-            const cssCode = await readFile(getCssUrl(name));
-            const page = await site.getOrCreatePage(cssFile);
-            insertContent(page, cssCode, placeholder);
-          });
-          return;
-        }
-
-        if (path) {
-          site.remoteFile(path, getCssUrl(name));
-        } else {
-          throw new Error(`The theme ${name} must have a path or cssFile`);
-        }
+      for (
+        const { name, cssFile = site.options.cssFile, placeholder } of themes
+      ) {
+        site.process("*", async () => {
+          const cssCode = await readFile(getCssUrl(name));
+          const page = await site.getOrCreatePage(cssFile);
+          insertContent(page, cssCode, placeholder);
+        });
       }
     }
 

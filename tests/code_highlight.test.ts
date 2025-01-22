@@ -1,7 +1,7 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import codeHighlight from "../plugins/code_highlight.ts";
 
-Deno.test("code_hightlight plugin with path", async (t) => {
+Deno.test("code_hightlight plugin with default css file", async (t) => {
   const site = getSite({
     src: "code_highlight",
   });
@@ -9,7 +9,6 @@ Deno.test("code_hightlight plugin with path", async (t) => {
   site.use(codeHighlight({
     theme: {
       name: "a11y-dark",
-      path: "_includes/code-theme.css",
     },
   }));
 
@@ -25,7 +24,7 @@ Deno.test("code_hightlight plugin", async (t) => {
   site.use(codeHighlight({
     theme: {
       name: "a11y-dark",
-      cssFile: "styles.css",
+      cssFile: "theme.css",
     },
   }));
 

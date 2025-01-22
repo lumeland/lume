@@ -8,6 +8,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## 3.0.0 - Unreleased
 ### Added
 - `await` filter for nunjucks.
+- New option `cssFile` and `jsFile` to configure a default file for automatic generated code.
+  It's used by default by code_highlight, google_fonts, prism and unocss.
 
 ### Removed
 - `jsx_preact` plugin. Use `jsx` instead.

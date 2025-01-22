@@ -1,6 +1,8 @@
 import { read, readFile } from "../core/utils/read.ts";
 import { insertContent } from "../core/utils/page_content.ts";
+import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
+
 import type Site from "../core/site.ts";
 
 export interface Options {
@@ -23,16 +25,15 @@ export interface Options {
 export const defaults: Options = {
   fonts: "",
   folder: "/fonts",
-  cssFile: "/fonts.css",
   placeholder: "",
 };
 
 export function googleFonts(userOptions: Options) {
-  const options = { ...defaults, ...userOptions } as Required<Options>;
+  const options = merge(defaults, userOptions);
 
   return (site: Site) => {
     let cssCode = "";
-    const cssFile = posix.join("/", options.cssFile);
+    const cssFile = posix.join("/", options.cssFile || site.options.cssFile);
 
     site.addEventListener("beforeBuild", async () => {
       const fonts = typeof options.fonts === "string"
