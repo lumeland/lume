@@ -133,6 +133,32 @@ snapshot[`build a site with nunjucks 2`] = `[]`;
 snapshot[`build a site with nunjucks 3`] = `
 [
   {
+    content: '
+document.querySelectorAll("button").forEach(button => {
+  button.addEventListener("click", () => {
+    alert("Hello world!");
+  });
+});
+
+console.log("Hello world, from the icon/User component");
+',
+    data: {
+      basename: "scripts",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/scripts.js",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
     content: "
 button {
   background-color: blue;
@@ -144,39 +170,13 @@ icon {
 }
 ",
     data: {
-      basename: "components",
+      basename: "styles",
       page: [
         "src",
         "data",
         "asset",
       ],
-      url: "/components.css",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: '
-document.querySelectorAll("button").forEach(button => {
-  button.addEventListener("click", () => {
-    alert("Hello world!");
-  });
-});
-
-console.log("Hello world, from the icon/User component");
-',
-    data: {
-      basename: "components",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/components.js",
+      url: "/styles.css",
     },
     src: {
       asset: true,

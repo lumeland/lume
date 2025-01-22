@@ -65,8 +65,6 @@ const defaults: SiteOptions = {
   },
   components: {
     variable: "comp",
-    cssFile: "/components.css",
-    jsFile: "/components.js",
   },
 };
 
@@ -163,7 +161,11 @@ export default class Site {
       dataLoader,
       componentLoader,
       formats,
-      components,
+      components: {
+        variable: components.variable,
+        cssFile: components.cssFile ?? this.options.cssFile,
+        jsFile: components.jsFile ?? this.options.jsFile,
+      },
       scopedData: this.scopedData,
       scopedPages: this.scopedPages,
       scopedComponents: this.scopedComponents,
@@ -984,10 +986,10 @@ export interface ComponentsOptions {
   variable: string;
 
   /** The name of the file to save the components css code */
-  cssFile: string;
+  cssFile?: string;
 
   /** The name of the file to save the components javascript code */
-  jsFile: string;
+  jsFile?: string;
 
   /** An optional placeholder to insert the CSS and JS code */
   placeholder?: string;
