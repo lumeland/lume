@@ -5,7 +5,6 @@ import createSlugifier, {
 } from "../core/slugifier.ts";
 
 import type Site from "../core/site.ts";
-import type { Page } from "../core/file.ts";
 import type { Extensions } from "../core/utils/path.ts";
 import type { Options as SlugifierOptions } from "../core/slugifier.ts";
 
@@ -30,21 +29,16 @@ export function slugifyUrls(userOptions?: Options) {
 
   return (site: Site) => {
     site.filter("slugify", slugify);
-    site.preprocess(options.extensions, (pages) => pages.forEach(slugifyUrls));
+    site.preprocess(options.extensions, (pages) => {
+      // Slugify the page URLs
+      pages.forEach((page) => page.data.url = slugify(page.data.url));
 
-    // Slugify the static files
-    site.addEventListener("beforeRender", () => {
+      // Slugify the static files
       site.files
         .filter((file) => matchExtension(options.extensions, file.outputPath))
         .forEach((file) => file.outputPath = slugify(file.outputPath));
     });
   };
-
-  function slugifyUrls(page: Page) {
-    if (typeof page.data.url === "string") {
-      page.data.url = slugify(page.data.url);
-    }
-  }
 }
 
 export default slugifyUrls;

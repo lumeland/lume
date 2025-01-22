@@ -186,8 +186,8 @@ export default function (userOptions?: Options) {
       redirects.clear();
     }
 
-    site.addEventListener("afterUpdate", checkUrls);
-    site.addEventListener("afterBuild", checkUrls);
+    site.process("*", checkUrls);
+    site.process("*", checkUrls);
   };
 }
 

@@ -60,7 +60,7 @@ export function prism(userOptions?: Options) {
 
       for (const { name, path, cssFile, placeholder } of themes) {
         if (cssFile) {
-          site.addEventListener("afterRender", async () => {
+          site.process("*", async () => {
             const cssCode = await readFile(getCssUrl(name));
             const page = await site.getOrCreatePage(cssFile);
             insertContent(page, cssCode, placeholder);

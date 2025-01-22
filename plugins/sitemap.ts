@@ -50,7 +50,7 @@ export function sitemap(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.addEventListener("beforeSave", async () => {
+    site.process("*", async () => {
       // Create the sitemap.xml page
       const sitemap = Page.create({
         url: options.filename,

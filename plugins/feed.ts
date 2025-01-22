@@ -155,7 +155,7 @@ export function feed(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.addEventListener("beforeSave", () => {
+    site.process("*", () => {
       const output = Array.isArray(options.output)
         ? options.output
         : [options.output];

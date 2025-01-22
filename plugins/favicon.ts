@@ -82,11 +82,11 @@ export function favicon(userOptions?: Options) {
       return content;
     }
 
-    site.addEventListener("afterRender", async (event) => {
+    site.process("*", async () => {
       const content = await getContent();
 
       for (const favicon of options.favicons) {
-        event.pages?.push(
+        site.pages.push(
           Page.create({
             url: favicon.url,
             content: await buildIco(
@@ -105,7 +105,7 @@ export function favicon(userOptions?: Options) {
         !site.pages.find((page) => page.data.url === options.input) &&
         !site.files.find((file) => file.outputPath === options.input)
       ) {
-        event.pages?.push(
+        site.pages.push(
           Page.create({
             url: options.input,
             content: await site.getContent(

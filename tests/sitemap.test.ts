@@ -40,11 +40,11 @@ Deno.test("Sitemap plugin with filter_pages plugin", async (t) => {
     location: new URL("https://example.com/"),
   });
 
-  site.use(sitemap());
   site.ignore("static.yml");
   site.use(filterPages({
     fn: (page) => page.data.url !== "/pages/new-name/page7/",
   }));
+  site.use(sitemap());
 
   await build(site);
   await assertSiteSnapshot(t, site);
