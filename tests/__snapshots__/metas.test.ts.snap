@@ -176,9 +176,9 @@ snapshot[`metas plugin 3`] = `
         "twitter",
         "lang",
         "color",
-        "generator",
         "twitter:label1",
         "twitter:data1",
+        "generator",
       ],
       page: [
         "src",
@@ -213,7 +213,6 @@ snapshot[`metas plugin 3`] = `
 <meta name="keywords" content="one, two">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="theme-color" content="black">
-<meta name="generator" content="Lume testing">
 <meta name="twitter:label1" content="Reading time">
 <meta name="twitter:data1" content="1 minute">
 </head>
@@ -256,9 +255,9 @@ snapshot[`metas plugin 3`] = `
         "twitter",
         "lang",
         "color",
-        "generator",
         "twitter:label1",
         "twitter:data1",
+        "generator",
       ],
       page: [
         "src",
@@ -293,7 +292,7 @@ snapshot[`metas plugin 3`] = `
 <meta name="keywords" content="one, two">
 <meta name="robots" content="this robots will be overrided">
 <meta name="theme-color" content="black">
-<meta name="generator" content="Lume testing">
+<meta name="generator" content="Lume">
 <meta name="twitter:label1" content="Reading time">
 <meta name="twitter:data1" content="1 minute">
 </head><body><p>This is page excerpt will be used as meta description.</p>
@@ -331,7 +330,6 @@ snapshot[`metas plugin 3`] = `
         "twitter",
         "lang",
         "color",
-        "generator",
         "twitter:label1",
         "twitter:data1",
         "fediverse",

@@ -63,7 +63,7 @@ const defaults: Options = {
   name: "metas",
 };
 
-const defaultGenerator = `Lume ${getCurrentVersion()}`;
+const defaultGenerator = getDefaultGenerator();
 
 /**
  * A plugin to insert meta tags for SEO and social media
@@ -105,7 +105,7 @@ export function metas(userOptions?: Options) {
       const keywords = getDataValue(data, main["keywords"]);
       const robots = getDataValue(data, main["robots"]);
       const color = getDataValue(data, main["color"]);
-      const generator = getDataValue(data, main["generator"]);
+      const generator = getDataValue(data, main["generator"]) ?? true;
 
       // Open graph
       addMeta(document, "property", "og:type", type || "website");
@@ -247,4 +247,14 @@ function getMetas(metas: MetaData): [MetaData, Record<string, unknown>] {
     robots,
     generator,
   }, other];
+}
+
+function getDefaultGenerator() {
+  const version = getCurrentVersion();
+
+  if (version.startsWith("local")) {
+    return "Lume";
+  }
+
+  return `Lume ${version}`;
 }
