@@ -117,8 +117,7 @@ snapshot[`build a simple site 2`] = `[]`;
 snapshot[`build a simple site 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-Content of Page 1",
+    content: "Content of Page 1",
     data: {
       basename: "dynamic",
       children: "Content of Page 1",
@@ -147,8 +146,7 @@ Content of Page 1",
     },
   },
   {
-    content: "<!DOCTYPE html>
-<h1>Welcome</h1>
+    content: "<h1>Welcome</h1>
 ",
     data: {
       basename: "foo",
@@ -179,8 +177,7 @@ Content of Page 1",
     },
   },
   {
-    content: "<!DOCTYPE html>
-<h1>Welcome</h1>
+    content: "<h1>Welcome</h1>
 ",
     data: {
       basename: "page1",

@@ -117,8 +117,7 @@ snapshot[`Disabled pretty URLs 2`] = `[]`;
 snapshot[`Disabled pretty URLs 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<h1>Welcome</h1>
+    content: "<h1>Welcome</h1>
 ",
     data: {
       basename: "foo",
@@ -149,8 +148,7 @@ snapshot[`Disabled pretty URLs 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<h1>Welcome</h1>
+    content: "<h1>Welcome</h1>
 ",
     data: {
       basename: "page1",

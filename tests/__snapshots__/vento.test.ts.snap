@@ -224,8 +224,7 @@ CUSTOM FILTER
     },
   },
   {
-    content: "<!DOCTYPE html>
-<h1>VENTO FILTER EXAMPLE</h1>",
+    content: "<h1>VENTO FILTER EXAMPLE</h1>",
     data: {
       basename: "vto-filter",
       children: "<h1>VENTO FILTER EXAMPLE</h1>",

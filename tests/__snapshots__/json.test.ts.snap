@@ -118,8 +118,7 @@ snapshot[`JSON plugin 2`] = `[]`;
 snapshot[`JSON plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<html>
+    content: "<html>
   <head>
     <title>Title of the index</title>
   </head>
@@ -163,8 +162,7 @@ snapshot[`JSON plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>{
+    content: "<p>{
 &quot;title&quot;: &quot;First page&quot;
 }</p>
 <h1>Welcome</h1>

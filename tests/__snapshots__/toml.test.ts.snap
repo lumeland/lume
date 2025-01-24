@@ -118,8 +118,7 @@ snapshot[`TOML plugin 2`] = `[]`;
 snapshot[`TOML plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<html>
+    content: "<html>
   <head>
     <title>Title of the index</title>
   </head>
@@ -163,8 +162,7 @@ snapshot[`TOML plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<h1>Welcome</h1>
+    content: "<h1>Welcome</h1>
 ",
     data: {
       basename: "page1",

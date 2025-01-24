@@ -131,8 +131,7 @@ snapshot[`Sheets plugin 2`] = `[]`;
 snapshot[`Sheets plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<body>
+    content: "<body>
 
   <table>
     <tr>

@@ -116,8 +116,7 @@ snapshot[`FFF plugin 2`] = `[]`;
 snapshot[`FFF plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<p>The <code>published</code> should be used as <code>date</code>.</p>
+    content: "<p>The <code>published</code> should be used as <code>date</code>.</p>
 ",
     data: {
       alt: "undefined",
@@ -163,8 +162,7 @@ snapshot[`FFF plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>FFF Image Test</p>
+    content: "<p>FFF Image Test</p>
 ",
     data: {
       alt: "FFF Image Test",
@@ -211,8 +209,7 @@ snapshot[`FFF plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>FFF Tags Test</p>
+    content: "<p>FFF Tags Test</p>
 <p>The <code>categories</code> should be merged into <code>tags</code>.</p>
 ",
     data: {

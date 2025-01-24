@@ -205,8 +205,7 @@ snapshot[`RSS plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+    content: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
 ",
     data: {
       basename: "404",

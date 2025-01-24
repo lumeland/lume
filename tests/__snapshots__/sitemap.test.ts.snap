@@ -222,8 +222,7 @@ Sitemap: https://example.com/sitemap.xml",
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+    content: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
 ",
     data: {
       basename: "404",
@@ -261,8 +260,7 @@ Sitemap: https://example.com/sitemap.xml",
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 5",
+    content: "Content of Page 5",
     data: {
       basename: "page5",
       children: "Content of Page 5",
@@ -298,8 +296,7 @@ Content of Page 5",
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 2",
+    content: "Content of Page 2",
     data: {
       basename: "page2",
       children: "Content of Page 2",
@@ -343,8 +340,7 @@ Content of Page 2",
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+    content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
     data: {
       basename: "page4",
       children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
@@ -387,8 +383,7 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Content of Page 6</p>
+    content: "<p>Content of Page 6</p>
 ",
     data: {
       basename: "page6",
@@ -476,8 +471,7 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 7",
+    content: "Content of Page 7",
     data: {
       basename: "page7",
       children: "Content of Page 7",
@@ -1722,8 +1716,7 @@ Sitemap: https://example.com/sitemap.xml",
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+    content: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
 ",
     data: {
       basename: "404",
@@ -1761,8 +1754,7 @@ Sitemap: https://example.com/sitemap.xml",
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 5",
+    content: "Content of Page 5",
     data: {
       basename: "page5",
       children: "Content of Page 5",
@@ -1798,8 +1790,7 @@ Content of Page 5",
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 2",
+    content: "Content of Page 2",
     data: {
       basename: "page2",
       children: "Content of Page 2",
@@ -1843,8 +1834,7 @@ Content of Page 2",
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+    content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
     data: {
       basename: "page4",
       children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
@@ -1887,8 +1877,7 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Content of Page 6</p>
+    content: "<p>Content of Page 6</p>
 ",
     data: {
       basename: "page6",

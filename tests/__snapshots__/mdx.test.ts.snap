@@ -137,8 +137,7 @@ snapshot[`Build a mdx site 2`] = `[]`;
 snapshot[`Build a mdx site 3`] = `
 [
   {
-    content: '<!DOCTYPE html>
-<header><h1>Hello world</h1><p>This is a description</p></header>
+    content: '<header><h1>Hello world</h1><p>This is a description</p></header>
 <h2>Hello world</h2>
 <p>This is a markdown file with the title <strong>Hello world</strong>.</p>
 <img src="https://via.placeholder.com/350x150" alt="foo">',
@@ -186,8 +185,7 @@ This is a markdown file with the title **{ title }**.
     },
   },
   {
-    content: '<!DOCTYPE html>
-<hr>
+    content: '<hr>
 <h2>title: Hello world
 description: This is a description</h2>
 

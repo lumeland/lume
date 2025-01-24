@@ -125,8 +125,7 @@ snapshot[`nav plugin 2`] = `[]`;
 snapshot[`nav plugin 3`] = `
 [
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>Docs</title>
   </head>
@@ -206,8 +205,7 @@ snapshot[`nav plugin 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>About docs (1)</title>
   </head>
@@ -289,8 +287,7 @@ snapshot[`nav plugin 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>About pages (0)</title>
   </head>
@@ -372,8 +369,7 @@ snapshot[`nav plugin 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>Pages first (1)</title>
   </head>
@@ -456,8 +452,7 @@ snapshot[`nav plugin 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>Pages second (0)</title>
   </head>
@@ -541,8 +536,7 @@ snapshot[`nav plugin 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>Home</title>
   </head>
@@ -747,8 +741,7 @@ snapshot[`nav plugin with pretty urls disabled 2`] = `[]`;
 snapshot[`nav plugin with pretty urls disabled 3`] = `
 [
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>Docs</title>
   </head>
@@ -828,8 +821,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>About docs (1)</title>
   </head>
@@ -911,8 +903,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>About pages (0)</title>
   </head>
@@ -994,8 +985,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>Pages first (1)</title>
   </head>
@@ -1078,8 +1068,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>Pages second (0)</title>
   </head>
@@ -1163,8 +1152,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>Home</title>
   </head>

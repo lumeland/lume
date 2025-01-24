@@ -125,8 +125,7 @@ snapshot[`build a site with pug 2`] = `[]`;
 snapshot[`build a site with pug 3`] = `
 [
   {
-    content: '<!DOCTYPE html>
-<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
+    content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
     data: {
       basename: "extends",
       children: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
@@ -157,8 +156,7 @@ block content
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
+    content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
 <p>This is a paragraph</p>
 <ul>
 <li>Option 1</li>
@@ -208,8 +206,7 @@ block content
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><header><h1>Pug example</h1></header></body></html>',
+    content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><header><h1>Pug example</h1></header></body></html>',
     data: {
       basename: "layout",
       children: "<header><h1>Pug example</h1></header>",

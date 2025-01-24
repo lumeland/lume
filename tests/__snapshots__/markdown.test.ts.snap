@@ -122,8 +122,7 @@ snapshot[`Build a markdown site 2`] = `[]`;
 snapshot[`Build a markdown site 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<h1>Normal page</h1>
+    content: "<h1>Normal page</h1>
 <ul>
 <li>List</li>
 <li>Of</li>
@@ -168,8 +167,7 @@ snapshot[`Build a markdown site 3`] = `
     },
   },
   {
-    content: \`<!DOCTYPE html>
-<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+    content: \`<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
 <!-- deno-fmt-ignore -->
 <p>Subsequent paragraphs are indented to show that they
 belong to the previous footnote.</p>
@@ -231,8 +229,7 @@ belong to the previous footnote.</p>
     },
   },
   {
-    content: '<!DOCTYPE html>
-<p><a href="#foo" target="_blank">link</a></p>
+    content: '<p><a href="#foo" target="_blank">link</a></p>
 ',
     data: {
       basename: "with-attributes",
@@ -262,8 +259,7 @@ belong to the previous footnote.</p>
     },
   },
   {
-    content: '<!DOCTYPE html>
-<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
+    content: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
 </code></pre>
 <pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
 </code></pre>
@@ -309,8 +305,7 @@ belong to the previous footnote.</p>
     },
   },
   {
-    content: "<!DOCTYPE html>
-<!-- deno-fmt-ignore-file -->
+    content: "<!-- deno-fmt-ignore-file -->
 <dl>
 <dt>This is a definition title</dt>
 <dd>And this the description</dd>
@@ -360,8 +355,7 @@ Other title
     },
   },
   {
-    content: '<!DOCTYPE html>
-<h1>Module <strong>example</strong></h1>
+    content: '<h1>Module <strong>example</strong></h1>
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
@@ -400,8 +394,7 @@ Other title
     },
   },
   {
-    content: '<!DOCTYPE html>
-<h1>Module example</h1>
+    content: '<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>
 ',
     data: {
@@ -434,8 +427,7 @@ Other title
     },
   },
   {
-    content: '<!DOCTYPE html>
-<!-- deno-fmt-ignore-file -->
+    content: '<!-- deno-fmt-ignore-file -->
 <h1>Module <strong>example</strong></h1>
 <p>Foo</p>
 <ul>
@@ -617,8 +609,7 @@ snapshot[`Build a markdown with hooks 2`] = `[]`;
 snapshot[`Build a markdown with hooks 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<h1>Normal page</h1>
+    content: "<h1>Normal page</h1>
 <ul>
 <li>List</li>
 <li>Of</li>
@@ -663,8 +654,7 @@ snapshot[`Build a markdown with hooks 3`] = `
     },
   },
   {
-    content: \`<!DOCTYPE html>
-<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+    content: \`<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
 <!-- deno-fmt-ignore -->
 <p>Subsequent paragraphs are indented to show that they
 belong to the previous footnote.</p>
@@ -726,8 +716,7 @@ belong to the previous footnote.</p>
     },
   },
   {
-    content: '<!DOCTYPE html>
-<p><a href="#foo" target="_blank">link</a></p>
+    content: '<p><a href="#foo" target="_blank">link</a></p>
 ',
     data: {
       basename: "with-attributes",
@@ -757,8 +746,7 @@ belong to the previous footnote.</p>
     },
   },
   {
-    content: '<!DOCTYPE html>
-<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
+    content: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
 </code></pre>
 <pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
 </code></pre>
@@ -804,8 +792,7 @@ belong to the previous footnote.</p>
     },
   },
   {
-    content: "<!DOCTYPE html>
-<!-- deno-fmt-ignore-file -->
+    content: "<!-- deno-fmt-ignore-file -->
 <dl>
 <dt>This is a definition title</dt>
 <dd>And this the description</dd>
@@ -855,8 +842,7 @@ Other title
     },
   },
   {
-    content: '<!DOCTYPE html>
-<h1>Module <strong>example</strong></h1>
+    content: '<h1>Module <strong>example</strong></h1>
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
@@ -895,8 +881,7 @@ Other title
     },
   },
   {
-    content: '<!DOCTYPE html>
-<h1>Module example</h1>
+    content: '<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>
 ',
     data: {
@@ -929,8 +914,7 @@ Other title
     },
   },
   {
-    content: '<!DOCTYPE html>
-<!-- deno-fmt-ignore-file -->
+    content: '<!-- deno-fmt-ignore-file -->
 <h1>Module <strong>example</strong></h1>
 <p>Foo</p>
 <ul>

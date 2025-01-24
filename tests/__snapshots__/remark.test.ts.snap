@@ -121,8 +121,7 @@ snapshot[`Build a markdown site 2`] = `[]`;
 snapshot[`Build a markdown site 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<h1>Normal page</h1>
+    content: "<h1>Normal page</h1>
 <ul>
 <li>List</li>
 <li>Of</li>
@@ -165,8 +164,7 @@ snapshot[`Build a markdown site 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<p><a href="#foo">link</a>{target=_blank}</p>',
+    content: '<p><a href="#foo">link</a>{target=_blank}</p>',
     data: {
       basename: "with-attributes",
       children: '<p><a href="#foo">link</a>{target=_blank}</p>',
@@ -194,8 +192,7 @@ snapshot[`Build a markdown site 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<pre><code class="language-html">&#x3C;p>Example&#x3C;/p>
+    content: '<pre><code class="language-html">&#x3C;p>Example&#x3C;/p>
 </code></pre>
 <pre><code>&#x3C;p>Example without color highlight&#x3C;/p>
 </code></pre>',
@@ -235,8 +232,7 @@ snapshot[`Build a markdown site 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<!-- deno-fmt-ignore-file -->
+    content: "<!-- deno-fmt-ignore-file -->
 <p>This is a definition title
 : And this the description
 : Other description</p>
@@ -280,8 +276,7 @@ Other title
     },
   },
   {
-    content: '<!DOCTYPE html>
-<h1><p>Module <strong>example</strong></p></h1>
+    content: '<h1><p>Module <strong>example</strong></p></h1>
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
@@ -320,8 +315,7 @@ Other title
     },
   },
   {
-    content: '<!DOCTYPE html>
-<h1>Module example</h1>
+    content: '<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>',
     data: {
       basename: "with-module",
@@ -352,8 +346,7 @@ Other title
     },
   },
   {
-    content: '<!DOCTYPE html>
-<!-- deno-fmt-ignore-file -->
+    content: '<!-- deno-fmt-ignore-file -->
 <h1>Module <strong>example</strong></h1>
 <p>Foo</p>
 <ul>

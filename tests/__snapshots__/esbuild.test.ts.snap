@@ -189,8 +189,7 @@ console.log(foo);
     },
   },
   {
-    content: "<!DOCTYPE html>
-
+    content: "
   <body>
     Hello world
   </body>
@@ -542,8 +541,7 @@ console.log(foo);
     },
   },
   {
-    content: "<!DOCTYPE html>
-
+    content: "
   <body>
     Hello world
   </body>
@@ -809,8 +807,7 @@ snapshot[`esbuild plugin with JSX 2`] = `[]`;
 snapshot[`esbuild plugin with JSX 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-[object Object]",
+    content: "[object Object]",
     data: {
       basename: "index",
       children: [
@@ -1117,8 +1114,7 @@ console.log(foo);
     },
   },
   {
-    content: "<!DOCTYPE html>
-
+    content: "
   <body>
     Hello world
   </body>
@@ -1468,8 +1464,7 @@ console.log(foo);
     },
   },
   {
-    content: "<!DOCTYPE html>
-
+    content: "
   <body>
     Hello world
   </body>
@@ -1760,8 +1755,7 @@ snapshot[`esbuild plugin with entryNames complex 2`] = `[]`;
 snapshot[`esbuild plugin with entryNames complex 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-
+    content: "
   <body>
     Hello world
   </body>
@@ -2157,8 +2151,7 @@ console.log(foo);
     },
   },
   {
-    content: "<!DOCTYPE html>
-
+    content: "
   <body>
     Hello world
   </body>

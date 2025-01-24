@@ -238,8 +238,7 @@ snapshot[`redirects plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-Page 1",
+    content: "Page 1",
     data: {
       basename: "page1",
       children: "Page 1",
@@ -267,8 +266,7 @@ Page 1",
     },
   },
   {
-    content: "<!DOCTYPE html>
-Page 2
+    content: "Page 2
 ",
     data: {
       basename: "page2",
@@ -436,8 +434,7 @@ snapshot[`redirects plugin for netlify 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-Page 1",
+    content: "Page 1",
     data: {
       basename: "page1",
       children: "Page 1",
@@ -465,8 +462,7 @@ Page 1",
     },
   },
   {
-    content: "<!DOCTYPE html>
-Page 2
+    content: "Page 2
 ",
     data: {
       basename: "page2",
@@ -650,8 +646,7 @@ snapshot[`redirects plugin for vercel 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-Page 1",
+    content: "Page 1",
     data: {
       basename: "page1",
       children: "Page 1",
@@ -679,8 +674,7 @@ Page 1",
     },
   },
   {
-    content: "<!DOCTYPE html>
-Page 2
+    content: "Page 2
 ",
     data: {
       basename: "page2",
@@ -861,8 +855,7 @@ snapshot[`redirects plugin for json 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-Page 1",
+    content: "Page 1",
     data: {
       basename: "page1",
       children: "Page 1",
@@ -890,8 +883,7 @@ Page 1",
     },
   },
   {
-    content: "<!DOCTYPE html>
-Page 2
+    content: "Page 2
 ",
     data: {
       basename: "page2",

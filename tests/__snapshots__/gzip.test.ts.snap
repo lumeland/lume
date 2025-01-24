@@ -159,10 +159,10 @@ snapshot[`gzip plugin 2`] = `
 snapshot[`gzip plugin 3`] = `
 [
   {
-    content: "Uint8Array(107)",
+    content: "Uint8Array(93)",
     data: {
       basename: "404",
-      content: "Uint8Array(107)",
+      content: "Uint8Array(93)",
       page: [
         "src",
         "data",
@@ -178,10 +178,10 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(59)",
+    content: "Uint8Array(43)",
     data: {
       basename: "index",
-      content: "Uint8Array(59)",
+      content: "Uint8Array(43)",
       page: [
         "src",
         "data",
@@ -197,10 +197,10 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(59)",
+    content: "Uint8Array(43)",
     data: {
       basename: "index",
-      content: "Uint8Array(59)",
+      content: "Uint8Array(43)",
       page: [
         "src",
         "data",
@@ -216,10 +216,10 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(59)",
+    content: "Uint8Array(43)",
     data: {
       basename: "index",
-      content: "Uint8Array(59)",
+      content: "Uint8Array(43)",
       page: [
         "src",
         "data",
@@ -235,10 +235,10 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(128)",
+    content: "Uint8Array(109)",
     data: {
       basename: "index",
-      content: "Uint8Array(128)",
+      content: "Uint8Array(109)",
       page: [
         "src",
         "data",
@@ -254,10 +254,10 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(67)",
+    content: "Uint8Array(51)",
     data: {
       basename: "index",
-      content: "Uint8Array(67)",
+      content: "Uint8Array(51)",
       page: [
         "src",
         "data",
@@ -273,10 +273,10 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(56)",
+    content: "Uint8Array(40)",
     data: {
       basename: "index",
-      content: "Uint8Array(56)",
+      content: "Uint8Array(40)",
       page: [
         "src",
         "data",
@@ -311,8 +311,7 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+    content: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
 ",
     data: {
       basename: "404",
@@ -350,8 +349,7 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 5",
+    content: "Content of Page 5",
     data: {
       basename: "page5",
       children: "Content of Page 5",
@@ -387,8 +385,7 @@ Content of Page 5",
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 2",
+    content: "Content of Page 2",
     data: {
       basename: "page2",
       children: "Content of Page 2",
@@ -432,8 +429,7 @@ Content of Page 2",
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+    content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
     data: {
       basename: "page4",
       children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
@@ -476,8 +472,7 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Content of Page 6</p>
+    content: "<p>Content of Page 6</p>
 ",
     data: {
       basename: "page6",
@@ -565,8 +560,7 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 7",
+    content: "Content of Page 7",
     data: {
       basename: "page7",
       children: "Content of Page 7",
@@ -608,8 +602,7 @@ Content of Page 7",
     },
   },
   {
-    content: "<!DOCTYPE html>
-This is a page",
+    content: "This is a page",
     data: {
       basename: "static",
       children: "This is a page",

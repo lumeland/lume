@@ -124,8 +124,7 @@ snapshot[`follow symlinks 2`] = `[]`;
 snapshot[`follow symlinks 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<html>
+    content: "<html>
   <head>
     <h1>Hello world</h1>
   </head>

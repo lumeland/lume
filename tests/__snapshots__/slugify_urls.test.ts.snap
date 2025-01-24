@@ -138,8 +138,7 @@ snapshot[`slugify_urls plugin 2`] = `
 snapshot[`slugify_urls plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<p>Page 2</p>
+    content: "<p>Page 2</p>
 ",
     data: {
       basename: "Chourizos ao viño",
@@ -169,8 +168,7 @@ snapshot[`slugify_urls plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Page 1</p>
+    content: "<p>Page 1</p>
 ",
     data: {
       basename: "Page 1",
@@ -200,8 +198,7 @@ snapshot[`slugify_urls plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-Filloas con nocilla",
+    content: "Filloas con nocilla",
     data: {
       basename: "generator",
       children: "Filloas con nocilla",
@@ -228,8 +225,7 @@ Filloas con nocilla",
     },
   },
   {
-    content: "<!DOCTYPE html>
-Foo",
+    content: "Foo",
     data: {
       basename: "generator",
       children: "Foo",
@@ -256,8 +252,7 @@ Foo",
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Page 3</p>
+    content: "<p>Page 3</p>
 ",
     data: {
       basename: "page-3",
@@ -287,8 +282,7 @@ Foo",
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Page 4</p>
+    content: "<p>Page 4</p>
 ",
     data: {
       basename: "page-4",
@@ -458,8 +452,7 @@ snapshot[`slugify_urls plugin (static files) 2`] = `
 snapshot[`slugify_urls plugin (static files) 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<p>Page 2</p>
+    content: "<p>Page 2</p>
 ",
     data: {
       basename: "Chourizos ao viño",
@@ -489,8 +482,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Page 1</p>
+    content: "<p>Page 1</p>
 ",
     data: {
       basename: "Page 1",
@@ -520,8 +512,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-Filloas con nocilla",
+    content: "Filloas con nocilla",
     data: {
       basename: "generator",
       children: "Filloas con nocilla",
@@ -548,8 +539,7 @@ Filloas con nocilla",
     },
   },
   {
-    content: "<!DOCTYPE html>
-Foo",
+    content: "Foo",
     data: {
       basename: "generator",
       children: "Foo",
@@ -576,8 +566,7 @@ Foo",
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Page 3</p>
+    content: "<p>Page 3</p>
 ",
     data: {
       basename: "page-3",
@@ -607,8 +596,7 @@ Foo",
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Page 4</p>
+    content: "<p>Page 4</p>
 ",
     data: {
       basename: "page-4",

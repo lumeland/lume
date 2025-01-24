@@ -128,8 +128,7 @@ snapshot[`Layouts 2`] = `[]`;
 snapshot[`Layouts 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<html>
+    content: "<html>
   <body>
     <h1>Hello world</h1>
 
@@ -164,8 +163,7 @@ snapshot[`Layouts 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<h2>From Layout 3</h2>
+    content: "<h2>From Layout 3</h2>
 /file-1.css,/file-2.css,/file-3.css
 
 <h2>From Layout 2</h2>

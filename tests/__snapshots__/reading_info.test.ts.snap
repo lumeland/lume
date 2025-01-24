@@ -116,8 +116,7 @@ snapshot[`Reading info plugin 2`] = `[]`;
 snapshot[`Reading info plugin 3`] = `
 [
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <body>
     <p>Leverage agile frameworks to provide a robust synopsis for high level overviews.
 Iterative approaches to corporate strategy foster collaborative thinking to

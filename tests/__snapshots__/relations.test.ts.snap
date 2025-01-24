@@ -130,8 +130,7 @@ snapshot[`relations plugin 2`] = `[]`;
 snapshot[`relations plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<h1>Category 1</h1>
+    content: "<h1>Category 1</h1>
 
 <div><p>This is the first category</p>
 </div>
@@ -173,8 +172,7 @@ snapshot[`relations plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<h1>Category 2</h1>
+    content: "<h1>Category 2</h1>
 
 <div><p>This is the second category</p>
 </div>
@@ -215,8 +213,7 @@ snapshot[`relations plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>This is the first comment</p>
+    content: "<p>This is the first comment</p>
 ",
     data: {
       basename: "comment-1",
@@ -249,8 +246,7 @@ snapshot[`relations plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>This is the second comment</p>
+    content: "<p>This is the second comment</p>
 ",
     data: {
       basename: "comment-2",
@@ -284,8 +280,7 @@ snapshot[`relations plugin 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>This is the third comment</p>
+    content: "<p>This is the third comment</p>
 ",
     data: {
       basename: "comment-3",
@@ -318,8 +313,7 @@ snapshot[`relations plugin 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<div><p>First post with category 2 and comments 1 and 3</p>
+    content: '<div><p>First post with category 2 and comments 1 and 3</p>
 </div>
 
 <h2>Category:</h2>
@@ -380,8 +374,7 @@ snapshot[`relations plugin 3`] = `
     },
   },
   {
-    content: '<!DOCTYPE html>
-<div><p>Second post with category 1 and comment 2</p>
+    content: '<div><p>Second post with category 1 and comment 2</p>
 </div>
 
 <h2>Category:</h2>

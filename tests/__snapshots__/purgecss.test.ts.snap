@@ -200,8 +200,7 @@ Título
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Content of Page 1</p>
+    content: "<p>Content of Page 1</p>
 ",
     data: {
       basename: "page1",
@@ -232,8 +231,7 @@ Título
     },
   },
   {
-    content: '<!DOCTYPE html>
-<div class="content-dynamic">Content of Page 2</div>',
+    content: '<div class="content-dynamic">Content of Page 2</div>',
     data: {
       basename: "page2",
       children: '<div class="content-dynamic">Content of Page 2</div>',
@@ -623,8 +621,7 @@ Título
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Content of Page 1</p>
+    content: "<p>Content of Page 1</p>
 ",
     data: {
       basename: "page1",
@@ -655,8 +652,7 @@ Título
     },
   },
   {
-    content: '<!DOCTYPE html>
-<div class="content-dynamic">Content of Page 2</div>',
+    content: '<div class="content-dynamic">Content of Page 2</div>',
     data: {
       basename: "page2",
       children: '<div class="content-dynamic">Content of Page 2</div>',

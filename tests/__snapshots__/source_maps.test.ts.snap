@@ -583,8 +583,7 @@ console.log(foo);
     },
   },
   {
-    content: "<!DOCTYPE html>
-
+    content: "
   <body>
     Hello world
   </body>

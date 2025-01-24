@@ -136,8 +136,7 @@ snapshot[`OpenGraph images 3`] = `
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>This is the page 1</p>
+    content: "<p>This is the page 1</p>
 ",
     data: {
       basename: "page1",
