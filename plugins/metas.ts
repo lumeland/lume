@@ -1,5 +1,5 @@
 import { merge } from "../core/utils/object.ts";
-import { getCurrentVersion } from "../core/utils/lume_version.ts";
+import { getGenerator } from "../core/utils/lume_version.ts";
 import { getDataValue, getPlainDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
@@ -63,7 +63,7 @@ const defaults: Options = {
   name: "metas",
 };
 
-const defaultGenerator = getDefaultGenerator();
+const defaultGenerator = getGenerator();
 
 /**
  * A plugin to insert meta tags for SEO and social media
@@ -247,14 +247,4 @@ function getMetas(metas: MetaData): [MetaData, Record<string, unknown>] {
     robots,
     generator,
   }, other];
-}
-
-function getDefaultGenerator() {
-  const version = getCurrentVersion();
-
-  if (version.startsWith("local")) {
-    return "Lume";
-  }
-
-  return `Lume ${version}`;
 }
