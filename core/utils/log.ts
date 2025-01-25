@@ -5,6 +5,7 @@ import {
   brightGreen,
   cyan,
   gray,
+  italic,
   red,
   strikethrough,
   yellow,
@@ -22,6 +23,21 @@ if (!level || level === "NOTSET") {
 }
 
 const COLOR_TAG_REG = /<(\w+)>([^<]+)<\/\1>/g;
+
+const logFormats: Record<string, (str: string) => string> = {
+  cyan,
+  Cyan: (str: string) => bold(cyan(str)),
+  red,
+  Red: (str: string) => bold(red(str)),
+  gray,
+  Gray: (str: string) => bold(gray(str)),
+  green: brightGreen,
+  Green: (str: string) => bold(brightGreen(str)),
+  yellow: yellow,
+  Yellow: (str: string) => bold(yellow(str)),
+  del: (str: string) => strikethrough(gray(str)),
+  em: italic,
+};
 
 /**
  * This is the default logger. It will output color coded log messages to the
@@ -45,7 +61,7 @@ class ConsoleHandler extends logger.BaseHandler {
 
     return msg.replaceAll(
       COLOR_TAG_REG,
-      (_, name, content) => logFormats[name]!(content),
+      (all, name, content) => logFormats[name]?.(content) ?? all,
     );
   }
 
@@ -67,17 +83,3 @@ logger.setup({
 });
 
 export const log = logger.getLogger("lume");
-
-const logFormats: Record<string, (str: string) => string> = {
-  cyan,
-  Cyan: (str: string) => bold(cyan(str)),
-  red,
-  Red: (str: string) => bold(red(str)),
-  gray,
-  Gray: (str: string) => bold(gray(str)),
-  green: brightGreen,
-  Green: (str: string) => bold(brightGreen(str)),
-  yellow: yellow,
-  Yellow: (str: string) => bold(yellow(str)),
-  del: (str: string) => strikethrough(gray(str)),
-};
