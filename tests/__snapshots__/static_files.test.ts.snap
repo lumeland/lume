@@ -58,7 +58,7 @@ snapshot[`Copy static files 1`] = `
       pageType: "page",
     },
     {
-      copy: true,
+      add: true,
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
@@ -103,17 +103,17 @@ snapshot[`Copy static files 1`] = `
       pageType: "page",
     },
     {
-      copy: true,
+      add: true,
       engines: undefined,
       ext: ".css",
     },
     {
-      copy: true,
+      add: true,
       engines: undefined,
       ext: ".copy",
     },
     {
-      copy: [Function (anonymous)],
+      add: [Function (anonymous)],
       engines: undefined,
       ext: ".copy2",
     },

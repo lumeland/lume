@@ -34,7 +34,7 @@ snapshot[`brotli plugin 1`] = `
       pageType: "page",
     },
     {
-      copy: true,
+      add: true,
       dataLoader: [AsyncFunction: json],
       engines: 0,
       ext: ".json",
@@ -105,12 +105,12 @@ snapshot[`brotli plugin 1`] = `
       pageType: "page",
     },
     {
-      copy: true,
+      add: true,
       engines: undefined,
       ext: ".png",
     },
     {
-      copy: true,
+      add: true,
       engines: undefined,
       ext: ".css",
       process: [AsyncFunction: text],
@@ -746,7 +746,7 @@ snapshot[`brotli plugin with options 1`] = `
       pageType: "page",
     },
     {
-      copy: true,
+      add: true,
       dataLoader: [AsyncFunction: json],
       engines: 0,
       ext: ".json",
@@ -815,12 +815,12 @@ snapshot[`brotli plugin with options 1`] = `
       pageType: "page",
     },
     {
-      copy: true,
+      add: true,
       engines: undefined,
       ext: ".png",
     },
     {
-      copy: true,
+      add: true,
       engines: undefined,
       ext: ".css",
       process: [AsyncFunction: text],

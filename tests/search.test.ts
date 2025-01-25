@@ -200,7 +200,7 @@ Deno.test("Test the file searcher", async (t) => {
   });
 
   site.loadAssets([".css"]);
-  site.copy([".png"]);
+  site.add([".png"]);
 
   await build(site);
 

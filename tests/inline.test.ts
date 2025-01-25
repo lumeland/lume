@@ -12,7 +12,7 @@ Deno.test("inline plugin", async (t) => {
   }));
   site.loadAssets([".svg", ".js"]);
   site.loadAssets([".png"], binaryLoader);
-  site.copy("favicon.png", "favicon2.png");
+  site.add("favicon.png", "favicon2.png");
 
   await build(site);
   await assertSiteSnapshot(t, site);

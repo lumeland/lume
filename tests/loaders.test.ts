@@ -11,7 +11,7 @@ Deno.test("Load the pages of a site", async (t) => {
   });
 
   site.loadAssets([".png"], binaryLoader);
-  site.copy("static.yml");
+  site.add("static.yml");
   site.loadAssets([".css"]);
   site.data("tags", "pages");
   site.data("tags", "sub-pages", "/pages");
@@ -37,7 +37,7 @@ Deno.test("ignored draft pages on dev=false", async () => {
   });
 
   // This file is loaded even if it's copied because it's a known extension
-  site.copy("static.yml");
+  site.add("static.yml");
 
   await build(site);
 

@@ -20,6 +20,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Changed
 - Refactor source.build function to give priority to load over copy statically.
 - Always load files with extensions that need to be (pre)processed instead copy them.
+- Rename `site.copy()` to `site.add()`.
 - Lume's components are now async.
 - `jsx` plugin uses SSX library instead of React.
 - `mdx` plugin no longer depends on a `jsx` plugin installed before.

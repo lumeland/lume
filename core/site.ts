@@ -460,10 +460,10 @@ export default class Site {
     return this;
   }
 
-  /** Copy static files or directories without processing */
-  copy(from: string, to?: string | ((path: string) => string)): this;
-  copy(from: string[], to?: (path: string) => string): this;
-  copy(
+  /** Add files or directories to the site */
+  add(from: string, to?: string | ((path: string) => string)): this;
+  add(from: string[], to?: (path: string) => string): this;
+  add(
     from: string | string[],
     to?: string | ((path: string) => string),
   ): this {
@@ -471,17 +471,17 @@ export default class Site {
     if (Array.isArray(from)) {
       if (typeof to === "string") {
         throw new Error(
-          `copy() files by extension expects a function as second argument but got a string "${to}"`,
+          `add() files by extension expects a function as second argument but got a string "${to}"`,
         );
       }
 
       from.forEach((ext) => {
-        this.formats.set({ ext, copy: to ? to : true });
+        this.formats.set({ ext, add: to ? to : true });
       });
       return this;
     }
 
-    this.source.addStaticPath(from, to);
+    this.source.addPath(from, to);
     return this;
   }
 

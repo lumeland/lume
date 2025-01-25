@@ -69,7 +69,7 @@ export default class Source {
   prettyUrls: boolean;
 
   /** List of static files and folders to copy */
-  staticPaths = new Map<
+  addedPaths = new Map<
     string,
     { dest: string | ((path: string) => string) | undefined; dirOnly: boolean }
   >();
@@ -115,14 +115,14 @@ export default class Source {
     this.filters.push(filter);
   }
 
-  addStaticPath(from: string, to?: string | ((path: string) => string)) {
+  addPath(from: string, to?: string | ((path: string) => string)) {
     if (from.startsWith("../")) {
       throw new Error(
         `It's not possible to copy files outsite the src directory ("${from}")`,
       );
     }
 
-    this.staticPaths.set(
+    this.addedPaths.set(
       normalizePath(from.replace(/\/$/, "")),
       {
         dest: typeof to === "string" ? normalizePath(to) : to,
@@ -156,58 +156,70 @@ export default class Source {
     dir: Entry,
     parentPath: string,
     parentComponents: Components,
-    parentData: RawData,
+    parentData: Partial<Data>,
     pages: Page[],
     staticFiles: StaticFile[],
-    copy?: (path: string) => string,
+    addDest?: (path: string) => string,
+    ignored = false,
   ): Promise<void> {
     if (buildFilters.some((filter) => !filter(dir))) {
       return;
     }
 
     // Load _data
-    const dirData = await this.#loadDirData(dir, parentData);
-    let dirPath = posix.join(parentPath, dirData.basename!);
+    const dirData = ignored
+      ? parentData
+      : await this.#loadDirData(dir, parentData);
+    let dirPath = ignored
+      ? parentPath
+      : posix.join(parentPath, dirData.basename!);
 
     // Load _components
-    const dirComponents = await this.#loadDirComponents(
-      dir,
-      parentComponents,
-      dirData,
-    );
-
-    // Create the components proxy only if new components were found
-    if (dirComponents !== parentComponents) {
-      dirData[this.components.variable] = toProxy(
-        dirComponents,
-        this.extraCode,
+    const dirComponents = ignored
+      ? parentComponents
+      : await this.#loadDirComponents(
+        dir,
+        parentComponents,
+        dirData,
       );
-    }
 
-    // Store the directory data to be used by other plugins
-    this.data.set(dirPath, dirData);
-
-    // Load pages created with `site.page()`
-    for await (const page of this.#getDirPages(dirPath, dirData)) {
-      if (buildFilters.some((filter) => !filter(dir, page))) {
-        continue;
+    if (!ignored) {
+      // Create the components proxy only if new components were found
+      if (dirComponents !== parentComponents) {
+        dirData[this.components.variable] = toProxy(
+          dirComponents,
+          this.extraCode,
+        );
       }
-      pages.push(page);
+
+      // Store the directory data to be used by other plugins
+      this.data.set(dirPath, dirData);
+
+      // Load pages created with `site.page()`
+      for await (const page of this.#getDirPages(dirPath, dirData)) {
+        if (buildFilters.some((filter) => !filter(dir, page))) {
+          continue;
+        }
+        pages.push(page);
+      }
     }
 
-    // The folder is copied with `site.copy("folder")`
-    const copyExplicit = this.staticPaths.get(dir.path) ||
-      this.staticPaths.get(dirPath);
+    // The folder is added with `site.add("folder")`
+    const added = this.addedPaths.get(dir.path) ||
+      this.addedPaths.get(dirPath);
 
-    if (copyExplicit) {
-      const { dest } = copyExplicit;
+    if (added) {
+      ignored = false;
+      const { dest } = added;
 
       if (typeof dest === "function") {
-        const previousCopy = copy;
-        copy = previousCopy ? (path: string) => dest(previousCopy(path)) : dest;
+        const previousDest = addDest;
+        addDest = previousDest
+          ? (path: string) => dest(previousDest(path))
+          : dest;
       } else {
         dirPath = dest ?? dirPath;
-        copy ??= (path: string) => path;
+        addDest ??= (path: string) => path;
       }
     }
 
@@ -218,27 +230,27 @@ export default class Source {
       }
 
       if (entry.type === "file") {
-        let copyExplicit = this.staticPaths.get(entry.path);
+        let added = this.addedPaths.get(entry.path);
 
-        if (copyExplicit?.dirOnly) {
-          // the explicit copy must be a directory and this is a file
-          copyExplicit = undefined;
+        if (added?.dirOnly) {
+          // the added path must be a directory and this is a file
+          added = undefined;
         }
 
         // Check if the file must be ignored
-        if (!copyExplicit && this.#isIgnored(entry)) {
+        if (!added && this.#isIgnored(entry)) {
           continue;
         }
 
-        const format = this.formats.search(entry.path);
+        const format = ignored ? undefined : this.formats.search(entry.path);
 
-        // It's an unknown file format
+        // It's an unknown file format or we're in a ignored context
         if (!format) {
           // Copy the file
-          if (copyExplicit || copy) {
+          if (added || (addDest && !ignored)) {
             const ext = posix.extname(entry.name);
             staticFiles.push(
-              this.#copyFile(entry, dirPath, ext, copyExplicit?.dest, copy),
+              this.#copyFile(entry, dirPath, ext, added?.dest, addDest),
             );
           }
           continue;
@@ -259,8 +271,8 @@ export default class Source {
           continue;
         }
 
-        // The format is copied with `site.copy([".ext"])`
-        if (format.copy || copyExplicit) {
+        // The format is added with `site.add([".ext"])`
+        if (format.add || added) {
           // The format must be processed, so it's loaded
           if (format.process) {
             const page = await this.#loadPage(entry, format, dirData, dirPath);
@@ -277,7 +289,7 @@ export default class Source {
               entry,
               dirPath,
               format.ext,
-              typeof format.copy === "function" ? format.copy : undefined,
+              typeof format.add === "function" ? format.add : undefined,
             ),
           );
           continue;
@@ -290,23 +302,22 @@ export default class Source {
       if (entry.type === "directory") {
         // Check if the folder must be ignored
         if (
-          !copyExplicit &&
-          this.#isIgnored(entry) &&
+          (this.#isIgnored(entry) || ignored) &&
           entry.path !== "/.well-known"
         ) {
-          // Check if there's an inner entry that must be copied
-          for (const path of this.staticPaths.keys()) {
+          // Check if there's an inner entry that must be added
+          let stop = true;
+
+          for (const path of this.addedPaths.keys()) {
             if (path.startsWith(entry.path)) {
-              this.#searchStaticFiles(
-                buildFilters,
-                entry,
-                dirPath,
-                staticFiles,
-              );
+              stop = false;
               break;
             }
           }
-          continue;
+
+          if (stop) {
+            continue;
+          }
         }
 
         await this.#load(
@@ -317,92 +328,19 @@ export default class Source {
           dirData,
           pages,
           staticFiles,
-          copy,
+          addDest,
+          ignored,
         );
       }
     }
   }
 
+  /** Check if the entry must be ignored by Lume */
   #isIgnored(entry: Entry) {
     return entry.name.startsWith(".") ||
       entry.name.startsWith("_") ||
       this.ignored.has(entry.path) ||
       this.filters.some((filter) => filter(entry.path));
-  }
-
-  #searchStaticFiles(
-    buildFilters: BuildFilter[],
-    dir: Entry,
-    parentPath: string,
-    staticFiles: StaticFile[],
-    copy?: (path: string) => string,
-  ): void {
-    if (buildFilters.some((filter) => !filter(dir))) {
-      return;
-    }
-
-    let dirPath = posix.join(parentPath, dir.name);
-
-    // The folder is copied with `site.copy("folder")`
-    const copyExplicit = this.staticPaths.get(dir.path);
-
-    if (copyExplicit) {
-      const { dest } = copyExplicit;
-
-      if (typeof dest === "function") {
-        const previousCopy = copy;
-        copy = previousCopy ? (path: string) => dest(previousCopy(path)) : dest;
-      } else {
-        dirPath = dest ?? dirPath;
-        copy ??= (path: string) => path;
-      }
-    }
-
-    // Iterate over the directory entries
-    for (const entry of dir.children.values()) {
-      if (buildFilters.some((filter) => !filter(entry))) {
-        continue;
-      }
-
-      if (entry.type === "file") {
-        let copyExplicit = this.staticPaths.get(entry.path);
-
-        if (copyExplicit?.dirOnly) {
-          // the explicit copy must be a directory and this is a file
-          copyExplicit = undefined;
-        }
-
-        // Check if the file must be ignored
-        if (!copyExplicit && this.#isIgnored(entry)) {
-          continue;
-        }
-
-        // Copy the file
-        if (copyExplicit || copy) {
-          const ext = posix.extname(entry.name);
-          staticFiles.push(
-            this.#copyFile(entry, dirPath, ext, copyExplicit?.dest, copy),
-          );
-        }
-        continue;
-      }
-
-      if (entry.type === "directory") {
-        // Check if a inner entry must be copied
-        for (const path of this.staticPaths.keys()) {
-          if (path.startsWith(entry.path)) {
-            this.#searchStaticFiles(
-              buildFilters,
-              entry,
-              dirPath,
-              staticFiles,
-              copy,
-            );
-            break;
-          }
-        }
-      }
-    }
   }
 
   /** Load a folder's _data and merge it with the parent data  */
@@ -715,7 +653,7 @@ function getOutputPath(
   entry: Entry,
   path: string,
   dest?: string | ((path: string) => string),
-  copy?: (path: string) => string,
+  addedDest?: (path: string) => string,
 ): string {
   if (typeof dest === "string") {
     return dest;
@@ -723,8 +661,8 @@ function getOutputPath(
 
   let output = posix.join(path, entry.name);
 
-  if (copy) {
-    output = copy(output);
+  if (addedDest) {
+    output = addedDest(output);
   }
 
   return typeof dest === "function" ? dest(output) : output;

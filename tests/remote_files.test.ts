@@ -11,7 +11,7 @@ Deno.test("render remote files", {
   const site = getSite({
     src: "remote_files",
   });
-  site.copy("asset.txt");
+  site.add("asset.txt");
   site.use(postcss());
   site.use(sass());
   site.use(esbuild());

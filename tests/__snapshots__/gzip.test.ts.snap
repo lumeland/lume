@@ -34,7 +34,7 @@ snapshot[`gzip plugin 1`] = `
       pageType: "page",
     },
     {
-      copy: true,
+      add: true,
       dataLoader: [AsyncFunction: json],
       engines: 0,
       ext: ".json",
@@ -105,12 +105,12 @@ snapshot[`gzip plugin 1`] = `
       pageType: "page",
     },
     {
-      copy: true,
+      add: true,
       engines: undefined,
       ext: ".png",
     },
     {
-      copy: true,
+      add: true,
       engines: undefined,
       ext: ".css",
       process: [AsyncFunction: text],

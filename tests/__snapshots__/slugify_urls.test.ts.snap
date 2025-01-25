@@ -107,7 +107,7 @@ snapshot[`slugify_urls plugin 1`] = `
       process: true,
     },
     {
-      copy: true,
+      add: true,
       engines: undefined,
       ext: ".css",
     },
@@ -421,7 +421,7 @@ snapshot[`slugify_urls plugin (static files) 1`] = `
       pageType: "page",
     },
     {
-      copy: true,
+      add: true,
       engines: undefined,
       ext: ".css",
     },

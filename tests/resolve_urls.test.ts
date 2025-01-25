@@ -7,7 +7,7 @@ Deno.test("relative_url plugin", async (t) => {
     src: "resolve_urls",
   });
 
-  site.copy("statics", "");
+  site.add("statics", "");
   site.use(resolveUrls());
   site.use(slugifyUrls()); // Test combined with slugify_urls
 
@@ -20,7 +20,7 @@ Deno.test("relative_url plugin (without slugify)", async (t) => {
     src: "resolve_urls",
   });
 
-  site.copy("statics", "");
+  site.add("statics", "");
   site.use(resolveUrls());
 
   await build(site);
