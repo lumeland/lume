@@ -26,5 +26,5 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `mdx` plugin no longer depends on a `jsx` plugin installed before.
 - Upgraded tailwind to v4 and removed the dependency on `postcss` plugin.
 - Replaced events-based operations with processors in the plugins
-  check_urls, code_highlight, decap_cms, favicon, feed, google_fonts, icons, prism, robots, sitemap and slugify_urls.
+  code_highlight, decap_cms, favicon, feed, google_fonts, icons, prism, robots, sitemap and slugify_urls.
 - `metas` plugin: `generator` property is `true` by default.
