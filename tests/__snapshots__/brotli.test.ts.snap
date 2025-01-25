@@ -34,12 +34,12 @@ snapshot[`brotli plugin 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
+      copy: true,
       dataLoader: [AsyncFunction: json],
       engines: 0,
       ext: ".json",
       loader: [AsyncFunction: json],
-      pageType: "asset",
+      process: true,
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -64,6 +64,7 @@ snapshot[`brotli plugin 1`] = `
       engines: 1,
       ext: ".js",
       loader: [AsyncFunction: module],
+      process: true,
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -104,15 +105,40 @@ snapshot[`brotli plugin 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
+      copy: true,
       engines: undefined,
-      ext: ".css",
-      pageType: "asset",
+      ext: ".png",
     },
     {
       copy: true,
       engines: undefined,
-      ext: ".png",
+      ext: ".css",
+      process: [AsyncFunction: text],
+    },
+    {
+      engines: undefined,
+      ext: ".html",
+      process: true,
+    },
+    {
+      engines: undefined,
+      ext: ".mjs",
+      process: true,
+    },
+    {
+      engines: undefined,
+      ext: ".svg",
+      process: true,
+    },
+    {
+      engines: undefined,
+      ext: ".xml",
+      process: true,
+    },
+    {
+      engines: undefined,
+      ext: ".txt",
+      process: true,
     },
   ],
   src: [
@@ -294,14 +320,14 @@ snapshot[`brotli plugin 3`] = `
   {
     content: "Uint8Array(41)",
     data: {
-      basename: "styles",
+      basename: "index",
       content: "Uint8Array(41)",
       page: [
         "src",
         "data",
         "asset",
       ],
-      url: "/styles.css.br",
+      url: "/styles/index.html.br",
     },
     src: {
       asset: true,
@@ -644,6 +670,11 @@ snapshot[`brotli plugin 3`] = `
 ",
     data: {
       basename: "styles",
+      children: "body {
+  font-family: sans-serif;
+  color: black;
+}
+",
       content: "body {
   font-family: sans-serif;
   color: black;
@@ -669,10 +700,10 @@ snapshot[`brotli plugin 3`] = `
       search: [],
       site: "Default site name",
       tags: "Array(0)",
-      url: "/styles.css",
+      url: "/styles/",
     },
     src: {
-      asset: true,
+      asset: false,
       ext: ".css",
       path: "/styles",
       remote: undefined,
@@ -715,12 +746,11 @@ snapshot[`brotli plugin with options 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
+      copy: true,
       dataLoader: [AsyncFunction: json],
       engines: 0,
       ext: ".json",
       loader: [AsyncFunction: json],
-      pageType: "asset",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -785,15 +815,15 @@ snapshot[`brotli plugin with options 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
+      copy: true,
       engines: undefined,
-      ext: ".css",
-      pageType: "asset",
+      ext: ".png",
     },
     {
       copy: true,
       engines: undefined,
-      ext: ".png",
+      ext: ".css",
+      process: [AsyncFunction: text],
     },
   ],
   src: [
@@ -842,14 +872,14 @@ snapshot[`brotli plugin with options 3`] = `
   {
     content: "Uint8Array(56)",
     data: {
-      basename: "styles",
+      basename: "index",
       content: "Uint8Array(56)",
       page: [
         "src",
         "data",
         "asset",
       ],
-      url: "/styles.css.br",
+      url: "/styles/index.html.br",
     },
     src: {
       asset: true,
@@ -1192,6 +1222,11 @@ snapshot[`brotli plugin with options 3`] = `
 ",
     data: {
       basename: "styles",
+      children: "body {
+  font-family: sans-serif;
+  color: black;
+}
+",
       content: "body {
   font-family: sans-serif;
   color: black;
@@ -1217,10 +1252,10 @@ snapshot[`brotli plugin with options 3`] = `
       search: [],
       site: "Default site name",
       tags: "Array(0)",
-      url: "/styles.css",
+      url: "/styles/",
     },
     src: {
-      asset: true,
+      asset: false,
       ext: ".css",
       path: "/styles",
       remote: undefined,

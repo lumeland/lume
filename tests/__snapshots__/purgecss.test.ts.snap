@@ -108,6 +108,7 @@ snapshot[`purgecss plugin 1`] = `
       engines: undefined,
       ext: ".css",
       pageType: "asset",
+      process: true,
     },
   ],
   src: [
@@ -529,6 +530,7 @@ snapshot[`purgecss plugin with options 1`] = `
       engines: undefined,
       ext: ".css",
       pageType: "asset",
+      process: true,
     },
   ],
   src: [

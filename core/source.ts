@@ -4,6 +4,7 @@ import { mergeData } from "./utils/merge_data.ts";
 import { getPageUrl } from "./utils/page_url.ts";
 import { getPageDate } from "./utils/page_date.ts";
 import { Page, StaticFile } from "./file.ts";
+import getLoader from "./loaders/mod.ts";
 
 import type { Data, RawData } from "./file.ts";
 import type { default as FS, Entry } from "./fs.ts";
@@ -259,7 +260,18 @@ export default class Source {
         }
 
         // The format is copied with `site.copy([".ext"])`
-        if (format.copy) {
+        if (format.copy || copyExplicit) {
+          // The format must be processed, so it's loaded
+          if (format.process) {
+            const page = await this.#loadPage(entry, format, dirData, dirPath);
+
+            if (page) {
+              pages.push(page);
+              continue;
+            }
+          }
+
+          // Copy the file
           staticFiles.push(
             this.#copyFile(
               entry,
@@ -501,9 +513,19 @@ export default class Source {
     dirData: Partial<Data>,
     dirPath: string,
   ): Promise<Page | undefined> {
-    const loader = format.pageType === "asset"
+    // The format is a page or asset
+    let loader = format.pageType === "asset"
       ? format.assetLoader
       : format.loader;
+
+    // The format must be processed
+    if (!loader && format.process) {
+      if (format.process === true) {
+        loader = format.process = getLoader(format.ext);
+      } else {
+        loader = format.process;
+      }
+    }
 
     if (!loader) {
       throw new Error(

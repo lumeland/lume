@@ -102,6 +102,11 @@ snapshot[`slugify_urls plugin 1`] = `
       pageType: "page",
     },
     {
+      engines: undefined,
+      ext: ".html",
+      process: true,
+    },
+    {
       copy: true,
       engines: undefined,
       ext: ".css",

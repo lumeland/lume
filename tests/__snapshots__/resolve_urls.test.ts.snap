@@ -101,6 +101,11 @@ snapshot[`relative_url plugin 1`] = `
       loader: [AsyncFunction: yaml],
       pageType: "page",
     },
+    {
+      engines: undefined,
+      ext: ".html",
+      process: true,
+    },
   ],
   src: [
     "/",
@@ -541,6 +546,11 @@ snapshot[`relative_url plugin (without slugify) 1`] = `
       ext: ".yml",
       loader: [AsyncFunction: yaml],
       pageType: "page",
+    },
+    {
+      engines: undefined,
+      ext: ".html",
+      process: true,
     },
   ],
   src: [

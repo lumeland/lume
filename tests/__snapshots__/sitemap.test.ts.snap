@@ -616,6 +616,11 @@ snapshot[`Sitemap plugin with a multilanguage plugin 1`] = `
       loader: [AsyncFunction: yaml],
       pageType: "page",
     },
+    {
+      engines: undefined,
+      ext: ".html",
+      process: true,
+    },
   ],
   src: [
     "/",

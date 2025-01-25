@@ -375,12 +375,25 @@ export default class Site {
   /** Register a preprocessor for some extensions */
   preprocess(extensions: Extensions, preprocessor: Processor): this {
     this.preprocessors.set(extensions, preprocessor);
+
+    if (Array.isArray(extensions)) {
+      for (const ext of extensions) {
+        this.formats.set({ ext, process: true });
+      }
+    }
+
     return this;
   }
 
   /** Register a processor for some extensions */
   process(extensions: Extensions, processor: Processor): this {
     this.processors.set(extensions, processor);
+
+    if (Array.isArray(extensions)) {
+      for (const ext of extensions) {
+        this.formats.set({ ext, process: true });
+      }
+    }
     return this;
   }
 

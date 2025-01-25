@@ -50,6 +50,7 @@ snapshot[`Reading info plugin 1`] = `
       ext: ".md",
       loader: [AsyncFunction: text],
       pageType: "page",
+      process: true,
     },
     {
       engines: 1,

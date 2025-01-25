@@ -7,8 +7,7 @@ Deno.test("gzip plugin", async (t) => {
     src: "normal",
   });
 
-  site.loadAssets([".css", ".json"]);
-  site.copy([".png"]);
+  site.copy([".png", ".css", ".json"]);
 
   site.use(gzip());
 

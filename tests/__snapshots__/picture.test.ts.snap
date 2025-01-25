@@ -102,28 +102,37 @@ snapshot[`picture plugin 1`] = `
       pageType: "page",
     },
     {
+      engines: undefined,
+      ext: ".html",
+      process: true,
+    },
+    {
       assetLoader: [AsyncFunction: binary],
       engines: undefined,
       ext: ".jpg",
       pageType: "asset",
+      process: true,
     },
     {
       assetLoader: [AsyncFunction: binary],
       engines: undefined,
       ext: ".jpeg",
       pageType: "asset",
+      process: true,
     },
     {
       assetLoader: [AsyncFunction: binary],
       engines: undefined,
       ext: ".png",
       pageType: "asset",
+      process: true,
     },
     {
       assetLoader: [AsyncFunction: binary],
       engines: undefined,
       ext: ".webp",
       pageType: "asset",
+      process: true,
     },
   ],
   src: [

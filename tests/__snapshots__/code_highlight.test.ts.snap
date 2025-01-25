@@ -101,6 +101,11 @@ snapshot[`code_hightlight plugin with default css file 1`] = `
       loader: [AsyncFunction: yaml],
       pageType: "page",
     },
+    {
+      engines: undefined,
+      ext: ".html",
+      process: true,
+    },
   ],
   src: [
     "/",
@@ -350,6 +355,11 @@ snapshot[`code_hightlight plugin 1`] = `
       ext: ".yml",
       loader: [AsyncFunction: yaml],
       pageType: "page",
+    },
+    {
+      engines: undefined,
+      ext: ".html",
+      process: true,
     },
   ],
   src: [

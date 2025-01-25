@@ -25,6 +25,9 @@ export interface Format {
 
   /** Whether this file must be copied instead loaded */
   copy?: boolean | ((path: string) => string);
+
+  /** Whether this format must be (pre)processed */
+  process?: boolean | Loader;
 }
 
 /** Class to store loaders, engines and other stuff related with different formats */

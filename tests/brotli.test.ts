@@ -6,8 +6,7 @@ Deno.test("brotli plugin", async (t) => {
     src: "normal",
   });
 
-  site.loadAssets([".css", ".json"]);
-  site.copy([".png"]);
+  site.copy([".png", ".css", ".json"]);
 
   site.use(brotli());
 
@@ -20,8 +19,7 @@ Deno.test("brotli plugin with options", async (t) => {
     src: "normal",
   });
 
-  site.loadAssets([".css", ".json"]);
-  site.copy([".png"]);
+  site.copy([".png", ".css", ".json"]);
 
   site.use(brotli({
     extensions: [".css"],

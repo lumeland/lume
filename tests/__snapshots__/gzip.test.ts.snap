@@ -34,12 +34,12 @@ snapshot[`gzip plugin 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
+      copy: true,
       dataLoader: [AsyncFunction: json],
       engines: 0,
       ext: ".json",
       loader: [AsyncFunction: json],
-      pageType: "asset",
+      process: true,
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -64,6 +64,7 @@ snapshot[`gzip plugin 1`] = `
       engines: 1,
       ext: ".js",
       loader: [AsyncFunction: module],
+      process: true,
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -104,15 +105,40 @@ snapshot[`gzip plugin 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
+      copy: true,
       engines: undefined,
-      ext: ".css",
-      pageType: "asset",
+      ext: ".png",
     },
     {
       copy: true,
       engines: undefined,
-      ext: ".png",
+      ext: ".css",
+      process: [AsyncFunction: text],
+    },
+    {
+      engines: undefined,
+      ext: ".html",
+      process: true,
+    },
+    {
+      engines: undefined,
+      ext: ".mjs",
+      process: true,
+    },
+    {
+      engines: undefined,
+      ext: ".svg",
+      process: true,
+    },
+    {
+      engines: undefined,
+      ext: ".xml",
+      process: true,
+    },
+    {
+      engines: undefined,
+      ext: ".txt",
+      process: true,
     },
   ],
   src: [
@@ -294,14 +320,14 @@ snapshot[`gzip plugin 3`] = `
   {
     content: "Uint8Array(78)",
     data: {
-      basename: "styles",
+      basename: "index",
       content: "Uint8Array(78)",
       page: [
         "src",
         "data",
         "asset",
       ],
-      url: "/styles.css.gz",
+      url: "/styles/index.html.gz",
     },
     src: {
       asset: true,
@@ -644,6 +670,11 @@ snapshot[`gzip plugin 3`] = `
 ",
     data: {
       basename: "styles",
+      children: "body {
+  font-family: sans-serif;
+  color: black;
+}
+",
       content: "body {
   font-family: sans-serif;
   color: black;
@@ -669,10 +700,10 @@ snapshot[`gzip plugin 3`] = `
       search: [],
       site: "Default site name",
       tags: "Array(0)",
-      url: "/styles.css",
+      url: "/styles/",
     },
     src: {
-      asset: true,
+      asset: false,
       ext: ".css",
       path: "/styles",
       remote: undefined,
@@ -787,6 +818,12 @@ snapshot[`gzip plugin with options 1`] = `
       engines: undefined,
       ext: ".css",
       pageType: "asset",
+      process: true,
+    },
+    {
+      engines: undefined,
+      ext: ".html",
+      process: true,
     },
   ],
   src: [
