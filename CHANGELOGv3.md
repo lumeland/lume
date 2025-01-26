@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New option `cssFile` and `jsFile` to configure a default file for automatic generated code.
   It's used by default by code_highlight, google_fonts, prism and unocss.
   It's also used by default by components.
+- `page.text` and `page.bytes` getters and setters.
 
 ### Removed
 - `jsx_preact` plugin. Use `jsx` instead.
@@ -28,3 +29,4 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Replaced events-based operations with processors in the plugins
   code_highlight, decap_cms, favicon, feed, google_fonts, icons, prism, robots, sitemap and slugify_urls.
 - `metas` plugin: `generator` property is `true` by default.
+- `page.document` always returns a Document or throws and exception.

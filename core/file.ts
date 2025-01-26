@@ -6,6 +6,9 @@ import type { ProxyComponents } from "./source.ts";
 import type { Entry } from "./fs.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
 
+const decoder = new TextDecoder();
+const encoder = new TextEncoder();
+
 /** A page of the site */
 export class Page<D extends Data = Data> {
   /** The src info */
@@ -108,21 +111,37 @@ export class Page<D extends Data = Data> {
     return this.#content;
   }
 
+  /** The content of this page as text */
+  get text(): string {
+    return this.content instanceof Uint8Array
+      ? decoder.decode(this.content)
+      : this.content ?? "";
+  }
+
+  set text(text: string) {
+    this.content = text;
+  }
+
+  /** The content of this page as bytes */
+  get bytes(): Uint8Array {
+    return this.content instanceof Uint8Array
+      ? this.content
+      : encoder.encode(this.content || "");
+  }
+
+  set bytes(bytes: Uint8Array) {
+    this.content = bytes;
+  }
+
   /** The parsed HTML code from the content */
-  set document(document: Document | undefined) {
+  set document(document: Document) {
     this.#content = undefined;
     this.#document = document;
   }
 
-  get document(): Document | undefined {
-    if (this.#document) {
-      return this.#document;
-    }
-
-    const url = this.outputPath;
-
-    if (this.#content && url.endsWith(".html")) {
-      this.#document = stringToDocument(this.#content.toString());
+  get document(): Document {
+    if (!this.#document) {
+      this.#document = stringToDocument(this.text);
     }
 
     return this.#document;
