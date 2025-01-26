@@ -513,6 +513,11 @@ snapshot[`relative_url plugin when pretty urls disabled 1`] = `
       ext: ".html",
       process: true,
     },
+    {
+      engines: undefined,
+      ext: ".css",
+      process: true,
+    },
   ],
   src: [
     "/",

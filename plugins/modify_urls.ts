@@ -8,7 +8,7 @@ import type { Page } from "../core/file.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions?: string[];
+  extensions?: (".html" | ".css")[];
 
   /**
    * The function to generate the new url
@@ -24,7 +24,7 @@ export const defaults: Options = {
 };
 
 /**
- * A plugin to modify all URLs found in the HTML documents
+ * A plugin to modify all URLs found in HTML and CSS documents
  * @see https://lume.land/plugins/modify_urls/
  */
 export function modifyUrls(userOptions: Options) {

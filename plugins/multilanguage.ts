@@ -7,9 +7,6 @@ import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
 
 export interface Options {
-  /** The list of extensions used for this plugin */
-  extensions?: string[];
-
   /** Available languages */
   languages: string[];
 
@@ -19,7 +16,6 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
-  extensions: [".html"],
   languages: [],
 };
 
@@ -43,7 +39,7 @@ export function multilanguage(userOptions: Options) {
      * + display guidance (warning log) to some bug-potential cases
      * + convert "page.data.lang" array type page (if yes) to string type page
      */
-    site.preprocess(options.extensions, (filteredPages, allPages) => {
+    site.preprocess([".html"], (filteredPages, allPages) => {
       for (const page of filteredPages) {
         const { data } = page;
         const languages = data.lang as string | string[] | undefined;
@@ -107,7 +103,7 @@ export function multilanguage(userOptions: Options) {
      * + create the alternates
      * + sort the alternates
      */
-    site.preprocess(options.extensions, (pages) => {
+    site.preprocess([".html"], (pages) => {
       for (const page of pages) {
         const { data } = page;
         const { lang } = data;
@@ -172,7 +168,7 @@ export function multilanguage(userOptions: Options) {
      *
      * + convert unmatchedLangUrl any value to URL string value
      */
-    site.preprocess(options.extensions, (pages) => {
+    site.preprocess([".html"], (pages) => {
       for (const page of pages) {
         page.data.unmatchedLangUrl = getUnmatchedLangPath(
           page,
@@ -183,7 +179,7 @@ export function multilanguage(userOptions: Options) {
 
     // Include automatically the <link rel="alternate"> elements
     // with the other languages
-    site.process(options.extensions, (pages) => {
+    site.process([".html"], (pages) => {
       for (const page of pages) {
         const { document } = page;
         const alternates = page.data.alternates;

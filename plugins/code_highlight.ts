@@ -12,9 +12,6 @@ import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
   /** Register languages on the Highlight.js context. */
   languages?: Record<string, LanguageFn>;
 
@@ -44,7 +41,6 @@ interface Theme {
 
 // Default options
 export const defaults: Options = {
-  extensions: [".html"],
   options: {
     ignoreUnescapedHTML: false,
     noHighlightRe: /^$/i,
@@ -70,7 +66,7 @@ export function codeHighlight(userOptions?: Options) {
   }
 
   return (site: Site) => {
-    site.process(options.extensions, processCodeHighlight);
+    site.process([".html"], processCodeHighlight);
 
     if (options.theme) {
       const themes = Array.isArray(options.theme)

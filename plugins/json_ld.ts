@@ -6,15 +6,11 @@ import type { Page } from "../core/file.ts";
 import type { Graph, Thing } from "../deps/schema-dts.ts";
 
 export interface Options {
-  /** The list extensions this plugin applies to */
-  extensions?: string[];
-
   /** The key name for the transformations definitions */
   name?: string;
 }
 
 const defaults: Options = {
-  extensions: [".html"],
   name: "jsonLd",
 };
 
@@ -192,7 +188,7 @@ export function jsonLd(userOptions?: Options) {
 
   return (site: Site) => {
     site.mergeKey(options.name, "object");
-    site.process(options.extensions, (pages) => pages.forEach(jsonLdProcessor));
+    site.process([".html"], (pages) => pages.forEach(jsonLdProcessor));
 
     function jsonLdProcessor(page: Page) {
       let jsonLdData = page.data[options.name] as JsonldData | undefined;

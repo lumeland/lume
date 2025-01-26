@@ -11,9 +11,6 @@ import loader from "../core/loaders/module.ts";
 import "../types.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
   /**
    * Custom includes path to load the layout
    * @default `site.options.includes`
@@ -31,7 +28,6 @@ export interface Options {
 }
 
 export const defaults: Options = {
-  extensions: [".html"],
   cache: true,
   satori: {
     width: 1200,
@@ -63,7 +59,7 @@ export function ogImages(userOptions?: Options) {
       site.options.watcher.ignore.push(cacheFolder);
     }
 
-    site.process(options.extensions, async (pages, allPages) => {
+    site.process([".html"], async (pages, allPages) => {
       if (!satoriOptions.fonts.length) {
         satoriOptions.fonts.push(...await defaultFonts());
       }

@@ -6,9 +6,6 @@ import type Site from "../core/site.ts";
 import type { Data, Page } from "../core/file.ts";
 
 export interface Options {
-  /** The list extensions this plugin applies to */
-  extensions?: string[];
-
   /** The key name for the transformations definitions */
   name?: string;
 }
@@ -59,7 +56,6 @@ export interface MetaData {
 }
 
 const defaults: Options = {
-  extensions: [".html"],
   name: "metas",
 };
 
@@ -75,7 +71,7 @@ export function metas(userOptions?: Options) {
   return (site: Site) => {
     // Configure the merged keys
     site.mergeKey(options.name, "object");
-    site.process(options.extensions, (pages) => pages.forEach(metas));
+    site.process([".html"], (pages) => pages.forEach(metas));
 
     function metas(page: Page) {
       const metas = page.data[options.name] as MetaData | undefined;

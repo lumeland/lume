@@ -12,9 +12,6 @@ import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
   /** Attribute used to select the elements this plugin applies to */
   attribute?: string;
 
@@ -24,7 +21,6 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
-  extensions: [".html"],
   attribute: "inline",
   copyAttributes: [/^data-/],
 };
@@ -40,7 +36,7 @@ export function inline(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(options.extensions, (pages) => concurrent(pages, inline));
+    site.process([".html"], (pages) => concurrent(pages, inline));
 
     site.addEventListener("beforeUpdate", () => cache.clear());
 

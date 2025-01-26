@@ -17,6 +17,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `jsx_preact` plugin. Use `jsx` instead.
 - `site.copyRemainingFiles()`.
 - Automatic `<!doctype html>` to all HTML pages.
+- `extensions` option of the plugins `check_urls`, `base_path`, `code_highlight`, `fff`, `inline`, `json_ld`, `katex`, `metas`, `multilanguage`, `og_images`, `prism`, `purgecss`, `relative_urls`.
 
 ### Changed
 - Refactor source.build function to give priority to load over copy statically.

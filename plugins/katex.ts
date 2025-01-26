@@ -5,9 +5,6 @@ import { merge } from "../core/utils/object.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
   /** The css selector to apply katex */
   cssSelector?: string;
 
@@ -22,7 +19,6 @@ export interface Options {
 }
 
 export const defaults: Options = {
-  extensions: [".html"],
   cssSelector: ".language-math",
   options: {
     strict: true,
@@ -59,7 +55,7 @@ export const defaults: Options = {
 export function katex(userOptions?: Options) {
   const options = merge(defaults, userOptions);
   return (site: Site) => {
-    site.process(options.extensions, (pages) => {
+    site.process([".html"], (pages) => {
       for (const page of pages) {
         const { document } = page;
 

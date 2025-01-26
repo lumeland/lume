@@ -7,9 +7,6 @@ import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
   /** The css selector to apply prism */
   cssSelector?: string;
 
@@ -33,7 +30,6 @@ interface Theme {
 
 // Default options
 export const defaults: Options = {
-  extensions: [".html"],
   cssSelector: "pre code",
 };
 
@@ -45,7 +41,7 @@ export function prism(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(options.extensions, (pages) => pages.forEach(prism));
+    site.process([".html"], (pages) => pages.forEach(prism));
 
     if (options.theme) {
       const themes = Array.isArray(options.theme)

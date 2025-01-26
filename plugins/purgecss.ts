@@ -8,9 +8,6 @@ import type { Page } from "../core/file.ts";
 import type { RawContent, UserDefinedOptions } from "../deps/purgecss.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to. */
-  extensions?: string[];
-
   /** The list of page extensions loaded as content. */
   contentExtensions?: string[];
 
@@ -20,7 +17,6 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
-  extensions: [".css"],
   contentExtensions: [".html", ".js"],
   options: {
     extractors: [],
@@ -39,7 +35,7 @@ export function purgecss(userOptions?: Options) {
   });
 
   return (site: Site) => {
-    site.process(options.extensions, async (pages, allPages) => {
+    site.process([".css"], async (pages, allPages) => {
       const content: RawContent[] = [];
       for (const page of allPages) {
         if (!matchExtension(options.contentExtensions, page.outputPath)) {
