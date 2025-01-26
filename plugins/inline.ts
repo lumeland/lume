@@ -48,13 +48,13 @@ export function inline(userOptions?: Options) {
 
     async function inline(page: Page) {
       const templateElements = Array.from(
-        page.document!.querySelectorAll("template"),
+        page.document.querySelectorAll("template"),
       ).flatMap((template) =>
         Array.from(template.content.querySelectorAll(selector))
       );
       for (
         const element of [
-          ...Array.from(page.document!.querySelectorAll(selector)),
+          ...Array.from(page.document.querySelectorAll(selector)),
           ...templateElements,
         ]
       ) {

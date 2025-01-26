@@ -71,10 +71,6 @@ export function modifyUrls(userOptions: Options) {
 
           const { document } = page;
 
-          if (!document) {
-            return;
-          }
-
           for (const { element, attribute, value } of searchLinks(document)) {
             if (attribute === "srcset" || attribute === "imagesrcset") {
               element.setAttribute(

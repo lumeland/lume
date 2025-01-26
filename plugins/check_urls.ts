@@ -116,11 +116,6 @@ export default function (userOptions?: Options) {
       (pages) => {
         for (const page of pages) {
           const { document } = page;
-
-          if (!document) {
-            return;
-          }
-
           const pageURL = new URL(page.data.url, site.options.location);
 
           for (const { attribute, value } of searchLinks(document)) {

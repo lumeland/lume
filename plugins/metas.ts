@@ -80,7 +80,7 @@ export function metas(userOptions?: Options) {
     function metas(page: Page) {
       const metas = page.data[options.name] as MetaData | undefined;
 
-      if (!metas || !page.document) {
+      if (!metas) {
         return;
       }
 

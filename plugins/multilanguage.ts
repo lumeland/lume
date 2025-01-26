@@ -189,7 +189,7 @@ export function multilanguage(userOptions: Options) {
         const alternates = page.data.alternates;
         const lang = page.data.lang as string | undefined;
 
-        if (!document || !alternates || !lang) {
+        if (!alternates || !lang) {
           continue;
         }
 

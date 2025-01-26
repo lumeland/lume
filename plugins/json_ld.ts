@@ -197,9 +197,10 @@ export function jsonLd(userOptions?: Options) {
     function jsonLdProcessor(page: Page) {
       let jsonLdData = page.data[options.name] as JsonldData | undefined;
 
-      if (!jsonLdData || !page.document) {
+      if (!jsonLdData) {
         return;
       }
+
       const { document, data } = page;
 
       // Recursive function to traverse and process JSON-LD data

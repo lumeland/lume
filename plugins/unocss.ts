@@ -114,7 +114,7 @@ export function unoCSS(userOptions?: Options) {
         const uno = await getGenerator();
 
         await Promise.all(pages.map(async (page) => {
-          const document = page.document!;
+          const { document } = page;
           const result = await uno.generate(
             document.documentElement?.innerHTML ?? "",
           );
@@ -123,7 +123,7 @@ export function unoCSS(userOptions?: Options) {
           if (css) {
             const style = document.createElement("style");
             style.innerText = css;
-            page.document?.head?.appendChild(style);
+            document.head.appendChild(style);
           }
         }));
       });

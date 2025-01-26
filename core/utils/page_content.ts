@@ -5,9 +5,9 @@ export function insertContent(
   content: string,
   placeholder?: string,
 ) {
-  const pageContent = page.content;
+  const pageContent = page.text;
 
-  if (pageContent && typeof pageContent === "string") {
+  if (pageContent) {
     if (placeholder && pageContent.includes(placeholder)) {
       page.content = pageContent.replace(
         placeholder,

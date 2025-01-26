@@ -207,9 +207,6 @@ export function pagefind(userOptions?: Options) {
       site.process([".html"], (pages) => {
         for (const page of pages) {
           const { document } = page;
-          if (!document) {
-            continue;
-          }
           const container = document.getElementById(containerId!);
 
           // Insert UI styles and scripts

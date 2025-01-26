@@ -63,10 +63,6 @@ export function katex(userOptions?: Options) {
       for (const page of pages) {
         const { document } = page;
 
-        if (!document) {
-          continue;
-        }
-
         document.querySelectorAll(options.cssSelector)
           .forEach((element) => {
             try {

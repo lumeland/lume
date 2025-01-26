@@ -64,7 +64,7 @@ export function prism(userOptions?: Options) {
     }
 
     function prism(page: Page) {
-      page.document!.querySelectorAll(options.cssSelector!)
+      page.document.querySelectorAll(options.cssSelector!)
         .forEach((element) => Prism.highlightElement(element));
     }
   };

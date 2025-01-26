@@ -119,7 +119,7 @@ export function favicon(userOptions?: Options) {
 
     site.process([".html"], (pages) => {
       for (const page of pages) {
-        const document = page.document!;
+        const { document } = page;
 
         for (const favicon of options.favicons) {
           addIcon(document, {

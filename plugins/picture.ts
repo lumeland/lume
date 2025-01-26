@@ -42,11 +42,6 @@ export function picture(userOptions?: Options) {
     site.process([".html"], (pages) => {
       for (const page of pages) {
         const { document } = page;
-
-        if (!document) {
-          return;
-        }
-
         const basePath = posix.dirname(page.outputPath);
         const images = document.querySelectorAll("img");
 
@@ -77,7 +72,7 @@ export function picture(userOptions?: Options) {
 
       // Remove the image-transform attribute from the HTML
       for (const page of pages) {
-        page.document?.querySelectorAll("[transform-images]").forEach(
+        page.document.querySelectorAll("[transform-images]").forEach(
           (element) => {
             element.removeAttribute("transform-images");
           },
