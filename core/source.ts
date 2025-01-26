@@ -134,8 +134,9 @@ export default class Source {
   async build(...buildFilters: BuildFilter[]): Promise<[Page[], StaticFile[]]> {
     const pages: Page[] = [];
     const staticFiles: StaticFile[] = [];
+    this.data.clear();
 
-    await this.#load(
+    await this.#addDirectory(
       buildFilters,
       this.fs.entries.get("/")!,
       "/",
@@ -151,7 +152,7 @@ export default class Source {
     ];
   }
 
-  async #load(
+  async #addDirectory(
     buildFilters: BuildFilter[],
     dir: Entry,
     parentPath: string,
@@ -160,48 +161,40 @@ export default class Source {
     pages: Page[],
     staticFiles: StaticFile[],
     addDest?: (path: string) => string,
-    ignored = false,
   ): Promise<void> {
     if (buildFilters.some((filter) => !filter(dir))) {
       return;
     }
 
     // Load _data
-    const dirData = ignored
-      ? parentData
-      : await this.#loadDirData(dir, parentData);
-    let dirPath = ignored
-      ? parentPath
-      : posix.join(parentPath, dirData.basename!);
+    const dirData = await this.#loadDirData(dir, parentData);
+    let dirPath = posix.join(parentPath, dirData.basename!);
 
     // Load _components
-    const dirComponents = ignored
-      ? parentComponents
-      : await this.#loadDirComponents(
-        dir,
-        parentComponents,
-        dirData,
+    const dirComponents = await this.#loadDirComponents(
+      dir,
+      parentComponents,
+      dirData,
+    );
+
+    // Create the components proxy only if new components were found
+    if (dirComponents !== parentComponents) {
+      dirData[this.components.variable] = toProxy(
+        dirComponents,
+        this.extraCode,
       );
+    }
 
-    if (!ignored) {
-      // Create the components proxy only if new components were found
-      if (dirComponents !== parentComponents) {
-        dirData[this.components.variable] = toProxy(
-          dirComponents,
-          this.extraCode,
-        );
+    // Store the directory data to be used by other plugins
+    this.data.set(dir.path, dirData);
+    this.data.set(dirPath, dirData);
+
+    // Load pages created with `site.page()`
+    for await (const page of this.#getDirPages(dirPath, dirData)) {
+      if (buildFilters.some((filter) => !filter(dir, page))) {
+        continue;
       }
-
-      // Store the directory data to be used by other plugins
-      this.data.set(dirPath, dirData);
-
-      // Load pages created with `site.page()`
-      for await (const page of this.#getDirPages(dirPath, dirData)) {
-        if (buildFilters.some((filter) => !filter(dir, page))) {
-          continue;
-        }
-        pages.push(page);
-      }
+      pages.push(page);
     }
 
     // The folder is added with `site.add("folder")`
@@ -209,7 +202,6 @@ export default class Source {
       this.addedPaths.get(dirPath);
 
     if (added) {
-      ignored = false;
       const { dest } = added;
 
       if (typeof dest === "function") {
@@ -230,97 +222,65 @@ export default class Source {
       }
 
       if (entry.type === "file") {
-        let added = this.addedPaths.get(entry.path);
+        await this.#addFile(
+          buildFilters,
+          entry,
+          dirPath,
+          dirData,
+          pages,
+          staticFiles,
+          addDest,
+        );
 
-        if (added?.dirOnly) {
-          // the added path must be a directory and this is a file
-          added = undefined;
-        }
-
-        // Check if the file must be ignored
-        if (!added && this.#isIgnored(entry)) {
-          continue;
-        }
-
-        const format = ignored ? undefined : this.formats.search(entry.path);
-
-        // It's an unknown file format or we're in a ignored context
-        if (!format) {
-          // Copy the file
-          if (added || (addDest && !ignored)) {
-            const ext = posix.extname(entry.name);
-            staticFiles.push(
-              this.#copyFile(entry, dirPath, ext, added?.dest, addDest),
-            );
-          }
-          continue;
-        }
-
-        // The format is a page `site.loadPages([".ext"])` or `site.loadAssets([".ext"])`
-        if (format.pageType) {
-          const page = await this.#loadPage(entry, format, dirData, dirPath);
-
-          if (
-            page &&
-            (!buildFilters.length ||
-              buildFilters.every((filter) => filter(entry, page)))
-          ) {
-            pages.push(page);
-          }
-
-          continue;
-        }
-
-        // The format is added with `site.add([".ext"])`
-        if (format.add || added) {
-          // The format must be processed, so it's loaded
-          if (format.process) {
-            const page = await this.#loadPage(entry, format, dirData, dirPath);
-
-            if (page) {
-              pages.push(page);
-              continue;
-            }
-          }
-
-          // Copy the file
-          staticFiles.push(
-            this.#copyFile(
-              entry,
-              dirPath,
-              format.ext,
-              typeof format.add === "function" ? format.add : undefined,
-            ),
-          );
-          continue;
-        }
-
-        // Ignore the file
         continue;
       }
 
       if (entry.type === "directory") {
-        // Check if the folder must be ignored
-        if (
-          (this.#isIgnored(entry) || ignored) &&
-          entry.path !== "/.well-known"
-        ) {
-          // Check if there's an inner entry that must be added
-          let stop = true;
-
+        if (this.#isIgnored(entry)) {
+          // Add possible inner entries
+          // For example: site.ignore("folder").add("folder/file.ext")
           for (const path of this.addedPaths.keys()) {
-            if (path.startsWith(entry.path)) {
-              stop = false;
-              break;
+            if (!path.startsWith(entry.path) || path === entry.path) {
+              continue;
+            }
+
+            const subEntry = this.fs.entries.get(path);
+
+            if (!subEntry) {
+              continue;
+            }
+
+            if (subEntry.type === "file") {
+              await this.#addFile(
+                buildFilters,
+                subEntry,
+                dirPath,
+                dirData,
+                pages,
+                staticFiles,
+                addDest,
+              );
+              continue;
+            }
+
+            if (subEntry.type === "directory") {
+              await this.#addDirectory(
+                buildFilters,
+                subEntry,
+                dirPath,
+                dirComponents,
+                dirData,
+                pages,
+                staticFiles,
+                addDest,
+              );
             }
           }
 
-          if (stop) {
-            continue;
-          }
+          continue;
         }
 
-        await this.#load(
+        await this.#addDirectory(
           buildFilters,
           entry,
           dirPath,
@@ -329,15 +289,102 @@ export default class Source {
           pages,
           staticFiles,
           addDest,
-          ignored,
         );
       }
     }
   }
 
+  async #addFile(
+    buildFilters: BuildFilter[],
+    file: Entry,
+    dirPath: string,
+    dirData: Partial<Data>,
+    pages: Page[],
+    staticFiles: StaticFile[],
+    addDest?: (path: string) => string,
+  ) {
+    let added = this.addedPaths.get(file.path);
+
+    if (added?.dirOnly) {
+      // the added path must be a directory and this is a file
+      added = undefined;
+    }
+
+    // Check if the file must be ignored
+    if (!added && this.#isIgnored(file)) {
+      return;
+    }
+
+    const format = this.formats.search(file.path);
+
+    // It's an unknown file format or we're in a ignored context
+    if (!format) {
+      // Copy the file
+      if (added || addDest) {
+        const ext = posix.extname(file.name);
+        staticFiles.push(
+          this.#copyFile(file, dirPath, ext, added?.dest, addDest),
+        );
+      }
+      return;
+    }
+
+    // The format is a page `site.loadPages([".ext"])` or `site.loadAssets([".ext"])`
+    if (format.pageType) {
+      const page = await this.#loadPage(
+        file,
+        format,
+        dirData,
+        dirPath,
+        addDest,
+      );
+
+      if (
+        page &&
+        (!buildFilters.length ||
+          buildFilters.every((filter) => filter(file, page)))
+      ) {
+        pages.push(page);
+      }
+
+      return;
+    }
+
+    // The format is added with `site.add([".ext"])`
+    if (format.add || added) {
+      // The format must be processed, so it's loaded
+      if (format.process) {
+        const page = await this.#loadPage(
+          file,
+          format,
+          dirData,
+          dirPath,
+          addDest,
+        );
+
+        if (page) {
+          pages.push(page);
+          return;
+        }
+      }
+
+      // Copy the file
+      staticFiles.push(
+        this.#copyFile(
+          file,
+          dirPath,
+          format.ext,
+          typeof format.add === "function" ? format.add : undefined,
+        ),
+      );
+      return;
+    }
+  }
+
   /** Check if the entry must be ignored by Lume */
   #isIgnored(entry: Entry) {
-    return entry.name.startsWith(".") ||
+    return (entry.name.startsWith(".") &&
+      (entry.type !== "directory" || entry.path !== "/.well-known")) ||
       entry.name.startsWith("_") ||
       this.ignored.has(entry.path) ||
       this.filters.some((filter) => filter(entry.path));
@@ -450,6 +497,7 @@ export default class Source {
     format: Format,
     dirData: Partial<Data>,
     dirPath: string,
+    addDest?: (path: string) => string,
   ): Promise<Page | undefined> {
     // The format is a page or asset
     let loader = format.pageType === "asset"
@@ -496,7 +544,7 @@ export default class Source {
     ) as Data;
 
     // Calculate the page URL
-    const url = getPageUrl(page, this.prettyUrls, dirPath);
+    const url = getPageUrl(page, this.prettyUrls, dirPath, addDest);
     if (!url) {
       return;
     }

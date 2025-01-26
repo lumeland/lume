@@ -15,6 +15,7 @@ export function getPageUrl(
   page: Page,
   prettyUrls: boolean,
   parentPath: string,
+  addDest?: (path: string) => string,
 ): string | false {
   const data = page.data as RawData;
   let { url } = data;
@@ -54,7 +55,8 @@ export function getPageUrl(
     );
   }
 
-  return getDefaultUrl(page, parentPath, prettyUrls);
+  const defaultUrl = getDefaultUrl(page, parentPath, prettyUrls);
+  return addDest ? addDest(defaultUrl) : defaultUrl;
 }
 
 /** Returns the default URL for a page */
