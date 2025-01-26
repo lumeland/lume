@@ -32,10 +32,13 @@ export class Page<D extends Data = Data> {
   #document?: Document;
 
   /** Convenient way to create a page dynamically */
-  static create(data: Partial<Data> & { url: string }): Page {
+  static create(
+    data: Partial<Data> & { url: string },
+    src?: Partial<Src>,
+  ): Page {
     let { url, ...rest } = data;
     const basename = posix.basename(url).replace(/\.[\w.]+$/, "");
-    const page = new Page();
+    const page = new Page(src);
 
     if (url.endsWith("/index.html")) {
       url = url.slice(0, -10);

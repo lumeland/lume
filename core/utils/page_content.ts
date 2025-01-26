@@ -9,14 +9,14 @@ export function insertContent(
 
   if (pageContent) {
     if (placeholder && pageContent.includes(placeholder)) {
-      page.content = pageContent.replace(
+      page.text = pageContent.replace(
         placeholder,
         content,
       );
     } else {
-      page.content += `\n${content}`;
+      page.text += `\n${content}`;
     }
   } else {
-    page.content = content;
+    page.text = content;
   }
 }

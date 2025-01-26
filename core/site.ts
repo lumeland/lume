@@ -21,6 +21,7 @@ import FSWatcher from "../core/watcher.ts";
 import { FSWriter } from "./writer.ts";
 import { Page } from "./file.ts";
 import textLoader from "./loaders/text.ts";
+import binaryLoader from "./loaders/binary.ts";
 import Server from "./server.ts";
 import notFound from "../middlewares/not_found.ts";
 
@@ -809,10 +810,7 @@ export default class Site {
     return absolute ? this.options.location.origin + path : path;
   }
 
-  async getOrCreatePage(
-    url: string,
-    loader: Loader = textLoader,
-  ): Promise<Page> {
+  async getOrCreatePage(url: string): Promise<Page> {
     url = normalizePath(url);
 
     // It's a page
@@ -826,9 +824,10 @@ export default class Site {
     const index = this.files.findIndex((f) => f.outputPath === url);
 
     if (index > -1) {
-      const { entry } = this.files.splice(index, 1)[0].src;
-      const data = await entry.getContent(loader) as Data;
-      const page = Page.create({ ...data, url });
+      const file = this.files.splice(index, 1)[0];
+      const { content } = await file.src.entry.getContent(binaryLoader);
+      const page = Page.create({ url }, file.src);
+      page.content = content as Uint8Array;
       this.pages.push(page);
       return page;
     }
@@ -836,8 +835,9 @@ export default class Site {
     // Read the source files directly
     const entry = this.fs.entries.get(url);
     if (entry) {
-      const data = await entry.getContent(loader) as Data;
-      const page = Page.create({ ...data, url });
+      const { content } = await entry.getContent(binaryLoader);
+      const page = Page.create({ url }, { entry });
+      page.content = content as Uint8Array;
       this.pages.push(page);
       return page;
     }

@@ -8734,10 +8734,6 @@ snapshot[`Use a placeholder 3`] = `
 ',
     data: {
       basename: "styles",
-      content: "@layer {
-  /* google-fonts */
-}
-",
       page: [
         "src",
         "data",
