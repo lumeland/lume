@@ -3,9 +3,6 @@ import { merge } from "../core/utils/object.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
-  /** The key name to store the reading info value and the filter */
-  name?: string;
-
   /** The list extensions this plugin applies to */
   extensions?: string[];
 
@@ -14,7 +11,6 @@ export interface Options {
 }
 
 export const defaults: Options = {
-  name: "readingInfo",
   extensions: [".md"],
   wordsPerMinute: 275,
 };
@@ -31,7 +27,7 @@ export function readingInfo(userOptions?: Options) {
       pages.forEach((page) => {
         const { content, lang } = page.data;
 
-        page.data[options.name] = readingInfo(
+        page.data.readingInfo = readingInfo(
           typeof content === "string" ? content : undefined,
           lang as string,
         );
@@ -84,4 +80,17 @@ export interface ReadingInfo {
 
   /** The number of milliseconds it takes to read the content */
   time: number;
+}
+
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data {
+      /**
+       * Reading info
+       * @see https://lume.land/plugins/reading_info/
+       */
+      readingInfo: ReadingInfo;
+    }
+  }
 }

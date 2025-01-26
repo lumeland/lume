@@ -1,14 +1,8 @@
-import { merge } from "../core/utils/object.ts";
 import { getGenerator } from "../core/utils/lume_version.ts";
 import { getDataValue, getPlainDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
 import type { Data, Page } from "../core/file.ts";
-
-export interface Options {
-  /** The key name for the transformations definitions */
-  name?: string;
-}
 
 export interface MetaData {
   /** The type of the site default is website */
@@ -55,26 +49,20 @@ export interface MetaData {
   [name: string]: any;
 }
 
-const defaults: Options = {
-  name: "metas",
-};
-
 const defaultGenerator = getGenerator();
 
 /**
  * A plugin to insert meta tags for SEO and social media
  * @see https://lume.land/plugins/metas/
  */
-export function metas(userOptions?: Options) {
-  const options = merge(defaults, userOptions);
-
+export function metas() {
   return (site: Site) => {
     // Configure the merged keys
-    site.mergeKey(options.name, "object");
+    site.mergeKey("metas", "object");
     site.process([".html"], (pages) => pages.forEach(metas));
 
     function metas(page: Page) {
-      const metas = page.data[options.name] as MetaData | undefined;
+      const metas = page.data.metas as MetaData | undefined;
 
       if (!metas) {
         return;

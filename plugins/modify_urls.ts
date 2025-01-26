@@ -8,7 +8,7 @@ import type { Page } from "../core/file.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
-  extensions?: (".html" | ".css")[];
+  extensions?: Array<".html" | ".css">;
 
   /**
    * The function to generate the new url

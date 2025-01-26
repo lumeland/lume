@@ -7,15 +7,11 @@ import type Searcher from "../core/searcher.ts";
 import type { Data } from "../core/file.ts";
 
 export interface Options {
-  /** The helper name */
-  name?: string;
-
   /** The default order for the children */
   order?: string;
 }
 
 export const defaults: Options = {
-  name: "nav",
   order: "basename=asc-locale",
 };
 
@@ -28,7 +24,7 @@ export function nav(userOptions?: Options) {
 
   return (site: Site) => {
     const nav = new Nav(site.search, options.order);
-    site.data(options.name, nav);
+    site.data("nav", nav);
     site.addEventListener("beforeUpdate", () => nav.deleteCache());
   };
 }

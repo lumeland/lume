@@ -13,9 +13,6 @@ export interface Options {
   /** The list extensions this plugin applies to */
   extensions: string[];
 
-  /** The key name for the transformations definitions */
-  name: string;
-
   /** The cache folder */
   cache: string | boolean;
 
@@ -32,7 +29,6 @@ export type TransformationFunction = (
 // Default options
 export const defaults: Options = {
   extensions: [".jpg", ".jpeg", ".png", ".webp"],
-  name: "transformImages",
   cache: true,
   functions: {
     resize(
@@ -107,7 +103,7 @@ export function transformImages(userOptions?: Partial<Options>) {
       );
     }
     async function processPage(page: Page, allPages: Page[]) {
-      const transData = page.data[options.name] as
+      const transData = page.data.transformImages as
         | Transformation
         | Transformation[]
         | undefined;
@@ -132,7 +128,7 @@ export function transformImages(userOptions?: Partial<Options>) {
 
         const output = page.duplicate(index++, {
           ...page.data,
-          [options.name]: undefined,
+          transformImages: undefined,
         });
 
         rename(output, transformation);

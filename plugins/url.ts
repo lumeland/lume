@@ -1,21 +1,4 @@
-import { merge } from "../core/utils/object.ts";
-
 import type Site from "../core/site.ts";
-
-export interface Options {
-  /** The url helper name */
-  names?: {
-    url?: string;
-    htmlUrl?: string;
-  };
-}
-
-export const defaults: Options = {
-  names: {
-    url: "url",
-    htmlUrl: "htmlUrl",
-  },
-};
 
 /**
  * A plugin to register the filters "url" and "htmlUrl"
@@ -23,12 +6,10 @@ export const defaults: Options = {
  * Installed by default
  * @see https://lume.land/plugins/url/
  */
-export function url(userOptions?: Options) {
-  const options = merge(defaults, userOptions);
-
+export function url() {
   return (site: Site) => {
-    site.filter(options.names.url!, url);
-    site.filter(options.names.htmlUrl!, htmlUrl);
+    site.filter("url", url);
+    site.filter("htmlUrl", htmlUrl);
 
     function url(path = "/", absolute = false): string {
       return typeof path === "string" ? site.url(path, absolute) : path;

@@ -16,16 +16,12 @@ interface Source extends SourceFormat {
 }
 
 export interface Options {
-  /** The key name for the transformations definitions */
-  name?: string;
-
   /** The priority order of the formats */
   order?: string[];
 }
 
 // Default options
 export const defaults: Options = {
-  name: "transformImages",
   order: ["avif", "webp", "png", "jpg"],
 };
 
@@ -89,12 +85,12 @@ export function picture(userOptions?: Options) {
             continue;
           }
 
-          const { name } = options;
-          const transformImages = page.data[name] = page.data[name]
-            ? Array.isArray(page.data[name])
-              ? page.data[name]
-              : [page.data[name]]
-            : [];
+          const transformImages = page.data.transformImages =
+            page.data.transformImages
+              ? Array.isArray(page.data.transformImages)
+                ? page.data.transformImages
+                : [page.data.transformImages]
+              : [];
 
           for (const [suffix, scale] of Object.entries(scales)) {
             if (width) {

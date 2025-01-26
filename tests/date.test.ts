@@ -74,18 +74,3 @@ Deno.test("date plugin with custom locale", async () => {
     "1 de janeiro de 1970 às 00:00:00 GMT+0",
   );
 });
-
-Deno.test("date plugin with custom name", async () => {
-  const site = lume();
-  site.use(date({
-    name: "dateify",
-    locales: { gl, pt },
-  }));
-
-  await site.dispatchEvent({ type: "beforeBuild" });
-
-  const { helpers } = site.renderer;
-  const [format] = helpers.get("dateify")!;
-
-  equals(format(date0, "HUMAN_DATE"), "1 de xaneiro 1970");
-});
