@@ -32,3 +32,4 @@ Go to the `v1` branch to see the changelog of Lume 1.
   code_highlight, decap_cms, favicon, feed, google_fonts, icons, prism, robots, sitemap and slugify_urls.
 - `metas` plugin: `generator` property is `true` by default.
 - `page.document` always returns a Document or throws and exception.
+- Refactor of `esbuild` plugin to use `esbuild-deno-loader` to resolve and load jsr and npm dependencies.
