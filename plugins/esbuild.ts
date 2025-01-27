@@ -1,5 +1,6 @@
 import {
   getPathAndExtension,
+  isAbsolutePath,
   isUrl,
   normalizePath,
 } from "../core/utils/path.ts";
@@ -14,7 +15,14 @@ import {
   OutputFile,
   stop,
 } from "../deps/esbuild.ts";
-import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
+import {
+  dirname,
+  extname,
+  fromFileUrl,
+  join,
+  posix,
+  toFileUrl,
+} from "../deps/path.ts";
 
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/file.ts";
@@ -22,6 +30,7 @@ import textLoader from "../core/loaders/text.ts";
 
 import type Site from "../core/site.ts";
 import type { DenoConfig, ImportMap } from "../core/utils/deno_config.ts";
+import { readFile } from "../core/utils/read.ts";
 
 export interface Options {
   /** The list of extensions this plugin applies to */
@@ -152,13 +161,62 @@ export function esbuild(userOptions?: Options) {
         {
           name: "lume-loader",
           setup(build) {
+            build.onResolve({ filter: /.*/ }, (args) => {
+              const { path, importer } = args;
+
+              if (path.startsWith("npm:") || path.startsWith("jsr:")) {
+                return undefined;
+              }
+
+              if (path.startsWith("data:")) {
+                return {
+                  path,
+                  namespace: "url",
+                };
+              }
+
+              // Resolve the relative url
+              const specifier = path.match(/^[./]/)
+                ? isUrl(importer)
+                  ? new URL(path, importer).href
+                  : toFileUrl(join(importer ? dirname(importer) : "", path))
+                    .href
+                : isUrl(path)
+                ? path
+                : isAbsolutePath(path)
+                ? toFileUrl(path).href
+                : undefined;
+
+              if (!specifier) {
+                return undefined;
+              }
+
+              if (specifier.startsWith("file://")) {
+                return {
+                  path: fromFileUrl(specifier),
+                };
+              } else {
+                return {
+                  path: specifier,
+                  namespace: "url",
+                };
+              }
+            });
+
             build.onLoad({ filter: /.*/ }, async (args) => {
-              const { path } = args;
-              console.log({ path });
-              if (
-                isUrl(path) || path.startsWith("npm:") ||
-                path.startsWith("jsr:")
-              ) {
+              const { path, namespace } = args;
+
+              // It's an URL
+              if (namespace === "url") {
+                // Read other files from the filesystem/url
+                const content = await readFile(path);
+                return {
+                  contents: content,
+                  loader: getLoader(path),
+                };
+              }
+
+              if (path.startsWith("npm:") || path.startsWith("jsr:")) {
                 return undefined;
               }
 
