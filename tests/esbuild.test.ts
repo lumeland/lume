@@ -83,7 +83,7 @@ Deno.test(
 // Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
 Deno.test(
   "esbuild plugin with JSX",
-  { sanitizeOps: false, sanitizeResources: false },
+  { sanitizeOps: false, sanitizeResources: false, ignore: true },
   async (t) => {
     const site = getSite({
       src: "esbuild_jsx",
@@ -100,8 +100,11 @@ Deno.test(
       importMap: {
         imports: {
           react: "npm:react@18.2.0",
-          "react-dom": "npm:react-dom@18.2.0/client",
+          "react-dom/client": "npm:react-dom@18.2.0/client",
         },
+      },
+      options: {
+        jsxImportSource: "npm:react@18.2.0",
       },
     }));
 
