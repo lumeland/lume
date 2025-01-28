@@ -22,6 +22,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `name` option of the plugins: `date`, `json_ld`, `metas`, `nav`, `paginate`, `picture`, `reading_info`, `search`, `transform_images`, `url`.
 
 ### Changed
+- Minimum Deno version supported is LTS (2.1.0)
 - Refactor source.build function to give priority to load over copy statically.
 - Always load files with extensions that need to be (pre)processed instead copy them.
 - Rename `site.copy()` to `site.add()`.
