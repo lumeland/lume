@@ -1,4 +1,4 @@
-import katex, { type KatexOptions as BaseOptions } from "npm:katex@0.16.20";
+import katex, { type KatexOptions as BaseOptions } from "npm:katex@0.16.21";
 
 export { katex };
 
