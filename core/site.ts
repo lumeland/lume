@@ -1,6 +1,6 @@
 import { join, posix } from "../deps/path.ts";
 import { merge } from "./utils/object.ts";
-import { normalizePath } from "./utils/path.ts";
+import { isUrl, normalizePath } from "./utils/path.ts";
 import { env } from "./utils/env.ts";
 import { log } from "./utils/log.ts";
 import { filter404page } from "./utils/page_url.ts";
@@ -475,10 +475,39 @@ export default class Site {
           `add() files by extension expects a function as second argument but got a string "${to}"`,
         );
       }
-
+      const add = typeof to === "function" ? to : true;
       from.forEach((ext) => {
-        this.formats.set({ ext, add: to ? to : true });
+        this.formats.set({ ext, add });
       });
+      return this;
+    }
+
+    // Remote files
+    if (from.startsWith("npm:")) {
+      from = from.replace("npm:", "https://cdn.jsdelivr.net/npm/");
+    }
+
+    if (isUrl(from)) {
+      const url = new URL(from);
+
+      if (to === undefined) {
+        to = posix.basename(url.pathname) || undefined;
+      }
+
+      if (typeof to === "function") {
+        to = to(from);
+      }
+
+      if (to?.endsWith("/")) {
+        to = posix.join(to, posix.basename(url.pathname));
+      }
+
+      if (!to || to.endsWith("/")) {
+        throw new Error(`Invalid destination path: ${to}`);
+      }
+
+      this.remoteFile(to, from);
+      this.source.addPath(to);
       return this;
     }
 

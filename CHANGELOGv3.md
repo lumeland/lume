@@ -12,6 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   It's used by default by code_highlight, google_fonts, prism and unocss.
   It's also used by default by components.
 - `page.text` and `page.bytes` getters and setters.
+- `site.add()` support URLs and NPM specifiers.
 
 ### Removed
 - `jsx_preact` plugin. Use `jsx` instead.

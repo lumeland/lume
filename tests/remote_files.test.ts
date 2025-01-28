@@ -24,8 +24,10 @@ Deno.test("render remote files", {
     "_includes/templates/remote-template2.njk",
     new URL("./remote-template2.njk", base).href,
   );
-  site.remoteFile("asset.txt", new URL("./asset.txt", base).href);
-  site.remoteFile("styles2.css", new URL("./styles2.css", base).href);
+  site.add(new URL("./asset.txt", base).href, "asset.txt");
+  site.add(new URL("./styles2.css", base).href);
+  site.add(new URL("./styles2.css", base).href, "/styles/");
+  site.add("npm:normalize.css");
   site.remoteFile(
     "_includes/remote-style.css",
     new URL("./remote-style.css", base).href,
