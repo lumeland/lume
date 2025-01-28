@@ -21,6 +21,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - `google_fonts`: Fixed subset names for `[1]`, `[2]`, etc [#692].
+- `google_fonts`: Added `font-display: swap` to improve performance.
 - Normalize watcher ignored paths [#716]
 - Updated dependencies: `katex`, `preact-render-to-string`, `unocss`, `vento`, `decap-cms`, `postcss`, `sass` and some icons.
 
