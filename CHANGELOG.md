@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [Unreleased]
+### Added
+- Feed plugin
+  - New option `info.hubs`
+
 ## [2.5.1] - 2025-01-28
 ### Added
 - Support for LumeCMS v0.9, that can perform git operations and restart the build.
