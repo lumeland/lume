@@ -17,6 +17,7 @@ Deno.test("RSS plugin", async (t) => {
         icon: "https://example.com/icon.svg",
         image: "https://example.com/image.png",
         color: "#ff0000",
+        hubs: ["https://example.com/hub1", "https://example.com/hub2"],
       },
       items: {
         title: (data) => data.title?.toUpperCase(),
