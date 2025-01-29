@@ -117,10 +117,10 @@ snapshot[`RSS plugin 2`] = `[]`;
 snapshot[`RSS plugin 3`] = `
 [
   {
-    content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","author":{"name":"Laura Rubio"},"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","author":{"name":"Óscar","url":"https://oscarotero.com"},"content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
+    content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","hubs":[{"type":"WebSub","feed_url":"https://example.com/hub1"},{"type":"WebSub","feed_url":"https://example.com/hub2"}],"author":{"name":"Laura Rubio"},"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","author":{"name":"Óscar","url":"https://oscarotero.com"},"content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
     data: {
       basename: "feed",
-      content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","author":{"name":"Laura Rubio"},"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","author":{"name":"Óscar","url":"https://oscarotero.com"},"content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
+      content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","hubs":[{"type":"WebSub","feed_url":"https://example.com/hub1"},{"type":"WebSub","feed_url":"https://example.com/hub2"}],"author":{"name":"Laura Rubio"},"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","author":{"name":"Óscar","url":"https://oscarotero.com"},"content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
       page: [
         "src",
         "data",
@@ -142,6 +142,8 @@ snapshot[`RSS plugin 3`] = `
     <title>My RSS Feed</title>
     <link>https://example.com/</link>
     <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://example.com/hub1" rel="hub"/>
+    <atom:link href="https://example.com/hub2" rel="hub"/>
     <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
     <language>en</language>
     <generator>https://lume.land</generator>
@@ -173,6 +175,8 @@ snapshot[`RSS plugin 3`] = `
     <title>My RSS Feed</title>
     <link>https://example.com/</link>
     <atom:link href="https://example.com/feed.rss" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://example.com/hub1" rel="hub"/>
+    <atom:link href="https://example.com/hub2" rel="hub"/>
     <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
     <language>en</language>
     <generator>https://lume.land</generator>
