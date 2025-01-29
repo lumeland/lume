@@ -26,7 +26,7 @@ import Server from "./server.ts";
 import notFound from "../middlewares/not_found.ts";
 
 import type { Loader } from "./loaders/mod.ts";
-import type { BasenameParser } from "./source.ts";
+import type { BasenameParser, Destination } from "./source.ts";
 import type { Component, Components } from "./component_loader.ts";
 import type { Data, RawData, StaticFile } from "./file.ts";
 import type { Engine, Helper, HelperOptions } from "./renderer.ts";
@@ -462,11 +462,11 @@ export default class Site {
   }
 
   /** Add files or directories to the site */
-  add(from: string, to?: string | ((path: string) => string)): this;
-  add(from: string[], to?: (path: string) => string): this;
+  add(from: string, to?: string | Destination): this;
+  add(from: string[], to?: Destination): this;
   add(
     from: string | string[],
-    to?: string | ((path: string) => string),
+    to?: string | Destination,
   ): this {
     // File extensions
     if (Array.isArray(from)) {
@@ -475,10 +475,10 @@ export default class Site {
           `add() files by extension expects a function as second argument but got a string "${to}"`,
         );
       }
-      const add = typeof to === "function" ? to : true;
-      from.forEach((ext) => {
-        this.formats.set({ ext, add });
-      });
+      const dest = typeof to === "function" ? to : (path: string) => path;
+      for (const ext of from) {
+        this.source.addFile(ext, dest);
+      }
       return this;
     }
 
@@ -495,7 +495,7 @@ export default class Site {
       }
 
       if (typeof to === "function") {
-        to = to(from);
+        to = to(url.href);
       }
 
       if (to?.endsWith("/")) {
@@ -506,12 +506,19 @@ export default class Site {
         throw new Error(`Invalid destination path: ${to}`);
       }
 
-      this.remoteFile(to, from);
-      this.source.addPath(to);
+      this.remoteFile(to, url.href);
+      this.source.addFile(to, to);
       return this;
     }
 
-    this.source.addPath(from, to);
+    // It's a path
+    if (from.startsWith("../")) {
+      throw new Error(
+        `It's not possible to copy files outsite the src directory ("${from}")`,
+      );
+    }
+
+    this.source.addFile(from, to ?? ((str: string) => str));
     return this;
   }
 

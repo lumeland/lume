@@ -23,9 +23,6 @@ export interface Format {
    */
   engines?: Engine[];
 
-  /** Whether this file must be added or not */
-  add?: boolean | ((path: string) => string);
-
   /** Whether this format must be (pre)processed */
   process?: boolean | Loader;
 }
