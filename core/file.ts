@@ -151,13 +151,35 @@ export class Page<D extends Data = Data> {
   }
 }
 
-export class StaticFile {
-  outputPath: string;
+export class StaticFile<D extends Data = Data> {
   src: Required<Src>;
+  data: D = {} as D;
 
-  constructor(outputPath: string, src: Required<Src>) {
-    this.outputPath = outputPath;
+  static create(
+    data: Partial<Data> & { url: string },
+    src: Required<Src>,
+  ): StaticFile {
+    const file = new StaticFile(src);
+    file.data = { ...data } as Data;
+    return file;
+  }
+
+  constructor(src: Required<Src>) {
     this.src = src;
+  }
+
+  /** Returns the output path of this page */
+  get outputPath(): string {
+    return decodeURIComponentSafe(this.data.url);
+  }
+
+  /** Returns the source path of this page */
+  get sourcePath(): string {
+    if (!this.src.path) {
+      return "(generated)";
+    }
+
+    return this.src.path + this.src.ext;
   }
 }
 

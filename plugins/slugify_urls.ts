@@ -36,7 +36,7 @@ export function slugifyUrls(userOptions?: Options) {
       // Slugify the static files
       site.files
         .filter((file) => matchExtension(options.extensions, file.outputPath))
-        .forEach((file) => file.outputPath = slugify(file.outputPath));
+        .forEach((file) => file.data.url = slugify(file.data.url));
     });
   };
 }
