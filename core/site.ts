@@ -854,9 +854,7 @@ export default class Site {
 
     if (index > -1) {
       const file = this.files.splice(index, 1)[0];
-      const { content } = await file.src.entry.getContent(binaryLoader);
-      const page = Page.create({ url }, file.src);
-      page.content = content as Uint8Array;
+      const page = await file.toPage();
       this.pages.push(page);
       return page;
     }

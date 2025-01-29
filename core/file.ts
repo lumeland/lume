@@ -1,10 +1,11 @@
 import { posix } from "../deps/path.ts";
 import { documentToString, stringToDocument } from "./utils/dom.ts";
+import binaryLoader from "./loaders/binary.ts";
+import { decodeURIComponentSafe } from "./utils/path.ts";
 
 import type { MergeStrategy } from "./utils/merge_data.ts";
 import type { ProxyComponents } from "./source.ts";
 import type { Entry } from "./fs.ts";
-import { decodeURIComponentSafe } from "./utils/path.ts";
 
 const decoder = new TextDecoder();
 const encoder = new TextEncoder();
@@ -166,6 +167,13 @@ export class StaticFile<D extends Data = Data> {
 
   constructor(src: Required<Src>) {
     this.src = src;
+  }
+
+  async toPage(): Promise<Page> {
+    const { content } = await this.src.entry.getContent(binaryLoader);
+    const page = Page.create(this.data, this.src);
+    page.content = content as Uint8Array;
+    return page;
   }
 
   /** Returns the output path of this page */
