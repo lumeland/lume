@@ -106,21 +106,18 @@ snapshot[`Source maps from CSS files 1`] = `
       engines: undefined,
       ext: ".scss",
       pageType: "asset",
-      process: true,
     },
     {
       assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".sass",
       pageType: "asset",
-      process: true,
     },
     {
       assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".css",
       pageType: "asset",
-      process: true,
     },
   ],
   src: [
@@ -366,7 +363,6 @@ snapshot[`Source maps from Js files 1`] = `
       ext: ".js",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       assetLoader: [AsyncFunction: text],
@@ -375,7 +371,6 @@ snapshot[`Source maps from Js files 1`] = `
       ext: ".ts",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       engines: 1,

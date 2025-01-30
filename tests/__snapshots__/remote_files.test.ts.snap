@@ -64,7 +64,6 @@ snapshot[`render remote files 1`] = `
       ext: ".js",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       assetLoader: [AsyncFunction: text],
@@ -73,7 +72,6 @@ snapshot[`render remote files 1`] = `
       ext: ".ts",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       engines: 1,
@@ -112,21 +110,18 @@ snapshot[`render remote files 1`] = `
       engines: undefined,
       ext: ".css",
       pageType: "asset",
-      process: true,
     },
     {
       assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".scss",
       pageType: "asset",
-      process: true,
     },
     {
       assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".sass",
       pageType: "asset",
-      process: true,
     },
     {
       engines: 1,

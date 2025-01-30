@@ -106,7 +106,6 @@ snapshot[`lightningcss plugin (only transform) 1`] = `
       engines: undefined,
       ext: ".css",
       pageType: "asset",
-      process: true,
     },
   ],
   src: [
@@ -297,7 +296,6 @@ snapshot[`lightningcss plugin (bundle mode) 1`] = `
       engines: undefined,
       ext: ".css",
       pageType: "asset",
-      process: true,
     },
   ],
   src: [

@@ -163,7 +163,7 @@ export default class Source {
     parentData: Partial<Data>,
     pages: Page[],
     staticFiles: StaticFile[],
-    addDest?: (path: string) => string,
+    destination?: Destination,
   ): Promise<void> {
     if (buildFilters.some((filter) => !filter(dir))) {
       return;
@@ -208,13 +208,11 @@ export default class Source {
 
     if (dest) {
       if (typeof dest === "function") {
-        const previousDest = addDest;
-        addDest = previousDest
-          ? (path: string) => dest(previousDest(path))
-          : dest;
+        const prev = destination;
+        destination = prev ? (path: string) => dest(prev(path)) : dest;
       } else {
         dirPath = dest;
-        addDest ??= (path: string) => path;
+        destination ??= (path: string) => path;
       }
     }
 
@@ -232,7 +230,7 @@ export default class Source {
           dirData,
           pages,
           staticFiles,
-          addDest,
+          destination,
         );
 
         continue;
@@ -261,7 +259,7 @@ export default class Source {
                 dirData,
                 pages,
                 staticFiles,
-                addDest,
+                destination,
               );
               continue;
             }
@@ -275,7 +273,7 @@ export default class Source {
                 dirData,
                 pages,
                 staticFiles,
-                addDest,
+                destination,
               );
             }
           }
@@ -291,7 +289,7 @@ export default class Source {
           dirData,
           pages,
           staticFiles,
-          addDest,
+          destination,
         );
       }
     }
@@ -304,54 +302,26 @@ export default class Source {
     dirData: Partial<Data>,
     pages: Page[],
     staticFiles: StaticFile[],
-    addDest?: (path: string) => string,
+    destination?: Destination,
   ) {
     // The file is added with `site.add("file.ext")`
-    const dest = this.addedFiles.get(file.path);
+    const destPath = this.addedFiles.get(file.path);
 
-    // Check if the file must be ignored
-    if (!dest && this.#isIgnored(file)) {
+    // If the file must be ignored and not explicitly added
+    if (!destPath && this.#isIgnored(file)) {
       return;
     }
 
     const format = this.formats.search(file.path);
 
-    // It's an unknown file format or we're in a ignored context
-    if (!format) {
-      // Copy the file
-      if (dest || addDest) {
-        const ext = posix.extname(file.name);
-        staticFiles.push(
-          this.#copyFile(file, dirPath, dirData, ext, dest, addDest),
-        );
-      } else {
-        // The format is added with `site.add([".ext"])`
-        const ext = getExtension(file.name);
-        const destExtension = this.addedFiles.get(ext);
-        if (destExtension) {
-          // Copy the file
-          staticFiles.push(
-            this.#copyFile(
-              file,
-              dirPath,
-              dirData,
-              ext,
-              typeof destExtension === "function" ? destExtension : undefined,
-            ),
-          );
-        }
-      }
-      return;
-    }
-
     // The format is a page `site.loadPages([".ext"])` or `site.loadAssets([".ext"])`
-    if (format.pageType) {
+    if (format?.pageType) {
       const page = await this.#loadPage(
         file,
         format,
         dirData,
         dirPath,
-        addDest,
+        destination,
       );
 
       if (
@@ -365,38 +335,34 @@ export default class Source {
       return;
     }
 
-    // The format is added with `site.add([".ext"])`
-    const destExtension = this.addedFiles.get(format.ext);
+    const ext = format?.ext || getExtension(file.name);
 
-    if (destExtension || dest) {
-      // The format must be processed, so it's loaded
+    // It's inside an added folder
+    if (destination) {
+      return staticFiles.push(
+        this.#copyFile(file, dirPath, dirData, ext, destination),
+      );
+    }
 
-      if (format.process) {
-        const page = await this.#loadPage(
-          file,
-          format,
-          dirData,
-          dirPath,
-          addDest,
-        );
+    // It's added explicitly
+    if (destPath) {
+      return staticFiles.push(
+        this.#copyFile(file, dirPath, dirData, ext, destPath, destination),
+      );
+    }
 
-        if (page) {
-          pages.push(page);
-          return;
-        }
-      }
-
-      // Copy the file
-      staticFiles.push(
+    // The extension is added with `site.add([".ext"])`
+    const destExtension = this.addedFiles.get(ext);
+    if (destExtension) {
+      return staticFiles.push(
         this.#copyFile(
           file,
           dirPath,
           dirData,
-          format.ext,
+          ext,
           typeof destExtension === "function" ? destExtension : undefined,
         ),
       );
-      return;
     }
   }
 

@@ -376,25 +376,12 @@ export default class Site {
   /** Register a preprocessor for some extensions */
   preprocess(extensions: Extensions, preprocessor: Processor): this {
     this.preprocessors.set(extensions, preprocessor);
-
-    if (Array.isArray(extensions)) {
-      for (const ext of extensions) {
-        this.formats.set({ ext, process: true });
-      }
-    }
-
     return this;
   }
 
   /** Register a processor for some extensions */
   process(extensions: Extensions, processor: Processor): this {
     this.processors.set(extensions, processor);
-
-    if (Array.isArray(extensions)) {
-      for (const ext of extensions) {
-        this.formats.set({ ext, process: true });
-      }
-    }
     return this;
   }
 
@@ -742,7 +729,7 @@ export default class Site {
     }
 
     // Run the processors to the pages
-    await this.processors.run(this.pages);
+    await this.processors.run(this.pages, this.files);
     performance.mark("end-process");
 
     log.debug(
@@ -789,7 +776,7 @@ export default class Site {
     await this.renderer.renderPageOnDemand(page);
 
     // Run the processors to the page
-    await this.processors.run([page]);
+    await this.processors.run([page], []);
     return page;
   }
 

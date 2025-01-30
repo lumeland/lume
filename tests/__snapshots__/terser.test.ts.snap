@@ -64,7 +64,6 @@ snapshot[`terser plugin 1`] = `
       ext: ".js",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       dataLoader: [AsyncFunction: module],

@@ -179,7 +179,7 @@ export default class Renderer {
       );
     }
 
-    await this.preprocessors.run([page]);
+    await this.preprocessors.run([page], []);
 
     // The page is type asset
     if (this.formats.get(page.src.ext)?.pageType === "asset") {

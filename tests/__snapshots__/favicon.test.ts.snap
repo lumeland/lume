@@ -106,12 +106,6 @@ snapshot[`favicon plugin 1`] = `
       engines: undefined,
       ext: ".svg",
       pageType: "asset",
-      process: true,
-    },
-    {
-      engines: undefined,
-      ext: ".html",
-      process: true,
     },
   ],
   src: [

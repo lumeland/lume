@@ -119,7 +119,6 @@ snapshot[`esbuild plugin with JSX 1`] = `
       ext: ".jsx",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       assetLoader: [AsyncFunction: text],
@@ -127,7 +126,6 @@ snapshot[`esbuild plugin with JSX 1`] = `
       ext: ".tsx",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
   ],
   src: [
@@ -343,7 +341,6 @@ snapshot[`esbuild plugin 1`] = `
       ext: ".js",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       assetLoader: [AsyncFunction: text],
@@ -352,7 +349,6 @@ snapshot[`esbuild plugin 1`] = `
       ext: ".ts",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       engines: 1,
@@ -659,7 +655,6 @@ snapshot[`esbuild plugin with splitting as true 1`] = `
       ext: ".js",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       assetLoader: [AsyncFunction: text],
@@ -668,7 +663,6 @@ snapshot[`esbuild plugin with splitting as true 1`] = `
       ext: ".ts",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       engines: 1,
@@ -1013,7 +1007,6 @@ snapshot[`esbuild plugin with outExtension 1`] = `
       ext: ".js",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       assetLoader: [AsyncFunction: text],
@@ -1022,7 +1015,6 @@ snapshot[`esbuild plugin with outExtension 1`] = `
       ext: ".ts",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       engines: 1,
@@ -1365,7 +1357,6 @@ snapshot[`esbuild plugin with entryNames simple 1`] = `
       ext: ".js",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       assetLoader: [AsyncFunction: text],
@@ -1374,7 +1365,6 @@ snapshot[`esbuild plugin with entryNames simple 1`] = `
       ext: ".ts",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       engines: 1,
@@ -1717,7 +1707,6 @@ snapshot[`esbuild plugin with entryNames complex 1`] = `
       ext: ".js",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       assetLoader: [AsyncFunction: text],
@@ -1726,7 +1715,6 @@ snapshot[`esbuild plugin with entryNames complex 1`] = `
       ext: ".ts",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       engines: 1,
@@ -2069,7 +2057,6 @@ snapshot[`esbuild plugin without bundle 1`] = `
       ext: ".js",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       assetLoader: [AsyncFunction: text],
@@ -2078,7 +2065,6 @@ snapshot[`esbuild plugin without bundle 1`] = `
       ext: ".ts",
       loader: [AsyncFunction: module],
       pageType: "asset",
-      process: true,
     },
     {
       engines: 1,

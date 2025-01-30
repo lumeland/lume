@@ -38,7 +38,6 @@ snapshot[`brotli plugin 1`] = `
       engines: 0,
       ext: ".json",
       loader: [AsyncFunction: json],
-      process: true,
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -63,7 +62,6 @@ snapshot[`brotli plugin 1`] = `
       engines: 1,
       ext: ".js",
       loader: [AsyncFunction: module],
-      process: true,
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -102,36 +100,6 @@ snapshot[`brotli plugin 1`] = `
       ext: ".yml",
       loader: [AsyncFunction: yaml],
       pageType: "page",
-    },
-    {
-      engines: undefined,
-      ext: ".html",
-      process: true,
-    },
-    {
-      engines: undefined,
-      ext: ".css",
-      process: [AsyncFunction: text],
-    },
-    {
-      engines: undefined,
-      ext: ".mjs",
-      process: true,
-    },
-    {
-      engines: undefined,
-      ext: ".svg",
-      process: true,
-    },
-    {
-      engines: undefined,
-      ext: ".xml",
-      process: true,
-    },
-    {
-      engines: undefined,
-      ext: ".txt",
-      process: true,
     },
   ],
   src: [
@@ -313,14 +281,14 @@ snapshot[`brotli plugin 3`] = `
   {
     content: "Uint8Array(41)",
     data: {
-      basename: "index",
+      basename: "styles",
       content: "Uint8Array(41)",
       page: [
         "src",
         "data",
         "asset",
       ],
-      url: "/styles/index.html.br",
+      url: "/styles.css.br",
     },
     src: {
       asset: true,
@@ -656,24 +624,9 @@ snapshot[`brotli plugin 3`] = `
     },
   },
   {
-    content: "body {
-  font-family: sans-serif;
-  color: black;
-}
-",
+    content: "Uint8Array(52)",
     data: {
       basename: "styles",
-      children: "body {
-  font-family: sans-serif;
-  color: black;
-}
-",
-      content: "body {
-  font-family: sans-serif;
-  color: black;
-}
-",
-      date: [],
       imagick: "Array(1)",
       mergedKeys: [
         "tags",
@@ -693,12 +646,12 @@ snapshot[`brotli plugin 3`] = `
       search: [],
       site: "Default site name",
       tags: "Array(0)",
-      url: "/styles/",
+      url: "/styles.css",
     },
     src: {
-      asset: false,
+      asset: true,
       ext: ".css",
-      path: "/styles",
+      path: "styles",
       remote: undefined,
     },
   },
@@ -806,11 +759,6 @@ snapshot[`brotli plugin with options 1`] = `
       loader: [AsyncFunction: yaml],
       pageType: "page",
     },
-    {
-      engines: undefined,
-      ext: ".css",
-      process: [AsyncFunction: text],
-    },
   ],
   src: [
     "/",
@@ -858,14 +806,14 @@ snapshot[`brotli plugin with options 3`] = `
   {
     content: "Uint8Array(56)",
     data: {
-      basename: "index",
+      basename: "styles",
       content: "Uint8Array(56)",
       page: [
         "src",
         "data",
         "asset",
       ],
-      url: "/styles/index.html.br",
+      url: "/styles.css.br",
     },
     src: {
       asset: true,
@@ -1201,24 +1149,9 @@ snapshot[`brotli plugin with options 3`] = `
     },
   },
   {
-    content: "body {
-  font-family: sans-serif;
-  color: black;
-}
-",
+    content: "Uint8Array(52)",
     data: {
       basename: "styles",
-      children: "body {
-  font-family: sans-serif;
-  color: black;
-}
-",
-      content: "body {
-  font-family: sans-serif;
-  color: black;
-}
-",
-      date: [],
       imagick: "Array(1)",
       mergedKeys: [
         "tags",
@@ -1238,12 +1171,12 @@ snapshot[`brotli plugin with options 3`] = `
       search: [],
       site: "Default site name",
       tags: "Array(0)",
-      url: "/styles/",
+      url: "/styles.css",
     },
     src: {
-      asset: false,
+      asset: true,
       ext: ".css",
-      path: "/styles",
+      path: "styles",
       remote: undefined,
     },
   },

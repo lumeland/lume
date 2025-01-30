@@ -106,7 +106,6 @@ snapshot[`terser plugin 1`] = `
       engines: undefined,
       ext: ".svg",
       pageType: "asset",
-      process: true,
     },
   ],
   src: [

@@ -50,7 +50,6 @@ snapshot[`metas plugin 1`] = `
       ext: ".md",
       loader: [AsyncFunction: text],
       pageType: "page",
-      process: true,
     },
     {
       engines: 1,
@@ -101,11 +100,6 @@ snapshot[`metas plugin 1`] = `
       ext: ".yml",
       loader: [AsyncFunction: yaml],
       pageType: "page",
-    },
-    {
-      engines: undefined,
-      ext: ".html",
-      process: true,
     },
   ],
   src: [

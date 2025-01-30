@@ -101,11 +101,6 @@ snapshot[`json_ld plugin 1`] = `
       loader: [AsyncFunction: yaml],
       pageType: "page",
     },
-    {
-      engines: undefined,
-      ext: ".html",
-      process: true,
-    },
   ],
   src: [
     "/",

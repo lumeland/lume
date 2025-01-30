@@ -101,11 +101,6 @@ snapshot[`minify_html plugin 1`] = `
       loader: [AsyncFunction: yaml],
       pageType: "page",
     },
-    {
-      engines: undefined,
-      ext: ".html",
-      process: true,
-    },
   ],
   src: [
     "/",

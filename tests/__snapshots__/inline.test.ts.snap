@@ -104,11 +104,6 @@ snapshot[`inline plugin 1`] = `
       pageType: "page",
     },
     {
-      engines: undefined,
-      ext: ".html",
-      process: true,
-    },
-    {
       assetLoader: [AsyncFunction: text],
       engines: undefined,
       ext: ".svg",

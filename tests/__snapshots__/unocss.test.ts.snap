@@ -101,11 +101,6 @@ snapshot[`Unocss plugin 1`] = `
       loader: [AsyncFunction: yaml],
       pageType: "page",
     },
-    {
-      engines: undefined,
-      ext: ".html",
-      process: true,
-    },
   ],
   src: [
     "/",
@@ -1570,11 +1565,6 @@ snapshot[`Unocss plugin (css file) 1`] = `
       ext: ".yml",
       loader: [AsyncFunction: yaml],
       pageType: "page",
-    },
-    {
-      engines: undefined,
-      ext: ".html",
-      process: true,
     },
   ],
   src: [
@@ -3091,12 +3081,6 @@ snapshot[`Unocss plugin (with transformers) 1`] = `
       engines: undefined,
       ext: ".css",
       pageType: "asset",
-      process: true,
-    },
-    {
-      engines: undefined,
-      ext: ".html",
-      process: true,
     },
   ],
   src: [
@@ -4259,12 +4243,6 @@ snapshot[`Unocss with placeholder 1`] = `
       engines: undefined,
       ext: ".css",
       pageType: "asset",
-      process: true,
-    },
-    {
-      engines: undefined,
-      ext: ".html",
-      process: true,
     },
   ],
   src: [

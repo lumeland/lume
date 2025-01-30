@@ -106,7 +106,6 @@ snapshot[`postcss plugin 1`] = `
       engines: undefined,
       ext: ".css",
       pageType: "asset",
-      process: true,
     },
   ],
   src: [
@@ -883,7 +882,6 @@ snapshot[`postcss plugin without includes 1`] = `
       engines: undefined,
       ext: ".css",
       pageType: "asset",
-      process: true,
     },
   ],
   src: [
@@ -1090,7 +1088,6 @@ snapshot[`postcss plugin with hooks 1`] = `
       engines: undefined,
       ext: ".css",
       pageType: "asset",
-      process: true,
     },
   ],
   src: [
