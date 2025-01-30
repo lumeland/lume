@@ -159,7 +159,10 @@ export async function assertSiteSnapshot(
                 return [key, normalizeValue(value, options)];
               }
               if (value instanceof Map || value instanceof Set) {
-                return [key, [...value.keys()].sort((a, b) => a.localeCompare(b))];
+                return [
+                  key,
+                  [...value.keys()].sort((a, b) => a.localeCompare(b)),
+                ];
               }
               return [key, Object.keys(value)];
             case "function":
