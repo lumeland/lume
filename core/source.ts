@@ -340,14 +340,14 @@ export default class Source {
     // It's inside an added folder
     if (destination) {
       return staticFiles.push(
-        this.#copyFile(file, dirPath, dirData, ext, destination),
+        this.#copyFile(file, ext, dirPath, dirData, destination),
       );
     }
 
     // It's added explicitly
     if (destPath) {
       return staticFiles.push(
-        this.#copyFile(file, dirPath, dirData, ext, destPath, destination),
+        this.#copyFile(file, ext, dirPath, dirData, destPath, destination),
       );
     }
 
@@ -357,9 +357,9 @@ export default class Source {
       return staticFiles.push(
         this.#copyFile(
           file,
+          ext,
           dirPath,
           dirData,
-          ext,
           typeof destExtension === "function" ? destExtension : undefined,
         ),
       );
@@ -485,18 +485,9 @@ export default class Source {
     addDest?: (path: string) => string,
   ): Promise<Page | undefined> {
     // The format is a page or asset
-    let loader = format.pageType === "asset"
+    const loader = format.pageType === "asset"
       ? format.assetLoader
       : format.loader;
-
-    // The format must be processed
-    if (!loader && format.process) {
-      if (format.process === true) {
-        loader = format.process = getLoader(format.ext);
-      } else {
-        loader = format.process;
-      }
-    }
 
     if (!loader) {
       throw new Error(
@@ -530,6 +521,7 @@ export default class Source {
 
     // Calculate the page URL
     const url = getPageUrl(page, this.prettyUrls, dirPath, addDest);
+
     if (!url) {
       return;
     }
@@ -549,17 +541,17 @@ export default class Source {
 
   #copyFile(
     entry: Entry,
+    ext: string,
     dirPath: string,
     dirData: Partial<Data>,
-    ext: string,
-    dest?: string | ((path: string) => string),
-    copy?: (path: string) => string,
+    fileDestination?: string | ((path: string) => string),
+    dirDestination?: (path: string) => string,
   ): StaticFile {
     const url = getOutputPath(
-      entry,
+      entry.name,
       dirPath,
-      dest,
-      copy,
+      fileDestination,
+      dirDestination,
     );
 
     return StaticFile.create({
@@ -688,22 +680,24 @@ function mergeComponents(...components: Components[]): Components {
 }
 
 function getOutputPath(
-  entry: Entry,
-  path: string,
-  dest?: string | ((path: string) => string),
-  addedDest?: (path: string) => string,
+  basename: string,
+  dirPath: string,
+  fileDestination?: string | Destination,
+  dirDestination?: Destination,
 ): string {
-  if (typeof dest === "string") {
-    return dest;
+  if (typeof fileDestination === "string") {
+    return fileDestination;
   }
 
-  let output = posix.join(path, entry.name);
+  let output = posix.join(dirPath, basename);
 
-  if (addedDest) {
-    output = addedDest(output);
+  if (dirDestination) {
+    output = dirDestination(output);
   }
 
-  return typeof dest === "function" ? dest(output) : output;
+  return typeof fileDestination === "function"
+    ? fileDestination(output)
+    : output;
 }
 
 function runBasenameParsers(
