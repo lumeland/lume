@@ -314,7 +314,7 @@ export default class Source {
     const format = this.formats.search(file.path);
 
     // The format is a page `site.loadPages([".ext"])`
-    if (format?.pageType) {
+    if (format?.isPage) {
       const page = await this.#loadPage(
         file,
         format,
@@ -484,17 +484,14 @@ export default class Source {
     addDest?: (path: string) => string,
   ): Promise<Page | undefined> {
     // The format is a page or asset
-    const loader = format.pageType === "asset"
-      ? format.assetLoader
-      : format.loader;
+    const { loader, ext } = format;
 
     if (!loader) {
       throw new Error(
-        `Missing loader for ${format.pageType} page type (${entry.path}))`,
+        `Missing loader for the page ${entry.path}`,
       );
     }
 
-    const { ext } = format;
     const { basename, ...parsedData } = runBasenameParsers(
       entry.name.slice(0, -ext.length),
       this.basenameParsers,
@@ -506,7 +503,7 @@ export default class Source {
       ext,
       entry,
     });
-    page.asset = format.pageType === "asset";
+    page.asset = false;
 
     // Load and merge the page data
     const pageData = await entry.getContent(loader);

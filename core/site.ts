@@ -342,7 +342,7 @@ export default class Site {
       this.formats.set({
         ext,
         loader,
-        pageType: "page",
+        isPage: true,
         engines,
       });
     });

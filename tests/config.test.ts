@@ -159,7 +159,7 @@ Deno.test("pages configuration", () => {
   for (const ext of extensions) {
     equals(formats.has(ext), true);
     assert(formats.get(ext)?.loader);
-    assert(formats.get(ext)?.pageType === "page");
+    equals(formats.get(ext)?.isPage, true);
   }
 
   const loader = () => Promise.resolve({});
@@ -180,7 +180,7 @@ Deno.test("pages configuration", () => {
   for (const ext of newExts) {
     equals(formats.has(ext), true);
     assert(formats.get(ext)?.loader);
-    assert(formats.get(ext)?.pageType === "page");
+    equals(formats.get(ext)?.isPage, true);
   }
 });
 

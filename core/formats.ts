@@ -5,14 +5,11 @@ export interface Format {
   /** The file extension for this format */
   ext: string;
 
-  /** The type of page */
-  pageType?: "page" | "asset";
+  /** Whether this format is for pages */
+  isPage?: boolean;
 
   /** The file loader used for this format (used by pages, includes, components, etc) */
   loader?: Loader;
-
-  /** The loader used as asset */
-  assetLoader?: Loader;
 
   /** Loader for _data files in this format */
   dataLoader?: Loader;
@@ -22,9 +19,6 @@ export interface Format {
    * Used to render the page and components
    */
   engines?: Engine[];
-
-  /** Whether this format must be (pre)processed */
-  process?: boolean | Loader;
 }
 
 /** Class to store loaders, engines and other stuff related with different formats */
