@@ -102,9 +102,7 @@ snapshot[`favicon plugin 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       ext: ".svg",
-      pageType: "asset",
     },
     {
       ext: ".html",
@@ -164,19 +162,6 @@ snapshot[`favicon plugin 3`] = `
     content: '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="none"><g fill="#000" clip-path="url(#a)"><path d="M32 31.998v28L7.486 46.013V17.997z" opacity=".2"/><path fill-rule="evenodd" d="m60 15.969-28-16-28 16V48.03l28 16 28-16zm-3.5 2.03-12.252-7h.002L32 18l-12.25-7 .003-.001L7.5 17.999v14l12.25 7v14L32 60V32zm0 28-12.25 7V39l12.25-7z" clip-rule="evenodd"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h64v64H0z"/></clipPath></defs></svg>',
     data: {
       basename: "favicon",
-      content: '<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_84_667)">
-<path opacity="0.2" d="M31.9999 31.9975V59.9982L7.48613 46.0132L7.48584 17.9971L31.9999 31.9975Z" fill="black"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M60 15.9687L31.9999 -0.03125L4 15.9688V48.031L31.9999 64.031L60 48.031V15.9687ZM56.5 17.9994L44.2477 10.9981L44.25 10.9997L32 17.9997L19.75 10.9997L19.7528 10.9978L7.5 17.9994V31.9997L19.75 38.9997V52.9994L32 59.9994V31.9997L56.5 17.9994ZM56.5 45.9994L44.25 52.9994V38.9997L56.5 31.9997V45.9994Z" fill="black"/>
-</g>
-<defs>
-<clipPath id="clip0_84_667">
-<rect width="64" height="64" fill="white"/>
-</clipPath>
-</defs>
-</svg>
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],

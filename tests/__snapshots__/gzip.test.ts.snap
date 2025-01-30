@@ -669,7 +669,7 @@ snapshot[`gzip plugin 3`] = `
     src: {
       asset: true,
       ext: ".css",
-      path: "styles",
+      path: "/styles",
       remote: undefined,
     },
   },

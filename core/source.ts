@@ -4,7 +4,6 @@ import { mergeData } from "./utils/merge_data.ts";
 import { getPageUrl } from "./utils/page_url.ts";
 import { getPageDate } from "./utils/page_date.ts";
 import { Page, StaticFile } from "./file.ts";
-import getLoader from "./loaders/mod.ts";
 
 import type { Data, RawData } from "./file.ts";
 import type { default as FS, Entry } from "./fs.ts";
@@ -559,7 +558,7 @@ export default class Source {
       url,
     }, {
       ext,
-      path: entry.path.slice(1, -ext.length),
+      path: entry.path.slice(0, -ext.length),
       entry,
     });
   }

@@ -669,7 +669,7 @@ snapshot[`brotli plugin 3`] = `
     src: {
       asset: true,
       ext: ".css",
-      path: "styles",
+      path: "/styles",
       remote: undefined,
     },
   },
@@ -1197,7 +1197,7 @@ snapshot[`brotli plugin with options 3`] = `
     src: {
       asset: true,
       ext: ".css",
-      path: "styles",
+      path: "/styles",
       remote: undefined,
     },
   },

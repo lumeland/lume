@@ -26,12 +26,12 @@ export function svgo(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.loadAssets(options.extensions);
+    site.add(options.extensions);
     site.process(options.extensions, (pages) => pages.forEach(svg));
 
     function svg(page: Page) {
       const path = site.src(page.outputPath);
-      const result = optimize(page.content as string, {
+      const result = optimize(page.text, {
         path,
         ...options.options,
       }) as { data: string };
