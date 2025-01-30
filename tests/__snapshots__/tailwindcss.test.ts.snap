@@ -103,7 +103,6 @@ snapshot[`Tailwindcss plugin 1`] = `
     },
     {
       assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
       pageType: "asset",
     },

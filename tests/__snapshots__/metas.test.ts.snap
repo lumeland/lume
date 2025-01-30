@@ -101,6 +101,9 @@ snapshot[`metas plugin 1`] = `
       loader: [AsyncFunction: yaml],
       pageType: "page",
     },
+    {
+      ext: ".html",
+    },
   ],
   src: [
     "/",

@@ -102,8 +102,10 @@ snapshot[`relative_url plugin 1`] = `
       pageType: "page",
     },
     {
+      ext: ".html",
+    },
+    {
       assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
       pageType: "asset",
     },
@@ -501,6 +503,12 @@ snapshot[`relative_url plugin when pretty urls disabled 1`] = `
       ext: ".yml",
       loader: [AsyncFunction: yaml],
       pageType: "page",
+    },
+    {
+      ext: ".html",
+    },
+    {
+      ext: ".css",
     },
   ],
   src: [

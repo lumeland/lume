@@ -103,25 +103,21 @@ snapshot[`Image transform plugin 1`] = `
     },
     {
       assetLoader: [AsyncFunction: binary],
-      engines: undefined,
       ext: ".jpg",
       pageType: "asset",
     },
     {
       assetLoader: [AsyncFunction: binary],
-      engines: undefined,
       ext: ".jpeg",
       pageType: "asset",
     },
     {
       assetLoader: [AsyncFunction: binary],
-      engines: undefined,
       ext: ".png",
       pageType: "asset",
     },
     {
       assetLoader: [AsyncFunction: binary],
-      engines: undefined,
       ext: ".webp",
       pageType: "asset",
     },

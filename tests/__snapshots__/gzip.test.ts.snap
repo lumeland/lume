@@ -101,6 +101,24 @@ snapshot[`gzip plugin 1`] = `
       loader: [AsyncFunction: yaml],
       pageType: "page",
     },
+    {
+      ext: ".html",
+    },
+    {
+      ext: ".css",
+    },
+    {
+      ext: ".mjs",
+    },
+    {
+      ext: ".svg",
+    },
+    {
+      ext: ".xml",
+    },
+    {
+      ext: ".txt",
+    },
   ],
   src: [
     "/",
@@ -761,9 +779,11 @@ snapshot[`gzip plugin with options 1`] = `
     },
     {
       assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
       pageType: "asset",
+    },
+    {
+      ext: ".html",
     },
   ],
   src: [

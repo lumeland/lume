@@ -119,10 +119,12 @@ export async function assertSiteSnapshot(
     context,
     {
       formats: Array.from(site.formats.entries.values()).map((format) => {
-        return {
-          ...format,
-          engines: format.engines?.length,
-        };
+        // deno-lint-ignore no-explicit-any
+        const fm = { ...format } as any;
+        if (fm.engines) {
+          fm.engines = fm.engines.length;
+        }
+        return fm;
       }),
       src: Array.from(site.fs.entries.keys()).sort(),
     },

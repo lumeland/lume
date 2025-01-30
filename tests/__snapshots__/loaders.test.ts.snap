@@ -103,13 +103,11 @@ snapshot[`Load the pages of a site 1`] = `
     },
     {
       assetLoader: [AsyncFunction: binary],
-      engines: undefined,
       ext: ".png",
       pageType: "asset",
     },
     {
       assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
       pageType: "asset",
     },

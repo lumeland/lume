@@ -101,6 +101,24 @@ snapshot[`brotli plugin 1`] = `
       loader: [AsyncFunction: yaml],
       pageType: "page",
     },
+    {
+      ext: ".html",
+    },
+    {
+      ext: ".css",
+    },
+    {
+      ext: ".mjs",
+    },
+    {
+      ext: ".svg",
+    },
+    {
+      ext: ".xml",
+    },
+    {
+      ext: ".txt",
+    },
   ],
   src: [
     "/",
@@ -758,6 +776,9 @@ snapshot[`brotli plugin with options 1`] = `
       ext: ".yml",
       loader: [AsyncFunction: yaml],
       pageType: "page",
+    },
+    {
+      ext: ".css",
     },
   ],
   src: [

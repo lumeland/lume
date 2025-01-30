@@ -103,13 +103,11 @@ snapshot[`sass plugin 1`] = `
     },
     {
       assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".scss",
       pageType: "asset",
     },
     {
       assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".sass",
       pageType: "asset",
     },

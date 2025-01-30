@@ -101,6 +101,9 @@ snapshot[`Pagefind plugin 1`] = `
       loader: [AsyncFunction: yaml],
       pageType: "page",
     },
+    {
+      ext: ".html",
+    },
   ],
   src: [
     "/",
@@ -3164,6 +3167,9 @@ snapshot[`Pagefind plugin with global variable 1`] = `
       ext: ".yml",
       loader: [AsyncFunction: yaml],
       pageType: "page",
+    },
+    {
+      ext: ".html",
     },
   ],
   src: [

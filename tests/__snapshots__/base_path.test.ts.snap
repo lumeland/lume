@@ -102,8 +102,10 @@ snapshot[`base_path plugin 1`] = `
       pageType: "page",
     },
     {
+      ext: ".html",
+    },
+    {
       assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
       pageType: "asset",
     },

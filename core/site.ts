@@ -376,12 +376,21 @@ export default class Site {
   /** Register a preprocessor for some extensions */
   preprocess(extensions: Extensions, preprocessor: Processor): this {
     this.preprocessors.set(extensions, preprocessor);
+
+    if (Array.isArray(extensions)) {
+      extensions.forEach((ext) => this.formats.set({ ext }));
+    }
+
     return this;
   }
 
   /** Register a processor for some extensions */
   process(extensions: Extensions, processor: Processor): this {
     this.processors.set(extensions, processor);
+
+    if (Array.isArray(extensions)) {
+      extensions.forEach((ext) => this.formats.set({ ext }));
+    }
     return this;
   }
 

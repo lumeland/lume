@@ -103,17 +103,14 @@ snapshot[`Sheets plugin 1`] = `
     },
     {
       dataLoader: [AsyncFunction: loader],
-      engines: undefined,
       ext: ".xlsx",
     },
     {
       dataLoader: [AsyncFunction: loader],
-      engines: undefined,
       ext: ".numbers",
     },
     {
       dataLoader: [AsyncFunction: loader],
-      engines: undefined,
       ext: ".csv",
     },
   ],

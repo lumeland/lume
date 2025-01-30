@@ -101,6 +101,9 @@ snapshot[`Prism plugin with default css file 1`] = `
       loader: [AsyncFunction: yaml],
       pageType: "page",
     },
+    {
+      ext: ".html",
+    },
   ],
   src: [
     "/",
@@ -354,6 +357,9 @@ snapshot[`Prism plugin 1`] = `
       ext: ".yml",
       loader: [AsyncFunction: yaml],
       pageType: "page",
+    },
+    {
+      ext: ".html",
     },
   ],
   src: [

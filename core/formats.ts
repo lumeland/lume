@@ -37,7 +37,8 @@ export default class Formats {
 
   /** Assign a value to a extension */
   set(format: Format, override = true): void {
-    const ext = format.ext.toLowerCase();
+    format.ext = format.ext.toLowerCase();
+    const ext = format.ext;
     const existing = this.entries.get(ext);
 
     if (existing) {

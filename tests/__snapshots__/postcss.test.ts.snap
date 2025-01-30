@@ -103,7 +103,6 @@ snapshot[`postcss plugin 1`] = `
     },
     {
       assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
       pageType: "asset",
     },
@@ -879,7 +878,6 @@ snapshot[`postcss plugin without includes 1`] = `
     },
     {
       assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
       pageType: "asset",
     },
@@ -1085,7 +1083,6 @@ snapshot[`postcss plugin with hooks 1`] = `
     },
     {
       assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
       pageType: "asset",
     },

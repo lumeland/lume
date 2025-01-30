@@ -105,7 +105,6 @@ snapshot[`purgecss plugin 1`] = `
     },
     {
       assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
       pageType: "asset",
     },
@@ -526,7 +525,6 @@ snapshot[`purgecss plugin with options 1`] = `
     },
     {
       assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
       pageType: "asset",
     },

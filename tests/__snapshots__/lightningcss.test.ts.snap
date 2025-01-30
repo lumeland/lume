@@ -103,7 +103,6 @@ snapshot[`lightningcss plugin (only transform) 1`] = `
     },
     {
       assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
       pageType: "asset",
     },
@@ -293,7 +292,6 @@ snapshot[`lightningcss plugin (bundle mode) 1`] = `
     },
     {
       assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
       pageType: "asset",
     },
