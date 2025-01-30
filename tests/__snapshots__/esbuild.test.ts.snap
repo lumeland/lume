@@ -387,20 +387,45 @@ snapshot[`esbuild plugin 1`] = `
 snapshot[`esbuild plugin 2`] = `
 [
   {
-    entry: "/other.ts",
-    flags: [],
-    outputPath: "/other.ts",
-  },
-  {
     entry: "/other/script.ts",
     flags: [],
     outputPath: "/foo/bar/script.ts",
+  },
+  {
+    entry: "/other.ts",
+    flags: [],
+    outputPath: "/other.ts",
   },
 ]
 `;
 
 snapshot[`esbuild plugin 3`] = `
 [
+  {
+    content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
+',
+    data: {
+      basename: "to_lowercase",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/foo/bar/to_lowercase.js",
+    },
+    src: {
+      asset: true,
+      ext: ".ts",
+      path: "/other/to_lowercase",
+      remote: undefined,
+    },
+  },
   {
     content: "var le=Object.defineProperty;var e=(r,t)=>le(r,\\"name\\",{value:t,configurable:!0});var ir=(r,t)=>()=>(r&&(t=r(r=0)),t);var re=(r,t)=>{for(var i in t)le(r,i,{get:t[i],enumerable:!0})};var pe={};re(pe,{toLowercase:()=>sr});function sr(r){return r.toLowerCase()}var de=ir(()=>{e(sr,\\"toLowercase\\")});function te(r){return r.toUpperCase()}e(te,\\"toUppercase\\");async function ye(r){let{toLowercase:t}=await Promise.resolve().then(()=>(de(),pe));return t(r)}e(ye,\\"toLowercase\\");var ve={foo:\\"bar\\"};var ne={};re(ne,{default:()=>fr});var fr=Object.assign;var ie={};re(ie,{AsyncMode:()=>he,ConcurrentMode:()=>Oe,ContextConsumer:()=>Ce,ContextProvider:()=>we,Element:()=>Se,ForwardRef:()=>Re,Fragment:()=>Ae,Lazy:()=>Me,Memo:()=>xe,Portal:()=>je,Profiler:()=>Ie,StrictMode:()=>Le,Suspense:()=>Ye,default:()=>Qe,isAsyncMode:()=>\$e,isConcurrentMode:()=>ke,isContextConsumer:()=>qe,isContextProvider:()=>De,isElement:()=>Fe,isForwardRef:()=>We,isFragment:()=>Ue,isLazy:()=>ze,isMemo:()=>Be,isPortal:()=>He,isProfiler:()=>Je,isStrictMode:()=>Xe,isSuspense:()=>Ge,isValidElementType:()=>Ke,typeOf:()=>Ze});var cr=Object.create,ae=Object.defineProperty,lr=Object.getOwnPropertyDescriptor,Te=Object.getOwnPropertyNames,pr=Object.getPrototypeOf,dr=Object.prototype.hasOwnProperty,be=e((r,t)=>e(function(){return t||(0,r[Te(r)[0]])((t={exports:{}}).exports,t),t.exports},\\"__require\\"),\\"__commonJS\\"),yr=e((r,t)=>{for(var i in t)ae(r,i,{get:t[i],enumerable:!0})},\\"__export\\"),oe=e((r,t,i,T)=>{if(t&&typeof t==\\"object\\"||typeof t==\\"function\\")for(let _ of Te(t))!dr.call(r,_)&&_!==i&&ae(r,_,{get:e(()=>t[_],\\"get\\"),enumerable:!(T=lr(t,_))||T.enumerable});return r},\\"__copyProps\\"),vr=e((r,t,i)=>(oe(r,t,\\"default\\"),i&&oe(i,t,\\"default\\")),\\"__reExport\\"),me=e((r,t,i)=>(i=r!=null?cr(pr(r)):{},oe(t||!r||!r.__esModule?ae(i,\\"default\\",{value:r,enumerable:!0}):i,r)),\\"__toESM\\"),_r=be({\\"../esmd/npm/react-is@16.13.1/node_modules/.pnpm/react-is@16.13.1/node_modules/react-is/cjs/react-is.development.js\\"(r){\\"use strict\\";(function(){\\"use strict\\";var t=typeof Symbol==\\"function\\"&&Symbol.for,i=t?Symbol.for(\\"react.element\\"):60103,T=t?Symbol.for(\\"react.portal\\"):60106,_=t?Symbol.for(\\"react.fragment\\"):60107,A=t?Symbol.for(\\"react.strict_mode\\"):60108,I=t?Symbol.for(\\"react.profiler\\"):60114,m=t?Symbol.for(\\"react.provider\\"):60109,E=t?Symbol.for(\\"react.context\\"):60110,h=t?Symbol.for(\\"react.async_mode\\"):60111,w=t?Symbol.for(\\"react.concurrent_mode\\"):60111,M=t?Symbol.for(\\"react.forward_ref\\"):60112,O=t?Symbol.for(\\"react.suspense\\"):60113,S=t?Symbol.for(\\"react.suspense_list\\"):60120,x=t?Symbol.for(\\"react.memo\\"):60115,R=t?Symbol.for(\\"react.lazy\\"):60116,D=t?Symbol.for(\\"react.block\\"):60121,b=t?Symbol.for(\\"react.fundamental\\"):60117,C=t?Symbol.for(\\"react.responder\\"):60118,L=t?Symbol.for(\\"react.scope\\"):60119;function z(o){return typeof o==\\"string\\"||typeof o==\\"function\\"||o===_||o===w||o===I||o===A||o===O||o===S||typeof o==\\"object\\"&&o!==null&&(o.\$\$typeof===R||o.\$\$typeof===x||o.\$\$typeof===m||o.\$\$typeof===E||o.\$\$typeof===M||o.\$\$typeof===b||o.\$\$typeof===C||o.\$\$typeof===L||o.\$\$typeof===D)}e(z,\\"isValidElementType2\\");function g(o){if(typeof o==\\"object\\"&&o!==null){var P=o.\$\$typeof;switch(P){case i:var j=o.type;switch(j){case h:case w:case _:case I:case A:case O:return j;default:var ce=j&&j.\$\$typeof;switch(ce){case E:case M:case R:case x:case m:return ce;default:return P}}case T:return P}}}e(g,\\"typeOf2\\");var B=h,H=w,J=E,X=m,G=i,K=M,Z=_,W=R,Q=x,V=T,k=I,N=A,Y=O,\$=!1;function ee(o){return \$||(\$=!0,console.warn(\\"The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.\\")),U(o)||g(o)===h}e(ee,\\"isAsyncMode2\\");function U(o){return g(o)===w}e(U,\\"isConcurrentMode2\\");function n(o){return g(o)===E}e(n,\\"isContextConsumer2\\");function a(o){return g(o)===m}e(a,\\"isContextProvider2\\");function l(o){return typeof o==\\"object\\"&&o!==null&&o.\$\$typeof===i}e(l,\\"isElement2\\");function f(o){return g(o)===M}e(f,\\"isForwardRef2\\");function s(o){return g(o)===_}e(s,\\"isFragment2\\");function p(o){return g(o)===R}e(p,\\"isLazy2\\");function u(o){return g(o)===x}e(u,\\"isMemo2\\");function c(o){return g(o)===T}e(c,\\"isPortal2\\");function d(o){return g(o)===I}e(d,\\"isProfiler2\\");function v(o){return g(o)===A}e(v,\\"isStrictMode2\\");function y(o){return g(o)===O}e(y,\\"isSuspense2\\"),r.AsyncMode=B,r.ConcurrentMode=H,r.ContextConsumer=J,r.ContextProvider=X,r.Element=G,r.ForwardRef=K,r.Fragment=Z,r.Lazy=W,r.Memo=Q,r.Portal=V,r.Profiler=k,r.StrictMode=N,r.Suspense=Y,r.isAsyncMode=ee,r.isConcurrentMode=U,r.isContextConsumer=n,r.isContextProvider=a,r.isElement=l,r.isForwardRef=f,r.isFragment=s,r.isLazy=p,r.isMemo=u,r.isPortal=c,r.isProfiler=d,r.isStrictMode=v,r.isSuspense=y,r.isValidElementType=z,r.typeOf=g})()}}),Pe=be({\\"../esmd/npm/react-is@16.13.1/node_modules/.pnpm/react-is@16.13.1/node_modules/react-is/index.js\\"(r,t){\\"use strict\\";t.exports=_r()}}),ge={};yr(ge,{AsyncMode:e(()=>he,\\"AsyncMode\\"),ConcurrentMode:e(()=>Oe,\\"ConcurrentMode\\"),ContextConsumer:e(()=>Ce,\\"ContextConsumer\\"),ContextProvider:e(()=>we,\\"ContextProvider\\"),Element:e(()=>Se,\\"Element\\"),ForwardRef:e(()=>Re,\\"ForwardRef\\"),Fragment:e(()=>Ae,\\"Fragment\\"),Lazy:e(()=>Me,\\"Lazy\\"),Memo:e(()=>xe,\\"Memo\\"),Portal:e(()=>je,\\"Portal\\"),Profiler:e(()=>Ie,\\"Profiler\\"),StrictMode:e(()=>Le,\\"StrictMode\\"),Suspense:e(()=>Ye,\\"Suspense\\"),default:e(()=>Qe,\\"default\\"),isAsyncMode:e(()=>\$e,\\"isAsyncMode\\"),isConcurrentMode:e(()=>ke,\\"isConcurrentMode\\"),isContextConsumer:e(()=>qe,\\"isContextConsumer\\"),isContextProvider:e(()=>De,\\"isContextProvider\\"),isElement:e(()=>Fe,\\"isElement\\"),isForwardRef:e(()=>We,\\"isForwardRef\\"),isFragment:e(()=>Ue,\\"isFragment\\"),isLazy:e(()=>ze,\\"isLazy\\"),isMemo:e(()=>Be,\\"isMemo\\"),isPortal:e(()=>He,\\"isPortal\\"),isProfiler:e(()=>Je,\\"isProfiler\\"),isStrictMode:e(()=>Xe,\\"isStrictMode\\"),isSuspense:e(()=>Ge,\\"isSuspense\\"),isValidElementType:e(()=>Ke,\\"isValidElementType\\"),typeOf:e(()=>Ze,\\"typeOf\\")});var Ee=me(Pe());vr(ge,me(Pe()));var{AsyncMode:he,ConcurrentMode:Oe,ContextConsumer:Ce,ContextProvider:we,Element:Se,ForwardRef:Re,Fragment:Ae,Lazy:Me,Memo:xe,Portal:je,Profiler:Ie,StrictMode:Le,Suspense:Ye,isAsyncMode:\$e,isConcurrentMode:ke,isContextConsumer:qe,isContextProvider:De,isElement:Fe,isForwardRef:We,isFragment:Ue,isLazy:ze,isMemo:Be,isPortal:He,isProfiler:Je,isStrictMode:Xe,isSuspense:Ge,isValidElementType:Ke,typeOf:Ze}=Ee,{default:_e,...Tr}=Ee,Qe=_e!==void 0?_e:Tr;var q=e(r=>{let t=e(T=>typeof T.default<\\"u\\"?T.default:T,\\"e\\"),i=e(T=>Object.assign({},T),\\"c\\");switch(r){case\\"object-assign\\":return t(ne);case\\"react-is\\":return t(ie);default:throw new Error('module \\"'+r+'\\" not found')}},\\"require\\"),br=Object.create,fe=Object.defineProperty,mr=Object.getOwnPropertyDescriptor,Ne=Object.getOwnPropertyNames,Pr=Object.getPrototypeOf,gr=Object.prototype.hasOwnProperty,se=(r=>typeof q<\\"u\\"?q:typeof Proxy<\\"u\\"?new Proxy(r,{get:e((t,i)=>(typeof q<\\"u\\"?q:t)[i],\\"get\\")}):r)(function(r){if(typeof q<\\"u\\")return q.apply(this,arguments);throw Error('Dynamic require of \\"'+r+'\\" is not supported')}),F=e((r,t)=>e(function(){return t||(0,r[Ne(r)[0]])((t={exports:{}}).exports,t),t.exports},\\"__require2\\"),\\"__commonJS\\"),Er=e((r,t)=>{for(var i in t)fe(r,i,{get:t[i],enumerable:!0})},\\"__export\\"),ue=e((r,t,i,T)=>{if(t&&typeof t==\\"object\\"||typeof t==\\"function\\")for(let _ of Ne(t))!gr.call(r,_)&&_!==i&&fe(r,_,{get:e(()=>t[_],\\"get\\"),enumerable:!(T=mr(t,_))||T.enumerable});return r},\\"__copyProps\\"),hr=e((r,t,i)=>(ue(r,t,\\"default\\"),i&&ue(i,t,\\"default\\")),\\"__reExport\\"),er=e((r,t,i)=>(i=r!=null?br(Pr(r)):{},ue(t||!r||!r.__esModule?fe(i,\\"default\\",{value:r,enumerable:!0}):i,r)),\\"__toESM\\"),rr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/lib/ReactPropTypesSecret.js\\"(r,t){\\"use strict\\";var i=\\"SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED\\";t.exports=i}}),tr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/lib/has.js\\"(r,t){t.exports=Function.call.bind(Object.prototype.hasOwnProperty)}}),Or=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/checkPropTypes.js\\"(r,t){\\"use strict\\";var i=e(function(){},\\"printWarning\\");T=rr(),_={},A=tr(),i=e(function(m){var E=\\"Warning: \\"+m;typeof console<\\"u\\"&&console.error(E);try{throw new Error(E)}catch{}},\\"printWarning\\");var T,_,A;function I(m,E,h,w,M){for(var O in m)if(A(m,O)){var S;try{if(typeof m[O]!=\\"function\\"){var x=Error((w||\\"React class\\")+\\": \\"+h+\\" type \`\\"+O+\\"\` is invalid; it must be a function, usually from the \`prop-types\` package, but received \`\\"+typeof m[O]+\\"\`.This often happens because of typos such as \`PropTypes.function\` instead of \`PropTypes.func\`.\\");throw x.name=\\"Invariant Violation\\",x}S=m[O](E,O,w,h,null,T)}catch(D){S=D}if(S&&!(S instanceof Error)&&i((w||\\"React class\\")+\\": type specification of \\"+h+\\" \`\\"+O+\\"\` is invalid; the type checker function must return \`null\` or an \`Error\` but returned a \\"+typeof S+\\". You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).\\"),S instanceof Error&&!(S.message in _)){_[S.message]=!0;var R=M?M():\\"\\";i(\\"Failed \\"+h+\\" type: \\"+S.message+(R??\\"\\"))}}}e(I,\\"checkPropTypes2\\"),I.resetWarningCache=function(){_={}},t.exports=I}}),Cr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/factoryWithTypeCheckers.js\\"(r,t){\\"use strict\\";var i=se(\\"react-is\\"),T=se(\\"object-assign\\"),_=rr(),A=tr(),I=Or(),m=e(function(){},\\"printWarning\\");m=e(function(h){var w=\\"Warning: \\"+h;typeof console<\\"u\\"&&console.error(w);try{throw new Error(w)}catch{}},\\"printWarning\\");function E(){return null}e(E,\\"emptyFunctionThatReturnsNull\\"),t.exports=function(h,w){var M=typeof Symbol==\\"function\\"&&Symbol.iterator,O=\\"@@iterator\\";function S(n){var a=n&&(M&&n[M]||n[O]);if(typeof a==\\"function\\")return a}e(S,\\"getIteratorFn\\");var x=\\"<<anonymous>>\\",R={array:L(\\"array\\"),bigint:L(\\"bigint\\"),bool:L(\\"boolean\\"),func:L(\\"function\\"),number:L(\\"number\\"),object:L(\\"object\\"),string:L(\\"string\\"),symbol:L(\\"symbol\\"),any:z(),arrayOf:g,element:B(),elementType:H(),instanceOf:J,node:Z(),objectOf:G,oneOf:X,oneOfType:K,shape:Q,exact:V};function D(n,a){return n===a?n!==0||1/n===1/a:n!==n&&a!==a}e(D,\\"is\\");function b(n,a){this.message=n,this.data=a&&typeof a==\\"object\\"?a:{},this.stack=\\"\\"}e(b,\\"PropTypeError\\"),b.prototype=Error.prototype;function C(n){var a={},l=0;function f(p,u,c,d,v,y,o){if(d=d||x,y=y||c,o!==_){if(w){var P=new Error(\\"Calling PropTypes validators directly is not supported by the \`prop-types\` package. Use \`PropTypes.checkPropTypes()\` to call them. Read more at http://fb.me/use-check-prop-types\\");throw P.name=\\"Invariant Violation\\",P}else if(typeof console<\\"u\\"){var j=d+\\":\\"+c;!a[j]&&l<3&&(m(\\"You are manually calling a React.PropTypes validation function for the \`\\"+y+\\"\` prop on \`\\"+d+\\"\`. This is deprecated and will throw in the standalone \`prop-types\` package. You may be seeing this warning due to a third-party PropTypes library. See https://fb.me/react-warning-dont-call-proptypes for details.\\"),a[j]=!0,l++)}}return u[c]==null?p?u[c]===null?new b(\\"The \\"+v+\\" \`\\"+y+\\"\` is marked as required \\"+(\\"in \`\\"+d+\\"\`, but its value is \`null\`.\\")):new b(\\"The \\"+v+\\" \`\\"+y+\\"\` is marked as required in \\"+(\\"\`\\"+d+\\"\`, but its value is \`undefined\`.\\")):null:n(u,c,d,v,y)}e(f,\\"checkType\\");var s=f.bind(null,!1);return s.isRequired=f.bind(null,!0),s}e(C,\\"createChainableTypeChecker\\");function L(n){function a(l,f,s,p,u,c){var d=l[f],v=Y(d);if(v!==n){var y=\$(d);return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+y+\\"\` supplied to \`\\"+s+\\"\`, expected \\")+(\\"\`\\"+n+\\"\`.\\"),{expectedType:n})}return null}return e(a,\\"validate\\"),C(a)}e(L,\\"createPrimitiveTypeChecker\\");function z(){return C(E)}e(z,\\"createAnyTypeChecker\\");function g(n){function a(l,f,s,p,u){if(typeof n!=\\"function\\")return new b(\\"Property \`\\"+u+\\"\` of component \`\\"+s+\\"\` has invalid PropType notation inside arrayOf.\\");var c=l[f];if(!Array.isArray(c)){var d=Y(c);return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+d+\\"\` supplied to \`\\"+s+\\"\`, expected an array.\\"))}for(var v=0;v<c.length;v++){var y=n(c,v,s,p,u+\\"[\\"+v+\\"]\\",_);if(y instanceof Error)return y}return null}return e(a,\\"validate\\"),C(a)}e(g,\\"createArrayOfTypeChecker\\");function B(){function n(a,l,f,s,p){var u=a[l];if(!h(u)){var c=Y(u);return new b(\\"Invalid \\"+s+\\" \`\\"+p+\\"\` of type \\"+(\\"\`\\"+c+\\"\` supplied to \`\\"+f+\\"\`, expected a single ReactElement.\\"))}return null}return e(n,\\"validate\\"),C(n)}e(B,\\"createElementTypeChecker\\");function H(){function n(a,l,f,s,p){var u=a[l];if(!i.isValidElementType(u)){var c=Y(u);return new b(\\"Invalid \\"+s+\\" \`\\"+p+\\"\` of type \\"+(\\"\`\\"+c+\\"\` supplied to \`\\"+f+\\"\`, expected a single ReactElement type.\\"))}return null}return e(n,\\"validate\\"),C(n)}e(H,\\"createElementTypeTypeChecker\\");function J(n){function a(l,f,s,p,u){if(!(l[f]instanceof n)){var c=n.name||x,d=U(l[f]);return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+d+\\"\` supplied to \`\\"+s+\\"\`, expected \\")+(\\"instance of \`\\"+c+\\"\`.\\"))}return null}return e(a,\\"validate\\"),C(a)}e(J,\\"createInstanceTypeChecker\\");function X(n){if(!Array.isArray(n))return arguments.length>1?m(\\"Invalid arguments supplied to oneOf, expected an array, got \\"+arguments.length+\\" arguments. A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).\\"):m(\\"Invalid argument supplied to oneOf, expected an array.\\"),E;function a(l,f,s,p,u){for(var c=l[f],d=0;d<n.length;d++)if(D(c,n[d]))return null;var v=JSON.stringify(n,e(function(o,P){var j=\$(P);return j===\\"symbol\\"?String(P):P},\\"replacer\\"));return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of value \`\\"+String(c)+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected one of \\"+v+\\".\\"))}return e(a,\\"validate\\"),C(a)}e(X,\\"createEnumTypeChecker\\");function G(n){function a(l,f,s,p,u){if(typeof n!=\\"function\\")return new b(\\"Property \`\\"+u+\\"\` of component \`\\"+s+\\"\` has invalid PropType notation inside objectOf.\\");var c=l[f],d=Y(c);if(d!==\\"object\\")return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+d+\\"\` supplied to \`\\"+s+\\"\`, expected an object.\\"));for(var v in c)if(A(c,v)){var y=n(c,v,s,p,u+\\".\\"+v,_);if(y instanceof Error)return y}return null}return e(a,\\"validate\\"),C(a)}e(G,\\"createObjectOfTypeChecker\\");function K(n){if(!Array.isArray(n))return m(\\"Invalid argument supplied to oneOfType, expected an instance of array.\\"),E;for(var a=0;a<n.length;a++){var l=n[a];if(typeof l!=\\"function\\")return m(\\"Invalid argument supplied to oneOfType. Expected an array of check functions, but received \\"+ee(l)+\\" at index \\"+a+\\".\\"),E}function f(s,p,u,c,d){for(var v=[],y=0;y<n.length;y++){var o=n[y],P=o(s,p,u,c,d,_);if(P==null)return null;P.data&&A(P.data,\\"expectedType\\")&&v.push(P.data.expectedType)}var j=v.length>0?\\", expected one of type [\\"+v.join(\\", \\")+\\"]\\":\\"\\";return new b(\\"Invalid \\"+c+\\" \`\\"+d+\\"\` supplied to \\"+(\\"\`\\"+u+\\"\`\\"+j+\\".\\"))}return e(f,\\"validate\\"),C(f)}e(K,\\"createUnionTypeChecker\\");function Z(){function n(a,l,f,s,p){return k(a[l])?null:new b(\\"Invalid \\"+s+\\" \`\\"+p+\\"\` supplied to \\"+(\\"\`\\"+f+\\"\`, expected a ReactNode.\\"))}return e(n,\\"validate\\"),C(n)}e(Z,\\"createNodeChecker\\");function W(n,a,l,f,s){return new b((n||\\"React class\\")+\\": \\"+a+\\" type \`\\"+l+\\".\\"+f+\\"\` is invalid; it must be a function, usually from the \`prop-types\` package, but received \`\\"+s+\\"\`.\\")}e(W,\\"invalidValidatorError\\");function Q(n){function a(l,f,s,p,u){var c=l[f],d=Y(c);if(d!==\\"object\\")return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \`\\"+d+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected \`object\`.\\"));for(var v in n){var y=n[v];if(typeof y!=\\"function\\")return W(s,p,u,v,\$(y));var o=y(c,v,s,p,u+\\".\\"+v,_);if(o)return o}return null}return e(a,\\"validate\\"),C(a)}e(Q,\\"createShapeTypeChecker\\");function V(n){function a(l,f,s,p,u){var c=l[f],d=Y(c);if(d!==\\"object\\")return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \`\\"+d+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected \`object\`.\\"));var v=T({},l[f],n);for(var y in v){var o=n[y];if(A(n,y)&&typeof o!=\\"function\\")return W(s,p,u,y,\$(o));if(!o)return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` key \`\\"+y+\\"\` supplied to \`\\"+s+\\"\`.\\\\nBad object: \\"+JSON.stringify(l[f],null,\\"  \\")+\`
 Valid keys: \`+JSON.stringify(Object.keys(n),null,\\"  \\"));var P=o(c,y,s,p,u+\\".\\"+y,_);if(P)return P}return null}return e(a,\\"validate\\"),C(a)}e(V,\\"createStrictShapeTypeChecker\\");function k(n){switch(typeof n){case\\"number\\":case\\"string\\":case\\"undefined\\":return!0;case\\"boolean\\":return!n;case\\"object\\":if(Array.isArray(n))return n.every(k);if(n===null||h(n))return!0;var a=S(n);if(a){var l=a.call(n),f;if(a!==n.entries){for(;!(f=l.next()).done;)if(!k(f.value))return!1}else for(;!(f=l.next()).done;){var s=f.value;if(s&&!k(s[1]))return!1}}else return!1;return!0;default:return!1}}e(k,\\"isNode\\");function N(n,a){return n===\\"symbol\\"?!0:a?a[\\"@@toStringTag\\"]===\\"Symbol\\"||typeof Symbol==\\"function\\"&&a instanceof Symbol:!1}e(N,\\"isSymbol\\");function Y(n){var a=typeof n;return Array.isArray(n)?\\"array\\":n instanceof RegExp?\\"object\\":N(a,n)?\\"symbol\\":a}e(Y,\\"getPropType\\");function \$(n){if(typeof n>\\"u\\"||n===null)return\\"\\"+n;var a=Y(n);if(a===\\"object\\"){if(n instanceof Date)return\\"date\\";if(n instanceof RegExp)return\\"regexp\\"}return a}e(\$,\\"getPreciseType\\");function ee(n){var a=\$(n);switch(a){case\\"array\\":case\\"object\\":return\\"an \\"+a;case\\"boolean\\":case\\"date\\":case\\"regexp\\":return\\"a \\"+a;default:return a}}e(ee,\\"getPostfixForTypeWarning\\");function U(n){return!n.constructor||!n.constructor.name?x:n.constructor.name}return e(U,\\"getClassName\\"),R.checkPropTypes=I,R.resetWarningCache=I.resetWarningCache,R.PropTypes=R,R}}}),nr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/index.js\\"(r,t){i=se(\\"react-is\\"),T=!0,t.exports=Cr()(i.isElement,T);var i,T}}),or={};Er(or,{PropTypes:e(()=>Xr,\\"PropTypes\\"),any:e(()=>Lr,\\"any\\"),array:e(()=>wr,\\"array\\"),arrayOf:e(()=>Yr,\\"arrayOf\\"),bigint:e(()=>Sr,\\"bigint\\"),bool:e(()=>Rr,\\"bool\\"),checkPropTypes:e(()=>Hr,\\"checkPropTypes\\"),default:e(()=>Kr,\\"default\\"),element:e(()=>\$r,\\"element\\"),elementType:e(()=>kr,\\"elementType\\"),exact:e(()=>Br,\\"exact\\"),func:e(()=>Ar,\\"func\\"),instanceOf:e(()=>qr,\\"instanceOf\\"),node:e(()=>Dr,\\"node\\"),number:e(()=>Mr,\\"number\\"),object:e(()=>xr,\\"object\\"),objectOf:e(()=>Fr,\\"objectOf\\"),oneOf:e(()=>Wr,\\"oneOf\\"),oneOfType:e(()=>Ur,\\"oneOfType\\"),resetWarningCache:e(()=>Jr,\\"resetWarningCache\\"),shape:e(()=>zr,\\"shape\\"),string:e(()=>jr,\\"string\\"),symbol:e(()=>Ir,\\"symbol\\")});var ar=er(nr());hr(or,er(nr()));var{array:wr,bigint:Sr,bool:Rr,func:Ar,number:Mr,object:xr,string:jr,symbol:Ir,any:Lr,arrayOf:Yr,element:\$r,elementType:kr,instanceOf:qr,node:Dr,objectOf:Fr,oneOf:Wr,oneOfType:Ur,shape:zr,exact:Br,checkPropTypes:Hr,resetWarningCache:Jr,PropTypes:Xr}=ar,{default:Ve,...Gr}=ar,Kr=Ve!==void 0?Ve:Gr;document.querySelectorAll(\\"h1\\")?.forEach(r=>{r.innerHTML=te(r.innerHTML+ve.foo),ye(r.innerHTML).then(t=>{r.innerHTML=t})});var Zr={bar:\\"baz\\"};console.log(Zr);
@@ -468,31 +493,6 @@ react-is/cjs/react-is.development.js:
       asset: false,
       ext: ".vto",
       path: "/main",
-      remote: undefined,
-    },
-  },
-  {
-    content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
-',
-    data: {
-      basename: "to_lowercase",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/foo/bar/to_lowercase.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other/to_lowercase",
       remote: undefined,
     },
   },
@@ -623,14 +623,14 @@ snapshot[`esbuild plugin with splitting as true 1`] = `
 snapshot[`esbuild plugin with splitting as true 2`] = `
 [
   {
-    entry: "/other.ts",
-    flags: [],
-    outputPath: "/other.ts",
-  },
-  {
     entry: "/other/script.ts",
     flags: [],
     outputPath: "/foo/bar/script.ts",
+  },
+  {
+    entry: "/other.ts",
+    flags: [],
+    outputPath: "/other.ts",
   },
 ]
 `;
@@ -653,6 +653,31 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
       asset: true,
       ext: "",
       path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: 'import{a as e}from"../../chunk-0.js";function r(o){return o.toLowerCase()}e(r,"toLowercase");export{r as toLowercase};
+',
+    data: {
+      basename: "to_lowercase",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/foo/foo/bar/to_lowercase.js",
+    },
+    src: {
+      asset: true,
+      ext: ".ts",
+      path: "/other/to_lowercase",
       remote: undefined,
     },
   },
@@ -723,31 +748,6 @@ react-is/cjs/react-is.development.js:
       asset: false,
       ext: ".vto",
       path: "/main",
-      remote: undefined,
-    },
-  },
-  {
-    content: 'import{a as e}from"../../chunk-0.js";function r(o){return o.toLowerCase()}e(r,"toLowercase");export{r as toLowercase};
-',
-    data: {
-      basename: "to_lowercase",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/foo/foo/bar/to_lowercase.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other/to_lowercase",
       remote: undefined,
     },
   },
@@ -878,20 +878,45 @@ snapshot[`esbuild plugin with outExtension 1`] = `
 snapshot[`esbuild plugin with outExtension 2`] = `
 [
   {
-    entry: "/other.ts",
-    flags: [],
-    outputPath: "/other.ts",
-  },
-  {
     entry: "/other/script.ts",
     flags: [],
     outputPath: "/foo/bar/script.ts",
+  },
+  {
+    entry: "/other.ts",
+    flags: [],
+    outputPath: "/other.ts",
   },
 ]
 `;
 
 snapshot[`esbuild plugin with outExtension 3`] = `
 [
+  {
+    content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
+',
+    data: {
+      basename: "to_lowercase",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/foo/bar/to_lowercase.min.js",
+    },
+    src: {
+      asset: true,
+      ext: ".ts",
+      path: "/other/to_lowercase",
+      remote: undefined,
+    },
+  },
   {
     content: "var le=Object.defineProperty;var e=(r,t)=>le(r,\\"name\\",{value:t,configurable:!0});var ir=(r,t)=>()=>(r&&(t=r(r=0)),t);var re=(r,t)=>{for(var i in t)le(r,i,{get:t[i],enumerable:!0})};var pe={};re(pe,{toLowercase:()=>sr});function sr(r){return r.toLowerCase()}var de=ir(()=>{e(sr,\\"toLowercase\\")});function te(r){return r.toUpperCase()}e(te,\\"toUppercase\\");async function ye(r){let{toLowercase:t}=await Promise.resolve().then(()=>(de(),pe));return t(r)}e(ye,\\"toLowercase\\");var ve={foo:\\"bar\\"};var ne={};re(ne,{default:()=>fr});var fr=Object.assign;var ie={};re(ie,{AsyncMode:()=>he,ConcurrentMode:()=>Oe,ContextConsumer:()=>Ce,ContextProvider:()=>we,Element:()=>Se,ForwardRef:()=>Re,Fragment:()=>Ae,Lazy:()=>Me,Memo:()=>xe,Portal:()=>je,Profiler:()=>Ie,StrictMode:()=>Le,Suspense:()=>Ye,default:()=>Qe,isAsyncMode:()=>\$e,isConcurrentMode:()=>ke,isContextConsumer:()=>qe,isContextProvider:()=>De,isElement:()=>Fe,isForwardRef:()=>We,isFragment:()=>Ue,isLazy:()=>ze,isMemo:()=>Be,isPortal:()=>He,isProfiler:()=>Je,isStrictMode:()=>Xe,isSuspense:()=>Ge,isValidElementType:()=>Ke,typeOf:()=>Ze});var cr=Object.create,ae=Object.defineProperty,lr=Object.getOwnPropertyDescriptor,Te=Object.getOwnPropertyNames,pr=Object.getPrototypeOf,dr=Object.prototype.hasOwnProperty,be=e((r,t)=>e(function(){return t||(0,r[Te(r)[0]])((t={exports:{}}).exports,t),t.exports},\\"__require\\"),\\"__commonJS\\"),yr=e((r,t)=>{for(var i in t)ae(r,i,{get:t[i],enumerable:!0})},\\"__export\\"),oe=e((r,t,i,T)=>{if(t&&typeof t==\\"object\\"||typeof t==\\"function\\")for(let _ of Te(t))!dr.call(r,_)&&_!==i&&ae(r,_,{get:e(()=>t[_],\\"get\\"),enumerable:!(T=lr(t,_))||T.enumerable});return r},\\"__copyProps\\"),vr=e((r,t,i)=>(oe(r,t,\\"default\\"),i&&oe(i,t,\\"default\\")),\\"__reExport\\"),me=e((r,t,i)=>(i=r!=null?cr(pr(r)):{},oe(t||!r||!r.__esModule?ae(i,\\"default\\",{value:r,enumerable:!0}):i,r)),\\"__toESM\\"),_r=be({\\"../esmd/npm/react-is@16.13.1/node_modules/.pnpm/react-is@16.13.1/node_modules/react-is/cjs/react-is.development.js\\"(r){\\"use strict\\";(function(){\\"use strict\\";var t=typeof Symbol==\\"function\\"&&Symbol.for,i=t?Symbol.for(\\"react.element\\"):60103,T=t?Symbol.for(\\"react.portal\\"):60106,_=t?Symbol.for(\\"react.fragment\\"):60107,A=t?Symbol.for(\\"react.strict_mode\\"):60108,I=t?Symbol.for(\\"react.profiler\\"):60114,m=t?Symbol.for(\\"react.provider\\"):60109,E=t?Symbol.for(\\"react.context\\"):60110,h=t?Symbol.for(\\"react.async_mode\\"):60111,w=t?Symbol.for(\\"react.concurrent_mode\\"):60111,M=t?Symbol.for(\\"react.forward_ref\\"):60112,O=t?Symbol.for(\\"react.suspense\\"):60113,S=t?Symbol.for(\\"react.suspense_list\\"):60120,x=t?Symbol.for(\\"react.memo\\"):60115,R=t?Symbol.for(\\"react.lazy\\"):60116,D=t?Symbol.for(\\"react.block\\"):60121,b=t?Symbol.for(\\"react.fundamental\\"):60117,C=t?Symbol.for(\\"react.responder\\"):60118,L=t?Symbol.for(\\"react.scope\\"):60119;function z(o){return typeof o==\\"string\\"||typeof o==\\"function\\"||o===_||o===w||o===I||o===A||o===O||o===S||typeof o==\\"object\\"&&o!==null&&(o.\$\$typeof===R||o.\$\$typeof===x||o.\$\$typeof===m||o.\$\$typeof===E||o.\$\$typeof===M||o.\$\$typeof===b||o.\$\$typeof===C||o.\$\$typeof===L||o.\$\$typeof===D)}e(z,\\"isValidElementType2\\");function g(o){if(typeof o==\\"object\\"&&o!==null){var P=o.\$\$typeof;switch(P){case i:var j=o.type;switch(j){case h:case w:case _:case I:case A:case O:return j;default:var ce=j&&j.\$\$typeof;switch(ce){case E:case M:case R:case x:case m:return ce;default:return P}}case T:return P}}}e(g,\\"typeOf2\\");var B=h,H=w,J=E,X=m,G=i,K=M,Z=_,W=R,Q=x,V=T,k=I,N=A,Y=O,\$=!1;function ee(o){return \$||(\$=!0,console.warn(\\"The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.\\")),U(o)||g(o)===h}e(ee,\\"isAsyncMode2\\");function U(o){return g(o)===w}e(U,\\"isConcurrentMode2\\");function n(o){return g(o)===E}e(n,\\"isContextConsumer2\\");function a(o){return g(o)===m}e(a,\\"isContextProvider2\\");function l(o){return typeof o==\\"object\\"&&o!==null&&o.\$\$typeof===i}e(l,\\"isElement2\\");function f(o){return g(o)===M}e(f,\\"isForwardRef2\\");function s(o){return g(o)===_}e(s,\\"isFragment2\\");function p(o){return g(o)===R}e(p,\\"isLazy2\\");function u(o){return g(o)===x}e(u,\\"isMemo2\\");function c(o){return g(o)===T}e(c,\\"isPortal2\\");function d(o){return g(o)===I}e(d,\\"isProfiler2\\");function v(o){return g(o)===A}e(v,\\"isStrictMode2\\");function y(o){return g(o)===O}e(y,\\"isSuspense2\\"),r.AsyncMode=B,r.ConcurrentMode=H,r.ContextConsumer=J,r.ContextProvider=X,r.Element=G,r.ForwardRef=K,r.Fragment=Z,r.Lazy=W,r.Memo=Q,r.Portal=V,r.Profiler=k,r.StrictMode=N,r.Suspense=Y,r.isAsyncMode=ee,r.isConcurrentMode=U,r.isContextConsumer=n,r.isContextProvider=a,r.isElement=l,r.isForwardRef=f,r.isFragment=s,r.isLazy=p,r.isMemo=u,r.isPortal=c,r.isProfiler=d,r.isStrictMode=v,r.isSuspense=y,r.isValidElementType=z,r.typeOf=g})()}}),Pe=be({\\"../esmd/npm/react-is@16.13.1/node_modules/.pnpm/react-is@16.13.1/node_modules/react-is/index.js\\"(r,t){\\"use strict\\";t.exports=_r()}}),ge={};yr(ge,{AsyncMode:e(()=>he,\\"AsyncMode\\"),ConcurrentMode:e(()=>Oe,\\"ConcurrentMode\\"),ContextConsumer:e(()=>Ce,\\"ContextConsumer\\"),ContextProvider:e(()=>we,\\"ContextProvider\\"),Element:e(()=>Se,\\"Element\\"),ForwardRef:e(()=>Re,\\"ForwardRef\\"),Fragment:e(()=>Ae,\\"Fragment\\"),Lazy:e(()=>Me,\\"Lazy\\"),Memo:e(()=>xe,\\"Memo\\"),Portal:e(()=>je,\\"Portal\\"),Profiler:e(()=>Ie,\\"Profiler\\"),StrictMode:e(()=>Le,\\"StrictMode\\"),Suspense:e(()=>Ye,\\"Suspense\\"),default:e(()=>Qe,\\"default\\"),isAsyncMode:e(()=>\$e,\\"isAsyncMode\\"),isConcurrentMode:e(()=>ke,\\"isConcurrentMode\\"),isContextConsumer:e(()=>qe,\\"isContextConsumer\\"),isContextProvider:e(()=>De,\\"isContextProvider\\"),isElement:e(()=>Fe,\\"isElement\\"),isForwardRef:e(()=>We,\\"isForwardRef\\"),isFragment:e(()=>Ue,\\"isFragment\\"),isLazy:e(()=>ze,\\"isLazy\\"),isMemo:e(()=>Be,\\"isMemo\\"),isPortal:e(()=>He,\\"isPortal\\"),isProfiler:e(()=>Je,\\"isProfiler\\"),isStrictMode:e(()=>Xe,\\"isStrictMode\\"),isSuspense:e(()=>Ge,\\"isSuspense\\"),isValidElementType:e(()=>Ke,\\"isValidElementType\\"),typeOf:e(()=>Ze,\\"typeOf\\")});var Ee=me(Pe());vr(ge,me(Pe()));var{AsyncMode:he,ConcurrentMode:Oe,ContextConsumer:Ce,ContextProvider:we,Element:Se,ForwardRef:Re,Fragment:Ae,Lazy:Me,Memo:xe,Portal:je,Profiler:Ie,StrictMode:Le,Suspense:Ye,isAsyncMode:\$e,isConcurrentMode:ke,isContextConsumer:qe,isContextProvider:De,isElement:Fe,isForwardRef:We,isFragment:Ue,isLazy:ze,isMemo:Be,isPortal:He,isProfiler:Je,isStrictMode:Xe,isSuspense:Ge,isValidElementType:Ke,typeOf:Ze}=Ee,{default:_e,...Tr}=Ee,Qe=_e!==void 0?_e:Tr;var q=e(r=>{let t=e(T=>typeof T.default<\\"u\\"?T.default:T,\\"e\\"),i=e(T=>Object.assign({},T),\\"c\\");switch(r){case\\"object-assign\\":return t(ne);case\\"react-is\\":return t(ie);default:throw new Error('module \\"'+r+'\\" not found')}},\\"require\\"),br=Object.create,fe=Object.defineProperty,mr=Object.getOwnPropertyDescriptor,Ne=Object.getOwnPropertyNames,Pr=Object.getPrototypeOf,gr=Object.prototype.hasOwnProperty,se=(r=>typeof q<\\"u\\"?q:typeof Proxy<\\"u\\"?new Proxy(r,{get:e((t,i)=>(typeof q<\\"u\\"?q:t)[i],\\"get\\")}):r)(function(r){if(typeof q<\\"u\\")return q.apply(this,arguments);throw Error('Dynamic require of \\"'+r+'\\" is not supported')}),F=e((r,t)=>e(function(){return t||(0,r[Ne(r)[0]])((t={exports:{}}).exports,t),t.exports},\\"__require2\\"),\\"__commonJS\\"),Er=e((r,t)=>{for(var i in t)fe(r,i,{get:t[i],enumerable:!0})},\\"__export\\"),ue=e((r,t,i,T)=>{if(t&&typeof t==\\"object\\"||typeof t==\\"function\\")for(let _ of Ne(t))!gr.call(r,_)&&_!==i&&fe(r,_,{get:e(()=>t[_],\\"get\\"),enumerable:!(T=mr(t,_))||T.enumerable});return r},\\"__copyProps\\"),hr=e((r,t,i)=>(ue(r,t,\\"default\\"),i&&ue(i,t,\\"default\\")),\\"__reExport\\"),er=e((r,t,i)=>(i=r!=null?br(Pr(r)):{},ue(t||!r||!r.__esModule?fe(i,\\"default\\",{value:r,enumerable:!0}):i,r)),\\"__toESM\\"),rr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/lib/ReactPropTypesSecret.js\\"(r,t){\\"use strict\\";var i=\\"SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED\\";t.exports=i}}),tr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/lib/has.js\\"(r,t){t.exports=Function.call.bind(Object.prototype.hasOwnProperty)}}),Or=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/checkPropTypes.js\\"(r,t){\\"use strict\\";var i=e(function(){},\\"printWarning\\");T=rr(),_={},A=tr(),i=e(function(m){var E=\\"Warning: \\"+m;typeof console<\\"u\\"&&console.error(E);try{throw new Error(E)}catch{}},\\"printWarning\\");var T,_,A;function I(m,E,h,w,M){for(var O in m)if(A(m,O)){var S;try{if(typeof m[O]!=\\"function\\"){var x=Error((w||\\"React class\\")+\\": \\"+h+\\" type \`\\"+O+\\"\` is invalid; it must be a function, usually from the \`prop-types\` package, but received \`\\"+typeof m[O]+\\"\`.This often happens because of typos such as \`PropTypes.function\` instead of \`PropTypes.func\`.\\");throw x.name=\\"Invariant Violation\\",x}S=m[O](E,O,w,h,null,T)}catch(D){S=D}if(S&&!(S instanceof Error)&&i((w||\\"React class\\")+\\": type specification of \\"+h+\\" \`\\"+O+\\"\` is invalid; the type checker function must return \`null\` or an \`Error\` but returned a \\"+typeof S+\\". You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).\\"),S instanceof Error&&!(S.message in _)){_[S.message]=!0;var R=M?M():\\"\\";i(\\"Failed \\"+h+\\" type: \\"+S.message+(R??\\"\\"))}}}e(I,\\"checkPropTypes2\\"),I.resetWarningCache=function(){_={}},t.exports=I}}),Cr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/factoryWithTypeCheckers.js\\"(r,t){\\"use strict\\";var i=se(\\"react-is\\"),T=se(\\"object-assign\\"),_=rr(),A=tr(),I=Or(),m=e(function(){},\\"printWarning\\");m=e(function(h){var w=\\"Warning: \\"+h;typeof console<\\"u\\"&&console.error(w);try{throw new Error(w)}catch{}},\\"printWarning\\");function E(){return null}e(E,\\"emptyFunctionThatReturnsNull\\"),t.exports=function(h,w){var M=typeof Symbol==\\"function\\"&&Symbol.iterator,O=\\"@@iterator\\";function S(n){var a=n&&(M&&n[M]||n[O]);if(typeof a==\\"function\\")return a}e(S,\\"getIteratorFn\\");var x=\\"<<anonymous>>\\",R={array:L(\\"array\\"),bigint:L(\\"bigint\\"),bool:L(\\"boolean\\"),func:L(\\"function\\"),number:L(\\"number\\"),object:L(\\"object\\"),string:L(\\"string\\"),symbol:L(\\"symbol\\"),any:z(),arrayOf:g,element:B(),elementType:H(),instanceOf:J,node:Z(),objectOf:G,oneOf:X,oneOfType:K,shape:Q,exact:V};function D(n,a){return n===a?n!==0||1/n===1/a:n!==n&&a!==a}e(D,\\"is\\");function b(n,a){this.message=n,this.data=a&&typeof a==\\"object\\"?a:{},this.stack=\\"\\"}e(b,\\"PropTypeError\\"),b.prototype=Error.prototype;function C(n){var a={},l=0;function f(p,u,c,d,v,y,o){if(d=d||x,y=y||c,o!==_){if(w){var P=new Error(\\"Calling PropTypes validators directly is not supported by the \`prop-types\` package. Use \`PropTypes.checkPropTypes()\` to call them. Read more at http://fb.me/use-check-prop-types\\");throw P.name=\\"Invariant Violation\\",P}else if(typeof console<\\"u\\"){var j=d+\\":\\"+c;!a[j]&&l<3&&(m(\\"You are manually calling a React.PropTypes validation function for the \`\\"+y+\\"\` prop on \`\\"+d+\\"\`. This is deprecated and will throw in the standalone \`prop-types\` package. You may be seeing this warning due to a third-party PropTypes library. See https://fb.me/react-warning-dont-call-proptypes for details.\\"),a[j]=!0,l++)}}return u[c]==null?p?u[c]===null?new b(\\"The \\"+v+\\" \`\\"+y+\\"\` is marked as required \\"+(\\"in \`\\"+d+\\"\`, but its value is \`null\`.\\")):new b(\\"The \\"+v+\\" \`\\"+y+\\"\` is marked as required in \\"+(\\"\`\\"+d+\\"\`, but its value is \`undefined\`.\\")):null:n(u,c,d,v,y)}e(f,\\"checkType\\");var s=f.bind(null,!1);return s.isRequired=f.bind(null,!0),s}e(C,\\"createChainableTypeChecker\\");function L(n){function a(l,f,s,p,u,c){var d=l[f],v=Y(d);if(v!==n){var y=\$(d);return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+y+\\"\` supplied to \`\\"+s+\\"\`, expected \\")+(\\"\`\\"+n+\\"\`.\\"),{expectedType:n})}return null}return e(a,\\"validate\\"),C(a)}e(L,\\"createPrimitiveTypeChecker\\");function z(){return C(E)}e(z,\\"createAnyTypeChecker\\");function g(n){function a(l,f,s,p,u){if(typeof n!=\\"function\\")return new b(\\"Property \`\\"+u+\\"\` of component \`\\"+s+\\"\` has invalid PropType notation inside arrayOf.\\");var c=l[f];if(!Array.isArray(c)){var d=Y(c);return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+d+\\"\` supplied to \`\\"+s+\\"\`, expected an array.\\"))}for(var v=0;v<c.length;v++){var y=n(c,v,s,p,u+\\"[\\"+v+\\"]\\",_);if(y instanceof Error)return y}return null}return e(a,\\"validate\\"),C(a)}e(g,\\"createArrayOfTypeChecker\\");function B(){function n(a,l,f,s,p){var u=a[l];if(!h(u)){var c=Y(u);return new b(\\"Invalid \\"+s+\\" \`\\"+p+\\"\` of type \\"+(\\"\`\\"+c+\\"\` supplied to \`\\"+f+\\"\`, expected a single ReactElement.\\"))}return null}return e(n,\\"validate\\"),C(n)}e(B,\\"createElementTypeChecker\\");function H(){function n(a,l,f,s,p){var u=a[l];if(!i.isValidElementType(u)){var c=Y(u);return new b(\\"Invalid \\"+s+\\" \`\\"+p+\\"\` of type \\"+(\\"\`\\"+c+\\"\` supplied to \`\\"+f+\\"\`, expected a single ReactElement type.\\"))}return null}return e(n,\\"validate\\"),C(n)}e(H,\\"createElementTypeTypeChecker\\");function J(n){function a(l,f,s,p,u){if(!(l[f]instanceof n)){var c=n.name||x,d=U(l[f]);return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+d+\\"\` supplied to \`\\"+s+\\"\`, expected \\")+(\\"instance of \`\\"+c+\\"\`.\\"))}return null}return e(a,\\"validate\\"),C(a)}e(J,\\"createInstanceTypeChecker\\");function X(n){if(!Array.isArray(n))return arguments.length>1?m(\\"Invalid arguments supplied to oneOf, expected an array, got \\"+arguments.length+\\" arguments. A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).\\"):m(\\"Invalid argument supplied to oneOf, expected an array.\\"),E;function a(l,f,s,p,u){for(var c=l[f],d=0;d<n.length;d++)if(D(c,n[d]))return null;var v=JSON.stringify(n,e(function(o,P){var j=\$(P);return j===\\"symbol\\"?String(P):P},\\"replacer\\"));return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of value \`\\"+String(c)+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected one of \\"+v+\\".\\"))}return e(a,\\"validate\\"),C(a)}e(X,\\"createEnumTypeChecker\\");function G(n){function a(l,f,s,p,u){if(typeof n!=\\"function\\")return new b(\\"Property \`\\"+u+\\"\` of component \`\\"+s+\\"\` has invalid PropType notation inside objectOf.\\");var c=l[f],d=Y(c);if(d!==\\"object\\")return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+d+\\"\` supplied to \`\\"+s+\\"\`, expected an object.\\"));for(var v in c)if(A(c,v)){var y=n(c,v,s,p,u+\\".\\"+v,_);if(y instanceof Error)return y}return null}return e(a,\\"validate\\"),C(a)}e(G,\\"createObjectOfTypeChecker\\");function K(n){if(!Array.isArray(n))return m(\\"Invalid argument supplied to oneOfType, expected an instance of array.\\"),E;for(var a=0;a<n.length;a++){var l=n[a];if(typeof l!=\\"function\\")return m(\\"Invalid argument supplied to oneOfType. Expected an array of check functions, but received \\"+ee(l)+\\" at index \\"+a+\\".\\"),E}function f(s,p,u,c,d){for(var v=[],y=0;y<n.length;y++){var o=n[y],P=o(s,p,u,c,d,_);if(P==null)return null;P.data&&A(P.data,\\"expectedType\\")&&v.push(P.data.expectedType)}var j=v.length>0?\\", expected one of type [\\"+v.join(\\", \\")+\\"]\\":\\"\\";return new b(\\"Invalid \\"+c+\\" \`\\"+d+\\"\` supplied to \\"+(\\"\`\\"+u+\\"\`\\"+j+\\".\\"))}return e(f,\\"validate\\"),C(f)}e(K,\\"createUnionTypeChecker\\");function Z(){function n(a,l,f,s,p){return k(a[l])?null:new b(\\"Invalid \\"+s+\\" \`\\"+p+\\"\` supplied to \\"+(\\"\`\\"+f+\\"\`, expected a ReactNode.\\"))}return e(n,\\"validate\\"),C(n)}e(Z,\\"createNodeChecker\\");function W(n,a,l,f,s){return new b((n||\\"React class\\")+\\": \\"+a+\\" type \`\\"+l+\\".\\"+f+\\"\` is invalid; it must be a function, usually from the \`prop-types\` package, but received \`\\"+s+\\"\`.\\")}e(W,\\"invalidValidatorError\\");function Q(n){function a(l,f,s,p,u){var c=l[f],d=Y(c);if(d!==\\"object\\")return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \`\\"+d+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected \`object\`.\\"));for(var v in n){var y=n[v];if(typeof y!=\\"function\\")return W(s,p,u,v,\$(y));var o=y(c,v,s,p,u+\\".\\"+v,_);if(o)return o}return null}return e(a,\\"validate\\"),C(a)}e(Q,\\"createShapeTypeChecker\\");function V(n){function a(l,f,s,p,u){var c=l[f],d=Y(c);if(d!==\\"object\\")return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \`\\"+d+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected \`object\`.\\"));var v=T({},l[f],n);for(var y in v){var o=n[y];if(A(n,y)&&typeof o!=\\"function\\")return W(s,p,u,y,\$(o));if(!o)return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` key \`\\"+y+\\"\` supplied to \`\\"+s+\\"\`.\\\\nBad object: \\"+JSON.stringify(l[f],null,\\"  \\")+\`
 Valid keys: \`+JSON.stringify(Object.keys(n),null,\\"  \\"));var P=o(c,y,s,p,u+\\".\\"+y,_);if(P)return P}return null}return e(a,\\"validate\\"),C(a)}e(V,\\"createStrictShapeTypeChecker\\");function k(n){switch(typeof n){case\\"number\\":case\\"string\\":case\\"undefined\\":return!0;case\\"boolean\\":return!n;case\\"object\\":if(Array.isArray(n))return n.every(k);if(n===null||h(n))return!0;var a=S(n);if(a){var l=a.call(n),f;if(a!==n.entries){for(;!(f=l.next()).done;)if(!k(f.value))return!1}else for(;!(f=l.next()).done;){var s=f.value;if(s&&!k(s[1]))return!1}}else return!1;return!0;default:return!1}}e(k,\\"isNode\\");function N(n,a){return n===\\"symbol\\"?!0:a?a[\\"@@toStringTag\\"]===\\"Symbol\\"||typeof Symbol==\\"function\\"&&a instanceof Symbol:!1}e(N,\\"isSymbol\\");function Y(n){var a=typeof n;return Array.isArray(n)?\\"array\\":n instanceof RegExp?\\"object\\":N(a,n)?\\"symbol\\":a}e(Y,\\"getPropType\\");function \$(n){if(typeof n>\\"u\\"||n===null)return\\"\\"+n;var a=Y(n);if(a===\\"object\\"){if(n instanceof Date)return\\"date\\";if(n instanceof RegExp)return\\"regexp\\"}return a}e(\$,\\"getPreciseType\\");function ee(n){var a=\$(n);switch(a){case\\"array\\":case\\"object\\":return\\"an \\"+a;case\\"boolean\\":case\\"date\\":case\\"regexp\\":return\\"a \\"+a;default:return a}}e(ee,\\"getPostfixForTypeWarning\\");function U(n){return!n.constructor||!n.constructor.name?x:n.constructor.name}return e(U,\\"getClassName\\"),R.checkPropTypes=I,R.resetWarningCache=I.resetWarningCache,R.PropTypes=R,R}}}),nr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/index.js\\"(r,t){i=se(\\"react-is\\"),T=!0,t.exports=Cr()(i.isElement,T);var i,T}}),or={};Er(or,{PropTypes:e(()=>Xr,\\"PropTypes\\"),any:e(()=>Lr,\\"any\\"),array:e(()=>wr,\\"array\\"),arrayOf:e(()=>Yr,\\"arrayOf\\"),bigint:e(()=>Sr,\\"bigint\\"),bool:e(()=>Rr,\\"bool\\"),checkPropTypes:e(()=>Hr,\\"checkPropTypes\\"),default:e(()=>Kr,\\"default\\"),element:e(()=>\$r,\\"element\\"),elementType:e(()=>kr,\\"elementType\\"),exact:e(()=>Br,\\"exact\\"),func:e(()=>Ar,\\"func\\"),instanceOf:e(()=>qr,\\"instanceOf\\"),node:e(()=>Dr,\\"node\\"),number:e(()=>Mr,\\"number\\"),object:e(()=>xr,\\"object\\"),objectOf:e(()=>Fr,\\"objectOf\\"),oneOf:e(()=>Wr,\\"oneOf\\"),oneOfType:e(()=>Ur,\\"oneOfType\\"),resetWarningCache:e(()=>Jr,\\"resetWarningCache\\"),shape:e(()=>zr,\\"shape\\"),string:e(()=>jr,\\"string\\"),symbol:e(()=>Ir,\\"symbol\\")});var ar=er(nr());hr(or,er(nr()));var{array:wr,bigint:Sr,bool:Rr,func:Ar,number:Mr,object:xr,string:jr,symbol:Ir,any:Lr,arrayOf:Yr,element:\$r,elementType:kr,instanceOf:qr,node:Dr,objectOf:Fr,oneOf:Wr,oneOfType:Ur,shape:zr,exact:Br,checkPropTypes:Hr,resetWarningCache:Jr,PropTypes:Xr}=ar,{default:Ve,...Gr}=ar,Kr=Ve!==void 0?Ve:Gr;document.querySelectorAll(\\"h1\\")?.forEach(r=>{r.innerHTML=te(r.innerHTML+ve.foo),ye(r.innerHTML).then(t=>{r.innerHTML=t})});var Zr={bar:\\"baz\\"};console.log(Zr);
@@ -984,31 +1009,6 @@ react-is/cjs/react-is.development.js:
       asset: true,
       ext: ".ts",
       path: "/modules/to_uppercase",
-      remote: undefined,
-    },
-  },
-  {
-    content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
-',
-    data: {
-      basename: "to_lowercase",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/foo/bar/to_lowercase.min.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other/to_lowercase",
       remote: undefined,
     },
   },
@@ -1139,14 +1139,14 @@ snapshot[`esbuild plugin with entryNames simple 1`] = `
 snapshot[`esbuild plugin with entryNames simple 2`] = `
 [
   {
-    entry: "/other.ts",
-    flags: [],
-    outputPath: "/other.ts",
-  },
-  {
     entry: "/other/script.ts",
     flags: [],
     outputPath: "/foo/bar/script.ts",
+  },
+  {
+    entry: "/other.ts",
+    flags: [],
+    outputPath: "/other.ts",
   },
 ]
 `;
@@ -1192,17 +1192,10 @@ react-is/cjs/react-is.development.js:
     },
   },
   {
-    content: "
-  <body>
-    Hello world
-  </body>
-  ",
+    content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
+',
     data: {
-      basename: "main",
-      children: "Hello world",
-      content: "Hello world",
-      date: [],
-      layout: "layout.js",
+      basename: "to_lowercase",
       mergedKeys: [
         "tags",
       ],
@@ -1214,12 +1207,12 @@ react-is/cjs/react-is.development.js:
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/main/",
+      url: "/js/to_lowercase.hash.js",
     },
     src: {
-      asset: false,
-      ext: ".vto",
-      path: "/main",
+      asset: true,
+      ext: ".ts",
+      path: "/other/to_lowercase",
       remote: undefined,
     },
   },
@@ -1249,10 +1242,17 @@ react-is/cjs/react-is.development.js:
     },
   },
   {
-    content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
-',
+    content: "
+  <body>
+    Hello world
+  </body>
+  ",
     data: {
-      basename: "to_lowercase",
+      basename: "main",
+      children: "Hello world",
+      content: "Hello world",
+      date: [],
+      layout: "layout.js",
       mergedKeys: [
         "tags",
       ],
@@ -1264,12 +1264,12 @@ react-is/cjs/react-is.development.js:
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/js/to_lowercase.hash.js",
+      url: "/main/",
     },
     src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other/to_lowercase",
+      asset: false,
+      ext: ".vto",
+      path: "/main",
       remote: undefined,
     },
   },
@@ -1400,14 +1400,14 @@ snapshot[`esbuild plugin with entryNames complex 1`] = `
 snapshot[`esbuild plugin with entryNames complex 2`] = `
 [
   {
-    entry: "/other.ts",
-    flags: [],
-    outputPath: "/other.ts",
-  },
-  {
     entry: "/other/script.ts",
     flags: [],
     outputPath: "/foo/bar/script.ts",
+  },
+  {
+    entry: "/other.ts",
+    flags: [],
+    outputPath: "/other.ts",
   },
 ]
 `;
@@ -1447,6 +1447,56 @@ snapshot[`esbuild plugin with entryNames complex 3`] = `
     },
   },
   {
+    content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
+',
+    data: {
+      basename: "to_lowercase",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/one/foo/bar/two/to_lowercase/hash.js",
+    },
+    src: {
+      asset: true,
+      ext: ".ts",
+      path: "/other/to_lowercase",
+      remote: undefined,
+    },
+  },
+  {
+    content: 'var n=Object.defineProperty;var r=(t,e)=>n(t,"name",{value:e,configurable:!0});var c=(t,e)=>()=>(t&&(e=t(t=0)),e);var i=(t,e)=>{for(var o in e)n(t,o,{get:e[o],enumerable:!0})};var s={};i(s,{toLowercase:()=>p});function p(t){return t.toLowerCase()}var a=c(()=>{r(p,"toLowercase")});function u(t){return t.toUpperCase()}r(u,"toUppercase");async function L(t){let{toLowercase:e}=await Promise.resolve().then(()=>(a(),s));return e(t)}r(L,"toLowercase");export{u as default,L as toLowercase};
+',
+    data: {
+      basename: "to_uppercase",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/one/modules/two/to_uppercase/hash.js",
+    },
+    src: {
+      asset: true,
+      ext: ".ts",
+      path: "/modules/to_uppercase",
+      remote: undefined,
+    },
+  },
+  {
     content: "var le=Object.defineProperty;var e=(r,t)=>le(r,\\"name\\",{value:t,configurable:!0});var ir=(r,t)=>()=>(r&&(t=r(r=0)),t);var re=(r,t)=>{for(var i in t)le(r,i,{get:t[i],enumerable:!0})};var pe={};re(pe,{toLowercase:()=>sr});function sr(r){return r.toLowerCase()}var de=ir(()=>{e(sr,\\"toLowercase\\")});function te(r){return r.toUpperCase()}e(te,\\"toUppercase\\");async function ye(r){let{toLowercase:t}=await Promise.resolve().then(()=>(de(),pe));return t(r)}e(ye,\\"toLowercase\\");var ve={foo:\\"bar\\"};var ne={};re(ne,{default:()=>fr});var fr=Object.assign;var ie={};re(ie,{AsyncMode:()=>he,ConcurrentMode:()=>Oe,ContextConsumer:()=>Ce,ContextProvider:()=>we,Element:()=>Se,ForwardRef:()=>Re,Fragment:()=>Ae,Lazy:()=>Me,Memo:()=>xe,Portal:()=>je,Profiler:()=>Ie,StrictMode:()=>Le,Suspense:()=>Ye,default:()=>Qe,isAsyncMode:()=>\$e,isConcurrentMode:()=>ke,isContextConsumer:()=>qe,isContextProvider:()=>De,isElement:()=>Fe,isForwardRef:()=>We,isFragment:()=>Ue,isLazy:()=>ze,isMemo:()=>Be,isPortal:()=>He,isProfiler:()=>Je,isStrictMode:()=>Xe,isSuspense:()=>Ge,isValidElementType:()=>Ke,typeOf:()=>Ze});var cr=Object.create,ae=Object.defineProperty,lr=Object.getOwnPropertyDescriptor,Te=Object.getOwnPropertyNames,pr=Object.getPrototypeOf,dr=Object.prototype.hasOwnProperty,be=e((r,t)=>e(function(){return t||(0,r[Te(r)[0]])((t={exports:{}}).exports,t),t.exports},\\"__require\\"),\\"__commonJS\\"),yr=e((r,t)=>{for(var i in t)ae(r,i,{get:t[i],enumerable:!0})},\\"__export\\"),oe=e((r,t,i,T)=>{if(t&&typeof t==\\"object\\"||typeof t==\\"function\\")for(let _ of Te(t))!dr.call(r,_)&&_!==i&&ae(r,_,{get:e(()=>t[_],\\"get\\"),enumerable:!(T=lr(t,_))||T.enumerable});return r},\\"__copyProps\\"),vr=e((r,t,i)=>(oe(r,t,\\"default\\"),i&&oe(i,t,\\"default\\")),\\"__reExport\\"),me=e((r,t,i)=>(i=r!=null?cr(pr(r)):{},oe(t||!r||!r.__esModule?ae(i,\\"default\\",{value:r,enumerable:!0}):i,r)),\\"__toESM\\"),_r=be({\\"../esmd/npm/react-is@16.13.1/node_modules/.pnpm/react-is@16.13.1/node_modules/react-is/cjs/react-is.development.js\\"(r){\\"use strict\\";(function(){\\"use strict\\";var t=typeof Symbol==\\"function\\"&&Symbol.for,i=t?Symbol.for(\\"react.element\\"):60103,T=t?Symbol.for(\\"react.portal\\"):60106,_=t?Symbol.for(\\"react.fragment\\"):60107,A=t?Symbol.for(\\"react.strict_mode\\"):60108,I=t?Symbol.for(\\"react.profiler\\"):60114,m=t?Symbol.for(\\"react.provider\\"):60109,E=t?Symbol.for(\\"react.context\\"):60110,h=t?Symbol.for(\\"react.async_mode\\"):60111,w=t?Symbol.for(\\"react.concurrent_mode\\"):60111,M=t?Symbol.for(\\"react.forward_ref\\"):60112,O=t?Symbol.for(\\"react.suspense\\"):60113,S=t?Symbol.for(\\"react.suspense_list\\"):60120,x=t?Symbol.for(\\"react.memo\\"):60115,R=t?Symbol.for(\\"react.lazy\\"):60116,D=t?Symbol.for(\\"react.block\\"):60121,b=t?Symbol.for(\\"react.fundamental\\"):60117,C=t?Symbol.for(\\"react.responder\\"):60118,L=t?Symbol.for(\\"react.scope\\"):60119;function z(o){return typeof o==\\"string\\"||typeof o==\\"function\\"||o===_||o===w||o===I||o===A||o===O||o===S||typeof o==\\"object\\"&&o!==null&&(o.\$\$typeof===R||o.\$\$typeof===x||o.\$\$typeof===m||o.\$\$typeof===E||o.\$\$typeof===M||o.\$\$typeof===b||o.\$\$typeof===C||o.\$\$typeof===L||o.\$\$typeof===D)}e(z,\\"isValidElementType2\\");function g(o){if(typeof o==\\"object\\"&&o!==null){var P=o.\$\$typeof;switch(P){case i:var j=o.type;switch(j){case h:case w:case _:case I:case A:case O:return j;default:var ce=j&&j.\$\$typeof;switch(ce){case E:case M:case R:case x:case m:return ce;default:return P}}case T:return P}}}e(g,\\"typeOf2\\");var B=h,H=w,J=E,X=m,G=i,K=M,Z=_,W=R,Q=x,V=T,k=I,N=A,Y=O,\$=!1;function ee(o){return \$||(\$=!0,console.warn(\\"The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.\\")),U(o)||g(o)===h}e(ee,\\"isAsyncMode2\\");function U(o){return g(o)===w}e(U,\\"isConcurrentMode2\\");function n(o){return g(o)===E}e(n,\\"isContextConsumer2\\");function a(o){return g(o)===m}e(a,\\"isContextProvider2\\");function l(o){return typeof o==\\"object\\"&&o!==null&&o.\$\$typeof===i}e(l,\\"isElement2\\");function f(o){return g(o)===M}e(f,\\"isForwardRef2\\");function s(o){return g(o)===_}e(s,\\"isFragment2\\");function p(o){return g(o)===R}e(p,\\"isLazy2\\");function u(o){return g(o)===x}e(u,\\"isMemo2\\");function c(o){return g(o)===T}e(c,\\"isPortal2\\");function d(o){return g(o)===I}e(d,\\"isProfiler2\\");function v(o){return g(o)===A}e(v,\\"isStrictMode2\\");function y(o){return g(o)===O}e(y,\\"isSuspense2\\"),r.AsyncMode=B,r.ConcurrentMode=H,r.ContextConsumer=J,r.ContextProvider=X,r.Element=G,r.ForwardRef=K,r.Fragment=Z,r.Lazy=W,r.Memo=Q,r.Portal=V,r.Profiler=k,r.StrictMode=N,r.Suspense=Y,r.isAsyncMode=ee,r.isConcurrentMode=U,r.isContextConsumer=n,r.isContextProvider=a,r.isElement=l,r.isForwardRef=f,r.isFragment=s,r.isLazy=p,r.isMemo=u,r.isPortal=c,r.isProfiler=d,r.isStrictMode=v,r.isSuspense=y,r.isValidElementType=z,r.typeOf=g})()}}),Pe=be({\\"../esmd/npm/react-is@16.13.1/node_modules/.pnpm/react-is@16.13.1/node_modules/react-is/index.js\\"(r,t){\\"use strict\\";t.exports=_r()}}),ge={};yr(ge,{AsyncMode:e(()=>he,\\"AsyncMode\\"),ConcurrentMode:e(()=>Oe,\\"ConcurrentMode\\"),ContextConsumer:e(()=>Ce,\\"ContextConsumer\\"),ContextProvider:e(()=>we,\\"ContextProvider\\"),Element:e(()=>Se,\\"Element\\"),ForwardRef:e(()=>Re,\\"ForwardRef\\"),Fragment:e(()=>Ae,\\"Fragment\\"),Lazy:e(()=>Me,\\"Lazy\\"),Memo:e(()=>xe,\\"Memo\\"),Portal:e(()=>je,\\"Portal\\"),Profiler:e(()=>Ie,\\"Profiler\\"),StrictMode:e(()=>Le,\\"StrictMode\\"),Suspense:e(()=>Ye,\\"Suspense\\"),default:e(()=>Qe,\\"default\\"),isAsyncMode:e(()=>\$e,\\"isAsyncMode\\"),isConcurrentMode:e(()=>ke,\\"isConcurrentMode\\"),isContextConsumer:e(()=>qe,\\"isContextConsumer\\"),isContextProvider:e(()=>De,\\"isContextProvider\\"),isElement:e(()=>Fe,\\"isElement\\"),isForwardRef:e(()=>We,\\"isForwardRef\\"),isFragment:e(()=>Ue,\\"isFragment\\"),isLazy:e(()=>ze,\\"isLazy\\"),isMemo:e(()=>Be,\\"isMemo\\"),isPortal:e(()=>He,\\"isPortal\\"),isProfiler:e(()=>Je,\\"isProfiler\\"),isStrictMode:e(()=>Xe,\\"isStrictMode\\"),isSuspense:e(()=>Ge,\\"isSuspense\\"),isValidElementType:e(()=>Ke,\\"isValidElementType\\"),typeOf:e(()=>Ze,\\"typeOf\\")});var Ee=me(Pe());vr(ge,me(Pe()));var{AsyncMode:he,ConcurrentMode:Oe,ContextConsumer:Ce,ContextProvider:we,Element:Se,ForwardRef:Re,Fragment:Ae,Lazy:Me,Memo:xe,Portal:je,Profiler:Ie,StrictMode:Le,Suspense:Ye,isAsyncMode:\$e,isConcurrentMode:ke,isContextConsumer:qe,isContextProvider:De,isElement:Fe,isForwardRef:We,isFragment:Ue,isLazy:ze,isMemo:Be,isPortal:He,isProfiler:Je,isStrictMode:Xe,isSuspense:Ge,isValidElementType:Ke,typeOf:Ze}=Ee,{default:_e,...Tr}=Ee,Qe=_e!==void 0?_e:Tr;var q=e(r=>{let t=e(T=>typeof T.default<\\"u\\"?T.default:T,\\"e\\"),i=e(T=>Object.assign({},T),\\"c\\");switch(r){case\\"object-assign\\":return t(ne);case\\"react-is\\":return t(ie);default:throw new Error('module \\"'+r+'\\" not found')}},\\"require\\"),br=Object.create,fe=Object.defineProperty,mr=Object.getOwnPropertyDescriptor,Ne=Object.getOwnPropertyNames,Pr=Object.getPrototypeOf,gr=Object.prototype.hasOwnProperty,se=(r=>typeof q<\\"u\\"?q:typeof Proxy<\\"u\\"?new Proxy(r,{get:e((t,i)=>(typeof q<\\"u\\"?q:t)[i],\\"get\\")}):r)(function(r){if(typeof q<\\"u\\")return q.apply(this,arguments);throw Error('Dynamic require of \\"'+r+'\\" is not supported')}),F=e((r,t)=>e(function(){return t||(0,r[Ne(r)[0]])((t={exports:{}}).exports,t),t.exports},\\"__require2\\"),\\"__commonJS\\"),Er=e((r,t)=>{for(var i in t)fe(r,i,{get:t[i],enumerable:!0})},\\"__export\\"),ue=e((r,t,i,T)=>{if(t&&typeof t==\\"object\\"||typeof t==\\"function\\")for(let _ of Ne(t))!gr.call(r,_)&&_!==i&&fe(r,_,{get:e(()=>t[_],\\"get\\"),enumerable:!(T=mr(t,_))||T.enumerable});return r},\\"__copyProps\\"),hr=e((r,t,i)=>(ue(r,t,\\"default\\"),i&&ue(i,t,\\"default\\")),\\"__reExport\\"),er=e((r,t,i)=>(i=r!=null?br(Pr(r)):{},ue(t||!r||!r.__esModule?fe(i,\\"default\\",{value:r,enumerable:!0}):i,r)),\\"__toESM\\"),rr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/lib/ReactPropTypesSecret.js\\"(r,t){\\"use strict\\";var i=\\"SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED\\";t.exports=i}}),tr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/lib/has.js\\"(r,t){t.exports=Function.call.bind(Object.prototype.hasOwnProperty)}}),Or=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/checkPropTypes.js\\"(r,t){\\"use strict\\";var i=e(function(){},\\"printWarning\\");T=rr(),_={},A=tr(),i=e(function(m){var E=\\"Warning: \\"+m;typeof console<\\"u\\"&&console.error(E);try{throw new Error(E)}catch{}},\\"printWarning\\");var T,_,A;function I(m,E,h,w,M){for(var O in m)if(A(m,O)){var S;try{if(typeof m[O]!=\\"function\\"){var x=Error((w||\\"React class\\")+\\": \\"+h+\\" type \`\\"+O+\\"\` is invalid; it must be a function, usually from the \`prop-types\` package, but received \`\\"+typeof m[O]+\\"\`.This often happens because of typos such as \`PropTypes.function\` instead of \`PropTypes.func\`.\\");throw x.name=\\"Invariant Violation\\",x}S=m[O](E,O,w,h,null,T)}catch(D){S=D}if(S&&!(S instanceof Error)&&i((w||\\"React class\\")+\\": type specification of \\"+h+\\" \`\\"+O+\\"\` is invalid; the type checker function must return \`null\` or an \`Error\` but returned a \\"+typeof S+\\". You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).\\"),S instanceof Error&&!(S.message in _)){_[S.message]=!0;var R=M?M():\\"\\";i(\\"Failed \\"+h+\\" type: \\"+S.message+(R??\\"\\"))}}}e(I,\\"checkPropTypes2\\"),I.resetWarningCache=function(){_={}},t.exports=I}}),Cr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/factoryWithTypeCheckers.js\\"(r,t){\\"use strict\\";var i=se(\\"react-is\\"),T=se(\\"object-assign\\"),_=rr(),A=tr(),I=Or(),m=e(function(){},\\"printWarning\\");m=e(function(h){var w=\\"Warning: \\"+h;typeof console<\\"u\\"&&console.error(w);try{throw new Error(w)}catch{}},\\"printWarning\\");function E(){return null}e(E,\\"emptyFunctionThatReturnsNull\\"),t.exports=function(h,w){var M=typeof Symbol==\\"function\\"&&Symbol.iterator,O=\\"@@iterator\\";function S(n){var a=n&&(M&&n[M]||n[O]);if(typeof a==\\"function\\")return a}e(S,\\"getIteratorFn\\");var x=\\"<<anonymous>>\\",R={array:L(\\"array\\"),bigint:L(\\"bigint\\"),bool:L(\\"boolean\\"),func:L(\\"function\\"),number:L(\\"number\\"),object:L(\\"object\\"),string:L(\\"string\\"),symbol:L(\\"symbol\\"),any:z(),arrayOf:g,element:B(),elementType:H(),instanceOf:J,node:Z(),objectOf:G,oneOf:X,oneOfType:K,shape:Q,exact:V};function D(n,a){return n===a?n!==0||1/n===1/a:n!==n&&a!==a}e(D,\\"is\\");function b(n,a){this.message=n,this.data=a&&typeof a==\\"object\\"?a:{},this.stack=\\"\\"}e(b,\\"PropTypeError\\"),b.prototype=Error.prototype;function C(n){var a={},l=0;function f(p,u,c,d,v,y,o){if(d=d||x,y=y||c,o!==_){if(w){var P=new Error(\\"Calling PropTypes validators directly is not supported by the \`prop-types\` package. Use \`PropTypes.checkPropTypes()\` to call them. Read more at http://fb.me/use-check-prop-types\\");throw P.name=\\"Invariant Violation\\",P}else if(typeof console<\\"u\\"){var j=d+\\":\\"+c;!a[j]&&l<3&&(m(\\"You are manually calling a React.PropTypes validation function for the \`\\"+y+\\"\` prop on \`\\"+d+\\"\`. This is deprecated and will throw in the standalone \`prop-types\` package. You may be seeing this warning due to a third-party PropTypes library. See https://fb.me/react-warning-dont-call-proptypes for details.\\"),a[j]=!0,l++)}}return u[c]==null?p?u[c]===null?new b(\\"The \\"+v+\\" \`\\"+y+\\"\` is marked as required \\"+(\\"in \`\\"+d+\\"\`, but its value is \`null\`.\\")):new b(\\"The \\"+v+\\" \`\\"+y+\\"\` is marked as required in \\"+(\\"\`\\"+d+\\"\`, but its value is \`undefined\`.\\")):null:n(u,c,d,v,y)}e(f,\\"checkType\\");var s=f.bind(null,!1);return s.isRequired=f.bind(null,!0),s}e(C,\\"createChainableTypeChecker\\");function L(n){function a(l,f,s,p,u,c){var d=l[f],v=Y(d);if(v!==n){var y=\$(d);return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+y+\\"\` supplied to \`\\"+s+\\"\`, expected \\")+(\\"\`\\"+n+\\"\`.\\"),{expectedType:n})}return null}return e(a,\\"validate\\"),C(a)}e(L,\\"createPrimitiveTypeChecker\\");function z(){return C(E)}e(z,\\"createAnyTypeChecker\\");function g(n){function a(l,f,s,p,u){if(typeof n!=\\"function\\")return new b(\\"Property \`\\"+u+\\"\` of component \`\\"+s+\\"\` has invalid PropType notation inside arrayOf.\\");var c=l[f];if(!Array.isArray(c)){var d=Y(c);return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+d+\\"\` supplied to \`\\"+s+\\"\`, expected an array.\\"))}for(var v=0;v<c.length;v++){var y=n(c,v,s,p,u+\\"[\\"+v+\\"]\\",_);if(y instanceof Error)return y}return null}return e(a,\\"validate\\"),C(a)}e(g,\\"createArrayOfTypeChecker\\");function B(){function n(a,l,f,s,p){var u=a[l];if(!h(u)){var c=Y(u);return new b(\\"Invalid \\"+s+\\" \`\\"+p+\\"\` of type \\"+(\\"\`\\"+c+\\"\` supplied to \`\\"+f+\\"\`, expected a single ReactElement.\\"))}return null}return e(n,\\"validate\\"),C(n)}e(B,\\"createElementTypeChecker\\");function H(){function n(a,l,f,s,p){var u=a[l];if(!i.isValidElementType(u)){var c=Y(u);return new b(\\"Invalid \\"+s+\\" \`\\"+p+\\"\` of type \\"+(\\"\`\\"+c+\\"\` supplied to \`\\"+f+\\"\`, expected a single ReactElement type.\\"))}return null}return e(n,\\"validate\\"),C(n)}e(H,\\"createElementTypeTypeChecker\\");function J(n){function a(l,f,s,p,u){if(!(l[f]instanceof n)){var c=n.name||x,d=U(l[f]);return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+d+\\"\` supplied to \`\\"+s+\\"\`, expected \\")+(\\"instance of \`\\"+c+\\"\`.\\"))}return null}return e(a,\\"validate\\"),C(a)}e(J,\\"createInstanceTypeChecker\\");function X(n){if(!Array.isArray(n))return arguments.length>1?m(\\"Invalid arguments supplied to oneOf, expected an array, got \\"+arguments.length+\\" arguments. A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).\\"):m(\\"Invalid argument supplied to oneOf, expected an array.\\"),E;function a(l,f,s,p,u){for(var c=l[f],d=0;d<n.length;d++)if(D(c,n[d]))return null;var v=JSON.stringify(n,e(function(o,P){var j=\$(P);return j===\\"symbol\\"?String(P):P},\\"replacer\\"));return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of value \`\\"+String(c)+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected one of \\"+v+\\".\\"))}return e(a,\\"validate\\"),C(a)}e(X,\\"createEnumTypeChecker\\");function G(n){function a(l,f,s,p,u){if(typeof n!=\\"function\\")return new b(\\"Property \`\\"+u+\\"\` of component \`\\"+s+\\"\` has invalid PropType notation inside objectOf.\\");var c=l[f],d=Y(c);if(d!==\\"object\\")return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+d+\\"\` supplied to \`\\"+s+\\"\`, expected an object.\\"));for(var v in c)if(A(c,v)){var y=n(c,v,s,p,u+\\".\\"+v,_);if(y instanceof Error)return y}return null}return e(a,\\"validate\\"),C(a)}e(G,\\"createObjectOfTypeChecker\\");function K(n){if(!Array.isArray(n))return m(\\"Invalid argument supplied to oneOfType, expected an instance of array.\\"),E;for(var a=0;a<n.length;a++){var l=n[a];if(typeof l!=\\"function\\")return m(\\"Invalid argument supplied to oneOfType. Expected an array of check functions, but received \\"+ee(l)+\\" at index \\"+a+\\".\\"),E}function f(s,p,u,c,d){for(var v=[],y=0;y<n.length;y++){var o=n[y],P=o(s,p,u,c,d,_);if(P==null)return null;P.data&&A(P.data,\\"expectedType\\")&&v.push(P.data.expectedType)}var j=v.length>0?\\", expected one of type [\\"+v.join(\\", \\")+\\"]\\":\\"\\";return new b(\\"Invalid \\"+c+\\" \`\\"+d+\\"\` supplied to \\"+(\\"\`\\"+u+\\"\`\\"+j+\\".\\"))}return e(f,\\"validate\\"),C(f)}e(K,\\"createUnionTypeChecker\\");function Z(){function n(a,l,f,s,p){return k(a[l])?null:new b(\\"Invalid \\"+s+\\" \`\\"+p+\\"\` supplied to \\"+(\\"\`\\"+f+\\"\`, expected a ReactNode.\\"))}return e(n,\\"validate\\"),C(n)}e(Z,\\"createNodeChecker\\");function W(n,a,l,f,s){return new b((n||\\"React class\\")+\\": \\"+a+\\" type \`\\"+l+\\".\\"+f+\\"\` is invalid; it must be a function, usually from the \`prop-types\` package, but received \`\\"+s+\\"\`.\\")}e(W,\\"invalidValidatorError\\");function Q(n){function a(l,f,s,p,u){var c=l[f],d=Y(c);if(d!==\\"object\\")return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \`\\"+d+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected \`object\`.\\"));for(var v in n){var y=n[v];if(typeof y!=\\"function\\")return W(s,p,u,v,\$(y));var o=y(c,v,s,p,u+\\".\\"+v,_);if(o)return o}return null}return e(a,\\"validate\\"),C(a)}e(Q,\\"createShapeTypeChecker\\");function V(n){function a(l,f,s,p,u){var c=l[f],d=Y(c);if(d!==\\"object\\")return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \`\\"+d+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected \`object\`.\\"));var v=T({},l[f],n);for(var y in v){var o=n[y];if(A(n,y)&&typeof o!=\\"function\\")return W(s,p,u,y,\$(o));if(!o)return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` key \`\\"+y+\\"\` supplied to \`\\"+s+\\"\`.\\\\nBad object: \\"+JSON.stringify(l[f],null,\\"  \\")+\`
 Valid keys: \`+JSON.stringify(Object.keys(n),null,\\"  \\"));var P=o(c,y,s,p,u+\\".\\"+y,_);if(P)return P}return null}return e(a,\\"validate\\"),C(a)}e(V,\\"createStrictShapeTypeChecker\\");function k(n){switch(typeof n){case\\"number\\":case\\"string\\":case\\"undefined\\":return!0;case\\"boolean\\":return!n;case\\"object\\":if(Array.isArray(n))return n.every(k);if(n===null||h(n))return!0;var a=S(n);if(a){var l=a.call(n),f;if(a!==n.entries){for(;!(f=l.next()).done;)if(!k(f.value))return!1}else for(;!(f=l.next()).done;){var s=f.value;if(s&&!k(s[1]))return!1}}else return!1;return!0;default:return!1}}e(k,\\"isNode\\");function N(n,a){return n===\\"symbol\\"?!0:a?a[\\"@@toStringTag\\"]===\\"Symbol\\"||typeof Symbol==\\"function\\"&&a instanceof Symbol:!1}e(N,\\"isSymbol\\");function Y(n){var a=typeof n;return Array.isArray(n)?\\"array\\":n instanceof RegExp?\\"object\\":N(a,n)?\\"symbol\\":a}e(Y,\\"getPropType\\");function \$(n){if(typeof n>\\"u\\"||n===null)return\\"\\"+n;var a=Y(n);if(a===\\"object\\"){if(n instanceof Date)return\\"date\\";if(n instanceof RegExp)return\\"regexp\\"}return a}e(\$,\\"getPreciseType\\");function ee(n){var a=\$(n);switch(a){case\\"array\\":case\\"object\\":return\\"an \\"+a;case\\"boolean\\":case\\"date\\":case\\"regexp\\":return\\"a \\"+a;default:return a}}e(ee,\\"getPostfixForTypeWarning\\");function U(n){return!n.constructor||!n.constructor.name?x:n.constructor.name}return e(U,\\"getClassName\\"),R.checkPropTypes=I,R.resetWarningCache=I.resetWarningCache,R.PropTypes=R,R}}}),nr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/index.js\\"(r,t){i=se(\\"react-is\\"),T=!0,t.exports=Cr()(i.isElement,T);var i,T}}),or={};Er(or,{PropTypes:e(()=>Xr,\\"PropTypes\\"),any:e(()=>Lr,\\"any\\"),array:e(()=>wr,\\"array\\"),arrayOf:e(()=>Yr,\\"arrayOf\\"),bigint:e(()=>Sr,\\"bigint\\"),bool:e(()=>Rr,\\"bool\\"),checkPropTypes:e(()=>Hr,\\"checkPropTypes\\"),default:e(()=>Kr,\\"default\\"),element:e(()=>\$r,\\"element\\"),elementType:e(()=>kr,\\"elementType\\"),exact:e(()=>Br,\\"exact\\"),func:e(()=>Ar,\\"func\\"),instanceOf:e(()=>qr,\\"instanceOf\\"),node:e(()=>Dr,\\"node\\"),number:e(()=>Mr,\\"number\\"),object:e(()=>xr,\\"object\\"),objectOf:e(()=>Fr,\\"objectOf\\"),oneOf:e(()=>Wr,\\"oneOf\\"),oneOfType:e(()=>Ur,\\"oneOfType\\"),resetWarningCache:e(()=>Jr,\\"resetWarningCache\\"),shape:e(()=>zr,\\"shape\\"),string:e(()=>jr,\\"string\\"),symbol:e(()=>Ir,\\"symbol\\")});var ar=er(nr());hr(or,er(nr()));var{array:wr,bigint:Sr,bool:Rr,func:Ar,number:Mr,object:xr,string:jr,symbol:Ir,any:Lr,arrayOf:Yr,element:\$r,elementType:kr,instanceOf:qr,node:Dr,objectOf:Fr,oneOf:Wr,oneOfType:Ur,shape:zr,exact:Br,checkPropTypes:Hr,resetWarningCache:Jr,PropTypes:Xr}=ar,{default:Ve,...Gr}=ar,Kr=Ve!==void 0?Ve:Gr;document.querySelectorAll(\\"h1\\")?.forEach(r=>{r.innerHTML=te(r.innerHTML+ve.foo),ye(r.innerHTML).then(t=>{r.innerHTML=t})});var Zr={bar:\\"baz\\"};console.log(Zr);
 /*! Bundled license information:
@@ -1481,56 +1531,6 @@ react-is/cjs/react-is.development.js:
       asset: true,
       ext: ".ts",
       path: "/main",
-      remote: undefined,
-    },
-  },
-  {
-    content: 'var n=Object.defineProperty;var r=(t,e)=>n(t,"name",{value:e,configurable:!0});var c=(t,e)=>()=>(t&&(e=t(t=0)),e);var i=(t,e)=>{for(var o in e)n(t,o,{get:e[o],enumerable:!0})};var s={};i(s,{toLowercase:()=>p});function p(t){return t.toLowerCase()}var a=c(()=>{r(p,"toLowercase")});function u(t){return t.toUpperCase()}r(u,"toUppercase");async function L(t){let{toLowercase:e}=await Promise.resolve().then(()=>(a(),s));return e(t)}r(L,"toLowercase");export{u as default,L as toLowercase};
-',
-    data: {
-      basename: "to_uppercase",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/one/modules/two/to_uppercase/hash.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/modules/to_uppercase",
-      remote: undefined,
-    },
-  },
-  {
-    content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
-',
-    data: {
-      basename: "to_lowercase",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/one/foo/bar/two/to_lowercase/hash.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other/to_lowercase",
       remote: undefined,
     },
   },
@@ -1661,20 +1661,45 @@ snapshot[`esbuild plugin without bundle 1`] = `
 snapshot[`esbuild plugin without bundle 2`] = `
 [
   {
-    entry: "/other.ts",
-    flags: [],
-    outputPath: "/other.ts",
-  },
-  {
     entry: "/other/script.ts",
     flags: [],
     outputPath: "/foo/bar/script.ts",
+  },
+  {
+    entry: "/other.ts",
+    flags: [],
+    outputPath: "/other.ts",
   },
 ]
 `;
 
 snapshot[`esbuild plugin without bundle 3`] = `
 [
+  {
+    content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
+',
+    data: {
+      basename: "to_lowercase",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/foo/bar/to_lowercase.hash.min.js",
+    },
+    src: {
+      asset: true,
+      ext: ".ts",
+      path: "/other/to_lowercase",
+      remote: undefined,
+    },
+  },
   {
     content: 'import e,{toLowercase as n}from "./modules/to_uppercase.hash.min.js";import t from "./data.json"with{type:"json"};import "https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";document.querySelectorAll("h1")?.forEach(o=>{o.innerHTML=e(o.innerHTML+t.foo),n(o.innerHTML).then(r=>{o.innerHTML=r})});const i={bar:"baz"};console.log(i);
 ',
@@ -1754,31 +1779,6 @@ snapshot[`esbuild plugin without bundle 3`] = `
       asset: true,
       ext: ".ts",
       path: "/modules/to_uppercase",
-      remote: undefined,
-    },
-  },
-  {
-    content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
-',
-    data: {
-      basename: "to_lowercase",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/foo/bar/to_lowercase.hash.min.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other/to_lowercase",
       remote: undefined,
     },
   },

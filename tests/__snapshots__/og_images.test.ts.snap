@@ -120,25 +120,6 @@ snapshot[`OpenGraph images 2`] = `[]`;
 snapshot[`OpenGraph images 3`] = `
 [
   {
-    content: "Uint8Array(13013)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(13013)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/page1/index.png",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
     content: "<p>This is the page 1</p>
 ",
     data: {
@@ -171,6 +152,25 @@ snapshot[`OpenGraph images 3`] = `
       asset: false,
       ext: ".md",
       path: "/page1",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(13013)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(13013)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/page1/index.png",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },

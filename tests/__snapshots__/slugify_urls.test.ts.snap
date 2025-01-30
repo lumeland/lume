@@ -124,20 +124,47 @@ snapshot[`slugify_urls plugin 1`] = `
 snapshot[`slugify_urls plugin 2`] = `
 [
   {
-    entry: "/UI Styles.css",
-    flags: [],
-    outputPath: "/UI Styles.css",
-  },
-  {
     entry: "/_headers",
     flags: [],
     outputPath: "/_headers",
+  },
+  {
+    entry: "/UI Styles.css",
+    flags: [],
+    outputPath: "/UI Styles.css",
   },
 ]
 `;
 
 snapshot[`slugify_urls plugin 3`] = `
 [
+  {
+    content: "Foo",
+    data: {
+      basename: "generator",
+      children: "Foo",
+      content: "Foo",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/803nfon-sfodij/-/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.js",
+      path: "/generator[1]",
+      remote: undefined,
+    },
+  },
   {
     content: "<p>Page 2</p>
 ",
@@ -165,6 +192,33 @@ snapshot[`slugify_urls plugin 3`] = `
       asset: false,
       ext: ".md",
       path: "/Chourizos ao viño",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Filloas con nocilla",
+    data: {
+      basename: "generator",
+      children: "Filloas con nocilla",
+      content: "Filloas con nocilla",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/filloas-con-nocilla/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.js",
+      path: "/generator[0]",
       remote: undefined,
     },
   },
@@ -199,11 +253,14 @@ snapshot[`slugify_urls plugin 3`] = `
     },
   },
   {
-    content: "Filloas con nocilla",
+    content: "<p>Page 4</p>
+",
     data: {
-      basename: "generator",
-      children: "Filloas con nocilla",
-      content: "Filloas con nocilla",
+      basename: "page-4",
+      children: "<p>Page 4</p>
+",
+      content: "Page 4
+",
       date: [],
       mergedKeys: [
         "tags",
@@ -216,39 +273,12 @@ snapshot[`slugify_urls plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/filloas-con-nocilla/",
+      url: "/paxina-4.html",
     },
     src: {
       asset: false,
-      ext: ".page.js",
-      path: "/generator[0]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Foo",
-    data: {
-      basename: "generator",
-      children: "Foo",
-      content: "Foo",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/803nfon-sfodij/-/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/generator[1]",
+      ext: ".md",
+      path: "/page-4",
       remote: undefined,
     },
   },
@@ -279,36 +309,6 @@ snapshot[`slugify_urls plugin 3`] = `
       asset: false,
       ext: ".md",
       path: "/page-3",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<p>Page 4</p>
-",
-    data: {
-      basename: "page-4",
-      children: "<p>Page 4</p>
-",
-      content: "Page 4
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/paxina-4.html",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/page-4",
       remote: undefined,
     },
   },
@@ -436,20 +436,47 @@ snapshot[`slugify_urls plugin (static files) 1`] = `
 snapshot[`slugify_urls plugin (static files) 2`] = `
 [
   {
-    entry: "/UI Styles.css",
-    flags: [],
-    outputPath: "/ui-styles.css",
-  },
-  {
     entry: "/_headers",
     flags: [],
     outputPath: "/headers",
+  },
+  {
+    entry: "/UI Styles.css",
+    flags: [],
+    outputPath: "/ui-styles.css",
   },
 ]
 `;
 
 snapshot[`slugify_urls plugin (static files) 3`] = `
 [
+  {
+    content: "Foo",
+    data: {
+      basename: "generator",
+      children: "Foo",
+      content: "Foo",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/803nfon-sfodij/-/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.js",
+      path: "/generator[1]",
+      remote: undefined,
+    },
+  },
   {
     content: "<p>Page 2</p>
 ",
@@ -477,6 +504,33 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       asset: false,
       ext: ".md",
       path: "/Chourizos ao viño",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Filloas con nocilla",
+    data: {
+      basename: "generator",
+      children: "Filloas con nocilla",
+      content: "Filloas con nocilla",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/filloas-con-nocilla/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.js",
+      path: "/generator[0]",
       remote: undefined,
     },
   },
@@ -511,11 +565,14 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
     },
   },
   {
-    content: "Filloas con nocilla",
+    content: "<p>Page 4</p>
+",
     data: {
-      basename: "generator",
-      children: "Filloas con nocilla",
-      content: "Filloas con nocilla",
+      basename: "page-4",
+      children: "<p>Page 4</p>
+",
+      content: "Page 4
+",
       date: [],
       mergedKeys: [
         "tags",
@@ -528,39 +585,12 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/filloas-con-nocilla/",
+      url: "/paxina-4.html",
     },
     src: {
       asset: false,
-      ext: ".page.js",
-      path: "/generator[0]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Foo",
-    data: {
-      basename: "generator",
-      children: "Foo",
-      content: "Foo",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/803nfon-sfodij/-/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/generator[1]",
+      ext: ".md",
+      path: "/page-4",
       remote: undefined,
     },
   },
@@ -591,36 +621,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       asset: false,
       ext: ".md",
       path: "/page-3",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<p>Page 4</p>
-",
-    data: {
-      basename: "page-4",
-      children: "<p>Page 4</p>
-",
-      content: "Page 4
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/paxina-4.html",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/page-4",
       remote: undefined,
     },
   },

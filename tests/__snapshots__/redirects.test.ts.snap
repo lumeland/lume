@@ -610,42 +610,6 @@ snapshot[`redirects plugin for vercel 2`] = `[]`;
 snapshot[`redirects plugin for vercel 3`] = `
 [
   {
-    content: '{
-  "redirects": [
-    {
-      "source": "/old-page1/",
-      "destination": "/page1/",
-      "statusCode": 301
-    },
-    {
-      "source": "/old-page2/",
-      "destination": "/page2/",
-      "statusCode": 301
-    },
-    {
-      "source": "/other-old-page2/",
-      "destination": "/page2/",
-      "statusCode": 307
-    }
-  ]
-}',
-    data: {
-      basename: "vercel",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/vercel.json",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
     content: "Page 1",
     data: {
       basename: "page1",
@@ -701,6 +665,42 @@ snapshot[`redirects plugin for vercel 3`] = `
       asset: false,
       ext: ".vto",
       path: "/page2",
+      remote: undefined,
+    },
+  },
+  {
+    content: '{
+  "redirects": [
+    {
+      "source": "/old-page1/",
+      "destination": "/page1/",
+      "statusCode": 301
+    },
+    {
+      "source": "/old-page2/",
+      "destination": "/page2/",
+      "statusCode": 301
+    },
+    {
+      "source": "/other-old-page2/",
+      "destination": "/page2/",
+      "statusCode": 307
+    }
+  ]
+}',
+    data: {
+      basename: "vercel",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/vercel.json",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },

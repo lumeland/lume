@@ -119,14 +119,11 @@ snapshot[`render order property 2`] = `[]`;
 snapshot[`render order property 3`] = `
 [
   {
-    content: "<p>Hello world</p>
-",
+    content: "1",
     data: {
-      basename: "extra-page",
-      children: "<p>Hello world</p>
-",
-      content: "Hello world
-",
+      basename: "pages",
+      children: 1,
+      content: 1,
       date: [],
       mergedKeys: [
         "tags",
@@ -139,12 +136,39 @@ snapshot[`render order property 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/extra-page/",
+      url: "/articles/1/",
     },
     src: {
       asset: false,
-      ext: ".md",
-      path: "/extra-page",
+      ext: ".page.ts",
+      path: "/pages[0]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "10",
+    data: {
+      basename: "pages",
+      children: 10,
+      content: 10,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/10/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.ts",
+      path: "/pages[9]",
       remote: undefined,
     },
   },
@@ -401,6 +425,33 @@ snapshot[`render order property 3`] = `
     },
   },
   {
+    content: "2",
+    data: {
+      basename: "pages",
+      children: 2,
+      content: 2,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/2/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.ts",
+      path: "/pages[1]",
+      remote: undefined,
+    },
+  },
+  {
     content: "20",
     data: {
       basename: "pages2",
@@ -425,60 +476,6 @@ snapshot[`render order property 3`] = `
       asset: false,
       ext: ".page.ts",
       path: "/pages2[9]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "1",
-    data: {
-      basename: "pages",
-      children: 1,
-      content: 1,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/1/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages[0]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "2",
-    data: {
-      basename: "pages",
-      children: 2,
-      content: 2,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/2/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages[1]",
       remote: undefined,
     },
   },
@@ -672,11 +669,14 @@ snapshot[`render order property 3`] = `
     },
   },
   {
-    content: "10",
+    content: "<p>Hello world</p>
+",
     data: {
-      basename: "pages",
-      children: 10,
-      content: 10,
+      basename: "extra-page",
+      children: "<p>Hello world</p>
+",
+      content: "Hello world
+",
       date: [],
       mergedKeys: [
         "tags",
@@ -689,12 +689,12 @@ snapshot[`render order property 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/articles/10/",
+      url: "/extra-page/",
     },
     src: {
       asset: false,
-      ext: ".page.ts",
-      path: "/pages[9]",
+      ext: ".md",
+      path: "/extra-page",
       remote: undefined,
     },
   },

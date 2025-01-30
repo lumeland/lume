@@ -167,9 +167,19 @@ snapshot[`Copy static files 2`] = `
     outputPath: "/_headers",
   },
   {
+    entry: "/static/_redirects",
+    flags: [],
+    outputPath: "/_redirects",
+  },
+  {
     entry: "/_static/inner/yes.txt",
     flags: [],
     outputPath: "/inner/yes.txt",
+  },
+  {
+    entry: "/static/one.yes",
+    flags: [],
+    outputPath: "/one.yes",
   },
   {
     entry: "/other/one",
@@ -207,24 +217,9 @@ snapshot[`Copy static files 2`] = `
     outputPath: "/posts/first-post/assets/styles.css",
   },
   {
-    entry: "/posts/2022-01-01_first-post/callback.copy2",
-    flags: [],
-    outputPath: "/subdir/posts/first-post/callback.copy3",
-  },
-  {
     entry: "/posts/2022-01-01_first-post/individual-file",
     flags: [],
     outputPath: "/posts/first-post/individual-file",
-  },
-  {
-    entry: "/posts/2022-01-01_first-post/inner/callback1.copy2",
-    flags: [],
-    outputPath: "/subdir/posts/first-post/inner/callback1.copy3",
-  },
-  {
-    entry: "/posts/2022-01-01_first-post/inner/inner2/callback2.copy2",
-    flags: [],
-    outputPath: "/subdir/posts/first-post/inner/inner2/callback2.copy3",
   },
   {
     entry: "/posts/2022-01-01_first-post/inner/inner2/to-copy2.copy",
@@ -247,21 +242,6 @@ snapshot[`Copy static files 2`] = `
     outputPath: "/script/app/main.js",
   },
   {
-    entry: "/static/_redirects",
-    flags: [],
-    outputPath: "/_redirects",
-  },
-  {
-    entry: "/static/one.yes",
-    flags: [],
-    outputPath: "/one.yes",
-  },
-  {
-    entry: "/static/two.yes",
-    flags: [],
-    outputPath: "/two.yes",
-  },
-  {
     entry: "/styles.css",
     flags: [],
     outputPath: "/styles.css",
@@ -270,6 +250,26 @@ snapshot[`Copy static files 2`] = `
     entry: "/styles/main.css",
     flags: [],
     outputPath: "/styles/main.css",
+  },
+  {
+    entry: "/posts/2022-01-01_first-post/callback.copy2",
+    flags: [],
+    outputPath: "/subdir/posts/first-post/callback.copy3",
+  },
+  {
+    entry: "/posts/2022-01-01_first-post/inner/callback1.copy2",
+    flags: [],
+    outputPath: "/subdir/posts/first-post/inner/callback1.copy3",
+  },
+  {
+    entry: "/posts/2022-01-01_first-post/inner/inner2/callback2.copy2",
+    flags: [],
+    outputPath: "/subdir/posts/first-post/inner/inner2/callback2.copy3",
+  },
+  {
+    entry: "/static/two.yes",
+    flags: [],
+    outputPath: "/two.yes",
   },
 ]
 `;

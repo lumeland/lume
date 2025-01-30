@@ -120,37 +120,6 @@ snapshot[`Disabled pretty URLs 3`] = `
     content: "<h1>Welcome</h1>
 ",
     data: {
-      basename: "foo",
-      children: "<h1>Welcome</h1>
-",
-      content: "# Welcome
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Second page",
-      url: "/page2.html",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/foo",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<h1>Welcome</h1>
-",
-    data: {
       basename: "page1",
       children: "<h1>Welcome</h1>
 ",
@@ -175,6 +144,37 @@ snapshot[`Disabled pretty URLs 3`] = `
       asset: false,
       ext: ".md",
       path: "/page1",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>Welcome</h1>
+",
+    data: {
+      basename: "foo",
+      children: "<h1>Welcome</h1>
+",
+      content: "# Welcome
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Second page",
+      url: "/page2.html",
+    },
+    src: {
+      asset: false,
+      ext: ".md",
+      path: "/foo",
       remote: undefined,
     },
   },

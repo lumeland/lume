@@ -200,6 +200,34 @@ Título
     },
   },
   {
+    content: '<div class="content-dynamic">Content of Page 2</div>',
+    data: {
+      basename: "page2",
+      children: '<div class="content-dynamic">Content of Page 2</div>',
+      content: '<div class="content-dynamic">Content of Page 2</div>',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Page 2",
+      url: "/page_2/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.js",
+      path: "/pages/page2",
+      remote: undefined,
+    },
+  },
+  {
     content: "<p>Content of Page 1</p>
 ",
     data: {
@@ -227,34 +255,6 @@ Título
       asset: false,
       ext: ".md",
       path: "/pages/page1",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<div class="content-dynamic">Content of Page 2</div>',
-    data: {
-      basename: "page2",
-      children: '<div class="content-dynamic">Content of Page 2</div>',
-      content: '<div class="content-dynamic">Content of Page 2</div>',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Page 2",
-      url: "/page_2/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/page2",
       remote: undefined,
     },
   },
@@ -485,6 +485,34 @@ Título
     },
   },
   {
+    content: '<div class="content-dynamic">Content of Page 2</div>',
+    data: {
+      basename: "page2",
+      children: '<div class="content-dynamic">Content of Page 2</div>',
+      content: '<div class="content-dynamic">Content of Page 2</div>',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Page 2",
+      url: "/page_2/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.js",
+      path: "/pages/page2",
+      remote: undefined,
+    },
+  },
+  {
     content: "<p>Content of Page 1</p>
 ",
     data: {
@@ -512,34 +540,6 @@ Título
       asset: false,
       ext: ".md",
       path: "/pages/page1",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<div class="content-dynamic">Content of Page 2</div>',
-    data: {
-      basename: "page2",
-      children: '<div class="content-dynamic">Content of Page 2</div>',
-      content: '<div class="content-dynamic">Content of Page 2</div>',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Page 2",
-      url: "/page_2/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/page2",
       remote: undefined,
     },
   },

@@ -167,158 +167,6 @@ snapshot[`gzip plugin 2`] = `
 snapshot[`gzip plugin 3`] = `
 [
   {
-    content: "Uint8Array(93)",
-    data: {
-      basename: "404",
-      content: "Uint8Array(93)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/404.html.gz",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(43)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(43)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/overrided-page2/index.html.gz",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(43)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(43)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/page5/index.html.gz",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(43)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(43)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/pages/new-name/page7/index.html.gz",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(109)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(109)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/pages/page4/index.html.gz",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(51)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(51)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/pages/page6/index.html.gz",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(40)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(40)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/static/index.html.gz",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(78)",
-    data: {
-      basename: "styles",
-      content: "Uint8Array(78)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/styles.css.gz",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
     content: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
 ",
     data: {
@@ -357,38 +205,21 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Content of Page 5",
+    content: "Uint8Array(93)",
     data: {
-      basename: "page5",
-      children: "Content of Page 5",
-      content: "Content of Page 5",
-      date: [],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
+      basename: "404",
+      content: "Uint8Array(93)",
       page: [
         "src",
         "data",
         "asset",
       ],
-      paginate: "paginate",
-      search: [],
-      site: "Default site name",
-      tags: "Array(0)",
-      title: "Page 5",
-      url: "/page5/",
+      url: "/404.html.gz",
     },
     src: {
-      asset: false,
-      ext: ".yaml",
-      path: "/page5",
+      asset: true,
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },
@@ -437,6 +268,183 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
+    content: "Uint8Array(43)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(43)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/overrided-page2/index.html.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 3",
+    data: {
+      basename: "page3",
+      colors: "Array(3)",
+      content: "Content of Page 3",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(1)",
+      title: "Page 3",
+      url: "/page_3",
+    },
+    src: {
+      asset: false,
+      ext: ".page.js",
+      path: "/pages/page3",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 5",
+    data: {
+      basename: "page5",
+      children: "Content of Page 5",
+      content: "Content of Page 5",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      title: "Page 5",
+      url: "/page5/",
+    },
+    src: {
+      asset: false,
+      ext: ".yaml",
+      path: "/page5",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(43)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(43)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/page5/index.html.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 7",
+    data: {
+      basename: "page7",
+      children: "Content of Page 7",
+      colors: "Array(3)",
+      content: "Content of Page 7",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(3)",
+      url: "/pages/new-name/page7/",
+    },
+    src: {
+      asset: false,
+      ext: ".page.js",
+      path: "/pages/subpage/page7",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(43)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(43)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/pages/new-name/page7/index.html.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
     content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
     data: {
       basename: "page4",
@@ -476,6 +484,25 @@ snapshot[`gzip plugin 3`] = `
       asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(109)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(109)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/pages/page4/index.html.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },
@@ -526,86 +553,21 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Content of Page 3",
+    content: "Uint8Array(51)",
     data: {
-      basename: "page3",
-      colors: "Array(3)",
-      content: "Content of Page 3",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
+      basename: "index",
+      content: "Uint8Array(51)",
       page: [
         "src",
         "data",
         "asset",
       ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(1)",
-      title: "Page 3",
-      url: "/page_3",
+      url: "/pages/page6/index.html.gz",
     },
     src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/page3",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Content of Page 7",
-    data: {
-      basename: "page7",
-      children: "Content of Page 7",
-      colors: "Array(3)",
-      content: "Content of Page 7",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(3)",
-      url: "/pages/new-name/page7/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/subpage/page7",
+      asset: true,
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },
@@ -645,6 +607,25 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
+    content: "Uint8Array(40)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(40)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/static/index.html.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
     content: "Uint8Array(52)",
     data: {
       basename: "styles",
@@ -673,6 +654,25 @@ snapshot[`gzip plugin 3`] = `
       asset: true,
       ext: ".css",
       path: "/styles",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(78)",
+    data: {
+      basename: "styles",
+      content: "Uint8Array(78)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/styles.css.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },
@@ -799,25 +799,6 @@ snapshot[`gzip plugin with options 2`] = `[]`;
 
 snapshot[`gzip plugin with options 3`] = `
 [
-  {
-    content: "Uint8Array(2405)",
-    data: {
-      basename: "styles",
-      content: "Uint8Array(2405)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/styles.css.gz",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
   {
     content: \`<!DOCTYPE html>
 <html lang="en"><head>
@@ -1826,6 +1807,25 @@ snapshot[`gzip plugin with options 3`] = `
       asset: true,
       ext: ".css",
       path: "/styles",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(2405)",
+    data: {
+      basename: "styles",
+      content: "Uint8Array(2405)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/styles.css.gz",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },

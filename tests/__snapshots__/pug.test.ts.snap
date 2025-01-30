@@ -125,37 +125,6 @@ snapshot[`build a site with pug 2`] = `[]`;
 snapshot[`build a site with pug 3`] = `
 [
   {
-    content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
-    data: {
-      basename: "extends",
-      children: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
-      content: "extends /layout.pug
-block content
-  h1 Home
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Pug example",
-      url: "/extends/",
-    },
-    src: {
-      asset: false,
-      ext: ".pug",
-      path: "/extends",
-      remote: undefined,
-    },
-  },
-  {
     content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
 <p>This is a paragraph</p>
 <ul>
@@ -202,6 +171,37 @@ block content
       asset: false,
       ext: ".pug",
       path: "/filter",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
+    data: {
+      basename: "extends",
+      children: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
+      content: "extends /layout.pug
+block content
+  h1 Home
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Pug example",
+      url: "/extends/",
+    },
+    src: {
+      asset: false,
+      ext: ".pug",
+      path: "/extends",
       remote: undefined,
     },
   },
