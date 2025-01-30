@@ -358,21 +358,6 @@ export default class Site {
     return this;
   }
 
-  /**
-   * Register an assets loader for some extensions
-   */
-  loadAssets(extensions: string[], assetLoader: Loader = textLoader): this {
-    extensions.forEach((ext) => {
-      this.formats.set({
-        ext,
-        assetLoader,
-        pageType: "asset",
-      });
-    });
-
-    return this;
-  }
-
   /** Register a preprocessor for some extensions */
   preprocess(extensions: Extensions, preprocessor: Processor): this {
     this.preprocessors.set(extensions, preprocessor);

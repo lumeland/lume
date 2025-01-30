@@ -313,7 +313,7 @@ export default class Source {
 
     const format = this.formats.search(file.path);
 
-    // The format is a page `site.loadPages([".ext"])` or `site.loadAssets([".ext"])`
+    // The format is a page `site.loadPages([".ext"])`
     if (format?.pageType) {
       const page = await this.#loadPage(
         file,
