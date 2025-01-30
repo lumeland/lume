@@ -102,9 +102,7 @@ snapshot[`Layouts 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       ext: ".css",
-      pageType: "asset",
     },
   ],
   src: [
@@ -122,7 +120,20 @@ snapshot[`Layouts 1`] = `
 }
 `;
 
-snapshot[`Layouts 2`] = `[]`;
+snapshot[`Layouts 2`] = `
+[
+  {
+    entry: "/styles.2.css",
+    flags: [],
+    outputPath: "/styles.2.css",
+  },
+  {
+    entry: "/styles.css",
+    flags: [],
+    outputPath: "/styles.css",
+  },
+]
+`;
 
 snapshot[`Layouts 3`] = `
 [
@@ -198,72 +209,6 @@ snapshot[`Layouts 3`] = `
       asset: false,
       ext: ".md",
       path: "/page",
-      remote: undefined,
-    },
-  },
-  {
-    content: "body {
-  color: blue;
-}",
-    data: {
-      basename: "styles",
-      content: "body {
-  color: blue;
-}",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/styles.css",
-    },
-    src: {
-      asset: true,
-      ext: ".css",
-      path: "/styles",
-      remote: undefined,
-    },
-  },
-  {
-    content: "body.style {
-  p {
-  color: red;
-}
-}",
-    data: {
-      basename: "styles.2",
-      children: "p {
-  color: red;
-}",
-      content: "p {
-  color: red;
-}",
-      date: [],
-      layout: "style.vto",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/styles.2.css",
-    },
-    src: {
-      asset: true,
-      ext: ".css",
-      path: "/styles.2",
       remote: undefined,
     },
   },

@@ -58,12 +58,10 @@ snapshot[`purgecss plugin 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -104,9 +102,7 @@ snapshot[`purgecss plugin 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       ext: ".css",
-      pageType: "asset",
     },
   ],
   src: [
@@ -128,6 +124,11 @@ snapshot[`purgecss plugin 1`] = `
 
 snapshot[`purgecss plugin 2`] = `
 [
+  {
+    entry: "/script.js",
+    flags: [],
+    outputPath: "/script.js",
+  },
   {
     entry: "/static/static.html",
     flags: [],
@@ -258,145 +259,9 @@ Título
     },
   },
   {
-    content: "document.querySelector('.dynamic-js')
-  .addEventListener('click', (event) => {
-    event.target.classList.add('dynamic-jssub-open');
-  });
-",
-    data: {
-      basename: "script",
-      content: "document.querySelector('.dynamic-js')
-  .addEventListener('click', (event) => {
-    event.target.classList.add('dynamic-jssub-open');
-  });
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/script.js",
-    },
-    src: {
-      asset: true,
-      ext: ".js",
-      path: "/script",
-      remote: undefined,
-    },
-  },
-  {
-    content: "::root {
-  --font-family: sans-serif;
-}
-
-body {
-  font-family: sans-serif;
-  color: black;
-}
-
-strong {
-  font-weight: bolder;
-}
-
- html > * .content-vento {
-  max-width: 800px;
-}
-
-.content-vento:not(.test):focus-visible {
-  outline: 2px solid blue;
-}
-
-.content-dynamic {
-  display: flex;
-}
-
-.content-dynamic:focus-visible {
-  outline: 2px solid lightblue;
-}
-
-.dynamic-js {
-  opacity: 0;
-}
-
-.dynamic-jssub-open {
-  opacity: 1;
-}
-",
+    content: "Uint8Array(732)",
     data: {
       basename: "styles",
-      content: "::root {
-  --font-family: sans-serif;
-}
-
-body {
-  font-family: sans-serif;
-  color: black;
-}
-
-.unused {
-  margin-top: 30px;
-}
-
-strong {
-  font-weight: bolder;
-}
-
-em {
-  font-style: italic;
-}
-
-a[href] {
-  text-decoration: underline;
-}
-
-html > body .no-such-element .content-vento, html > * .content-vento {
-  max-width: 800px;
-}
-
-.content-vento:not(.test):focus-visible {
-  outline: 2px solid blue;
-}
-
-.content-dynamic {
-  display: flex;
-}
-
-.content-dynamic:focus-visible {
-  outline: 2px solid lightblue;
-}
-
-.content-static {
-  margin-top: 25px;
-}
-
-.content-other {
-  padding: 20px 5px;
-}
-
-.dynamic-js {
-  opacity: 0;
-}
-
-.dynamic-jssub {
-  display: none;
-}
-
-.dynamic-jssub-open {
-  opacity: 1;
-}
-
-#img-option {
-  max-width: 100%;
-}
-",
-      date: [],
       mergedKeys: [
         "tags",
       ],
@@ -478,12 +343,10 @@ snapshot[`purgecss plugin with options 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -524,9 +387,7 @@ snapshot[`purgecss plugin with options 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       ext: ".css",
-      pageType: "asset",
     },
   ],
   src: [
@@ -548,6 +409,11 @@ snapshot[`purgecss plugin with options 1`] = `
 
 snapshot[`purgecss plugin with options 2`] = `
 [
+  {
+    entry: "/script.js",
+    flags: [],
+    outputPath: "/script.js",
+  },
   {
     entry: "/static/static.html",
     flags: [],
@@ -678,152 +544,9 @@ Título
     },
   },
   {
-    content: "document.querySelector('.dynamic-js')
-  .addEventListener('click', (event) => {
-    event.target.classList.add('dynamic-jssub-open');
-  });
-",
-    data: {
-      basename: "script",
-      content: "document.querySelector('.dynamic-js')
-  .addEventListener('click', (event) => {
-    event.target.classList.add('dynamic-jssub-open');
-  });
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/script.js",
-    },
-    src: {
-      asset: true,
-      ext: ".js",
-      path: "/script",
-      remote: undefined,
-    },
-  },
-  {
-    content: "::root {
-}
-
-body {
-  font-family: sans-serif;
-  color: black;
-}
-
-.unused {
-  margin-top: 30px;
-}
-
- html > * .content-vento {
-  max-width: 800px;
-}
-
-.content-vento:not(.test):focus-visible {
-  outline: 2px solid blue;
-}
-
-.content-dynamic {
-  display: flex;
-}
-
-.content-dynamic:focus-visible {
-  outline: 2px solid lightblue;
-}
-
-.content-static {
-  margin-top: 25px;
-}
-
-.dynamic-js {
-  opacity: 0;
-}
-
-.dynamic-jssub-open {
-  opacity: 1;
-}
-
-#img-option {
-  max-width: 100%;
-}
-",
+    content: "Uint8Array(732)",
     data: {
       basename: "styles",
-      content: "::root {
-  --font-family: sans-serif;
-}
-
-body {
-  font-family: sans-serif;
-  color: black;
-}
-
-.unused {
-  margin-top: 30px;
-}
-
-strong {
-  font-weight: bolder;
-}
-
-em {
-  font-style: italic;
-}
-
-a[href] {
-  text-decoration: underline;
-}
-
-html > body .no-such-element .content-vento, html > * .content-vento {
-  max-width: 800px;
-}
-
-.content-vento:not(.test):focus-visible {
-  outline: 2px solid blue;
-}
-
-.content-dynamic {
-  display: flex;
-}
-
-.content-dynamic:focus-visible {
-  outline: 2px solid lightblue;
-}
-
-.content-static {
-  margin-top: 25px;
-}
-
-.content-other {
-  padding: 20px 5px;
-}
-
-.dynamic-js {
-  opacity: 0;
-}
-
-.dynamic-jssub {
-  display: none;
-}
-
-.dynamic-jssub-open {
-  opacity: 1;
-}
-
-#img-option {
-  max-width: 100%;
-}
-",
-      date: [],
       mergedKeys: [
         "tags",
       ],

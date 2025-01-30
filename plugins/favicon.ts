@@ -1,6 +1,4 @@
 import { merge } from "../core/utils/object.ts";
-import binLoader from "../core/loaders/binary.ts";
-import textLoader from "../core/loaders/text.ts";
 import { Page } from "../core/file.ts";
 import Cache from "../core/cache.ts";
 import sharp, { create, sharpsToIco } from "../deps/sharp.ts";
@@ -72,8 +70,8 @@ export function favicon(userOptions?: Options) {
 
     async function getContent(): Promise<Uint8Array | string> {
       const content = options.input.endsWith(".svg")
-        ? await site.getContent(options.input, textLoader)
-        : await site.getContent(options.input, binLoader);
+        ? await site.getContent(options.input, false)
+        : await site.getContent(options.input, true);
 
       if (!content) {
         throw new Error(`File not found: ${options.input}`);
@@ -110,8 +108,8 @@ export function favicon(userOptions?: Options) {
             url: options.input,
             content: await site.getContent(
               options.input,
-              textLoader,
-            ) as string,
+              false,
+            ),
           }),
         );
       }

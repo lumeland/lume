@@ -114,18 +114,14 @@ snapshot[`esbuild plugin with JSX 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".jsx",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
-      assetLoader: [AsyncFunction: text],
       engines: 1,
       ext: ".tsx",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
   ],
   src: [
@@ -244,16 +240,6 @@ react/cjs/react-jsx-runtime.production.min.js:
 ",
     data: {
       basename: "main",
-      content: 'import React from "react";
-import ReactDOM from "react-dom/client";
-
-ReactDOM.createRoot(document.getElementById("app")).render(
-  <React.StrictMode>
-    <div>qqqqqqqqq</div>
-  </React.StrictMode>,
-);
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
@@ -335,20 +321,16 @@ snapshot[`esbuild plugin 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".ts",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
       engines: 1,
@@ -402,7 +384,20 @@ snapshot[`esbuild plugin 1`] = `
 }
 `;
 
-snapshot[`esbuild plugin 2`] = `[]`;
+snapshot[`esbuild plugin 2`] = `
+[
+  {
+    entry: "/other.ts",
+    flags: [],
+    outputPath: "/other.ts",
+  },
+  {
+    entry: "/other/script.ts",
+    flags: [],
+    outputPath: "/foo/bar/script.ts",
+  },
+]
+`;
 
 snapshot[`esbuild plugin 3`] = `
 [
@@ -424,27 +419,6 @@ react-is/cjs/react-is.development.js:
 ",
     data: {
       basename: "main",
-      content: '/// <reference lib="dom" />
-import toUppercase, { toLowercase } from "./modules/to_uppercase.ts";
-import { Foo } from "./main.d.ts";
-import data from "./data.json" with { type: "json" };
-
-// https://github.com/lumeland/lume/issues/442
-import "https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";
-
-document.querySelectorAll("h1")?.forEach((h1) => {
-  h1.innerHTML = toUppercase(h1.innerHTML + data.foo);
-
-  toLowercase(h1.innerHTML)
-    .then(lower => {
-      h1.innerHTML = lower;
-    });
-});
-
-const foo: Foo = { bar: "baz" };
-console.log(foo);
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
@@ -498,76 +472,10 @@ console.log(foo);
     },
   },
   {
-    content: 'var n=Object.defineProperty;var t=(r,o)=>n(r,"name",{value:o,configurable:!0});function e(r){return r.toUpperCase()}t(e,"toUppercase");document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
-',
-    data: {
-      basename: "other",
-      content: '/// <reference lib="dom" />
-import toUppercase from "./modules/to_uppercase.ts";
-
-document.querySelectorAll(".other")?.forEach((el) => {
-  el.innerHTML = toUppercase(el.innerHTML);
-});
-',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/other.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other",
-      remote: undefined,
-    },
-  },
-  {
-    content: 'console.log("Hello from script.ts!");
-',
-    data: {
-      basename: "script",
-      content: 'console.log("Hello from script.ts!");
-',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/foo/bar/script.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other/script",
-      remote: undefined,
-    },
-  },
-  {
     content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
 ',
     data: {
-      basename: "util/toLower",
-      content: "export function toLowercase(text: string) {
-  return text.toLowerCase();
-}
-",
-      date: [],
+      basename: "to_lowercase",
       mergedKeys: [
         "tags",
       ],
@@ -579,7 +487,7 @@ document.querySelectorAll(".other")?.forEach((el) => {
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/foo/bar/util/toLower.js",
+      url: "/foo/bar/to_lowercase.js",
     },
     src: {
       asset: true,
@@ -649,20 +557,16 @@ snapshot[`esbuild plugin with splitting as true 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".ts",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
       engines: 1,
@@ -716,12 +620,25 @@ snapshot[`esbuild plugin with splitting as true 1`] = `
 }
 `;
 
-snapshot[`esbuild plugin with splitting as true 2`] = `[]`;
+snapshot[`esbuild plugin with splitting as true 2`] = `
+[
+  {
+    entry: "/other.ts",
+    flags: [],
+    outputPath: "/other.ts",
+  },
+  {
+    entry: "/other/script.ts",
+    flags: [],
+    outputPath: "/foo/bar/script.ts",
+  },
+]
+`;
 
 snapshot[`esbuild plugin with splitting as true 3`] = `
 [
   {
-    content: 'import{a as e}from"./chunk-1.js";function o(t){return t.toUpperCase()}e(o,"toUppercase");async function n(t){let{toLowercase:r}=await import("./foo/bar/util/toLower.js");return r(t)}e(n,"toLowercase");export{o as a,n as b};
+    content: 'var d=Object.defineProperty;var e=(b,a)=>d(b,"name",{value:a,configurable:!0});var f=(b,a)=>{for(var c in a)d(b,c,{get:a[c],enumerable:!0})};export{e as a,f as b};
 ',
     data: {
       basename: "chunk-0",
@@ -740,27 +657,8 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
     },
   },
   {
-    content: 'var d=Object.defineProperty;var e=(b,a)=>d(b,"name",{value:a,configurable:!0});var f=(b,a)=>{for(var c in a)d(b,c,{get:a[c],enumerable:!0})};export{e as a,f as b};
-',
-    data: {
-      basename: "chunk-1",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/foo/chunk-1.js",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "import{a as ce,b as le}from\\"./chunk-0.js\\";import{a as e,b as fe}from\\"./chunk-1.js\\";var de={foo:\\"bar\\"};var re={};fe(re,{default:()=>or});var or=Object.assign;var oe={};fe(oe,{AsyncMode:()=>Pe,ConcurrentMode:()=>Ee,ContextConsumer:()=>ge,ContextProvider:()=>he,Element:()=>Oe,ForwardRef:()=>Ce,Fragment:()=>Se,Lazy:()=>we,Memo:()=>Re,Portal:()=>Ae,Profiler:()=>Me,StrictMode:()=>je,Suspense:()=>xe,default:()=>Ge,isAsyncMode:()=>Ie,isConcurrentMode:()=>Ye,isContextConsumer:()=>Le,isContextProvider:()=>\$e,isElement:()=>ke,isForwardRef:()=>qe,isFragment:()=>De,isLazy:()=>Fe,isMemo:()=>We,isPortal:()=>ze,isProfiler:()=>Ue,isStrictMode:()=>Be,isSuspense:()=>He,isValidElementType:()=>Je,typeOf:()=>Xe});var ar=Object.create,ne=Object.defineProperty,ir=Object.getOwnPropertyDescriptor,ye=Object.getOwnPropertyNames,sr=Object.getPrototypeOf,ur=Object.prototype.hasOwnProperty,ve=e((t,n)=>e(function(){return n||(0,t[ye(t)[0]])((n={exports:{}}).exports,n),n.exports},\\"__require\\"),\\"__commonJS\\"),fr=e((t,n)=>{for(var i in n)ne(t,i,{get:n[i],enumerable:!0})},\\"__export\\"),te=e((t,n,i,T)=>{if(n&&typeof n==\\"object\\"||typeof n==\\"function\\")for(let _ of ye(n))!ur.call(t,_)&&_!==i&&ne(t,_,{get:e(()=>n[_],\\"get\\"),enumerable:!(T=ir(n,_))||T.enumerable});return t},\\"__copyProps\\"),cr=e((t,n,i)=>(te(t,n,\\"default\\"),i&&te(i,n,\\"default\\")),\\"__reExport\\"),_e=e((t,n,i)=>(i=t!=null?ar(sr(t)):{},te(n||!t||!t.__esModule?ne(i,\\"default\\",{value:t,enumerable:!0}):i,t)),\\"__toESM\\"),lr=ve({\\"../esmd/npm/react-is@16.13.1/node_modules/.pnpm/react-is@16.13.1/node_modules/react-is/cjs/react-is.development.js\\"(t){\\"use strict\\";(function(){\\"use strict\\";var n=typeof Symbol==\\"function\\"&&Symbol.for,i=n?Symbol.for(\\"react.element\\"):60103,T=n?Symbol.for(\\"react.portal\\"):60106,_=n?Symbol.for(\\"react.fragment\\"):60107,A=n?Symbol.for(\\"react.strict_mode\\"):60108,I=n?Symbol.for(\\"react.profiler\\"):60114,m=n?Symbol.for(\\"react.provider\\"):60109,g=n?Symbol.for(\\"react.context\\"):60110,h=n?Symbol.for(\\"react.async_mode\\"):60111,S=n?Symbol.for(\\"react.concurrent_mode\\"):60111,M=n?Symbol.for(\\"react.forward_ref\\"):60112,O=n?Symbol.for(\\"react.suspense\\"):60113,w=n?Symbol.for(\\"react.suspense_list\\"):60120,j=n?Symbol.for(\\"react.memo\\"):60115,R=n?Symbol.for(\\"react.lazy\\"):60116,D=n?Symbol.for(\\"react.block\\"):60121,b=n?Symbol.for(\\"react.fundamental\\"):60117,C=n?Symbol.for(\\"react.responder\\"):60118,Y=n?Symbol.for(\\"react.scope\\"):60119;function U(o){return typeof o==\\"string\\"||typeof o==\\"function\\"||o===_||o===S||o===I||o===A||o===O||o===w||typeof o==\\"object\\"&&o!==null&&(o.\$\$typeof===R||o.\$\$typeof===j||o.\$\$typeof===m||o.\$\$typeof===g||o.\$\$typeof===M||o.\$\$typeof===b||o.\$\$typeof===C||o.\$\$typeof===Y||o.\$\$typeof===D)}e(U,\\"isValidElementType2\\");function E(o){if(typeof o==\\"object\\"&&o!==null){var P=o.\$\$typeof;switch(P){case i:var x=o.type;switch(x){case h:case S:case _:case I:case A:case O:return x;default:var ue=x&&x.\$\$typeof;switch(ue){case g:case M:case R:case j:case m:return ue;default:return P}}case T:return P}}}e(E,\\"typeOf2\\");var B=h,H=S,J=g,X=m,G=i,K=M,Z=_,W=R,Q=j,V=T,k=I,N=A,L=O,\$=!1;function ee(o){return \$||(\$=!0,console.warn(\\"The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.\\")),z(o)||E(o)===h}e(ee,\\"isAsyncMode2\\");function z(o){return E(o)===S}e(z,\\"isConcurrentMode2\\");function r(o){return E(o)===g}e(r,\\"isContextConsumer2\\");function a(o){return E(o)===m}e(a,\\"isContextProvider2\\");function l(o){return typeof o==\\"object\\"&&o!==null&&o.\$\$typeof===i}e(l,\\"isElement2\\");function f(o){return E(o)===M}e(f,\\"isForwardRef2\\");function s(o){return E(o)===_}e(s,\\"isFragment2\\");function d(o){return E(o)===R}e(d,\\"isLazy2\\");function u(o){return E(o)===j}e(u,\\"isMemo2\\");function c(o){return E(o)===T}e(c,\\"isPortal2\\");function p(o){return E(o)===I}e(p,\\"isProfiler2\\");function v(o){return E(o)===A}e(v,\\"isStrictMode2\\");function y(o){return E(o)===O}e(y,\\"isSuspense2\\"),t.AsyncMode=B,t.ConcurrentMode=H,t.ContextConsumer=J,t.ContextProvider=X,t.Element=G,t.ForwardRef=K,t.Fragment=Z,t.Lazy=W,t.Memo=Q,t.Portal=V,t.Profiler=k,t.StrictMode=N,t.Suspense=L,t.isAsyncMode=ee,t.isConcurrentMode=z,t.isContextConsumer=r,t.isContextProvider=a,t.isElement=l,t.isForwardRef=f,t.isFragment=s,t.isLazy=d,t.isMemo=u,t.isPortal=c,t.isProfiler=p,t.isStrictMode=v,t.isSuspense=y,t.isValidElementType=U,t.typeOf=E})()}}),Te=ve({\\"../esmd/npm/react-is@16.13.1/node_modules/.pnpm/react-is@16.13.1/node_modules/react-is/index.js\\"(t,n){\\"use strict\\";n.exports=lr()}}),be={};fr(be,{AsyncMode:e(()=>Pe,\\"AsyncMode\\"),ConcurrentMode:e(()=>Ee,\\"ConcurrentMode\\"),ContextConsumer:e(()=>ge,\\"ContextConsumer\\"),ContextProvider:e(()=>he,\\"ContextProvider\\"),Element:e(()=>Oe,\\"Element\\"),ForwardRef:e(()=>Ce,\\"ForwardRef\\"),Fragment:e(()=>Se,\\"Fragment\\"),Lazy:e(()=>we,\\"Lazy\\"),Memo:e(()=>Re,\\"Memo\\"),Portal:e(()=>Ae,\\"Portal\\"),Profiler:e(()=>Me,\\"Profiler\\"),StrictMode:e(()=>je,\\"StrictMode\\"),Suspense:e(()=>xe,\\"Suspense\\"),default:e(()=>Ge,\\"default\\"),isAsyncMode:e(()=>Ie,\\"isAsyncMode\\"),isConcurrentMode:e(()=>Ye,\\"isConcurrentMode\\"),isContextConsumer:e(()=>Le,\\"isContextConsumer\\"),isContextProvider:e(()=>\$e,\\"isContextProvider\\"),isElement:e(()=>ke,\\"isElement\\"),isForwardRef:e(()=>qe,\\"isForwardRef\\"),isFragment:e(()=>De,\\"isFragment\\"),isLazy:e(()=>Fe,\\"isLazy\\"),isMemo:e(()=>We,\\"isMemo\\"),isPortal:e(()=>ze,\\"isPortal\\"),isProfiler:e(()=>Ue,\\"isProfiler\\"),isStrictMode:e(()=>Be,\\"isStrictMode\\"),isSuspense:e(()=>He,\\"isSuspense\\"),isValidElementType:e(()=>Je,\\"isValidElementType\\"),typeOf:e(()=>Xe,\\"typeOf\\")});var me=_e(Te());cr(be,_e(Te()));var{AsyncMode:Pe,ConcurrentMode:Ee,ContextConsumer:ge,ContextProvider:he,Element:Oe,ForwardRef:Ce,Fragment:Se,Lazy:we,Memo:Re,Portal:Ae,Profiler:Me,StrictMode:je,Suspense:xe,isAsyncMode:Ie,isConcurrentMode:Ye,isContextConsumer:Le,isContextProvider:\$e,isElement:ke,isForwardRef:qe,isFragment:De,isLazy:Fe,isMemo:We,isPortal:ze,isProfiler:Ue,isStrictMode:Be,isSuspense:He,isValidElementType:Je,typeOf:Xe}=me,{default:pe,...dr}=me,Ge=pe!==void 0?pe:dr;var q=e(t=>{let n=e(T=>typeof T.default<\\"u\\"?T.default:T,\\"e\\"),i=e(T=>Object.assign({},T),\\"c\\");switch(t){case\\"object-assign\\":return n(re);case\\"react-is\\":return n(oe);default:throw new Error('module \\"'+t+'\\" not found')}},\\"require\\"),pr=Object.create,se=Object.defineProperty,yr=Object.getOwnPropertyDescriptor,Ze=Object.getOwnPropertyNames,vr=Object.getPrototypeOf,_r=Object.prototype.hasOwnProperty,ae=(t=>typeof q<\\"u\\"?q:typeof Proxy<\\"u\\"?new Proxy(t,{get:e((n,i)=>(typeof q<\\"u\\"?q:n)[i],\\"get\\")}):t)(function(t){if(typeof q<\\"u\\")return q.apply(this,arguments);throw Error('Dynamic require of \\"'+t+'\\" is not supported')}),F=e((t,n)=>e(function(){return n||(0,t[Ze(t)[0]])((n={exports:{}}).exports,n),n.exports},\\"__require2\\"),\\"__commonJS\\"),Tr=e((t,n)=>{for(var i in n)se(t,i,{get:n[i],enumerable:!0})},\\"__export\\"),ie=e((t,n,i,T)=>{if(n&&typeof n==\\"object\\"||typeof n==\\"function\\")for(let _ of Ze(n))!_r.call(t,_)&&_!==i&&se(t,_,{get:e(()=>n[_],\\"get\\"),enumerable:!(T=yr(n,_))||T.enumerable});return t},\\"__copyProps\\"),br=e((t,n,i)=>(ie(t,n,\\"default\\"),i&&ie(i,n,\\"default\\")),\\"__reExport\\"),Qe=e((t,n,i)=>(i=t!=null?pr(vr(t)):{},ie(n||!t||!t.__esModule?se(i,\\"default\\",{value:t,enumerable:!0}):i,t)),\\"__toESM\\"),Ve=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/lib/ReactPropTypesSecret.js\\"(t,n){\\"use strict\\";var i=\\"SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED\\";n.exports=i}}),Ne=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/lib/has.js\\"(t,n){n.exports=Function.call.bind(Object.prototype.hasOwnProperty)}}),mr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/checkPropTypes.js\\"(t,n){\\"use strict\\";var i=e(function(){},\\"printWarning\\");T=Ve(),_={},A=Ne(),i=e(function(m){var g=\\"Warning: \\"+m;typeof console<\\"u\\"&&console.error(g);try{throw new Error(g)}catch{}},\\"printWarning\\");var T,_,A;function I(m,g,h,S,M){for(var O in m)if(A(m,O)){var w;try{if(typeof m[O]!=\\"function\\"){var j=Error((S||\\"React class\\")+\\": \\"+h+\\" type \`\\"+O+\\"\` is invalid; it must be a function, usually from the \`prop-types\` package, but received \`\\"+typeof m[O]+\\"\`.This often happens because of typos such as \`PropTypes.function\` instead of \`PropTypes.func\`.\\");throw j.name=\\"Invariant Violation\\",j}w=m[O](g,O,S,h,null,T)}catch(D){w=D}if(w&&!(w instanceof Error)&&i((S||\\"React class\\")+\\": type specification of \\"+h+\\" \`\\"+O+\\"\` is invalid; the type checker function must return \`null\` or an \`Error\` but returned a \\"+typeof w+\\". You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).\\"),w instanceof Error&&!(w.message in _)){_[w.message]=!0;var R=M?M():\\"\\";i(\\"Failed \\"+h+\\" type: \\"+w.message+(R??\\"\\"))}}}e(I,\\"checkPropTypes2\\"),I.resetWarningCache=function(){_={}},n.exports=I}}),Pr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/factoryWithTypeCheckers.js\\"(t,n){\\"use strict\\";var i=ae(\\"react-is\\"),T=ae(\\"object-assign\\"),_=Ve(),A=Ne(),I=mr(),m=e(function(){},\\"printWarning\\");m=e(function(h){var S=\\"Warning: \\"+h;typeof console<\\"u\\"&&console.error(S);try{throw new Error(S)}catch{}},\\"printWarning\\");function g(){return null}e(g,\\"emptyFunctionThatReturnsNull\\"),n.exports=function(h,S){var M=typeof Symbol==\\"function\\"&&Symbol.iterator,O=\\"@@iterator\\";function w(r){var a=r&&(M&&r[M]||r[O]);if(typeof a==\\"function\\")return a}e(w,\\"getIteratorFn\\");var j=\\"<<anonymous>>\\",R={array:Y(\\"array\\"),bigint:Y(\\"bigint\\"),bool:Y(\\"boolean\\"),func:Y(\\"function\\"),number:Y(\\"number\\"),object:Y(\\"object\\"),string:Y(\\"string\\"),symbol:Y(\\"symbol\\"),any:U(),arrayOf:E,element:B(),elementType:H(),instanceOf:J,node:Z(),objectOf:G,oneOf:X,oneOfType:K,shape:Q,exact:V};function D(r,a){return r===a?r!==0||1/r===1/a:r!==r&&a!==a}e(D,\\"is\\");function b(r,a){this.message=r,this.data=a&&typeof a==\\"object\\"?a:{},this.stack=\\"\\"}e(b,\\"PropTypeError\\"),b.prototype=Error.prototype;function C(r){var a={},l=0;function f(d,u,c,p,v,y,o){if(p=p||j,y=y||c,o!==_){if(S){var P=new Error(\\"Calling PropTypes validators directly is not supported by the \`prop-types\` package. Use \`PropTypes.checkPropTypes()\` to call them. Read more at http://fb.me/use-check-prop-types\\");throw P.name=\\"Invariant Violation\\",P}else if(typeof console<\\"u\\"){var x=p+\\":\\"+c;!a[x]&&l<3&&(m(\\"You are manually calling a React.PropTypes validation function for the \`\\"+y+\\"\` prop on \`\\"+p+\\"\`. This is deprecated and will throw in the standalone \`prop-types\` package. You may be seeing this warning due to a third-party PropTypes library. See https://fb.me/react-warning-dont-call-proptypes for details.\\"),a[x]=!0,l++)}}return u[c]==null?d?u[c]===null?new b(\\"The \\"+v+\\" \`\\"+y+\\"\` is marked as required \\"+(\\"in \`\\"+p+\\"\`, but its value is \`null\`.\\")):new b(\\"The \\"+v+\\" \`\\"+y+\\"\` is marked as required in \\"+(\\"\`\\"+p+\\"\`, but its value is \`undefined\`.\\")):null:r(u,c,p,v,y)}e(f,\\"checkType\\");var s=f.bind(null,!1);return s.isRequired=f.bind(null,!0),s}e(C,\\"createChainableTypeChecker\\");function Y(r){function a(l,f,s,d,u,c){var p=l[f],v=L(p);if(v!==r){var y=\$(p);return new b(\\"Invalid \\"+d+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+y+\\"\` supplied to \`\\"+s+\\"\`, expected \\")+(\\"\`\\"+r+\\"\`.\\"),{expectedType:r})}return null}return e(a,\\"validate\\"),C(a)}e(Y,\\"createPrimitiveTypeChecker\\");function U(){return C(g)}e(U,\\"createAnyTypeChecker\\");function E(r){function a(l,f,s,d,u){if(typeof r!=\\"function\\")return new b(\\"Property \`\\"+u+\\"\` of component \`\\"+s+\\"\` has invalid PropType notation inside arrayOf.\\");var c=l[f];if(!Array.isArray(c)){var p=L(c);return new b(\\"Invalid \\"+d+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+p+\\"\` supplied to \`\\"+s+\\"\`, expected an array.\\"))}for(var v=0;v<c.length;v++){var y=r(c,v,s,d,u+\\"[\\"+v+\\"]\\",_);if(y instanceof Error)return y}return null}return e(a,\\"validate\\"),C(a)}e(E,\\"createArrayOfTypeChecker\\");function B(){function r(a,l,f,s,d){var u=a[l];if(!h(u)){var c=L(u);return new b(\\"Invalid \\"+s+\\" \`\\"+d+\\"\` of type \\"+(\\"\`\\"+c+\\"\` supplied to \`\\"+f+\\"\`, expected a single ReactElement.\\"))}return null}return e(r,\\"validate\\"),C(r)}e(B,\\"createElementTypeChecker\\");function H(){function r(a,l,f,s,d){var u=a[l];if(!i.isValidElementType(u)){var c=L(u);return new b(\\"Invalid \\"+s+\\" \`\\"+d+\\"\` of type \\"+(\\"\`\\"+c+\\"\` supplied to \`\\"+f+\\"\`, expected a single ReactElement type.\\"))}return null}return e(r,\\"validate\\"),C(r)}e(H,\\"createElementTypeTypeChecker\\");function J(r){function a(l,f,s,d,u){if(!(l[f]instanceof r)){var c=r.name||j,p=z(l[f]);return new b(\\"Invalid \\"+d+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+p+\\"\` supplied to \`\\"+s+\\"\`, expected \\")+(\\"instance of \`\\"+c+\\"\`.\\"))}return null}return e(a,\\"validate\\"),C(a)}e(J,\\"createInstanceTypeChecker\\");function X(r){if(!Array.isArray(r))return arguments.length>1?m(\\"Invalid arguments supplied to oneOf, expected an array, got \\"+arguments.length+\\" arguments. A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).\\"):m(\\"Invalid argument supplied to oneOf, expected an array.\\"),g;function a(l,f,s,d,u){for(var c=l[f],p=0;p<r.length;p++)if(D(c,r[p]))return null;var v=JSON.stringify(r,e(function(o,P){var x=\$(P);return x===\\"symbol\\"?String(P):P},\\"replacer\\"));return new b(\\"Invalid \\"+d+\\" \`\\"+u+\\"\` of value \`\\"+String(c)+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected one of \\"+v+\\".\\"))}return e(a,\\"validate\\"),C(a)}e(X,\\"createEnumTypeChecker\\");function G(r){function a(l,f,s,d,u){if(typeof r!=\\"function\\")return new b(\\"Property \`\\"+u+\\"\` of component \`\\"+s+\\"\` has invalid PropType notation inside objectOf.\\");var c=l[f],p=L(c);if(p!==\\"object\\")return new b(\\"Invalid \\"+d+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+p+\\"\` supplied to \`\\"+s+\\"\`, expected an object.\\"));for(var v in c)if(A(c,v)){var y=r(c,v,s,d,u+\\".\\"+v,_);if(y instanceof Error)return y}return null}return e(a,\\"validate\\"),C(a)}e(G,\\"createObjectOfTypeChecker\\");function K(r){if(!Array.isArray(r))return m(\\"Invalid argument supplied to oneOfType, expected an instance of array.\\"),g;for(var a=0;a<r.length;a++){var l=r[a];if(typeof l!=\\"function\\")return m(\\"Invalid argument supplied to oneOfType. Expected an array of check functions, but received \\"+ee(l)+\\" at index \\"+a+\\".\\"),g}function f(s,d,u,c,p){for(var v=[],y=0;y<r.length;y++){var o=r[y],P=o(s,d,u,c,p,_);if(P==null)return null;P.data&&A(P.data,\\"expectedType\\")&&v.push(P.data.expectedType)}var x=v.length>0?\\", expected one of type [\\"+v.join(\\", \\")+\\"]\\":\\"\\";return new b(\\"Invalid \\"+c+\\" \`\\"+p+\\"\` supplied to \\"+(\\"\`\\"+u+\\"\`\\"+x+\\".\\"))}return e(f,\\"validate\\"),C(f)}e(K,\\"createUnionTypeChecker\\");function Z(){function r(a,l,f,s,d){return k(a[l])?null:new b(\\"Invalid \\"+s+\\" \`\\"+d+\\"\` supplied to \\"+(\\"\`\\"+f+\\"\`, expected a ReactNode.\\"))}return e(r,\\"validate\\"),C(r)}e(Z,\\"createNodeChecker\\");function W(r,a,l,f,s){return new b((r||\\"React class\\")+\\": \\"+a+\\" type \`\\"+l+\\".\\"+f+\\"\` is invalid; it must be a function, usually from the \`prop-types\` package, but received \`\\"+s+\\"\`.\\")}e(W,\\"invalidValidatorError\\");function Q(r){function a(l,f,s,d,u){var c=l[f],p=L(c);if(p!==\\"object\\")return new b(\\"Invalid \\"+d+\\" \`\\"+u+\\"\` of type \`\\"+p+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected \`object\`.\\"));for(var v in r){var y=r[v];if(typeof y!=\\"function\\")return W(s,d,u,v,\$(y));var o=y(c,v,s,d,u+\\".\\"+v,_);if(o)return o}return null}return e(a,\\"validate\\"),C(a)}e(Q,\\"createShapeTypeChecker\\");function V(r){function a(l,f,s,d,u){var c=l[f],p=L(c);if(p!==\\"object\\")return new b(\\"Invalid \\"+d+\\" \`\\"+u+\\"\` of type \`\\"+p+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected \`object\`.\\"));var v=T({},l[f],r);for(var y in v){var o=r[y];if(A(r,y)&&typeof o!=\\"function\\")return W(s,d,u,y,\$(o));if(!o)return new b(\\"Invalid \\"+d+\\" \`\\"+u+\\"\` key \`\\"+y+\\"\` supplied to \`\\"+s+\\"\`.\\\\nBad object: \\"+JSON.stringify(l[f],null,\\"  \\")+\`
-Valid keys: \`+JSON.stringify(Object.keys(r),null,\\"  \\"));var P=o(c,y,s,d,u+\\".\\"+y,_);if(P)return P}return null}return e(a,\\"validate\\"),C(a)}e(V,\\"createStrictShapeTypeChecker\\");function k(r){switch(typeof r){case\\"number\\":case\\"string\\":case\\"undefined\\":return!0;case\\"boolean\\":return!r;case\\"object\\":if(Array.isArray(r))return r.every(k);if(r===null||h(r))return!0;var a=w(r);if(a){var l=a.call(r),f;if(a!==r.entries){for(;!(f=l.next()).done;)if(!k(f.value))return!1}else for(;!(f=l.next()).done;){var s=f.value;if(s&&!k(s[1]))return!1}}else return!1;return!0;default:return!1}}e(k,\\"isNode\\");function N(r,a){return r===\\"symbol\\"?!0:a?a[\\"@@toStringTag\\"]===\\"Symbol\\"||typeof Symbol==\\"function\\"&&a instanceof Symbol:!1}e(N,\\"isSymbol\\");function L(r){var a=typeof r;return Array.isArray(r)?\\"array\\":r instanceof RegExp?\\"object\\":N(a,r)?\\"symbol\\":a}e(L,\\"getPropType\\");function \$(r){if(typeof r>\\"u\\"||r===null)return\\"\\"+r;var a=L(r);if(a===\\"object\\"){if(r instanceof Date)return\\"date\\";if(r instanceof RegExp)return\\"regexp\\"}return a}e(\$,\\"getPreciseType\\");function ee(r){var a=\$(r);switch(a){case\\"array\\":case\\"object\\":return\\"an \\"+a;case\\"boolean\\":case\\"date\\":case\\"regexp\\":return\\"a \\"+a;default:return a}}e(ee,\\"getPostfixForTypeWarning\\");function z(r){return!r.constructor||!r.constructor.name?j:r.constructor.name}return e(z,\\"getClassName\\"),R.checkPropTypes=I,R.resetWarningCache=I.resetWarningCache,R.PropTypes=R,R}}}),er=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/index.js\\"(t,n){i=ae(\\"react-is\\"),T=!0,n.exports=Pr()(i.isElement,T);var i,T}}),rr={};Tr(rr,{PropTypes:e(()=>zr,\\"PropTypes\\"),any:e(()=>Ar,\\"any\\"),array:e(()=>Er,\\"array\\"),arrayOf:e(()=>Mr,\\"arrayOf\\"),bigint:e(()=>gr,\\"bigint\\"),bool:e(()=>hr,\\"bool\\"),checkPropTypes:e(()=>Fr,\\"checkPropTypes\\"),default:e(()=>Br,\\"default\\"),element:e(()=>jr,\\"element\\"),elementType:e(()=>xr,\\"elementType\\"),exact:e(()=>Dr,\\"exact\\"),func:e(()=>Or,\\"func\\"),instanceOf:e(()=>Ir,\\"instanceOf\\"),node:e(()=>Yr,\\"node\\"),number:e(()=>Cr,\\"number\\"),object:e(()=>Sr,\\"object\\"),objectOf:e(()=>Lr,\\"objectOf\\"),oneOf:e(()=>\$r,\\"oneOf\\"),oneOfType:e(()=>kr,\\"oneOfType\\"),resetWarningCache:e(()=>Wr,\\"resetWarningCache\\"),shape:e(()=>qr,\\"shape\\"),string:e(()=>wr,\\"string\\"),symbol:e(()=>Rr,\\"symbol\\")});var tr=Qe(er());br(rr,Qe(er()));var{array:Er,bigint:gr,bool:hr,func:Or,number:Cr,object:Sr,string:wr,symbol:Rr,any:Ar,arrayOf:Mr,element:jr,elementType:xr,instanceOf:Ir,node:Yr,objectOf:Lr,oneOf:\$r,oneOfType:kr,shape:qr,exact:Dr,checkPropTypes:Fr,resetWarningCache:Wr,PropTypes:zr}=tr,{default:Ke,...Ur}=tr,Br=Ke!==void 0?Ke:Ur;document.querySelectorAll(\\"h1\\")?.forEach(t=>{t.innerHTML=ce(t.innerHTML+de.foo),le(t.innerHTML).then(n=>{t.innerHTML=n})});var Hr={bar:\\"baz\\"};console.log(Hr);
+    content: "import{a as e,b as ce}from\\"./chunk-0.js\\";function re(r){return r.toUpperCase()}e(re,\\"toUppercase\\");async function le(r){let{toLowercase:n}=await import(\\"./foo/bar/to_lowercase.js\\");return n(r)}e(le,\\"toLowercase\\");var pe={foo:\\"bar\\"};var te={};ce(te,{default:()=>or});var or=Object.assign;var ae={};ce(ae,{AsyncMode:()=>Pe,ConcurrentMode:()=>Ee,ContextConsumer:()=>ge,ContextProvider:()=>he,Element:()=>Oe,ForwardRef:()=>Ce,Fragment:()=>we,Lazy:()=>Se,Memo:()=>Re,Portal:()=>Ae,Profiler:()=>Me,StrictMode:()=>xe,Suspense:()=>je,default:()=>Ge,isAsyncMode:()=>Ie,isConcurrentMode:()=>Ye,isContextConsumer:()=>Le,isContextProvider:()=>\$e,isElement:()=>ke,isForwardRef:()=>qe,isFragment:()=>De,isLazy:()=>Fe,isMemo:()=>We,isPortal:()=>Ue,isProfiler:()=>ze,isStrictMode:()=>Be,isSuspense:()=>He,isValidElementType:()=>Je,typeOf:()=>Xe});var ar=Object.create,oe=Object.defineProperty,ir=Object.getOwnPropertyDescriptor,ye=Object.getOwnPropertyNames,sr=Object.getPrototypeOf,ur=Object.prototype.hasOwnProperty,ve=e((r,n)=>e(function(){return n||(0,r[ye(r)[0]])((n={exports:{}}).exports,n),n.exports},\\"__require\\"),\\"__commonJS\\"),fr=e((r,n)=>{for(var i in n)oe(r,i,{get:n[i],enumerable:!0})},\\"__export\\"),ne=e((r,n,i,T)=>{if(n&&typeof n==\\"object\\"||typeof n==\\"function\\")for(let _ of ye(n))!ur.call(r,_)&&_!==i&&oe(r,_,{get:e(()=>n[_],\\"get\\"),enumerable:!(T=ir(n,_))||T.enumerable});return r},\\"__copyProps\\"),cr=e((r,n,i)=>(ne(r,n,\\"default\\"),i&&ne(i,n,\\"default\\")),\\"__reExport\\"),_e=e((r,n,i)=>(i=r!=null?ar(sr(r)):{},ne(n||!r||!r.__esModule?oe(i,\\"default\\",{value:r,enumerable:!0}):i,r)),\\"__toESM\\"),lr=ve({\\"../esmd/npm/react-is@16.13.1/node_modules/.pnpm/react-is@16.13.1/node_modules/react-is/cjs/react-is.development.js\\"(r){\\"use strict\\";(function(){\\"use strict\\";var n=typeof Symbol==\\"function\\"&&Symbol.for,i=n?Symbol.for(\\"react.element\\"):60103,T=n?Symbol.for(\\"react.portal\\"):60106,_=n?Symbol.for(\\"react.fragment\\"):60107,A=n?Symbol.for(\\"react.strict_mode\\"):60108,I=n?Symbol.for(\\"react.profiler\\"):60114,m=n?Symbol.for(\\"react.provider\\"):60109,g=n?Symbol.for(\\"react.context\\"):60110,h=n?Symbol.for(\\"react.async_mode\\"):60111,w=n?Symbol.for(\\"react.concurrent_mode\\"):60111,M=n?Symbol.for(\\"react.forward_ref\\"):60112,O=n?Symbol.for(\\"react.suspense\\"):60113,S=n?Symbol.for(\\"react.suspense_list\\"):60120,x=n?Symbol.for(\\"react.memo\\"):60115,R=n?Symbol.for(\\"react.lazy\\"):60116,D=n?Symbol.for(\\"react.block\\"):60121,b=n?Symbol.for(\\"react.fundamental\\"):60117,C=n?Symbol.for(\\"react.responder\\"):60118,Y=n?Symbol.for(\\"react.scope\\"):60119;function z(o){return typeof o==\\"string\\"||typeof o==\\"function\\"||o===_||o===w||o===I||o===A||o===O||o===S||typeof o==\\"object\\"&&o!==null&&(o.\$\$typeof===R||o.\$\$typeof===x||o.\$\$typeof===m||o.\$\$typeof===g||o.\$\$typeof===M||o.\$\$typeof===b||o.\$\$typeof===C||o.\$\$typeof===Y||o.\$\$typeof===D)}e(z,\\"isValidElementType2\\");function E(o){if(typeof o==\\"object\\"&&o!==null){var P=o.\$\$typeof;switch(P){case i:var j=o.type;switch(j){case h:case w:case _:case I:case A:case O:return j;default:var fe=j&&j.\$\$typeof;switch(fe){case g:case M:case R:case x:case m:return fe;default:return P}}case T:return P}}}e(E,\\"typeOf2\\");var B=h,H=w,J=g,X=m,G=i,K=M,Z=_,W=R,Q=x,V=T,k=I,N=A,L=O,\$=!1;function ee(o){return \$||(\$=!0,console.warn(\\"The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.\\")),U(o)||E(o)===h}e(ee,\\"isAsyncMode2\\");function U(o){return E(o)===w}e(U,\\"isConcurrentMode2\\");function t(o){return E(o)===g}e(t,\\"isContextConsumer2\\");function a(o){return E(o)===m}e(a,\\"isContextProvider2\\");function l(o){return typeof o==\\"object\\"&&o!==null&&o.\$\$typeof===i}e(l,\\"isElement2\\");function f(o){return E(o)===M}e(f,\\"isForwardRef2\\");function s(o){return E(o)===_}e(s,\\"isFragment2\\");function p(o){return E(o)===R}e(p,\\"isLazy2\\");function u(o){return E(o)===x}e(u,\\"isMemo2\\");function c(o){return E(o)===T}e(c,\\"isPortal2\\");function d(o){return E(o)===I}e(d,\\"isProfiler2\\");function v(o){return E(o)===A}e(v,\\"isStrictMode2\\");function y(o){return E(o)===O}e(y,\\"isSuspense2\\"),r.AsyncMode=B,r.ConcurrentMode=H,r.ContextConsumer=J,r.ContextProvider=X,r.Element=G,r.ForwardRef=K,r.Fragment=Z,r.Lazy=W,r.Memo=Q,r.Portal=V,r.Profiler=k,r.StrictMode=N,r.Suspense=L,r.isAsyncMode=ee,r.isConcurrentMode=U,r.isContextConsumer=t,r.isContextProvider=a,r.isElement=l,r.isForwardRef=f,r.isFragment=s,r.isLazy=p,r.isMemo=u,r.isPortal=c,r.isProfiler=d,r.isStrictMode=v,r.isSuspense=y,r.isValidElementType=z,r.typeOf=E})()}}),Te=ve({\\"../esmd/npm/react-is@16.13.1/node_modules/.pnpm/react-is@16.13.1/node_modules/react-is/index.js\\"(r,n){\\"use strict\\";n.exports=lr()}}),be={};fr(be,{AsyncMode:e(()=>Pe,\\"AsyncMode\\"),ConcurrentMode:e(()=>Ee,\\"ConcurrentMode\\"),ContextConsumer:e(()=>ge,\\"ContextConsumer\\"),ContextProvider:e(()=>he,\\"ContextProvider\\"),Element:e(()=>Oe,\\"Element\\"),ForwardRef:e(()=>Ce,\\"ForwardRef\\"),Fragment:e(()=>we,\\"Fragment\\"),Lazy:e(()=>Se,\\"Lazy\\"),Memo:e(()=>Re,\\"Memo\\"),Portal:e(()=>Ae,\\"Portal\\"),Profiler:e(()=>Me,\\"Profiler\\"),StrictMode:e(()=>xe,\\"StrictMode\\"),Suspense:e(()=>je,\\"Suspense\\"),default:e(()=>Ge,\\"default\\"),isAsyncMode:e(()=>Ie,\\"isAsyncMode\\"),isConcurrentMode:e(()=>Ye,\\"isConcurrentMode\\"),isContextConsumer:e(()=>Le,\\"isContextConsumer\\"),isContextProvider:e(()=>\$e,\\"isContextProvider\\"),isElement:e(()=>ke,\\"isElement\\"),isForwardRef:e(()=>qe,\\"isForwardRef\\"),isFragment:e(()=>De,\\"isFragment\\"),isLazy:e(()=>Fe,\\"isLazy\\"),isMemo:e(()=>We,\\"isMemo\\"),isPortal:e(()=>Ue,\\"isPortal\\"),isProfiler:e(()=>ze,\\"isProfiler\\"),isStrictMode:e(()=>Be,\\"isStrictMode\\"),isSuspense:e(()=>He,\\"isSuspense\\"),isValidElementType:e(()=>Je,\\"isValidElementType\\"),typeOf:e(()=>Xe,\\"typeOf\\")});var me=_e(Te());cr(be,_e(Te()));var{AsyncMode:Pe,ConcurrentMode:Ee,ContextConsumer:ge,ContextProvider:he,Element:Oe,ForwardRef:Ce,Fragment:we,Lazy:Se,Memo:Re,Portal:Ae,Profiler:Me,StrictMode:xe,Suspense:je,isAsyncMode:Ie,isConcurrentMode:Ye,isContextConsumer:Le,isContextProvider:\$e,isElement:ke,isForwardRef:qe,isFragment:De,isLazy:Fe,isMemo:We,isPortal:Ue,isProfiler:ze,isStrictMode:Be,isSuspense:He,isValidElementType:Je,typeOf:Xe}=me,{default:de,...pr}=me,Ge=de!==void 0?de:pr;var q=e(r=>{let n=e(T=>typeof T.default<\\"u\\"?T.default:T,\\"e\\"),i=e(T=>Object.assign({},T),\\"c\\");switch(r){case\\"object-assign\\":return n(te);case\\"react-is\\":return n(ae);default:throw new Error('module \\"'+r+'\\" not found')}},\\"require\\"),dr=Object.create,ue=Object.defineProperty,yr=Object.getOwnPropertyDescriptor,Ze=Object.getOwnPropertyNames,vr=Object.getPrototypeOf,_r=Object.prototype.hasOwnProperty,ie=(r=>typeof q<\\"u\\"?q:typeof Proxy<\\"u\\"?new Proxy(r,{get:e((n,i)=>(typeof q<\\"u\\"?q:n)[i],\\"get\\")}):r)(function(r){if(typeof q<\\"u\\")return q.apply(this,arguments);throw Error('Dynamic require of \\"'+r+'\\" is not supported')}),F=e((r,n)=>e(function(){return n||(0,r[Ze(r)[0]])((n={exports:{}}).exports,n),n.exports},\\"__require2\\"),\\"__commonJS\\"),Tr=e((r,n)=>{for(var i in n)ue(r,i,{get:n[i],enumerable:!0})},\\"__export\\"),se=e((r,n,i,T)=>{if(n&&typeof n==\\"object\\"||typeof n==\\"function\\")for(let _ of Ze(n))!_r.call(r,_)&&_!==i&&ue(r,_,{get:e(()=>n[_],\\"get\\"),enumerable:!(T=yr(n,_))||T.enumerable});return r},\\"__copyProps\\"),br=e((r,n,i)=>(se(r,n,\\"default\\"),i&&se(i,n,\\"default\\")),\\"__reExport\\"),Qe=e((r,n,i)=>(i=r!=null?dr(vr(r)):{},se(n||!r||!r.__esModule?ue(i,\\"default\\",{value:r,enumerable:!0}):i,r)),\\"__toESM\\"),Ve=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/lib/ReactPropTypesSecret.js\\"(r,n){\\"use strict\\";var i=\\"SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED\\";n.exports=i}}),Ne=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/lib/has.js\\"(r,n){n.exports=Function.call.bind(Object.prototype.hasOwnProperty)}}),mr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/checkPropTypes.js\\"(r,n){\\"use strict\\";var i=e(function(){},\\"printWarning\\");T=Ve(),_={},A=Ne(),i=e(function(m){var g=\\"Warning: \\"+m;typeof console<\\"u\\"&&console.error(g);try{throw new Error(g)}catch{}},\\"printWarning\\");var T,_,A;function I(m,g,h,w,M){for(var O in m)if(A(m,O)){var S;try{if(typeof m[O]!=\\"function\\"){var x=Error((w||\\"React class\\")+\\": \\"+h+\\" type \`\\"+O+\\"\` is invalid; it must be a function, usually from the \`prop-types\` package, but received \`\\"+typeof m[O]+\\"\`.This often happens because of typos such as \`PropTypes.function\` instead of \`PropTypes.func\`.\\");throw x.name=\\"Invariant Violation\\",x}S=m[O](g,O,w,h,null,T)}catch(D){S=D}if(S&&!(S instanceof Error)&&i((w||\\"React class\\")+\\": type specification of \\"+h+\\" \`\\"+O+\\"\` is invalid; the type checker function must return \`null\` or an \`Error\` but returned a \\"+typeof S+\\". You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).\\"),S instanceof Error&&!(S.message in _)){_[S.message]=!0;var R=M?M():\\"\\";i(\\"Failed \\"+h+\\" type: \\"+S.message+(R??\\"\\"))}}}e(I,\\"checkPropTypes2\\"),I.resetWarningCache=function(){_={}},n.exports=I}}),Pr=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/factoryWithTypeCheckers.js\\"(r,n){\\"use strict\\";var i=ie(\\"react-is\\"),T=ie(\\"object-assign\\"),_=Ve(),A=Ne(),I=mr(),m=e(function(){},\\"printWarning\\");m=e(function(h){var w=\\"Warning: \\"+h;typeof console<\\"u\\"&&console.error(w);try{throw new Error(w)}catch{}},\\"printWarning\\");function g(){return null}e(g,\\"emptyFunctionThatReturnsNull\\"),n.exports=function(h,w){var M=typeof Symbol==\\"function\\"&&Symbol.iterator,O=\\"@@iterator\\";function S(t){var a=t&&(M&&t[M]||t[O]);if(typeof a==\\"function\\")return a}e(S,\\"getIteratorFn\\");var x=\\"<<anonymous>>\\",R={array:Y(\\"array\\"),bigint:Y(\\"bigint\\"),bool:Y(\\"boolean\\"),func:Y(\\"function\\"),number:Y(\\"number\\"),object:Y(\\"object\\"),string:Y(\\"string\\"),symbol:Y(\\"symbol\\"),any:z(),arrayOf:E,element:B(),elementType:H(),instanceOf:J,node:Z(),objectOf:G,oneOf:X,oneOfType:K,shape:Q,exact:V};function D(t,a){return t===a?t!==0||1/t===1/a:t!==t&&a!==a}e(D,\\"is\\");function b(t,a){this.message=t,this.data=a&&typeof a==\\"object\\"?a:{},this.stack=\\"\\"}e(b,\\"PropTypeError\\"),b.prototype=Error.prototype;function C(t){var a={},l=0;function f(p,u,c,d,v,y,o){if(d=d||x,y=y||c,o!==_){if(w){var P=new Error(\\"Calling PropTypes validators directly is not supported by the \`prop-types\` package. Use \`PropTypes.checkPropTypes()\` to call them. Read more at http://fb.me/use-check-prop-types\\");throw P.name=\\"Invariant Violation\\",P}else if(typeof console<\\"u\\"){var j=d+\\":\\"+c;!a[j]&&l<3&&(m(\\"You are manually calling a React.PropTypes validation function for the \`\\"+y+\\"\` prop on \`\\"+d+\\"\`. This is deprecated and will throw in the standalone \`prop-types\` package. You may be seeing this warning due to a third-party PropTypes library. See https://fb.me/react-warning-dont-call-proptypes for details.\\"),a[j]=!0,l++)}}return u[c]==null?p?u[c]===null?new b(\\"The \\"+v+\\" \`\\"+y+\\"\` is marked as required \\"+(\\"in \`\\"+d+\\"\`, but its value is \`null\`.\\")):new b(\\"The \\"+v+\\" \`\\"+y+\\"\` is marked as required in \\"+(\\"\`\\"+d+\\"\`, but its value is \`undefined\`.\\")):null:t(u,c,d,v,y)}e(f,\\"checkType\\");var s=f.bind(null,!1);return s.isRequired=f.bind(null,!0),s}e(C,\\"createChainableTypeChecker\\");function Y(t){function a(l,f,s,p,u,c){var d=l[f],v=L(d);if(v!==t){var y=\$(d);return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+y+\\"\` supplied to \`\\"+s+\\"\`, expected \\")+(\\"\`\\"+t+\\"\`.\\"),{expectedType:t})}return null}return e(a,\\"validate\\"),C(a)}e(Y,\\"createPrimitiveTypeChecker\\");function z(){return C(g)}e(z,\\"createAnyTypeChecker\\");function E(t){function a(l,f,s,p,u){if(typeof t!=\\"function\\")return new b(\\"Property \`\\"+u+\\"\` of component \`\\"+s+\\"\` has invalid PropType notation inside arrayOf.\\");var c=l[f];if(!Array.isArray(c)){var d=L(c);return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+d+\\"\` supplied to \`\\"+s+\\"\`, expected an array.\\"))}for(var v=0;v<c.length;v++){var y=t(c,v,s,p,u+\\"[\\"+v+\\"]\\",_);if(y instanceof Error)return y}return null}return e(a,\\"validate\\"),C(a)}e(E,\\"createArrayOfTypeChecker\\");function B(){function t(a,l,f,s,p){var u=a[l];if(!h(u)){var c=L(u);return new b(\\"Invalid \\"+s+\\" \`\\"+p+\\"\` of type \\"+(\\"\`\\"+c+\\"\` supplied to \`\\"+f+\\"\`, expected a single ReactElement.\\"))}return null}return e(t,\\"validate\\"),C(t)}e(B,\\"createElementTypeChecker\\");function H(){function t(a,l,f,s,p){var u=a[l];if(!i.isValidElementType(u)){var c=L(u);return new b(\\"Invalid \\"+s+\\" \`\\"+p+\\"\` of type \\"+(\\"\`\\"+c+\\"\` supplied to \`\\"+f+\\"\`, expected a single ReactElement type.\\"))}return null}return e(t,\\"validate\\"),C(t)}e(H,\\"createElementTypeTypeChecker\\");function J(t){function a(l,f,s,p,u){if(!(l[f]instanceof t)){var c=t.name||x,d=U(l[f]);return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+d+\\"\` supplied to \`\\"+s+\\"\`, expected \\")+(\\"instance of \`\\"+c+\\"\`.\\"))}return null}return e(a,\\"validate\\"),C(a)}e(J,\\"createInstanceTypeChecker\\");function X(t){if(!Array.isArray(t))return arguments.length>1?m(\\"Invalid arguments supplied to oneOf, expected an array, got \\"+arguments.length+\\" arguments. A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).\\"):m(\\"Invalid argument supplied to oneOf, expected an array.\\"),g;function a(l,f,s,p,u){for(var c=l[f],d=0;d<t.length;d++)if(D(c,t[d]))return null;var v=JSON.stringify(t,e(function(o,P){var j=\$(P);return j===\\"symbol\\"?String(P):P},\\"replacer\\"));return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of value \`\\"+String(c)+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected one of \\"+v+\\".\\"))}return e(a,\\"validate\\"),C(a)}e(X,\\"createEnumTypeChecker\\");function G(t){function a(l,f,s,p,u){if(typeof t!=\\"function\\")return new b(\\"Property \`\\"+u+\\"\` of component \`\\"+s+\\"\` has invalid PropType notation inside objectOf.\\");var c=l[f],d=L(c);if(d!==\\"object\\")return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \\"+(\\"\`\\"+d+\\"\` supplied to \`\\"+s+\\"\`, expected an object.\\"));for(var v in c)if(A(c,v)){var y=t(c,v,s,p,u+\\".\\"+v,_);if(y instanceof Error)return y}return null}return e(a,\\"validate\\"),C(a)}e(G,\\"createObjectOfTypeChecker\\");function K(t){if(!Array.isArray(t))return m(\\"Invalid argument supplied to oneOfType, expected an instance of array.\\"),g;for(var a=0;a<t.length;a++){var l=t[a];if(typeof l!=\\"function\\")return m(\\"Invalid argument supplied to oneOfType. Expected an array of check functions, but received \\"+ee(l)+\\" at index \\"+a+\\".\\"),g}function f(s,p,u,c,d){for(var v=[],y=0;y<t.length;y++){var o=t[y],P=o(s,p,u,c,d,_);if(P==null)return null;P.data&&A(P.data,\\"expectedType\\")&&v.push(P.data.expectedType)}var j=v.length>0?\\", expected one of type [\\"+v.join(\\", \\")+\\"]\\":\\"\\";return new b(\\"Invalid \\"+c+\\" \`\\"+d+\\"\` supplied to \\"+(\\"\`\\"+u+\\"\`\\"+j+\\".\\"))}return e(f,\\"validate\\"),C(f)}e(K,\\"createUnionTypeChecker\\");function Z(){function t(a,l,f,s,p){return k(a[l])?null:new b(\\"Invalid \\"+s+\\" \`\\"+p+\\"\` supplied to \\"+(\\"\`\\"+f+\\"\`, expected a ReactNode.\\"))}return e(t,\\"validate\\"),C(t)}e(Z,\\"createNodeChecker\\");function W(t,a,l,f,s){return new b((t||\\"React class\\")+\\": \\"+a+\\" type \`\\"+l+\\".\\"+f+\\"\` is invalid; it must be a function, usually from the \`prop-types\` package, but received \`\\"+s+\\"\`.\\")}e(W,\\"invalidValidatorError\\");function Q(t){function a(l,f,s,p,u){var c=l[f],d=L(c);if(d!==\\"object\\")return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \`\\"+d+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected \`object\`.\\"));for(var v in t){var y=t[v];if(typeof y!=\\"function\\")return W(s,p,u,v,\$(y));var o=y(c,v,s,p,u+\\".\\"+v,_);if(o)return o}return null}return e(a,\\"validate\\"),C(a)}e(Q,\\"createShapeTypeChecker\\");function V(t){function a(l,f,s,p,u){var c=l[f],d=L(c);if(d!==\\"object\\")return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` of type \`\\"+d+\\"\` \\"+(\\"supplied to \`\\"+s+\\"\`, expected \`object\`.\\"));var v=T({},l[f],t);for(var y in v){var o=t[y];if(A(t,y)&&typeof o!=\\"function\\")return W(s,p,u,y,\$(o));if(!o)return new b(\\"Invalid \\"+p+\\" \`\\"+u+\\"\` key \`\\"+y+\\"\` supplied to \`\\"+s+\\"\`.\\\\nBad object: \\"+JSON.stringify(l[f],null,\\"  \\")+\`
+Valid keys: \`+JSON.stringify(Object.keys(t),null,\\"  \\"));var P=o(c,y,s,p,u+\\".\\"+y,_);if(P)return P}return null}return e(a,\\"validate\\"),C(a)}e(V,\\"createStrictShapeTypeChecker\\");function k(t){switch(typeof t){case\\"number\\":case\\"string\\":case\\"undefined\\":return!0;case\\"boolean\\":return!t;case\\"object\\":if(Array.isArray(t))return t.every(k);if(t===null||h(t))return!0;var a=S(t);if(a){var l=a.call(t),f;if(a!==t.entries){for(;!(f=l.next()).done;)if(!k(f.value))return!1}else for(;!(f=l.next()).done;){var s=f.value;if(s&&!k(s[1]))return!1}}else return!1;return!0;default:return!1}}e(k,\\"isNode\\");function N(t,a){return t===\\"symbol\\"?!0:a?a[\\"@@toStringTag\\"]===\\"Symbol\\"||typeof Symbol==\\"function\\"&&a instanceof Symbol:!1}e(N,\\"isSymbol\\");function L(t){var a=typeof t;return Array.isArray(t)?\\"array\\":t instanceof RegExp?\\"object\\":N(a,t)?\\"symbol\\":a}e(L,\\"getPropType\\");function \$(t){if(typeof t>\\"u\\"||t===null)return\\"\\"+t;var a=L(t);if(a===\\"object\\"){if(t instanceof Date)return\\"date\\";if(t instanceof RegExp)return\\"regexp\\"}return a}e(\$,\\"getPreciseType\\");function ee(t){var a=\$(t);switch(a){case\\"array\\":case\\"object\\":return\\"an \\"+a;case\\"boolean\\":case\\"date\\":case\\"regexp\\":return\\"a \\"+a;default:return a}}e(ee,\\"getPostfixForTypeWarning\\");function U(t){return!t.constructor||!t.constructor.name?x:t.constructor.name}return e(U,\\"getClassName\\"),R.checkPropTypes=I,R.resetWarningCache=I.resetWarningCache,R.PropTypes=R,R}}}),er=F({\\"../esmd/npm/prop-types@15.8.1/node_modules/.pnpm/prop-types@15.8.1/node_modules/prop-types/index.js\\"(r,n){i=ie(\\"react-is\\"),T=!0,n.exports=Pr()(i.isElement,T);var i,T}}),rr={};Tr(rr,{PropTypes:e(()=>Ur,\\"PropTypes\\"),any:e(()=>Ar,\\"any\\"),array:e(()=>Er,\\"array\\"),arrayOf:e(()=>Mr,\\"arrayOf\\"),bigint:e(()=>gr,\\"bigint\\"),bool:e(()=>hr,\\"bool\\"),checkPropTypes:e(()=>Fr,\\"checkPropTypes\\"),default:e(()=>Br,\\"default\\"),element:e(()=>xr,\\"element\\"),elementType:e(()=>jr,\\"elementType\\"),exact:e(()=>Dr,\\"exact\\"),func:e(()=>Or,\\"func\\"),instanceOf:e(()=>Ir,\\"instanceOf\\"),node:e(()=>Yr,\\"node\\"),number:e(()=>Cr,\\"number\\"),object:e(()=>wr,\\"object\\"),objectOf:e(()=>Lr,\\"objectOf\\"),oneOf:e(()=>\$r,\\"oneOf\\"),oneOfType:e(()=>kr,\\"oneOfType\\"),resetWarningCache:e(()=>Wr,\\"resetWarningCache\\"),shape:e(()=>qr,\\"shape\\"),string:e(()=>Sr,\\"string\\"),symbol:e(()=>Rr,\\"symbol\\")});var tr=Qe(er());br(rr,Qe(er()));var{array:Er,bigint:gr,bool:hr,func:Or,number:Cr,object:wr,string:Sr,symbol:Rr,any:Ar,arrayOf:Mr,element:xr,elementType:jr,instanceOf:Ir,node:Yr,objectOf:Lr,oneOf:\$r,oneOfType:kr,shape:qr,exact:Dr,checkPropTypes:Fr,resetWarningCache:Wr,PropTypes:Ur}=tr,{default:Ke,...zr}=tr,Br=Ke!==void 0?Ke:zr;document.querySelectorAll(\\"h1\\")?.forEach(r=>{r.innerHTML=re(r.innerHTML+pe.foo),le(r.innerHTML).then(n=>{r.innerHTML=n})});var Hr={bar:\\"baz\\"};console.log(Hr);
 /*! Bundled license information:
 
 react-is/cjs/react-is.development.js:
@@ -776,27 +674,6 @@ react-is/cjs/react-is.development.js:
 ",
     data: {
       basename: "main",
-      content: '/// <reference lib="dom" />
-import toUppercase, { toLowercase } from "./modules/to_uppercase.ts";
-import { Foo } from "./main.d.ts";
-import data from "./data.json" with { type: "json" };
-
-// https://github.com/lumeland/lume/issues/442
-import "https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";
-
-document.querySelectorAll("h1")?.forEach((h1) => {
-  h1.innerHTML = toUppercase(h1.innerHTML + data.foo);
-
-  toLowercase(h1.innerHTML)
-    .then(lower => {
-      h1.innerHTML = lower;
-    });
-});
-
-const foo: Foo = { bar: "baz" };
-console.log(foo);
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
@@ -850,18 +727,10 @@ console.log(foo);
     },
   },
   {
-    content: 'import{a as e}from"./chunk-0.js";import"./chunk-1.js";document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
+    content: 'import{a as e}from"../../chunk-0.js";function r(o){return o.toLowerCase()}e(r,"toLowercase");export{r as toLowercase};
 ',
     data: {
-      basename: "other",
-      content: '/// <reference lib="dom" />
-import toUppercase from "./modules/to_uppercase.ts";
-
-document.querySelectorAll(".other")?.forEach((el) => {
-  el.innerHTML = toUppercase(el.innerHTML);
-});
-',
-      date: [],
+      basename: "to_lowercase",
       mergedKeys: [
         "tags",
       ],
@@ -873,65 +742,7 @@ document.querySelectorAll(".other")?.forEach((el) => {
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/foo/other.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other",
-      remote: undefined,
-    },
-  },
-  {
-    content: 'console.log("Hello from script.ts!");
-',
-    data: {
-      basename: "script",
-      content: 'console.log("Hello from script.ts!");
-',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/foo/foo/bar/script.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other/script",
-      remote: undefined,
-    },
-  },
-  {
-    content: 'import{a as e}from"../../../chunk-1.js";function r(o){return o.toLowerCase()}e(r,"toLowercase");export{r as toLowercase};
-',
-    data: {
-      basename: "util/toLower",
-      content: "export function toLowercase(text: string) {
-  return text.toLowerCase();
-}
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/foo/foo/bar/util/toLower.js",
+      url: "/foo/foo/bar/to_lowercase.js",
     },
     src: {
       asset: true,
@@ -1001,20 +812,16 @@ snapshot[`esbuild plugin with outExtension 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".ts",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
       engines: 1,
@@ -1068,7 +875,20 @@ snapshot[`esbuild plugin with outExtension 1`] = `
 }
 `;
 
-snapshot[`esbuild plugin with outExtension 2`] = `[]`;
+snapshot[`esbuild plugin with outExtension 2`] = `
+[
+  {
+    entry: "/other.ts",
+    flags: [],
+    outputPath: "/other.ts",
+  },
+  {
+    entry: "/other/script.ts",
+    flags: [],
+    outputPath: "/foo/bar/script.ts",
+  },
+]
+`;
 
 snapshot[`esbuild plugin with outExtension 3`] = `
 [
@@ -1090,27 +910,6 @@ react-is/cjs/react-is.development.js:
 ",
     data: {
       basename: "main",
-      content: '/// <reference lib="dom" />
-import toUppercase, { toLowercase } from "./modules/to_uppercase.ts";
-import { Foo } from "./main.d.ts";
-import data from "./data.json" with { type: "json" };
-
-// https://github.com/lumeland/lume/issues/442
-import "https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";
-
-document.querySelectorAll("h1")?.forEach((h1) => {
-  h1.innerHTML = toUppercase(h1.innerHTML + data.foo);
-
-  toLowercase(h1.innerHTML)
-    .then(lower => {
-      h1.innerHTML = lower;
-    });
-});
-
-const foo: Foo = { bar: "baz" };
-console.log(foo);
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
@@ -1168,17 +967,6 @@ console.log(foo);
 ',
     data: {
       basename: "to_uppercase",
-      content: 'export default function toUppercase(text: string) {
-  return text.toUpperCase();
-}
-
-export async function toLowercase(text: string) {
-  const { toLowercase } = await import("../other/to_lowercase.ts");
-
-  return toLowercase(text);
-}
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
@@ -1200,76 +988,10 @@ export async function toLowercase(text: string) {
     },
   },
   {
-    content: 'var n=Object.defineProperty;var t=(r,o)=>n(r,"name",{value:o,configurable:!0});function e(r){return r.toUpperCase()}t(e,"toUppercase");document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
-',
-    data: {
-      basename: "other",
-      content: '/// <reference lib="dom" />
-import toUppercase from "./modules/to_uppercase.ts";
-
-document.querySelectorAll(".other")?.forEach((el) => {
-  el.innerHTML = toUppercase(el.innerHTML);
-});
-',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/other.min.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other",
-      remote: undefined,
-    },
-  },
-  {
-    content: 'console.log("Hello from script.ts!");
-',
-    data: {
-      basename: "script",
-      content: 'console.log("Hello from script.ts!");
-',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/foo/bar/script.min.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other/script",
-      remote: undefined,
-    },
-  },
-  {
     content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
 ',
     data: {
-      basename: "util/toLower",
-      content: "export function toLowercase(text: string) {
-  return text.toLowerCase();
-}
-",
-      date: [],
+      basename: "to_lowercase",
       mergedKeys: [
         "tags",
       ],
@@ -1281,7 +1003,7 @@ document.querySelectorAll(".other")?.forEach((el) => {
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/foo/bar/util/toLower.min.js",
+      url: "/foo/bar/to_lowercase.min.js",
     },
     src: {
       asset: true,
@@ -1351,20 +1073,16 @@ snapshot[`esbuild plugin with entryNames simple 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".ts",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
       engines: 1,
@@ -1418,7 +1136,20 @@ snapshot[`esbuild plugin with entryNames simple 1`] = `
 }
 `;
 
-snapshot[`esbuild plugin with entryNames simple 2`] = `[]`;
+snapshot[`esbuild plugin with entryNames simple 2`] = `
+[
+  {
+    entry: "/other.ts",
+    flags: [],
+    outputPath: "/other.ts",
+  },
+  {
+    entry: "/other/script.ts",
+    flags: [],
+    outputPath: "/foo/bar/script.ts",
+  },
+]
+`;
 
 snapshot[`esbuild plugin with entryNames simple 3`] = `
 [
@@ -1440,27 +1171,6 @@ react-is/cjs/react-is.development.js:
 ",
     data: {
       basename: "main",
-      content: '/// <reference lib="dom" />
-import toUppercase, { toLowercase } from "./modules/to_uppercase.ts";
-import { Foo } from "./main.d.ts";
-import data from "./data.json" with { type: "json" };
-
-// https://github.com/lumeland/lume/issues/442
-import "https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";
-
-document.querySelectorAll("h1")?.forEach((h1) => {
-  h1.innerHTML = toUppercase(h1.innerHTML + data.foo);
-
-  toLowercase(h1.innerHTML)
-    .then(lower => {
-      h1.innerHTML = lower;
-    });
-});
-
-const foo: Foo = { bar: "baz" };
-console.log(foo);
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
@@ -1518,17 +1228,6 @@ console.log(foo);
 ',
     data: {
       basename: "to_uppercase",
-      content: 'export default function toUppercase(text: string) {
-  return text.toUpperCase();
-}
-
-export async function toLowercase(text: string) {
-  const { toLowercase } = await import("../other/to_lowercase.ts");
-
-  return toLowercase(text);
-}
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
@@ -1550,76 +1249,10 @@ export async function toLowercase(text: string) {
     },
   },
   {
-    content: 'var n=Object.defineProperty;var t=(r,o)=>n(r,"name",{value:o,configurable:!0});function e(r){return r.toUpperCase()}t(e,"toUppercase");document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
-',
-    data: {
-      basename: "other",
-      content: '/// <reference lib="dom" />
-import toUppercase from "./modules/to_uppercase.ts";
-
-document.querySelectorAll(".other")?.forEach((el) => {
-  el.innerHTML = toUppercase(el.innerHTML);
-});
-',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/js/other.hash.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other",
-      remote: undefined,
-    },
-  },
-  {
-    content: 'console.log("Hello from script.ts!");
-',
-    data: {
-      basename: "script",
-      content: 'console.log("Hello from script.ts!");
-',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/js/script.hash.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other/script",
-      remote: undefined,
-    },
-  },
-  {
     content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
 ',
     data: {
-      basename: "util/toLower",
-      content: "export function toLowercase(text: string) {
-  return text.toLowerCase();
-}
-",
-      date: [],
+      basename: "to_lowercase",
       mergedKeys: [
         "tags",
       ],
@@ -1631,7 +1264,7 @@ document.querySelectorAll(".other")?.forEach((el) => {
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/js/toLower.hash.js",
+      url: "/js/to_lowercase.hash.js",
     },
     src: {
       asset: true,
@@ -1701,20 +1334,16 @@ snapshot[`esbuild plugin with entryNames complex 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".ts",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
       engines: 1,
@@ -1768,7 +1397,20 @@ snapshot[`esbuild plugin with entryNames complex 1`] = `
 }
 `;
 
-snapshot[`esbuild plugin with entryNames complex 2`] = `[]`;
+snapshot[`esbuild plugin with entryNames complex 2`] = `
+[
+  {
+    entry: "/other.ts",
+    flags: [],
+    outputPath: "/other.ts",
+  },
+  {
+    entry: "/other/script.ts",
+    flags: [],
+    outputPath: "/foo/bar/script.ts",
+  },
+]
+`;
 
 snapshot[`esbuild plugin with entryNames complex 3`] = `
 [
@@ -1822,27 +1464,6 @@ react-is/cjs/react-is.development.js:
 ",
     data: {
       basename: "main",
-      content: '/// <reference lib="dom" />
-import toUppercase, { toLowercase } from "./modules/to_uppercase.ts";
-import { Foo } from "./main.d.ts";
-import data from "./data.json" with { type: "json" };
-
-// https://github.com/lumeland/lume/issues/442
-import "https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";
-
-document.querySelectorAll("h1")?.forEach((h1) => {
-  h1.innerHTML = toUppercase(h1.innerHTML + data.foo);
-
-  toLowercase(h1.innerHTML)
-    .then(lower => {
-      h1.innerHTML = lower;
-    });
-});
-
-const foo: Foo = { bar: "baz" };
-console.log(foo);
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
@@ -1868,17 +1489,6 @@ console.log(foo);
 ',
     data: {
       basename: "to_uppercase",
-      content: 'export default function toUppercase(text: string) {
-  return text.toUpperCase();
-}
-
-export async function toLowercase(text: string) {
-  const { toLowercase } = await import("../other/to_lowercase.ts");
-
-  return toLowercase(text);
-}
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
@@ -1900,76 +1510,10 @@ export async function toLowercase(text: string) {
     },
   },
   {
-    content: 'var n=Object.defineProperty;var t=(r,o)=>n(r,"name",{value:o,configurable:!0});function e(r){return r.toUpperCase()}t(e,"toUppercase");document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
-',
-    data: {
-      basename: "other",
-      content: '/// <reference lib="dom" />
-import toUppercase from "./modules/to_uppercase.ts";
-
-document.querySelectorAll(".other")?.forEach((el) => {
-  el.innerHTML = toUppercase(el.innerHTML);
-});
-',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/one/two/other/hash.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other",
-      remote: undefined,
-    },
-  },
-  {
-    content: 'console.log("Hello from script.ts!");
-',
-    data: {
-      basename: "script",
-      content: 'console.log("Hello from script.ts!");
-',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/one/foo/bar/two/script/hash.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other/script",
-      remote: undefined,
-    },
-  },
-  {
     content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
 ',
     data: {
-      basename: "util/toLower",
-      content: "export function toLowercase(text: string) {
-  return text.toLowerCase();
-}
-",
-      date: [],
+      basename: "to_lowercase",
       mergedKeys: [
         "tags",
       ],
@@ -1981,7 +1525,7 @@ document.querySelectorAll(".other")?.forEach((el) => {
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/one/foo/bar/util/two/toLower/hash.js",
+      url: "/one/foo/bar/two/to_lowercase/hash.js",
     },
     src: {
       asset: true,
@@ -2051,20 +1595,16 @@ snapshot[`esbuild plugin without bundle 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".ts",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
       engines: 1,
@@ -2118,7 +1658,20 @@ snapshot[`esbuild plugin without bundle 1`] = `
 }
 `;
 
-snapshot[`esbuild plugin without bundle 2`] = `[]`;
+snapshot[`esbuild plugin without bundle 2`] = `
+[
+  {
+    entry: "/other.ts",
+    flags: [],
+    outputPath: "/other.ts",
+  },
+  {
+    entry: "/other/script.ts",
+    flags: [],
+    outputPath: "/foo/bar/script.ts",
+  },
+]
+`;
 
 snapshot[`esbuild plugin without bundle 3`] = `
 [
@@ -2127,27 +1680,6 @@ snapshot[`esbuild plugin without bundle 3`] = `
 ',
     data: {
       basename: "main",
-      content: '/// <reference lib="dom" />
-import toUppercase, { toLowercase } from "./modules/to_uppercase.ts";
-import { Foo } from "./main.d.ts";
-import data from "./data.json" with { type: "json" };
-
-// https://github.com/lumeland/lume/issues/442
-import "https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";
-
-document.querySelectorAll("h1")?.forEach((h1) => {
-  h1.innerHTML = toUppercase(h1.innerHTML + data.foo);
-
-  toLowercase(h1.innerHTML)
-    .then(lower => {
-      h1.innerHTML = lower;
-    });
-});
-
-const foo: Foo = { bar: "baz" };
-console.log(foo);
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
@@ -2201,21 +1733,10 @@ console.log(foo);
     },
   },
   {
-    content: 'var o=Object.defineProperty;var r=(t,e)=>o(t,"name",{value:e,configurable:!0});function n(t){return t.toUpperCase()}r(n,"toUppercase");async function s(t){const{toLowercase:e}=await import("./../foo/bar/util/toLower.hash.min.js");return e(t)}r(s,"toLowercase");export{n as default,s as toLowercase};
+    content: 'var o=Object.defineProperty;var r=(t,e)=>o(t,"name",{value:e,configurable:!0});function n(t){return t.toUpperCase()}r(n,"toUppercase");async function s(t){const{toLowercase:e}=await import("./../foo/bar/to_lowercase.hash.min.js");return e(t)}r(s,"toLowercase");export{n as default,s as toLowercase};
 ',
     data: {
       basename: "to_uppercase",
-      content: 'export default function toUppercase(text: string) {
-  return text.toUpperCase();
-}
-
-export async function toLowercase(text: string) {
-  const { toLowercase } = await import("../other/to_lowercase.ts");
-
-  return toLowercase(text);
-}
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
@@ -2237,76 +1758,10 @@ export async function toLowercase(text: string) {
     },
   },
   {
-    content: 'import e from "./modules/to_uppercase.hash.min.js";document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
-',
-    data: {
-      basename: "other",
-      content: '/// <reference lib="dom" />
-import toUppercase from "./modules/to_uppercase.ts";
-
-document.querySelectorAll(".other")?.forEach((el) => {
-  el.innerHTML = toUppercase(el.innerHTML);
-});
-',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/other.hash.min.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other",
-      remote: undefined,
-    },
-  },
-  {
-    content: 'console.log("Hello from script.ts!");
-',
-    data: {
-      basename: "script",
-      content: 'console.log("Hello from script.ts!");
-',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/foo/bar/script.hash.min.js",
-    },
-    src: {
-      asset: true,
-      ext: ".ts",
-      path: "/other/script",
-      remote: undefined,
-    },
-  },
-  {
     content: 'var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
 ',
     data: {
-      basename: "util/toLower",
-      content: "export function toLowercase(text: string) {
-  return text.toLowerCase();
-}
-",
-      date: [],
+      basename: "to_lowercase",
       mergedKeys: [
         "tags",
       ],
@@ -2318,7 +1773,7 @@ document.querySelectorAll(".other")?.forEach((el) => {
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/foo/bar/util/toLower.hash.min.js",
+      url: "/foo/bar/to_lowercase.hash.min.js",
     },
     src: {
       asset: true,

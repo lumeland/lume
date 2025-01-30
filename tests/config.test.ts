@@ -190,20 +190,16 @@ Deno.test("assets configuration", () => {
 
   equals(formats.size, 16);
 
-  const loader = () => Promise.resolve({});
-
   const extensions = [
     ".css",
     ".js",
   ];
 
-  site.loadAssets(extensions, loader);
+  site.add(extensions);
 
   equals(formats.size, 17);
   for (const ext of extensions) {
     equals(formats.has(ext), true);
-    assert(formats.get(ext)?.pageType === "asset");
-    assert(formats.get(ext)?.assetLoader);
   }
 });
 

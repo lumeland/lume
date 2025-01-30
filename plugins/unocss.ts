@@ -88,12 +88,13 @@ export function unoCSS(userOptions?: Options) {
     const { transformers, cssFile = site.options.cssFile, reset } = options;
 
     if (transformers.length > 0) {
-      site.loadAssets([".css"]);
+      site.add([".css"]);
       site.process([".css"], async (files) => {
         const uno = await getGenerator();
         for (const file of files) {
-          if (file.content) {
-            const code = new MagicString(file.content.toString());
+          const content = file.text;
+          if (content) {
+            const code = new MagicString(content);
             for await (const { transform } of transformers) {
               await transform(
                 code,
@@ -138,7 +139,7 @@ export function unoCSS(userOptions?: Options) {
       await Promise.all(
         pages.map(async (page) =>
           await uno.generate(
-            page.document?.documentElement?.innerHTML ?? "",
+            page.document.documentElement?.innerHTML ?? "",
           )
             .then((res) => res.matched)
             .then((matched) => matched.forEach((match) => classes.add(match)))

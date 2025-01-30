@@ -9,7 +9,6 @@ import { compileStringAsync } from "../deps/sass.ts";
 import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
-import textLoader from "../core/loaders/text.ts";
 
 import type Site from "../core/site.ts";
 import type { StringOptions } from "../deps/sass.ts";
@@ -59,7 +58,7 @@ export function sass(userOptions?: Options) {
     }
 
     // Load & process the assets
-    site.loadAssets(options.extensions);
+    site.add(options.extensions);
     site.process(options.extensions, (pages) => concurrent(pages, sass));
 
     const { entries } = site.fs;
@@ -110,7 +109,7 @@ export function sass(userOptions?: Options) {
           },
           async load(url: URL) {
             const pathname = fromFileUrl(url);
-            const contents = await site.getContent(pathname, textLoader);
+            const contents = await site.getContent(pathname, false);
 
             if (typeof contents === "string") {
               return {

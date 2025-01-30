@@ -102,14 +102,10 @@ snapshot[`Load the pages of a site 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: binary],
       ext: ".png",
-      pageType: "asset",
     },
     {
-      assetLoader: [AsyncFunction: text],
       ext: ".css",
-      pageType: "asset",
     },
   ],
   src: [
@@ -143,7 +139,20 @@ snapshot[`Load the pages of a site 1`] = `
 }
 `;
 
-snapshot[`Load the pages of a site 2`] = `[]`;
+snapshot[`Load the pages of a site 2`] = `
+[
+  {
+    entry: "/favicon.png",
+    flags: [],
+    outputPath: "/favicon.png",
+  },
+  {
+    entry: "/styles.css",
+    flags: [],
+    outputPath: "/styles.css",
+  },
+]
+`;
 
 snapshot[`Load the pages of a site 3`] = `
 [
@@ -182,40 +191,6 @@ snapshot[`Load the pages of a site 3`] = `
       asset: false,
       ext: ".md",
       path: "/404",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(1503)",
-    data: {
-      basename: "favicon",
-      content: "Uint8Array(1503)",
-      date: [],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Default site name",
-      tags: "Array(1)",
-      url: "/favicon.png",
-    },
-    src: {
-      asset: true,
-      ext: ".png",
-      path: "/favicon",
       remote: undefined,
     },
   },
@@ -552,48 +527,6 @@ snapshot[`Load the pages of a site 3`] = `
       asset: false,
       ext: ".yml",
       path: "/static",
-      remote: undefined,
-    },
-  },
-  {
-    content: "body {
-  font-family: sans-serif;
-  color: black;
-}
-",
-    data: {
-      basename: "styles",
-      content: "body {
-  font-family: sans-serif;
-  color: black;
-}
-",
-      date: [],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Default site name",
-      tags: "Array(1)",
-      url: "/styles.css",
-    },
-    src: {
-      asset: true,
-      ext: ".css",
-      path: "/styles",
       remote: undefined,
     },
   },

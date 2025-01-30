@@ -5,7 +5,6 @@ import { resolveInclude } from "../core/utils/path.ts";
 import { readFile } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
-import textLoader from "../core/loaders/text.ts";
 
 import type Site from "../core/site.ts";
 import type { SourceMap } from "./source_maps.ts";
@@ -74,7 +73,7 @@ export function postCSS(userOptions?: Options) {
     };
     site.hooks.postcss = (callback) => callback(runner);
 
-    site.loadAssets(options.extensions);
+    site.add(options.extensions);
     site.process(options.extensions, (pages) => concurrent(pages, postCss));
     site.filter(options.name, filter, true);
 
@@ -132,10 +131,11 @@ function configureImport(site: Site, includes: string) {
         return await readFile(url);
       }
 
-      const content = await site.getContent(file, textLoader);
+      const content = await site.getContent(file, false);
       if (content === undefined) {
         throw new Error(`File ${file} not found`);
       }
+
       return content;
     },
   });

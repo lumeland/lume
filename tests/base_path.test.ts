@@ -8,7 +8,7 @@ Deno.test("base_path plugin", async (t) => {
   });
 
   site.use(basePath());
-  site.loadAssets([".css"]);
+  site.add([".css"]);
 
   await build(site);
   await assertSiteSnapshot(t, site);

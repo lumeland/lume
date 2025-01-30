@@ -2,7 +2,6 @@ import { bundleAsync, transform } from "../deps/lightningcss.ts";
 import { resolveInclude } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { readFile } from "../core/utils/read.ts";
-import textLoader from "../core/loaders/text.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { posix } from "../deps/path.ts";
@@ -61,7 +60,7 @@ export function lightningCSS(userOptions?: Options) {
       userOptions,
     );
 
-    site.loadAssets(options.extensions);
+    site.add(options.extensions);
 
     if (options.includes) {
       site.process(options.extensions, lightningCSSBundler);
@@ -136,7 +135,7 @@ export function lightningCSS(userOptions?: Options) {
                 return readFile(file);
               }
 
-              return await site.getContent(file, textLoader) as string;
+              return await site.getContent(file, false) as string;
             },
           },
         };

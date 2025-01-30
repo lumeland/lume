@@ -56,8 +56,8 @@ export function modifyUrls(userOptions: Options) {
       (pages) =>
         concurrent(pages, async (page: Page) => {
           if (page.outputPath.endsWith(".css")) {
-            page.content = await walkUrls(
-              page.content as string,
+            page.text = await walkUrls(
+              page.text,
               async (url, type) => {
                 if (type === "url") {
                   return await replace(url, page);

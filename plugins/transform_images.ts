@@ -2,7 +2,6 @@ import { getPathAndExtension } from "../core/utils/path.ts";
 import { log } from "../core/utils/log.ts";
 import { merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
-import binaryLoader from "../core/loaders/binary.ts";
 import sharp, { create } from "../deps/sharp.ts";
 import Cache from "../core/cache.ts";
 
@@ -82,7 +81,7 @@ export function transformImages(userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.loadAssets(options.extensions, binaryLoader);
+    site.add(options.extensions);
     site.process(options.extensions, process);
 
     // Configure the cache folder
@@ -112,7 +111,7 @@ export function transformImages(userOptions?: Partial<Options>) {
         return;
       }
 
-      const content = page.content as Uint8Array | string;
+      const content = page.src.ext === ".svg" ? page.text : page.bytes;
       const transformations = removeDuplicatedTransformations(
         getTransformations(transData),
       );

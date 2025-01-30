@@ -474,6 +474,7 @@ export default class Site {
       const dest = typeof to === "function" ? to : (path: string) => path;
       for (const ext of from) {
         this.source.addFile(ext, dest);
+        this.formats.set({ ext });
       }
       return this;
     }
@@ -881,9 +882,15 @@ export default class Site {
    * Get the content of a file.
    * Resolve the path if it's needed.
    */
+  async getContent(file: string, binary: true): Promise<Uint8Array | undefined>;
+  async getContent(file: string, binary: false): Promise<string | undefined>;
   async getContent(
     file: string,
-    loader: Loader,
+    binary: boolean,
+  ): Promise<string | Uint8Array | undefined>;
+  async getContent(
+    file: string,
+    binary: boolean,
   ): Promise<string | Uint8Array | undefined> {
     file = normalizePath(file);
     const basePath = this.src();
@@ -899,23 +906,26 @@ export default class Site {
     const page = this.pages.find((page) => page.data.url === url);
 
     if (page) {
-      return page.content;
+      return binary ? page.bytes : page.text;
     }
 
     // It's a static file
     const staticFile = this.files.find((f) => f.outputPath === file);
 
     if (staticFile) {
-      return (await staticFile.src.entry.getContent(loader)).content as
-        | string
-        | Uint8Array;
+      return binary
+        ? (await staticFile.src.entry.getContent(binaryLoader))
+          .content as Uint8Array
+        : (await staticFile.src.entry.getContent(textLoader)).content as string;
     }
 
     // Read the source files directly
     try {
       const entry = this.fs.entries.get(file);
       if (entry) {
-        return (await entry.getContent(loader)).content as string | Uint8Array;
+        return binary
+          ? (await entry.getContent(binaryLoader)).content as Uint8Array
+          : (await entry.getContent(textLoader)).content as string;
       }
     } catch {
       // Ignore error

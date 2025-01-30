@@ -26,7 +26,7 @@ export function tailwindCSS(userOptions?: Options) {
   return (site: Site) => {
     const options = merge(defaults, userOptions);
 
-    site.loadAssets(options.extensions);
+    site.add(options.extensions);
     const cache = site.root("_cache/tailwindcss");
     let binary: string;
 

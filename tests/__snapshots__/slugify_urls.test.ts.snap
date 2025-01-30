@@ -104,6 +104,9 @@ snapshot[`slugify_urls plugin 1`] = `
     {
       ext: ".html",
     },
+    {
+      ext: ".css",
+    },
   ],
   src: [
     "/",
@@ -412,6 +415,9 @@ snapshot[`slugify_urls plugin (static files) 1`] = `
       ext: ".yml",
       loader: [AsyncFunction: yaml],
       pageType: "page",
+    },
+    {
+      ext: ".css",
     },
   ],
   src: [

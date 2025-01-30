@@ -156,7 +156,7 @@ class LumeLoader extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
       path = resolveInclude(id, this.includes, undefined, rootToRemove);
     }
 
-    this.site.getContent(path, loader).then((content) => {
+    this.site.getContent(path, false).then((content) => {
       if (content) {
         callback(null, {
           src: content as string,

@@ -102,24 +102,16 @@ snapshot[`Image transform plugin 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: binary],
       ext: ".jpg",
-      pageType: "asset",
     },
     {
-      assetLoader: [AsyncFunction: binary],
       ext: ".jpeg",
-      pageType: "asset",
     },
     {
-      assetLoader: [AsyncFunction: binary],
       ext: ".png",
-      pageType: "asset",
     },
     {
-      assetLoader: [AsyncFunction: binary],
       ext: ".webp",
-      pageType: "asset",
     },
   ],
   src: [
@@ -138,8 +130,6 @@ snapshot[`Image transform plugin 3`] = `
     content: "Uint8Array(29014)",
     data: {
       basename: "lume",
-      content: "Uint8Array(29014)",
-      date: [],
       imageTransform: "Array(5)",
       mergedKeys: [
         "tags",
@@ -152,7 +142,7 @@ snapshot[`Image transform plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/lume.png",
+      url: "/lume.PNG",
     },
     src: {
       asset: true,

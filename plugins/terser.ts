@@ -35,7 +35,7 @@ export function terser(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.loadAssets(options.extensions);
+    site.add(options.extensions);
     site.process(options.extensions, (pages) => pages.forEach(terser));
     site.filter("terser", filter, true);
 

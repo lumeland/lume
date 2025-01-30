@@ -1,6 +1,5 @@
 import { assert, assertEquals, assertStrictEquals } from "../deps/assert.ts";
 
-import binaryLoader from "../core/loaders/binary.ts";
 import textLoader from "../core/loaders/text.ts";
 import { assertSiteSnapshot, build, getPage, getSite } from "./utils.ts";
 
@@ -10,9 +9,8 @@ Deno.test("Load the pages of a site", async (t) => {
     src: "normal",
   });
 
-  site.loadAssets([".png"], binaryLoader);
+  site.add([".png", ".css"]);
   site.add("static.yml");
-  site.loadAssets([".css"]);
   site.data("tags", "pages");
   site.data("tags", "sub-pages", "/pages");
   site.data("title", "Page 7", "/pages/subpage/page7.page.js");

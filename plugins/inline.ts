@@ -4,8 +4,6 @@ import { encodeBase64 } from "../deps/base64.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
-import binaryLoader from "../core/loaders/binary.ts";
-import textLoader from "../core/loaders/text.ts";
 import { contentType } from "../deps/media_types.ts";
 
 import type Site from "../core/site.ts";
@@ -238,8 +236,7 @@ async function getFileContent(
   url: string,
   binary: boolean,
 ): Promise<string | Uint8Array> {
-  const loader = binary ? binaryLoader : textLoader;
-  const content = await site.getContent(url, loader);
+  const content = await site.getContent(url, binary);
 
   if (!content) {
     throw new Error(`Unable to find the file "${url}"`);

@@ -58,12 +58,10 @@ snapshot[`terser plugin 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -120,11 +118,6 @@ snapshot[`terser plugin 3`] = `
     content: 'import{one as o,two as m}from"./numbers.js";console.log(o()+m());',
     data: {
       basename: "main",
-      content: 'import { one, two } from "./numbers.js";
-
-console.log(one() + two());
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],

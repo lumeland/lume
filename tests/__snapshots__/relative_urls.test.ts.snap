@@ -105,9 +105,7 @@ snapshot[`relative_url plugin 1`] = `
       ext: ".html",
     },
     {
-      assetLoader: [AsyncFunction: text],
       ext: ".css",
-      pageType: "asset",
     },
   ],
   src: [
@@ -356,30 +354,6 @@ div {
 ',
     data: {
       basename: "styles",
-      content: \`@import "/style.css";
-@import "other-styles.css";
-@import "./other-styles.css";
-@import '/style.css';
-@import 'other-styles.css';
-@import './other-styles.css';
-@import url('/style.css');
-@import url('other-styles.css');
-@import url('./other-styles.css');
-@import url(/style.css);
-@import url(other-styles.css);
-@import url(./other-styles.css);
-
-@font-face {
-  font-family: "foo";
-  src: url("/fonts/cicle_fina-webfont.woff2");
-}
-
-div {
-  background-image: url("/img/avatar.png");
-
-}
-\`,
-      date: [],
       mergedKeys: [
         "tags",
       ],

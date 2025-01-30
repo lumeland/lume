@@ -102,10 +102,13 @@ snapshot[`gzip plugin 1`] = `
       pageType: "page",
     },
     {
-      ext: ".html",
+      ext: ".png",
     },
     {
       ext: ".css",
+    },
+    {
+      ext: ".html",
     },
     {
       ext: ".mjs",
@@ -778,9 +781,7 @@ snapshot[`gzip plugin with options 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       ext: ".css",
-      pageType: "asset",
     },
     {
       ext: ".html",
@@ -1808,34 +1809,6 @@ snapshot[`gzip plugin with options 3`] = `
 }',
     data: {
       basename: "styles",
-      content: '/* unocss-placeholder */
-
-/* https://unocss.dev/transformers/directives#usage */
-.custom-div {
-  @apply text-center my-0 font-medium;
-  --at-apply: "hover:text-red";
-}
-
-.grid {
-  --uno: grid grid-cols-2;
-}
-
-@screen sm {
-  .grid {
-    --uno: grid-cols-3;
-  }
-}
-
-.btn-blue {
-  background-color: theme("colors.blue.500");
-}
-
-/* https://unocss.dev/transformers/variant-group#usage */
-.variant-group {
-  @apply hover:(bg-gray-400 font-medium) font-(light mono);
-}
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],

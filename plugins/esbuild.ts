@@ -26,7 +26,6 @@ import {
 
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/file.ts";
-import textLoader from "../core/loaders/text.ts";
 
 import type Site from "../core/site.ts";
 import type { DenoConfig, ImportMap } from "../core/utils/deno_config.ts";
@@ -114,7 +113,7 @@ export function esbuild(userOptions?: Options) {
       }
     }
 
-    site.loadAssets(options.extensions);
+    site.add(options.extensions);
 
     site.hooks.addEsbuildPlugin = (plugin) => {
       options.options.plugins!.unshift(plugin);
@@ -220,7 +219,7 @@ export function esbuild(userOptions?: Options) {
                 return undefined;
               }
 
-              const content = await site.getContent(path, textLoader);
+              const content = await site.getContent(path, false);
 
               return content
                 ? {

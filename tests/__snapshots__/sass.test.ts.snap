@@ -102,14 +102,10 @@ snapshot[`sass plugin 1`] = `
       pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       ext: ".scss",
-      pageType: "asset",
     },
     {
-      assetLoader: [AsyncFunction: text],
       ext: ".sass",
-      pageType: "asset",
     },
   ],
   src: [
@@ -137,16 +133,6 @@ snapshot[`sass plugin 3`] = `
     content: '@import"./styles.css";html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}body{font:100% Helvetica,sans-serif;color:#333}li{margin:0;padding:0;list-style:none}',
     data: {
       basename: "index",
-      content: '@use "sass/bootstrap";
-@use "sass/button";
-@use "./_includes/sass/colors";
-@import "./styles.css";
-
-li {
-  @include bootstrap.list-reset;
-}
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
@@ -171,12 +157,6 @@ li {
     content: "body{color:blue}",
     data: {
       basename: "index2",
-      content: '@use "sass/colors" as *
-
-body
-  color: \$primary-color
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
