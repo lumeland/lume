@@ -391,23 +391,55 @@ snapshot[`Source maps from Js files 1`] = `
 }
 `;
 
-snapshot[`Source maps from Js files 2`] = `
-[
-  {
-    entry: "/other/script.ts",
-    flags: [],
-    outputPath: "/foo/bar/script.ts",
-  },
-  {
-    entry: "/other.ts",
-    flags: [],
-    outputPath: "/other.ts",
-  },
-]
-`;
+snapshot[`Source maps from Js files 2`] = `[]`;
 
 snapshot[`Source maps from Js files 3`] = `
 [
+  {
+    content: 'console.log("Hello from script.ts!");
+//# sourceMappingURL=./script.js.map',
+    data: {
+      basename: "script",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      sourceMap: "undefined",
+      tags: "Array(0)",
+      url: "/foo/bar/script.js",
+    },
+    src: {
+      asset: true,
+      ext: ".ts",
+      path: "/other/script",
+      remote: undefined,
+    },
+  },
+  {
+    content: '{"version":3,"file":"script.js.map","names":["console","log"],"sources":["script.ts"],"sourcesContent":["console.log(\\\\"Hello from script.ts!\\\\");\\\\n"],"mappings":"AAAAA,QAAQC,IAAI","ignoreList":[],"sourceRoot":"assets"}',
+    data: {
+      basename: "script",
+      content: '{"version":3,"file":"script.js.map","names":["console","log"],"sources":["script.ts"],"sourcesContent":["console.log(\\\\"Hello from script.ts!\\\\");\\\\n"],"mappings":"AAAAA,QAAQC,IAAI","ignoreList":[],"sourceRoot":"assets"}',
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/foo/bar/script.js.map",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
   {
     content: 'function e(e){return e.toLowerCase()}(0,Object.defineProperty)(e,"name",{value:"toLowercase",configurable:!0});export{e as toLowercase};
 //# sourceMappingURL=./to_lowercase.js.map',
@@ -580,6 +612,51 @@ react-is/cjs/react-is.development.js:
         "asset",
       ],
       url: "/modules/to_uppercase.js.map",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: 'function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll(".other")?.forEach((r=>{r.innerHTML=e(r.innerHTML)}));
+//# sourceMappingURL=./other.js.map',
+    data: {
+      basename: "other",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      sourceMap: "undefined",
+      tags: "Array(0)",
+      url: "/other.js",
+    },
+    src: {
+      asset: true,
+      ext: ".ts",
+      path: "/other",
+      remote: undefined,
+    },
+  },
+  {
+    content: '{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\\\n  return text.toUpperCase();\\\\n}\\\\n\\\\nexport async function toLowercase(text: string) {\\\\n  const { toLowercase } = await import(\\\\"../other/to_lowercase.ts\\\\");\\\\n\\\\n  return toLowercase(text);\\\\n}\\\\n","/// <reference lib=\\\\"dom\\\\" />\\\\nimport toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\\\n\\\\ndocument.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\\\n  el.innerHTML = toUppercase(el.innerHTML);\\\\n});\\\\n"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","ignoreList":[],"sourceRoot":"assets"}',
+    data: {
+      basename: "other",
+      content: '{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\\\n  return text.toUpperCase();\\\\n}\\\\n\\\\nexport async function toLowercase(text: string) {\\\\n  const { toLowercase } = await import(\\\\"../other/to_lowercase.ts\\\\");\\\\n\\\\n  return toLowercase(text);\\\\n}\\\\n","/// <reference lib=\\\\"dom\\\\" />\\\\nimport toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\\\n\\\\ndocument.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\\\n  el.innerHTML = toUppercase(el.innerHTML);\\\\n});\\\\n"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","ignoreList":[],"sourceRoot":"assets"}',
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/other.js.map",
     },
     src: {
       asset: true,

@@ -62,13 +62,15 @@ export default class Processors {
 
       this.loadedExtensions.add(extension);
 
+      const toRemove: StaticFile[] = [];
       for (const file of files) {
         if (file.src.ext === extension) {
-          const page = await file.toPage();
-          const index = files.indexOf(file);
-          files.splice(index, 1);
-          pages.push(page);
+          pages.push(await file.toPage());
+          toRemove.push(file);
         }
+      }
+      for (const file of toRemove) {
+        files.splice(files.indexOf(file), 1);
       }
     }
   }

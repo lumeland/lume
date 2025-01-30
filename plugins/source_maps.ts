@@ -133,7 +133,7 @@ export function saveAsset(
 
   // There's no source map
   if (!sourceMap) {
-    page.content = content;
+    page.text = content;
     return;
   }
 
@@ -177,13 +177,13 @@ export function saveAsset(
     sourceMap[dynamicSourcesSymbol] = sources;
 
     if (!sources[file]) {
-      sources[file] = page.content as string;
+      sources[file] = page.text;
     }
   }
 
   // Store the new content and source map
   page.data.sourceMap = sourceMap;
-  page.content = content;
+  page.text = content;
 }
 
 function addSourceMap(url: string, sourceMap: string): string {

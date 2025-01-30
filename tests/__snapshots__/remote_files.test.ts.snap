@@ -162,20 +162,6 @@ snapshot[`render remote files 2`] = `
     ],
     outputPath: "/asset.txt",
   },
-  {
-    entry: "/other-remote-style.css",
-    flags: [
-      "remote",
-    ],
-    outputPath: "/other-remote-style.css",
-  },
-  {
-    entry: "/styles/styles2.css",
-    flags: [
-      "remote",
-    ],
-    outputPath: "/styles/styles2.css",
-  },
 ]
 `;
 
@@ -287,6 +273,35 @@ template{display:none}
     },
   },
   {
+    content: "/* Other remote style */
+body {
+  color: yellow;
+}
+",
+    data: {
+      basename: "other-remote-style",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Remote title",
+      url: "/other-remote-style.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/other-remote-style",
+      remote: "assets/remote_files/_remotes/other-remote-style.css",
+    },
+  },
+  {
     content: 'var r=Object.defineProperty;var e=(t,m)=>r(t,"name",{value:m,configurable:!0});var l="Name";function o(){console.log("hello",l)}e(o,"default");o();
 ',
     data: {
@@ -310,6 +325,33 @@ template{display:none}
       ext: ".js",
       path: "/scripts",
       remote: undefined,
+    },
+  },
+  {
+    content: "body {
+  color: blue;
+}",
+    data: {
+      basename: "styles2",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Remote title",
+      url: "/styles/styles2.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/styles/styles2",
+      remote: "assets/remote_files/_remotes/styles2.css",
     },
   },
   {

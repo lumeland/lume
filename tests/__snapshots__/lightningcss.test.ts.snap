@@ -115,15 +115,7 @@ snapshot[`lightningcss plugin (only transform) 1`] = `
 }
 `;
 
-snapshot[`lightningcss plugin (only transform) 2`] = `
-[
-  {
-    entry: "/text.css",
-    flags: [],
-    outputPath: "/text.css",
-  },
-]
-`;
+snapshot[`lightningcss plugin (only transform) 2`] = `[]`;
 
 snapshot[`lightningcss plugin (only transform) 3`] = `
 [
@@ -148,6 +140,30 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
       asset: true,
       ext: ".css",
       path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: '@import "npm:modern-normalize@2.0.0";.text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);backface-visibility:hidden}',
+    data: {
+      basename: "text",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/text.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/text",
       remote: undefined,
     },
   },
@@ -269,15 +285,7 @@ snapshot[`lightningcss plugin (bundle mode) 1`] = `
 }
 `;
 
-snapshot[`lightningcss plugin (bundle mode) 2`] = `
-[
-  {
-    entry: "/text.css",
-    flags: [],
-    outputPath: "/text.css",
-  },
-]
-`;
+snapshot[`lightningcss plugin (bundle mode) 2`] = `[]`;
 
 snapshot[`lightningcss plugin (bundle mode) 3`] = `
 [
@@ -303,6 +311,31 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
       asset: true,
       ext: ".css",
       path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: "/*! modern-normalize v2.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
+*,:before,:after{box-sizing:border-box}html{-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;line-height:1.15}body{margin:0}hr{height:0;color:inherit}abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:ui-monospace,SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;font-size:1em}small{font-size:80%}sub,sup{vertical-align:baseline;font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:100%;line-height:1.15}button,select{text-transform:none}button{-webkit-appearance:button}[type=button]{-webkit-appearance:button}[type=reset]{-webkit-appearance:button}[type=submit]{-webkit-appearance:button}::-moz-focus-inner{border-style:none;padding:0}:-moz-focusring{outline:1px dotted buttontext}:-moz-ui-invalid{box-shadow:none}legend{padding:0}progress{vertical-align:baseline}::-webkit-inner-spin-button{height:auto}::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}.text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);backface-visibility:hidden}",
+    data: {
+      basename: "text",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/text.css",
+    },
+    src: {
+      asset: true,
+      ext: ".css",
+      path: "/text",
       remote: undefined,
     },
   },
