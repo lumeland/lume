@@ -56,6 +56,15 @@ export interface FeedInfoOptions {
 
   /** The feed author URL */
   authorUrl?: string;
+
+  /** The main image of the site */
+  image?: string;
+
+  /** The logotype or icon of the site */
+  icon?: string;
+
+  /** The color theme of the site */
+  color?: string;
 }
 
 export interface FeedItemOptions {
@@ -131,6 +140,9 @@ export interface FeedData {
   generator?: string;
   items: FeedItem[];
   author?: Author;
+  image?: string;
+  icon?: string;
+  color?: string;
 }
 
 export interface FeedItem {
@@ -179,6 +191,9 @@ export function feed(userOptions?: Options) {
           ? defaultGenerator
           : info.generator || undefined,
         author: getAuthor(rootData, info),
+        image: info.image,
+        icon: info.icon,
+        color: info.color,
         items: pages.map((data): FeedItem => {
           const content = getDataValue(data, items.content)?.toString();
           const pageUrl = site.url(data.url, true);
@@ -260,6 +275,7 @@ function generateRss(data: FeedData, file: string): string {
       "@xmlns:atom": "http://www.w3.org/2005/Atom",
       "@xmlns:sy": "http://purl.org/rss/1.0/modules/syndication/",
       "@xmlns:slash": "http://purl.org/rss/1.0/modules/slash/",
+      "@xmlns:webfeeds": "http://webfeeds.org/rss/1.0",
       "@version": "2.0",
       channel: {
         title: data.title,
@@ -277,6 +293,11 @@ function generateRss(data: FeedData, file: string): string {
           name: data.author?.name,
           uri: data.author?.url,
         },
+        "webfeeds:cover": {
+          "@image": data.image,
+        },
+        "webfeeds:logo": data.icon,
+        "webfeeds:accentColor": data.color,
         item: data.items.map((item) => ({
           title: item.title,
           link: item.url,
@@ -311,6 +332,8 @@ function generateJson(data: FeedData, file: string): string {
     feed_url: file,
     description: data.description,
     author: data.author,
+    icon: data.image,
+    favicon: data.icon,
     items: data.items.map((item) => ({
       id: item.url,
       url: item.url,

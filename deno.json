@@ -34,7 +34,7 @@
     },
     "update-deps": {
       "description": "Update all dependencies to the latest version. Add `--dry-run` to don't write the changes",
-      "command": "deno task update 'deps/*.ts' deno.json && git checkout deps/react.ts"
+      "command": "deno task update 'deps/*.ts' deno.json && git checkout deps/react.ts deps/tailwindcss.ts"
     }
   },
   "imports": {

@@ -129,6 +129,7 @@ function generateCss(fontFaces: FontFace[], fontsFolder: string): string {
   font-stretch: ${fontFace.stretch ?? "normal"};
   src: url("${posix.join(fontsFolder, fontFace.file)}") format("woff2");
   unicode-range: ${fontFace.range};
+  font-display: swap;
 }
 `;
   }).join("\n");

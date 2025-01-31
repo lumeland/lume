@@ -5,20 +5,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [2.5.1] - Unreleased
+## [2.5.1] - 2025-01-28
 ### Added
 - Support for LumeCMS v0.9, that can perform git operations and restart the build.
 - New `--hostname` argument to `lume --serve` and `lume cms` to change the default
   `localhost` value to something else.
 - New `--open, -o` argument to `lume cms` to open automatically in the browser.
+- Feed plugin
+  - New option `info.image`
+  - New option `info.icon`
+  - New option `info.color`
 
 ### Changed
 - `inline`: Append classes to existing ones. [#722]
 
 ### Fixed
 - `google_fonts`: Fixed subset names for `[1]`, `[2]`, etc [#692].
+- `google_fonts`: Added `font-display: swap` to improve performance.
 - Normalize watcher ignored paths [#716]
-- Updated dependencies: `katex`, `preact-render-to-string`, `unocss`, `vento`, `decap-cms`, `postcss`, `sass` and some icons.
+- Updated dependencies: `katex`, `std`, `liquidjs`, `preact-render-to-string`, `unocss`, `vento`, `decap-cms`, `postcss`, `sass` and some icons.
 
 ## [2.5.0] - 2025-01-11
 ### Added
@@ -688,8 +693,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#711]: https://github.com/lumeland/lume/issues/711
 [#715]: https://github.com/lumeland/lume/issues/715
 [#716]: https://github.com/lumeland/lume/issues/716
+[#722]: https://github.com/lumeland/lume/issues/722
 
-[2.5.1]: https://github.com/lumeland/lume/compare/v2.5.0...HEAD
+[2.5.1]: https://github.com/lumeland/lume/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/lumeland/lume/compare/v2.4.3...v2.5.0
 [2.4.3]: https://github.com/lumeland/lume/compare/v2.4.2...v2.4.3
 [2.4.2]: https://github.com/lumeland/lume/compare/v2.4.1...v2.4.2

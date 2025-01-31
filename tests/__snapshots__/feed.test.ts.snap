@@ -181,10 +181,10 @@ snapshot[`RSS plugin 3`] = `
     },
   },
   {
-    content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","author":{"name":"Laura Rubio"},"items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","author":{"name":"Óscar","url":"https://oscarotero.com"},"content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
+    content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","author":{"name":"Laura Rubio"},"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","author":{"name":"Óscar","url":"https://oscarotero.com"},"content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
     data: {
       basename: "feed",
-      content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","author":{"name":"Laura Rubio"},"items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","author":{"name":"Óscar","url":"https://oscarotero.com"},"content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
+      content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","author":{"name":"Laura Rubio"},"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","author":{"name":"Óscar","url":"https://oscarotero.com"},"content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
       page: [
         "src",
         "data",
@@ -201,7 +201,7 @@ snapshot[`RSS plugin 3`] = `
   },
   {
     content: '<?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:webfeeds="http://webfeeds.org/rss/1.0" version="2.0">
   <channel>
     <title>My RSS Feed</title>
     <link>https://example.com/</link>
@@ -212,6 +212,9 @@ snapshot[`RSS plugin 3`] = `
     <author>
       <name>Laura Rubio</name>
     </author>
+    <webfeeds:cover image="https://example.com/image.png"/>
+    <webfeeds:logo>https://example.com/icon.svg</webfeeds:logo>
+    <webfeeds:accentColor>#ff0000</webfeeds:accentColor>
     <item>
       <title>PAGE 5</title>
       <link>https://example.com/page5/</link>
@@ -229,7 +232,7 @@ snapshot[`RSS plugin 3`] = `
     data: {
       basename: "feed",
       content: '<?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:webfeeds="http://webfeeds.org/rss/1.0" version="2.0">
   <channel>
     <title>My RSS Feed</title>
     <link>https://example.com/</link>
@@ -240,6 +243,9 @@ snapshot[`RSS plugin 3`] = `
     <author>
       <name>Laura Rubio</name>
     </author>
+    <webfeeds:cover image="https://example.com/image.png"/>
+    <webfeeds:logo>https://example.com/icon.svg</webfeeds:logo>
+    <webfeeds:accentColor>#ff0000</webfeeds:accentColor>
     <item>
       <title>PAGE 5</title>
       <link>https://example.com/page5/</link>
