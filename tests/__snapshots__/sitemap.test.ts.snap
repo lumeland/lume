@@ -219,6 +219,7 @@ snapshot[`Sitemap plugin 3`] = `
     content: "Content of Page 3",
     data: {
       basename: "page3",
+      children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",
       date: [],
@@ -247,7 +248,7 @@ snapshot[`Sitemap plugin 3`] = `
       site: "Folder overrided site name",
       tags: "Array(1)",
       title: "Page 3",
-      url: "/page_3",
+      url: "/page_3/",
     },
     src: {
       ext: ".page.js",
@@ -445,6 +446,10 @@ Sitemap: https://example.com/sitemap.xml",
     <lastmod>1979-06-21T23:45:00.000Z</lastmod>
   </url>
   <url>
+    <loc>https://example.com/page_3/</loc>
+    <lastmod>2020-01-01T00:00:00.000Z</lastmod>
+  </url>
+  <url>
     <loc>https://example.com/pages/new-name/page7/</loc>
     <lastmod>2022-01-02T00:00:00.000Z</lastmod>
   </url>
@@ -468,6 +473,10 @@ Sitemap: https://example.com/sitemap.xml",
   <url>
     <loc>https://example.com/page5/</loc>
     <lastmod>1979-06-21T23:45:00.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/page_3/</loc>
+    <lastmod>2020-01-01T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/pages/new-name/page7/</loc>
@@ -1674,6 +1683,7 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
     content: "Content of Page 3",
     data: {
       basename: "page3",
+      children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",
       date: [],
@@ -1702,7 +1712,7 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       site: "Folder overrided site name",
       tags: "Array(1)",
       title: "Page 3",
-      url: "/page_3",
+      url: "/page_3/",
     },
     src: {
       ext: ".page.js",
@@ -1860,6 +1870,10 @@ Sitemap: https://example.com/sitemap.xml",
     <lastmod>1979-06-21T23:45:00.000Z</lastmod>
   </url>
   <url>
+    <loc>https://example.com/page_3/</loc>
+    <lastmod>2020-01-01T00:00:00.000Z</lastmod>
+  </url>
+  <url>
     <loc>https://example.com/pages/page4/</loc>
     <lastmod>2021-01-02T18:32:00.000Z</lastmod>
   </url>
@@ -1879,6 +1893,10 @@ Sitemap: https://example.com/sitemap.xml",
   <url>
     <loc>https://example.com/page5/</loc>
     <lastmod>1979-06-21T23:45:00.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/page_3/</loc>
+    <lastmod>2020-01-01T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/pages/page4/</loc>

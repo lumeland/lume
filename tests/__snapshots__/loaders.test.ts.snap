@@ -238,6 +238,7 @@ snapshot[`Load the pages of a site 3`] = `
     content: "Content of Page 3",
     data: {
       basename: "page3",
+      children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",
       date: [],
@@ -266,7 +267,7 @@ snapshot[`Load the pages of a site 3`] = `
       site: "Folder overrided site name",
       tags: "Array(2)",
       title: "Page 3",
-      url: "/page_3",
+      url: "/page_3/",
     },
     src: {
       ext: ".page.js",

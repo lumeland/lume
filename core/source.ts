@@ -484,6 +484,12 @@ export default class Source {
       page.data.url = url;
       page.data.date = getPageDate(page);
       page.data.page = page;
+
+      // Prevent running the layout if the page is an asset
+      if (!data.layout && !page.outputPath.endsWith(".html")) {
+        delete page.data.layout;
+      }
+
       yield page;
     }
   }
@@ -541,8 +547,10 @@ export default class Source {
     // Save the page object in the data object
     page.data.page = page;
 
-    // Save whether the layout was directly assigned
-    page._data.layout = pageData.layout;
+    // Prevent running the layout if the page is an asset
+    if (!pageData.layout && !page.outputPath.endsWith(".html")) {
+      delete page.data.layout;
+    }
 
     return page;
   }

@@ -240,7 +240,6 @@ snapshot[`build a site with nunjucks 3`] = `
       content: "{{ colors | dump | safe }}
 ",
       date: [],
-      layout: null,
       mergedKeys: [
         "tags",
       ],

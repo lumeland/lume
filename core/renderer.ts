@@ -111,9 +111,6 @@ export default class Renderer {
           }
           newPage.data.url = url;
           newPage.data.date = getPageDate(newPage);
-          newPage._data.layout = "layout" in data
-            ? data.layout
-            : page._data.layout;
           generatedPages.push(newPage);
         }
       }
@@ -131,9 +128,7 @@ export default class Renderer {
             const content = await this.#renderPage(page);
 
             // Save the children to render the layout later
-            // (Only HTML pages and pages with the layout in the frontmatter)
-            // This prevents to call the layout for every page (like css, js, etc)
-            if (page.outputPath.endsWith(".html") || page._data.layout) {
+            if (page.data.layout || page.outputPath.endsWith(".html")) {
               page.data.children = content;
               renderedPages.push(page);
             } else {

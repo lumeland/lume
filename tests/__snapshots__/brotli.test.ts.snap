@@ -282,6 +282,7 @@ snapshot[`brotli plugin 3`] = `
     content: "Content of Page 3",
     data: {
       basename: "page3",
+      children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",
       date: [],
@@ -310,11 +311,28 @@ snapshot[`brotli plugin 3`] = `
       site: "Folder overrided site name",
       tags: "Array(1)",
       title: "Page 3",
-      url: "/page_3",
+      url: "/page_3/",
     },
     src: {
       ext: ".page.js",
       path: "/pages/page3",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(20)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(20)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/page_3/index.html.br",
+    },
+    src: {
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },
@@ -878,6 +896,7 @@ snapshot[`brotli plugin with options 3`] = `
     content: "Content of Page 3",
     data: {
       basename: "page3",
+      children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",
       date: [],
@@ -906,7 +925,7 @@ snapshot[`brotli plugin with options 3`] = `
       site: "Folder overrided site name",
       tags: "Array(1)",
       title: "Page 3",
-      url: "/page_3",
+      url: "/page_3/",
     },
     src: {
       ext: ".page.js",
