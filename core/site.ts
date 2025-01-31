@@ -25,7 +25,7 @@ import binaryLoader from "./loaders/binary.ts";
 import Server from "./server.ts";
 import notFound from "../middlewares/not_found.ts";
 
-import type { Loader } from "./loaders/mod.ts";
+import type { Loader } from "./fs.ts";
 import type { BasenameParser, Destination } from "./source.ts";
 import type { Component, Components } from "./component_loader.ts";
 import type { Data, RawData, StaticFile } from "./file.ts";
