@@ -179,7 +179,7 @@ export default class Renderer {
       );
     }
 
-    await this.preprocessors.run([page], []);
+    await this.preprocessors.run([page]);
 
     const content = await this.#renderPage(page);
     page.content = await this.#renderLayout(page, content);

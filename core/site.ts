@@ -723,8 +723,12 @@ export default class Site {
       return false;
     }
 
+    // Promote the files that must be processed to pages
+    const extensions = this.processors.extensions;
+    await this.#filesToPages((file) => extensions.has(file.src.ext));
+
     // Run the processors to the pages
-    await this.processors.run(this.pages, this.files);
+    await this.processors.run(this.pages);
     performance.mark("end-process");
 
     log.debug(
@@ -736,6 +740,22 @@ export default class Site {
     );
 
     return await this.dispatchEvent({ type: "beforeSave" });
+  }
+
+  /** Promote a file to page. Used by processors */
+  async #filesToPages(filter: (file: StaticFile) => boolean): Promise<void> {
+    const toRemove: StaticFile[] = [];
+
+    for (const file of this.files) {
+      if (filter(file)) {
+        this.pages.push(await file.toPage());
+        toRemove.push(file);
+      }
+    }
+
+    for (const file of toRemove) {
+      this.files.splice(this.files.indexOf(file), 1);
+    }
   }
 
   /** Render a single page (used for on demand rendering) */
@@ -771,7 +791,7 @@ export default class Site {
     await this.renderer.renderPageOnDemand(page);
 
     // Run the processors to the page
-    await this.processors.run([page], []);
+    await this.processors.run([page]);
     return page;
   }
 

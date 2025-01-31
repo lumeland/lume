@@ -101,6 +101,7 @@ export function transformImages(userOptions?: Partial<Options>) {
         (page) => processPage(page, allPages),
       );
     }
+
     async function processPage(page: Page, allPages: Page[]) {
       const transData = page.data.transformImages as
         | Transformation
@@ -117,6 +118,7 @@ export function transformImages(userOptions?: Partial<Options>) {
       );
       let transformed = false;
       let index = 0;
+
       for (const transformation of transformations) {
         if (transformation.matches) {
           const regex = new RegExp(transformation.matches);

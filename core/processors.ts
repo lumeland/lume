@@ -1,7 +1,7 @@
 import { matchExtension } from "./utils/path.ts";
 
 import type { Extensions } from "./utils/path.ts";
-import type { Page, StaticFile } from "./file.ts";
+import type { Page } from "./file.ts";
 
 /**
  * Class to store and run the (pre)processors
@@ -28,50 +28,27 @@ export default class Processors {
     this.processors.set(processor, extensions);
   }
 
+  /** Return all extensions registered by this processor */
+  get extensions(): Set<string> {
+    return new Set([
+      ...this.processors.values()
+        .filter((ext) => ext !== "*"),
+    ].flat());
+  }
+
   /** Apply the processors to the provided pages */
-  async run(pages: Page[], files?: StaticFile[]): Promise<void> {
+  async run(pages: Page[]): Promise<void> {
     this.loadedExtensions.clear();
 
     for (const [process, extensions] of this.processors) {
       // Process all loaded pages
       if (extensions === "*") {
-        await (process as Processor)([...pages], pages);
+        await process([...pages], pages);
         continue;
-      }
-
-      // Load files with the same extension
-      if (files) {
-        await this.#loadFiles(extensions, files, pages);
       }
 
       const filtered = pages.filter((page) => pageMatches(extensions, page));
-      await (process as Processor)(filtered, pages);
-    }
-  }
-
-  /** Load the files with the same extension */
-  async #loadFiles(
-    extensions: string[],
-    files: StaticFile[],
-    pages: Page[],
-  ): Promise<void> {
-    for (const extension of extensions) {
-      if (this.loadedExtensions.has(extension)) {
-        continue;
-      }
-
-      this.loadedExtensions.add(extension);
-
-      const toRemove: StaticFile[] = [];
-      for (const file of files) {
-        if (file.src.ext === extension) {
-          pages.push(await file.toPage());
-          toRemove.push(file);
-        }
-      }
-      for (const file of toRemove) {
-        files.splice(files.indexOf(file), 1);
-      }
+      await process(filtered, pages);
     }
   }
 }
