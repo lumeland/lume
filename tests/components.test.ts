@@ -1,7 +1,6 @@
 import { assert, assertEquals } from "../deps/assert.ts";
 import { build, getSite } from "./utils.ts";
 
-import liquid from "../plugins/liquid.ts";
 import eta from "../plugins/eta.ts";
 import pug from "../plugins/pug.ts";
 import jsx from "../plugins/jsx.ts";
@@ -12,7 +11,6 @@ Deno.test("Components", async (t) => {
     src: "components",
   });
 
-  site.use(liquid());
   site.use(eta());
   site.use(pug());
   site.use(jsx());
@@ -45,14 +43,12 @@ Deno.test("Components", async (t) => {
     assert(comp.button_eta);
     assert(comp.button_jsx);
     assert(comp.button_njk);
-    assert(comp.button_liquid);
     assert(comp.button_vto);
 
     assert(subcomp);
     assert(subcomp.button_eta);
     assert(subcomp.button_jsx);
     assert(subcomp.button_njk);
-    assert(subcomp.button_liquid);
     assert(subcomp.innerbutton);
     assert(subcomp.button_pug);
     assert(subcomp.button_ts);
@@ -82,14 +78,6 @@ Deno.test("Components", async (t) => {
     assertEquals(
       (await comp.not_inherit()).trim(),
       `<p>Not inherit: </p>`,
-    );
-  });
-
-  await t.step("Liquid components", async () => {
-    const result = await comp.button_liquid({ text: "Hello world" });
-    assertEquals(
-      result.trim(),
-      `<button class="button_liquid">Hello world</button>`,
     );
   });
 
