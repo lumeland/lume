@@ -21,6 +21,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `extensions` option of the plugins `check_urls`, `base_path`, `code_highlight`, `fff`, `inline`, `json_ld`, `katex`, `metas`, `multilanguage`, `og_images`, `prism`, `purgecss`, `relative_urls`.
 - `name` option of the plugins: `date`, `json_ld`, `metas`, `nav`, `paginate`, `picture`, `reading_info`, `search`, `transform_images`, `url`.
 - `site.loadAssets()` function. Use `site.add()` instead.
+- `on_demand` plugin and middleware. If you need some server-side logic, you can use routes middleware.
 
 ### Changed
 - Minimum Deno version supported is LTS (2.1.0)

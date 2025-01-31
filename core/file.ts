@@ -238,9 +238,6 @@ export interface RawData {
   /** To configure how some data keys will be merged with the parent */
   mergedKeys?: Record<string, MergeStrategy>;
 
-  /** Whether render this page on demand or not */
-  onDemand?: boolean;
-
   // deno-lint-ignore no-explicit-any
   [index: string]: any;
 }

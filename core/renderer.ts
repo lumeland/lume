@@ -63,7 +63,7 @@ export default class Renderer {
   }
 
   /** Render the provided pages */
-  async renderPages(from: Page[], to: Page[], onDemand: Page[]): Promise<void> {
+  async renderPages(from: Page[], to: Page[]): Promise<void> {
     for (const group of this.#groupPages(from)) {
       const pages: Page[] = [];
       const generators: Page[] = [];
@@ -75,10 +75,6 @@ export default class Renderer {
           continue;
         }
 
-        if (page.data.ondemand) {
-          onDemand.push(page);
-          continue;
-        }
         pages.push(page);
       }
 
@@ -169,20 +165,6 @@ export default class Renderer {
         },
       );
     }
-  }
-
-  /** Render the provided pages */
-  async renderPageOnDemand(page: Page): Promise<void> {
-    if (isGenerator(page.data.content)) {
-      throw new Error(
-        `Cannot render the generator page ${page.sourcePath} on demand.`,
-      );
-    }
-
-    await this.preprocessors.run([page]);
-
-    const content = await this.#renderPage(page);
-    page.content = await this.#renderLayout(page, content);
   }
 
   /** Render a template */

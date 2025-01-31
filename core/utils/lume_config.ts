@@ -29,7 +29,6 @@ export const pluginNames = [
   "nav",
   "nunjucks",
   "og_images",
-  "on_demand",
   "pagefind",
   "picture",
   "plaintext",
