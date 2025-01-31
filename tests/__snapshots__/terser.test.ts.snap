@@ -124,7 +124,6 @@ snapshot[`terser plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -132,7 +131,6 @@ snapshot[`terser plugin 3`] = `
       url: "/main.js",
     },
     src: {
-      asset: true,
       ext: ".js",
       path: "/main",
       remote: undefined,
@@ -163,7 +161,6 @@ export function two () {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -172,7 +169,6 @@ export function two () {
       url: "/numbers.js",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/numbers",
       remote: undefined,

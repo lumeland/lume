@@ -154,7 +154,6 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -163,7 +162,6 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".jsx",
       path: "/index",
       remote: undefined,
@@ -190,7 +188,6 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -198,7 +195,6 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       url: "/page/1/",
     },
     src: {
-      asset: false,
       ext: ".jsx",
       path: "/multiple[0]",
       remote: undefined,
@@ -225,7 +221,6 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -233,7 +228,6 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       url: "/page/2/",
     },
     src: {
-      asset: false,
       ext: ".jsx",
       path: "/multiple[1]",
       remote: undefined,
@@ -257,7 +251,6 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -266,7 +259,6 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       url: "/with-function/",
     },
     src: {
-      asset: false,
       ext: ".jsx",
       path: "/with-function",
       remote: undefined,
@@ -297,7 +289,6 @@ This is a **markdown** text. [Go home](/)
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -306,7 +297,6 @@ This is a **markdown** text. [Go home](/)
       url: "/with-markdown/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-markdown",
       remote: undefined,
@@ -470,7 +460,6 @@ snapshot[`Previous preact test with SSX 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -479,7 +468,6 @@ snapshot[`Previous preact test with SSX 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".jsx",
       path: "/index",
       remote: undefined,
@@ -506,7 +494,6 @@ snapshot[`Previous preact test with SSX 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -514,7 +501,6 @@ snapshot[`Previous preact test with SSX 3`] = `
       url: "/page/1/",
     },
     src: {
-      asset: false,
       ext: ".jsx",
       path: "/multiple[0]",
       remote: undefined,
@@ -541,7 +527,6 @@ snapshot[`Previous preact test with SSX 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -549,7 +534,6 @@ snapshot[`Previous preact test with SSX 3`] = `
       url: "/page/2/",
     },
     src: {
-      asset: false,
       ext: ".jsx",
       path: "/multiple[1]",
       remote: undefined,
@@ -573,7 +557,6 @@ snapshot[`Previous preact test with SSX 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -582,7 +565,6 @@ snapshot[`Previous preact test with SSX 3`] = `
       url: "/with-function/",
     },
     src: {
-      asset: false,
       ext: ".jsx",
       path: "/with-function",
       remote: undefined,
@@ -627,7 +609,6 @@ body {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -636,7 +617,6 @@ body {
       url: "/with-markdown/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-markdown",
       remote: undefined,

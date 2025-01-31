@@ -144,12 +144,10 @@ snapshot[`redirects plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/old-page1/",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -185,12 +183,10 @@ snapshot[`redirects plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/old-page2/",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -226,12 +222,10 @@ snapshot[`redirects plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/other-old-page2/",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -251,7 +245,6 @@ snapshot[`redirects plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -259,7 +252,6 @@ snapshot[`redirects plugin 3`] = `
       url: "/page1/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page1",
       remote: undefined,
@@ -282,7 +274,6 @@ snapshot[`redirects plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -290,7 +281,6 @@ snapshot[`redirects plugin 3`] = `
       url: "/page2/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page2",
       remote: undefined,
@@ -422,12 +412,10 @@ snapshot[`redirects plugin for netlify 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/_redirects",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -447,7 +435,6 @@ snapshot[`redirects plugin for netlify 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -455,7 +442,6 @@ snapshot[`redirects plugin for netlify 3`] = `
       url: "/page1/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page1",
       remote: undefined,
@@ -478,7 +464,6 @@ snapshot[`redirects plugin for netlify 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -486,7 +471,6 @@ snapshot[`redirects plugin for netlify 3`] = `
       url: "/page2/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page2",
       remote: undefined,
@@ -623,7 +607,6 @@ snapshot[`redirects plugin for vercel 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -631,7 +614,6 @@ snapshot[`redirects plugin for vercel 3`] = `
       url: "/page1/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page1",
       remote: undefined,
@@ -654,7 +636,6 @@ snapshot[`redirects plugin for vercel 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -662,7 +643,6 @@ snapshot[`redirects plugin for vercel 3`] = `
       url: "/page2/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page2",
       remote: undefined,
@@ -693,12 +673,10 @@ snapshot[`redirects plugin for vercel 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/vercel.json",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -843,12 +821,10 @@ snapshot[`redirects plugin for json 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "_redirects.json",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -868,7 +844,6 @@ snapshot[`redirects plugin for json 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -876,7 +851,6 @@ snapshot[`redirects plugin for json 3`] = `
       url: "/page1/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page1",
       remote: undefined,
@@ -899,7 +873,6 @@ snapshot[`redirects plugin for json 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -907,7 +880,6 @@ snapshot[`redirects plugin for json 3`] = `
       url: "/page2/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page2",
       remote: undefined,

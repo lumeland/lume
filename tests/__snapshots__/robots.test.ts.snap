@@ -160,7 +160,6 @@ snapshot[`Robots plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -169,7 +168,6 @@ snapshot[`Robots plugin 3`] = `
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
@@ -203,7 +201,6 @@ snapshot[`Robots plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -213,7 +210,6 @@ snapshot[`Robots plugin 3`] = `
       url: "/overrided-page2/",
     },
     src: {
-      asset: false,
       ext: ".page.json",
       path: "/pages/2020-06-21_page2",
       remote: undefined,
@@ -245,7 +241,6 @@ snapshot[`Robots plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -255,7 +250,6 @@ snapshot[`Robots plugin 3`] = `
       url: "/page_3",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/page3",
       remote: undefined,
@@ -281,7 +275,6 @@ snapshot[`Robots plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -291,7 +284,6 @@ snapshot[`Robots plugin 3`] = `
       url: "/page5/",
     },
     src: {
-      asset: false,
       ext: ".yaml",
       path: "/page5",
       remote: undefined,
@@ -324,7 +316,6 @@ snapshot[`Robots plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -333,7 +324,6 @@ snapshot[`Robots plugin 3`] = `
       url: "/pages/new-name/page7/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/subpage/page7",
       remote: undefined,
@@ -366,7 +356,6 @@ snapshot[`Robots plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -376,7 +365,6 @@ snapshot[`Robots plugin 3`] = `
       url: "/pages/page4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
       remote: undefined,
@@ -412,7 +400,6 @@ snapshot[`Robots plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -422,7 +409,6 @@ snapshot[`Robots plugin 3`] = `
       url: "/pages/page6/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/ghost/2021-12-29-page6",
       remote: undefined,
@@ -436,12 +422,10 @@ Allow: /",
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/robots.txt",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -610,7 +594,6 @@ snapshot[`Robots plugin with allow 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -619,7 +602,6 @@ snapshot[`Robots plugin with allow 3`] = `
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
@@ -653,7 +635,6 @@ snapshot[`Robots plugin with allow 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -663,7 +644,6 @@ snapshot[`Robots plugin with allow 3`] = `
       url: "/overrided-page2/",
     },
     src: {
-      asset: false,
       ext: ".page.json",
       path: "/pages/2020-06-21_page2",
       remote: undefined,
@@ -695,7 +675,6 @@ snapshot[`Robots plugin with allow 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -705,7 +684,6 @@ snapshot[`Robots plugin with allow 3`] = `
       url: "/page_3",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/page3",
       remote: undefined,
@@ -731,7 +709,6 @@ snapshot[`Robots plugin with allow 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -741,7 +718,6 @@ snapshot[`Robots plugin with allow 3`] = `
       url: "/page5/",
     },
     src: {
-      asset: false,
       ext: ".yaml",
       path: "/page5",
       remote: undefined,
@@ -774,7 +750,6 @@ snapshot[`Robots plugin with allow 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -783,7 +758,6 @@ snapshot[`Robots plugin with allow 3`] = `
       url: "/pages/new-name/page7/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/subpage/page7",
       remote: undefined,
@@ -816,7 +790,6 @@ snapshot[`Robots plugin with allow 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -826,7 +799,6 @@ snapshot[`Robots plugin with allow 3`] = `
       url: "/pages/page4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
       remote: undefined,
@@ -862,7 +834,6 @@ snapshot[`Robots plugin with allow 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -872,7 +843,6 @@ snapshot[`Robots plugin with allow 3`] = `
       url: "/pages/page6/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/ghost/2021-12-29-page6",
       remote: undefined,
@@ -889,12 +859,10 @@ Allow: /",
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/robots.txt",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -1063,7 +1031,6 @@ snapshot[`Robots plugin with disallow 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1072,7 +1039,6 @@ snapshot[`Robots plugin with disallow 3`] = `
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
@@ -1106,7 +1072,6 @@ snapshot[`Robots plugin with disallow 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1116,7 +1081,6 @@ snapshot[`Robots plugin with disallow 3`] = `
       url: "/overrided-page2/",
     },
     src: {
-      asset: false,
       ext: ".page.json",
       path: "/pages/2020-06-21_page2",
       remote: undefined,
@@ -1148,7 +1112,6 @@ snapshot[`Robots plugin with disallow 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1158,7 +1121,6 @@ snapshot[`Robots plugin with disallow 3`] = `
       url: "/page_3",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/page3",
       remote: undefined,
@@ -1184,7 +1146,6 @@ snapshot[`Robots plugin with disallow 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1194,7 +1155,6 @@ snapshot[`Robots plugin with disallow 3`] = `
       url: "/page5/",
     },
     src: {
-      asset: false,
       ext: ".yaml",
       path: "/page5",
       remote: undefined,
@@ -1227,7 +1187,6 @@ snapshot[`Robots plugin with disallow 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1236,7 +1195,6 @@ snapshot[`Robots plugin with disallow 3`] = `
       url: "/pages/new-name/page7/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/subpage/page7",
       remote: undefined,
@@ -1269,7 +1227,6 @@ snapshot[`Robots plugin with disallow 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1279,7 +1236,6 @@ snapshot[`Robots plugin with disallow 3`] = `
       url: "/pages/page4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
       remote: undefined,
@@ -1315,7 +1271,6 @@ snapshot[`Robots plugin with disallow 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1325,7 +1280,6 @@ snapshot[`Robots plugin with disallow 3`] = `
       url: "/pages/page6/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/ghost/2021-12-29-page6",
       remote: undefined,
@@ -1342,12 +1296,10 @@ Disallow: /",
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/robots.txt",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -1516,7 +1468,6 @@ snapshot[`Robots plugin with custom rules 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1525,7 +1476,6 @@ snapshot[`Robots plugin with custom rules 3`] = `
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
@@ -1559,7 +1509,6 @@ snapshot[`Robots plugin with custom rules 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1569,7 +1518,6 @@ snapshot[`Robots plugin with custom rules 3`] = `
       url: "/overrided-page2/",
     },
     src: {
-      asset: false,
       ext: ".page.json",
       path: "/pages/2020-06-21_page2",
       remote: undefined,
@@ -1601,7 +1549,6 @@ snapshot[`Robots plugin with custom rules 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1611,7 +1558,6 @@ snapshot[`Robots plugin with custom rules 3`] = `
       url: "/page_3",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/page3",
       remote: undefined,
@@ -1637,7 +1583,6 @@ snapshot[`Robots plugin with custom rules 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1647,7 +1592,6 @@ snapshot[`Robots plugin with custom rules 3`] = `
       url: "/page5/",
     },
     src: {
-      asset: false,
       ext: ".yaml",
       path: "/page5",
       remote: undefined,
@@ -1680,7 +1624,6 @@ snapshot[`Robots plugin with custom rules 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1689,7 +1632,6 @@ snapshot[`Robots plugin with custom rules 3`] = `
       url: "/pages/new-name/page7/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/subpage/page7",
       remote: undefined,
@@ -1722,7 +1664,6 @@ snapshot[`Robots plugin with custom rules 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1732,7 +1673,6 @@ snapshot[`Robots plugin with custom rules 3`] = `
       url: "/pages/page4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
       remote: undefined,
@@ -1768,7 +1708,6 @@ snapshot[`Robots plugin with custom rules 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1778,7 +1717,6 @@ snapshot[`Robots plugin with custom rules 3`] = `
       url: "/pages/page6/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/ghost/2021-12-29-page6",
       remote: undefined,
@@ -1797,12 +1735,10 @@ Sitemap: https://example.com/sitemap.xml",
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/robots.txt",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,

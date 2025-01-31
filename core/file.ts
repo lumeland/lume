@@ -18,9 +18,6 @@ export class Page<D extends Data = Data> {
   /** Used to save the page data */
   data: D = {} as D;
 
-  /** If the page is an asset or not */
-  asset = true;
-
   /**
    * Internal data. Used to save arbitrary data by plugins and processors
    */
@@ -70,7 +67,6 @@ export class Page<D extends Data = Data> {
   /** Duplicate this page. */
   duplicate(index: number | undefined, data: D): Page<D> {
     const page = new Page<D>({ ...this.src });
-    page.asset = this.asset;
 
     if (index !== undefined) {
       page.src.path += `[${index}]`;

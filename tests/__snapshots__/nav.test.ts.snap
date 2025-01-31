@@ -191,7 +191,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -200,7 +199,6 @@ snapshot[`nav plugin 3`] = `
       url: "/docs/about-docs/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/about-docs",
       remote: undefined,
@@ -274,7 +272,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -283,7 +280,6 @@ snapshot[`nav plugin 3`] = `
       url: "/docs/pages/first/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/pages/first",
       remote: undefined,
@@ -356,7 +352,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -365,7 +360,6 @@ snapshot[`nav plugin 3`] = `
       url: "/docs/pages/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/pages",
       remote: undefined,
@@ -440,7 +434,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -449,7 +442,6 @@ snapshot[`nav plugin 3`] = `
       url: "/docs/pages/second/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/pages/second",
       remote: undefined,
@@ -518,7 +510,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -527,7 +518,6 @@ snapshot[`nav plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
@@ -598,7 +588,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -607,7 +596,6 @@ snapshot[`nav plugin 3`] = `
       url: "/%E9%98%B2%E7%81%BD/esolia-bousai-links/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs",
       remote: undefined,
@@ -807,7 +795,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -816,7 +803,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/about-docs.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/about-docs",
       remote: undefined,
@@ -889,7 +875,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -898,7 +883,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/pages.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/pages",
       remote: undefined,
@@ -972,7 +956,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -981,7 +964,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/pages/first.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/pages/first",
       remote: undefined,
@@ -1056,7 +1038,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1065,7 +1046,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/pages/second.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/pages/second",
       remote: undefined,
@@ -1132,7 +1112,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1141,7 +1120,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/index.html",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
@@ -1212,7 +1190,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1221,7 +1198,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/%E9%98%B2%E7%81%BD/esolia-bousai-links/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs",
       remote: undefined,

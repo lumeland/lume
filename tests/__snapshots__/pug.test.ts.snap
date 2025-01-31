@@ -159,7 +159,6 @@ block content
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -168,7 +167,6 @@ block content
       url: "/article.html",
     },
     src: {
-      asset: false,
       ext: ".pug",
       path: "/filter",
       remote: undefined,
@@ -190,7 +188,6 @@ block content
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -199,7 +196,6 @@ block content
       url: "/extends/",
     },
     src: {
-      asset: false,
       ext: ".pug",
       path: "/extends",
       remote: undefined,
@@ -221,7 +217,6 @@ block content
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -230,7 +225,6 @@ block content
       url: "/layout/",
     },
     src: {
-      asset: false,
       ext: ".pug",
       path: "/layout",
       remote: undefined,

@@ -151,7 +151,6 @@ snapshot[`follow symlinks 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -160,7 +159,6 @@ snapshot[`follow symlinks 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,

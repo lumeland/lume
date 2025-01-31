@@ -155,7 +155,6 @@ snapshot[`url and htmlUrl update href 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -164,7 +163,6 @@ snapshot[`url and htmlUrl update href 3`] = `
       url: "/default-filter/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/default-filter",
       remote: undefined,
@@ -205,7 +203,6 @@ snapshot[`url and htmlUrl update href 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -214,7 +211,6 @@ snapshot[`url and htmlUrl update href 3`] = `
       url: "/renamed-filter/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/renamed-filter",
       remote: undefined,

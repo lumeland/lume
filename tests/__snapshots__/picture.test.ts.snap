@@ -255,7 +255,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -263,7 +262,6 @@ snapshot[`picture plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
@@ -279,7 +277,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -288,7 +285,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash-300w.avif",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[8]",
       remote: undefined,
@@ -304,7 +300,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -313,7 +308,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash-300w.jpg",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[12]",
       remote: undefined,
@@ -329,7 +323,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -338,7 +331,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash-300w.webp",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[10]",
       remote: undefined,
@@ -354,7 +346,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -363,7 +354,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash-300w@2.avif",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[9]",
       remote: undefined,
@@ -379,7 +369,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -388,7 +377,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash-300w@2.jpg",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[13]",
       remote: undefined,
@@ -404,7 +392,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -413,7 +400,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash-300w@2.webp",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[11]",
       remote: undefined,
@@ -429,7 +415,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -438,7 +423,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash-600w.avif",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[2]",
       remote: undefined,
@@ -454,7 +438,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -463,7 +446,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash-600w.jpg",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[6]",
       remote: undefined,
@@ -479,7 +461,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -488,7 +469,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash-600w.png",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[0]",
       remote: undefined,
@@ -504,7 +484,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -513,7 +492,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash-600w.webp",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[4]",
       remote: undefined,
@@ -529,7 +507,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -538,7 +515,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash-600w@2.avif",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[3]",
       remote: undefined,
@@ -554,7 +530,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -563,7 +538,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash-600w@2.jpg",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[7]",
       remote: undefined,
@@ -579,7 +553,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -588,7 +561,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash-600w@2.png",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[1]",
       remote: undefined,
@@ -604,7 +576,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -613,7 +584,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash-600w@2.webp",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[5]",
       remote: undefined,
@@ -629,7 +599,6 @@ snapshot[`picture plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -638,7 +607,6 @@ snapshot[`picture plugin 3`] = `
       url: "/kevin schmid unsplash.avif",
     },
     src: {
-      asset: true,
       ext: ".jpg",
       path: "/kevin schmid unsplash[14]",
       remote: undefined,

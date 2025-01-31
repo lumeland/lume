@@ -161,7 +161,6 @@ I hope you enjoy it.
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -169,7 +168,6 @@ I hope you enjoy it.
       url: "/page-1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page-1",
       remote: undefined,
@@ -211,7 +209,6 @@ I hope you enjoy it.
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -219,7 +216,6 @@ I hope you enjoy it.
       url: "/page-2/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page-2",
       remote: undefined,
@@ -249,7 +245,6 @@ I hope you enjoy it.
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -257,7 +252,6 @@ I hope you enjoy it.
       url: "/page-3/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/page-3",
       remote: undefined,

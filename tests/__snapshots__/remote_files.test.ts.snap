@@ -192,7 +192,6 @@ This is a remote template
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -201,7 +200,6 @@ This is a remote template
       url: "/local1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/local1",
       remote: undefined,
@@ -257,7 +255,6 @@ template{display:none}
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -266,7 +263,6 @@ template{display:none}
       url: "/normalize.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/normalize",
       remote: "https://cdn.jsdelivr.net/npm/normalize.css",
@@ -286,7 +282,6 @@ body {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -295,7 +290,6 @@ body {
       url: "/other-remote-style.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/other-remote-style",
       remote: "assets/remote_files/_remotes/other-remote-style.css",
@@ -312,7 +306,6 @@ body {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -321,7 +314,6 @@ body {
       url: "/scripts.js",
     },
     src: {
-      asset: true,
       ext: ".js",
       path: "/scripts",
       remote: undefined,
@@ -339,7 +331,6 @@ body {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -348,7 +339,6 @@ body {
       url: "/styles/styles2.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles/styles2",
       remote: "assets/remote_files/_remotes/styles2.css",
@@ -372,7 +362,6 @@ body {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -381,7 +370,6 @@ body {
       url: "/styles1.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles1",
       remote: undefined,
@@ -399,7 +387,6 @@ body {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -408,7 +395,6 @@ body {
       url: "/styles2.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles2",
       remote: "assets/remote_files/_remotes/styles2.css",
@@ -424,7 +410,6 @@ body {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -433,7 +418,6 @@ body {
       url: "/styles3.css",
     },
     src: {
-      asset: true,
       ext: ".scss",
       path: "/styles3",
       remote: undefined,

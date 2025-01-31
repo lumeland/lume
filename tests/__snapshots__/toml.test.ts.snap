@@ -142,7 +142,6 @@ snapshot[`TOML plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -155,7 +154,6 @@ snapshot[`TOML plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".page.toml",
       path: "/index",
       remote: undefined,
@@ -177,7 +175,6 @@ snapshot[`TOML plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -190,7 +187,6 @@ snapshot[`TOML plugin 3`] = `
       url: "/page1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page1",
       remote: undefined,

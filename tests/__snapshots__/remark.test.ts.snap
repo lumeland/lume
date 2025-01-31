@@ -148,7 +148,6 @@ snapshot[`Build a markdown site 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -157,7 +156,6 @@ snapshot[`Build a markdown site 3`] = `
       url: "/basic/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/basic",
       remote: undefined,
@@ -177,7 +175,6 @@ snapshot[`Build a markdown site 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -185,7 +182,6 @@ snapshot[`Build a markdown site 3`] = `
       url: "/with-attributes/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-attributes",
       remote: undefined,
@@ -217,7 +213,6 @@ snapshot[`Build a markdown site 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -225,7 +220,6 @@ snapshot[`Build a markdown site 3`] = `
       url: "/with-code/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-code",
       remote: undefined,
@@ -261,7 +255,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -269,7 +262,6 @@ Other title
       url: "/with-deflist/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-deflist",
       remote: undefined,
@@ -299,7 +291,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -308,7 +299,6 @@ Other title
       url: "/with-filter/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/with-filter",
       remote: undefined,
@@ -329,7 +319,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -339,7 +328,6 @@ Other title
       url: "/with-module/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/with-module",
       remote: undefined,
@@ -385,7 +373,6 @@ Foo
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -395,7 +382,6 @@ Foo
       url: "/with-vto/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-vto",
       remote: undefined,

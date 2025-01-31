@@ -151,7 +151,6 @@ snapshot[`slugify_urls plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -159,7 +158,6 @@ snapshot[`slugify_urls plugin 3`] = `
       url: "/803nfon-sfodij/-/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/generator[1]",
       remote: undefined,
@@ -181,7 +179,6 @@ snapshot[`slugify_urls plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -189,7 +186,6 @@ snapshot[`slugify_urls plugin 3`] = `
       url: "/chourizos-ao-vino/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/Chourizos ao viño",
       remote: undefined,
@@ -208,7 +204,6 @@ snapshot[`slugify_urls plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -216,7 +211,6 @@ snapshot[`slugify_urls plugin 3`] = `
       url: "/filloas-con-nocilla/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/generator[0]",
       remote: undefined,
@@ -238,7 +232,6 @@ snapshot[`slugify_urls plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -246,7 +239,6 @@ snapshot[`slugify_urls plugin 3`] = `
       url: "/page-1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/Page 1",
       remote: undefined,
@@ -268,7 +260,6 @@ snapshot[`slugify_urls plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -276,7 +267,6 @@ snapshot[`slugify_urls plugin 3`] = `
       url: "/paxina-4.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page-4",
       remote: undefined,
@@ -298,7 +288,6 @@ snapshot[`slugify_urls plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -306,7 +295,6 @@ snapshot[`slugify_urls plugin 3`] = `
       url: "/paxina-numero/tres/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page-3",
       remote: undefined,
@@ -463,7 +451,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -471,7 +458,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       url: "/803nfon-sfodij/-/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/generator[1]",
       remote: undefined,
@@ -493,7 +479,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -501,7 +486,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       url: "/chourizos-ao-vino/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/Chourizos ao viño",
       remote: undefined,
@@ -520,7 +504,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -528,7 +511,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       url: "/filloas-con-nocilla/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/generator[0]",
       remote: undefined,
@@ -550,7 +532,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -558,7 +539,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       url: "/page-1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/Page 1",
       remote: undefined,
@@ -580,7 +560,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -588,7 +567,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       url: "/paxina-4.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page-4",
       remote: undefined,
@@ -610,7 +588,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -618,7 +595,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       url: "/paxina-numero/tres/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page-3",
       remote: undefined,

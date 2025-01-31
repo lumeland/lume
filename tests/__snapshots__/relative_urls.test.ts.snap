@@ -158,7 +158,6 @@ snapshot[`relative_url plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -166,7 +165,6 @@ snapshot[`relative_url plugin 3`] = `
       url: "/about-us/contact/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/about-us/contact",
       remote: undefined,
@@ -206,7 +204,6 @@ snapshot[`relative_url plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -214,7 +211,6 @@ snapshot[`relative_url plugin 3`] = `
       url: "/about-us/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/about-us/index",
       remote: undefined,
@@ -254,7 +250,6 @@ snapshot[`relative_url plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -262,7 +257,6 @@ snapshot[`relative_url plugin 3`] = `
       url: "/about-us/presentation/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/about-us/presentation",
       remote: undefined,
@@ -314,7 +308,6 @@ snapshot[`relative_url plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -322,7 +315,6 @@ snapshot[`relative_url plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -360,7 +352,6 @@ div {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -368,7 +359,6 @@ div {
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
       remote: undefined,
@@ -535,7 +525,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -543,7 +532,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       url: "/about-us/contact.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/about-us/contact",
       remote: undefined,
@@ -583,7 +571,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -591,7 +578,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       url: "/about-us/index.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/about-us/index",
       remote: undefined,
@@ -631,7 +617,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -639,7 +624,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       url: "/about-us/presentation.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/about-us/presentation",
       remote: undefined,
@@ -691,7 +675,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -699,7 +682,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       url: "/index.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,

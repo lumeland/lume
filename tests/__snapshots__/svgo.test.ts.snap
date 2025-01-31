@@ -126,7 +126,6 @@ snapshot[`terser plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -134,7 +133,6 @@ snapshot[`terser plugin 3`] = `
       url: "/favicon.svg",
     },
     src: {
-      asset: true,
       ext: ".svg",
       path: "/favicon",
       remote: undefined,

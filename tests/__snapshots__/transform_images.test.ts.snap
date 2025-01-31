@@ -137,7 +137,6 @@ snapshot[`Image transform plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -145,7 +144,6 @@ snapshot[`Image transform plugin 3`] = `
       url: "/lume.PNG",
     },
     src: {
-      asset: true,
       ext: ".png",
       path: "/lume",
       remote: undefined,

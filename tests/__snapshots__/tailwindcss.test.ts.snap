@@ -914,7 +914,6 @@ snapshot[`Tailwindcss plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -922,7 +921,6 @@ snapshot[`Tailwindcss plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
@@ -939,7 +937,6 @@ snapshot[`Tailwindcss plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -947,7 +944,6 @@ snapshot[`Tailwindcss plugin 3`] = `
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
       remote: undefined,

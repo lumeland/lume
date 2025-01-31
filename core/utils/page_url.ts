@@ -26,7 +26,7 @@ export function getPageUrl(
   }
 
   if (typeof url === "function") {
-    page.data.url = getDefaultUrl(page, parentPath, prettyUrls);
+    page.data.url = getDefaultUrl(page.data.basename, parentPath, prettyUrls);
     url = url(page);
   }
 
@@ -60,22 +60,18 @@ export function getPageUrl(
     return normalizeUrl(destination);
   }
 
-  const defaultUrl = getDefaultUrl(page, parentPath, prettyUrls);
+  const defaultUrl = getDefaultUrl(page.data.basename, parentPath, prettyUrls);
   return destination ? destination(defaultUrl) : defaultUrl;
 }
 
 /** Returns the default URL for a page */
 function getDefaultUrl(
-  page: Page,
+  basename: string,
   parentPath: string,
   prettyUrls: boolean,
 ): string {
   // Calculate the URL from the path
-  const url = posix.join(parentPath, page.data.basename);
-
-  if (page.asset) {
-    return url + page.src.ext;
-  }
+  const url = posix.join(parentPath, basename);
 
   // Pretty URLs affects to all pages but 404
   if (prettyUrls && url !== "/404") {

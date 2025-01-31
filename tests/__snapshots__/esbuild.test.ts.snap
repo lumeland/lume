@@ -157,7 +157,6 @@ snapshot[`esbuild plugin with JSX 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -165,7 +164,6 @@ snapshot[`esbuild plugin with JSX 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".page.jsx",
       path: "/index",
       remote: undefined,
@@ -246,7 +244,6 @@ react/cjs/react-jsx-runtime.production.min.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -254,7 +251,6 @@ react/cjs/react-jsx-runtime.production.min.js:
       url: "/main.js",
     },
     src: {
-      asset: true,
       ext: ".jsx",
       path: "/main",
       remote: undefined,
@@ -399,7 +395,6 @@ snapshot[`esbuild plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -407,7 +402,6 @@ snapshot[`esbuild plugin 3`] = `
       url: "/foo/bar/script.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other/script",
       remote: undefined,
@@ -424,7 +418,6 @@ snapshot[`esbuild plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -432,7 +425,6 @@ snapshot[`esbuild plugin 3`] = `
       url: "/foo/bar/to_lowercase.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other/to_lowercase",
       remote: undefined,
@@ -462,7 +454,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -470,7 +461,6 @@ react-is/cjs/react-is.development.js:
       url: "/main.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/main",
       remote: undefined,
@@ -494,7 +484,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -502,7 +491,6 @@ react-is/cjs/react-is.development.js:
       url: "/main/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/main",
       remote: undefined,
@@ -519,7 +507,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -527,7 +514,6 @@ react-is/cjs/react-is.development.js:
       url: "/other.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other",
       remote: undefined,
@@ -669,12 +655,10 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/foo/chunk-0.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -688,12 +672,10 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/foo/chunk-1.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -710,7 +692,6 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -718,7 +699,6 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
       url: "/foo/foo/bar/script.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other/script",
       remote: undefined,
@@ -735,7 +715,6 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -743,7 +722,6 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
       url: "/foo/foo/bar/to_lowercase.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other/to_lowercase",
       remote: undefined,
@@ -773,7 +751,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -781,7 +758,6 @@ react-is/cjs/react-is.development.js:
       url: "/foo/main.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/main",
       remote: undefined,
@@ -798,7 +774,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -806,7 +781,6 @@ react-is/cjs/react-is.development.js:
       url: "/foo/other.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other",
       remote: undefined,
@@ -830,7 +804,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -838,7 +811,6 @@ react-is/cjs/react-is.development.js:
       url: "/main/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/main",
       remote: undefined,
@@ -983,7 +955,6 @@ snapshot[`esbuild plugin with outExtension 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -991,7 +962,6 @@ snapshot[`esbuild plugin with outExtension 3`] = `
       url: "/foo/bar/script.min.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other/script",
       remote: undefined,
@@ -1008,7 +978,6 @@ snapshot[`esbuild plugin with outExtension 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1016,7 +985,6 @@ snapshot[`esbuild plugin with outExtension 3`] = `
       url: "/foo/bar/to_lowercase.min.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other/to_lowercase",
       remote: undefined,
@@ -1046,7 +1014,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1054,7 +1021,6 @@ react-is/cjs/react-is.development.js:
       url: "/main.min.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/main",
       remote: undefined,
@@ -1078,7 +1044,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1086,7 +1051,6 @@ react-is/cjs/react-is.development.js:
       url: "/main/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/main",
       remote: undefined,
@@ -1103,7 +1067,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1111,7 +1074,6 @@ react-is/cjs/react-is.development.js:
       url: "/modules/to_uppercase.min.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/modules/to_uppercase",
       remote: undefined,
@@ -1128,7 +1090,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1136,7 +1097,6 @@ react-is/cjs/react-is.development.js:
       url: "/other.min.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other",
       remote: undefined,
@@ -1294,7 +1254,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1302,7 +1261,6 @@ react-is/cjs/react-is.development.js:
       url: "/js/main.hash.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/main",
       remote: undefined,
@@ -1319,7 +1277,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1327,7 +1284,6 @@ react-is/cjs/react-is.development.js:
       url: "/js/other.hash.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other",
       remote: undefined,
@@ -1344,7 +1300,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1352,7 +1307,6 @@ react-is/cjs/react-is.development.js:
       url: "/js/script.hash.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other/script",
       remote: undefined,
@@ -1369,7 +1323,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1377,7 +1330,6 @@ react-is/cjs/react-is.development.js:
       url: "/js/to_lowercase.hash.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other/to_lowercase",
       remote: undefined,
@@ -1394,7 +1346,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1402,7 +1353,6 @@ react-is/cjs/react-is.development.js:
       url: "/js/to_uppercase.hash.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/modules/to_uppercase",
       remote: undefined,
@@ -1426,7 +1376,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1434,7 +1383,6 @@ react-is/cjs/react-is.development.js:
       url: "/main/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/main",
       remote: undefined,
@@ -1586,7 +1534,6 @@ snapshot[`esbuild plugin with entryNames complex 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1594,7 +1541,6 @@ snapshot[`esbuild plugin with entryNames complex 3`] = `
       url: "/main/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/main",
       remote: undefined,
@@ -1611,7 +1557,6 @@ snapshot[`esbuild plugin with entryNames complex 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1619,7 +1564,6 @@ snapshot[`esbuild plugin with entryNames complex 3`] = `
       url: "/one/foo/bar/two/script/hash.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other/script",
       remote: undefined,
@@ -1636,7 +1580,6 @@ snapshot[`esbuild plugin with entryNames complex 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1644,7 +1587,6 @@ snapshot[`esbuild plugin with entryNames complex 3`] = `
       url: "/one/foo/bar/two/to_lowercase/hash.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other/to_lowercase",
       remote: undefined,
@@ -1661,7 +1603,6 @@ snapshot[`esbuild plugin with entryNames complex 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1669,7 +1610,6 @@ snapshot[`esbuild plugin with entryNames complex 3`] = `
       url: "/one/modules/two/to_uppercase/hash.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/modules/to_uppercase",
       remote: undefined,
@@ -1699,7 +1639,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1707,7 +1646,6 @@ react-is/cjs/react-is.development.js:
       url: "/one/two/main/hash.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/main",
       remote: undefined,
@@ -1724,7 +1662,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1732,7 +1669,6 @@ react-is/cjs/react-is.development.js:
       url: "/one/two/other/hash.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other",
       remote: undefined,
@@ -1877,7 +1813,6 @@ snapshot[`esbuild plugin without bundle 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1885,7 +1820,6 @@ snapshot[`esbuild plugin without bundle 3`] = `
       url: "/foo/bar/script.hash.min.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other/script",
       remote: undefined,
@@ -1902,7 +1836,6 @@ snapshot[`esbuild plugin without bundle 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1910,7 +1843,6 @@ snapshot[`esbuild plugin without bundle 3`] = `
       url: "/foo/bar/to_lowercase.hash.min.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other/to_lowercase",
       remote: undefined,
@@ -1927,7 +1859,6 @@ snapshot[`esbuild plugin without bundle 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1935,7 +1866,6 @@ snapshot[`esbuild plugin without bundle 3`] = `
       url: "/main.hash.min.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/main",
       remote: undefined,
@@ -1959,7 +1889,6 @@ snapshot[`esbuild plugin without bundle 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1967,7 +1896,6 @@ snapshot[`esbuild plugin without bundle 3`] = `
       url: "/main/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/main",
       remote: undefined,
@@ -1984,7 +1912,6 @@ snapshot[`esbuild plugin without bundle 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1992,7 +1919,6 @@ snapshot[`esbuild plugin without bundle 3`] = `
       url: "/modules/to_uppercase.hash.min.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/modules/to_uppercase",
       remote: undefined,
@@ -2009,7 +1935,6 @@ snapshot[`esbuild plugin without bundle 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -2017,7 +1942,6 @@ snapshot[`esbuild plugin without bundle 3`] = `
       url: "/other.hash.min.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other",
       remote: undefined,

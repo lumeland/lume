@@ -120,12 +120,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/ant/account-book-filled.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -141,12 +139,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/bootstrap/0-circle.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -159,12 +155,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/boxicons/sushi-regular.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -177,12 +171,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/fluent/access_time_20-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -198,12 +190,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/heroicons/face-smile-outline.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -219,12 +209,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/iconoir/check-regular.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -257,12 +245,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/lucide/alarm-clock.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -275,12 +261,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material-100/10k-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -293,12 +277,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material-200/10k-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -311,12 +293,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material-300/10k-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -329,12 +309,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material-400/10k-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -347,12 +325,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material-500/10k-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -365,12 +341,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material-600/10k-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -383,12 +357,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material-700/10k-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -401,12 +373,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material/10k-filled.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -419,12 +389,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/mingcute/arrow/arrows_left_fill.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -437,12 +405,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/myna/a-arrow-down-regular.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -455,12 +421,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/octicons/comment-24.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -487,12 +451,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/openmoji/E046-color.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -505,12 +467,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/phosphor/acorn-duotone.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -523,12 +483,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/phosphor/acorn-regular.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -541,12 +499,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/remix/arrows/arrow-up-fill.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -559,12 +515,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/sargam/add-duotone.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -577,12 +531,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/simpleicons/facebook.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -605,12 +557,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/tabler/alien-filled.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -734,7 +684,6 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -742,7 +691,6 @@ snapshot[`icons plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,

@@ -164,7 +164,6 @@ p {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -172,7 +171,6 @@ p {
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -212,7 +210,6 @@ p {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -220,7 +217,6 @@ p {
       url: "/other/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/other",
       remote: undefined,
@@ -239,12 +235,10 @@ p {
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -417,7 +411,6 @@ p {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -425,7 +418,6 @@ p {
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -465,7 +457,6 @@ p {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -473,7 +464,6 @@ p {
       url: "/other/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/other",
       remote: undefined,
@@ -492,12 +482,10 @@ p {
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/theme.css",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,

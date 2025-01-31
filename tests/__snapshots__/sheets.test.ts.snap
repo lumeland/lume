@@ -725,7 +725,6 @@ Daniels</th>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -733,7 +732,6 @@ Daniels</th>
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,

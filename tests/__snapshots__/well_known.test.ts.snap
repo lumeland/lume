@@ -126,7 +126,6 @@ snapshot[`.well-known folder 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -134,7 +133,6 @@ snapshot[`.well-known folder 3`] = `
       url: "/.well-known/security.txt",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/.well-known/page",
       remote: undefined,

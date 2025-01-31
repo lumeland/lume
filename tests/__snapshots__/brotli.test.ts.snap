@@ -189,7 +189,6 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -198,7 +197,6 @@ snapshot[`brotli plugin 3`] = `
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
@@ -212,12 +210,10 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/404.html.br",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -251,7 +247,6 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -261,7 +256,6 @@ snapshot[`brotli plugin 3`] = `
       url: "/overrided-page2/",
     },
     src: {
-      asset: false,
       ext: ".page.json",
       path: "/pages/2020-06-21_page2",
       remote: undefined,
@@ -275,12 +269,10 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/overrided-page2/index.html.br",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -312,7 +304,6 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -322,7 +313,6 @@ snapshot[`brotli plugin 3`] = `
       url: "/page_3",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/page3",
       remote: undefined,
@@ -348,7 +338,6 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -358,7 +347,6 @@ snapshot[`brotli plugin 3`] = `
       url: "/page5/",
     },
     src: {
-      asset: false,
       ext: ".yaml",
       path: "/page5",
       remote: undefined,
@@ -372,12 +360,10 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/page5/index.html.br",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -410,7 +396,6 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -419,7 +404,6 @@ snapshot[`brotli plugin 3`] = `
       url: "/pages/new-name/page7/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/subpage/page7",
       remote: undefined,
@@ -433,12 +417,10 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pages/new-name/page7/index.html.br",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -471,7 +453,6 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -481,7 +462,6 @@ snapshot[`brotli plugin 3`] = `
       url: "/pages/page4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
       remote: undefined,
@@ -495,12 +475,10 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pages/page4/index.html.br",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -536,7 +514,6 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -546,7 +523,6 @@ snapshot[`brotli plugin 3`] = `
       url: "/pages/page6/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/ghost/2021-12-29-page6",
       remote: undefined,
@@ -560,12 +536,10 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pages/page6/index.html.br",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -591,7 +565,6 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -600,7 +573,6 @@ snapshot[`brotli plugin 3`] = `
       url: "/static/",
     },
     src: {
-      asset: false,
       ext: ".yml",
       path: "/static",
       remote: undefined,
@@ -614,12 +586,10 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/static/index.html.br",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -642,7 +612,6 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -651,7 +620,6 @@ snapshot[`brotli plugin 3`] = `
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
       remote: undefined,
@@ -665,12 +633,10 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/styles.css.br",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -853,7 +819,6 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -862,7 +827,6 @@ snapshot[`brotli plugin with options 3`] = `
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
@@ -896,7 +860,6 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -906,7 +869,6 @@ snapshot[`brotli plugin with options 3`] = `
       url: "/overrided-page2/",
     },
     src: {
-      asset: false,
       ext: ".page.json",
       path: "/pages/2020-06-21_page2",
       remote: undefined,
@@ -938,7 +900,6 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -948,7 +909,6 @@ snapshot[`brotli plugin with options 3`] = `
       url: "/page_3",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/page3",
       remote: undefined,
@@ -974,7 +934,6 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -984,7 +943,6 @@ snapshot[`brotli plugin with options 3`] = `
       url: "/page5/",
     },
     src: {
-      asset: false,
       ext: ".yaml",
       path: "/page5",
       remote: undefined,
@@ -1017,7 +975,6 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1026,7 +983,6 @@ snapshot[`brotli plugin with options 3`] = `
       url: "/pages/new-name/page7/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/subpage/page7",
       remote: undefined,
@@ -1059,7 +1015,6 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1069,7 +1024,6 @@ snapshot[`brotli plugin with options 3`] = `
       url: "/pages/page4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
       remote: undefined,
@@ -1105,7 +1059,6 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1115,7 +1068,6 @@ snapshot[`brotli plugin with options 3`] = `
       url: "/pages/page6/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/ghost/2021-12-29-page6",
       remote: undefined,
@@ -1141,7 +1093,6 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1150,7 +1101,6 @@ snapshot[`brotli plugin with options 3`] = `
       url: "/static/",
     },
     src: {
-      asset: false,
       ext: ".yml",
       path: "/static",
       remote: undefined,
@@ -1173,7 +1123,6 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1182,7 +1131,6 @@ snapshot[`brotli plugin with options 3`] = `
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
       remote: undefined,
@@ -1196,12 +1144,10 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/styles.css.br",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,

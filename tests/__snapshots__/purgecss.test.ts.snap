@@ -184,7 +184,6 @@ Título
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -193,7 +192,6 @@ Título
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
@@ -212,7 +210,6 @@ Título
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -221,7 +218,6 @@ Título
       url: "/page_2/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/page2",
       remote: undefined,
@@ -243,7 +239,6 @@ Título
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -252,7 +247,6 @@ Título
       url: "/pages/page1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/page1",
       remote: undefined,
@@ -268,7 +262,6 @@ Título
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -276,7 +269,6 @@ Título
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
       remote: undefined,
@@ -469,7 +461,6 @@ Título
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -478,7 +469,6 @@ Título
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
@@ -497,7 +487,6 @@ Título
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -506,7 +495,6 @@ Título
       url: "/page_2/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/page2",
       remote: undefined,
@@ -528,7 +516,6 @@ Título
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -537,7 +524,6 @@ Título
       url: "/pages/page1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/page1",
       remote: undefined,
@@ -553,7 +539,6 @@ Título
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -561,7 +546,6 @@ Título
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
       remote: undefined,

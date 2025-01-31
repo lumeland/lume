@@ -204,7 +204,6 @@ snapshot[`base_path plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -212,7 +211,6 @@ snapshot[`base_path plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
@@ -250,7 +248,6 @@ div {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -258,7 +255,6 @@ div {
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
       remote: undefined,

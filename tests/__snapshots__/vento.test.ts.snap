@@ -208,7 +208,6 @@ CUSTOM FILTER
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -217,7 +216,6 @@ CUSTOM FILTER
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
@@ -240,7 +238,6 @@ CUSTOM FILTER
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -249,7 +246,6 @@ CUSTOM FILTER
       url: "/vto-filter/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/vto-filter",
       remote: undefined,

@@ -142,7 +142,6 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -151,7 +150,6 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       url: "/multiple/1.html",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/multiple[0]",
       remote: undefined,
@@ -182,7 +180,6 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -190,7 +187,6 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       url: "/multiple/2.html",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/multiple[1]",
       remote: undefined,
@@ -221,7 +217,6 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -229,7 +224,6 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
       url: "/multiple/3.html",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/multiple[2]",
       remote: undefined,

@@ -151,7 +151,6 @@ snapshot[`Build a markdown site 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -160,7 +159,6 @@ snapshot[`Build a markdown site 3`] = `
       url: "/basic/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/basic",
       remote: undefined,
@@ -214,7 +212,6 @@ belong to the previous footnote.</p>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -222,7 +219,6 @@ belong to the previous footnote.</p>
       url: "/footnote/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/footnote",
       remote: undefined,
@@ -244,7 +240,6 @@ belong to the previous footnote.</p>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -252,7 +247,6 @@ belong to the previous footnote.</p>
       url: "/with-attributes/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-attributes",
       remote: undefined,
@@ -290,7 +284,6 @@ belong to the previous footnote.</p>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -298,7 +291,6 @@ belong to the previous footnote.</p>
       url: "/with-code/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-code",
       remote: undefined,
@@ -340,7 +332,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -348,7 +339,6 @@ Other title
       url: "/with-deflist/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-deflist",
       remote: undefined,
@@ -378,7 +368,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -387,7 +376,6 @@ Other title
       url: "/with-filter/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/with-filter",
       remote: undefined,
@@ -410,7 +398,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -420,7 +407,6 @@ Other title
       url: "/with-module/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/with-module",
       remote: undefined,
@@ -468,7 +454,6 @@ Foo
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -478,7 +463,6 @@ Foo
       url: "/with-vento/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-vento",
       remote: undefined,
@@ -638,7 +622,6 @@ snapshot[`Build a markdown with hooks 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -647,7 +630,6 @@ snapshot[`Build a markdown with hooks 3`] = `
       url: "/basic/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/basic",
       remote: undefined,
@@ -701,7 +683,6 @@ belong to the previous footnote.</p>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -709,7 +690,6 @@ belong to the previous footnote.</p>
       url: "/footnote/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/footnote",
       remote: undefined,
@@ -731,7 +711,6 @@ belong to the previous footnote.</p>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -739,7 +718,6 @@ belong to the previous footnote.</p>
       url: "/with-attributes/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-attributes",
       remote: undefined,
@@ -777,7 +755,6 @@ belong to the previous footnote.</p>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -785,7 +762,6 @@ belong to the previous footnote.</p>
       url: "/with-code/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-code",
       remote: undefined,
@@ -827,7 +803,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -835,7 +810,6 @@ Other title
       url: "/with-deflist/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-deflist",
       remote: undefined,
@@ -865,7 +839,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -874,7 +847,6 @@ Other title
       url: "/with-filter/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/with-filter",
       remote: undefined,
@@ -897,7 +869,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -907,7 +878,6 @@ Other title
       url: "/with-module/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/with-module",
       remote: undefined,
@@ -955,7 +925,6 @@ Foo
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -965,7 +934,6 @@ Foo
       url: "/with-vento/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-vento",
       remote: undefined,

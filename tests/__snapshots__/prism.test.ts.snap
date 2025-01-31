@@ -222,7 +222,6 @@ console.log("foo");
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -230,7 +229,6 @@ console.log("foo");
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -243,12 +241,10 @@ console.log("foo");
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -479,7 +475,6 @@ console.log("foo");
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -487,7 +482,6 @@ console.log("foo");
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -500,12 +494,10 @@ console.log("foo");
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/theme.css",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,

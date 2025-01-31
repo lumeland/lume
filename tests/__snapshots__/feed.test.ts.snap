@@ -132,7 +132,6 @@ snapshot[`RSS plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -140,7 +139,6 @@ snapshot[`RSS plugin 3`] = `
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
@@ -164,7 +162,6 @@ snapshot[`RSS plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       published: "1979-06-21T23:45:00.000Z",
@@ -174,7 +171,6 @@ snapshot[`RSS plugin 3`] = `
       url: "/page5/",
     },
     src: {
-      asset: false,
       ext: ".yaml",
       path: "/page5",
       remote: undefined,
@@ -188,12 +184,10 @@ snapshot[`RSS plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "feed.json",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -263,12 +257,10 @@ snapshot[`RSS plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "feed.rss",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,

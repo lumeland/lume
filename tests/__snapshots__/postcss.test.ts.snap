@@ -132,282 +132,64 @@ snapshot[`postcss plugin 3`] = `
   --font-family: sans-serif;
 }
 
+/**
+ * Minified by jsDelivr using clean-css v5.3.2.
+ * Original file: /npm/modern-normalize@2.0.0/modern-normalize.css
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+
 /*! modern-normalize v2.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
 
-/*
-Document
-========
-*/
+*,::after,::before{box-sizing:border-box}
 
-/**
-Use a better box model (opinionated).
-*/
+html{font-family:system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';line-height:1.15;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4}
 
-*,
-::before,
-::after {
-	box-sizing: border-box;
-}
+body{margin:0}
 
-html {
-	/* Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3) */
-	font-family:
-		system-ui,
-		'Segoe UI',
-		Roboto,
-		Helvetica,
-		Arial,
-		sans-serif,
-		'Apple Color Emoji',
-		'Segoe UI Emoji';
-	line-height: 1.15; /* 1. Correct the line height in all browsers. */
-	-webkit-text-size-adjust: 100%; /* 2. Prevent adjustments of font size after orientation changes in iOS. */
-	-moz-tab-size: 4; /* 3. Use a more readable tab size (opinionated). */
-	-o-tab-size: 4;
-	   tab-size: 4; /* 3 */
-}
+hr{height:0;color:inherit}
 
-/*
-Sections
-========
-*/
+abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted}
 
-body {
-	margin: 0; /* Remove the margin in all browsers. */
-}
+b,strong{font-weight:bolder}
 
-/*
-Grouping content
-================
-*/
+code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace;font-size:1em}
 
-/**
-1. Add the correct height in Firefox.
-2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
-*/
+small{font-size:80%}
 
-hr {
-	height: 0; /* 1 */
-	color: inherit; /* 2 */
-}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
 
-/*
-Text-level semantics
-====================
-*/
+sub{bottom:-.25em}
 
-/**
-Add the correct text decoration in Chrome, Edge, and Safari.
-*/
+sup{top:-.5em}
 
-abbr[title] {
-	-webkit-text-decoration: underline dotted;
-	        text-decoration: underline dotted;
-}
+table{text-indent:0;border-color:inherit}
 
-/**
-Add the correct font weight in Edge and Safari.
-*/
+button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}
 
-b,
-strong {
-	font-weight: bolder;
-}
+button,select{text-transform:none}
 
-/**
-1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
-2. Correct the odd 'em' font sizing in all browsers.
-*/
+[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}
 
-code,
-kbd,
-samp,
-pre {
-	font-family:
-		ui-monospace,
-		SFMono-Regular,
-		Consolas,
-		'Liberation Mono',
-		Menlo,
-		monospace; /* 1 */
-	font-size: 1em; /* 2 */
-}
+::-moz-focus-inner{border-style:none;padding:0}
 
-/**
-Add the correct font size in all browsers.
-*/
+:-moz-focusring{outline:1px dotted ButtonText}
 
-small {
-	font-size: 80%;
-}
+:-moz-ui-invalid{box-shadow:none}
 
-/**
-Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
-*/
+legend{padding:0}
 
-sub,
-sup {
-	font-size: 75%;
-	line-height: 0;
-	position: relative;
-	vertical-align: baseline;
-}
+progress{vertical-align:baseline}
 
-sub {
-	bottom: -0.25em;
-}
+::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}
 
-sup {
-	top: -0.5em;
-}
+[type=search]{-webkit-appearance:textfield;outline-offset:-2px}
 
-/*
-Tabular data
-============
-*/
+::-webkit-search-decoration{-webkit-appearance:none}
 
-/**
-1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
-2. Correct table border color inheritance in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
-*/
+::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
 
-table {
-	text-indent: 0; /* 1 */
-	border-color: inherit; /* 2 */
-}
-
-/*
-Forms
-=====
-*/
-
-/**
-1. Change the font styles in all browsers.
-2. Remove the margin in Firefox and Safari.
-*/
-
-button,
-input,
-optgroup,
-select,
-textarea {
-	font-family: inherit; /* 1 */
-	font-size: 100%; /* 1 */
-	line-height: 1.15; /* 1 */
-	margin: 0; /* 2 */
-}
-
-/**
-Remove the inheritance of text transform in Edge and Firefox.
-*/
-
-button,
-select {
-	text-transform: none;
-}
-
-/**
-Correct the inability to style clickable types in iOS and Safari.
-*/
-
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-	-webkit-appearance: button;
-}
-
-/**
-Remove the inner border and padding in Firefox.
-*/
-
-::-moz-focus-inner {
-	border-style: none;
-	padding: 0;
-}
-
-/**
-Restore the focus styles unset by the previous rule.
-*/
-
-:-moz-focusring {
-	outline: 1px dotted ButtonText;
-}
-
-/**
-Remove the additional ':invalid' styles in Firefox.
-See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737
-*/
-
-:-moz-ui-invalid {
-	box-shadow: none;
-}
-
-/**
-Remove the padding so developers are not caught out when they zero out 'fieldset' elements in all browsers.
-*/
-
-legend {
-	padding: 0;
-}
-
-/**
-Add the correct vertical alignment in Chrome and Firefox.
-*/
-
-progress {
-	vertical-align: baseline;
-}
-
-/**
-Correct the cursor style of increment and decrement buttons in Safari.
-*/
-
-::-webkit-inner-spin-button,
-::-webkit-outer-spin-button {
-	height: auto;
-}
-
-/**
-1. Correct the odd appearance in Chrome and Safari.
-2. Correct the outline style in Safari.
-*/
-
-[type='search'] {
-	-webkit-appearance: textfield; /* 1 */
-	outline-offset: -2px; /* 2 */
-}
-
-/**
-Remove the inner padding in Chrome and Safari on macOS.
-*/
-
-::-webkit-search-decoration {
-	-webkit-appearance: none;
-}
-
-/**
-1. Correct the inability to style clickable types in iOS and Safari.
-2. Change font properties to 'inherit' in Safari.
-*/
-
-::-webkit-file-upload-button {
-	-webkit-appearance: button; /* 1 */
-	font: inherit; /* 2 */
-}
-
-/*
-Interactive
-===========
-*/
-
-/*
-Add the correct display in Chrome and Safari.
-*/
-
-summary {
-	display: list-item;
-}
+summary{display:list-item}
 
 .text {
   font-family: var(--font-family);
@@ -428,7 +210,6 @@ summary {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -436,290 +217,44 @@ summary {
       url: "/index.min.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/index.min",
       remote: undefined,
     },
   },
   {
-    content: "/*! modern-normalize v2.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
-
-/*
-Document
-========
-*/
-
-/**
-Use a better box model (opinionated).
-*/
-
-*,
-::before,
-::after {
-	box-sizing: border-box;
-}
-
-html {
-	/* Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3) */
-	font-family:
-		system-ui,
-		'Segoe UI',
-		Roboto,
-		Helvetica,
-		Arial,
-		sans-serif,
-		'Apple Color Emoji',
-		'Segoe UI Emoji';
-	line-height: 1.15; /* 1. Correct the line height in all browsers. */
-	-webkit-text-size-adjust: 100%; /* 2. Prevent adjustments of font size after orientation changes in iOS. */
-	-moz-tab-size: 4; /* 3. Use a more readable tab size (opinionated). */
-	-o-tab-size: 4;
-	   tab-size: 4; /* 3 */
-}
-
-/*
-Sections
-========
-*/
-
-body {
-	margin: 0; /* Remove the margin in all browsers. */
-}
-
-/*
-Grouping content
-================
-*/
-
-/**
-1. Add the correct height in Firefox.
-2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
-*/
-
-hr {
-	height: 0; /* 1 */
-	color: inherit; /* 2 */
-}
-
-/*
-Text-level semantics
-====================
-*/
-
-/**
-Add the correct text decoration in Chrome, Edge, and Safari.
-*/
-
-abbr[title] {
-	-webkit-text-decoration: underline dotted;
-	        text-decoration: underline dotted;
-}
-
-/**
-Add the correct font weight in Edge and Safari.
-*/
-
-b,
-strong {
-	font-weight: bolder;
-}
-
-/**
-1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
-2. Correct the odd 'em' font sizing in all browsers.
-*/
-
-code,
-kbd,
-samp,
-pre {
-	font-family:
-		ui-monospace,
-		SFMono-Regular,
-		Consolas,
-		'Liberation Mono',
-		Menlo,
-		monospace; /* 1 */
-	font-size: 1em; /* 2 */
-}
-
-/**
-Add the correct font size in all browsers.
-*/
-
-small {
-	font-size: 80%;
-}
-
-/**
-Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
-*/
-
-sub,
-sup {
-	font-size: 75%;
-	line-height: 0;
-	position: relative;
-	vertical-align: baseline;
-}
-
-sub {
-	bottom: -0.25em;
-}
-
-sup {
-	top: -0.5em;
-}
-
-/*
-Tabular data
-============
-*/
-
-/**
-1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
-2. Correct table border color inheritance in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
-*/
-
-table {
-	text-indent: 0; /* 1 */
-	border-color: inherit; /* 2 */
-}
-
-/*
-Forms
-=====
-*/
-
-/**
-1. Change the font styles in all browsers.
-2. Remove the margin in Firefox and Safari.
-*/
-
-button,
-input,
-optgroup,
-select,
-textarea {
-	font-family: inherit; /* 1 */
-	font-size: 100%; /* 1 */
-	line-height: 1.15; /* 1 */
-	margin: 0; /* 2 */
-}
-
-/**
-Remove the inheritance of text transform in Edge and Firefox.
-*/
-
-button,
-select {
-	text-transform: none;
-}
-
-/**
-Correct the inability to style clickable types in iOS and Safari.
-*/
-
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-	-webkit-appearance: button;
-}
-
-/**
-Remove the inner border and padding in Firefox.
-*/
-
-::-moz-focus-inner {
-	border-style: none;
-	padding: 0;
-}
-
-/**
-Restore the focus styles unset by the previous rule.
-*/
-
-:-moz-focusring {
-	outline: 1px dotted ButtonText;
-}
-
-/**
-Remove the additional ':invalid' styles in Firefox.
-See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737
-*/
-
-:-moz-ui-invalid {
-	box-shadow: none;
-}
-
-/**
-Remove the padding so developers are not caught out when they zero out 'fieldset' elements in all browsers.
-*/
-
-legend {
-	padding: 0;
-}
-
-/**
-Add the correct vertical alignment in Chrome and Firefox.
-*/
-
-progress {
-	vertical-align: baseline;
-}
-
-/**
-Correct the cursor style of increment and decrement buttons in Safari.
-*/
-
-::-webkit-inner-spin-button,
-::-webkit-outer-spin-button {
-	height: auto;
-}
-
-/**
-1. Correct the odd appearance in Chrome and Safari.
-2. Correct the outline style in Safari.
-*/
-
-[type='search'] {
-	-webkit-appearance: textfield; /* 1 */
-	outline-offset: -2px; /* 2 */
-}
-
-/**
-Remove the inner padding in Chrome and Safari on macOS.
-*/
-
-::-webkit-search-decoration {
-	-webkit-appearance: none;
-}
-
-/**
-1. Correct the inability to style clickable types in iOS and Safari.
-2. Change font properties to 'inherit' in Safari.
-*/
-
-::-webkit-file-upload-button {
-	-webkit-appearance: button; /* 1 */
-	font: inherit; /* 2 */
-}
-
-/*
-Interactive
-===========
-*/
-
-/*
-Add the correct display in Chrome and Safari.
-*/
-
-summary {
-	display: list-item;
-}
-
+    content: "/**
+ * Minified by jsDelivr using clean-css v5.3.2.
+ * Original file: /npm/modern-normalize@2.0.0/modern-normalize.css
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+/*! modern-normalize v2.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
+*,::after,::before{box-sizing:border-box}
+html{font-family:system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';line-height:1.15;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4}
+body{margin:0}
+hr{height:0;color:inherit}
+abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted}
+b,strong{font-weight:bolder}
+code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace;font-size:1em}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sub{bottom:-.25em}
+sup{top:-.5em}
+table{text-indent:0;border-color:inherit}
+button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}
+button,select{text-transform:none}
+[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}
+::-moz-focus-inner{border-style:none;padding:0}
+:-moz-focusring{outline:1px dotted ButtonText}
+:-moz-ui-invalid{box-shadow:none}
+legend{padding:0}
+progress{vertical-align:baseline}
+::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}
+[type=search]{-webkit-appearance:textfield;outline-offset:-2px}
+::-webkit-search-decoration{-webkit-appearance:none}
+::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
+summary{display:list-item}
 .text {
   font-family: var(--font-family);
 
@@ -739,7 +274,6 @@ summary {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -747,7 +281,6 @@ summary {
       url: "/text.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/text",
       remote: undefined,
@@ -889,7 +422,6 @@ snapshot[`postcss plugin without includes 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -897,7 +429,6 @@ snapshot[`postcss plugin without includes 3`] = `
       url: "/index.min.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/index.min",
       remote: undefined,
@@ -925,7 +456,6 @@ snapshot[`postcss plugin without includes 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -933,7 +463,6 @@ snapshot[`postcss plugin without includes 3`] = `
       url: "/text.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/text",
       remote: undefined,
@@ -1075,7 +604,6 @@ snapshot[`postcss plugin with hooks 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1083,7 +611,6 @@ snapshot[`postcss plugin with hooks 3`] = `
       url: "/index.min.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/index.min",
       remote: undefined,
@@ -1099,7 +626,6 @@ snapshot[`postcss plugin with hooks 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1107,7 +633,6 @@ snapshot[`postcss plugin with hooks 3`] = `
       url: "/text.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/text",
       remote: undefined,

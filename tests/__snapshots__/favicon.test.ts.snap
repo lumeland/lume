@@ -128,12 +128,10 @@ snapshot[`favicon plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/apple-touch-icon.png",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -147,12 +145,10 @@ snapshot[`favicon plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/favicon.ico",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -168,7 +164,6 @@ snapshot[`favicon plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -176,7 +171,6 @@ snapshot[`favicon plugin 3`] = `
       url: "/favicon.svg",
     },
     src: {
-      asset: true,
       ext: ".svg",
       path: "/favicon",
       remote: undefined,
@@ -216,7 +210,6 @@ snapshot[`favicon plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -225,7 +218,6 @@ snapshot[`favicon plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,

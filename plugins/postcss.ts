@@ -127,7 +127,7 @@ function configureImport(site: Site, includes: string) {
     /** Load the content (using the Lume reader) */
     async load(file: string) {
       if (file.startsWith("/npm:")) {
-        const url = `https://esm.sh/${file.slice(5)}`;
+        const url = file.replace("/npm:", "https://cdn.jsdelivr.net/npm/");
         return await readFile(url);
       }
 

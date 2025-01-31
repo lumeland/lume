@@ -132,7 +132,6 @@ snapshot[`Disabled pretty URLs 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -141,7 +140,6 @@ snapshot[`Disabled pretty URLs 3`] = `
       url: "/page1.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page1",
       remote: undefined,
@@ -163,7 +161,6 @@ snapshot[`Disabled pretty URLs 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -172,7 +169,6 @@ snapshot[`Disabled pretty URLs 3`] = `
       url: "/page2.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/foo",
       remote: undefined,

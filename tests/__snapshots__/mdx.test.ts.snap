@@ -169,7 +169,6 @@ This is a markdown file with the title **{ title }**.
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -178,7 +177,6 @@ This is a markdown file with the title **{ title }**.
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".mdx",
       path: "/index",
       remote: undefined,
@@ -215,7 +213,6 @@ description: This is a description</h2>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -224,7 +221,6 @@ description: This is a description</h2>
       url: "/mdx-filter/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/mdx-filter",
       remote: undefined,

@@ -140,7 +140,6 @@ snapshot[`OpenGraph images 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -149,7 +148,6 @@ snapshot[`OpenGraph images 3`] = `
       url: "/page1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page1",
       remote: undefined,
@@ -163,12 +161,10 @@ snapshot[`OpenGraph images 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/page1/index.png",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,

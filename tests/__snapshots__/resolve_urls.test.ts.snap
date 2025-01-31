@@ -165,7 +165,6 @@ First article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -173,7 +172,6 @@ First article
       url: "/articles/first-article/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/articles/article-1",
       remote: undefined,
@@ -209,7 +207,6 @@ Third article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -217,7 +214,6 @@ Third article
       url: "/articles/third-article/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/articles/article-3",
       remote: undefined,
@@ -240,7 +236,6 @@ Third article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -248,7 +243,6 @@ Third article
       url: "/asset/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/statics/asset",
       remote: undefined,
@@ -286,7 +280,6 @@ Second article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -294,7 +287,6 @@ Second article
       url: "/drafts/second-article/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/articles/article-2",
       remote: undefined,
@@ -361,7 +353,6 @@ Second article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -369,7 +360,6 @@ Second article
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -396,7 +386,6 @@ Second article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -404,7 +393,6 @@ Second article
       url: "/other/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/other",
       remote: undefined,
@@ -427,7 +415,6 @@ Second article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -435,7 +422,6 @@ Second article
       url: "/tilde-and-ene/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/tílde-and-eñe",
       remote: undefined,
@@ -609,7 +595,6 @@ First article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -617,7 +602,6 @@ First article
       url: "/articles/first-article/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/articles/article-1",
       remote: undefined,
@@ -653,7 +637,6 @@ Third article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -661,7 +644,6 @@ Third article
       url: "/articles/third%20article/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/articles/article-3",
       remote: undefined,
@@ -684,7 +666,6 @@ Third article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -692,7 +673,6 @@ Third article
       url: "/asset/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/statics/asset",
       remote: undefined,
@@ -730,7 +710,6 @@ Second article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -738,7 +717,6 @@ Second article
       url: "/drafts/second-article/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/articles/article-2",
       remote: undefined,
@@ -805,7 +783,6 @@ Second article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -813,7 +790,6 @@ Second article
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -840,7 +816,6 @@ Second article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -848,7 +823,6 @@ Second article
       url: "/other/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/other",
       remote: undefined,
@@ -871,7 +845,6 @@ Second article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -879,7 +852,6 @@ Second article
       url: "/tílde-and-eñe/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/tílde-and-eñe",
       remote: undefined,

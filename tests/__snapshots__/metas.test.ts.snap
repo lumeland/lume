@@ -186,7 +186,6 @@ snapshot[`metas plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -194,7 +193,6 @@ snapshot[`metas plugin 3`] = `
       url: "/page-1/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page-1",
       remote: undefined,
@@ -265,7 +263,6 @@ snapshot[`metas plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -273,7 +270,6 @@ snapshot[`metas plugin 3`] = `
       url: "/page-2/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page-2",
       remote: undefined,
@@ -340,7 +336,6 @@ snapshot[`metas plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       robots: "this robots will be overrided",
@@ -349,7 +344,6 @@ snapshot[`metas plugin 3`] = `
       url: "/page-3/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page-3",
       remote: undefined,

@@ -215,7 +215,6 @@ snapshot[`build a site with nunjucks 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -223,7 +222,6 @@ snapshot[`build a site with nunjucks 3`] = `
       url: "/components/",
     },
     src: {
-      asset: false,
       ext: ".njk",
       path: "/components",
       remote: undefined,
@@ -249,7 +247,6 @@ snapshot[`build a site with nunjucks 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -257,7 +254,6 @@ snapshot[`build a site with nunjucks 3`] = `
       url: "/data.json",
     },
     src: {
-      asset: false,
       ext: ".njk",
       path: "/data",
       remote: undefined,
@@ -295,7 +291,6 @@ snapshot[`build a site with nunjucks 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -304,7 +299,6 @@ snapshot[`build a site with nunjucks 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".njk",
       path: "/index",
       remote: undefined,
@@ -339,7 +333,6 @@ snapshot[`build a site with nunjucks 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -348,7 +341,6 @@ snapshot[`build a site with nunjucks 3`] = `
       url: "/njk-filter/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/njk-filter",
       remote: undefined,
@@ -369,12 +361,10 @@ console.log("Hello world, from the icon/User component");
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/scripts.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -396,12 +386,10 @@ icon {
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -493,7 +481,6 @@ icon {
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -502,7 +489,6 @@ icon {
       url: "/with-helpers/",
     },
     src: {
-      asset: false,
       ext: ".njk",
       path: "/with-helpers",
       remote: undefined,

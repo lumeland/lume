@@ -160,7 +160,6 @@ snapshot[`Sitemap plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -169,7 +168,6 @@ snapshot[`Sitemap plugin 3`] = `
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
@@ -203,7 +201,6 @@ snapshot[`Sitemap plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -213,7 +210,6 @@ snapshot[`Sitemap plugin 3`] = `
       url: "/overrided-page2/",
     },
     src: {
-      asset: false,
       ext: ".page.json",
       path: "/pages/2020-06-21_page2",
       remote: undefined,
@@ -245,7 +241,6 @@ snapshot[`Sitemap plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -255,7 +250,6 @@ snapshot[`Sitemap plugin 3`] = `
       url: "/page_3",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/page3",
       remote: undefined,
@@ -281,7 +275,6 @@ snapshot[`Sitemap plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -291,7 +284,6 @@ snapshot[`Sitemap plugin 3`] = `
       url: "/page5/",
     },
     src: {
-      asset: false,
       ext: ".yaml",
       path: "/page5",
       remote: undefined,
@@ -324,7 +316,6 @@ snapshot[`Sitemap plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -333,7 +324,6 @@ snapshot[`Sitemap plugin 3`] = `
       url: "/pages/new-name/page7/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/subpage/page7",
       remote: undefined,
@@ -366,7 +356,6 @@ snapshot[`Sitemap plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -376,7 +365,6 @@ snapshot[`Sitemap plugin 3`] = `
       url: "/pages/page4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
       remote: undefined,
@@ -412,7 +400,6 @@ snapshot[`Sitemap plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -422,7 +409,6 @@ snapshot[`Sitemap plugin 3`] = `
       url: "/pages/page6/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/ghost/2021-12-29-page6",
       remote: undefined,
@@ -438,12 +424,10 @@ Sitemap: https://example.com/sitemap.xml",
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/robots.txt",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -501,12 +485,10 @@ Sitemap: https://example.com/sitemap.xml",
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/sitemap.xml",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -672,7 +654,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -682,7 +663,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       url: "/en/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -725,7 +705,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -735,7 +714,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       url: "/en/other-page-english/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/other",
       remote: undefined,
@@ -775,7 +753,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       pagination: [
@@ -792,7 +769,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       url: "/en/page-1/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pagination[1]",
       remote: undefined,
@@ -826,7 +802,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -836,7 +811,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       url: "/en/page-one/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/page1_en",
       remote: undefined,
@@ -869,7 +843,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -880,7 +853,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       url: "/en/types/post/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/types/post",
       remote: undefined,
@@ -923,7 +895,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -933,7 +904,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       url: "/fr/other-page-french.html",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/other",
       remote: undefined,
@@ -964,7 +934,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -974,7 +943,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -1008,7 +976,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1018,7 +985,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       url: "/it/pagina-1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/page1",
       remote: undefined,
@@ -1050,7 +1016,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1061,7 +1026,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       url: "/it/types/article/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/types/article",
       remote: undefined,
@@ -1091,7 +1055,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1101,7 +1064,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       url: "/lang-selector/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/lang-selector",
       remote: undefined,
@@ -1142,7 +1104,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       pagination: [
@@ -1159,7 +1120,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       url: "/page-1/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pagination[0]",
       remote: undefined,
@@ -1193,7 +1153,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1203,7 +1162,6 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
       url: "/paxina-un/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/page1_gl",
       remote: undefined,
@@ -1219,12 +1177,10 @@ Sitemap: https://example.com/sitemap.xml",
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/robots.txt",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -1404,12 +1360,10 @@ Sitemap: https://example.com/sitemap.xml",
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/sitemap.xml",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -1441,7 +1395,6 @@ Sitemap: https://example.com/sitemap.xml",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1452,7 +1405,6 @@ Sitemap: https://example.com/sitemap.xml",
       url: "/types/article_gl/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/types/article_gl",
       remote: undefined,
@@ -1485,7 +1437,6 @@ Sitemap: https://example.com/sitemap.xml",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1496,7 +1447,6 @@ Sitemap: https://example.com/sitemap.xml",
       url: "/types/post_gl/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/types/post_gl",
       remote: undefined,
@@ -1665,7 +1615,6 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1674,7 +1623,6 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
@@ -1708,7 +1656,6 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1718,7 +1665,6 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       url: "/overrided-page2/",
     },
     src: {
-      asset: false,
       ext: ".page.json",
       path: "/pages/2020-06-21_page2",
       remote: undefined,
@@ -1750,7 +1696,6 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1760,7 +1705,6 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       url: "/page_3",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pages/page3",
       remote: undefined,
@@ -1786,7 +1730,6 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1796,7 +1739,6 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       url: "/page5/",
     },
     src: {
-      asset: false,
       ext: ".yaml",
       path: "/page5",
       remote: undefined,
@@ -1829,7 +1771,6 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1839,7 +1780,6 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       url: "/pages/page4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
       remote: undefined,
@@ -1875,7 +1815,6 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1885,7 +1824,6 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       url: "/pages/page6/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/ghost/2021-12-29-page6",
       remote: undefined,
@@ -1901,12 +1839,10 @@ Sitemap: https://example.com/sitemap.xml",
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/robots.txt",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -1956,12 +1892,10 @@ Sitemap: https://example.com/sitemap.xml",
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/sitemap.xml",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,

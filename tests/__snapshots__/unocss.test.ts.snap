@@ -1451,7 +1451,6 @@ Make elements with the HTML hidden attribute stay hidden by default.
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1459,7 +1458,6 @@ Make elements with the HTML hidden attribute stay hidden by default.
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
@@ -2377,7 +2375,6 @@ snapshot[`Unocss plugin (css file) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -2385,7 +2382,6 @@ snapshot[`Unocss plugin (css file) 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
@@ -2967,12 +2963,10 @@ Make elements with the HTML hidden attribute stay hidden by default.
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -3893,7 +3887,6 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -3901,7 +3894,6 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
@@ -4098,7 +4090,6 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -4106,7 +4097,6 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
       remote: undefined,
@@ -5027,7 +5017,6 @@ snapshot[`Unocss with placeholder 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -5035,7 +5024,6 @@ snapshot[`Unocss with placeholder 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
@@ -5231,7 +5219,6 @@ snapshot[`Unocss with placeholder 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -5239,7 +5226,6 @@ snapshot[`Unocss with placeholder 3`] = `
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
       remote: undefined,

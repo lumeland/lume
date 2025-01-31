@@ -131,7 +131,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -139,7 +138,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/1/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages[0]",
       remote: undefined,
@@ -158,7 +156,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -166,7 +163,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/10/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages[9]",
       remote: undefined,
@@ -185,7 +181,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -194,7 +189,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/11/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages2[0]",
       remote: undefined,
@@ -213,7 +207,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -222,7 +215,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/12/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages2[1]",
       remote: undefined,
@@ -241,7 +233,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -250,7 +241,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/13/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages2[2]",
       remote: undefined,
@@ -269,7 +259,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -278,7 +267,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/14/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages2[3]",
       remote: undefined,
@@ -297,7 +285,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -306,7 +293,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/15/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages2[4]",
       remote: undefined,
@@ -325,7 +311,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -334,7 +319,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/16/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages2[5]",
       remote: undefined,
@@ -353,7 +337,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -362,7 +345,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/17/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages2[6]",
       remote: undefined,
@@ -381,7 +363,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -390,7 +371,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/18/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages2[7]",
       remote: undefined,
@@ -409,7 +389,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -418,7 +397,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/19/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages2[8]",
       remote: undefined,
@@ -437,7 +415,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -445,7 +422,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/2/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages[1]",
       remote: undefined,
@@ -464,7 +440,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       renderOrder: 2,
@@ -473,7 +448,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/20/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages2[9]",
       remote: undefined,
@@ -492,7 +466,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -500,7 +473,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/3/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages[2]",
       remote: undefined,
@@ -519,7 +491,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -527,7 +498,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages[3]",
       remote: undefined,
@@ -546,7 +516,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -554,7 +523,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/5/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages[4]",
       remote: undefined,
@@ -573,7 +541,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -581,7 +548,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/6/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages[5]",
       remote: undefined,
@@ -600,7 +566,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -608,7 +573,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/7/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages[6]",
       remote: undefined,
@@ -627,7 +591,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -635,7 +598,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/8/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages[7]",
       remote: undefined,
@@ -654,7 +616,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -662,7 +623,6 @@ snapshot[`render order property 3`] = `
       url: "/articles/9/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages[8]",
       remote: undefined,
@@ -684,7 +644,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -692,7 +651,6 @@ snapshot[`render order property 3`] = `
       url: "/extra-page/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/extra-page",
       remote: undefined,
@@ -712,7 +670,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       pagination: [
@@ -729,7 +686,6 @@ snapshot[`render order property 3`] = `
       url: "/page-1/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pagination[0]",
       remote: undefined,
@@ -749,7 +705,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       pagination: [
@@ -766,7 +721,6 @@ snapshot[`render order property 3`] = `
       url: "/page-2/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pagination[1]",
       remote: undefined,
@@ -786,7 +740,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       pagination: [
@@ -803,7 +756,6 @@ snapshot[`render order property 3`] = `
       url: "/page-3/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pagination[2]",
       remote: undefined,

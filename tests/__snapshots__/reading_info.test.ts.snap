@@ -218,7 +218,6 @@ loop on focusing solely on the bottom line.
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       readingInfo: [
@@ -232,7 +231,6 @@ loop on focusing solely on the bottom line.
       url: "/page/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page",
       remote: undefined,

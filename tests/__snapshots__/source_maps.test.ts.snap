@@ -143,7 +143,6 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -152,7 +151,6 @@ snapshot[`Source maps from CSS files 3`] = `
       url: "/index.css",
     },
     src: {
-      asset: true,
       ext: ".scss",
       path: "/index",
       remote: undefined,
@@ -166,12 +164,10 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/index.css.map",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -188,7 +184,6 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -197,7 +192,6 @@ snapshot[`Source maps from CSS files 3`] = `
       url: "/index2.css",
     },
     src: {
-      asset: true,
       ext: ".sass",
       path: "/index2",
       remote: undefined,
@@ -211,12 +205,10 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/index2.css.map",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -233,7 +225,6 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -242,7 +233,6 @@ snapshot[`Source maps from CSS files 3`] = `
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
       remote: undefined,
@@ -256,12 +246,10 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/styles.css.map",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -406,7 +394,6 @@ snapshot[`Source maps from Js files 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -415,7 +402,6 @@ snapshot[`Source maps from Js files 3`] = `
       url: "/foo/bar/script.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other/script",
       remote: undefined,
@@ -429,12 +415,10 @@ snapshot[`Source maps from Js files 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/foo/bar/script.js.map",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -451,7 +435,6 @@ snapshot[`Source maps from Js files 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -460,7 +443,6 @@ snapshot[`Source maps from Js files 3`] = `
       url: "/foo/bar/to_lowercase.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other/to_lowercase",
       remote: undefined,
@@ -474,12 +456,10 @@ snapshot[`Source maps from Js files 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/foo/bar/to_lowercase.js.map",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -508,7 +488,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -517,7 +496,6 @@ react-is/cjs/react-is.development.js:
       url: "/main.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/main",
       remote: undefined,
@@ -531,12 +509,10 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/main.js.map",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -560,7 +536,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -569,7 +544,6 @@ react-is/cjs/react-is.development.js:
       url: "/main/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/main",
       remote: undefined,
@@ -586,7 +560,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -595,7 +568,6 @@ react-is/cjs/react-is.development.js:
       url: "/modules/to_uppercase.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/modules/to_uppercase",
       remote: undefined,
@@ -609,12 +581,10 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/modules/to_uppercase.js.map",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -631,7 +601,6 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -640,7 +609,6 @@ react-is/cjs/react-is.development.js:
       url: "/other.js",
     },
     src: {
-      asset: true,
       ext: ".ts",
       path: "/other",
       remote: undefined,
@@ -654,12 +622,10 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/other.js.map",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,

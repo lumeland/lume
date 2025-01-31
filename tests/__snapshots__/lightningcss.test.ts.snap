@@ -129,7 +129,6 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -137,7 +136,6 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
       url: "/index.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/index",
       remote: undefined,
@@ -153,7 +151,6 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -161,7 +158,6 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
       url: "/text.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/text",
       remote: undefined,
@@ -300,7 +296,6 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -308,7 +303,6 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
       url: "/index.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/index",
       remote: undefined,
@@ -325,7 +319,6 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -333,7 +326,6 @@ snapshot[`lightningcss plugin (bundle mode) 3`] = `
       url: "/text.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/text",
       remote: undefined,

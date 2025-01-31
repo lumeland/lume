@@ -152,7 +152,6 @@ This is the first page
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -161,7 +160,6 @@ This is the first page
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -200,7 +198,6 @@ This is the second page
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -209,7 +206,6 @@ This is the second page
       url: "/page2/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page2",
       remote: undefined,
@@ -223,12 +219,10 @@ This is the second page
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/fragment/en_1e3ac36.pf_fragment",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -242,12 +236,10 @@ This is the second page
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/fragment/en_4e982c2.pf_fragment",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -261,12 +253,10 @@ This is the second page
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/index/en_8a7583c.pf_index",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -280,12 +270,10 @@ This is the second page
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-entry.json",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2437,12 +2425,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-highlight.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2882,12 +2868,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-modular-ui.css",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2917,12 +2901,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-modular-ui.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2938,12 +2920,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-ui.css",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2961,12 +2941,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-ui.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2980,12 +2958,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind.en_dd935c8678.pf_meta",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -3015,12 +2991,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -3034,12 +3008,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/wasm.en.pagefind",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -3053,12 +3025,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/wasm.unknown.pagefind",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -3219,7 +3189,6 @@ This is the first page
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -3228,7 +3197,6 @@ This is the first page
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -3267,7 +3235,6 @@ This is the second page
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -3276,7 +3243,6 @@ This is the second page
       url: "/page2/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page2",
       remote: undefined,
@@ -3290,12 +3256,10 @@ This is the second page
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/fragment/en_1e3ac36.pf_fragment",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -3309,12 +3273,10 @@ This is the second page
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/fragment/en_4e982c2.pf_fragment",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -3328,12 +3290,10 @@ This is the second page
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/index/en_8a7583c.pf_index",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -3347,12 +3307,10 @@ This is the second page
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-entry.json",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -5504,12 +5462,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-highlight.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -5949,12 +5905,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-modular-ui.css",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -5984,12 +5938,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-modular-ui.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -6005,12 +5957,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-ui.css",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -6028,12 +5978,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-ui.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -6047,12 +5995,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind.en_dd935c8678.pf_meta",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -6082,12 +6028,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -6101,12 +6045,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/wasm.en.pagefind",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -6120,12 +6062,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/wasm.unknown.pagefind",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,

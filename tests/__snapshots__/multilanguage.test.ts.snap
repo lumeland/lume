@@ -157,7 +157,6 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -167,7 +166,6 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/en/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -210,7 +208,6 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -220,7 +217,6 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/en/other-page-english/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/other",
       remote: undefined,
@@ -260,7 +256,6 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       pagination: [
@@ -277,7 +272,6 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/en/page-1/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pagination[1]",
       remote: undefined,
@@ -311,7 +305,6 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -321,7 +314,6 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/en/page-one/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/page1_en",
       remote: undefined,
@@ -354,7 +346,6 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -365,7 +356,6 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/en/types/post/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/types/post",
       remote: undefined,
@@ -408,7 +398,6 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -418,7 +407,6 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/fr/other-page-french.html",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/other",
       remote: undefined,
@@ -449,7 +437,6 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -459,7 +446,6 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -493,7 +479,6 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -503,7 +488,6 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/it/pagina-1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/page1",
       remote: undefined,
@@ -535,7 +519,6 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -546,7 +529,6 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/it/types/article/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/types/article",
       remote: undefined,
@@ -576,7 +558,6 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -586,7 +567,6 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/lang-selector/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/lang-selector",
       remote: undefined,
@@ -627,7 +607,6 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       pagination: [
@@ -644,7 +623,6 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/page-1/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/pagination[0]",
       remote: undefined,
@@ -678,7 +656,6 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -688,7 +665,6 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/paxina-un/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/page1_gl",
       remote: undefined,
@@ -720,7 +696,6 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -731,7 +706,6 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/types/article_gl/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/types/article_gl",
       remote: undefined,
@@ -764,7 +738,6 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -775,7 +748,6 @@ snapshot[`multilanguage plugin 3`] = `
       url: "/types/post_gl/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/types/post_gl",
       remote: undefined,

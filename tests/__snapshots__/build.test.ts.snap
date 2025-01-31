@@ -129,7 +129,6 @@ snapshot[`build a simple site 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -139,7 +138,6 @@ snapshot[`build a simple site 3`] = `
       url: "/dynamic.html",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -161,7 +159,6 @@ snapshot[`build a simple site 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -170,7 +167,6 @@ snapshot[`build a simple site 3`] = `
       url: "/page1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page1",
       remote: undefined,
@@ -192,7 +188,6 @@ snapshot[`build a simple site 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -201,7 +196,6 @@ snapshot[`build a simple site 3`] = `
       url: "/page2.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/foo",
       remote: undefined,

@@ -516,7 +516,6 @@ export default class Source {
       ext,
       entry,
     });
-    page.asset = false;
 
     // Load and merge the page data
     const pageData = await entry.getContent(loader);

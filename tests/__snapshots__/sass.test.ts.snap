@@ -139,7 +139,6 @@ snapshot[`sass plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -147,7 +146,6 @@ snapshot[`sass plugin 3`] = `
       url: "/index.css",
     },
     src: {
-      asset: true,
       ext: ".scss",
       path: "/index",
       remote: undefined,
@@ -163,7 +161,6 @@ snapshot[`sass plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -171,7 +168,6 @@ snapshot[`sass plugin 3`] = `
       url: "/index2.css",
     },
     src: {
-      asset: true,
       ext: ".sass",
       path: "/index2",
       remote: undefined,
