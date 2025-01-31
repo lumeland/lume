@@ -1,6 +1,7 @@
 import { posix } from "../../deps/path.ts";
 import { normalizePath } from "./path.ts";
 
+import type { Destination } from "../source.ts";
 import type { Data, Page, RawData } from "../file.ts";
 
 /** Returns a function to filter the 404 page */
@@ -15,7 +16,7 @@ export function getPageUrl(
   page: Page,
   prettyUrls: boolean,
   parentPath: string,
-  addDest?: (path: string) => string,
+  destination?: Destination | string,
 ): string | false {
   const data = page.data as RawData;
   let { url } = data;
@@ -55,8 +56,12 @@ export function getPageUrl(
     );
   }
 
+  if (typeof destination === "string") {
+    return normalizeUrl(destination);
+  }
+
   const defaultUrl = getDefaultUrl(page, parentPath, prettyUrls);
-  return addDest ? addDest(defaultUrl) : defaultUrl;
+  return destination ? destination(defaultUrl) : defaultUrl;
 }
 
 /** Returns the default URL for a page */
