@@ -12,13 +12,13 @@ Deno.test(
     });
 
     site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+    site.add("main.jsx");
 
     site.use(jsx({
       pageSubExtension: ".page",
     }));
 
     site.use(esbuild({
-      extensions: [".jsx", ".tsx"],
       importMap: {
         imports: {
           react: "npm:react@18.2.0",
@@ -45,6 +45,7 @@ Deno.test(
     });
 
     site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+    site.add([".ts"]);
 
     // Test ignore with a function filter
     site.ignore((path) => path === "/modules" || path.startsWith("/modules/"));
@@ -65,6 +66,7 @@ Deno.test(
     });
 
     site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+    site.add([".ts"]);
 
     // Test ignore with a function filter
     site.ignore((path) => path === "/modules" || path.startsWith("/modules/"));
@@ -123,6 +125,7 @@ Deno.test(
     });
 
     site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+    site.add([".ts"]);
 
     site.use(esbuild({
       options: {
@@ -145,6 +148,7 @@ Deno.test(
     });
 
     site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+    site.add([".ts"]);
 
     site.use(esbuild({
       options: {
@@ -167,6 +171,7 @@ Deno.test(
     });
 
     site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+    site.add([".ts"]);
 
     site.use(esbuild({
       options: {
@@ -189,6 +194,7 @@ Deno.test(
     });
 
     site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+    site.add([".ts"]);
 
     site.use(esbuild({
       options: {

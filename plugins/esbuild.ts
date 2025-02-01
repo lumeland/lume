@@ -66,7 +66,7 @@ const denoConfig = await readDenoConfig();
 
 // Default options
 export const defaults: Options = {
-  extensions: [".ts", ".js"],
+  extensions: [".ts", ".js", ".tsx", ".jsx"],
   options: {
     plugins: [],
     bundle: true,
@@ -112,8 +112,6 @@ export function esbuild(userOptions?: Options) {
         importMap.imports[key] = toFileUrl(site.root(value)).href;
       }
     }
-
-    site.add(options.extensions);
 
     site.hooks.addEsbuildPlugin = (plugin) => {
       options.options.plugins!.unshift(plugin);

@@ -46,4 +46,5 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `decap_cms`: create the admin html page once.
 - `postcss`, `sass`, `tailwindcss`, `unocss` and `lightningcss` plugins no longer load all CSS files by default. Use `site.add()`.
 - `svgo` plugin no longer load all SVG files by default. Use `site.add()`.
-- `terser` plugin no longer load all js files by default. Use `site.add()`.
+- `terser` and `esbuild` plugins no longer load all JS and TS files by default. Use `site.add()`.
+- `esbuild` bundles jsx and tsx files by default.
