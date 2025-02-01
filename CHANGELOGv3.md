@@ -41,3 +41,4 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `page.document` always returns a Document or throws and exception.
 - Refactor of `esbuild` plugin to use `esbuild-deno-loader` to resolve and load jsr and npm dependencies.
 - `transform_images` and `picture` plugins: only the images that must be transformed are loaded.
+- `decap_cms`: create the admin html page once.
