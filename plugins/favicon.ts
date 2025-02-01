@@ -1,9 +1,10 @@
 import { merge } from "../core/utils/object.ts";
 import { Page } from "../core/file.ts";
-import Cache from "../core/cache.ts";
+import { createCache } from "../core/cache.ts";
 import sharp, { create, sharpsToIco } from "../deps/sharp.ts";
 
 import type Site from "../core/site.ts";
+import type Cache from "../core/cache.ts";
 
 export interface Options {
   /**
@@ -11,9 +12,6 @@ export interface Options {
    * Accepted formats are SVG, PNG, JPG, GIF, BMP, TIFF, WEBP
    */
   input?: string;
-
-  /** The cache folder */
-  cache?: string | boolean;
 
   /**
    * The generated favicons
@@ -25,7 +23,6 @@ export interface Options {
 
 export const defaults: Options = {
   input: "/favicon.svg",
-  cache: true,
   favicons: [
     {
       url: "/favicon.ico",
@@ -58,15 +55,7 @@ export function favicon(userOptions?: Options) {
 
   return (site: Site) => {
     // Configure the cache folder
-    const cacheFolder = options.cache === true ? "_cache" : options.cache;
-    const cache = cacheFolder
-      ? new Cache({ folder: site.root(cacheFolder) })
-      : undefined;
-
-    if (cacheFolder) {
-      site.ignore(cacheFolder);
-      site.options.watcher.ignore.push(cacheFolder);
-    }
+    const cache = createCache(site.root("_cache"));
 
     async function getContent(): Promise<Uint8Array | string> {
       const content = options.input.endsWith(".svg")

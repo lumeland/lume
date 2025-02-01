@@ -20,6 +20,7 @@ Deno.test("gzip plugin with options", async (t) => {
     src: "unocss",
   });
 
+  site.add([".css"]);
   site.use(unocss({
     cssFile: "styles.css",
   }));

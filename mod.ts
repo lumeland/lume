@@ -39,6 +39,7 @@ export default function lume(
   site.options.watcher.ignore.push("/deno.lock");
   site.options.watcher.ignore.push("/node_modules/.deno");
   site.options.watcher.ignore.push("/.git");
+  site.options.watcher.ignore.push("/_cache");
   site.options.watcher.ignore.push((path) => path.endsWith("/.DS_Store"));
 
   return site

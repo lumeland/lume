@@ -30,7 +30,7 @@ Deno.test("Source maps from Js files", {
   const site = getSite({
     src: "esbuild",
   });
-
+  site.add([".ts"]);
   site.use(esbuild());
   site.use(terser());
   site.use(sourceMaps());

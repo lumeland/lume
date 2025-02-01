@@ -359,6 +359,12 @@ snapshot[`Source maps from Js files 1`] = `
       isPage: true,
       loader: [AsyncFunction: yaml],
     },
+    {
+      ext: ".tsx",
+    },
+    {
+      ext: ".jsx",
+    },
   ],
   src: [
     "/",

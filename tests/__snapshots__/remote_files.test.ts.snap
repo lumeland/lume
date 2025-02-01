@@ -111,6 +111,12 @@ snapshot[`render remote files 1`] = `
       ext: ".sass",
     },
     {
+      ext: ".tsx",
+    },
+    {
+      ext: ".jsx",
+    },
+    {
       engines: 1,
       ext: ".njk",
       isPage: true,
@@ -293,30 +299,6 @@ body {
       ext: ".css",
       path: "/other-remote-style",
       remote: "assets/remote_files/_remotes/other-remote-style.css",
-    },
-  },
-  {
-    content: 'var r=Object.defineProperty;var e=(t,m)=>r(t,"name",{value:m,configurable:!0});var l="Name";function o(){console.log("hello",l)}e(o,"default");o();
-',
-    data: {
-      basename: "scripts",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Remote title",
-      url: "/scripts.js",
-    },
-    src: {
-      ext: ".js",
-      path: "/scripts",
-      remote: undefined,
     },
   },
   {

@@ -3,15 +3,12 @@ import { log } from "../core/utils/log.ts";
 import { merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import sharp, { create } from "../deps/sharp.ts";
-import Cache from "../core/cache.ts";
+import { createCache } from "../core/cache.ts";
 
 import type Site from "../core/site.ts";
 import type { Page, StaticFile } from "../core/file.ts";
 
 export interface Options {
-  /** The cache folder */
-  cache: string | boolean;
-
   /** Custom transform functions */
   functions: Record<string, TransformationFunction>;
 }
@@ -24,7 +21,6 @@ export type TransformationFunction = (
 
 // Default options
 export const defaults: Options = {
-  cache: true,
   functions: {
     resize(
       image: sharp.Sharp,
@@ -95,15 +91,7 @@ export function transformImages(userOptions?: Partial<Options>) {
     site.process(process);
 
     // Configure the cache folder
-    const cacheFolder = options.cache === true ? "_cache" : options.cache;
-    const cache = cacheFolder
-      ? new Cache({ folder: site.root(cacheFolder) })
-      : undefined;
-
-    if (cacheFolder) {
-      site.ignore(cacheFolder);
-      site.options.watcher.ignore.push(cacheFolder);
-    }
+    const cache = createCache(site.root("_cache"));
 
     async function process(_: Page[], allPages: Page[]) {
       // Load all static files that must be transformed

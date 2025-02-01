@@ -26,6 +26,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `site.loadAssets()` function. Use `site.add()` instead.
 - `on_demand` plugin and middleware. If you need some server-side logic, you can use router middleware.
 - `inline` plugin: removed the `attribute` option. 
+- `cache` option in `transform_images`, `favicon` and `og_images`. Use `LUME_NOCACHE=true` env variable to disable cache.
 
 ### Changed
 - Minimum Deno version supported is LTS (2.1.0)
