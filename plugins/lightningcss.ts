@@ -12,24 +12,21 @@ import type {
   CustomAtRules,
   TransformOptions,
 } from "../deps/lightningcss.ts";
+import { log } from "../core/utils/log.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
   /**
    * Custom includes path
    * @default `site.options.includes`
    */
   includes?: string | false;
 
-  /** Options passed to parcel_css */
+  /** Options passed to Lightningcss */
   options?: Omit<BundleAsyncOptions<CustomAtRules>, "filename">;
 }
 
 // Default options
 export const defaults: Options = {
-  extensions: [".css"],
   includes: "",
   options: {
     minify: true,
@@ -60,16 +57,27 @@ export function lightningCSS(userOptions?: Options) {
       userOptions,
     );
 
-    site.add(options.extensions);
-
+    let bundle = false;
     if (options.includes) {
-      site.process(options.extensions, lightningCSSBundler);
       site.ignore(options.includes);
-    } else {
-      site.process(
-        options.extensions,
-        (pages) => pages.forEach(lightningCSSTransformer),
-      );
+      bundle = true;
+    }
+
+    site.process([".css"], lightningCSSProcessor);
+
+    function lightningCSSProcessor(files: Page[]) {
+      if (files.length === 0) {
+        log.info(
+          "[postcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
+        );
+        return;
+      }
+
+      if (bundle) {
+        return lightningCSSBundler(files);
+      }
+
+      files.forEach(lightningCSSTransformer);
     }
 
     function lightningCSSTransformer(file: Page) {

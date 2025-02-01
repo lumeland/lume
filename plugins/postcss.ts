@@ -68,15 +68,15 @@ export function postCSS(userOptions?: Options) {
     site.process([".css"], postCSSProcessor);
     site.filter("postcss", filter, true);
 
-    function postCSSProcessor(pages: Page[]) {
-      if (pages.length === 0) {
+    function postCSSProcessor(files: Page[]) {
+      if (files.length === 0) {
         log.info(
           "[postcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
         );
         return;
       }
 
-      return concurrent(pages, postCss);
+      return concurrent(files, postCss);
     }
 
     async function postCss(file: Page) {

@@ -6,6 +6,8 @@ Deno.test("lightningcss plugin (only transform)", async (t) => {
     src: "lightningcss",
   });
 
+  site.add("index.css");
+  site.add("text.css");
   site.use(lightningcss({
     includes: false,
   }));
@@ -19,6 +21,7 @@ Deno.test("lightningcss plugin (bundle mode)", async (t) => {
     src: "lightningcss",
   });
 
+  site.add([".css"]);
   site.use(lightningcss());
 
   await build(site);

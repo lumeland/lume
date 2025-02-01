@@ -21,7 +21,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `liquid` plugin. Use `nunjucks` instead.
 - `site.copyRemainingFiles()`.
 - Automatic `<!doctype html>` to all HTML pages.
-- `extensions` option of the plugins `check_urls`, `base_path`, `code_highlight`, `fff`, `inline`, `json_ld`, `katex`, `metas`, `multilanguage`, `og_images`, `prism`, `purgecss`, `relative_urls`, `postcss`.
+- `extensions` option of the plugins `check_urls`, `base_path`, `code_highlight`, `fff`, `inline`, `json_ld`, `katex`, `metas`, `multilanguage`, `og_images`, `prism`, `purgecss`, `relative_urls`, `postcss`, `lightningcss`.
 - `name` option of the plugins: `date`, `json_ld`, `metas`, `nav`, `paginate`, `picture`, `reading_info`, `search`, `transform_images`, `url`, `postcss`.
 - `site.loadAssets()` function. Use `site.add()` instead.
 - `on_demand` plugin and middleware. If you need some server-side logic, you can use router middleware.
@@ -42,3 +42,4 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Refactor of `esbuild` plugin to use `esbuild-deno-loader` to resolve and load jsr and npm dependencies.
 - `transform_images` and `picture` plugins: only the images that must be transformed are loaded.
 - `decap_cms`: create the admin html page once.
+- `postcss` and `lightningcss` no longer load all CSS files by default. Use `site.add()`.
