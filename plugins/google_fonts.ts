@@ -66,7 +66,7 @@ export function googleFonts(userOptions: Options) {
     // Output the CSS file
     site.process("*", async () => {
       const page = await site.getOrCreatePage(cssFile);
-      insertContent(page, cssCode, options.placeholder);
+      page.text = insertContent(page.text, cssCode, options.placeholder);
     });
   };
 }

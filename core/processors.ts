@@ -32,7 +32,7 @@ export default class Processors {
   get extensions(): Set<string> {
     return new Set([
       ...this.processors.values()
-        .filter((ext) => ext !== "*"),
+        .filter(Array.isArray),
     ].flat());
   }
 

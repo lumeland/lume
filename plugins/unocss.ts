@@ -153,7 +153,7 @@ export function unoCSS(userOptions?: Options) {
 
       // Output the CSS file
       const output = await site.getOrCreatePage(cssFile);
-      insertContent(output, css, options.placeholder);
+      output.text = insertContent(output.text, css, options.placeholder);
     });
   };
 }

@@ -79,7 +79,7 @@ export function codeHighlight(userOptions?: Options) {
         site.process("*", async () => {
           const cssCode = await readFile(`${themesPath}${name}.min.css`);
           const page = await site.getOrCreatePage(cssFile);
-          insertContent(page, cssCode, placeholder);
+          page.text = insertContent(page.text, cssCode, placeholder);
         });
       }
     }

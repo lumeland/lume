@@ -8,7 +8,7 @@ import type { Data, Page, RawData } from "../file.ts";
 export function filter404page(page404?: string): (page: Data) => boolean {
   const url404 = page404 ? normalizePath(page404) : undefined;
 
-  return (data: Data) => !url404 || data.url !== url404;
+  return url404 ? (data: Data) => data.url !== url404 : () => true;
 }
 
 /** Returns the final URL assigned to a page */

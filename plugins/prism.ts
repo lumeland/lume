@@ -54,7 +54,7 @@ export function prism(userOptions?: Options) {
         site.process("*", async () => {
           const cssCode = await readFile(getCssUrl(name));
           const page = await site.getOrCreatePage(cssFile);
-          insertContent(page, cssCode, placeholder);
+          page.text = insertContent(page.text, cssCode, placeholder);
         });
       }
     }
