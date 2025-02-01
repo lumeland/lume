@@ -68,7 +68,7 @@ export function lightningCSS(userOptions?: Options) {
     function lightningCSSProcessor(files: Page[]) {
       if (files.length === 0) {
         log.info(
-          "[postcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
+          "[lightningcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
         );
         return;
       }

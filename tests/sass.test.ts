@@ -5,7 +5,7 @@ Deno.test("sass plugin", async (t) => {
   const site = getSite({
     src: "sass",
   });
-
+  site.add([".scss", ".sass"]);
   site.use(sass());
 
   await build(site);
