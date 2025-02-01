@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`lightningcss plugin (only transform) 1`] = `
+snapshot[`Lightningcss plugin (transform) 1`] = `
 {
   formats: [
     {
@@ -115,9 +115,9 @@ snapshot[`lightningcss plugin (only transform) 1`] = `
 }
 `;
 
-snapshot[`lightningcss plugin (only transform) 2`] = `[]`;
+snapshot[`Lightningcss plugin (transform) 2`] = `[]`;
 
-snapshot[`lightningcss plugin (only transform) 3`] = `
+snapshot[`Lightningcss plugin (transform) 3`] = `
 [
   {
     content: '@import "variables.css";@import "./text.css";',
@@ -166,7 +166,7 @@ snapshot[`lightningcss plugin (only transform) 3`] = `
 ]
 `;
 
-snapshot[`lightningcss plugin (bundle mode) 1`] = `
+snapshot[`Lightningcss plugin (bundle) 1`] = `
 {
   formats: [
     {
@@ -281,9 +281,9 @@ snapshot[`lightningcss plugin (bundle mode) 1`] = `
 }
 `;
 
-snapshot[`lightningcss plugin (bundle mode) 2`] = `[]`;
+snapshot[`Lightningcss plugin (bundle) 2`] = `[]`;
 
-snapshot[`lightningcss plugin (bundle mode) 3`] = `
+snapshot[`Lightningcss plugin (bundle) 3`] = `
 [
   {
     content: "/*! modern-normalize v2.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */

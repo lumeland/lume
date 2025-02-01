@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`postcss plugin 1`] = `
+snapshot[`Postcss plugin 1`] = `
 {
   formats: [
     {
@@ -117,9 +117,9 @@ snapshot[`postcss plugin 1`] = `
 }
 `;
 
-snapshot[`postcss plugin 2`] = `[]`;
+snapshot[`Postcss plugin 2`] = `[]`;
 
-snapshot[`postcss plugin 3`] = `
+snapshot[`Postcss plugin 3`] = `
 [
   {
     content: ".foo {
@@ -289,7 +289,7 @@ summary{display:list-item}
 ]
 `;
 
-snapshot[`postcss plugin without includes 1`] = `
+snapshot[`Postcss plugin (without includes) 1`] = `
 {
   formats: [
     {
@@ -406,9 +406,9 @@ snapshot[`postcss plugin without includes 1`] = `
 }
 `;
 
-snapshot[`postcss plugin without includes 2`] = `[]`;
+snapshot[`Postcss plugin (without includes) 2`] = `[]`;
 
-snapshot[`postcss plugin without includes 3`] = `[]`;
+snapshot[`Postcss plugin (without includes) 3`] = `[]`;
 
 snapshot[`postcss plugin with hooks 1`] = `
 {

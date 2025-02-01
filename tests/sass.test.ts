@@ -1,7 +1,7 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import sass from "../plugins/sass.ts";
 
-Deno.test("sass plugin", async (t) => {
+Deno.test("SASS plugin", async (t) => {
   const site = getSite({
     src: "sass",
   });

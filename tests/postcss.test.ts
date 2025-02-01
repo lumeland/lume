@@ -3,7 +3,7 @@ import { assert } from "../deps/assert.ts";
 import postcss from "../plugins/postcss.ts";
 import nano from "npm:cssnano";
 
-Deno.test("postcss plugin", async (t) => {
+Deno.test("Postcss plugin", async (t) => {
   const site = getSite({
     src: "postcss",
   });
@@ -15,7 +15,7 @@ Deno.test("postcss plugin", async (t) => {
   await assertSiteSnapshot(t, site);
 });
 
-Deno.test("postcss plugin without includes", async (t) => {
+Deno.test("Postcss plugin (without includes)", async (t) => {
   const site = getSite({
     src: "postcss",
   });

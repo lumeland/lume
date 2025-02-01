@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`sass plugin 1`] = `
+snapshot[`SASS plugin 1`] = `
 {
   formats: [
     {
@@ -125,9 +125,9 @@ snapshot[`sass plugin 1`] = `
 }
 `;
 
-snapshot[`sass plugin 2`] = `[]`;
+snapshot[`SASS plugin 2`] = `[]`;
 
-snapshot[`sass plugin 3`] = `
+snapshot[`SASS plugin 3`] = `
 [
   {
     content: '@import"./styles.css";html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}body{font:100% Helvetica,sans-serif;color:#333}li{margin:0;padding:0;list-style:none}',

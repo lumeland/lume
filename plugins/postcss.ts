@@ -5,10 +5,10 @@ import { resolveInclude } from "../core/utils/path.ts";
 import { readFile } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import type { SourceMap } from "./source_maps.ts";
-import { log } from "../core/utils/log.ts";
 
 export interface Options {
   /**

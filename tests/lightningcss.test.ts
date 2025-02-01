@@ -1,7 +1,7 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import lightningcss from "../plugins/lightningcss.ts";
 
-Deno.test("lightningcss plugin (only transform)", async (t) => {
+Deno.test("Lightningcss plugin (transform)", async (t) => {
   const site = getSite({
     src: "lightningcss",
   });
@@ -16,7 +16,7 @@ Deno.test("lightningcss plugin (only transform)", async (t) => {
   await assertSiteSnapshot(t, site);
 });
 
-Deno.test("lightningcss plugin (bundle mode)", async (t) => {
+Deno.test("Lightningcss plugin (bundle)", async (t) => {
   const site = getSite({
     src: "lightningcss",
   });

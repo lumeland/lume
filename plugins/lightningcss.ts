@@ -5,6 +5,7 @@ import { readFile } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { posix } from "../deps/path.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import type {
@@ -12,7 +13,6 @@ import type {
   CustomAtRules,
   TransformOptions,
 } from "../deps/lightningcss.ts";
-import { log } from "../core/utils/log.ts";
 
 export interface Options {
   /**

@@ -9,10 +9,10 @@ import { compileStringAsync } from "../deps/sass.ts";
 import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import type { StringOptions } from "../deps/sass.ts";
-import { log } from "../core/utils/log.ts";
 
 type SassOptions = Omit<StringOptions<"async">, "url" | "syntax">;
 
