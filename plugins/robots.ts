@@ -54,7 +54,7 @@ export function robots(userOptions?: Partial<Options>) {
   const options: Options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process("*", async () => {
+    site.process(async () => {
       const rules: Rule[] = [];
       const allow = typeof options.allow === "string"
         ? [options.allow]

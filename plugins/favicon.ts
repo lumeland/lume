@@ -80,7 +80,7 @@ export function favicon(userOptions?: Options) {
       return content;
     }
 
-    site.process("*", async () => {
+    site.process(async () => {
       const content = await getContent();
 
       for (const favicon of options.favicons) {

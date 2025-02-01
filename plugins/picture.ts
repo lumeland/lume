@@ -76,7 +76,7 @@ export function picture(userOptions?: Options) {
       }
     });
 
-    site.process("*", (pages) => {
+    site.process((pages) => {
       for (const page of pages) {
         const path = page.outputPath;
 

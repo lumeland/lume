@@ -58,7 +58,7 @@ export function decapCMS(userOptions?: Options) {
     }
 
     // Build the admin page
-    site.process("*", () => {
+    site.process(() => {
       const config = site.source.data.get("/")?.[options.configKey] as
         | Record<string, unknown>
         | undefined;

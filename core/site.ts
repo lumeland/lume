@@ -356,8 +356,17 @@ export default class Site {
   }
 
   /** Register a preprocessor for some extensions */
-  preprocess(extensions: Extensions, preprocessor: Processor): this {
-    this.preprocessors.set(extensions, preprocessor);
+  preprocess(processor: Processor): this;
+  preprocess(extensions: Extensions, processor: Processor): this;
+  preprocess(
+    extensions: Extensions | Processor,
+    preprocessor?: Processor,
+  ): this {
+    if (typeof extensions === "function") {
+      return this.preprocess("*", extensions);
+    }
+
+    this.preprocessors.set(extensions, preprocessor!);
 
     if (Array.isArray(extensions)) {
       extensions.forEach((ext) => this.formats.set({ ext }));
@@ -367,8 +376,14 @@ export default class Site {
   }
 
   /** Register a processor for some extensions */
-  process(extensions: Extensions, processor: Processor): this {
-    this.processors.set(extensions, processor);
+  process(processor: Processor): this;
+  process(extensions: Extensions, processor: Processor): this;
+  process(extensions: Extensions | Processor, processor?: Processor): this {
+    if (typeof extensions === "function") {
+      return this.process("*", extensions);
+    }
+
+    this.processors.set(extensions, processor!);
 
     if (Array.isArray(extensions)) {
       extensions.forEach((ext) => this.formats.set({ ext }));
@@ -718,7 +733,7 @@ export default class Site {
 
     // Promote the files that must be processed to pages
     const extensions = this.processors.extensions;
-    await this.#filesToPages((file) => extensions.has(file.src.ext));
+    await this.filesToPages((file) => extensions.has(file.src.ext));
 
     // Run the processors to the pages
     await this.processors.run(this.pages);
@@ -735,8 +750,8 @@ export default class Site {
     return await this.dispatchEvent({ type: "beforeSave" });
   }
 
-  /** Promote a file to page. Used by processors */
-  async #filesToPages(filter: (file: StaticFile) => boolean): Promise<void> {
+  /** Promote a file to page. */
+  async filesToPages(filter: (file: StaticFile) => boolean): Promise<void> {
     const toRemove: StaticFile[] = [];
 
     for (const file of this.files) {

@@ -76,7 +76,7 @@ export function codeHighlight(userOptions?: Options) {
       for (
         const { name, cssFile = site.options.cssFile, placeholder } of themes
       ) {
-        site.process("*", async () => {
+        site.process(async () => {
           const cssCode = await readFile(`${themesPath}${name}.min.css`);
           const page = await site.getOrCreatePage(cssFile);
           page.text = insertContent(page.text, cssCode, placeholder);

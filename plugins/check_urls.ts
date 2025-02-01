@@ -91,7 +91,7 @@ export default function (userOptions?: Options) {
 
     // Search for redirect URLs non-strict mode
     if (!options.strict) {
-      site.process("*", (pages) => {
+      site.process((pages) => {
         for (const page of pages) {
           if (page.data.oldUrl) {
             if (Array.isArray(page.data.oldUrl)) {

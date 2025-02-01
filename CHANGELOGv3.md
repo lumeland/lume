@@ -13,6 +13,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
   It's also used by default by components.
 - `page.text` and `page.bytes` getters and setters.
 - `site.add()` support URLs and NPM specifiers.
+- `site.process(callback)` as an alias of `site.process("*", callback)`.
+- `site.preprocess(callback)` as an alias of `site.preprocess("*", callback)`.
 
 ### Removed
 - `jsx_preact` plugin. Use `jsx` instead.
