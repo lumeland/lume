@@ -148,37 +148,62 @@ local_backend: false
   },
   {
     content: '
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Admin</title>
-        </head>
-        <body>
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+      </head>
+      <body>
         <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.5.0/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-        </body>
-        </html>
-        ',
+      </body>
+      </html>
+      ',
     data: {
       basename: "index",
-      content: '
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Admin</title>
-        </head>
-        <body>
+      children: '
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+      </head>
+      <body>
         <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.5.0/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-        </body>
-        </html>
-        ',
+      </body>
+      </html>
+      ',
+      content: '
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+      </head>
+      <body>
+        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.5.0/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      </body>
+      </html>
+      ',
+      date: [],
+      decap_cms: [
+        "backend",
+        "media_folder",
+        "public_folder",
+      ],
+      mergedKeys: [
+        "tags",
+      ],
       page: [
         "src",
         "data",
       ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
       url: "/admin/",
     },
     src: {

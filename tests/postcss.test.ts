@@ -8,6 +8,7 @@ Deno.test("postcss plugin", async (t) => {
     src: "postcss",
   });
 
+  site.add([".css"]);
   site.use(postcss());
 
   await build(site);
@@ -18,7 +19,7 @@ Deno.test("postcss plugin without includes", async (t) => {
   const site = getSite({
     src: "postcss",
   });
-
+  site.add(".");
   site.use(postcss({
     includes: false,
   }));
@@ -32,8 +33,8 @@ Deno.test("postcss plugin with hooks", async (t) => {
     src: "postcss",
   });
 
+  site.add("/index.min.css");
   site.use(postcss());
-
   site.hooks.addPostcssPlugin(nano());
 
   await build(site);
@@ -50,18 +51,4 @@ Deno.test("postcss plugin with default name", () => {
   const { helpers } = site.renderer;
 
   assert(helpers.has("postcss"));
-});
-
-Deno.test("postcss plugin with custom name", () => {
-  const site = getSite({
-    src: "postcss",
-  });
-
-  site.use(postcss({
-    name: "css",
-  }));
-
-  const { helpers } = site.renderer;
-
-  assert(helpers.has("css"));
 });

@@ -36,6 +36,7 @@ Deno.test("render remote files", {
     "other-remote-style.css",
     new URL("./other-remote-style.css", base).href,
   );
+  site.add([".css"]);
   site.remoteFile("_data.yml", new URL("./_data.yml", base).href);
   site.remoteFile("_includes/hello.js", new URL("./hello.js", base).href);
   site.remoteFile(

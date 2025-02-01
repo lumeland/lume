@@ -408,68 +408,7 @@ snapshot[`postcss plugin without includes 1`] = `
 
 snapshot[`postcss plugin without includes 2`] = `[]`;
 
-snapshot[`postcss plugin without includes 3`] = `
-[
-  {
-    content: '@import "variables.css";
-@import "./text.css";
-',
-    data: {
-      basename: "index",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/index.min.css",
-    },
-    src: {
-      ext: ".css",
-      path: "/index.min",
-      remote: undefined,
-    },
-  },
-  {
-    content: '@import "npm:modern-normalize@2.0.0";
-
-.text {
-  font-family: var(--font-family);
-
-  & p {
-    color: var(--color);
-    box-shadow: 0 0 0.5em var(--background);
-    -webkit-backdrop-filter: blur(2px);
-            backdrop-filter: blur(2px);
-  }
-}
-',
-    data: {
-      basename: "text",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/text.css",
-    },
-    src: {
-      ext: ".css",
-      path: "/text",
-      remote: undefined,
-    },
-  },
-]
-`;
+snapshot[`postcss plugin without includes 3`] = `[]`;
 
 snapshot[`postcss plugin with hooks 1`] = `
 {
@@ -613,28 +552,6 @@ snapshot[`postcss plugin with hooks 3`] = `
     src: {
       ext: ".css",
       path: "/index.min",
-      remote: undefined,
-    },
-  },
-  {
-    content: "/*! modern-normalize v2.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */*,:after,:before{box-sizing:border-box}html{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;line-height:1.15;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4}body{margin:0}hr{color:inherit;height:0}abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{border-color:inherit;text-indent:0}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}::-moz-focus-inner{border-style:none;padding:0}:-moz-focusring{outline:1px dotted ButtonText}:-moz-ui-invalid{box-shadow:none}legend{padding:0}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}.text{font-family:var(--font-family);& p{-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);box-shadow:0 0 .5em var(--background);color:var(--color)}}",
-    data: {
-      basename: "text",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/text.css",
-    },
-    src: {
-      ext: ".css",
-      path: "/text",
       remote: undefined,
     },
   },

@@ -8,11 +8,9 @@ import { prepareAsset, saveAsset } from "./source_maps.ts";
 
 import type Site from "../core/site.ts";
 import type { SourceMap } from "./source_maps.ts";
+import { log } from "../core/utils/log.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
   /**
    * Custom includes path for `postcss-import`
    * @default `site.options.includes`
@@ -27,16 +25,11 @@ export interface Options {
 
   /** Set `false` to remove the default plugins */
   useDefaultPlugins?: boolean;
-
-  /** The name of the helper */
-  name?: string;
 }
 
 // Default options
 export const defaults: Options = {
-  extensions: [".css"],
   useDefaultPlugins: true,
-  name: "postcss",
 };
 
 const defaultPlugins = [
@@ -68,14 +61,23 @@ export function postCSS(userOptions?: Options) {
     // @ts-ignore: Argument of type 'unknown[]' is not assignable to parameter of type 'AcceptedPlugin[]'.
     const runner = postcss(plugins);
 
+    site.hooks.postcss = (callback) => callback(runner);
     site.hooks.addPostcssPlugin = (plugin) => {
       runner.use(plugin);
     };
-    site.hooks.postcss = (callback) => callback(runner);
+    site.process([".css"], postCSSProcessor);
+    site.filter("postcss", filter, true);
 
-    site.add(options.extensions);
-    site.process(options.extensions, (pages) => concurrent(pages, postCss));
-    site.filter(options.name, filter, true);
+    function postCSSProcessor(pages: Page[]) {
+      if (pages.length === 0) {
+        log.info(
+          "[postcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
+        );
+        return;
+      }
+
+      return concurrent(pages, postCss);
+    }
 
     async function postCss(file: Page) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
