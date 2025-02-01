@@ -3,7 +3,7 @@ import { merge } from "../core/utils/object.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
-  /** The list extensions this plugin applies to */
+  /** File extensions to process */
   extensions?: string[];
 
   /** The words per minute a reader can read (default: 275) */

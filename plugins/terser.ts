@@ -2,12 +2,14 @@ import { minify } from "../deps/terser.ts";
 import { merge } from "../core/utils/object.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
+import { log } from "../core/utils/log.ts";
+import { concurrent } from "../core/utils/concurrent.ts";
 
 import type Site from "../core/site.ts";
 import type { MinifyOptions } from "../deps/terser.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to minify */
   extensions?: string[];
 
   /**
@@ -28,16 +30,26 @@ export const defaults: Options = {
 };
 
 /**
- * A plugin to load all JavaScript files and minify them using Terser
+ * A plugin to minify them using Terser
  * @see https://lume.land/plugins/terser/
  */
 export function terser(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.add(options.extensions);
-    site.process(options.extensions, (pages) => pages.forEach(terser));
+    site.process(options.extensions, terserProcess);
     site.filter("terser", filter, true);
+
+    function terserProcess(files: Page[]) {
+      if (files.length === 0) {
+        log.info(
+          "[tailwindcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
+        );
+        return;
+      }
+
+      return concurrent(files, terser);
+    }
 
     async function terser(page: Page) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(

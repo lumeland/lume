@@ -10,16 +10,12 @@ import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
 
 export interface Options {
-  /** Attribute used to select the elements this plugin applies to */
-  attribute?: string;
-
   /** List of extra attributes to copy if replacing the element */
   copyAttributes?: (string | RegExp)[];
 }
 
 // Default options
 export const defaults: Options = {
-  attribute: "inline",
   copyAttributes: [/^data-/],
 };
 
@@ -38,7 +34,7 @@ export function inline(userOptions?: Options) {
 
     site.addEventListener("beforeUpdate", () => cache.clear());
 
-    const selector = `[${options.attribute}]`;
+    const selector = `[inline]`;
 
     async function inline(page: Page) {
       const templateElements = Array.from(
@@ -53,7 +49,7 @@ export function inline(userOptions?: Options) {
         ]
       ) {
         await runInline(page.data.url, element);
-        element.removeAttribute(options.attribute);
+        element.removeAttribute("inline");
       }
     }
 

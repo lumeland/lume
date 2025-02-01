@@ -11,7 +11,7 @@ import type FS from "../core/fs.ts";
 import type { Environment, Loader, Plugin, Token } from "../deps/vento.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to load */
   extensions?: string[];
 
   /** Optional sub-extension for page files */

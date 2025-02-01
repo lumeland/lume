@@ -6,7 +6,7 @@ import type { Extensions } from "../core/utils/path.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to compress */
   extensions?: Extensions;
 
   /**

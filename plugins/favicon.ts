@@ -80,11 +80,11 @@ export function favicon(userOptions?: Options) {
       return content;
     }
 
-    site.process(async () => {
+    site.process(async (_, pages) => {
       const content = await getContent();
 
       for (const favicon of options.favicons) {
-        site.pages.push(
+        pages.push(
           Page.create({
             url: favicon.url,
             content: await buildIco(

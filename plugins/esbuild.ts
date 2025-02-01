@@ -32,7 +32,7 @@ import type { DenoConfig, ImportMap } from "../core/utils/deno_config.ts";
 import { readFile } from "../core/utils/read.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to bundle */
   extensions?: string[];
 
   /**

@@ -7,7 +7,7 @@ import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to process */
   extensions?: Array<".html" | ".css">;
 
   /**

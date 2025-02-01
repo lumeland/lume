@@ -6,6 +6,7 @@ Deno.test("Tailwindcss plugin", async (t) => {
     src: "tailwindcss",
   });
 
+  site.add([".css"]);
   site.use(tailwindcss({
     optimize: false,
   }));

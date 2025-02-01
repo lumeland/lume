@@ -5,7 +5,7 @@ import type Site from "../core/site.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to load */
   extensions?: string[];
 
   /** Optional sub-extension for page files */

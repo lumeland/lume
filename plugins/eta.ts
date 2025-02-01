@@ -8,7 +8,7 @@ import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { EtaConfig } from "../deps/eta.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to load */
   extensions?: string[];
 
   /** Optional sub-extension for page files */

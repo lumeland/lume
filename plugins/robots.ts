@@ -35,8 +35,14 @@ const ruleSort = [
 export interface Options {
   /** The robots.txt file name */
   filename: string;
+
+  /** User-agent to allow */
   allow?: string[] | string;
+
+  /** User-agent to disallow */
   disallow?: string[] | string;
+
+  /** Custom rules */
   rules?: Rule[];
 }
 

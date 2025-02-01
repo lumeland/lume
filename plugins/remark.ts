@@ -16,7 +16,7 @@ import type { Page } from "../core/file.ts";
 import type { PluggableList, RehypeOptions } from "../deps/remark.ts";
 
 export interface Options {
-  /** List of extensions this plugin applies to */
+  /** File extensions to load */
   extensions?: string[];
 
   /**

@@ -9,7 +9,7 @@ import type { Engine } from "../core/renderer.ts";
 import type { PluggableList, RehypeOptions } from "../deps/remark.ts";
 
 export interface Options {
-  /** List of extensions this plugin applies to */
+  /** File extensions to load */
   extensions?: string[];
 
   /** List of recma plugins to use */

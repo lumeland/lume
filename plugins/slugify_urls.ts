@@ -9,7 +9,7 @@ import type { Extensions } from "../core/utils/path.ts";
 import type { Options as SlugifierOptions } from "../core/slugifier.ts";
 
 export interface Options extends SlugifierOptions {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to slugify */
   extensions?: Extensions;
 }
 
