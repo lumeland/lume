@@ -6,7 +6,7 @@ import sharp, { create } from "../deps/sharp.ts";
 import Cache from "../core/cache.ts";
 
 import type Site from "../core/site.ts";
-import type { Page } from "../core/file.ts";
+import type { Page, StaticFile } from "../core/file.ts";
 
 export interface Options {
   /** The list extensions this plugin applies to */
@@ -46,6 +46,21 @@ export const defaults: Options = {
     },
   },
 };
+const supportedExtensions = new Set([
+  ".jpg",
+  ".jpeg",
+  ".jp2",
+  ".png",
+  ".webp",
+  ".gif",
+  ".avif",
+  ".heif",
+  ".tiff",
+]);
+
+const filter = (fileOrPage: Page | StaticFile) =>
+  supportedExtensions.has(fileOrPage.src.ext) &&
+  !!fileOrPage.data.transformImages;
 
 export type Format =
   | "jpeg"
@@ -82,7 +97,7 @@ export function transformImages(userOptions?: Partial<Options>) {
 
   return (site: Site) => {
     site.add(options.extensions);
-    site.process(options.extensions, process);
+    site.process(process);
 
     // Configure the cache folder
     const cacheFolder = options.cache === true ? "_cache" : options.cache;
@@ -95,9 +110,13 @@ export function transformImages(userOptions?: Partial<Options>) {
       site.options.watcher.ignore.push(cacheFolder);
     }
 
-    async function process(pages: Page[], allPages: Page[]) {
+    async function process(_: Page[], allPages: Page[]) {
+      // Load all static files that must be transformed
+      await site.filesToPages(filter);
+
+      // Process all pages
       await concurrent(
-        pages,
+        allPages,
         (page) => processPage(page, allPages),
       );
     }

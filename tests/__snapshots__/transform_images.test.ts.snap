@@ -127,10 +127,9 @@ snapshot[`Image transform plugin 2`] = `[]`;
 snapshot[`Image transform plugin 3`] = `
 [
   {
-    content: "Uint8Array(29014)",
+    content: "Uint8Array(428)",
     data: {
       basename: "lume",
-      imageTransform: "Array(5)",
       mergedKeys: [
         "tags",
       ],
@@ -141,11 +140,81 @@ snapshot[`Image transform plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/lume.PNG",
+      transformImages: "undefined",
+      url: "/lume-small.PNG",
     },
     src: {
       ext: ".png",
-      path: "/lume",
+      path: "/lume[0]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(2043)",
+    data: {
+      basename: "lume",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      transformImages: "undefined",
+      url: "/lume.jpg",
+    },
+    src: {
+      ext: ".png",
+      path: "/lume[1]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(15039)",
+    data: {
+      basename: "lume",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      transformImages: "undefined",
+      url: "/lume.png",
+    },
+    src: {
+      ext: ".png",
+      path: "/lume[3]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(8572)",
+    data: {
+      basename: "lume",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      transformImages: "undefined",
+      url: "/lume.webp",
+    },
+    src: {
+      ext: ".png",
+      path: "/lume[2]",
       remote: undefined,
     },
   },

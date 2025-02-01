@@ -1,4 +1,4 @@
-imageTransform:
+transformImages:
   - suffix: -small
     resize: 20
     blur: 10

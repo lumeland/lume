@@ -76,8 +76,10 @@ export function picture(userOptions?: Options) {
       }
     });
 
-    site.process((pages) => {
-      for (const page of pages) {
+    site.process(() => {
+      const filesAndPages = [...site.files, ...site.pages];
+
+      for (const page of filesAndPages) {
         const path = page.outputPath;
 
         for (const { paths, width, scales, format } of transforms.values()) {
