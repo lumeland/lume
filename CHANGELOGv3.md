@@ -41,7 +41,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `metas` plugin: `generator` property is `true` by default.
 - `page.document` always returns a Document or throws and exception.
 - Refactor of `esbuild` plugin to use `esbuild-deno-loader` to resolve and load jsr and npm dependencies.
-- `transform_images` and `picture` plugins: only the images that must be transformed are loaded.
+- `transform_images` and `picture` plugins no longer load all images by default. Use `site.add()`.
+  - Only the images that must be transformed are loaded.
 - `decap_cms`: create the admin html page once.
 - `postcss`, `sass`, `tailwindcss` and `lightningcss` plugins no longer load all CSS files by default. Use `site.add()`.
 - `svgo` plugin no longer load all SVG files by default. Use `site.add()`.

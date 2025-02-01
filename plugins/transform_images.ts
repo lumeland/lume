@@ -9,9 +9,6 @@ import type Site from "../core/site.ts";
 import type { Page, StaticFile } from "../core/file.ts";
 
 export interface Options {
-  /** The list extensions this plugin applies to */
-  extensions: string[];
-
   /** The cache folder */
   cache: string | boolean;
 
@@ -27,7 +24,6 @@ export type TransformationFunction = (
 
 // Default options
 export const defaults: Options = {
-  extensions: [".jpg", ".jpeg", ".png", ".webp"],
   cache: true,
   functions: {
     resize(
@@ -96,7 +92,6 @@ export function transformImages(userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.add(options.extensions);
     site.process(process);
 
     // Configure the cache folder
@@ -114,9 +109,18 @@ export function transformImages(userOptions?: Partial<Options>) {
       // Load all static files that must be transformed
       await site.filesToPages(filter);
 
-      // Process all pages
+      const files = allPages.filter(filter);
+
+      if (files.length === 0) {
+        log.info(
+          "[transform_images plugin] No images found. Make sure to add them with <gray>site.add()</gray> and set the <gray>transformImages</gray> data key",
+        );
+        return;
+      }
+
+      // Process all files
       await concurrent(
-        allPages,
+        files,
         (page) => processPage(page, allPages),
       );
     }
@@ -124,12 +128,7 @@ export function transformImages(userOptions?: Partial<Options>) {
     async function processPage(page: Page, allPages: Page[]) {
       const transData = page.data.transformImages as
         | Transformation
-        | Transformation[]
-        | undefined;
-
-      if (!transData) {
-        return;
-      }
+        | Transformation[];
 
       const content = page.src.ext === ".svg" ? page.text : page.bytes;
       const transformations = removeDuplicatedTransformations(

@@ -101,18 +101,6 @@ snapshot[`Image transform plugin 1`] = `
       isPage: true,
       loader: [AsyncFunction: yaml],
     },
-    {
-      ext: ".jpg",
-    },
-    {
-      ext: ".jpeg",
-    },
-    {
-      ext: ".png",
-    },
-    {
-      ext: ".webp",
-    },
   ],
   src: [
     "/",
@@ -141,7 +129,7 @@ snapshot[`Image transform plugin 3`] = `
       search: [],
       tags: "Array(0)",
       transformImages: "undefined",
-      url: "/lume-small.PNG",
+      url: "/lume-small.png",
     },
     src: {
       ext: ".png",
