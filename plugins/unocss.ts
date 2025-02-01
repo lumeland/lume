@@ -88,7 +88,6 @@ export function unoCSS(userOptions?: Options) {
     const { transformers, cssFile = site.options.cssFile, reset } = options;
 
     if (transformers.length > 0) {
-      site.add([".css"]);
       site.process([".css"], async (files) => {
         const uno = await getGenerator();
         for (const file of files) {
