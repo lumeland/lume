@@ -1,3 +1,5 @@
+export { compile } from "npm:@tailwindcss/node@4.0.3";
+
 import dbin from "https://deno.land/x/dbin@v0.3.0/mod.ts";
 
 const tailwind = "npm:@tailwindcss/cli@4.0.3";

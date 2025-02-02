@@ -1,7 +1,7 @@
-import { getBinary } from "../deps/tailwindcss.ts";
+import { compile } from "../deps/tailwindcss.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
-import { dirname } from "../deps/path.ts";
+import { dirname, posix } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
 
@@ -23,19 +23,6 @@ export function tailwindCSS(userOptions?: Options) {
     const options = merge(defaults, userOptions);
 
     const cache = site.root("_cache/tailwindcss");
-    let binaryPath: string;
-
-    const args = [
-      "--input=-",
-    ];
-
-    if (options.optimize === "optimize") {
-      args.push("--optimize");
-    } else if (options.optimize === "minify") {
-      args.push("--minify");
-    }
-
-    log.info(`Running TailwindCSS with args <gray>${args.join(" ")}</gray>`);
 
     site.process([".css"], async (files) => {
       if (files.length === 0) {
@@ -45,34 +32,22 @@ export function tailwindCSS(userOptions?: Options) {
         return;
       }
 
-      if (!binaryPath) {
-        binaryPath = await getBinary(cache);
-      }
-
       for (const file of files) {
-        const command = new Deno.Command(binaryPath, {
-          stdin: "piped",
-          stdout: "piped",
-          stderr: "piped",
-          args,
-          cwd: site.src(dirname(file.src.path)),
+        const result = await compile(file.text, {
+          base: posix.dirname(file.outputPath),
+          onDependency(path) {
+            console.log("onDependency", path);
+          },
+          async customJsResolver(id, base) {
+            console.log("customJsResolver", { id, base });
+            return "npm:tailwindcss@4.0.2";
+            return undefined;
+          },
+          async customCssResolver(id, base) {
+            console.log("customCssResolver", { id, base});
+            return undefined;
+          }
         });
-        const process = command.spawn();
-        const stdin = process.stdin;
-        const writter = stdin.getWriter();
-        writter.write(file.bytes);
-        writter.close();
-        const { stdout, stderr, success } = await process.output();
-
-        if (!success) {
-          log.info(
-            `Error running TailwindCSS on <cyan>${file.outputPath}</cyan>: <red>${
-              new TextDecoder().decode(stderr)
-            }</red>`,
-          );
-        }
-
-        file.content = stdout;
       }
     });
   };
