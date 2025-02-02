@@ -927,7 +927,7 @@ snapshot[`Tailwindcss plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(31302)",
+    content: "Uint8Array(31309)",
     data: {
       basename: "styles",
       mergedKeys: [

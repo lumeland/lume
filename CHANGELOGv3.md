@@ -15,6 +15,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `site.add()` support URLs and NPM specifiers.
 - `site.process(callback)` as an alias of `site.process("*", callback)`.
 - `site.preprocess(callback)` as an alias of `site.preprocess("*", callback)`.
+- `Server` class is now compatible with `deno serve` command.
 
 ### Removed
 - `jsx_preact` plugin. Use `jsx` instead.
