@@ -29,29 +29,15 @@ export function tailwindCSS(userOptions?: Options) {
       userOptions,
     );
     const scanner = new Scanner({});
-    const content: ChangedContent[] = [];
+    let content: ChangedContent[] = [];
 
-    site.addEventListener(
-      "beforeUpdate",
-      () => content.splice(0, content.length),
-    );
-
-    site.process([".html"], (files) => {
-      for (const file of files) {
+    site.process([".html", ".js"], (pages) => {
+      for (const page of pages) {
+        const file = page.outputPath;
         content.push({
-          content: file.text,
-          file: file.outputPath,
-          extension: ".html",
-        });
-      }
-    });
-
-    site.process([".js"], (files) => {
-      for (const file of files) {
-        content.push({
-          content: file.text,
-          file: file.outputPath,
-          extension: ".js",
+          content: page.text,
+          file,
+          extension: file.endsWith(".html") ? ".html" : ".js",
         });
       }
     });
@@ -61,10 +47,12 @@ export function tailwindCSS(userOptions?: Options) {
         log.info(
           "[tailwindcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
         );
+        content = [];
         return;
       }
 
       const candidates = scanner.scanFiles(content);
+      content = [];
 
       for (const file of files) {
         const compiler = await compile(file.text, {
