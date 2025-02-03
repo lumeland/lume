@@ -7,9 +7,7 @@ Deno.test("Tailwindcss plugin", async (t) => {
   });
 
   site.add([".css"]);
-  site.use(tailwindcss({
-    optimize: false,
-  }));
+  site.use(tailwindcss());
 
   await build(site);
   await assertSiteSnapshot(t, site);

@@ -1,18 +1,22 @@
-import { compile } from "../deps/tailwindcss.ts";
+import { compile, Scanner, specifier } from "../deps/tailwindcss.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 import { dirname, posix } from "../deps/path.ts";
+import { readFile } from "../core/utils/read.ts";
 
 import type Site from "../core/site.ts";
+import { ChangedContent } from "npm:@tailwindcss/oxide@4.0.3";
+import { resolveInclude } from "../core/utils/path.ts";
 
 export interface Options {
-  /** Optimization level of the CSS code */
-  optimize?: false | "optimize" | "minify";
+  /**
+   * Custom includes path
+   * @default `site.options.includes`
+   */
+  includes?: string | false;
 }
 
-export const defaults: Options = {
-  optimize: "minify",
-};
+export const defaults: Options = {};
 
 /**
  * A plugin to extract the utility classes from HTML pages and apply TailwindCSS
@@ -20,9 +24,37 @@ export const defaults: Options = {
  */
 export function tailwindCSS(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge(defaults, userOptions);
+    const options = merge<Options>(
+      { ...defaults, includes: site.options.includes },
+      userOptions,
+    );
+    const scanner = new Scanner({});
+    const content: ChangedContent[] = [];
 
-    const cache = site.root("_cache/tailwindcss");
+    site.addEventListener(
+      "beforeUpdate",
+      () => content.splice(0, content.length),
+    );
+
+    site.process([".html"], (files) => {
+      for (const file of files) {
+        content.push({
+          content: file.text,
+          file: file.outputPath,
+          extension: ".html",
+        });
+      }
+    });
+
+    site.process([".js"], (files) => {
+      for (const file of files) {
+        content.push({
+          content: file.text,
+          file: file.outputPath,
+          extension: ".js",
+        });
+      }
+    });
 
     site.process([".css"], async (files) => {
       if (files.length === 0) {
@@ -32,22 +64,43 @@ export function tailwindCSS(userOptions?: Options) {
         return;
       }
 
+      const candidates = scanner.scanFiles(content);
+
       for (const file of files) {
-        const result = await compile(file.text, {
+        const compiler = await compile(file.text, {
           base: posix.dirname(file.outputPath),
-          onDependency(path) {
-            console.log("onDependency", path);
+          async loadStylesheet(id, base) {
+            if (id === "tailwindcss") {
+              const url = `${specifier}/index.css`;
+              const content = await readFile(url);
+              return { content, base };
+            }
+
+            if (id.startsWith("tailwindcss/")) {
+              const filename = id.replace("tailwindcss/", "");
+              const url = `${specifier}/${filename}`;
+              const content = await readFile(url);
+              return { content, base };
+            }
+
+            if (options.includes === false) {
+              if (!id.startsWith(".")) {
+                throw new Error(`Cannot resolve module '${id}'`);
+              }
+            }
+
+            const filename = resolveInclude(id, options.includes || "", base);
+            const content = await site.getContent(filename, false);
+
+            if (content === undefined) {
+              throw new Error(`File ${file} not found`);
+            }
+
+            return { content, base: dirname(filename) };
           },
-          async customJsResolver(id, base) {
-            console.log("customJsResolver", { id, base });
-            return "npm:tailwindcss@4.0.2";
-            return undefined;
-          },
-          async customCssResolver(id, base) {
-            console.log("customCssResolver", { id, base});
-            return undefined;
-          }
         });
+
+        file.text = compiler.build(candidates);
       }
     });
   };
