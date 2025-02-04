@@ -18,7 +18,10 @@ export interface Options {
   /** The sitemap file name */
   filename?: string;
 
-  /** The query to search pages included in the sitemap */
+  /**
+   * The query to search pages included in the sitemap
+   * @default "isRedirect!=true" excludes redirect pages produced by the redirects plugin
+   */
   query?: string;
 
   /** The values to sort the sitemap */
@@ -37,7 +40,7 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   filename: "/sitemap.xml",
-  query: "",
+  query: "isRedirect!=true",
   sort: "url=asc",
   lastmod: "date",
 };
