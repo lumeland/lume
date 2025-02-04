@@ -123,7 +123,7 @@ function html(redirects: Redirect[], site: Site): void {
   <a href="${to}">Click here if you are not redirected.</a>
 </body>
 </html>`;
-    const page = Page.create({ url, content });
+    const page = Page.create({ url, content, is_redirect: true });
     site.pages.push(page);
   }
 }
