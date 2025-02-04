@@ -141,7 +141,7 @@ snapshot[`redirects plugin 3`] = `
   <a href="/page1/">Click here if you are not redirected.</a>
 </body>
 </html>',
-      is_redirect: true,
+      isRedirect: true,
       page: [
         "src",
         "data",
@@ -183,7 +183,7 @@ snapshot[`redirects plugin 3`] = `
   <a href="/page2/">Click here if you are not redirected.</a>
 </body>
 </html>',
-      is_redirect: true,
+      isRedirect: true,
       page: [
         "src",
         "data",
@@ -225,7 +225,7 @@ snapshot[`redirects plugin 3`] = `
   <a href="/page2/">Click here if you are not redirected.</a>
 </body>
 </html>',
-      is_redirect: true,
+      isRedirect: true,
       page: [
         "src",
         "data",
