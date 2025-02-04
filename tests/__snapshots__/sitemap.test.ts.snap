@@ -2244,11 +2244,11 @@ Sitemap: https://example.com/sitemap.xml",
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://example.com/page1/</loc>
-    <lastmod>2025-01-29T21:30:22.949Z</lastmod>
+    <lastmod>2025-02-04T20:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/page2/</loc>
-    <lastmod>2025-01-29T21:30:22.949Z</lastmod>
+    <lastmod>2025-02-04T20:00:00.000Z</lastmod>
   </url>
 </urlset>',
     data: {
@@ -2257,11 +2257,11 @@ Sitemap: https://example.com/sitemap.xml",
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://example.com/page1/</loc>
-    <lastmod>2025-01-29T21:30:22.949Z</lastmod>
+    <lastmod>2025-02-04T20:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/page2/</loc>
-    <lastmod>2025-01-29T21:30:22.949Z</lastmod>
+    <lastmod>2025-02-04T20:00:00.000Z</lastmod>
   </url>
 </urlset>',
       page: [
