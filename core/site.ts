@@ -64,9 +64,7 @@ const defaults: SiteOptions = {
     debounce: 100,
     include: [],
   },
-  components: {
-    variable: "comp",
-  },
+  components: {},
 };
 
 /**
@@ -160,7 +158,6 @@ export default class Site {
       componentLoader,
       formats,
       components: {
-        variable: components.variable,
         cssFile: components.cssFile ?? this.options.cssFile,
         jsFile: components.jsFile ?? this.options.jsFile,
       },
@@ -1011,9 +1008,6 @@ export interface WatcherOptions {
 
 /** The options to configure the components */
 export interface ComponentsOptions {
-  /** The variable name used to access to the components */
-  variable: string;
-
   /** The name of the file to save the components css code */
   cssFile?: string;
 

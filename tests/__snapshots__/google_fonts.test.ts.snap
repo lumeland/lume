@@ -3895,12 +3895,12 @@ snapshot[`Download a font from Google fonts 3`] = `
 }
 ',
     data: {
-      basename: "styles",
+      basename: "style",
       page: [
         "src",
         "data",
       ],
-      url: "/styles.css",
+      url: "/style.css",
     },
     src: {
       ext: "",

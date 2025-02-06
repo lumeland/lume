@@ -220,10 +220,9 @@ export function nunjucks(userOptions?: Options) {
 
     // Register the component helper
     engine.addHelper("comp", async (...args) => {
-      const components = site.source.data.get("/")
-        ?.[site.options.components.variable] as
-          | ProxyComponents
-          | undefined;
+      const components = site.source.data.get("/")?.comp as
+        | ProxyComponents
+        | undefined;
       const [content, name, options = {}] = args;
       delete options.__keywords;
       const props = { content, ...options };

@@ -356,12 +356,12 @@ document.querySelectorAll("button").forEach(button => {
 console.log("Hello world, from the icon/User component");
 ',
     data: {
-      basename: "scripts",
+      basename: "script",
       page: [
         "src",
         "data",
       ],
-      url: "/scripts.js",
+      url: "/script.js",
     },
     src: {
       ext: "",
@@ -381,12 +381,12 @@ icon {
 }
 ",
     data: {
-      basename: "styles",
+      basename: "style",
       page: [
         "src",
         "data",
       ],
-      url: "/styles.css",
+      url: "/style.css",
     },
     src: {
       ext: "",

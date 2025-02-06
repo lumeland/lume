@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New option `cssFile` and `jsFile` to configure a default file for automatic generated code.
   It's used by default by code_highlight, google_fonts, prism and unocss.
   It's also used by default by components.
+- New folder-based components.
 - `page.text` and `page.bytes` getters and setters.
 - `site.add()` support URLs and NPM specifiers.
 - `site.process(callback)` as an alias of `site.process("*", callback)`.
@@ -28,6 +29,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `on_demand` plugin and middleware. If you need some server-side logic, you can use router middleware.
 - `inline` plugin: removed the `attribute` option. 
 - `cache` option in `transform_images`, `favicon` and `og_images`. Use `LUME_NOCACHE=true` env variable to disable cache.
+- `variable` option of Lume components. It's always `comp`.
 
 ### Changed
 - Minimum Deno version supported is LTS (2.1.0)
