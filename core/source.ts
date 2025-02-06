@@ -713,6 +713,7 @@ function createFile(
     path: entry.path.slice(0, -ext.length),
     entry,
   });
+}
 
 function sortCSS(a: string, b: string) {
   if (a.includes("@import")) {
