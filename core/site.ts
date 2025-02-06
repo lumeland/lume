@@ -48,8 +48,8 @@ const defaults: SiteOptions = {
   emptyDest: true,
   caseSensitiveUrls: false,
   includes: "_includes",
-  cssFile: "/styles.css",
-  jsFile: "/scripts.js",
+  cssFile: "/style.css",
+  jsFile: "/script.js",
   location: new URL("http://localhost"),
   prettyUrls: true,
   server: {

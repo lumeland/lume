@@ -1,5 +1,5 @@
 import { assert, assertEquals } from "../deps/assert.ts";
-import { build, getSite } from "./utils.ts";
+import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 
 import eta from "../plugins/eta.ts";
 import pug from "../plugins/pug.ts";
@@ -52,6 +52,11 @@ Deno.test("Components", async (t) => {
     assert(subcomp.innerbutton);
     assert(subcomp.button_pug);
     assert(subcomp.button_ts);
+  });
+
+  await t.step("Folder components are loaded", () => {
+    assert(comp);
+    assert(comp.header);
   });
 
   await t.step("Nunjucks components", async () => {
@@ -133,4 +138,13 @@ Deno.test("Components", async (t) => {
       `<h1 class="custom">Hello world</h1>`,
     );
   });
+});
+
+Deno.test("Folder components", async (t) => {
+  const site = getSite({
+    src: "components",
+  });
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
 });
