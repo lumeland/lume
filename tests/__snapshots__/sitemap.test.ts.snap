@@ -1921,3 +1921,367 @@ Sitemap: https://example.com/sitemap.xml",
   },
 ]
 `;
+
+snapshot[`Sitemap plugin with redirects plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      loader: [AsyncFunction: toml],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      loader: [AsyncFunction: module],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      loader: [AsyncFunction: json],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      loader: [AsyncFunction: text],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      loader: [AsyncFunction: yaml],
+      pageType: "page",
+    },
+  ],
+  src: [
+    "/",
+    "/page1.vto",
+    "/page2.vto",
+  ],
+}
+`;
+
+snapshot[`Sitemap plugin with redirects plugin 2`] = `[]`;
+
+snapshot[`Sitemap plugin with redirects plugin 3`] = `
+[
+  {
+    content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting…</title>
+  <meta http-equiv="refresh" content="0; url=/page1/">
+</head>
+<body>
+  <h1>Redirecting…</h1>
+  <a href="/page1/">Click here if you are not redirected.</a>
+</body>
+</html>',
+    data: {
+      basename: "old-page1",
+      content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting…</title>
+  <meta http-equiv="refresh" content="0; url=/page1/">
+</head>
+<body>
+  <h1>Redirecting…</h1>
+  <a href="/page1/">Click here if you are not redirected.</a>
+</body>
+</html>',
+      isRedirect: true,
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/old-page1/",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting…</title>
+  <meta http-equiv="refresh" content="0; url=/page2/">
+</head>
+<body>
+  <h1>Redirecting…</h1>
+  <a href="/page2/">Click here if you are not redirected.</a>
+</body>
+</html>',
+    data: {
+      basename: "old-page2",
+      content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting…</title>
+  <meta http-equiv="refresh" content="0; url=/page2/">
+</head>
+<body>
+  <h1>Redirecting…</h1>
+  <a href="/page2/">Click here if you are not redirected.</a>
+</body>
+</html>',
+      isRedirect: true,
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/old-page2/",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting…</title>
+  <meta http-equiv="refresh" content="1; url=/page2/">
+</head>
+<body>
+  <h1>Redirecting…</h1>
+  <a href="/page2/">Click here if you are not redirected.</a>
+</body>
+</html>',
+    data: {
+      basename: "other-old-page2",
+      content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting…</title>
+  <meta http-equiv="refresh" content="1; url=/page2/">
+</head>
+<body>
+  <h1>Redirecting…</h1>
+  <a href="/page2/">Click here if you are not redirected.</a>
+</body>
+</html>',
+      isRedirect: true,
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/other-old-page2/",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "User-agent: *
+Allow: /
+
+Sitemap: https://example.com/sitemap.xml",
+    data: {
+      basename: "robots",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/robots.txt",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://example.com/page1/</loc>
+    <lastmod>2025-02-04T20:00:00.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/page2/</loc>
+    <lastmod>2025-02-04T20:00:00.000Z</lastmod>
+  </url>
+</urlset>',
+    data: {
+      basename: "sitemap",
+      content: '<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://example.com/page1/</loc>
+    <lastmod>2025-02-04T20:00:00.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/page2/</loc>
+    <lastmod>2025-02-04T20:00:00.000Z</lastmod>
+  </url>
+</urlset>',
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      url: "/sitemap.xml",
+    },
+    src: {
+      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+Page 1",
+    data: {
+      basename: "page1",
+      children: "Page 1",
+      content: "Page 1",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      oldUrl: "/old-page1/",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page1/",
+    },
+    src: {
+      asset: false,
+      ext: ".vto",
+      path: "/page1",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+Page 2
+",
+    data: {
+      basename: "page2",
+      children: "Page 2
+",
+      content: "Page 2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      oldUrl: "Array(2)",
+      page: [
+        "src",
+        "data",
+        "asset",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page2/",
+    },
+    src: {
+      asset: false,
+      ext: ".vto",
+      path: "/page2",
+      remote: undefined,
+    },
+  },
+]
+`;

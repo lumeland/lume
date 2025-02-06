@@ -116,7 +116,7 @@ export const catalogs: Catalog[] = [
   {
     // https://simpleicons.org/
     id: "simpleicons",
-    src: "https://cdn.jsdelivr.net/npm/simple-icons@14.4.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/simple-icons@14.5.0/icons/{name}.svg",
   },
   {
     // https://tabler.io/icons
@@ -186,7 +186,7 @@ export const catalogs: Catalog[] = [
     // https://primer.style/foundations/icons
     id: "octicons",
     src:
-      "https://cdn.jsdelivr.net/npm/@primer/octicons@19.14.0/build/svg/{name}-{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/@primer/octicons@19.15.0/build/svg/{name}-{variant}.svg",
     variants: ["24", "16", "12", "48", "96"],
   },
   {

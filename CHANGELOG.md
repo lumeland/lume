@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [Unreleased]
+### Added
+- Feed plugin: New option `info.hubs` [#725].
+- Redirects plugin: Add `isRedirect=true` data field to HTML redirect pages.
+- Sitemap plugin: Set default query to `isRedirect!=true`.
+
+### Fixed
+- Sass plugin: Allow additional importers [#727].
+- Components: Reorder css code to ensure `@import` rules are first.
+- Updated components: `std`, `decap-cms`, `terser` and some icons.
+
 ## [2.5.1] - 2025-01-28
 ### Added
 - Support for LumeCMS v0.9, that can perform git operations and restart the build.
@@ -694,7 +705,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#715]: https://github.com/lumeland/lume/issues/715
 [#716]: https://github.com/lumeland/lume/issues/716
 [#722]: https://github.com/lumeland/lume/issues/722
+[#725]: https://github.com/lumeland/lume/issues/725
+[#727]: https://github.com/lumeland/lume/issues/727
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v2.5.1...HEAD
 [2.5.1]: https://github.com/lumeland/lume/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/lumeland/lume/compare/v2.4.3...v2.5.0
 [2.4.3]: https://github.com/lumeland/lume/compare/v2.4.2...v2.4.3

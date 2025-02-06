@@ -48,6 +48,9 @@ export interface FeedInfoOptions {
   /** The feed language */
   lang?: string;
 
+  /** The WebSub hubs for the feed */
+  hubs?: string[];
+
   /** The feed generator. Set `true` to generate automatically */
   generator?: string | boolean;
 
@@ -137,6 +140,7 @@ export interface FeedData {
   description: string;
   published: Date;
   lang: string;
+  hubs?: string[];
   generator?: string;
   items: FeedItem[];
   author?: Author;
@@ -186,6 +190,7 @@ export function feed(userOptions?: Options) {
         description: getPlainDataValue(rootData, info.description),
         published: getDataValue(rootData, info.published),
         lang: getDataValue(rootData, info.lang),
+        hubs: info.hubs,
         url: site.url("", true),
         generator: info.generator === true
           ? defaultGenerator
@@ -280,11 +285,17 @@ function generateRss(data: FeedData, file: string): string {
       channel: {
         title: data.title,
         link: data.url,
-        "atom:link": {
-          "@href": file,
-          "@rel": "self",
-          "@type": "application/rss+xml",
-        },
+        "atom:link": [
+          {
+            "@href": file,
+            "@rel": "self",
+            "@type": "application/rss+xml",
+          },
+          ...(data.hubs ?? []).map((hub) => ({
+            "@href": hub,
+            "@rel": "hub",
+          })),
+        ],
         description: data.description,
         lastBuildDate: data.published.toUTCString(),
         language: data.lang,
@@ -330,6 +341,8 @@ function generateJson(data: FeedData, file: string): string {
     title: data.title,
     home_page_url: data.url,
     feed_url: file,
+    hubs: data.hubs &&
+      data.hubs.map((hub) => ({ "type": "WebSub", "feed_url": hub })),
     description: data.description,
     author: data.author,
     icon: data.image,

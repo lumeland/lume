@@ -567,11 +567,12 @@ export default class Source {
     for (const [type, path] of Object.entries(files)) {
       const code = this.extraCode.get(type);
 
-      if (code && code.size) {
-        pages.push([
-          path,
-          Array.from(code.values()).join("\n"),
-        ]);
+      if (code?.size) {
+        const content = type === "css"
+          ? Array.from(code.values()).sort(sortCSS).join("\n")
+          : Array.from(code.values()).join("\n");
+
+        pages.push([path, content]);
       }
     }
 
@@ -712,4 +713,13 @@ function createFile(
     path: entry.path.slice(0, -ext.length),
     entry,
   });
+
+function sortCSS(a: string, b: string) {
+  if (a.includes("@import")) {
+    return -1;
+  }
+  if (b.includes("@import")) {
+    return 1;
+  }
+  return 0;
 }

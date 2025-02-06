@@ -109,9 +109,7 @@ export function sass(userOptions?: Options) {
               }
             }
 
-            throw new Error(
-              `File cannot be canonicalized: ${url} (${pathname})`,
-            );
+            return null;
           },
           async load(url: URL) {
             const pathname = fromFileUrl(url);
