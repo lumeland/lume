@@ -1,4 +1,4 @@
-export default function liveReload(initRevision) {
+export default function liveReload(initRevision, basepath) {
   let ws;
   let wasClosed = false;
   let revision = initRevision;
@@ -10,7 +10,7 @@ export default function liveReload(initRevision) {
     const protocol = document.location.protocol === "https:"
       ? "wss://"
       : "ws://";
-    ws = new WebSocket(protocol + document.location.host);
+    ws = new WebSocket(protocol + document.location.host + basepath);
     ws.onopen = () => {
       console.log("Lume live reloading is ready. Listening for changes...");
 

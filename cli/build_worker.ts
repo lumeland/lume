@@ -102,7 +102,10 @@ async function build({ type, config, serve }: BuildOptions) {
   }
 
   server.use(
-    reload({ watcher: new SiteWatcher(site) }),
+    reload({
+      watcher: new SiteWatcher(site),
+      basepath: site.options.location.pathname,
+    }),
     noCache(),
     noCors(),
     notFound({
