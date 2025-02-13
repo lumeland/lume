@@ -1,3 +1,4 @@
+import { getDataValue } from "../core/utils/data_values.ts";
 import { merge } from "../core/utils/object.ts";
 import { Page } from "../core/file.ts";
 import { stringify } from "../deps/xml.ts";
@@ -27,6 +28,10 @@ export interface Options {
   /** The values to sort the sitemap */
   sort?: string;
 
+  items?: SitemapItemsOptions;
+}
+
+export interface SitemapItemsOptions {
   /** The key to use for the lastmod field or a custom function */
   lastmod?: string | ((data: Data) => Date);
 
@@ -42,7 +47,9 @@ export const defaults: Options = {
   filename: "/sitemap.xml",
   query: "isRedirect!=true",
   sort: "url=asc",
-  lastmod: "date",
+  items: {
+    lastmod: "=date",
+  },
 };
 
 /**
@@ -74,6 +81,7 @@ export function sitemap(userOptions?: Options) {
     });
 
     function generateSitemap(pages: Data[]): string {
+      const items = options.items ?? {};
       const sitemap = {
         "@version": "1.0",
         "@encoding": "UTF-8",
@@ -85,19 +93,18 @@ export function sitemap(userOptions?: Options) {
               loc: site.url(data.url, true),
             };
 
-            const lastmod = getValue<Date>(data, options.lastmod)
-              ?.toISOString();
-            if (lastmod) {
-              node.lastmod = lastmod;
+            const lastmod = getDataValue(data, items.lastmod);
+            if (lastmod instanceof Date) {
+              node.lastmod = lastmod.toISOString();
             }
 
-            const changefreq = getValue<ChangeFreq>(data, options.changefreq);
+            const changefreq = getDataValue(data, items.changefreq);
             if (changefreq) {
               node.changefreq = changefreq;
             }
 
-            const priority = getValue<number>(data, options.priority);
-            if (priority) {
+            const priority = getDataValue(data, items.priority);
+            if (typeof priority === "number") {
               node.priority = priority;
             }
 
@@ -138,19 +145,4 @@ interface UrlItem {
     "@hreflang": string;
     "@href": string;
   }[];
-}
-
-function getValue<T>(
-  data: Data,
-  key?: string | ((data: Data) => T),
-): T | undefined {
-  if (!key) {
-    return undefined;
-  }
-
-  if (typeof key === "function") {
-    return key(data);
-  }
-
-  return data[key];
 }

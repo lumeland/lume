@@ -51,3 +51,4 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `svgo` plugin no longer load all SVG files by default. Use `site.add()`.
 - `terser` and `esbuild` plugins no longer load all JS and TS files by default. Use `site.add()`.
 - `esbuild` bundles jsx and tsx files by default.
+- `sitemap` plugin: changed the options for something similar to `feed` and `metas`.

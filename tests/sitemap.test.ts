@@ -28,7 +28,9 @@ Deno.test("Sitemap plugin with a multilanguage plugin", async (t) => {
     languages: ["en", "fr", "it", "gl"],
   }));
   site.use(sitemap({
-    lastmod: "",
+    items: {
+      lastmod: "",
+    },
   }));
 
   await build(site);
