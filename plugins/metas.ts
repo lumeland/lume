@@ -1,17 +1,8 @@
-import { merge } from "../core/utils/object.ts";
-import { getCurrentVersion } from "../core/utils/lume_version.ts";
+import { getGenerator } from "../core/utils/lume_version.ts";
 import { getDataValue, getPlainDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
 import type { Data, Page } from "../core/file.ts";
-
-export interface Options {
-  /** The list extensions this plugin applies to */
-  extensions?: string[];
-
-  /** The key name for the transformations definitions */
-  name?: string;
-}
 
 export interface MetaData {
   /** The type of the site default is website */
@@ -58,29 +49,22 @@ export interface MetaData {
   [name: string]: any;
 }
 
-const defaults: Options = {
-  extensions: [".html"],
-  name: "metas",
-};
-
-const defaultGenerator = `Lume ${getCurrentVersion()}`;
+const defaultGenerator = getGenerator();
 
 /**
  * A plugin to insert meta tags for SEO and social media
  * @see https://lume.land/plugins/metas/
  */
-export function metas(userOptions?: Options) {
-  const options = merge(defaults, userOptions);
-
+export function metas() {
   return (site: Site) => {
     // Configure the merged keys
-    site.mergeKey(options.name, "object");
-    site.process(options.extensions, (pages) => pages.forEach(metas));
+    site.mergeKey("metas", "object");
+    site.process([".html"], (pages) => pages.forEach(metas));
 
     function metas(page: Page) {
-      const metas = page.data[options.name] as MetaData | undefined;
+      const metas = page.data.metas as MetaData | undefined;
 
-      if (!metas || !page.document) {
+      if (!metas) {
         return;
       }
 
@@ -105,7 +89,7 @@ export function metas(userOptions?: Options) {
       const keywords = getDataValue(data, main["keywords"]);
       const robots = getDataValue(data, main["robots"]);
       const color = getDataValue(data, main["color"]);
-      const generator = getDataValue(data, main["generator"]);
+      const generator = getDataValue(data, main["generator"]) ?? true;
 
       // Open graph
       addMeta(document, "property", "og:type", type || "website");

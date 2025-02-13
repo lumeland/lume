@@ -1,22 +1,17 @@
-import type { Page } from "../file.ts";
-
 export function insertContent(
-  page: Page,
   content: string,
+  newContent: string,
   placeholder?: string,
 ) {
-  const pageContent = page.content;
-
-  if (pageContent && typeof pageContent === "string") {
-    if (placeholder && pageContent.includes(placeholder)) {
-      page.content = pageContent.replace(
+  if (content) {
+    if (placeholder && content.includes(placeholder)) {
+      return content.replace(
         placeholder,
-        content,
+        newContent,
       );
-    } else {
-      page.content += `\n${content}`;
     }
-  } else {
-    page.content = content;
+    return `${content}\n${newContent}`;
   }
+
+  return newContent;
 }

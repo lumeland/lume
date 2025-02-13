@@ -8,27 +8,23 @@ Deno.test("Formats", async (t) => {
   equals(formats.size, 0);
 
   await t.step("Add extensions", () => {
-    formats.set({ ext: ".foo", copy: true });
+    formats.set({ ext: ".foo" });
     equals(formats.entries.size, 1);
     equals(formats.size, 1);
     equals(formats.get(".foo")?.ext, ".foo");
-    equals(formats.get(".foo")?.copy, true);
     assert(formats.has(".foo"));
 
-    formats.set({ ext: ".foo", copy: false });
+    formats.set({ ext: ".foo" });
     equals(formats.entries.size, 1);
     equals(formats.size, 1);
     equals(formats.get(".foo")?.ext, ".foo");
-    equals(formats.get(".foo")?.copy, false);
     assert(formats.has(".foo"));
   });
 
   await t.step("Add subextensions", () => {
-    formats.set({ ext: ".sub.foo", copy: true });
+    formats.set({ ext: ".sub.foo" });
     equals(formats.entries.size, 2);
     equals(formats.size, 2);
-    equals(formats.get(".foo")?.copy, false);
-    equals(formats.get(".sub.foo")?.copy, true);
     assert(formats.has(".sub.foo"));
   });
 

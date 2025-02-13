@@ -6,32 +6,32 @@ snapshot[`nav plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`nav plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`nav plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,15 @@ snapshot[`nav plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -125,89 +125,7 @@ snapshot[`nav plugin 2`] = `[]`;
 snapshot[`nav plugin 3`] = `
 [
   {
-    content: '<!DOCTYPE html>
-<html>
-  <head>
-    <title>Docs</title>
-  </head>
-
-  <body>
-    <nav>
-      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">Home</a></li>
-        <li><a href="">防災</a></li>
-        <li><a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a></li>
-      </ul>
-    </nav>
-
-    <h1>Docs</h1>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first/">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
-        </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
-        <a href="/docs/pages/">Previous page</a>
-    </nav>
-  </body>
-</html>
-',
-    data: {
-      basename: "docs",
-      children: "",
-      content: "",
-      date: [],
-      layout: "main.vto",
-      mergedKeys: [
-        "tags",
-      ],
-      nav: [],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Docs",
-      url: "/%E9%98%B2%E7%81%BD/esolia-bousai-links/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/docs",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>About docs (1)</title>
   </head>
@@ -273,7 +191,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -282,98 +199,13 @@ snapshot[`nav plugin 3`] = `
       url: "/docs/about-docs/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/about-docs",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
-  <head>
-    <title>About pages (0)</title>
-  </head>
-
-  <body>
-    <nav>
-      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">Home</a></li>
-        <li><a href="">docs</a></li>
-        <li><a href="/docs/pages/">About pages (0)</a></li>
-      </ul>
-    </nav>
-
-    <h1>About pages (0)</h1>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first/">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
-        </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
-        <a href="/docs/pages/first/">Next page</a>
-        <a href="/docs/about-docs/">Previous page</a>
-    </nav>
-  </body>
-</html>
-',
-    data: {
-      basename: "pages",
-      children: "",
-      content: "",
-      date: [],
-      layout: "main.vto",
-      mergedKeys: [
-        "tags",
-      ],
-      nav: [],
-      order: 0,
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "About pages (0)",
-      url: "/docs/pages/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/docs/pages",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>Pages first (1)</title>
   </head>
@@ -440,7 +272,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -449,15 +280,93 @@ snapshot[`nav plugin 3`] = `
       url: "/docs/pages/first/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/pages/first",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
+  <head>
+    <title>About pages (0)</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/">Home</a></li>
+        <li><a href="">docs</a></li>
+        <li><a href="/docs/pages/">About pages (0)</a></li>
+      </ul>
+    </nav>
+
+    <h1>About pages (0)</h1>
+
+    <nav>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first/">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
+    </nav>
+
+    <nav>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
+
+
+        <a href="/docs/pages/first/">Next page</a>
+        <a href="/docs/about-docs/">Previous page</a>
+    </nav>
+  </body>
+</html>
+',
+    data: {
+      basename: "pages",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      order: 0,
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "About pages (0)",
+      url: "/docs/pages/",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs/pages",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
   <head>
     <title>Pages second (0)</title>
   </head>
@@ -525,7 +434,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -534,15 +442,13 @@ snapshot[`nav plugin 3`] = `
       url: "/docs/pages/second/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/pages/second",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>Home</title>
   </head>
@@ -604,7 +510,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -613,9 +518,86 @@ snapshot[`nav plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
+  <head>
+    <title>Docs</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/">Home</a></li>
+        <li><a href="">防災</a></li>
+        <li><a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a></li>
+      </ul>
+    </nav>
+
+    <h1>Docs</h1>
+
+    <nav>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first/">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
+    </nav>
+
+    <nav>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs/">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second/">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
+
+
+        <a href="/docs/pages/">Previous page</a>
+    </nav>
+  </body>
+</html>
+',
+    data: {
+      basename: "docs",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Docs",
+      url: "/%E9%98%B2%E7%81%BD/esolia-bousai-links/",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs",
       remote: undefined,
     },
   },
@@ -628,32 +610,32 @@ snapshot[`nav plugin with pretty urls disabled 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -670,14 +652,14 @@ snapshot[`nav plugin with pretty urls disabled 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -694,14 +676,14 @@ snapshot[`nav plugin with pretty urls disabled 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -713,15 +695,15 @@ snapshot[`nav plugin with pretty urls disabled 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -747,89 +729,7 @@ snapshot[`nav plugin with pretty urls disabled 2`] = `[]`;
 snapshot[`nav plugin with pretty urls disabled 3`] = `
 [
   {
-    content: '<!DOCTYPE html>
-<html>
-  <head>
-    <title>Docs</title>
-  </head>
-
-  <body>
-    <nav>
-      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="">防災</a></li>
-        <li><a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a></li>
-      </ul>
-    </nav>
-
-    <h1>Docs</h1>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages.html">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second.html">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first.html">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs.html">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
-        </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs.html">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second.html">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
-        <a href="/docs/pages.html">Previous page</a>
-    </nav>
-  </body>
-</html>
-',
-    data: {
-      basename: "docs",
-      children: "",
-      content: "",
-      date: [],
-      layout: "main.vto",
-      mergedKeys: [
-        "tags",
-      ],
-      nav: [],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Docs",
-      url: "/%E9%98%B2%E7%81%BD/esolia-bousai-links/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/docs",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>About docs (1)</title>
   </head>
@@ -895,7 +795,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -904,15 +803,13 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/about-docs.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/about-docs",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>About pages (0)</title>
   </head>
@@ -978,7 +875,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -987,15 +883,13 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/pages.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/pages",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>Pages first (1)</title>
   </head>
@@ -1062,7 +956,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1071,15 +964,13 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/pages/first.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/pages/first",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>Pages second (0)</title>
   </head>
@@ -1147,7 +1038,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1156,15 +1046,13 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/pages/second.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/pages/second",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title>Home</title>
   </head>
@@ -1224,7 +1112,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1233,9 +1120,86 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/index.html",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
+  <head>
+    <title>Docs</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="">防災</a></li>
+        <li><a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a></li>
+      </ul>
+    </nav>
+
+    <h1>Docs</h1>
+
+    <nav>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/pages.html">About pages (0)</a><ul>  <li>
+    <a href="/docs/pages/second.html">Pages second (0)</a>
+  </li>  <li>
+    <a href="/docs/pages/first.html">Pages first (1)</a>
+  </li></ul>
+  </li>  <li>
+    <a href="/docs/about-docs.html">About docs (1)</a>
+  </li></ul>
+        </li>        <li>
+          <strong>防災</strong><ul>  <li>
+    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
+  </li></ul>
+        </li>      </ul>
+    </nav>
+
+    <nav>
+      <ul>        <li>
+          <strong>docs</strong><ul>  <li>
+    <a href="/docs/about-docs.html">About docs (1)</a>
+  </li>  <li>
+    <strong>pages</strong><ul>  <li>
+    <a href="/docs/pages/second.html">Pages second (0)</a>
+  </li></ul>
+  </li></ul>
+        </li>      </ul>
+
+
+        <a href="/docs/pages.html">Previous page</a>
+    </nav>
+  </body>
+</html>
+',
+    data: {
+      basename: "docs",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Docs",
+      url: "/%E9%98%B2%E7%81%BD/esolia-bousai-links/",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs",
       remote: undefined,
     },
   },

@@ -1,4 +1,5 @@
 import { Entry } from "./fs.ts";
+import textLoader from "./loaders/text.ts";
 
 import type { Data } from "./file.ts";
 import type Formats from "./formats.ts";
@@ -35,6 +36,12 @@ export default class ComponentsLoader {
       }
 
       if (entry.type === "directory") {
+        const component = await this.#loadComponentFolder(entry, data);
+        if (component) {
+          components.set(component.name.toLowerCase(), component);
+          continue;
+        }
+
         const name = entry.name.toLowerCase();
         const subComponents = (components.get(name) || new Map()) as Components;
         components.set(name, subComponents);
@@ -53,10 +60,57 @@ export default class ComponentsLoader {
     return components;
   }
 
+  /** Load a component folder (a folder with a comp.* file) */
+  async #loadComponentFolder(
+    entry: Entry,
+    data: Partial<Data>,
+  ): Promise<Component | undefined> {
+    const compEntry = findChild(
+      entry,
+      (entry) => entry.name.startsWith("comp."),
+    );
+
+    if (!compEntry) {
+      return;
+    }
+
+    const component = await this.#loadComponent(compEntry, data, entry.name);
+
+    if (!component) {
+      return;
+    }
+
+    // Find extra files
+    for (const child of entry.children.values()) {
+      if (child === compEntry) {
+        continue;
+      }
+
+      if (child.type === "file") {
+        // Load CSS file
+        if (child.name === "style.css") {
+          const { content } = await child.getContent(textLoader);
+          component.css = content as string | undefined;
+          continue;
+        }
+
+        // Load JS file
+        if (child.name === "script.js") {
+          const { content } = await child.getContent(textLoader);
+          component.js = content as string | undefined;
+          continue;
+        }
+      }
+    }
+
+    return component;
+  }
+
   /** Load a component file */
   async #loadComponent(
     entry: Entry,
     inheritData: Partial<Data>,
+    defaultName?: string,
   ): Promise<Component | undefined> {
     const format = this.formats.search(entry.name);
 
@@ -83,13 +137,14 @@ export default class ComponentsLoader {
     const { content } = component;
 
     return {
-      name: component.name ?? entry.name.slice(0, -format.ext.length),
-      render(data) {
-        return format.engines!.reduce(
-          (content, engine) =>
-            engine.renderComponent(content, getData(data), entry.path),
-          content,
-        );
+      name: component.name ?? defaultName ??
+        entry.name.slice(0, -format.ext.length),
+      async render(data) {
+        let result = content;
+        for (const engine of format.engines!) {
+          result = await engine.render(content, getData(data), entry.path);
+        }
+        return result;
       },
       css: component.css,
       js: component.js,
@@ -103,14 +158,17 @@ export interface Component {
   /** Name of the component (used to get it from templates) */
   name: string;
 
-  /** The function that will be called to render the component */
-  render: (props: Record<string, unknown>) => string;
+  /** The function to render the component */
+  render: (props: Record<string, unknown>) => string | Promise<string>;
 
   /** Optional CSS code needed to style the component (global, only inserted once) */
   css?: string;
 
   /** Optional JS code needed for the component interactivity (global, only inserted once) */
   js?: string;
+
+  /** Extra files needed by the component (images, etc) */
+  files?: Record<string, string>;
 }
 
 export interface ComponentFile {
@@ -128,4 +186,15 @@ export interface ComponentFile {
 
   /** If false, the data from the parent directory will not be inherited */
   inheritData?: boolean;
+}
+
+function findChild(
+  entry: Entry,
+  filter: (entry: Entry) => boolean,
+): Entry | undefined {
+  for (const child of entry.children.values()) {
+    if (child.type === "file" && filter(child)) {
+      return child;
+    }
+  }
 }

@@ -63,7 +63,7 @@ export default class Renderer {
   }
 
   /** Render the provided pages */
-  async renderPages(from: Page[], to: Page[], onDemand: Page[]): Promise<void> {
+  async renderPages(from: Page[], to: Page[]): Promise<void> {
     for (const group of this.#groupPages(from)) {
       const pages: Page[] = [];
       const generators: Page[] = [];
@@ -75,10 +75,6 @@ export default class Renderer {
           continue;
         }
 
-        if (page.data.ondemand) {
-          onDemand.push(page);
-          continue;
-        }
         pages.push(page);
       }
 
@@ -115,9 +111,6 @@ export default class Renderer {
           }
           newPage.data.url = url;
           newPage.data.date = getPageDate(newPage);
-          newPage._data.layout = "layout" in data
-            ? data.layout
-            : page._data.layout;
           generatedPages.push(newPage);
         }
       }
@@ -135,9 +128,7 @@ export default class Renderer {
             const content = await this.#renderPage(page);
 
             // Save the children to render the layout later
-            // (Only HTML pages and pages with the layout in the frontmatter)
-            // This prevents to call the layout for every page (like css, js, etc)
-            if (page.outputPath.endsWith(".html") || page._data.layout) {
+            if (page.data.layout || page.outputPath.endsWith(".html")) {
               page.data.children = content;
               renderedPages.push(page);
             } else {
@@ -160,18 +151,6 @@ export default class Renderer {
               page,
               page.data.children as Content,
             );
-
-            // Ensure all HTML pages have the DOCTYPE declaration
-            if (
-              page.outputPath.endsWith(".html") &&
-              typeof page.content === "string"
-            ) {
-              const trim = page.content.trim();
-
-              if (trim && !trim.match(/^<!DOCTYPE\s/i)) {
-                page.content = `<!DOCTYPE html>\n${page.content}`;
-              }
-            }
           } catch (cause) {
             throw new Error(
               `Error rendering the layout of the page ${page.sourcePath}`,
@@ -180,25 +159,6 @@ export default class Renderer {
           }
         },
       );
-    }
-  }
-
-  /** Render the provided pages */
-  async renderPageOnDemand(page: Page): Promise<void> {
-    if (isGenerator(page.data.content)) {
-      throw new Error(
-        `Cannot render the generator page ${page.sourcePath} on demand.`,
-      );
-    }
-
-    await this.preprocessors.run([page]);
-
-    // The page is type asset
-    if (this.formats.get(page.src.ext)?.pageType === "asset") {
-      page.content = page.data.content as Content;
-    } else {
-      const content = await this.#renderPage(page);
-      page.content = await this.#renderLayout(page, content);
     }
   }
 
@@ -329,7 +289,7 @@ export default class Renderer {
 
     const format = this.formats.search(path);
 
-    if (isLayout || format?.pageType === "page") {
+    if (isLayout || format?.isPage) {
       return format?.engines;
     }
   }
@@ -349,13 +309,6 @@ export interface Engine<T = string | { toString(): string }> {
     data?: Record<string, unknown>,
     filename?: string,
   ): T | Promise<T>;
-
-  /** Render a component (it must be synchronous) */
-  renderComponent(
-    content: unknown,
-    data?: Record<string, unknown>,
-    filename?: string,
-  ): T;
 
   /** Add a helper to the template engine */
   addHelper(

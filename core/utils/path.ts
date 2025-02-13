@@ -57,7 +57,7 @@ export function getPathAndExtension(path: string): [string, string] {
 /** Get the extension of a path (this works better than std/path) */
 export function getExtension(path: string): string {
   const match = path.match(/\.\w+$/);
-  return match ? match[0] : "";
+  return match ? match[0].toLowerCase() : "";
 }
 
 export type Extensions = string[] | "*";

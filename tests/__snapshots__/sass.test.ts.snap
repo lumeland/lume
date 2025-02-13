@@ -1,37 +1,37 @@
 export const snapshot = {};
 
-snapshot[`sass plugin 1`] = `
+snapshot[`SASS plugin 1`] = `
 {
   formats: [
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`sass plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`sass plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,27 +91,21 @@ snapshot[`sass plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".scss",
-      pageType: "asset",
     },
     {
-      assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".sass",
-      pageType: "asset",
     },
   ],
   src: [
@@ -131,31 +125,20 @@ snapshot[`sass plugin 1`] = `
 }
 `;
 
-snapshot[`sass plugin 2`] = `[]`;
+snapshot[`SASS plugin 2`] = `[]`;
 
-snapshot[`sass plugin 3`] = `
+snapshot[`SASS plugin 3`] = `
 [
   {
     content: '@import"./styles.css";html{scroll-behavior:smooth;font:100% Helvetica,sans-serif}body{font:100% Helvetica,sans-serif;color:#333}li{margin:0;padding:0;list-style:none}',
     data: {
       basename: "index",
-      content: '@use "sass/bootstrap";
-@use "sass/button";
-@use "./_includes/sass/colors";
-@import "./styles.css";
-
-li {
-  @include bootstrap.list-reset;
-}
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -163,7 +146,6 @@ li {
       url: "/index.css",
     },
     src: {
-      asset: true,
       ext: ".scss",
       path: "/index",
       remote: undefined,
@@ -173,19 +155,12 @@ li {
     content: "body{color:blue}",
     data: {
       basename: "index2",
-      content: '@use "sass/colors" as *
-
-body
-  color: \$primary-color
-',
-      date: [],
       mergedKeys: [
         "tags",
       ],
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -193,7 +168,6 @@ body
       url: "/index2.css",
     },
     src: {
-      asset: true,
       ext: ".sass",
       path: "/index2",
       remote: undefined,

@@ -12,5 +12,4 @@ export const metas = {
   twitter: "@myUser",
   lang: "gl",
   color: "black",
-  generator: "Lume testing",
 };

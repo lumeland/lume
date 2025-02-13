@@ -39,56 +39,56 @@ export const catalogs: Catalog[] = [
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-100",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-100@0.28.1/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-100@0.28.2/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-200",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-200@0.28.1/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-200@0.28.2/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-300",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-300@0.28.1/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-300@0.28.2/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-400",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-400@0.28.1/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-400@0.28.2/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-500",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-500@0.28.1/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-500@0.28.2/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-600",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-600@0.28.1/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-600@0.28.2/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-700",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-700@0.28.1/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-700@0.28.2/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Icons
     id: "material",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-design-icons/svg@0.14.14/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-design-icons/svg@0.14.15/{variant}/{name}.svg",
     variants: ["filled", "outlined", "round", "sharp", "two-tone"],
   },
   {
@@ -116,13 +116,13 @@ export const catalogs: Catalog[] = [
   {
     // https://simpleicons.org/
     id: "simpleicons",
-    src: "https://cdn.jsdelivr.net/npm/simple-icons@14.5.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/simple-icons@14.6.0/icons/{name}.svg",
   },
   {
     // https://tabler.io/icons
     id: "tabler",
     src:
-      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.29.0/icons/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.30.0/icons/{variant}/{name}.svg",
     variants: ["filled", "outline"],
   },
   {
