@@ -110,7 +110,12 @@ export function metas(userOptions?: Options) {
       // Open graph
       addMeta(document, "property", "og:type", type || "website");
       addMeta(document, "property", "og:site_name", site_name);
-      addMeta(document, "property", "og:locale", lang);
+      addMeta(
+        document,
+        "property",
+        "og:locale",
+        typeof lang === "string" ? lang.replace("-", "_") : lang,
+      );
       addMeta(document, "property", "og:title", title, 65);
       addMeta(document, "property", "og:description", description, 155);
       addMeta(document, "property", "og:url", url);
