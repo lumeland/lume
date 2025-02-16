@@ -17,6 +17,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Updated components: `std`, `decap-cms`, `terser` and some icons.
 - Hot reload: use site's location pathname as websocket basepath
 - `metas` plugin: set locale correctly (if set) [#731].
+- Ensure the includes folder is ignored, even if it doesn't start with `_`.
 
 ## [2.5.1] - 2025-01-28
 ### Added
