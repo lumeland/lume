@@ -10,6 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Feed plugin: New option `info.hubs` [#725].
 - Redirects plugin: Add `isRedirect=true` data field to HTML redirect pages.
 - Sitemap plugin: Set default query to `isRedirect!=true`.
+- Icons plugin: Added https://feathericons.com/
 
 ### Fixed
 - Sass plugin: Allow additional importers [#727].
