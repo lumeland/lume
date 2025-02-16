@@ -202,6 +202,13 @@ export const catalogs: Catalog[] = [
     src:
       "https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/icons/{name}.svg",
   },
+  {
+    // https://fontawesome.com/icons
+    id: "fontawesome",
+    src:
+      "https://cdn.jsdelivr.net/npm/fontawesome-free-icons@1.0.0/icons/{variant}/{name}.svg",
+    variants: ["regular", "solid", "brands"],
+  },
 ];
 
 function capitalize(s: string) {

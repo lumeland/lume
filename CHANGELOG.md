@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Redirects plugin: Add `isRedirect=true` data field to HTML redirect pages.
 - Sitemap plugin: Set default query to `isRedirect!=true`.
 - Icons plugin: Added https://feathericons.com/
+- Icons plugin: Added https://fontawesome.com/icons/ (only the free packs: regular, solid and brands).
 
 ### Fixed
 - Sass plugin: Allow additional importers [#727].
