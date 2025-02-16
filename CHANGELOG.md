@@ -16,7 +16,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - Sass plugin: Allow additional importers [#727].
 - Components: Reorder css code to ensure `@import` rules are first.
-- Updated components: `std`, `decap-cms`, `terser` and some icons.
+- Updated components: `std`, `decap-cms`, `terser`, `sass`, `preact`, `esbuild`, `remark-gfm`, `postcss`, `liquidjs`, `decap-cms`, `unocss` and some icons.
 - Hot reload: use site's location pathname as websocket basepath
 - `metas` plugin: set locale correctly (if set) [#731].
 - Ensure the includes folder is ignored, even if it doesn't start with `_`.

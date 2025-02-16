@@ -1,3 +1,3 @@
 /// <reference lib="dom" />
 /// <reference lib="dom.iterable" />
-export * from "npm:linkedom@0.18.7";
+export * from "npm:linkedom@0.18.9";
