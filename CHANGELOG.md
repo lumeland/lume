@@ -18,7 +18,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Components: Reorder css code to ensure `@import` rules are first.
 - Updated components: `std`, `decap-cms`, `terser`, `sass`, `preact`, `esbuild`, `remark-gfm`, `postcss`, `liquidjs`, `decap-cms`, `unocss` and some icons.
 - Hot reload: use site's location pathname as websocket basepath
-- `metas` plugin: set locale correctly (if set) [#731].
+- `metas` plugin:
+  - Set locale correctly (if set) [#731].
+  - Set datetime values and arrays correctly [#733].
 - Ensure the includes folder is ignored, even if it doesn't start with `_`.
 
 ## [2.5.1] - 2025-01-28
@@ -713,6 +715,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#725]: https://github.com/lumeland/lume/issues/725
 [#727]: https://github.com/lumeland/lume/issues/727
 [#731]: https://github.com/lumeland/lume/issues/731
+[#733]: https://github.com/lumeland/lume/issues/733
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.5.1...HEAD
 [2.5.1]: https://github.com/lumeland/lume/compare/v2.5.0...v2.5.1
