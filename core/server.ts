@@ -150,12 +150,12 @@ export async function serveFile(
     }
 
     // Serve the static file
-    return await HttpServeFile(request, file);
+    return await fixServeFile(request, file);
   } catch {
     try {
       // Exists a HTML file with this name?
       if (!posix.extname(path)) {
-        return await HttpServeFile(request, path + ".html");
+        return await fixServeFile(request, path + ".html");
       }
     } catch {
       // Continue
@@ -166,4 +166,15 @@ export async function serveFile(
       { status: 404 },
     );
   }
+}
+
+async function fixServeFile(request: Request, path: string): Promise<Response> {
+  const response = await HttpServeFile(request, path);
+
+  // Fix for https://github.com/lumeland/lume/issues/734
+  if (response.headers.get("content-type") === "application/rss+xml") {
+    response.headers.set("content-type", "application/xml");
+  }
+
+  return response;
 }
