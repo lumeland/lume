@@ -18,6 +18,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Components: Reorder css code to ensure `@import` rules are first.
 - Updated components: `std`, `decap-cms`, `terser`, `sass`, `preact`, `esbuild`, `remark-gfm`, `postcss`, `liquidjs`, `decap-cms`, `unocss` and some icons.
 - Hot reload: use site's location pathname as websocket basepath
+- `data:` urls in CSS are not parsed correctly.
 - `metas` plugin:
   - Set locale correctly (if set) [#731].
   - Set datetime values and arrays correctly [#733].
