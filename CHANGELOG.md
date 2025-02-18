@@ -10,11 +10,19 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Feed plugin: New option `info.hubs` [#725].
 - Redirects plugin: Add `isRedirect=true` data field to HTML redirect pages.
 - Sitemap plugin: Set default query to `isRedirect!=true`.
+- Icons plugin: Added https://feathericons.com/
+- Icons plugin: Added https://fontawesome.com/icons/ (only the free packs: regular, solid and brands).
 
 ### Fixed
 - Sass plugin: Allow additional importers [#727].
 - Components: Reorder css code to ensure `@import` rules are first.
-- Updated components: `std`, `decap-cms`, `terser` and some icons.
+- Updated components: `std`, `decap-cms`, `terser`, `sass`, `preact`, `esbuild`, `remark-gfm`, `postcss`, `liquidjs`, `decap-cms`, `unocss` and some icons.
+- Hot reload: use site's location pathname as websocket basepath
+- `data:` urls in CSS are not parsed correctly.
+- `metas` plugin:
+  - Set locale correctly (if set) [#731].
+  - Set datetime values and arrays correctly [#733].
+- Ensure the includes folder is ignored, even if it doesn't start with `_`.
 
 ## [2.5.1] - 2025-01-28
 ### Added
@@ -707,6 +715,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#722]: https://github.com/lumeland/lume/issues/722
 [#725]: https://github.com/lumeland/lume/issues/725
 [#727]: https://github.com/lumeland/lume/issues/727
+[#731]: https://github.com/lumeland/lume/issues/731
+[#733]: https://github.com/lumeland/lume/issues/733
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v2.5.1...HEAD
 [2.5.1]: https://github.com/lumeland/lume/compare/v2.5.0...v2.5.1

@@ -165,6 +165,22 @@ snapshot[`icons plugin 3`] = `
     },
   },
   {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>',
+    data: {
+      basename: "activity",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/icons/feather/activity.svg",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
     content: '<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6.99 8.6A.5.5 0 0 1 6 8.4a1.29 1.29 0 0 1 .07-.24 2 2 0 0 1 .25-.46c.26-.35.71-.7 1.42-.7A1.7 1.7 0 0 1 9.5 8.75c0 .35-.07.65-.2.9a1.8 1.8 0 0 1-.51.6c-.16.11-.33.22-.48.3l-.06.04c-.17.1-.3.19-.42.29-.4.34-.66.7-.77 1.12H9a.5.5 0 0 1 0 1H6.5a.5.5 0 0 1-.5-.5c0-1.01.47-1.77 1.17-2.38.2-.16.4-.29.57-.4l.06-.03.38-.24a.8.8 0 0 0 .23-.26c.05-.1.09-.23.09-.44a.8.8 0 0 0-.19-.53.7.7 0 0 0-.56-.22.7.7 0 0 0-.61.3 1 1 0 0 0-.15.3ZM11 7c.28 0 .5.22.5.5V10H13V7.5a.5.5 0 0 1 1 0v5a.5.5 0 0 1-1 0V11h-2a.5.5 0 0 1-.5-.5v-3c0-.28.22-.5.5-.5Zm-1-5a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm-7 8a7 7 0 1 1 14 0 7 7 0 0 1-14 0Z"/></svg>',
     data: {
       basename: "access_time_20-outlined",
@@ -173,6 +189,22 @@ snapshot[`icons plugin 3`] = `
         "data",
       ],
       url: "/icons/fluent/access_time_20-outlined.svg",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="bell" class="svg-inline--fa fa-bell" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224 0c-17.7 0-32 14.3-32 32l0 19.2C119 66 64 130.6 64 208l0 25.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416l400 0c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4l0-25.4c0-77.4-55-142-128-156.8L256 32c0-17.7-14.3-32-32-32zm0 96c61.9 0 112 50.1 112 112l0 25.4c0 47.9 13.9 94.6 39.7 134.6L72.3 368C98.1 328 112 281.3 112 233.4l0-25.4c0-61.9 50.1-112 112-112zm64 352l-64 0-64 0c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"></path></svg>',
+    data: {
+      basename: "bell-regular",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/icons/fontawesome/bell-regular.svg",
     },
     src: {
       ext: "",
@@ -601,6 +633,8 @@ snapshot[`icons plugin 3`] = `
   <img src="/icons/fluent/access_time_20-outlined.svg">
   <img src="/icons/octicons/comment-24.svg">
   <img src="/icons/openmoji/E046-color.svg">
+  <img src="/icons/feather/activity.svg">
+  <img src="/icons/fontawesome/bell-regular.svg">
 </body>
 </html>',
     data: {
@@ -639,6 +673,8 @@ snapshot[`icons plugin 3`] = `
   <img src="/icons/fluent/access_time_20-outlined.svg">
   <img src="/icons/octicons/comment-24.svg">
   <img src="/icons/openmoji/E046-color.svg">
+  <img src="/icons/feather/activity.svg">
+  <img src="/icons/fontawesome/bell-regular.svg">
 </body>
 </html>',
       content: '<!DOCTYPE html>
@@ -675,6 +711,8 @@ snapshot[`icons plugin 3`] = `
   <img src="{{ "access_time_20" |> icon("fluent") }}">
   <img src="{{ "comment" |> icon("octicons") }}">
   <img src="{{ "E046" |> icon("openmoji") }}">
+  <img src="{{ "activity" |> icon("feather") }}">
+  <img src="{{ "bell" |> icon("fontawesome") }}">
 </body>
 </html>',
       date: [],

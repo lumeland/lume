@@ -1,4 +1,6 @@
 ---
+tags: ["one", "two", "three"]
+date: 2025-06-21 23:45:00
 metas:
   title: Relative **paths**
   description: Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL
@@ -6,7 +8,11 @@ metas:
   icon: ./my-icon.png
   "twitter:label1": Reading time
   "twitter:data1": 1 minute
-  generator: false
+  "article:published_time":	"=date"
+  "article:modified_time": "=date"
+  "article:author": "=author"
+  "article:section": "=article-type"
+  "article:tag": "=tags"
 ---
 <html>
   <head>

@@ -215,6 +215,9 @@ export default class Site {
       this.ignore(this.options.dest);
     }
 
+    // Ignore the includes folder
+    this.ignore(this.options.includes);
+
     // Normalize the ignored paths
     this.options.watcher.ignore = this.options.watcher.ignore.map((path) =>
       typeof path === "string" ? normalizePath(path) : path

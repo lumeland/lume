@@ -8,6 +8,7 @@ import type { Watcher } from "../core/watcher.ts";
 
 export interface Options {
   watcher: Watcher;
+  basepath: string;
 }
 
 /** Middleware to hot reload changes */
@@ -96,7 +97,8 @@ export function reload(options: Options): Middleware {
         result = await reader.read();
       }
 
-      const source = `${reloadClient}; liveReload(${revision});`;
+      const source =
+        `${reloadClient}; liveReload(${revision}, "${options.basepath}");`;
       const integrity = await computeSourceIntegrity(source);
 
       // Add live reload script and pass initial revision

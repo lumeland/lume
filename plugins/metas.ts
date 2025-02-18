@@ -94,7 +94,12 @@ export function metas() {
       // Open graph
       addMeta(document, "property", "og:type", type || "website");
       addMeta(document, "property", "og:site_name", site_name);
-      addMeta(document, "property", "og:locale", lang);
+      addMeta(
+        document,
+        "property",
+        "og:locale",
+        typeof lang === "string" ? lang.replace("-", "_") : lang,
+      );
       addMeta(document, "property", "og:title", title, 65);
       addMeta(document, "property", "og:description", description, 155);
       addMeta(document, "property", "og:url", url);
@@ -154,14 +159,23 @@ export function metas() {
   };
 }
 
+export default metas;
+
 function addMeta(
   document: Document,
   propName: string,
   propValue: string,
-  content?: string,
+  value?: unknown,
   limit?: number,
   extraAttrs?: Record<string, string>,
 ) {
+  if (Array.isArray(value)) {
+    return value.forEach((v) =>
+      addMeta(document, propName, propValue, v, limit, extraAttrs)
+    );
+  }
+  let content = stringify(value);
+
   if (!content) {
     return;
   }
@@ -184,19 +198,16 @@ function addMeta(
   document.head.appendChild(document.createTextNode("\n"));
 }
 
-export default metas;
-
-/** Extends Data interface */
-declare global {
-  namespace Lume {
-    export interface Data {
-      /**
-       * Meta elements
-       * @see https://lume.land/plugins/metas/
-       */
-      metas?: MetaData;
-    }
+function stringify(value: unknown): string | undefined {
+  if (value === undefined || value === null || value === "") {
+    return;
   }
+
+  if (value instanceof Date) {
+    return value.toISOString();
+  }
+
+  return String(value);
 }
 
 function getMetas(metas: MetaData): [MetaData, Record<string, unknown>] {
@@ -231,4 +242,17 @@ function getMetas(metas: MetaData): [MetaData, Record<string, unknown>] {
     robots,
     generator,
   }, other];
+}
+
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data {
+      /**
+       * Meta elements
+       * @see https://lume.land/plugins/metas/
+       */
+      metas?: MetaData;
+    }
+  }
 }

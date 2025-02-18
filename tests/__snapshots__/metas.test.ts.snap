@@ -214,8 +214,14 @@ snapshot[`metas plugin 3`] = `
 <meta name="keywords" content="one, two">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="theme-color" content="black">
+<meta name="generator" content="Lume">
 <meta name="twitter:label1" content="Reading time">
 <meta name="twitter:data1" content="1 minute">
+<meta name="article:published_time" content="2025-06-21T23:45:00.000Z">
+<meta name="article:modified_time" content="2025-06-21T23:45:00.000Z">
+<meta name="article:tag" content="one">
+<meta name="article:tag" content="two">
+<meta name="article:tag" content="three">
 </head>
   <body>
     Hello world
@@ -258,7 +264,11 @@ snapshot[`metas plugin 3`] = `
         "color",
         "twitter:label1",
         "twitter:data1",
-        "generator",
+        "article:published_time",
+        "article:modified_time",
+        "article:author",
+        "article:section",
+        "article:tag",
       ],
       page: [
         "src",
@@ -266,7 +276,7 @@ snapshot[`metas plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      tags: "Array(0)",
+      tags: "Array(3)",
       url: "/page-2/",
     },
     src: {

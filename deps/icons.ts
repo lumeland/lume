@@ -116,7 +116,7 @@ export const catalogs: Catalog[] = [
   {
     // https://simpleicons.org/
     id: "simpleicons",
-    src: "https://cdn.jsdelivr.net/npm/simple-icons@14.6.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/simple-icons@14.7.0/icons/{name}.svg",
   },
   {
     // https://tabler.io/icons
@@ -195,6 +195,19 @@ export const catalogs: Catalog[] = [
     src:
       "https://cdn.jsdelivr.net/npm/openmoji@15.1.0/{variant}/svg/{name}.svg",
     variants: ["color", "black"],
+  },
+  {
+    // https://feathericons.com/
+    id: "feather",
+    src:
+      "https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/icons/{name}.svg",
+  },
+  {
+    // https://fontawesome.com/icons
+    id: "fontawesome",
+    src:
+      "https://cdn.jsdelivr.net/npm/fontawesome-free-icons@1.0.0/icons/{variant}/{name}.svg",
+    variants: ["regular", "solid", "brands"],
   },
 ];
 
