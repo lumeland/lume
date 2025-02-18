@@ -29,6 +29,7 @@ export function tailwindCSS(userOptions?: Options) {
       userOptions,
     );
     const scanner = new Scanner({});
+    const candidates: string[] = [];
     let content: ChangedContent[] = [];
 
     site.process([".html", ".js"], (pages) => {
@@ -51,7 +52,7 @@ export function tailwindCSS(userOptions?: Options) {
         return;
       }
 
-      const candidates = scanner.scanFiles(content);
+      candidates.push(...scanner.scanFiles(content));
       content = [];
 
       for (const file of files) {
