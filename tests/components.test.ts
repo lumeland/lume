@@ -121,7 +121,7 @@ Deno.test("Components", async (t) => {
     const result = comp.button_jsx({ text: "Hello world" });
     assertEquals(
       result.toString().trim(),
-      `<button class="button_jsx">Hello world</button>`,
+      `<button type="button" class="button_jsx">Hello world</button>`,
     );
   });
 
@@ -129,7 +129,7 @@ Deno.test("Components", async (t) => {
     const result = subcomp.innerButton({ text: "Inner button" });
     assertEquals(
       result.toString().trim(),
-      `<div><button class="button_jsx">Inner button</button></div>`,
+      `<div><button type="button" class="button_jsx">Inner button</button></div>`,
     );
   });
 
