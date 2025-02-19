@@ -5,10 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [Unreleased]
+## [2.5.2] - 2025-02-19
 ### Added
 - Feed plugin: New option `info.hubs` [#725].
-- Redirects plugin: Add `isRedirect=true` data field to HTML redirect pages.
+- Redirects plugin: Add `isRedirect=true` data field to HTML redirect pages [#728].
 - Sitemap plugin: Set default query to `isRedirect!=true`.
 - Icons plugin: Added https://feathericons.com/
 - Icons plugin: Added https://fontawesome.com/icons/ (only the free packs: regular, solid and brands).
@@ -16,9 +16,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - Sass plugin: Allow additional importers [#727].
 - Components: Reorder css code to ensure `@import` rules are first.
-- Updated components: `std`, `decap-cms`, `terser`, `sass`, `preact`, `esbuild`, `remark-gfm`, `postcss`, `liquidjs`, `decap-cms`, `unocss` and some icons.
-- Hot reload: use site's location pathname as websocket basepath
-- `data:` urls in CSS are not parsed correctly.
+- Updated dependencies: `std`, `decap-cms`, `terser`, `sass`, `preact`, `esbuild`, `remark-gfm`, `postcss`, `liquidjs`, `decap-cms`, `unocss` and some icons.
+- Hot reload: use site's location pathname as websocket basepath [#730].
+- `data:...` urls in CSS are not parsed correctly.
 - `metas` plugin:
   - Set locale correctly (if set) [#731].
   - Set datetime values and arrays correctly [#733].
@@ -715,10 +715,12 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#722]: https://github.com/lumeland/lume/issues/722
 [#725]: https://github.com/lumeland/lume/issues/725
 [#727]: https://github.com/lumeland/lume/issues/727
+[#728]: https://github.com/lumeland/lume/issues/728
+[#730]: https://github.com/lumeland/lume/issues/730
 [#731]: https://github.com/lumeland/lume/issues/731
 [#733]: https://github.com/lumeland/lume/issues/733
 
-[Unreleased]: https://github.com/lumeland/lume/compare/v2.5.1...HEAD
+[2.5.2]: https://github.com/lumeland/lume/compare/v2.5.1...v2.5.2
 [2.5.1]: https://github.com/lumeland/lume/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/lumeland/lume/compare/v2.4.3...v2.5.0
 [2.4.3]: https://github.com/lumeland/lume/compare/v2.4.2...v2.4.3
