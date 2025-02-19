@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         deno_version:
-          - 2.1
+          - 2.1 # Latest LTS
           - latest
         os:
           - ubuntu-latest
