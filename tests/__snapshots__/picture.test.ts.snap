@@ -157,7 +157,7 @@ snapshot[`picture plugin 3`] = `
 
 </body></html>\`,
     data: {
-      basename: "index",
+      basename: "",
       children: \`<!doctype html>
 <html>
 <head>

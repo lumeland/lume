@@ -176,7 +176,7 @@ snapshot[`build a simple site 3`] = `
     content: "<h1>Welcome</h1>
 ",
     data: {
-      basename: "foo",
+      basename: "page2",
       children: "<h1>Welcome</h1>
 ",
       content: "# Welcome

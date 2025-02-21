@@ -2,12 +2,12 @@ import { resolveInclude } from "./utils/path.ts";
 import { isGenerator } from "./utils/generator.ts";
 import { concurrent } from "./utils/concurrent.ts";
 import { mergeData } from "./utils/merge_data.ts";
-import { getPageUrl } from "./utils/page_url.ts";
+import { getBasename, getPageUrl } from "./utils/page_url.ts";
 import { getPageDate } from "./utils/page_date.ts";
 import { Page } from "./file.ts";
 import { posix } from "../deps/path.ts";
 
-import type { Content, Data } from "./file.ts";
+import type { Content, Data, RawData } from "./file.ts";
 import type Processors from "./processors.ts";
 import type Formats from "./formats.ts";
 import type FS from "./fs.ts";
@@ -88,7 +88,7 @@ export default class Renderer {
         const { content } = data;
         delete data.content;
 
-        const generator = await this.render<Generator<Data, Data>>(
+        const generator = await this.render<Generator<RawData, RawData>>(
           content,
           data,
           page.src.path + page.src.ext,
@@ -105,11 +105,27 @@ export default class Renderer {
             index++,
             mergeData(page.data, data) as Data,
           );
-          const url = getPageUrl(newPage, this.prettyUrls, basePath);
+
+          let base = basePath;
+
+          if (data.url === false) {
+            continue;
+          }
+
+          if (!data.url && data.basename !== undefined) {
+            // @ts-ignore: The url is added later
+            delete newPage.data.url;
+            base = posix.dirname(page.outputPath);
+          }
+
+          const url = getPageUrl(newPage, this.prettyUrls, base);
+
           if (!url) {
             continue;
           }
+
           newPage.data.url = url;
+          newPage.data.basename = getBasename(url);
           newPage.data.date = getPageDate(newPage);
           generatedPages.push(newPage);
         }

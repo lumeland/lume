@@ -205,7 +205,7 @@ snapshot[`favicon plugin 3`] = `
   
 </body></html>',
     data: {
-      basename: "index",
+      basename: "",
       children: "<html>
   <head>
     <title>Hello world</title>

@@ -7,6 +7,7 @@ import createSlugifier, {
 import type Site from "../core/site.ts";
 import type { Extensions } from "../core/utils/path.ts";
 import type { Options as SlugifierOptions } from "../core/slugifier.ts";
+import { getBasename } from "../core/utils/page_url.ts";
 
 export interface Options extends SlugifierOptions {
   /** File extensions to slugify */
@@ -31,7 +32,10 @@ export function slugifyUrls(userOptions?: Options) {
     site.filter("slugify", slugify);
     site.preprocess(options.extensions, (pages) => {
       // Slugify the page URLs
-      pages.forEach((page) => page.data.url = slugify(page.data.url));
+      pages.forEach((page) => {
+        page.data.url = slugify(page.data.url);
+        page.data.basename = getBasename(page.data.url);
+      });
 
       // Slugify the static files
       site.files

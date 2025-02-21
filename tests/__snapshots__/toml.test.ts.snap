@@ -131,7 +131,7 @@ snapshot[`TOML plugin 3`] = `
   </body>
 </html>",
     data: {
-      basename: "index",
+      basename: "",
       children: "Content of the index",
       content: "Content of the index",
       date: [],

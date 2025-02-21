@@ -146,7 +146,7 @@ snapshot[`base_path plugin 3`] = `
 
 </body></html>',
     data: {
-      basename: "index",
+      basename: "",
       children: '<!DOCTYPE html>
 <html lang="en">
 <head>

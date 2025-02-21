@@ -151,7 +151,7 @@ M1001 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlis
 </div>
 </body></html>',
     data: {
-      basename: "index",
+      basename: "",
       children: '<h1>Page title</h1>
 <pre><code class="language-math">c = \\\\pm\\\\sqrt{a^2 + b^2}
 </code></pre>

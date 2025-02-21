@@ -222,7 +222,7 @@ snapshot[`gzip plugin 3`] = `
   {
     content: "Content of Page 2",
     data: {
-      basename: "page2",
+      basename: "overrided-page2",
       children: "Content of Page 2",
       colors: "Array(3)",
       content: "Content of Page 2",
@@ -281,7 +281,7 @@ snapshot[`gzip plugin 3`] = `
   {
     content: "Content of Page 3",
     data: {
-      basename: "page3",
+      basename: "page_3",
       children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",
@@ -1045,7 +1045,7 @@ snapshot[`gzip plugin with options 3`] = `
 
 </body></html>\`,
     data: {
-      basename: "index",
+      basename: "",
       children: \`<!doctype html>
 <html lang="en">
 <head>

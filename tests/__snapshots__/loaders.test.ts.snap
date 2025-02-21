@@ -195,7 +195,7 @@ snapshot[`Load the pages of a site 3`] = `
   {
     content: "Content of Page 2",
     data: {
-      basename: "page2",
+      basename: "overrided-page2",
       children: "Content of Page 2",
       colors: "Array(3)",
       content: "Content of Page 2",
@@ -237,7 +237,7 @@ snapshot[`Load the pages of a site 3`] = `
   {
     content: "Content of Page 3",
     data: {
-      basename: "page3",
+      basename: "page_3",
       children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",

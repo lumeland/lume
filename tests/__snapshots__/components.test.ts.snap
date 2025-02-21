@@ -139,7 +139,7 @@ snapshot[`Folder components 3`] = `
 </header>
 ',
     data: {
-      basename: "index",
+      basename: "",
       children: 'index
 
 <header id="header" class="header">

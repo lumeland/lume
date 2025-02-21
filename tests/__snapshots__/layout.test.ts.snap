@@ -145,7 +145,7 @@ snapshot[`Layouts 3`] = `
   </body>
 </html>",
     data: {
-      basename: "index",
+      basename: "",
       children: "<h1>Hello world</h1>
 ",
       content: "# Hello world

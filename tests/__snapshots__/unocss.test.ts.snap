@@ -921,7 +921,7 @@ Make elements with the HTML hidden attribute stay hidden by default.
 
 </body></html>",
     data: {
-      basename: "index",
+      basename: "",
       children: \`<!doctype html>
 <html lang="en">
 <head>
@@ -1845,7 +1845,7 @@ snapshot[`Unocss plugin (css file) 3`] = `
 
 </body></html>\`,
     data: {
-      basename: "index",
+      basename: "",
       children: \`<!doctype html>
 <html lang="en">
 <head>
@@ -3357,7 +3357,7 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
 
 </body></html>\`,
     data: {
-      basename: "index",
+      basename: "",
       children: \`<!doctype html>
 <html lang="en">
 <head>
@@ -4487,7 +4487,7 @@ snapshot[`Unocss with placeholder 3`] = `
 
 </body></html>\`,
     data: {
-      basename: "index",
+      basename: "",
       children: \`<!doctype html>
 <html lang="en">
 <head>

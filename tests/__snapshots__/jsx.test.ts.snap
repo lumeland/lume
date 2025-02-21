@@ -136,7 +136,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
   {
     content: "<html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
     data: {
-      basename: "index",
+      basename: "",
       children: "<h1>Hello world</h1><p>This is a JSX page</p>",
       comp: [
         "_components",
@@ -170,7 +170,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
   {
     content: "<html><head><title></title></head><body><main><div>1</div></main></body></html>",
     data: {
-      basename: "multiple",
+      basename: "1",
       children: "<div>1</div>",
       comp: [
         "_components",
@@ -203,7 +203,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
   {
     content: "<html><head><title></title></head><body><main><div>2</div></main></body></html>",
     data: {
-      basename: "multiple",
+      basename: "2",
       children: "<div>2</div>",
       comp: [
         "_components",
@@ -442,7 +442,7 @@ snapshot[`Previous preact test with SSX 3`] = `
   {
     content: "<html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
     data: {
-      basename: "index",
+      basename: "",
       children: "<h1>Hello world</h1><p>This is a JSX page</p>",
       comp: [
         "_components",
@@ -476,7 +476,7 @@ snapshot[`Previous preact test with SSX 3`] = `
   {
     content: "<html><head><title></title></head><body><main><div>1</div></main></body></html>",
     data: {
-      basename: "multiple",
+      basename: "1",
       children: "<div>1</div>",
       comp: [
         "_components",
@@ -509,7 +509,7 @@ snapshot[`Previous preact test with SSX 3`] = `
   {
     content: "<html><head><title></title></head><body><main><div>2</div></main></body></html>",
     data: {
-      basename: "multiple",
+      basename: "2",
       children: "<div>2</div>",
       comp: [
         "_components",

@@ -1,5 +1,5 @@
 import { posix } from "../../deps/path.ts";
-import { normalizePath } from "./path.ts";
+import { getExtension, normalizePath } from "./path.ts";
 
 import type { Destination } from "../source.ts";
 import type { Data, Page, RawData } from "../file.ts";
@@ -9,6 +9,19 @@ export function filter404page(page404?: string): (page: Data) => boolean {
   const url404 = page404 ? normalizePath(page404) : undefined;
 
   return url404 ? (data: Data) => data.url !== url404 : () => true;
+}
+
+/** Returns the final part of a url */
+export function getBasename(url: string): string {
+  if (url === "/") {
+    return "";
+  }
+
+  if (url.endsWith("/")) {
+    return posix.basename(url);
+  }
+
+  return posix.basename(url, getExtension(url));
 }
 
 /** Returns the final URL assigned to a page */
@@ -60,7 +73,11 @@ export function getPageUrl(
     return normalizeUrl(destination);
   }
 
-  const defaultUrl = getDefaultUrl(page.data.basename, parentPath, prettyUrls);
+  const defaultUrl = getDefaultUrl(
+    String(page.data.basename),
+    parentPath,
+    prettyUrls,
+  );
   return destination ? destination(defaultUrl) : defaultUrl;
 }
 

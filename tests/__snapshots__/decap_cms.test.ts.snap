@@ -161,7 +161,7 @@ local_backend: false
       </html>
       ',
     data: {
-      basename: "index",
+      basename: "admin",
       children: '
       <!DOCTYPE html>
       <html lang="en">
@@ -217,7 +217,7 @@ local_backend: false
 <html><head><script>if (document.location.hash.startsWith("#invite_token=") || document.location.hash.startsWith("#recovery_token=")) { document.location = "/admin/" + document.location.hash; }</script></head><body><h1>Hello world</h1>
 </body></html>',
     data: {
-      basename: "index",
+      basename: "",
       children: "<h1>Hello world</h1>
 ",
       content: "# Hello world

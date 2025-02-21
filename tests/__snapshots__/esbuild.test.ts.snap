@@ -139,7 +139,7 @@ snapshot[`esbuild plugin with JSX 3`] = `
   {
     content: "[object Object]",
     data: {
-      basename: "index",
+      basename: "",
       children: [
         "\$\$typeof",
         "type",

@@ -385,7 +385,7 @@ snapshot[`Tailwindcss plugin 3`] = `
 </html>
 \`,
     data: {
-      basename: "index",
+      basename: "",
       children: \`<!doctype html>
 <html lang="en">
 <head>

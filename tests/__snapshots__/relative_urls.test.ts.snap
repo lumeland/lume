@@ -181,7 +181,7 @@ snapshot[`relative_url plugin 3`] = `
 </ul>
 </body></html>',
     data: {
-      basename: "index",
+      basename: "about-us",
       children: '<p>About us</p>
 <ul>
 <li><a href="/">Index</a></li>
@@ -277,7 +277,7 @@ snapshot[`relative_url plugin 3`] = `
 </ul>
 </body></html>',
     data: {
-      basename: "index",
+      basename: "",
       children: '<p>Index</p>
 <ul>
 <li><a href="/">Index</a></li>

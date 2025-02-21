@@ -119,7 +119,7 @@ snapshot[`minify_html plugin 3`] = `
   {
     content: '<!doctype html><html lang=en><meta charset=UTF-8><meta content="IE=edge"http-equiv=X-UA-Compatible><meta content="width=device-width,initial-scale=1.0"name=viewport><title>Document</title><style>body{color:#333;background-color:#fff;font-family:Open Sans,sans-serif;font-size:14px;line-height:1.42857}h1{margin-top:0;margin-bottom:.5em;font-size:1.5em}</style><body><h1>Hello World</h1><script>var a=1;var b=2;var c=a+ b;console.log(c)</script>',
     data: {
-      basename: "index",
+      basename: "",
       children: \`<!DOCTYPE html>
 <html lang="en">
 <head>

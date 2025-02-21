@@ -138,7 +138,7 @@ snapshot[`follow symlinks 3`] = `
   </body>
 </html>",
     data: {
-      basename: "index",
+      basename: "",
       children: "<p>Hello wold</p>
 ",
       content: "Hello wold

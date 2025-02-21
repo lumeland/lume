@@ -163,7 +163,7 @@ Título
 </html>
 ',
     data: {
-      basename: "index",
+      basename: "",
       children: '<h1>Título</h1>
 
 <strong>strong</strong>
@@ -200,7 +200,7 @@ Título
   {
     content: '<div class="content-dynamic">Content of Page 2</div>',
     data: {
-      basename: "page2",
+      basename: "page_2",
       children: '<div class="content-dynamic">Content of Page 2</div>',
       content: '<div class="content-dynamic">Content of Page 2</div>',
       date: [],
@@ -440,7 +440,7 @@ Título
 </html>
 ',
     data: {
-      basename: "index",
+      basename: "",
       children: '<h1>Título</h1>
 
 <strong>strong</strong>
@@ -477,7 +477,7 @@ Título
   {
     content: '<div class="content-dynamic">Content of Page 2</div>',
     data: {
-      basename: "page2",
+      basename: "page_2",
       children: '<div class="content-dynamic">Content of Page 2</div>',
       content: '<div class="content-dynamic">Content of Page 2</div>',
       date: [],

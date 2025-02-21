@@ -1,7 +1,7 @@
 import { posix } from "../deps/path.ts";
 import { getExtension, normalizePath } from "./utils/path.ts";
 import { mergeData } from "./utils/merge_data.ts";
-import { getPageUrl } from "./utils/page_url.ts";
+import { getBasename, getPageUrl } from "./utils/page_url.ts";
 import { getPageDate } from "./utils/page_date.ts";
 import { Page, StaticFile } from "./file.ts";
 
@@ -502,6 +502,7 @@ export default class Source {
         continue;
       }
       page.data.url = url;
+      page.data.basename = getBasename(url);
       page.data.date = getPageDate(page);
       page.data.page = page;
 
@@ -560,6 +561,7 @@ export default class Source {
       return;
     }
     page.data.url = url;
+    page.data.basename = getBasename(url);
 
     // Calculate the page date
     page.data.date = getPageDate(page);

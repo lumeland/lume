@@ -273,7 +273,7 @@ snapshot[`build a site with nunjucks 3`] = `
 </html>
 ',
     data: {
-      basename: "index",
+      basename: "",
       children: "<h1>Hello World</h1>
 ",
       comp: [

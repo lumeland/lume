@@ -176,7 +176,7 @@ snapshot[`Robots plugin 3`] = `
   {
     content: "Content of Page 2",
     data: {
-      basename: "page2",
+      basename: "overrided-page2",
       children: "Content of Page 2",
       colors: "Array(3)",
       content: "Content of Page 2",
@@ -218,7 +218,7 @@ snapshot[`Robots plugin 3`] = `
   {
     content: "Content of Page 3",
     data: {
-      basename: "page3",
+      basename: "page_3",
       children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",
@@ -611,7 +611,7 @@ snapshot[`Robots plugin with allow 3`] = `
   {
     content: "Content of Page 2",
     data: {
-      basename: "page2",
+      basename: "overrided-page2",
       children: "Content of Page 2",
       colors: "Array(3)",
       content: "Content of Page 2",
@@ -653,7 +653,7 @@ snapshot[`Robots plugin with allow 3`] = `
   {
     content: "Content of Page 3",
     data: {
-      basename: "page3",
+      basename: "page_3",
       children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",
@@ -1049,7 +1049,7 @@ snapshot[`Robots plugin with disallow 3`] = `
   {
     content: "Content of Page 2",
     data: {
-      basename: "page2",
+      basename: "overrided-page2",
       children: "Content of Page 2",
       colors: "Array(3)",
       content: "Content of Page 2",
@@ -1091,7 +1091,7 @@ snapshot[`Robots plugin with disallow 3`] = `
   {
     content: "Content of Page 3",
     data: {
-      basename: "page3",
+      basename: "page_3",
       children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",
@@ -1487,7 +1487,7 @@ snapshot[`Robots plugin with custom rules 3`] = `
   {
     content: "Content of Page 2",
     data: {
-      basename: "page2",
+      basename: "overrided-page2",
       children: "Content of Page 2",
       colors: "Array(3)",
       content: "Content of Page 2",
@@ -1529,7 +1529,7 @@ snapshot[`Robots plugin with custom rules 3`] = `
   {
     content: "Content of Page 3",
     data: {
-      basename: "page3",
+      basename: "page_3",
       children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",

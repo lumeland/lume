@@ -141,7 +141,7 @@ snapshot[`slugify_urls plugin 3`] = `
   {
     content: "Foo",
     data: {
-      basename: "generator",
+      basename: "-",
       children: "Foo",
       content: "Foo",
       date: [],
@@ -167,7 +167,7 @@ snapshot[`slugify_urls plugin 3`] = `
     content: "<p>Page 2</p>
 ",
     data: {
-      basename: "Chourizos ao viño",
+      basename: "chourizos-ao-vino",
       children: "<p>Page 2</p>
 ",
       content: "Page 2
@@ -194,7 +194,7 @@ snapshot[`slugify_urls plugin 3`] = `
   {
     content: "Filloas con nocilla",
     data: {
-      basename: "generator",
+      basename: "filloas-con-nocilla",
       children: "Filloas con nocilla",
       content: "Filloas con nocilla",
       date: [],
@@ -220,7 +220,7 @@ snapshot[`slugify_urls plugin 3`] = `
     content: "<p>Page 1</p>
 ",
     data: {
-      basename: "Page 1",
+      basename: "page-1",
       children: "<p>Page 1</p>
 ",
       content: "Page 1
@@ -248,7 +248,7 @@ snapshot[`slugify_urls plugin 3`] = `
     content: "<p>Page 4</p>
 ",
     data: {
-      basename: "page-4",
+      basename: "paxina-4",
       children: "<p>Page 4</p>
 ",
       content: "Page 4
@@ -276,7 +276,7 @@ snapshot[`slugify_urls plugin 3`] = `
     content: "<p>Page 3</p>
 ",
     data: {
-      basename: "page-3",
+      basename: "tres",
       children: "<p>Page 3</p>
 ",
       content: "Page 3
@@ -441,7 +441,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
   {
     content: "Foo",
     data: {
-      basename: "generator",
+      basename: "-",
       children: "Foo",
       content: "Foo",
       date: [],
@@ -467,7 +467,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
     content: "<p>Page 2</p>
 ",
     data: {
-      basename: "Chourizos ao viño",
+      basename: "chourizos-ao-vino",
       children: "<p>Page 2</p>
 ",
       content: "Page 2
@@ -494,7 +494,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
   {
     content: "Filloas con nocilla",
     data: {
-      basename: "generator",
+      basename: "filloas-con-nocilla",
       children: "Filloas con nocilla",
       content: "Filloas con nocilla",
       date: [],
@@ -520,7 +520,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
     content: "<p>Page 1</p>
 ",
     data: {
-      basename: "Page 1",
+      basename: "page-1",
       children: "<p>Page 1</p>
 ",
       content: "Page 1
@@ -548,7 +548,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
     content: "<p>Page 4</p>
 ",
     data: {
-      basename: "page-4",
+      basename: "paxina-4",
       children: "<p>Page 4</p>
 ",
       content: "Page 4
@@ -576,7 +576,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
     content: "<p>Page 3</p>
 ",
     data: {
-      basename: "page-3",
+      basename: "tres",
       children: "<p>Page 3</p>
 ",
       content: "Page 3

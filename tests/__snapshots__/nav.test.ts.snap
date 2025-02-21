@@ -498,7 +498,7 @@ snapshot[`nav plugin 3`] = `
 </html>
 ',
     data: {
-      basename: "index",
+      basename: "",
       children: "",
       content: "",
       date: [],
@@ -576,7 +576,7 @@ snapshot[`nav plugin 3`] = `
 </html>
 ',
     data: {
-      basename: "docs",
+      basename: "esolia-bousai-links",
       children: "",
       content: "",
       date: [],
@@ -1178,7 +1178,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 </html>
 ',
     data: {
-      basename: "docs",
+      basename: "esolia-bousai-links",
       children: "",
       content: "",
       date: [],

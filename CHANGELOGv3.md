@@ -53,3 +53,5 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `terser` and `esbuild` plugins no longer load all JS and TS files by default. Use `site.add()`.
 - `esbuild` bundles jsx and tsx files by default.
 - `sitemap` plugin: changed the options for something similar to `feed` and `metas`.
+- The basename variable reflects always the final URL instead of the original file #660.
+- Page generators can define the basename instead of the full URL to modify only the last part of the URL.

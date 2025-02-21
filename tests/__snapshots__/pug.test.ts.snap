@@ -132,7 +132,7 @@ snapshot[`build a site with pug 3`] = `
 <li>Option 2</li>
 </ul><h1>Some dynamic content</h1></body></html>',
     data: {
-      basename: "filter",
+      basename: "article",
       children: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
 <p>This is a paragraph</p>
 <ul>

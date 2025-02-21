@@ -130,7 +130,7 @@ snapshot[`code_hightlight plugin with default css file 3`] = `
 </code></pre>
 </body></html>',
     data: {
-      basename: "index",
+      basename: "",
       children: '<h1>Code highlight plugin testing</h1>
 <pre><code class="language-html">&lt;p&gt;This is a HTML code&lt;/p&gt;
 </code></pre>
@@ -377,7 +377,7 @@ snapshot[`code_hightlight plugin 3`] = `
 </code></pre>
 </body></html>',
     data: {
-      basename: "index",
+      basename: "",
       children: '<h1>Code highlight plugin testing</h1>
 <pre><code class="language-html">&lt;p&gt;This is a HTML code&lt;/p&gt;
 </code></pre>

@@ -157,7 +157,7 @@ Título
 </html>
 ',
     data: {
-      basename: "index",
+      basename: "",
       children: '<h1>Título</h1>
 
 <a href="https://lume.land" class="btn btn-primary">

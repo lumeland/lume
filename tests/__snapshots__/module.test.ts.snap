@@ -131,7 +131,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
   </html>
   ',
     data: {
-      basename: "multiple-async",
+      basename: "1",
       children: "Async Page 1",
       content: "Async Page 1",
       date: [],
@@ -170,7 +170,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
   </html>
   ',
     data: {
-      basename: "multiple-async",
+      basename: "2",
       children: "Async Page 2",
       content: "Async Page 2",
       date: [],
@@ -209,7 +209,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
   </html>
   ',
     data: {
-      basename: "multiple",
+      basename: "1",
       children: "Content page 1",
       content: "Content page 1",
       date: [],
@@ -247,7 +247,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
   </html>
   ',
     data: {
-      basename: "multiple",
+      basename: "2",
       children: "Content page 2",
       content: "Content page 2",
       date: [],
@@ -284,7 +284,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
   </html>
   ',
     data: {
-      basename: "multiple",
+      basename: "3",
       children: "Content page 3",
       content: "Content page 3",
       date: [],
@@ -333,7 +333,7 @@ snapshot[`Build a site with js/ts modules 3`] = `
   </html>
   ',
     data: {
-      basename: "simple",
+      basename: "simple-page-new-permalink",
       children: '
     <h1>Module example</h1>
     <nav>

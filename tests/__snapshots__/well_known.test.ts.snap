@@ -117,7 +117,7 @@ snapshot[`.well-known folder 3`] = `
   {
     content: "Content.",
     data: {
-      basename: "page",
+      basename: "security",
       content: "Content.",
       date: [],
       mergedKeys: [

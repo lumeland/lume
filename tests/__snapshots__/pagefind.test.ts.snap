@@ -136,7 +136,7 @@ snapshot[`Pagefind plugin 3`] = `
 
 </body></html>\`,
     data: {
-      basename: "index",
+      basename: "",
       children: "<h1>Hello world</h1>
 <p>This is the first page</p>
 ",
@@ -3173,7 +3173,7 @@ snapshot[`Pagefind plugin with global variable 3`] = `
 
 </body></html>\`,
     data: {
-      basename: "index",
+      basename: "",
       children: "<h1>Hello world</h1>
 <p>This is the first page</p>
 ",

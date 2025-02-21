@@ -7996,7 +7996,7 @@ snapshot[`Use a placeholder 3`] = `
   {
     content: "Uint8Array(1040)",
     data: {
-      basename: "jp-font-normal-700-[2]",
+      basename: "jp-font-normal-700-%5B2%5D",
       content: "Uint8Array(1040)",
       date: [],
       mergedKeys: [

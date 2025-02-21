@@ -131,7 +131,7 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
   </html>
   ',
     data: {
-      basename: "multiple",
+      basename: "1",
       children: "Content page 1",
       content: "Content page 1",
       date: [],
@@ -169,7 +169,7 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
   </html>
   ',
     data: {
-      basename: "multiple",
+      basename: "2",
       children: "Content page 2",
       content: "Content page 2",
       date: [],
@@ -206,7 +206,7 @@ snapshot[`Filter pages (allow only /multiple/*) 3`] = `
   </html>
   ',
     data: {
-      basename: "multiple",
+      basename: "3",
       children: "Content page 3",
       content: "Content page 3",
       date: [],

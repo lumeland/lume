@@ -414,7 +414,7 @@ Daniels</th>
 ",
     data: {
       attendance_numbers: "Array(24)",
-      basename: "index",
+      basename: "",
       children: "<body>
 
   <table>

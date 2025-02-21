@@ -176,7 +176,7 @@ snapshot[`Sitemap plugin 3`] = `
   {
     content: "Content of Page 2",
     data: {
-      basename: "page2",
+      basename: "overrided-page2",
       children: "Content of Page 2",
       colors: "Array(3)",
       content: "Content of Page 2",
@@ -218,7 +218,7 @@ snapshot[`Sitemap plugin 3`] = `
   {
     content: "Content of Page 3",
     data: {
-      basename: "page3",
+      basename: "page_3",
       children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",
@@ -645,7 +645,7 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
 </body></html>',
     data: {
       alternates: "Array(2)",
-      basename: "index",
+      basename: "",
       children: "<p>Hello world</p>
 ",
       content: "Hello world
@@ -745,7 +745,7 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
 </body></html>',
     data: {
       alternates: "Array(2)",
-      basename: "pagination",
+      basename: "page-1",
       children: "undefined",
       content: "undefined",
       date: [],
@@ -793,7 +793,7 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
 </body></html>',
     data: {
       alternates: "Array(3)",
-      basename: "page1_en",
+      basename: "page-one",
       children: "<p>Page 1</p>
 ",
       content: "Page 1
@@ -926,7 +926,7 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
 </body></html>',
     data: {
       alternates: "Array(2)",
-      basename: "index",
+      basename: "",
       children: "<p>Ola mundo</p>
 ",
       content: "Ola mundo",
@@ -967,7 +967,7 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
 </body></html>',
     data: {
       alternates: "Array(3)",
-      basename: "page1",
+      basename: "pagina-1",
       children: "<p>Pagina 1</p>
 ",
       content: "Pagina 1
@@ -1096,7 +1096,7 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
 </body></html>',
     data: {
       alternates: "Array(2)",
-      basename: "pagination",
+      basename: "page-1",
       children: "undefined",
       content: "undefined",
       date: [],
@@ -1144,7 +1144,7 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
 </body></html>',
     data: {
       alternates: "Array(3)",
-      basename: "page1_gl",
+      basename: "paxina-un",
       children: "<p>Páxina 1</p>
 ",
       content: "Páxina 1
@@ -1640,7 +1640,7 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
   {
     content: "Content of Page 2",
     data: {
-      basename: "page2",
+      basename: "overrided-page2",
       children: "Content of Page 2",
       colors: "Array(3)",
       content: "Content of Page 2",
@@ -1682,7 +1682,7 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
   {
     content: "Content of Page 3",
     data: {
-      basename: "page3",
+      basename: "page_3",
       children: "Content of Page 3",
       colors: "Array(3)",
       content: "Content of Page 3",
