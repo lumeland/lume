@@ -124,19 +124,19 @@ async function defaultFonts(): Promise<SatoriOptions["fonts"]> {
       name: "inter",
       weight: 400,
       style: "normal",
-      data: await read(
+      data: (await read(
         "https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/src/inter/Inter-Regular.woff",
         true,
-      ),
+      )).buffer as ArrayBuffer,
     },
     {
       name: "inter",
       weight: 700,
       style: "normal",
-      data: await read(
+      data: (await read(
         "https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/src/inter/Inter-SemiBold.woff",
         true,
-      ),
+      )).buffer as ArrayBuffer,
     },
   ];
 }

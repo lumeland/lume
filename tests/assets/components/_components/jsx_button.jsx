@@ -7,5 +7,5 @@ export const css = `
 `;
 
 export default function ({ text }) {
-  return <button class="button_jsx">{text}</button>;
+  return <button type="button" class="button_jsx">{text}</button>;
 }

@@ -115,7 +115,7 @@ Deno.test("Components", async (t) => {
 
     assertEquals(
       result.toString().trim(),
-      `<button class="button_jsx">Hello world</button>`,
+      `<button type="button" class="button_jsx">Hello world</button>`,
     );
   });
 
@@ -124,7 +124,7 @@ Deno.test("Components", async (t) => {
 
     assertEquals(
       result.toString().trim(),
-      `<div><button class="button_jsx">Inner button</button></div>`,
+      `<div><button type="button" class="button_jsx">Inner button</button></div>`,
     );
   });
 
