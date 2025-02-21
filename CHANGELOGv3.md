@@ -13,6 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   It's used by default by code_highlight, google_fonts, prism and unocss.
   It's also used by default by components.
 - New folder-based components.
+- Components: allow to define default data values in components.
 - `page.text` and `page.bytes` getters and setters.
 - `site.process(callback)` as an alias of `site.process("*", callback)`.
 - `site.preprocess(callback)` as an alias of `site.preprocess("*", callback)`.

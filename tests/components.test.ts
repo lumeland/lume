@@ -67,6 +67,17 @@ Deno.test("Components", async (t) => {
     );
   });
 
+  await t.step("Nunjucks components with custom attributes", async () => {
+    const result = await comp.button_njk({
+      text: "Hello world",
+      className: "custom",
+    });
+    assertEquals(
+      result.trim(),
+      `<button class="custom">Hello world</button>`,
+    );
+  });
+
   await t.step("Vento components", async () => {
     const result = await comp.button_vto({ text: "Hello world" });
     assertEquals(
@@ -116,6 +127,18 @@ Deno.test("Components", async (t) => {
     assertEquals(
       result.toString().trim(),
       `<button type="button" class="button_jsx">Hello world</button>`,
+    );
+  });
+
+  await t.step("JSX components with custom attributes", async () => {
+    const result = await comp.button_jsx({
+      text: "Hello world",
+      className: "custom",
+    });
+
+    assertEquals(
+      result.toString().trim(),
+      `<button type="button" class="custom">Hello world</button>`,
     );
   });
 

@@ -1,3 +1,4 @@
+export const className = "button_jsx";
 export const name = "button_jsx";
 export const css = `
 .button_jsx {
@@ -6,6 +7,6 @@ export const css = `
 }
 `;
 
-export default function ({ text }) {
-  return <button type="button" class="button_jsx">{text}</button>;
+export default function ({ text, className }) {
+  return <button type="button" class={ className }>{text}</button>;
 }

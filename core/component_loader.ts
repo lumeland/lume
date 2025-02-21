@@ -109,7 +109,7 @@ export default class ComponentsLoader {
   /** Load a component file */
   async #loadComponent(
     entry: Entry,
-    inheritData: Partial<Data>,
+    dirData: Partial<Data>,
     defaultName?: string,
   ): Promise<Component | undefined> {
     const format = this.formats.search(entry.name);
@@ -118,37 +118,35 @@ export default class ComponentsLoader {
       return;
     }
 
-    if (!format.loader || !format.engines?.length) {
+    const { loader, engines, ext } = format;
+
+    if (!loader || !engines || !engines.length) {
       return;
     }
 
-    const component = await entry.getContent(
-      format.loader,
-    ) as ComponentFile;
+    const rawComponent = await entry.getContent(loader) as ComponentFile;
 
-    function getData(data: Record<string, unknown>) {
-      if (component.inheritData === false) {
-        return { ...data };
-      }
+    let { name, css, js, inheritData, content, ...data } = rawComponent;
 
-      return { ...inheritData, ...data };
+    if (!name) {
+      name = defaultName ?? entry.name.slice(0, -ext.length);
     }
 
-    const { content } = component;
+    if (inheritData !== false) {
+      data = { ...dirData, ...data };
+    }
 
-    return {
-      name: component.name ?? defaultName ??
-        entry.name.slice(0, -format.ext.length),
-      async render(data) {
-        let result = content;
-        for (const engine of format.engines!) {
-          result = await engine.render(content, getData(data), entry.path);
-        }
-        return result;
-      },
-      css: component.css,
-      js: component.js,
-    } as Component;
+    const render = async (props: Record<string, unknown>): Promise<string> => {
+      let result = content;
+      const currData = { ...data, ...props };
+      for (const engine of engines) {
+        result = await engine.render(content, currData, entry.path);
+      }
+
+      return result as string;
+    };
+
+    return { name, render, css, js };
   }
 }
 
@@ -166,9 +164,6 @@ export interface Component {
 
   /** Optional JS code needed for the component interactivity (global, only inserted once) */
   js?: string;
-
-  /** Extra files needed by the component (images, etc) */
-  files?: Record<string, string>;
 }
 
 export interface ComponentFile {
@@ -186,6 +181,9 @@ export interface ComponentFile {
 
   /** If false, the data from the parent directory will not be inherited */
   inheritData?: boolean;
+
+  /** Extra default data stored in the component */
+  [key: string]: unknown;
 }
 
 function findChild(
