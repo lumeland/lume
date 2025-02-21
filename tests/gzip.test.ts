@@ -7,8 +7,7 @@ Deno.test("gzip plugin", async (t) => {
     src: "normal",
   });
 
-  site.loadAssets([".css", ".json"]);
-  site.copy([".png"]);
+  site.add([".png", ".css", ".json"]);
 
   site.use(gzip());
 
@@ -21,6 +20,7 @@ Deno.test("gzip plugin with options", async (t) => {
     src: "unocss",
   });
 
+  site.add([".css"]);
   site.use(unocss({
     cssFile: "styles.css",
   }));

@@ -1,4 +1,5 @@
 ---
+className: button_njk
 name: button_njk
 css: |
   .button_njk {
@@ -6,4 +7,4 @@ css: |
     background-color: blue;
   }
 ---
-<button class="button_njk">{{ text }}</button>
+<button class="{{ className }}">{{ text }}</button>

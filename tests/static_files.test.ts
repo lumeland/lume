@@ -5,30 +5,30 @@ Deno.test("Copy static files", async (t) => {
     src: "static_files",
   });
 
-  site.copy("static", ".");
-  site.copy("other");
-  site.copy(
+  site.add("static", ".");
+  site.add("other");
+  site.add(
     "posts/2022-01-01_first-post/assets",
     (file) => file.replace(".scss", ".css"),
   );
-  site.copy("posts/2022-01-01_first-post/individual-file");
-  site.copy([".css", ".js"]);
-  site.copy([".copy"]);
-  site.copy("_headers");
-  site.copy("static/_redirects", "_redirects");
-  site.copy(
+  site.add("posts/2022-01-01_first-post/individual-file");
+  site.add([".css", ".js"]);
+  site.add([".copy"]);
+  site.add("_headers");
+  site.add("static/_redirects", "_redirects");
+  site.add(
     [".copy2"],
     (file) => "/subdir" + file.replace(/\.copy2/, ".copy3"),
   );
 
   // copied with the trailing slash
-  site.copy("other2/");
+  site.add("other2/");
 
   // not copied because of the trailing slash
-  site.copy("three.no/");
+  site.add("three.no/");
 
   // Copy a directory inside a ignored directory
-  site.copy("_static/inner", "inner");
+  site.add("_static/inner", "inner");
 
   await build(site);
   await assertSiteSnapshot(t, site);

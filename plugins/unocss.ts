@@ -63,7 +63,6 @@ export const defaults: Options = {
   options: {
     presets: [presetUno()],
   },
-  cssFile: "/unocss.css",
   transformers: [
     transformerVariantGroup(),
     transformerDirectives(),
@@ -86,15 +85,15 @@ export function unoCSS(userOptions?: Options) {
       }
       return uno;
     }
-    const { transformers, cssFile, reset } = options;
+    const { transformers, cssFile = site.options.cssFile, reset } = options;
 
     if (transformers.length > 0) {
-      site.loadAssets([".css"]);
       site.process([".css"], async (files) => {
         const uno = await getGenerator();
         for (const file of files) {
-          if (file.content) {
-            const code = new MagicString(file.content.toString());
+          const content = file.text;
+          if (content) {
+            const code = new MagicString(content);
             for await (const { transform } of transformers) {
               await transform(
                 code,
@@ -115,7 +114,7 @@ export function unoCSS(userOptions?: Options) {
         const uno = await getGenerator();
 
         await Promise.all(pages.map(async (page) => {
-          const document = page.document!;
+          const { document } = page;
           const result = await uno.generate(
             document.documentElement?.innerHTML ?? "",
           );
@@ -124,7 +123,7 @@ export function unoCSS(userOptions?: Options) {
           if (css) {
             const style = document.createElement("style");
             style.innerText = css;
-            page.document?.head?.appendChild(style);
+            document.head.appendChild(style);
           }
         }));
       });
@@ -139,7 +138,7 @@ export function unoCSS(userOptions?: Options) {
       await Promise.all(
         pages.map(async (page) =>
           await uno.generate(
-            page.document?.documentElement?.innerHTML ?? "",
+            page.document.documentElement?.innerHTML ?? "",
           )
             .then((res) => res.matched)
             .then((matched) => matched.forEach((match) => classes.add(match)))
@@ -153,7 +152,7 @@ export function unoCSS(userOptions?: Options) {
 
       // Output the CSS file
       const output = await site.getOrCreatePage(cssFile);
-      insertContent(output, css, options.placeholder);
+      output.text = insertContent(output.text, css, options.placeholder);
     });
   };
 }

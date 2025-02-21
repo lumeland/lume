@@ -119,20 +119,20 @@ export async function assertSiteSnapshot(
     context,
     {
       formats: Array.from(site.formats.entries.values()).map((format) => {
-        return {
-          ...format,
-          engines: format.engines?.length,
-        };
+        // deno-lint-ignore no-explicit-any
+        const fm = { ...format } as any;
+        if (fm.engines) {
+          fm.engines = fm.engines.length;
+        }
+        return fm;
       }),
       src: Array.from(site.fs.entries.keys()).sort(),
     },
   );
 
   // Sort pages and files alphabetically
-  pages.sort((a, b) =>
-    compare(a.src.path, b.src.path) || compare(a.outputPath, b.outputPath)
-  );
-  files.sort((a, b) => compare(a.src.entry.path, b.src.entry.path));
+  pages.sort((a, b) => a.outputPath.localeCompare(b.outputPath));
+  files.sort((a, b) => a.outputPath.localeCompare(b.outputPath));
 
   // Normalize data of the pages
   const normalizedPages = pages.map((page) => {
@@ -159,7 +159,10 @@ export async function assertSiteSnapshot(
                 return [key, normalizeValue(value, options)];
               }
               if (value instanceof Map || value instanceof Set) {
-                return [key, [...value.keys()].sort(compare)];
+                return [
+                  key,
+                  [...value.keys()].sort((a, b) => a.localeCompare(b)),
+                ];
               }
               return [key, Object.keys(value)];
             case "function":
@@ -182,7 +185,6 @@ export async function assertSiteSnapshot(
         remote: page.src.entry?.flags.has("remote")
           ? page.src.entry.src.replace(cwUrl, "")
           : undefined,
-        asset: page.asset,
       },
     };
   });
@@ -242,8 +244,4 @@ export async function assertResponseSnapshot(
     headers,
     body,
   });
-}
-
-function compare(a: string, b: string): number {
-  return a > b ? 1 : a < b ? -1 : 0;
 }

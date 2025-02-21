@@ -7,8 +7,8 @@ import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
+  /** File extensions to process */
+  extensions?: Array<".html" | ".css">;
 
   /**
    * The function to generate the new url
@@ -24,7 +24,7 @@ export const defaults: Options = {
 };
 
 /**
- * A plugin to modify all URLs found in the HTML documents
+ * A plugin to modify all URLs found in HTML and CSS documents
  * @see https://lume.land/plugins/modify_urls/
  */
 export function modifyUrls(userOptions: Options) {
@@ -56,8 +56,8 @@ export function modifyUrls(userOptions: Options) {
       (pages) =>
         concurrent(pages, async (page: Page) => {
           if (page.outputPath.endsWith(".css")) {
-            page.content = await walkUrls(
-              page.content as string,
+            page.text = await walkUrls(
+              page.text,
               async (url, type) => {
                 if (type === "url") {
                   return await replace(url, page);
@@ -70,10 +70,6 @@ export function modifyUrls(userOptions: Options) {
           }
 
           const { document } = page;
-
-          if (!document) {
-            return;
-          }
 
           for (const { element, attribute, value } of searchLinks(document)) {
             if (attribute === "srcset" || attribute === "imagesrcset") {

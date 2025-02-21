@@ -4,7 +4,7 @@ import { merge } from "../core/utils/object.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to load */
   extensions?: string[];
 
   /** Optional sub-extension for page files */
