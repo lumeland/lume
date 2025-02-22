@@ -56,3 +56,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `sitemap` plugin: changed the options for something similar to `feed` and `metas`.
 - The basename variable reflects always the final URL instead of the original file #660.
 - Page generators can define the basename instead of the full URL to modify only the last part of the URL.
+
+### Fixed
+- The resolution of npm and jsr specifiers by esbuild plugin have been improved.
+- Merging of multilanguage variables.
