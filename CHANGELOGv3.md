@@ -32,6 +32,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `inline` plugin: removed the `attribute` option. 
 - `cache` option in `transform_images`, `favicon` and `og_images`. Use `LUME_NOCACHE=true` env variable to disable cache.
 - `variable` option of Lume components. It's always `comp`.
+- `name` special variable of components to customize the name. It's always the filename.
 
 ### Changed
 - Minimum Deno version supported is LTS (2.1.0)

@@ -126,11 +126,9 @@ export default class ComponentsLoader {
 
     const rawComponent = await entry.getContent(loader) as ComponentFile;
 
-    let { name, css, js, inheritData, content, ...data } = rawComponent;
+    let { css, js, inheritData, content, ...data } = rawComponent;
 
-    if (!name) {
-      name = defaultName ?? entry.name.slice(0, -ext.length);
-    }
+    const name = defaultName ?? entry.name.slice(0, -ext.length);
 
     if (inheritData !== false) {
       data = { ...dirData, ...data };
@@ -167,9 +165,6 @@ export interface Component {
 }
 
 export interface ComponentFile {
-  /** Name of the component (used to get it from templates) */
-  name?: string;
-
   /** The content of the component */
   content: unknown;
 

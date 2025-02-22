@@ -40,18 +40,18 @@ Deno.test("Components", async (t) => {
 
   await t.step("Components are accessed from comp", () => {
     assert(comp);
-    assert(comp.button_eta);
-    assert(comp.button_jsx);
-    assert(comp.button_njk);
-    assert(comp.button_vto);
+    assert(comp.eta_button);
+    assert(comp.jsx_button);
+    assert(comp.njk_button);
+    assert(comp.vento_button);
 
     assert(subcomp);
-    assert(subcomp.button_eta);
-    assert(subcomp.button_jsx);
-    assert(subcomp.button_njk);
+    assert(subcomp.eta_button);
+    assert(subcomp.jsx_button);
+    assert(subcomp.njk_button);
     assert(subcomp.innerbutton);
-    assert(subcomp.button_pug);
-    assert(subcomp.button_ts);
+    assert(subcomp.pug_button);
+    assert(subcomp.ts_button);
   });
 
   await t.step("Folder components are loaded", () => {
@@ -60,7 +60,7 @@ Deno.test("Components", async (t) => {
   });
 
   await t.step("Nunjucks components", async () => {
-    const result = await comp.button_njk({ text: "Hello world" });
+    const result = await comp.njk_button({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_njk">Hello world</button>`,
@@ -68,7 +68,7 @@ Deno.test("Components", async (t) => {
   });
 
   await t.step("Nunjucks components with custom attributes", async () => {
-    const result = await comp.button_njk({
+    const result = await comp.njk_button({
       text: "Hello world",
       className: "custom",
     });
@@ -79,7 +79,7 @@ Deno.test("Components", async (t) => {
   });
 
   await t.step("Vento components", async () => {
-    const result = await comp.button_vto({ text: "Hello world" });
+    const result = await comp.vento_button({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_vto">Hello world</button>`,
@@ -98,7 +98,7 @@ Deno.test("Components", async (t) => {
   });
 
   await t.step("Module components", async () => {
-    const result = await subcomp.button_ts({ text: "Hello world" });
+    const result = await subcomp.ts_button({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_ts">Hello world</button>`,
@@ -106,7 +106,7 @@ Deno.test("Components", async (t) => {
   });
 
   await t.step("Eta components", async () => {
-    const result = await comp.button_eta({ text: "Hello world" });
+    const result = await comp.eta_button({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_eta">Hello world</button>`,
@@ -114,7 +114,7 @@ Deno.test("Components", async (t) => {
   });
 
   await t.step("Pug components", async () => {
-    const result = await subcomp.button_pug({ text: "Hello world" });
+    const result = await subcomp.pug_button({ text: "Hello world" });
     assertEquals(
       result.trim(),
       `<button class="button_pug">Hello world</button>`,
@@ -122,7 +122,7 @@ Deno.test("Components", async (t) => {
   });
 
   await t.step("JSX components", async () => {
-    const result = await comp.button_jsx({ text: "Hello world" });
+    const result = await comp.jsx_button({ text: "Hello world" });
 
     assertEquals(
       result.toString().trim(),
@@ -131,7 +131,7 @@ Deno.test("Components", async (t) => {
   });
 
   await t.step("JSX components with custom attributes", async () => {
-    const result = await comp.button_jsx({
+    const result = await comp.jsx_button({
       text: "Hello world",
       className: "custom",
     });
