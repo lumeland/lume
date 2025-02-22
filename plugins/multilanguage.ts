@@ -30,7 +30,7 @@ export function multilanguage(userOptions: Options) {
     const isNot404page = filter404page(site.options.server.page404);
 
     // Configure the merged keys
-    options.languages.forEach((lang) => site.mergeKey(lang, "object"));
+    options.languages.forEach((lang) => site.mergeKey(lang, "data"));
 
     /**
      * Preprocessor to setup multilanguage pages

@@ -1,4 +1,9 @@
-export type MergeStrategy = "array" | "stringArray" | "object" | "none";
+export type MergeStrategy =
+  | "array"
+  | "stringArray"
+  | "object"
+  | "data"
+  | "none";
 
 interface DataToMerge {
   mergedKeys?: Record<string, MergeStrategy>;
@@ -26,6 +31,16 @@ export function mergeData(...datas: DataToMerge[]): DataToMerge {
           break;
         case "object":
           data[key] = mergeObject(previous[key], current[key]);
+          break;
+        case "data":
+          if (current[key] && previous[key]) {
+            const merged = mergeData(
+              { mergedKeys },
+              previous[key] as DataToMerge,
+              current[key] as DataToMerge,
+            );
+            data[key] = merged;
+          }
           break;
       }
     }
