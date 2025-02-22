@@ -322,7 +322,7 @@ export default class Source {
     pages: Page[],
     staticFiles: StaticFile[],
     destination?: Destination,
-  ) {
+  ): Promise<void> {
     // The file is added with `site.add("file.ext")`
     const destPath = this.addedFiles.get(file.path);
 
@@ -371,9 +371,10 @@ export default class Source {
 
     // The file is added explicitly with `site.add("file.ext")`
     if (destPath) {
-      return staticFiles.push(
+      staticFiles.push(
         createFile(file, ext, dirPath, dirData, fileDestination),
       );
+      return;
     }
 
     // The file is added with `site.add([".ext"])`
@@ -392,9 +393,10 @@ export default class Source {
     // - the file was added with `site.add([".ext"])`
     // - or any parent folder with `site.add("folder")`
     if (fileDestination) {
-      return staticFiles.push(
+      staticFiles.push(
         createFile(file, ext, dirPath, dirData, fileDestination),
       );
+      return;
     }
   }
 
