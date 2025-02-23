@@ -1,5 +1,6 @@
 import { Page } from "../core/file.ts";
-import { assign, merge } from "../core/utils/object.ts";
+import { merge } from "../core/utils/object.ts";
+import { overrideData } from "../core/utils/merge_data.ts";
 import { log } from "../core/utils/log.ts";
 import { filter404page } from "../core/utils/page_url.ts";
 
@@ -108,14 +109,21 @@ export function multilanguage(userOptions: Options) {
         const { data } = page;
         const { lang } = data;
 
-        // Resolve the language data
+        if (!lang) {
+          continue;
+        }
+
+        // Get the language data
+        const override = data[lang];
+
+        // Remove all language data from the page data
         for (const key of options.languages) {
-          if (key in data) {
-            if (key === lang) {
-              assign(data, data[key]);
-            }
-            delete data[key];
-          }
+          delete data[key];
+        }
+
+        // Merge the language data with the page data
+        if (override) {
+          overrideData(data, override);
         }
 
         if (isNot404page(data)) {

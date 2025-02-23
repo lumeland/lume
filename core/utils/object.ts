@@ -49,34 +49,3 @@ export function merge<Type>(
 
   return merged as unknown as Required<Type>;
 }
-
-/**
- * Merge two objects recursively.
- * It's like merge() but it mutates the first value.
- */
-export function assign<Type>(
-  target: Type,
-  override?: Type,
-) {
-  if (!override) {
-    return;
-  }
-
-  for (const [key, value] of Object.entries(override)) {
-    if (value === undefined) {
-      continue;
-    }
-
-    // @ts-ignore: No index signature with a parameter of type 'string' was found on type 'unknown'
-    if (isPlainObject(target[key]) && isPlainObject(value)) {
-      // @ts-ignore: Type 'string' cannot be used to index type 'Type'
-      target[key] = { ...target[key] };
-      // @ts-ignore: Type 'string' cannot be used to index type 'Type'
-      assign(target[key], value);
-      continue;
-    }
-
-    // @ts-ignore: Type 'string' cannot be used to index type 'Type'
-    target[key] = value;
-  }
-}

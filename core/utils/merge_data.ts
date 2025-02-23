@@ -1,3 +1,6 @@
+import { isPlainObject } from "./object.ts";
+import { Data } from "../file.ts";
+
 export type MergeStrategy =
   | "array"
   | "stringArray"
@@ -49,6 +52,42 @@ export function mergeData(...datas: DataToMerge[]): DataToMerge {
   });
 }
 
+/** Override some data recursively */
+export function overrideData(data: Data, override: Data): void {
+  if (!override) {
+    return;
+  }
+
+  // Merge special keys
+  const mergedKeys = {
+    ...data.mergedKeys,
+    ...override.mergedKeys,
+  };
+
+  for (const [key, value] of Object.entries(override)) {
+    switch (mergedKeys[key]) {
+      case "stringArray":
+        data[key] = mergeStringArray(data[key], value);
+        break;
+      case "array":
+        data[key] = mergeArray(data[key], value);
+        break;
+      case "object":
+        data[key] = mergeObject(data[key], value);
+        break;
+      default:
+        if (isPlainObject(data[key]) && isPlainObject(value)) {
+          data[key] = mergeRecursiveObjects(data[key], value);
+          break;
+        }
+        if (value !== undefined) {
+          data[key] = value;
+          break;
+        }
+    }
+  }
+}
+
 function toArray(value: unknown): unknown[] {
   return Array.isArray(value)
     ? value
@@ -70,4 +109,24 @@ function mergeObject(
   current: unknown,
 ): Record<string, unknown> {
   return { ...previous ?? {}, ...current ?? {} };
+}
+
+export function mergeRecursiveObjects(
+  target: Record<string, unknown>,
+  override: Record<string, unknown>,
+): Record<string, unknown> {
+  const merged = { ...target };
+
+  for (const [key, value] of Object.entries(override)) {
+    if (isPlainObject(target[key]) && isPlainObject(value)) {
+      merged[key] = mergeRecursiveObjects(target[key], value);
+      continue;
+    }
+
+    if (value !== undefined) {
+      merged[key] = value;
+    }
+  }
+
+  return merged;
 }
