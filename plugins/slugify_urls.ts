@@ -29,18 +29,23 @@ export function slugifyUrls(userOptions?: Options) {
   const slugify = createSlugifier(options);
 
   return (site: Site) => {
-    site.filter("slugify", slugify);
+    site.filter("slugify", function (text: string, lang?: string) {
+      return slugify(text, lang ?? this?.data.lang);
+    });
+
     site.preprocess(options.extensions, (pages) => {
       // Slugify the page URLs
       pages.forEach((page) => {
-        page.data.url = slugify(page.data.url);
+        page.data.url = slugify(page.data.url, page.data.lang);
         page.data.basename = getBasename(page.data.url);
       });
 
       // Slugify the static files
       site.files
         .filter((file) => matchExtension(options.extensions, file.outputPath))
-        .forEach((file) => file.data.url = slugify(file.data.url));
+        .forEach((file) =>
+          file.data.url = slugify(file.data.url, file.data.lang)
+        );
     });
   };
 }

@@ -19,6 +19,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `site.preprocess(callback)` as an alias of `site.preprocess("*", callback)`.
 - `Server` class is now compatible with `deno serve` command.
 - New data merging strategy named `data`, used by the multilanguage plugin.
+- `slugify_urls` plugin: new `transliterate` option to define a different library per language.
 
 ### Removed
 - `jsx_preact` plugin. Use `jsx` instead.

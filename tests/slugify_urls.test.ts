@@ -2,6 +2,8 @@ import { assertStrictEquals as equals } from "../deps/assert.ts";
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import slugifyUrls from "../plugins/slugify_urls.ts";
 import createSlugifier from "../core/slugifier.ts";
+import unidecode from "npm:unidecode@1.1.0";
+import jaconv from "npm:jaconv@1.0.4";
 
 Deno.test("slugify_urls plugin", async (t) => {
   const site = getSite({
@@ -60,10 +62,20 @@ Deno.test("slugify forbidden characters and words", () => {
 });
 
 Deno.test("slugify support unicode characters", () => {
-  const slugify = createSlugifier();
+  const slugify = createSlugifier({
+    transliterate: {
+      zh: unidecode,
+      ja: jaconv.toHebon,
+    },
+  });
 
   equals(
-    slugify("Lume 支持中文，中文标点。？、【】｛｝！￥（）"),
+    slugify("Lume 支持中文，中文标点。？、【】｛｝！￥（）", "zh"),
     "lume-zhichizhongwen-zhongwenbiaodian",
+  );
+
+  equals(
+    slugify("Lume こんにちは", "ja"),
+    "lume-konnichiha",
   );
 });
