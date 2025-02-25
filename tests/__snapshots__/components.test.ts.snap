@@ -137,6 +137,10 @@ snapshot[`Folder components 3`] = `
 <header id="header" class="header">
   <h1>Hello world</h1>
 </header>
+
+<header id="header" class="header">
+  <h1>foo</h1>
+</header>
 ',
     data: {
       basename: "",
@@ -145,6 +149,10 @@ snapshot[`Folder components 3`] = `
 <header id="header" class="header">
   <h1>Hello world</h1>
 </header>
+
+<header id="header" class="header">
+  <h1>foo</h1>
+</header>
 ',
       comp: [
         "_components",
@@ -152,7 +160,8 @@ snapshot[`Folder components 3`] = `
       ],
       content: 'index
 
-{{ comp header { title: "Hello world" } /}}',
+{{ comp header { title: "Hello world" } /}}
+{{ comp header /}}',
       date: [],
       mergedKeys: [
         "tags",
