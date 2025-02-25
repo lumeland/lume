@@ -1,5 +1,5 @@
 import { merge } from "../core/utils/object.ts";
-import { matchExtension } from "../core/utils/path.ts";
+import { getPathAndExtension, matchExtension } from "../core/utils/path.ts";
 import createSlugifier, {
   defaults as slugifierDefaults,
 } from "../core/slugifier.ts";
@@ -36,16 +36,19 @@ export function slugifyUrls(userOptions?: Options) {
     site.preprocess(options.extensions, (pages) => {
       // Slugify the page URLs
       pages.forEach((page) => {
-        page.data.url = slugify(page.data.url, page.data.lang);
+        const [url, ext] = getPathAndExtension(page.data.url);
+        page.data.url = slugify(url, page.data.lang) + ext;
         page.data.basename = getBasename(page.data.url);
       });
 
       // Slugify the static files
       site.files
         .filter((file) => matchExtension(options.extensions, file.outputPath))
-        .forEach((file) =>
-          file.data.url = slugify(file.data.url, file.data.lang)
-        );
+        .forEach((file) => {
+          const [url, ext] = getPathAndExtension(file.data.url);
+          file.data.url = slugify(url, file.data.lang) + ext;
+          file.data.basename = getBasename(file.data.url);
+        });
     });
   };
 }

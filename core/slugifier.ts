@@ -49,16 +49,17 @@ export default function createSlugifier(
 
     const transliterate = lang ? options.transliterate?.[lang] : undefined;
 
-    string = string.replaceAll(/[^a-z\d/.-]/giu, (char) => {
+    if (transliterate) {
+      string = transliterate(string);
+    }
+
+    string = string.replaceAll(/[^a-z\d/-]/giu, (char) => {
       if (char in replace) {
         return replace[char];
       }
 
       if (alphanumeric) {
         char = char.normalize("NFKD").replaceAll(/[\u0300-\u036F]/g, "");
-        if (transliterate) {
-          char = transliterate(char).trim();
-        }
       }
 
       char = /[\p{L}\u0300-\u036F]+/u.test(char) ? char : "-";

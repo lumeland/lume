@@ -39,7 +39,7 @@ Deno.test("slugify clean urls", () => {
   equals(slugify("Hello / World"), "hello/world");
   equals(slugify("hello_/_world"), "hello/world");
   equals(slugify("200,000*7"), "200-000-7");
-  equals(slugify("img/Image 2 .png"), "img/image-2.png");
+  equals(slugify("img/Image 2 "), "img/image-2");
 });
 
 Deno.test("slugify replacement chars", () => {
@@ -71,11 +71,11 @@ Deno.test("slugify support unicode characters", () => {
 
   equals(
     slugify("Lume 支持中文，中文标点。？、【】｛｝！￥（）", "zh"),
-    "lume-zhichizhongwen-zhongwenbiaodian",
+    "lume-zhi-chi-zhong-wen-zhong-wen-biao-dian-y",
   );
 
   equals(
-    slugify("Lume こんにちは", "ja"),
-    "lume-konnichiha",
+    slugify("Lume はガリシア語で炎と言う意味でルメと発音する", "ja"),
+    "lume-hadetoudetosuru",
   );
 });
