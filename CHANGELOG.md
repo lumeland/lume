@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [Unreleased]
+### Fixed
+- fetch using read.ts: `DENO_AUTH_TOKENS` environment variable is used for authorization header if exists.
+
 ## [2.5.2] - 2025-02-19
 ### Added
 - Feed plugin: New option `info.hubs` [#725].
