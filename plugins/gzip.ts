@@ -7,7 +7,7 @@ import type { Extensions } from "../core/utils/path.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to compress */
   extensions?: Extensions;
 }
 
@@ -23,17 +23,11 @@ export function gzip(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    const textEncoder = new TextEncoder();
-
     site.process(
       options.extensions,
       (pages, allPages) =>
         concurrent(pages, async (page: Page) => {
-          const content = page.content!;
-          const contentStream = ReadableStream.from([
-            typeof content === "string" ? textEncoder.encode(content) : content,
-          ]);
-
+          const contentStream = ReadableStream.from([page.bytes]);
           const compressedStream = contentStream.pipeThrough(
             new CompressionStream("gzip"),
           );

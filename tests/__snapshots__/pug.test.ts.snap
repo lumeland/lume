@@ -6,32 +6,32 @@ snapshot[`build a site with pug 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`build a site with pug 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`build a site with pug 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,21 +91,21 @@ snapshot[`build a site with pug 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".pug",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
   ],
   src: [
@@ -125,47 +125,14 @@ snapshot[`build a site with pug 2`] = `[]`;
 snapshot[`build a site with pug 3`] = `
 [
   {
-    content: '<!DOCTYPE html>
-<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
-    data: {
-      basename: "extends",
-      children: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
-      content: "extends /layout.pug
-block content
-  h1 Home
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Pug example",
-      url: "/extends/",
-    },
-    src: {
-      asset: false,
-      ext: ".pug",
-      path: "/extends",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<!DOCTYPE html>
-<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
+    content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
 <p>This is a paragraph</p>
 <ul>
 <li>Option 1</li>
 <li>Option 2</li>
 </ul><h1>Some dynamic content</h1></body></html>',
     data: {
-      basename: "filter",
+      basename: "article",
       children: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Markdown content</title></head><body><h1>This is a title</h1>
 <p>This is a paragraph</p>
 <ul>
@@ -192,7 +159,6 @@ block content
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -201,15 +167,42 @@ block content
       url: "/article.html",
     },
     src: {
-      asset: false,
       ext: ".pug",
       path: "/filter",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><header><h1>Pug example</h1></header></body></html>',
+    content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
+    data: {
+      basename: "extends",
+      children: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><h1>Home</h1></body></html>',
+      content: "extends /layout.pug
+block content
+  h1 Home
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Pug example",
+      url: "/extends/",
+    },
+    src: {
+      ext: ".pug",
+      path: "/extends",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html class="no-js" lang="en"><head><meta charset="utf-8"/><title>Pug example</title></head><body><header><h1>Pug example</h1></header></body></html>',
     data: {
       basename: "layout",
       children: "<header><h1>Pug example</h1></header>",
@@ -224,7 +217,6 @@ block content
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -233,7 +225,6 @@ block content
       url: "/layout/",
     },
     src: {
-      asset: false,
       ext: ".pug",
       path: "/layout",
       remote: undefined,

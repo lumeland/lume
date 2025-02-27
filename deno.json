@@ -4,7 +4,15 @@
     "exclude": [
       "tests/assets",
       "deps/katex-auto-render",
-      "CHANGELOG.md"
+      "CHANGELOG.md",
+      "CHANGELOGv3.md"
+    ]
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "npm:@lumeland/ssx@0.1.2-beta.3",
+    "types": [
+      "./types.ts"
     ]
   },
   "tasks": {
@@ -26,7 +34,7 @@
     },
     "update-deps": {
       "description": "Update all dependencies to the latest version. Add `--dry-run` to don't write the changes",
-      "command": "deno task update 'deps/*.ts' deno.json && git checkout deps/react.ts deps/tailwindcss.ts"
+      "command": "deno task update 'deps/*.ts' deno.json"
     }
   },
   "imports": {

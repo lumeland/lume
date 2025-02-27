@@ -1,6 +1,6 @@
 import { getExtension } from "../core/utils/path.ts";
 import { isPlainObject, merge } from "../core/utils/object.ts";
-import { getCurrentVersion } from "../core/utils/lume_version.ts";
+import { getGenerator } from "../core/utils/lume_version.ts";
 import { getDataValue, getPlainDataValue } from "../core/utils/data_values.ts";
 import { cdata, stringify } from "../deps/xml.ts";
 import { Page } from "../core/file.ts";
@@ -161,7 +161,7 @@ export interface FeedItem {
   author?: Author;
 }
 
-const defaultGenerator = `Lume ${getCurrentVersion()}`;
+const defaultGenerator = getGenerator();
 
 /**
  * A plugin to generate RSS and JSON feeds
@@ -171,7 +171,7 @@ export function feed(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.addEventListener("beforeSave", () => {
+    site.process(() => {
       const output = Array.isArray(options.output)
         ? options.output
         : [options.output];

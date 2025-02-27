@@ -6,6 +6,7 @@ Deno.test("terser plugin", async (t) => {
     src: "terser",
   });
 
+  site.add([".js"]);
   site.use(terser());
 
   await build(site);

@@ -70,7 +70,7 @@ snapshot[`Test the file searcher 1`] = `
   "/favicon.png",
   "/overrided-page2/index.html",
   "/page5/index.html",
-  "/page_3",
+  "/page_3/index.html",
   "/pages/new-name/page7/index.html",
   "/pages/page4/index.html",
   "/pages/page6/index.html",

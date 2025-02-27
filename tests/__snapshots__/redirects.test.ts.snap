@@ -6,32 +6,32 @@ snapshot[`redirects plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`redirects plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`redirects plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,15 @@ snapshot[`redirects plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -145,12 +145,10 @@ snapshot[`redirects plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/old-page1/",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -187,12 +185,10 @@ snapshot[`redirects plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/old-page2/",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -229,20 +225,17 @@ snapshot[`redirects plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/other-old-page2/",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Page 1",
+    content: "Page 1",
     data: {
       basename: "page1",
       children: "Page 1",
@@ -255,7 +248,6 @@ Page 1",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -263,15 +255,13 @@ Page 1",
       url: "/page1/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page1",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Page 2
+    content: "Page 2
 ",
     data: {
       basename: "page2",
@@ -287,7 +277,6 @@ Page 2
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -295,7 +284,6 @@ Page 2
       url: "/page2/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page2",
       remote: undefined,
@@ -310,32 +298,32 @@ snapshot[`redirects plugin for netlify 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -352,14 +340,14 @@ snapshot[`redirects plugin for netlify 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -376,14 +364,14 @@ snapshot[`redirects plugin for netlify 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -395,15 +383,15 @@ snapshot[`redirects plugin for netlify 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -427,20 +415,17 @@ snapshot[`redirects plugin for netlify 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/_redirects",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Page 1",
+    content: "Page 1",
     data: {
       basename: "page1",
       children: "Page 1",
@@ -453,7 +438,6 @@ Page 1",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -461,15 +445,13 @@ Page 1",
       url: "/page1/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page1",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Page 2
+    content: "Page 2
 ",
     data: {
       basename: "page2",
@@ -485,7 +467,6 @@ Page 2
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -493,7 +474,6 @@ Page 2
       url: "/page2/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page2",
       remote: undefined,
@@ -508,32 +488,32 @@ snapshot[`redirects plugin for vercel 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -550,14 +530,14 @@ snapshot[`redirects plugin for vercel 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -574,14 +554,14 @@ snapshot[`redirects plugin for vercel 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -593,15 +573,15 @@ snapshot[`redirects plugin for vercel 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -616,6 +596,61 @@ snapshot[`redirects plugin for vercel 2`] = `[]`;
 
 snapshot[`redirects plugin for vercel 3`] = `
 [
+  {
+    content: "Page 1",
+    data: {
+      basename: "page1",
+      children: "Page 1",
+      content: "Page 1",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      oldUrl: "/old-page1/",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page1/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/page1",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Page 2
+",
+    data: {
+      basename: "page2",
+      children: "Page 2
+",
+      content: "Page 2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      oldUrl: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/page2/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/page2",
+      remote: undefined,
+    },
+  },
   {
     content: '{
   "redirects": [
@@ -641,75 +676,12 @@ snapshot[`redirects plugin for vercel 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/vercel.json",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-Page 1",
-    data: {
-      basename: "page1",
-      children: "Page 1",
-      content: "Page 1",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      oldUrl: "/old-page1/",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/page1/",
-    },
-    src: {
-      asset: false,
-      ext: ".vto",
-      path: "/page1",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-Page 2
-",
-    data: {
-      basename: "page2",
-      children: "Page 2
-",
-      content: "Page 2
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      oldUrl: "Array(2)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/page2/",
-    },
-    src: {
-      asset: false,
-      ext: ".vto",
-      path: "/page2",
       remote: undefined,
     },
   },
@@ -722,32 +694,32 @@ snapshot[`redirects plugin for json 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -764,14 +736,14 @@ snapshot[`redirects plugin for json 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -788,14 +760,14 @@ snapshot[`redirects plugin for json 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -807,15 +779,15 @@ snapshot[`redirects plugin for json 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -852,20 +824,17 @@ snapshot[`redirects plugin for json 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "_redirects.json",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Page 1",
+    content: "Page 1",
     data: {
       basename: "page1",
       children: "Page 1",
@@ -878,7 +847,6 @@ Page 1",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -886,15 +854,13 @@ Page 1",
       url: "/page1/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page1",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Page 2
+    content: "Page 2
 ",
     data: {
       basename: "page2",
@@ -910,7 +876,6 @@ Page 2
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -918,7 +883,6 @@ Page 2
       url: "/page2/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page2",
       remote: undefined,

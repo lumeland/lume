@@ -5,15 +5,12 @@ import { resolveInclude } from "../core/utils/path.ts";
 import { readFile } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
-import textLoader from "../core/loaders/text.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import type { SourceMap } from "./source_maps.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
   /**
    * Custom includes path for `postcss-import`
    * @default `site.options.includes`
@@ -28,16 +25,11 @@ export interface Options {
 
   /** Set `false` to remove the default plugins */
   useDefaultPlugins?: boolean;
-
-  /** The name of the helper */
-  name?: string;
 }
 
 // Default options
 export const defaults: Options = {
-  extensions: [".css"],
   useDefaultPlugins: true,
-  name: "postcss",
 };
 
 const defaultPlugins = [
@@ -69,14 +61,23 @@ export function postCSS(userOptions?: Options) {
     // @ts-ignore: Argument of type 'unknown[]' is not assignable to parameter of type 'AcceptedPlugin[]'.
     const runner = postcss(plugins);
 
+    site.hooks.postcss = (callback) => callback(runner);
     site.hooks.addPostcssPlugin = (plugin) => {
       runner.use(plugin);
     };
-    site.hooks.postcss = (callback) => callback(runner);
+    site.process([".css"], postCSSProcessor);
+    site.filter("postcss", filter, true);
 
-    site.loadAssets(options.extensions);
-    site.process(options.extensions, (pages) => concurrent(pages, postCss));
-    site.filter(options.name, filter, true);
+    function postCSSProcessor(files: Page[]) {
+      if (files.length === 0) {
+        log.info(
+          "[postcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
+        );
+        return;
+      }
+
+      return concurrent(files, postCss);
+    }
 
     async function postCss(file: Page) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
@@ -128,14 +129,15 @@ function configureImport(site: Site, includes: string) {
     /** Load the content (using the Lume reader) */
     async load(file: string) {
       if (file.startsWith("/npm:")) {
-        const url = `https://esm.sh/${file.slice(5)}`;
+        const url = file.replace("/npm:", "https://cdn.jsdelivr.net/npm/");
         return await readFile(url);
       }
 
-      const content = await site.getContent(file, textLoader);
+      const content = await site.getContent(file, false);
       if (content === undefined) {
         throw new Error(`File ${file} not found`);
       }
+
       return content;
     },
   });

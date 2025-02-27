@@ -5,7 +5,7 @@ Deno.test("Layouts", async (t) => {
     src: "layouts",
   });
 
-  site.loadAssets([".css"]);
+  site.add([".css"]);
 
   await build(site);
   await assertSiteSnapshot(t, site);

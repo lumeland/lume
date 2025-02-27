@@ -1,5 +1,6 @@
 import { Page } from "../core/file.ts";
-import { assign, merge } from "../core/utils/object.ts";
+import { merge } from "../core/utils/object.ts";
+import { overrideData } from "../core/utils/merge_data.ts";
 import { log } from "../core/utils/log.ts";
 import { filter404page } from "../core/utils/page_url.ts";
 
@@ -7,9 +8,6 @@ import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
 
 export interface Options {
-  /** The list of extensions used for this plugin */
-  extensions?: string[];
-
   /** Available languages */
   languages: string[];
 
@@ -19,7 +17,6 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
-  extensions: [".html"],
   languages: [],
 };
 
@@ -34,7 +31,7 @@ export function multilanguage(userOptions: Options) {
     const isNot404page = filter404page(site.options.server.page404);
 
     // Configure the merged keys
-    options.languages.forEach((lang) => site.mergeKey(lang, "object"));
+    options.languages.forEach((lang) => site.mergeKey(lang, "data"));
 
     /**
      * Preprocessor to setup multilanguage pages
@@ -43,7 +40,7 @@ export function multilanguage(userOptions: Options) {
      * + display guidance (warning log) to some bug-potential cases
      * + convert "page.data.lang" array type page (if yes) to string type page
      */
-    site.preprocess(options.extensions, (filteredPages, allPages) => {
+    site.preprocess([".html"], (filteredPages, allPages) => {
       for (const page of filteredPages) {
         const { data } = page;
         const languages = data.lang as string | string[] | undefined;
@@ -107,19 +104,26 @@ export function multilanguage(userOptions: Options) {
      * + create the alternates
      * + sort the alternates
      */
-    site.preprocess(options.extensions, (pages) => {
+    site.preprocess([".html"], (pages) => {
       for (const page of pages) {
         const { data } = page;
         const { lang } = data;
 
-        // Resolve the language data
+        if (!lang) {
+          continue;
+        }
+
+        // Get the language data
+        const override = data[lang];
+
+        // Remove all language data from the page data
         for (const key of options.languages) {
-          if (key in data) {
-            if (key === lang) {
-              assign(data, data[key]);
-            }
-            delete data[key];
-          }
+          delete data[key];
+        }
+
+        // Merge the language data with the page data
+        if (override) {
+          overrideData(data, override);
         }
 
         if (isNot404page(data)) {
@@ -172,7 +176,7 @@ export function multilanguage(userOptions: Options) {
      *
      * + convert unmatchedLangUrl any value to URL string value
      */
-    site.preprocess(options.extensions, (pages) => {
+    site.preprocess([".html"], (pages) => {
       for (const page of pages) {
         page.data.unmatchedLangUrl = getUnmatchedLangPath(
           page,
@@ -183,13 +187,13 @@ export function multilanguage(userOptions: Options) {
 
     // Include automatically the <link rel="alternate"> elements
     // with the other languages
-    site.process(options.extensions, (pages) => {
+    site.process([".html"], (pages) => {
       for (const page of pages) {
         const { document } = page;
         const alternates = page.data.alternates;
         const lang = page.data.lang as string | undefined;
 
-        if (!document || !alternates || !lang) {
+        if (!alternates || !lang) {
           continue;
         }
 

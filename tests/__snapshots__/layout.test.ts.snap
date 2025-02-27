@@ -6,32 +6,32 @@ snapshot[`Layouts 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`Layouts 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`Layouts 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,21 +91,18 @@ snapshot[`Layouts 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
-      pageType: "asset",
     },
   ],
   src: [
@@ -123,20 +120,32 @@ snapshot[`Layouts 1`] = `
 }
 `;
 
-snapshot[`Layouts 2`] = `[]`;
+snapshot[`Layouts 2`] = `
+[
+  {
+    entry: "/styles.2.css",
+    flags: [],
+    outputPath: "/styles.2.css",
+  },
+  {
+    entry: "/styles.css",
+    flags: [],
+    outputPath: "/styles.css",
+  },
+]
+`;
 
 snapshot[`Layouts 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<html>
+    content: "<html>
   <body>
     <h1>Hello world</h1>
 
   </body>
 </html>",
     data: {
-      basename: "index",
+      basename: "",
       children: "<h1>Hello world</h1>
 ",
       content: "# Hello world
@@ -149,7 +158,6 @@ snapshot[`Layouts 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -157,15 +165,13 @@ snapshot[`Layouts 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<h2>From Layout 3</h2>
+    content: "<h2>From Layout 3</h2>
 /file-1.css,/file-2.css,/file-3.css
 
 <h2>From Layout 2</h2>
@@ -190,7 +196,6 @@ snapshot[`Layouts 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -198,75 +203,8 @@ snapshot[`Layouts 3`] = `
       url: "/page/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page",
-      remote: undefined,
-    },
-  },
-  {
-    content: "body {
-  color: blue;
-}",
-    data: {
-      basename: "styles",
-      content: "body {
-  color: blue;
-}",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/styles.css",
-    },
-    src: {
-      asset: true,
-      ext: ".css",
-      path: "/styles",
-      remote: undefined,
-    },
-  },
-  {
-    content: "body.style {
-  p {
-  color: red;
-}
-}",
-    data: {
-      basename: "styles.2",
-      children: "p {
-  color: red;
-}",
-      content: "p {
-  color: red;
-}",
-      date: [],
-      layout: "style.vto",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/styles.2.css",
-    },
-    src: {
-      asset: true,
-      ext: ".css",
-      path: "/styles.2",
       remote: undefined,
     },
   },

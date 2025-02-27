@@ -1,4 +1,3 @@
-import { unidecode } from "../deps/unidecode.ts";
 import { merge } from "./utils/object.ts";
 
 export interface Options {
@@ -15,6 +14,8 @@ export interface Options {
   replace?: {
     [index: string]: string;
   };
+
+  transliterate?: Record<string, (char: string) => string>;
 
   /** Words to remove */
   stopWords?: string[];
@@ -39,25 +40,26 @@ export const defaults: Options = {
 
 export default function createSlugifier(
   userOptions?: Options,
-): (string: string) => string {
+): (string: string, lang?: string) => string {
   const options = merge(defaults, userOptions);
   const { lowercase, alphanumeric, separator, replace, stopWords } = options;
 
-  return function (string) {
+  return function (string, lang?: string): string {
     string = decodeURI(string);
 
-    if (lowercase) {
-      string = string.toLowerCase();
+    const transliterate = lang ? options.transliterate?.[lang] : undefined;
+
+    if (transliterate) {
+      string = transliterate(string);
     }
 
-    string = string.replaceAll(/[^a-z\d/.-]/giu, (char) => {
+    string = string.replaceAll(/[^a-z\d/-]/giu, (char) => {
       if (char in replace) {
         return replace[char];
       }
 
       if (alphanumeric) {
         char = char.normalize("NFKD").replaceAll(/[\u0300-\u036F]/g, "");
-        char = unidecode(char).trim();
       }
 
       char = /[\p{L}\u0300-\u036F]+/u.test(char) ? char : "-";
@@ -69,10 +71,17 @@ export default function createSlugifier(
       string = string.toLowerCase();
     }
 
-    // remove stop words
-    string = string.trim().split(/-+/).filter((word) =>
-      stopWords.indexOf(word) === -1
-    ).join("-");
+    if (stopWords.length > 0) {
+      // remove stop words
+      const segmenter = new Intl.Segmenter(lang, {
+        granularity: "word",
+      });
+
+      string = Array.from(segmenter.segment(string))
+        .filter((word) => !stopWords.includes(word.segment))
+        .map((word) => word.segment)
+        .join("-");
+    }
 
     // clean url
     string = string.replaceAll(
@@ -81,6 +90,6 @@ export default function createSlugifier(
     );
 
     // replace dash with separator
-    return encodeURI(string.replaceAll("-", separator));
+    return encodeURI(string.replaceAll(/[-]+/g, separator));
   };
 }

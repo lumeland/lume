@@ -8,7 +8,7 @@ import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { Options as PugOptions } from "../deps/pug.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to load */
   extensions?: string[];
 
   /** Optional sub-extension for page files */
@@ -61,14 +61,6 @@ export class PugEngine implements Engine {
   }
 
   render(
-    content: string,
-    data?: Record<string, unknown>,
-    filename?: string,
-  ): string {
-    return this.renderComponent(content, data, filename);
-  }
-
-  renderComponent(
     content: string,
     data?: Record<string, unknown>,
     filename?: string,
