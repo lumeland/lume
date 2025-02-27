@@ -44,6 +44,27 @@ export async function read(
     return isBinary ? Deno.readFile(url) : Deno.readTextFile(url);
   }
 
+  const denoAuthTokens = env<string>("DENO_AUTH_TOKENS");
+  if(denoAuthTokens) {
+    const tokens = denoAuthTokens.split(";");
+    for (const token of tokens) {
+      const [credentials, host] = token.split("@");
+      if (host === url.host) {
+        const headers = new Headers(init?.headers);
+        if (credentials.includes(":")) {
+          // Basic Auth
+          const encodedCredentials = btoa(credentials);
+          headers.set("Authorization", `Basic ${encodedCredentials}`);
+        } else {
+          // Bearer Token
+          headers.set("Authorization", `Bearer ${credentials}`);
+        }
+        init = { ...init, headers };
+        break;
+      }
+    }
+  }
+
   if (!useCache) {
     const response = await fetch(url, init);
 
