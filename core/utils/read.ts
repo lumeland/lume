@@ -1,5 +1,6 @@
 import { isUrl } from "./path.ts";
 import { env } from "./env.ts";
+import { tokens } from "./tokens.ts";
 
 const useCache = env<boolean>("LUME_NOCACHE") !== true;
 
@@ -44,25 +45,11 @@ export async function read(
     return isBinary ? Deno.readFile(url) : Deno.readTextFile(url);
   }
 
-  const denoAuthTokens = env<string>("DENO_AUTH_TOKENS");
-  if (denoAuthTokens) {
-    const tokens = denoAuthTokens.split(";");
-    for (const token of tokens) {
-      const [credentials, host] = token.split("@");
-      if (host === url.host) {
-        const headers = new Headers(init?.headers);
-        if (credentials.includes(":")) {
-          // Basic Auth
-          const encodedCredentials = btoa(credentials);
-          headers.set("Authorization", `Basic ${encodedCredentials}`);
-        } else {
-          // Bearer Token
-          headers.set("Authorization", `Bearer ${credentials}`);
-        }
-        init = { ...init, headers };
-        break;
-      }
-    }
+  const authorization = tokens.get(url.host);
+  if (authorization) {
+    const headers = new Headers(init?.headers);
+    headers.set("Authorization", authorization);
+    init = { ...init, headers };
   }
 
   if (!useCache) {
