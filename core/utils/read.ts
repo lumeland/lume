@@ -45,7 +45,7 @@ export async function read(
   }
 
   const denoAuthTokens = env<string>("DENO_AUTH_TOKENS");
-  if(denoAuthTokens) {
+  if (denoAuthTokens) {
     const tokens = denoAuthTokens.split(";");
     for (const token of tokens) {
       const [credentials, host] = token.split("@");
