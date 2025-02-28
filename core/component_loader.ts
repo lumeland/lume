@@ -126,17 +126,15 @@ export default class ComponentsLoader {
 
     const rawComponent = await entry.getContent(loader) as ComponentFile;
 
-    let { css, js, inheritData, content, ...data } = rawComponent;
+    const { css, js, inheritData, content, ...data } = rawComponent;
 
     const name = defaultName ?? entry.name.slice(0, -ext.length);
 
-    if (inheritData !== false) {
-      data = { ...dirData, ...data };
-    }
-
     const render = async (props: Record<string, unknown>): Promise<string> => {
       let result = content;
-      const currData = { ...data, ...props };
+      const currData = inheritData !== false
+        ? { ...dirData, ...data, ...props }
+        : { ...data, ...props };
       for (const engine of engines) {
         result = await engine.render(content, currData, entry.path);
       }
