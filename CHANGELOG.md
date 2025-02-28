@@ -9,6 +9,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Changed
 - fetch using read.ts: get tokens for `DENO_AUTH_TOKENS` environment variable and add to authorization header if exists.
 
+### Fixed
+- Updated dependencies: `liquidjs`, `preact`, `sass`, and some icons.
+
 ## [2.5.2] - 2025-02-19
 ### Added
 - Feed plugin: New option `info.hubs` [#725].
@@ -724,6 +727,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#731]: https://github.com/lumeland/lume/issues/731
 [#733]: https://github.com/lumeland/lume/issues/733
 
+[Unreleased]: https://github.com/lumeland/lume/compare/v2.5.2...HEAD
 [2.5.2]: https://github.com/lumeland/lume/compare/v2.5.1...v2.5.2
 [2.5.1]: https://github.com/lumeland/lume/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/lumeland/lume/compare/v2.4.3...v2.5.0
