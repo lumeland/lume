@@ -1,5 +1,3 @@
-import { Temporal } from "../../deps/temporal.ts";
-
 /**
  * Returns the date of the git commit that created or modified the file.
  * Thanks to https://github.com/11ty/eleventy/blob/8dd2a1012de92c5ee1eab7c37e6bf1b36183927e/src/Util/DateGitLastUpdated.js

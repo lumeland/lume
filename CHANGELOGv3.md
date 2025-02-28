@@ -36,6 +36,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `name` special variable of components to customize the name. It's always the filename.
 
 ### Changed
+- `Temporal` API is enabled by default.
 - Minimum Deno version supported is LTS (2.1.0)
 - Refactor source.build function to give priority to load over copy statically.
 - Always load files with extensions that need to be (pre)processed instead copy them.
