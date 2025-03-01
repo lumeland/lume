@@ -90,7 +90,7 @@ export function codeHighlight(userOptions?: Options) {
             const page = await site.getOrCreatePage(cssFile);
             insertContent(page, cssCode, placeholder);
           });
-          return;
+          continue;
         }
 
         if (path) {

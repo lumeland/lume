@@ -10,6 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - fetch using read.ts: get tokens for `DENO_AUTH_TOKENS` environment variable and add to authorization header if exists.
 
 ### Fixed
+- Multiple themes in `prism` and `code_highlight` plugins.
 - Updated dependencies: `liquidjs`, `preact`, `sass`, and some icons.
 
 ## [2.5.2] - 2025-02-19
