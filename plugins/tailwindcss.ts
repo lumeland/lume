@@ -58,6 +58,24 @@ export function tailwindCSS(userOptions?: Options) {
       for (const file of files) {
         const compiler = await compile(file.text, {
           base: posix.dirname(file.outputPath),
+          async loadModule(id, base, resourceHint) {
+            if (id.startsWith(".")) {
+              id = site.root(base, id);
+              const mod = await import(id);
+              return {
+                base,
+                module: mod.default,
+              };
+            }
+            if (resourceHint === "plugin") {
+              const mod = await import(`npm:${id}`);
+              return {
+                base,
+                module: mod.default,
+              };
+            }
+            throw new Error(`Cannot resolve module '${id}'`);
+          },
           async loadStylesheet(id, base) {
             if (id === "tailwindcss") {
               const url = `${specifier}/index.css`;
