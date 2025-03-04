@@ -12,6 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - Multiple themes in `prism` and `code_highlight` plugins.
 - Updated dependencies: `liquidjs`, `preact`, `sass`, and some icons.
+- Lume server doesn't work in the local network.
 
 ## [2.5.2] - 2025-02-19
 ### Added

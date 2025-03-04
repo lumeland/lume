@@ -53,6 +53,10 @@ export default class Server {
 
   constructor(options: Partial<Options> = {}) {
     this.options = merge(defaults, options);
+
+    if (this.options.hostname === "localhost") {
+      this.options.hostname = "0.0.0.0";
+    }
   }
 
   /** The local address this server is listening on. */
