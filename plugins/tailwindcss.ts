@@ -37,7 +37,6 @@ export function tailwindCSS(userOptions?: Options) {
         const file = page.outputPath;
         content.push({
           content: page.text,
-          file,
           extension: file.endsWith(".html") ? ".html" : ".js",
         });
       }
