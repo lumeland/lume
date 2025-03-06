@@ -291,6 +291,91 @@ snapshot[`Sitemap plugin 3`] = `
     },
   },
   {
+    content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+    data: {
+      basename: "2021-01-02-18-32_page4",
+      children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+      colors: "Array(3)",
+      content: "default",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Overrided site name",
+      tags: "Array(1)",
+      title: "Page 4",
+      url: "/pages/2021-01-02-18-32_page4/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages/2021-01-02-18-32_page4",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Content of Page 6</p>
+",
+    data: {
+      basename: "2021-12-29-page6",
+      children: "<p>Content of Page 6</p>
+",
+      colors: "Array(3)",
+      content: "Content of Page 6
+",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(2)",
+      title: "Page 6",
+      url: "/pages/2021-12-29-page6/",
+    },
+    src: {
+      ext: ".md",
+      path: "/pages/ghost/2021-12-29-page6",
+      remote: undefined,
+    },
+  },
+  {
     content: "Content of Page 7",
     data: {
       basename: "page7",
@@ -331,91 +416,6 @@ snapshot[`Sitemap plugin 3`] = `
     },
   },
   {
-    content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
-    data: {
-      basename: "page4",
-      children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
-      colors: "Array(3)",
-      content: "default",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Overrided site name",
-      tags: "Array(1)",
-      title: "Page 4",
-      url: "/pages/page4/",
-    },
-    src: {
-      ext: ".page.ts",
-      path: "/pages/2021-01-02-18-32_page4",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<p>Content of Page 6</p>
-",
-    data: {
-      basename: "page6",
-      children: "<p>Content of Page 6</p>
-",
-      colors: "Array(3)",
-      content: "Content of Page 6
-",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(2)",
-      title: "Page 6",
-      url: "/pages/page6/",
-    },
-    src: {
-      ext: ".md",
-      path: "/pages/ghost/2021-12-29-page6",
-      remote: undefined,
-    },
-  },
-  {
     content: "User-agent: *
 Allow: /
 
@@ -439,7 +439,7 @@ Sitemap: https://example.com/sitemap.xml",
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://example.com/overrided-page2/</loc>
-    <lastmod>2020-06-21T00:00:00.000Z</lastmod>
+    <lastmod>2024-08-06T19:00:04.255Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/page5/</loc>
@@ -450,16 +450,16 @@ Sitemap: https://example.com/sitemap.xml",
     <lastmod>2020-01-01T00:00:00.000Z</lastmod>
   </url>
   <url>
+    <loc>https://example.com/pages/2021-01-02-18-32_page4/</loc>
+    <lastmod>2024-08-06T19:00:04.256Z</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/pages/2021-12-29-page6/</loc>
+    <lastmod>2022-01-01T00:00:00.000Z</lastmod>
+  </url>
+  <url>
     <loc>https://example.com/pages/new-name/page7/</loc>
     <lastmod>2022-01-02T00:00:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://example.com/pages/page4/</loc>
-    <lastmod>2021-01-02T18:32:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://example.com/pages/page6/</loc>
-    <lastmod>2022-01-01T00:00:00.000Z</lastmod>
   </url>
 </urlset>',
     data: {
@@ -468,7 +468,7 @@ Sitemap: https://example.com/sitemap.xml",
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://example.com/overrided-page2/</loc>
-    <lastmod>2020-06-21T00:00:00.000Z</lastmod>
+    <lastmod>2024-08-06T19:00:04.255Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/page5/</loc>
@@ -479,16 +479,16 @@ Sitemap: https://example.com/sitemap.xml",
     <lastmod>2020-01-01T00:00:00.000Z</lastmod>
   </url>
   <url>
+    <loc>https://example.com/pages/2021-01-02-18-32_page4/</loc>
+    <lastmod>2024-08-06T19:00:04.256Z</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/pages/2021-12-29-page6/</loc>
+    <lastmod>2022-01-01T00:00:00.000Z</lastmod>
+  </url>
+  <url>
     <loc>https://example.com/pages/new-name/page7/</loc>
     <lastmod>2022-01-02T00:00:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://example.com/pages/page4/</loc>
-    <lastmod>2021-01-02T18:32:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://example.com/pages/page6/</loc>
-    <lastmod>2022-01-01T00:00:00.000Z</lastmod>
   </url>
 </urlset>',
       page: [
@@ -1757,7 +1757,7 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
   {
     content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
     data: {
-      basename: "page4",
+      basename: "2021-01-02-18-32_page4",
       children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
       colors: "Array(3)",
       content: "default",
@@ -1787,7 +1787,7 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       site: "Overrided site name",
       tags: "Array(1)",
       title: "Page 4",
-      url: "/pages/page4/",
+      url: "/pages/2021-01-02-18-32_page4/",
     },
     src: {
       ext: ".page.ts",
@@ -1799,7 +1799,7 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
     content: "<p>Content of Page 6</p>
 ",
     data: {
-      basename: "page6",
+      basename: "2021-12-29-page6",
       children: "<p>Content of Page 6</p>
 ",
       colors: "Array(3)",
@@ -1831,7 +1831,7 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
       site: "Folder overrided site name",
       tags: "Array(2)",
       title: "Page 6",
-      url: "/pages/page6/",
+      url: "/pages/2021-12-29-page6/",
     },
     src: {
       ext: ".md",
@@ -1863,7 +1863,7 @@ Sitemap: https://example.com/sitemap.xml",
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://example.com/overrided-page2/</loc>
-    <lastmod>2020-06-21T00:00:00.000Z</lastmod>
+    <lastmod>2024-08-06T19:00:04.255Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/page5/</loc>
@@ -1874,11 +1874,11 @@ Sitemap: https://example.com/sitemap.xml",
     <lastmod>2020-01-01T00:00:00.000Z</lastmod>
   </url>
   <url>
-    <loc>https://example.com/pages/page4/</loc>
-    <lastmod>2021-01-02T18:32:00.000Z</lastmod>
+    <loc>https://example.com/pages/2021-01-02-18-32_page4/</loc>
+    <lastmod>2024-08-06T19:00:04.256Z</lastmod>
   </url>
   <url>
-    <loc>https://example.com/pages/page6/</loc>
+    <loc>https://example.com/pages/2021-12-29-page6/</loc>
     <lastmod>2022-01-01T00:00:00.000Z</lastmod>
   </url>
 </urlset>',
@@ -1888,7 +1888,7 @@ Sitemap: https://example.com/sitemap.xml",
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://example.com/overrided-page2/</loc>
-    <lastmod>2020-06-21T00:00:00.000Z</lastmod>
+    <lastmod>2024-08-06T19:00:04.255Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/page5/</loc>
@@ -1899,11 +1899,11 @@ Sitemap: https://example.com/sitemap.xml",
     <lastmod>2020-01-01T00:00:00.000Z</lastmod>
   </url>
   <url>
-    <loc>https://example.com/pages/page4/</loc>
-    <lastmod>2021-01-02T18:32:00.000Z</lastmod>
+    <loc>https://example.com/pages/2021-01-02-18-32_page4/</loc>
+    <lastmod>2024-08-06T19:00:04.256Z</lastmod>
   </url>
   <url>
-    <loc>https://example.com/pages/page6/</loc>
+    <loc>https://example.com/pages/2021-12-29-page6/</loc>
     <lastmod>2022-01-01T00:00:00.000Z</lastmod>
   </url>
 </urlset>',

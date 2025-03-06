@@ -388,6 +388,125 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
+    content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+    data: {
+      basename: "2021-01-02-18-32_page4",
+      children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+      colors: "Array(3)",
+      content: "default",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Overrided site name",
+      tags: "Array(1)",
+      title: "Page 4",
+      url: "/pages/2021-01-02-18-32_page4/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages/2021-01-02-18-32_page4",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(109)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(109)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pages/2021-01-02-18-32_page4/index.html.gz",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Content of Page 6</p>
+",
+    data: {
+      basename: "2021-12-29-page6",
+      children: "<p>Content of Page 6</p>
+",
+      colors: "Array(3)",
+      content: "Content of Page 6
+",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(2)",
+      title: "Page 6",
+      url: "/pages/2021-12-29-page6/",
+    },
+    src: {
+      ext: ".md",
+      path: "/pages/ghost/2021-12-29-page6",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(51)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(51)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pages/2021-12-29-page6/index.html.gz",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
     content: "Content of Page 7",
     data: {
       basename: "page7",
@@ -437,125 +556,6 @@ snapshot[`gzip plugin 3`] = `
         "data",
       ],
       url: "/pages/new-name/page7/index.html.gz",
-    },
-    src: {
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
-    data: {
-      basename: "page4",
-      children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
-      colors: "Array(3)",
-      content: "default",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Overrided site name",
-      tags: "Array(1)",
-      title: "Page 4",
-      url: "/pages/page4/",
-    },
-    src: {
-      ext: ".page.ts",
-      path: "/pages/2021-01-02-18-32_page4",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(109)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(109)",
-      page: [
-        "src",
-        "data",
-      ],
-      url: "/pages/page4/index.html.gz",
-    },
-    src: {
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<p>Content of Page 6</p>
-",
-    data: {
-      basename: "page6",
-      children: "<p>Content of Page 6</p>
-",
-      colors: "Array(3)",
-      content: "Content of Page 6
-",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(2)",
-      title: "Page 6",
-      url: "/pages/page6/",
-    },
-    src: {
-      ext: ".md",
-      path: "/pages/ghost/2021-12-29-page6",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(51)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(51)",
-      page: [
-        "src",
-        "data",
-      ],
-      url: "/pages/page6/index.html.gz",
     },
     src: {
       ext: "",

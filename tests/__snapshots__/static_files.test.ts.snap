@@ -204,42 +204,42 @@ snapshot[`Copy static files 2`] = `
   {
     entry: "/posts/2022-01-01_first-post/assets/inner/inner2/styles.scss",
     flags: [],
-    outputPath: "/posts/first-post/assets/inner/inner2/styles.css",
+    outputPath: "/posts/2022-01-01_first-post/assets/inner/inner2/styles.css",
   },
   {
     entry: "/posts/2022-01-01_first-post/assets/inner/styles1.scss",
     flags: [],
-    outputPath: "/posts/first-post/assets/inner/styles1.css",
+    outputPath: "/posts/2022-01-01_first-post/assets/inner/styles1.css",
   },
   {
     entry: "/posts/2022-01-01_first-post/assets/styles.scss",
     flags: [],
-    outputPath: "/posts/first-post/assets/styles.css",
+    outputPath: "/posts/2022-01-01_first-post/assets/styles.css",
   },
   {
     entry: "/posts/2022-01-01_first-post/individual-file",
     flags: [],
-    outputPath: "/posts/first-post/individual-file",
+    outputPath: "/posts/2022-01-01_first-post/individual-file",
   },
   {
     entry: "/posts/2022-01-01_first-post/inner/inner2/to-copy2.copy",
     flags: [],
-    outputPath: "/posts/first-post/inner/inner2/to-copy2.copy",
+    outputPath: "/posts/2022-01-01_first-post/inner/inner2/to-copy2.copy",
   },
   {
     entry: "/posts/2022-01-01_first-post/inner/to-copy1.copy",
     flags: [],
-    outputPath: "/posts/first-post/inner/to-copy1.copy",
+    outputPath: "/posts/2022-01-01_first-post/inner/to-copy1.copy",
   },
   {
     entry: "/posts/2022-01-01_first-post/to-copy.copy",
     flags: [],
-    outputPath: "/posts/first-post/to-copy.copy",
+    outputPath: "/posts/2022-01-01_first-post/to-copy.copy",
   },
   {
     entry: "/script/2022-01-01_app/main.js",
     flags: [],
-    outputPath: "/script/app/main.js",
+    outputPath: "/script/2022-01-01_app/main.js",
   },
   {
     entry: "/styles.css",
@@ -254,17 +254,17 @@ snapshot[`Copy static files 2`] = `
   {
     entry: "/posts/2022-01-01_first-post/callback.copy2",
     flags: [],
-    outputPath: "/subdir/posts/first-post/callback.copy3",
+    outputPath: "/subdir/posts/2022-01-01_first-post/callback.copy3",
   },
   {
     entry: "/posts/2022-01-01_first-post/inner/callback1.copy2",
     flags: [],
-    outputPath: "/subdir/posts/first-post/inner/callback1.copy3",
+    outputPath: "/subdir/posts/2022-01-01_first-post/inner/callback1.copy3",
   },
   {
     entry: "/posts/2022-01-01_first-post/inner/inner2/callback2.copy2",
     flags: [],
-    outputPath: "/subdir/posts/first-post/inner/inner2/callback2.copy3",
+    outputPath: "/subdir/posts/2022-01-01_first-post/inner/inner2/callback2.copy3",
   },
   {
     entry: "/static/two.yes",

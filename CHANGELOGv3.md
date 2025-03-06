@@ -34,6 +34,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `cache` option in `transform_images`, `favicon` and `og_images`. Use `LUME_NOCACHE=true` env variable to disable cache.
 - `variable` option of Lume components. It's always `comp`.
 - `name` special variable of components to customize the name. It's always the filename.
+- `slugify_urls` plugin no longer handle unicode characters by default. Use the `transliterate` option to configure it.
 
 ### Changed
 - `Temporal` API is enabled by default.
@@ -59,6 +60,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `sitemap` plugin: changed the options for something similar to `feed` and `metas`.
 - The basename variable reflects always the final URL instead of the original file #660.
 - Page generators can define the basename instead of the full URL to modify only the last part of the URL.
+- Moved the date extration from the file paths to the `extract_date` plugin.
 
 ### Fixed
 - The resolution of npm and jsr specifiers by esbuild plugin have been improved.

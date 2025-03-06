@@ -9,7 +9,6 @@ import paginate, { Options as PaginateOptions } from "./plugins/paginate.ts";
 import toml, { Options as TomlOptions } from "./plugins/toml.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { getOptionsFromCli } from "./core/utils/cli_options.ts";
-import { parseDateFromBasename } from "./core/utils/date.ts";
 
 import type { DeepPartial } from "./core/utils/object.ts";
 import type { SiteOptions } from "./core/site.ts";
@@ -50,7 +49,6 @@ export default function lume(
     .ignore("deno.lock")
     .ignore((path) => path.endsWith(".d.ts"))
     .mergeKey("tags", "stringArray")
-    .parseBasename(parseDateFromBasename)
     .use(url())
     .use(json(pluginOptions.json))
     .use(markdown(pluginOptions.markdown))

@@ -9,6 +9,7 @@ export const pluginNames = [
   "decap_cms",
   "esbuild",
   "eta",
+  "extract_date",
   "favicon",
   "feed",
   "fff",

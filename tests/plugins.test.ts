@@ -16,6 +16,7 @@ Deno.test("Plugins list in init", () => {
     "decap_cms",
     "esbuild",
     "eta",
+    "extract_date",
     "favicon",
     "feed",
     "fff",
