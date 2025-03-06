@@ -2,6 +2,7 @@ import { assert, assertEquals, assertStrictEquals } from "../deps/assert.ts";
 
 import textLoader from "../core/loaders/text.ts";
 import { assertSiteSnapshot, build, getPage, getSite } from "./utils.ts";
+import extractDate from "../plugins/extract_date.ts";
 
 Deno.test("Load the pages of a site", async (t) => {
   Deno.env.set("LUME_DRAFTS", "true");
@@ -36,6 +37,7 @@ Deno.test("ignored draft pages on dev=false", async () => {
 
   // This file is loaded even if it's copied because it's a known extension
   site.add("static.yml");
+  site.use(extractDate());
 
   await build(site);
 
