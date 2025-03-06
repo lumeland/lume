@@ -37,8 +37,10 @@
       "command": "deno task update 'deps/*.ts' deno.json"
     }
   },
-  "unstable": ["temporal"],
+  "unstable": [
+    "temporal"
+  ],
   "imports": {
-    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.9.2/"
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.10.0/"
   }
 }
