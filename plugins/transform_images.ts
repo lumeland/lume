@@ -119,11 +119,14 @@ export function transformImages(userOptions?: Partial<Options>) {
         | Transformation[];
 
       const content = page.src.ext === ".svg" ? page.text : page.bytes;
+      const url = page.data.url;
+
       const transformations = removeDuplicatedTransformations(
         getTransformations(transData),
       );
       let transformed = false;
       let index = 0;
+      let removeOriginal = false;
 
       for (const transformation of transformations) {
         if (transformation.matches) {
@@ -139,6 +142,10 @@ export function transformImages(userOptions?: Partial<Options>) {
         });
 
         rename(output, transformation);
+
+        if (output.data.url.toLowerCase() === url.toLowerCase()) {
+          removeOriginal = true;
+        }
 
         if (cache) {
           const result = await cache.get(content, transformation);
@@ -164,8 +171,10 @@ export function transformImages(userOptions?: Partial<Options>) {
         log.info(`[transform_images plugin] Processed ${page.sourcePath}`);
       }
 
-      // Remove the original page
-      allPages.splice(allPages.indexOf(page), 1);
+      // Remove the original page if a new one was created with the same URL
+      if (removeOriginal) {
+        allPages.splice(allPages.indexOf(page), 1);
+      }
     }
   };
 }
