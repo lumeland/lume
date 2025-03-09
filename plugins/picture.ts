@@ -129,15 +129,11 @@ export function picture(userOptions?: Options) {
       const src = img.getAttribute("src") as string;
       const sizes = img.getAttribute("sizes");
       const sourceFormats = saveTransform(basePath, src, transformImages);
+      const sources = Object.values(sortSources(sourceFormats));
 
-      sortSources(sourceFormats);
-      const last = sourceFormats[sourceFormats.length - 1];
+      editImg(img, src, sources.pop()!, sizes);
 
-      for (const sourceFormat of sourceFormats) {
-        if (sourceFormat === last) {
-          editImg(img, src, last, sizes);
-          break;
-        }
+      for (const sourceFormat of sources) {
         const source = createSource(
           img.ownerDocument!,
           src,
@@ -156,12 +152,11 @@ export function picture(userOptions?: Options) {
       const src = img.getAttribute("src") as string;
       const sizes = img.getAttribute("sizes");
       const sourceFormats = saveTransform(basePath, src, transformImages);
-
-      sortSources(sourceFormats);
+      const sources = Object.values(sortSources(sourceFormats));
 
       // Just only one format, no need to create a picture element
-      if (sourceFormats.length === 1) {
-        editImg(img, src, sourceFormats[0], sizes);
+      if (sources.length === 1) {
+        editImg(img, src, sources.shift()!, sizes);
         return;
       }
 
@@ -169,14 +164,9 @@ export function picture(userOptions?: Options) {
 
       img.replaceWith(picture);
 
-      const last = sourceFormats[sourceFormats.length - 1];
+      editImg(img, src, sources.pop()!, sizes);
 
-      for (const sourceFormat of sourceFormats) {
-        if (sourceFormat === last) {
-          editImg(img, src, last, sizes);
-          break;
-        }
-
+      for (const sourceFormat of sources) {
         const source = createSource(
           img.ownerDocument!,
           src,
@@ -189,7 +179,9 @@ export function picture(userOptions?: Options) {
       picture.append(img);
     }
 
-    function sortSources(sources: SourceFormat[]) {
+    function sortSources(
+      sources: SourceFormat[],
+    ): Record<string, SourceFormat[]> {
       const { order } = options;
 
       sources.sort((a, b) => {
@@ -206,6 +198,18 @@ export function picture(userOptions?: Options) {
 
         return aIndex - bIndex;
       });
+
+      const sorted: Record<string, SourceFormat[]> = {};
+
+      for (const source of sources) {
+        if (!sorted[source.format]) {
+          sorted[source.format] = [];
+        }
+        sorted[source.format].push(source);
+        sorted[source.format].sort((a, b) => (a.width ?? 0) - (b.width ?? 0));
+      }
+
+      return sorted;
     }
 
     function saveTransform(
@@ -316,20 +320,23 @@ function parseSize(size: string): [number, number[]] {
 
 function createSrcset(
   src: string,
-  srcFormat: SourceFormat,
+  srcFormats: SourceFormat[],
   sizes?: string | null | undefined,
 ): string[] {
-  const { scales, format, width } = srcFormat;
-  const path = encodeURI(getPathAndExtension(src)[0]);
   const srcset: string[] = [];
+  const path = encodeURI(getPathAndExtension(src)[0]);
 
-  for (const [suffix, scale] of Object.entries(scales)) {
-    const scaleSuffix = sizes && width
-      ? ` ${scale * width}w`
-      : scale === 1
-      ? ""
-      : ` ${scale}x`;
-    srcset.push(`${path}${suffix}.${format}${scaleSuffix}`);
+  for (const srcFormat of srcFormats) {
+    const { scales, format, width } = srcFormat;
+
+    for (const [suffix, scale] of Object.entries(scales)) {
+      const scaleSuffix = sizes && width
+        ? ` ${scale * width}w`
+        : scale === 1
+        ? ""
+        : ` ${scale}x`;
+      srcset.push(`${path}${suffix}.${format}${scaleSuffix}`);
+    }
   }
 
   return srcset;
@@ -338,14 +345,14 @@ function createSrcset(
 function createSource(
   document: Document,
   src: string,
-  srcFormat: SourceFormat,
+  srcFormats: SourceFormat[],
   sizes?: string | null | undefined,
 ) {
   const source = document.createElement("source");
-  const srcset = createSrcset(src, srcFormat, sizes);
+  const srcset = createSrcset(src, srcFormats, sizes);
 
   source.setAttribute("srcset", srcset.join(", "));
-  source.setAttribute("type", contentType(srcFormat.format) || "");
+  source.setAttribute("type", contentType(srcFormats[0].format) || "");
 
   if (sizes) {
     source.setAttribute("sizes", sizes);
@@ -357,7 +364,7 @@ function createSource(
 function editImg(
   img: Element,
   src: string,
-  srcFormat: SourceFormat,
+  srcFormat: SourceFormat[],
   sizes?: string | null | undefined,
 ) {
   const srcset = createSrcset(src, srcFormat, sizes);
@@ -366,7 +373,8 @@ function editImg(
   if (srcset.length) {
     img.setAttribute("srcset", srcset.join(", "));
   }
-  img.setAttribute("src", newSrc);
+
+  img.setAttribute("src", newSrc.split(" ").shift()!);
 
   if (sizes) {
     img.setAttribute("sizes", sizes);
