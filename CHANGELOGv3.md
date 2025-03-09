@@ -9,7 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - `site.add()` support URLs and NPM specifiers.
 - `await` filter for nunjucks.
-- New option `cssFile` and `jsFile` to configure a default file for automatic generated code.
+- New options `cssFile`, `jsFile` and `fontsFolder` to configure a default destination for automatic generated code.
   It's used by default by code_highlight, google_fonts, prism and unocss.
   It's also used by default by components.
 - New folder-based components.
@@ -20,6 +20,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `Server` class is now compatible with `deno serve` command.
 - New data merging strategy named `data`, used by the multilanguage plugin.
 - `slugify_urls` plugin: new `transliterate` option to define a different library per language.
+- `katex`: `cssFile`, `placeholder` and `fontsFolder` option. The plugin downloads the CSS code.
 
 ### Removed
 - `jsx_preact` plugin. Use `jsx` instead.
@@ -61,6 +62,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - The basename variable reflects always the final URL instead of the original file #660.
 - Page generators can define the basename instead of the full URL to modify only the last part of the URL.
 - Moved the date extration from the file paths to the `extract_date` plugin.
+- `google_fonts`: renamed `folder` option to `fontsFolder`.
 
 ### Fixed
 - The resolution of npm and jsr specifiers by esbuild plugin have been improved.

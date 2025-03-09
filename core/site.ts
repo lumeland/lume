@@ -50,6 +50,7 @@ const defaults: SiteOptions = {
   includes: "_includes",
   cssFile: "/style.css",
   jsFile: "/script.js",
+  fontsFolder: "/fonts",
   location: new URL("http://localhost"),
   prettyUrls: true,
   server: {
@@ -953,6 +954,9 @@ export interface SiteOptions {
 
   /** The default js file */
   jsFile: string;
+
+  /** The default folder for fonts */
+  fontsFolder: string;
 
   /** The site location (used to generate final urls) */
   location: URL;

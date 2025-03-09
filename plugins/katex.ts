@@ -1,12 +1,25 @@
-import { katex as Katex, KatexOptions } from "../deps/katex.ts";
+import { assetsUrl, katex as Katex, KatexOptions } from "../deps/katex.ts";
 import { renderMathInElement } from "../deps/katex-auto-render/auto-render.ts";
 import { merge } from "../core/utils/object.ts";
+import { posix } from "../deps/path.ts";
+import { read, readFile } from "../core/utils/read.ts";
+import { walkUrls } from "../core/utils/css_urls.ts";
+import { insertContent } from "../core/utils/page_content.ts";
 
 import type Site from "../core/site.ts";
 
 export interface Options {
   /** The css selector to apply katex */
   cssSelector?: string;
+
+  /** The CSS file to output the CSS styles */
+  cssFile?: string;
+
+  /** The folder to save the fonts */
+  fontsFolder?: string;
+
+  /** A placeholder to replace with the generated CSS */
+  placeholder?: string;
 
   /**
    * Documentation for katex options:
@@ -54,7 +67,48 @@ export const defaults: Options = {
  */
 export function katex(userOptions?: Options) {
   const options = merge(defaults, userOptions);
+
   return (site: Site) => {
+    let cssCode = "";
+    const cssFile = posix.join("/", options.cssFile || site.options.cssFile);
+    const fontsFolder = posix.join(
+      "/",
+      options.fontsFolder || site.options.fontsFolder,
+    );
+
+    const relativePath = posix.relative(
+      posix.dirname(cssFile),
+      posix.join(fontsFolder),
+    );
+
+    // Download the fonts and generate the CSS
+    site.addEventListener("beforeBuild", async () => {
+      const css = await readFile(`${assetsUrl}/katex.css`);
+      const fonts = new Map<string, string>();
+
+      // Fix the urls in the CSS file
+      cssCode = await walkUrls(css, (url) => {
+        const file = posix.basename(url);
+        fonts.set(`${assetsUrl}/${url}`, posix.join("/", fontsFolder, file));
+        return posix.join(relativePath, file);
+      });
+
+      // Download the fonts
+      await Promise.all(
+        Array.from(fonts).map(async ([src, url]) => {
+          const content = await read(src, true);
+          site.page({ content, url });
+        }),
+      );
+    });
+
+    // Output the CSS file
+    site.process(async () => {
+      const page = await site.getOrCreatePage(cssFile);
+      page.text = insertContent(page.text, cssCode, options.placeholder);
+    });
+
+    // Process the html pages and output the CSS file
     site.process([".html"], (pages) => {
       for (const page of pages) {
         const { document } = page;
