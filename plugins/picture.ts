@@ -48,7 +48,7 @@ export function picture(userOptions?: Options) {
         }
 
         const basePath = posix.dirname(page.outputPath);
-        const images = document.querySelectorAll("img,source");
+        const images = document.querySelectorAll("img,picture source");
 
         for (const img of Array.from(images)) {
           const transformImages = img.closest("[transform-images]")
