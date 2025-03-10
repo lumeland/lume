@@ -13,7 +13,15 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Multiple themes in `prism` and `code_highlight` plugins.
 - Updated dependencies: `liquidjs`, `preact`, `sass`, and some icons.
 - Lume server doesn't work in the local network.
-- `picture` plugin: Improved transformation with multiple sizes and one format.
+- `picture` plugin:
+  - Improved transformation with multiple sizes and one format.
+  - Added support for `<source>` elements. For example:
+    ```html
+    <picture>
+      <source transform-images="webp 800@2" srcset="image.png" media="(min-width: 500px)"></source>
+      <img src="small.png">
+    </picture>
+    ```
 
 ## [2.5.2] - 2025-02-19
 ### Added

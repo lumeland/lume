@@ -48,7 +48,7 @@ export function picture(userOptions?: Options) {
         }
 
         const basePath = posix.dirname(page.outputPath);
-        const images = document.querySelectorAll("img");
+        const images = document.querySelectorAll("img,source");
 
         for (const img of Array.from(images)) {
           const transformImages = img.closest("[transform-images]")
@@ -60,13 +60,21 @@ export function picture(userOptions?: Options) {
             continue;
           }
 
-          if (!img.getAttribute("src")) {
+          if (img.tagName === "IMG" && !img.getAttribute("src")) {
             throw new Error("img element must have a src attribute");
+          }
+          if (img.tagName === "SOURCE" && !img.getAttribute("srcset")) {
+            throw new Error("source element must have a srcset attribute");
           }
 
           const picture = img.closest("picture");
 
           if (picture) {
+            if (img.tagName === "SOURCE") {
+              handleSource(transformImages, img, basePath);
+              continue;
+            }
+
             handlePicture(transformImages, img, picture, basePath);
             continue;
           }
@@ -119,6 +127,22 @@ export function picture(userOptions?: Options) {
         }
       }
     });
+
+    function handleSource(
+      transformImages: string,
+      source: Element,
+      basePath: string,
+    ) {
+      const src = source.getAttribute("srcset") as string;
+      const sizes = source.getAttribute("sizes");
+      const sourceFormats = saveTransform(basePath, src, transformImages);
+      const sources = Object.values(sortSources(sourceFormats));
+
+      for (const sourceFormat of sources) {
+        const srcset = createSrcset(src, sourceFormat, sizes);
+        source.setAttribute("srcset", srcset.join(", "));
+      }
+    }
 
     function handlePicture(
       transformImages: string,
