@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Multiple themes in `prism` and `code_highlight` plugins.
+- `nav` plugin: `nextPage` and `previousPage` didn't work properly.
 - Updated dependencies: `liquidjs`, `preact`, `sass`, `std`, `lightningcss`, `autoprefixer`, `prismjs`, `schema-dts` and some icons.
 - Lume server doesn't work in the local network.
 - `picture` plugin:

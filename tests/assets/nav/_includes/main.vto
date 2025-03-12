@@ -4,44 +4,33 @@
   </head>
 
   <body>
+    {{ set previous = nav.previousPage(url) }}
+    {{ if previous }}
+      <a href="{{ previous.url }}">Previous {{ previous.basename }}</a>
+    {{ /if }}
+    {{ set next = nav.nextPage(url) }}
+    {{ if next }}
+      <a href="{{ next.url }}">Next {{ next.basename }}</a>
+    {{ /if }}
+    <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
         {{ for item of nav.breadcrumb(url) }}
-        <li><a href="{{ item.data?.url }}">{{ item.data?.title || item.slug }}</a></li>
+        <li><a href="{{ item.data.url }}">{{ item.data.basename }}</a></li>
         {{ /for }}
       </ul>
     </nav>
 
-    <h1>{{ title }}</h1>
+    <h1>{{ basename }}</h1>
 
     <nav>
       <ul>
-      {{- for item of nav.menu("/", "").children }}
+      {{- for item of nav.menu().children }}
         <li>
           {{ include "./step.vto" { item } }}
         </li>
       {{- /for }}
       </ul>
-    </nav>
-
-    <nav>
-      <ul>
-      {{- for item of nav.menu("/", "menu=true", "basename").children }}
-        <li>
-          {{ include "./step.vto" { item } }}
-        </li>
-      {{- /for }}
-      </ul>
-
-      {{ set next = nav.nextPage(url, "", "basename") }}
-      {{ set prev = nav.previousPage(url, "", "basename") }}
-
-      {{ if next }}
-        <a href="{{ next.url }}">Next page</a>
-      {{ /if }}
-      {{ if prev }}
-        <a href="{{ prev.url }}">Previous page</a>
-      {{ /if }}
     </nav>
   </body>
 </html>
