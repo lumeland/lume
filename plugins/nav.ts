@@ -56,6 +56,10 @@ export class Nav {
       this.#cache.set(id, nav);
     }
 
+    if (url.endsWith("/index.html")) {
+      url = url.slice(0, -10);
+    }
+
     const parts = url.split("/").filter((part) => part !== "").map(
       decodeURIComponentSafe,
     );
@@ -75,44 +79,41 @@ export class Nav {
   }
 
   nextPage(url: string, query?: string, sort?: string): Data | undefined {
-    const nav = this.menu(url, query, sort)!;
-    const children = nav?.parent?.children;
+    const item = this.menu(url, query, sort)!;
 
-    // Top level -> return the first child
-    if (!children) {
-      const child = nav?.children?.[0];
-      return child ? getNextChild(child) : undefined;
+    // It has a child -> return the first child with url
+    if (item?.children?.length) {
+      return getFirstChild(item.children[0])?.data;
     }
 
-    const index = children.indexOf(nav);
+    const siblings = item?.parent?.children;
 
-    if (index === -1) {
+    if (!siblings) {
       return;
     }
 
-    // Last child -> return next parent sibling
-    if (index === children.length - 1) {
-      if (nav.children?.length) {
-        return getNextChild(nav.children[0]);
-      }
+    const index = siblings.indexOf(item);
 
-      const parent = getNextParent(nav);
-      return parent ? getNextChild(parent) : undefined;
+    // Has next sibling -> return the next sibling
+    if (index < siblings.length - 1) {
+      return getFirstChild(siblings[index + 1])?.data;
     }
 
-    return getNextChild(children[index + 1]);
+    // Last sibling -> return next parent sibling
+    const parent = getNextParent(item);
+    return parent ? getFirstChild(parent)?.data : undefined;
   }
 
   previousPage(url: string, query?: string, sort?: string): Data | undefined {
     const nav = this.menu(url, query, sort)!;
-    const children = nav?.parent?.children;
+    const siblings = nav?.parent?.children;
 
     // Top level -> return none
-    if (!children) {
+    if (!siblings) {
       return;
     }
 
-    const index = children.indexOf(nav);
+    const index = siblings.indexOf(nav);
 
     if (index === -1) {
       return;
@@ -120,11 +121,10 @@ export class Nav {
 
     // First child -> return the last child of the previous parent sibling
     if (index === 0) {
-      const parent = getPreviousParent(nav);
-      return parent ? getPreviousChild(parent) : undefined;
+      return getPreviousParent(nav)?.data;
     }
 
-    return getPreviousChild(children[index - 1]);
+    return getLastChild(siblings[index - 1])?.data;
   }
 
   /* Build the entire navigation tree */
@@ -203,15 +203,27 @@ export interface NavJSON {
   children?: NavJSON[];
 }
 
-function getNextChild(item: NavData): Data | undefined {
+function getFirstChild(item: NavData): NavData | undefined {
   if (item.data.url) {
-    return item.data;
+    return item;
   }
 
   const children = item.children;
 
   if (children) {
-    return getNextChild(children[0]);
+    return getFirstChild(children[0]);
+  }
+}
+
+function getLastChild(item: NavData): NavData | undefined {
+  const children = item.children;
+
+  if (children) {
+    return getLastChild(children[children.length - 1]);
+  }
+
+  if (item.data.url) {
+    return item;
   }
 }
 
@@ -232,18 +244,6 @@ function getNextParent(item: NavData): NavData | undefined {
   return children[index + 1];
 }
 
-function getPreviousChild(item: NavData): Data | undefined {
-  if (item.data?.url) {
-    return item.data;
-  }
-
-  const children = item.children;
-
-  if (children) {
-    return getPreviousChild(children[children.length - 1]);
-  }
-}
-
 function getPreviousParent(item: NavData): NavData | undefined {
   const parent = item.parent;
 
@@ -255,10 +255,13 @@ function getPreviousParent(item: NavData): NavData | undefined {
   const index = children.indexOf(item);
 
   if (index === 0) {
+    if (parent.data.url) {
+      return parent;
+    }
     return getPreviousParent(parent);
   }
 
-  return children[index - 1];
+  return getLastChild(children[index - 1]);
 }
 
 function searchData(parts: string[], menu: NavData): NavData | undefined {

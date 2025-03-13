@@ -1,5 +1,6 @@
 import { isUrl } from "./path.ts";
 import { env } from "./env.ts";
+import { tokens } from "./tokens.ts";
 
 const useCache = env<boolean>("LUME_NOCACHE") !== true;
 
@@ -42,6 +43,13 @@ export async function read(
 
   if (url.protocol === "file:") {
     return isBinary ? Deno.readFile(url) : Deno.readTextFile(url);
+  }
+
+  const authorization = tokens.get(url.host);
+  if (authorization) {
+    const headers = new Headers(init?.headers);
+    headers.set("Authorization", authorization);
+    init = { ...init, headers };
   }
 
   if (!useCache) {

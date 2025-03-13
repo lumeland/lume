@@ -39,7 +39,7 @@ export function picture(userOptions?: Options) {
       for (const page of pages) {
         const { document } = page;
         const basePath = posix.dirname(page.outputPath);
-        const images = document.querySelectorAll("img");
+        const images = document.querySelectorAll("img,picture source");
 
         for (const img of Array.from(images)) {
           const transformImages = img.closest("[transform-images]")
@@ -51,14 +51,20 @@ export function picture(userOptions?: Options) {
             continue;
           }
 
-          if (!img.getAttribute("src")) {
+          if (img.tagName === "IMG" && !img.getAttribute("src")) {
             throw new Error("img element must have a src attribute");
           }
+          if (img.tagName === "SOURCE" && !img.getAttribute("srcset")) {
+            throw new Error("source element must have a srcset attribute");
+          }
 
-          const picture = img.closest("picture");
+          if (img.closest("picture")) {
+            if (img.tagName === "SOURCE") {
+              handleSource(transformImages, img, basePath);
+              continue;
+            }
 
-          if (picture) {
-            handlePicture(transformImages, img, picture, basePath);
+            handlePicture(transformImages, img, basePath);
             continue;
           }
 
@@ -113,31 +119,55 @@ export function picture(userOptions?: Options) {
       }
     });
 
+    function handleSource(
+      transformImages: string,
+      source: Element,
+      basePath: string,
+    ) {
+      const src = source.getAttribute("srcset") as string;
+      const sizes = source.getAttribute("sizes");
+      const sourceFormats = saveTransform(basePath, src, transformImages);
+      const sources = Object.values(sortSources(sourceFormats));
+      const last = sources.pop()!;
+
+      for (const sourceFormat of sources) {
+        source.parentElement?.insertBefore(
+          createSource(
+            source.ownerDocument!,
+            src,
+            sourceFormat,
+            { sizes, media: source.getAttribute("media") },
+          ),
+          source,
+        );
+      }
+
+      const srcset = createSrcset(src, last, sizes);
+      source.setAttribute("srcset", srcset.join(", "));
+    }
+
     function handlePicture(
       transformImages: string,
       img: Element,
-      picture: Element,
       basePath: string,
     ) {
       const src = img.getAttribute("src") as string;
       const sizes = img.getAttribute("sizes");
       const sourceFormats = saveTransform(basePath, src, transformImages);
+      const sources = Object.values(sortSources(sourceFormats));
 
-      sortSources(sourceFormats);
-      const last = sourceFormats[sourceFormats.length - 1];
+      editImg(img, src, sources.pop()!, sizes);
 
-      for (const sourceFormat of sourceFormats) {
-        if (sourceFormat === last) {
-          editImg(img, src, last, sizes);
-          break;
-        }
-        const source = createSource(
-          img.ownerDocument!,
-          src,
-          sourceFormat,
-          sizes,
+      for (const sourceFormat of sources) {
+        img.parentElement?.insertBefore(
+          createSource(
+            img.ownerDocument!,
+            src,
+            sourceFormat,
+            { sizes },
+          ),
+          img,
         );
-        picture.insertBefore(source, img);
       }
     }
 
@@ -149,12 +179,11 @@ export function picture(userOptions?: Options) {
       const src = img.getAttribute("src") as string;
       const sizes = img.getAttribute("sizes");
       const sourceFormats = saveTransform(basePath, src, transformImages);
-
-      sortSources(sourceFormats);
+      const sources = Object.values(sortSources(sourceFormats));
 
       // Just only one format, no need to create a picture element
-      if (sourceFormats.length === 1) {
-        editImg(img, src, sourceFormats[0], sizes);
+      if (sources.length === 1) {
+        editImg(img, src, sources.shift()!, sizes);
         return;
       }
 
@@ -162,19 +191,14 @@ export function picture(userOptions?: Options) {
 
       img.replaceWith(picture);
 
-      const last = sourceFormats[sourceFormats.length - 1];
+      editImg(img, src, sources.pop()!, sizes);
 
-      for (const sourceFormat of sourceFormats) {
-        if (sourceFormat === last) {
-          editImg(img, src, last, sizes);
-          break;
-        }
-
+      for (const sourceFormat of sources) {
         const source = createSource(
           img.ownerDocument!,
           src,
           sourceFormat,
-          sizes,
+          { sizes },
         );
         picture.append(source);
       }
@@ -182,7 +206,9 @@ export function picture(userOptions?: Options) {
       picture.append(img);
     }
 
-    function sortSources(sources: SourceFormat[]) {
+    function sortSources(
+      sources: SourceFormat[],
+    ): Record<string, SourceFormat[]> {
       const { order } = options;
 
       sources.sort((a, b) => {
@@ -199,6 +225,18 @@ export function picture(userOptions?: Options) {
 
         return aIndex - bIndex;
       });
+
+      const sorted: Record<string, SourceFormat[]> = {};
+
+      for (const source of sources) {
+        if (!sorted[source.format]) {
+          sorted[source.format] = [];
+        }
+        sorted[source.format].push(source);
+        sorted[source.format].sort((a, b) => (a.width ?? 0) - (b.width ?? 0));
+      }
+
+      return sorted;
     }
 
     function saveTransform(
@@ -309,20 +347,23 @@ function parseSize(size: string): [number, number[]] {
 
 function createSrcset(
   src: string,
-  srcFormat: SourceFormat,
+  srcFormats: SourceFormat[],
   sizes?: string | null | undefined,
 ): string[] {
-  const { scales, format, width } = srcFormat;
-  const path = encodeURI(getPathAndExtension(src)[0]);
   const srcset: string[] = [];
+  const path = encodeURI(getPathAndExtension(src)[0]);
 
-  for (const [suffix, scale] of Object.entries(scales)) {
-    const scaleSuffix = sizes && width
-      ? ` ${scale * width}w`
-      : scale === 1
-      ? ""
-      : ` ${scale}x`;
-    srcset.push(`${path}${suffix}.${format}${scaleSuffix}`);
+  for (const srcFormat of srcFormats) {
+    const { scales, format, width } = srcFormat;
+
+    for (const [suffix, scale] of Object.entries(scales)) {
+      const scaleSuffix = sizes && width
+        ? ` ${scale * width}w`
+        : scale === 1
+        ? ""
+        : ` ${scale}x`;
+      srcset.push(`${path}${suffix}.${format}${scaleSuffix}`);
+    }
   }
 
   return srcset;
@@ -331,17 +372,21 @@ function createSrcset(
 function createSource(
   document: Document,
   src: string,
-  srcFormat: SourceFormat,
-  sizes?: string | null | undefined,
+  srcFormats: SourceFormat[],
+  attributes?: Record<string, string | undefined | null>,
 ) {
   const source = document.createElement("source");
-  const srcset = createSrcset(src, srcFormat, sizes);
+  const srcset = createSrcset(src, srcFormats, attributes?.sizes);
 
   source.setAttribute("srcset", srcset.join(", "));
-  source.setAttribute("type", contentType(srcFormat.format) || "");
+  source.setAttribute("type", contentType(srcFormats[0].format) || "");
 
-  if (sizes) {
-    source.setAttribute("sizes", sizes);
+  if (attributes) {
+    for (const [key, value] of Object.entries(attributes)) {
+      if (value !== undefined && value !== null) {
+        source.setAttribute(key, value);
+      }
+    }
   }
 
   return source;
@@ -350,7 +395,7 @@ function createSource(
 function editImg(
   img: Element,
   src: string,
-  srcFormat: SourceFormat,
+  srcFormat: SourceFormat[],
   sizes?: string | null | undefined,
 ) {
   const srcset = createSrcset(src, srcFormat, sizes);
@@ -359,7 +404,8 @@ function editImg(
   if (srcset.length) {
     img.setAttribute("srcset", srcset.join(", "));
   }
-  img.setAttribute("src", newSrc);
+
+  img.setAttribute("src", newSrc.split(" ").shift()!);
 
   if (sizes) {
     img.setAttribute("sizes", sizes);

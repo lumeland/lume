@@ -55,6 +55,10 @@ export default class Server {
   constructor(options: Partial<Options> = {}) {
     this.options = merge(defaults, options);
 
+    if (this.options.hostname === "localhost") {
+      this.options.hostname = "0.0.0.0";
+    }
+
     // Create the fetch function for `deno serve`
     this.fetch = (request: Request, info: Deno.ServeHandlerInfo) => {
       return this.handle(request, info);

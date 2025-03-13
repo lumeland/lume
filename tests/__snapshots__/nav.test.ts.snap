@@ -110,11 +110,18 @@ snapshot[`nav plugin 1`] = `
     "/_includes/step.vto",
     "/docs",
     "/docs.md",
-    "/docs/about-docs.md",
-    "/docs/pages",
-    "/docs/pages.md",
-    "/docs/pages/first.md",
-    "/docs/pages/second.md",
+    "/docs/0-pages",
+    "/docs/0-pages/1-first.md",
+    "/docs/0-pages/2-second.md",
+    "/docs/0-pages/3-pages",
+    "/docs/0-pages/3-pages.md",
+    "/docs/0-pages/3-pages/1.first.md",
+    "/docs/0-pages/3-pages/2.second.md",
+    "/docs/0-pages/4-pages",
+    "/docs/0-pages/4-pages/1-pages",
+    "/docs/0-pages/4-pages/1-pages/1-first.md",
+    "/docs/0-pages/index.md",
+    "/docs/1-about-docs.md",
     "/index.vto",
   ],
 }
@@ -127,139 +134,114 @@ snapshot[`nav plugin 3`] = `
   {
     content: '<html>
   <head>
-    <title>About docs (1)</title>
+    <title></title>
   </head>
 
   <body>
+      <a href="/docs/0-pages/">Previous 0-pages</a>
+      <a href="/docs/0-pages/2-second/">Next 2-second</a>
+    <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">Home</a></li>
-        <li><a href="">docs</a></li>
-        <li><a href="/docs/about-docs/">About docs (1)</a></li>
+        <li><a href="/"></a></li>
+        <li><a href="/docs/">docs</a></li>
+        <li><a href="/docs/0-pages/">0-pages</a></li>
+        <li><a href="/docs/0-pages/1-first/">1-first</a></li>
       </ul>
     </nav>
 
-    <h1>About docs (1)</h1>
+    <h1>1-first</h1>
 
     <nav>
       <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first/">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
+          <a href="/docs/">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/">
+  0-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first/">
+  1-first
+    (current)
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second/">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first/">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second/">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <a href="/docs/1-about-docs/">
+  1-about-docs
+</a>
+
+
+  </li>
+</ul>
+
         </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
-        <a href="/docs/pages/">Next page</a>
     </nav>
   </body>
-</html>
-',
+</html>',
     data: {
-      basename: "about-docs",
-      children: "",
-      content: "",
-      date: [],
-      layout: "main.vto",
-      menu: true,
-      mergedKeys: [
-        "tags",
-      ],
-      nav: [],
-      order: 1,
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "About docs (1)",
-      url: "/docs/about-docs/",
-    },
-    src: {
-      ext: ".md",
-      path: "/docs/about-docs",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<html>
-  <head>
-    <title>Pages first (1)</title>
-  </head>
-
-  <body>
-    <nav>
-      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">Home</a></li>
-        <li><a href="">docs</a></li>
-        <li><a href="/docs/pages/">About pages (0)</a></li>
-        <li><a href="/docs/pages/first/">Pages first (1)</a></li>
-      </ul>
-    </nav>
-
-    <h1>Pages first (1)</h1>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first/">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
-        </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
-        <a href="/docs/pages/second/">Next page</a>
-        <a href="/docs/about-docs/">Previous page</a>
-    </nav>
-  </body>
-</html>
-',
-    data: {
-      basename: "first",
+      basename: "1-first",
       children: "",
       content: "",
       date: [],
@@ -268,7 +250,6 @@ snapshot[`nav plugin 3`] = `
         "tags",
       ],
       nav: [],
-      order: 1,
       page: [
         "src",
         "data",
@@ -276,70 +257,125 @@ snapshot[`nav plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Pages first (1)",
-      url: "/docs/pages/first/",
+      url: "/docs/0-pages/1-first/",
     },
     src: {
       ext: ".md",
-      path: "/docs/pages/first",
+      path: "/docs/0-pages/1-first",
       remote: undefined,
     },
   },
   {
     content: '<html>
   <head>
-    <title>About pages (0)</title>
+    <title></title>
   </head>
 
   <body>
+      <a href="/docs/0-pages/1-first/">Previous 1-first</a>
+      <a href="/docs/0-pages/3-pages/">Next 3-pages</a>
+    <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">Home</a></li>
-        <li><a href="">docs</a></li>
-        <li><a href="/docs/pages/">About pages (0)</a></li>
+        <li><a href="/"></a></li>
+        <li><a href="/docs/">docs</a></li>
+        <li><a href="/docs/0-pages/">0-pages</a></li>
+        <li><a href="/docs/0-pages/2-second/">2-second</a></li>
       </ul>
     </nav>
 
-    <h1>About pages (0)</h1>
+    <h1>2-second</h1>
 
     <nav>
       <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first/">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
+          <a href="/docs/">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/">
+  0-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second/">
+  2-second
+    (current)
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first/">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second/">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <a href="/docs/1-about-docs/">
+  1-about-docs
+</a>
+
+
+  </li>
+</ul>
+
         </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
-        <a href="/docs/pages/first/">Next page</a>
-        <a href="/docs/about-docs/">Previous page</a>
     </nav>
   </body>
-</html>
-',
+</html>',
     data: {
-      basename: "pages",
+      basename: "2-second",
       children: "",
       content: "",
       date: [],
@@ -348,7 +384,6 @@ snapshot[`nav plugin 3`] = `
         "tags",
       ],
       nav: [],
-      order: 0,
       page: [
         "src",
         "data",
@@ -356,81 +391,134 @@ snapshot[`nav plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "About pages (0)",
-      url: "/docs/pages/",
+      url: "/docs/0-pages/2-second/",
     },
     src: {
       ext: ".md",
-      path: "/docs/pages",
+      path: "/docs/0-pages/2-second",
       remote: undefined,
     },
   },
   {
     content: '<html>
   <head>
-    <title>Pages second (0)</title>
+    <title></title>
   </head>
 
   <body>
+      <a href="/docs/0-pages/3-pages/">Previous 3-pages</a>
+      <a href="/docs/0-pages/3-pages/2.second/">Next 2.second</a>
+    <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">Home</a></li>
-        <li><a href="">docs</a></li>
-        <li><a href="/docs/pages/">About pages (0)</a></li>
-        <li><a href="/docs/pages/second/">Pages second (0)</a></li>
+        <li><a href="/"></a></li>
+        <li><a href="/docs/">docs</a></li>
+        <li><a href="/docs/0-pages/">0-pages</a></li>
+        <li><a href="/docs/0-pages/3-pages/">3-pages</a></li>
+        <li><a href="/docs/0-pages/3-pages/1.first/">1.first</a></li>
       </ul>
     </nav>
 
-    <h1>Pages second (0)</h1>
+    <h1>1.first</h1>
 
     <nav>
       <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first/">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
+          <a href="/docs/">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/">
+  0-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second/">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first/">
+  1.first
+    (current)
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second/">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <a href="/docs/1-about-docs/">
+  1-about-docs
+</a>
+
+
+  </li>
+</ul>
+
         </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
-        <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Next page</a>
-        <a href="/docs/pages/first/">Previous page</a>
     </nav>
   </body>
-</html>
-',
+</html>',
     data: {
-      basename: "second",
+      basename: "1.first",
       children: "",
       content: "",
       date: [],
       layout: "main.vto",
-      menu: true,
       mergedKeys: [
         "tags",
       ],
       nav: [],
-      order: 0,
       page: [
         "src",
         "data",
@@ -438,65 +526,920 @@ snapshot[`nav plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Pages second (0)",
-      url: "/docs/pages/second/",
+      url: "/docs/0-pages/3-pages/1.first/",
     },
     src: {
       ext: ".md",
-      path: "/docs/pages/second",
+      path: "/docs/0-pages/3-pages/1.first",
       remote: undefined,
     },
   },
   {
     content: '<html>
   <head>
-    <title>Home</title>
+    <title></title>
   </head>
 
   <body>
+      <a href="/docs/0-pages/3-pages/1.first/">Previous 1.first</a>
+      <a href="/docs/0-pages/4-pages/1-pages/1-first/">Next 1-first</a>
+    <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">Home</a></li>
+        <li><a href="/"></a></li>
+        <li><a href="/docs/">docs</a></li>
+        <li><a href="/docs/0-pages/">0-pages</a></li>
+        <li><a href="/docs/0-pages/3-pages/">3-pages</a></li>
+        <li><a href="/docs/0-pages/3-pages/2.second/">2.second</a></li>
       </ul>
     </nav>
 
-    <h1>Home</h1>
+    <h1>2.second</h1>
 
     <nav>
       <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first/">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
+          <a href="/docs/">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/">
+  0-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second/">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first/">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second/">
+  2.second
+    (current)
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <a href="/docs/1-about-docs/">
+  1-about-docs
+</a>
+
+
+  </li>
+</ul>
+
         </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
-        <a href="/docs/about-docs/">Next page</a>
     </nav>
   </body>
-</html>
-',
+</html>',
+    data: {
+      basename: "2.second",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/docs/0-pages/3-pages/2.second/",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs/0-pages/3-pages/2.second",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/docs/0-pages/2-second/">Previous 2-second</a>
+      <a href="/docs/0-pages/3-pages/1.first/">Next 1.first</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/"></a></li>
+        <li><a href="/docs/">docs</a></li>
+        <li><a href="/docs/0-pages/">0-pages</a></li>
+        <li><a href="/docs/0-pages/3-pages/">3-pages</a></li>
+      </ul>
+    </nav>
+
+    <h1>3-pages</h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs/">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/">
+  0-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second/">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/">
+  3-pages
+    (current)
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first/">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second/">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <a href="/docs/1-about-docs/">
+  1-about-docs
+</a>
+
+
+  </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      basename: "3-pages",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/docs/0-pages/3-pages/",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs/0-pages/3-pages",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/docs/0-pages/3-pages/2.second/">Previous 2.second</a>
+      <a href="/docs/1-about-docs/">Next 1-about-docs</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/"></a></li>
+        <li><a href="/docs/">docs</a></li>
+        <li><a href="/docs/0-pages/">0-pages</a></li>
+        <li><a href="">4-pages</a></li>
+        <li><a href="">1-pages</a></li>
+        <li><a href="/docs/0-pages/4-pages/1-pages/1-first/">1-first</a></li>
+      </ul>
+    </nav>
+
+    <h1>1-first</h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs/">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/">
+  0-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second/">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first/">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second/">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
+  1-first
+    (current)
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <a href="/docs/1-about-docs/">
+  1-about-docs
+</a>
+
+
+  </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      basename: "1-first",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/docs/0-pages/4-pages/1-pages/1-first/",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs/0-pages/4-pages/1-pages/1-first",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/docs/">Previous docs</a>
+      <a href="/docs/0-pages/1-first/">Next 1-first</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/"></a></li>
+        <li><a href="/docs/">docs</a></li>
+        <li><a href="/docs/0-pages/">0-pages</a></li>
+      </ul>
+    </nav>
+
+    <h1>0-pages</h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs/">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/">
+  0-pages
+    (current)
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second/">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first/">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second/">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <a href="/docs/1-about-docs/">
+  1-about-docs
+</a>
+
+
+  </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      basename: "0-pages",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/docs/0-pages/",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs/0-pages/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/docs/0-pages/4-pages/1-pages/1-first/">Previous 1-first</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/"></a></li>
+        <li><a href="/docs/">docs</a></li>
+        <li><a href="/docs/1-about-docs/">1-about-docs</a></li>
+      </ul>
+    </nav>
+
+    <h1>1-about-docs</h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs/">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/">
+  0-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second/">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first/">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second/">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <a href="/docs/1-about-docs/">
+  1-about-docs
+    (current)
+</a>
+
+
+  </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      basename: "1-about-docs",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/docs/1-about-docs/",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs/1-about-docs",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/">Previous </a>
+      <a href="/docs/0-pages/">Next 0-pages</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/"></a></li>
+        <li><a href="/docs/">docs</a></li>
+      </ul>
+    </nav>
+
+    <h1>docs</h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs/">
+  docs
+    (current)
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/">
+  0-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second/">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first/">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second/">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <a href="/docs/1-about-docs/">
+  1-about-docs
+</a>
+
+
+  </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      basename: "docs",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/docs/",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/docs/">Next docs</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/"></a></li>
+      </ul>
+    </nav>
+
+    <h1></h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs/">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/">
+  0-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second/">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first/">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second/">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <a href="/docs/1-about-docs/">
+  1-about-docs
+</a>
+
+
+  </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
     data: {
       basename: "",
       children: "",
@@ -514,90 +1457,11 @@ snapshot[`nav plugin 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Home",
       url: "/",
     },
     src: {
       ext: ".vto",
       path: "/index",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<html>
-  <head>
-    <title>Docs</title>
-  </head>
-
-  <body>
-    <nav>
-      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">Home</a></li>
-        <li><a href="">防災</a></li>
-        <li><a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a></li>
-      </ul>
-    </nav>
-
-    <h1>Docs</h1>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages/">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first/">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
-        </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs/">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second/">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
-        <a href="/docs/pages/">Previous page</a>
-    </nav>
-  </body>
-</html>
-',
-    data: {
-      basename: "esolia-bousai-links",
-      children: "",
-      content: "",
-      date: [],
-      layout: "main.vto",
-      mergedKeys: [
-        "tags",
-      ],
-      nav: [],
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Docs",
-      url: "/%E9%98%B2%E7%81%BD/esolia-bousai-links/",
-    },
-    src: {
-      ext: ".md",
-      path: "/docs",
       remote: undefined,
     },
   },
@@ -714,11 +1578,18 @@ snapshot[`nav plugin with pretty urls disabled 1`] = `
     "/_includes/step.vto",
     "/docs",
     "/docs.md",
-    "/docs/about-docs.md",
-    "/docs/pages",
-    "/docs/pages.md",
-    "/docs/pages/first.md",
-    "/docs/pages/second.md",
+    "/docs/0-pages",
+    "/docs/0-pages/1-first.md",
+    "/docs/0-pages/2-second.md",
+    "/docs/0-pages/3-pages",
+    "/docs/0-pages/3-pages.md",
+    "/docs/0-pages/3-pages/1.first.md",
+    "/docs/0-pages/3-pages/2.second.md",
+    "/docs/0-pages/4-pages",
+    "/docs/0-pages/4-pages/1-pages",
+    "/docs/0-pages/4-pages/1-pages/1-first.md",
+    "/docs/0-pages/index.md",
+    "/docs/1-about-docs.md",
     "/index.vto",
   ],
 }
@@ -731,138 +1602,112 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
   {
     content: '<html>
   <head>
-    <title>About docs (1)</title>
+    <title></title>
   </head>
 
   <body>
+      <a href="/index.html">Previous index</a>
+      <a href="/docs/1-about-docs.html">Next 1-about-docs</a>
+    <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="">docs</a></li>
-        <li><a href="/docs/about-docs.html">About docs (1)</a></li>
+        <li><a href="/index.html">index</a></li>
+        <li><a href="/docs.html">docs</a></li>
       </ul>
     </nav>
 
-    <h1>About docs (1)</h1>
+    <h1>docs</h1>
 
     <nav>
       <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages.html">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second.html">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first.html">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs.html">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
+          <a href="/docs.html">
+  docs
+    (current)
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second.html">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages.html">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first.html">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second.html">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
         </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs.html">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second.html">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
-        <a href="/docs/pages.html">Next page</a>
     </nav>
   </body>
-</html>
-',
+</html>',
     data: {
-      basename: "about-docs",
-      children: "",
-      content: "",
-      date: [],
-      layout: "main.vto",
-      menu: true,
-      mergedKeys: [
-        "tags",
-      ],
-      nav: [],
-      order: 1,
-      page: [
-        "src",
-        "data",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "About docs (1)",
-      url: "/docs/about-docs.html",
-    },
-    src: {
-      ext: ".md",
-      path: "/docs/about-docs",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<html>
-  <head>
-    <title>About pages (0)</title>
-  </head>
-
-  <body>
-    <nav>
-      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="">docs</a></li>
-        <li><a href="/docs/pages.html">About pages (0)</a></li>
-      </ul>
-    </nav>
-
-    <h1>About pages (0)</h1>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages.html">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second.html">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first.html">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs.html">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
-        </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs.html">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second.html">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
-        <a href="/docs/pages/first.html">Next page</a>
-        <a href="/docs/about-docs.html">Previous page</a>
-    </nav>
-  </body>
-</html>
-',
-    data: {
-      basename: "pages",
+      basename: "docs",
       children: "",
       content: "",
       date: [],
@@ -871,7 +1716,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         "tags",
       ],
       nav: [],
-      order: 0,
       page: [
         "src",
         "data",
@@ -879,71 +1723,125 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "About pages (0)",
-      url: "/docs/pages.html",
+      url: "/docs.html",
     },
     src: {
       ext: ".md",
-      path: "/docs/pages",
+      path: "/docs",
       remote: undefined,
     },
   },
   {
     content: '<html>
   <head>
-    <title>Pages first (1)</title>
+    <title></title>
   </head>
 
   <body>
+      <a href="/docs/0-pages/index.html">Previous index</a>
+      <a href="/docs/0-pages/2-second.html">Next 2-second</a>
+    <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="">docs</a></li>
-        <li><a href="/docs/pages.html">About pages (0)</a></li>
-        <li><a href="/docs/pages/first.html">Pages first (1)</a></li>
+        <li><a href="/index.html">index</a></li>
+        <li><a href="/docs.html">docs</a></li>
+        <li><a href="/docs/0-pages/index.html">index</a></li>
+        <li><a href="/docs/0-pages/1-first.html">1-first</a></li>
       </ul>
     </nav>
 
-    <h1>Pages first (1)</h1>
+    <h1>1-first</h1>
 
     <nav>
       <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages.html">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second.html">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first.html">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs.html">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
+          <a href="/docs.html">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first.html">
+  1-first
+    (current)
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second.html">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages.html">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first.html">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second.html">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
         </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs.html">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second.html">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
-        <a href="/docs/pages/second.html">Next page</a>
-        <a href="/docs/about-docs.html">Previous page</a>
     </nav>
   </body>
-</html>
-',
+</html>',
     data: {
-      basename: "first",
+      basename: "1-first",
       children: "",
       content: "",
       date: [],
@@ -952,7 +1850,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
         "tags",
       ],
       nav: [],
-      order: 1,
       page: [
         "src",
         "data",
@@ -960,81 +1857,133 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Pages first (1)",
-      url: "/docs/pages/first.html",
+      url: "/docs/0-pages/1-first.html",
     },
     src: {
       ext: ".md",
-      path: "/docs/pages/first",
+      path: "/docs/0-pages/1-first",
       remote: undefined,
     },
   },
   {
     content: '<html>
   <head>
-    <title>Pages second (0)</title>
+    <title></title>
   </head>
 
   <body>
+      <a href="/docs/0-pages/1-first.html">Previous 1-first</a>
+      <a href="/docs/0-pages/3-pages.html">Next 3-pages</a>
+    <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="">docs</a></li>
-        <li><a href="/docs/pages.html">About pages (0)</a></li>
-        <li><a href="/docs/pages/second.html">Pages second (0)</a></li>
+        <li><a href="/index.html">index</a></li>
+        <li><a href="/docs.html">docs</a></li>
+        <li><a href="/docs/0-pages/index.html">index</a></li>
+        <li><a href="/docs/0-pages/2-second.html">2-second</a></li>
       </ul>
     </nav>
 
-    <h1>Pages second (0)</h1>
+    <h1>2-second</h1>
 
     <nav>
       <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages.html">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second.html">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first.html">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs.html">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
+          <a href="/docs.html">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second.html">
+  2-second
+    (current)
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages.html">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first.html">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second.html">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
         </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs.html">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second.html">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
-        <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Next page</a>
-        <a href="/docs/pages/first.html">Previous page</a>
     </nav>
   </body>
-</html>
-',
+</html>',
     data: {
-      basename: "second",
+      basename: "2-second",
       children: "",
       content: "",
       date: [],
       layout: "main.vto",
-      menu: true,
       mergedKeys: [
         "tags",
       ],
       nav: [],
-      order: 0,
       page: [
         "src",
         "data",
@@ -1042,63 +1991,661 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Pages second (0)",
-      url: "/docs/pages/second.html",
+      url: "/docs/0-pages/2-second.html",
     },
     src: {
       ext: ".md",
-      path: "/docs/pages/second",
+      path: "/docs/0-pages/2-second",
       remote: undefined,
     },
   },
   {
     content: '<html>
   <head>
-    <title>Home</title>
+    <title></title>
   </head>
 
   <body>
+      <a href="/docs/0-pages/2-second.html">Previous 2-second</a>
+      <a href="/docs/0-pages/3-pages/1.first.html">Next 1.first</a>
+    <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/index.html">index</a></li>
+        <li><a href="/docs.html">docs</a></li>
+        <li><a href="/docs/0-pages/index.html">index</a></li>
+        <li><a href="/docs/0-pages/3-pages.html">3-pages</a></li>
       </ul>
     </nav>
 
-    <h1>Home</h1>
+    <h1>3-pages</h1>
 
     <nav>
       <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages.html">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second.html">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first.html">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs.html">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
+          <a href="/docs.html">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second.html">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages.html">
+  3-pages
+    (current)
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first.html">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second.html">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
         </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs.html">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second.html">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
     </nav>
   </body>
-</html>
-',
+</html>',
+    data: {
+      basename: "3-pages",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/docs/0-pages/3-pages.html",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs/0-pages/3-pages",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/docs/0-pages/3-pages.html">Previous 3-pages</a>
+      <a href="/docs/0-pages/3-pages/2.second.html">Next 2.second</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/index.html">index</a></li>
+        <li><a href="/docs.html">docs</a></li>
+        <li><a href="/docs/0-pages/index.html">index</a></li>
+        <li><a href="/docs/0-pages/3-pages.html">3-pages</a></li>
+        <li><a href="/docs/0-pages/3-pages/1.first.html">1.first</a></li>
+      </ul>
+    </nav>
+
+    <h1>1.first</h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs.html">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second.html">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages.html">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first.html">
+  1.first
+    (current)
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second.html">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      basename: "1.first",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/docs/0-pages/3-pages/1.first.html",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs/0-pages/3-pages/1.first",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/docs/0-pages/3-pages/1.first.html">Previous 1.first</a>
+      <a href="/docs/0-pages/4-pages/1-pages/1-first.html">Next 1-first</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/index.html">index</a></li>
+        <li><a href="/docs.html">docs</a></li>
+        <li><a href="/docs/0-pages/index.html">index</a></li>
+        <li><a href="/docs/0-pages/3-pages.html">3-pages</a></li>
+        <li><a href="/docs/0-pages/3-pages/2.second.html">2.second</a></li>
+      </ul>
+    </nav>
+
+    <h1>2.second</h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs.html">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second.html">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages.html">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first.html">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second.html">
+  2.second
+    (current)
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      basename: "2.second",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/docs/0-pages/3-pages/2.second.html",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs/0-pages/3-pages/2.second",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/docs/0-pages/3-pages/2.second.html">Previous 2.second</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/index.html">index</a></li>
+        <li><a href="/docs.html">docs</a></li>
+        <li><a href="/docs/0-pages/index.html">index</a></li>
+        <li><a href="">4-pages</a></li>
+        <li><a href="">1-pages</a></li>
+        <li><a href="/docs/0-pages/4-pages/1-pages/1-first.html">1-first</a></li>
+      </ul>
+    </nav>
+
+    <h1>1-first</h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs.html">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second.html">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages.html">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first.html">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second.html">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first.html">
+  1-first
+    (current)
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      basename: "1-first",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/docs/0-pages/4-pages/1-pages/1-first.html",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs/0-pages/4-pages/1-pages/1-first",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/docs/1-about-docs.html">Previous 1-about-docs</a>
+      <a href="/docs/0-pages/1-first.html">Next 1-first</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/index.html">index</a></li>
+        <li><a href="/docs.html">docs</a></li>
+        <li><a href="/docs/0-pages/index.html">index</a></li>
+      </ul>
+    </nav>
+
+    <h1>index</h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs.html">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
+    (current)
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second.html">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages.html">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first.html">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second.html">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
     data: {
       basename: "index",
       children: "",
@@ -1116,69 +2663,124 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Home",
-      url: "/index.html",
+      url: "/docs/0-pages/index.html",
     },
     src: {
-      ext: ".vto",
-      path: "/index",
+      ext: ".md",
+      path: "/docs/0-pages/index",
       remote: undefined,
     },
   },
   {
     content: '<html>
   <head>
-    <title>Docs</title>
+    <title></title>
   </head>
 
   <body>
+      <a href="/docs.html">Previous docs</a>
+      <a href="/docs/0-pages/index.html">Next index</a>
+    <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="">防災</a></li>
-        <li><a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a></li>
+        <li><a href="/index.html">index</a></li>
+        <li><a href="/docs.html">docs</a></li>
+        <li><a href="/docs/1-about-docs.html">1-about-docs</a></li>
       </ul>
     </nav>
 
-    <h1>Docs</h1>
+    <h1>1-about-docs</h1>
 
     <nav>
       <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/pages.html">About pages (0)</a><ul>  <li>
-    <a href="/docs/pages/second.html">Pages second (0)</a>
-  </li>  <li>
-    <a href="/docs/pages/first.html">Pages first (1)</a>
-  </li></ul>
-  </li>  <li>
-    <a href="/docs/about-docs.html">About docs (1)</a>
-  </li></ul>
-        </li>        <li>
-          <strong>防災</strong><ul>  <li>
-    <a href="/%E9%98%B2%E7%81%BD/esolia-bousai-links/">Docs</a>
-  </li></ul>
+          <a href="/docs.html">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+    (current)
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second.html">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages.html">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first.html">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second.html">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
         </li>      </ul>
-    </nav>
-
-    <nav>
-      <ul>        <li>
-          <strong>docs</strong><ul>  <li>
-    <a href="/docs/about-docs.html">About docs (1)</a>
-  </li>  <li>
-    <strong>pages</strong><ul>  <li>
-    <a href="/docs/pages/second.html">Pages second (0)</a>
-  </li></ul>
-  </li></ul>
-        </li>      </ul>
-
-
-        <a href="/docs/pages.html">Previous page</a>
     </nav>
   </body>
-</html>
-',
+</html>',
     data: {
-      basename: "esolia-bousai-links",
+      basename: "1-about-docs",
       children: "",
       content: "",
       date: [],
@@ -1194,12 +2796,140 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      title: "Docs",
-      url: "/%E9%98%B2%E7%81%BD/esolia-bousai-links/",
+      url: "/docs/1-about-docs.html",
     },
     src: {
       ext: ".md",
-      path: "/docs",
+      path: "/docs/1-about-docs",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/docs.html">Next docs</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/index.html">index</a></li>
+      </ul>
+    </nav>
+
+    <h1>index</h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs.html">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second.html">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages.html">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first.html">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second.html">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      basename: "index",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/index.html",
+    },
+    src: {
+      ext: ".vto",
+      path: "/index",
       remote: undefined,
     },
   },

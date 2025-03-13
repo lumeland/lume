@@ -5,6 +5,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.5.3] - 2025-03-13
+### Added
+- `picture` plugin: Support for `<source>` elements.
+  ```html
+  <picture>
+    <source transform-images="webp 800@2" srcset="image.png" media="(min-width: 500px)"></source>
+    <img src="small.png">
+  </picture>
+  ```
+
+### Changed
+- fetch using read.ts: get tokens for `DENO_AUTH_TOKENS` environment variable and add to authorization header if exists [#735].
+
+### Fixed
+- Multiple themes in `prism` and `code_highlight` plugins.
+- `nav` plugin: `nextPage` and `previousPage` didn't work properly.
+- Updated dependencies: `liquidjs`, `preact`, `sass`, `std`, `lightningcss`, `autoprefixer`, `prismjs`, `schema-dts` and some icons.
+- Lume server doesn't work in the local network.
+- `picture` plugin: Improved transformation with multiple sizes and one format.
+
 ## [2.5.2] - 2025-02-19
 ### Added
 - Feed plugin: New option `info.hubs` [#725].
@@ -719,7 +739,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#730]: https://github.com/lumeland/lume/issues/730
 [#731]: https://github.com/lumeland/lume/issues/731
 [#733]: https://github.com/lumeland/lume/issues/733
+[#735]: https://github.com/lumeland/lume/issues/735
 
+[2.5.3]: https://github.com/lumeland/lume/compare/v2.5.2...v2.5.3
 [2.5.2]: https://github.com/lumeland/lume/compare/v2.5.1...v2.5.2
 [2.5.1]: https://github.com/lumeland/lume/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/lumeland/lume/compare/v2.4.3...v2.5.0

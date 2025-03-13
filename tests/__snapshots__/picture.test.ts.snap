@@ -143,16 +143,16 @@ snapshot[`picture plugin 3`] = `
 
   <!-- with sizes -->
   <div>
-    <img src="/kevin%20schmid%20unsplash-600w.png 600w" sizes="600px" srcset="/kevin%20schmid%20unsplash-600w@2.png 1200w">
+    <img src="/kevin%20schmid%20unsplash-600w.png" sizes="600px" srcset="/kevin%20schmid%20unsplash-600w@2.png 1200w">
   </div>
 
 
   <picture>
-    <source srcset="/kevin%20schmid%20unsplash-600w.avif 600w, /kevin%20schmid%20unsplash-600w@2.avif 1200w" type="image/avif" sizes="600px"><source srcset="/kevin%20schmid%20unsplash-600w.webp 600w, /kevin%20schmid%20unsplash-600w@2.webp 1200w" type="image/webp" sizes="600px"><img src="/kevin%20schmid%20unsplash-600w.jpg 600w" sizes="600px" srcset="/kevin%20schmid%20unsplash-600w@2.jpg 1200w">
+    <source srcset="/kevin%20schmid%20unsplash-600w.avif 600w, /kevin%20schmid%20unsplash-600w@2.avif 1200w" type="image/avif" sizes="600px"><source srcset="/kevin%20schmid%20unsplash-600w.webp 600w, /kevin%20schmid%20unsplash-600w@2.webp 1200w" type="image/webp" sizes="600px"><img src="/kevin%20schmid%20unsplash-600w.jpg" sizes="600px" srcset="/kevin%20schmid%20unsplash-600w@2.jpg 1200w">
   </picture>
 
   <!-- This image will be converted to a picture -->
-  <picture><source srcset="/kevin%20schmid%20unsplash-300w.avif 300w, /kevin%20schmid%20unsplash-300w@2.avif 600w" type="image/avif" sizes="600px"><source srcset="/kevin%20schmid%20unsplash-300w.webp 300w, /kevin%20schmid%20unsplash-300w@2.webp 600w" type="image/webp" sizes="600px"><img src="/kevin%20schmid%20unsplash-300w.jpg 300w" sizes="600px" srcset="/kevin%20schmid%20unsplash-300w@2.jpg 600w"></picture>
+  <picture><source srcset="/kevin%20schmid%20unsplash-300w.avif 300w, /kevin%20schmid%20unsplash-300w@2.avif 600w" type="image/avif" sizes="600px"><source srcset="/kevin%20schmid%20unsplash-300w.webp 300w, /kevin%20schmid%20unsplash-300w@2.webp 600w" type="image/webp" sizes="600px"><img src="/kevin%20schmid%20unsplash-300w.jpg" sizes="600px" srcset="/kevin%20schmid%20unsplash-300w@2.jpg 600w"></picture>
 
 
 </body></html>\`,
