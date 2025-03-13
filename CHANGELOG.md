@@ -6,6 +6,15 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [Unreleased]
+### Added
+- `picture` plugin: Support for `<source>` elements.
+  ```html
+  <picture>
+    <source transform-images="webp 800@2" srcset="image.png" media="(min-width: 500px)"></source>
+    <img src="small.png">
+  </picture>
+  ```
+
 ### Changed
 - fetch using read.ts: get tokens for `DENO_AUTH_TOKENS` environment variable and add to authorization header if exists.
 
@@ -14,15 +23,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `nav` plugin: `nextPage` and `previousPage` didn't work properly.
 - Updated dependencies: `liquidjs`, `preact`, `sass`, `std`, `lightningcss`, `autoprefixer`, `prismjs`, `schema-dts` and some icons.
 - Lume server doesn't work in the local network.
-- `picture` plugin:
-  - Improved transformation with multiple sizes and one format.
-  - Added support for `<source>` elements. For example:
-    ```html
-    <picture>
-      <source transform-images="webp 800@2" srcset="image.png" media="(min-width: 500px)"></source>
-      <img src="small.png">
-    </picture>
-    ```
+- `picture` plugin: Improved transformation with multiple sizes and one format.
 
 ## [2.5.2] - 2025-02-19
 ### Added

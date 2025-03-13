@@ -67,15 +67,13 @@ export function picture(userOptions?: Options) {
             throw new Error("source element must have a srcset attribute");
           }
 
-          const picture = img.closest("picture");
-
-          if (picture) {
+          if (img.closest("picture")) {
             if (img.tagName === "SOURCE") {
               handleSource(transformImages, img, basePath);
               continue;
             }
 
-            handlePicture(transformImages, img, picture, basePath);
+            handlePicture(transformImages, img, basePath);
             continue;
           }
 
@@ -137,17 +135,27 @@ export function picture(userOptions?: Options) {
       const sizes = source.getAttribute("sizes");
       const sourceFormats = saveTransform(basePath, src, transformImages);
       const sources = Object.values(sortSources(sourceFormats));
+      const last = sources.pop()!;
 
       for (const sourceFormat of sources) {
-        const srcset = createSrcset(src, sourceFormat, sizes);
-        source.setAttribute("srcset", srcset.join(", "));
+        source.parentElement?.insertBefore(
+          createSource(
+            source.ownerDocument!,
+            src,
+            sourceFormat,
+            { sizes, media: source.getAttribute("media") },
+          ),
+          source,
+        );
       }
+
+      const srcset = createSrcset(src, last, sizes);
+      source.setAttribute("srcset", srcset.join(", "));
     }
 
     function handlePicture(
       transformImages: string,
       img: Element,
-      picture: Element,
       basePath: string,
     ) {
       const src = img.getAttribute("src") as string;
@@ -158,13 +166,15 @@ export function picture(userOptions?: Options) {
       editImg(img, src, sources.pop()!, sizes);
 
       for (const sourceFormat of sources) {
-        const source = createSource(
-          img.ownerDocument!,
-          src,
-          sourceFormat,
-          sizes,
+        img.parentElement?.insertBefore(
+          createSource(
+            img.ownerDocument!,
+            src,
+            sourceFormat,
+            { sizes },
+          ),
+          img,
         );
-        picture.insertBefore(source, img);
       }
     }
 
@@ -195,7 +205,7 @@ export function picture(userOptions?: Options) {
           img.ownerDocument!,
           src,
           sourceFormat,
-          sizes,
+          { sizes },
         );
         picture.append(source);
       }
@@ -370,16 +380,20 @@ function createSource(
   document: Document,
   src: string,
   srcFormats: SourceFormat[],
-  sizes?: string | null | undefined,
+  attributes?: Record<string, string | undefined | null>,
 ) {
   const source = document.createElement("source");
-  const srcset = createSrcset(src, srcFormats, sizes);
+  const srcset = createSrcset(src, srcFormats, attributes?.sizes);
 
   source.setAttribute("srcset", srcset.join(", "));
   source.setAttribute("type", contentType(srcFormats[0].format) || "");
 
-  if (sizes) {
-    source.setAttribute("sizes", sizes);
+  if (attributes) {
+    for (const [key, value] of Object.entries(attributes)) {
+      if (value !== undefined && value !== null) {
+        source.setAttribute(key, value);
+      }
+    }
   }
 
   return source;
