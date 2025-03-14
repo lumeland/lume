@@ -63,6 +63,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Page generators can define the basename instead of the full URL to modify only the last part of the URL.
 - Moved the date extration from the file paths to the `extract_date` plugin.
 - `google_fonts`: renamed `folder` option to `fontsFolder`.
+- `redirects` middleware: `strict` option is false by default.
 
 ### Fixed
 - The resolution of npm and jsr specifiers by esbuild plugin have been improved.
