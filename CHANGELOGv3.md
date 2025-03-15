@@ -67,5 +67,6 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - The resolution of npm and jsr specifiers by esbuild plugin have been improved.
+- `favicon` plugin: Don't crash if the input file is missing #740.
 - Merging of multilanguage variables.
 - Parsing the escaped URLs in CSS files. 
