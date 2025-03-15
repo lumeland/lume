@@ -2,6 +2,7 @@ import { posix } from "../deps/path.ts";
 import { getPathAndExtension } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { contentType } from "../deps/media_types.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 
@@ -52,10 +53,16 @@ export function picture(userOptions?: Options) {
           }
 
           if (img.tagName === "IMG" && !img.getAttribute("src")) {
-            throw new Error("img element must have a src attribute");
+            log.warn(
+              `[picture plugin] <img> element must have a src attribute (${page.sourcePath})`,
+            );
+            continue;
           }
           if (img.tagName === "SOURCE" && !img.getAttribute("srcset")) {
-            throw new Error("source element must have a srcset attribute");
+            log.warn(
+              `[picture plugin] <source> element must have a srcset attribute (${page.sourcePath})`,
+            );
+            continue;
           }
 
           if (img.closest("picture")) {

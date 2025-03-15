@@ -1,4 +1,5 @@
 import { parseDate } from "../core/utils/date.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import { merge } from "../core/utils/object.ts";
@@ -59,14 +60,12 @@ export function parseDateFromBasename(
         `${year}-${month}-${day} ${hour}:${minute}:${second}`,
       );
 
-      return {
-        date,
-        basename,
-      };
+      return { date, basename };
     } catch {
-      throw new Error(
+      log.warn(
         `Invalid date: ${basename} (${year}-${month}-${day} ${hour}:${minute}:${second})`,
       );
+      return { basename };
     }
   }
 }

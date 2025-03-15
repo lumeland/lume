@@ -87,8 +87,8 @@ export function inline(userOptions?: Options) {
 
       const content = await getFileContent(site, url, asDataUrl);
 
-      // Return the raw content
-      if (!asDataUrl) {
+      // Return the raw content or undefined if the file is not found
+      if (!asDataUrl || !content) {
         return content;
       }
 
@@ -231,11 +231,11 @@ async function getFileContent(
   site: Site,
   url: string,
   binary: boolean,
-): Promise<string | Uint8Array> {
+): Promise<string | Uint8Array | undefined> {
   const content = await site.getContent(url, binary);
 
   if (!content) {
-    throw new Error(`Unable to find the file "${url}"`);
+    log.warn(`[Inline plugin] Unable to find the file "${url}"`);
   }
 
   return content;

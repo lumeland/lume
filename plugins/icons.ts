@@ -2,6 +2,7 @@ import { catalogs } from "../deps/icons.ts";
 import { readFile } from "../core/utils/read.ts";
 import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import type { Catalog, Variant } from "../deps/icons.ts";
@@ -30,7 +31,8 @@ export function icons(userOptions?: Options) {
       const catalog = options.catalogs.find((c) => c.id === catalogId);
 
       if (!catalog) {
-        throw new Error(`Catalog "${catalogId}" not found`);
+        log.warn(`[icons plugin] Catalog "${catalogId}" not found`);
+        return key;
       }
 
       const [name, variant] = getNameAndVariant(catalog, key, rest);
@@ -73,18 +75,17 @@ function getNameAndVariant(
 
   if (!variant) {
     if (catalog.variants) { // Returns the first variant
-      const first = catalog.variants[0];
-      return [
-        name,
-        typeof first === "string" ? { id: first, path: first } : first,
-      ];
+      return [name, getVariant(catalog.variants[0])];
     }
 
     return [name, undefined];
   }
 
   if (!catalog.variants) {
-    throw new Error(`Catalog "${catalog.id}" does not support variants`);
+    log.warn(
+      `[icons plugin] Catalog "${catalog.id}" does not support variants`,
+    );
+    return [name, undefined];
   }
 
   const found = catalog.variants.find((v) => {
@@ -92,15 +93,13 @@ function getNameAndVariant(
   });
 
   if (!found) {
-    throw new Error(
-      `Variant "${variant}" not found in catalog "${catalog.id}"`,
+    log.warn(
+      `[icons plugin] Variant "${variant}" not found in catalog "${catalog.id}"`,
     );
+    return [name, getVariant(catalog.variants[0])];
   }
 
-  return [
-    name,
-    typeof found === "string" ? { id: found, path: found } : found,
-  ];
+  return [name, getVariant(found)];
 }
 
 function iconUrl(catalog: Catalog, name: string, variant?: Variant): string {
@@ -112,4 +111,14 @@ function iconUrl(catalog: Catalog, name: string, variant?: Variant): string {
     "{variant}",
     variant ? variant.path : "",
   );
+}
+
+function getVariant(
+  variant: string | Variant | undefined,
+): Variant | undefined {
+  if (!variant) {
+    return undefined;
+  }
+
+  return typeof variant === "string" ? { id: variant, path: variant } : variant;
 }
