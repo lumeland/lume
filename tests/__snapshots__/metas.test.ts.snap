@@ -6,32 +6,32 @@ snapshot[`metas plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`metas plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`metas plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,18 @@ snapshot[`metas plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
+    },
+    {
+      ext: ".html",
     },
   ],
   src: [
@@ -176,14 +179,13 @@ snapshot[`metas plugin 3`] = `
         "twitter",
         "lang",
         "color",
-        "generator",
         "twitter:label1",
         "twitter:data1",
+        "generator",
       ],
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -191,7 +193,6 @@ snapshot[`metas plugin 3`] = `
       url: "/page-1/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page-1",
       remote: undefined,
@@ -213,7 +214,7 @@ snapshot[`metas plugin 3`] = `
 <meta name="keywords" content="one, two">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="theme-color" content="black">
-<meta name="generator" content="Lume testing">
+<meta name="generator" content="Lume">
 <meta name="twitter:label1" content="Reading time">
 <meta name="twitter:data1" content="1 minute">
 <meta name="article:published_time" content="2025-06-21T23:45:00.000Z">
@@ -261,7 +262,6 @@ snapshot[`metas plugin 3`] = `
         "twitter",
         "lang",
         "color",
-        "generator",
         "twitter:label1",
         "twitter:data1",
         "article:published_time",
@@ -273,7 +273,6 @@ snapshot[`metas plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -281,7 +280,6 @@ snapshot[`metas plugin 3`] = `
       url: "/page-2/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page-2",
       remote: undefined,
@@ -303,7 +301,7 @@ snapshot[`metas plugin 3`] = `
 <meta name="keywords" content="one, two">
 <meta name="robots" content="this robots will be overrided">
 <meta name="theme-color" content="black">
-<meta name="generator" content="Lume testing">
+<meta name="generator" content="Lume">
 <meta name="twitter:label1" content="Reading time">
 <meta name="twitter:data1" content="1 minute">
 </head><body><p>This is page excerpt will be used as meta description.</p>
@@ -341,7 +339,6 @@ snapshot[`metas plugin 3`] = `
         "twitter",
         "lang",
         "color",
-        "generator",
         "twitter:label1",
         "twitter:data1",
         "fediverse",
@@ -349,7 +346,6 @@ snapshot[`metas plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       robots: "this robots will be overrided",
@@ -358,7 +354,6 @@ snapshot[`metas plugin 3`] = `
       url: "/page-3/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page-3",
       remote: undefined,

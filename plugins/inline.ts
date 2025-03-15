@@ -4,28 +4,18 @@ import { encodeBase64 } from "../deps/base64.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
-import binaryLoader from "../core/loaders/binary.ts";
-import textLoader from "../core/loaders/text.ts";
 import { contentType } from "../deps/media_types.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
-  /** Attribute used to select the elements this plugin applies to */
-  attribute?: string;
-
   /** List of extra attributes to copy if replacing the element */
   copyAttributes?: (string | RegExp)[];
 }
 
 // Default options
 export const defaults: Options = {
-  extensions: [".html"],
-  attribute: "inline",
   copyAttributes: [/^data-/],
 };
 
@@ -40,26 +30,26 @@ export function inline(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(options.extensions, (pages) => concurrent(pages, inline));
+    site.process([".html"], (pages) => concurrent(pages, inline));
 
     site.addEventListener("beforeUpdate", () => cache.clear());
 
-    const selector = `[${options.attribute}]`;
+    const selector = `[inline]`;
 
     async function inline(page: Page) {
       const templateElements = Array.from(
-        page.document!.querySelectorAll("template"),
+        page.document.querySelectorAll("template"),
       ).flatMap((template) =>
         Array.from(template.content.querySelectorAll(selector))
       );
       for (
         const element of [
-          ...Array.from(page.document!.querySelectorAll(selector)),
+          ...Array.from(page.document.querySelectorAll(selector)),
           ...templateElements,
         ]
       ) {
         await runInline(page.data.url, element);
-        element.removeAttribute(options.attribute);
+        element.removeAttribute("inline");
       }
     }
 
@@ -97,8 +87,8 @@ export function inline(userOptions?: Options) {
 
       const content = await getFileContent(site, url, asDataUrl);
 
-      // Return the raw content
-      if (!asDataUrl) {
+      // Return the raw content or undefined if the file is not found
+      if (!asDataUrl || !content) {
         return content;
       }
 
@@ -241,12 +231,11 @@ async function getFileContent(
   site: Site,
   url: string,
   binary: boolean,
-): Promise<string | Uint8Array> {
-  const loader = binary ? binaryLoader : textLoader;
-  const content = await site.getContent(url, loader);
+): Promise<string | Uint8Array | undefined> {
+  const content = await site.getContent(url, binary);
 
   if (!content) {
-    throw new Error(`Unable to find the file "${url}"`);
+    log.warn(`[Inline plugin] Unable to find the file "${url}"`);
   }
 
   return content;

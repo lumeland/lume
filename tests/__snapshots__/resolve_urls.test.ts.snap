@@ -6,32 +6,32 @@ snapshot[`relative_url plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`relative_url plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`relative_url plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,18 @@ snapshot[`relative_url plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
+    },
+    {
+      ext: ".html",
     },
   ],
   src: [
@@ -121,11 +124,6 @@ snapshot[`relative_url plugin 1`] = `
 snapshot[`relative_url plugin 2`] = `
 [
   {
-    entry: "/statics/asset.md",
-    flags: [],
-    outputPath: "/asset.md",
-  },
-  {
     entry: "/statics/robots.txt",
     flags: [],
     outputPath: "/robots.txt",
@@ -144,7 +142,7 @@ snapshot[`relative_url plugin 3`] = `
 <a href="/">Go to index</a></p>
 </body></html>',
     data: {
-      basename: "article-1",
+      basename: "first-article",
       children: '<!-- deno-fmt-ignore-file -->
 <p>First article</p>
 <p><a href="./article-2.md">Go to second</a>
@@ -167,7 +165,6 @@ First article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -175,9 +172,79 @@ First article
       url: "/articles/first-article/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/articles/article-1",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html><head></head><body><p>Third article</p>
+<p><a href="/drafts/second-article/">Go to second</a>
+<a href="/other/">Go to other</a>
+<a href="/">Go to index</a></p>
+</body></html>',
+    data: {
+      basename: "third-article",
+      children: '<!-- deno-fmt-ignore-file -->
+<p>Third article</p>
+<p><a href="./article-2.md">Go to second</a>
+<a href="../other.md">Go to other</a>
+<a href="/index.md">Go to index</a></p>
+',
+      content: "<!-- deno-fmt-ignore-file -->
+
+Third article
+
+[Go to second](./article-2.md)
+[Go to other](../other.md)
+[Go to index](/index.md)
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/third-article/",
+    },
+    src: {
+      ext: ".md",
+      path: "/articles/article-3",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<html><head></head><body><p>This file is a page.</p>
+</body></html>",
+    data: {
+      basename: "asset",
+      children: "<p>This file is a page.</p>
+",
+      content: "This file is a page.
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/asset/",
+    },
+    src: {
+      ext: ".md",
+      path: "/statics/asset",
       remote: undefined,
     },
   },
@@ -190,7 +257,7 @@ First article
 <a href="/">Go to index</a></p>
 </body></html>',
     data: {
-      basename: "article-2",
+      basename: "second-article",
       children: '<!-- deno-fmt-ignore-file -->
 <p>Second article</p>
 <p><a href="article-1.md">Go to first</a>
@@ -213,7 +280,6 @@ Second article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -221,53 +287,8 @@ Second article
       url: "/drafts/second-article/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/articles/article-2",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<!DOCTYPE html>
-<html><head></head><body><p>Third article</p>
-<p><a href="/drafts/second-article/">Go to second</a>
-<a href="/other/">Go to other</a>
-<a href="/">Go to index</a></p>
-</body></html>',
-    data: {
-      basename: "article-3",
-      children: '<!-- deno-fmt-ignore-file -->
-<p>Third article</p>
-<p><a href="./article-2.md">Go to second</a>
-<a href="../other.md">Go to other</a>
-<a href="/index.md">Go to index</a></p>
-',
-      content: "<!-- deno-fmt-ignore-file -->
-
-Third article
-
-[Go to second](./article-2.md)
-[Go to other](../other.md)
-[Go to index](/index.md)
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/third-article/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/articles/article-3",
       remote: undefined,
     },
   },
@@ -287,10 +308,10 @@ Third article
 <a href="/robots.txt">url</a>
 <a href="/tilde-and-ene/">url</a>
 <a href="robots.txt">static-file</a>
-<a href="/asset.md">static-file</a></p>
+<a href="/asset/">static-file</a></p>
 </body></html>',
     data: {
-      basename: "index",
+      basename: "",
       children: '<!-- deno-fmt-ignore-file -->
 <p><a href="/bar">url</a>
 <a href="foo">url</a>
@@ -332,7 +353,6 @@ Third article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -340,7 +360,6 @@ Third article
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -367,7 +386,6 @@ Third article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -375,7 +393,6 @@ Third article
       url: "/other/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/other",
       remote: undefined,
@@ -386,7 +403,7 @@ Third article
 <html><head></head><body><p>Tilde and eñe</p>
 </body></html>",
     data: {
-      basename: "tílde-and-eñe",
+      basename: "tilde-and-ene",
       children: "<p>Tilde and eñe</p>
 ",
       content: "Tilde and eñe
@@ -398,7 +415,6 @@ Third article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -406,7 +422,6 @@ Third article
       url: "/tilde-and-ene/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/tílde-and-eñe",
       remote: undefined,
@@ -421,32 +436,32 @@ snapshot[`relative_url plugin (without slugify) 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -463,14 +478,14 @@ snapshot[`relative_url plugin (without slugify) 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -487,14 +502,14 @@ snapshot[`relative_url plugin (without slugify) 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -506,15 +521,18 @@ snapshot[`relative_url plugin (without slugify) 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
+    },
+    {
+      ext: ".html",
     },
   ],
   src: [
@@ -536,11 +554,6 @@ snapshot[`relative_url plugin (without slugify) 1`] = `
 snapshot[`relative_url plugin (without slugify) 2`] = `
 [
   {
-    entry: "/statics/asset.md",
-    flags: [],
-    outputPath: "/asset.md",
-  },
-  {
     entry: "/statics/robots.txt",
     flags: [],
     outputPath: "/robots.txt",
@@ -559,7 +572,7 @@ snapshot[`relative_url plugin (without slugify) 3`] = `
 <a href="/">Go to index</a></p>
 </body></html>',
     data: {
-      basename: "article-1",
+      basename: "first-article",
       children: '<!-- deno-fmt-ignore-file -->
 <p>First article</p>
 <p><a href="./article-2.md">Go to second</a>
@@ -582,7 +595,6 @@ First article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -590,9 +602,79 @@ First article
       url: "/articles/first-article/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/articles/article-1",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html><head></head><body><p>Third article</p>
+<p><a href="/drafts/second-article/">Go to second</a>
+<a href="/other/">Go to other</a>
+<a href="/">Go to index</a></p>
+</body></html>',
+    data: {
+      basename: "third%20article",
+      children: '<!-- deno-fmt-ignore-file -->
+<p>Third article</p>
+<p><a href="./article-2.md">Go to second</a>
+<a href="../other.md">Go to other</a>
+<a href="/index.md">Go to index</a></p>
+',
+      content: "<!-- deno-fmt-ignore-file -->
+
+Third article
+
+[Go to second](./article-2.md)
+[Go to other](../other.md)
+[Go to index](/index.md)
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/third%20article/",
+    },
+    src: {
+      ext: ".md",
+      path: "/articles/article-3",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<html><head></head><body><p>This file is a page.</p>
+</body></html>",
+    data: {
+      basename: "asset",
+      children: "<p>This file is a page.</p>
+",
+      content: "This file is a page.
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/asset/",
+    },
+    src: {
+      ext: ".md",
+      path: "/statics/asset",
       remote: undefined,
     },
   },
@@ -605,7 +687,7 @@ First article
 <a href="/">Go to index</a></p>
 </body></html>',
     data: {
-      basename: "article-2",
+      basename: "second-article",
       children: '<!-- deno-fmt-ignore-file -->
 <p>Second article</p>
 <p><a href="article-1.md">Go to first</a>
@@ -628,7 +710,6 @@ Second article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -636,53 +717,8 @@ Second article
       url: "/drafts/second-article/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/articles/article-2",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<!DOCTYPE html>
-<html><head></head><body><p>Third article</p>
-<p><a href="/drafts/second-article/">Go to second</a>
-<a href="/other/">Go to other</a>
-<a href="/">Go to index</a></p>
-</body></html>',
-    data: {
-      basename: "article-3",
-      children: '<!-- deno-fmt-ignore-file -->
-<p>Third article</p>
-<p><a href="./article-2.md">Go to second</a>
-<a href="../other.md">Go to other</a>
-<a href="/index.md">Go to index</a></p>
-',
-      content: "<!-- deno-fmt-ignore-file -->
-
-Third article
-
-[Go to second](./article-2.md)
-[Go to other](../other.md)
-[Go to index](/index.md)
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/third%20article/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/articles/article-3",
       remote: undefined,
     },
   },
@@ -702,10 +738,10 @@ Third article
 <a href="/robots.txt">url</a>
 <a href="/tílde-and-eñe/">url</a>
 <a href="robots.txt">static-file</a>
-<a href="/asset.md">static-file</a></p>
+<a href="/asset/">static-file</a></p>
 </body></html>',
     data: {
-      basename: "index",
+      basename: "",
       children: '<!-- deno-fmt-ignore-file -->
 <p><a href="/bar">url</a>
 <a href="foo">url</a>
@@ -747,7 +783,6 @@ Third article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -755,7 +790,6 @@ Third article
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -782,7 +816,6 @@ Third article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -790,7 +823,6 @@ Third article
       url: "/other/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/other",
       remote: undefined,
@@ -813,7 +845,6 @@ Third article
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -821,7 +852,6 @@ Third article
       url: "/tílde-and-eñe/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/tílde-and-eñe",
       remote: undefined,

@@ -1,8 +1,8 @@
 import { assert, assertEquals, assertStrictEquals } from "../deps/assert.ts";
 
-import binaryLoader from "../core/loaders/binary.ts";
 import textLoader from "../core/loaders/text.ts";
 import { assertSiteSnapshot, build, getPage, getSite } from "./utils.ts";
+import extractDate from "../plugins/extract_date.ts";
 
 Deno.test("Load the pages of a site", async (t) => {
   Deno.env.set("LUME_DRAFTS", "true");
@@ -10,9 +10,8 @@ Deno.test("Load the pages of a site", async (t) => {
     src: "normal",
   });
 
-  site.loadAssets([".png"], binaryLoader);
-  site.copy("static.yml");
-  site.loadAssets([".css"]);
+  site.add([".png", ".css"]);
+  site.add("static.yml");
   site.data("tags", "pages");
   site.data("tags", "sub-pages", "/pages");
   site.data("title", "Page 7", "/pages/subpage/page7.page.js");
@@ -36,11 +35,13 @@ Deno.test("ignored draft pages on dev=false", async () => {
     src: "normal",
   });
 
-  site.copy("static.yml");
+  // This file is loaded even if it's copied because it's a known extension
+  site.add("static.yml");
+  site.use(extractDate());
 
   await build(site);
 
-  assertStrictEquals(site.pages.length, 7);
+  assertStrictEquals(site.pages.length, 8);
 });
 
 Deno.test("textLoader with frontmatter containing just a comment", async () => {

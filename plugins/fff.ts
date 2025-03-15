@@ -12,8 +12,6 @@ import {
 } from "../deps/fff.ts";
 
 export interface Options {
-  /** The list extensions this plugin applies to */
-  extensions: string[];
   /**
    * The list of presets to apply
    * @see https://fff.js.org/concepts/flavor-transform.html#fff-transform-preset
@@ -29,7 +27,6 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
-  extensions: [".html"],
   presets: [],
   strict: false,
 };
@@ -42,7 +39,7 @@ export function fff(userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.preprocess(options.extensions, (pages) =>
+    site.preprocess([".html"], (pages) =>
       pages.forEach((page) => {
         if (options.getGitDate && page.src.entry) {
           if (!page.data.created) {

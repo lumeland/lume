@@ -1,10 +1,14 @@
 import { posix } from "../deps/path.ts";
 import { documentToString, stringToDocument } from "./utils/dom.ts";
+import binaryLoader from "./loaders/binary.ts";
+import { decodeURIComponentSafe } from "./utils/path.ts";
 
 import type { MergeStrategy } from "./utils/merge_data.ts";
 import type { ProxyComponents } from "./source.ts";
 import type { Entry } from "./fs.ts";
-import { decodeURIComponentSafe } from "./utils/path.ts";
+
+const decoder = new TextDecoder();
+const encoder = new TextEncoder();
 
 /** A page of the site */
 export class Page<D extends Data = Data> {
@@ -13,9 +17,6 @@ export class Page<D extends Data = Data> {
 
   /** Used to save the page data */
   data: D = {} as D;
-
-  /** If the page is an asset or not */
-  asset = true;
 
   /**
    * Internal data. Used to save arbitrary data by plugins and processors
@@ -29,10 +30,13 @@ export class Page<D extends Data = Data> {
   #document?: Document;
 
   /** Convenient way to create a page dynamically */
-  static create(data: Partial<Data> & { url: string }): Page {
+  static create(
+    data: Partial<Data> & { url: string },
+    src?: Partial<Src>,
+  ): Page {
     let { url, ...rest } = data;
     const basename = posix.basename(url).replace(/\.[\w.]+$/, "");
-    const page = new Page();
+    const page = new Page(src);
 
     if (url.endsWith("/index.html")) {
       url = url.slice(0, -10);
@@ -63,7 +67,6 @@ export class Page<D extends Data = Data> {
   /** Duplicate this page. */
   duplicate(index: number | undefined, data: D): Page<D> {
     const page = new Page<D>({ ...this.src });
-    page.asset = this.asset;
 
     if (index !== undefined) {
       page.src.path += `[${index}]`;
@@ -108,34 +111,79 @@ export class Page<D extends Data = Data> {
     return this.#content;
   }
 
+  /** The content of this page as text */
+  get text(): string {
+    return this.content instanceof Uint8Array
+      ? decoder.decode(this.content)
+      : this.content ?? "";
+  }
+
+  set text(text: string) {
+    this.content = text;
+  }
+
+  /** The content of this page as bytes */
+  get bytes(): Uint8Array {
+    return this.content instanceof Uint8Array
+      ? this.content
+      : encoder.encode(this.content || "");
+  }
+
+  set bytes(bytes: Uint8Array) {
+    this.content = bytes;
+  }
+
   /** The parsed HTML code from the content */
-  set document(document: Document | undefined) {
+  set document(document: Document) {
     this.#content = undefined;
     this.#document = document;
   }
 
-  get document(): Document | undefined {
-    if (this.#document) {
-      return this.#document;
-    }
-
-    const url = this.outputPath;
-
-    if (this.#content && url.endsWith(".html")) {
-      this.#document = stringToDocument(this.#content.toString());
+  get document(): Document {
+    if (!this.#document) {
+      this.#document = stringToDocument(this.text);
     }
 
     return this.#document;
   }
 }
 
-export class StaticFile {
-  outputPath: string;
+export class StaticFile<D extends Data = Data> {
   src: Required<Src>;
+  data: D = {} as D;
 
-  constructor(outputPath: string, src: Required<Src>) {
-    this.outputPath = outputPath;
+  static create(
+    data: Partial<Data> & { url: string },
+    src: Required<Src>,
+  ): StaticFile {
+    const file = new StaticFile(src);
+    file.data = { ...data } as Data;
+    return file;
+  }
+
+  constructor(src: Required<Src>) {
     this.src = src;
+  }
+
+  async toPage(): Promise<Page> {
+    const { content } = await this.src.entry.getContent(binaryLoader);
+    const page = Page.create(this.data, this.src);
+    page.content = content as Uint8Array;
+    return page;
+  }
+
+  /** Returns the output path of this page */
+  get outputPath(): string {
+    return decodeURIComponentSafe(this.data.url);
+  }
+
+  /** Returns the source path of this page */
+  get sourcePath(): string {
+    if (!this.src.path) {
+      return "(generated)";
+    }
+
+    return this.src.path + this.src.ext;
   }
 }
 
@@ -185,9 +233,6 @@ export interface RawData {
 
   /** To configure how some data keys will be merged with the parent */
   mergedKeys?: Record<string, MergeStrategy>;
-
-  /** Whether render this page on demand or not */
-  onDemand?: boolean;
 
   // deno-lint-ignore no-explicit-any
   [index: string]: any;

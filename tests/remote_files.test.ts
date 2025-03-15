@@ -11,7 +11,7 @@ Deno.test("render remote files", {
   const site = getSite({
     src: "remote_files",
   });
-  site.copy("asset.txt");
+  site.add("asset.txt");
   site.use(postcss());
   site.use(sass());
   site.use(esbuild());
@@ -24,8 +24,10 @@ Deno.test("render remote files", {
     "_includes/templates/remote-template2.njk",
     new URL("./remote-template2.njk", base).href,
   );
-  site.remoteFile("asset.txt", new URL("./asset.txt", base).href);
-  site.remoteFile("styles2.css", new URL("./styles2.css", base).href);
+  site.add(new URL("./asset.txt", base).href, "asset.txt");
+  site.add(new URL("./styles2.css", base).href);
+  site.add(new URL("./styles2.css", base).href, "/styles/");
+  site.add("npm:normalize.css@8.0.1/normalize.css");
   site.remoteFile(
     "_includes/remote-style.css",
     new URL("./remote-style.css", base).href,
@@ -34,6 +36,7 @@ Deno.test("render remote files", {
     "other-remote-style.css",
     new URL("./other-remote-style.css", base).href,
   );
+  site.add([".css", ".scss"]);
   site.remoteFile("_data.yml", new URL("./_data.yml", base).href);
   site.remoteFile("_includes/hello.js", new URL("./hello.js", base).href);
   site.remoteFile(

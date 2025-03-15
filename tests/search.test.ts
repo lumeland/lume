@@ -1,6 +1,7 @@
 import { build, getSite } from "./utils.ts";
 import { assertSnapshot } from "../deps/snapshot.ts";
 import { buildFilter, buildSort } from "../core/searcher.ts";
+import extractDate from "../plugins/extract_date.ts";
 
 Deno.test("Search by Tags", async (t) => {
   const filter = buildFilter("foo bar");
@@ -199,8 +200,8 @@ Deno.test("Test the file searcher", async (t) => {
     src: "normal",
   });
 
-  site.loadAssets([".css"]);
-  site.copy([".png"]);
+  site.add([".png", ".css"]);
+  site.use(extractDate());
 
   await build(site);
 
