@@ -21,11 +21,11 @@ export interface Options {
    * The options for Satori to generate the SVG image.
    * @see https://github.com/vercel/satori
    */
-  satori?: Partial<SatoriOptions>;
+  options?: Partial<SatoriOptions>;
 }
 
 export const defaults: Options = {
-  satori: {
+  options: {
     width: 1200,
     height: 600,
     fonts: [],
@@ -42,7 +42,7 @@ export function ogImages(userOptions?: Options) {
       { ...defaults, includes: site.options.includes },
       userOptions,
     );
-    const satoriOptions = options.satori as SatoriOptions;
+    const satoriOptions = options.options as SatoriOptions;
 
     // Configure the cache folder
     const cache = createCache(site.root("_cache"));
