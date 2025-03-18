@@ -209,6 +209,17 @@ export const catalogs: Catalog[] = [
       "https://cdn.jsdelivr.net/npm/fontawesome-free-icons@1.0.0/icons/{variant}/{name}.svg",
     variants: ["regular", "solid", "brands"],
   },
+  {
+    // https://css.gg/
+    id: "cssgg",
+    src: "https://cdn.jsdelivr.net/npm/css.gg@2.1.4/icons/svg/{name}.svg",
+  },
+  {
+    // https://www.radix-ui.com/icons
+    id: "radix",
+    src:
+      "https://cdn.jsdelivr.net/gh/radix-ui/icons@bde33b13aa5848555f5512ac12155930fb4beb7d/packages/radix-icons/icons/{name}.svg",
+  },
 ];
 
 function capitalize(s: string) {

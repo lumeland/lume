@@ -21,6 +21,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New data merging strategy named `data`, used by the multilanguage plugin.
 - `slugify_urls` plugin: new `transliterate` option to define a different library per language.
 - `katex`: `cssFile`, `placeholder` and `fontsFolder` option. The plugin downloads the CSS code.
+- `icons` plugin: Added css.gg and radix-ui.com/icons #736
 
 ### Removed
 - `jsx_preact` plugin. Use `jsx` instead.
