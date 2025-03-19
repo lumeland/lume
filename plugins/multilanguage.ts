@@ -6,6 +6,7 @@ import { filter404page } from "../core/utils/page_url.ts";
 
 import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
+import { isGenerator } from "../core/utils/generator.ts";
 
 export interface Options {
   /** Available languages */
@@ -32,6 +33,36 @@ export function multilanguage(userOptions: Options) {
 
     // Configure the merged keys
     options.languages.forEach((lang) => site.mergeKey(lang, "data"));
+
+    // Event to handle generators before being preprocessed
+    site.addEventListener("beforeRender", ({ pages }) => {
+      const removedPages: Page[] = [];
+      const newPages: Page[] = [];
+
+      for (const page of pages) {
+        if (!isGenerator(page.data.content)) {
+          continue;
+        }
+
+        const languages = page.data.lang as string | string[] | undefined;
+        if (!Array.isArray(languages)) {
+          continue;
+        }
+
+        // Create a new page per language
+        for (const lang of languages) {
+          const newData: Data = { ...page.data, lang };
+          const newPage = page.duplicate(undefined, newData);
+          newPages.push(newPage);
+        }
+
+        removedPages.push(page);
+      }
+
+      // Replace the current pages with the multiple language versions
+      pages.push(...newPages);
+      removedPages.forEach((page) => pages.splice(pages.indexOf(page), 1));
+    });
 
     /**
      * Preprocessor to setup multilanguage pages

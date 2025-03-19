@@ -67,6 +67,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `google_fonts`: renamed `folder` option to `fontsFolder`.
 - `og_images`: renamed `satori` option to `options`.
 - `redirects` middleware: `strict` option is false by default.
+- `multilanguage` plugin: Now it can handle generator pages with an array of languages.
 
 ### Fixed
 - The resolution of npm and jsr specifiers by esbuild plugin have been improved.
