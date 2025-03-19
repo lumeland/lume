@@ -22,6 +22,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `slugify_urls` plugin: new `transliterate` option to define a different library per language.
 - `katex`: `cssFile`, `placeholder` and `fontsFolder` option. The plugin downloads the CSS code.
 - `icons` plugin: Added css.gg and radix-ui.com/icons #736
+- `feed` plugin: Allow to pass an array of options or a function that return an array of options.
 
 ### Removed
 - `jsx_preact` plugin. Use `jsx` instead.

@@ -272,3 +272,370 @@ snapshot[`RSS plugin 3`] = `
   },
 ]
 `;
+
+snapshot[`RSS plugin with array function 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      isPage: true,
+      loader: [AsyncFunction: toml],
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/404.md",
+    "/page1.md",
+    "/page5.yaml",
+    "/static.yml",
+  ],
+}
+`;
+
+snapshot[`RSS plugin with array function 2`] = `[]`;
+
+snapshot[`RSS plugin with array function 3`] = `
+[
+  {
+    content: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+",
+    data: {
+      basename: "404",
+      children: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+",
+      content: "This page is exported to \`/404.html\`, not \`/404/index.html\`
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/404.html",
+    },
+    src: {
+      ext: ".md",
+      path: "/404",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<!DOCTYPE html>
+<html><head></head><body>Content of Page 5</body></html>",
+    data: {
+      author: [
+        "name",
+        "url",
+      ],
+      basename: "page5",
+      children: "Content of Page 5",
+      content: "Content of Page 5",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      published: "1979-06-21T23:45:00.000Z",
+      search: [],
+      tags: "Array(0)",
+      title: "Page **5**",
+      url: "/page5/",
+    },
+    src: {
+      ext: ".yaml",
+      path: "/page5",
+      remote: undefined,
+    },
+  },
+  {
+    content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed1.json","hubs":[{"type":"WebSub","feed_url":"https://example.com/hub1"},{"type":"WebSub","feed_url":"https://example.com/hub2"}],"author":{"name":"Laura Rubio"},"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","author":{"name":"Óscar","url":"https://oscarotero.com"},"content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
+    data: {
+      basename: "feed1",
+      content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed1.json","hubs":[{"type":"WebSub","feed_url":"https://example.com/hub1"},{"type":"WebSub","feed_url":"https://example.com/hub2"}],"author":{"name":"Laura Rubio"},"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","author":{"name":"Óscar","url":"https://oscarotero.com"},"content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
+      page: [
+        "src",
+        "data",
+      ],
+      url: "feed1.json",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:webfeeds="http://webfeeds.org/rss/1.0" version="2.0">
+  <channel>
+    <title>My RSS Feed</title>
+    <link>https://example.com/</link>
+    <atom:link href="https://example.com/feed1.rss" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://example.com/hub1" rel="hub"/>
+    <atom:link href="https://example.com/hub2" rel="hub"/>
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
+    <language>en</language>
+    <generator>https://lume.land</generator>
+    <author>
+      <name>Laura Rubio</name>
+    </author>
+    <webfeeds:cover image="https://example.com/image.png"/>
+    <webfeeds:logo>https://example.com/icon.svg</webfeeds:logo>
+    <webfeeds:accentColor>#ff0000</webfeeds:accentColor>
+    <item>
+      <title>PAGE 5</title>
+      <link>https://example.com/page5/</link>
+      <guid isPermaLink="false">https://example.com/page5/</guid>
+      <author>
+        <name>Óscar</name>
+        <uri>https://oscarotero.com</uri>
+      </author>
+      <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
+      <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
+    </item>
+  </channel>
+</rss>',
+    data: {
+      basename: "feed1",
+      content: '<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:webfeeds="http://webfeeds.org/rss/1.0" version="2.0">
+  <channel>
+    <title>My RSS Feed</title>
+    <link>https://example.com/</link>
+    <atom:link href="https://example.com/feed1.rss" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://example.com/hub1" rel="hub"/>
+    <atom:link href="https://example.com/hub2" rel="hub"/>
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
+    <language>en</language>
+    <generator>https://lume.land</generator>
+    <author>
+      <name>Laura Rubio</name>
+    </author>
+    <webfeeds:cover image="https://example.com/image.png"/>
+    <webfeeds:logo>https://example.com/icon.svg</webfeeds:logo>
+    <webfeeds:accentColor>#ff0000</webfeeds:accentColor>
+    <item>
+      <title>PAGE 5</title>
+      <link>https://example.com/page5/</link>
+      <guid isPermaLink="false">https://example.com/page5/</guid>
+      <author>
+        <name>Óscar</name>
+        <uri>https://oscarotero.com</uri>
+      </author>
+      <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
+      <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
+    </item>
+  </channel>
+</rss>',
+      page: [
+        "src",
+        "data",
+      ],
+      url: "feed1.rss",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed2.json","hubs":[{"type":"WebSub","feed_url":"https://example.com/hub1"},{"type":"WebSub","feed_url":"https://example.com/hub2"}],"author":{"name":"Laura Rubio"},"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","author":{"name":"Óscar","url":"https://oscarotero.com"},"content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
+    data: {
+      basename: "feed2",
+      content: '{"version":"https://jsonfeed.org/version/1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed2.json","hubs":[{"type":"WebSub","feed_url":"https://example.com/hub1"},{"type":"WebSub","feed_url":"https://example.com/hub2"}],"author":{"name":"Laura Rubio"},"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","author":{"name":"Óscar","url":"https://oscarotero.com"},"content_html":"Content of Page 5","date_published":"Thu, 21 Jun 1979 23:45:00 GMT","date_modified":"Thu, 21 Jun 1979 23:45:00 GMT"}]}',
+      page: [
+        "src",
+        "data",
+      ],
+      url: "feed2.json",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:webfeeds="http://webfeeds.org/rss/1.0" version="2.0">
+  <channel>
+    <title>My RSS Feed</title>
+    <link>https://example.com/</link>
+    <atom:link href="https://example.com/feed2.rss" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://example.com/hub1" rel="hub"/>
+    <atom:link href="https://example.com/hub2" rel="hub"/>
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
+    <language>en</language>
+    <generator>https://lume.land</generator>
+    <author>
+      <name>Laura Rubio</name>
+    </author>
+    <webfeeds:cover image="https://example.com/image.png"/>
+    <webfeeds:logo>https://example.com/icon.svg</webfeeds:logo>
+    <webfeeds:accentColor>#ff0000</webfeeds:accentColor>
+    <item>
+      <title>PAGE 5</title>
+      <link>https://example.com/page5/</link>
+      <guid isPermaLink="false">https://example.com/page5/</guid>
+      <author>
+        <name>Óscar</name>
+        <uri>https://oscarotero.com</uri>
+      </author>
+      <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
+      <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
+    </item>
+  </channel>
+</rss>',
+    data: {
+      basename: "feed2",
+      content: '<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:webfeeds="http://webfeeds.org/rss/1.0" version="2.0">
+  <channel>
+    <title>My RSS Feed</title>
+    <link>https://example.com/</link>
+    <atom:link href="https://example.com/feed2.rss" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://example.com/hub1" rel="hub"/>
+    <atom:link href="https://example.com/hub2" rel="hub"/>
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 GMT</lastBuildDate>
+    <language>en</language>
+    <generator>https://lume.land</generator>
+    <author>
+      <name>Laura Rubio</name>
+    </author>
+    <webfeeds:cover image="https://example.com/image.png"/>
+    <webfeeds:logo>https://example.com/icon.svg</webfeeds:logo>
+    <webfeeds:accentColor>#ff0000</webfeeds:accentColor>
+    <item>
+      <title>PAGE 5</title>
+      <link>https://example.com/page5/</link>
+      <guid isPermaLink="false">https://example.com/page5/</guid>
+      <author>
+        <name>Óscar</name>
+        <uri>https://oscarotero.com</uri>
+      </author>
+      <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
+      <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
+    </item>
+  </channel>
+</rss>',
+      page: [
+        "src",
+        "data",
+      ],
+      url: "feed2.rss",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+]
+`;
