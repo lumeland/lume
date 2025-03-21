@@ -196,6 +196,12 @@ function compTag(
   output: string,
   tokens: Token[],
 ): string | undefined {
+  // Components are always async
+  // so convert automatically {{ comp.whatever }} to {{ await comp.whatever }}
+  if (code.startsWith("comp.")) {
+    return `${output} += await ${code};`;
+  }
+
   if (!code.startsWith("comp ")) {
     return;
   }
