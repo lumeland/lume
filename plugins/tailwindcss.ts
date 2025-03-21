@@ -99,7 +99,7 @@ export function tailwindCSS(userOptions?: Options) {
             const content = await site.getContent(filename, false);
 
             if (content === undefined) {
-              throw new Error(`File ${file} not found`);
+              throw new Error(`File ${filename} not found`);
             }
 
             return { content, base: dirname(filename) };
