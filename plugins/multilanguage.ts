@@ -40,20 +40,27 @@ export function multilanguage(userOptions: Options) {
       const newPages: Page[] = [];
 
       for (const page of pages) {
-        if (!isGenerator(page.data.content)) {
+        const { data } = page;
+
+        if (!isGenerator(data.content) || !page.outputPath.endsWith(".html")) {
           continue;
         }
 
-        const languages = page.data.lang as string | string[] | undefined;
+        const languages = data.lang as string | string[] | undefined;
+
+        fixLanguage(page);
+
         if (!Array.isArray(languages)) {
+          mergeTranslations(data);
           continue;
         }
 
         // Create a new page per language
         for (const lang of languages) {
-          const newData: Data = { ...page.data, lang };
+          const newData: Data = { ...data, lang };
           const newPage = page.duplicate(undefined, newData);
           newPages.push(newPage);
+          mergeTranslations(newPage.data);
         }
 
         removedPages.push(page);
@@ -73,43 +80,12 @@ export function multilanguage(userOptions: Options) {
      */
     site.preprocess([".html"], (filteredPages, allPages) => {
       for (const page of filteredPages) {
+        fixLanguage(page);
         const { data } = page;
         const languages = data.lang as string | string[] | undefined;
 
-        // If the "lang" variable is not defined, use the default language
-        if (languages === undefined) {
-          data.lang = options.defaultLanguage;
-          continue;
-        }
-
-        // 404 pages should not be multilanguage
-        if (!isNot404page(data)) {
-          if (Array.isArray(languages)) {
-            data.lang = options.defaultLanguage;
-          }
-          continue;
-        }
-
-        // If the "lang" variable is a string, check if it's a valid language
-        if (typeof languages === "string") {
-          if (!options.languages.includes(languages)) {
-            log.warn(
-              `[multilanguage plugin] The language "${languages}" in the page ${page.sourcePath} is not defined in the "languages" option.`,
-            );
-          }
-          continue;
-        }
-
-        // The "lang" variable of the pages must be an array
         if (!Array.isArray(languages)) {
-          throw new Error(`Invalid "lang" variable in ${page.sourcePath}`);
-        }
-
-        // Check if these "languages" are all valid language codes
-        if (languages.some((lang) => !options.languages.includes(lang))) {
-          log.warn(
-            `[multilanguage plugin] One or more languages in the page ${page.sourcePath} are not defined in the "languages" option.`,
-          );
+          mergeTranslations(data);
           continue;
         }
 
@@ -121,6 +97,7 @@ export function multilanguage(userOptions: Options) {
           const newData: Data = { ...data, lang, id };
           const newPage = page.duplicate(undefined, newData);
           newPages.push(newPage);
+          mergeTranslations(newPage.data);
         }
 
         // Replace the current page with the multiple language versions
@@ -142,19 +119,6 @@ export function multilanguage(userOptions: Options) {
 
         if (!lang) {
           continue;
-        }
-
-        // Get the language data
-        const override = data[lang];
-
-        // Remove all language data from the page data
-        for (const key of options.languages) {
-          delete data[key];
-        }
-
-        // Merge the language data with the page data
-        if (override) {
-          overrideData(data, override);
         }
 
         if (isNot404page(data)) {
@@ -252,6 +216,71 @@ export function multilanguage(userOptions: Options) {
         }
       }
     });
+
+    /** Merge translations with the root data object */
+    function mergeTranslations(data: Data) {
+      const { lang } = data;
+
+      if (!lang) {
+        return;
+      }
+
+      // Get the language data
+      const override = data[lang];
+
+      // Remove all language data from the page data
+      for (const key of options.languages) {
+        delete data[key];
+      }
+
+      // Merge the language data with the page data
+      if (override) {
+        overrideData(data, override);
+      }
+    }
+
+    /** Assign a language to a page */
+    function fixLanguage(page: Page<Data>) {
+      const { data } = page;
+      const languages = data.lang as string | string[] | undefined;
+
+      // If the "lang" variable is not defined, use the default language
+      if (languages === undefined) {
+        data.lang = options.defaultLanguage;
+        return;
+      }
+
+      // 404 pages should not be multilanguage
+      if (!isNot404page(data)) {
+        if (Array.isArray(languages)) {
+          data.lang = options.defaultLanguage;
+        }
+        return;
+      }
+
+      // If the "lang" variable is a string, check if it's a valid language
+      if (typeof languages === "string") {
+        if (!options.languages.includes(languages)) {
+          log.warn(
+            `[multilanguage plugin] The language "${languages}" in the page ${page.sourcePath} is not defined in the "languages" option.`,
+          );
+        }
+        return;
+      }
+
+      // The "lang" variable of the pages must be an array
+      if (!Array.isArray(languages)) {
+        throw new Error(`Invalid "lang" variable in ${page.sourcePath}`);
+      }
+
+      // Check if these "languages" are all valid language codes
+      if (languages.some((lang) => !options.languages.includes(lang))) {
+        log.warn(
+          `[multilanguage plugin] One or more languages in the page ${page.sourcePath} are not defined in the "languages" option.`,
+        );
+        return;
+      }
+    }
   };
 }
 
