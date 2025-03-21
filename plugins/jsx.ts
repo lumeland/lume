@@ -45,7 +45,7 @@ export class JsxEngine implements Engine {
     }
 
     // Create the children property
-    let children = data.content;
+    let children = data.content ?? data.children;
 
     // If the children is a string, convert to a JSX element
     if (typeof children === "string") {

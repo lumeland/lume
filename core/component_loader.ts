@@ -125,9 +125,7 @@ export default class ComponentsLoader {
     }
 
     const rawComponent = await entry.getContent(loader) as ComponentFile;
-
     const { css, js, inheritData, content, ...data } = rawComponent;
-
     const name = defaultName ?? entry.name.slice(0, -ext.length);
 
     const render = async (props: Record<string, unknown>): Promise<string> => {
