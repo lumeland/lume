@@ -21,7 +21,7 @@ export const defaults: Options = {
     ensure_spec_compliant_unquoted_attribute_values: true,
     keep_closing_tags: false,
     keep_html_and_head_opening_tags: false,
-    keep_spaces_between_attributes: false,
+    keep_spaces_between_attributes: true,
     keep_comments: false,
     minify_js: true,
     minify_css: true,
