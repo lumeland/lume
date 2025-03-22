@@ -377,7 +377,7 @@ snapshot[`Source maps from Js files 1`] = `
     "/modules",
     "/modules/to_uppercase.ts",
     "/other",
-    "/other.ts",
+    "/other.page.ts",
     "/other/_data.yml",
     "/other/script.ts",
     "/other/to_lowercase.ts",
@@ -601,6 +601,8 @@ react-is/cjs/react-is.development.js:
 //# sourceMappingURL=./other.js.map',
     data: {
       basename: "other",
+      content: "default",
+      date: [],
       mergedKeys: [
         "tags",
       ],
@@ -615,16 +617,16 @@ react-is/cjs/react-is.development.js:
       url: "/other.js",
     },
     src: {
-      ext: ".ts",
+      ext: ".page.ts",
       path: "/other",
       remote: undefined,
     },
   },
   {
-    content: '{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\\\n  return text.toUpperCase();\\\\n}\\\\n\\\\nexport async function toLowercase(text: string) {\\\\n  const { toLowercase } = await import(\\\\"../other/to_lowercase.ts\\\\");\\\\n\\\\n  return toLowercase(text);\\\\n}\\\\n","/// <reference lib=\\\\"dom\\\\" />\\\\nimport toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\\\n\\\\ndocument.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\\\n  el.innerHTML = toUppercase(el.innerHTML);\\\\n});\\\\n"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","ignoreList":[],"sourceRoot":"assets"}',
+    content: '{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.page.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\\\n  return text.toUpperCase();\\\\n}\\\\n\\\\nexport async function toLowercase(text: string) {\\\\n  const { toLowercase } = await import(\\\\"../other/to_lowercase.ts\\\\");\\\\n\\\\n  return toLowercase(text);\\\\n}\\\\n","\\\\n/// <reference lib=\\\\"dom\\\\" />\\\\nimport toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\\\n\\\\ndocument.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\\\n  el.innerHTML = toUppercase(el.innerHTML);\\\\n});\\\\n  "],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCIxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","ignoreList":[],"sourceRoot":"assets"}',
     data: {
       basename: "other",
-      content: '{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\\\n  return text.toUpperCase();\\\\n}\\\\n\\\\nexport async function toLowercase(text: string) {\\\\n  const { toLowercase } = await import(\\\\"../other/to_lowercase.ts\\\\");\\\\n\\\\n  return toLowercase(text);\\\\n}\\\\n","/// <reference lib=\\\\"dom\\\\" />\\\\nimport toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\\\n\\\\ndocument.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\\\n  el.innerHTML = toUppercase(el.innerHTML);\\\\n});\\\\n"],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCGxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","ignoreList":[],"sourceRoot":"assets"}',
+      content: '{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.page.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\\\n  return text.toUpperCase();\\\\n}\\\\n\\\\nexport async function toLowercase(text: string) {\\\\n  const { toLowercase } = await import(\\\\"../other/to_lowercase.ts\\\\");\\\\n\\\\n  return toLowercase(text);\\\\n}\\\\n","\\\\n/// <reference lib=\\\\"dom\\\\" />\\\\nimport toUppercase from \\\\"./modules/to_uppercase.ts\\\\";\\\\n\\\\ndocument.querySelectorAll(\\\\".other\\\\")?.forEach((el) => {\\\\n  el.innerHTML = toUppercase(el.innerHTML);\\\\n});\\\\n  "],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCIxBG,SAASC,iBAAiB,WAAWC,SAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC,UAAS","ignoreList":[],"sourceRoot":"assets"}',
       page: [
         "src",
         "data",

@@ -142,7 +142,7 @@ export function esbuild(userOptions?: Options) {
         }
 
         entryPoints.push({ in: filename, out: outUri });
-        entryContent[toFileUrl(filename).href] = content;
+        entryContent[filename] = content;
       });
 
       const buildOptions: BuildOptions = {
@@ -217,7 +217,8 @@ export function esbuild(userOptions?: Options) {
                 return undefined;
               }
 
-              const content = await site.getContent(path, false);
+              const content = entryContent[normalizePath(path)] ??
+                await site.getContent(path, false);
 
               return content
                 ? {
