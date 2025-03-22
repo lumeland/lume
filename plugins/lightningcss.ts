@@ -130,7 +130,7 @@ export function lightningCSS(userOptions?: Options) {
           resolver: {
             resolve(id: string, from: string) {
               if (id.startsWith("npm:")) {
-                return `https://esm.sh/${id.slice(4)}`;
+                return id.replace("npm:", "https://cdn.jsdelivr.net/npm/");
               }
               return resolveInclude(id, includes, posix.dirname(from));
             },
