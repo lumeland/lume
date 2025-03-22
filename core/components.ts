@@ -257,16 +257,16 @@ export async function compileJS(
     outfile: filename,
     plugins: [
       {
-        name: "custom-resolver",
+        name: "components-resolver",
         setup(build) {
           build.onResolve({ filter: /.*/ }, ({ path }) => {
             if (entries.has(path) || path === filename) {
-              return { path, namespace: "file" };
+              return { path, namespace: "comp" };
             }
           });
 
           build.onLoad(
-            { filter: /.*/, namespace: "file" },
+            { filter: /.*/, namespace: "comp" },
             async ({ path }) => {
               return {
                 contents: path === filename
