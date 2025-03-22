@@ -346,14 +346,14 @@ snapshot[`build a site with nunjucks 3`] = `
     },
   },
   {
-    content: '// ../../../../../_components/Button.ts.js
+    content: '// comp:/_components/Button.ts.js
 document.querySelectorAll("button").forEach((button) => {
   button.addEventListener("click", () => {
     alert("Hello world!");
   });
 });
 
-// ../../../../../_components/icon/User.njk.js
+// comp:/_components/icon/User.njk.js
 console.log("Hello world, from the icon/User component");
 ',
     data: {
