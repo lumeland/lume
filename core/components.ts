@@ -1,4 +1,6 @@
 import { Entry } from "./fs.ts";
+import { bundleAsync } from "../deps/lightningcss.ts";
+import { build, stop } from "../deps/esbuild.ts";
 import textLoader from "./loaders/text.ts";
 
 import type { Data } from "./file.ts";
@@ -12,7 +14,7 @@ export interface Options {
 /**
  * Class to load components from the _components folder.
  */
-export default class ComponentsLoader {
+export class ComponentLoader {
   /** List of loaders and engines used by extensions */
   formats: Formats;
 
@@ -80,27 +82,27 @@ export default class ComponentsLoader {
       return;
     }
 
+    const assets = new Map<string, string | Entry>();
+    const entryPoints = new Set<string>([
+      "style.css",
+      "script.js",
+      "script.ts",
+    ]);
+
     // Find extra files
     for (const child of entry.children.values()) {
       if (child === compEntry) {
         continue;
       }
 
-      if (child.type === "file") {
-        // Load CSS file
-        if (child.name === "style.css") {
-          const { content } = await child.getContent(textLoader);
-          component.css = content as string | undefined;
-          continue;
-        }
-
-        // Load JS file
-        if (child.name === "script.js") {
-          const { content } = await child.getContent(textLoader);
-          component.js = content as string | undefined;
-          continue;
-        }
+      // Load CSS/JS/TS file
+      if (child.type === "file" && entryPoints.has(child.name)) {
+        assets.set(child.path, child);
       }
+    }
+
+    for (const [path, content] of assets) {
+      component.assets.set(path, content);
     }
 
     return component;
@@ -140,13 +142,38 @@ export default class ComponentsLoader {
       return result as string;
     };
 
-    return { name, render, css, js };
+    const assets = new Map<string, string>();
+
+    if (css) {
+      assets.set(entry.path + ".css", css);
+    }
+    if (js) {
+      assets.set(entry.path + ".js", js);
+    }
+
+    return {
+      name,
+      render,
+      assets,
+    };
   }
 }
 
 export type Components = Map<string, Component | Components>;
 
 export interface Component {
+  /** Name of the component (used to get it from templates) */
+  name: string;
+
+  /** The function to render the component */
+  render: (props: Record<string, unknown>) => string | Promise<string>;
+
+  /** Optional CSS and JS code needed to style the component (global, only inserted once) */
+  assets: Map<string, string | Entry>;
+}
+
+/** Component defined directly by the user */
+export interface UserComponent {
   /** Name of the component (used to get it from templates) */
   name: string;
 
@@ -186,4 +213,89 @@ function findChild(
       return child;
     }
   }
+}
+
+export async function compileCSS(
+  filename: string,
+  entries: Map<string, string | Entry>,
+): Promise<string> {
+  const mainCode = Array.from(entries.keys()).map((path) =>
+    `@import "${path}";`
+  ).join("\n");
+
+  const { code } = await bundleAsync({
+    filename,
+    sourceMap: false,
+    resolver: {
+      read(filePath) {
+        if (filePath === filename) {
+          return mainCode;
+        }
+        return getEntryContent(entries.get(filePath));
+      },
+    },
+  });
+
+  const decoder = new TextDecoder();
+  return decoder.decode(code);
+}
+
+export async function compileJS(
+  filename: string,
+  entries: Map<string, string | Entry>,
+): Promise<string> {
+  const mainCode = Array.from(entries.keys()).map((path) => `import "${path}";`)
+    .join("\n");
+
+  const { outputFiles } = await build({
+    bundle: true,
+    entryPoints: [filename],
+    write: false,
+    format: "esm",
+    minify: false,
+    target: "esnext",
+    outfile: filename,
+    plugins: [
+      {
+        name: "custom-resolver",
+        setup(build) {
+          build.onResolve({ filter: /.*/ }, ({ path }) => {
+            if (entries.has(path) || path === filename) {
+              return { path, namespace: "file" };
+            }
+          });
+
+          build.onLoad(
+            { filter: /.*/, namespace: "file" },
+            async ({ path }) => {
+              return {
+                contents: path === filename
+                  ? mainCode
+                  : await getEntryContent(entries.get(path)),
+                loader: path.endsWith(".ts") ? "ts" : "js",
+              };
+            },
+          );
+        },
+      },
+    ],
+  });
+
+  await stop();
+
+  const decoder = new TextDecoder();
+  return decoder.decode(outputFiles[0].contents);
+}
+
+async function getEntryContent(entry?: Entry | string): Promise<string> {
+  if (typeof entry === "string") {
+    return entry;
+  }
+
+  if (entry) {
+    const { content } = await entry.getContent(textLoader);
+    return (content as string) || "";
+  }
+
+  return "";
 }

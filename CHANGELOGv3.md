@@ -74,3 +74,4 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Replaced some thrown errors with warnings in the console (`icons`, `inline`, `picture`) #740.
 - Merging of multilanguage variables.
 - Parsing the escaped URLs in CSS files. 
+- Improved the output CSS and JS code of components.
