@@ -4,6 +4,18 @@ snapshot[`build a site with jsx/tsx modules 1`] = `
 {
   formats: [
     {
+      engines: 1,
+      ext: ".page.tsx",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.jsx",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
       engines: 0,
       ext: ".page.toml",
       isPage: true,
@@ -104,13 +116,11 @@ snapshot[`build a site with jsx/tsx modules 1`] = `
     {
       engines: 1,
       ext: ".jsx",
-      isPage: true,
       loader: [AsyncFunction: module],
     },
     {
       engines: 1,
       ext: ".tsx",
-      isPage: true,
       loader: [AsyncFunction: module],
     },
   ],
@@ -121,9 +131,9 @@ snapshot[`build a site with jsx/tsx modules 1`] = `
     "/_includes",
     "/_includes/hello.jsx",
     "/_includes/layout.jsx",
-    "/index.jsx",
-    "/multiple.jsx",
-    "/with-function.jsx",
+    "/index.page.jsx",
+    "/multiple.page.jsx",
+    "/with-function.page.jsx",
     "/with-markdown.md",
   ],
 }
@@ -162,7 +172,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       url: "/",
     },
     src: {
-      ext: ".jsx",
+      ext: ".page.jsx",
       path: "/index",
       remote: undefined,
     },
@@ -195,7 +205,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       url: "/page/1/",
     },
     src: {
-      ext: ".jsx",
+      ext: ".page.jsx",
       path: "/multiple[0]",
       remote: undefined,
     },
@@ -228,7 +238,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       url: "/page/2/",
     },
     src: {
-      ext: ".jsx",
+      ext: ".page.jsx",
       path: "/multiple[1]",
       remote: undefined,
     },
@@ -259,7 +269,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       url: "/with-function/",
     },
     src: {
-      ext: ".jsx",
+      ext: ".page.jsx",
       path: "/with-function",
       remote: undefined,
     },
@@ -309,6 +319,18 @@ snapshot[`Previous preact test with SSX 1`] = `
 {
   formats: [
     {
+      engines: 1,
+      ext: ".page.tsx",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.jsx",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
       engines: 0,
       ext: ".page.toml",
       isPage: true,
@@ -409,13 +431,11 @@ snapshot[`Previous preact test with SSX 1`] = `
     {
       engines: 1,
       ext: ".jsx",
-      isPage: true,
       loader: [AsyncFunction: module],
     },
     {
       engines: 1,
       ext: ".tsx",
-      isPage: true,
       loader: [AsyncFunction: module],
     },
   ],
@@ -426,10 +446,10 @@ snapshot[`Previous preact test with SSX 1`] = `
     "/_includes",
     "/_includes/hello.jsx",
     "/_includes/layout.jsx",
-    "/index.jsx",
-    "/multiple.jsx",
-    "/with-comp.njk",
-    "/with-function.jsx",
+    "/index.page.jsx",
+    "/multiple.page.jsx",
+    "/with-comp.page.njk",
+    "/with-function.page.jsx",
     "/with-markdown.md",
   ],
 }
@@ -468,7 +488,7 @@ snapshot[`Previous preact test with SSX 3`] = `
       url: "/",
     },
     src: {
-      ext: ".jsx",
+      ext: ".page.jsx",
       path: "/index",
       remote: undefined,
     },
@@ -501,7 +521,7 @@ snapshot[`Previous preact test with SSX 3`] = `
       url: "/page/1/",
     },
     src: {
-      ext: ".jsx",
+      ext: ".page.jsx",
       path: "/multiple[0]",
       remote: undefined,
     },
@@ -534,7 +554,7 @@ snapshot[`Previous preact test with SSX 3`] = `
       url: "/page/2/",
     },
     src: {
-      ext: ".jsx",
+      ext: ".page.jsx",
       path: "/multiple[1]",
       remote: undefined,
     },
@@ -565,7 +585,7 @@ snapshot[`Previous preact test with SSX 3`] = `
       url: "/with-function/",
     },
     src: {
-      ext: ".jsx",
+      ext: ".page.jsx",
       path: "/with-function",
       remote: undefined,
     },

@@ -4,6 +4,18 @@ snapshot[`Build a mdx site 1`] = `
 {
   formats: [
     {
+      engines: 1,
+      ext: ".page.tsx",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.jsx",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
       engines: 0,
       ext: ".page.toml",
       isPage: true,
@@ -104,13 +116,11 @@ snapshot[`Build a mdx site 1`] = `
     {
       engines: 1,
       ext: ".jsx",
-      isPage: true,
       loader: [AsyncFunction: module],
     },
     {
       engines: 1,
       ext: ".tsx",
-      isPage: true,
       loader: [AsyncFunction: module],
     },
     {
