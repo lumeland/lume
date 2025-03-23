@@ -183,7 +183,7 @@ snapshot[`Folder components 3`] = `
     },
   },
   {
-    content: '// comp:/_components/header/script.js
+    content: '// fs:/_components/header/script.js
 document.getElementById("header")?.addEventListener("click", function() {
   alert("Header clicked");
 });

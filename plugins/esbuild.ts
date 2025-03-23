@@ -1,8 +1,7 @@
 import {
   getPathAndExtension,
-  isAbsolutePath,
-  isUrl,
   normalizePath,
+  resolvePath,
 } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { readDenoConfig } from "../core/utils/deno_config.ts";
@@ -15,14 +14,7 @@ import {
   OutputFile,
   stop,
 } from "../deps/esbuild.ts";
-import {
-  dirname,
-  extname,
-  fromFileUrl,
-  join,
-  posix,
-  toFileUrl,
-} from "../deps/path.ts";
+import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/file.ts";
@@ -173,16 +165,7 @@ export function esbuild(userOptions?: Options) {
               }
 
               // Resolve the relative url
-              const specifier = path.match(/^[./]/)
-                ? isUrl(importer)
-                  ? new URL(path, importer).href
-                  : toFileUrl(join(importer ? dirname(importer) : "", path))
-                    .href
-                : isUrl(path)
-                ? path
-                : isAbsolutePath(path)
-                ? toFileUrl(path).href
-                : undefined;
+              const specifier = resolvePath(path, importer);
 
               if (!specifier) {
                 return undefined;

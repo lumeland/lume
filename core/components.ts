@@ -5,6 +5,7 @@ import textLoader from "./loaders/text.ts";
 
 import type { Data } from "./file.ts";
 import type Formats from "./formats.ts";
+import { posix } from "../deps/path.ts";
 
 export interface Options {
   /** The registered file formats */
@@ -217,9 +218,10 @@ function findChild(
 
 export async function compileCSS(
   filename: string,
-  entries: Map<string, string | Entry>,
+  imports: Map<string, string | Entry>,
+  entries: Map<string, Entry>,
 ): Promise<string> {
-  const mainCode = Array.from(entries.keys()).map((path) =>
+  const mainCode = Array.from(imports.keys()).map((path) =>
     `@import "${path}";`
   ).join("\n");
 
@@ -227,11 +229,17 @@ export async function compileCSS(
     filename,
     sourceMap: false,
     resolver: {
+      resolve(id, importer) {
+        if (id.startsWith(".")) {
+          id = posix.join(posix.dirname(importer), id);
+        }
+        return id;
+      },
       read(filePath) {
         if (filePath === filename) {
           return mainCode;
         }
-        return getEntryContent(entries.get(filePath));
+        return getEntryContent(imports.get(filePath) || entries.get(filePath));
       },
     },
   });
@@ -242,9 +250,10 @@ export async function compileCSS(
 
 export async function compileJS(
   filename: string,
-  entries: Map<string, string | Entry>,
+  imports: Map<string, string | Entry>,
+  entries: Map<string, Entry>,
 ): Promise<string> {
-  const mainCode = Array.from(entries.keys()).map((path) => `import "${path}";`)
+  const mainCode = Array.from(imports.keys()).map((path) => `import "${path}";`)
     .join("\n");
 
   const { outputFiles } = await build({
@@ -255,25 +264,28 @@ export async function compileJS(
     minify: false,
     target: "esnext",
     outfile: filename,
+
     plugins: [
       {
         name: "components-resolver",
         setup(build) {
-          build.onResolve({ filter: /.*/ }, ({ path }) => {
-            if (entries.has(path) || path === filename) {
-              return { path, namespace: "comp" };
+          build.onResolve({ filter: /.*/ }, ({ path, importer }) => {
+            if (path.startsWith(".")) {
+              path = posix.join(posix.dirname(importer), path);
             }
-
+            if (path === filename || imports.has(path) || entries.has(path)) {
+              return { path, namespace: "fs" };
+            }
             return { path, external: true };
           });
 
           build.onLoad(
-            { filter: /.*/, namespace: "comp" },
+            { filter: /.*/, namespace: "fs" },
             async ({ path }) => {
               return {
-                contents: path === filename
-                  ? mainCode
-                  : await getEntryContent(entries.get(path)),
+                contents: path === filename ? mainCode : await getEntryContent(
+                  imports.get(path) || entries.get(path),
+                ),
                 loader: path.endsWith(".ts") ? "ts" : "js",
               };
             },

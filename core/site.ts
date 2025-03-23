@@ -705,7 +705,7 @@ export default class Site {
         const page = await this.getOrCreatePage(path);
         page.text = insertContent(
           page.text,
-          await compileCSS(path, entries),
+          await compileCSS(path, entries, this.fs.entries),
           this.options.components.placeholder,
         );
         continue;
@@ -715,7 +715,7 @@ export default class Site {
         const page = await this.getOrCreatePage(path);
         page.text = insertContent(
           page.text,
-          await compileJS(path, entries),
+          await compileJS(path, entries, this.fs.entries),
           this.options.components.placeholder,
         );
       }
