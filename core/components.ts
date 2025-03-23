@@ -263,6 +263,8 @@ export async function compileJS(
             if (entries.has(path) || path === filename) {
               return { path, namespace: "comp" };
             }
+
+            return { path, external: true };
           });
 
           build.onLoad(
