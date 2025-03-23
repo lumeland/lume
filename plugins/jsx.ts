@@ -22,6 +22,7 @@ export interface Options {
 // Default options
 export const defaults: Options = {
   extensions: [".jsx", ".tsx"],
+  pageSubExtension: ".page",
 };
 
 /** Template engine to render JSX files */
