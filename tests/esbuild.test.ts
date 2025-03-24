@@ -19,12 +19,7 @@ Deno.test(
     }));
 
     site.use(esbuild({
-      importMap: {
-        imports: {
-          react: "npm:react@18.2.0",
-          "react-dom/client": "npm:react-dom@18.2.0/client",
-        },
-      },
+      denoConfig: "esbuild_jsx/deno.json",
       options: {
         jsxImportSource: "npm:react@18.2.0",
       },

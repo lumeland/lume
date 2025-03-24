@@ -1,4 +1,4 @@
-import { dirname, join, posix, SEPARATOR, toFileUrl } from "../../deps/path.ts";
+import { posix, SEPARATOR } from "../../deps/path.ts";
 
 /**
  * Convert the Windows paths (that use the separator "\")
@@ -32,23 +32,6 @@ export function normalizePath(path: string, rootToRemove?: string) {
 /** Check if the path is an URL */
 export function isUrl(path: string): boolean {
   return !!path.match(/^(https?|file):\/\//);
-}
-
-/** Resolve a path */
-export function resolvePath(
-  path: string,
-  importer: string,
-): string | undefined {
-  return path.match(/^[./]/)
-    ? isUrl(importer)
-      ? new URL(path, importer).href
-      : toFileUrl(join(importer ? dirname(importer) : "", path))
-        .href
-    : isUrl(path)
-    ? path
-    : isAbsolutePath(path)
-    ? toFileUrl(path).href
-    : undefined;
 }
 
 /** Check if the path is absolute */

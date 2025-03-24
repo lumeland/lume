@@ -2,9 +2,7 @@ import { assertEquals as equals } from "../deps/assert.ts";
 import { merge } from "../core/utils/object.ts";
 import { isPlainObject } from "../core/utils/object.ts";
 import { sha1 } from "../core/utils/digest.ts";
-import { readDenoConfig } from "../core/utils/deno_config.ts";
 import { documentToString, stringToDocument } from "../core/utils/dom.ts";
-import { getPath } from "./utils.ts";
 
 Deno.test("merge options", () => {
   interface Options {
@@ -83,15 +81,6 @@ Deno.test("sha1 function", async () => {
 
   equals(await sha1(data), expected);
   equals(await sha1(dataUint8), expected);
-});
-
-Deno.test("load deno.jsonc", async () => {
-  Deno.chdir(getPath("assets"));
-  const config = await readDenoConfig();
-
-  equals(config?.config?.tasks, { foo: "echo bar" });
-  equals(config?.file, "deno.jsonc");
-  equals(config?.importMap?.imports["std/"], "https://deno.land/std@0.121.0/");
 });
 
 Deno.test("documentToString function should add doctype, if missing", () => {
