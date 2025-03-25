@@ -12,6 +12,7 @@ import {
 import { extname, fromFileUrl, join, posix } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/file.ts";
+import textLoader from "../core/loaders/text.ts";
 
 import type Site from "../core/site.ts";
 
@@ -141,10 +142,23 @@ export function esbuild(userOptions?: Options) {
               }
             });
 
-            build.onLoad({ filter: /.*/ }, ({ path, pluginData }) => {
+            build.onLoad({ filter: /.*/ }, async ({ path, pluginData }) => {
               if (pluginData?.entryPoint) {
                 return {
                   contents: pluginData.entryPoint.content,
+                  loader: getLoader(path),
+                };
+              }
+
+              // Load the file from the site
+              const src = normalizePath(path, basePath);
+              const entry = site.fs.entries.get(src);
+
+              if (entry) {
+                const { content } = await entry.getContent(textLoader);
+
+                return {
+                  contents: content,
                   loader: getLoader(path),
                 };
               }
