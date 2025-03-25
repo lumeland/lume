@@ -13,13 +13,13 @@ export interface Options {
   /** Set true to inline the source map in the output file */
   inline?: boolean;
 
-  /** Set true to include the content of the source files */
+  /** Set false to don't include the content of the source files */
   sourceContent?: boolean;
 }
 
 export const defaults: Options = {
   inline: false,
-  sourceContent: false,
+  sourceContent: true,
 };
 
 /**
@@ -49,13 +49,17 @@ export function sourceMaps(userOptions?: Options) {
       // Add the content of the source files
       try {
         if (options.sourceContent) {
+          const sourcesContent = sourceMap.sourcesContent || [];
           sourceMap.sourcesContent = await Promise.all(
-            sourceMap.sources.map((url: string) => {
-              const content = sourceMap[dynamicSourcesSymbol]?.[url];
+            sourceMap.sources.map((url: string, index: number) => {
+              const content = sourcesContent[index] ??
+                sourceMap[dynamicSourcesSymbol]?.[url];
 
               return content ? content : read(url, false);
             }),
           );
+        } else {
+          sourceMap.sourcesContent = undefined;
         }
       } catch (err) {
         log.error(`${(err as Error).message}\n${sourceMap.sources.join("\n")}`);

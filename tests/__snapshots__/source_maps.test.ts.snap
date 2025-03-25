@@ -157,10 +157,10 @@ snapshot[`Source maps from CSS files 3`] = `
     },
   },
   {
-    content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BCEA,2DCGA,+CHAA","sources":["index.scss","styles.css","third.scss","index.scss","_list.scss"],"sourcesContent":["","","","",""],"names":[],"file":"index.css.map"}',
+    content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BCEA,2DCGA,+CHAA","sources":["index.scss","styles.css","third.scss","index.scss","_list.scss"],"sourcesContent":["@use \\\\"sass/bootstrap\\\\";\\\\n@use \\\\"sass/button\\\\";\\\\n@use \\\\"./_includes/sass/colors\\\\";\\\\n@import \\\\"./styles.css\\\\";\\\\n\\\\nli {\\\\n  @include bootstrap.list-reset;\\\\n}\\\\n","body {\\\\n  font-family: sans-serif;\\\\n}","\$font-stack: Helvetica, sans-serif;\\\\n\\\\nhtml {\\\\n  scroll-behavior: smooth;\\\\n  font: 100% \$font-stack;\\\\n}\\\\n","@use \\\\"../third.scss\\\\";\\\\n\\\\n\$font-stack: Helvetica, sans-serif;\\\\n\$primary-color: #333;\\\\n\\\\nbody {\\\\n  font: 100% \$font-stack;\\\\n  color: \$primary-color;\\\\n}\\\\n","@mixin list-reset {\\\\n  margin: 0;\\\\n  padding: 0;\\\\n  list-style: none;\\\\n}\\\\n"],"names":[],"file":"index.css.map"}',
     data: {
       basename: "index",
-      content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BCEA,2DCGA,+CHAA","sources":["index.scss","styles.css","third.scss","index.scss","_list.scss"],"sourcesContent":["","","","",""],"names":[],"file":"index.css.map"}',
+      content: '{"version":3,"sourceRoot":"assets","mappings":"ACAA,4BCEA,2DCGA,+CHAA","sources":["index.scss","styles.css","third.scss","index.scss","_list.scss"],"sourcesContent":["@use \\\\"sass/bootstrap\\\\";\\\\n@use \\\\"sass/button\\\\";\\\\n@use \\\\"./_includes/sass/colors\\\\";\\\\n@import \\\\"./styles.css\\\\";\\\\n\\\\nli {\\\\n  @include bootstrap.list-reset;\\\\n}\\\\n","body {\\\\n  font-family: sans-serif;\\\\n}","\$font-stack: Helvetica, sans-serif;\\\\n\\\\nhtml {\\\\n  scroll-behavior: smooth;\\\\n  font: 100% \$font-stack;\\\\n}\\\\n","@use \\\\"../third.scss\\\\";\\\\n\\\\n\$font-stack: Helvetica, sans-serif;\\\\n\$primary-color: #333;\\\\n\\\\nbody {\\\\n  font: 100% \$font-stack;\\\\n  color: \$primary-color;\\\\n}\\\\n","@mixin list-reset {\\\\n  margin: 0;\\\\n  padding: 0;\\\\n  list-style: none;\\\\n}\\\\n"],"names":[],"file":"index.css.map"}',
       page: [
         "src",
         "data",
@@ -198,10 +198,10 @@ snapshot[`Source maps from CSS files 3`] = `
     },
   },
   {
-    content: '{"version":3,"sourceRoot":"assets","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["",""],"names":[],"file":"index2.css.map"}',
+    content: '{"version":3,"sourceRoot":"assets","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["@use \\\\"sass/colors\\\\" as *\\\\n\\\\nbody\\\\n  color: \$primary-color\\\\n","\$primary-color: blue;\\\\n\$secondary-color: red;"],"names":[],"file":"index2.css.map"}',
     data: {
       basename: "index2",
-      content: '{"version":3,"sourceRoot":"assets","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["",""],"names":[],"file":"index2.css.map"}',
+      content: '{"version":3,"sourceRoot":"assets","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["@use \\\\"sass/colors\\\\" as *\\\\n\\\\nbody\\\\n  color: \$primary-color\\\\n","\$primary-color: blue;\\\\n\$secondary-color: red;"],"names":[],"file":"index2.css.map"}',
       page: [
         "src",
         "data",
