@@ -1,3 +1,4 @@
+// deno-lint-ignore-file jsx-no-children-prop
 
 export default function ({ comp }: Lume.Data) {
   return <>
