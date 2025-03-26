@@ -10,7 +10,7 @@
   },
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "npm:@lumeland/ssx@0.1.2-beta.3",
+    "jsxImportSource": "npm:@lumeland/ssx",
     "types": [
       "./types.ts"
     ]

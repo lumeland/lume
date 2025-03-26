@@ -77,3 +77,4 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Merging of multilanguage variables.
 - Parsing the escaped URLs in CSS files. 
 - Improved the output CSS and JS code of components.
+- Components interoperability, specially between JSX vs text engines.

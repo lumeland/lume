@@ -171,3 +171,14 @@ Deno.test("Folder components", async (t) => {
   await build(site);
   await assertSiteSnapshot(t, site);
 });
+
+Deno.test("Components interoperability", async (t) => {
+  const site = getSite({
+    src: "components_interop",
+  });
+
+  site.use(jsx());
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});

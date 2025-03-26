@@ -223,3 +223,252 @@ document.getElementById("header")?.addEventListener("click", function() {
   },
 ]
 `;
+
+snapshot[`Components interoperability 1`] = `
+{
+  formats: [
+    {
+      engines: 1,
+      ext: ".page.tsx",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.jsx",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 0,
+      ext: ".page.toml",
+      isPage: true,
+      loader: [AsyncFunction: toml],
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      engines: 1,
+      ext: ".jsx",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".tsx",
+      loader: [AsyncFunction: module],
+    },
+  ],
+  src: [
+    "/",
+    "/_components",
+    "/_components/subtitle.vto",
+    "/_components/title.tsx",
+    "/index.vto",
+    "/index2.page.tsx",
+  ],
+}
+`;
+
+snapshot[`Components interoperability 2`] = `[]`;
+
+snapshot[`Components interoperability 3`] = `
+[
+  {
+    content: "<h1>Children: Benvido!!</h1><h1>Content: Benvido!!</h1>
+<h1>Children: Benvido2</h1><h1>Content: Benvido2</h1>
+<h1>Children: Benvido3</h1><h1>Content: Benvido3</h1>
+
+<h2>Children: Benvido!!</h2>
+<h2>Content: Benvido!!</h2>
+
+<h2>Children: Benvido2</h2>
+<h2>Content: Benvido2</h2>
+
+<h2>Children: Benvido3</h2>
+<h2>Content: Benvido3</h2>
+
+",
+    data: {
+      basename: "",
+      children: "<h1>Children: Benvido!!</h1><h1>Content: Benvido!!</h1>
+<h1>Children: Benvido2</h1><h1>Content: Benvido2</h1>
+<h1>Children: Benvido3</h1><h1>Content: Benvido3</h1>
+
+<h2>Children: Benvido!!</h2>
+<h2>Content: Benvido!!</h2>
+
+<h2>Children: Benvido2</h2>
+<h2>Content: Benvido2</h2>
+
+<h2>Children: Benvido3</h2>
+<h2>Content: Benvido3</h2>
+
+",
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: '{{ comp title }}Benvido!!{{ /comp }}
+{{ comp.title({ content: "Benvido2" })}}
+{{ comp.title({ children: "Benvido3" })}}
+
+{{ comp subtitle }}Benvido!!{{ /comp }}
+{{ comp.subtitle({ content: "Benvido2" })}}
+{{ comp.subtitle({ children: "Benvido3" })}}
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>Children: empty</h1><h1>Content: empty</h1><hr><h1>Children: Click <em>here</em></h1><h1>Content: Click <em>here</em></h1><hr><h1>Children: <em>Benvido</em></h1><h1>Content: <em>Benvido</em></h1><hr><h1>Children: Benvido</h1><h1>Content: Benvido</h1><hr><h2>Children: empty</h2>
+<h2>Content: empty</h2>
+<hr><h2>Children: Click here</h2>
+<h2>Content: Click here</h2>
+<hr><h2>Children: Benvido</h2>
+<h2>Content: Benvido</h2>
+<hr><h2>Children: Benvido</h2>
+<h2>Content: Benvido</h2>
+",
+    data: {
+      basename: "index2",
+      children: "<h1>Children: empty</h1><h1>Content: empty</h1><hr><h1>Children: Click <em>here</em></h1><h1>Content: Click <em>here</em></h1><hr><h1>Children: <em>Benvido</em></h1><h1>Content: <em>Benvido</em></h1><hr><h1>Children: Benvido</h1><h1>Content: Benvido</h1><hr><h2>Children: empty</h2>
+<h2>Content: empty</h2>
+<hr><h2>Children: Click here</h2>
+<h2>Content: Click here</h2>
+<hr><h2>Children: Benvido</h2>
+<h2>Content: Benvido</h2>
+<hr><h2>Children: Benvido</h2>
+<h2>Content: Benvido</h2>
+",
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: "default",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/index2/",
+    },
+    src: {
+      ext: ".page.tsx",
+      path: "/index2",
+      remote: undefined,
+    },
+  },
+]
+`;

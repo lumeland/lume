@@ -131,11 +131,15 @@ export class ComponentLoader {
     const { css, js, inheritData, content, ...data } = rawComponent;
     const name = defaultName ?? entry.name.slice(0, -ext.length);
 
-    const render = async (props: Record<string, unknown>): Promise<string> => {
-      let result = content;
+    const render = async (props?: Record<string, unknown>): Promise<string> => {
       const currData = inheritData !== false
         ? { ...dirData, ...data, ...props }
         : { ...data, ...props };
+
+      // Unify children and content for interopeability between JSX and other engines
+      currData.children = currData.content = props?.children ?? props?.content;
+
+      let result = content;
       for (const engine of engines) {
         result = await engine.render(content, currData, entry.path);
       }
