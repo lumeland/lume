@@ -426,23 +426,19 @@ snapshot[`Components interoperability 3`] = `
     },
   },
   {
-    content: "<h1>Children: empty</h1><h1>Content: empty</h1><hr><h1>Children: Click <em>here</em></h1><h1>Content: Click <em>here</em></h1><hr><h1>Children: <em>Benvido</em></h1><h1>Content: <em>Benvido</em></h1><hr><h1>Children: Benvido</h1><h1>Content: Benvido</h1><hr><h2>Children: empty</h2>
+    content: "<h1>Children: empty</h1><h1>Content: empty</h1><hr><h1>Children: Click <em>here</em></h1><h1>Content: Click <em>here</em></h1><hr><h1>Children: <em>Benvido</em></h1><h1>Content: <em>Benvido</em></h1><hr><hr><h2>Children: empty</h2>
 <h2>Content: empty</h2>
 <hr><h2>Children: Click here</h2>
 <h2>Content: Click here</h2>
-<hr><h2>Children: Benvido</h2>
-<h2>Content: Benvido</h2>
 <hr><h2>Children: Benvido</h2>
 <h2>Content: Benvido</h2>
 ",
     data: {
       basename: "index2",
-      children: "<h1>Children: empty</h1><h1>Content: empty</h1><hr><h1>Children: Click <em>here</em></h1><h1>Content: Click <em>here</em></h1><hr><h1>Children: <em>Benvido</em></h1><h1>Content: <em>Benvido</em></h1><hr><h1>Children: Benvido</h1><h1>Content: Benvido</h1><hr><h2>Children: empty</h2>
+      children: "<h1>Children: empty</h1><h1>Content: empty</h1><hr><h1>Children: Click <em>here</em></h1><h1>Content: Click <em>here</em></h1><hr><h1>Children: <em>Benvido</em></h1><h1>Content: <em>Benvido</em></h1><hr><hr><h2>Children: empty</h2>
 <h2>Content: empty</h2>
 <hr><h2>Children: Click here</h2>
 <h2>Content: Click here</h2>
-<hr><h2>Children: Benvido</h2>
-<h2>Content: Benvido</h2>
 <hr><h2>Children: Benvido</h2>
 <h2>Content: Benvido</h2>
 ",
