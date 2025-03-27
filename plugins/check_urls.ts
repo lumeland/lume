@@ -14,6 +14,9 @@ export interface Options {
   /** True to require trailing slashes and ignore redirections (oldUrl variables) */
   strict?: boolean;
 
+  /** True to throw if an invalid url is found */
+  throw?: boolean;
+
   /** The list of URLs to ignore */
   ignore?: string[];
 
@@ -28,6 +31,7 @@ export interface Options {
 export const defaults: Options = {
   extensions: [".html"],
   strict: false,
+  throw: false,
   ignore: [],
   external: false,
 };
@@ -184,6 +188,10 @@ export default function (userOptions?: Options) {
       cacheInternalUrls.clear();
       urls.clear();
       redirects.clear();
+
+      if (notFound.size > 0 && options.throw) {
+        throw `${notFound.size} broken link(s)`;
+      }
     }
 
     site.addEventListener("afterUpdate", checkUrls);
@@ -278,7 +286,7 @@ function outputConsole(notFound: Map<string, Set<string>>) {
   }
 
   console.log("");
-  console.log(`${notFound.size} Broken links:`);
+  console.log(`${notFound.size} broken link(s):`);
   for (const [url, refs] of notFound) {
     console.log("");
     console.log("⛓️‍💥", red(url));
