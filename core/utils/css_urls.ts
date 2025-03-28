@@ -13,7 +13,10 @@ export async function walkUrls(
   while (position) {
     const [type, url, start, end] = position;
     const newUrl = await walker(url, type);
-    result += `${code.slice(index, start)}"${newUrl.replaceAll('"', '\\"')}"`;
+    const quotedUrl = url.startsWith("data:")
+      ? `'${newUrl.replaceAll("'", "\\'")}'`
+      : `"${newUrl.replaceAll('"', '\\"')}"`;
+    result += `${code.slice(index, start)}${quotedUrl}`;
     index = end;
     position = next(code, index);
   }
@@ -90,9 +93,7 @@ function next(code: string, index = 0): Position | undefined {
     let end = findUrlEnd(url, quote);
     url = url.slice(0, end);
     end += start + (quote ? 2 : 0);
-    if (quote) {
-      url = url.replace(/\\'/g, "'").replace(/\\"/g, '"');
-    }
+    url = url.replace(/\\'/g, "'").replace(/\\"/g, '"');
     return ["url", url, start, end];
   }
 }
