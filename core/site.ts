@@ -1,13 +1,13 @@
 import { join, posix } from "../deps/path.ts";
 import { merge } from "./utils/object.ts";
-import { normalizePath } from "./utils/path.ts";
+import { isUrl, normalizePath } from "./utils/path.ts";
 import { env } from "./utils/env.ts";
 import { log } from "./utils/log.ts";
 import { filter404page } from "./utils/page_url.ts";
 import { insertContent } from "./utils/page_content.ts";
 
 import FS from "./fs.ts";
-import ComponentLoader from "./component_loader.ts";
+import { compileCSS, compileJS, ComponentLoader } from "./components.ts";
 import DataLoader from "./data_loader.ts";
 import Source from "./source.ts";
 import Scopes from "./scopes.ts";
@@ -21,12 +21,13 @@ import FSWatcher from "../core/watcher.ts";
 import { FSWriter } from "./writer.ts";
 import { Page } from "./file.ts";
 import textLoader from "./loaders/text.ts";
+import binaryLoader from "./loaders/binary.ts";
 import Server from "./server.ts";
 import notFound from "../middlewares/not_found.ts";
 
-import type { Loader } from "./loaders/mod.ts";
-import type { BasenameParser } from "./source.ts";
-import type { Component, Components } from "./component_loader.ts";
+import type { Loader } from "./fs.ts";
+import type { BasenameParser, Destination } from "./source.ts";
+import type { Components, UserComponent } from "./components.ts";
 import type { Data, RawData, StaticFile } from "./file.ts";
 import type { Engine, Helper, HelperOptions } from "./renderer.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
@@ -47,6 +48,9 @@ const defaults: SiteOptions = {
   emptyDest: true,
   caseSensitiveUrls: false,
   includes: "_includes",
+  cssFile: "/style.css",
+  jsFile: "/script.js",
+  fontsFolder: "/fonts",
   location: new URL("http://localhost"),
   prettyUrls: true,
   server: {
@@ -61,11 +65,7 @@ const defaults: SiteOptions = {
     debounce: 100,
     include: [],
   },
-  components: {
-    variable: "comp",
-    cssFile: "/components.css",
-    jsFile: "/components.js",
-  },
+  components: {},
 };
 
 /**
@@ -134,9 +134,6 @@ export default class Site {
   /** The generated pages are stored here */
   readonly pages: Page[] = [];
 
-  /** Pages that should be rendered on demand */
-  readonly onDemandPages: Page[] = [];
-
   /** The static files to be copied are stored here */
   readonly files: StaticFile[] = [];
 
@@ -161,7 +158,10 @@ export default class Site {
       dataLoader,
       componentLoader,
       formats,
-      components,
+      components: {
+        cssFile: components.cssFile ?? this.options.cssFile,
+        jsFile: components.jsFile ?? this.options.jsFile,
+      },
       scopedData: this.scopedData,
       scopedPages: this.scopedPages,
       scopedComponents: this.scopedComponents,
@@ -340,7 +340,7 @@ export default class Site {
       this.formats.set({
         ext,
         loader,
-        pageType: "page",
+        isPage: true,
         engines,
       });
     });
@@ -356,30 +356,39 @@ export default class Site {
     return this;
   }
 
-  /**
-   * Register an assets loader for some extensions
-   */
-  loadAssets(extensions: string[], assetLoader: Loader = textLoader): this {
-    extensions.forEach((ext) => {
-      this.formats.set({
-        ext,
-        assetLoader,
-        pageType: "asset",
-      });
-    });
-
-    return this;
-  }
-
   /** Register a preprocessor for some extensions */
-  preprocess(extensions: Extensions, preprocessor: Processor): this {
-    this.preprocessors.set(extensions, preprocessor);
+  preprocess(processor: Processor): this;
+  preprocess(extensions: Extensions, processor: Processor): this;
+  preprocess(
+    extensions: Extensions | Processor,
+    preprocessor?: Processor,
+  ): this {
+    if (typeof extensions === "function") {
+      return this.preprocess("*", extensions);
+    }
+
+    this.preprocessors.set(extensions, preprocessor!);
+
+    if (Array.isArray(extensions)) {
+      extensions.forEach((ext) => this.formats.set({ ext }));
+    }
+
     return this;
   }
 
   /** Register a processor for some extensions */
-  process(extensions: Extensions, processor: Processor): this {
-    this.processors.set(extensions, processor);
+  process(processor: Processor): this;
+  process(extensions: Extensions, processor: Processor): this;
+  process(extensions: Extensions | Processor, processor?: Processor): this {
+    if (typeof extensions === "function") {
+      return this.process("*", extensions);
+    }
+
+    this.processors.set(extensions, processor!);
+
+    if (Array.isArray(extensions)) {
+      extensions.forEach((ext) => this.formats.set({ ext }));
+    }
     return this;
   }
 
@@ -417,7 +426,7 @@ export default class Site {
   }
 
   /** Register an extra component accesible by the layouts */
-  component(context: string, component: Component, scope = "/"): this {
+  component(context: string, component: UserComponent, scope = "/"): this {
     const pieces = context.split(".");
     const scopedComponents: Components = this.scopedComponents.get(scope) ||
       new Map();
@@ -431,7 +440,20 @@ export default class Site {
       components = components.get(name) as Components;
     }
 
-    components.set(component.name, component);
+    const assets = new Map<string, string>();
+    if (component.css) {
+      assets.set(component.name + ".css", component.css);
+    }
+    if (component.js) {
+      assets.set(component.name + ".js", component.js);
+    }
+
+    components.set(component.name, {
+      name: component.name,
+      render: component.render,
+      assets,
+    });
+
     this.scopedComponents.set(scope, scopedComponents);
     return this;
   }
@@ -446,36 +468,65 @@ export default class Site {
     return this;
   }
 
-  /** Copy static files or directories without processing */
-  copy(from: string, to?: string | ((path: string) => string)): this;
-  copy(from: string[], to?: (path: string) => string): this;
-  copy(
+  /** Add files or directories to the site */
+  add(from: string, to?: string | Destination): this;
+  add(from: string[], to?: Destination): this;
+  add(
     from: string | string[],
-    to?: string | ((path: string) => string),
+    to?: string | Destination,
   ): this {
     // File extensions
     if (Array.isArray(from)) {
       if (typeof to === "string") {
         throw new Error(
-          `copy() files by extension expects a function as second argument but got a string "${to}"`,
+          `add() files by extension expects a function as second argument but got a string "${to}"`,
         );
       }
-
-      from.forEach((ext) => {
-        this.formats.set({ ext, copy: to ? to : true });
-      });
+      const dest = typeof to === "function" ? to : (path: string) => path;
+      for (const ext of from) {
+        this.source.addFile(ext, dest);
+        this.formats.set({ ext });
+      }
       return this;
     }
 
-    this.source.addStaticPath(from, to);
-    return this;
-  }
+    // Remote files
+    if (from.startsWith("npm:")) {
+      from = from.replace("npm:", "https://cdn.jsdelivr.net/npm/");
+    }
 
-  /** Copy the remaining files */
-  copyRemainingFiles(
-    filter: (path: string) => string | boolean = () => true,
-  ): this {
-    this.source.copyRemainingFiles = filter;
+    if (isUrl(from)) {
+      const url = new URL(from);
+
+      if (to === undefined) {
+        to = posix.basename(url.pathname) || undefined;
+      }
+
+      if (typeof to === "function") {
+        to = to(url.href);
+      }
+
+      if (to?.endsWith("/")) {
+        to = posix.join(to, posix.basename(url.pathname));
+      }
+
+      if (!to || to.endsWith("/")) {
+        throw new Error(`Invalid destination path: ${to}`);
+      }
+
+      this.remoteFile(to, url.href);
+      this.source.addFile(to, to);
+      return this;
+    }
+
+    // It's a path
+    if (from.startsWith("../")) {
+      throw new Error(
+        `It's not possible to copy files outsite the src directory ("${from}")`,
+      );
+    }
+
+    this.source.addFile(from, to ?? ((str: string) => str));
     return this;
   }
 
@@ -646,27 +697,35 @@ export default class Site {
 
     // Render the pages
     this.pages.splice(0);
-    this.onDemandPages.splice(0);
-    await this.renderer.renderPages(pages, this.pages, this.onDemandPages);
+    await this.renderer.renderPages(pages, this.pages);
 
     // Add extra code generated by the components
-    for (const [url, content] of this.source.getComponentsExtraCode()) {
-      const page = await this.getOrCreatePage(url);
-      insertContent(page, content, this.options.components.placeholder);
+    for (const { path, entries } of this.source.getComponentsExtraCode()) {
+      if (path.endsWith(".css")) {
+        const page = await this.getOrCreatePage(path);
+        page.text = insertContent(
+          page.text,
+          await compileCSS(path, entries, this.fs.entries),
+          this.options.components.placeholder,
+        );
+        continue;
+      }
+
+      if (path.endsWith(".js")) {
+        const page = await this.getOrCreatePage(path);
+        page.text = insertContent(
+          page.text,
+          await compileJS(path, entries, this.fs.entries),
+          this.options.components.placeholder,
+        );
+      }
     }
 
-    // Remove empty pages and ondemand pages
+    // Remove empty pages
     this.pages.splice(
       0,
       this.pages.length,
       ...this.pages.filter((page) => {
-        if (page.data.ondemand) {
-          log.debug(
-            `[Lume] <cyan>Skipped page</cyan> ${page.data.url} (page is build only on demand)`,
-          );
-          return false;
-        }
-
         if (!page.content) {
           log.warn(
             `[Lume] <cyan>Skipped page</cyan> ${page.data.url} (file content is empty)`,
@@ -698,6 +757,10 @@ export default class Site {
       return false;
     }
 
+    // Promote the files that must be processed to pages
+    const extensions = this.processors.extensions;
+    await this.filesToPages((file) => extensions.has(file.src.ext));
+
     // Run the processors to the pages
     await this.processors.run(this.pages);
     performance.mark("end-process");
@@ -713,41 +776,20 @@ export default class Site {
     return await this.dispatchEvent({ type: "beforeSave" });
   }
 
-  /** Render a single page (used for on demand rendering) */
-  async renderPage(
-    file: string,
-    extraData?: Record<string, unknown>,
-  ): Promise<Page | undefined> {
-    // Load the page
-    this.fs.init();
+  /** Promote a file to page. */
+  async filesToPages(filter: (file: StaticFile) => boolean): Promise<void> {
+    const toRemove: StaticFile[] = [];
 
-    // Get the site content
-    const [pages] = await this.source.build(
-      (entry, page) =>
-        (entry.type === "directory" && file.startsWith(entry.path) && (!page ||
-          page.sourcePath === file)) ||
-        entry.path === file,
-    );
-
-    const page = pages[0];
-
-    if (!page) {
-      return;
+    for (const file of this.files) {
+      if (filter(file)) {
+        this.pages.push(await file.toPage());
+        toRemove.push(file);
+      }
     }
 
-    // Add extra data
-    if (extraData) {
-      page.data = { ...page.data, ...extraData };
+    for (const file of toRemove) {
+      this.files.splice(this.files.indexOf(file), 1);
     }
-
-    await this.dispatchEvent({ type: "beforeRenderOnDemand", page });
-
-    // Render the page
-    await this.renderer.renderPageOnDemand(page);
-
-    // Run the processors to the page
-    await this.processors.run([page]);
-    return page;
   }
 
   /** Return the URL of a path */
@@ -803,10 +845,7 @@ export default class Site {
     return absolute ? this.options.location.origin + path : path;
   }
 
-  async getOrCreatePage(
-    url: string,
-    loader: Loader = textLoader,
-  ): Promise<Page> {
+  async getOrCreatePage(url: string): Promise<Page> {
     url = normalizePath(url);
 
     // It's a page
@@ -820,9 +859,8 @@ export default class Site {
     const index = this.files.findIndex((f) => f.outputPath === url);
 
     if (index > -1) {
-      const { entry } = this.files.splice(index, 1)[0].src;
-      const data = await entry.getContent(loader) as Data;
-      const page = Page.create({ ...data, url });
+      const file = this.files.splice(index, 1)[0];
+      const page = await file.toPage();
       this.pages.push(page);
       return page;
     }
@@ -830,8 +868,9 @@ export default class Site {
     // Read the source files directly
     const entry = this.fs.entries.get(url);
     if (entry) {
-      const data = await entry.getContent(loader) as Data;
-      const page = Page.create({ ...data, url });
+      const { content } = await entry.getContent(binaryLoader);
+      const page = Page.create({ url }, { entry });
+      page.content = content as Uint8Array;
       this.pages.push(page);
       return page;
     }
@@ -845,9 +884,15 @@ export default class Site {
    * Get the content of a file.
    * Resolve the path if it's needed.
    */
+  async getContent(file: string, binary: true): Promise<Uint8Array | undefined>;
+  async getContent(file: string, binary: false): Promise<string | undefined>;
   async getContent(
     file: string,
-    loader: Loader,
+    binary: boolean,
+  ): Promise<string | Uint8Array | undefined>;
+  async getContent(
+    file: string,
+    binary: boolean,
   ): Promise<string | Uint8Array | undefined> {
     file = normalizePath(file);
     const basePath = this.src();
@@ -863,23 +908,26 @@ export default class Site {
     const page = this.pages.find((page) => page.data.url === url);
 
     if (page) {
-      return page.content;
+      return binary ? page.bytes : page.text;
     }
 
     // It's a static file
     const staticFile = this.files.find((f) => f.outputPath === file);
 
     if (staticFile) {
-      return (await staticFile.src.entry.getContent(loader)).content as
-        | string
-        | Uint8Array;
+      return binary
+        ? (await staticFile.src.entry.getContent(binaryLoader))
+          .content as Uint8Array
+        : (await staticFile.src.entry.getContent(textLoader)).content as string;
     }
 
     // Read the source files directly
     try {
       const entry = this.fs.entries.get(file);
       if (entry) {
-        return (await entry.getContent(loader)).content as string | Uint8Array;
+        return binary
+          ? (await entry.getContent(binaryLoader)).content as Uint8Array
+          : (await entry.getContent(textLoader)).content as string;
       }
     } catch {
       // Ignore error
@@ -925,6 +973,15 @@ export interface SiteOptions {
 
   /** The default includes path */
   includes: string;
+
+  /** The default css file */
+  cssFile: string;
+
+  /** The default js file */
+  jsFile: string;
+
+  /** The default folder for fonts */
+  fontsFolder: string;
 
   /** The site location (used to generate final urls) */
   location: URL;
@@ -983,14 +1040,11 @@ export interface WatcherOptions {
 
 /** The options to configure the components */
 export interface ComponentsOptions {
-  /** The variable name used to access to the components */
-  variable: string;
-
   /** The name of the file to save the components css code */
-  cssFile: string;
+  cssFile?: string;
 
   /** The name of the file to save the components javascript code */
-  jsFile: string;
+  jsFile?: string;
 
   /** An optional placeholder to insert the CSS and JS code */
   placeholder?: string;
@@ -1028,10 +1082,6 @@ export type SiteEventMap = {
   afterRender: {
     /** the list of pages that have been rendered */
     pages: Page[];
-  };
-  beforeRenderOnDemand: {
-    /** the page that will be rendered */
-    page: Page;
   };
   // deno-lint-ignore ban-types
   beforeSave: {};

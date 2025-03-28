@@ -6,32 +6,32 @@ snapshot[`Copy static files 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,17 +48,16 @@ snapshot[`Copy static files 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
-      copy: true,
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
@@ -73,14 +72,14 @@ snapshot[`Copy static files 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -92,29 +91,23 @@ snapshot[`Copy static files 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
-      copy: true,
-      engines: undefined,
       ext: ".css",
     },
     {
-      copy: true,
-      engines: undefined,
       ext: ".copy",
     },
     {
-      copy: [Function (anonymous)],
-      engines: undefined,
       ext: ".copy2",
     },
   ],
@@ -174,9 +167,19 @@ snapshot[`Copy static files 2`] = `
     outputPath: "/_headers",
   },
   {
+    entry: "/static/_redirects",
+    flags: [],
+    outputPath: "/_redirects",
+  },
+  {
     entry: "/_static/inner/yes.txt",
     flags: [],
     outputPath: "/inner/yes.txt",
+  },
+  {
+    entry: "/static/one.yes",
+    flags: [],
+    outputPath: "/one.yes",
   },
   {
     entry: "/other/one",
@@ -201,67 +204,42 @@ snapshot[`Copy static files 2`] = `
   {
     entry: "/posts/2022-01-01_first-post/assets/inner/inner2/styles.scss",
     flags: [],
-    outputPath: "/posts/first-post/assets/inner/inner2/styles.css",
+    outputPath: "/posts/2022-01-01_first-post/assets/inner/inner2/styles.css",
   },
   {
     entry: "/posts/2022-01-01_first-post/assets/inner/styles1.scss",
     flags: [],
-    outputPath: "/posts/first-post/assets/inner/styles1.css",
+    outputPath: "/posts/2022-01-01_first-post/assets/inner/styles1.css",
   },
   {
     entry: "/posts/2022-01-01_first-post/assets/styles.scss",
     flags: [],
-    outputPath: "/posts/first-post/assets/styles.css",
-  },
-  {
-    entry: "/posts/2022-01-01_first-post/callback.copy2",
-    flags: [],
-    outputPath: "/subdir/posts/first-post/callback.copy3",
+    outputPath: "/posts/2022-01-01_first-post/assets/styles.css",
   },
   {
     entry: "/posts/2022-01-01_first-post/individual-file",
     flags: [],
-    outputPath: "/posts/first-post/individual-file",
-  },
-  {
-    entry: "/posts/2022-01-01_first-post/inner/callback1.copy2",
-    flags: [],
-    outputPath: "/subdir/posts/first-post/inner/callback1.copy3",
-  },
-  {
-    entry: "/posts/2022-01-01_first-post/inner/inner2/callback2.copy2",
-    flags: [],
-    outputPath: "/subdir/posts/first-post/inner/inner2/callback2.copy3",
+    outputPath: "/posts/2022-01-01_first-post/individual-file",
   },
   {
     entry: "/posts/2022-01-01_first-post/inner/inner2/to-copy2.copy",
     flags: [],
-    outputPath: "/posts/first-post/inner/inner2/to-copy2.copy",
+    outputPath: "/posts/2022-01-01_first-post/inner/inner2/to-copy2.copy",
   },
   {
     entry: "/posts/2022-01-01_first-post/inner/to-copy1.copy",
     flags: [],
-    outputPath: "/posts/first-post/inner/to-copy1.copy",
+    outputPath: "/posts/2022-01-01_first-post/inner/to-copy1.copy",
   },
   {
     entry: "/posts/2022-01-01_first-post/to-copy.copy",
     flags: [],
-    outputPath: "/posts/first-post/to-copy.copy",
+    outputPath: "/posts/2022-01-01_first-post/to-copy.copy",
   },
   {
     entry: "/script/2022-01-01_app/main.js",
     flags: [],
-    outputPath: "/script/app/main.js",
-  },
-  {
-    entry: "/static/one.yes",
-    flags: [],
-    outputPath: "/one.yes",
-  },
-  {
-    entry: "/static/two.yes",
-    flags: [],
-    outputPath: "/two.yes",
+    outputPath: "/script/2022-01-01_app/main.js",
   },
   {
     entry: "/styles.css",
@@ -272,6 +250,26 @@ snapshot[`Copy static files 2`] = `
     entry: "/styles/main.css",
     flags: [],
     outputPath: "/styles/main.css",
+  },
+  {
+    entry: "/posts/2022-01-01_first-post/callback.copy2",
+    flags: [],
+    outputPath: "/subdir/posts/2022-01-01_first-post/callback.copy3",
+  },
+  {
+    entry: "/posts/2022-01-01_first-post/inner/callback1.copy2",
+    flags: [],
+    outputPath: "/subdir/posts/2022-01-01_first-post/inner/callback1.copy3",
+  },
+  {
+    entry: "/posts/2022-01-01_first-post/inner/inner2/callback2.copy2",
+    flags: [],
+    outputPath: "/subdir/posts/2022-01-01_first-post/inner/inner2/callback2.copy3",
+  },
+  {
+    entry: "/static/two.yes",
+    flags: [],
+    outputPath: "/two.yes",
   },
 ]
 `;

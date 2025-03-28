@@ -1,15 +1,14 @@
 import { Page } from "../core/file.ts";
-import { assign, merge } from "../core/utils/object.ts";
+import { merge } from "../core/utils/object.ts";
+import { overrideData } from "../core/utils/merge_data.ts";
 import { log } from "../core/utils/log.ts";
 import { filter404page } from "../core/utils/page_url.ts";
 
 import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
+import { isGenerator } from "../core/utils/generator.ts";
 
 export interface Options {
-  /** The list of extensions used for this plugin */
-  extensions?: string[];
-
   /** Available languages */
   languages: string[];
 
@@ -19,7 +18,6 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
-  extensions: [".html"],
   languages: [],
 };
 
@@ -34,7 +32,44 @@ export function multilanguage(userOptions: Options) {
     const isNot404page = filter404page(site.options.server.page404);
 
     // Configure the merged keys
-    options.languages.forEach((lang) => site.mergeKey(lang, "object"));
+    options.languages.forEach((lang) => site.mergeKey(lang, "data"));
+
+    // Event to handle generators before being preprocessed
+    site.addEventListener("beforeRender", ({ pages }) => {
+      const removedPages: Page[] = [];
+      const newPages: Page[] = [];
+
+      for (const page of pages) {
+        const { data } = page;
+
+        if (!isGenerator(data.content) || !page.outputPath.endsWith(".html")) {
+          continue;
+        }
+
+        const languages = data.lang as string | string[] | undefined;
+
+        fixLanguage(page);
+
+        if (!Array.isArray(languages)) {
+          mergeTranslations(data);
+          continue;
+        }
+
+        // Create a new page per language
+        for (const lang of languages) {
+          const newData: Data = { ...data, lang };
+          const newPage = page.duplicate(undefined, newData);
+          newPages.push(newPage);
+          mergeTranslations(newPage.data);
+        }
+
+        removedPages.push(page);
+      }
+
+      // Replace the current pages with the multiple language versions
+      pages.push(...newPages);
+      removedPages.forEach((page) => pages.splice(pages.indexOf(page), 1));
+    });
 
     /**
      * Preprocessor to setup multilanguage pages
@@ -43,45 +78,14 @@ export function multilanguage(userOptions: Options) {
      * + display guidance (warning log) to some bug-potential cases
      * + convert "page.data.lang" array type page (if yes) to string type page
      */
-    site.preprocess(options.extensions, (filteredPages, allPages) => {
+    site.preprocess([".html"], (filteredPages, allPages) => {
       for (const page of filteredPages) {
+        fixLanguage(page);
         const { data } = page;
         const languages = data.lang as string | string[] | undefined;
 
-        // If the "lang" variable is not defined, use the default language
-        if (languages === undefined) {
-          data.lang = options.defaultLanguage;
-          continue;
-        }
-
-        // 404 pages should not be multilanguage
-        if (!isNot404page(data)) {
-          if (Array.isArray(languages)) {
-            data.lang = options.defaultLanguage;
-          }
-          continue;
-        }
-
-        // If the "lang" variable is a string, check if it's a valid language
-        if (typeof languages === "string") {
-          if (!options.languages.includes(languages)) {
-            log.warn(
-              `[multilanguage plugin] The language "${languages}" in the page ${page.sourcePath} is not defined in the "languages" option.`,
-            );
-          }
-          continue;
-        }
-
-        // The "lang" variable of the pages must be an array
         if (!Array.isArray(languages)) {
-          throw new Error(`Invalid "lang" variable in ${page.sourcePath}`);
-        }
-
-        // Check if these "languages" are all valid language codes
-        if (languages.some((lang) => !options.languages.includes(lang))) {
-          log.warn(
-            `[multilanguage plugin] One or more languages in the page ${page.sourcePath} are not defined in the "languages" option.`,
-          );
+          mergeTranslations(data);
           continue;
         }
 
@@ -93,6 +97,7 @@ export function multilanguage(userOptions: Options) {
           const newData: Data = { ...data, lang, id };
           const newPage = page.duplicate(undefined, newData);
           newPages.push(newPage);
+          mergeTranslations(newPage.data);
         }
 
         // Replace the current page with the multiple language versions
@@ -107,19 +112,13 @@ export function multilanguage(userOptions: Options) {
      * + create the alternates
      * + sort the alternates
      */
-    site.preprocess(options.extensions, (pages) => {
+    site.preprocess([".html"], (pages) => {
       for (const page of pages) {
         const { data } = page;
         const { lang } = data;
 
-        // Resolve the language data
-        for (const key of options.languages) {
-          if (key in data) {
-            if (key === lang) {
-              assign(data, data[key]);
-            }
-            delete data[key];
-          }
+        if (!lang) {
+          continue;
         }
 
         if (isNot404page(data)) {
@@ -172,7 +171,7 @@ export function multilanguage(userOptions: Options) {
      *
      * + convert unmatchedLangUrl any value to URL string value
      */
-    site.preprocess(options.extensions, (pages) => {
+    site.preprocess([".html"], (pages) => {
       for (const page of pages) {
         page.data.unmatchedLangUrl = getUnmatchedLangPath(
           page,
@@ -183,13 +182,13 @@ export function multilanguage(userOptions: Options) {
 
     // Include automatically the <link rel="alternate"> elements
     // with the other languages
-    site.process(options.extensions, (pages) => {
+    site.process([".html"], (pages) => {
       for (const page of pages) {
         const { document } = page;
         const alternates = page.data.alternates;
         const lang = page.data.lang as string | undefined;
 
-        if (!document || !alternates || !lang) {
+        if (!alternates || !lang) {
           continue;
         }
 
@@ -217,6 +216,71 @@ export function multilanguage(userOptions: Options) {
         }
       }
     });
+
+    /** Merge translations with the root data object */
+    function mergeTranslations(data: Data) {
+      const { lang } = data;
+
+      if (!lang) {
+        return;
+      }
+
+      // Get the language data
+      const override = data[lang];
+
+      // Remove all language data from the page data
+      for (const key of options.languages) {
+        delete data[key];
+      }
+
+      // Merge the language data with the page data
+      if (override) {
+        overrideData(data, override);
+      }
+    }
+
+    /** Assign a language to a page */
+    function fixLanguage(page: Page<Data>) {
+      const { data } = page;
+      const languages = data.lang as string | string[] | undefined;
+
+      // If the "lang" variable is not defined, use the default language
+      if (languages === undefined) {
+        data.lang = options.defaultLanguage;
+        return;
+      }
+
+      // 404 pages should not be multilanguage
+      if (!isNot404page(data)) {
+        if (Array.isArray(languages)) {
+          data.lang = options.defaultLanguage;
+        }
+        return;
+      }
+
+      // If the "lang" variable is a string, check if it's a valid language
+      if (typeof languages === "string") {
+        if (!options.languages.includes(languages)) {
+          log.warn(
+            `[multilanguage plugin] The language "${languages}" in the page ${page.sourcePath} is not defined in the "languages" option.`,
+          );
+        }
+        return;
+      }
+
+      // The "lang" variable of the pages must be an array
+      if (!Array.isArray(languages)) {
+        throw new Error(`Invalid "lang" variable in ${page.sourcePath}`);
+      }
+
+      // Check if these "languages" are all valid language codes
+      if (languages.some((lang) => !options.languages.includes(lang))) {
+        log.warn(
+          `[multilanguage plugin] One or more languages in the page ${page.sourcePath} are not defined in the "languages" option.`,
+        );
+        return;
+      }
+    }
   };
 }
 

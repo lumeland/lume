@@ -7,9 +7,6 @@ import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
   /** The css selector to apply prism */
   cssSelector?: string;
 
@@ -24,12 +21,6 @@ interface Theme {
   /** The name of the theme */
   name: string;
 
-  /**
-   * The path to the theme file
-   * @deprecated Use cssFile instead
-   */
-  path?: string;
-
   /** The CSS file to output the font-face rules */
   cssFile?: string;
 
@@ -39,7 +30,6 @@ interface Theme {
 
 // Default options
 export const defaults: Options = {
-  extensions: [".html"],
   cssSelector: "pre code",
 };
 
@@ -51,33 +41,26 @@ export function prism(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(options.extensions, (pages) => pages.forEach(prism));
+    site.process([".html"], (pages) => pages.forEach(prism));
 
     if (options.theme) {
       const themes = Array.isArray(options.theme)
         ? options.theme
         : [options.theme];
 
-      for (const { name, path, cssFile, placeholder } of themes) {
-        if (cssFile) {
-          site.addEventListener("afterRender", async () => {
-            const cssCode = await readFile(getCssUrl(name));
-            const page = await site.getOrCreatePage(cssFile);
-            insertContent(page, cssCode, placeholder);
-          });
-          continue;
-        }
-
-        if (path) {
-          site.remoteFile(path, getCssUrl(name));
-        } else {
-          throw new Error(`The theme ${name} must have a path or cssFile`);
-        }
+      for (
+        const { name, cssFile = site.options.cssFile, placeholder } of themes
+      ) {
+        site.process(async () => {
+          const cssCode = await readFile(getCssUrl(name));
+          const page = await site.getOrCreatePage(cssFile);
+          page.text = insertContent(page.text, cssCode, placeholder);
+        });
       }
     }
 
     function prism(page: Page) {
-      page.document!.querySelectorAll(options.cssSelector!)
+      page.document.querySelectorAll(options.cssSelector!)
         .forEach((element) => Prism.highlightElement(element));
     }
   };

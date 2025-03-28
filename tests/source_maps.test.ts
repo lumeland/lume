@@ -11,6 +11,7 @@ Deno.test("Source maps from CSS files", async (t) => {
     src: "sass",
   });
 
+  site.add([".scss", ".sass", ".css"]);
   site.use(sass());
   site.use(postcss());
   site.use(lightningcss({
@@ -29,7 +30,7 @@ Deno.test("Source maps from Js files", {
   const site = getSite({
     src: "esbuild",
   });
-
+  site.add([".ts"]);
   site.use(esbuild());
   site.use(terser());
   site.use(sourceMaps());

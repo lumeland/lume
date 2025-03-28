@@ -6,32 +6,32 @@ snapshot[`render order property 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`render order property 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`render order property 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,15 @@ snapshot[`render order property 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -119,8 +119,517 @@ snapshot[`render order property 2`] = `[]`;
 snapshot[`render order property 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<p>Hello world</p>
+    content: "1",
+    data: {
+      basename: "1",
+      children: 1,
+      content: 1,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/1/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages[0]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "10",
+    data: {
+      basename: "10",
+      children: 10,
+      content: 10,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/10/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages[9]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "11",
+    data: {
+      basename: "11",
+      children: 11,
+      content: 11,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      renderOrder: 2,
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/11/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages2[0]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "12",
+    data: {
+      basename: "12",
+      children: 12,
+      content: 12,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      renderOrder: 2,
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/12/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages2[1]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "13",
+    data: {
+      basename: "13",
+      children: 13,
+      content: 13,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      renderOrder: 2,
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/13/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages2[2]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "14",
+    data: {
+      basename: "14",
+      children: 14,
+      content: 14,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      renderOrder: 2,
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/14/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages2[3]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "15",
+    data: {
+      basename: "15",
+      children: 15,
+      content: 15,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      renderOrder: 2,
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/15/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages2[4]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "16",
+    data: {
+      basename: "16",
+      children: 16,
+      content: 16,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      renderOrder: 2,
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/16/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages2[5]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "17",
+    data: {
+      basename: "17",
+      children: 17,
+      content: 17,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      renderOrder: 2,
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/17/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages2[6]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "18",
+    data: {
+      basename: "18",
+      children: 18,
+      content: 18,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      renderOrder: 2,
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/18/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages2[7]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "19",
+    data: {
+      basename: "19",
+      children: 19,
+      content: 19,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      renderOrder: 2,
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/19/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages2[8]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "2",
+    data: {
+      basename: "2",
+      children: 2,
+      content: 2,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/2/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages[1]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "20",
+    data: {
+      basename: "20",
+      children: 20,
+      content: 20,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      renderOrder: 2,
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/20/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages2[9]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "3",
+    data: {
+      basename: "3",
+      children: 3,
+      content: 3,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/3/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages[2]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "4",
+    data: {
+      basename: "4",
+      children: 4,
+      content: 4,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/4/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages[3]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "5",
+    data: {
+      basename: "5",
+      children: 5,
+      content: 5,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/5/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages[4]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "6",
+    data: {
+      basename: "6",
+      children: 6,
+      content: 6,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/6/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages[5]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "7",
+    data: {
+      basename: "7",
+      children: 7,
+      content: 7,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/7/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages[6]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "8",
+    data: {
+      basename: "8",
+      children: 8,
+      content: 8,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/8/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages[7]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "9",
+    data: {
+      basename: "9",
+      children: 9,
+      content: 9,
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/articles/9/",
+    },
+    src: {
+      ext: ".page.ts",
+      path: "/pages[8]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Hello world</p>
 ",
     data: {
       basename: "extra-page",
@@ -135,7 +644,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -143,587 +651,15 @@ snapshot[`render order property 3`] = `
       url: "/extra-page/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/extra-page",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-11",
+    content: '{"page":1,"totalPages":3,"totalResults":11,"previous":null,"next":"./page-2/index.html"}',
     data: {
-      basename: "pages2",
-      children: 11,
-      content: 11,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      renderOrder: 2,
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/11/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages2[0]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-12",
-    data: {
-      basename: "pages2",
-      children: 12,
-      content: 12,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      renderOrder: 2,
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/12/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages2[1]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-13",
-    data: {
-      basename: "pages2",
-      children: 13,
-      content: 13,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      renderOrder: 2,
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/13/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages2[2]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-14",
-    data: {
-      basename: "pages2",
-      children: 14,
-      content: 14,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      renderOrder: 2,
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/14/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages2[3]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-15",
-    data: {
-      basename: "pages2",
-      children: 15,
-      content: 15,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      renderOrder: 2,
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/15/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages2[4]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-16",
-    data: {
-      basename: "pages2",
-      children: 16,
-      content: 16,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      renderOrder: 2,
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/16/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages2[5]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-17",
-    data: {
-      basename: "pages2",
-      children: 17,
-      content: 17,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      renderOrder: 2,
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/17/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages2[6]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-18",
-    data: {
-      basename: "pages2",
-      children: 18,
-      content: 18,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      renderOrder: 2,
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/18/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages2[7]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-19",
-    data: {
-      basename: "pages2",
-      children: 19,
-      content: 19,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      renderOrder: 2,
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/19/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages2[8]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-20",
-    data: {
-      basename: "pages2",
-      children: 20,
-      content: 20,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      renderOrder: 2,
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/20/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages2[9]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-1",
-    data: {
-      basename: "pages",
-      children: 1,
-      content: 1,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/1/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages[0]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-2",
-    data: {
-      basename: "pages",
-      children: 2,
-      content: 2,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/2/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages[1]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-3",
-    data: {
-      basename: "pages",
-      children: 3,
-      content: 3,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/3/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages[2]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-4",
-    data: {
-      basename: "pages",
-      children: 4,
-      content: 4,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/4/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages[3]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-5",
-    data: {
-      basename: "pages",
-      children: 5,
-      content: 5,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/5/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages[4]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-6",
-    data: {
-      basename: "pages",
-      children: 6,
-      content: 6,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/6/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages[5]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-7",
-    data: {
-      basename: "pages",
-      children: 7,
-      content: 7,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/7/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages[6]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-8",
-    data: {
-      basename: "pages",
-      children: 8,
-      content: 8,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/8/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages[7]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-9",
-    data: {
-      basename: "pages",
-      children: 9,
-      content: 9,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/9/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages[8]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-10",
-    data: {
-      basename: "pages",
-      children: 10,
-      content: 10,
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/articles/10/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.ts",
-      path: "/pages[9]",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<!DOCTYPE html>
-{"page":1,"totalPages":3,"totalResults":11,"previous":null,"next":"./page-2/index.html"}',
-    data: {
-      basename: "pagination",
+      basename: "page-1",
       children: "undefined",
       content: "undefined",
       date: [],
@@ -734,7 +670,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       pagination: [
@@ -751,17 +686,15 @@ snapshot[`render order property 3`] = `
       url: "/page-1/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pagination[0]",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-{"page":2,"totalPages":3,"totalResults":11,"previous":"./page-1/index.html","next":"./page-3/index.html"}',
+    content: '{"page":2,"totalPages":3,"totalResults":11,"previous":"./page-1/index.html","next":"./page-3/index.html"}',
     data: {
-      basename: "pagination",
+      basename: "page-2",
       children: "undefined",
       content: "undefined",
       date: [],
@@ -772,7 +705,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       pagination: [
@@ -789,17 +721,15 @@ snapshot[`render order property 3`] = `
       url: "/page-2/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pagination[1]",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-{"page":3,"totalPages":3,"totalResults":11,"previous":"./page-2/index.html","next":null}',
+    content: '{"page":3,"totalPages":3,"totalResults":11,"previous":"./page-2/index.html","next":null}',
     data: {
-      basename: "pagination",
+      basename: "page-3",
       children: "undefined",
       content: "undefined",
       date: [],
@@ -810,7 +740,6 @@ snapshot[`render order property 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       pagination: [
@@ -827,7 +756,6 @@ snapshot[`render order property 3`] = `
       url: "/page-3/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pagination[2]",
       remote: undefined,

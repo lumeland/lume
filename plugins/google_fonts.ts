@@ -1,6 +1,8 @@
 import { read, readFile } from "../core/utils/read.ts";
 import { insertContent } from "../core/utils/page_content.ts";
+import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
+
 import type Site from "../core/site.ts";
 
 export interface Options {
@@ -8,7 +10,7 @@ export interface Options {
   fonts: string | Record<string, string>;
 
   /** The folder to save the fonts */
-  folder?: string;
+  fontsFolder?: string;
 
   /** The CSS file to output the font-face rules */
   cssFile?: string;
@@ -22,25 +24,27 @@ export interface Options {
 
 export const defaults: Options = {
   fonts: "",
-  folder: "/fonts",
-  cssFile: "/fonts.css",
-  placeholder: "",
 };
 
 export function googleFonts(userOptions: Options) {
-  const options = { ...defaults, ...userOptions } as Required<Options>;
+  const options = merge(defaults, userOptions);
 
   return (site: Site) => {
     let cssCode = "";
-    const cssFile = posix.join("/", options.cssFile);
+    const cssFile = posix.join("/", options.cssFile || site.options.cssFile);
+    const fontsFolder = posix.join(
+      "/",
+      options.fontsFolder || site.options.fontsFolder,
+    );
 
+    // Download the fonts and generate the CSS
     site.addEventListener("beforeBuild", async () => {
       const fonts = typeof options.fonts === "string"
         ? { "": options.fonts }
         : options.fonts;
       const relativePath = posix.relative(
         posix.dirname(cssFile),
-        posix.join(options.folder),
+        posix.join(fontsFolder),
       );
 
       for (const [name, url] of Object.entries(fonts)) {
@@ -54,7 +58,7 @@ export function googleFonts(userOptions: Options) {
           const content = await read(fontFace.src, true);
           site.page({
             content,
-            url: posix.join("/", options.folder, fontFace.file),
+            url: posix.join("/", fontsFolder, fontFace.file),
           });
         }));
 
@@ -63,9 +67,9 @@ export function googleFonts(userOptions: Options) {
     });
 
     // Output the CSS file
-    site.addEventListener("afterRender", async () => {
+    site.process(async () => {
       const page = await site.getOrCreatePage(cssFile);
-      insertContent(page, cssCode, options.placeholder);
+      page.text = insertContent(page.text, cssCode, options.placeholder);
     });
   };
 }

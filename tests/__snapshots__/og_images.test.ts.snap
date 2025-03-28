@@ -6,32 +6,32 @@ snapshot[`OpenGraph images 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`OpenGraph images 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`OpenGraph images 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,18 @@ snapshot[`OpenGraph images 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
+    },
+    {
+      ext: ".html",
     },
   ],
   src: [
@@ -117,27 +120,7 @@ snapshot[`OpenGraph images 2`] = `[]`;
 snapshot[`OpenGraph images 3`] = `
 [
   {
-    content: "Uint8Array(13013)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(13013)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/page1/index.png",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-<p>This is the page 1</p>
+    content: "<p>This is the page 1</p>
 ",
     data: {
       basename: "page1",
@@ -157,7 +140,6 @@ snapshot[`OpenGraph images 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -166,9 +148,25 @@ snapshot[`OpenGraph images 3`] = `
       url: "/page1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page1",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(13013)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(13013)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/page1/index.png",
+    },
+    src: {
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },

@@ -3,6 +3,7 @@ import sitemap from "../plugins/sitemap.ts";
 import multilanguage from "../plugins/multilanguage.ts";
 import filterPages from "../plugins/filter_pages.ts";
 import redirects from "../plugins/redirects.ts";
+import extractDate from "../plugins/extract_date.ts";
 
 Deno.test("Sitemap plugin", async (t) => {
   const site = getSite({
@@ -11,6 +12,7 @@ Deno.test("Sitemap plugin", async (t) => {
   });
 
   site.use(sitemap());
+  site.use(extractDate());
   site.ignore("static.yml");
 
   await build(site);
@@ -27,8 +29,11 @@ Deno.test("Sitemap plugin with a multilanguage plugin", async (t) => {
     defaultLanguage: "gl",
     languages: ["en", "fr", "it", "gl"],
   }));
+  site.use(extractDate());
   site.use(sitemap({
-    lastmod: "",
+    items: {
+      lastmod: "",
+    },
   }));
 
   await build(site);
@@ -41,11 +46,12 @@ Deno.test("Sitemap plugin with filter_pages plugin", async (t) => {
     location: new URL("https://example.com/"),
   });
 
-  site.use(sitemap());
   site.ignore("static.yml");
   site.use(filterPages({
     fn: (page) => page.data.url !== "/pages/new-name/page7/",
   }));
+  site.use(sitemap());
+  site.use(extractDate());
 
   await build(site);
   await assertSiteSnapshot(t, site);
@@ -59,6 +65,7 @@ Deno.test("Sitemap plugin with redirects plugin", async (t) => {
 
   site.use(sitemap());
   site.use(redirects());
+  site.use(extractDate());
 
   await build(site);
   await assertSiteSnapshot(t, site);

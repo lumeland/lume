@@ -6,32 +6,32 @@ snapshot[`icons plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`icons plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`icons plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,15 @@ snapshot[`icons plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -120,12 +120,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/ant/account-book-filled.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -141,12 +139,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/bootstrap/0-circle.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -159,12 +155,46 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/boxicons/sushi-regular.svg",
     },
     src: {
-      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4Z"
+    fill="currentColor"
+  />
+  <path
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M13 7C13 6.44772 12.5523 6 12 6C11.4477 6 11 6.44772 11 7V11H7C6.44772 11 6 11.4477 6 12C6 12.5523 6.44772 13 7 13H11V17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17V13H17C17.5523 13 18 12.5523 18 12C18 11.4477 17.5523 11 17 11H13V7Z"
+    fill="currentColor"
+  />
+</svg>
+',
+    data: {
+      basename: "add",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/icons/cssgg/add.svg",
+    },
+    src: {
       ext: "",
       path: "",
       remote: undefined,
@@ -177,12 +207,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/feather/activity.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -195,12 +223,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/fluent/access_time_20-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -213,12 +239,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/fontawesome/bell-regular.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -234,12 +258,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/heroicons/face-smile-outline.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -255,12 +277,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/iconoir/check-regular.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -293,12 +313,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/lucide/alarm-clock.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -311,12 +329,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material-100/10k-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -329,12 +345,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material-200/10k-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -347,12 +361,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material-300/10k-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -365,12 +377,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material-400/10k-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -383,12 +393,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material-500/10k-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -401,12 +409,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material-600/10k-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -419,12 +425,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material-700/10k-outlined.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -437,12 +441,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/material/10k-filled.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -455,12 +457,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/mingcute/arrow/arrows_left_fill.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -473,12 +473,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/myna/a-arrow-down-regular.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -491,12 +489,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/octicons/comment-24.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -523,12 +519,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/openmoji/E046-color.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -541,12 +535,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/phosphor/acorn-duotone.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -559,12 +551,34 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/phosphor/acorn-regular.svg",
     },
     src: {
-      asset: true,
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M8.8914 2.1937C9.1158 2.35464 9.16725 2.66701 9.00631 2.89141L2.47388 12H13.5C13.7761 12 14 12.2239 14 12.5C14 12.7762 13.7761 13 13.5 13H1.5C1.31254 13 1.14082 12.8952 1.0552 12.7284C0.969578 12.5616 0.984438 12.361 1.09369 12.2086L8.19369 2.30862C8.35462 2.08422 8.667 2.03277 8.8914 2.1937ZM11.1 6.50001C11.1 6.22387 11.3238 6.00001 11.6 6.00001C11.8761 6.00001 12.1 6.22387 12.1 6.50001C12.1 6.77615 11.8761 7.00001 11.6 7.00001C11.3238 7.00001 11.1 6.77615 11.1 6.50001ZM10.4 4.00001C10.1239 4.00001 9.90003 4.22387 9.90003 4.50001C9.90003 4.77615 10.1239 5.00001 10.4 5.00001C10.6762 5.00001 10.9 4.77615 10.9 4.50001C10.9 4.22387 10.6762 4.00001 10.4 4.00001ZM12.1 8.50001C12.1 8.22387 12.3238 8.00001 12.6 8.00001C12.8761 8.00001 13.1 8.22387 13.1 8.50001C13.1 8.77615 12.8761 9.00001 12.6 9.00001C12.3238 9.00001 12.1 8.77615 12.1 8.50001ZM13.4 10C13.1239 10 12.9 10.2239 12.9 10.5C12.9 10.7761 13.1239 11 13.4 11C13.6762 11 13.9 10.7761 13.9 10.5C13.9 10.2239 13.6762 10 13.4 10Z"
+    fill="currentColor"
+  />
+</svg>
+',
+    data: {
+      basename: "angle",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/icons/radix/angle.svg",
+    },
+    src: {
       ext: "",
       path: "",
       remote: undefined,
@@ -577,12 +591,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/remix/arrows/arrow-up-fill.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -595,12 +607,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/sargam/add-duotone.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -613,12 +623,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/simpleicons/facebook.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -641,12 +649,10 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/icons/tabler/alien-filled.svg",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -689,10 +695,12 @@ snapshot[`icons plugin 3`] = `
   <img src="/icons/openmoji/E046-color.svg">
   <img src="/icons/feather/activity.svg">
   <img src="/icons/fontawesome/bell-regular.svg">
+  <img src="/icons/cssgg/add.svg">
+  <img src="/icons/radix/angle.svg">
 </body>
 </html>',
     data: {
-      basename: "index",
+      basename: "",
       children: '<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -729,6 +737,8 @@ snapshot[`icons plugin 3`] = `
   <img src="/icons/openmoji/E046-color.svg">
   <img src="/icons/feather/activity.svg">
   <img src="/icons/fontawesome/bell-regular.svg">
+  <img src="/icons/cssgg/add.svg">
+  <img src="/icons/radix/angle.svg">
 </body>
 </html>',
       content: '<!DOCTYPE html>
@@ -767,6 +777,8 @@ snapshot[`icons plugin 3`] = `
   <img src="{{ "E046" |> icon("openmoji") }}">
   <img src="{{ "activity" |> icon("feather") }}">
   <img src="{{ "bell" |> icon("fontawesome") }}">
+  <img src="{{ "add" |> icon("cssgg") }}">
+  <img src="{{ "angle" |> icon("radix") }}">
 </body>
 </html>',
       date: [],
@@ -776,7 +788,6 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -784,7 +795,6 @@ snapshot[`icons plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,

@@ -50,6 +50,7 @@ export default class Server {
   options: Required<Options>;
   middlewares: Middleware[] = [];
   #server?: Deno.HttpServer;
+  fetch: Deno.ServeHandler;
 
   constructor(options: Partial<Options> = {}) {
     this.options = merge(defaults, options);
@@ -57,6 +58,11 @@ export default class Server {
     if (this.options.hostname === "localhost") {
       this.options.hostname = "0.0.0.0";
     }
+
+    // Create the fetch function for `deno serve`
+    this.fetch = (request: Request, info: Deno.ServeHandlerInfo) => {
+      return this.handle(request, info);
+    };
   }
 
   /** The local address this server is listening on. */

@@ -2,8 +2,8 @@
   button without arguments
 {% endcomp %}
 
-{{ comp.Button({ content: "button content" }) | safe }}
-{{ comp.icon.User({ content: "this is John", name:"John" }) | safe }}
+{{ comp.Button({ content: "button content" }) | await | safe }}
+{{ comp.icon.User({ content: "this is John", name:"John" }) | await | safe }}
 
 {% comp "Button", className="my-button" %}
   button content

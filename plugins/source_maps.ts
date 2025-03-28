@@ -13,13 +13,13 @@ export interface Options {
   /** Set true to inline the source map in the output file */
   inline?: boolean;
 
-  /** Set true to include the content of the source files */
+  /** Set false to don't include the content of the source files */
   sourceContent?: boolean;
 }
 
 export const defaults: Options = {
   inline: false,
-  sourceContent: false,
+  sourceContent: true,
 };
 
 /**
@@ -49,13 +49,17 @@ export function sourceMaps(userOptions?: Options) {
       // Add the content of the source files
       try {
         if (options.sourceContent) {
+          const sourcesContent = sourceMap.sourcesContent || [];
           sourceMap.sourcesContent = await Promise.all(
-            sourceMap.sources.map((url: string) => {
-              const content = sourceMap[dynamicSourcesSymbol]?.[url];
+            sourceMap.sources.map((url: string, index: number) => {
+              const content = sourcesContent[index] ??
+                sourceMap[dynamicSourcesSymbol]?.[url];
 
               return content ? content : read(url, false);
             }),
           );
+        } else {
+          sourceMap.sourcesContent = undefined;
         }
       } catch (err) {
         log.error(`${(err as Error).message}\n${sourceMap.sources.join("\n")}`);
@@ -110,7 +114,7 @@ export interface PrepareResult {
 /** Return the required info to process a file */
 export function prepareAsset(site: Site, page: Page): PrepareResult {
   const enableSourceMap = !!site._data.enableSourceMap;
-  const content = page.content as string;
+  const content = page.text;
   const sourceMap = enableSourceMap
     ? page.data.sourceMap as SourceMap | undefined
     : undefined;
@@ -133,7 +137,7 @@ export function saveAsset(
 
   // There's no source map
   if (!sourceMap) {
-    page.content = content;
+    page.text = content;
     return;
   }
 
@@ -177,13 +181,13 @@ export function saveAsset(
     sourceMap[dynamicSourcesSymbol] = sources;
 
     if (!sources[file]) {
-      sources[file] = page.content as string;
+      sources[file] = page.text;
     }
   }
 
   // Store the new content and source map
   page.data.sourceMap = sourceMap;
-  page.content = content;
+  page.text = content;
 }
 
 function addSourceMap(url: string, sourceMap: string): string {

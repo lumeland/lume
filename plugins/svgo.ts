@@ -1,22 +1,18 @@
 import { optimize } from "../deps/svgo.ts";
 import { merge } from "../core/utils/object.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
 import type { Config } from "../deps/svgo.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
   /** Options passed to SVGO. See https://github.com/svg/svgo#configuration */
   options?: Config;
 }
 
 // Default options
-export const defaults: Options = {
-  extensions: [".svg"],
-};
+export const defaults: Options = {};
 
 /**
  * A plugin to load all SVG files and minify them using SVGO
@@ -26,17 +22,25 @@ export function svgo(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.loadAssets(options.extensions);
-    site.process(options.extensions, (pages) => pages.forEach(svg));
+    site.process([".svg"], SVGProcessor);
 
-    function svg(page: Page) {
-      const path = site.src(page.outputPath);
-      const result = optimize(page.content as string, {
-        path,
-        ...options.options,
-      }) as { data: string };
+    function SVGProcessor(files: Page[]) {
+      if (files.length === 0) {
+        log.info(
+          "[lightningcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
+        );
+        return;
+      }
 
-      page.content = result.data;
+      for (const file of files) {
+        const path = site.src(file.outputPath);
+        const result = optimize(file.text, {
+          path,
+          ...options.options,
+        }) as { data: string };
+
+        file.content = result.data;
+      }
     }
   };
 }

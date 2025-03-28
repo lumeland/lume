@@ -13,7 +13,10 @@ export async function walkUrls(
   while (position) {
     const [type, url, start, end] = position;
     const newUrl = await walker(url, type);
-    result += `${code.slice(index, start)}"${newUrl.replaceAll('"', '\\"')}"`;
+    const quotedUrl = url.startsWith("data:")
+      ? `'${newUrl.replaceAll("'", "\\'")}'`
+      : `"${newUrl.replaceAll('"', '\\"')}"`;
+    result += `${code.slice(index, start)}${quotedUrl}`;
     index = end;
     position = next(code, index);
   }
@@ -88,9 +91,9 @@ function next(code: string, index = 0): Position | undefined {
       : undefined;
     url = quote ? url.slice(1) : url;
     let end = findUrlEnd(url, quote);
-    url = url.slice(0, end - (quote ? 1 : 0));
-    end += start + (quote ? 1 : 0);
-
+    url = url.slice(0, end);
+    end += start + (quote ? 2 : 0);
+    url = url.replace(/\\'/g, "'").replace(/\\"/g, '"');
     return ["url", url, start, end];
   }
 }
@@ -100,15 +103,11 @@ function findUrlEnd(code: string, quote?: string): number {
     return code.indexOf(")");
   }
 
-  const end = code.indexOf(quote);
+  let end = code.indexOf(quote);
 
-  if (end === -1) {
-    return code.indexOf(")");
+  while (end !== -1 && code[end - 1] === "\\") {
+    end = code.indexOf(quote, end + 1);
   }
 
-  if (code[end - 1] === "\\") {
-    return end + findUrlEnd(code.slice(end + 1), quote);
-  }
-
-  return code.indexOf(")", end);
+  return end === -1 ? code.indexOf(")") : end;
 }

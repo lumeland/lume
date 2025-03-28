@@ -7,10 +7,8 @@ Deno.test("base_path plugin", async (t) => {
     location: new URL("https://example.com/blog"),
   });
 
-  site.use(basePath({
-    extensions: [".html", ".css"],
-  }));
-  site.loadAssets([".css"]);
+  site.use(basePath());
+  site.add([".css"]);
 
   await build(site);
   await assertSiteSnapshot(t, site);

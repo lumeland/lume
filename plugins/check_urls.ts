@@ -8,9 +8,6 @@ import { log } from "../core/utils/log.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
   /** True to require trailing slashes and ignore redirections (oldUrl variables) */
   strict?: boolean;
 
@@ -29,7 +26,6 @@ export interface Options {
 
 /** Default options */
 export const defaults: Options = {
-  extensions: [".html"],
   strict: false,
   throw: false,
   ignore: [],
@@ -99,7 +95,7 @@ export default function (userOptions?: Options) {
 
     // Search for redirect URLs non-strict mode
     if (!options.strict) {
-      site.process("*", (pages) => {
+      site.process((pages) => {
         for (const page of pages) {
           if (page.data.oldUrl) {
             if (Array.isArray(page.data.oldUrl)) {
@@ -116,15 +112,10 @@ export default function (userOptions?: Options) {
 
     // Search for URLs in all pages
     site.process(
-      options.extensions,
+      [".html"],
       (pages) => {
         for (const page of pages) {
           const { document } = page;
-
-          if (!document) {
-            return;
-          }
-
           const pageURL = new URL(page.data.url, site.options.location);
 
           for (const { attribute, value } of searchLinks(document)) {

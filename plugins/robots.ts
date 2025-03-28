@@ -35,8 +35,14 @@ const ruleSort = [
 export interface Options {
   /** The robots.txt file name */
   filename: string;
+
+  /** User-agent to allow */
   allow?: string[] | string;
+
+  /** User-agent to disallow */
   disallow?: string[] | string;
+
+  /** Custom rules */
   rules?: Rule[];
 }
 
@@ -54,7 +60,7 @@ export function robots(userOptions?: Partial<Options>) {
   const options: Options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.addEventListener("beforeSave", async () => {
+    site.process(async () => {
       const rules: Rule[] = [];
       const allow = typeof options.allow === "string"
         ? [options.allow]

@@ -6,32 +6,32 @@ snapshot[`nav plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`nav plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`nav plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,15 @@ snapshot[`nav plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -111,7 +111,6 @@ snapshot[`nav plugin 1`] = `
     "/docs",
     "/docs.md",
     "/docs/0-pages",
-    "/docs/0-pages.md",
     "/docs/0-pages/1-first.md",
     "/docs/0-pages/2-second.md",
     "/docs/0-pages/3-pages",
@@ -121,6 +120,7 @@ snapshot[`nav plugin 1`] = `
     "/docs/0-pages/4-pages",
     "/docs/0-pages/4-pages/1-pages",
     "/docs/0-pages/4-pages/1-pages/1-first.md",
+    "/docs/0-pages/index.md",
     "/docs/1-about-docs.md",
     "/index.vto",
   ],
@@ -132,279 +132,7 @@ snapshot[`nav plugin 2`] = `[]`;
 snapshot[`nav plugin 3`] = `
 [
   {
-    content: '<!DOCTYPE html>
-<html>
-  <head>
-    <title></title>
-  </head>
-
-  <body>
-      <a href="/">Previous index</a>
-      <a href="/docs/0-pages/">Next 0-pages</a>
-    <hr>
-    <nav>
-      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">index</a></li>
-        <li><a href="/docs/">docs</a></li>
-      </ul>
-    </nav>
-
-    <h1>docs</h1>
-
-    <nav>
-      <ul>        <li>
-          <a href="/docs/">
-  docs
-    (current)
-</a>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/">
-  0-pages
-</a>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/1-first/">
-  1-first
-</a>
-
-
-  </li>
-  <li>
-    <a href="/docs/0-pages/2-second/">
-  2-second
-</a>
-
-
-  </li>
-  <li>
-    <a href="/docs/0-pages/3-pages/">
-  3-pages
-</a>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/3-pages/1.first/">
-  1.first
-</a>
-
-
-  </li>
-  <li>
-    <a href="/docs/0-pages/3-pages/2.second/">
-  2.second
-</a>
-
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    <strong>4-pages</strong>
-
-<ul>
-  <li>
-    <strong>1-pages</strong>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
-  1-first
-</a>
-
-
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    <a href="/docs/1-about-docs/">
-  1-about-docs
-</a>
-
-
-  </li>
-</ul>
-
-        </li>      </ul>
-    </nav>
-  </body>
-</html>',
-    data: {
-      basename: "docs",
-      children: "",
-      content: "",
-      date: [],
-      layout: "main.vto",
-      mergedKeys: [
-        "tags",
-      ],
-      nav: [],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/docs/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/docs",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<!DOCTYPE html>
-<html>
-  <head>
-    <title></title>
-  </head>
-
-  <body>
-      <a href="/docs/">Previous docs</a>
-      <a href="/docs/0-pages/1-first/">Next 1-first</a>
-    <hr>
-    <nav>
-      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">index</a></li>
-        <li><a href="/docs/">docs</a></li>
-        <li><a href="/docs/0-pages/">0-pages</a></li>
-      </ul>
-    </nav>
-
-    <h1>0-pages</h1>
-
-    <nav>
-      <ul>        <li>
-          <a href="/docs/">
-  docs
-</a>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/">
-  0-pages
-    (current)
-</a>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/1-first/">
-  1-first
-</a>
-
-
-  </li>
-  <li>
-    <a href="/docs/0-pages/2-second/">
-  2-second
-</a>
-
-
-  </li>
-  <li>
-    <a href="/docs/0-pages/3-pages/">
-  3-pages
-</a>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/3-pages/1.first/">
-  1.first
-</a>
-
-
-  </li>
-  <li>
-    <a href="/docs/0-pages/3-pages/2.second/">
-  2.second
-</a>
-
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    <strong>4-pages</strong>
-
-<ul>
-  <li>
-    <strong>1-pages</strong>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
-  1-first
-</a>
-
-
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    <a href="/docs/1-about-docs/">
-  1-about-docs
-</a>
-
-
-  </li>
-</ul>
-
-        </li>      </ul>
-    </nav>
-  </body>
-</html>',
-    data: {
-      basename: "0-pages",
-      children: "",
-      content: "",
-      date: [],
-      layout: "main.vto",
-      mergedKeys: [
-        "tags",
-      ],
-      nav: [],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/docs/0-pages/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/docs/0-pages",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title></title>
   </head>
@@ -415,7 +143,7 @@ snapshot[`nav plugin 3`] = `
     <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">index</a></li>
+        <li><a href="/"></a></li>
         <li><a href="/docs/">docs</a></li>
         <li><a href="/docs/0-pages/">0-pages</a></li>
         <li><a href="/docs/0-pages/1-first/">1-first</a></li>
@@ -525,7 +253,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -533,15 +260,13 @@ snapshot[`nav plugin 3`] = `
       url: "/docs/0-pages/1-first/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/0-pages/1-first",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title></title>
   </head>
@@ -552,7 +277,7 @@ snapshot[`nav plugin 3`] = `
     <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">index</a></li>
+        <li><a href="/"></a></li>
         <li><a href="/docs/">docs</a></li>
         <li><a href="/docs/0-pages/">0-pages</a></li>
         <li><a href="/docs/0-pages/2-second/">2-second</a></li>
@@ -662,7 +387,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -670,152 +394,13 @@ snapshot[`nav plugin 3`] = `
       url: "/docs/0-pages/2-second/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/0-pages/2-second",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
-  <head>
-    <title></title>
-  </head>
-
-  <body>
-      <a href="/docs/0-pages/2-second/">Previous 2-second</a>
-      <a href="/docs/0-pages/3-pages/1.first/">Next 1.first</a>
-    <hr>
-    <nav>
-      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">index</a></li>
-        <li><a href="/docs/">docs</a></li>
-        <li><a href="/docs/0-pages/">0-pages</a></li>
-        <li><a href="/docs/0-pages/3-pages/">3-pages</a></li>
-      </ul>
-    </nav>
-
-    <h1>3-pages</h1>
-
-    <nav>
-      <ul>        <li>
-          <a href="/docs/">
-  docs
-</a>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/">
-  0-pages
-</a>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/1-first/">
-  1-first
-</a>
-
-
-  </li>
-  <li>
-    <a href="/docs/0-pages/2-second/">
-  2-second
-</a>
-
-
-  </li>
-  <li>
-    <a href="/docs/0-pages/3-pages/">
-  3-pages
-    (current)
-</a>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/3-pages/1.first/">
-  1.first
-</a>
-
-
-  </li>
-  <li>
-    <a href="/docs/0-pages/3-pages/2.second/">
-  2.second
-</a>
-
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    <strong>4-pages</strong>
-
-<ul>
-  <li>
-    <strong>1-pages</strong>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
-  1-first
-</a>
-
-
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    <a href="/docs/1-about-docs/">
-  1-about-docs
-</a>
-
-
-  </li>
-</ul>
-
-        </li>      </ul>
-    </nav>
-  </body>
-</html>',
-    data: {
-      basename: "3-pages",
-      children: "",
-      content: "",
-      date: [],
-      layout: "main.vto",
-      mergedKeys: [
-        "tags",
-      ],
-      nav: [],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/docs/0-pages/3-pages/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/docs/0-pages/3-pages",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title></title>
   </head>
@@ -826,7 +411,7 @@ snapshot[`nav plugin 3`] = `
     <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">index</a></li>
+        <li><a href="/"></a></li>
         <li><a href="/docs/">docs</a></li>
         <li><a href="/docs/0-pages/">0-pages</a></li>
         <li><a href="/docs/0-pages/3-pages/">3-pages</a></li>
@@ -937,7 +522,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -945,15 +529,13 @@ snapshot[`nav plugin 3`] = `
       url: "/docs/0-pages/3-pages/1.first/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/0-pages/3-pages/1.first",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title></title>
   </head>
@@ -964,7 +546,7 @@ snapshot[`nav plugin 3`] = `
     <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">index</a></li>
+        <li><a href="/"></a></li>
         <li><a href="/docs/">docs</a></li>
         <li><a href="/docs/0-pages/">0-pages</a></li>
         <li><a href="/docs/0-pages/3-pages/">3-pages</a></li>
@@ -1075,7 +657,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1083,15 +664,147 @@ snapshot[`nav plugin 3`] = `
       url: "/docs/0-pages/3-pages/2.second/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/0-pages/3-pages/2.second",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/docs/0-pages/2-second/">Previous 2-second</a>
+      <a href="/docs/0-pages/3-pages/1.first/">Next 1.first</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/"></a></li>
+        <li><a href="/docs/">docs</a></li>
+        <li><a href="/docs/0-pages/">0-pages</a></li>
+        <li><a href="/docs/0-pages/3-pages/">3-pages</a></li>
+      </ul>
+    </nav>
+
+    <h1>3-pages</h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs/">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/">
+  0-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second/">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/">
+  3-pages
+    (current)
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first/">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second/">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <a href="/docs/1-about-docs/">
+  1-about-docs
+</a>
+
+
+  </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      basename: "3-pages",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/docs/0-pages/3-pages/",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs/0-pages/3-pages",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
   <head>
     <title></title>
   </head>
@@ -1102,7 +815,7 @@ snapshot[`nav plugin 3`] = `
     <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">index</a></li>
+        <li><a href="/"></a></li>
         <li><a href="/docs/">docs</a></li>
         <li><a href="/docs/0-pages/">0-pages</a></li>
         <li><a href="">4-pages</a></li>
@@ -1214,7 +927,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1222,15 +934,146 @@ snapshot[`nav plugin 3`] = `
       url: "/docs/0-pages/4-pages/1-pages/1-first/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/0-pages/4-pages/1-pages/1-first",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/docs/">Previous docs</a>
+      <a href="/docs/0-pages/1-first/">Next 1-first</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/"></a></li>
+        <li><a href="/docs/">docs</a></li>
+        <li><a href="/docs/0-pages/">0-pages</a></li>
+      </ul>
+    </nav>
+
+    <h1>0-pages</h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs/">
+  docs
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/">
+  0-pages
+    (current)
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second/">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first/">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second/">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <a href="/docs/1-about-docs/">
+  1-about-docs
+</a>
+
+
+  </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      basename: "0-pages",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/docs/0-pages/",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs/0-pages/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
   <head>
     <title></title>
   </head>
@@ -1240,7 +1083,7 @@ snapshot[`nav plugin 3`] = `
     <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">index</a></li>
+        <li><a href="/"></a></li>
         <li><a href="/docs/">docs</a></li>
         <li><a href="/docs/1-about-docs/">1-about-docs</a></li>
       </ul>
@@ -1349,7 +1192,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1357,15 +1199,145 @@ snapshot[`nav plugin 3`] = `
       url: "/docs/1-about-docs/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/1-about-docs",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/">Previous </a>
+      <a href="/docs/0-pages/">Next 0-pages</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/"></a></li>
+        <li><a href="/docs/">docs</a></li>
+      </ul>
+    </nav>
+
+    <h1>docs</h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs/">
+  docs
+    (current)
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/">
+  0-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second/">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first/">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second/">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first/">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <a href="/docs/1-about-docs/">
+  1-about-docs
+</a>
+
+
+  </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      basename: "docs",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/docs/",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
   <head>
     <title></title>
   </head>
@@ -1375,11 +1347,11 @@ snapshot[`nav plugin 3`] = `
     <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/">index</a></li>
+        <li><a href="/"></a></li>
       </ul>
     </nav>
 
-    <h1>index</h1>
+    <h1></h1>
 
     <nav>
       <ul>        <li>
@@ -1469,7 +1441,7 @@ snapshot[`nav plugin 3`] = `
   </body>
 </html>',
     data: {
-      basename: "index",
+      basename: "",
       children: "",
       content: "",
       date: [],
@@ -1481,7 +1453,6 @@ snapshot[`nav plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1489,7 +1460,6 @@ snapshot[`nav plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
@@ -1504,32 +1474,32 @@ snapshot[`nav plugin with pretty urls disabled 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -1546,14 +1516,14 @@ snapshot[`nav plugin with pretty urls disabled 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -1570,14 +1540,14 @@ snapshot[`nav plugin with pretty urls disabled 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -1589,15 +1559,15 @@ snapshot[`nav plugin with pretty urls disabled 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -1609,7 +1579,6 @@ snapshot[`nav plugin with pretty urls disabled 1`] = `
     "/docs",
     "/docs.md",
     "/docs/0-pages",
-    "/docs/0-pages.md",
     "/docs/0-pages/1-first.md",
     "/docs/0-pages/2-second.md",
     "/docs/0-pages/3-pages",
@@ -1619,6 +1588,7 @@ snapshot[`nav plugin with pretty urls disabled 1`] = `
     "/docs/0-pages/4-pages",
     "/docs/0-pages/4-pages/1-pages",
     "/docs/0-pages/4-pages/1-pages/1-first.md",
+    "/docs/0-pages/index.md",
     "/docs/1-about-docs.md",
     "/index.vto",
   ],
@@ -1630,15 +1600,14 @@ snapshot[`nav plugin with pretty urls disabled 2`] = `[]`;
 snapshot[`nav plugin with pretty urls disabled 3`] = `
 [
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title></title>
   </head>
 
   <body>
       <a href="/index.html">Previous index</a>
-      <a href="/docs/0-pages.html">Next 0-pages</a>
+      <a href="/docs/1-about-docs.html">Next 1-about-docs</a>
     <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
@@ -1658,8 +1627,15 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
 <ul>
   <li>
-    <a href="/docs/0-pages.html">
-  0-pages
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
 </a>
 
 <ul>
@@ -1722,13 +1698,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
   </li>
 </ul>
-
-  </li>
-  <li>
-    <a href="/docs/1-about-docs.html">
-  1-about-docs
-</a>
-
 
   </li>
 </ul>
@@ -1750,7 +1719,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1758,164 +1726,26 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title></title>
   </head>
 
   <body>
-      <a href="/docs.html">Previous docs</a>
-      <a href="/docs/0-pages/1-first.html">Next 1-first</a>
-    <hr>
-    <nav>
-      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
-        <li><a href="/index.html">index</a></li>
-        <li><a href="/docs.html">docs</a></li>
-        <li><a href="/docs/0-pages.html">0-pages</a></li>
-      </ul>
-    </nav>
-
-    <h1>0-pages</h1>
-
-    <nav>
-      <ul>        <li>
-          <a href="/docs.html">
-  docs
-</a>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages.html">
-  0-pages
-    (current)
-</a>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/1-first.html">
-  1-first
-</a>
-
-
-  </li>
-  <li>
-    <a href="/docs/0-pages/2-second.html">
-  2-second
-</a>
-
-
-  </li>
-  <li>
-    <a href="/docs/0-pages/3-pages.html">
-  3-pages
-</a>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/3-pages/1.first.html">
-  1.first
-</a>
-
-
-  </li>
-  <li>
-    <a href="/docs/0-pages/3-pages/2.second.html">
-  2.second
-</a>
-
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    <strong>4-pages</strong>
-
-<ul>
-  <li>
-    <strong>1-pages</strong>
-
-<ul>
-  <li>
-    <a href="/docs/0-pages/4-pages/1-pages/1-first.html">
-  1-first
-</a>
-
-
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-  </li>
-</ul>
-
-  </li>
-  <li>
-    <a href="/docs/1-about-docs.html">
-  1-about-docs
-</a>
-
-
-  </li>
-</ul>
-
-        </li>      </ul>
-    </nav>
-  </body>
-</html>',
-    data: {
-      basename: "0-pages",
-      children: "",
-      content: "",
-      date: [],
-      layout: "main.vto",
-      mergedKeys: [
-        "tags",
-      ],
-      nav: [],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/docs/0-pages.html",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/docs/0-pages",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<!DOCTYPE html>
-<html>
-  <head>
-    <title></title>
-  </head>
-
-  <body>
-      <a href="/docs/0-pages.html">Previous 0-pages</a>
+      <a href="/docs/0-pages/index.html">Previous index</a>
       <a href="/docs/0-pages/2-second.html">Next 2-second</a>
     <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
         <li><a href="/index.html">index</a></li>
         <li><a href="/docs.html">docs</a></li>
-        <li><a href="/docs/0-pages.html">0-pages</a></li>
+        <li><a href="/docs/0-pages/index.html">index</a></li>
         <li><a href="/docs/0-pages/1-first.html">1-first</a></li>
       </ul>
     </nav>
@@ -1930,8 +1760,15 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
 <ul>
   <li>
-    <a href="/docs/0-pages.html">
-  0-pages
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
 </a>
 
 <ul>
@@ -1995,13 +1832,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
   </li>
 </ul>
-
-  </li>
-  <li>
-    <a href="/docs/1-about-docs.html">
-  1-about-docs
-</a>
-
 
   </li>
 </ul>
@@ -2023,7 +1853,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -2031,15 +1860,13 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/0-pages/1-first.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/0-pages/1-first",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title></title>
   </head>
@@ -2052,7 +1879,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
         <li><a href="/index.html">index</a></li>
         <li><a href="/docs.html">docs</a></li>
-        <li><a href="/docs/0-pages.html">0-pages</a></li>
+        <li><a href="/docs/0-pages/index.html">index</a></li>
         <li><a href="/docs/0-pages/2-second.html">2-second</a></li>
       </ul>
     </nav>
@@ -2067,8 +1894,15 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
 <ul>
   <li>
-    <a href="/docs/0-pages.html">
-  0-pages
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
 </a>
 
 <ul>
@@ -2132,13 +1966,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
   </li>
 </ul>
-
-  </li>
-  <li>
-    <a href="/docs/1-about-docs.html">
-  1-about-docs
-</a>
-
 
   </li>
 </ul>
@@ -2160,7 +1987,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -2168,15 +1994,13 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/0-pages/2-second.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/0-pages/2-second",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title></title>
   </head>
@@ -2189,7 +2013,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
         <li><a href="/index.html">index</a></li>
         <li><a href="/docs.html">docs</a></li>
-        <li><a href="/docs/0-pages.html">0-pages</a></li>
+        <li><a href="/docs/0-pages/index.html">index</a></li>
         <li><a href="/docs/0-pages/3-pages.html">3-pages</a></li>
       </ul>
     </nav>
@@ -2204,8 +2028,15 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
 <ul>
   <li>
-    <a href="/docs/0-pages.html">
-  0-pages
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
 </a>
 
 <ul>
@@ -2269,13 +2100,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
   </li>
 </ul>
-
-  </li>
-  <li>
-    <a href="/docs/1-about-docs.html">
-  1-about-docs
-</a>
-
 
   </li>
 </ul>
@@ -2297,7 +2121,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -2305,15 +2128,13 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/0-pages/3-pages.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/0-pages/3-pages",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title></title>
   </head>
@@ -2326,7 +2147,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
         <li><a href="/index.html">index</a></li>
         <li><a href="/docs.html">docs</a></li>
-        <li><a href="/docs/0-pages.html">0-pages</a></li>
+        <li><a href="/docs/0-pages/index.html">index</a></li>
         <li><a href="/docs/0-pages/3-pages.html">3-pages</a></li>
         <li><a href="/docs/0-pages/3-pages/1.first.html">1.first</a></li>
       </ul>
@@ -2342,8 +2163,15 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
 <ul>
   <li>
-    <a href="/docs/0-pages.html">
-  0-pages
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
 </a>
 
 <ul>
@@ -2407,13 +2235,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
   </li>
 </ul>
-
-  </li>
-  <li>
-    <a href="/docs/1-about-docs.html">
-  1-about-docs
-</a>
-
 
   </li>
 </ul>
@@ -2435,7 +2256,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -2443,15 +2263,13 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/0-pages/3-pages/1.first.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/0-pages/3-pages/1.first",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title></title>
   </head>
@@ -2464,7 +2282,7 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
         <li><a href="/index.html">index</a></li>
         <li><a href="/docs.html">docs</a></li>
-        <li><a href="/docs/0-pages.html">0-pages</a></li>
+        <li><a href="/docs/0-pages/index.html">index</a></li>
         <li><a href="/docs/0-pages/3-pages.html">3-pages</a></li>
         <li><a href="/docs/0-pages/3-pages/2.second.html">2.second</a></li>
       </ul>
@@ -2480,8 +2298,15 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
 <ul>
   <li>
-    <a href="/docs/0-pages.html">
-  0-pages
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
 </a>
 
 <ul>
@@ -2545,13 +2370,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
   </li>
 </ul>
-
-  </li>
-  <li>
-    <a href="/docs/1-about-docs.html">
-  1-about-docs
-</a>
-
 
   </li>
 </ul>
@@ -2573,7 +2391,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -2581,28 +2398,25 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/0-pages/3-pages/2.second.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/0-pages/3-pages/2.second",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title></title>
   </head>
 
   <body>
       <a href="/docs/0-pages/3-pages/2.second.html">Previous 2.second</a>
-      <a href="/docs/1-about-docs.html">Next 1-about-docs</a>
     <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
         <li><a href="/index.html">index</a></li>
         <li><a href="/docs.html">docs</a></li>
-        <li><a href="/docs/0-pages.html">0-pages</a></li>
+        <li><a href="/docs/0-pages/index.html">index</a></li>
         <li><a href="">4-pages</a></li>
         <li><a href="">1-pages</a></li>
         <li><a href="/docs/0-pages/4-pages/1-pages/1-first.html">1-first</a></li>
@@ -2619,8 +2433,15 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
 <ul>
   <li>
-    <a href="/docs/0-pages.html">
-  0-pages
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
 </a>
 
 <ul>
@@ -2684,13 +2505,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
   </li>
 </ul>
-
-  </li>
-  <li>
-    <a href="/docs/1-about-docs.html">
-  1-about-docs
-</a>
-
 
   </li>
 </ul>
@@ -2712,7 +2526,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -2720,31 +2533,30 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/0-pages/4-pages/1-pages/1-first.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/0-pages/4-pages/1-pages/1-first",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title></title>
   </head>
 
   <body>
-      <a href="/docs/0-pages/4-pages/1-pages/1-first.html">Previous 1-first</a>
+      <a href="/docs/1-about-docs.html">Previous 1-about-docs</a>
+      <a href="/docs/0-pages/1-first.html">Next 1-first</a>
     <hr>
     <nav>
       <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
         <li><a href="/index.html">index</a></li>
         <li><a href="/docs.html">docs</a></li>
-        <li><a href="/docs/1-about-docs.html">1-about-docs</a></li>
+        <li><a href="/docs/0-pages/index.html">index</a></li>
       </ul>
     </nav>
 
-    <h1>1-about-docs</h1>
+    <h1>index</h1>
 
     <nav>
       <ul>        <li>
@@ -2754,8 +2566,16 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
 <ul>
   <li>
-    <a href="/docs/0-pages.html">
-  0-pages
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
+    (current)
 </a>
 
 <ul>
@@ -2820,12 +2640,137 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 </ul>
 
   </li>
+</ul>
+
+        </li>      </ul>
+    </nav>
+  </body>
+</html>',
+    data: {
+      basename: "index",
+      children: "",
+      content: "",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/docs/0-pages/index.html",
+    },
+    src: {
+      ext: ".md",
+      path: "/docs/0-pages/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+      <a href="/docs.html">Previous docs</a>
+      <a href="/docs/0-pages/index.html">Next index</a>
+    <hr>
+    <nav>
+      <ul style="display: flex; list-style: none; gap: 1em; padding: 0;">
+        <li><a href="/index.html">index</a></li>
+        <li><a href="/docs.html">docs</a></li>
+        <li><a href="/docs/1-about-docs.html">1-about-docs</a></li>
+      </ul>
+    </nav>
+
+    <h1>1-about-docs</h1>
+
+    <nav>
+      <ul>        <li>
+          <a href="/docs.html">
+  docs
+</a>
+
+<ul>
   <li>
     <a href="/docs/1-about-docs.html">
   1-about-docs
     (current)
 </a>
 
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/2-second.html">
+  2-second
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages.html">
+  3-pages
+</a>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/3-pages/1.first.html">
+  1.first
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/3-pages/2.second.html">
+  2.second
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+  <li>
+    <strong>4-pages</strong>
+
+<ul>
+  <li>
+    <strong>1-pages</strong>
+
+<ul>
+  <li>
+    <a href="/docs/0-pages/4-pages/1-pages/1-first.html">
+  1-first
+</a>
+
+
+  </li>
+</ul>
+
+  </li>
+</ul>
+
+  </li>
+</ul>
 
   </li>
 </ul>
@@ -2847,7 +2792,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -2855,15 +2799,13 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/docs/1-about-docs.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/docs/1-about-docs",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<html>
+    content: '<html>
   <head>
     <title></title>
   </head>
@@ -2887,8 +2829,15 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 
 <ul>
   <li>
-    <a href="/docs/0-pages.html">
-  0-pages
+    <a href="/docs/1-about-docs.html">
+  1-about-docs
+</a>
+
+
+  </li>
+  <li>
+    <a href="/docs/0-pages/index.html">
+  index
 </a>
 
 <ul>
@@ -2953,13 +2902,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
 </ul>
 
   </li>
-  <li>
-    <a href="/docs/1-about-docs.html">
-  1-about-docs
-</a>
-
-
-  </li>
 </ul>
 
         </li>      </ul>
@@ -2979,7 +2921,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -2987,7 +2928,6 @@ snapshot[`nav plugin with pretty urls disabled 3`] = `
       url: "/index.html",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,

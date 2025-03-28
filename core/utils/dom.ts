@@ -7,7 +7,7 @@ export function documentToString(document: Document) {
   const { doctype, documentElement } = document;
 
   if (!doctype) {
-    return `<!DOCTYPE html>\n${documentElement?.outerHTML || ""}`;
+    return documentElement?.outerHTML || "";
   }
 
   return `<!DOCTYPE ${doctype.name}` +

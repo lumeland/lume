@@ -20,10 +20,8 @@ export function redirects(options: Options): Middleware {
     redirects.set(from, buildRedirects(to));
   }
 
-  const strict = options.strict ?? true;
-
   function findRedirect(url: string): Redirect | undefined {
-    if (strict) {
+    if (options.strict) {
       return redirects.get(url);
     }
 

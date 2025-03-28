@@ -7,8 +7,8 @@ Deno.test("purgecss plugin", async (t) => {
     src: "purgecss",
   });
 
-  site.loadAssets([".css", ".js"]);
-  site.copy("static", ".");
+  site.add([".css", ".js"]);
+  site.add("static", ".");
 
   site.use(purgecss());
 
@@ -21,8 +21,8 @@ Deno.test("purgecss plugin with options", async (t) => {
     src: "purgecss",
   });
 
-  site.loadAssets([".css", ".js"]);
-  site.copy("static", ".");
+  site.add([".css", ".js"]);
+  site.add("static", ".");
 
   site.use(purgecss({
     options: {

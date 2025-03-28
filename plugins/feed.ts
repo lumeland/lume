@@ -1,6 +1,6 @@
 import { getExtension } from "../core/utils/path.ts";
 import { isPlainObject, merge } from "../core/utils/object.ts";
-import { getCurrentVersion } from "../core/utils/lume_version.ts";
+import { getGenerator } from "../core/utils/lume_version.ts";
 import { getDataValue, getPlainDataValue } from "../core/utils/data_values.ts";
 import { cdata, stringify } from "../deps/xml.ts";
 import { Page } from "../core/file.ts";
@@ -161,89 +161,105 @@ export interface FeedItem {
   author?: Author;
 }
 
-const defaultGenerator = `Lume ${getCurrentVersion()}`;
+const defaultGenerator = getGenerator();
 
 /**
  * A plugin to generate RSS and JSON feeds
  * @see https://lume.land/plugins/feed/
  */
-export function feed(userOptions?: Options) {
-  const options = merge(defaults, userOptions);
-
+export function feed(
+  userOptionsFn?: Options | Options[] | (() => Options[] | Options),
+) {
   return (site: Site) => {
-    site.addEventListener("beforeSave", () => {
-      const output = Array.isArray(options.output)
-        ? options.output
-        : [options.output];
+    site.process(() => {
+      const userOptions = typeof userOptionsFn === "function"
+        ? userOptionsFn()
+        : userOptionsFn;
+      const optionsArray = Array.isArray(userOptions)
+        ? userOptions
+        : [userOptions];
 
-      const pages = site.search.pages(
-        options.query,
-        options.sort,
-        options.limit,
-      ) as Data[];
+      for (const opt of optionsArray) {
+        const options = merge(defaults, opt);
+        const output = Array.isArray(options.output)
+          ? options.output
+          : [options.output];
 
-      const { info, items } = options;
-      const rootData = site.source.data.get("/") || {};
+        const pages = site.search.pages(
+          options.query,
+          options.sort,
+          options.limit,
+        ) as Data[];
 
-      const feed: FeedData = {
-        title: getPlainDataValue(rootData, info.title),
-        description: getPlainDataValue(rootData, info.description),
-        published: getDataValue(rootData, info.published),
-        lang: getDataValue(rootData, info.lang),
-        hubs: info.hubs,
-        url: site.url("", true),
-        generator: info.generator === true
-          ? defaultGenerator
-          : info.generator || undefined,
-        author: getAuthor(rootData, info),
-        image: info.image,
-        icon: info.icon,
-        color: info.color,
-        items: pages.map((data): FeedItem => {
-          const content = getDataValue(data, items.content)?.toString();
-          const pageUrl = site.url(data.url, true);
-          const fixedContent = fixUrls(new URL(pageUrl), content || "");
-          const imagePath = getDataValue(data, items.image);
-          const image = imagePath !== undefined
-            ? site.url(imagePath, true)
-            : undefined;
+        const { info, items } = options;
+        const rootData = site.source.data.get("/") || {};
 
-          return {
-            title: getPlainDataValue(data, items.title),
-            url: site.url(data.url, true),
-            description: getPlainDataValue(data, items.description),
-            author: getAuthor(data, items),
-            published: toDate(getDataValue(data, items.published)) ||
-              new Date(),
-            updated: toDate(getDataValue(data, items.updated)),
-            content: fixedContent,
-            lang: getDataValue(data, items.lang),
-            image,
-          };
-        }),
-      };
+        const feed: FeedData = {
+          title: getPlainDataValue(rootData, info.title),
+          description: getPlainDataValue(rootData, info.description),
+          published: getDataValue(rootData, info.published),
+          lang: getDataValue(rootData, info.lang),
+          hubs: info.hubs,
+          url: site.url("", true),
+          generator: info.generator === true
+            ? defaultGenerator
+            : info.generator || undefined,
+          author: getAuthor(rootData, info),
+          image: info.image,
+          icon: info.icon,
+          color: info.color,
+          items: pages.map((data): FeedItem => {
+            const content = getDataValue(data, items.content)?.toString();
+            const pageUrl = site.url(data.url, true);
+            const fixedContent = fixUrls(new URL(pageUrl), content || "");
+            const imagePath = getDataValue(data, items.image);
+            const image = imagePath !== undefined
+              ? site.url(imagePath, true)
+              : undefined;
 
-      for (const filename of output) {
-        const format = getExtension(filename).slice(1);
-        const file = site.url(filename, true);
+            return {
+              title: getPlainDataValue(data, items.title),
+              url: site.url(data.url, true),
+              description: getPlainDataValue(data, items.description),
+              author: getAuthor(data, items),
+              published: toDate(getDataValue(data, items.published)) ||
+                new Date(),
+              updated: toDate(getDataValue(data, items.updated)),
+              content: fixedContent,
+              lang: getDataValue(data, items.lang),
+              image,
+            };
+          }),
+        };
 
-        switch (format) {
-          case "rss":
-          case "feed":
-          case "xml":
-            site.pages.push(
-              Page.create({ url: filename, content: generateRss(feed, file) }),
-            );
-            break;
+        for (const filename of output) {
+          const format = getExtension(filename).slice(1);
+          const file = site.url(filename, true);
 
-          case "json":
-            site.pages.push(
-              Page.create({ url: filename, content: generateJson(feed, file) }),
-            );
-            break;
+          switch (format) {
+            case "rss":
+            case "feed":
+            case "xml":
+              site.pages.push(
+                Page.create({
+                  url: filename,
+                  content: generateRss(feed, file),
+                }),
+              );
+              break;
 
-          default:
-            throw new Error(`Invalid Feed format "${format}"`);
+            case "json":
+              site.pages.push(
+                Page.create({
+                  url: filename,
+                  content: generateJson(feed, file),
+                }),
+              );
+              break;
+
+            default:
+              throw new Error(`Invalid Feed format "${format}"`);
+          }
         }
       }
     });

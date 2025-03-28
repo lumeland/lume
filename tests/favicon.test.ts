@@ -8,9 +8,7 @@ Deno.test("favicon plugin", async (t) => {
   });
 
   site.use(svgo());
-  site.use(favicon({
-    cache: false,
-  }));
+  site.use(favicon());
 
   await build(site);
   await assertSiteSnapshot(t, site);

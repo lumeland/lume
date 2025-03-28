@@ -1,12 +1,4 @@
-export { minify } from "https://deno.land/x/minify_html@0.15.0/mod.js";
-import initWasm from "https://deno.land/x/minify_html@0.15.0/mod.js";
-import { read } from "../core/utils/read.ts";
-
-// Initialize the WASM module
-const url = "https://deno.land/x/minify_html@0.15.0/index_bg.wasm";
-const wasm = await read(url, true);
-
-await initWasm(wasm);
+export { minify } from "jsr:/@minify-html/deno@0.16.4";
 
 export interface Options {
   /** Do not minify DOCTYPEs. Minified DOCTYPEs may not be spec compliant. */

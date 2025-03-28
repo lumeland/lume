@@ -2,6 +2,7 @@ import { posix } from "../deps/path.ts";
 import { getPathAndExtension } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { contentType } from "../deps/media_types.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 
@@ -16,16 +17,12 @@ interface Source extends SourceFormat {
 }
 
 export interface Options {
-  /** The key name for the transformations definitions */
-  name?: string;
-
   /** The priority order of the formats */
   order?: string[];
 }
 
 // Default options
 export const defaults: Options = {
-  name: "transformImages",
   order: ["avif", "webp", "png", "jpg"],
 };
 
@@ -42,11 +39,6 @@ export function picture(userOptions?: Options) {
     site.process([".html"], (pages) => {
       for (const page of pages) {
         const { document } = page;
-
-        if (!document) {
-          return;
-        }
-
         const basePath = posix.dirname(page.outputPath);
         const images = document.querySelectorAll("img,picture source");
 
@@ -61,10 +53,16 @@ export function picture(userOptions?: Options) {
           }
 
           if (img.tagName === "IMG" && !img.getAttribute("src")) {
-            throw new Error("img element must have a src attribute");
+            log.warn(
+              `[picture plugin] <img> element must have a src attribute (${page.sourcePath})`,
+            );
+            continue;
           }
           if (img.tagName === "SOURCE" && !img.getAttribute("srcset")) {
-            throw new Error("source element must have a srcset attribute");
+            log.warn(
+              `[picture plugin] <source> element must have a srcset attribute (${page.sourcePath})`,
+            );
+            continue;
           }
 
           if (img.closest("picture")) {
@@ -83,7 +81,7 @@ export function picture(userOptions?: Options) {
 
       // Remove the image-transform attribute from the HTML
       for (const page of pages) {
-        page.document?.querySelectorAll("[transform-images]").forEach(
+        page.document.querySelectorAll("[transform-images]").forEach(
           (element) => {
             element.removeAttribute("transform-images");
           },
@@ -91,8 +89,10 @@ export function picture(userOptions?: Options) {
       }
     });
 
-    site.process("*", (pages) => {
-      for (const page of pages) {
+    site.process(() => {
+      const filesAndPages = [...site.files, ...site.pages];
+
+      for (const page of filesAndPages) {
         const path = page.outputPath;
 
         for (const { paths, width, scales, format } of transforms.values()) {
@@ -100,12 +100,12 @@ export function picture(userOptions?: Options) {
             continue;
           }
 
-          const { name } = options;
-          const transformImages = page.data[name] = page.data[name]
-            ? Array.isArray(page.data[name])
-              ? page.data[name]
-              : [page.data[name]]
-            : [];
+          const transformImages = page.data.transformImages =
+            page.data.transformImages
+              ? Array.isArray(page.data.transformImages)
+                ? page.data.transformImages
+                : [page.data.transformImages]
+              : [];
 
           for (const [suffix, scale] of Object.entries(scales)) {
             if (width) {

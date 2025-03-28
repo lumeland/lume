@@ -34,11 +34,6 @@ export function sri(userOptions?: Partial<Options>) {
     site.process([".html"], async (pages) => {
       for (const page of pages) {
         const { document } = page;
-
-        if (!document) {
-          continue;
-        }
-
         const nodes = document.querySelectorAll(options.selector);
 
         for (const node of nodes) {
