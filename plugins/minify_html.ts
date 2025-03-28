@@ -3,7 +3,6 @@ import { merge } from "../core/utils/object.ts";
 
 import type { Options as MinifyOptions } from "../deps/minify_html.ts";
 import type Site from "../core/site.ts";
-import type { Page } from "../core/file.ts";
 
 export interface Options {
   /** File extensions to minify */
@@ -49,18 +48,11 @@ export function minifyHTML(userOptions?: Options) {
   }
 
   return (site: Site) => {
-    site.process(options.extensions, (pages) => pages.forEach(minifyHtml));
-
-    const encoder = new TextEncoder();
-    const decoder = new TextDecoder();
-
-    function minifyHtml(page: Page) {
-      const content = page.content as string;
-
-      page.content = decoder.decode(
-        minify(encoder.encode(content), options.options),
-      );
-    }
+    site.process(options.extensions, (pages) => {
+      for (const page of pages) {
+        page.bytes = minify(page.bytes, options.options);
+      }
+    });
   };
 }
 
