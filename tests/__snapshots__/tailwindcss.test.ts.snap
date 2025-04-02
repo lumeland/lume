@@ -930,23 +930,37 @@ snapshot[`Tailwindcss plugin 3`] = `
     },
   },
   {
-    content: '/*! tailwindcss v4.0.15 | MIT License | https://tailwindcss.com */
+    content: '/*! tailwindcss v4.1.1 | MIT License | https://tailwindcss.com */
 @layer theme, base, components, utilities;
+@supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+  @layer base {
+    *, ::before, ::after, ::backdrop {
+      --tw-space-y-reverse: 0;
+      --tw-font-weight: initial;
+      --tw-tracking: initial;
+      --tw-rotate-x: rotateX(0);
+      --tw-rotate-y: rotateY(0);
+      --tw-rotate-z: rotateZ(0);
+      --tw-skew-x: skewX(0);
+      --tw-skew-y: skewY(0);
+    }
+  }
+}
 @layer theme {
   :root, :host {
     --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-blue-100: oklch(0.932 0.032 255.585);
-    --color-blue-200: oklch(0.882 0.059 254.128);
-    --color-blue-900: oklch(0.379 0.146 265.522);
-    --color-gray-100: oklch(0.967 0.003 264.542);
-    --color-gray-200: oklch(0.928 0.006 264.531);
-    --color-gray-500: oklch(0.551 0.027 264.364);
-    --color-gray-700: oklch(0.373 0.034 259.733);
-    --color-gray-800: oklch(0.278 0.033 256.848);
-    --color-gray-900: oklch(0.21 0.034 264.665);
+    --color-blue-100: oklch(93.2% 0.032 255.585);
+    --color-blue-200: oklch(88.2% 0.059 254.128);
+    --color-blue-900: oklch(37.9% 0.146 265.522);
+    --color-gray-100: oklch(96.7% 0.003 264.542);
+    --color-gray-200: oklch(92.8% 0.006 264.531);
+    --color-gray-500: oklch(55.1% 0.027 264.364);
+    --color-gray-700: oklch(37.3% 0.034 259.733);
+    --color-gray-800: oklch(27.8% 0.033 256.848);
+    --color-gray-900: oklch(21% 0.034 264.665);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
