@@ -55,8 +55,7 @@ export function minifyHTML(userOptions?: Options) {
           page.bytes = minify(page.bytes, options.options);
         } catch (error) {
           log.error(
-            "[minify-html plugin]",
-            `Error minifying ${page.sourcePath}: ${error}`,
+            `[minify-html plugin] Error minifying ${page.sourcePath}: ${error}`,
           );
         }
       }
