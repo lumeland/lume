@@ -1,4 +1,4 @@
-import { isComponent, renderComponent, specifier } from "../deps/ssx.ts";
+import { isComponent, renderComponent } from "../deps/ssx.ts";
 import loader from "../core/loaders/module.ts";
 import { merge } from "../core/utils/object.ts";
 
@@ -27,7 +27,6 @@ export const defaults: Options = {
 
 /** Template engine to render JSX files */
 export class JsxEngine implements Engine {
-  jsxImportSource = specifier;
   helpers: Record<string, Helper> = {};
   basePath: string;
   includes: string;

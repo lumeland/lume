@@ -2,7 +2,7 @@ import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils/object.ts";
 import { compile, remarkGfm } from "../deps/mdx.ts";
 import { join, toFileUrl } from "../deps/path.ts";
-import { renderComponent, specifier } from "../deps/ssx.ts";
+import { renderComponent } from "../deps/ssx.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine } from "../core/renderer.ts";
@@ -70,8 +70,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
     filename?: string,
   ) {
     const baseUrl = toFileUrl(join(this.baseUrl, filename || "/")).href;
-    // @ts-ignore: special case for jsx engines
-    const pragma = `/** @jsxImportSource ${specifier} */`;
+    const pragma = `/** @jsxImportSource lume */`;
     const result = await compile(content, {
       baseUrl,
       jsx: true,

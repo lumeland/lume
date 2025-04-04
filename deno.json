@@ -10,7 +10,7 @@
   },
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "npm:@lumeland/ssx",
+    "jsxImportSource": "lume",
     "types": [
       "./types.ts"
     ]
@@ -41,6 +41,7 @@
     "temporal"
   ],
   "imports": {
-    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.10.5/"
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.10.5/",
+    "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.8/jsx-runtime.ts"
   }
 }

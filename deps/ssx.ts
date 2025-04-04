@@ -1,6 +1,4 @@
-import "npm:@lumeland/ssx@0.1.8/jsx-runtime";
-export { renderComponent } from "npm:@lumeland/ssx@0.1.8/jsx-runtime";
-export const specifier = "npm:@lumeland/ssx@0.1.8";
+export { renderComponent } from "lume/jsx-runtime";
 
 const ssxElement = Symbol.for("ssx.element");
 export function isComponent(obj: unknown): obj is Record<string, unknown> {
