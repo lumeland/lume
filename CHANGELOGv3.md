@@ -70,6 +70,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `redirects` middleware: `strict` option is false by default.
 - `multilanguage` plugin: Now it can handle generator pages with an array of languages.
 - `source_map` plugin: The `sourceContent` option is `true` by default.
+- Renamed `CRITICAL` log level to `FATAL`. And added `TRACE` level.
 
 ### Fixed
 - The resolution of npm and jsr specifiers by esbuild plugin have been improved.
